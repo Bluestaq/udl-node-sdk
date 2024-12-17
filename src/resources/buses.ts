@@ -1,0 +1,2202 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../resource';
+import * as Core from '../core';
+import * as EntitiesAPI from './entities';
+
+export class Buses extends APIResource {
+  /**
+   * Service operation to take a single Bus as a POST body and ingest into the
+   * database. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  create(body: BusCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/udl/bus', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to get a single Bus record by its unique ID passed as a path
+   * parameter.
+   */
+  retrieve(params: BusRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<BusFull> {
+    const { path_id, body_id } = params;
+    return this._client.get(`/udl/bus/${path_id}`, options);
+  }
+
+  /**
+   * Service operation to update a single Bus. A specific role is required to perform
+   * this service operation. Please contact the UDL team for assistance.
+   */
+  update(params: BusUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { path_id, body_id, body_id, ...body } = params;
+    return this._client.put(`/udl/bus/${path_id}`, {
+      body: { id: body_id, id: body_id, ...body },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data by a variety of query parameters not
+   * specified in this API documentation. See the queryhelp operation
+   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+   * parameter information.
+   */
+  list(options?: Core.RequestOptions): Core.APIPromise<BusListResponse> {
+    return this._client.get('/udl/bus', options);
+  }
+
+  /**
+   * Service operation to delete a Bus object specified by the passed ID path
+   * parameter. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  delete(params: BusDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { path_id, body_id } = params;
+    return this._client.delete(`/udl/bus/${path_id}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to return the count of records satisfying the specified query
+   * parameters. This operation is useful to determine how many records pass a
+   * particular query criteria without retrieving large amounts of data. See the
+   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+   * valid/required query parameter information.
+   */
+  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.get('/udl/bus/count', {
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to provide detailed information on available dynamic query
+   * parameters for a particular data type.
+   */
+  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/udl/bus/queryhelp', {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data and only return specified
+   * columns/fields. Requested columns are specified by the 'columns' query parameter
+   * and should be a comma separated list of valid fields for the specified data
+   * type. classificationMarking is always returned. See the queryhelp operation
+   * (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+   * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+   * hours would return the satNo and period of elsets with an epoch greater than 5
+   * hours ago.
+   */
+  tuple(params: BusTupleParams, options?: Core.RequestOptions): Core.APIPromise<BusTupleResponse> {
+    const { columns } = params;
+    return this._client.get('/udl/bus/tuple', options);
+  }
+}
+
+/**
+ * A bus is the physical and software infrastructure backbone to which on-orbit
+ * satellite payloads are attached for power, control, and other support functions.
+ */
+export interface BusAbridged {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: string;
+
+  /**
+   * Name of this bus.
+   */
+  name: string;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Attitude and Orbital Control Notes/description for the bus.
+   */
+  aocsNotes?: string;
+
+  /**
+   * Average mass of this bus without payloads or fuel, in kilograms.
+   */
+  avgDryMass?: number;
+
+  /**
+   * Average mass available on this bus for payloads, in kilograms.
+   */
+  avgPayloadMass?: number;
+
+  /**
+   * Average power available on this bus for payloads, in kilowatts.
+   */
+  avgPayloadPower?: number;
+
+  /**
+   * Average power available on this bus, in kilowatts.
+   */
+  avgSpacecraftPower?: number;
+
+  /**
+   * Average mass of this bus with fuel, but without payloads, in kilograms.
+   */
+  avgWetMass?: number;
+
+  /**
+   * Body dimension in X direction pertaining to length, in meters.
+   */
+  bodyDimensionX?: number;
+
+  /**
+   * Body dimension in Y direction pertaining to height, in meters.
+   */
+  bodyDimensionY?: number;
+
+  /**
+   * Body dimension in Z direction pertaining to width, in meters.
+   */
+  bodyDimensionZ?: number;
+
+  /**
+   * Unique identifier of the organization which designs the bus kit.
+   */
+  busKitDesignerOrgId?: string;
+
+  /**
+   * Country where this bus was manufactured. This value is typically the ISO 3166
+   * Alpha-2 two-character country code, however it can also represent various
+   * consortiums that do not appear in the ISO document. The code must correspond to
+   * an existing country in the UDL�s country API. Call udl/country/{code} to get any
+   * associated FIPS code, ISO Alpha-3 code, or alternate code values that exist for
+   * the specified country code.
+   */
+  countryCode?: string;
+
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   */
+  createdAt?: string;
+
+  /**
+   * Application user who created the row in the database, auto-populated by the
+   * system.
+   */
+  createdBy?: string;
+
+  /**
+   * Notes/description of the bus.
+   */
+  description?: string;
+
+  /**
+   * Boolean indicating if this bus is generic.
+   */
+  generic?: boolean;
+
+  /**
+   * ID of the parent entity for this bus.
+   */
+  idEntity?: string;
+
+  /**
+   * Launch envelope dimension in X direction, in meters.
+   */
+  launchEnvelopeDimensionX?: number;
+
+  /**
+   * Launch envelope dimension in Y direction, in meters.
+   */
+  launchEnvelopeDimensionY?: number;
+
+  /**
+   * Launch envelope dimension in Z direction, in meters.
+   */
+  launchEnvelopeDimensionZ?: number;
+
+  /**
+   * Unique identifier of the organization which manufactures the main onboard
+   * computer for this bus.
+   */
+  mainComputerManufacturerOrgId?: string;
+
+  /**
+   * Unique identifier of the organization which manufactures this bus.
+   */
+  manufacturerOrgId?: string;
+
+  /**
+   * Mass category of this bus (e.g. 1 - 10 kg: Nanosatellite, 10 - 100 kg:
+   * Microsatellite, 100 - 500 kg: Minisatellite, 1000 - 2500kg: Medium satellite,
+   * etc.).
+   */
+  massCategory?: string;
+
+  /**
+   * Maximum power at beginning of life, lower bounds, in kilowatts.
+   */
+  maxBOLPowerLower?: number;
+
+  /**
+   * Maximum power at beginning of life, upper bounds, in kilowatts.
+   */
+  maxBOLPowerUpper?: number;
+
+  /**
+   * Maximum mass on station at beginning of life, in kilograms.
+   */
+  maxBOLStationMass?: number;
+
+  /**
+   * Maximum mass of this bus without payloads or fuel, in kilograms.
+   */
+  maxDryMass?: number;
+
+  /**
+   * Maximum power at end of life, lower bounds, in kilowatts.
+   */
+  maxEOLPowerLower?: number;
+
+  /**
+   * Maximum power at end of life, upper bounds, in kilowatts.
+   */
+  maxEOLPowerUpper?: number;
+
+  /**
+   * Maximum mass at launch, lower bounds, in kilograms.
+   */
+  maxLaunchMassLower?: number;
+
+  /**
+   * Maximum mass at launch, upper bounds, in kilograms.
+   */
+  maxLaunchMassUpper?: number;
+
+  /**
+   * Maximum payload mass available, in kilograms.
+   */
+  maxPayloadMass?: number;
+
+  /**
+   * Maximum payload power available, in kilowatts.
+   */
+  maxPayloadPower?: number;
+
+  /**
+   * Maximum power available on this bus, in kilowatts.
+   */
+  maxSpacecraftPower?: number;
+
+  /**
+   * Maximum mass of this bus with fuel, but without payloads, in kilograms.
+   */
+  maxWetMass?: number;
+
+  /**
+   * Median mass of this bus without payloads or fuel, in kilograms.
+   */
+  medianDryMass?: number;
+
+  /**
+   * Median mass of this bus with fuel, but without payloads, in kilograms.
+   */
+  medianWetMass?: number;
+
+  /**
+   * Minimum mass of this bus without payloads or fuel, in kilograms.
+   */
+  minDryMass?: number;
+
+  /**
+   * Minimum mass of this bus with fuel, but without payloads, in kilograms.
+   */
+  minWetMass?: number;
+
+  /**
+   * The number of orbit types this bus can support.
+   */
+  numOrbitType?: number;
+
+  /**
+   * Orbit averaged power (the power averaged over one orbit) available on this bus
+   * for payloads, in kilowatts.
+   */
+  oapPayloadPower?: number;
+
+  /**
+   * Orbit averaged power (the power averaged over one orbit) available on this bus,
+   * in kilowatts.
+   */
+  oapSpacecraftPower?: number;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * The originating source network on which this record was created, auto-populated
+   * by the system.
+   */
+  origNetwork?: string;
+
+  /**
+   * The radial dimension available on this bus for payloads, in meters.
+   */
+  payloadDimensionX?: number;
+
+  /**
+   * The in-track dimension available on this bus for payloads, in meters.
+   */
+  payloadDimensionY?: number;
+
+  /**
+   * The cross-track dimension available on this bus for payloads, in meters.
+   */
+  payloadDimensionZ?: number;
+
+  /**
+   * The volume available on this bus for payloads, in cubic meters.
+   */
+  payloadVolume?: number;
+
+  /**
+   * Power category of this bus (e.g. 0-1kW low power, etc).
+   */
+  powerCategory?: string;
+
+  /**
+   * Unique identifier of the organization which manufactures the telemetry tracking
+   * and command subsystem for this bus.
+   */
+  telemetryTrackingManufacturerOrgId?: string;
+
+  /**
+   * Type of this bus.
+   */
+  type?: string;
+}
+
+/**
+ * A bus is the physical and software infrastructure backbone to which on-orbit
+ * satellite payloads are attached for power, control, and other support functions.
+ */
+export interface BusFull {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: string;
+
+  /**
+   * Name of this bus.
+   */
+  name: string;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Attitude and Orbital Control Notes/description for the bus.
+   */
+  aocsNotes?: string;
+
+  /**
+   * Average mass of this bus without payloads or fuel, in kilograms.
+   */
+  avgDryMass?: number;
+
+  /**
+   * Average mass available on this bus for payloads, in kilograms.
+   */
+  avgPayloadMass?: number;
+
+  /**
+   * Average power available on this bus for payloads, in kilowatts.
+   */
+  avgPayloadPower?: number;
+
+  /**
+   * Average power available on this bus, in kilowatts.
+   */
+  avgSpacecraftPower?: number;
+
+  /**
+   * Average mass of this bus with fuel, but without payloads, in kilograms.
+   */
+  avgWetMass?: number;
+
+  /**
+   * Body dimension in X direction pertaining to length, in meters.
+   */
+  bodyDimensionX?: number;
+
+  /**
+   * Body dimension in Y direction pertaining to height, in meters.
+   */
+  bodyDimensionY?: number;
+
+  /**
+   * Body dimension in Z direction pertaining to width, in meters.
+   */
+  bodyDimensionZ?: number;
+
+  /**
+   * Unique identifier of the organization which designs the bus kit.
+   */
+  busKitDesignerOrgId?: string;
+
+  /**
+   * Country where this bus was manufactured. This value is typically the ISO 3166
+   * Alpha-2 two-character country code, however it can also represent various
+   * consortiums that do not appear in the ISO document. The code must correspond to
+   * an existing country in the UDL�s country API. Call udl/country/{code} to get any
+   * associated FIPS code, ISO Alpha-3 code, or alternate code values that exist for
+   * the specified country code.
+   */
+  countryCode?: string;
+
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   */
+  createdAt?: string;
+
+  /**
+   * Application user who created the row in the database, auto-populated by the
+   * system.
+   */
+  createdBy?: string;
+
+  /**
+   * Notes/description of the bus.
+   */
+  description?: string;
+
+  /**
+   * An entity is a generic representation of any object within a space/SSA system
+   * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+   * entity can have an operating unit, a location (if terrestrial), and statuses.
+   */
+  entity?: EntitiesAPI.EntityFull;
+
+  /**
+   * Boolean indicating if this bus is generic.
+   */
+  generic?: boolean;
+
+  /**
+   * ID of the parent entity for this bus.
+   */
+  idEntity?: string;
+
+  /**
+   * Launch envelope dimension in X direction, in meters.
+   */
+  launchEnvelopeDimensionX?: number;
+
+  /**
+   * Launch envelope dimension in Y direction, in meters.
+   */
+  launchEnvelopeDimensionY?: number;
+
+  /**
+   * Launch envelope dimension in Z direction, in meters.
+   */
+  launchEnvelopeDimensionZ?: number;
+
+  /**
+   * Unique identifier of the organization which manufactures the main onboard
+   * computer for this bus.
+   */
+  mainComputerManufacturerOrgId?: string;
+
+  /**
+   * Unique identifier of the organization which manufactures this bus.
+   */
+  manufacturerOrgId?: string;
+
+  /**
+   * Mass category of this bus (e.g. 1 - 10 kg: Nanosatellite, 10 - 100 kg:
+   * Microsatellite, 100 - 500 kg: Minisatellite, 1000 - 2500kg: Medium satellite,
+   * etc.).
+   */
+  massCategory?: string;
+
+  /**
+   * Maximum power at beginning of life, lower bounds, in kilowatts.
+   */
+  maxBOLPowerLower?: number;
+
+  /**
+   * Maximum power at beginning of life, upper bounds, in kilowatts.
+   */
+  maxBOLPowerUpper?: number;
+
+  /**
+   * Maximum mass on station at beginning of life, in kilograms.
+   */
+  maxBOLStationMass?: number;
+
+  /**
+   * Maximum mass of this bus without payloads or fuel, in kilograms.
+   */
+  maxDryMass?: number;
+
+  /**
+   * Maximum power at end of life, lower bounds, in kilowatts.
+   */
+  maxEOLPowerLower?: number;
+
+  /**
+   * Maximum power at end of life, upper bounds, in kilowatts.
+   */
+  maxEOLPowerUpper?: number;
+
+  /**
+   * Maximum mass at launch, lower bounds, in kilograms.
+   */
+  maxLaunchMassLower?: number;
+
+  /**
+   * Maximum mass at launch, upper bounds, in kilograms.
+   */
+  maxLaunchMassUpper?: number;
+
+  /**
+   * Maximum payload mass available, in kilograms.
+   */
+  maxPayloadMass?: number;
+
+  /**
+   * Maximum payload power available, in kilowatts.
+   */
+  maxPayloadPower?: number;
+
+  /**
+   * Maximum power available on this bus, in kilowatts.
+   */
+  maxSpacecraftPower?: number;
+
+  /**
+   * Maximum mass of this bus with fuel, but without payloads, in kilograms.
+   */
+  maxWetMass?: number;
+
+  /**
+   * Median mass of this bus without payloads or fuel, in kilograms.
+   */
+  medianDryMass?: number;
+
+  /**
+   * Median mass of this bus with fuel, but without payloads, in kilograms.
+   */
+  medianWetMass?: number;
+
+  /**
+   * Minimum mass of this bus without payloads or fuel, in kilograms.
+   */
+  minDryMass?: number;
+
+  /**
+   * Minimum mass of this bus with fuel, but without payloads, in kilograms.
+   */
+  minWetMass?: number;
+
+  /**
+   * The number of orbit types this bus can support.
+   */
+  numOrbitType?: number;
+
+  /**
+   * Orbit averaged power (the power averaged over one orbit) available on this bus
+   * for payloads, in kilowatts.
+   */
+  oapPayloadPower?: number;
+
+  /**
+   * Orbit averaged power (the power averaged over one orbit) available on this bus,
+   * in kilowatts.
+   */
+  oapSpacecraftPower?: number;
+
+  /**
+   * Array of orbit types this bus can support (e.g. GEO, LEO, etc.). Must contain
+   * the same number of elements as the value of numOrbitType.
+   */
+  orbitTypes?: Array<string>;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * The originating source network on which this record was created, auto-populated
+   * by the system.
+   */
+  origNetwork?: string;
+
+  /**
+   * The radial dimension available on this bus for payloads, in meters.
+   */
+  payloadDimensionX?: number;
+
+  /**
+   * The in-track dimension available on this bus for payloads, in meters.
+   */
+  payloadDimensionY?: number;
+
+  /**
+   * The cross-track dimension available on this bus for payloads, in meters.
+   */
+  payloadDimensionZ?: number;
+
+  /**
+   * The volume available on this bus for payloads, in cubic meters.
+   */
+  payloadVolume?: number;
+
+  /**
+   * Power category of this bus (e.g. 0-1kW low power, etc).
+   */
+  powerCategory?: string;
+
+  /**
+   * Unique identifier of the organization which manufactures the telemetry tracking
+   * and command subsystem for this bus.
+   */
+  telemetryTrackingManufacturerOrgId?: string;
+
+  /**
+   * Type of this bus.
+   */
+  type?: string;
+
+  /**
+   * Time the row was last updated in the database, auto-populated by the system.
+   */
+  updatedAt?: string;
+
+  /**
+   * Application user who updated the row in the database, auto-populated by the
+   * system.
+   */
+  updatedBy?: string;
+}
+
+export type BusListResponse = Array<BusAbridged>;
+
+export type BusCountResponse = string;
+
+export type BusTupleResponse = Array<BusFull>;
+
+export interface BusCreateParams {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: string;
+
+  /**
+   * Name of this bus.
+   */
+  name: string;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Attitude and Orbital Control Notes/description for the bus.
+   */
+  aocsNotes?: string;
+
+  /**
+   * Average mass of this bus without payloads or fuel, in kilograms.
+   */
+  avgDryMass?: number;
+
+  /**
+   * Average mass available on this bus for payloads, in kilograms.
+   */
+  avgPayloadMass?: number;
+
+  /**
+   * Average power available on this bus for payloads, in kilowatts.
+   */
+  avgPayloadPower?: number;
+
+  /**
+   * Average power available on this bus, in kilowatts.
+   */
+  avgSpacecraftPower?: number;
+
+  /**
+   * Average mass of this bus with fuel, but without payloads, in kilograms.
+   */
+  avgWetMass?: number;
+
+  /**
+   * Body dimension in X direction pertaining to length, in meters.
+   */
+  bodyDimensionX?: number;
+
+  /**
+   * Body dimension in Y direction pertaining to height, in meters.
+   */
+  bodyDimensionY?: number;
+
+  /**
+   * Body dimension in Z direction pertaining to width, in meters.
+   */
+  bodyDimensionZ?: number;
+
+  /**
+   * Unique identifier of the organization which designs the bus kit.
+   */
+  busKitDesignerOrgId?: string;
+
+  /**
+   * Country where this bus was manufactured. This value is typically the ISO 3166
+   * Alpha-2 two-character country code, however it can also represent various
+   * consortiums that do not appear in the ISO document. The code must correspond to
+   * an existing country in the UDL�s country API. Call udl/country/{code} to get any
+   * associated FIPS code, ISO Alpha-3 code, or alternate code values that exist for
+   * the specified country code.
+   */
+  countryCode?: string;
+
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   */
+  createdAt?: string;
+
+  /**
+   * Application user who created the row in the database, auto-populated by the
+   * system.
+   */
+  createdBy?: string;
+
+  /**
+   * Notes/description of the bus.
+   */
+  description?: string;
+
+  /**
+   * An entity is a generic representation of any object within a space/SSA system
+   * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+   * entity can have an operating unit, a location (if terrestrial), and statuses.
+   */
+  entity?: BusCreateParams.Entity;
+
+  /**
+   * Boolean indicating if this bus is generic.
+   */
+  generic?: boolean;
+
+  /**
+   * ID of the parent entity for this bus.
+   */
+  idEntity?: string;
+
+  /**
+   * Launch envelope dimension in X direction, in meters.
+   */
+  launchEnvelopeDimensionX?: number;
+
+  /**
+   * Launch envelope dimension in Y direction, in meters.
+   */
+  launchEnvelopeDimensionY?: number;
+
+  /**
+   * Launch envelope dimension in Z direction, in meters.
+   */
+  launchEnvelopeDimensionZ?: number;
+
+  /**
+   * Unique identifier of the organization which manufactures the main onboard
+   * computer for this bus.
+   */
+  mainComputerManufacturerOrgId?: string;
+
+  /**
+   * Unique identifier of the organization which manufactures this bus.
+   */
+  manufacturerOrgId?: string;
+
+  /**
+   * Mass category of this bus (e.g. 1 - 10 kg: Nanosatellite, 10 - 100 kg:
+   * Microsatellite, 100 - 500 kg: Minisatellite, 1000 - 2500kg: Medium satellite,
+   * etc.).
+   */
+  massCategory?: string;
+
+  /**
+   * Maximum power at beginning of life, lower bounds, in kilowatts.
+   */
+  maxBOLPowerLower?: number;
+
+  /**
+   * Maximum power at beginning of life, upper bounds, in kilowatts.
+   */
+  maxBOLPowerUpper?: number;
+
+  /**
+   * Maximum mass on station at beginning of life, in kilograms.
+   */
+  maxBOLStationMass?: number;
+
+  /**
+   * Maximum mass of this bus without payloads or fuel, in kilograms.
+   */
+  maxDryMass?: number;
+
+  /**
+   * Maximum power at end of life, lower bounds, in kilowatts.
+   */
+  maxEOLPowerLower?: number;
+
+  /**
+   * Maximum power at end of life, upper bounds, in kilowatts.
+   */
+  maxEOLPowerUpper?: number;
+
+  /**
+   * Maximum mass at launch, lower bounds, in kilograms.
+   */
+  maxLaunchMassLower?: number;
+
+  /**
+   * Maximum mass at launch, upper bounds, in kilograms.
+   */
+  maxLaunchMassUpper?: number;
+
+  /**
+   * Maximum payload mass available, in kilograms.
+   */
+  maxPayloadMass?: number;
+
+  /**
+   * Maximum payload power available, in kilowatts.
+   */
+  maxPayloadPower?: number;
+
+  /**
+   * Maximum power available on this bus, in kilowatts.
+   */
+  maxSpacecraftPower?: number;
+
+  /**
+   * Maximum mass of this bus with fuel, but without payloads, in kilograms.
+   */
+  maxWetMass?: number;
+
+  /**
+   * Median mass of this bus without payloads or fuel, in kilograms.
+   */
+  medianDryMass?: number;
+
+  /**
+   * Median mass of this bus with fuel, but without payloads, in kilograms.
+   */
+  medianWetMass?: number;
+
+  /**
+   * Minimum mass of this bus without payloads or fuel, in kilograms.
+   */
+  minDryMass?: number;
+
+  /**
+   * Minimum mass of this bus with fuel, but without payloads, in kilograms.
+   */
+  minWetMass?: number;
+
+  /**
+   * The number of orbit types this bus can support.
+   */
+  numOrbitType?: number;
+
+  /**
+   * Orbit averaged power (the power averaged over one orbit) available on this bus
+   * for payloads, in kilowatts.
+   */
+  oapPayloadPower?: number;
+
+  /**
+   * Orbit averaged power (the power averaged over one orbit) available on this bus,
+   * in kilowatts.
+   */
+  oapSpacecraftPower?: number;
+
+  /**
+   * Array of orbit types this bus can support (e.g. GEO, LEO, etc.). Must contain
+   * the same number of elements as the value of numOrbitType.
+   */
+  orbitTypes?: Array<string>;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * The originating source network on which this record was created, auto-populated
+   * by the system.
+   */
+  origNetwork?: string;
+
+  /**
+   * The radial dimension available on this bus for payloads, in meters.
+   */
+  payloadDimensionX?: number;
+
+  /**
+   * The in-track dimension available on this bus for payloads, in meters.
+   */
+  payloadDimensionY?: number;
+
+  /**
+   * The cross-track dimension available on this bus for payloads, in meters.
+   */
+  payloadDimensionZ?: number;
+
+  /**
+   * The volume available on this bus for payloads, in cubic meters.
+   */
+  payloadVolume?: number;
+
+  /**
+   * Power category of this bus (e.g. 0-1kW low power, etc).
+   */
+  powerCategory?: string;
+
+  /**
+   * Unique identifier of the organization which manufactures the telemetry tracking
+   * and command subsystem for this bus.
+   */
+  telemetryTrackingManufacturerOrgId?: string;
+
+  /**
+   * Type of this bus.
+   */
+  type?: string;
+}
+
+export namespace BusCreateParams {
+  /**
+   * An entity is a generic representation of any object within a space/SSA system
+   * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+   * entity can have an operating unit, a location (if terrestrial), and statuses.
+   */
+  export interface Entity {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: string;
+
+    /**
+     * Unique entity name.
+     */
+    name: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
+     * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+     */
+    type: string;
+
+    /**
+     * The country code. This value is typically the ISO 3166 Alpha-2 two-character
+     * country code, however it can also represent various consortiums that do not
+     * appear in the ISO document. The code must correspond to an existing country in
+     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * ISO Alpha-3 code, or alternate code values that exist for the specified country
+     * code.
+     */
+    countryCode?: string;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * Unique identifier of the record.
+     */
+    idEntity?: string;
+
+    /**
+     * Unique identifier of the entity location, if terrestrial/fixed.
+     */
+    idLocation?: string;
+
+    /**
+     * Onorbit identifier if this entity is part of an on-orbit object. For the public
+     * catalog, the idOnOrbit is typically the satellite number as a string, but may be
+     * a UUID for analyst or other unknown or untracked satellites.
+     */
+    idOnOrbit?: string;
+
+    /**
+     * Unique identifier of the associated operating unit object.
+     */
+    idOperatingUnit?: string;
+
+    /**
+     * Model representation of a location, which is a specific fixed point on the earth
+     * and is used to denote the locations of fixed sensors, operating units, etc.
+     */
+    location?: Entity.Location;
+
+    /**
+     * Model object representing on-orbit objects or satellites in the system.
+     */
+    onOrbit?: Entity.OnOrbit;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * Type of organization which owns this entity (e.g. Commercial, Government,
+     * Academic, Consortium, etc).
+     */
+    ownerType?: string;
+
+    /**
+     * Boolean indicating if this entity is taskable.
+     */
+    taskable?: boolean;
+
+    /**
+     * List of URLs to additional details/documents for this entity.
+     */
+    urls?: Array<string>;
+  }
+
+  export namespace Entity {
+    /**
+     * Model representation of a location, which is a specific fixed point on the earth
+     * and is used to denote the locations of fixed sensors, operating units, etc.
+     */
+    export interface Location {
+      /**
+       * Classification marking of the data in IC/CAPCO Portion-marked format.
+       */
+      classificationMarking: string;
+
+      /**
+       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+       *
+       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+       * may include both real and simulated data.
+       *
+       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+       * events, and analysis.
+       *
+       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+       * datasets.
+       *
+       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+       * requirements, and for validating technical, functional, and performance
+       * characteristics.
+       */
+      dataMode: string;
+
+      /**
+       * Location name.
+       */
+      name: string;
+
+      /**
+       * Source of the data.
+       */
+      source: string;
+
+      /**
+       * Altitude of the location, in kilometers.
+       */
+      altitude?: number;
+
+      /**
+       * The country code. This value is typically the ISO 3166 Alpha-2 two-character
+       * country code, however it can also represent various consortiums that do not
+       * appear in the ISO document. The code must correspond to an existing country in
+       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * ISO Alpha-3 code, or alternate code values that exist for the specified country
+       * code.
+       */
+      countryCode?: string;
+
+      /**
+       * Time the row was created in the database, auto-populated by the system.
+       */
+      createdAt?: string;
+
+      /**
+       * Application user who created the row in the database, auto-populated by the
+       * system.
+       */
+      createdBy?: string;
+
+      /**
+       * Unique identifier of the location, auto-generated by the system.
+       */
+      idLocation?: string;
+
+      /**
+       * WGS84 latitude of the location, in degrees. -90 to 90 degrees (negative values
+       * south of equator).
+       */
+      lat?: number;
+
+      /**
+       * WGS84 longitude of the location, in degrees. -180 to 180 degrees (negative
+       * values west of Prime Meridian).
+       */
+      lon?: number;
+
+      /**
+       * Originating system or organization which produced the data, if different from
+       * the source. The origin may be different than the source if the source was a
+       * mediating system which forwarded the data on behalf of the origin system. If
+       * null, the source may be assumed to be the origin.
+       */
+      origin?: string;
+
+      /**
+       * The originating source network on which this record was created, auto-populated
+       * by the system.
+       */
+      origNetwork?: string;
+    }
+
+    /**
+     * Model object representing on-orbit objects or satellites in the system.
+     */
+    export interface OnOrbit {
+      /**
+       * Classification marking of the data in IC/CAPCO Portion-marked format.
+       */
+      classificationMarking: string;
+
+      /**
+       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+       *
+       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+       * may include both real and simulated data.
+       *
+       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+       * events, and analysis.
+       *
+       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+       * datasets.
+       *
+       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+       * requirements, and for validating technical, functional, and performance
+       * characteristics.
+       */
+      dataMode: string;
+
+      /**
+       * Satellite/Catalog number of the target on-orbit object.
+       */
+      satNo: number;
+
+      /**
+       * Source of the data.
+       */
+      source: string;
+
+      /**
+       * Alternate name of the on-orbit object.
+       */
+      altName?: string;
+
+      /**
+       * Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
+       * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
+       * Heliocentric, Interplanetary, Lagrangian, Docked).
+       */
+      category?: string;
+
+      /**
+       * Common name of the on-orbit object.
+       */
+      commonName?: string;
+
+      /**
+       * Constellation to which this satellite belongs.
+       */
+      constellation?: string;
+
+      /**
+       * The country code. This value is typically the ISO 3166 Alpha-2 two-character
+       * country code, however it can also represent various consortiums that do not
+       * appear in the ISO document. The code must correspond to an existing country in
+       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * ISO Alpha-3 code, or alternate code values that exist for the specified country
+       * code.
+       */
+      countryCode?: string;
+
+      /**
+       * Time the row was created in the database, auto-populated by the system.
+       */
+      createdAt?: string;
+
+      /**
+       * Application user who created the row in the database, auto-populated by the
+       * system.
+       */
+      createdBy?: string;
+
+      /**
+       * Date of decay.
+       */
+      decayDate?: string;
+
+      /**
+       * For the public catalog, the idOnOrbit is typically the satellite number as a
+       * string, but may be a UUID for analyst or other unknown or untracked satellites,
+       * auto-generated by the system.
+       */
+      idOnOrbit?: string;
+
+      /**
+       * International Designator, typically of the format YYYYLLLAAA, where YYYY is the
+       * launch year, LLL is the sequential launch number of that year, and AAA is an
+       * optional launch piece designator for the launch.
+       */
+      intlDes?: string;
+
+      /**
+       * Date of launch.
+       */
+      launchDate?: string;
+
+      /**
+       * Id of the associated launchSite entity.
+       */
+      launchSiteId?: string;
+
+      /**
+       * Estimated lifetime of the on-orbit payload, if known.
+       */
+      lifetimeYears?: number;
+
+      /**
+       * Mission number of the on-orbit object.
+       */
+      missionNumber?: string;
+
+      /**
+       * Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
+       * UNKNOWN.
+       */
+      objectType?: string;
+
+      /**
+       * Originating system or organization which produced the data, if different from
+       * the source. The origin may be different than the source if the source was a
+       * mediating system which forwarded the data on behalf of the origin system. If
+       * null, the source may be assumed to be the origin.
+       */
+      origin?: string;
+
+      /**
+       * The originating source network on which this record was created, auto-populated
+       * by the system.
+       */
+      origNetwork?: string;
+    }
+  }
+}
+
+export interface BusRetrieveParams {
+  /**
+   * Path param:
+   */
+  path_id: string;
+
+  /**
+   * Body param: The ID of the Bus to find.
+   */
+  body_id: string;
+}
+
+export interface BusUpdateParams {
+  /**
+   * Path param:
+   */
+  path_id: string;
+
+  /**
+   * Body param: The ID of the Bus to update.
+   */
+  body_id: string;
+
+  /**
+   * Body param: Classification marking of the data in IC/CAPCO Portion-marked
+   * format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Body param: Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST
+   * data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: string;
+
+  /**
+   * Body param: Name of this bus.
+   */
+  name: string;
+
+  /**
+   * Body param: Source of the data.
+   */
+  source: string;
+
+  /**
+   * Body param: Unique identifier of the record, auto-generated by the system.
+   */
+  body_id?: string;
+
+  /**
+   * Body param: Attitude and Orbital Control Notes/description for the bus.
+   */
+  aocsNotes?: string;
+
+  /**
+   * Body param: Average mass of this bus without payloads or fuel, in kilograms.
+   */
+  avgDryMass?: number;
+
+  /**
+   * Body param: Average mass available on this bus for payloads, in kilograms.
+   */
+  avgPayloadMass?: number;
+
+  /**
+   * Body param: Average power available on this bus for payloads, in kilowatts.
+   */
+  avgPayloadPower?: number;
+
+  /**
+   * Body param: Average power available on this bus, in kilowatts.
+   */
+  avgSpacecraftPower?: number;
+
+  /**
+   * Body param: Average mass of this bus with fuel, but without payloads, in
+   * kilograms.
+   */
+  avgWetMass?: number;
+
+  /**
+   * Body param: Body dimension in X direction pertaining to length, in meters.
+   */
+  bodyDimensionX?: number;
+
+  /**
+   * Body param: Body dimension in Y direction pertaining to height, in meters.
+   */
+  bodyDimensionY?: number;
+
+  /**
+   * Body param: Body dimension in Z direction pertaining to width, in meters.
+   */
+  bodyDimensionZ?: number;
+
+  /**
+   * Body param: Unique identifier of the organization which designs the bus kit.
+   */
+  busKitDesignerOrgId?: string;
+
+  /**
+   * Body param: Country where this bus was manufactured. This value is typically the
+   * ISO 3166 Alpha-2 two-character country code, however it can also represent
+   * various consortiums that do not appear in the ISO document. The code must
+   * correspond to an existing country in the UDL�s country API. Call
+   * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
+   * alternate code values that exist for the specified country code.
+   */
+  countryCode?: string;
+
+  /**
+   * Body param: Time the row was created in the database, auto-populated by the
+   * system.
+   */
+  createdAt?: string;
+
+  /**
+   * Body param: Application user who created the row in the database, auto-populated
+   * by the system.
+   */
+  createdBy?: string;
+
+  /**
+   * Body param: Notes/description of the bus.
+   */
+  description?: string;
+
+  /**
+   * Body param: An entity is a generic representation of any object within a
+   * space/SSA system such as sensors, on-orbit objects, RF Emitters, space craft
+   * buses, etc. An entity can have an operating unit, a location (if terrestrial),
+   * and statuses.
+   */
+  entity?: BusUpdateParams.Entity;
+
+  /**
+   * Body param: Boolean indicating if this bus is generic.
+   */
+  generic?: boolean;
+
+  /**
+   * Body param: ID of the parent entity for this bus.
+   */
+  idEntity?: string;
+
+  /**
+   * Body param: Launch envelope dimension in X direction, in meters.
+   */
+  launchEnvelopeDimensionX?: number;
+
+  /**
+   * Body param: Launch envelope dimension in Y direction, in meters.
+   */
+  launchEnvelopeDimensionY?: number;
+
+  /**
+   * Body param: Launch envelope dimension in Z direction, in meters.
+   */
+  launchEnvelopeDimensionZ?: number;
+
+  /**
+   * Body param: Unique identifier of the organization which manufactures the main
+   * onboard computer for this bus.
+   */
+  mainComputerManufacturerOrgId?: string;
+
+  /**
+   * Body param: Unique identifier of the organization which manufactures this bus.
+   */
+  manufacturerOrgId?: string;
+
+  /**
+   * Body param: Mass category of this bus (e.g. 1 - 10 kg: Nanosatellite, 10 - 100
+   * kg: Microsatellite, 100 - 500 kg: Minisatellite, 1000 - 2500kg: Medium
+   * satellite, etc.).
+   */
+  massCategory?: string;
+
+  /**
+   * Body param: Maximum power at beginning of life, lower bounds, in kilowatts.
+   */
+  maxBOLPowerLower?: number;
+
+  /**
+   * Body param: Maximum power at beginning of life, upper bounds, in kilowatts.
+   */
+  maxBOLPowerUpper?: number;
+
+  /**
+   * Body param: Maximum mass on station at beginning of life, in kilograms.
+   */
+  maxBOLStationMass?: number;
+
+  /**
+   * Body param: Maximum mass of this bus without payloads or fuel, in kilograms.
+   */
+  maxDryMass?: number;
+
+  /**
+   * Body param: Maximum power at end of life, lower bounds, in kilowatts.
+   */
+  maxEOLPowerLower?: number;
+
+  /**
+   * Body param: Maximum power at end of life, upper bounds, in kilowatts.
+   */
+  maxEOLPowerUpper?: number;
+
+  /**
+   * Body param: Maximum mass at launch, lower bounds, in kilograms.
+   */
+  maxLaunchMassLower?: number;
+
+  /**
+   * Body param: Maximum mass at launch, upper bounds, in kilograms.
+   */
+  maxLaunchMassUpper?: number;
+
+  /**
+   * Body param: Maximum payload mass available, in kilograms.
+   */
+  maxPayloadMass?: number;
+
+  /**
+   * Body param: Maximum payload power available, in kilowatts.
+   */
+  maxPayloadPower?: number;
+
+  /**
+   * Body param: Maximum power available on this bus, in kilowatts.
+   */
+  maxSpacecraftPower?: number;
+
+  /**
+   * Body param: Maximum mass of this bus with fuel, but without payloads, in
+   * kilograms.
+   */
+  maxWetMass?: number;
+
+  /**
+   * Body param: Median mass of this bus without payloads or fuel, in kilograms.
+   */
+  medianDryMass?: number;
+
+  /**
+   * Body param: Median mass of this bus with fuel, but without payloads, in
+   * kilograms.
+   */
+  medianWetMass?: number;
+
+  /**
+   * Body param: Minimum mass of this bus without payloads or fuel, in kilograms.
+   */
+  minDryMass?: number;
+
+  /**
+   * Body param: Minimum mass of this bus with fuel, but without payloads, in
+   * kilograms.
+   */
+  minWetMass?: number;
+
+  /**
+   * Body param: The number of orbit types this bus can support.
+   */
+  numOrbitType?: number;
+
+  /**
+   * Body param: Orbit averaged power (the power averaged over one orbit) available
+   * on this bus for payloads, in kilowatts.
+   */
+  oapPayloadPower?: number;
+
+  /**
+   * Body param: Orbit averaged power (the power averaged over one orbit) available
+   * on this bus, in kilowatts.
+   */
+  oapSpacecraftPower?: number;
+
+  /**
+   * Body param: Array of orbit types this bus can support (e.g. GEO, LEO, etc.).
+   * Must contain the same number of elements as the value of numOrbitType.
+   */
+  orbitTypes?: Array<string>;
+
+  /**
+   * Body param: Originating system or organization which produced the data, if
+   * different from the source. The origin may be different than the source if the
+   * source was a mediating system which forwarded the data on behalf of the origin
+   * system. If null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * Body param: The originating source network on which this record was created,
+   * auto-populated by the system.
+   */
+  origNetwork?: string;
+
+  /**
+   * Body param: The radial dimension available on this bus for payloads, in meters.
+   */
+  payloadDimensionX?: number;
+
+  /**
+   * Body param: The in-track dimension available on this bus for payloads, in
+   * meters.
+   */
+  payloadDimensionY?: number;
+
+  /**
+   * Body param: The cross-track dimension available on this bus for payloads, in
+   * meters.
+   */
+  payloadDimensionZ?: number;
+
+  /**
+   * Body param: The volume available on this bus for payloads, in cubic meters.
+   */
+  payloadVolume?: number;
+
+  /**
+   * Body param: Power category of this bus (e.g. 0-1kW low power, etc).
+   */
+  powerCategory?: string;
+
+  /**
+   * Body param: Unique identifier of the organization which manufactures the
+   * telemetry tracking and command subsystem for this bus.
+   */
+  telemetryTrackingManufacturerOrgId?: string;
+
+  /**
+   * Body param: Type of this bus.
+   */
+  type?: string;
+}
+
+export namespace BusUpdateParams {
+  /**
+   * An entity is a generic representation of any object within a space/SSA system
+   * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+   * entity can have an operating unit, a location (if terrestrial), and statuses.
+   */
+  export interface Entity {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: string;
+
+    /**
+     * Unique entity name.
+     */
+    name: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
+     * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+     */
+    type: string;
+
+    /**
+     * The country code. This value is typically the ISO 3166 Alpha-2 two-character
+     * country code, however it can also represent various consortiums that do not
+     * appear in the ISO document. The code must correspond to an existing country in
+     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * ISO Alpha-3 code, or alternate code values that exist for the specified country
+     * code.
+     */
+    countryCode?: string;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * Unique identifier of the record.
+     */
+    idEntity?: string;
+
+    /**
+     * Unique identifier of the entity location, if terrestrial/fixed.
+     */
+    idLocation?: string;
+
+    /**
+     * Onorbit identifier if this entity is part of an on-orbit object. For the public
+     * catalog, the idOnOrbit is typically the satellite number as a string, but may be
+     * a UUID for analyst or other unknown or untracked satellites.
+     */
+    idOnOrbit?: string;
+
+    /**
+     * Unique identifier of the associated operating unit object.
+     */
+    idOperatingUnit?: string;
+
+    /**
+     * Model representation of a location, which is a specific fixed point on the earth
+     * and is used to denote the locations of fixed sensors, operating units, etc.
+     */
+    location?: Entity.Location;
+
+    /**
+     * Model object representing on-orbit objects or satellites in the system.
+     */
+    onOrbit?: Entity.OnOrbit;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * Type of organization which owns this entity (e.g. Commercial, Government,
+     * Academic, Consortium, etc).
+     */
+    ownerType?: string;
+
+    /**
+     * Boolean indicating if this entity is taskable.
+     */
+    taskable?: boolean;
+
+    /**
+     * List of URLs to additional details/documents for this entity.
+     */
+    urls?: Array<string>;
+  }
+
+  export namespace Entity {
+    /**
+     * Model representation of a location, which is a specific fixed point on the earth
+     * and is used to denote the locations of fixed sensors, operating units, etc.
+     */
+    export interface Location {
+      /**
+       * Classification marking of the data in IC/CAPCO Portion-marked format.
+       */
+      classificationMarking: string;
+
+      /**
+       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+       *
+       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+       * may include both real and simulated data.
+       *
+       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+       * events, and analysis.
+       *
+       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+       * datasets.
+       *
+       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+       * requirements, and for validating technical, functional, and performance
+       * characteristics.
+       */
+      dataMode: string;
+
+      /**
+       * Location name.
+       */
+      name: string;
+
+      /**
+       * Source of the data.
+       */
+      source: string;
+
+      /**
+       * Altitude of the location, in kilometers.
+       */
+      altitude?: number;
+
+      /**
+       * The country code. This value is typically the ISO 3166 Alpha-2 two-character
+       * country code, however it can also represent various consortiums that do not
+       * appear in the ISO document. The code must correspond to an existing country in
+       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * ISO Alpha-3 code, or alternate code values that exist for the specified country
+       * code.
+       */
+      countryCode?: string;
+
+      /**
+       * Time the row was created in the database, auto-populated by the system.
+       */
+      createdAt?: string;
+
+      /**
+       * Application user who created the row in the database, auto-populated by the
+       * system.
+       */
+      createdBy?: string;
+
+      /**
+       * Unique identifier of the location, auto-generated by the system.
+       */
+      idLocation?: string;
+
+      /**
+       * WGS84 latitude of the location, in degrees. -90 to 90 degrees (negative values
+       * south of equator).
+       */
+      lat?: number;
+
+      /**
+       * WGS84 longitude of the location, in degrees. -180 to 180 degrees (negative
+       * values west of Prime Meridian).
+       */
+      lon?: number;
+
+      /**
+       * Originating system or organization which produced the data, if different from
+       * the source. The origin may be different than the source if the source was a
+       * mediating system which forwarded the data on behalf of the origin system. If
+       * null, the source may be assumed to be the origin.
+       */
+      origin?: string;
+
+      /**
+       * The originating source network on which this record was created, auto-populated
+       * by the system.
+       */
+      origNetwork?: string;
+    }
+
+    /**
+     * Model object representing on-orbit objects or satellites in the system.
+     */
+    export interface OnOrbit {
+      /**
+       * Classification marking of the data in IC/CAPCO Portion-marked format.
+       */
+      classificationMarking: string;
+
+      /**
+       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+       *
+       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+       * may include both real and simulated data.
+       *
+       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+       * events, and analysis.
+       *
+       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+       * datasets.
+       *
+       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+       * requirements, and for validating technical, functional, and performance
+       * characteristics.
+       */
+      dataMode: string;
+
+      /**
+       * Satellite/Catalog number of the target on-orbit object.
+       */
+      satNo: number;
+
+      /**
+       * Source of the data.
+       */
+      source: string;
+
+      /**
+       * Alternate name of the on-orbit object.
+       */
+      altName?: string;
+
+      /**
+       * Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
+       * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
+       * Heliocentric, Interplanetary, Lagrangian, Docked).
+       */
+      category?: string;
+
+      /**
+       * Common name of the on-orbit object.
+       */
+      commonName?: string;
+
+      /**
+       * Constellation to which this satellite belongs.
+       */
+      constellation?: string;
+
+      /**
+       * The country code. This value is typically the ISO 3166 Alpha-2 two-character
+       * country code, however it can also represent various consortiums that do not
+       * appear in the ISO document. The code must correspond to an existing country in
+       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * ISO Alpha-3 code, or alternate code values that exist for the specified country
+       * code.
+       */
+      countryCode?: string;
+
+      /**
+       * Time the row was created in the database, auto-populated by the system.
+       */
+      createdAt?: string;
+
+      /**
+       * Application user who created the row in the database, auto-populated by the
+       * system.
+       */
+      createdBy?: string;
+
+      /**
+       * Date of decay.
+       */
+      decayDate?: string;
+
+      /**
+       * For the public catalog, the idOnOrbit is typically the satellite number as a
+       * string, but may be a UUID for analyst or other unknown or untracked satellites,
+       * auto-generated by the system.
+       */
+      idOnOrbit?: string;
+
+      /**
+       * International Designator, typically of the format YYYYLLLAAA, where YYYY is the
+       * launch year, LLL is the sequential launch number of that year, and AAA is an
+       * optional launch piece designator for the launch.
+       */
+      intlDes?: string;
+
+      /**
+       * Date of launch.
+       */
+      launchDate?: string;
+
+      /**
+       * Id of the associated launchSite entity.
+       */
+      launchSiteId?: string;
+
+      /**
+       * Estimated lifetime of the on-orbit payload, if known.
+       */
+      lifetimeYears?: number;
+
+      /**
+       * Mission number of the on-orbit object.
+       */
+      missionNumber?: string;
+
+      /**
+       * Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
+       * UNKNOWN.
+       */
+      objectType?: string;
+
+      /**
+       * Originating system or organization which produced the data, if different from
+       * the source. The origin may be different than the source if the source was a
+       * mediating system which forwarded the data on behalf of the origin system. If
+       * null, the source may be assumed to be the origin.
+       */
+      origin?: string;
+
+      /**
+       * The originating source network on which this record was created, auto-populated
+       * by the system.
+       */
+      origNetwork?: string;
+    }
+  }
+}
+
+export interface BusDeleteParams {
+  /**
+   * Path param:
+   */
+  path_id: string;
+
+  /**
+   * Body param: The ID of the Bus to delete.
+   */
+  body_id: string;
+}
+
+export interface BusTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
+
+export declare namespace Buses {
+  export {
+    type BusAbridged as BusAbridged,
+    type BusFull as BusFull,
+    type BusListResponse as BusListResponse,
+    type BusCountResponse as BusCountResponse,
+    type BusTupleResponse as BusTupleResponse,
+    type BusCreateParams as BusCreateParams,
+    type BusRetrieveParams as BusRetrieveParams,
+    type BusUpdateParams as BusUpdateParams,
+    type BusDeleteParams as BusDeleteParams,
+    type BusTupleParams as BusTupleParams,
+  };
+}
