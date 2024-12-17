@@ -1,0 +1,198 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import Unifieddatalibrary from 'unifieddatalibrary';
+import { Response } from 'node-fetch';
+
+const client = new Unifieddatalibrary({
+  username: 'My Username',
+  password: 'My Password',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
+
+describe('resource mti', () => {
+  test('create: only required params', async () => {
+    const responsePromise = client.filedrop.mti.create([
+      { classificationMarking: 'classificationMarking', dataMode: 'dataMode', source: 'source' },
+    ]);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('create: required and optional params', async () => {
+    const response = await client.filedrop.mti.create([
+      {
+        classificationMarking: 'classificationMarking',
+        dataMode: 'dataMode',
+        source: 'source',
+        id: 'id',
+        createdAt: '2019-12-27T18:11:19.117Z',
+        createdBy: 'createdBy',
+        dwells: [
+          {
+            d10: 0,
+            d11: 0,
+            d12: 0,
+            d13: 0,
+            d14: 0,
+            d15: 0,
+            d16: 0,
+            d17: 0,
+            d18: 0,
+            d19: 0,
+            d2: 0,
+            d20: 0,
+            d21: 0,
+            d22: 0,
+            d23: 0,
+            d24: 0,
+            d25: 0,
+            d26: 0,
+            d27: 0,
+            d28: 0,
+            d29: 0,
+            d3: 0,
+            d30: 0,
+            d31: 0,
+            d32: [
+              {
+                d32_1: 0,
+                d32_10: 'd32_10',
+                d32_11: 0,
+                d32_12: 0,
+                d32_13: 0,
+                d32_14: 0,
+                d32_15: 0,
+                d32_16: 0,
+                d32_17: 0,
+                d32_18: 0,
+                d32_2: 0,
+                d32_3: 0,
+                d32_4: 0,
+                d32_5: 0,
+                d32_6: 0,
+                d32_7: 0,
+                d32_8: 0,
+                d32_9: 0,
+              },
+            ],
+            d4: true,
+            d5: 0,
+            d6: 0,
+            d7: 0,
+            d8: 0,
+            d9: 0,
+            dwellts: '2019-12-27T18:11:19.117Z',
+          },
+        ],
+        freeTexts: [{ f1: 'f1', f2: 'f2', f3: 'f3' }],
+        hrrs: [
+          {
+            h10: 0,
+            h11: 0,
+            h12: 0,
+            h13: 0,
+            h14: 0,
+            h15: 0,
+            h16: 'h16',
+            h17: 'h17',
+            h18: 'h18',
+            h19: 0,
+            h2: 0,
+            h20: 0,
+            h21: 0,
+            h22: 0,
+            h23: 'h23',
+            h24: 'h24',
+            h27: 0,
+            h28: 0,
+            h29: 0,
+            h3: 0,
+            h30: 0,
+            h31: 0,
+            h32: [{ h32_1: 0, h32_2: 0, h32_3: 0, h32_4: 0 }],
+            h4: true,
+            h5: 0,
+            h6: 0,
+            h7: 0,
+            h8: 0,
+            h9: 0,
+          },
+        ],
+        jobDefs: [
+          {
+            j1: 0,
+            j10: 0,
+            j11: 0,
+            j12: 0,
+            j13: 0,
+            j14: 'j14',
+            j15: 0,
+            j16: 0,
+            j17: 0,
+            j18: 0,
+            j19: 0,
+            j2: 'j2',
+            j20: 0,
+            j21: 0,
+            j22: 0,
+            j23: 0,
+            j24: 0,
+            j25: 0,
+            j26: 0,
+            j27: 'j27',
+            j28: 'j28',
+            j3: 'j3',
+            j4: 0,
+            j5: 0,
+            j6: 0,
+            j7: 0,
+            j8: 0,
+            j9: 0,
+          },
+        ],
+        jobRequests: [
+          {
+            jobReqEst: '2019-12-27T18:11:19.117Z',
+            r1: 'r1',
+            r10: 0,
+            r11: 0,
+            r12: 'r12',
+            r13: 0,
+            r14: 0,
+            r2: 'r2',
+            r21: 0,
+            r22: 0,
+            r23: 0,
+            r24: 'r24',
+            r25: 'r25',
+            r26: true,
+            r3: 0,
+            r4: 0,
+            r5: 0,
+            r6: 0,
+            r7: 0,
+            r8: 0,
+            r9: 0,
+          },
+        ],
+        missions: [{ m1: 'm1', m2: 'm2', m3: 'm3', m4: 'm4', msnRefTs: '2019-12-27' }],
+        origin: 'origin',
+        origNetwork: 'origNetwork',
+        p10: 0,
+        p3: 'p3',
+        p6: 'p6',
+        p7: 'p7',
+        p8: 'p8',
+        p9: 0,
+        platformLocs: [
+          { l1: 0, l2: 0, l3: 0, l4: 0, l5: 0, l6: 0, l7: 0, platlocts: '2019-12-27T18:11:19.117Z' },
+        ],
+      },
+    ]);
+  });
+});
