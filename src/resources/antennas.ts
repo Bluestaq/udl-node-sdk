@@ -22,9 +22,8 @@ export class Antennas extends APIResource {
    * Service operation to get a single Antenna record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(params: AntennaRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<AntennaFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/antenna/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AntennaFull> {
+    return this._client.get(`/udl/antenna/${id}`, options);
   }
 
   /**
@@ -32,9 +31,9 @@ export class Antennas extends APIResource {
    * perform this service operation. Please contact the UDL team for assistance.
    */
   update(params: AntennaUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/antenna/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -55,9 +54,8 @@ export class Antennas extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(params: AntennaDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/antenna/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/antenna/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -98,9 +96,8 @@ export class Antennas extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(params: AntennaTupleParams, options?: Core.RequestOptions): Core.APIPromise<AntennaTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/antenna/tuple', options);
+  tuple(query: AntennaTupleParams, options?: Core.RequestOptions): Core.APIPromise<AntennaTupleResponse> {
+    return this._client.get('/udl/antenna/tuple', { query, ...options });
   }
 }
 
@@ -126,7 +123,7 @@ export interface AntennaAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Antenna name.
@@ -191,7 +188,7 @@ export interface AntennaFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Antenna name.
@@ -275,7 +272,7 @@ export interface AntennaCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Antenna name.
@@ -293,53 +290,19 @@ export interface AntennaCreateParams {
   id?: string;
 
   /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
-
-  /**
    * Originating system or organization which produced the data, if different from
    * the source. The origin may be different than the source if the source was a
    * mediating system which forwarded the data on behalf of the origin system. If
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-}
-
-export interface AntennaRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Antenna to find.
-   */
-  body_id: string;
 }
 
 export interface AntennaUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the Antenna to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the Antenna to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST
@@ -358,7 +321,7 @@ export interface AntennaUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Antenna name.
@@ -376,49 +339,19 @@ export interface AntennaUpdateParams {
   body_id?: string;
 
   /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
-
-  /**
    * Body param: Originating system or organization which produced the data, if
    * different from the source. The origin may be different than the source if the
    * source was a mediating system which forwarded the data on behalf of the origin
    * system. If null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-}
-
-export interface AntennaDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Antenna to delete.
-   */
-  body_id: string;
 }
 
 export interface AntennaTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -432,9 +365,7 @@ export declare namespace Antennas {
     type AntennaCountResponse as AntennaCountResponse,
     type AntennaTupleResponse as AntennaTupleResponse,
     type AntennaCreateParams as AntennaCreateParams,
-    type AntennaRetrieveParams as AntennaRetrieveParams,
     type AntennaUpdateParams as AntennaUpdateParams,
-    type AntennaDeleteParams as AntennaDeleteParams,
     type AntennaTupleParams as AntennaTupleParams,
   };
 }

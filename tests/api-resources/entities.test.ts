@@ -4,19 +4,19 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource entities', () => {
   test('create: only required params', async () => {
     const responsePromise = client.entities.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
-      type: 'type',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      name: 'Example name',
+      source: 'Bluestaq',
+      type: 'AIRCRAFT',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -29,66 +29,57 @@ describe('resource entities', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.entities.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
-      type: 'type',
-      countryCode: 'countryCode',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      idEntity: 'idEntity',
-      idLocation: 'idLocation',
-      idOnOrbit: 'idOnOrbit',
-      idOperatingUnit: 'idOperatingUnit',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      name: 'Example name',
+      source: 'Bluestaq',
+      type: 'AIRCRAFT',
+      countryCode: 'US',
+      idEntity: 'ENTITY-ID',
+      idLocation: 'LOCATION-ID',
+      idOnOrbit: 'ONORBIT-ID',
+      idOperatingUnit: 'OPERATINGUNIT-ID',
       location: {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        name: 'name',
-        source: 'source',
-        altitude: 0,
-        countryCode: 'countryCode',
-        createdAt: '2019-12-27T18:11:19.117Z',
-        createdBy: 'createdBy',
-        idLocation: 'idLocation',
-        lat: 0,
-        lon: 0,
-        origin: 'origin',
-        origNetwork: 'origNetwork',
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        name: 'Example location',
+        source: 'Bluestaq',
+        altitude: 10.23,
+        countryCode: 'US',
+        idLocation: 'LOCATION-ID',
+        lat: 45.23,
+        lon: 179.1,
+        origin: 'THIRD_PARTY_DATASOURCE',
       },
       onOrbit: {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        satNo: 0,
-        source: 'source',
-        altName: 'altName',
-        category: 'category',
-        commonName: 'commonName',
-        constellation: 'constellation',
-        countryCode: 'countryCode',
-        createdAt: '2019-12-27T18:11:19.117Z',
-        createdBy: 'createdBy',
-        decayDate: '2019-12-27T18:11:19.117Z',
-        idOnOrbit: 'idOnOrbit',
-        intlDes: 'intlDes',
-        launchDate: '2019-12-27',
-        launchSiteId: 'launchSiteId',
-        lifetimeYears: 0,
-        missionNumber: 'missionNumber',
-        objectType: 'objectType',
-        origin: 'origin',
-        origNetwork: 'origNetwork',
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        satNo: 1,
+        source: 'Bluestaq',
+        altName: 'Alternate Name',
+        category: 'Unknown',
+        commonName: 'Example common name',
+        constellation: 'Big Dipper',
+        countryCode: 'US',
+        decayDate: '2018-01-01T16:00:00.123Z',
+        idOnOrbit: 'ONORBIT-ID',
+        intlDes: '2021123ABC',
+        launchDate: '2018-01-01',
+        launchSiteId: 'LAUNCHSITE-ID',
+        lifetimeYears: 10,
+        missionNumber: 'Expedition 1',
+        objectType: 'ROCKET BODY',
+        origin: 'THIRD_PARTY_DATASOURCE',
       },
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      ownerType: 'ownerType',
-      taskable: true,
-      urls: ['string'],
+      origin: 'THIRD_PARTY_DATASOURCE',
+      ownerType: 'Commercial',
+      taskable: false,
+      urls: ['URL1', 'URL2'],
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.entities.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.entities.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -98,19 +89,20 @@ describe('resource entities', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.entities.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.entities.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.entities.update({
-      path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
-      type: 'type',
+    const responsePromise = client.entities.update('id', {
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      name: 'Example name',
+      source: 'Bluestaq',
+      type: 'AIRCRAFT',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -122,69 +114,58 @@ describe('resource entities', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.entities.update({
-      path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
-      type: 'type',
-      countryCode: 'countryCode',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      idEntity: 'idEntity',
-      idLocation: 'idLocation',
-      idOnOrbit: 'idOnOrbit',
-      idOperatingUnit: 'idOperatingUnit',
+    const response = await client.entities.update('id', {
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      name: 'Example name',
+      source: 'Bluestaq',
+      type: 'AIRCRAFT',
+      countryCode: 'US',
+      idEntity: 'ENTITY-ID',
+      idLocation: 'LOCATION-ID',
+      idOnOrbit: 'ONORBIT-ID',
+      idOperatingUnit: 'OPERATINGUNIT-ID',
       location: {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        name: 'name',
-        source: 'source',
-        altitude: 0,
-        countryCode: 'countryCode',
-        createdAt: '2019-12-27T18:11:19.117Z',
-        createdBy: 'createdBy',
-        idLocation: 'idLocation',
-        lat: 0,
-        lon: 0,
-        origin: 'origin',
-        origNetwork: 'origNetwork',
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        name: 'Example location',
+        source: 'Bluestaq',
+        altitude: 10.23,
+        countryCode: 'US',
+        idLocation: 'LOCATION-ID',
+        lat: 45.23,
+        lon: 179.1,
+        origin: 'THIRD_PARTY_DATASOURCE',
       },
       onOrbit: {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        satNo: 0,
-        source: 'source',
-        altName: 'altName',
-        category: 'category',
-        commonName: 'commonName',
-        constellation: 'constellation',
-        countryCode: 'countryCode',
-        createdAt: '2019-12-27T18:11:19.117Z',
-        createdBy: 'createdBy',
-        decayDate: '2019-12-27T18:11:19.117Z',
-        idOnOrbit: 'idOnOrbit',
-        intlDes: 'intlDes',
-        launchDate: '2019-12-27',
-        launchSiteId: 'launchSiteId',
-        lifetimeYears: 0,
-        missionNumber: 'missionNumber',
-        objectType: 'objectType',
-        origin: 'origin',
-        origNetwork: 'origNetwork',
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        satNo: 1,
+        source: 'Bluestaq',
+        altName: 'Alternate Name',
+        category: 'Unknown',
+        commonName: 'Example common name',
+        constellation: 'Big Dipper',
+        countryCode: 'US',
+        decayDate: '2018-01-01T16:00:00.123Z',
+        idOnOrbit: 'ONORBIT-ID',
+        intlDes: '2021123ABC',
+        launchDate: '2018-01-01',
+        launchSiteId: 'LAUNCHSITE-ID',
+        lifetimeYears: 10,
+        missionNumber: 'Expedition 1',
+        objectType: 'ROCKET BODY',
+        origin: 'THIRD_PARTY_DATASOURCE',
       },
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      ownerType: 'ownerType',
-      taskable: true,
-      urls: ['string'],
+      origin: 'THIRD_PARTY_DATASOURCE',
+      ownerType: 'Commercial',
+      taskable: false,
+      urls: ['URL1', 'URL2'],
     });
   });
 
-  test('delete: only required params', async () => {
-    const responsePromise = client.entities.delete({ path_id: 'id', body_id: 'id' });
+  test('list', async () => {
+    const responsePromise = client.entities.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -194,8 +175,29 @@ describe('resource entities', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: required and optional params', async () => {
-    const response = await client.entities.delete({ path_id: 'id', body_id: 'id' });
+  test('list: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.entities.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('delete', async () => {
+    const responsePromise = client.entities.delete('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('delete: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.entities.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('count', async () => {

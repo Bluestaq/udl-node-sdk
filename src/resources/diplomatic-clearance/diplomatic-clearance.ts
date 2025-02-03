@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
+import * as DiplomaticClearanceAPI from '../air-operations/diplomatic-clearance';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -11,7 +12,6 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
-import * as DiplomaticClearanceDiplomaticClearanceAPI from '../air-operations/diplomatic-clearance/diplomatic-clearance';
 
 export class DiplomaticClearance extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -34,11 +34,10 @@ export class DiplomaticClearance extends APIResource {
    * passed as a path parameter.
    */
   retrieve(
-    params: DiplomaticClearanceRetrieveParams,
+    id: string,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<DiplomaticClearanceDiplomaticClearanceAPI.DiplomaticclearanceFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/diplomaticclearance/${path_id}`, options);
+  ): Core.APIPromise<DiplomaticClearanceAPI.DiplomaticclearanceFull> {
+    return this._client.get(`/udl/diplomaticclearance/${id}`, options);
   }
 
   /**
@@ -47,9 +46,9 @@ export class DiplomaticClearance extends APIResource {
    * for assistance.
    */
   update(params: DiplomaticClearanceUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/diplomaticclearance/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -62,11 +61,10 @@ export class DiplomaticClearance extends APIResource {
    * parameter information.
    */
   list(
-    params: DiplomaticClearanceListParams,
+    query: DiplomaticClearanceListParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<DiplomaticClearanceListResponse> {
-    const { firstDepDate } = params;
-    return this._client.get('/udl/diplomaticclearance', options);
+    return this._client.get('/udl/diplomaticclearance', { query, ...options });
   }
 
   /**
@@ -74,9 +72,8 @@ export class DiplomaticClearance extends APIResource {
    * passed ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  delete(params: DiplomaticClearanceDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/diplomaticclearance/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/diplomaticclearance/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -89,9 +86,9 @@ export class DiplomaticClearance extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(params: DiplomaticClearanceCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { firstDepDate } = params;
+  count(query: DiplomaticClearanceCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.get('/udl/diplomaticclearance/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
@@ -137,21 +134,18 @@ export class DiplomaticClearance extends APIResource {
    * hours ago.
    */
   tuple(
-    params: DiplomaticClearanceTupleParams,
+    query: DiplomaticClearanceTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<DiplomaticClearanceTupleResponse> {
-    const { columns, firstDepDate } = params;
-    return this._client.get('/udl/diplomaticclearance/tuple', options);
+    return this._client.get('/udl/diplomaticclearance/tuple', { query, ...options });
   }
 }
 
-export type DiplomaticClearanceListResponse =
-  Array<DiplomaticClearanceDiplomaticClearanceAPI.DiplomaticclearanceAbridged>;
+export type DiplomaticClearanceListResponse = Array<DiplomaticClearanceAPI.DiplomaticclearanceAbridged>;
 
 export type DiplomaticClearanceCountResponse = string;
 
-export type DiplomaticClearanceTupleResponse =
-  Array<DiplomaticClearanceDiplomaticClearanceAPI.DiplomaticclearanceFull>;
+export type DiplomaticClearanceTupleResponse = Array<DiplomaticClearanceAPI.DiplomaticclearanceFull>;
 
 export interface DiplomaticClearanceCreateParams {
   /**
@@ -175,7 +169,7 @@ export interface DiplomaticClearanceCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The First Departure Date (FDD) the mission is scheduled for departure, in ISO
@@ -205,17 +199,6 @@ export interface DiplomaticClearanceCreateParams {
    * used to process and approve this clearance request.
    */
   apacsId?: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Collection of diplomatic clearance details.
@@ -253,30 +236,6 @@ export interface DiplomaticClearanceCreateParams {
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
-
-  /**
-   * Time the row was updated in the database, auto-populated by the system.
-   */
-  updatedAt?: string;
-
-  /**
-   * Application user who updated the row in the database, auto-populated by the
-   * system.
-   */
-  updatedBy?: string;
 }
 
 export namespace DiplomaticClearanceCreateParams {
@@ -450,28 +409,11 @@ export namespace DiplomaticClearanceCreateParams {
   }
 }
 
-export interface DiplomaticClearanceRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the diplomatic clearance record to retrieve.
-   */
-  body_id: string;
-}
-
 export interface DiplomaticClearanceUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the diplomatic clearance to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the diplomatic clearance to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -496,7 +438,7 @@ export interface DiplomaticClearanceUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: The First Departure Date (FDD) the mission is scheduled for
@@ -526,18 +468,6 @@ export interface DiplomaticClearanceUpdateParams {
    * identifier used to process and approve this clearance request.
    */
   apacsId?: string;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: Collection of diplomatic clearance details.
@@ -575,31 +505,6 @@ export interface DiplomaticClearanceUpdateParams {
    * system. If null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-
-  /**
-   * Body param: The source data library from which this record was received. This
-   * could be a remote or tactical UDL or another data library. If null, the record
-   * should be assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
-
-  /**
-   * Body param: Time the row was updated in the database, auto-populated by the
-   * system.
-   */
-  updatedAt?: string;
-
-  /**
-   * Body param: Application user who updated the row in the database, auto-populated
-   * by the system.
-   */
-  updatedBy?: string;
 }
 
 export namespace DiplomaticClearanceUpdateParams {
@@ -781,18 +686,6 @@ export interface DiplomaticClearanceListParams {
   firstDepDate: string;
 }
 
-export interface DiplomaticClearanceDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the diplomatic clearance to delete.
-   */
-  body_id: string;
-}
-
 export interface DiplomaticClearanceCountParams {
   /**
    * The First Departure Date (FDD) the mission is scheduled for departure, in ISO
@@ -830,7 +723,7 @@ export namespace DiplomaticClearanceCreateBulkParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * The First Departure Date (FDD) the mission is scheduled for departure, in ISO
@@ -860,17 +753,6 @@ export namespace DiplomaticClearanceCreateBulkParams {
      * used to process and approve this clearance request.
      */
     apacsId?: string;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
 
     /**
      * Collection of diplomatic clearance details.
@@ -908,30 +790,6 @@ export namespace DiplomaticClearanceCreateBulkParams {
      * null, the source may be assumed to be the origin.
      */
     origin?: string;
-
-    /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
-
-    /**
-     * The source data library from which this record was received. This could be a
-     * remote or tactical UDL or another data library. If null, the record should be
-     * assumed to have originated from the primary Enterprise UDL.
-     */
-    sourceDL?: string;
-
-    /**
-     * Time the row was updated in the database, auto-populated by the system.
-     */
-    updatedAt?: string;
-
-    /**
-     * Application user who updated the row in the database, auto-populated by the
-     * system.
-     */
-    updatedBy?: string;
   }
 
   export namespace Body {
@@ -1110,7 +968,7 @@ export interface DiplomaticClearanceTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -1130,10 +988,8 @@ export declare namespace DiplomaticClearance {
     type DiplomaticClearanceCountResponse as DiplomaticClearanceCountResponse,
     type DiplomaticClearanceTupleResponse as DiplomaticClearanceTupleResponse,
     type DiplomaticClearanceCreateParams as DiplomaticClearanceCreateParams,
-    type DiplomaticClearanceRetrieveParams as DiplomaticClearanceRetrieveParams,
     type DiplomaticClearanceUpdateParams as DiplomaticClearanceUpdateParams,
     type DiplomaticClearanceListParams as DiplomaticClearanceListParams,
-    type DiplomaticClearanceDeleteParams as DiplomaticClearanceDeleteParams,
     type DiplomaticClearanceCountParams as DiplomaticClearanceCountParams,
     type DiplomaticClearanceCreateBulkParams as DiplomaticClearanceCreateBulkParams,
     type DiplomaticClearanceTupleParams as DiplomaticClearanceTupleParams,

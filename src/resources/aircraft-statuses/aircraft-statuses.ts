@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
+import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import { History, HistoryCountResponse, HistoryListParams, HistoryListResponse } from './history';
 
@@ -22,6 +23,27 @@ export class AircraftStatuses extends APIResource {
   }
 
   /**
+   * Service operation to get a single AircraftStatus record by its unique ID passed
+   * as a path parameter.
+   */
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Shared.AircraftstatusFull> {
+    return this._client.get(`/udl/aircraftstatus/${id}`, options);
+  }
+
+  /**
+   * Service operation to update a single AircraftStatus. A specific role is required
+   * to perform this service operation. Please contact the UDL team for assistance.
+   */
+  update(params: AircraftStatusUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { path_id, body_id, ...body } = params;
+    return this._client.put(`/udl/aircraftstatus/${path_id}`, {
+      body: { id: body_id, ...body },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Service operation to dynamically query data by a variety of query parameters not
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
@@ -29,6 +51,18 @@ export class AircraftStatuses extends APIResource {
    */
   list(options?: Core.RequestOptions): Core.APIPromise<AircraftStatusListResponse> {
     return this._client.get('/udl/aircraftstatus', options);
+  }
+
+  /**
+   * Service operation to delete a Status object specified by the passed ID path
+   * parameter. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/aircraftstatus/${id}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 
   /**
@@ -54,6 +88,23 @@ export class AircraftStatuses extends APIResource {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
+  }
+
+  /**
+   * Service operation to dynamically query data and only return specified
+   * columns/fields. Requested columns are specified by the 'columns' query parameter
+   * and should be a comma separated list of valid fields for the specified data
+   * type. classificationMarking is always returned. See the queryhelp operation
+   * (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+   * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+   * hours would return the satNo and period of elsets with an epoch greater than 5
+   * hours ago.
+   */
+  tuple(
+    query: AircraftStatusTupleParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<AircraftStatusTupleResponse> {
+    return this._client.get('/udl/aircraftstatus/tuple', { query, ...options });
   }
 }
 
@@ -84,7 +135,7 @@ export interface AircraftstatusAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique identifier of the aircraft.
@@ -111,13 +162,13 @@ export interface AircraftstatusAbridged {
    * The status of the air-to-air weapon release system (OPERATIONAL,
    * NON-OPERATIONAL, OFF).
    */
-  airToAirStatus?: string;
+  airToAirStatus?: 'OPERATIONAL' | 'NON-OPERATIONAL' | 'OFF';
 
   /**
    * The status of the air-to-ground weapon release system (OPERATIONAL,
    * NON-OPERATIONAL, OFF).
    */
-  airToGroundStatus?: string;
+  airToGroundStatus?: 'OPERATIONAL' | 'NON-OPERATIONAL' | 'OFF';
 
   /**
    * Aircraft alpha status code that indicates the aircraft maintenance status
@@ -380,6 +431,8 @@ export type AircraftStatusListResponse = Array<AircraftstatusAbridged>;
 
 export type AircraftStatusCountResponse = string;
 
+export type AircraftStatusTupleResponse = Array<Shared.AircraftstatusFull>;
+
 export interface AircraftStatusCreateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -402,7 +455,7 @@ export interface AircraftStatusCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique identifier of the aircraft.
@@ -429,13 +482,13 @@ export interface AircraftStatusCreateParams {
    * The status of the air-to-air weapon release system (OPERATIONAL,
    * NON-OPERATIONAL, OFF).
    */
-  airToAirStatus?: string;
+  airToAirStatus?: 'OPERATIONAL' | 'NON-OPERATIONAL' | 'OFF';
 
   /**
    * The status of the air-to-ground weapon release system (OPERATIONAL,
    * NON-OPERATIONAL, OFF).
    */
-  airToGroundStatus?: string;
+  airToGroundStatus?: 'OPERATIONAL' | 'NON-OPERATIONAL' | 'OFF';
 
   /**
    * Aircraft alpha status code that indicates the aircraft maintenance status
@@ -453,17 +506,6 @@ export interface AircraftStatusCreateParams {
    * DECONTAMINATED, UNKNOWN, etc.).
    */
   contaminationStatus?: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * The International Civil Aviation Organization (ICAO) code at which this aircraft
@@ -648,12 +690,6 @@ export interface AircraftStatusCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * The parking location of this aircraft.
    */
   parkLocation?: string;
@@ -668,13 +704,6 @@ export interface AircraftStatusCreateParams {
    * was previously located.
    */
   previousICAO?: string;
-
-  /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
 
   /**
    * The turnaround start time, in ISO 8601 UTC format with millisecond precision.
@@ -694,6 +723,318 @@ export interface AircraftStatusCreateParams {
   unavailableSys?: Array<string>;
 }
 
+export interface AircraftStatusUpdateParams {
+  /**
+   * Path param: The ID of the Status to update.
+   */
+  path_id: string;
+
+  /**
+   * Body param: Classification marking of the data in IC/CAPCO Portion-marked
+   * format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Body param: Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST
+   * data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Body param: Unique identifier of the aircraft.
+   */
+  idAircraft: string;
+
+  /**
+   * Body param: Source of the data.
+   */
+  source: string;
+
+  /**
+   * Body param: Unique identifier of the record, auto-generated by the system.
+   */
+  body_id?: string;
+
+  /**
+   * Body param: List of additional operational systems on this aircraft beyond what
+   * is normally available.
+   */
+  additionalSys?: Array<string>;
+
+  /**
+   * Body param: The status of the air-to-air weapon release system (OPERATIONAL,
+   * NON-OPERATIONAL, OFF).
+   */
+  airToAirStatus?: 'OPERATIONAL' | 'NON-OPERATIONAL' | 'OFF';
+
+  /**
+   * Body param: The status of the air-to-ground weapon release system (OPERATIONAL,
+   * NON-OPERATIONAL, OFF).
+   */
+  airToGroundStatus?: 'OPERATIONAL' | 'NON-OPERATIONAL' | 'OFF';
+
+  /**
+   * Body param: Aircraft alpha status code that indicates the aircraft maintenance
+   * status estimated by the pilot.
+   */
+  alphaStatusCode?: string;
+
+  /**
+   * Body param: Alternate Aircraft Identifier provided by source.
+   */
+  altAircraftId?: string;
+
+  /**
+   * Body param: The contamination status of the aircraft (e.g. CLEAR, CONTAMINATED,
+   * DECONTAMINATED, UNKNOWN, etc.).
+   */
+  contaminationStatus?: string;
+
+  /**
+   * Body param: The International Civil Aviation Organization (ICAO) code at which
+   * this aircraft is currently located or has most recently departed, if airborne.
+   */
+  currentICAO?: string;
+
+  /**
+   * Body param: The current readiness state of the aircraft (e.g. AIRBORNE,
+   * ALERTCOCKED, AVAILABLE, BATTLESTATION, RUNWAY ALERT, SUITUP).
+   */
+  currentState?: string;
+
+  /**
+   * Body param: The earliest time that turnaround of the aircraft may complete, in
+   * ISO 8601 UTC format with millisecond precision.
+   */
+  earliestTAEndTime?: string;
+
+  /**
+   * Body param: The Expected Time in Commission (ETIC) for this aircraft, in ISO
+   * 8601 UTC format with millisecond precision. This is the estimated time when the
+   * issue will be resolved.
+   */
+  etic?: string;
+
+  /**
+   * Body param: Current flight phase (e.g. AIR REFUELING, GROUND, LANDING, etc.) of
+   * the aircraft.
+   */
+  flightPhase?: string;
+
+  /**
+   * Body param: The mass of fuel remaining on the aircraft, in kilograms.
+   */
+  fuel?: number;
+
+  /**
+   * Body param: Used in conjunction with the fuel field to indicate either burnable
+   * or offload fuel.
+   */
+  fuelFunction?: string;
+
+  /**
+   * Body param: The state of the aircraft fuel status (e.g. DELIVERED, DUMPED,
+   * EMPTY, FULL, OTHER, REQUESTED, etc.).
+   */
+  fuelStatus?: string;
+
+  /**
+   * Body param: US Air Force geographic location code of the airfield where the
+   * aircraft is located.
+   */
+  geoLoc?: string;
+
+  /**
+   * Body param: The ground status of the aircraft (e.g. ALERT, CREW READY, ENGINE
+   * START, HANGAR, etc.).
+   */
+  groundStatus?: string;
+
+  /**
+   * Body param: Flag indicating that the aircraft is capable of making at least one
+   * gun pass.
+   */
+  gunCapable?: boolean;
+
+  /**
+   * Body param: The upper bound of the estimated number of gun rounds available.
+   */
+  gunRdsMax?: number;
+
+  /**
+   * Body param: The lower bound of the estimated number of gun rounds available.
+   */
+  gunRdsMin?: number;
+
+  /**
+   * Body param: The type of gun rounds available (e.g. 7.62 MM, 20 MM, 25 MM, etc.).
+   */
+  gunRdsType?: string;
+
+  /**
+   * Body param: If not airborne, the unique identifier of the installation currently
+   * hosting the aircraft.
+   */
+  idAirfield?: string;
+
+  /**
+   * Body param: Unique identifier of the Point of Interest (POI) record related to
+   * this aircraft status. This will generally represent the location of an aircraft
+   * on the ground.
+   */
+  idPOI?: string;
+
+  /**
+   * Body param: Array of inventory item(s) for which estimate(s) are available (e.g.
+   * AIM-9 SIDEWINDER, AIM-120 AMRAAM, AIM-92 STINGER, CHAFF DECOY, FLARE TP 400,
+   * etc.). Intended as, but not constrained to, MIL-STD-6016 environment dependent
+   * specific/store type designations. This array must be the same length as
+   * inventoryMin and inventoryMax.
+   */
+  inventory?: Array<string>;
+
+  /**
+   * Body param: Array of the upper bound quantity for each of the inventory items.
+   * The values in this array must correspond to position index in the inventory
+   * array. This array must be the same length as inventory and inventoryMin.
+   */
+  inventoryMax?: Array<number>;
+
+  /**
+   * Body param: Array of the lower bound quantity for each of the inventory items.
+   * The values in this array must correspond to position index in the inventory
+   * array. This array must be the same length as inventory and inventoryMax.
+   */
+  inventoryMin?: Array<number>;
+
+  /**
+   * Body param: Date when the military aircraft inspection was last performed, in
+   * ISO 8601 UTC format with millisecond precision.
+   */
+  lastInspectionDate?: string;
+
+  /**
+   * Body param: The name or ID of the external user that updated this status.
+   */
+  lastUpdatedBy?: string;
+
+  /**
+   * Body param: Military aircraft maintenance point of contact for this aircraft.
+   */
+  maintPoc?: string;
+
+  /**
+   * Body param: Indicates the priority of the maintenance effort.
+   */
+  maintPriority?: string;
+
+  /**
+   * Body param: The maintenance status of the aircraft.
+   */
+  maintStatus?: string;
+
+  /**
+   * Body param: Indicates the maintenance discrepancy that drives the current
+   * maintenance status.
+   */
+  maintStatusDriver?: string;
+
+  /**
+   * Body param: The time of the last maintenance status update, in ISO 8601 UTC
+   * format with millisecond precision.
+   */
+  maintStatusUpdate?: string;
+
+  /**
+   * Body param: The Operational Capability of the reported aircraft (ABLE, LOFUEL,
+   * UNABLE).
+   */
+  missionReadiness?: string;
+
+  /**
+   * Body param: Maintenance pacing remarks assocociated with this aircraft.
+   */
+  mxRemark?: string;
+
+  /**
+   * Body param: The International Civil Aviation Organization (ICAO) code of the
+   * next destination of this aircraft.
+   */
+  nextICAO?: string;
+
+  /**
+   * Body param: Optional notes/comments concerning this aircraft status.
+   */
+  notes?: string;
+
+  /**
+   * Body param: Originating system or organization which produced the data, if
+   * different from the source. The origin may be different than the source if the
+   * source was a mediating system which forwarded the data on behalf of the origin
+   * system. If null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * Body param: The parking location of this aircraft.
+   */
+  parkLocation?: string;
+
+  /**
+   * Body param: The system that designated the parking location (e.g. EMOC, GDSS,
+   * PEX, etc.).
+   */
+  parkLocationSystem?: string;
+
+  /**
+   * Body param: The International Civil Aviation Organization (ICAO) code at which
+   * this aircraft was previously located.
+   */
+  previousICAO?: string;
+
+  /**
+   * Body param: The turnaround start time, in ISO 8601 UTC format with millisecond
+   * precision.
+   */
+  taStartTime?: string;
+
+  /**
+   * Body param: Estimated Time for Completion (ETIC) of an aircraft issue, in ISO
+   * 8601 UTC format with millisecond precision. This is the estimated time when the
+   * course of action to resolve the issue will be determined.
+   */
+  troubleshootEtic?: string;
+
+  /**
+   * Body param: List of unavailable systems that would normally be on this aircraft.
+   */
+  unavailableSys?: Array<string>;
+}
+
+export interface AircraftStatusTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
+
 AircraftStatuses.History = History;
 
 export declare namespace AircraftStatuses {
@@ -701,7 +1042,10 @@ export declare namespace AircraftStatuses {
     type AircraftstatusAbridged as AircraftstatusAbridged,
     type AircraftStatusListResponse as AircraftStatusListResponse,
     type AircraftStatusCountResponse as AircraftStatusCountResponse,
+    type AircraftStatusTupleResponse as AircraftStatusTupleResponse,
     type AircraftStatusCreateParams as AircraftStatusCreateParams,
+    type AircraftStatusUpdateParams as AircraftStatusUpdateParams,
+    type AircraftStatusTupleParams as AircraftStatusTupleParams,
   };
 
   export {

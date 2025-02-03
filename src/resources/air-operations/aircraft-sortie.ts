@@ -3,6 +3,7 @@
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
 import * as CrewAPI from '../crew';
+import * as HistoryAPI from '../sortieppr/history';
 
 export class AircraftSortie extends APIResource {
   /**
@@ -25,11 +26,10 @@ export class AircraftSortie extends APIResource {
    * parameter information.
    */
   list(
-    params: AircraftSortieListParams,
+    query: AircraftSortieListParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AircraftSortieListResponse> {
-    const { plannedDepTime } = params;
-    return this._client.get('/udl/aircraftsortie', options);
+    return this._client.get('/udl/aircraftsortie', { query, ...options });
   }
 
   /**
@@ -39,9 +39,9 @@ export class AircraftSortie extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(params: AircraftSortieCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { plannedDepTime } = params;
+  count(query: AircraftSortieCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.get('/udl/aircraftsortie/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
@@ -69,9 +69,9 @@ export class AircraftSortie extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  historyAodr(params: AircraftSortieHistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { plannedDepTime, columns, notification, outputDelimiter, outputFormat } = params;
+  historyAodr(query: AircraftSortieHistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.get('/udl/aircraftsortie/history/aodr', {
+      query,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -85,11 +85,11 @@ export class AircraftSortie extends APIResource {
    * valid/required query parameter information.
    */
   historyCount(
-    params: AircraftSortieHistoryCountParams,
+    query: AircraftSortieHistoryCountParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<string> {
-    const { plannedDepTime } = params;
     return this._client.get('/udl/aircraftsortie/history/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
@@ -102,11 +102,10 @@ export class AircraftSortie extends APIResource {
    * parameter information.
    */
   historyQuery(
-    params: AircraftSortieHistoryQueryParams,
+    query: AircraftSortieHistoryQueryParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AircraftSortieHistoryQueryResponse> {
-    const { plannedDepTime, columns } = params;
-    return this._client.get('/udl/aircraftsortie/history', options);
+    return this._client.get('/udl/aircraftsortie/history', { query, ...options });
   }
 }
 
@@ -136,7 +135,7 @@ export interface AircraftsortieAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The scheduled time that the Aircraft sortie is planned to depart, in ISO 8601
@@ -468,7 +467,7 @@ export interface AircraftsortieAbridged {
   /**
    * The status of the supporting document.
    */
-  paperStatus?: string;
+  paperStatus?: 'PUBLISHED' | 'DELETED' | 'UPDATED' | 'READ';
 
   /**
    * The version number of the crew paper.
@@ -494,7 +493,7 @@ export interface AircraftsortieAbridged {
   /**
    * The prior permission required (PPR) status.
    */
-  pprStatus?: string;
+  pprStatus?: 'NOT REQUIRED' | 'REQUIRED NOT REQUESTED' | 'GRANTED' | 'PENDING';
 
   /**
    * The planned primary Standard Conventional Load of the aircraft for this sortie.
@@ -524,7 +523,7 @@ export interface AircraftsortieAbridged {
    * required, C6 - Consider ravens (Ground time over 6 hours), R6 - Ravens required
    * (Ground time over 6 hours)).
    */
-  rvnReq?: string;
+  rvnReq?: 'N' | 'R' | 'C6' | 'R6';
 
   /**
    * Remarks concerning the schedule.
@@ -589,7 +588,7 @@ export interface AircraftsortieFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The scheduled time that the Aircraft sortie is planned to depart, in ISO 8601
@@ -926,7 +925,7 @@ export interface AircraftsortieFull {
   /**
    * The status of the supporting document.
    */
-  paperStatus?: string;
+  paperStatus?: 'PUBLISHED' | 'DELETED' | 'UPDATED' | 'READ';
 
   /**
    * The version number of the crew paper.
@@ -952,7 +951,7 @@ export interface AircraftsortieFull {
   /**
    * The prior permission required (PPR) status.
    */
-  pprStatus?: string;
+  pprStatus?: 'NOT REQUIRED' | 'REQUIRED NOT REQUESTED' | 'GRANTED' | 'PENDING';
 
   /**
    * The planned primary Standard Conventional Load of the aircraft for this sortie.
@@ -982,7 +981,7 @@ export interface AircraftsortieFull {
    * required, C6 - Consider ravens (Ground time over 6 hours), R6 - Ravens required
    * (Ground time over 6 hours)).
    */
-  rvnReq?: string;
+  rvnReq?: 'N' | 'R' | 'C6' | 'R6';
 
   /**
    * Remarks concerning the schedule.
@@ -1008,7 +1007,7 @@ export interface AircraftsortieFull {
    */
   sortieDate?: string;
 
-  sortiePPR?: Array<AircraftsortieFull.SortiePpr>;
+  sortiePPR?: Array<HistoryAPI.SortiePprFull>;
 
   /**
    * The source data library from which this record was received. This could be a
@@ -1032,141 +1031,6 @@ export interface AircraftsortieFull {
    * system.
    */
   updatedBy?: string;
-}
-
-export namespace AircraftsortieFull {
-  /**
-   * SortiePPR is a regulatory requirement where operators must obtain permissions to
-   * full operational access to a runway, taxiway, or airport service.
-   */
-  export interface SortiePpr {
-    /**
-     * Classification marking of the data in IC/CAPCO Portion-marked format.
-     */
-    classificationMarking: string;
-
-    /**
-     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-     *
-     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-     * may include both real and simulated data.
-     *
-     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-     * events, and analysis.
-     *
-     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-     * datasets.
-     *
-     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-     * requirements, and for validating technical, functional, and performance
-     * characteristics.
-     */
-    dataMode: string;
-
-    /**
-     * Unique identifier of the Aircraft Sortie associated with this prior permission
-     * required (PPR) record.
-     */
-    idSortie: string;
-
-    /**
-     * Source of the data.
-     */
-    source: string;
-
-    /**
-     * Unique identifier of the record, auto-generated by the system.
-     */
-    id?: string;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
-
-    /**
-     * Time the prior permission required (PPR) valid window ends, in ISO 8601 UTC
-     * format with millisecond precision.
-     */
-    endTime?: string;
-
-    /**
-     * Optional ID from external systems. This field has no meaning within UDL and is
-     * provided as a convenience for systems that require tracking of an internal
-     * system generated ID.
-     */
-    externalId?: string;
-
-    /**
-     * Identifier of the prior permission required (PPR) grantor.
-     */
-    grantor?: string;
-
-    /**
-     * The prior permission required (PPR) number issued by the airfield for a sortie.
-     */
-    number?: string;
-
-    /**
-     * Originating system or organization which produced the data, if different from
-     * the source. The origin may be different than the source if the source was a
-     * mediating system which forwarded the data on behalf of the origin system. If
-     * null, the source may be assumed to be the origin.
-     */
-    origin?: string;
-
-    /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
-
-    /**
-     * Remarks concerning the prior permission required (PPR) for a sortie.
-     */
-    remarks?: string;
-
-    /**
-     * The username of the prior permission required (PPR) requestor.
-     */
-    requestor?: string;
-
-    /**
-     * The source data library from which this record was received. This could be a
-     * remote or tactical UDL or another data library. If null, the record should be
-     * assumed to have originated from the primary Enterprise UDL.
-     */
-    sourceDL?: string;
-
-    /**
-     * Time the prior permission required (PPR) valid window begins, in ISO 8601 UTC
-     * format with millisecond precision.
-     */
-    startTime?: string;
-
-    /**
-     * Type of prior permission required (PPR) for a sortie (M - Military or C -
-     * Civilian). Enum: [M, C].
-     */
-    type?: string;
-
-    /**
-     * Time the row was updated in the database, auto-populated by the system.
-     */
-    updatedAt?: string;
-
-    /**
-     * Application user who updated the row in the database, auto-populated by the
-     * system.
-     */
-    updatedBy?: string;
-  }
 }
 
 export type AircraftSortieListResponse = Array<AircraftsortieAbridged>;
@@ -1199,7 +1063,7 @@ export interface AircraftSortieCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The scheduled time that the Aircraft sortie is planned to depart, in ISO 8601
@@ -1328,17 +1192,6 @@ export interface AircraftSortieCreateParams {
   commanderName?: string;
 
   /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
-
-  /**
    * The current state of this sortie.
    */
   currentState?: string;
@@ -1408,16 +1261,6 @@ export interface AircraftSortieCreateParams {
    * UTC format with millisecond precision.
    */
   estDepTime?: string;
-
-  /**
-   * Name of the uploaded PDF.
-   */
-  filename?: string;
-
-  /**
-   * Size of the supporting PDF, in bytes.
-   */
-  filesize?: number;
 
   /**
    * The planned flight time for this sortie, in minutes.
@@ -1498,12 +1341,6 @@ export interface AircraftSortieCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * The sortie identifier provided by the originating source.
    */
   origSortieId?: string;
@@ -1529,16 +1366,6 @@ export interface AircraftSortieCreateParams {
   oxyReqPax?: number;
 
   /**
-   * The status of the supporting document.
-   */
-  paperStatus?: string;
-
-  /**
-   * The version number of the crew paper.
-   */
-  papersVersion?: string;
-
-  /**
    * The POI parking location.
    */
   parkingLoc?: string;
@@ -1557,20 +1384,12 @@ export interface AircraftSortieCreateParams {
   /**
    * The prior permission required (PPR) status.
    */
-  pprStatus?: string;
+  pprStatus?: 'NOT REQUIRED' | 'REQUIRED NOT REQUESTED' | 'GRANTED' | 'PENDING';
 
   /**
    * The planned primary Standard Conventional Load of the aircraft for this sortie.
    */
   primarySCL?: string;
-
-  /**
-   * When crew papers are associated to this sortie, the system updates this value.
-   * This field is the URI location in the document repository of that raw file. To
-   * download the raw file, prepend https://udl-hostname/scs/download?id= to this
-   * field's value.
-   */
-  rawFileURI?: string;
 
   /**
    * Aircraft configuration required for the mission.
@@ -1587,7 +1406,7 @@ export interface AircraftSortieCreateParams {
    * required, C6 - Consider ravens (Ground time over 6 hours), R6 - Ravens required
    * (Ground time over 6 hours)).
    */
-  rvnReq?: string;
+  rvnReq?: 'N' | 'R' | 'C6' | 'R6';
 
   /**
    * Remarks concerning the schedule.
@@ -1612,13 +1431,6 @@ export interface AircraftSortieCreateParams {
    * YYYY-MM-DD).
    */
   sortieDate?: string;
-
-  /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
 
   /**
    * The tail number of the aircraft assigned to this sortie.
@@ -1671,7 +1483,7 @@ export namespace AircraftSortieCreateBulkParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * The scheduled time that the Aircraft sortie is planned to depart, in ISO 8601
@@ -1800,17 +1612,6 @@ export namespace AircraftSortieCreateBulkParams {
     commanderName?: string;
 
     /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
-
-    /**
      * The current state of this sortie.
      */
     currentState?: string;
@@ -1880,16 +1681,6 @@ export namespace AircraftSortieCreateBulkParams {
      * UTC format with millisecond precision.
      */
     estDepTime?: string;
-
-    /**
-     * Name of the uploaded PDF.
-     */
-    filename?: string;
-
-    /**
-     * Size of the supporting PDF, in bytes.
-     */
-    filesize?: number;
 
     /**
      * The planned flight time for this sortie, in minutes.
@@ -1970,12 +1761,6 @@ export namespace AircraftSortieCreateBulkParams {
     origin?: string;
 
     /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
-
-    /**
      * The sortie identifier provided by the originating source.
      */
     origSortieId?: string;
@@ -2001,16 +1786,6 @@ export namespace AircraftSortieCreateBulkParams {
     oxyReqPax?: number;
 
     /**
-     * The status of the supporting document.
-     */
-    paperStatus?: string;
-
-    /**
-     * The version number of the crew paper.
-     */
-    papersVersion?: string;
-
-    /**
      * The POI parking location.
      */
     parkingLoc?: string;
@@ -2029,20 +1804,12 @@ export namespace AircraftSortieCreateBulkParams {
     /**
      * The prior permission required (PPR) status.
      */
-    pprStatus?: string;
+    pprStatus?: 'NOT REQUIRED' | 'REQUIRED NOT REQUESTED' | 'GRANTED' | 'PENDING';
 
     /**
      * The planned primary Standard Conventional Load of the aircraft for this sortie.
      */
     primarySCL?: string;
-
-    /**
-     * When crew papers are associated to this sortie, the system updates this value.
-     * This field is the URI location in the document repository of that raw file. To
-     * download the raw file, prepend https://udl-hostname/scs/download?id= to this
-     * field's value.
-     */
-    rawFileURI?: string;
 
     /**
      * Aircraft configuration required for the mission.
@@ -2059,7 +1826,7 @@ export namespace AircraftSortieCreateBulkParams {
      * required, C6 - Consider ravens (Ground time over 6 hours), R6 - Ravens required
      * (Ground time over 6 hours)).
      */
-    rvnReq?: string;
+    rvnReq?: 'N' | 'R' | 'C6' | 'R6';
 
     /**
      * Remarks concerning the schedule.
@@ -2084,13 +1851,6 @@ export namespace AircraftSortieCreateBulkParams {
      * YYYY-MM-DD).
      */
     sortieDate?: string;
-
-    /**
-     * The source data library from which this record was received. This could be a
-     * remote or tactical UDL or another data library. If null, the record should be
-     * assumed to have originated from the primary Enterprise UDL.
-     */
-    sourceDL?: string;
 
     /**
      * The tail number of the aircraft assigned to this sortie.

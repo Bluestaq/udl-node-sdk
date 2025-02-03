@@ -1,6 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { AirEvents, type AirEventCreateParams } from './air-events';
 export { AirOperations } from './air-operations';
 export { AirTaskingOrders, type AirTaskingOrderCreateParams } from './air-tasking-orders';
 export {
@@ -26,7 +25,5 @@ export {
   DiplomaticClearance,
   type DiplomaticclearanceAbridged,
   type DiplomaticclearanceFull,
-} from './diplomatic-clearance/index';
-export { DiplomaticClearances } from './diplomatic-clearances';
-export { Flightplans } from './flightplans';
-export { LogisticsSupports } from './logistics-supports';
+  type DiplomaticClearanceCreateParams,
+} from './diplomatic-clearance';

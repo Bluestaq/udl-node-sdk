@@ -21,12 +21,8 @@ export class AirspaceControlOrders extends APIResource {
    * Service operation to get a single AirspaceControlOrder record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(
-    params: AirspaceControlOrderRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AirspacecontrolorderFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/airspacecontrolorder/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AirspacecontrolorderFull> {
+    return this._client.get(`/udl/airspacecontrolorder/${id}`, options);
   }
 
   /**
@@ -93,11 +89,10 @@ export class AirspaceControlOrders extends APIResource {
    * hours ago.
    */
   tuple(
-    params: AirspaceControlOrderTupleParams,
+    query: AirspaceControlOrderTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AirspaceControlOrderTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/airspacecontrolorder/tuple', options);
+    return this._client.get('/udl/airspacecontrolorder/tuple', { query, ...options });
   }
 }
 
@@ -127,7 +122,7 @@ export interface AirspacecontrolorderAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Specifies the unique operation or exercise name, nickname, or codeword assigned
@@ -376,7 +371,7 @@ export namespace AirspacecontrolorderAbridged {
        * Designates the geometric type that defines the airspace shape. One of CIRCLE,
        * CORRIDOR, LINE, ORBIT, etc.
        */
-      cmShape?: string;
+      cmShape?: 'POLYARC' | '1TRACK' | 'POLYGON' | 'CIRCLE' | 'CORRIDOR' | 'APOINT' | 'AORBIT' | 'GEOLINE';
 
       /**
        * The code for the type of airspace control means.
@@ -675,7 +670,7 @@ export interface AirspacecontrolorderFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Specifies the unique operation or exercise name, nickname, or codeword assigned
@@ -924,7 +919,7 @@ export namespace AirspacecontrolorderFull {
        * Designates the geometric type that defines the airspace shape. One of CIRCLE,
        * CORRIDOR, LINE, ORBIT, etc.
        */
-      cmShape?: string;
+      cmShape?: 'POLYARC' | '1TRACK' | 'POLYGON' | 'CIRCLE' | 'CORRIDOR' | 'APOINT' | 'AORBIT' | 'GEOLINE';
 
       /**
        * The code for the type of airspace control means.
@@ -1225,7 +1220,7 @@ export interface AirspaceControlOrderCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Specifies the unique operation or exercise name, nickname, or codeword assigned
@@ -1294,17 +1289,6 @@ export interface AirspaceControlOrderCreateParams {
   classSource?: string;
 
   /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
-
-  /**
    * Coded entries that provide justification for exemption from automatic
    * downgrading or declassification of the airspace control order.
    */
@@ -1349,12 +1333,6 @@ export interface AirspaceControlOrderCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * The official identifier of the military establishment responsible for the
    * operation plan and the identification number assigned to this plan.
    */
@@ -1371,23 +1349,9 @@ export interface AirspaceControlOrderCreateParams {
   qualSN?: number;
 
   /**
-   * Optional URI location in the document repository of the raw file parsed by the
-   * system to produce this record. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this value.
-   */
-  rawFileURI?: string;
-
-  /**
    * The unique message identifier sequentially assigned by the originator.
    */
   serialNum?: string;
-
-  /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
 
   /**
    * A qualifier for the end of the effective time period of this airspace control
@@ -1474,7 +1438,7 @@ export namespace AirspaceControlOrderCreateParams {
        * Designates the geometric type that defines the airspace shape. One of CIRCLE,
        * CORRIDOR, LINE, ORBIT, etc.
        */
-      cmShape?: string;
+      cmShape?: 'POLYARC' | '1TRACK' | 'POLYGON' | 'CIRCLE' | 'CORRIDOR' | 'APOINT' | 'AORBIT' | 'GEOLINE';
 
       /**
        * The code for the type of airspace control means.
@@ -1747,18 +1711,6 @@ export namespace AirspaceControlOrderCreateParams {
   }
 }
 
-export interface AirspaceControlOrderRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the AirspaceControlOrder record to retrieve.
-   */
-  body_id: string;
-}
-
 export type AirspaceControlOrderCreateBulkParams = Array<AirspaceControlOrderCreateBulkParams.Body>;
 
 export namespace AirspaceControlOrderCreateBulkParams {
@@ -1788,7 +1740,7 @@ export namespace AirspaceControlOrderCreateBulkParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Specifies the unique operation or exercise name, nickname, or codeword assigned
@@ -1857,17 +1809,6 @@ export namespace AirspaceControlOrderCreateBulkParams {
     classSource?: string;
 
     /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
-
-    /**
      * Coded entries that provide justification for exemption from automatic
      * downgrading or declassification of the airspace control order.
      */
@@ -1912,12 +1853,6 @@ export namespace AirspaceControlOrderCreateBulkParams {
     origin?: string;
 
     /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
-
-    /**
      * The official identifier of the military establishment responsible for the
      * operation plan and the identification number assigned to this plan.
      */
@@ -1934,23 +1869,9 @@ export namespace AirspaceControlOrderCreateBulkParams {
     qualSN?: number;
 
     /**
-     * Optional URI location in the document repository of the raw file parsed by the
-     * system to produce this record. To download the raw file, prepend
-     * https://udl-hostname/scs/download?id= to this value.
-     */
-    rawFileURI?: string;
-
-    /**
      * The unique message identifier sequentially assigned by the originator.
      */
     serialNum?: string;
-
-    /**
-     * The source data library from which this record was received. This could be a
-     * remote or tactical UDL or another data library. If null, the record should be
-     * assumed to have originated from the primary Enterprise UDL.
-     */
-    sourceDL?: string;
 
     /**
      * A qualifier for the end of the effective time period of this airspace control
@@ -2037,7 +1958,7 @@ export namespace AirspaceControlOrderCreateBulkParams {
          * Designates the geometric type that defines the airspace shape. One of CIRCLE,
          * CORRIDOR, LINE, ORBIT, etc.
          */
-        cmShape?: string;
+        cmShape?: 'POLYARC' | '1TRACK' | 'POLYGON' | 'CIRCLE' | 'CORRIDOR' | 'APOINT' | 'AORBIT' | 'GEOLINE';
 
         /**
          * The code for the type of airspace control means.
@@ -2315,7 +2236,7 @@ export interface AirspaceControlOrderTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -2329,7 +2250,6 @@ export declare namespace AirspaceControlOrders {
     type AirspaceControlOrderCountResponse as AirspaceControlOrderCountResponse,
     type AirspaceControlOrderTupleResponse as AirspaceControlOrderTupleResponse,
     type AirspaceControlOrderCreateParams as AirspaceControlOrderCreateParams,
-    type AirspaceControlOrderRetrieveParams as AirspaceControlOrderRetrieveParams,
     type AirspaceControlOrderCreateBulkParams as AirspaceControlOrderCreateBulkParams,
     type AirspaceControlOrderTupleParams as AirspaceControlOrderTupleParams,
   };

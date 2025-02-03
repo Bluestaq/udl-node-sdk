@@ -4,18 +4,18 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource collectResponses', () => {
   test('create: only required params', async () => {
     const responsePromise = client.collectResponses.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idRequest: 'idRequest',
-      source: 'source',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idRequest: 'REF-REQUEST-ID',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,38 +28,34 @@ describe('resource collectResponses', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.collectResponses.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idRequest: 'idRequest',
-      source: 'source',
-      id: 'id',
-      actualEndTime: '2019-12-27T18:11:19.117Z',
-      actualStartTime: '2019-12-27T18:11:19.117Z',
-      altEndTime: '2019-12-27T18:11:19.117Z',
-      altStartTime: '2019-12-27T18:11:19.117Z',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      errCode: 'errCode',
-      externalId: 'externalId',
-      idOnOrbit: 'idOnOrbit',
-      idPlan: 'idPlan',
-      idSensor: 'idSensor',
-      notes: 'notes',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      origObjectId: 'origObjectId',
-      origSensorId: 'origSensorId',
-      satNo: 0,
-      srcIds: ['string'],
-      srcTyps: ['string'],
-      status: 'status',
-      tags: ['string'],
-      taskId: 'taskId',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idRequest: 'REF-REQUEST-ID',
+      source: 'Bluestaq',
+      id: 'COLLECTRESPONSE-ID',
+      actualEndTime: '2018-01-01T18:00:00.123456Z',
+      actualStartTime: '2018-01-01T16:00:00.123456Z',
+      altEndTime: '2018-01-01T18:00:00.123456Z',
+      altStartTime: '2018-01-01T16:00:00.123456Z',
+      errCode: 'ERROR CODE',
+      externalId: 'EXTERNAL-ID',
+      idPlan: 'REF-PLAN-ID',
+      idSensor: 'REF-SENSOR-ID',
+      notes: 'Example notes',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      origObjectId: 'ORIGOBJECT-ID',
+      origSensorId: 'ORIGSENSOR-ID',
+      satNo: 101,
+      srcIds: ['DOA_ID', 'DWELL_ID'],
+      srcTyps: ['DOA', 'DWELL'],
+      status: 'ACCEPTED',
+      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+      taskId: 'TASK-ID',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.collectResponses.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.collectResponses.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -69,8 +65,11 @@ describe('resource collectResponses', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.collectResponses.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.collectResponses.retrieve('id', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('list: only required params', async () => {
@@ -105,12 +104,7 @@ describe('resource collectResponses', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.collectResponses.createBulk([
-      {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        idRequest: 'idRequest',
-        source: 'source',
-      },
+      { classificationMarking: 'U', dataMode: 'REAL', idRequest: 'REF-REQUEST-ID', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -124,33 +118,72 @@ describe('resource collectResponses', () => {
   test('createBulk: required and optional params', async () => {
     const response = await client.collectResponses.createBulk([
       {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        idRequest: 'idRequest',
-        source: 'source',
-        id: 'id',
-        actualEndTime: '2019-12-27T18:11:19.117Z',
-        actualStartTime: '2019-12-27T18:11:19.117Z',
-        altEndTime: '2019-12-27T18:11:19.117Z',
-        altStartTime: '2019-12-27T18:11:19.117Z',
-        createdAt: '2019-12-27T18:11:19.117Z',
-        createdBy: 'createdBy',
-        errCode: 'errCode',
-        externalId: 'externalId',
-        idOnOrbit: 'idOnOrbit',
-        idPlan: 'idPlan',
-        idSensor: 'idSensor',
-        notes: 'notes',
-        origin: 'origin',
-        origNetwork: 'origNetwork',
-        origObjectId: 'origObjectId',
-        origSensorId: 'origSensorId',
-        satNo: 0,
-        srcIds: ['string'],
-        srcTyps: ['string'],
-        status: 'status',
-        tags: ['string'],
-        taskId: 'taskId',
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        idRequest: 'REF-REQUEST-ID',
+        source: 'Bluestaq',
+        id: 'COLLECTRESPONSE-ID',
+        actualEndTime: '2018-01-01T18:00:00.123456Z',
+        actualStartTime: '2018-01-01T16:00:00.123456Z',
+        altEndTime: '2018-01-01T18:00:00.123456Z',
+        altStartTime: '2018-01-01T16:00:00.123456Z',
+        errCode: 'ERROR CODE',
+        externalId: 'EXTERNAL-ID',
+        idPlan: 'REF-PLAN-ID',
+        idSensor: 'REF-SENSOR-ID',
+        notes: 'Example notes',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        origObjectId: 'ORIGOBJECT-ID',
+        origSensorId: 'ORIGSENSOR-ID',
+        satNo: 101,
+        srcIds: ['DOA_ID', 'DWELL_ID'],
+        srcTyps: ['DOA', 'DWELL'],
+        status: 'ACCEPTED',
+        tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+        taskId: 'TASK-ID',
+      },
+    ]);
+  });
+
+  test('fileCreate: only required params', async () => {
+    const responsePromise = client.collectResponses.fileCreate([
+      { classificationMarking: 'U', dataMode: 'REAL', idRequest: 'REF-REQUEST-ID', source: 'Bluestaq' },
+    ]);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('fileCreate: required and optional params', async () => {
+    const response = await client.collectResponses.fileCreate([
+      {
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        idRequest: 'REF-REQUEST-ID',
+        source: 'Bluestaq',
+        id: 'COLLECTRESPONSE-ID',
+        actualEndTime: '2018-01-01T18:00:00.123456Z',
+        actualStartTime: '2018-01-01T16:00:00.123456Z',
+        altEndTime: '2018-01-01T18:00:00.123456Z',
+        altStartTime: '2018-01-01T16:00:00.123456Z',
+        errCode: 'ERROR CODE',
+        externalId: 'EXTERNAL-ID',
+        idPlan: 'REF-PLAN-ID',
+        idSensor: 'REF-SENSOR-ID',
+        notes: 'Example notes',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        origObjectId: 'ORIGOBJECT-ID',
+        origSensorId: 'ORIGSENSOR-ID',
+        satNo: 101,
+        srcIds: ['DOA_ID', 'DWELL_ID'],
+        srcTyps: ['DOA', 'DWELL'],
+        status: 'ACCEPTED',
+        tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+        taskId: 'TASK-ID',
       },
     ]);
   });

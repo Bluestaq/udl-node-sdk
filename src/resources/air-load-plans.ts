@@ -21,12 +21,8 @@ export class AirLoadPlans extends APIResource {
    * Service operation to get a single airloadplan record by its unique ID passed as
    * a path parameter.
    */
-  retrieve(
-    params: AirLoadPlanRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AirloadplanFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/airloadplan/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AirloadplanFull> {
+    return this._client.get(`/udl/airloadplan/${id}`, options);
   }
 
   /**
@@ -36,11 +32,10 @@ export class AirLoadPlans extends APIResource {
    * parameter information.
    */
   list(
-    params: AirLoadPlanListParams,
+    query: AirLoadPlanListParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AirLoadPlanListResponse> {
-    const { estDepTime } = params;
-    return this._client.get('/udl/airloadplan', options);
+    return this._client.get('/udl/airloadplan', { query, ...options });
   }
 
   /**
@@ -50,9 +45,9 @@ export class AirLoadPlans extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(params: AirLoadPlanCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { estDepTime } = params;
+  count(query: AirLoadPlanCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.get('/udl/airloadplan/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
@@ -80,11 +75,10 @@ export class AirLoadPlans extends APIResource {
    * hours ago.
    */
   tuple(
-    params: AirLoadPlanTupleParams,
+    query: AirLoadPlanTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AirLoadPlanTupleResponse> {
-    const { columns, estDepTime } = params;
-    return this._client.get('/udl/airloadplan/tuple', options);
+    return this._client.get('/udl/airloadplan/tuple', { query, ...options });
   }
 }
 
@@ -114,7 +108,7 @@ export interface AirloadplanAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The current estimated time that the aircraft is planned to depart, in ISO 8601
@@ -912,7 +906,7 @@ export interface AirloadplanFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The current estimated time that the aircraft is planned to depart, in ISO 8601
@@ -1712,7 +1706,7 @@ export interface AirLoadPlanCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The current estimated time that the aircraft is planned to depart, in ISO 8601
@@ -1856,17 +1850,6 @@ export interface AirLoadPlanCreateParams {
    * The weight of the cargo on board the aircraft, in kilograms.
    */
   cargoWeight?: number;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * The number of crew members on the aircraft.
@@ -2017,12 +2000,6 @@ export interface AirLoadPlanCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Number of pallet positions on the aircraft.
    */
   ppOnboard?: number;
@@ -2049,13 +2026,6 @@ export interface AirLoadPlanCreateParams {
   seatsReleased?: number;
 
   /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
-
-  /**
    * The tail number of the aircraft supporting this load plan.
    */
   tailNumber?: string;
@@ -2065,17 +2035,6 @@ export interface AirLoadPlanCreateParams {
    * Configuration meanings are determined by the data source.
    */
   tankConfig?: string;
-
-  /**
-   * Time the row was updated in the database, auto-populated by the system.
-   */
-  updatedAt?: string;
-
-  /**
-   * Application user who updated the row in the database, auto-populated by the
-   * system.
-   */
-  updatedBy?: string;
 
   /**
    * Alphanumeric code that describes general cargo-related utilization and
@@ -2484,18 +2443,6 @@ export namespace AirLoadPlanCreateParams {
   }
 }
 
-export interface AirLoadPlanRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the airloadplan to GET.
-   */
-  body_id: string;
-}
-
 export interface AirLoadPlanListParams {
   /**
    * The current estimated time that the aircraft is planned to depart, in ISO 8601
@@ -2516,7 +2463,7 @@ export interface AirLoadPlanTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -2536,7 +2483,6 @@ export declare namespace AirLoadPlans {
     type AirLoadPlanCountResponse as AirLoadPlanCountResponse,
     type AirLoadPlanTupleResponse as AirLoadPlanTupleResponse,
     type AirLoadPlanCreateParams as AirLoadPlanCreateParams,
-    type AirLoadPlanRetrieveParams as AirLoadPlanRetrieveParams,
     type AirLoadPlanListParams as AirLoadPlanListParams,
     type AirLoadPlanCountParams as AirLoadPlanCountParams,
     type AirLoadPlanTupleParams as AirLoadPlanTupleParams,

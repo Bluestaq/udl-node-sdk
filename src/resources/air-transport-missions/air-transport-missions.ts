@@ -33,12 +33,8 @@ export class AirTransportMissions extends APIResource {
    * Service operation to get a single Air Transport Mission record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(
-    params: AirTransportMissionRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AirTransportMissionFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/airtransportmission/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Shared.AirTransportMissionFull> {
+    return this._client.get(`/udl/airtransportmission/${id}`, options);
   }
 
   /**
@@ -47,9 +43,9 @@ export class AirTransportMissions extends APIResource {
    * assistance.
    */
   update(params: AirTransportMissionUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/airtransportmission/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -62,11 +58,10 @@ export class AirTransportMissions extends APIResource {
    * parameter information.
    */
   list(
-    params: AirTransportMissionListParams,
+    query: AirTransportMissionListParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AirTransportMissionListResponse> {
-    const { createdAt } = params;
-    return this._client.get('/udl/airtransportmission', options);
+    return this._client.get('/udl/airtransportmission', { query, ...options });
   }
 
   /**
@@ -76,9 +71,9 @@ export class AirTransportMissions extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(params: AirTransportMissionCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { createdAt } = params;
+  count(query: AirTransportMissionCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.get('/udl/airtransportmission/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
@@ -106,11 +101,10 @@ export class AirTransportMissions extends APIResource {
    * hours ago.
    */
   tuple(
-    params: AirTransportMissionTupleParams,
+    query: AirTransportMissionTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AirTransportMissionTupleResponse> {
-    const { columns, createdAt } = params;
-    return this._client.get('/udl/airtransportmission/tuple', options);
+    return this._client.get('/udl/airtransportmission/tuple', { query, ...options });
   }
 }
 
@@ -142,7 +136,7 @@ export interface AirTransportMissionAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Source of the data.
@@ -607,7 +601,7 @@ export interface AirTransportMissionCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Source of the data.
@@ -645,17 +639,6 @@ export interface AirTransportMissionCreateParams {
    * The call sign for this mission.
    */
   callSign?: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Flag indicating this is a close watch mission.
@@ -744,12 +727,6 @@ export interface AirTransportMissionCreateParams {
   origMissionId?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Air Mobility Command (AMC) mission identifier of the previous air transport
    * mission. Provides a method for AMC to link air transport missions together
    * chronologically for tasking and planning purposes.
@@ -782,13 +759,6 @@ export interface AirTransportMissionCreateParams {
   requirements?: Array<AirTransportMissionCreateParams.Requirement>;
 
   /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
-
-  /**
    * The number of minutes a mission is off schedule based on the source system's
    * business rules. Positive numbers are early, negative numbers are late.
    */
@@ -803,17 +773,6 @@ export interface AirTransportMissionCreateParams {
    * The type of mission (e.g. SAAM, CHNL, etc.).
    */
   type?: string;
-
-  /**
-   * Time the row was updated in the database, auto-populated by the system.
-   */
-  updatedAt?: string;
-
-  /**
-   * Application user who updated the row in the database, auto-populated by the
-   * system.
-   */
-  updatedBy?: string;
 }
 
 export namespace AirTransportMissionCreateParams {
@@ -1044,28 +1003,11 @@ export namespace AirTransportMissionCreateParams {
   }
 }
 
-export interface AirTransportMissionRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the air transport mission to retrieve.
-   */
-  body_id: string;
-}
-
 export interface AirTransportMissionUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the AirTransportMission to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the AirTransportMission to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -1090,7 +1032,7 @@ export interface AirTransportMissionUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Source of the data.
@@ -1128,18 +1070,6 @@ export interface AirTransportMissionUpdateParams {
    * Body param: The call sign for this mission.
    */
   callSign?: string;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: Flag indicating this is a close watch mission.
@@ -1228,12 +1158,6 @@ export interface AirTransportMissionUpdateParams {
   origMissionId?: string;
 
   /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Body param: Air Mobility Command (AMC) mission identifier of the previous air
    * transport mission. Provides a method for AMC to link air transport missions
    * together chronologically for tasking and planning purposes.
@@ -1266,13 +1190,6 @@ export interface AirTransportMissionUpdateParams {
   requirements?: Array<AirTransportMissionUpdateParams.Requirement>;
 
   /**
-   * Body param: The source data library from which this record was received. This
-   * could be a remote or tactical UDL or another data library. If null, the record
-   * should be assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
-
-  /**
    * Body param: The number of minutes a mission is off schedule based on the source
    * system's business rules. Positive numbers are early, negative numbers are late.
    */
@@ -1287,18 +1204,6 @@ export interface AirTransportMissionUpdateParams {
    * Body param: The type of mission (e.g. SAAM, CHNL, etc.).
    */
   type?: string;
-
-  /**
-   * Body param: Time the row was updated in the database, auto-populated by the
-   * system.
-   */
-  updatedAt?: string;
-
-  /**
-   * Body param: Application user who updated the row in the database, auto-populated
-   * by the system.
-   */
-  updatedBy?: string;
 }
 
 export namespace AirTransportMissionUpdateParams {
@@ -1549,7 +1454,7 @@ export interface AirTransportMissionTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -1570,7 +1475,6 @@ export declare namespace AirTransportMissions {
     type AirTransportMissionCountResponse as AirTransportMissionCountResponse,
     type AirTransportMissionTupleResponse as AirTransportMissionTupleResponse,
     type AirTransportMissionCreateParams as AirTransportMissionCreateParams,
-    type AirTransportMissionRetrieveParams as AirTransportMissionRetrieveParams,
     type AirTransportMissionUpdateParams as AirTransportMissionUpdateParams,
     type AirTransportMissionListParams as AirTransportMissionListParams,
     type AirTransportMissionCountParams as AirTransportMissionCountParams,

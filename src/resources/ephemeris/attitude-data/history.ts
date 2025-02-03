@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../../resource';
 import * as Core from '../../../core';
-import * as Shared from '../../shared';
+import * as AttitudeDataAPI from '../../attitude-data';
 
 export class History extends APIResource {
   /**
@@ -12,11 +12,10 @@ export class History extends APIResource {
    * parameter information.
    */
   retrieve(
-    params: HistoryRetrieveParams,
+    query: HistoryRetrieveParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<HistoryRetrieveResponse> {
-    const { asId, columns } = params;
-    return this._client.get('/udl/attitudedata/history', options);
+    return this._client.get('/udl/attitudedata/history', { query, ...options });
   }
 
   /**
@@ -26,9 +25,9 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  aodr(params: HistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { asId, columns, notification, outputDelimiter, outputFormat } = params;
+  aodr(query: HistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.get('/udl/attitudedata/history/aodr', {
+      query,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -41,16 +40,16 @@ export class History extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(params: HistoryCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { asId } = params;
+  count(query: HistoryCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.get('/udl/attitudedata/history/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
   }
 }
 
-export type HistoryRetrieveResponse = Array<Shared.AttitudeDataFull>;
+export type HistoryRetrieveResponse = Array<AttitudeDataAPI.AttitudedataFull>;
 
 export type HistoryCountResponse = string;
 

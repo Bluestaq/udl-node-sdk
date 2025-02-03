@@ -22,9 +22,8 @@ export class Batteries extends APIResource {
    * Service operation to get a single Battery record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(params: BatteryRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<BatteryFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/battery/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<BatteryFull> {
+    return this._client.get(`/udl/battery/${id}`, options);
   }
 
   /**
@@ -32,9 +31,9 @@ export class Batteries extends APIResource {
    * perform this service operation. Please contact the UDL team for assistance.
    */
   update(params: BatteryUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/battery/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -55,9 +54,8 @@ export class Batteries extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(params: BatteryDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/battery/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/battery/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -98,9 +96,8 @@ export class Batteries extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(params: BatteryTupleParams, options?: Core.RequestOptions): Core.APIPromise<BatteryTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/battery/tuple', options);
+  tuple(query: BatteryTupleParams, options?: Core.RequestOptions): Core.APIPromise<BatteryTupleResponse> {
+    return this._client.get('/udl/battery/tuple', { query, ...options });
   }
 }
 
@@ -124,7 +121,7 @@ export interface BatteryAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Battery name.
@@ -187,7 +184,7 @@ export interface BatteryFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Battery name.
@@ -271,7 +268,7 @@ export interface BatteryCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Battery name.
@@ -289,53 +286,19 @@ export interface BatteryCreateParams {
   id?: string;
 
   /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
-
-  /**
    * Originating system or organization which produced the data, if different from
    * the source. The origin may be different than the source if the source was a
    * mediating system which forwarded the data on behalf of the origin system. If
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-}
-
-export interface BatteryRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Battery to find.
-   */
-  body_id: string;
 }
 
 export interface BatteryUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the Battery to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the Battery to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST
@@ -354,7 +317,7 @@ export interface BatteryUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Battery name.
@@ -372,49 +335,19 @@ export interface BatteryUpdateParams {
   body_id?: string;
 
   /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
-
-  /**
    * Body param: Originating system or organization which produced the data, if
    * different from the source. The origin may be different than the source if the
    * source was a mediating system which forwarded the data on behalf of the origin
    * system. If null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-}
-
-export interface BatteryDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Battery to delete.
-   */
-  body_id: string;
 }
 
 export interface BatteryTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -428,9 +361,7 @@ export declare namespace Batteries {
     type BatteryCountResponse as BatteryCountResponse,
     type BatteryTupleResponse as BatteryTupleResponse,
     type BatteryCreateParams as BatteryCreateParams,
-    type BatteryRetrieveParams as BatteryRetrieveParams,
     type BatteryUpdateParams as BatteryUpdateParams,
-    type BatteryDeleteParams as BatteryDeleteParams,
     type BatteryTupleParams as BatteryTupleParams,
   };
 }

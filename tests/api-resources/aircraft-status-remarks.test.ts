@@ -4,19 +4,19 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource aircraftStatusRemarks', () => {
   test('create: only required params', async () => {
     const responsePromise = client.aircraftStatusRemarks.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idAircraftStatus: 'idAircraftStatus',
-      source: 'source',
-      text: 'text',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idAircraftStatus: '388b1f64-ccff-4113-b049-3cf5542c2a42',
+      source: 'Bluestaq',
+      text: 'Remark text',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -29,27 +29,23 @@ describe('resource aircraftStatusRemarks', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.aircraftStatusRemarks.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idAircraftStatus: 'idAircraftStatus',
-      source: 'source',
-      text: 'text',
-      id: 'id',
-      altRmkId: 'altRmkId',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      lastUpdatedAt: '2019-12-27T18:11:19.117Z',
-      lastUpdatedBy: 'lastUpdatedBy',
-      name: 'name',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      sourceDL: 'sourceDL',
-      timestamp: '2019-12-27T18:11:19.117Z',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idAircraftStatus: '388b1f64-ccff-4113-b049-3cf5542c2a42',
+      source: 'Bluestaq',
+      text: 'Remark text',
+      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      altRmkId: 'GDSSBL022307131714250077',
+      lastUpdatedAt: '2024-01-01T16:00:00.123Z',
+      lastUpdatedBy: 'JOHN SMITH',
+      name: 'DISCREPANCY - 202297501',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      timestamp: '2024-01-01T15:00:00.123Z',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.aircraftStatusRemarks.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.aircraftStatusRemarks.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -59,8 +55,11 @@ describe('resource aircraftStatusRemarks', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.aircraftStatusRemarks.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.aircraftStatusRemarks.retrieve('id', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('list', async () => {

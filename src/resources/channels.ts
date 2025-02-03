@@ -23,9 +23,8 @@ export class Channels extends APIResource {
    * path parameter. A Comm payload may have multiple transponders and a transponder
    * may have many channels.
    */
-  retrieve(params: ChannelRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<ChannelFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/channel/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ChannelFull> {
+    return this._client.get(`/udl/channel/${id}`, options);
   }
 
   /**
@@ -35,9 +34,9 @@ export class Channels extends APIResource {
    * assistance.
    */
   update(params: ChannelUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/channel/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -59,9 +58,8 @@ export class Channels extends APIResource {
    * have many channels. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  delete(params: ChannelDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/channel/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/channel/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -102,9 +100,8 @@ export class Channels extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(params: ChannelTupleParams, options?: Core.RequestOptions): Core.APIPromise<ChannelTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/channel/tuple', options);
+  tuple(query: ChannelTupleParams, options?: Core.RequestOptions): Core.APIPromise<ChannelTupleResponse> {
+    return this._client.get('/udl/channel/tuple', { query, ...options });
   }
 }
 
@@ -133,7 +130,7 @@ export interface ChannelAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * ID of the parent transponder object for this Channel.
@@ -267,7 +264,7 @@ export interface ChannelFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * ID of the parent transponder object for this Channel.
@@ -415,7 +412,7 @@ export interface ChannelCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * ID of the parent transponder object for this Channel.
@@ -454,17 +451,6 @@ export interface ChannelCreateParams {
   compression?: string;
 
   /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
-
-  /**
    * Channel encryption.
    */
   encryption?: string;
@@ -486,12 +472,6 @@ export interface ChannelCreateParams {
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
 
   /**
    * Owner.
@@ -524,28 +504,11 @@ export interface ChannelCreateParams {
   vpid?: string;
 }
 
-export interface ChannelRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Channel to find.
-   */
-  body_id: string;
-}
-
 export interface ChannelUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the Channel to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the Channel to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -570,7 +533,7 @@ export interface ChannelUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: ID of the parent transponder object for this Channel.
@@ -609,18 +572,6 @@ export interface ChannelUpdateParams {
   compression?: string;
 
   /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
-
-  /**
    * Body param: Channel encryption.
    */
   encryption?: string;
@@ -642,12 +593,6 @@ export interface ChannelUpdateParams {
    * system. If null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
 
   /**
    * Body param: Owner.
@@ -680,23 +625,11 @@ export interface ChannelUpdateParams {
   vpid?: string;
 }
 
-export interface ChannelDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Channel to delete.
-   */
-  body_id: string;
-}
-
 export interface ChannelTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -710,9 +643,7 @@ export declare namespace Channels {
     type ChannelCountResponse as ChannelCountResponse,
     type ChannelTupleResponse as ChannelTupleResponse,
     type ChannelCreateParams as ChannelCreateParams,
-    type ChannelRetrieveParams as ChannelRetrieveParams,
     type ChannelUpdateParams as ChannelUpdateParams,
-    type ChannelDeleteParams as ChannelDeleteParams,
     type ChannelTupleParams as ChannelTupleParams,
   };
 }

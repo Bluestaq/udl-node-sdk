@@ -4,18 +4,18 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource airfieldstatus', () => {
   test('create: only required params', async () => {
     const responsePromise = client.airfieldstatus.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idAirfield: 'idAirfield',
-      source: 'source',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idAirfield: '3136498f-2969-3535-1432-e984b2e2e686',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,42 +28,38 @@ describe('resource airfieldstatus', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.airfieldstatus.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idAirfield: 'idAirfield',
-      source: 'source',
-      id: 'id',
-      altAirfieldId: 'altAirfieldId',
-      arffCat: 'arffCat',
-      cargoMOG: 0,
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      fleetServiceMOG: 0,
-      fuelMOG: 0,
-      fuelQtys: [0],
-      fuelTypes: ['string'],
-      gseTime: 0,
-      medCap: 'medCap',
-      message: 'message',
-      mheQtys: [0],
-      mheTypes: ['string'],
-      mxMOG: 0,
-      narrowParkingMOG: 0,
-      narrowWorkingMOG: 0,
-      numCOG: 0,
-      operatingMOG: 0,
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      passengerServiceMOG: 0,
-      priFreq: 0,
-      priRwyNum: 'priRwyNum',
-      rwyCondReading: 0,
-      rwyFrictionFactor: 0,
-      rwyMarkings: ['string'],
-      slotTypesReq: ['string'],
-      sourceDL: 'sourceDL',
-      wideParkingMOG: 0,
-      wideWorkingMOG: 0,
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idAirfield: '3136498f-2969-3535-1432-e984b2e2e686',
+      source: 'Bluestaq',
+      id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+      altAirfieldId: 'AIRFIELD-ID',
+      arffCat: 'FAA-A',
+      cargoMOG: 8,
+      fleetServiceMOG: 4,
+      fuelMOG: 9,
+      fuelQtys: [263083.6, 286674.9, 18143.69],
+      fuelTypes: ['JP-8', 'Jet A', 'AVGAS'],
+      gseTime: 10,
+      medCap: 'Large Field Hospital',
+      message: 'Status message about the airfield.',
+      mheQtys: [1, 3, 1],
+      mheTypes: ['30k', 'AT', '60k'],
+      mxMOG: 3,
+      narrowParkingMOG: 5,
+      narrowWorkingMOG: 4,
+      numCOG: 2,
+      operatingMOG: 4,
+      origin: 'THIRD_PARTY_DATASOURCE',
+      passengerServiceMOG: 5,
+      priFreq: 123.45,
+      priRwyNum: '35R',
+      rwyCondReading: 23,
+      rwyFrictionFactor: 10,
+      rwyMarkings: ['Aiming Point', 'Threshold'],
+      slotTypesReq: ['PARKING', 'WORKING', 'LANDING'],
+      wideParkingMOG: 7,
+      wideWorkingMOG: 3,
     });
   });
 

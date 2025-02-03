@@ -4,18 +4,18 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource beam', () => {
   test('create: only required params', async () => {
     const responsePromise = client.beam.create({
-      beamName: 'beamName',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      source: 'source',
+      beamName: 'BEAMNAME-ID',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,21 +28,18 @@ describe('resource beam', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.beam.create({
-      beamName: 'beamName',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      source: 'source',
-      id: 'id',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      notes: 'notes',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
+      beamName: 'BEAMNAME-ID',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      source: 'Bluestaq',
+      id: 'BEAM-ID',
+      notes: 'Example notes',
+      origin: 'THIRD_PARTY_DATASOURCE',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.beam.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.beam.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -52,8 +49,41 @@ describe('resource beam', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.beam.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.beam.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('update: only required params', async () => {
+    const responsePromise = client.beam.update({
+      path_id: 'id',
+      beamName: 'BEAMNAME-ID',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      source: 'Bluestaq',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('update: required and optional params', async () => {
+    const response = await client.beam.update({
+      path_id: 'id',
+      beamName: 'BEAMNAME-ID',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      source: 'Bluestaq',
+      body_id: 'BEAM-ID',
+      notes: 'Example notes',
+      origin: 'THIRD_PARTY_DATASOURCE',
+    });
   });
 
   test('list', async () => {
@@ -70,6 +100,24 @@ describe('resource beam', () => {
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(client.beam.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('delete', async () => {
+    const responsePromise = client.beam.delete('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('delete: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.beam.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Unifieddatalibrary.NotFoundError,
     );
   });

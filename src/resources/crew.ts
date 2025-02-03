@@ -21,9 +21,8 @@ export class Crew extends APIResource {
    * Service operation to get a single Crew record by its unique ID passed as a path
    * parameter.
    */
-  retrieve(params: CrewRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<CrewFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/crew/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<CrewFull> {
+    return this._client.get(`/udl/crew/${id}`, options);
   }
 
   /**
@@ -31,9 +30,9 @@ export class Crew extends APIResource {
    * perform this service operation. Please contact the UDL team for assistance.
    */
   update(params: CrewUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/crew/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -64,6 +63,20 @@ export class Crew extends APIResource {
   }
 
   /**
+   * Service operation to take multiple Crew objects as a POST body and ingest into
+   * the database. This operation is intended to be used for automated feeds into
+   * UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  fileCreate(body: CrewFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-crew', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -84,9 +97,8 @@ export class Crew extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(params: CrewTupleParams, options?: Core.RequestOptions): Core.APIPromise<CrewTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/crew/tuple', options);
+  tuple(query: CrewTupleParams, options?: Core.RequestOptions): Core.APIPromise<CrewTupleResponse> {
+    return this._client.get('/udl/crew/tuple', { query, ...options });
   }
 }
 
@@ -115,7 +127,7 @@ export interface CrewAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique identifier of the formed crew provided by the originating source.
@@ -465,7 +477,7 @@ export interface CrewFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique identifier of the formed crew provided by the originating source.
@@ -818,7 +830,7 @@ export interface CrewCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique identifier of the formed crew provided by the originating source.
@@ -867,17 +879,6 @@ export interface CrewCreateParams {
    * refueling track short name or drop zone ID can be used.
    */
   arrICAO?: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Flag indicating whether this crew task takes the crew home and out of the stage.
@@ -1004,12 +1005,6 @@ export interface CrewCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Flag indicating whether post-mission crew rest is applied to the last sortie of
    * a crew's task.
    */
@@ -1037,17 +1032,6 @@ export interface CrewCreateParams {
    * etc.).
    */
   status?: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  updatedAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  updatedBy?: string;
 }
 
 export namespace CrewCreateParams {
@@ -1143,28 +1127,11 @@ export namespace CrewCreateParams {
   }
 }
 
-export interface CrewRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the crew record to retrieve.
-   */
-  body_id: string;
-}
-
 export interface CrewUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the Crew record to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the Crew record to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -1189,7 +1156,7 @@ export interface CrewUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Unique identifier of the formed crew provided by the originating
@@ -1241,18 +1208,6 @@ export interface CrewUpdateParams {
    * but an air refueling track short name or drop zone ID can be used.
    */
   arrICAO?: string;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: Flag indicating whether this crew task takes the crew home and out
@@ -1383,12 +1338,6 @@ export interface CrewUpdateParams {
   origin?: string;
 
   /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Body param: Flag indicating whether post-mission crew rest is applied to the
    * last sortie of a crew's task.
    */
@@ -1417,18 +1366,6 @@ export interface CrewUpdateParams {
    * UNKNOWN, etc.).
    */
   status?: string;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  updatedAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  updatedBy?: string;
 }
 
 export namespace CrewUpdateParams {
@@ -1524,11 +1461,337 @@ export namespace CrewUpdateParams {
   }
 }
 
+export type CrewFileCreateParams = Array<CrewFileCreateParams.Body>;
+
+export namespace CrewFileCreateParams {
+  /**
+   * Crew Services.
+   */
+  export interface Body {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Unique identifier of the formed crew provided by the originating source.
+     * Provided for systems that require tracking of an internal system generated ID.
+     */
+    origCrewId: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Adjusted return time in ISO 8601 UTC format with millisecond precision.
+     */
+    adjReturnTime?: string;
+
+    /**
+     * Last name of the adjusted return time approver.
+     */
+    adjReturnTimeApprover?: string;
+
+    /**
+     * The aircraft Model Design Series designation assigned for this crew.
+     */
+    aircraftMDS?: string;
+
+    /**
+     * Time the crew was alerted, in ISO8601 UTC format, with millisecond precision.
+     */
+    alertedTime?: string;
+
+    /**
+     * The crew's Aviation Resource Management System (ARMS) unit. If multiple units
+     * exist, use the Aircraft Commander's Unit.
+     */
+    armsCrewUnit?: string;
+
+    /**
+     * Arrival location for the itinerary point. Intended to be an ICAO, but an air
+     * refueling track short name or drop zone ID can be used.
+     */
+    arrICAO?: string;
+
+    /**
+     * Flag indicating whether this crew task takes the crew home and out of the stage.
+     */
+    crewHome?: boolean;
+
+    /**
+     * CrewMembers Collection.
+     */
+    crewMembers?: Array<Body.CrewMember>;
+
+    /**
+     * Name of the formed crew.
+     */
+    crewName?: string;
+
+    /**
+     * The squadron the crew serves.
+     */
+    crewSquadron?: string;
+
+    /**
+     * Crew type.
+     */
+    crewType?: string;
+
+    /**
+     * The wing the crew serves.
+     */
+    crewWing?: string;
+
+    /**
+     * The International Civil Aviation Organization (ICAO) code of the airfield at
+     * which the crew is currently located.
+     */
+    currentICAO?: string;
+
+    /**
+     * Departure location for the itinerary point. Intended to be an ICAO, but an air
+     * refueling track short name or drop zone ID can be used.
+     */
+    depICAO?: string;
+
+    /**
+     * The estimated time of arrival at the arrival site (arrICAO) for the crew in ISO
+     * 8601 UTC format with millisecond precision.
+     */
+    estArrTime?: string;
+
+    /**
+     * The estimated time of departure for the crew in ISO 8601 UTC format with
+     * millisecond precision.
+     */
+    estDepTime?: string;
+
+    /**
+     * Crew Flight Duty Period (FDP) eligibility type.
+     */
+    fdpEligType?: string;
+
+    /**
+     * Flight Duty Period (FDP) type.
+     */
+    fdpType?: string;
+
+    /**
+     * The number of female enlisted crew members.
+     */
+    femaleEnlistedQty?: number;
+
+    /**
+     * The number of female officer crew members.
+     */
+    femaleOfficerQty?: number;
+
+    /**
+     * Unique identifier of the Aircraft Sortie associated with this crew record.
+     */
+    idSortie?: string;
+
+    /**
+     * Initial start time of the linked task that was delinked due to mission closure.
+     */
+    initStartTime?: string;
+
+    /**
+     * Time the crew is legal for alert, in ISO8601 UTC format, with millisecond
+     * precision.
+     */
+    legalAlertTime?: string;
+
+    /**
+     * Time the crew is legal for bravo, in ISO8601 UTC format, with millisecond
+     * precision.
+     */
+    legalBravoTime?: string;
+
+    /**
+     * Flag indicating whether this crew is part of a linked flying task.
+     */
+    linkedTask?: boolean;
+
+    /**
+     * The number of male enlisted crew members.
+     */
+    maleEnlistedQty?: number;
+
+    /**
+     * The number of male officer crew members.
+     */
+    maleOfficerQty?: number;
+
+    /**
+     * The mission ID the crew is supporting according to the source system.
+     */
+    missionId?: string;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * Flag indicating whether post-mission crew rest is applied to the last sortie of
+     * a crew's task.
+     */
+    postRestApplied?: boolean;
+
+    /**
+     * Flag indicating whether pre-mission crew rest is applied to the first sortie of
+     * a crew's task.
+     */
+    preRestApplied?: boolean;
+
+    /**
+     * Scheduled return time, in ISO8601 UTC format, with millisecond precision.
+     */
+    returnTime?: string;
+
+    /**
+     * Time the crew entered the stage in ISO 8601 UTC format with millisecond
+     * precision.
+     */
+    stageTime?: string;
+
+    /**
+     * Crew status (e.g. NEEDCREW, ASSIGNED, APPROVED, NOTIFIED, PARTIAL, UNKNOWN,
+     * etc.).
+     */
+    status?: string;
+  }
+
+  export namespace Body {
+    /**
+     * Schema for Crew Member data.
+     */
+    export interface CrewMember {
+      /**
+       * The military branch assignment of the crew member.
+       */
+      branch?: string;
+
+      /**
+       * Flag indicating this crew member is a civilian or non-military person.
+       */
+      civilian?: boolean;
+
+      /**
+       * Flag indicating this person is the aircraft commander.
+       */
+      commander?: boolean;
+
+      /**
+       * The crew position of the crew member.
+       */
+      crewPosition?: string;
+
+      /**
+       * The crew member's 10-digit DoD ID number.
+       */
+      dodID?: string;
+
+      /**
+       * The duty position of the crew member.
+       */
+      dutyPosition?: string;
+
+      /**
+       * The first name of the crew member.
+       */
+      firstName?: string;
+
+      /**
+       * Last four digits of the crew member's social security number.
+       */
+      last4SSN?: string;
+
+      /**
+       * The last name of the crew member.
+       */
+      lastName?: string;
+
+      /**
+       * Unique identifier of the crew member assigned by the originating source.
+       */
+      memberId?: string;
+
+      /**
+       * Remarks concerning the crew member.
+       */
+      memberRemarks?: string;
+
+      /**
+       * Amplifying details about the crew member type (e.g. RAVEN, FCC, COMCAM, AIRCREW,
+       * MEP, OTHER, etc.).
+       */
+      memberType?: string;
+
+      /**
+       * The middle initial of the crew member.
+       */
+      middleInitial?: string;
+
+      /**
+       * The rank of the crew member.
+       */
+      rank?: string;
+
+      /**
+       * The squadron the crew member serves.
+       */
+      squadron?: string;
+
+      /**
+       * The Mattermost username of this crew member.
+       */
+      username?: string;
+
+      /**
+       * The wing the crew member serves.
+       */
+      wing?: string;
+    }
+  }
+}
+
 export interface CrewTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -1542,8 +1805,8 @@ export declare namespace Crew {
     type CrewCountResponse as CrewCountResponse,
     type CrewTupleResponse as CrewTupleResponse,
     type CrewCreateParams as CrewCreateParams,
-    type CrewRetrieveParams as CrewRetrieveParams,
     type CrewUpdateParams as CrewUpdateParams,
+    type CrewFileCreateParams as CrewFileCreateParams,
     type CrewTupleParams as CrewTupleParams,
   };
 }

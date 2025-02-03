@@ -6,10 +6,10 @@ export {
   type CollectResponseListResponse,
   type CollectResponseCountResponse,
   type CollectResponseCreateParams,
-  type CollectResponseRetrieveParams,
   type CollectResponseListParams,
   type CollectResponseCountParams,
   type CollectResponseCreateBulkParams,
+  type CollectResponseFileCreateParams,
 } from './collect-responses';
 export {
   History,

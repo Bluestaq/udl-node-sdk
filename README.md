@@ -31,7 +31,7 @@ const client = new Unifieddatalibrary({
 });
 
 async function main() {
-  const conjunctionFull = await client.conjunctions.retrieve({ id: 'id', id: 'id' });
+  const conjunctionFull = await client.conjunctions.retrieve('id');
 
   console.log(conjunctionFull.id);
 }
@@ -53,8 +53,7 @@ const client = new Unifieddatalibrary({
 });
 
 async function main() {
-  const params: Unifieddatalibrary.ConjunctionRetrieveParams = { id: 'id', id: 'id' };
-  const conjunctionFull: Unifieddatalibrary.ConjunctionFull = await client.conjunctions.retrieve(params);
+  const conjunctionFull: Unifieddatalibrary.ConjunctionFull = await client.conjunctions.retrieve('id');
 }
 
 main();
@@ -71,7 +70,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const conjunctionFull = await client.conjunctions.retrieve({ id: 'id', id: 'id' }).catch(async (err) => {
+  const conjunctionFull = await client.conjunctions.retrieve('id').catch(async (err) => {
     if (err instanceof Unifieddatalibrary.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -114,7 +113,7 @@ const client = new Unifieddatalibrary({
 });
 
 // Or, configure per-request:
-await client.conjunctions.retrieve({ id: 'id', id: 'id' }, {
+await client.conjunctions.retrieve('id', {
   maxRetries: 5,
 });
 ```
@@ -131,7 +130,7 @@ const client = new Unifieddatalibrary({
 });
 
 // Override per-request:
-await client.conjunctions.retrieve({ id: 'id', id: 'id' }, {
+await client.conjunctions.retrieve('id', {
   timeout: 5 * 1000,
 });
 ```
@@ -152,13 +151,11 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const client = new Unifieddatalibrary();
 
-const response = await client.conjunctions.retrieve({ id: 'id', id: 'id' }).asResponse();
+const response = await client.conjunctions.retrieve('id').asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: conjunctionFull, response: raw } = await client.conjunctions
-  .retrieve({ id: 'id', id: 'id' })
-  .withResponse();
+const { data: conjunctionFull, response: raw } = await client.conjunctions.retrieve('id').withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(conjunctionFull.id);
 ```
@@ -264,12 +261,9 @@ const client = new Unifieddatalibrary({
 });
 
 // Override per-request:
-await client.conjunctions.retrieve(
-  { id: 'id', id: 'id' },
-  {
-    httpAgent: new http.Agent({ keepAlive: false }),
-  },
-);
+await client.conjunctions.retrieve('id', {
+  httpAgent: new http.Agent({ keepAlive: false }),
+});
 ```
 
 ## Semantic versioning

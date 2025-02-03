@@ -4,14 +4,18 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource batteries', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.batteries.create({ dataMode: 'dataMode', name: 'name', source: 'source' });
+    const responsePromise = client.batteries.create({
+      dataMode: 'REAL',
+      name: 'JAK-BATTERY-1479',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,19 +27,16 @@ describe('resource batteries', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.batteries.create({
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
-      id: 'id',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
+      dataMode: 'REAL',
+      name: 'JAK-BATTERY-1479',
+      source: 'Bluestaq',
+      id: 'BATTERY-ID',
+      origin: 'THIRD_PARTY_DATASOURCE',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.batteries.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.batteries.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -45,17 +46,19 @@ describe('resource batteries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.batteries.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.batteries.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.batteries.update({
       path_id: 'id',
-      body_id: 'id',
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
+      dataMode: 'REAL',
+      name: 'JAK-BATTERY-1479',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -69,15 +72,11 @@ describe('resource batteries', () => {
   test('update: required and optional params', async () => {
     const response = await client.batteries.update({
       path_id: 'id',
-      body_id: 'id',
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
-      body_id: 'id',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
+      dataMode: 'REAL',
+      name: 'JAK-BATTERY-1479',
+      source: 'Bluestaq',
+      body_id: 'BATTERY-ID',
+      origin: 'THIRD_PARTY_DATASOURCE',
     });
   });
 
@@ -99,8 +98,8 @@ describe('resource batteries', () => {
     );
   });
 
-  test('delete: only required params', async () => {
-    const responsePromise = client.batteries.delete({ path_id: 'id', body_id: 'id' });
+  test('delete', async () => {
+    const responsePromise = client.batteries.delete('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -110,8 +109,11 @@ describe('resource batteries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: required and optional params', async () => {
-    const response = await client.batteries.delete({ path_id: 'id', body_id: 'id' });
+  test('delete: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.batteries.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('count', async () => {

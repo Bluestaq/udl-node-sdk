@@ -6,9 +6,16 @@ export {
   type AntennaDetailsFull,
   type AntennaDetailListResponse,
   type AntennaDetailCreateParams,
-  type AntennaDetailRetrieveParams,
   type AntennaDetailUpdateParams,
-  type AntennaDetailDeleteParams,
 } from './antenna-details';
-export { DriftHistory, type DrifthistoryAbridged, type DrifthistoryFull } from './drift-history';
-export { Onorbit } from './onorbit';
+export {
+  Onorbit,
+  type OnorbitListResponse,
+  type OnorbitCountResponse,
+  type OnorbitGetSignatureResponse,
+  type OnorbitTupleResponse,
+  type OnorbitCreateParams,
+  type OnorbitUpdateParams,
+  type OnorbitGetSignatureParams,
+  type OnorbitTupleParams,
+} from './onorbit';

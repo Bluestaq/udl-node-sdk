@@ -14,11 +14,11 @@ export {
   type ElsetCountResponse,
   type ElsetTupleResponse,
   type ElsetCreateParams,
-  type ElsetRetrieveParams,
   type ElsetListParams,
   type ElsetCountParams,
   type ElsetCreateBulkParams,
   type ElsetCreateBulkFromTleParams,
+  type ElsetFileCreateParams,
   type ElsetTupleParams,
 } from './elsets';
 export {

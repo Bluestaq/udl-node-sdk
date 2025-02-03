@@ -4,18 +4,18 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource elsets', () => {
   test('create: only required params', async () => {
     const responsePromise = client.elsets.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      epoch: '2019-12-27T18:11:19.117Z',
-      source: 'source',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      epoch: '2018-01-01T16:00:00.123456Z',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,52 +28,45 @@ describe('resource elsets', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.elsets.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      epoch: '2019-12-27T18:11:19.117Z',
-      source: 'source',
-      agom: 0,
-      algorithm: 'algorithm',
-      apogee: 0,
-      argOfPerigee: 0,
-      ballisticCoeff: 0,
-      bStar: 0,
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      descriptor: 'descriptor',
-      eccentricity: 0,
-      ephemType: 0,
-      idElset: 'idElset',
-      idOnOrbit: 'idOnOrbit',
-      idOrbitDetermination: 'idOrbitDetermination',
-      inclination: 0,
-      line1: 'line1',
-      line2: 'line2',
-      meanAnomaly: 0,
-      meanMotion: 0,
-      meanMotionDDot: 0,
-      meanMotionDot: 0,
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      origObjectId: 'origObjectId',
-      perigee: 0,
-      period: 0,
-      raan: 0,
-      rawFileURI: 'rawFileURI',
-      revNo: 0,
-      satNo: 0,
-      semiMajorAxis: 0,
-      sourcedData: ['string'],
-      sourcedDataTypes: ['string'],
-      sourceDL: 'sourceDL',
-      tags: ['string'],
-      transactionId: 'transactionId',
-      uct: true,
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      epoch: '2018-01-01T16:00:00.123456Z',
+      source: 'Bluestaq',
+      agom: 0.0126,
+      algorithm: 'Example algorithm',
+      apogee: 1.1,
+      argOfPerigee: 1.1,
+      ballisticCoeff: 0.00815,
+      bStar: 1.1,
+      descriptor: 'Example description',
+      eccentricity: 0.333,
+      ephemType: 1,
+      idElset: 'ELSET-ID',
+      idOrbitDetermination: '026dd511-8ba5-47d3-9909-836149f87686',
+      inclination: 45.1,
+      meanAnomaly: 179.1,
+      meanMotion: 1.1,
+      meanMotionDDot: 1.1,
+      meanMotionDot: 1.1,
+      origin: 'THIRD_PARTY_DATASOURCE',
+      origObjectId: 'ORIGOBJECT-ID',
+      perigee: 1.1,
+      period: 1.1,
+      raan: 1.1,
+      rawFileURI: 'Example URI',
+      revNo: 111,
+      satNo: 12,
+      semiMajorAxis: 1.1,
+      sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
+      sourcedDataTypes: ['EO', 'RADAR'],
+      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+      transactionId: 'TRANSACTION-ID',
+      uct: false,
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.elsets.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.elsets.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -83,8 +76,11 @@ describe('resource elsets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.elsets.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.elsets.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('list: only required params', async () => {
@@ -121,10 +117,10 @@ describe('resource elsets', () => {
     const responsePromise = client.elsets.createBulk({
       body: [
         {
-          classificationMarking: 'classificationMarking',
-          dataMode: 'dataMode',
-          epoch: '2019-12-27T18:11:19.117Z',
-          source: 'source',
+          classificationMarking: 'U',
+          dataMode: 'REAL',
+          epoch: '2018-01-01T16:00:00.123456Z',
+          source: 'Bluestaq',
         },
       ],
     });
@@ -141,47 +137,40 @@ describe('resource elsets', () => {
     const response = await client.elsets.createBulk({
       body: [
         {
-          classificationMarking: 'classificationMarking',
-          dataMode: 'dataMode',
-          epoch: '2019-12-27T18:11:19.117Z',
-          source: 'source',
-          agom: 0,
-          algorithm: 'algorithm',
-          apogee: 0,
-          argOfPerigee: 0,
-          ballisticCoeff: 0,
-          bStar: 0,
-          createdAt: '2019-12-27T18:11:19.117Z',
-          createdBy: 'createdBy',
-          descriptor: 'descriptor',
-          eccentricity: 0,
-          ephemType: 0,
-          idElset: 'idElset',
-          idOnOrbit: 'idOnOrbit',
-          idOrbitDetermination: 'idOrbitDetermination',
-          inclination: 0,
-          line1: 'line1',
-          line2: 'line2',
-          meanAnomaly: 0,
-          meanMotion: 0,
-          meanMotionDDot: 0,
-          meanMotionDot: 0,
-          origin: 'origin',
-          origNetwork: 'origNetwork',
-          origObjectId: 'origObjectId',
-          perigee: 0,
-          period: 0,
-          raan: 0,
-          rawFileURI: 'rawFileURI',
-          revNo: 0,
-          satNo: 0,
-          semiMajorAxis: 0,
-          sourcedData: ['string'],
-          sourcedDataTypes: ['string'],
-          sourceDL: 'sourceDL',
-          tags: ['string'],
-          transactionId: 'transactionId',
-          uct: true,
+          classificationMarking: 'U',
+          dataMode: 'REAL',
+          epoch: '2018-01-01T16:00:00.123456Z',
+          source: 'Bluestaq',
+          agom: 0.0126,
+          algorithm: 'Example algorithm',
+          apogee: 1.1,
+          argOfPerigee: 1.1,
+          ballisticCoeff: 0.00815,
+          bStar: 1.1,
+          descriptor: 'Example description',
+          eccentricity: 0.333,
+          ephemType: 1,
+          idElset: 'ELSET-ID',
+          idOrbitDetermination: '026dd511-8ba5-47d3-9909-836149f87686',
+          inclination: 45.1,
+          meanAnomaly: 179.1,
+          meanMotion: 1.1,
+          meanMotionDDot: 1.1,
+          meanMotionDot: 1.1,
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origObjectId: 'ORIGOBJECT-ID',
+          perigee: 1.1,
+          period: 1.1,
+          raan: 1.1,
+          rawFileURI: 'Example URI',
+          revNo: 111,
+          satNo: 12,
+          semiMajorAxis: 1.1,
+          sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
+          sourcedDataTypes: ['EO', 'RADAR'],
+          tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+          transactionId: 'TRANSACTION-ID',
+          uct: false,
         },
       ],
       dupeCheck: true,
@@ -190,10 +179,10 @@ describe('resource elsets', () => {
 
   test('createBulkFromTle: only required params', async () => {
     const responsePromise = client.elsets.createBulkFromTle({
-      body: 'body',
       dataMode: 'dataMode',
       makeCurrent: true,
       source: 'source',
+      body: 'body',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -206,15 +195,92 @@ describe('resource elsets', () => {
 
   test('createBulkFromTle: required and optional params', async () => {
     const response = await client.elsets.createBulkFromTle({
-      body: 'body',
       dataMode: 'dataMode',
       makeCurrent: true,
       source: 'source',
+      body: 'body',
       autoCreateSats: true,
       control: 'control',
       origin: 'origin',
       tags: 'tags',
     });
+  });
+
+  test('fileCreate: only required params', async () => {
+    const responsePromise = client.elsets.fileCreate([
+      {
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        epoch: '2018-01-01T16:00:00.123456Z',
+        source: 'Bluestaq',
+      },
+    ]);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('fileCreate: required and optional params', async () => {
+    const response = await client.elsets.fileCreate([
+      {
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        epoch: '2018-01-01T16:00:00.123456Z',
+        source: 'Bluestaq',
+        agom: 0.0126,
+        algorithm: 'Example algorithm',
+        apogee: 1.1,
+        argOfPerigee: 1.1,
+        ballisticCoeff: 0.00815,
+        bStar: 1.1,
+        descriptor: 'Example description',
+        eccentricity: 0.333,
+        ephemType: 1,
+        idElset: 'ELSET-ID',
+        idOrbitDetermination: '026dd511-8ba5-47d3-9909-836149f87686',
+        inclination: 45.1,
+        meanAnomaly: 179.1,
+        meanMotion: 1.1,
+        meanMotionDDot: 1.1,
+        meanMotionDot: 1.1,
+        origin: 'THIRD_PARTY_DATASOURCE',
+        origObjectId: 'ORIGOBJECT-ID',
+        perigee: 1.1,
+        period: 1.1,
+        raan: 1.1,
+        rawFileURI: 'Example URI',
+        revNo: 111,
+        satNo: 12,
+        semiMajorAxis: 1.1,
+        sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
+        sourcedDataTypes: ['EO', 'RADAR'],
+        tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+        transactionId: 'TRANSACTION-ID',
+        uct: false,
+      },
+    ]);
+  });
+
+  test('queryCurrentElsetHelp', async () => {
+    const responsePromise = client.elsets.queryCurrentElsetHelp();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('queryCurrentElsetHelp: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.elsets.queryCurrentElsetHelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('queryhelp', async () => {

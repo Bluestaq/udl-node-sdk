@@ -21,9 +21,8 @@ export class Countries extends APIResource {
    * Service operation to get a single Country record by its unique code passed as a
    * path parameter.
    */
-  retrieve(params: CountryRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<CountryFull> {
-    const { path_code, body_code } = params;
-    return this._client.get(`/udl/country/${path_code}`, options);
+  retrieve(code: string, options?: Core.RequestOptions): Core.APIPromise<CountryFull> {
+    return this._client.get(`/udl/country/${code}`, options);
   }
 
   /**
@@ -31,9 +30,9 @@ export class Countries extends APIResource {
    * perform this service operation. Please contact the UDL team for assistance.
    */
   update(params: CountryUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_code, body_code, body_code, ...body } = params;
+    const { path_code, body_code, ...body } = params;
     return this._client.put(`/udl/country/${path_code}`, {
-      body: { code: body_code, code: body_code, ...body },
+      body: { code: body_code, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -54,9 +53,8 @@ export class Countries extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(params: CountryDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_code, body_code } = params;
-    return this._client.delete(`/udl/country/${path_code}`, {
+  delete(code: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/country/${code}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -97,9 +95,8 @@ export class Countries extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(params: CountryTupleParams, options?: Core.RequestOptions): Core.APIPromise<CountryTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/country/tuple', options);
+  tuple(query: CountryTupleParams, options?: Core.RequestOptions): Core.APIPromise<CountryTupleResponse> {
+    return this._client.get('/udl/country/tuple', { query, ...options });
   }
 }
 
@@ -131,7 +128,7 @@ export interface CountryAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Source of the data.
@@ -209,7 +206,7 @@ export interface CountryFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Source of the data.
@@ -300,7 +297,7 @@ export interface CountryCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Source of the data.
@@ -311,17 +308,6 @@ export interface CountryCreateParams {
    * 3 Digit or other alternate country code.
    */
   codeAlt?: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Federal Information Processing Standard (FIPS) two-character country code. This
@@ -342,36 +328,13 @@ export interface CountryCreateParams {
    * Country name.
    */
   name?: string;
-
-  /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-}
-
-export interface CountryRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_code: string;
-
-  /**
-   * Body param: The Code of the Country to find.
-   */
-  body_code: string;
 }
 
 export interface CountryUpdateParams {
   /**
-   * Path param:
+   * Path param: The Code of the Country to update.
    */
   path_code: string;
-
-  /**
-   * Body param: The Code of the Country to update.
-   */
-  body_code: string;
 
   /**
    * Body param: The country code. Optimally, this value is the ISO 3166
@@ -397,7 +360,7 @@ export interface CountryUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Source of the data.
@@ -408,18 +371,6 @@ export interface CountryUpdateParams {
    * Body param: 3 Digit or other alternate country code.
    */
   codeAlt?: string;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: Federal Information Processing Standard (FIPS) two-character country
@@ -440,31 +391,13 @@ export interface CountryUpdateParams {
    * Body param: Country name.
    */
   name?: string;
-
-  /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-}
-
-export interface CountryDeleteParams {
-  /**
-   * Path param:
-   */
-  path_code: string;
-
-  /**
-   * Body param: The Code of the Country to delete.
-   */
-  body_code: string;
 }
 
 export interface CountryTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -478,9 +411,7 @@ export declare namespace Countries {
     type CountryCountResponse as CountryCountResponse,
     type CountryTupleResponse as CountryTupleResponse,
     type CountryCreateParams as CountryCreateParams,
-    type CountryRetrieveParams as CountryRetrieveParams,
     type CountryUpdateParams as CountryUpdateParams,
-    type CountryDeleteParams as CountryDeleteParams,
     type CountryTupleParams as CountryTupleParams,
   };
 }

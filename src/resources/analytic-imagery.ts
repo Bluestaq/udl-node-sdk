@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import { type Response } from '../_shims/index';
 
 export class AnalyticImagery extends APIResource {
   /**
@@ -30,12 +31,8 @@ export class AnalyticImagery extends APIResource {
    * as a path parameter. AnalyticImagery represents metadata about an image, as well
    * as the actual binary image data.
    */
-  retrieve(
-    params: AnalyticImageryRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AnalyticImageryFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/analyticimagery/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AnalyticImageryFull> {
+    return this._client.get(`/udl/analyticimagery/${id}`, options);
   }
 
   /**
@@ -45,11 +42,10 @@ export class AnalyticImagery extends APIResource {
    * parameter information.
    */
   list(
-    params: AnalyticImageryListParams,
+    query: AnalyticImageryListParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AnalyticImageryListResponse> {
-    const { msgTime } = params;
-    return this._client.get('/udl/analyticimagery', options);
+    return this._client.get('/udl/analyticimagery', { query, ...options });
   }
 
   /**
@@ -59,12 +55,21 @@ export class AnalyticImagery extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(params: AnalyticImageryCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { msgTime } = params;
+  count(query: AnalyticImageryCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.get('/udl/analyticimagery/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
+  }
+
+  /**
+   * Service operation to get a single AnalyticImagery binary image by its unique ID
+   * passed as a path parameter. The image is returned as an attachment
+   * Content-Disposition.
+   */
+  fileGet(id: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.get(`/udl/analyticimagery/getFile/${id}`, { ...options, __binaryResponse: true });
   }
 
   /**
@@ -74,11 +79,10 @@ export class AnalyticImagery extends APIResource {
    * parameter information.
    */
   history(
-    params: AnalyticImageryHistoryParams,
+    query: AnalyticImageryHistoryParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AnalyticImageryHistoryResponse> {
-    const { msgTime, columns } = params;
-    return this._client.get('/udl/analyticimagery/history', options);
+    return this._client.get('/udl/analyticimagery/history', { query, ...options });
   }
 
   /**
@@ -88,12 +92,9 @@ export class AnalyticImagery extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  historyAodr(
-    params: AnalyticImageryHistoryAodrParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    const { msgTime, columns, notification, outputDelimiter, outputFormat } = params;
+  historyAodr(query: AnalyticImageryHistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.get('/udl/analyticimagery/history/aodr', {
+      query,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -107,11 +108,11 @@ export class AnalyticImagery extends APIResource {
    * valid/required query parameter information.
    */
   historyCount(
-    params: AnalyticImageryHistoryCountParams,
+    query: AnalyticImageryHistoryCountParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<string> {
-    const { msgTime } = params;
     return this._client.get('/udl/analyticimagery/history/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
@@ -139,11 +140,10 @@ export class AnalyticImagery extends APIResource {
    * hours ago.
    */
   tuple(
-    params: AnalyticImageryTupleParams,
+    query: AnalyticImageryTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AnalyticImageryTupleResponse> {
-    const { columns, msgTime } = params;
-    return this._client.get('/udl/analyticimagery/tuple', options);
+    return this._client.get('/udl/analyticimagery/tuple', { query, ...options });
   }
 }
 
@@ -167,7 +167,7 @@ export interface AnalyticImageryAbridged {
   /**
    * Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Description of the image content and utility.
@@ -422,7 +422,7 @@ export interface AnalyticImageryFull {
   /**
    * Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Description of the image content and utility.
@@ -688,7 +688,7 @@ export interface AnalyticImageryCreateParams {
   /**
    * Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Description of the image content and utility.
@@ -784,23 +784,6 @@ export interface AnalyticImageryCreateParams {
   atype?: string;
 
   /**
-   * MD5 checksum value of the file. The ingest/create operation will automatically
-   * generate the value.
-   */
-  checksumValue?: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
-
-  /**
    * The start time, in ISO8601 UTC format with millisecond precision, of the data
    * used in the analysis or composition of the image content, when applicable.
    */
@@ -847,12 +830,6 @@ export interface AnalyticImageryCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Assessed satellite ID (NORAD RSO object number). The 'satId' and 'satIdConf'
    * arrays must match in size.
    */
@@ -869,13 +846,6 @@ export interface AnalyticImageryCreateParams {
    * that the order of images in an imageSet is not relevant.
    */
   sequenceId?: number;
-
-  /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
 
   /**
    * Array of UUIDs of the UDL data records that are related to this image. See the
@@ -927,18 +897,6 @@ export interface AnalyticImageryCreateParams {
    * image, when applicable.
    */
   zUnits?: string;
-}
-
-export interface AnalyticImageryRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the AnalyticImagery to find.
-   */
-  body_id: string;
 }
 
 export interface AnalyticImageryListParams {
@@ -1019,7 +977,7 @@ export interface AnalyticImageryTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -1041,7 +999,6 @@ export declare namespace AnalyticImagery {
     type AnalyticImageryHistoryCountResponse as AnalyticImageryHistoryCountResponse,
     type AnalyticImageryTupleResponse as AnalyticImageryTupleResponse,
     type AnalyticImageryCreateParams as AnalyticImageryCreateParams,
-    type AnalyticImageryRetrieveParams as AnalyticImageryRetrieveParams,
     type AnalyticImageryListParams as AnalyticImageryListParams,
     type AnalyticImageryCountParams as AnalyticImageryCountParams,
     type AnalyticImageryHistoryParams as AnalyticImageryHistoryParams,

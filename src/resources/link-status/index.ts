@@ -2,14 +2,31 @@
 
 export {
   Datalink,
-  type DatalinkAbridged,
-  type DatalinkFull,
+  type DatalinkIngest,
   type DatalinkListResponse,
   type DatalinkCountResponse,
   type DatalinkTupleResponse,
   type DatalinkCreateParams,
   type DatalinkListParams,
   type DatalinkCountParams,
+  type DatalinkFileCreateParams,
   type DatalinkTupleParams,
 } from './datalink';
-export { LinkStatus } from './link-status';
+export {
+  History,
+  type HistoryListResponse,
+  type HistoryCountResponse,
+  type HistoryListParams,
+  type HistoryAodrParams,
+  type HistoryCountParams,
+} from './history';
+export {
+  LinkStatus,
+  type LinkStatusListResponse,
+  type LinkStatusCountResponse,
+  type LinkStatusTupleResponse,
+  type LinkStatusCreateParams,
+  type LinkStatusListParams,
+  type LinkStatusCountParams,
+  type LinkStatusTupleParams,
+} from './link-status';

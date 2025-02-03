@@ -48,7 +48,7 @@ export namespace AirspaceControlOrderCreateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Specifies the unique operation or exercise name, nickname, or codeword assigned
@@ -117,17 +117,6 @@ export namespace AirspaceControlOrderCreateParams {
     classSource?: string;
 
     /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
-
-    /**
      * Coded entries that provide justification for exemption from automatic
      * downgrading or declassification of the airspace control order.
      */
@@ -172,12 +161,6 @@ export namespace AirspaceControlOrderCreateParams {
     origin?: string;
 
     /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
-
-    /**
      * The official identifier of the military establishment responsible for the
      * operation plan and the identification number assigned to this plan.
      */
@@ -194,23 +177,9 @@ export namespace AirspaceControlOrderCreateParams {
     qualSN?: number;
 
     /**
-     * Optional URI location in the document repository of the raw file parsed by the
-     * system to produce this record. To download the raw file, prepend
-     * https://udl-hostname/scs/download?id= to this value.
-     */
-    rawFileURI?: string;
-
-    /**
      * The unique message identifier sequentially assigned by the originator.
      */
     serialNum?: string;
-
-    /**
-     * The source data library from which this record was received. This could be a
-     * remote or tactical UDL or another data library. If null, the record should be
-     * assumed to have originated from the primary Enterprise UDL.
-     */
-    sourceDL?: string;
 
     /**
      * A qualifier for the end of the effective time period of this airspace control
@@ -297,7 +266,7 @@ export namespace AirspaceControlOrderCreateParams {
          * Designates the geometric type that defines the airspace shape. One of CIRCLE,
          * CORRIDOR, LINE, ORBIT, etc.
          */
-        cmShape?: string;
+        cmShape?: 'POLYARC' | '1TRACK' | 'POLYGON' | 'CIRCLE' | 'CORRIDOR' | 'APOINT' | 'AORBIT' | 'GEOLINE';
 
         /**
          * The code for the type of airspace control means.

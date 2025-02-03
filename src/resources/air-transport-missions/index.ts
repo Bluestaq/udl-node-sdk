@@ -7,7 +7,6 @@ export {
   type AirTransportMissionCountResponse,
   type AirTransportMissionTupleResponse,
   type AirTransportMissionCreateParams,
-  type AirTransportMissionRetrieveParams,
   type AirTransportMissionUpdateParams,
   type AirTransportMissionListParams,
   type AirTransportMissionCountParams,

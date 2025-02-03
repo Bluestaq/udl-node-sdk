@@ -9,27 +9,7 @@ export class Attitudesets extends APIResource {
    * Service operation to get a single AttitudeSet record by its unique ID passed as
    * a path parameter.
    */
-  retrieve(
-    params: AttitudesetRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AttitudesetFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/attitudeset/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Shared.AttitudesetFull> {
+    return this._client.get(`/udl/attitudeset/${id}`, options);
   }
-}
-
-export interface AttitudesetRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the AttitudeSet to find.
-   */
-  body_id: string;
-}
-
-export declare namespace Attitudesets {
-  export { type AttitudesetRetrieveParams as AttitudesetRetrieveParams };
 }

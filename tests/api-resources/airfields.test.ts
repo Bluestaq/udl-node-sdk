@@ -4,19 +4,19 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource airfields', () => {
   test('create: only required params', async () => {
     const responsePromise = client.airfields.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
-      type: 'type',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      name: 'USAF Academy AFLD',
+      source: 'Bluestaq',
+      type: 'Commercial',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -29,46 +29,42 @@ describe('resource airfields', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.airfields.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
-      type: 'type',
-      id: 'id',
-      altAirfieldId: 'altAirfieldId',
-      city: 'city',
-      countryCode: 'countryCode',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      elevFt: 0,
-      elevM: 0,
-      faa: 'faa',
-      geoloc: 'geoloc',
-      gmtOffset: 'gmtOffset',
-      hostNatCode: 'hostNatCode',
-      iata: 'iata',
-      icao: 'icao',
-      idSite: 'idSite',
-      infoURL: 'infoURL',
-      lat: 0,
-      lon: 0,
-      magDec: 0,
-      maxRunwayLength: 0,
-      miscCodes: 'miscCodes',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      regionName: 'regionName',
-      runways: 0,
-      sourceDL: 'sourceDL',
-      state: 'state',
-      suitabilityCodes: 'suitabilityCodes',
-      wacINNR: 'wacINNR',
-      zarId: 'zarId',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      name: 'USAF Academy AFLD',
+      source: 'Bluestaq',
+      type: 'Commercial',
+      id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
+      altAirfieldId: '45301',
+      city: 'Colorado Springs',
+      countryCode: 'US',
+      elevFt: 33.562,
+      elevM: 10.29,
+      faa: 'FAA1',
+      geoloc: 'XLSX',
+      gmtOffset: '-4:30',
+      hostNatCode: 'ZPU',
+      iata: 'AAA',
+      icao: 'KCOS',
+      idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
+      infoURL: 'URL Link to the Airfield',
+      lat: 45.23,
+      lon: 179.1,
+      magDec: 7.35,
+      maxRunwayLength: 1000,
+      miscCodes: 'AMZ',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      regionName: 'North America',
+      runways: 5,
+      state: 'Colorado',
+      suitabilityCodes: 'ABCDEF',
+      wacINNR: '0409-00039',
+      zarId: '231',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.airfields.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.airfields.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -78,19 +74,21 @@ describe('resource airfields', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.airfields.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.airfields.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.airfields.update({
       path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
-      type: 'type',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      name: 'USAF Academy AFLD',
+      source: 'Bluestaq',
+      type: 'Commercial',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -104,42 +102,37 @@ describe('resource airfields', () => {
   test('update: required and optional params', async () => {
     const response = await client.airfields.update({
       path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
-      type: 'type',
-      body_id: 'id',
-      altAirfieldId: 'altAirfieldId',
-      city: 'city',
-      countryCode: 'countryCode',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      elevFt: 0,
-      elevM: 0,
-      faa: 'faa',
-      geoloc: 'geoloc',
-      gmtOffset: 'gmtOffset',
-      hostNatCode: 'hostNatCode',
-      iata: 'iata',
-      icao: 'icao',
-      idSite: 'idSite',
-      infoURL: 'infoURL',
-      lat: 0,
-      lon: 0,
-      magDec: 0,
-      maxRunwayLength: 0,
-      miscCodes: 'miscCodes',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      regionName: 'regionName',
-      runways: 0,
-      sourceDL: 'sourceDL',
-      state: 'state',
-      suitabilityCodes: 'suitabilityCodes',
-      wacINNR: 'wacINNR',
-      zarId: 'zarId',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      name: 'USAF Academy AFLD',
+      source: 'Bluestaq',
+      type: 'Commercial',
+      body_id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
+      altAirfieldId: '45301',
+      city: 'Colorado Springs',
+      countryCode: 'US',
+      elevFt: 33.562,
+      elevM: 10.29,
+      faa: 'FAA1',
+      geoloc: 'XLSX',
+      gmtOffset: '-4:30',
+      hostNatCode: 'ZPU',
+      iata: 'AAA',
+      icao: 'KCOS',
+      idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
+      infoURL: 'URL Link to the Airfield',
+      lat: 45.23,
+      lon: 179.1,
+      magDec: 7.35,
+      maxRunwayLength: 1000,
+      miscCodes: 'AMZ',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      regionName: 'North America',
+      runways: 5,
+      state: 'Colorado',
+      suitabilityCodes: 'ABCDEF',
+      wacINNR: '0409-00039',
+      zarId: '231',
     });
   });
 

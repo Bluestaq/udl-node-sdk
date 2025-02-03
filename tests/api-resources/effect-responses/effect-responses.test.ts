@@ -4,18 +4,18 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource effectResponses', () => {
   test('create: only required params', async () => {
     const responsePromise = client.effectResponses.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      source: 'source',
-      type: 'type',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      source: 'Bluestaq',
+      type: 'COA',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,59 +28,68 @@ describe('resource effectResponses', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.effectResponses.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      source: 'source',
-      type: 'type',
-      id: 'id',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      source: 'Bluestaq',
+      type: 'COA',
+      id: 'EFFECTRESPONSE-ID',
       actionsList: [
         {
-          actionActorSrcId: 'actionActorSrcId',
-          actionActorSrcType: 'actionActorSrcType',
-          actionEndTime: '2019-12-27T18:11:19.117Z',
-          actionId: 'actionId',
+          actionActorSrcId: 'ACTIONACTORSRC-ID',
+          actionActorSrcType: 'AIRCRAFT',
+          actionEndTime: '2021-01-01T00:00:00.123456Z',
+          actionId: 'ACTION-ID',
           actionMetrics: [
-            { domainValue: 0, metricType: 'metricType', provenance: 'provenance', relativeValue: 0 },
+            {
+              domainValue: 10.1,
+              metricType: 'GoalAchievement',
+              provenance: 'Example metric',
+              relativeValue: 10.1,
+            },
           ],
-          actionStartTime: '2019-12-27T18:11:19.117Z',
-          actorInterceptAlt: 0,
-          actorInterceptLat: 0,
-          actorInterceptLon: 0,
-          effector: 'effector',
-          summary: 'summary',
-          targetSrcId: 'targetSrcId',
-          targetSrcType: 'targetSrcType',
-          totEndTime: '2019-12-27T18:11:19.117Z',
-          totStartTime: '2019-12-27T18:11:19.117Z',
-          weaponInterceptAlt: 0,
-          weaponInterceptLat: 0,
-          weaponInterceptLon: 0,
+          actionStartTime: '2021-01-01T00:00:00.123456Z',
+          actorInterceptAlt: 1.1,
+          actorInterceptLat: 45.1,
+          actorInterceptLon: 180.1,
+          effector: 'SENSOR1',
+          summary: 'Example summary',
+          targetSrcId: 'TARGETSRC-ID',
+          targetSrcType: 'POI',
+          totEndTime: '2021-01-01T00:00:00.123456Z',
+          totStartTime: '2021-01-01T00:00:00.123456Z',
+          weaponInterceptAlt: 1.1,
+          weaponInterceptLat: 45.1,
+          weaponInterceptLon: 180.1,
         },
       ],
-      actorSrcId: 'actorSrcId',
-      actorSrcType: 'actorSrcType',
-      coaMetrics: [{ domainValue: 0, metricType: 'metricType', provenance: 'provenance', relativeValue: 0 }],
-      collateralDamageEst: 0,
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      decisionDeadline: '2019-12-27T18:11:19.117Z',
-      externalActions: ['string'],
-      externalRequestId: 'externalRequestId',
-      idEffectRequest: 'idEffectRequest',
-      munitionId: 'munitionId',
-      munitionType: 'munitionType',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      probabilityOfKill: 0,
-      redTargetSrcId: 'redTargetSrcId',
-      redTargetSrcType: 'redTargetSrcType',
-      redTimeToOverhead: '2019-12-27T18:11:19.117Z',
-      shotsRequired: 0,
+      actorSrcId: 'RC-ID',
+      actorSrcType: 'AIRCRAFT',
+      coaMetrics: [
+        {
+          domainValue: 10.1,
+          metricType: 'GoalAchievement',
+          provenance: 'Example metric',
+          relativeValue: 10.1,
+        },
+      ],
+      collateralDamageEst: 0.5,
+      decisionDeadline: '2021-01-01T00:00:00.123456Z',
+      externalActions: ['ACTION1', 'ACTION2'],
+      externalRequestId: 'EXTERNALREQUEST-ID',
+      idEffectRequest: 'EFFECTREQUEST-ID',
+      munitionId: 'MUNITION-ID',
+      munitionType: 'Dummy',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      probabilityOfKill: 0.7,
+      redTargetSrcId: 'REDTARGETSRC-ID',
+      redTargetSrcType: 'POI',
+      redTimeToOverhead: '2021-01-01T00:00:00.123456Z',
+      shotsRequired: 10,
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.effectResponses.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.effectResponses.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -90,8 +99,11 @@ describe('resource effectResponses', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.effectResponses.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.effectResponses.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('list: only required params', async () => {
@@ -126,12 +138,7 @@ describe('resource effectResponses', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.effectResponses.createBulk([
-      {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        source: 'source',
-        type: 'type',
-      },
+      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', type: 'COA' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -145,56 +152,140 @@ describe('resource effectResponses', () => {
   test('createBulk: required and optional params', async () => {
     const response = await client.effectResponses.createBulk([
       {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        source: 'source',
-        type: 'type',
-        id: 'id',
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        source: 'Bluestaq',
+        type: 'COA',
+        id: 'EFFECTRESPONSE-ID',
         actionsList: [
           {
-            actionActorSrcId: 'actionActorSrcId',
-            actionActorSrcType: 'actionActorSrcType',
-            actionEndTime: '2019-12-27T18:11:19.117Z',
-            actionId: 'actionId',
+            actionActorSrcId: 'ACTIONACTORSRC-ID',
+            actionActorSrcType: 'AIRCRAFT',
+            actionEndTime: '2021-01-01T00:00:00.123456Z',
+            actionId: 'ACTION-ID',
             actionMetrics: [
-              { domainValue: 0, metricType: 'metricType', provenance: 'provenance', relativeValue: 0 },
+              {
+                domainValue: 10.1,
+                metricType: 'GoalAchievement',
+                provenance: 'Example metric',
+                relativeValue: 10.1,
+              },
             ],
-            actionStartTime: '2019-12-27T18:11:19.117Z',
-            actorInterceptAlt: 0,
-            actorInterceptLat: 0,
-            actorInterceptLon: 0,
-            effector: 'effector',
-            summary: 'summary',
-            targetSrcId: 'targetSrcId',
-            targetSrcType: 'targetSrcType',
-            totEndTime: '2019-12-27T18:11:19.117Z',
-            totStartTime: '2019-12-27T18:11:19.117Z',
-            weaponInterceptAlt: 0,
-            weaponInterceptLat: 0,
-            weaponInterceptLon: 0,
+            actionStartTime: '2021-01-01T00:00:00.123456Z',
+            actorInterceptAlt: 1.1,
+            actorInterceptLat: 45.1,
+            actorInterceptLon: 180.1,
+            effector: 'SENSOR1',
+            summary: 'Example summary',
+            targetSrcId: 'TARGETSRC-ID',
+            targetSrcType: 'POI',
+            totEndTime: '2021-01-01T00:00:00.123456Z',
+            totStartTime: '2021-01-01T00:00:00.123456Z',
+            weaponInterceptAlt: 1.1,
+            weaponInterceptLat: 45.1,
+            weaponInterceptLon: 180.1,
           },
         ],
-        actorSrcId: 'actorSrcId',
-        actorSrcType: 'actorSrcType',
+        actorSrcId: 'RC-ID',
+        actorSrcType: 'AIRCRAFT',
         coaMetrics: [
-          { domainValue: 0, metricType: 'metricType', provenance: 'provenance', relativeValue: 0 },
+          {
+            domainValue: 10.1,
+            metricType: 'GoalAchievement',
+            provenance: 'Example metric',
+            relativeValue: 10.1,
+          },
         ],
-        collateralDamageEst: 0,
-        createdAt: '2019-12-27T18:11:19.117Z',
-        createdBy: 'createdBy',
-        decisionDeadline: '2019-12-27T18:11:19.117Z',
-        externalActions: ['string'],
-        externalRequestId: 'externalRequestId',
-        idEffectRequest: 'idEffectRequest',
-        munitionId: 'munitionId',
-        munitionType: 'munitionType',
-        origin: 'origin',
-        origNetwork: 'origNetwork',
-        probabilityOfKill: 0,
-        redTargetSrcId: 'redTargetSrcId',
-        redTargetSrcType: 'redTargetSrcType',
-        redTimeToOverhead: '2019-12-27T18:11:19.117Z',
-        shotsRequired: 0,
+        collateralDamageEst: 0.5,
+        decisionDeadline: '2021-01-01T00:00:00.123456Z',
+        externalActions: ['ACTION1', 'ACTION2'],
+        externalRequestId: 'EXTERNALREQUEST-ID',
+        idEffectRequest: 'EFFECTREQUEST-ID',
+        munitionId: 'MUNITION-ID',
+        munitionType: 'Dummy',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        probabilityOfKill: 0.7,
+        redTargetSrcId: 'REDTARGETSRC-ID',
+        redTargetSrcType: 'POI',
+        redTimeToOverhead: '2021-01-01T00:00:00.123456Z',
+        shotsRequired: 10,
+      },
+    ]);
+  });
+
+  test('fileCreate: only required params', async () => {
+    const responsePromise = client.effectResponses.fileCreate([
+      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', type: 'COA' },
+    ]);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('fileCreate: required and optional params', async () => {
+    const response = await client.effectResponses.fileCreate([
+      {
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        source: 'Bluestaq',
+        type: 'COA',
+        id: 'EFFECTRESPONSE-ID',
+        actionsList: [
+          {
+            actionActorSrcId: 'ACTIONACTORSRC-ID',
+            actionActorSrcType: 'AIRCRAFT',
+            actionEndTime: '2021-01-01T00:00:00.123456Z',
+            actionId: 'ACTION-ID',
+            actionMetrics: [
+              {
+                domainValue: 10.1,
+                metricType: 'GoalAchievement',
+                provenance: 'Example metric',
+                relativeValue: 10.1,
+              },
+            ],
+            actionStartTime: '2021-01-01T00:00:00.123456Z',
+            actorInterceptAlt: 1.1,
+            actorInterceptLat: 45.1,
+            actorInterceptLon: 180.1,
+            effector: 'SENSOR1',
+            summary: 'Example summary',
+            targetSrcId: 'TARGETSRC-ID',
+            targetSrcType: 'POI',
+            totEndTime: '2021-01-01T00:00:00.123456Z',
+            totStartTime: '2021-01-01T00:00:00.123456Z',
+            weaponInterceptAlt: 1.1,
+            weaponInterceptLat: 45.1,
+            weaponInterceptLon: 180.1,
+          },
+        ],
+        actorSrcId: 'RC-ID',
+        actorSrcType: 'AIRCRAFT',
+        coaMetrics: [
+          {
+            domainValue: 10.1,
+            metricType: 'GoalAchievement',
+            provenance: 'Example metric',
+            relativeValue: 10.1,
+          },
+        ],
+        collateralDamageEst: 0.5,
+        decisionDeadline: '2021-01-01T00:00:00.123456Z',
+        externalActions: ['ACTION1', 'ACTION2'],
+        externalRequestId: 'EXTERNALREQUEST-ID',
+        idEffectRequest: 'EFFECTREQUEST-ID',
+        munitionId: 'MUNITION-ID',
+        munitionType: 'Dummy',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        probabilityOfKill: 0.7,
+        redTargetSrcId: 'REDTARGETSRC-ID',
+        redTargetSrcType: 'POI',
+        redTimeToOverhead: '2021-01-01T00:00:00.123456Z',
+        shotsRequired: 10,
       },
     ]);
   });

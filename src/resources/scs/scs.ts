@@ -1,0 +1,409 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../../resource';
+import * as Core from '../../core';
+import * as Shared from '../shared';
+import * as ClassificationMarkingsAPI from './classification-markings';
+import { ClassificationMarkingListResponse, ClassificationMarkings } from './classification-markings';
+import * as FileAPI from './file';
+import { File, FileListParams, FileRetrieveParams, FileUpdateParams } from './file';
+import * as FileMetadataAPI from './file-metadata';
+import { FileMetadata, FileMetadataListResponse } from './file-metadata';
+import * as FoldersAPI from './folders';
+import {
+  FolderCreateParams,
+  FolderCreateResponse,
+  FolderRetrieveParams,
+  FolderUpdateParams,
+  Folders,
+} from './folders';
+import * as GroupsAPI from './groups';
+import { GroupListResponse, Groups } from './groups';
+import * as PathsAPI from './paths';
+import { PathCreateParams, PathCreateResponse, Paths } from './paths';
+import * as RangeParametersAPI from './range-parameters';
+import { RangeParameterListResponse, RangeParameters } from './range-parameters';
+import * as V2API from './v2';
+import {
+  ScsEntity,
+  V2,
+  V2CopyParams,
+  V2DeleteParams,
+  V2FileUploadParams,
+  V2FolderCreateParams,
+  V2ListParams,
+  V2ListResponse,
+  V2MoveParams,
+  V2UpdateParams,
+} from './v2';
+import { type BlobLike } from '../../uploads';
+import { type Response } from '../../_shims/index';
+
+export class Scs extends APIResource {
+  folders: FoldersAPI.Folders = new FoldersAPI.Folders(this._client);
+  classificationMarkings: ClassificationMarkingsAPI.ClassificationMarkings =
+    new ClassificationMarkingsAPI.ClassificationMarkings(this._client);
+  groups: GroupsAPI.Groups = new GroupsAPI.Groups(this._client);
+  fileMetadata: FileMetadataAPI.FileMetadata = new FileMetadataAPI.FileMetadata(this._client);
+  rangeParameters: RangeParametersAPI.RangeParameters = new RangeParametersAPI.RangeParameters(this._client);
+  paths: PathsAPI.Paths = new PathsAPI.Paths(this._client);
+  v2: V2API.V2 = new V2API.V2(this._client);
+  file: FileAPI.File = new FileAPI.File(this._client);
+
+  /**
+   * Deletes the requested File or folder in the passed path directory that is
+   * visible to the calling user. A specific role is required to perform this service
+   * operation. Please contact the UDL team for assistance.
+   */
+  delete(params: ScDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { id } = params;
+    return this._client.delete('/scs/delete', {
+      query: { id },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Returns a map of document types and counts in root folder.
+   */
+  aggregateDocType(options?: Core.RequestOptions): Core.APIPromise<ScAggregateDocTypeResponse> {
+    return this._client.get('/scs/aggregateDocType', options);
+  }
+
+  /**
+   * Returns a list of allowable file extensions for upload.
+   */
+  allowableFileExtensions(options?: Core.RequestOptions): Core.APIPromise<ScAllowableFileExtensionsResponse> {
+    return this._client.get('/scs/allowableFileExtensions', options);
+  }
+
+  /**
+   * Returns a list of allowable file mime types for upload.
+   */
+  allowableFileMimes(options?: Core.RequestOptions): Core.APIPromise<ScAllowableFileMimesResponse> {
+    return this._client.get('/scs/allowableFileMimes', options);
+  }
+
+  /**
+   * operation to copy folders or files. A specific role is required to perform this
+   * service operation. Please contact the UDL team for assistance.
+   */
+  copy(params: ScCopyParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    const { id, targetPath } = params;
+    return this._client.post('/scs/copy', {
+      query: { id, targetPath },
+      ...options,
+      headers: { Accept: 'application/json', ...options?.headers },
+    });
+  }
+
+  /**
+   * Downloads a zip of one or more files and/or folders.
+   */
+  download(body: ScDownloadParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.post('/scs/download', { body, ...options, __binaryResponse: true });
+  }
+
+  /**
+   * Download a single file from SCS.
+   */
+  fileDownload(query: ScFileDownloadParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.get('/scs/download', { query, ...options, __binaryResponse: true });
+  }
+
+  /**
+   * Operation to upload a file. A specific role is required to perform this service
+   * operation. Please contact the UDL team for assistance.
+   */
+  fileUpload(params: ScFileUploadParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    const { classificationMarking, fileName, path, body, description, tags } = params;
+    return this._client.post('/scs/file', {
+      query: { classificationMarking, fileName, path, description, tags },
+      body: body,
+      ...options,
+      headers: {
+        'Content-Type': 'application/octet-stream',
+        Accept: 'application/json',
+        ...options?.headers,
+      },
+      __binaryRequest: true,
+    });
+  }
+
+  /**
+   * operation to move folders or files. A specific role is required to perform this
+   * service operation. Please contact the UDL team for assistance.
+   */
+  move(params: ScMoveParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    const { id, targetPath } = params;
+    return this._client.put('/scs/move', {
+      query: { id, targetPath },
+      ...options,
+      headers: { Accept: 'application/json', ...options?.headers },
+    });
+  }
+
+  /**
+   * Operation to rename folders or files. A specific role is required to perform
+   * this service operation. Please contact the UDL team for assistance.
+   */
+  rename(params: ScRenameParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { id, newName } = params;
+    return this._client.put('/scs/rename', {
+      query: { id, newName },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Search for files by metadata and/or text in file content.
+   */
+  search(params: ScSearchParams, options?: Core.RequestOptions): Core.APIPromise<ScSearchResponse> {
+    const { path, count, offset, ...body } = params;
+    return this._client.post('/scs/search', { query: { path, count, offset }, body, ...options });
+  }
+
+  /**
+   * Updates tags for given folder.
+   */
+  updateTags(params: ScUpdateTagsParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { folder, tags } = params;
+    return this._client.put('/scs/updateTagsForFilesInFolder', {
+      query: { folder, tags },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+}
+
+export type ScAggregateDocTypeResponse = Array<string>;
+
+export type ScAllowableFileExtensionsResponse = Array<string>;
+
+export type ScAllowableFileMimesResponse = Array<string>;
+
+export type ScCopyResponse = string;
+
+export type ScFileUploadResponse = string;
+
+export type ScMoveResponse = string;
+
+export type ScSearchResponse = Array<Shared.FileData>;
+
+export interface ScDeleteParams {
+  /**
+   * The id of the item to delete
+   */
+  id: string;
+}
+
+export interface ScCopyParams {
+  /**
+   * The path of the item to copy
+   */
+  id: string;
+
+  /**
+   * The path to copy to
+   */
+  targetPath: string;
+}
+
+export type ScDownloadParams = string;
+
+export interface ScFileDownloadParams {
+  /**
+   * The complete path and filename of the file to download.
+   */
+  id: string;
+}
+
+export interface ScFileUploadParams {
+  /**
+   * Query param: Classification (ex. U//FOUO)
+   */
+  classificationMarking: string;
+
+  /**
+   * Query param: FileName (ex. dog.jpg)
+   */
+  fileName: string;
+
+  /**
+   * Query param: The base path to upload file (ex. images)
+   */
+  path: string;
+
+  /**
+   * Body param:
+   */
+  body: string | ArrayBufferView | ArrayBuffer | BlobLike;
+
+  /**
+   * Query param: Description
+   */
+  description?: string;
+
+  /**
+   * Query param: Tags
+   */
+  tags?: string;
+}
+
+export interface ScMoveParams {
+  /**
+   * The path of the item to copy
+   */
+  id: string;
+
+  /**
+   * The path to copy to
+   */
+  targetPath: string;
+}
+
+export interface ScRenameParams {
+  /**
+   * The path of the item to rename.
+   */
+  id: string;
+
+  /**
+   * The new name for the file or folder. Do not include the path.
+   */
+  newName: string;
+}
+
+export interface ScSearchParams {
+  /**
+   * Query param: The path to search from
+   */
+  path: string;
+
+  /**
+   * Query param: Number of items per page
+   */
+  count?: number;
+
+  /**
+   * Query param: First result to return
+   */
+  offset?: number;
+
+  /**
+   * Body param:
+   */
+  contentCriteria?: string;
+
+  /**
+   * Body param:
+   */
+  metaDataCriteria?: Record<string, Array<string>>;
+
+  /**
+   * Body param:
+   */
+  nonRangeCriteria?: Record<string, Array<string>>;
+
+  /**
+   * Body param:
+   */
+  rangeCriteria?: Record<string, Array<string>>;
+
+  /**
+   * Body param:
+   */
+  searchAfter?: string;
+}
+
+export interface ScUpdateTagsParams {
+  /**
+   * The base path to folder
+   */
+  folder: string;
+
+  /**
+   * The new tag
+   */
+  tags: string;
+}
+
+Scs.Folders = Folders;
+Scs.ClassificationMarkings = ClassificationMarkings;
+Scs.Groups = Groups;
+Scs.FileMetadata = FileMetadata;
+Scs.RangeParameters = RangeParameters;
+Scs.Paths = Paths;
+Scs.V2 = V2;
+Scs.File = File;
+
+export declare namespace Scs {
+  export {
+    type ScAggregateDocTypeResponse as ScAggregateDocTypeResponse,
+    type ScAllowableFileExtensionsResponse as ScAllowableFileExtensionsResponse,
+    type ScAllowableFileMimesResponse as ScAllowableFileMimesResponse,
+    type ScCopyResponse as ScCopyResponse,
+    type ScFileUploadResponse as ScFileUploadResponse,
+    type ScMoveResponse as ScMoveResponse,
+    type ScSearchResponse as ScSearchResponse,
+    type ScDeleteParams as ScDeleteParams,
+    type ScCopyParams as ScCopyParams,
+    type ScDownloadParams as ScDownloadParams,
+    type ScFileDownloadParams as ScFileDownloadParams,
+    type ScFileUploadParams as ScFileUploadParams,
+    type ScMoveParams as ScMoveParams,
+    type ScRenameParams as ScRenameParams,
+    type ScSearchParams as ScSearchParams,
+    type ScUpdateTagsParams as ScUpdateTagsParams,
+  };
+
+  export {
+    Folders as Folders,
+    type FolderCreateResponse as FolderCreateResponse,
+    type FolderCreateParams as FolderCreateParams,
+    type FolderRetrieveParams as FolderRetrieveParams,
+    type FolderUpdateParams as FolderUpdateParams,
+  };
+
+  export {
+    ClassificationMarkings as ClassificationMarkings,
+    type ClassificationMarkingListResponse as ClassificationMarkingListResponse,
+  };
+
+  export { Groups as Groups, type GroupListResponse as GroupListResponse };
+
+  export { FileMetadata as FileMetadata, type FileMetadataListResponse as FileMetadataListResponse };
+
+  export {
+    RangeParameters as RangeParameters,
+    type RangeParameterListResponse as RangeParameterListResponse,
+  };
+
+  export {
+    Paths as Paths,
+    type PathCreateResponse as PathCreateResponse,
+    type PathCreateParams as PathCreateParams,
+  };
+
+  export {
+    V2 as V2,
+    type ScsEntity as ScsEntity,
+    type V2ListResponse as V2ListResponse,
+    type V2UpdateParams as V2UpdateParams,
+    type V2ListParams as V2ListParams,
+    type V2DeleteParams as V2DeleteParams,
+    type V2CopyParams as V2CopyParams,
+    type V2FileUploadParams as V2FileUploadParams,
+    type V2FolderCreateParams as V2FolderCreateParams,
+    type V2MoveParams as V2MoveParams,
+  };
+
+  export {
+    File as File,
+    type FileRetrieveParams as FileRetrieveParams,
+    type FileUpdateParams as FileUpdateParams,
+    type FileListParams as FileListParams,
+  };
+}

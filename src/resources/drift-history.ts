@@ -2,9 +2,18 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as OnorbitDriftHistoryAPI from './onorbit/drift-history';
+import * as Shared from './shared';
 
 export class DriftHistory extends APIResource {
+  /**
+   * Service operation to get a single DriftHistory record by its unique ID passed as
+   * a path parameter. DriftHistory represents historical drift rates for GEO Onorbit
+   * objects resulting from updates to OnorbitDetails driftRate values.
+   */
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Shared.DriftHistory> {
+    return this._client.get(`/udl/drifthistory/${id}`, options);
+  }
+
   /**
    * Service operation to dynamically query data by a variety of query parameters not
    * specified in this API documentation. See the queryhelp operation
@@ -51,25 +60,24 @@ export class DriftHistory extends APIResource {
    * hours ago.
    */
   tuple(
-    params: DriftHistoryTupleParams,
+    query: DriftHistoryTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<DriftHistoryTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/drifthistory/tuple', options);
+    return this._client.get('/udl/drifthistory/tuple', { query, ...options });
   }
 }
 
-export type DriftHistoryListResponse = Array<OnorbitDriftHistoryAPI.DrifthistoryAbridged>;
+export type DriftHistoryListResponse = Array<Shared.DrifthistoryAbridged>;
 
 export type DriftHistoryCountResponse = string;
 
-export type DriftHistoryTupleResponse = Array<OnorbitDriftHistoryAPI.DrifthistoryFull>;
+export type DriftHistoryTupleResponse = Array<Shared.DriftHistory>;
 
 export interface DriftHistoryTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;

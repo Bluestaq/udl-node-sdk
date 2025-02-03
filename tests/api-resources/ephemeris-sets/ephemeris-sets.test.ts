@@ -4,22 +4,22 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource ephemerisSets', () => {
   test('create: only required params', async () => {
     const responsePromise = client.ephemerisSets.create({
-      category: 'category',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      numPoints: 0,
-      pointEndTime: '2019-12-27T18:11:19.117Z',
-      pointStartTime: '2019-12-27T18:11:19.117Z',
-      source: 'source',
-      type: 'type',
+      category: 'ANALYST',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      numPoints: 1,
+      pointEndTime: '2018-01-01T16:00:00.123456Z',
+      pointStartTime: '2018-01-01T16:00:00.123456Z',
+      source: 'Bluestaq',
+      type: 'LAUNCH',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -32,79 +32,74 @@ describe('resource ephemerisSets', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.ephemerisSets.create({
-      category: 'category',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      numPoints: 0,
-      pointEndTime: '2019-12-27T18:11:19.117Z',
-      pointStartTime: '2019-12-27T18:11:19.117Z',
-      source: 'source',
-      type: 'type',
-      id: 'id',
-      bDot: 0,
-      centBody: 'centBody',
-      comments: 'comments',
-      covReferenceFrame: 'covReferenceFrame',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      description: 'description',
-      descriptor: 'descriptor',
-      dragModel: 'dragModel',
-      edr: 0,
+      category: 'ANALYST',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      numPoints: 1,
+      pointEndTime: '2018-01-01T16:00:00.123456Z',
+      pointStartTime: '2018-01-01T16:00:00.123456Z',
+      source: 'Bluestaq',
+      type: 'LAUNCH',
+      id: 'EPHEMERISSET-ID',
+      bDot: 1.1,
+      centBody: 'Earth',
+      comments: 'Example notes',
+      covReferenceFrame: 'J2000',
+      description: 'Example notes',
+      descriptor: 'Example descriptor',
+      dragModel: 'JAC70',
+      edr: 1.1,
       ephemerisList: [
         {
-          classificationMarking: 'classificationMarking',
-          dataMode: 'dataMode',
-          source: 'source',
-          ts: '2019-12-27T18:11:19.117Z',
-          xpos: 0,
-          xvel: 0,
-          ypos: 0,
-          yvel: 0,
-          zpos: 0,
-          zvel: 0,
-          id: 'id',
+          classificationMarking: 'U',
+          dataMode: 'REAL',
+          source: 'Bluestaq',
+          ts: '2018-01-01T16:00:00.123456Z',
+          xpos: 1.1,
+          xvel: 1.1,
+          ypos: 1.1,
+          yvel: 1.1,
+          zpos: 1.1,
+          zvel: 1.1,
+          id: 'EPHEMERIS-ID',
           cov: [0],
-          createdAt: '2019-12-27T18:11:19.117Z',
-          createdBy: 'createdBy',
-          esId: 'esId',
-          idOnOrbit: 'idOnOrbit',
-          origin: 'origin',
-          origObjectId: 'origObjectId',
-          xaccel: 0,
-          yaccel: 0,
-          zaccel: 0,
+          esId: 'ES-ID',
+          idOnOrbit: 'ONORBIT-ID',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origObjectId: 'ORIGOBJECT-ID',
+          xaccel: 1.1,
+          yaccel: 1.1,
+          zaccel: 1.1,
         },
       ],
-      filename: 'filename',
-      geopotentialModel: 'geopotentialModel',
-      hasAccel: true,
-      hasCov: true,
-      hasMnvr: true,
-      idManeuvers: ['string'],
-      idOnOrbit: 'idOnOrbit',
-      idStateVector: 'idStateVector',
-      integrator: 'integrator',
-      interpolation: 'interpolation',
-      interpolationDegree: 0,
-      lunarSolar: true,
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      origObjectId: 'origObjectId',
-      pedigree: 'pedigree',
-      referenceFrame: 'referenceFrame',
-      satNo: 0,
-      solidEarthTides: true,
-      stepSize: 0,
-      tags: ['string'],
-      transactionId: 'transactionId',
-      usableEndTime: '2019-12-27T18:11:19.117Z',
-      usableStartTime: '2019-12-27T18:11:19.117Z',
+      filename: 'Example file name',
+      geopotentialModel: 'GEM-T3',
+      hasAccel: false,
+      hasCov: false,
+      hasMnvr: false,
+      idManeuvers: ['EXAMPLE_ID1', 'EXAMPLE_ID2'],
+      idOnOrbit: 'ONORBIT-ID',
+      idStateVector: 'STATEVECTOR-ID',
+      integrator: 'COWELL',
+      interpolation: 'LINEAR',
+      interpolationDegree: 5,
+      lunarSolar: false,
+      origin: 'THIRD_PARTY_DATASOURCE',
+      origObjectId: 'ORIGOBJECT-ID',
+      pedigree: 'PROPAGATED',
+      referenceFrame: 'J2000',
+      satNo: 2,
+      solidEarthTides: false,
+      stepSize: 1,
+      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+      transactionId: 'TRANSACTION-ID',
+      usableEndTime: '2018-01-01T20:50:00.123456Z',
+      usableStartTime: '2018-01-01T16:10:00.123456Z',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.ephemerisSets.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.ephemerisSets.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -114,8 +109,11 @@ describe('resource ephemerisSets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.ephemerisSets.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.ephemerisSets.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('list', async () => {
@@ -174,8 +172,11 @@ describe('resource ephemerisSets', () => {
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
-  test('fileRetrieve: required and optional params', async () => {
-    const response = await client.ephemerisSets.fileRetrieve({ path_id: 'id', body_id: 'id' });
+  test('fileRetrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.ephemerisSets.fileRetrieve('id', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {

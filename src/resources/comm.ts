@@ -7,13 +7,26 @@ import * as EntitiesAPI from './entities';
 
 export class Comm extends APIResource {
   /**
+   * Service operation to take a single Comm as a POST body and ingest into the
+   * database. A Comm is an on-orbit communications payload, including supporting
+   * data such as transponders and channels, etc. A specific role is required to
+   * perform this service operation. Please contact the UDL team for assistance.
+   */
+  create(body: CommCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/udl/comm', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Service operation to get a single Comm record by its unique ID passed as a path
    * parameter. A Comm is an on-orbit communications payload, including supporting
    * data such as transponders and channels, etc.
    */
-  retrieve(params: CommRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<CommFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/comm/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<CommFull> {
+    return this._client.get(`/udl/comm/${id}`, options);
   }
 
   /**
@@ -23,12 +36,22 @@ export class Comm extends APIResource {
    * UDL team for assistance.
    */
   update(params: CommUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/comm/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
+  }
+
+  /**
+   * Service operation to dynamically query data by a variety of query parameters not
+   * specified in this API documentation. See the queryhelp operation
+   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+   * parameter information.
+   */
+  list(options?: Core.RequestOptions): Core.APIPromise<CommListResponse> {
+    return this._client.get('/udl/comm', options);
   }
 
   /**
@@ -37,11 +60,24 @@ export class Comm extends APIResource {
    * data such as transponders and channels, etc. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  delete(params: CommDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/comm/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/comm/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to return the count of records satisfying the specified query
+   * parameters. This operation is useful to determine how many records pass a
+   * particular query criteria without retrieving large amounts of data. See the
+   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+   * valid/required query parameter information.
+   */
+  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.get('/udl/comm/count', {
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
     });
   }
 
@@ -66,9 +102,8 @@ export class Comm extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(params: CommTupleParams, options?: Core.RequestOptions): Core.APIPromise<CommTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/comm/tuple', options);
+  tuple(query: CommTupleParams, options?: Core.RequestOptions): Core.APIPromise<CommTupleResponse> {
+    return this._client.get('/udl/comm/tuple', { query, ...options });
   }
 }
 
@@ -98,7 +133,7 @@ export interface CommAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Name of the Comm entity.
@@ -177,7 +212,7 @@ export interface CommFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Name of the Comm entity.
@@ -283,7 +318,7 @@ export namespace CommFull {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * ID of the parent Comm object for this transponder.
@@ -393,30 +428,425 @@ export namespace CommFull {
   }
 }
 
+export type CommListResponse = Array<CommAbridged>;
+
+export type CommCountResponse = string;
+
 export type CommTupleResponse = Array<CommFull>;
 
-export interface CommRetrieveParams {
+export interface CommCreateParams {
   /**
-   * Path param:
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
-  path_id: string;
+  classificationMarking: string;
 
   /**
-   * Body param: The ID of the Comm to find.
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
    */
-  body_id: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Name of the Comm entity.
+   */
+  name: string;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Description of the comm entity.
+   */
+  description?: string;
+
+  /**
+   * An entity is a generic representation of any object within a space/SSA system
+   * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+   * entity can have an operating unit, a location (if terrestrial), and statuses.
+   */
+  entity?: CommCreateParams.Entity;
+
+  /**
+   * Unique identifier of the parent entity. idEntity is required for Put.
+   */
+  idEntity?: string;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+}
+
+export namespace CommCreateParams {
+  /**
+   * An entity is a generic representation of any object within a space/SSA system
+   * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+   * entity can have an operating unit, a location (if terrestrial), and statuses.
+   */
+  export interface Entity {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Unique entity name.
+     */
+    name: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
+     * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+     */
+    type:
+      | 'AIRCRAFT'
+      | 'BUS'
+      | 'COMM'
+      | 'IR'
+      | 'NAVIGATION'
+      | 'ONORBIT'
+      | 'RFEMITTER'
+      | 'SCIENTIFIC'
+      | 'SENSOR'
+      | 'SITE'
+      | 'VESSEL';
+
+    /**
+     * The country code. This value is typically the ISO 3166 Alpha-2 two-character
+     * country code, however it can also represent various consortiums that do not
+     * appear in the ISO document. The code must correspond to an existing country in
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+     * ISO Alpha-3 code, or alternate code values that exist for the specified country
+     * code.
+     */
+    countryCode?: string;
+
+    /**
+     * Unique identifier of the record.
+     */
+    idEntity?: string;
+
+    /**
+     * Unique identifier of the entity location, if terrestrial/fixed.
+     */
+    idLocation?: string;
+
+    /**
+     * Onorbit identifier if this entity is part of an on-orbit object. For the public
+     * catalog, the idOnOrbit is typically the satellite number as a string, but may be
+     * a UUID for analyst or other unknown or untracked satellites.
+     */
+    idOnOrbit?: string;
+
+    /**
+     * Unique identifier of the associated operating unit object.
+     */
+    idOperatingUnit?: string;
+
+    /**
+     * Model representation of a location, which is a specific fixed point on the earth
+     * and is used to denote the locations of fixed sensors, operating units, etc.
+     */
+    location?: Entity.Location;
+
+    /**
+     * Model object representing on-orbit objects or satellites in the system.
+     */
+    onOrbit?: Entity.OnOrbit;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * Type of organization which owns this entity (e.g. Commercial, Government,
+     * Academic, Consortium, etc).
+     */
+    ownerType?: 'Commercial' | 'Government' | 'Academic' | 'Consortium' | 'Other';
+
+    /**
+     * Boolean indicating if this entity is taskable.
+     */
+    taskable?: boolean;
+
+    /**
+     * List of URLs to additional details/documents for this entity.
+     */
+    urls?: Array<string>;
+  }
+
+  export namespace Entity {
+    /**
+     * Model representation of a location, which is a specific fixed point on the earth
+     * and is used to denote the locations of fixed sensors, operating units, etc.
+     */
+    export interface Location {
+      /**
+       * Classification marking of the data in IC/CAPCO Portion-marked format.
+       */
+      classificationMarking: string;
+
+      /**
+       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+       *
+       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+       * may include both real and simulated data.
+       *
+       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+       * events, and analysis.
+       *
+       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+       * datasets.
+       *
+       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+       * requirements, and for validating technical, functional, and performance
+       * characteristics.
+       */
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+      /**
+       * Location name.
+       */
+      name: string;
+
+      /**
+       * Source of the data.
+       */
+      source: string;
+
+      /**
+       * Altitude of the location, in kilometers.
+       */
+      altitude?: number;
+
+      /**
+       * The country code. This value is typically the ISO 3166 Alpha-2 two-character
+       * country code, however it can also represent various consortiums that do not
+       * appear in the ISO document. The code must correspond to an existing country in
+       * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+       * ISO Alpha-3 code, or alternate code values that exist for the specified country
+       * code.
+       */
+      countryCode?: string;
+
+      /**
+       * Unique identifier of the location, auto-generated by the system.
+       */
+      idLocation?: string;
+
+      /**
+       * WGS84 latitude of the location, in degrees. -90 to 90 degrees (negative values
+       * south of equator).
+       */
+      lat?: number;
+
+      /**
+       * WGS84 longitude of the location, in degrees. -180 to 180 degrees (negative
+       * values west of Prime Meridian).
+       */
+      lon?: number;
+
+      /**
+       * Originating system or organization which produced the data, if different from
+       * the source. The origin may be different than the source if the source was a
+       * mediating system which forwarded the data on behalf of the origin system. If
+       * null, the source may be assumed to be the origin.
+       */
+      origin?: string;
+    }
+
+    /**
+     * Model object representing on-orbit objects or satellites in the system.
+     */
+    export interface OnOrbit {
+      /**
+       * Classification marking of the data in IC/CAPCO Portion-marked format.
+       */
+      classificationMarking: string;
+
+      /**
+       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+       *
+       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+       * may include both real and simulated data.
+       *
+       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+       * events, and analysis.
+       *
+       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+       * datasets.
+       *
+       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+       * requirements, and for validating technical, functional, and performance
+       * characteristics.
+       */
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+      /**
+       * Satellite/Catalog number of the target on-orbit object.
+       */
+      satNo: number;
+
+      /**
+       * Source of the data.
+       */
+      source: string;
+
+      /**
+       * Alternate name of the on-orbit object.
+       */
+      altName?: string;
+
+      /**
+       * Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
+       * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
+       * Heliocentric, Interplanetary, Lagrangian, Docked).
+       */
+      category?:
+        | 'Unknown'
+        | 'On-Orbit'
+        | 'Decayed'
+        | 'Cataloged Without State'
+        | 'Launch Nominal'
+        | 'Analyst Satellite'
+        | 'Cislunar'
+        | 'Lunar'
+        | 'Hyperbolic'
+        | 'Heliocentric'
+        | 'Interplanetary'
+        | 'Lagrangian'
+        | 'Docked';
+
+      /**
+       * Common name of the on-orbit object.
+       */
+      commonName?: string;
+
+      /**
+       * Constellation to which this satellite belongs.
+       */
+      constellation?: string;
+
+      /**
+       * The country code. This value is typically the ISO 3166 Alpha-2 two-character
+       * country code, however it can also represent various consortiums that do not
+       * appear in the ISO document. The code must correspond to an existing country in
+       * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+       * ISO Alpha-3 code, or alternate code values that exist for the specified country
+       * code.
+       */
+      countryCode?: string;
+
+      /**
+       * Date of decay.
+       */
+      decayDate?: string;
+
+      /**
+       * For the public catalog, the idOnOrbit is typically the satellite number as a
+       * string, but may be a UUID for analyst or other unknown or untracked satellites,
+       * auto-generated by the system.
+       */
+      idOnOrbit?: string;
+
+      /**
+       * International Designator, typically of the format YYYYLLLAAA, where YYYY is the
+       * launch year, LLL is the sequential launch number of that year, and AAA is an
+       * optional launch piece designator for the launch.
+       */
+      intlDes?: string;
+
+      /**
+       * Date of launch.
+       */
+      launchDate?: string;
+
+      /**
+       * Id of the associated launchSite entity.
+       */
+      launchSiteId?: string;
+
+      /**
+       * Estimated lifetime of the on-orbit payload, if known.
+       */
+      lifetimeYears?: number;
+
+      /**
+       * Mission number of the on-orbit object.
+       */
+      missionNumber?: string;
+
+      /**
+       * Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
+       * UNKNOWN.
+       */
+      objectType?: 'ROCKET BODY' | 'DEBRIS' | 'PAYLOAD' | 'PLATFORM' | 'MANNED' | 'UNKNOWN';
+
+      /**
+       * Originating system or organization which produced the data, if different from
+       * the source. The origin may be different than the source if the source was a
+       * mediating system which forwarded the data on behalf of the origin system. If
+       * null, the source may be assumed to be the origin.
+       */
+      origin?: string;
+    }
+  }
 }
 
 export interface CommUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the Comm to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the Comm to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -441,7 +871,7 @@ export interface CommUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Name of the Comm entity.
@@ -457,18 +887,6 @@ export interface CommUpdateParams {
    * Body param: Unique identifier of the record, auto-generated by the system.
    */
   body_id?: string;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: Description of the comm entity.
@@ -488,31 +906,13 @@ export interface CommUpdateParams {
    * system. If null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-}
-
-export interface CommDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Comm to delete.
-   */
-  body_id: string;
 }
 
 export interface CommTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -522,10 +922,11 @@ export declare namespace Comm {
   export {
     type CommAbridged as CommAbridged,
     type CommFull as CommFull,
+    type CommListResponse as CommListResponse,
+    type CommCountResponse as CommCountResponse,
     type CommTupleResponse as CommTupleResponse,
-    type CommRetrieveParams as CommRetrieveParams,
+    type CommCreateParams as CommCreateParams,
     type CommUpdateParams as CommUpdateParams,
-    type CommDeleteParams as CommDeleteParams,
     type CommTupleParams as CommTupleParams,
   };
 }

@@ -4,14 +4,14 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource countries', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.countries.create({ code: 'code', dataMode: 'dataMode', source: 'source' });
+    const responsePromise = client.countries.create({ code: 'US', dataMode: 'REAL', source: 'Bluestaq' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,21 +23,18 @@ describe('resource countries', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.countries.create({
-      code: 'code',
-      dataMode: 'dataMode',
-      source: 'source',
-      codeAlt: 'codeAlt',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      fipsCode: 'fipsCode',
-      iso3Code: 'iso3Code',
-      name: 'name',
-      origNetwork: 'origNetwork',
+      code: 'US',
+      dataMode: 'REAL',
+      source: 'Bluestaq',
+      codeAlt: 'US',
+      fipsCode: 'US',
+      iso3Code: 'USA',
+      name: 'UNITED STATES',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.countries.retrieve({ path_code: 'code', body_code: 'code' });
+  test('retrieve', async () => {
+    const responsePromise = client.countries.retrieve('code');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -47,17 +44,19 @@ describe('resource countries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.countries.retrieve({ path_code: 'code', body_code: 'code' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.countries.retrieve('code', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.countries.update({
       path_code: 'code',
-      body_code: 'code',
-      body_code: 'code',
-      dataMode: 'dataMode',
-      source: 'source',
+      body_code: 'US',
+      dataMode: 'REAL',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -71,17 +70,13 @@ describe('resource countries', () => {
   test('update: required and optional params', async () => {
     const response = await client.countries.update({
       path_code: 'code',
-      body_code: 'code',
-      body_code: 'code',
-      dataMode: 'dataMode',
-      source: 'source',
-      codeAlt: 'codeAlt',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      fipsCode: 'fipsCode',
-      iso3Code: 'iso3Code',
-      name: 'name',
-      origNetwork: 'origNetwork',
+      body_code: 'US',
+      dataMode: 'REAL',
+      source: 'Bluestaq',
+      codeAlt: 'US',
+      fipsCode: 'US',
+      iso3Code: 'USA',
+      name: 'UNITED STATES',
     });
   });
 
@@ -103,8 +98,8 @@ describe('resource countries', () => {
     );
   });
 
-  test('delete: only required params', async () => {
-    const responsePromise = client.countries.delete({ path_code: 'code', body_code: 'code' });
+  test('delete', async () => {
+    const responsePromise = client.countries.delete('code');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -114,8 +109,11 @@ describe('resource countries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: required and optional params', async () => {
-    const response = await client.countries.delete({ path_code: 'code', body_code: 'code' });
+  test('delete: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.countries.delete('code', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('count', async () => {

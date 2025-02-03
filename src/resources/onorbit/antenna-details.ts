@@ -23,12 +23,8 @@ export class AntennaDetails extends APIResource {
    * as a path parameter. An antenna may have multiple details records compiled by
    * various sources.
    */
-  retrieve(
-    params: AntennaDetailRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AntennaDetailsFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/antennadetails/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AntennaDetailsFull> {
+    return this._client.get(`/udl/antennadetails/${id}`, options);
   }
 
   /**
@@ -38,9 +34,9 @@ export class AntennaDetails extends APIResource {
    * assistance.
    */
   update(params: AntennaDetailUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/antennadetails/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -62,9 +58,8 @@ export class AntennaDetails extends APIResource {
    * sources. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(params: AntennaDetailDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/antennadetails/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/antennadetails/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -97,7 +92,7 @@ export interface AntennaDetailsAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique identifier of the parent Antenna.
@@ -169,7 +164,7 @@ export interface AntennaDetailsAbridged {
   /**
    * Antenna mode (e.g. TX,RX).
    */
-  mode?: string;
+  mode?: 'TX' | 'RX';
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -244,7 +239,7 @@ export interface AntennaDetailsFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique identifier of the parent Antenna.
@@ -323,7 +318,7 @@ export interface AntennaDetailsFull {
   /**
    * Antenna mode (e.g. TX,RX).
    */
-  mode?: string;
+  mode?: 'TX' | 'RX';
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -420,7 +415,7 @@ export namespace AntennaDetailsFull {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Organization name.
@@ -457,7 +452,7 @@ export namespace AntennaDetailsFull {
      * Country of the physical location of the organization. This value is typically
      * the ISO 3166 Alpha-2 two-character country code. However, it can also represent
      * various consortiums that do not appear in the ISO document. The code must
-     * correspond to an existing country in the UDL�s country API. Call
+     * correspond to an existing country in the UDL’s country API. Call
      * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
      * alternate code values that exist for the specified country code.
      */
@@ -488,7 +483,7 @@ export namespace AntennaDetailsFull {
      * Country of registration or ownership of the organization. This value is
      * typically the ISO 3166 Alpha-2 two-character country code, however it can also
      * represent various consortiums that do not appear in the ISO document. The code
-     * must correspond to an existing country in the UDL�s country API. Call
+     * must correspond to an existing country in the UDL’s country API. Call
      * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
      * alternate code values that exist for the specified country code.
      */
@@ -554,7 +549,7 @@ export namespace AntennaDetailsFull {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Unique identifier of the parent organization.
@@ -791,7 +786,7 @@ export interface AntennaDetailCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique identifier of the parent Antenna.
@@ -818,17 +813,6 @@ export interface AntennaDetailCreateParams {
    * antenna, in degrees.
    */
   beamwidth?: number;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Antenna description.
@@ -863,7 +847,7 @@ export interface AntennaDetailCreateParams {
   /**
    * Antenna mode (e.g. TX,RX).
    */
-  mode?: string;
+  mode?: 'TX' | 'RX';
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -872,12 +856,6 @@ export interface AntennaDetailCreateParams {
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
 
   /**
    * Antenna polarization in degrees.
@@ -921,28 +899,11 @@ export interface AntennaDetailCreateParams {
   type?: string;
 }
 
-export interface AntennaDetailRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the AntennaDetails to find.
-   */
-  body_id: string;
-}
-
 export interface AntennaDetailUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the AntennaDetails to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the AntennaDetails to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -967,7 +928,7 @@ export interface AntennaDetailUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Unique identifier of the parent Antenna.
@@ -994,18 +955,6 @@ export interface AntennaDetailUpdateParams {
    * lobe of the antenna, in degrees.
    */
   beamwidth?: number;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: Antenna description.
@@ -1040,7 +989,7 @@ export interface AntennaDetailUpdateParams {
   /**
    * Body param: Antenna mode (e.g. TX,RX).
    */
-  mode?: string;
+  mode?: 'TX' | 'RX';
 
   /**
    * Body param: Originating system or organization which produced the data, if
@@ -1049,12 +998,6 @@ export interface AntennaDetailUpdateParams {
    * system. If null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
 
   /**
    * Body param: Antenna polarization in degrees.
@@ -1098,26 +1041,12 @@ export interface AntennaDetailUpdateParams {
   type?: string;
 }
 
-export interface AntennaDetailDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the AntennaDetails to delete.
-   */
-  body_id: string;
-}
-
 export declare namespace AntennaDetails {
   export {
     type AntennaDetailsAbridged as AntennaDetailsAbridged,
     type AntennaDetailsFull as AntennaDetailsFull,
     type AntennaDetailListResponse as AntennaDetailListResponse,
     type AntennaDetailCreateParams as AntennaDetailCreateParams,
-    type AntennaDetailRetrieveParams as AntennaDetailRetrieveParams,
     type AntennaDetailUpdateParams as AntennaDetailUpdateParams,
-    type AntennaDetailDeleteParams as AntennaDetailDeleteParams,
   };
 }

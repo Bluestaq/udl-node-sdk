@@ -18,6 +18,28 @@ export class Airfieldslotconsumptions extends APIResource {
   }
 
   /**
+   * Service operation to get a single airfieldslotconsumption record by its unique
+   * ID passed as a path parameter.
+   */
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AirfieldslotconsumptionFull> {
+    return this._client.get(`/udl/airfieldslotconsumption/${id}`, options);
+  }
+
+  /**
+   * Service operation to update a single AirfieldSlotConsumption. A specific role is
+   * required to perform this service operation. Please contact the UDL team for
+   * assistance.
+   */
+  update(params: AirfieldslotconsumptionUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { path_id, body_id, ...body } = params;
+    return this._client.put(`/udl/airfieldslotconsumption/${path_id}`, {
+      body: { id: body_id, ...body },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Service operation to dynamically query data by a variety of query parameters not
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
@@ -25,6 +47,18 @@ export class Airfieldslotconsumptions extends APIResource {
    */
   list(options?: Core.RequestOptions): Core.APIPromise<AirfieldslotconsumptionListResponse> {
     return this._client.get('/udl/airfieldslotconsumption', options);
+  }
+
+  /**
+   * Service operation to delete an airfieldslotconsumption record specified by the
+   * passed ID path parameter. A specific role is required to perform this service
+   * operation. Please contact the UDL team for assistance.
+   */
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/airfieldslotconsumption/${id}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 
   /**
@@ -50,6 +84,23 @@ export class Airfieldslotconsumptions extends APIResource {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
+  }
+
+  /**
+   * Service operation to dynamically query data and only return specified
+   * columns/fields. Requested columns are specified by the 'columns' query parameter
+   * and should be a comma separated list of valid fields for the specified data
+   * type. classificationMarking is always returned. See the queryhelp operation
+   * (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+   * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+   * hours would return the satNo and period of elsets with an epoch greater than 5
+   * hours ago.
+   */
+  tuple(
+    query: AirfieldslotconsumptionTupleParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<AirfieldslotconsumptionTupleResponse> {
+    return this._client.get('/udl/airfieldslotconsumption/tuple', { query, ...options });
   }
 }
 
@@ -79,7 +130,7 @@ export interface AirfieldslotconsumptionAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The end of the slot window, in ISO 8601 UTC format.
@@ -268,7 +319,7 @@ export interface AirfieldslotconsumptionAbridged {
   /**
    * Current status of this slot (REQUESTED / APPROVED / DENIED / BLOCKED / OTHER).
    */
-  status?: string;
+  status?: 'REQUESTED' | 'APPROVED' | 'DENIED' | 'BLOCKED' | 'OTHER';
 
   /**
    * The desired time for aircraft action such as landing, take off, parking, etc.,
@@ -303,7 +354,7 @@ export interface AirfieldslotconsumptionFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The end of the slot window, in ISO 8601 UTC format.
@@ -492,7 +543,7 @@ export interface AirfieldslotconsumptionFull {
   /**
    * Current status of this slot (REQUESTED / APPROVED / DENIED / BLOCKED / OTHER).
    */
-  status?: string;
+  status?: 'REQUESTED' | 'APPROVED' | 'DENIED' | 'BLOCKED' | 'OTHER';
 
   /**
    * The desired time for aircraft action such as landing, take off, parking, etc.,
@@ -516,6 +567,8 @@ export type AirfieldslotconsumptionListResponse = Array<AirfieldslotconsumptionA
 
 export type AirfieldslotconsumptionCountResponse = string;
 
+export type AirfieldslotconsumptionTupleResponse = Array<AirfieldslotconsumptionFull>;
+
 export interface AirfieldslotconsumptionCreateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -538,7 +591,7 @@ export interface AirfieldslotconsumptionCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The end of the slot window, in ISO 8601 UTC format.
@@ -611,17 +664,6 @@ export interface AirfieldslotconsumptionCreateParams {
   consumer?: string;
 
   /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
-
-  /**
    * Unique identifier of the sortie arriving at the slot start time.
    */
   idArrSortie?: string;
@@ -668,12 +710,6 @@ export interface AirfieldslotconsumptionCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Comments from the requester.
    */
   reqComment?: string;
@@ -718,16 +754,9 @@ export interface AirfieldslotconsumptionCreateParams {
   resType?: string;
 
   /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
-
-  /**
    * Current status of this slot (REQUESTED / APPROVED / DENIED / BLOCKED / OTHER).
    */
-  status?: string;
+  status?: 'REQUESTED' | 'APPROVED' | 'DENIED' | 'BLOCKED' | 'OTHER';
 
   /**
    * The desired time for aircraft action such as landing, take off, parking, etc.,
@@ -736,12 +765,230 @@ export interface AirfieldslotconsumptionCreateParams {
   targetTime?: string;
 }
 
+export interface AirfieldslotconsumptionUpdateParams {
+  /**
+   * Path param: The ID of the AirfieldSlotConsumption entry to update.
+   */
+  path_id: string;
+
+  /**
+   * Body param: Classification marking of the data in IC/CAPCO Portion-marked
+   * format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Body param: Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST
+   * data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Body param: The end of the slot window, in ISO 8601 UTC format.
+   */
+  endTime: string;
+
+  /**
+   * Body param: Unique identifier of the airfield slot for which this slot
+   * consumption record is referencing.
+   */
+  idAirfieldSlot: string;
+
+  /**
+   * Body param: Number of aircraft using this slot for this time.
+   */
+  numAircraft: number;
+
+  /**
+   * Body param: Source of the data.
+   */
+  source: string;
+
+  /**
+   * Body param: The start of the slot window, in ISO 8601 UTC format.
+   */
+  startTime: string;
+
+  /**
+   * Body param: Unique identifier of the record, auto-generated by the system.
+   */
+  body_id?: string;
+
+  /**
+   * Body param: Alternate identifier of the sortie arriving at the slot start time
+   * provided by the source.
+   */
+  altArrSortieId?: string;
+
+  /**
+   * Body param: Alternate identifier of the sortie departing at the slot end time
+   * provided by the source.
+   */
+  altDepSortieId?: string;
+
+  /**
+   * Body param: Comments from the approver.
+   */
+  appComment?: string;
+
+  /**
+   * Body param: Initials of the person approving the use of this slot. Use SYSTEM if
+   * auto-approved without human involvement.
+   */
+  appInitials?: string;
+
+  /**
+   * Body param: Short name of the organization approving the use of this slot.
+   */
+  appOrg?: string;
+
+  /**
+   * Body param: Array of call signs of the aircraft using this slot.
+   */
+  callSigns?: Array<string>;
+
+  /**
+   * Body param: Identifying name of the aircraft using this slot. Names are often
+   * Prior Permission Required (PPR) numbers or other similar human-readable
+   * identifiers.
+   */
+  consumer?: string;
+
+  /**
+   * Body param: Unique identifier of the sortie arriving at the slot start time.
+   */
+  idArrSortie?: string;
+
+  /**
+   * Body param: Unique identifier of the sortie departing at the slot end time.
+   */
+  idDepSortie?: string;
+
+  /**
+   * Body param: Mission identifier using this slot according to Mobility Air Forces
+   * (MAF) Encode/Decode procedures.
+   */
+  missionId?: string;
+
+  /**
+   * Body param: The aircraft Model Design Series designation of the aircraft
+   * occupying this slot.
+   */
+  occAircraftMDS?: string;
+
+  /**
+   * Body param: Time the aircraft began occupying this slot, in ISO 8601 UTC format
+   * with millisecond precision.
+   */
+  occStartTime?: string;
+
+  /**
+   * Body param: The tail number of the aircraft occupying this slot.
+   */
+  occTailNumber?: string;
+
+  /**
+   * Body param: Flag indicating if the slot is occupied.
+   */
+  occupied?: boolean;
+
+  /**
+   * Body param: Originating system or organization which produced the data, if
+   * different from the source. The origin may be different than the source if the
+   * source was a mediating system which forwarded the data on behalf of the origin
+   * system. If null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * Body param: Comments from the requester.
+   */
+  reqComment?: string;
+
+  /**
+   * Body param: Initials of the person requesting the use of this slot. Use SYSTEM
+   * if this request is auto-generated by an auto-planning system.
+   */
+  reqInitials?: string;
+
+  /**
+   * Body param: Short name of the organization requesting use of this slot.
+   */
+  reqOrg?: string;
+
+  /**
+   * Body param: The aircraft Model Design Series designation of the aircraft this
+   * slot is reserved for.
+   */
+  resAircraftMDS?: string;
+
+  /**
+   * Body param: Mission identifier reserving this slot according to Mobility Air
+   * Forces (MAF) Encode/Decode procedures.
+   */
+  resMissionId?: string;
+
+  /**
+   * Body param: The reason the slot reservation was made.
+   */
+  resReason?: string;
+
+  /**
+   * Body param: The tail number of the aircraft this slot is reserved for.
+   */
+  resTailNumber?: string;
+
+  /**
+   * Body param: Indicates the type of reservation (e.g. M for Mission, A for
+   * Aircraft, O for Other).
+   */
+  resType?: string;
+
+  /**
+   * Body param: Current status of this slot (REQUESTED / APPROVED / DENIED / BLOCKED
+   * / OTHER).
+   */
+  status?: 'REQUESTED' | 'APPROVED' | 'DENIED' | 'BLOCKED' | 'OTHER';
+
+  /**
+   * Body param: The desired time for aircraft action such as landing, take off,
+   * parking, etc., in ISO 8601 UTC format.
+   */
+  targetTime?: string;
+}
+
+export interface AirfieldslotconsumptionTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
+
 export declare namespace Airfieldslotconsumptions {
   export {
     type AirfieldslotconsumptionAbridged as AirfieldslotconsumptionAbridged,
     type AirfieldslotconsumptionFull as AirfieldslotconsumptionFull,
     type AirfieldslotconsumptionListResponse as AirfieldslotconsumptionListResponse,
     type AirfieldslotconsumptionCountResponse as AirfieldslotconsumptionCountResponse,
+    type AirfieldslotconsumptionTupleResponse as AirfieldslotconsumptionTupleResponse,
     type AirfieldslotconsumptionCreateParams as AirfieldslotconsumptionCreateParams,
+    type AirfieldslotconsumptionUpdateParams as AirfieldslotconsumptionUpdateParams,
+    type AirfieldslotconsumptionTupleParams as AirfieldslotconsumptionTupleParams,
   };
 }

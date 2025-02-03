@@ -8,7 +8,6 @@ export {
   type EcpsdrCountResponse,
   type EcpsdrTupleResponse,
   type EcpsdrCreateParams,
-  type EcpsdrRetrieveParams,
   type EcpsdrListParams,
   type EcpsdrCountParams,
   type EcpsdrCreateBulkParams,
@@ -16,6 +15,8 @@ export {
 } from './ecpsdr';
 export { Eo } from './eo';
 export { Gnssobservations } from './gnssobservations';
-export { Monoradar, type MonoradarCreateParams } from './monoradar';
+export { Monoradar, type MonoradarCreateParams } from './monoradar/index';
 export { Observations } from './observations';
+export { Radarobservation } from './radarobservation/index';
+export { Rfobservation } from './rfobservation/index';
 export { Swir, type SwirCreateParams } from './swir';

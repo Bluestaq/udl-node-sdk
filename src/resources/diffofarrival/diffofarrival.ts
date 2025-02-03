@@ -28,11 +28,10 @@ export class Diffofarrival extends APIResource {
    * path parameter.
    */
   retrieve(
-    params: DiffofarrivalRetrieveParams,
+    id: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<DiffofarrivalDiffofarrivalAPI.DiffofarrivalFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/diffofarrival/${path_id}`, options);
+    return this._client.get(`/udl/diffofarrival/${id}`, options);
   }
 
   /**
@@ -57,11 +56,10 @@ export class Diffofarrival extends APIResource {
    * hours ago.
    */
   tuple(
-    params: DiffofarrivalTupleParams,
+    query: DiffofarrivalTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<DiffofarrivalTupleResponse> {
-    const { columns, obTime } = params;
-    return this._client.get('/udl/diffofarrival/tuple', options);
+    return this._client.get('/udl/diffofarrival/tuple', { query, ...options });
   }
 }
 
@@ -97,7 +95,7 @@ export namespace DiffofarrivalCreateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Ob detection time in ISO 8601 UTC with microsecond precision.
@@ -124,17 +122,6 @@ export namespace DiffofarrivalCreateParams {
      * MANUAL, etc).
      */
     collectionMode?: string;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
 
     /**
      * Delta range, in km. Delta range calculation convention is (sensor2 - sensor1).
@@ -180,11 +167,6 @@ export namespace DiffofarrivalCreateParams {
     frequency?: number;
 
     /**
-     * Unique identifier of the target on-orbit object, if correlated.
-     */
-    idOnOrbit?: string;
-
-    /**
      * Sensor ID of the primary/1st sensor used for this measurement.
      */
     idSensor1?: string;
@@ -201,12 +183,6 @@ export namespace DiffofarrivalCreateParams {
      * null, the source may be assumed to be the origin.
      */
     origin?: string;
-
-    /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
 
     /**
      * Optional identifier provided by observation source to indicate the target
@@ -294,13 +270,6 @@ export namespace DiffofarrivalCreateParams {
     snr?: number;
 
     /**
-     * The source data library from which this record was received. This could be a
-     * remote or tactical UDL or another data library. If null, the record should be
-     * assumed to have originated from the primary Enterprise UDL.
-     */
-    sourceDL?: string;
-
-    /**
      * Optional array of provider/source specific tags for this data, where each
      * element is no longer than 32 characters, used for implementing data owner
      * conditional access controls to restrict access to the data. Should be left null
@@ -344,23 +313,11 @@ export namespace DiffofarrivalCreateParams {
   }
 }
 
-export interface DiffofarrivalRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the TDOA/FDOA to retrieve.
-   */
-  body_id: string;
-}
-
 export interface DiffofarrivalTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -378,7 +335,6 @@ export declare namespace Diffofarrival {
   export {
     type DiffofarrivalTupleResponse as DiffofarrivalTupleResponse,
     type DiffofarrivalCreateParams as DiffofarrivalCreateParams,
-    type DiffofarrivalRetrieveParams as DiffofarrivalRetrieveParams,
     type DiffofarrivalTupleParams as DiffofarrivalTupleParams,
   };
 

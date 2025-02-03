@@ -1,0 +1,839 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../resource';
+import * as Core from '../core';
+
+export class Surfaceobstruction extends APIResource {
+  /**
+   * Service operation to take a single surfaceobstruction record as a POST body and
+   * ingest into the database. A specific role is required to perform this service
+   * operation. Please contact the UDL team for assistance.
+   */
+  create(body: SurfaceobstructionCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/udl/surfaceobstruction', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to update a single surfaceobstruction record. A specific role
+   * is required to perform this service operation. Please contact the UDL team for
+   * assistance.
+   */
+  update(params: SurfaceobstructionUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { path_id, body_id, ...body } = params;
+    return this._client.put(`/udl/surfaceobstruction/${path_id}`, {
+      body: { id: body_id, ...body },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data by a variety of query parameters not
+   * specified in this API documentation. See the queryhelp operation
+   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+   * parameter information.
+   */
+  list(options?: Core.RequestOptions): Core.APIPromise<SurfaceobstructionListResponse> {
+    return this._client.get('/udl/surfaceobstruction', options);
+  }
+
+  /**
+   * Service operation to delete a surfaceobstruction record specified by the passed
+   * ID path parameter. A specific role is required to perform this service
+   * operation. Please contact the UDL team for assistance.
+   */
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/surfaceobstruction/${id}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to return the count of records satisfying the specified query
+   * parameters. This operation is useful to determine how many records pass a
+   * particular query criteria without retrieving large amounts of data. See the
+   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+   * valid/required query parameter information.
+   */
+  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.get('/udl/surfaceobstruction/count', {
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to take multiple surfaceobstruction records as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  fileCreate(body: SurfaceobstructionFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-surfaceobstruction', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to get a single surfaceobstruction record by its unique ID
+   * passed as a path parameter.
+   */
+  get(id: string, options?: Core.RequestOptions): Core.APIPromise<SurfaceobstructionGetResponse> {
+    return this._client.get(`/udl/surfaceobstruction/${id}`, options);
+  }
+
+  /**
+   * Service operation to provide detailed information on available dynamic query
+   * parameters for a particular data type.
+   */
+  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/udl/surfaceobstruction/queryhelp', {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data and only return specified
+   * columns/fields. Requested columns are specified by the 'columns' query parameter
+   * and should be a comma separated list of valid fields for the specified data
+   * type. classificationMarking is always returned. See the queryhelp operation
+   * (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+   * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+   * hours would return the satNo and period of elsets with an epoch greater than 5
+   * hours ago.
+   */
+  tuple(
+    query: SurfaceobstructionTupleParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SurfaceobstructionTupleResponse> {
+    return this._client.get('/udl/surfaceobstruction/tuple', { query, ...options });
+  }
+}
+
+export type SurfaceobstructionListResponse =
+  Array<SurfaceobstructionListResponse.SurfaceobstructionListResponseItem>;
+
+export namespace SurfaceobstructionListResponse {
+  export interface SurfaceobstructionListResponseItem {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * The unique identifier of the associated surface record. This field is required
+     * when posting, updating, or deleting a SurfaceObstruction record.
+     */
+    idSurface: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Array of all vehicles that are affected by this obstruction at the surface
+     * end-point, and require an advisory for usage.
+     */
+    advisoryRequired?: Array<string>;
+
+    /**
+     * Array of all vehicles that are affected by this obstruction at the surface
+     * end-point, and require an approval for usage.
+     */
+    approvalRequired?: Array<string>;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * The distance from the surface center line to this obstruction, in feet.
+     */
+    distanceFromCenterLine?: number;
+
+    /**
+     * The distance from the surface edge to this obstruction, in feet.
+     */
+    distanceFromEdge?: number;
+
+    /**
+     * The distance from the surface threshold to this obstruction, in feet.
+     */
+    distanceFromThreshold?: number;
+
+    /**
+     * The unique identifier of the associated NavigationalObstruction record.
+     */
+    idNavigationalObstruction?: string;
+
+    /**
+     * Description of this surface obstruction.
+     */
+    obstructionDesc?: string;
+
+    /**
+     * The height above ground level of the surface obstruction, in feet.
+     */
+    obstructionHeight?: number;
+
+    /**
+     * A code that indicates which side of the surface end is affected by this
+     * obstruction.
+     */
+    obstructionSideCode?: string;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * The source data library from which this record was received. This could be a
+     * remote or tactical UDL or another data library. If null, the record should be
+     * assumed to have originated from the primary Enterprise UDL.
+     */
+    sourceDL?: string;
+
+    /**
+     * WGS-84 latitude of the coordinate representing the end-point of a surface, in
+     * degrees. -90 to 90 degrees (negative values south of equator).
+     */
+    surfaceEndLat?: number;
+
+    /**
+     * WGS-84 longitude of the coordinate representing the end-point of a surface, in
+     * degrees. -180 to 180 degrees (negative values west of Prime Meridian).
+     */
+    surfaceEndLon?: number;
+  }
+}
+
+export type SurfaceobstructionCountResponse = string;
+
+export interface SurfaceobstructionGetResponse {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * The unique identifier of the associated surface record. This field is required
+   * when posting, updating, or deleting a SurfaceObstruction record.
+   */
+  idSurface: string;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Array of all vehicles that are affected by this obstruction at the surface
+   * end-point, and require an advisory for usage.
+   */
+  advisoryRequired?: Array<string>;
+
+  /**
+   * Array of all vehicles that are affected by this obstruction at the surface
+   * end-point, and require an approval for usage.
+   */
+  approvalRequired?: Array<string>;
+
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   */
+  createdAt?: string;
+
+  /**
+   * Application user who created the row in the database, auto-populated by the
+   * system.
+   */
+  createdBy?: string;
+
+  /**
+   * The distance from the surface center line to this obstruction, in feet.
+   */
+  distanceFromCenterLine?: number;
+
+  /**
+   * The distance from the surface edge to this obstruction, in feet.
+   */
+  distanceFromEdge?: number;
+
+  /**
+   * The distance from the surface threshold to this obstruction, in feet.
+   */
+  distanceFromThreshold?: number;
+
+  /**
+   * The unique identifier of the associated NavigationalObstruction record.
+   */
+  idNavigationalObstruction?: string;
+
+  /**
+   * Description of this surface obstruction.
+   */
+  obstructionDesc?: string;
+
+  /**
+   * The height above ground level of the surface obstruction, in feet.
+   */
+  obstructionHeight?: number;
+
+  /**
+   * A code that indicates which side of the surface end is affected by this
+   * obstruction.
+   */
+  obstructionSideCode?: string;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * The originating source network on which this record was created, auto-populated
+   * by the system.
+   */
+  origNetwork?: string;
+
+  /**
+   * The source data library from which this record was received. This could be a
+   * remote or tactical UDL or another data library. If null, the record should be
+   * assumed to have originated from the primary Enterprise UDL.
+   */
+  sourceDL?: string;
+
+  /**
+   * WGS-84 latitude of the coordinate representing the end-point of a surface, in
+   * degrees. -90 to 90 degrees (negative values south of equator).
+   */
+  surfaceEndLat?: number;
+
+  /**
+   * WGS-84 longitude of the coordinate representing the end-point of a surface, in
+   * degrees. -180 to 180 degrees (negative values west of Prime Meridian).
+   */
+  surfaceEndLon?: number;
+
+  /**
+   * Time the row was last updated in the database, auto-populated by the system.
+   */
+  updatedAt?: string;
+
+  /**
+   * Application user who updated the row in the database, auto-populated by the
+   * system.
+   */
+  updatedBy?: string;
+}
+
+export type SurfaceobstructionTupleResponse =
+  Array<SurfaceobstructionTupleResponse.SurfaceobstructionTupleResponseItem>;
+
+export namespace SurfaceobstructionTupleResponse {
+  export interface SurfaceobstructionTupleResponseItem {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * The unique identifier of the associated surface record. This field is required
+     * when posting, updating, or deleting a SurfaceObstruction record.
+     */
+    idSurface: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Array of all vehicles that are affected by this obstruction at the surface
+     * end-point, and require an advisory for usage.
+     */
+    advisoryRequired?: Array<string>;
+
+    /**
+     * Array of all vehicles that are affected by this obstruction at the surface
+     * end-point, and require an approval for usage.
+     */
+    approvalRequired?: Array<string>;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * The distance from the surface center line to this obstruction, in feet.
+     */
+    distanceFromCenterLine?: number;
+
+    /**
+     * The distance from the surface edge to this obstruction, in feet.
+     */
+    distanceFromEdge?: number;
+
+    /**
+     * The distance from the surface threshold to this obstruction, in feet.
+     */
+    distanceFromThreshold?: number;
+
+    /**
+     * The unique identifier of the associated NavigationalObstruction record.
+     */
+    idNavigationalObstruction?: string;
+
+    /**
+     * Description of this surface obstruction.
+     */
+    obstructionDesc?: string;
+
+    /**
+     * The height above ground level of the surface obstruction, in feet.
+     */
+    obstructionHeight?: number;
+
+    /**
+     * A code that indicates which side of the surface end is affected by this
+     * obstruction.
+     */
+    obstructionSideCode?: string;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * The source data library from which this record was received. This could be a
+     * remote or tactical UDL or another data library. If null, the record should be
+     * assumed to have originated from the primary Enterprise UDL.
+     */
+    sourceDL?: string;
+
+    /**
+     * WGS-84 latitude of the coordinate representing the end-point of a surface, in
+     * degrees. -90 to 90 degrees (negative values south of equator).
+     */
+    surfaceEndLat?: number;
+
+    /**
+     * WGS-84 longitude of the coordinate representing the end-point of a surface, in
+     * degrees. -180 to 180 degrees (negative values west of Prime Meridian).
+     */
+    surfaceEndLon?: number;
+
+    /**
+     * Time the row was last updated in the database, auto-populated by the system.
+     */
+    updatedAt?: string;
+
+    /**
+     * Application user who updated the row in the database, auto-populated by the
+     * system.
+     */
+    updatedBy?: string;
+  }
+}
+
+export interface SurfaceobstructionCreateParams {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * The unique identifier of the associated surface record. This field is required
+   * when posting, updating, or deleting a SurfaceObstruction record.
+   */
+  idSurface: string;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Array of all vehicles that are affected by this obstruction at the surface
+   * end-point, and require an advisory for usage.
+   */
+  advisoryRequired?: Array<string>;
+
+  /**
+   * Array of all vehicles that are affected by this obstruction at the surface
+   * end-point, and require an approval for usage.
+   */
+  approvalRequired?: Array<string>;
+
+  /**
+   * The distance from the surface center line to this obstruction, in feet.
+   */
+  distanceFromCenterLine?: number;
+
+  /**
+   * The distance from the surface edge to this obstruction, in feet.
+   */
+  distanceFromEdge?: number;
+
+  /**
+   * The distance from the surface threshold to this obstruction, in feet.
+   */
+  distanceFromThreshold?: number;
+
+  /**
+   * The unique identifier of the associated NavigationalObstruction record.
+   */
+  idNavigationalObstruction?: string;
+
+  /**
+   * Description of this surface obstruction.
+   */
+  obstructionDesc?: string;
+
+  /**
+   * The height above ground level of the surface obstruction, in feet.
+   */
+  obstructionHeight?: number;
+
+  /**
+   * A code that indicates which side of the surface end is affected by this
+   * obstruction.
+   */
+  obstructionSideCode?: string;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * WGS-84 latitude of the coordinate representing the end-point of a surface, in
+   * degrees. -90 to 90 degrees (negative values south of equator).
+   */
+  surfaceEndLat?: number;
+
+  /**
+   * WGS-84 longitude of the coordinate representing the end-point of a surface, in
+   * degrees. -180 to 180 degrees (negative values west of Prime Meridian).
+   */
+  surfaceEndLon?: number;
+}
+
+export interface SurfaceobstructionUpdateParams {
+  /**
+   * Path param: The ID of the surfaceobstruction to UPDATE.
+   */
+  path_id: string;
+
+  /**
+   * Body param: Classification marking of the data in IC/CAPCO Portion-marked
+   * format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Body param: Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE
+   * data.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Body param: The unique identifier of the associated surface record. This field
+   * is required when posting, updating, or deleting a SurfaceObstruction record.
+   */
+  idSurface: string;
+
+  /**
+   * Body param: Source of the data.
+   */
+  source: string;
+
+  /**
+   * Body param: Unique identifier of the record, auto-generated by the system.
+   */
+  body_id?: string;
+
+  /**
+   * Body param: Array of all vehicles that are affected by this obstruction at the
+   * surface end-point, and require an advisory for usage.
+   */
+  advisoryRequired?: Array<string>;
+
+  /**
+   * Body param: Array of all vehicles that are affected by this obstruction at the
+   * surface end-point, and require an approval for usage.
+   */
+  approvalRequired?: Array<string>;
+
+  /**
+   * Body param: The distance from the surface center line to this obstruction, in
+   * feet.
+   */
+  distanceFromCenterLine?: number;
+
+  /**
+   * Body param: The distance from the surface edge to this obstruction, in feet.
+   */
+  distanceFromEdge?: number;
+
+  /**
+   * Body param: The distance from the surface threshold to this obstruction, in
+   * feet.
+   */
+  distanceFromThreshold?: number;
+
+  /**
+   * Body param: The unique identifier of the associated NavigationalObstruction
+   * record.
+   */
+  idNavigationalObstruction?: string;
+
+  /**
+   * Body param: Description of this surface obstruction.
+   */
+  obstructionDesc?: string;
+
+  /**
+   * Body param: The height above ground level of the surface obstruction, in feet.
+   */
+  obstructionHeight?: number;
+
+  /**
+   * Body param: A code that indicates which side of the surface end is affected by
+   * this obstruction.
+   */
+  obstructionSideCode?: string;
+
+  /**
+   * Body param: Originating system or organization which produced the data, if
+   * different from the source. The origin may be different than the source if the
+   * source was a mediating system which forwarded the data on behalf of the origin
+   * system. If null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * Body param: WGS-84 latitude of the coordinate representing the end-point of a
+   * surface, in degrees. -90 to 90 degrees (negative values south of equator).
+   */
+  surfaceEndLat?: number;
+
+  /**
+   * Body param: WGS-84 longitude of the coordinate representing the end-point of a
+   * surface, in degrees. -180 to 180 degrees (negative values west of Prime
+   * Meridian).
+   */
+  surfaceEndLon?: number;
+}
+
+export type SurfaceobstructionFileCreateParams = Array<SurfaceobstructionFileCreateParams.Body>;
+
+export namespace SurfaceobstructionFileCreateParams {
+  export interface Body {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * The unique identifier of the associated surface record. This field is required
+     * when posting, updating, or deleting a SurfaceObstruction record.
+     */
+    idSurface: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Array of all vehicles that are affected by this obstruction at the surface
+     * end-point, and require an advisory for usage.
+     */
+    advisoryRequired?: Array<string>;
+
+    /**
+     * Array of all vehicles that are affected by this obstruction at the surface
+     * end-point, and require an approval for usage.
+     */
+    approvalRequired?: Array<string>;
+
+    /**
+     * The distance from the surface center line to this obstruction, in feet.
+     */
+    distanceFromCenterLine?: number;
+
+    /**
+     * The distance from the surface edge to this obstruction, in feet.
+     */
+    distanceFromEdge?: number;
+
+    /**
+     * The distance from the surface threshold to this obstruction, in feet.
+     */
+    distanceFromThreshold?: number;
+
+    /**
+     * The unique identifier of the associated NavigationalObstruction record.
+     */
+    idNavigationalObstruction?: string;
+
+    /**
+     * Description of this surface obstruction.
+     */
+    obstructionDesc?: string;
+
+    /**
+     * The height above ground level of the surface obstruction, in feet.
+     */
+    obstructionHeight?: number;
+
+    /**
+     * A code that indicates which side of the surface end is affected by this
+     * obstruction.
+     */
+    obstructionSideCode?: string;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * WGS-84 latitude of the coordinate representing the end-point of a surface, in
+     * degrees. -90 to 90 degrees (negative values south of equator).
+     */
+    surfaceEndLat?: number;
+
+    /**
+     * WGS-84 longitude of the coordinate representing the end-point of a surface, in
+     * degrees. -180 to 180 degrees (negative values west of Prime Meridian).
+     */
+    surfaceEndLon?: number;
+  }
+}
+
+export interface SurfaceobstructionTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
+
+export declare namespace Surfaceobstruction {
+  export {
+    type SurfaceobstructionListResponse as SurfaceobstructionListResponse,
+    type SurfaceobstructionCountResponse as SurfaceobstructionCountResponse,
+    type SurfaceobstructionGetResponse as SurfaceobstructionGetResponse,
+    type SurfaceobstructionTupleResponse as SurfaceobstructionTupleResponse,
+    type SurfaceobstructionCreateParams as SurfaceobstructionCreateParams,
+    type SurfaceobstructionUpdateParams as SurfaceobstructionUpdateParams,
+    type SurfaceobstructionFileCreateParams as SurfaceobstructionFileCreateParams,
+    type SurfaceobstructionTupleParams as SurfaceobstructionTupleParams,
+  };
+}

@@ -8,10 +8,8 @@ export {
   type EphemerisSetCountResponse,
   type EphemerisSetTupleResponse,
   type EphemerisSetCreateParams,
-  type EphemerisSetRetrieveParams,
   type EphemerisSetListParams,
   type EphemerisSetCountParams,
-  type EphemerisSetFileRetrieveParams,
   type EphemerisSetTupleParams,
 } from './ephemeris-sets';
 export {

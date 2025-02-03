@@ -4,9 +4,16 @@ export {
   Conjunctions,
   type ConjunctionAbridged,
   type ConjunctionFull,
+  type ConjunctionListResponse,
+  type ConjunctionCountResponse,
+  type ConjunctionGetHistoryResponse,
   type ConjunctionTupleResponse,
-  type ConjunctionCreateParams,
-  type ConjunctionRetrieveParams,
+  type ConjunctionListParams,
+  type ConjunctionCountParams,
+  type ConjunctionCreateUdlParams,
+  type ConjunctionCreateBulkParams,
+  type ConjunctionFileCreateParams,
+  type ConjunctionGetHistoryParams,
   type ConjunctionTupleParams,
 } from './conjunctions';
 export {

@@ -26,9 +26,8 @@ export class Engines extends APIResource {
    * include performance characteristics and limits. A launch vehicle has 1 to many
    * engines per stage.
    */
-  retrieve(params: EngineRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Engine> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/engine/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Engine> {
+    return this._client.get(`/udl/engine/${id}`, options);
   }
 
   /**
@@ -38,9 +37,9 @@ export class Engines extends APIResource {
    * perform this service operation. Please contact the UDL team for assistance.
    */
   update(params: EngineUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/engine/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -63,9 +62,8 @@ export class Engines extends APIResource {
    * per stage. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(params: EngineDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/engine/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/engine/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -106,9 +104,8 @@ export class Engines extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(params: EngineTupleParams, options?: Core.RequestOptions): Core.APIPromise<EngineTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/engine/tuple', options);
+  tuple(query: EngineTupleParams, options?: Core.RequestOptions): Core.APIPromise<EngineTupleResponse> {
+    return this._client.get('/udl/engine/tuple', { query, ...options });
   }
 }
 
@@ -138,7 +135,7 @@ export interface Engine {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Engine name/variant.
@@ -225,7 +222,7 @@ export interface EngineAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Engine name/variant.
@@ -296,7 +293,7 @@ export interface EngineCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Engine name/variant.
@@ -314,53 +311,19 @@ export interface EngineCreateParams {
   id?: string;
 
   /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
-
-  /**
    * Originating system or organization which produced the data, if different from
    * the source. The origin may be different than the source if the source was a
    * mediating system which forwarded the data on behalf of the origin system. If
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-}
-
-export interface EngineRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Engine to find.
-   */
-  body_id: string;
 }
 
 export interface EngineUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the Engine to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the Engine to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -385,7 +348,7 @@ export interface EngineUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Engine name/variant.
@@ -403,49 +366,19 @@ export interface EngineUpdateParams {
   body_id?: string;
 
   /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
-
-  /**
    * Body param: Originating system or organization which produced the data, if
    * different from the source. The origin may be different than the source if the
    * source was a mediating system which forwarded the data on behalf of the origin
    * system. If null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-}
-
-export interface EngineDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Engine to delete.
-   */
-  body_id: string;
 }
 
 export interface EngineTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -459,9 +392,7 @@ export declare namespace Engines {
     type EngineCountResponse as EngineCountResponse,
     type EngineTupleResponse as EngineTupleResponse,
     type EngineCreateParams as EngineCreateParams,
-    type EngineRetrieveParams as EngineRetrieveParams,
     type EngineUpdateParams as EngineUpdateParams,
-    type EngineDeleteParams as EngineDeleteParams,
     type EngineTupleParams as EngineTupleParams,
   };
 }

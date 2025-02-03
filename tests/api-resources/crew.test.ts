@@ -4,18 +4,18 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource crew', () => {
   test('create: only required params', async () => {
     const responsePromise = client.crew.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      origCrewId: 'origCrewId',
-      source: 'source',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      origCrewId: 'JHJDHjhuu929o92',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,75 +28,70 @@ describe('resource crew', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.crew.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      origCrewId: 'origCrewId',
-      source: 'source',
-      id: 'id',
-      adjReturnTime: '2019-12-27T18:11:19.117Z',
-      adjReturnTimeApprover: 'adjReturnTimeApprover',
-      aircraftMDS: 'aircraftMDS',
-      alertedTime: '2019-12-27T18:11:19.117Z',
-      armsCrewUnit: 'armsCrewUnit',
-      arrICAO: 'arrICAO',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      crewHome: true,
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      origCrewId: 'JHJDHjhuu929o92',
+      source: 'Bluestaq',
+      id: 'bdad6945-c9e4-b829-f7be-1ad075541921',
+      adjReturnTime: '2024-01-01T16:00:00.123Z',
+      adjReturnTimeApprover: 'Smith',
+      aircraftMDS: 'C017A',
+      alertedTime: '2022-01-01T16:00:00.123Z',
+      armsCrewUnit: '00016ALSQ',
+      arrICAO: 'KDEN',
+      crewHome: false,
       crewMembers: [
         {
-          branch: 'branch',
-          civilian: true,
-          commander: true,
-          crewPosition: 'crewPosition',
-          dodID: 'dodID',
-          dutyPosition: 'dutyPosition',
-          firstName: 'firstName',
-          last4SSN: 'last4SSN',
-          lastName: 'lastName',
-          memberId: 'memberId',
-          memberRemarks: 'memberRemarks',
-          memberType: 'memberType',
-          middleInitial: 'middleInitial',
-          rank: 'rank',
-          squadron: 'squadron',
-          username: 'username',
-          wing: 'wing',
+          branch: 'Air Force',
+          civilian: false,
+          commander: false,
+          crewPosition: 'EP A',
+          dodID: '0123456789',
+          dutyPosition: 'IP',
+          firstName: 'Freddie',
+          last4SSN: '1234',
+          lastName: 'Smith',
+          memberId: '12345678abc',
+          memberRemarks: 'Crew member remark',
+          memberType: 'AIRCREW',
+          middleInitial: 'G',
+          rank: 'Capt',
+          squadron: '21AS',
+          username: 'fgsmith',
+          wing: '60AMW',
         },
       ],
-      crewName: 'crewName',
-      crewSquadron: 'crewSquadron',
-      crewType: 'crewType',
-      crewWing: 'crewWing',
-      currentICAO: 'currentICAO',
-      depICAO: 'depICAO',
-      estArrTime: '2019-12-27T18:11:19.117Z',
-      estDepTime: '2019-12-27T18:11:19.117Z',
-      fdpEligType: 'fdpEligType',
-      fdpType: 'fdpType',
-      femaleEnlistedQty: 0,
-      femaleOfficerQty: 0,
-      idSortie: 'idSortie',
-      initStartTime: '2019-12-27T18:11:19.117Z',
-      legalAlertTime: '2019-12-27T18:11:19.117Z',
-      legalBravoTime: '2019-12-27T18:11:19.117Z',
-      linkedTask: true,
-      maleEnlistedQty: 0,
-      maleOfficerQty: 0,
-      missionId: 'missionId',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      postRestApplied: true,
-      preRestApplied: true,
-      returnTime: '2019-12-27T18:11:19.117Z',
-      stageTime: '2019-12-27T18:11:19.117Z',
-      status: 'status',
-      updatedAt: '2019-12-27T18:11:19.117Z',
-      updatedBy: 'updatedBy',
+      crewName: 'falcon',
+      crewSquadron: '21AS',
+      crewType: 'AIRLAND',
+      crewWing: '60AMW',
+      currentICAO: 'KCOS',
+      depICAO: 'KCOS',
+      estArrTime: '2024-01-01T18:00:00.123Z',
+      estDepTime: '2024-01-01T16:00:00.123Z',
+      fdpEligType: 'A',
+      fdpType: 'A',
+      femaleEnlistedQty: 2,
+      femaleOfficerQty: 1,
+      idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+      initStartTime: '2024-01-01T16:00:00.123Z',
+      legalAlertTime: '2022-01-01T16:00:00.123Z',
+      legalBravoTime: '2022-01-01T16:00:00.123Z',
+      linkedTask: false,
+      maleEnlistedQty: 3,
+      maleOfficerQty: 1,
+      missionId: 'AJM123456123',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      postRestApplied: false,
+      preRestApplied: false,
+      returnTime: '2022-01-01T16:00:00.123Z',
+      stageTime: '2024-01-01T16:00:00.123Z',
+      status: 'APPROVED',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.crew.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.crew.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -106,18 +101,20 @@ describe('resource crew', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.crew.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.crew.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.crew.update({
       path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      origCrewId: 'origCrewId',
-      source: 'source',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      origCrewId: 'JHJDHjhuu929o92',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -131,71 +128,65 @@ describe('resource crew', () => {
   test('update: required and optional params', async () => {
     const response = await client.crew.update({
       path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      origCrewId: 'origCrewId',
-      source: 'source',
-      body_id: 'id',
-      adjReturnTime: '2019-12-27T18:11:19.117Z',
-      adjReturnTimeApprover: 'adjReturnTimeApprover',
-      aircraftMDS: 'aircraftMDS',
-      alertedTime: '2019-12-27T18:11:19.117Z',
-      armsCrewUnit: 'armsCrewUnit',
-      arrICAO: 'arrICAO',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      crewHome: true,
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      origCrewId: 'JHJDHjhuu929o92',
+      source: 'Bluestaq',
+      body_id: 'bdad6945-c9e4-b829-f7be-1ad075541921',
+      adjReturnTime: '2024-01-01T16:00:00.123Z',
+      adjReturnTimeApprover: 'Smith',
+      aircraftMDS: 'C017A',
+      alertedTime: '2022-01-01T16:00:00.123Z',
+      armsCrewUnit: '00016ALSQ',
+      arrICAO: 'KDEN',
+      crewHome: false,
       crewMembers: [
         {
-          branch: 'branch',
-          civilian: true,
-          commander: true,
-          crewPosition: 'crewPosition',
-          dodID: 'dodID',
-          dutyPosition: 'dutyPosition',
-          firstName: 'firstName',
-          last4SSN: 'last4SSN',
-          lastName: 'lastName',
-          memberId: 'memberId',
-          memberRemarks: 'memberRemarks',
-          memberType: 'memberType',
-          middleInitial: 'middleInitial',
-          rank: 'rank',
-          squadron: 'squadron',
-          username: 'username',
-          wing: 'wing',
+          branch: 'Air Force',
+          civilian: false,
+          commander: false,
+          crewPosition: 'EP A',
+          dodID: '0123456789',
+          dutyPosition: 'IP',
+          firstName: 'Freddie',
+          last4SSN: '1234',
+          lastName: 'Smith',
+          memberId: '12345678abc',
+          memberRemarks: 'Crew member remark',
+          memberType: 'AIRCREW',
+          middleInitial: 'G',
+          rank: 'Capt',
+          squadron: '21AS',
+          username: 'fgsmith',
+          wing: '60AMW',
         },
       ],
-      crewName: 'crewName',
-      crewSquadron: 'crewSquadron',
-      crewType: 'crewType',
-      crewWing: 'crewWing',
-      currentICAO: 'currentICAO',
-      depICAO: 'depICAO',
-      estArrTime: '2019-12-27T18:11:19.117Z',
-      estDepTime: '2019-12-27T18:11:19.117Z',
-      fdpEligType: 'fdpEligType',
-      fdpType: 'fdpType',
-      femaleEnlistedQty: 0,
-      femaleOfficerQty: 0,
-      idSortie: 'idSortie',
-      initStartTime: '2019-12-27T18:11:19.117Z',
-      legalAlertTime: '2019-12-27T18:11:19.117Z',
-      legalBravoTime: '2019-12-27T18:11:19.117Z',
-      linkedTask: true,
-      maleEnlistedQty: 0,
-      maleOfficerQty: 0,
-      missionId: 'missionId',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      postRestApplied: true,
-      preRestApplied: true,
-      returnTime: '2019-12-27T18:11:19.117Z',
-      stageTime: '2019-12-27T18:11:19.117Z',
-      status: 'status',
-      updatedAt: '2019-12-27T18:11:19.117Z',
-      updatedBy: 'updatedBy',
+      crewName: 'falcon',
+      crewSquadron: '21AS',
+      crewType: 'AIRLAND',
+      crewWing: '60AMW',
+      currentICAO: 'KCOS',
+      depICAO: 'KCOS',
+      estArrTime: '2024-01-01T18:00:00.123Z',
+      estDepTime: '2024-01-01T16:00:00.123Z',
+      fdpEligType: 'A',
+      fdpType: 'A',
+      femaleEnlistedQty: 2,
+      femaleOfficerQty: 1,
+      idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+      initStartTime: '2024-01-01T16:00:00.123Z',
+      legalAlertTime: '2022-01-01T16:00:00.123Z',
+      legalBravoTime: '2022-01-01T16:00:00.123Z',
+      linkedTask: false,
+      maleEnlistedQty: 3,
+      maleOfficerQty: 1,
+      missionId: 'AJM123456123',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      postRestApplied: false,
+      preRestApplied: false,
+      returnTime: '2022-01-01T16:00:00.123Z',
+      stageTime: '2024-01-01T16:00:00.123Z',
+      status: 'APPROVED',
     });
   });
 
@@ -233,6 +224,85 @@ describe('resource crew', () => {
     await expect(client.crew.count({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Unifieddatalibrary.NotFoundError,
     );
+  });
+
+  test('fileCreate: only required params', async () => {
+    const responsePromise = client.crew.fileCreate([
+      { classificationMarking: 'U', dataMode: 'REAL', origCrewId: 'JHJDHjhuu929o92', source: 'Bluestaq' },
+    ]);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('fileCreate: required and optional params', async () => {
+    const response = await client.crew.fileCreate([
+      {
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        origCrewId: 'JHJDHjhuu929o92',
+        source: 'Bluestaq',
+        id: 'bdad6945-c9e4-b829-f7be-1ad075541921',
+        adjReturnTime: '2024-01-01T16:00:00.123Z',
+        adjReturnTimeApprover: 'Smith',
+        aircraftMDS: 'C017A',
+        alertedTime: '2022-01-01T16:00:00.123Z',
+        armsCrewUnit: '00016ALSQ',
+        arrICAO: 'KDEN',
+        crewHome: false,
+        crewMembers: [
+          {
+            branch: 'Air Force',
+            civilian: false,
+            commander: false,
+            crewPosition: 'EP A',
+            dodID: '0123456789',
+            dutyPosition: 'IP',
+            firstName: 'Freddie',
+            last4SSN: '1234',
+            lastName: 'Smith',
+            memberId: '12345678abc',
+            memberRemarks: 'Crew member remark',
+            memberType: 'AIRCREW',
+            middleInitial: 'G',
+            rank: 'Capt',
+            squadron: '21AS',
+            username: 'fgsmith',
+            wing: '60AMW',
+          },
+        ],
+        crewName: 'falcon',
+        crewSquadron: '21AS',
+        crewType: 'AIRLAND',
+        crewWing: '60AMW',
+        currentICAO: 'KCOS',
+        depICAO: 'KCOS',
+        estArrTime: '2024-01-01T18:00:00.123Z',
+        estDepTime: '2024-01-01T16:00:00.123Z',
+        fdpEligType: 'A',
+        fdpType: 'A',
+        femaleEnlistedQty: 2,
+        femaleOfficerQty: 1,
+        idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+        initStartTime: '2024-01-01T16:00:00.123Z',
+        legalAlertTime: '2022-01-01T16:00:00.123Z',
+        legalBravoTime: '2022-01-01T16:00:00.123Z',
+        linkedTask: false,
+        maleEnlistedQty: 3,
+        maleOfficerQty: 1,
+        missionId: 'AJM123456123',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        postRestApplied: false,
+        preRestApplied: false,
+        returnTime: '2022-01-01T16:00:00.123Z',
+        stageTime: '2024-01-01T16:00:00.123Z',
+        status: 'APPROVED',
+      },
+    ]);
   });
 
   test('queryhelp', async () => {

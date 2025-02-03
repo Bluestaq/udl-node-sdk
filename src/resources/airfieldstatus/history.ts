@@ -12,17 +12,16 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(params?: HistoryListParams, options?: Core.RequestOptions): Core.APIPromise<HistoryListResponse>;
+  list(query?: HistoryListParams, options?: Core.RequestOptions): Core.APIPromise<HistoryListResponse>;
   list(options?: Core.RequestOptions): Core.APIPromise<HistoryListResponse>;
   list(
-    params: HistoryListParams | Core.RequestOptions = {},
+    query: HistoryListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<HistoryListResponse> {
-    if (isRequestOptions(params)) {
-      return this.list({}, params);
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
     }
-    const { columns } = params;
-    return this._client.get('/udl/airfieldstatus/history', options);
+    return this._client.get('/udl/airfieldstatus/history', { query, ...options });
   }
 
   /**

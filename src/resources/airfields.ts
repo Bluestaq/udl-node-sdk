@@ -23,9 +23,8 @@ export class Airfields extends APIResource {
    * Service operation to get a single Airfield by its unique ID passed as a path
    * parameter.
    */
-  retrieve(params: AirfieldRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<AirfieldFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/airfield/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AirfieldFull> {
+    return this._client.get(`/udl/airfield/${id}`, options);
   }
 
   /**
@@ -33,9 +32,9 @@ export class Airfields extends APIResource {
    * perform this service operation. Please contact the UDL team for assistance.
    */
   update(params: AirfieldUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/airfield/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -86,9 +85,8 @@ export class Airfields extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(params: AirfieldTupleParams, options?: Core.RequestOptions): Core.APIPromise<AirfieldTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/airfield/tuple', options);
+  tuple(query: AirfieldTupleParams, options?: Core.RequestOptions): Core.APIPromise<AirfieldTupleResponse> {
+    return this._client.get('/udl/airfield/tuple', { query, ...options });
   }
 }
 
@@ -118,7 +116,7 @@ export interface AirfieldAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The name of the airfield.
@@ -155,7 +153,7 @@ export interface AirfieldAbridged {
    * The country code. This value is typically the ISO 3166 Alpha-2 two-character
    * country code, however it can also represent various consortiums that do not
    * appear in the ISO document. The code must correspond to an existing country in
-   * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+   * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
    * ISO Alpha-3 code, or alternate code values that exist for the specified country
    * code.
    */
@@ -338,7 +336,7 @@ export interface AirfieldFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The name of the airfield.
@@ -375,7 +373,7 @@ export interface AirfieldFull {
    * The country code. This value is typically the ISO 3166 Alpha-2 two-character
    * country code, however it can also represent various consortiums that do not
    * appear in the ISO document. The code must correspond to an existing country in
-   * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+   * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
    * ISO Alpha-3 code, or alternate code values that exist for the specified country
    * code.
    */
@@ -571,7 +569,7 @@ export interface AirfieldCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The name of the airfield.
@@ -608,22 +606,11 @@ export interface AirfieldCreateParams {
    * The country code. This value is typically the ISO 3166 Alpha-2 two-character
    * country code, however it can also represent various consortiums that do not
    * appear in the ISO document. The code must correspond to an existing country in
-   * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+   * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
    * ISO Alpha-3 code, or alternate code values that exist for the specified country
    * code.
    */
   countryCode?: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Elevation of the airfield above mean sea level, in feet. Note: The corresponding
@@ -721,12 +708,6 @@ export interface AirfieldCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Region where the airfield resides.
    */
   regionName?: string;
@@ -735,13 +716,6 @@ export interface AirfieldCreateParams {
    * The number of runways at the site.
    */
   runways?: number;
-
-  /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
 
   /**
    * State or province of the airfield's location.
@@ -765,28 +739,11 @@ export interface AirfieldCreateParams {
   zarId?: string;
 }
 
-export interface AirfieldRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Airfield to retrieve.
-   */
-  body_id: string;
-}
-
 export interface AirfieldUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the Airfield to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the Airfield to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -811,7 +768,7 @@ export interface AirfieldUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: The name of the airfield.
@@ -848,23 +805,11 @@ export interface AirfieldUpdateParams {
    * Body param: The country code. This value is typically the ISO 3166 Alpha-2
    * two-character country code, however it can also represent various consortiums
    * that do not appear in the ISO document. The code must correspond to an existing
-   * country in the UDL�s country API. Call udl/country/{code} to get any associated
+   * country in the UDL’s country API. Call udl/country/{code} to get any associated
    * FIPS code, ISO Alpha-3 code, or alternate code values that exist for the
    * specified country code.
    */
   countryCode?: string;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: Elevation of the airfield above mean sea level, in feet. Note: The
@@ -967,12 +912,6 @@ export interface AirfieldUpdateParams {
   origin?: string;
 
   /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Body param: Region where the airfield resides.
    */
   regionName?: string;
@@ -981,13 +920,6 @@ export interface AirfieldUpdateParams {
    * Body param: The number of runways at the site.
    */
   runways?: number;
-
-  /**
-   * Body param: The source data library from which this record was received. This
-   * could be a remote or tactical UDL or another data library. If null, the record
-   * should be assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
 
   /**
    * Body param: State or province of the airfield's location.
@@ -1015,7 +947,7 @@ export interface AirfieldTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -1029,7 +961,6 @@ export declare namespace Airfields {
     type AirfieldCountResponse as AirfieldCountResponse,
     type AirfieldTupleResponse as AirfieldTupleResponse,
     type AirfieldCreateParams as AirfieldCreateParams,
-    type AirfieldRetrieveParams as AirfieldRetrieveParams,
     type AirfieldUpdateParams as AirfieldUpdateParams,
     type AirfieldTupleParams as AirfieldTupleParams,
   };

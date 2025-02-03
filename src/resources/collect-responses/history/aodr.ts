@@ -11,9 +11,9 @@ export class Aodr extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(params: AodrListParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { createdAt, columns, notification, outputDelimiter, outputFormat } = params;
+  list(query: AodrListParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.get('/udl/collectresponse/history/aodr', {
+      query,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });

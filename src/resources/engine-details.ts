@@ -26,12 +26,8 @@ export class EngineDetails extends APIResource {
    * performance characteristics/limits compiled by a particular source. A launch
    * vehicle engine may have several details records from multiple sources.
    */
-  retrieve(
-    params: EngineDetailRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EngineDetailsFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/enginedetails/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EngineDetailsFull> {
+    return this._client.get(`/udl/enginedetails/${id}`, options);
   }
 
   /**
@@ -42,9 +38,9 @@ export class EngineDetails extends APIResource {
    * Please contact the UDL team for assistance.
    */
   update(params: EngineDetailUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/enginedetails/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -58,9 +54,8 @@ export class EngineDetails extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  delete(params: EngineDetailDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/enginedetails/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/enginedetails/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -94,7 +89,7 @@ export interface EngineDetailsFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Identifier of the parent engine record.
@@ -252,7 +247,7 @@ export interface EngineDetailCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Identifier of the parent engine record.
@@ -284,17 +279,6 @@ export interface EngineDetailCreateParams {
    * etc.).
    */
   characteristicType?: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Engine cycle type (e.g. Electrostatic Ion, Pressure Fed, Hall, Catalytic
@@ -336,12 +320,6 @@ export interface EngineDetailCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Oxidizer type (e.g. Nitrogen Tetroxide, Liquid Oxygen, etc).
    */
   oxidizer?: string;
@@ -377,28 +355,11 @@ export interface EngineDetailCreateParams {
   vacuumThrust?: number;
 }
 
-export interface EngineDetailRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the EngineDetails to find.
-   */
-  body_id: string;
-}
-
 export interface EngineDetailUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the EngineDetails to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the EngineDetails to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -423,7 +384,7 @@ export interface EngineDetailUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Identifier of the parent engine record.
@@ -455,18 +416,6 @@ export interface EngineDetailUpdateParams {
    * Bi-propellant, etc.).
    */
   characteristicType?: string;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: Engine cycle type (e.g. Electrostatic Ion, Pressure Fed, Hall,
@@ -508,12 +457,6 @@ export interface EngineDetailUpdateParams {
   origin?: string;
 
   /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Body param: Oxidizer type (e.g. Nitrogen Tetroxide, Liquid Oxygen, etc).
    */
   oxidizer?: string;
@@ -549,24 +492,10 @@ export interface EngineDetailUpdateParams {
   vacuumThrust?: number;
 }
 
-export interface EngineDetailDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the EngineDetails to delete.
-   */
-  body_id: string;
-}
-
 export declare namespace EngineDetails {
   export {
     type EngineDetailsFull as EngineDetailsFull,
     type EngineDetailCreateParams as EngineDetailCreateParams,
-    type EngineDetailRetrieveParams as EngineDetailRetrieveParams,
     type EngineDetailUpdateParams as EngineDetailUpdateParams,
-    type EngineDetailDeleteParams as EngineDetailDeleteParams,
   };
 }

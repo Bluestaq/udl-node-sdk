@@ -22,9 +22,8 @@ export class Equipment extends APIResource {
    * Service operation to get a single equipment record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(params: EquipmentRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<EquipmentFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/equipment/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EquipmentFull> {
+    return this._client.get(`/udl/equipment/${id}`, options);
   }
 
   /**
@@ -33,9 +32,9 @@ export class Equipment extends APIResource {
    * assistance.
    */
   update(params: EquipmentUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/equipment/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -56,9 +55,8 @@ export class Equipment extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(params: EquipmentDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/equipment/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/equipment/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -112,12 +110,8 @@ export class Equipment extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    params: EquipmentTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EquipmentTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/equipment/tuple', options);
+  tuple(query: EquipmentTupleParams, options?: Core.RequestOptions): Core.APIPromise<EquipmentTupleResponse> {
+    return this._client.get('/udl/equipment/tuple', { query, ...options });
   }
 }
 
@@ -155,7 +149,7 @@ export interface EquipmentAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * WGS84 latitude of the location, in degrees. -90 to 90 degrees (negative values
@@ -631,7 +625,7 @@ export interface EquipmentFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * WGS84 latitude of the location, in degrees. -90 to 90 degrees (negative values
@@ -1126,7 +1120,7 @@ export interface EquipmentCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * WGS84 latitude of the location, in degrees. -90 to 90 degrees (negative values
@@ -1261,17 +1255,6 @@ export interface EquipmentCreateParams {
    * coordinate.
    */
   coordDerivAcc?: number;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Ground elevation, in meters, of the geographic coordinates referenced to (above
@@ -1568,28 +1551,11 @@ export interface EquipmentCreateParams {
   wac?: string;
 }
 
-export interface EquipmentRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Equipment to find.
-   */
-  body_id: string;
-}
-
 export interface EquipmentUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the Equipment to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the Equipment to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -1622,7 +1588,7 @@ export interface EquipmentUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: WGS84 latitude of the location, in degrees. -90 to 90 degrees
@@ -1760,18 +1726,6 @@ export interface EquipmentUpdateParams {
    * to derive the coordinate.
    */
   coordDerivAcc?: number;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: Ground elevation, in meters, of the geographic coordinates
@@ -2072,18 +2026,6 @@ export interface EquipmentUpdateParams {
   wac?: string;
 }
 
-export interface EquipmentDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Equipment entry to delete.
-   */
-  body_id: string;
-}
-
 export type EquipmentCreateBulkParams = Array<EquipmentCreateBulkParams.Body>;
 
 export namespace EquipmentCreateBulkParams {
@@ -2121,7 +2063,7 @@ export namespace EquipmentCreateBulkParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * WGS84 latitude of the location, in degrees. -90 to 90 degrees (negative values
@@ -2256,17 +2198,6 @@ export namespace EquipmentCreateBulkParams {
      * coordinate.
      */
     coordDerivAcc?: number;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
 
     /**
      * Ground elevation, in meters, of the geographic coordinates referenced to (above
@@ -2568,7 +2499,7 @@ export interface EquipmentTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -2582,9 +2513,7 @@ export declare namespace Equipment {
     type EquipmentCountResponse as EquipmentCountResponse,
     type EquipmentTupleResponse as EquipmentTupleResponse,
     type EquipmentCreateParams as EquipmentCreateParams,
-    type EquipmentRetrieveParams as EquipmentRetrieveParams,
     type EquipmentUpdateParams as EquipmentUpdateParams,
-    type EquipmentDeleteParams as EquipmentDeleteParams,
     type EquipmentCreateBulkParams as EquipmentCreateBulkParams,
     type EquipmentTupleParams as EquipmentTupleParams,
   };

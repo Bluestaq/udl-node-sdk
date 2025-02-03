@@ -4,8 +4,8 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
@@ -13,10 +13,10 @@ describe('resource diffofarrival', () => {
   test('create: only required params', async () => {
     const responsePromise = client.diffofarrival.create([
       {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        obTime: '2019-12-27T18:11:19.117Z',
-        source: 'source',
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        obTime: '2018-01-01T16:00:00.123456Z',
+        source: 'Bluestaq',
       },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -31,55 +31,50 @@ describe('resource diffofarrival', () => {
   test('create: required and optional params', async () => {
     const response = await client.diffofarrival.create([
       {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        obTime: '2019-12-27T18:11:19.117Z',
-        source: 'source',
-        id: 'id',
-        bandwidth: 0,
-        collectionMode: 'collectionMode',
-        createdAt: '2019-12-27T18:11:19.117Z',
-        createdBy: 'createdBy',
-        deltaRange: 0,
-        deltaRangeRate: 0,
-        deltaRangeRateUnc: 0,
-        deltaRangeUnc: 0,
-        descriptor: 'descriptor',
-        fdoa: 0,
-        fdoaUnc: 0,
-        frequency: 0,
-        idOnOrbit: 'idOnOrbit',
-        idSensor1: 'idSensor1',
-        idSensor2: 'idSensor2',
-        origin: 'origin',
-        origNetwork: 'origNetwork',
-        origObjectId: 'origObjectId',
-        origSensorId1: 'origSensorId1',
-        origSensorId2: 'origSensorId2',
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        obTime: '2018-01-01T16:00:00.123456Z',
+        source: 'Bluestaq',
+        id: 'DIFFOFARRIVAL-ID',
+        bandwidth: 1.1,
+        collectionMode: 'SURVEY',
+        deltaRange: 1.1,
+        deltaRangeRate: 1.1,
+        deltaRangeRateUnc: 1.1,
+        deltaRangeUnc: 1.1,
+        descriptor: 'Example descriptor',
+        fdoa: 1.1,
+        fdoaUnc: 1.1,
+        frequency: 1.1,
+        idSensor1: 'SENSOR1-ID',
+        idSensor2: 'SENSOR2-ID',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        origObjectId: 'ORIGOBJECT-ID',
+        origSensorId1: 'ORIGSENSOR1-ID',
+        origSensorId2: 'ORIGSENSOR2-ID',
         rawFileURI: 'rawFileURI',
-        satNo: 0,
-        sen2alt: 0,
-        sen2lat: 0,
-        sen2lon: 0,
-        senalt: 0,
-        senlat: 0,
-        senlon: 0,
-        sensor1Delay: 0,
-        sensor2Delay: 0,
-        snr: 0,
-        sourceDL: 'sourceDL',
-        tags: ['string'],
-        taskId: 'taskId',
-        tdoa: 0,
-        tdoaUnc: 0,
-        transactionId: 'transactionId',
-        uct: true,
+        satNo: 25544,
+        sen2alt: 1.1,
+        sen2lat: 1.1,
+        sen2lon: 1.1,
+        senalt: 1.1,
+        senlat: 45.1,
+        senlon: 120.1,
+        sensor1Delay: 1.1,
+        sensor2Delay: 1.1,
+        snr: 1.1,
+        tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+        taskId: 'TASK-ID',
+        tdoa: 1.1,
+        tdoaUnc: 1.1,
+        transactionId: 'TRANSACTION-ID',
+        uct: false,
       },
     ]);
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.diffofarrival.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.diffofarrival.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -89,8 +84,11 @@ describe('resource diffofarrival', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.diffofarrival.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.diffofarrival.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('queryhelp', async () => {

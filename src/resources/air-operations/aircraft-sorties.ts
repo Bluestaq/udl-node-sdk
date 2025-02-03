@@ -48,7 +48,7 @@ export namespace AircraftSortyCreateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * The scheduled time that the Aircraft sortie is planned to depart, in ISO 8601
@@ -177,17 +177,6 @@ export namespace AircraftSortyCreateParams {
     commanderName?: string;
 
     /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
-
-    /**
      * The current state of this sortie.
      */
     currentState?: string;
@@ -257,16 +246,6 @@ export namespace AircraftSortyCreateParams {
      * UTC format with millisecond precision.
      */
     estDepTime?: string;
-
-    /**
-     * Name of the uploaded PDF.
-     */
-    filename?: string;
-
-    /**
-     * Size of the supporting PDF, in bytes.
-     */
-    filesize?: number;
 
     /**
      * The planned flight time for this sortie, in minutes.
@@ -347,12 +326,6 @@ export namespace AircraftSortyCreateParams {
     origin?: string;
 
     /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
-
-    /**
      * The sortie identifier provided by the originating source.
      */
     origSortieId?: string;
@@ -378,16 +351,6 @@ export namespace AircraftSortyCreateParams {
     oxyReqPax?: number;
 
     /**
-     * The status of the supporting document.
-     */
-    paperStatus?: string;
-
-    /**
-     * The version number of the crew paper.
-     */
-    papersVersion?: string;
-
-    /**
      * The POI parking location.
      */
     parkingLoc?: string;
@@ -406,20 +369,12 @@ export namespace AircraftSortyCreateParams {
     /**
      * The prior permission required (PPR) status.
      */
-    pprStatus?: string;
+    pprStatus?: 'NOT REQUIRED' | 'REQUIRED NOT REQUESTED' | 'GRANTED' | 'PENDING';
 
     /**
      * The planned primary Standard Conventional Load of the aircraft for this sortie.
      */
     primarySCL?: string;
-
-    /**
-     * When crew papers are associated to this sortie, the system updates this value.
-     * This field is the URI location in the document repository of that raw file. To
-     * download the raw file, prepend https://udl-hostname/scs/download?id= to this
-     * field's value.
-     */
-    rawFileURI?: string;
 
     /**
      * Aircraft configuration required for the mission.
@@ -436,7 +391,7 @@ export namespace AircraftSortyCreateParams {
      * required, C6 - Consider ravens (Ground time over 6 hours), R6 - Ravens required
      * (Ground time over 6 hours)).
      */
-    rvnReq?: string;
+    rvnReq?: 'N' | 'R' | 'C6' | 'R6';
 
     /**
      * Remarks concerning the schedule.
@@ -461,13 +416,6 @@ export namespace AircraftSortyCreateParams {
      * YYYY-MM-DD).
      */
     sortieDate?: string;
-
-    /**
-     * The source data library from which this record was received. This could be a
-     * remote or tactical UDL or another data library. If null, the record should be
-     * assumed to have originated from the primary Enterprise UDL.
-     */
-    sourceDL?: string;
 
     /**
      * The tail number of the aircraft assigned to this sortie.

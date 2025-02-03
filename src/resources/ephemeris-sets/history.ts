@@ -3,7 +3,7 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as Shared from '../shared';
+import * as EphemerisSetsAPI from './ephemeris-sets';
 
 export class History extends APIResource {
   /**
@@ -12,17 +12,16 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(params?: HistoryListParams, options?: Core.RequestOptions): Core.APIPromise<HistoryListResponse>;
+  list(query?: HistoryListParams, options?: Core.RequestOptions): Core.APIPromise<HistoryListResponse>;
   list(options?: Core.RequestOptions): Core.APIPromise<HistoryListResponse>;
   list(
-    params: HistoryListParams | Core.RequestOptions = {},
+    query: HistoryListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<HistoryListResponse> {
-    if (isRequestOptions(params)) {
-      return this.list({}, params);
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
     }
-    const { columns, pointEndTime, pointStartTime } = params;
-    return this._client.get('/udl/ephemerisset/history', options);
+    return this._client.get('/udl/ephemerisset/history', { query, ...options });
   }
 
   /**
@@ -32,17 +31,17 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  aodr(params?: HistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void>;
+  aodr(query?: HistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void>;
   aodr(options?: Core.RequestOptions): Core.APIPromise<void>;
   aodr(
-    params: HistoryAodrParams | Core.RequestOptions = {},
+    query: HistoryAodrParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    if (isRequestOptions(params)) {
-      return this.aodr({}, params);
+    if (isRequestOptions(query)) {
+      return this.aodr({}, query);
     }
-    const { columns, notification, outputDelimiter, outputFormat, pointEndTime, pointStartTime } = params;
     return this._client.get('/udl/ephemerisset/history/aodr', {
+      query,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -55,24 +54,24 @@ export class History extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(params?: HistoryCountParams, options?: Core.RequestOptions): Core.APIPromise<string>;
+  count(query?: HistoryCountParams, options?: Core.RequestOptions): Core.APIPromise<string>;
   count(options?: Core.RequestOptions): Core.APIPromise<string>;
   count(
-    params: HistoryCountParams | Core.RequestOptions = {},
+    query: HistoryCountParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<string> {
-    if (isRequestOptions(params)) {
-      return this.count({}, params);
+    if (isRequestOptions(query)) {
+      return this.count({}, query);
     }
-    const { pointEndTime, pointStartTime } = params;
     return this._client.get('/udl/ephemerisset/history/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
   }
 }
 
-export type HistoryListResponse = Array<Shared.EphemerisSetFull>;
+export type HistoryListResponse = Array<EphemerisSetsAPI.EphemerisSet>;
 
 export type HistoryCountResponse = string;
 
