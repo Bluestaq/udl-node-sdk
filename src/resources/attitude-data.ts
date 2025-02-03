@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as Shared from './shared';
 
 export class AttitudeData extends APIResource {
   /**
@@ -27,11 +26,10 @@ export class AttitudeData extends APIResource {
    * hours ago.
    */
   tuple(
-    params: AttitudeDataTupleParams,
+    query: AttitudeDataTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AttitudeDataTupleResponse> {
-    const { asId, columns } = params;
-    return this._client.get('/udl/attitudedata/tuple', options);
+    return this._client.get('/udl/attitudedata/tuple', { query, ...options });
   }
 }
 
@@ -66,7 +64,7 @@ export interface AttitudedataFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Source of the data.
@@ -246,7 +244,7 @@ export interface AttitudedataFull {
   zRate?: Array<number>;
 }
 
-export type AttitudeDataTupleResponse = Array<Shared.AttitudeDataFull>;
+export type AttitudeDataTupleResponse = Array<AttitudedataFull>;
 
 export interface AttitudeDataTupleParams {
   /**
@@ -257,7 +255,7 @@ export interface AttitudeDataTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;

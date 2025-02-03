@@ -11,9 +11,8 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(params: HistoryListParams, options?: Core.RequestOptions): Core.APIPromise<HistoryListResponse> {
-    const { obTime, columns } = params;
-    return this._client.get('/udl/diffofarrival/history', options);
+  list(query: HistoryListParams, options?: Core.RequestOptions): Core.APIPromise<HistoryListResponse> {
+    return this._client.get('/udl/diffofarrival/history', { query, ...options });
   }
 
   /**
@@ -23,9 +22,9 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  aodr(params: HistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { obTime, columns, notification, outputDelimiter, outputFormat } = params;
+  aodr(query: HistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.get('/udl/diffofarrival/history/aodr', {
+      query,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });

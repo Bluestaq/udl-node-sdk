@@ -15,9 +15,8 @@ export class Tuple extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  list(params: TupleListParams, options?: Core.RequestOptions): Core.APIPromise<TupleListResponse> {
-    const { columns, createdAt } = params;
-    return this._client.get('/udl/collectresponse/tuple', options);
+  list(query: TupleListParams, options?: Core.RequestOptions): Core.APIPromise<TupleListResponse> {
+    return this._client.get('/udl/collectresponse/tuple', { query, ...options });
   }
 }
 
@@ -27,7 +26,7 @@ export interface TupleListParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;

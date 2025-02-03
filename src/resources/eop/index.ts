@@ -5,9 +5,12 @@ export {
   type EopAbridged,
   type EopListResponse,
   type EopCountResponse,
+  type EopListTupleResponse,
   type EopCreateParams,
+  type EopUpdateParams,
   type EopListParams,
   type EopCountParams,
+  type EopListTupleParams,
 } from './eop';
 export {
   History,

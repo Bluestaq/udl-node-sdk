@@ -1,0 +1,912 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../resource';
+import * as Core from '../core';
+
+export class Launchdetection extends APIResource {
+  /**
+   * Service operation to take a single launch detection as a POST body and ingest
+   * into the database. A specific role is required to perform this service
+   * operation. Please contact the UDL team for assistance.
+   */
+  create(body: LaunchdetectionCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/udl/launchdetection', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to update a single launch detection. A specific role is
+   * required to perform this service operation. Please contact the UDL team for
+   * assistance.
+   */
+  update(params: LaunchdetectionUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { path_id, body_id, ...body } = params;
+    return this._client.put(`/udl/launchdetection/${path_id}`, {
+      body: { id: body_id, ...body },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data by a variety of query parameters not
+   * specified in this API documentation. See the queryhelp operation
+   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+   * parameter information.
+   */
+  list(options?: Core.RequestOptions): Core.APIPromise<LaunchdetectionListResponse> {
+    return this._client.get('/udl/launchdetection', options);
+  }
+
+  /**
+   * Service operation to delete a launch detection object specified by the passed ID
+   * path parameter. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/launchdetection/${id}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to return the count of records satisfying the specified query
+   * parameters. This operation is useful to determine how many records pass a
+   * particular query criteria without retrieving large amounts of data. See the
+   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+   * valid/required query parameter information.
+   */
+  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.get('/udl/launchdetection/count', {
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to get a single launch detection record by its unique ID
+   * passed as a path parameter.
+   */
+  get(id: string, options?: Core.RequestOptions): Core.APIPromise<LaunchdetectionGetResponse> {
+    return this._client.get(`/udl/launchdetection/${id}`, options);
+  }
+
+  /**
+   * Service operation to provide detailed information on available dynamic query
+   * parameters for a particular data type.
+   */
+  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/udl/launchdetection/queryhelp', {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data and only return specified
+   * columns/fields. Requested columns are specified by the 'columns' query parameter
+   * and should be a comma separated list of valid fields for the specified data
+   * type. classificationMarking is always returned. See the queryhelp operation
+   * (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+   * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+   * hours would return the satNo and period of elsets with an epoch greater than 5
+   * hours ago.
+   */
+  tuple(
+    query: LaunchdetectionTupleParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<LaunchdetectionTupleResponse> {
+    return this._client.get('/udl/launchdetection/tuple', { query, ...options });
+  }
+}
+
+export type LaunchdetectionListResponse = Array<LaunchdetectionListResponse.LaunchdetectionListResponseItem>;
+
+export namespace LaunchdetectionListResponse {
+  /**
+   * Data to analyze launch detections.
+   */
+  export interface LaunchdetectionListResponseItem {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Type of message for the data.
+     */
+    messageType: string;
+
+    /**
+     * Latitude of launch vehicle at observation time (in Degrees). -90 to 90 degrees
+     * (negative values south of equator).
+     */
+    observationLatitude: number;
+
+    /**
+     * Longitude of launch vehicle at observation time (in Degrees).
+     */
+    observationLongitude: number;
+
+    /**
+     * Time of observation.
+     */
+    observationTime: string;
+
+    /**
+     * Integer indicating how messages should be sequenced for a specific event.
+     */
+    sequenceNumber: number;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Time the row was created in the database.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database.
+     */
+    createdBy?: string;
+
+    /**
+     * Optional source-provided and searchable metadata or descriptor of the data.
+     */
+    descriptor?: string;
+
+    /**
+     * Id to be able to correlate different messages to a specific event.
+     */
+    eventId?: string;
+
+    /**
+     * Flag indicating that the Launch azimuth is uncertain due to near vertical flight
+     * path.
+     */
+    highZenithAzimuth?: boolean;
+
+    /**
+     * Orbit Inclination (in Degrees).
+     */
+    inclination?: number;
+
+    /**
+     * Angle measured clockwise from North for the launch heading (in Degrees).
+     */
+    launchAzimuth?: number;
+
+    /**
+     * Geodetic Latitude of launch origin (in Degrees). -90 to 90 degrees (negative
+     * values south of equator).
+     */
+    launchLatitude?: number;
+
+    /**
+     * Geodetic Longitude of launch origin (in Degrees). -180 to 180 degrees (negative
+     * values west of Prime Meridian).
+     */
+    launchLongitude?: number;
+
+    /**
+     * Time of Launch.
+     */
+    launchTime?: string;
+
+    /**
+     * Altitude of launch vehicle at observation time (in KM).
+     */
+    observationAltitude?: number;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * Orbit Right Ascension of Ascending Node (in Degrees).
+     */
+    raan?: number;
+
+    /**
+     * Flag indicating multiple observers were used.
+     */
+    stereoFlag?: boolean;
+
+    /**
+     * Read-only time the row was updated in the database, set automatically by the
+     * system on update.
+     */
+    updatedAt?: string;
+
+    /**
+     * Application user who last updated the row in the database, set by the system
+     * automatically and ignored on create/edit operations.
+     */
+    updatedBy?: string;
+  }
+}
+
+export type LaunchdetectionCountResponse = string;
+
+/**
+ * Data to analyze launch detections.
+ */
+export interface LaunchdetectionGetResponse {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Type of message for the data.
+   */
+  messageType: string;
+
+  /**
+   * Latitude of launch vehicle at observation time (in Degrees). -90 to 90 degrees
+   * (negative values south of equator).
+   */
+  observationLatitude: number;
+
+  /**
+   * Longitude of launch vehicle at observation time (in Degrees).
+   */
+  observationLongitude: number;
+
+  /**
+   * Time of observation.
+   */
+  observationTime: string;
+
+  /**
+   * Integer indicating how messages should be sequenced for a specific event.
+   */
+  sequenceNumber: number;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Time the row was created in the database.
+   */
+  createdAt?: string;
+
+  /**
+   * Application user who created the row in the database.
+   */
+  createdBy?: string;
+
+  /**
+   * Optional source-provided and searchable metadata or descriptor of the data.
+   */
+  descriptor?: string;
+
+  /**
+   * Id to be able to correlate different messages to a specific event.
+   */
+  eventId?: string;
+
+  /**
+   * Flag indicating that the Launch azimuth is uncertain due to near vertical flight
+   * path.
+   */
+  highZenithAzimuth?: boolean;
+
+  /**
+   * Orbit Inclination (in Degrees).
+   */
+  inclination?: number;
+
+  /**
+   * Angle measured clockwise from North for the launch heading (in Degrees).
+   */
+  launchAzimuth?: number;
+
+  /**
+   * Geodetic Latitude of launch origin (in Degrees). -90 to 90 degrees (negative
+   * values south of equator).
+   */
+  launchLatitude?: number;
+
+  /**
+   * Geodetic Longitude of launch origin (in Degrees). -180 to 180 degrees (negative
+   * values west of Prime Meridian).
+   */
+  launchLongitude?: number;
+
+  /**
+   * Time of Launch.
+   */
+  launchTime?: string;
+
+  /**
+   * Altitude of launch vehicle at observation time (in KM).
+   */
+  observationAltitude?: number;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * The originating source network on which this record was created, auto-populated
+   * by the system.
+   */
+  origNetwork?: string;
+
+  /**
+   * Orbit Right Ascension of Ascending Node (in Degrees).
+   */
+  raan?: number;
+
+  /**
+   * Flag indicating multiple observers were used.
+   */
+  stereoFlag?: boolean;
+
+  /**
+   * Optional array of provider/source specific tags for this data, where each
+   * element is no longer than 32 characters, used for implementing data owner
+   * conditional access controls to restrict access to the data. Should be left null
+   * by data providers unless conditional access controls are coordinated with the
+   * UDL team.
+   */
+  tags?: Array<string>;
+
+  /**
+   * Read-only time the row was updated in the database, set automatically by the
+   * system on update.
+   */
+  updatedAt?: string;
+
+  /**
+   * Application user who last updated the row in the database, set by the system
+   * automatically and ignored on create/edit operations.
+   */
+  updatedBy?: string;
+}
+
+export type LaunchdetectionTupleResponse =
+  Array<LaunchdetectionTupleResponse.LaunchdetectionTupleResponseItem>;
+
+export namespace LaunchdetectionTupleResponse {
+  /**
+   * Data to analyze launch detections.
+   */
+  export interface LaunchdetectionTupleResponseItem {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Type of message for the data.
+     */
+    messageType: string;
+
+    /**
+     * Latitude of launch vehicle at observation time (in Degrees). -90 to 90 degrees
+     * (negative values south of equator).
+     */
+    observationLatitude: number;
+
+    /**
+     * Longitude of launch vehicle at observation time (in Degrees).
+     */
+    observationLongitude: number;
+
+    /**
+     * Time of observation.
+     */
+    observationTime: string;
+
+    /**
+     * Integer indicating how messages should be sequenced for a specific event.
+     */
+    sequenceNumber: number;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Time the row was created in the database.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database.
+     */
+    createdBy?: string;
+
+    /**
+     * Optional source-provided and searchable metadata or descriptor of the data.
+     */
+    descriptor?: string;
+
+    /**
+     * Id to be able to correlate different messages to a specific event.
+     */
+    eventId?: string;
+
+    /**
+     * Flag indicating that the Launch azimuth is uncertain due to near vertical flight
+     * path.
+     */
+    highZenithAzimuth?: boolean;
+
+    /**
+     * Orbit Inclination (in Degrees).
+     */
+    inclination?: number;
+
+    /**
+     * Angle measured clockwise from North for the launch heading (in Degrees).
+     */
+    launchAzimuth?: number;
+
+    /**
+     * Geodetic Latitude of launch origin (in Degrees). -90 to 90 degrees (negative
+     * values south of equator).
+     */
+    launchLatitude?: number;
+
+    /**
+     * Geodetic Longitude of launch origin (in Degrees). -180 to 180 degrees (negative
+     * values west of Prime Meridian).
+     */
+    launchLongitude?: number;
+
+    /**
+     * Time of Launch.
+     */
+    launchTime?: string;
+
+    /**
+     * Altitude of launch vehicle at observation time (in KM).
+     */
+    observationAltitude?: number;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * Orbit Right Ascension of Ascending Node (in Degrees).
+     */
+    raan?: number;
+
+    /**
+     * Flag indicating multiple observers were used.
+     */
+    stereoFlag?: boolean;
+
+    /**
+     * Optional array of provider/source specific tags for this data, where each
+     * element is no longer than 32 characters, used for implementing data owner
+     * conditional access controls to restrict access to the data. Should be left null
+     * by data providers unless conditional access controls are coordinated with the
+     * UDL team.
+     */
+    tags?: Array<string>;
+
+    /**
+     * Read-only time the row was updated in the database, set automatically by the
+     * system on update.
+     */
+    updatedAt?: string;
+
+    /**
+     * Application user who last updated the row in the database, set by the system
+     * automatically and ignored on create/edit operations.
+     */
+    updatedBy?: string;
+  }
+}
+
+export interface LaunchdetectionCreateParams {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Type of message for the data.
+   */
+  messageType: string;
+
+  /**
+   * Latitude of launch vehicle at observation time (in Degrees). -90 to 90 degrees
+   * (negative values south of equator).
+   */
+  observationLatitude: number;
+
+  /**
+   * Longitude of launch vehicle at observation time (in Degrees).
+   */
+  observationLongitude: number;
+
+  /**
+   * Time of observation.
+   */
+  observationTime: string;
+
+  /**
+   * Integer indicating how messages should be sequenced for a specific event.
+   */
+  sequenceNumber: number;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Optional source-provided and searchable metadata or descriptor of the data.
+   */
+  descriptor?: string;
+
+  /**
+   * Id to be able to correlate different messages to a specific event.
+   */
+  eventId?: string;
+
+  /**
+   * Flag indicating that the Launch azimuth is uncertain due to near vertical flight
+   * path.
+   */
+  highZenithAzimuth?: boolean;
+
+  /**
+   * Orbit Inclination (in Degrees).
+   */
+  inclination?: number;
+
+  /**
+   * Angle measured clockwise from North for the launch heading (in Degrees).
+   */
+  launchAzimuth?: number;
+
+  /**
+   * Geodetic Latitude of launch origin (in Degrees). -90 to 90 degrees (negative
+   * values south of equator).
+   */
+  launchLatitude?: number;
+
+  /**
+   * Geodetic Longitude of launch origin (in Degrees). -180 to 180 degrees (negative
+   * values west of Prime Meridian).
+   */
+  launchLongitude?: number;
+
+  /**
+   * Time of Launch.
+   */
+  launchTime?: string;
+
+  /**
+   * Altitude of launch vehicle at observation time (in KM).
+   */
+  observationAltitude?: number;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * Orbit Right Ascension of Ascending Node (in Degrees).
+   */
+  raan?: number;
+
+  /**
+   * Flag indicating multiple observers were used.
+   */
+  stereoFlag?: boolean;
+
+  /**
+   * Optional array of provider/source specific tags for this data, where each
+   * element is no longer than 32 characters, used for implementing data owner
+   * conditional access controls to restrict access to the data. Should be left null
+   * by data providers unless conditional access controls are coordinated with the
+   * UDL team.
+   */
+  tags?: Array<string>;
+}
+
+export interface LaunchdetectionUpdateParams {
+  /**
+   * Path param: The ID of the launch detection to update.
+   */
+  path_id: string;
+
+  /**
+   * Body param: Classification marking of the data in IC/CAPCO Portion-marked
+   * format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Body param: Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST
+   * data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Body param: Type of message for the data.
+   */
+  messageType: string;
+
+  /**
+   * Body param: Latitude of launch vehicle at observation time (in Degrees). -90 to
+   * 90 degrees (negative values south of equator).
+   */
+  observationLatitude: number;
+
+  /**
+   * Body param: Longitude of launch vehicle at observation time (in Degrees).
+   */
+  observationLongitude: number;
+
+  /**
+   * Body param: Time of observation.
+   */
+  observationTime: string;
+
+  /**
+   * Body param: Integer indicating how messages should be sequenced for a specific
+   * event.
+   */
+  sequenceNumber: number;
+
+  /**
+   * Body param: Source of the data.
+   */
+  source: string;
+
+  /**
+   * Body param: Unique identifier of the record, auto-generated by the system.
+   */
+  body_id?: string;
+
+  /**
+   * Body param: Optional source-provided and searchable metadata or descriptor of
+   * the data.
+   */
+  descriptor?: string;
+
+  /**
+   * Body param: Id to be able to correlate different messages to a specific event.
+   */
+  eventId?: string;
+
+  /**
+   * Body param: Flag indicating that the Launch azimuth is uncertain due to near
+   * vertical flight path.
+   */
+  highZenithAzimuth?: boolean;
+
+  /**
+   * Body param: Orbit Inclination (in Degrees).
+   */
+  inclination?: number;
+
+  /**
+   * Body param: Angle measured clockwise from North for the launch heading (in
+   * Degrees).
+   */
+  launchAzimuth?: number;
+
+  /**
+   * Body param: Geodetic Latitude of launch origin (in Degrees). -90 to 90 degrees
+   * (negative values south of equator).
+   */
+  launchLatitude?: number;
+
+  /**
+   * Body param: Geodetic Longitude of launch origin (in Degrees). -180 to 180
+   * degrees (negative values west of Prime Meridian).
+   */
+  launchLongitude?: number;
+
+  /**
+   * Body param: Time of Launch.
+   */
+  launchTime?: string;
+
+  /**
+   * Body param: Altitude of launch vehicle at observation time (in KM).
+   */
+  observationAltitude?: number;
+
+  /**
+   * Body param: Originating system or organization which produced the data, if
+   * different from the source. The origin may be different than the source if the
+   * source was a mediating system which forwarded the data on behalf of the origin
+   * system. If null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * Body param: Orbit Right Ascension of Ascending Node (in Degrees).
+   */
+  raan?: number;
+
+  /**
+   * Body param: Flag indicating multiple observers were used.
+   */
+  stereoFlag?: boolean;
+
+  /**
+   * Body param: Optional array of provider/source specific tags for this data, where
+   * each element is no longer than 32 characters, used for implementing data owner
+   * conditional access controls to restrict access to the data. Should be left null
+   * by data providers unless conditional access controls are coordinated with the
+   * UDL team.
+   */
+  tags?: Array<string>;
+}
+
+export interface LaunchdetectionTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
+
+export declare namespace Launchdetection {
+  export {
+    type LaunchdetectionListResponse as LaunchdetectionListResponse,
+    type LaunchdetectionCountResponse as LaunchdetectionCountResponse,
+    type LaunchdetectionGetResponse as LaunchdetectionGetResponse,
+    type LaunchdetectionTupleResponse as LaunchdetectionTupleResponse,
+    type LaunchdetectionCreateParams as LaunchdetectionCreateParams,
+    type LaunchdetectionUpdateParams as LaunchdetectionUpdateParams,
+    type LaunchdetectionTupleParams as LaunchdetectionTupleParams,
+  };
+}

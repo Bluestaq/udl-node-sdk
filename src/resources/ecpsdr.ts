@@ -49,7 +49,7 @@ export namespace EcpsdrCreateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Time stamp of time packet receipt on ground, in ISO 8601 UTC format with
@@ -105,17 +105,6 @@ export namespace EcpsdrCreateParams {
     checksum?: number;
 
     /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
-
-    /**
      * Unitless dosimeter detector bias for MedLET and HiLET. MedLET (Linear Energy
      * Transfer) and HiLET subsensors detect particles above LET thresholds, 300keV and
      * 1MeV, respectively.
@@ -148,11 +137,6 @@ export namespace EcpsdrCreateParams {
      * output.
      */
     hiLetM?: number;
-
-    /**
-     * Unique identifier of the on-orbit satellite hosting the sensor.
-     */
-    idOnOrbit?: string;
 
     /**
      * Unique identifier of the reporting sensor.
@@ -234,12 +218,6 @@ export namespace EcpsdrCreateParams {
      * null, the source may be assumed to be the origin.
      */
     origin?: string;
-
-    /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
 
     /**
      * Optional identifier provided by the record source to indicate the satellite

@@ -22,11 +22,10 @@ export class AttitudeData extends APIResource {
    * parameter information.
    */
   list(
-    params: AttitudeDataListParams,
+    query: AttitudeDataListParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AttitudeDataListResponse> {
-    const { asId } = params;
-    return this._client.get('/udl/attitudedata', options);
+    return this._client.get('/udl/attitudedata', { query, ...options });
   }
 
   /**
@@ -36,9 +35,9 @@ export class AttitudeData extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(params: AttitudeDataCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { asId } = params;
+  count(query: AttitudeDataCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.get('/udl/attitudedata/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
@@ -76,7 +75,7 @@ export interface AttitudeDataAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Source of the data.

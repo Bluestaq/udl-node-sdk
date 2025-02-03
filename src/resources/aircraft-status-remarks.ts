@@ -21,12 +21,8 @@ export class AircraftStatusRemarks extends APIResource {
    * Service operation to get a single Aircraft Status Remark record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(
-    params: AircraftStatusRemarkRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AircraftstatusremarkFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/aircraftstatusremark/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AircraftstatusremarkFull> {
+    return this._client.get(`/udl/aircraftstatusremark/${id}`, options);
   }
 
   /**
@@ -75,11 +71,10 @@ export class AircraftStatusRemarks extends APIResource {
    * hours ago.
    */
   tuple(
-    params: AircraftStatusRemarkTupleParams,
+    query: AircraftStatusRemarkTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AircraftStatusRemarkTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/aircraftstatusremark/tuple', options);
+    return this._client.get('/udl/aircraftstatusremark/tuple', { query, ...options });
   }
 }
 
@@ -109,7 +104,7 @@ export interface AircraftstatusremarkAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The ID of the Aircraft Status to which this remark applies.
@@ -220,7 +215,7 @@ export interface AircraftstatusremarkFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The ID of the Aircraft Status to which this remark applies.
@@ -344,7 +339,7 @@ export interface AircraftStatusRemarkCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The ID of the Aircraft Status to which this remark applies.
@@ -374,17 +369,6 @@ export interface AircraftStatusRemarkCreateParams {
   altRmkId?: string;
 
   /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
-
-  /**
    * Time the remark was last updated in the originating system in ISO 8601 UTC
    * format with millisecond precision.
    */
@@ -410,42 +394,17 @@ export interface AircraftStatusRemarkCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
-
-  /**
    * Time the remark was created in the originating system in ISO 8601 UTC format
    * with millisecond precision.
    */
   timestamp?: string;
 }
 
-export interface AircraftStatusRemarkRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Aircraft Status Remark to find.
-   */
-  body_id: string;
-}
-
 export interface AircraftStatusRemarkTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -459,7 +418,6 @@ export declare namespace AircraftStatusRemarks {
     type AircraftStatusRemarkCountResponse as AircraftStatusRemarkCountResponse,
     type AircraftStatusRemarkTupleResponse as AircraftStatusRemarkTupleResponse,
     type AircraftStatusRemarkCreateParams as AircraftStatusRemarkCreateParams,
-    type AircraftStatusRemarkRetrieveParams as AircraftStatusRemarkRetrieveParams,
     type AircraftStatusRemarkTupleParams as AircraftStatusRemarkTupleParams,
   };
 }

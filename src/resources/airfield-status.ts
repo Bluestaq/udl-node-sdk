@@ -9,12 +9,8 @@ export class AirfieldStatus extends APIResource {
    * Service operation to get a single airfield status record by its unique ID passed
    * as a path parameter.
    */
-  retrieve(
-    params: AirfieldStatusRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AirfieldstatusAPI.AirfieldstatusFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/airfieldstatus/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AirfieldstatusAPI.AirfieldstatusFull> {
+    return this._client.get(`/udl/airfieldstatus/${id}`, options);
   }
 
   /**
@@ -23,9 +19,9 @@ export class AirfieldStatus extends APIResource {
    * assistance.
    */
   update(params: AirfieldStatusUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/airfieldstatus/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -36,9 +32,8 @@ export class AirfieldStatus extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(params: AirfieldStatusDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/airfieldstatus/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/airfieldstatus/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -55,38 +50,20 @@ export class AirfieldStatus extends APIResource {
    * hours ago.
    */
   tuple(
-    params: AirfieldStatusTupleParams,
+    query: AirfieldStatusTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AirfieldStatusTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/airfieldstatus/tuple', options);
+    return this._client.get('/udl/airfieldstatus/tuple', { query, ...options });
   }
 }
 
 export type AirfieldStatusTupleResponse = Array<AirfieldstatusAPI.AirfieldstatusFull>;
 
-export interface AirfieldStatusRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the AirfieldStatus to retrieve.
-   */
-  body_id: string;
-}
-
 export interface AirfieldStatusUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the Airfield Status to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the Airfield Status to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -111,7 +88,7 @@ export interface AirfieldStatusUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Unique identifier of the Airfield for which this status is
@@ -147,18 +124,6 @@ export interface AirfieldStatusUpdateParams {
    * the time of status.
    */
   cargoMOG?: number;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: Maximum on ground (MOG) number of fleet aircraft that can be
@@ -256,12 +221,6 @@ export interface AirfieldStatusUpdateParams {
   origin?: string;
 
   /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Body param: Maximum on ground (MOG) number of high-reach/wide-body passenger
    * aircraft that can be serviced simultaneously based on spacing and manpower at
    * the time of status.
@@ -305,13 +264,6 @@ export interface AirfieldStatusUpdateParams {
   slotTypesReq?: Array<string>;
 
   /**
-   * Body param: The source data library from which this record was received. This
-   * could be a remote or tactical UDL or another data library. If null, the record
-   * should be assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
-
-  /**
    * Body param: Maximum on ground (MOG) number of parking wide-body aircraft based
    * on spacing and manpower at the time of status.
    */
@@ -324,23 +276,11 @@ export interface AirfieldStatusUpdateParams {
   wideWorkingMOG?: number;
 }
 
-export interface AirfieldStatusDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the AirfieldStatus to delete.
-   */
-  body_id: string;
-}
-
 export interface AirfieldStatusTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -349,9 +289,7 @@ export interface AirfieldStatusTupleParams {
 export declare namespace AirfieldStatus {
   export {
     type AirfieldStatusTupleResponse as AirfieldStatusTupleResponse,
-    type AirfieldStatusRetrieveParams as AirfieldStatusRetrieveParams,
     type AirfieldStatusUpdateParams as AirfieldStatusUpdateParams,
-    type AirfieldStatusDeleteParams as AirfieldStatusDeleteParams,
     type AirfieldStatusTupleParams as AirfieldStatusTupleParams,
   };
 }

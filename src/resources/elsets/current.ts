@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as Shared from '../shared';
 import * as ElsetsAPI from './elsets';
 
 export class Current extends APIResource {
@@ -30,21 +29,20 @@ export class Current extends APIResource {
    * SPCS'. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more
    * details on additional query parameter information.
    */
-  tuple(params: CurrentTupleParams, options?: Core.RequestOptions): Core.APIPromise<CurrentTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/elset/current/tuple', options);
+  tuple(query: CurrentTupleParams, options?: Core.RequestOptions): Core.APIPromise<CurrentTupleResponse> {
+    return this._client.get('/udl/elset/current/tuple', { query, ...options });
   }
 }
 
 export type CurrentListResponse = Array<ElsetsAPI.ElsetAbridged>;
 
-export type CurrentTupleResponse = Array<Shared.ElsetFull>;
+export type CurrentTupleResponse = Array<ElsetsAPI.Elset>;
 
 export interface CurrentTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;

@@ -60,7 +60,7 @@ export interface AirfieldslotAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Name of this slot.
@@ -81,7 +81,7 @@ export interface AirfieldslotAbridged {
    * Largest category of aircraft supported in this slot (WIDE, NARROW, HELO, ALL,
    * OTHER).
    */
-  acSlotCat?: string;
+  acSlotCat?: 'WIDE' | 'NARROW' | 'HELO' | 'ALL' | 'OTHER';
 
   /**
    * Alternate airfield identifier provided by the source.
@@ -164,7 +164,7 @@ export interface AirfieldslotAbridged {
    * Designates how this slot can be used (WORKING, PARKING, TAKEOFF, LANDING,
    * OTHER).
    */
-  type?: string;
+  type?: 'WORKING' | 'PARKING' | 'TAKEOFF' | 'LANDING' | 'OTHER';
 }
 
 /**
@@ -199,7 +199,7 @@ export interface AirfieldslotFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Name of this slot.
@@ -220,7 +220,7 @@ export interface AirfieldslotFull {
    * Largest category of aircraft supported in this slot (WIDE, NARROW, HELO, ALL,
    * OTHER).
    */
-  acSlotCat?: string;
+  acSlotCat?: 'WIDE' | 'NARROW' | 'HELO' | 'ALL' | 'OTHER';
 
   /**
    * Alternate airfield identifier provided by the source.
@@ -303,7 +303,7 @@ export interface AirfieldslotFull {
    * Designates how this slot can be used (WORKING, PARKING, TAKEOFF, LANDING,
    * OTHER).
    */
-  type?: string;
+  type?: 'WORKING' | 'PARKING' | 'TAKEOFF' | 'LANDING' | 'OTHER';
 
   /**
    * Time the row was last updated in the database, auto-populated by the system.
@@ -346,7 +346,7 @@ export interface AirfieldSlotCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Name of this slot.
@@ -367,7 +367,7 @@ export interface AirfieldSlotCreateParams {
    * Largest category of aircraft supported in this slot (WIDE, NARROW, HELO, ALL,
    * OTHER).
    */
-  acSlotCat?: string;
+  acSlotCat?: 'WIDE' | 'NARROW' | 'HELO' | 'ALL' | 'OTHER';
 
   /**
    * Alternate airfield identifier provided by the source.
@@ -378,17 +378,6 @@ export interface AirfieldSlotCreateParams {
    * Number of aircraft that can fit in this slot at the same time.
    */
   capacity?: number;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Latest zulu time this slot is available based on daily standard hours. Not
@@ -427,19 +416,6 @@ export interface AirfieldSlotCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
-
-  /**
    * Zulu time this slot is first available based on daily standard hours. Not
    * applicable to slots with type PARKING. Abnormal hours, such as holidays, should
    * be marked via the AirfieldSlotConsumption schema.
@@ -450,7 +426,7 @@ export interface AirfieldSlotCreateParams {
    * Designates how this slot can be used (WORKING, PARKING, TAKEOFF, LANDING,
    * OTHER).
    */
-  type?: string;
+  type?: 'WORKING' | 'PARKING' | 'TAKEOFF' | 'LANDING' | 'OTHER';
 }
 
 export declare namespace AirfieldSlots {

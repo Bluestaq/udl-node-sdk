@@ -9,12 +9,8 @@ export class AircraftSorties extends APIResource {
    * Service operation to get a single AircraftSortie record by its unique ID passed
    * as a path parameter.
    */
-  retrieve(
-    params: AircraftSortyRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AircraftSortieAPI.AircraftsortieFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/aircraftsortie/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AircraftSortieAPI.AircraftsortieFull> {
+    return this._client.get(`/udl/aircraftsortie/${id}`, options);
   }
 
   /**
@@ -22,9 +18,9 @@ export class AircraftSorties extends APIResource {
    * to perform this service operation. Please contact the UDL team for assistance.
    */
   update(params: AircraftSortyUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/aircraftsortie/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -52,38 +48,20 @@ export class AircraftSorties extends APIResource {
    * hours ago.
    */
   tuple(
-    params: AircraftSortyTupleParams,
+    query: AircraftSortyTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AircraftSortyTupleResponse> {
-    const { columns, plannedDepTime } = params;
-    return this._client.get('/udl/aircraftsortie/tuple', options);
+    return this._client.get('/udl/aircraftsortie/tuple', { query, ...options });
   }
 }
 
 export type AircraftSortyTupleResponse = Array<AircraftSortieAPI.AircraftsortieFull>;
 
-export interface AircraftSortyRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the AircraftSortie to find.
-   */
-  body_id: string;
-}
-
 export interface AircraftSortyUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the AircraftSortie to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the AircraftSortie to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -108,7 +86,7 @@ export interface AircraftSortyUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: The scheduled time that the Aircraft sortie is planned to depart, in
@@ -243,18 +221,6 @@ export interface AircraftSortyUpdateParams {
   commanderName?: string;
 
   /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
-
-  /**
    * Body param: The current state of this sortie.
    */
   currentState?: string;
@@ -327,16 +293,6 @@ export interface AircraftSortyUpdateParams {
    * in ISO 8601 UTC format with millisecond precision.
    */
   estDepTime?: string;
-
-  /**
-   * Body param: Name of the uploaded PDF.
-   */
-  filename?: string;
-
-  /**
-   * Body param: Size of the supporting PDF, in bytes.
-   */
-  filesize?: number;
 
   /**
    * Body param: The planned flight time for this sortie, in minutes.
@@ -418,12 +374,6 @@ export interface AircraftSortyUpdateParams {
   origin?: string;
 
   /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Body param: The sortie identifier provided by the originating source.
    */
   origSortieId?: string;
@@ -453,16 +403,6 @@ export interface AircraftSortyUpdateParams {
   oxyReqPax?: number;
 
   /**
-   * Body param: The status of the supporting document.
-   */
-  paperStatus?: string;
-
-  /**
-   * Body param: The version number of the crew paper.
-   */
-  papersVersion?: string;
-
-  /**
    * Body param: The POI parking location.
    */
   parkingLoc?: string;
@@ -481,21 +421,13 @@ export interface AircraftSortyUpdateParams {
   /**
    * Body param: The prior permission required (PPR) status.
    */
-  pprStatus?: string;
+  pprStatus?: 'NOT REQUIRED' | 'REQUIRED NOT REQUESTED' | 'GRANTED' | 'PENDING';
 
   /**
    * Body param: The planned primary Standard Conventional Load of the aircraft for
    * this sortie.
    */
   primarySCL?: string;
-
-  /**
-   * Body param: When crew papers are associated to this sortie, the system updates
-   * this value. This field is the URI location in the document repository of that
-   * raw file. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this field's value.
-   */
-  rawFileURI?: string;
 
   /**
    * Body param: Aircraft configuration required for the mission.
@@ -512,7 +444,7 @@ export interface AircraftSortyUpdateParams {
    * (Security Team) required, C6 - Consider ravens (Ground time over 6 hours), R6 -
    * Ravens required (Ground time over 6 hours)).
    */
-  rvnReq?: string;
+  rvnReq?: 'N' | 'R' | 'C6' | 'R6';
 
   /**
    * Body param: Remarks concerning the schedule.
@@ -539,13 +471,6 @@ export interface AircraftSortyUpdateParams {
   sortieDate?: string;
 
   /**
-   * Body param: The source data library from which this record was received. This
-   * could be a remote or tactical UDL or another data library. If null, the record
-   * should be assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
-
-  /**
    * Body param: The tail number of the aircraft assigned to this sortie.
    */
   tailNumber?: string;
@@ -555,7 +480,7 @@ export interface AircraftSortyTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -570,7 +495,6 @@ export interface AircraftSortyTupleParams {
 export declare namespace AircraftSorties {
   export {
     type AircraftSortyTupleResponse as AircraftSortyTupleResponse,
-    type AircraftSortyRetrieveParams as AircraftSortyRetrieveParams,
     type AircraftSortyUpdateParams as AircraftSortyUpdateParams,
     type AircraftSortyTupleParams as AircraftSortyTupleParams,
   };

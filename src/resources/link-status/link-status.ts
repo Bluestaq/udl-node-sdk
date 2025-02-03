@@ -1,37 +1,592 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
 import * as DatalinkAPI from './datalink';
 import {
   Datalink,
-  DatalinkAbridged,
   DatalinkCountParams,
   DatalinkCountResponse,
   DatalinkCreateParams,
-  DatalinkFull,
+  DatalinkFileCreateParams,
+  DatalinkIngest,
   DatalinkListParams,
   DatalinkListResponse,
   DatalinkTupleParams,
   DatalinkTupleResponse,
 } from './datalink';
+import * as HistoryAPI from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+} from './history';
+import * as LinkstatusHistoryAPI from '../udl/linkstatus/history';
 
 export class LinkStatus extends APIResource {
   datalink: DatalinkAPI.Datalink = new DatalinkAPI.Datalink(this._client);
+  history: HistoryAPI.History = new HistoryAPI.History(this._client);
+
+  /**
+   * Service operation to take a single LinkStatus as a POST body and ingest into the
+   * database. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  create(body: LinkStatusCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/udl/linkstatus', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data by a variety of query parameters not
+   * specified in this API documentation. See the queryhelp operation
+   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+   * parameter information.
+   */
+  list(query?: LinkStatusListParams, options?: Core.RequestOptions): Core.APIPromise<LinkStatusListResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<LinkStatusListResponse>;
+  list(
+    query: LinkStatusListParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<LinkStatusListResponse> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
+    return this._client.get('/udl/linkstatus', { query, ...options });
+  }
+
+  /**
+   * Service operation to return the count of records satisfying the specified query
+   * parameters. This operation is useful to determine how many records pass a
+   * particular query criteria without retrieving large amounts of data. See the
+   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+   * valid/required query parameter information.
+   */
+  count(query?: LinkStatusCountParams, options?: Core.RequestOptions): Core.APIPromise<string>;
+  count(options?: Core.RequestOptions): Core.APIPromise<string>;
+  count(
+    query: LinkStatusCountParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<string> {
+    if (isRequestOptions(query)) {
+      return this.count({}, query);
+    }
+    return this._client.get('/udl/linkstatus/count', {
+      query,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to get a single LinkStatus record by its unique ID passed as a
+   * path parameter.
+   */
+  get(id: string, options?: Core.RequestOptions): Core.APIPromise<LinkstatusHistoryAPI.LinkStatusFull> {
+    return this._client.get(`/udl/linkstatus/${id}`, options);
+  }
+
+  /**
+   * Service operation to provide detailed information on available dynamic query
+   * parameters for a particular data type.
+   */
+  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/udl/linkstatus/queryhelp', {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data and only return specified
+   * columns/fields. Requested columns are specified by the 'columns' query parameter
+   * and should be a comma separated list of valid fields for the specified data
+   * type. classificationMarking is always returned. See the queryhelp operation
+   * (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+   * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+   * hours would return the satNo and period of elsets with an epoch greater than 5
+   * hours ago.
+   */
+  tuple(
+    query: LinkStatusTupleParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<LinkStatusTupleResponse> {
+    return this._client.get('/udl/linkstatus/tuple', { query, ...options });
+  }
+}
+
+export type LinkStatusListResponse = Array<LinkStatusListResponse.LinkStatusListResponseItem>;
+
+export namespace LinkStatusListResponse {
+  /**
+   * Captures link status.
+   */
+  export interface LinkStatusListResponseItem {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Latitude of link endpoint-1, WGS-84 in degrees. -90 to 90 degrees (negative
+     * values south of equator).
+     */
+    endPoint1Lat: number;
+
+    /**
+     * Longitude of link endpoint-1, WGS-84 longitude in degrees. -180 to 180 degrees
+     * (negative values west of Prime Meridian).
+     */
+    endPoint1Lon: number;
+
+    /**
+     * The name or description of link endpoint-1, corresponding to beam-1.
+     */
+    endPoint1Name: string;
+
+    /**
+     * Latitude of link endpoint-2, WGS-84 in degrees. -90 to 90 degrees (negative
+     * values south of equator).
+     */
+    endPoint2Lat: number;
+
+    /**
+     * Longitude of link endpoint-2, WGS-84 longitude in degrees. -180 to 180 degrees
+     * (negative values west of Prime Meridian).
+     */
+    endPoint2Lon: number;
+
+    /**
+     * The name or description of link endpoint-2, corresponding to beam-2.
+     */
+    endPoint2Name: string;
+
+    /**
+     * The name or description of the link.
+     */
+    linkName: string;
+
+    /**
+     * The link establishment time, or the time that the link becomes available for
+     * use, in ISO8601 UTC format.
+     */
+    linkStartTime: string;
+
+    /**
+     * The link termination time, or the time that the link becomes unavailable for
+     * use, in ISO8601 UTC format.
+     */
+    linkStopTime: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * The RF band employed by the link (e.g. MIL-KA, COM-KA, X-BAND, C-BAND, etc.).
+     */
+    band?: string;
+
+    /**
+     * The constellation name if the link is established over a LEO/MEO constellation.
+     * In this case, idOnOrbit1 and idOnOrbit2 will be null.
+     */
+    constellation?: string;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * The endpoint-1 to endpoint-2 data rate, in kbps.
+     */
+    dataRate1To2?: number;
+
+    /**
+     * The endpoint-2 to endpoint-1 data rate, in kbps.
+     */
+    dataRate2To1?: number;
+
+    /**
+     * The ID of beam-1 forming the link. In the case of two sat link, beam-1
+     * corresponds to Sat-1.
+     */
+    idBeam1?: string;
+
+    /**
+     * The ID of beam-2 forming the link. In the case of two sat link, beam-2
+     * corresponds to Sat-2.
+     */
+    idBeam2?: string;
+
+    /**
+     * Unique ID of the on-orbit satellite (Sat-1) forming the link. A null value for
+     * idOnOrbit1 indicates that the link is formed over a LEO/MEO constellation.
+     */
+    idOnOrbit1?: string;
+
+    /**
+     * Unique ID of the on-orbit satellite (Sat-2) forming the link. A null value for
+     * idOnOrbit2 indicates either a link employing only Sat-1 or a link formed over a
+     * LEO/MEO constellation.
+     */
+    idOnOrbit2?: string;
+
+    /**
+     * The state of the link (e.g. OK, DEGRADED-WEATHER, DEGRADED-EMI, etc.).
+     */
+    linkState?: string;
+
+    /**
+     * The type of the link.
+     */
+    linkType?: string;
+
+    /**
+     * The OPSCAP mission status of the system(s) forming the link.
+     */
+    opsCap?: string;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * Satellite/catalog number of the target on-orbit primary object.
+     */
+    satNo1?: number;
+
+    /**
+     * Satellite/catalog number of the target on-orbit secondary object.
+     */
+    satNo2?: number;
+
+    /**
+     * The SYSCAP mission status of the system(s) forming the link.
+     */
+    sysCap?: string;
+  }
+}
+
+export type LinkStatusCountResponse = string;
+
+export type LinkStatusTupleResponse = Array<LinkstatusHistoryAPI.LinkStatusFull>;
+
+export interface LinkStatusCreateParams {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Latitude of link endpoint-1, WGS-84 in degrees. -90 to 90 degrees (negative
+   * values south of equator).
+   */
+  endPoint1Lat: number;
+
+  /**
+   * Longitude of link endpoint-1, WGS-84 longitude in degrees. -180 to 180 degrees
+   * (negative values west of Prime Meridian).
+   */
+  endPoint1Lon: number;
+
+  /**
+   * The name or description of link endpoint-1, corresponding to beam-1.
+   */
+  endPoint1Name: string;
+
+  /**
+   * Latitude of link endpoint-2, WGS-84 in degrees. -90 to 90 degrees (negative
+   * values south of equator).
+   */
+  endPoint2Lat: number;
+
+  /**
+   * Longitude of link endpoint-2, WGS-84 longitude in degrees. -180 to 180 degrees
+   * (negative values west of Prime Meridian).
+   */
+  endPoint2Lon: number;
+
+  /**
+   * The name or description of link endpoint-2, corresponding to beam-2.
+   */
+  endPoint2Name: string;
+
+  /**
+   * The name or description of the link.
+   */
+  linkName: string;
+
+  /**
+   * The link establishment time, or the time that the link becomes available for
+   * use, in ISO8601 UTC format.
+   */
+  linkStartTime: string;
+
+  /**
+   * The link termination time, or the time that the link becomes unavailable for
+   * use, in ISO8601 UTC format.
+   */
+  linkStopTime: string;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * The RF band employed by the link (e.g. MIL-KA, COM-KA, X-BAND, C-BAND, etc.).
+   */
+  band?: string;
+
+  /**
+   * The constellation name if the link is established over a LEO/MEO constellation.
+   * In this case, idOnOrbit1 and idOnOrbit2 will be null.
+   */
+  constellation?: string;
+
+  /**
+   * The endpoint-1 to endpoint-2 data rate, in kbps.
+   */
+  dataRate1To2?: number;
+
+  /**
+   * The endpoint-2 to endpoint-1 data rate, in kbps.
+   */
+  dataRate2To1?: number;
+
+  /**
+   * The ID of beam-1 forming the link. In the case of two sat link, beam-1
+   * corresponds to Sat-1.
+   */
+  idBeam1?: string;
+
+  /**
+   * The ID of beam-2 forming the link. In the case of two sat link, beam-2
+   * corresponds to Sat-2.
+   */
+  idBeam2?: string;
+
+  /**
+   * The state of the link (e.g. OK, DEGRADED-WEATHER, DEGRADED-EMI, etc.).
+   */
+  linkState?: string;
+
+  /**
+   * The type of the link.
+   */
+  linkType?: string;
+
+  /**
+   * The OPSCAP mission status of the system(s) forming the link.
+   */
+  opsCap?: string;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * Satellite/catalog number of the target on-orbit primary object.
+   */
+  satNo1?: number;
+
+  /**
+   * Satellite/catalog number of the target on-orbit secondary object.
+   */
+  satNo2?: number;
+
+  /**
+   * The SYSCAP mission status of the system(s) forming the link.
+   */
+  sysCap?: string;
+}
+
+export interface LinkStatusListParams {
+  /**
+   * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
+   * Time the row was created in the database, auto-populated by the system.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  createdAt?: string;
+
+  /**
+   * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
+   * The link establishment time, or the time that the link becomes available for
+   * use, in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  linkStartTime?: string;
+
+  /**
+   * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
+   * The link termination time, or the time that the link becomes unavailable for
+   * use, in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  linkStopTime?: string;
+}
+
+export interface LinkStatusCountParams {
+  /**
+   * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
+   * Time the row was created in the database, auto-populated by the system.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  createdAt?: string;
+
+  /**
+   * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
+   * The link establishment time, or the time that the link becomes available for
+   * use, in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  linkStartTime?: string;
+
+  /**
+   * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
+   * The link termination time, or the time that the link becomes unavailable for
+   * use, in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  linkStopTime?: string;
+}
+
+export interface LinkStatusTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
+   * Time the row was created in the database, auto-populated by the system.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  createdAt?: string;
+
+  /**
+   * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
+   * The link establishment time, or the time that the link becomes available for
+   * use, in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  linkStartTime?: string;
+
+  /**
+   * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
+   * The link termination time, or the time that the link becomes unavailable for
+   * use, in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  linkStopTime?: string;
 }
 
 LinkStatus.Datalink = Datalink;
+LinkStatus.History = History;
 
 export declare namespace LinkStatus {
   export {
+    type LinkStatusListResponse as LinkStatusListResponse,
+    type LinkStatusCountResponse as LinkStatusCountResponse,
+    type LinkStatusTupleResponse as LinkStatusTupleResponse,
+    type LinkStatusCreateParams as LinkStatusCreateParams,
+    type LinkStatusListParams as LinkStatusListParams,
+    type LinkStatusCountParams as LinkStatusCountParams,
+    type LinkStatusTupleParams as LinkStatusTupleParams,
+  };
+
+  export {
     Datalink as Datalink,
-    type DatalinkAbridged as DatalinkAbridged,
-    type DatalinkFull as DatalinkFull,
+    type DatalinkIngest as DatalinkIngest,
     type DatalinkListResponse as DatalinkListResponse,
     type DatalinkCountResponse as DatalinkCountResponse,
     type DatalinkTupleResponse as DatalinkTupleResponse,
     type DatalinkCreateParams as DatalinkCreateParams,
     type DatalinkListParams as DatalinkListParams,
     type DatalinkCountParams as DatalinkCountParams,
+    type DatalinkFileCreateParams as DatalinkFileCreateParams,
     type DatalinkTupleParams as DatalinkTupleParams,
+  };
+
+  export {
+    History as History,
+    type HistoryListResponse as HistoryListResponse,
+    type HistoryCountResponse as HistoryCountResponse,
+    type HistoryListParams as HistoryListParams,
+    type HistoryAodrParams as HistoryAodrParams,
+    type HistoryCountParams as HistoryCountParams,
   };
 }

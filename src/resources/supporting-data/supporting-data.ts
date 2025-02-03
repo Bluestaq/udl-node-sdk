@@ -13,22 +13,24 @@ import * as QueryHelpAPI from './query-help';
 import { QueryHelp } from './query-help';
 
 export class SupportingData extends APIResource {
+  dataTypes: DataTypesAPI.DataTypes = new DataTypesAPI.DataTypes(this._client);
   dataowner: DataownerAPI.Dataowner = new DataownerAPI.Dataowner(this._client);
   dataownerTypes: DataownerTypesAPI.DataownerTypes = new DataownerTypesAPI.DataownerTypes(this._client);
-  dataTypes: DataTypesAPI.DataTypes = new DataTypesAPI.DataTypes(this._client);
   providerMetadata: ProviderMetadataAPI.ProviderMetadata = new ProviderMetadataAPI.ProviderMetadata(
     this._client,
   );
   queryHelp: QueryHelpAPI.QueryHelp = new QueryHelpAPI.QueryHelp(this._client);
 }
 
+SupportingData.DataTypes = DataTypes;
 SupportingData.Dataowner = Dataowner;
 SupportingData.DataownerTypes = DataownerTypes;
-SupportingData.DataTypes = DataTypes;
 SupportingData.ProviderMetadata = ProviderMetadata;
 SupportingData.QueryHelp = QueryHelp;
 
 export declare namespace SupportingData {
+  export { DataTypes as DataTypes, type DataTypeListResponse as DataTypeListResponse };
+
   export {
     Dataowner as Dataowner,
     type DataownerAbridged as DataownerAbridged,
@@ -37,8 +39,6 @@ export declare namespace SupportingData {
   };
 
   export { DataownerTypes as DataownerTypes, type DataownerTypeListResponse as DataownerTypeListResponse };
-
-  export { DataTypes as DataTypes, type DataTypeListResponse as DataTypeListResponse };
 
   export {
     ProviderMetadata as ProviderMetadata,

@@ -1,0 +1,925 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../resource';
+import * as Core from '../core';
+
+export class Rfband extends APIResource {
+  /**
+   * Service operation to take a single RFBand as a POST body and ingest into the
+   * database. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  create(body: RfbandCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/udl/rfband', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to update an RFBand. A specific role is required to perform
+   * this service operation. Please contact the UDL team for assistance.
+   */
+  update(params: RfbandUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { path_id, body_id, ...body } = params;
+    return this._client.put(`/udl/rfband/${path_id}`, {
+      body: { id: body_id, ...body },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data by a variety of query parameters not
+   * specified in this API documentation. See the queryhelp operation
+   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+   * parameter information.
+   */
+  list(options?: Core.RequestOptions): Core.APIPromise<RfbandListResponse> {
+    return this._client.get('/udl/rfband', options);
+  }
+
+  /**
+   * Service operation to delete an RFBand specified by the passed ID path parameter.
+   * A specific role is required to perform this service operation. Please contact
+   * the UDL team for assistance.
+   */
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/rfband/${id}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to return the count of records satisfying the specified query
+   * parameters. This operation is useful to determine how many records pass a
+   * particular query criteria without retrieving large amounts of data. See the
+   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+   * valid/required query parameter information.
+   */
+  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.get('/udl/rfband/count', {
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to get a single RFBand by its unique ID passed as a path
+   * parameter.
+   */
+  get(id: string, options?: Core.RequestOptions): Core.APIPromise<RfbandGetResponse> {
+    return this._client.get(`/udl/rfband/${id}`, options);
+  }
+
+  /**
+   * Service operation to provide detailed information on available dynamic query
+   * parameters for a particular data type.
+   */
+  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/udl/rfband/queryhelp', {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data and only return specified
+   * columns/fields. Requested columns are specified by the 'columns' query parameter
+   * and should be a comma separated list of valid fields for the specified data
+   * type. classificationMarking is always returned. See the queryhelp operation
+   * (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+   * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+   * hours would return the satNo and period of elsets with an epoch greater than 5
+   * hours ago.
+   */
+  tuple(query: RfbandTupleParams, options?: Core.RequestOptions): Core.APIPromise<RfbandTupleResponse> {
+    return this._client.get('/udl/rfband/tuple', { query, ...options });
+  }
+}
+
+export type RfbandListResponse = Array<RfbandListResponse.RfbandListResponseItem>;
+
+export namespace RfbandListResponse {
+  /**
+   * Details on a particular Radio Frequency (RF) band, also known as a carrier,
+   * which may be in use by any type of Entity for communications or operations.
+   */
+  export interface RfbandListResponseItem {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Unique identifier of the parent Entity which uses this band.
+     */
+    idEntity: string;
+
+    /**
+     * RF Band name.
+     */
+    name: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Name of the band of this RF range (e.g.
+     * X,K,Ku,Ka,L,S,C,UHF,VHF,EHF,SHF,UNK,VLF,HF,E,Q,V,W). See RFBandType for more
+     * details and descriptions of each band name.
+     */
+    band?: string;
+
+    /**
+     * RF Band frequency range bandwidth in Mhz.
+     */
+    bandwidth?: number;
+
+    /**
+     * Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
+     * degrees.
+     */
+    beamwidth?: number;
+
+    /**
+     * Center frequency of RF frequency range, if applicable, in Mhz.
+     */
+    centerFreq?: number;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * RF Range edge gain, in dBi.
+     */
+    edgeGain?: number;
+
+    /**
+     * EIRP is defined as the RMS power input in decibel watts required to a lossless
+     * half-wave dipole antenna to give the same maximum power density far from the
+     * antenna as the actual transmitter. It is equal to the power input to the
+     * transmitter's antenna multiplied by the antenna gain relative to a half-wave
+     * dipole. Effective radiated power and effective isotropic radiated power both
+     * measure the amount of power a radio transmitter and antenna (or other source of
+     * electromagnetic waves) radiates in a specific direction: in the direction of
+     * maximum signal strength (the "main lobe") of its radiation pattern.
+     */
+    eirp?: number;
+
+    /**
+     * Effective Radiated Power (ERP) is the total power in decibel watts radiated by
+     * an actual antenna relative to a half-wave dipole rather than a theoretical
+     * isotropic antenna. A half-wave dipole has a gain of 2.15 dB compared to an
+     * isotropic antenna. EIRP(dB) = ERP (dB)+2.15 dB or EIRP (W) = 1.64\*ERP(W).
+     * Effective radiated power and effective isotropic radiated power both measure the
+     * amount of power a radio transmitter and antenna (or other source of
+     * electromagnetic waves) radiates in a specific direction: in the direction of
+     * maximum signal strength (the "main lobe") of its radiation pattern.
+     */
+    erp?: number;
+
+    /**
+     * End/maximum of transmit RF frequency range, if applicable, in Mhz.
+     */
+    freqMax?: number;
+
+    /**
+     * Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+     */
+    freqMin?: number;
+
+    /**
+     * RF Band mode (e.g. TX, RX).
+     */
+    mode?: 'TX' | 'RX';
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * RF Range maximum gain, in dBi.
+     */
+    peakGain?: number;
+
+    /**
+     * Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
+     * Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
+     * (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
+     * R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
+     * surface.
+     */
+    polarization?: 'H' | 'V' | 'R' | 'L';
+
+    /**
+     * Purpose or use of the RF Band -- COMM = communications, TTC =
+     * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+     */
+    purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
+  }
+}
+
+export type RfbandCountResponse = string;
+
+/**
+ * Details on a particular Radio Frequency (RF) band, also known as a carrier,
+ * which may be in use by any type of Entity for communications or operations.
+ */
+export interface RfbandGetResponse {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Unique identifier of the parent Entity which uses this band.
+   */
+  idEntity: string;
+
+  /**
+   * RF Band name.
+   */
+  name: string;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Name of the band of this RF range (e.g.
+   * X,K,Ku,Ka,L,S,C,UHF,VHF,EHF,SHF,UNK,VLF,HF,E,Q,V,W). See RFBandType for more
+   * details and descriptions of each band name.
+   */
+  band?: string;
+
+  /**
+   * RF Band frequency range bandwidth in Mhz.
+   */
+  bandwidth?: number;
+
+  /**
+   * Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
+   * degrees.
+   */
+  beamwidth?: number;
+
+  /**
+   * Center frequency of RF frequency range, if applicable, in Mhz.
+   */
+  centerFreq?: number;
+
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   */
+  createdAt?: string;
+
+  /**
+   * Application user who created the row in the database, auto-populated by the
+   * system.
+   */
+  createdBy?: string;
+
+  /**
+   * RF Range edge gain, in dBi.
+   */
+  edgeGain?: number;
+
+  /**
+   * EIRP is defined as the RMS power input in decibel watts required to a lossless
+   * half-wave dipole antenna to give the same maximum power density far from the
+   * antenna as the actual transmitter. It is equal to the power input to the
+   * transmitter's antenna multiplied by the antenna gain relative to a half-wave
+   * dipole. Effective radiated power and effective isotropic radiated power both
+   * measure the amount of power a radio transmitter and antenna (or other source of
+   * electromagnetic waves) radiates in a specific direction: in the direction of
+   * maximum signal strength (the "main lobe") of its radiation pattern.
+   */
+  eirp?: number;
+
+  /**
+   * Effective Radiated Power (ERP) is the total power in decibel watts radiated by
+   * an actual antenna relative to a half-wave dipole rather than a theoretical
+   * isotropic antenna. A half-wave dipole has a gain of 2.15 dB compared to an
+   * isotropic antenna. EIRP(dB) = ERP (dB)+2.15 dB or EIRP (W) = 1.64\*ERP(W).
+   * Effective radiated power and effective isotropic radiated power both measure the
+   * amount of power a radio transmitter and antenna (or other source of
+   * electromagnetic waves) radiates in a specific direction: in the direction of
+   * maximum signal strength (the "main lobe") of its radiation pattern.
+   */
+  erp?: number;
+
+  /**
+   * End/maximum of transmit RF frequency range, if applicable, in Mhz.
+   */
+  freqMax?: number;
+
+  /**
+   * Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+   */
+  freqMin?: number;
+
+  /**
+   * RF Band mode (e.g. TX, RX).
+   */
+  mode?: 'TX' | 'RX';
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * The originating source network on which this record was created, auto-populated
+   * by the system.
+   */
+  origNetwork?: string;
+
+  /**
+   * RF Range maximum gain, in dBi.
+   */
+  peakGain?: number;
+
+  /**
+   * Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
+   * Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
+   * (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
+   * R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
+   * surface.
+   */
+  polarization?: 'H' | 'V' | 'R' | 'L';
+
+  /**
+   * Purpose or use of the RF Band -- COMM = communications, TTC =
+   * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+   */
+  purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
+
+  /**
+   * Time the row was last updated in the database, auto-populated by the system.
+   */
+  updatedAt?: string;
+
+  /**
+   * Application user who updated the row in the database, auto-populated by the
+   * system.
+   */
+  updatedBy?: string;
+}
+
+export type RfbandTupleResponse = Array<RfbandTupleResponse.RfbandTupleResponseItem>;
+
+export namespace RfbandTupleResponse {
+  /**
+   * Details on a particular Radio Frequency (RF) band, also known as a carrier,
+   * which may be in use by any type of Entity for communications or operations.
+   */
+  export interface RfbandTupleResponseItem {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Unique identifier of the parent Entity which uses this band.
+     */
+    idEntity: string;
+
+    /**
+     * RF Band name.
+     */
+    name: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Name of the band of this RF range (e.g.
+     * X,K,Ku,Ka,L,S,C,UHF,VHF,EHF,SHF,UNK,VLF,HF,E,Q,V,W). See RFBandType for more
+     * details and descriptions of each band name.
+     */
+    band?: string;
+
+    /**
+     * RF Band frequency range bandwidth in Mhz.
+     */
+    bandwidth?: number;
+
+    /**
+     * Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
+     * degrees.
+     */
+    beamwidth?: number;
+
+    /**
+     * Center frequency of RF frequency range, if applicable, in Mhz.
+     */
+    centerFreq?: number;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * RF Range edge gain, in dBi.
+     */
+    edgeGain?: number;
+
+    /**
+     * EIRP is defined as the RMS power input in decibel watts required to a lossless
+     * half-wave dipole antenna to give the same maximum power density far from the
+     * antenna as the actual transmitter. It is equal to the power input to the
+     * transmitter's antenna multiplied by the antenna gain relative to a half-wave
+     * dipole. Effective radiated power and effective isotropic radiated power both
+     * measure the amount of power a radio transmitter and antenna (or other source of
+     * electromagnetic waves) radiates in a specific direction: in the direction of
+     * maximum signal strength (the "main lobe") of its radiation pattern.
+     */
+    eirp?: number;
+
+    /**
+     * Effective Radiated Power (ERP) is the total power in decibel watts radiated by
+     * an actual antenna relative to a half-wave dipole rather than a theoretical
+     * isotropic antenna. A half-wave dipole has a gain of 2.15 dB compared to an
+     * isotropic antenna. EIRP(dB) = ERP (dB)+2.15 dB or EIRP (W) = 1.64\*ERP(W).
+     * Effective radiated power and effective isotropic radiated power both measure the
+     * amount of power a radio transmitter and antenna (or other source of
+     * electromagnetic waves) radiates in a specific direction: in the direction of
+     * maximum signal strength (the "main lobe") of its radiation pattern.
+     */
+    erp?: number;
+
+    /**
+     * End/maximum of transmit RF frequency range, if applicable, in Mhz.
+     */
+    freqMax?: number;
+
+    /**
+     * Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+     */
+    freqMin?: number;
+
+    /**
+     * RF Band mode (e.g. TX, RX).
+     */
+    mode?: 'TX' | 'RX';
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * RF Range maximum gain, in dBi.
+     */
+    peakGain?: number;
+
+    /**
+     * Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
+     * Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
+     * (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
+     * R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
+     * surface.
+     */
+    polarization?: 'H' | 'V' | 'R' | 'L';
+
+    /**
+     * Purpose or use of the RF Band -- COMM = communications, TTC =
+     * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+     */
+    purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
+
+    /**
+     * Time the row was last updated in the database, auto-populated by the system.
+     */
+    updatedAt?: string;
+
+    /**
+     * Application user who updated the row in the database, auto-populated by the
+     * system.
+     */
+    updatedBy?: string;
+  }
+}
+
+export interface RfbandCreateParams {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Unique identifier of the parent Entity which uses this band.
+   */
+  idEntity: string;
+
+  /**
+   * RF Band name.
+   */
+  name: string;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Name of the band of this RF range (e.g.
+   * X,K,Ku,Ka,L,S,C,UHF,VHF,EHF,SHF,UNK,VLF,HF,E,Q,V,W). See RFBandType for more
+   * details and descriptions of each band name.
+   */
+  band?: string;
+
+  /**
+   * RF Band frequency range bandwidth in Mhz.
+   */
+  bandwidth?: number;
+
+  /**
+   * Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
+   * degrees.
+   */
+  beamwidth?: number;
+
+  /**
+   * Center frequency of RF frequency range, if applicable, in Mhz.
+   */
+  centerFreq?: number;
+
+  /**
+   * RF Range edge gain, in dBi.
+   */
+  edgeGain?: number;
+
+  /**
+   * EIRP is defined as the RMS power input in decibel watts required to a lossless
+   * half-wave dipole antenna to give the same maximum power density far from the
+   * antenna as the actual transmitter. It is equal to the power input to the
+   * transmitter's antenna multiplied by the antenna gain relative to a half-wave
+   * dipole. Effective radiated power and effective isotropic radiated power both
+   * measure the amount of power a radio transmitter and antenna (or other source of
+   * electromagnetic waves) radiates in a specific direction: in the direction of
+   * maximum signal strength (the "main lobe") of its radiation pattern.
+   */
+  eirp?: number;
+
+  /**
+   * Effective Radiated Power (ERP) is the total power in decibel watts radiated by
+   * an actual antenna relative to a half-wave dipole rather than a theoretical
+   * isotropic antenna. A half-wave dipole has a gain of 2.15 dB compared to an
+   * isotropic antenna. EIRP(dB) = ERP (dB)+2.15 dB or EIRP (W) = 1.64\*ERP(W).
+   * Effective radiated power and effective isotropic radiated power both measure the
+   * amount of power a radio transmitter and antenna (or other source of
+   * electromagnetic waves) radiates in a specific direction: in the direction of
+   * maximum signal strength (the "main lobe") of its radiation pattern.
+   */
+  erp?: number;
+
+  /**
+   * End/maximum of transmit RF frequency range, if applicable, in Mhz.
+   */
+  freqMax?: number;
+
+  /**
+   * Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+   */
+  freqMin?: number;
+
+  /**
+   * RF Band mode (e.g. TX, RX).
+   */
+  mode?: 'TX' | 'RX';
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * RF Range maximum gain, in dBi.
+   */
+  peakGain?: number;
+
+  /**
+   * Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
+   * Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
+   * (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
+   * R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
+   * surface.
+   */
+  polarization?: 'H' | 'V' | 'R' | 'L';
+
+  /**
+   * Purpose or use of the RF Band -- COMM = communications, TTC =
+   * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+   */
+  purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
+}
+
+export interface RfbandUpdateParams {
+  /**
+   * Path param: The ID of the RFBand to update.
+   */
+  path_id: string;
+
+  /**
+   * Body param: Classification marking of the data in IC/CAPCO Portion-marked
+   * format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Body param: Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST
+   * data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Body param: Unique identifier of the parent Entity which uses this band.
+   */
+  idEntity: string;
+
+  /**
+   * Body param: RF Band name.
+   */
+  name: string;
+
+  /**
+   * Body param: Source of the data.
+   */
+  source: string;
+
+  /**
+   * Body param: Unique identifier of the record, auto-generated by the system.
+   */
+  body_id?: string;
+
+  /**
+   * Body param: Name of the band of this RF range (e.g.
+   * X,K,Ku,Ka,L,S,C,UHF,VHF,EHF,SHF,UNK,VLF,HF,E,Q,V,W). See RFBandType for more
+   * details and descriptions of each band name.
+   */
+  band?: string;
+
+  /**
+   * Body param: RF Band frequency range bandwidth in Mhz.
+   */
+  bandwidth?: number;
+
+  /**
+   * Body param: Angle between the half-power (-3 dB) points of the main lobe of the
+   * antenna, in degrees.
+   */
+  beamwidth?: number;
+
+  /**
+   * Body param: Center frequency of RF frequency range, if applicable, in Mhz.
+   */
+  centerFreq?: number;
+
+  /**
+   * Body param: RF Range edge gain, in dBi.
+   */
+  edgeGain?: number;
+
+  /**
+   * Body param: EIRP is defined as the RMS power input in decibel watts required to
+   * a lossless half-wave dipole antenna to give the same maximum power density far
+   * from the antenna as the actual transmitter. It is equal to the power input to
+   * the transmitter's antenna multiplied by the antenna gain relative to a half-wave
+   * dipole. Effective radiated power and effective isotropic radiated power both
+   * measure the amount of power a radio transmitter and antenna (or other source of
+   * electromagnetic waves) radiates in a specific direction: in the direction of
+   * maximum signal strength (the "main lobe") of its radiation pattern.
+   */
+  eirp?: number;
+
+  /**
+   * Body param: Effective Radiated Power (ERP) is the total power in decibel watts
+   * radiated by an actual antenna relative to a half-wave dipole rather than a
+   * theoretical isotropic antenna. A half-wave dipole has a gain of 2.15 dB compared
+   * to an isotropic antenna. EIRP(dB) = ERP (dB)+2.15 dB or EIRP (W) = 1.64\*ERP(W).
+   * Effective radiated power and effective isotropic radiated power both measure the
+   * amount of power a radio transmitter and antenna (or other source of
+   * electromagnetic waves) radiates in a specific direction: in the direction of
+   * maximum signal strength (the "main lobe") of its radiation pattern.
+   */
+  erp?: number;
+
+  /**
+   * Body param: End/maximum of transmit RF frequency range, if applicable, in Mhz.
+   */
+  freqMax?: number;
+
+  /**
+   * Body param: Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+   */
+  freqMin?: number;
+
+  /**
+   * Body param: RF Band mode (e.g. TX, RX).
+   */
+  mode?: 'TX' | 'RX';
+
+  /**
+   * Body param: Originating system or organization which produced the data, if
+   * different from the source. The origin may be different than the source if the
+   * source was a mediating system which forwarded the data on behalf of the origin
+   * system. If null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * Body param: RF Range maximum gain, in dBi.
+   */
+  peakGain?: number;
+
+  /**
+   * Body param: Transponder polarization e.g. H - (Horizontally Polarized)
+   * Perpendicular to Earth's surface, V - (Vertically Polarized) Parallel to Earth's
+   * surface, L - (Left Hand Circularly Polarized) Rotating left relative to the
+   * Earth's surface, R - (Right Hand Circularly Polarized) Rotating right relative
+   * to the Earth's surface.
+   */
+  polarization?: 'H' | 'V' | 'R' | 'L';
+
+  /**
+   * Body param: Purpose or use of the RF Band -- COMM = communications, TTC =
+   * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+   */
+  purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
+}
+
+export interface RfbandTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
+
+export declare namespace Rfband {
+  export {
+    type RfbandListResponse as RfbandListResponse,
+    type RfbandCountResponse as RfbandCountResponse,
+    type RfbandGetResponse as RfbandGetResponse,
+    type RfbandTupleResponse as RfbandTupleResponse,
+    type RfbandCreateParams as RfbandCreateParams,
+    type RfbandUpdateParams as RfbandUpdateParams,
+    type RfbandTupleParams as RfbandTupleParams,
+  };
+}

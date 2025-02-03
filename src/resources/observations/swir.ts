@@ -47,7 +47,7 @@ export namespace SwirCreateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Source of the data.
@@ -76,26 +76,10 @@ export namespace SwirCreateParams {
     badWave?: string;
 
     /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
-
-    /**
      * Array of flux ratio data. This array should correspond with the same-sized array
      * of ratioWavelengths.
      */
     fluxRatios?: Array<number>;
-
-    /**
-     * Unique identifier of the target on-orbit object.
-     */
-    idOnOrbit?: string;
 
     /**
      * Spacecraft WGS84 latitude, in degrees at obTime. -90 to 90 degrees (negative
@@ -121,12 +105,6 @@ export namespace SwirCreateParams {
      * null, the source may be assumed to be the origin.
      */
     origin?: string;
-
-    /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
 
     /**
      * Original object ID or Catalog Number provided by source.

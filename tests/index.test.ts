@@ -23,8 +23,8 @@ describe('instantiate client', () => {
     const client = new Unifieddatalibrary({
       baseURL: 'http://localhost:5000/',
       defaultHeaders: { 'X-My-Default-Header': '2' },
-      username: 'My Username',
       password: 'My Password',
+      username: 'My Username',
     });
 
     test('they are used in the request', () => {
@@ -56,8 +56,8 @@ describe('instantiate client', () => {
       const client = new Unifieddatalibrary({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo' },
-        username: 'My Username',
         password: 'My Password',
+        username: 'My Username',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo');
     });
@@ -66,8 +66,8 @@ describe('instantiate client', () => {
       const client = new Unifieddatalibrary({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo', hello: 'world' },
-        username: 'My Username',
         password: 'My Password',
+        username: 'My Username',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo&hello=world');
     });
@@ -76,8 +76,8 @@ describe('instantiate client', () => {
       const client = new Unifieddatalibrary({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { hello: 'world' },
-        username: 'My Username',
         password: 'My Password',
+        username: 'My Username',
       });
       expect(client.buildURL('/foo', { hello: undefined })).toEqual('http://localhost:5000/foo');
     });
@@ -86,8 +86,8 @@ describe('instantiate client', () => {
   test('custom fetch', async () => {
     const client = new Unifieddatalibrary({
       baseURL: 'http://localhost:5000/',
-      username: 'My Username',
       password: 'My Password',
+      username: 'My Username',
       fetch: (url) => {
         return Promise.resolve(
           new Response(JSON.stringify({ url, custom: true }), {
@@ -104,8 +104,8 @@ describe('instantiate client', () => {
   test('custom signal', async () => {
     const client = new Unifieddatalibrary({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-      username: 'My Username',
       password: 'My Password',
+      username: 'My Username',
       fetch: (...args) => {
         return new Promise((resolve, reject) =>
           setTimeout(
@@ -132,8 +132,8 @@ describe('instantiate client', () => {
     test('trailing slash', () => {
       const client = new Unifieddatalibrary({
         baseURL: 'http://localhost:5000/custom/path/',
-        username: 'My Username',
         password: 'My Password',
+        username: 'My Username',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
@@ -141,8 +141,8 @@ describe('instantiate client', () => {
     test('no trailing slash', () => {
       const client = new Unifieddatalibrary({
         baseURL: 'http://localhost:5000/custom/path',
-        username: 'My Username',
         password: 'My Password',
+        username: 'My Username',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
@@ -154,27 +154,27 @@ describe('instantiate client', () => {
     test('explicit option', () => {
       const client = new Unifieddatalibrary({
         baseURL: 'https://example.com',
-        username: 'My Username',
         password: 'My Password',
+        username: 'My Username',
       });
       expect(client.baseURL).toEqual('https://example.com');
     });
 
     test('env variable', () => {
       process.env['UNIFIEDDATALIBRARY_BASE_URL'] = 'https://example.com/from_env';
-      const client = new Unifieddatalibrary({ username: 'My Username', password: 'My Password' });
+      const client = new Unifieddatalibrary({ password: 'My Password', username: 'My Username' });
       expect(client.baseURL).toEqual('https://example.com/from_env');
     });
 
     test('empty env variable', () => {
       process.env['UNIFIEDDATALIBRARY_BASE_URL'] = ''; // empty
-      const client = new Unifieddatalibrary({ username: 'My Username', password: 'My Password' });
+      const client = new Unifieddatalibrary({ password: 'My Password', username: 'My Username' });
       expect(client.baseURL).toEqual('https://unifieddatalibrary.com');
     });
 
     test('blank env variable', () => {
       process.env['UNIFIEDDATALIBRARY_BASE_URL'] = '  '; // blank
-      const client = new Unifieddatalibrary({ username: 'My Username', password: 'My Password' });
+      const client = new Unifieddatalibrary({ password: 'My Password', username: 'My Username' });
       expect(client.baseURL).toEqual('https://unifieddatalibrary.com');
     });
   });
@@ -182,37 +182,37 @@ describe('instantiate client', () => {
   test('maxRetries option is correctly set', () => {
     const client = new Unifieddatalibrary({
       maxRetries: 4,
-      username: 'My Username',
       password: 'My Password',
+      username: 'My Username',
     });
     expect(client.maxRetries).toEqual(4);
 
     // default
-    const client2 = new Unifieddatalibrary({ username: 'My Username', password: 'My Password' });
+    const client2 = new Unifieddatalibrary({ password: 'My Password', username: 'My Username' });
     expect(client2.maxRetries).toEqual(2);
   });
 
   test('with environment variable arguments', () => {
     // set options via env var
-    process.env['HTTP_BASIC_AUTH_USERNAME'] = 'My Username';
     process.env['HTTP_BASIC_AUTH_PASSWORD'] = 'My Password';
+    process.env['HTTP_BASIC_AUTH_USERNAME'] = 'My Username';
     const client = new Unifieddatalibrary();
-    expect(client.username).toBe('My Username');
     expect(client.password).toBe('My Password');
+    expect(client.username).toBe('My Username');
   });
 
   test('with overridden environment variable arguments', () => {
     // set options via env var
-    process.env['HTTP_BASIC_AUTH_USERNAME'] = 'another My Username';
     process.env['HTTP_BASIC_AUTH_PASSWORD'] = 'another My Password';
-    const client = new Unifieddatalibrary({ username: 'My Username', password: 'My Password' });
-    expect(client.username).toBe('My Username');
+    process.env['HTTP_BASIC_AUTH_USERNAME'] = 'another My Username';
+    const client = new Unifieddatalibrary({ password: 'My Password', username: 'My Username' });
     expect(client.password).toBe('My Password');
+    expect(client.username).toBe('My Username');
   });
 });
 
 describe('request building', () => {
-  const client = new Unifieddatalibrary({ username: 'My Username', password: 'My Password' });
+  const client = new Unifieddatalibrary({ password: 'My Password', username: 'My Username' });
 
   describe('Content-Length', () => {
     test('handles multi-byte characters', () => {
@@ -255,8 +255,8 @@ describe('retries', () => {
     };
 
     const client = new Unifieddatalibrary({
-      username: 'My Username',
       password: 'My Password',
+      username: 'My Username',
       timeout: 10,
       fetch: testFetch,
     });
@@ -290,8 +290,8 @@ describe('retries', () => {
     };
 
     const client = new Unifieddatalibrary({
-      username: 'My Username',
       password: 'My Password',
+      username: 'My Username',
       fetch: testFetch,
       maxRetries: 4,
     });
@@ -319,8 +319,8 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
     const client = new Unifieddatalibrary({
-      username: 'My Username',
       password: 'My Password',
+      username: 'My Username',
       fetch: testFetch,
       maxRetries: 4,
     });
@@ -353,8 +353,8 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
     const client = new Unifieddatalibrary({
-      username: 'My Username',
       password: 'My Password',
+      username: 'My Username',
       fetch: testFetch,
       maxRetries: 4,
       defaultHeaders: { 'X-Stainless-Retry-Count': null },
@@ -387,8 +387,8 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
     const client = new Unifieddatalibrary({
-      username: 'My Username',
       password: 'My Password',
+      username: 'My Username',
       fetch: testFetch,
       maxRetries: 4,
     });
@@ -419,8 +419,8 @@ describe('retries', () => {
     };
 
     const client = new Unifieddatalibrary({
-      username: 'My Username',
       password: 'My Password',
+      username: 'My Username',
       fetch: testFetch,
     });
 
@@ -450,8 +450,8 @@ describe('retries', () => {
     };
 
     const client = new Unifieddatalibrary({
-      username: 'My Username',
       password: 'My Password',
+      username: 'My Username',
       fetch: testFetch,
     });
 

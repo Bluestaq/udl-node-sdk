@@ -4,19 +4,19 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource airTaskingOrders', () => {
   test('create: only required params', async () => {
     const responsePromise = client.airTaskingOrders.create({
-      beginTs: '2019-12-27T18:11:19.117Z',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      opExerName: 'opExerName',
-      source: 'source',
+      beginTs: '2023-10-25T12:00:00.123Z',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      opExerName: 'DESERT WIND',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -29,94 +29,89 @@ describe('resource airTaskingOrders', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.airTaskingOrders.create({
-      beginTs: '2019-12-27T18:11:19.117Z',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      opExerName: 'opExerName',
-      source: 'source',
-      id: 'id',
-      ackReqInd: 'ackReqInd',
-      ackUnitInstructions: 'ackUnitInstructions',
+      beginTs: '2023-10-25T12:00:00.123Z',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      opExerName: 'DESERT WIND',
+      source: 'Bluestaq',
+      id: 'POI-ID',
+      ackReqInd: 'YES',
+      ackUnitInstructions: 'INST:45TS',
       acMsnTasking: [
         {
-          countryCode: 'countryCode',
-          taskedService: 'taskedService',
-          unitDesignator: 'unitDesignator',
+          countryCode: 'US',
+          taskedService: 'A',
+          unitDesignator: 'AMPHIB5DIV',
           acMsnLocSeg: [
             {
-              startTime: '2019-12-27T18:11:19.117Z',
-              airMsnPri: 'airMsnPri',
-              alt: 0,
-              areaGeoRad: 0,
-              endTime: '2019-12-27T18:11:19.117Z',
-              msnLocName: 'msnLocName',
-              msnLocPtBarT: 'msnLocPtBarT',
-              msnLocPtLat: 0,
-              msnLocPtLon: 0,
-              msnLocPtName: 'msnLocPtName',
+              startTime: '2021-10-25T12:00:00.123Z',
+              airMsnPri: '1A',
+              alt: 210,
+              areaGeoRad: 1000,
+              endTime: '2021-10-25T12:00:00.123Z',
+              msnLocName: 'KLSV',
+              msnLocPtBarT: '330T-PT ALFA-50NM',
+              msnLocPtLat: -90,
+              msnLocPtLon: -180,
+              msnLocPtName: 'PT ALFA',
             },
           ],
-          alertStatus: 0,
-          amcMsnNum: 'amcMsnNum',
-          depLocLat: 0,
-          depLocLon: 0,
-          depLocName: 'depLocName',
-          depLocUTM: 'depLocUTM',
-          depTime: '2019-12-27T18:11:19.117Z',
+          alertStatus: 30,
+          amcMsnNum: 'AMC:JJXD123HA045',
+          depLocLat: -90,
+          depLocLon: -180,
+          depLocName: 'ICAO:KBIF',
+          depLocUTM: '32WDL123123',
+          depTime: '2021-10-25T12:00:00.123Z',
           indACTasking: [
             {
-              acftType: 'acftType',
-              callSign: 'callSign',
-              iffSifMode1Code: 'iffSifMode1Code',
-              iffSifMode2Code: 'iffSifMode2Code',
-              iffSifMode3Code: 'iffSifMode3Code',
-              juAddress: [0],
-              link16CallSign: 'link16CallSign',
-              numAcft: 0,
-              priConfigCode: 'priConfigCode',
-              secConfigCode: 'secConfigCode',
-              tacanChan: 0,
+              acftType: 'F35A',
+              callSign: 'EAGLE47',
+              iffSifMode1Code: '111',
+              iffSifMode2Code: '20147',
+              iffSifMode3Code: '30147',
+              juAddress: [12345],
+              link16CallSign: 'EE47',
+              numAcft: 2,
+              priConfigCode: '6A2W3',
+              secConfigCode: '2S2WG',
+              tacanChan: 123,
             },
           ],
-          msnCommander: 'msnCommander',
-          msnNum: 'msnNum',
-          pkgId: 'pkgId',
-          priMsnType: 'priMsnType',
-          rcvyLocLat: [0],
-          rcvyLocLon: [0],
-          rcvyLocName: ['string'],
-          rcvyLocUTM: ['string'],
-          rcvyTime: ['2019-12-27T18:11:19.117Z'],
-          resMsnInd: 'resMsnInd',
-          secMsnType: 'secMsnType',
-          unitLocName: 'unitLocName',
+          msnCommander: 'MC',
+          msnNum: 'D123HA',
+          pkgId: 'ZZ',
+          priMsnType: 'CAS',
+          rcvyLocLat: [48.8584, 40.7554],
+          rcvyLocLon: [2.2945, -73.9866],
+          rcvyLocName: ['ARRLOC:KBIF', 'ARRLOC:KDZ7'],
+          rcvyLocUTM: ['ARRUTMO:32WDL123123', 'ARRUTMO:32WDL321321'],
+          rcvyTime: ['2021-10-25T16:00:00.234Z', '2021-10-26T16:00:00.234Z'],
+          resMsnInd: 'N',
+          secMsnType: 'SEAD',
+          unitLocName: 'ICAO:KXXQ',
         },
       ],
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      endTs: '2019-12-27T18:11:19.117Z',
-      genText: [{ text: 'text', textInd: 'textInd' }],
-      msgMonth: 'msgMonth',
-      msgOriginator: 'msgOriginator',
-      msgQualifier: 'msgQualifier',
-      msgSN: 'msgSN',
+      endTs: '2023-10-27T12:00:00.123Z',
+      genText: [{ text: 'FREE-TEXT', textInd: 'OPENING REMARKS' }],
+      msgMonth: 'OCT',
+      msgOriginator: 'USCENTCOM',
+      msgQualifier: 'CHG',
+      msgSN: 'ATO A',
       navalFltOps: [
         {
-          shipName: 'shipName',
-          fltOpStart: '2019-12-27T18:11:19.117Z',
-          fltOpStop: '2019-12-27T18:11:19.117Z',
-          schdLaunchRcvyTime: ['2019-12-27T18:11:19.117Z'],
+          shipName: 'USS WASP',
+          fltOpStart: '2021-02-25T12:00:00.123Z',
+          fltOpStop: '2021-02-25T12:00:00.123Z',
+          schdLaunchRcvyTime: ['2021-02-25T12:00:00.123Z'],
         },
       ],
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      rawFileURI: 'rawFileURI',
-      sourceDL: 'sourceDL',
+      origin: 'THIRD_PARTY_DATASOURCE',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.airTaskingOrders.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.airTaskingOrders.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -126,8 +121,11 @@ describe('resource airTaskingOrders', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.airTaskingOrders.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.airTaskingOrders.retrieve('id', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('count', async () => {

@@ -4,18 +4,18 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource batterydetails', () => {
   test('create: only required params', async () => {
     const responsePromise = client.batterydetails.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idBattery: 'idBattery',
-      source: 'source',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idBattery: 'BATTERY-ID',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,27 +28,24 @@ describe('resource batterydetails', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.batterydetails.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idBattery: 'idBattery',
-      source: 'source',
-      id: 'id',
-      capacity: 0,
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      description: 'description',
-      dischargeDepth: 0,
-      manufacturerOrgId: 'manufacturerOrgId',
-      model: 'model',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      tags: ['string'],
-      technology: 'technology',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idBattery: 'BATTERY-ID',
+      source: 'Bluestaq',
+      id: 'BATTERYDETAILS-ID',
+      capacity: 10.1,
+      description: 'example notes',
+      dischargeDepth: 0.2,
+      manufacturerOrgId: 'MANUFACTURERORG-ID',
+      model: '11212',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+      technology: 'Ni-Cd',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.batterydetails.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.batterydetails.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -58,18 +55,20 @@ describe('resource batterydetails', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.batterydetails.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.batterydetails.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.batterydetails.update({
       path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idBattery: 'idBattery',
-      source: 'source',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idBattery: 'BATTERY-ID',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -83,23 +82,19 @@ describe('resource batterydetails', () => {
   test('update: required and optional params', async () => {
     const response = await client.batterydetails.update({
       path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idBattery: 'idBattery',
-      source: 'source',
-      body_id: 'id',
-      capacity: 0,
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      description: 'description',
-      dischargeDepth: 0,
-      manufacturerOrgId: 'manufacturerOrgId',
-      model: 'model',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      tags: ['string'],
-      technology: 'technology',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idBattery: 'BATTERY-ID',
+      source: 'Bluestaq',
+      body_id: 'BATTERYDETAILS-ID',
+      capacity: 10.1,
+      description: 'example notes',
+      dischargeDepth: 0.2,
+      manufacturerOrgId: 'MANUFACTURERORG-ID',
+      model: '11212',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+      technology: 'Ni-Cd',
     });
   });
 
@@ -121,8 +116,8 @@ describe('resource batterydetails', () => {
     );
   });
 
-  test('delete: only required params', async () => {
-    const responsePromise = client.batterydetails.delete({ path_id: 'id', body_id: 'id' });
+  test('delete', async () => {
+    const responsePromise = client.batterydetails.delete('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -132,7 +127,10 @@ describe('resource batterydetails', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: required and optional params', async () => {
-    const response = await client.batterydetails.delete({ path_id: 'id', body_id: 'id' });
+  test('delete: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.batterydetails.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 });

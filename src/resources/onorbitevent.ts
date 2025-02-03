@@ -1,0 +1,1642 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../resource';
+import * as Core from '../core';
+import * as Shared from './shared';
+
+export class Onorbitevent extends APIResource {
+  /**
+   * Service operation to take a single OnorbitEvent as a POST body and ingest into
+   * the database. An OnorbitEvent is an event associated with a particular on-orbit
+   * spacecraft including insurance related losses, anomalies and incidents. A
+   * specific role is required to perform this service operation. Please contact the
+   * UDL team for assistance.
+   */
+  create(body: OnorbiteventCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/udl/onorbitevent', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to update a single OnorbitEvent. An OnorbitEvent is an event
+   * associated with a particular on-orbit spacecraft including insurance related
+   * losses, anomalies and incidents. A specific role is required to perform this
+   * service operation. Please contact the UDL team for assistance.
+   */
+  update(params: OnorbiteventUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { path_id, body_id, ...body } = params;
+    return this._client.put(`/udl/onorbitevent/${path_id}`, {
+      body: { id: body_id, ...body },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data by a variety of query parameters not
+   * specified in this API documentation. See the queryhelp operation
+   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+   * parameter information.
+   */
+  list(options?: Core.RequestOptions): Core.APIPromise<OnorbiteventListResponse> {
+    return this._client.get('/udl/onorbitevent', options);
+  }
+
+  /**
+   * Service operation to delete a OnorbitEvent object specified by the passed ID
+   * path parameter. An OnorbitEvent is an event associated with a particular
+   * on-orbit spacecraft including insurance related losses, anomalies and incidents.
+   * A specific role is required to perform this service operation. Please contact
+   * the UDL team for assistance.
+   */
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/onorbitevent/${id}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to return the count of records satisfying the specified query
+   * parameters. This operation is useful to determine how many records pass a
+   * particular query criteria without retrieving large amounts of data. See the
+   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+   * valid/required query parameter information.
+   */
+  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.get('/udl/onorbitevent/count', {
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to get a single OnorbitEvent record by its unique ID passed as
+   * a path parameter. An OnorbitEvent is an event associated with a particular
+   * on-orbit spacecraft including insurance related losses, anomalies and incidents.
+   */
+  get(id: string, options?: Core.RequestOptions): Core.APIPromise<OnorbiteventGetResponse> {
+    return this._client.get(`/udl/onorbitevent/${id}`, options);
+  }
+
+  /**
+   * Service operation to provide detailed information on available dynamic query
+   * parameters for a particular data type.
+   */
+  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/udl/onorbitevent/queryhelp', {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data and only return specified
+   * columns/fields. Requested columns are specified by the 'columns' query parameter
+   * and should be a comma separated list of valid fields for the specified data
+   * type. classificationMarking is always returned. See the queryhelp operation
+   * (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+   * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+   * hours would return the satNo and period of elsets with an epoch greater than 5
+   * hours ago.
+   */
+  tuple(
+    query: OnorbiteventTupleParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<OnorbiteventTupleResponse> {
+    return this._client.get('/udl/onorbitevent/tuple', { query, ...options });
+  }
+}
+
+export type OnorbiteventListResponse = Array<OnorbiteventListResponse.OnorbiteventListResponseItem>;
+
+export namespace OnorbiteventListResponse {
+  export interface OnorbiteventListResponseItem {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Date/Time of the event. See eventTimeNotes for remarks on the accuracy of the
+     * date time.
+     */
+    eventTime: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Achieved phase of flight prior to the event.
+     */
+    achievedFlightPhase?: string;
+
+    /**
+     * Spacecraft age at the event in years.
+     */
+    ageAtEvent?: number;
+
+    /**
+     * Spacecraft capability loss incurred, as a fraction of 1.
+     */
+    capabilityLoss?: number;
+
+    /**
+     * Notes on capability loss at the time of event.
+     */
+    capabilityLossNotes?: string;
+
+    /**
+     * Spacecraft capacity loss incurred, as a fraction of 1.
+     */
+    capacityLoss?: number;
+
+    /**
+     * Additional equipment which failed as a result of faulty equipment on the
+     * spacecraft during the event.
+     */
+    consequentialEquipmentFailure?: string;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * The declassification date of this data, in ISO 8601 UTC format.
+     */
+    declassificationDate?: string;
+
+    /**
+     * Declassification string of this data.
+     */
+    declassificationString?: string;
+
+    /**
+     * The sources or SCG references from which the classification of this data is
+     * derived.
+     */
+    derivedFrom?: string;
+
+    /**
+     * Notes/description of the event.
+     */
+    description?: string;
+
+    /**
+     * Equipment on the spacecraft which caused the event.
+     */
+    equipmentAtFault?: string;
+
+    /**
+     * Additional notes on the equipment causing the event/loss.
+     */
+    equipmentCausingLossNotes?: string;
+
+    /**
+     * Specific part of the equipment on the spacecraft which caused the event.
+     */
+    equipmentPartAtFault?: string;
+
+    /**
+     * Type of the equipment on the spacecraft which caused the event.
+     */
+    equipmentTypeAtFault?: string;
+
+    /**
+     * The result of the reported event.
+     */
+    eventResult?: string;
+
+    /**
+     * Notes/remarks on the validity/accuracy of the eventTime.
+     */
+    eventTimeNotes?: string;
+
+    /**
+     * The type of on-orbit event being reported.
+     */
+    eventType?: string;
+
+    /**
+     * GEO position longitude at event time if applicable. Negative values are west.
+     */
+    geoPosition?: number;
+
+    /**
+     * Unique identifier of the on-orbit object for this event.
+     */
+    idOnOrbit?: string;
+
+    /**
+     * Boolean indicating if the spacecraft is inclined.
+     */
+    inclined?: boolean;
+
+    /**
+     * Number of humans injured in the event.
+     */
+    injured?: number;
+
+    /**
+     * Additional insurance notes on coverages at the time of event.
+     */
+    insuranceCarriedNotes?: string;
+
+    /**
+     * Insurance loss incurred, as a fraction of 1.
+     */
+    insuranceLoss?: number;
+
+    /**
+     * Additional insurance notes if the event is an official loss.
+     */
+    insuranceLossNotes?: string;
+
+    /**
+     * Number of humans killed in the event.
+     */
+    killed?: number;
+
+    /**
+     * Unique identifier of the organization which leases this on-orbit spacecraft.
+     */
+    lesseeOrgId?: string;
+
+    /**
+     * Spacecraft life lost due to the event as a percent/fraction of 1.
+     */
+    lifeLost?: number;
+
+    /**
+     * Net amount of the insurance claim for the event, in USD.
+     */
+    netAmount?: number;
+
+    /**
+     * The status of the on-orbit object.
+     */
+    objectStatus?: string;
+
+    /**
+     * Phase of flight during which the event occurred.
+     */
+    occurrenceFlightPhase?: string;
+
+    /**
+     * Date time of official loss of the spacecraft.
+     */
+    officialLossDate?: string;
+
+    /**
+     * Unique identifier of the organization on whose behalf the on-orbit spacecraft is
+     * operated.
+     */
+    operatedOnBehalfOfOrgId?: string;
+
+    /**
+     * Organization ID of the operator of the on-orbit spacecraft at the time of the
+     * event.
+     */
+    operatorOrgId?: string;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * Original object ID or Catalog Number provided by source (may not map to an
+     * existing idOnOrbit in UDL).
+     */
+    origObjectId?: string;
+
+    /**
+     * Organization ID of the owner of the on-orbit spacecraft at the time of the
+     * event.
+     */
+    ownerOrgId?: string;
+
+    /**
+     * GEO slot plane number/designator of the spacecraft at event time.
+     */
+    planeNumber?: string;
+
+    /**
+     * GEO plane slot of the spacecraft at event time.
+     */
+    planeSlot?: string;
+
+    /**
+     * Position status of the spacecraft at event time (e.g. Stable, Drifting/Tumbling,
+     * etc).
+     */
+    positionStatus?: string;
+
+    /**
+     * Additional remarks on the event description.
+     */
+    remarks?: string;
+
+    /**
+     * Description of the satellite orbital position or regime.
+     */
+    satellitePosition?: string;
+
+    /**
+     * Satellite/Catalog number of the target on-orbit object.
+     */
+    satNo?: number;
+
+    /**
+     * Faulty stage of flight for the event.
+     */
+    stageAtFault?: string;
+
+    /**
+     * Insurance loss incurred by 3rd party insurance, in USD.
+     */
+    thirdPartyInsuranceLoss?: number;
+
+    /**
+     * Underlying cause of the event.
+     */
+    underlyingCause?: string;
+
+    /**
+     * Maximum validity time of the event.
+     */
+    untilTime?: string;
+  }
+}
+
+export type OnorbiteventCountResponse = string;
+
+export interface OnorbiteventGetResponse {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Date/Time of the event. See eventTimeNotes for remarks on the accuracy of the
+   * date time.
+   */
+  eventTime: string;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Achieved phase of flight prior to the event.
+   */
+  achievedFlightPhase?: string;
+
+  /**
+   * Spacecraft age at the event in years.
+   */
+  ageAtEvent?: number;
+
+  /**
+   * Spacecraft capability loss incurred, as a fraction of 1.
+   */
+  capabilityLoss?: number;
+
+  /**
+   * Notes on capability loss at the time of event.
+   */
+  capabilityLossNotes?: string;
+
+  /**
+   * Spacecraft capacity loss incurred, as a fraction of 1.
+   */
+  capacityLoss?: number;
+
+  /**
+   * Additional equipment which failed as a result of faulty equipment on the
+   * spacecraft during the event.
+   */
+  consequentialEquipmentFailure?: string;
+
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   */
+  createdAt?: string;
+
+  /**
+   * Application user who created the row in the database, auto-populated by the
+   * system.
+   */
+  createdBy?: string;
+
+  /**
+   * The declassification date of this data, in ISO 8601 UTC format.
+   */
+  declassificationDate?: string;
+
+  /**
+   * Declassification string of this data.
+   */
+  declassificationString?: string;
+
+  /**
+   * The sources or SCG references from which the classification of this data is
+   * derived.
+   */
+  derivedFrom?: string;
+
+  /**
+   * Notes/description of the event.
+   */
+  description?: string;
+
+  /**
+   * Equipment on the spacecraft which caused the event.
+   */
+  equipmentAtFault?: string;
+
+  /**
+   * Additional notes on the equipment causing the event/loss.
+   */
+  equipmentCausingLossNotes?: string;
+
+  /**
+   * Specific part of the equipment on the spacecraft which caused the event.
+   */
+  equipmentPartAtFault?: string;
+
+  /**
+   * Type of the equipment on the spacecraft which caused the event.
+   */
+  equipmentTypeAtFault?: string;
+
+  /**
+   * The result of the reported event.
+   */
+  eventResult?: string;
+
+  /**
+   * Notes/remarks on the validity/accuracy of the eventTime.
+   */
+  eventTimeNotes?: string;
+
+  /**
+   * The type of on-orbit event being reported.
+   */
+  eventType?: string;
+
+  /**
+   * GEO position longitude at event time if applicable. Negative values are west.
+   */
+  geoPosition?: number;
+
+  /**
+   * Unique identifier of the on-orbit object for this event.
+   */
+  idOnOrbit?: string;
+
+  /**
+   * Boolean indicating if the spacecraft is inclined.
+   */
+  inclined?: boolean;
+
+  /**
+   * Number of humans injured in the event.
+   */
+  injured?: number;
+
+  /**
+   * Additional insurance notes on coverages at the time of event.
+   */
+  insuranceCarriedNotes?: string;
+
+  /**
+   * Insurance loss incurred, as a fraction of 1.
+   */
+  insuranceLoss?: number;
+
+  /**
+   * Additional insurance notes if the event is an official loss.
+   */
+  insuranceLossNotes?: string;
+
+  /**
+   * Number of humans killed in the event.
+   */
+  killed?: number;
+
+  /**
+   * Unique identifier of the organization which leases this on-orbit spacecraft.
+   */
+  lesseeOrgId?: string;
+
+  /**
+   * Spacecraft life lost due to the event as a percent/fraction of 1.
+   */
+  lifeLost?: number;
+
+  /**
+   * Net amount of the insurance claim for the event, in USD.
+   */
+  netAmount?: number;
+
+  /**
+   * The status of the on-orbit object.
+   */
+  objectStatus?: string;
+
+  /**
+   * Phase of flight during which the event occurred.
+   */
+  occurrenceFlightPhase?: string;
+
+  /**
+   * Date time of official loss of the spacecraft.
+   */
+  officialLossDate?: string;
+
+  /**
+   * Model object representing on-orbit objects or satellites in the system.
+   */
+  onOrbit?: Shared.Onorbit;
+
+  /**
+   * Unique identifier of the organization on whose behalf the on-orbit spacecraft is
+   * operated.
+   */
+  operatedOnBehalfOfOrgId?: string;
+
+  /**
+   * Organization ID of the operator of the on-orbit spacecraft at the time of the
+   * event.
+   */
+  operatorOrgId?: string;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * The originating source network on which this record was created, auto-populated
+   * by the system.
+   */
+  origNetwork?: string;
+
+  /**
+   * Original object ID or Catalog Number provided by source (may not map to an
+   * existing idOnOrbit in UDL).
+   */
+  origObjectId?: string;
+
+  /**
+   * Organization ID of the owner of the on-orbit spacecraft at the time of the
+   * event.
+   */
+  ownerOrgId?: string;
+
+  /**
+   * GEO slot plane number/designator of the spacecraft at event time.
+   */
+  planeNumber?: string;
+
+  /**
+   * GEO plane slot of the spacecraft at event time.
+   */
+  planeSlot?: string;
+
+  /**
+   * Position status of the spacecraft at event time (e.g. Stable, Drifting/Tumbling,
+   * etc).
+   */
+  positionStatus?: string;
+
+  /**
+   * Additional remarks on the event description.
+   */
+  remarks?: string;
+
+  /**
+   * Description of the satellite orbital position or regime.
+   */
+  satellitePosition?: string;
+
+  /**
+   * Satellite/Catalog number of the target on-orbit object.
+   */
+  satNo?: number;
+
+  /**
+   * Faulty stage of flight for the event.
+   */
+  stageAtFault?: string;
+
+  /**
+   * Insurance loss incurred by 3rd party insurance, in USD.
+   */
+  thirdPartyInsuranceLoss?: number;
+
+  /**
+   * Underlying cause of the event.
+   */
+  underlyingCause?: string;
+
+  /**
+   * Maximum validity time of the event.
+   */
+  untilTime?: string;
+
+  /**
+   * Time the row was last updated in the database, auto-populated by the system.
+   */
+  updatedAt?: string;
+
+  /**
+   * Application user who updated the row in the database, auto-populated by the
+   * system.
+   */
+  updatedBy?: string;
+}
+
+export type OnorbiteventTupleResponse = Array<OnorbiteventTupleResponse.OnorbiteventTupleResponseItem>;
+
+export namespace OnorbiteventTupleResponse {
+  export interface OnorbiteventTupleResponseItem {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Date/Time of the event. See eventTimeNotes for remarks on the accuracy of the
+     * date time.
+     */
+    eventTime: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Achieved phase of flight prior to the event.
+     */
+    achievedFlightPhase?: string;
+
+    /**
+     * Spacecraft age at the event in years.
+     */
+    ageAtEvent?: number;
+
+    /**
+     * Spacecraft capability loss incurred, as a fraction of 1.
+     */
+    capabilityLoss?: number;
+
+    /**
+     * Notes on capability loss at the time of event.
+     */
+    capabilityLossNotes?: string;
+
+    /**
+     * Spacecraft capacity loss incurred, as a fraction of 1.
+     */
+    capacityLoss?: number;
+
+    /**
+     * Additional equipment which failed as a result of faulty equipment on the
+     * spacecraft during the event.
+     */
+    consequentialEquipmentFailure?: string;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * The declassification date of this data, in ISO 8601 UTC format.
+     */
+    declassificationDate?: string;
+
+    /**
+     * Declassification string of this data.
+     */
+    declassificationString?: string;
+
+    /**
+     * The sources or SCG references from which the classification of this data is
+     * derived.
+     */
+    derivedFrom?: string;
+
+    /**
+     * Notes/description of the event.
+     */
+    description?: string;
+
+    /**
+     * Equipment on the spacecraft which caused the event.
+     */
+    equipmentAtFault?: string;
+
+    /**
+     * Additional notes on the equipment causing the event/loss.
+     */
+    equipmentCausingLossNotes?: string;
+
+    /**
+     * Specific part of the equipment on the spacecraft which caused the event.
+     */
+    equipmentPartAtFault?: string;
+
+    /**
+     * Type of the equipment on the spacecraft which caused the event.
+     */
+    equipmentTypeAtFault?: string;
+
+    /**
+     * The result of the reported event.
+     */
+    eventResult?: string;
+
+    /**
+     * Notes/remarks on the validity/accuracy of the eventTime.
+     */
+    eventTimeNotes?: string;
+
+    /**
+     * The type of on-orbit event being reported.
+     */
+    eventType?: string;
+
+    /**
+     * GEO position longitude at event time if applicable. Negative values are west.
+     */
+    geoPosition?: number;
+
+    /**
+     * Unique identifier of the on-orbit object for this event.
+     */
+    idOnOrbit?: string;
+
+    /**
+     * Boolean indicating if the spacecraft is inclined.
+     */
+    inclined?: boolean;
+
+    /**
+     * Number of humans injured in the event.
+     */
+    injured?: number;
+
+    /**
+     * Additional insurance notes on coverages at the time of event.
+     */
+    insuranceCarriedNotes?: string;
+
+    /**
+     * Insurance loss incurred, as a fraction of 1.
+     */
+    insuranceLoss?: number;
+
+    /**
+     * Additional insurance notes if the event is an official loss.
+     */
+    insuranceLossNotes?: string;
+
+    /**
+     * Number of humans killed in the event.
+     */
+    killed?: number;
+
+    /**
+     * Unique identifier of the organization which leases this on-orbit spacecraft.
+     */
+    lesseeOrgId?: string;
+
+    /**
+     * Spacecraft life lost due to the event as a percent/fraction of 1.
+     */
+    lifeLost?: number;
+
+    /**
+     * Net amount of the insurance claim for the event, in USD.
+     */
+    netAmount?: number;
+
+    /**
+     * The status of the on-orbit object.
+     */
+    objectStatus?: string;
+
+    /**
+     * Phase of flight during which the event occurred.
+     */
+    occurrenceFlightPhase?: string;
+
+    /**
+     * Date time of official loss of the spacecraft.
+     */
+    officialLossDate?: string;
+
+    /**
+     * Model object representing on-orbit objects or satellites in the system.
+     */
+    onOrbit?: Shared.Onorbit;
+
+    /**
+     * Unique identifier of the organization on whose behalf the on-orbit spacecraft is
+     * operated.
+     */
+    operatedOnBehalfOfOrgId?: string;
+
+    /**
+     * Organization ID of the operator of the on-orbit spacecraft at the time of the
+     * event.
+     */
+    operatorOrgId?: string;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * Original object ID or Catalog Number provided by source (may not map to an
+     * existing idOnOrbit in UDL).
+     */
+    origObjectId?: string;
+
+    /**
+     * Organization ID of the owner of the on-orbit spacecraft at the time of the
+     * event.
+     */
+    ownerOrgId?: string;
+
+    /**
+     * GEO slot plane number/designator of the spacecraft at event time.
+     */
+    planeNumber?: string;
+
+    /**
+     * GEO plane slot of the spacecraft at event time.
+     */
+    planeSlot?: string;
+
+    /**
+     * Position status of the spacecraft at event time (e.g. Stable, Drifting/Tumbling,
+     * etc).
+     */
+    positionStatus?: string;
+
+    /**
+     * Additional remarks on the event description.
+     */
+    remarks?: string;
+
+    /**
+     * Description of the satellite orbital position or regime.
+     */
+    satellitePosition?: string;
+
+    /**
+     * Satellite/Catalog number of the target on-orbit object.
+     */
+    satNo?: number;
+
+    /**
+     * Faulty stage of flight for the event.
+     */
+    stageAtFault?: string;
+
+    /**
+     * Insurance loss incurred by 3rd party insurance, in USD.
+     */
+    thirdPartyInsuranceLoss?: number;
+
+    /**
+     * Underlying cause of the event.
+     */
+    underlyingCause?: string;
+
+    /**
+     * Maximum validity time of the event.
+     */
+    untilTime?: string;
+
+    /**
+     * Time the row was last updated in the database, auto-populated by the system.
+     */
+    updatedAt?: string;
+
+    /**
+     * Application user who updated the row in the database, auto-populated by the
+     * system.
+     */
+    updatedBy?: string;
+  }
+}
+
+export interface OnorbiteventCreateParams {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Date/Time of the event. See eventTimeNotes for remarks on the accuracy of the
+   * date time.
+   */
+  eventTime: string;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Achieved phase of flight prior to the event.
+   */
+  achievedFlightPhase?: string;
+
+  /**
+   * Spacecraft age at the event in years.
+   */
+  ageAtEvent?: number;
+
+  /**
+   * Spacecraft capability loss incurred, as a fraction of 1.
+   */
+  capabilityLoss?: number;
+
+  /**
+   * Notes on capability loss at the time of event.
+   */
+  capabilityLossNotes?: string;
+
+  /**
+   * Spacecraft capacity loss incurred, as a fraction of 1.
+   */
+  capacityLoss?: number;
+
+  /**
+   * Additional equipment which failed as a result of faulty equipment on the
+   * spacecraft during the event.
+   */
+  consequentialEquipmentFailure?: string;
+
+  /**
+   * The declassification date of this data, in ISO 8601 UTC format.
+   */
+  declassificationDate?: string;
+
+  /**
+   * Declassification string of this data.
+   */
+  declassificationString?: string;
+
+  /**
+   * The sources or SCG references from which the classification of this data is
+   * derived.
+   */
+  derivedFrom?: string;
+
+  /**
+   * Notes/description of the event.
+   */
+  description?: string;
+
+  /**
+   * Equipment on the spacecraft which caused the event.
+   */
+  equipmentAtFault?: string;
+
+  /**
+   * Additional notes on the equipment causing the event/loss.
+   */
+  equipmentCausingLossNotes?: string;
+
+  /**
+   * Specific part of the equipment on the spacecraft which caused the event.
+   */
+  equipmentPartAtFault?: string;
+
+  /**
+   * Type of the equipment on the spacecraft which caused the event.
+   */
+  equipmentTypeAtFault?: string;
+
+  /**
+   * The result of the reported event.
+   */
+  eventResult?: string;
+
+  /**
+   * Notes/remarks on the validity/accuracy of the eventTime.
+   */
+  eventTimeNotes?: string;
+
+  /**
+   * The type of on-orbit event being reported.
+   */
+  eventType?: string;
+
+  /**
+   * GEO position longitude at event time if applicable. Negative values are west.
+   */
+  geoPosition?: number;
+
+  /**
+   * Unique identifier of the on-orbit object for this event.
+   */
+  idOnOrbit?: string;
+
+  /**
+   * Boolean indicating if the spacecraft is inclined.
+   */
+  inclined?: boolean;
+
+  /**
+   * Number of humans injured in the event.
+   */
+  injured?: number;
+
+  /**
+   * Additional insurance notes on coverages at the time of event.
+   */
+  insuranceCarriedNotes?: string;
+
+  /**
+   * Insurance loss incurred, as a fraction of 1.
+   */
+  insuranceLoss?: number;
+
+  /**
+   * Additional insurance notes if the event is an official loss.
+   */
+  insuranceLossNotes?: string;
+
+  /**
+   * Number of humans killed in the event.
+   */
+  killed?: number;
+
+  /**
+   * Unique identifier of the organization which leases this on-orbit spacecraft.
+   */
+  lesseeOrgId?: string;
+
+  /**
+   * Spacecraft life lost due to the event as a percent/fraction of 1.
+   */
+  lifeLost?: number;
+
+  /**
+   * Net amount of the insurance claim for the event, in USD.
+   */
+  netAmount?: number;
+
+  /**
+   * The status of the on-orbit object.
+   */
+  objectStatus?: string;
+
+  /**
+   * Phase of flight during which the event occurred.
+   */
+  occurrenceFlightPhase?: string;
+
+  /**
+   * Date time of official loss of the spacecraft.
+   */
+  officialLossDate?: string;
+
+  /**
+   * Unique identifier of the organization on whose behalf the on-orbit spacecraft is
+   * operated.
+   */
+  operatedOnBehalfOfOrgId?: string;
+
+  /**
+   * Organization ID of the operator of the on-orbit spacecraft at the time of the
+   * event.
+   */
+  operatorOrgId?: string;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * Original object ID or Catalog Number provided by source (may not map to an
+   * existing idOnOrbit in UDL).
+   */
+  origObjectId?: string;
+
+  /**
+   * Organization ID of the owner of the on-orbit spacecraft at the time of the
+   * event.
+   */
+  ownerOrgId?: string;
+
+  /**
+   * GEO slot plane number/designator of the spacecraft at event time.
+   */
+  planeNumber?: string;
+
+  /**
+   * GEO plane slot of the spacecraft at event time.
+   */
+  planeSlot?: string;
+
+  /**
+   * Position status of the spacecraft at event time (e.g. Stable, Drifting/Tumbling,
+   * etc).
+   */
+  positionStatus?: string;
+
+  /**
+   * Additional remarks on the event description.
+   */
+  remarks?: string;
+
+  /**
+   * Description of the satellite orbital position or regime.
+   */
+  satellitePosition?: string;
+
+  /**
+   * Satellite/Catalog number of the target on-orbit object.
+   */
+  satNo?: number;
+
+  /**
+   * Faulty stage of flight for the event.
+   */
+  stageAtFault?: string;
+
+  /**
+   * Insurance loss incurred by 3rd party insurance, in USD.
+   */
+  thirdPartyInsuranceLoss?: number;
+
+  /**
+   * Underlying cause of the event.
+   */
+  underlyingCause?: string;
+
+  /**
+   * Maximum validity time of the event.
+   */
+  untilTime?: string;
+}
+
+export interface OnorbiteventUpdateParams {
+  /**
+   * Path param: The ID of the OnorbitEvent to update.
+   */
+  path_id: string;
+
+  /**
+   * Body param: Classification marking of the data in IC/CAPCO Portion-marked
+   * format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Body param: Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST
+   * data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Body param: Date/Time of the event. See eventTimeNotes for remarks on the
+   * accuracy of the date time.
+   */
+  eventTime: string;
+
+  /**
+   * Body param: Source of the data.
+   */
+  source: string;
+
+  /**
+   * Body param: Unique identifier of the record, auto-generated by the system.
+   */
+  body_id?: string;
+
+  /**
+   * Body param: Achieved phase of flight prior to the event.
+   */
+  achievedFlightPhase?: string;
+
+  /**
+   * Body param: Spacecraft age at the event in years.
+   */
+  ageAtEvent?: number;
+
+  /**
+   * Body param: Spacecraft capability loss incurred, as a fraction of 1.
+   */
+  capabilityLoss?: number;
+
+  /**
+   * Body param: Notes on capability loss at the time of event.
+   */
+  capabilityLossNotes?: string;
+
+  /**
+   * Body param: Spacecraft capacity loss incurred, as a fraction of 1.
+   */
+  capacityLoss?: number;
+
+  /**
+   * Body param: Additional equipment which failed as a result of faulty equipment on
+   * the spacecraft during the event.
+   */
+  consequentialEquipmentFailure?: string;
+
+  /**
+   * Body param: The declassification date of this data, in ISO 8601 UTC format.
+   */
+  declassificationDate?: string;
+
+  /**
+   * Body param: Declassification string of this data.
+   */
+  declassificationString?: string;
+
+  /**
+   * Body param: The sources or SCG references from which the classification of this
+   * data is derived.
+   */
+  derivedFrom?: string;
+
+  /**
+   * Body param: Notes/description of the event.
+   */
+  description?: string;
+
+  /**
+   * Body param: Equipment on the spacecraft which caused the event.
+   */
+  equipmentAtFault?: string;
+
+  /**
+   * Body param: Additional notes on the equipment causing the event/loss.
+   */
+  equipmentCausingLossNotes?: string;
+
+  /**
+   * Body param: Specific part of the equipment on the spacecraft which caused the
+   * event.
+   */
+  equipmentPartAtFault?: string;
+
+  /**
+   * Body param: Type of the equipment on the spacecraft which caused the event.
+   */
+  equipmentTypeAtFault?: string;
+
+  /**
+   * Body param: The result of the reported event.
+   */
+  eventResult?: string;
+
+  /**
+   * Body param: Notes/remarks on the validity/accuracy of the eventTime.
+   */
+  eventTimeNotes?: string;
+
+  /**
+   * Body param: The type of on-orbit event being reported.
+   */
+  eventType?: string;
+
+  /**
+   * Body param: GEO position longitude at event time if applicable. Negative values
+   * are west.
+   */
+  geoPosition?: number;
+
+  /**
+   * Body param: Unique identifier of the on-orbit object for this event.
+   */
+  idOnOrbit?: string;
+
+  /**
+   * Body param: Boolean indicating if the spacecraft is inclined.
+   */
+  inclined?: boolean;
+
+  /**
+   * Body param: Number of humans injured in the event.
+   */
+  injured?: number;
+
+  /**
+   * Body param: Additional insurance notes on coverages at the time of event.
+   */
+  insuranceCarriedNotes?: string;
+
+  /**
+   * Body param: Insurance loss incurred, as a fraction of 1.
+   */
+  insuranceLoss?: number;
+
+  /**
+   * Body param: Additional insurance notes if the event is an official loss.
+   */
+  insuranceLossNotes?: string;
+
+  /**
+   * Body param: Number of humans killed in the event.
+   */
+  killed?: number;
+
+  /**
+   * Body param: Unique identifier of the organization which leases this on-orbit
+   * spacecraft.
+   */
+  lesseeOrgId?: string;
+
+  /**
+   * Body param: Spacecraft life lost due to the event as a percent/fraction of 1.
+   */
+  lifeLost?: number;
+
+  /**
+   * Body param: Net amount of the insurance claim for the event, in USD.
+   */
+  netAmount?: number;
+
+  /**
+   * Body param: The status of the on-orbit object.
+   */
+  objectStatus?: string;
+
+  /**
+   * Body param: Phase of flight during which the event occurred.
+   */
+  occurrenceFlightPhase?: string;
+
+  /**
+   * Body param: Date time of official loss of the spacecraft.
+   */
+  officialLossDate?: string;
+
+  /**
+   * Body param: Unique identifier of the organization on whose behalf the on-orbit
+   * spacecraft is operated.
+   */
+  operatedOnBehalfOfOrgId?: string;
+
+  /**
+   * Body param: Organization ID of the operator of the on-orbit spacecraft at the
+   * time of the event.
+   */
+  operatorOrgId?: string;
+
+  /**
+   * Body param: Originating system or organization which produced the data, if
+   * different from the source. The origin may be different than the source if the
+   * source was a mediating system which forwarded the data on behalf of the origin
+   * system. If null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * Body param: Original object ID or Catalog Number provided by source (may not map
+   * to an existing idOnOrbit in UDL).
+   */
+  origObjectId?: string;
+
+  /**
+   * Body param: Organization ID of the owner of the on-orbit spacecraft at the time
+   * of the event.
+   */
+  ownerOrgId?: string;
+
+  /**
+   * Body param: GEO slot plane number/designator of the spacecraft at event time.
+   */
+  planeNumber?: string;
+
+  /**
+   * Body param: GEO plane slot of the spacecraft at event time.
+   */
+  planeSlot?: string;
+
+  /**
+   * Body param: Position status of the spacecraft at event time (e.g. Stable,
+   * Drifting/Tumbling, etc).
+   */
+  positionStatus?: string;
+
+  /**
+   * Body param: Additional remarks on the event description.
+   */
+  remarks?: string;
+
+  /**
+   * Body param: Description of the satellite orbital position or regime.
+   */
+  satellitePosition?: string;
+
+  /**
+   * Body param: Satellite/Catalog number of the target on-orbit object.
+   */
+  satNo?: number;
+
+  /**
+   * Body param: Faulty stage of flight for the event.
+   */
+  stageAtFault?: string;
+
+  /**
+   * Body param: Insurance loss incurred by 3rd party insurance, in USD.
+   */
+  thirdPartyInsuranceLoss?: number;
+
+  /**
+   * Body param: Underlying cause of the event.
+   */
+  underlyingCause?: string;
+
+  /**
+   * Body param: Maximum validity time of the event.
+   */
+  untilTime?: string;
+}
+
+export interface OnorbiteventTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
+
+export declare namespace Onorbitevent {
+  export {
+    type OnorbiteventListResponse as OnorbiteventListResponse,
+    type OnorbiteventCountResponse as OnorbiteventCountResponse,
+    type OnorbiteventGetResponse as OnorbiteventGetResponse,
+    type OnorbiteventTupleResponse as OnorbiteventTupleResponse,
+    type OnorbiteventCreateParams as OnorbiteventCreateParams,
+    type OnorbiteventUpdateParams as OnorbiteventUpdateParams,
+    type OnorbiteventTupleParams as OnorbiteventTupleParams,
+  };
+}

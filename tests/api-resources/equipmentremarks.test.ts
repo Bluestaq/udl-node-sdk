@@ -4,19 +4,19 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource equipmentremarks', () => {
   test('create: only required params', async () => {
     const responsePromise = client.equipmentremarks.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idEquipment: 'idEquipment',
-      source: 'source',
-      text: 'text',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idEquipment: 'EQUIPMENT-ID',
+      source: 'Bluestaq',
+      text: 'This is a remark',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -29,24 +29,22 @@ describe('resource equipmentremarks', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.equipmentremarks.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idEquipment: 'idEquipment',
-      source: 'source',
-      text: 'text',
-      id: 'id',
-      altRmkId: 'altRmkId',
-      code: 'code',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      name: 'name',
-      origin: 'origin',
-      type: 'type',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idEquipment: 'EQUIPMENT-ID',
+      source: 'Bluestaq',
+      text: 'This is a remark',
+      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      altRmkId: '123456ABC',
+      code: 'M',
+      name: 'Remark name',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      type: 'Restriction',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.equipmentremarks.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.equipmentremarks.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -56,8 +54,11 @@ describe('resource equipmentremarks', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.equipmentremarks.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.equipmentremarks.retrieve('id', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('list', async () => {
@@ -99,11 +100,11 @@ describe('resource equipmentremarks', () => {
   test('createBulk: only required params', async () => {
     const responsePromise = client.equipmentremarks.createBulk([
       {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        idEquipment: 'idEquipment',
-        source: 'source',
-        text: 'text',
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        idEquipment: 'EQUIPMENT-ID',
+        source: 'Bluestaq',
+        text: 'This is a remark',
       },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -118,19 +119,17 @@ describe('resource equipmentremarks', () => {
   test('createBulk: required and optional params', async () => {
     const response = await client.equipmentremarks.createBulk([
       {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        idEquipment: 'idEquipment',
-        source: 'source',
-        text: 'text',
-        id: 'id',
-        altRmkId: 'altRmkId',
-        code: 'code',
-        createdAt: '2019-12-27T18:11:19.117Z',
-        createdBy: 'createdBy',
-        name: 'name',
-        origin: 'origin',
-        type: 'type',
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        idEquipment: 'EQUIPMENT-ID',
+        source: 'Bluestaq',
+        text: 'This is a remark',
+        id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+        altRmkId: '123456ABC',
+        code: 'M',
+        name: 'Remark name',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        type: 'Restriction',
       },
     ]);
   });

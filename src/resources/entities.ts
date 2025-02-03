@@ -2,10 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as EntitiesAPI from './entities';
-import * as AntennasAPI from './antennas';
-import * as BatteriesAPI from './batteries';
-import * as EnginesAPI from './engines';
+import * as Shared from './shared';
 
 export class Entities extends APIResource {
   /**
@@ -25,22 +22,30 @@ export class Entities extends APIResource {
    * Service operation to get a single Entity record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(params: EntityRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<EntityFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/entity/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EntityFull> {
+    return this._client.get(`/udl/entity/${id}`, options);
   }
 
   /**
    * Service operation to update a single Entity. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(params: EntityUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, ...body } = params;
-    return this._client.put(`/udl/entity/${path_id}`, {
-      body: { id: body_id, ...body },
+  update(id: string, body: EntityUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.put(`/udl/entity/${id}`, {
+      body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
+  }
+
+  /**
+   * Service operation to dynamically query data by a variety of query parameters not
+   * specified in this API documentation. See the queryhelp operation
+   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+   * parameter information.
+   */
+  list(options?: Core.RequestOptions): Core.APIPromise<EntityListResponse> {
+    return this._client.get('/udl/entity', options);
   }
 
   /**
@@ -48,9 +53,8 @@ export class Entities extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(params: EntityDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/entity/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/entity/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -98,9 +102,8 @@ export class Entities extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(params: EntityTupleParams, options?: Core.RequestOptions): Core.APIPromise<EntityTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/entity/tuple', options);
+  tuple(query: EntityTupleParams, options?: Core.RequestOptions): Core.APIPromise<EntityTupleResponse> {
+    return this._client.get('/udl/entity/tuple', { query, ...options });
   }
 }
 
@@ -131,7 +134,7 @@ export interface EntityAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique entity name.
@@ -147,13 +150,24 @@ export interface EntityAbridged {
    * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
    * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
    */
-  type: string;
+  type:
+    | 'AIRCRAFT'
+    | 'BUS'
+    | 'COMM'
+    | 'IR'
+    | 'NAVIGATION'
+    | 'ONORBIT'
+    | 'RFEMITTER'
+    | 'SCIENTIFIC'
+    | 'SENSOR'
+    | 'SITE'
+    | 'VESSEL';
 
   /**
    * The country code. This value is typically the ISO 3166 Alpha-2 two-character
    * country code, however it can also represent various consortiums that do not
    * appear in the ISO document. The code must correspond to an existing country in
-   * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+   * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
    * ISO Alpha-3 code, or alternate code values that exist for the specified country
    * code.
    */
@@ -221,7 +235,7 @@ export interface EntityAbridged {
    * Type of organization which owns this entity (e.g. Commercial, Government,
    * Academic, Consortium, etc).
    */
-  ownerType?: string;
+  ownerType?: 'Commercial' | 'Government' | 'Academic' | 'Consortium' | 'Other';
 
   /**
    * Boolean indicating if this entity is taskable.
@@ -256,7 +270,7 @@ export namespace EntityAbridged {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Location name.
@@ -277,7 +291,7 @@ export namespace EntityAbridged {
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
      * country code, however it can also represent various consortiums that do not
      * appear in the ISO document. The code must correspond to an existing country in
-     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
      * ISO Alpha-3 code, or alternate code values that exist for the specified country
      * code.
      */
@@ -351,7 +365,7 @@ export namespace EntityAbridged {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Satellite/Catalog number of the target on-orbit object.
@@ -373,7 +387,20 @@ export namespace EntityAbridged {
      * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
      * Heliocentric, Interplanetary, Lagrangian, Docked).
      */
-    category?: string;
+    category?:
+      | 'Unknown'
+      | 'On-Orbit'
+      | 'Decayed'
+      | 'Cataloged Without State'
+      | 'Launch Nominal'
+      | 'Analyst Satellite'
+      | 'Cislunar'
+      | 'Lunar'
+      | 'Hyperbolic'
+      | 'Heliocentric'
+      | 'Interplanetary'
+      | 'Lagrangian'
+      | 'Docked';
 
     /**
      * Common name of the on-orbit object.
@@ -389,7 +416,7 @@ export namespace EntityAbridged {
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
      * country code, however it can also represent various consortiums that do not
      * appear in the ISO document. The code must correspond to an existing country in
-     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
      * ISO Alpha-3 code, or alternate code values that exist for the specified country
      * code.
      */
@@ -449,7 +476,7 @@ export namespace EntityAbridged {
      * Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
      * UNKNOWN.
      */
-    objectType?: string;
+    objectType?: 'ROCKET BODY' | 'DEBRIS' | 'PAYLOAD' | 'PLATFORM' | 'MANNED' | 'UNKNOWN';
 
     /**
      * Originating system or organization which produced the data, if different from
@@ -494,7 +521,7 @@ export interface EntityFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique entity name.
@@ -510,13 +537,24 @@ export interface EntityFull {
    * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
    * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
    */
-  type: string;
+  type:
+    | 'AIRCRAFT'
+    | 'BUS'
+    | 'COMM'
+    | 'IR'
+    | 'NAVIGATION'
+    | 'ONORBIT'
+    | 'RFEMITTER'
+    | 'SCIENTIFIC'
+    | 'SENSOR'
+    | 'SITE'
+    | 'VESSEL';
 
   /**
    * The country code. This value is typically the ISO 3166 Alpha-2 two-character
    * country code, however it can also represent various consortiums that do not
    * appear in the ISO document. The code must correspond to an existing country in
-   * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+   * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
    * ISO Alpha-3 code, or alternate code values that exist for the specified country
    * code.
    */
@@ -564,7 +602,7 @@ export interface EntityFull {
   /**
    * Model object representing on-orbit objects or satellites in the system.
    */
-  onOrbit?: EntityFull.OnOrbit;
+  onOrbit?: Shared.Onorbit;
 
   /**
    * Model representation of a unit or organization which operates or controls an
@@ -591,7 +629,7 @@ export interface EntityFull {
    * Type of organization which owns this entity (e.g. Commercial, Government,
    * Academic, Consortium, etc).
    */
-  ownerType?: string;
+  ownerType?: 'Commercial' | 'Government' | 'Academic' | 'Consortium' | 'Other';
 
   /**
    * Read-only collection of RF bands utilized by this entity for communication
@@ -653,7 +691,7 @@ export namespace EntityFull {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Location name.
@@ -674,7 +712,7 @@ export namespace EntityFull {
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
      * country code, however it can also represent various consortiums that do not
      * appear in the ISO document. The code must correspond to an existing country in
-     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
      * ISO Alpha-3 code, or alternate code values that exist for the specified country
      * code.
      */
@@ -735,1456 +773,6 @@ export namespace EntityFull {
   }
 
   /**
-   * Model object representing on-orbit objects or satellites in the system.
-   */
-  export interface OnOrbit {
-    /**
-     * Classification marking of the data in IC/CAPCO Portion-marked format.
-     */
-    classificationMarking: string;
-
-    /**
-     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-     *
-     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-     * may include both real and simulated data.
-     *
-     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-     * events, and analysis.
-     *
-     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-     * datasets.
-     *
-     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-     * requirements, and for validating technical, functional, and performance
-     * characteristics.
-     */
-    dataMode: string;
-
-    /**
-     * Satellite/Catalog number of the target on-orbit object.
-     */
-    satNo: number;
-
-    /**
-     * Source of the data.
-     */
-    source: string;
-
-    /**
-     * Alternate name of the on-orbit object.
-     */
-    altName?: string;
-
-    /**
-     * Read-only collection of antennas on this on-orbit object.
-     */
-    antennas?: Array<OnOrbit.Antenna>;
-
-    /**
-     * Read-only collection of batteries on this on-orbit object.
-     */
-    batteries?: Array<OnOrbit.Battery>;
-
-    /**
-     * Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
-     * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
-     * Heliocentric, Interplanetary, Lagrangian, Docked).
-     */
-    category?: string;
-
-    /**
-     * Common name of the on-orbit object.
-     */
-    commonName?: string;
-
-    /**
-     * Constellation to which this satellite belongs.
-     */
-    constellation?: string;
-
-    /**
-     * The country code. This value is typically the ISO 3166 Alpha-2 two-character
-     * country code, however it can also represent various consortiums that do not
-     * appear in the ISO document. The code must correspond to an existing country in
-     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
-     * ISO Alpha-3 code, or alternate code values that exist for the specified country
-     * code.
-     */
-    countryCode?: string;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
-
-    /**
-     * Date of decay.
-     */
-    decayDate?: string;
-
-    entityCollection?: Array<EntitiesAPI.EntityFull>;
-
-    /**
-     * For the public catalog, the idOnOrbit is typically the satellite number as a
-     * string, but may be a UUID for analyst or other unknown or untracked satellites,
-     * auto-generated by the system.
-     */
-    idOnOrbit?: string;
-
-    /**
-     * International Designator, typically of the format YYYYLLLAAA, where YYYY is the
-     * launch year, LLL is the sequential launch number of that year, and AAA is an
-     * optional launch piece designator for the launch.
-     */
-    intlDes?: string;
-
-    /**
-     * Date of launch.
-     */
-    launchDate?: string;
-
-    /**
-     * Id of the associated launchSite entity.
-     */
-    launchSiteId?: string;
-
-    /**
-     * Estimated lifetime of the on-orbit payload, if known.
-     */
-    lifetimeYears?: number;
-
-    /**
-     * Mission number of the on-orbit object.
-     */
-    missionNumber?: string;
-
-    /**
-     * Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
-     * UNKNOWN.
-     */
-    objectType?: string;
-
-    /**
-     * Read-only collection of details for this on-orbit object.
-     */
-    onorbitDetails?: Array<OnOrbit.OnorbitDetail>;
-
-    /**
-     * Originating system or organization which produced the data, if different from
-     * the source. The origin may be different than the source if the source was a
-     * mediating system which forwarded the data on behalf of the origin system. If
-     * null, the source may be assumed to be the origin.
-     */
-    origin?: string;
-
-    /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
-
-    /**
-     * Read-only collection of solar arrays on this on-orbit object.
-     */
-    solarArrays?: Array<OnOrbit.SolarArray>;
-
-    /**
-     * Read-only collection of thrusters (engines) on this on-orbit object.
-     */
-    thrusters?: Array<OnOrbit.Thruster>;
-
-    /**
-     * Time the row was last updated in the database, auto-populated by the system.
-     */
-    updatedAt?: string;
-
-    /**
-     * Application user who updated the row in the database, auto-populated by the
-     * system.
-     */
-    updatedBy?: string;
-  }
-
-  export namespace OnOrbit {
-    /**
-     * Read-only collection of antennas on this on-orbit object.
-     */
-    export interface Antenna {
-      /**
-       * Classification marking of the data in IC/CAPCO Portion-marked format.
-       */
-      classificationMarking: string;
-
-      /**
-       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-       *
-       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-       * may include both real and simulated data.
-       *
-       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-       * events, and analysis.
-       *
-       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-       * datasets.
-       *
-       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-       * requirements, and for validating technical, functional, and performance
-       * characteristics.
-       */
-      dataMode: string;
-
-      /**
-       * ID of the antenna.
-       */
-      idAntenna: string;
-
-      /**
-       * ID of the on-orbit object.
-       */
-      idOnOrbit: string;
-
-      /**
-       * Source of the data.
-       */
-      source: string;
-
-      /**
-       * Unique identifier of the record, auto-generated by the system.
-       */
-      id?: string;
-
-      /**
-       * Model representation of information on on-orbit/spacecraft communication
-       * antennas. A spacecraft may have multiple antennas and each antenna can have
-       * multiple 'details' records compiled by different sources.
-       */
-      antenna?: AntennasAPI.AntennaFull;
-
-      /**
-       * Time the row was created in the database, auto-populated by the system.
-       */
-      createdAt?: string;
-
-      /**
-       * Application user who created the row in the database, auto-populated by the
-       * system.
-       */
-      createdBy?: string;
-
-      /**
-       * Originating system or organization which produced the data, if different from
-       * the source. The origin may be different than the source if the source was a
-       * mediating system which forwarded the data on behalf of the origin system. If
-       * null, the source may be assumed to be the origin.
-       */
-      origin?: string;
-
-      /**
-       * The originating source network on which this record was created, auto-populated
-       * by the system.
-       */
-      origNetwork?: string;
-
-      /**
-       * Time the row was last updated in the database, auto-populated by the system.
-       */
-      updatedAt?: string;
-
-      /**
-       * Application user who updated the row in the database, auto-populated by the
-       * system.
-       */
-      updatedBy?: string;
-    }
-
-    /**
-     * Read-only collection of batteries on this on-orbit object.
-     */
-    export interface Battery {
-      /**
-       * Classification marking of the data in IC/CAPCO Portion-marked format.
-       */
-      classificationMarking: string;
-
-      /**
-       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-       *
-       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-       * may include both real and simulated data.
-       *
-       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-       * events, and analysis.
-       *
-       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-       * datasets.
-       *
-       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-       * requirements, and for validating technical, functional, and performance
-       * characteristics.
-       */
-      dataMode: string;
-
-      /**
-       * ID of the battery.
-       */
-      idBattery: string;
-
-      /**
-       * ID of the on-orbit object.
-       */
-      idOnOrbit: string;
-
-      /**
-       * Source of the data.
-       */
-      source: string;
-
-      /**
-       * Unique identifier of the record, auto-generated by the system.
-       */
-      id?: string;
-
-      /**
-       * Model representation of specific spacecraft battery types.
-       */
-      battery?: BatteriesAPI.BatteryFull;
-
-      /**
-       * Time the row was created in the database, auto-populated by the system.
-       */
-      createdAt?: string;
-
-      /**
-       * Application user who created the row in the database, auto-populated by the
-       * system.
-       */
-      createdBy?: string;
-
-      /**
-       * Originating system or organization which produced the data, if different from
-       * the source. The origin may be different than the source if the source was a
-       * mediating system which forwarded the data on behalf of the origin system. If
-       * null, the source may be assumed to be the origin.
-       */
-      origin?: string;
-
-      /**
-       * The originating source network on which this record was created, auto-populated
-       * by the system.
-       */
-      origNetwork?: string;
-
-      /**
-       * The number of batteries on the spacecraft of the type identified by idBattery.
-       */
-      quantity?: number;
-
-      /**
-       * Time the row was last updated in the database, auto-populated by the system.
-       */
-      updatedAt?: string;
-
-      /**
-       * Application user who updated the row in the database, auto-populated by the
-       * system.
-       */
-      updatedBy?: string;
-    }
-
-    /**
-     * Contains details of the OnOrbit object.
-     */
-    export interface OnorbitDetail {
-      /**
-       * Classification marking of the data in IC/CAPCO Portion-marked format.
-       */
-      classificationMarking: string;
-
-      /**
-       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-       *
-       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-       * may include both real and simulated data.
-       *
-       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-       * events, and analysis.
-       *
-       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-       * datasets.
-       *
-       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-       * requirements, and for validating technical, functional, and performance
-       * characteristics.
-       */
-      dataMode: string;
-
-      /**
-       * UUID of the parent Onorbit record.
-       */
-      idOnOrbit: string;
-
-      /**
-       * Source of the data.
-       */
-      source: string;
-
-      /**
-       * Unique identifier of the record, auto-generated by the system.
-       */
-      id?: string;
-
-      /**
-       * Mass of fuel and disposables at launch time in kilograms.
-       */
-      additionalMass?: number;
-
-      /**
-       * The radius used for long-term debris environment projection analyses that is not
-       * as conservative as COLA Radius, in meters.
-       */
-      adeptRadius?: number;
-
-      /**
-       * The total beginning of life delta V of the spacecraft, in meters per second.
-       */
-      bolDeltaV?: number;
-
-      /**
-       * Spacecraft beginning of life fuel mass, in orbit, in kilograms.
-       */
-      bolFuelMass?: number;
-
-      /**
-       * Average cross sectional area of the bus in meters squared.
-       */
-      busCrossSection?: number;
-
-      /**
-       * Type of the bus on the spacecraft.
-       */
-      busType?: string;
-
-      /**
-       * Maximum dimension of the box circumscribing the spacecraft (d = sqrt(a*a + b*b +
-       * c\*c) where a is the tip-to-tip dimension, b and c are perpendicular to that.)
-       * in meters.
-       */
-      colaRadius?: number;
-
-      /**
-       * Time the row was created in the database, auto-populated by the system.
-       */
-      createdAt?: string;
-
-      /**
-       * Application user who created the row in the database, auto-populated by the
-       * system.
-       */
-      createdBy?: string;
-
-      /**
-       * Average cross sectional area in meters squared.
-       */
-      crossSection?: number;
-
-      /**
-       * The estimated total current mass of the spacecraft, in kilograms.
-       */
-      currentMass?: number;
-
-      /**
-       * The 1-sigma uncertainty of the total spacecraft delta V, in meters per second.
-       */
-      deltaVUnc?: number;
-
-      /**
-       * Array of the estimated mass of each deployable object, in kilograms. Must
-       * contain the same number of elements as the value of numDeployable.
-       */
-      depEstMasses?: Array<number>;
-
-      /**
-       * Array of the 1-sigma uncertainty of the mass for each deployable object, in
-       * kilograms. Must contain the same number of elements as the value of
-       * numDeployable.
-       */
-      depMassUncs?: Array<number>;
-
-      /**
-       * Array of satellite deployable objects. Must contain the same number of elements
-       * as the value of numDeployable.
-       */
-      depNames?: Array<string>;
-
-      /**
-       * GEO drift rate, if applicable in degrees per day.
-       */
-      driftRate?: number;
-
-      /**
-       * Spacecraft dry mass (without fuel or disposables) in kilograms.
-       */
-      dryMass?: number;
-
-      /**
-       * Estimated maximum burn duration for the object, in seconds.
-       */
-      estDeltaVDuration?: number;
-
-      /**
-       * Estimated remaining fuel for the object in kilograms.
-       */
-      fuelRemaining?: number;
-
-      /**
-       * GEO slot if applicable, in degrees. -180 (West of Prime Meridian) to 180 degrees
-       * (East of Prime Meridian). Prime Meridian is 0.
-       */
-      geoSlot?: number;
-
-      /**
-       * The name of the source who last provided an observation for this idOnOrbit.
-       */
-      lastObSource?: string;
-
-      /**
-       * Time of last reported observation for this object in ISO 8601 UTC with
-       * microsecond precision.
-       */
-      lastObTime?: string;
-
-      /**
-       * Nominal mass of spacecraft and fuel at launch time, in kilograms.
-       */
-      launchMass?: number;
-
-      /**
-       * Maximum (estimated) mass of spacecraft and fuel at launch time, in kilograms.
-       */
-      launchMassMax?: number;
-
-      /**
-       * Minimum (estimated) mass of spacecraft and fuel at launch time, in kilograms.
-       */
-      launchMassMin?: number;
-
-      /**
-       * Boolean indicating whether a spacecraft is maneuverable. Note that a spacecraft
-       * may have propulsion capability but may not be maneuverable due to lack of fuel,
-       * anomalous condition, or other operational constraints.
-       */
-      maneuverable?: boolean;
-
-      /**
-       * Maximum delta V available for this on-orbit spacecraft, in meters per second.
-       */
-      maxDeltaV?: number;
-
-      /**
-       * Maximum dimension across the spacecraft (e.g., tip-to-tip across the solar panel
-       * arrays) in meters.
-       */
-      maxRadius?: number;
-
-      /**
-       * Array of the type of missions the spacecraft performs. Must contain the same
-       * number of elements as the value of numMission.
-       */
-      missionTypes?: Array<string>;
-
-      /**
-       * The number of sub-satellites or deployable objects on the spacecraft.
-       */
-      numDeployable?: number;
-
-      /**
-       * The number of distinct missions the spacecraft performs.
-       */
-      numMission?: number;
-
-      /**
-       * Originating system or organization which produced the data, if different from
-       * the source. The origin may be different than the source if the source was a
-       * mediating system which forwarded the data on behalf of the origin system. If
-       * null, the source may be assumed to be the origin.
-       */
-      origin?: string;
-
-      /**
-       * The originating source network on which this record was created, auto-populated
-       * by the system.
-       */
-      origNetwork?: string;
-
-      /**
-       * Current/latest radar cross section in meters squared.
-       */
-      rcs?: number;
-
-      /**
-       * Maximum radar cross section in meters squared.
-       */
-      rcsMax?: number;
-
-      /**
-       * Mean radar cross section in meters squared.
-       */
-      rcsMean?: number;
-
-      /**
-       * Minimum radar cross section in meters squared.
-       */
-      rcsMin?: number;
-
-      /**
-       * The reference source, sources, or URL from which the data in this record was
-       * obtained.
-       */
-      refSource?: string;
-
-      /**
-       * Spacecraft deployed area of solar array in meters squared.
-       */
-      solarArrayArea?: number;
-
-      /**
-       * The 1-sigma uncertainty of the total spacecraft mass, in kilograms.
-       */
-      totalMassUnc?: number;
-
-      /**
-       * Time the row was last updated in the database, auto-populated by the system.
-       */
-      updatedAt?: string;
-
-      /**
-       * Application user who updated the row in the database, auto-populated by the
-       * system.
-       */
-      updatedBy?: string;
-
-      /**
-       * Current/latest visual magnitude in M.
-       */
-      vismag?: number;
-
-      /**
-       * Maximum visual magnitude in M.
-       */
-      vismagMax?: number;
-
-      /**
-       * Mean visual magnitude in M.
-       */
-      vismagMean?: number;
-
-      /**
-       * Minimum visual magnitude in M.
-       */
-      vismagMin?: number;
-    }
-
-    /**
-     * Read-only collection of solar arrays on this on-orbit object.
-     */
-    export interface SolarArray {
-      /**
-       * Classification marking of the data in IC/CAPCO Portion-marked format.
-       */
-      classificationMarking: string;
-
-      /**
-       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-       *
-       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-       * may include both real and simulated data.
-       *
-       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-       * events, and analysis.
-       *
-       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-       * datasets.
-       *
-       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-       * requirements, and for validating technical, functional, and performance
-       * characteristics.
-       */
-      dataMode: string;
-
-      /**
-       * ID of the on-orbit object.
-       */
-      idOnOrbit: string;
-
-      /**
-       * ID of the SolarArray.
-       */
-      idSolarArray: string;
-
-      /**
-       * Source of the data.
-       */
-      source: string;
-
-      /**
-       * Unique identifier of the record, auto-generated by the system.
-       */
-      id?: string;
-
-      /**
-       * Time the row was created in the database, auto-populated by the system.
-       */
-      createdAt?: string;
-
-      /**
-       * Application user who created the row in the database, auto-populated by the
-       * system.
-       */
-      createdBy?: string;
-
-      /**
-       * Originating system or organization which produced the data, if different from
-       * the source. The origin may be different than the source if the source was a
-       * mediating system which forwarded the data on behalf of the origin system. If
-       * null, the source may be assumed to be the origin.
-       */
-      origin?: string;
-
-      /**
-       * The originating source network on which this record was created, auto-populated
-       * by the system.
-       */
-      origNetwork?: string;
-
-      /**
-       * The number of solar arrays on the spacecraft of the type identified by
-       * idSolarArray.
-       */
-      quantity?: number;
-
-      /**
-       * Model representation of information on on-orbit/spacecraft solar arrays. A
-       * spacecraft may have multiple solar arrays and each solar array can have multiple
-       * 'details' records compiled by different sources.
-       */
-      solarArray?: SolarArray.SolarArray;
-
-      /**
-       * Time the row was last updated in the database, auto-populated by the system.
-       */
-      updatedAt?: string;
-
-      /**
-       * Application user who updated the row in the database, auto-populated by the
-       * system.
-       */
-      updatedBy?: string;
-    }
-
-    export namespace SolarArray {
-      /**
-       * Model representation of information on on-orbit/spacecraft solar arrays. A
-       * spacecraft may have multiple solar arrays and each solar array can have multiple
-       * 'details' records compiled by different sources.
-       */
-      export interface SolarArray {
-        /**
-         * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-         *
-         * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-         * may include both real and simulated data.
-         *
-         * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-         * events, and analysis.
-         *
-         * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-         * datasets.
-         *
-         * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-         * requirements, and for validating technical, functional, and performance
-         * characteristics.
-         */
-        dataMode: string;
-
-        /**
-         * Solar Array name.
-         */
-        name: string;
-
-        /**
-         * Source of the data.
-         */
-        source: string;
-
-        /**
-         * Unique identifier of the record, auto-generated by the system.
-         */
-        id?: string;
-
-        /**
-         * Time the row was created in the database, auto-populated by the system.
-         */
-        createdAt?: string;
-
-        /**
-         * Application user who created the row in the database, auto-populated by the
-         * system.
-         */
-        createdBy?: string;
-
-        /**
-         * Originating system or organization which produced the data, if different from
-         * the source. The origin may be different than the source if the source was a
-         * mediating system which forwarded the data on behalf of the origin system. If
-         * null, the source may be assumed to be the origin.
-         */
-        origin?: string;
-
-        /**
-         * The originating source network on which this record was created, auto-populated
-         * by the system.
-         */
-        origNetwork?: string;
-
-        /**
-         * Read-only collection of additional SolarArrayDetails by various sources for this
-         * organization, ignored on create/update. These details must be created separately
-         * via the /udl/solararraydetails operations.
-         */
-        solarArrayDetails?: Array<SolarArray.SolarArrayDetail>;
-
-        /**
-         * Time the row was last updated in the database, auto-populated by the system.
-         */
-        updatedAt?: string;
-
-        /**
-         * Application user who updated the row in the database, auto-populated by the
-         * system.
-         */
-        updatedBy?: string;
-      }
-
-      export namespace SolarArray {
-        /**
-         * Model representation of Information on spacecraft SolarArrayDetails. A
-         * SolarArray may have multiple details records compiled by various sources.
-         */
-        export interface SolarArrayDetail {
-          /**
-           * Classification marking of the data in IC/CAPCO Portion-marked format.
-           */
-          classificationMarking: string;
-
-          /**
-           * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-           *
-           * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-           * may include both real and simulated data.
-           *
-           * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-           * events, and analysis.
-           *
-           * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-           * datasets.
-           *
-           * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-           * requirements, and for validating technical, functional, and performance
-           * characteristics.
-           */
-          dataMode: string;
-
-          /**
-           * Unique identifier of the parent SolarArray.
-           */
-          idSolarArray: string;
-
-          /**
-           * Source of the data.
-           */
-          source: string;
-
-          /**
-           * Unique identifier of the record, auto-generated by the system.
-           */
-          id?: string;
-
-          /**
-           * Solar Array area in square meters.
-           */
-          area?: number;
-
-          /**
-           * Time the row was created in the database, auto-populated by the system.
-           */
-          createdAt?: string;
-
-          /**
-           * Application user who created the row in the database, auto-populated by the
-           * system.
-           */
-          createdBy?: string;
-
-          /**
-           * Solar array description/notes.
-           */
-          description?: string;
-
-          /**
-           * Solar array junction technology (e.g. Triple).
-           */
-          junctionTechnology?: string;
-
-          /**
-           * An organization such as a corporation, manufacturer, consortium, government,
-           * etc. An organization may have parent and child organizations as well as link to
-           * a former organization if this org previously existed as another organization.
-           */
-          manufacturerOrg?: SolarArrayDetail.ManufacturerOrg;
-
-          /**
-           * Unique identifier of the organization that manufactures the solar array.
-           */
-          manufacturerOrgId?: string;
-
-          /**
-           * Originating system or organization which produced the data, if different from
-           * the source. The origin may be different than the source if the source was a
-           * mediating system which forwarded the data on behalf of the origin system. If
-           * null, the source may be assumed to be the origin.
-           */
-          origin?: string;
-
-          /**
-           * The originating source network on which this record was created, auto-populated
-           * by the system.
-           */
-          origNetwork?: string;
-
-          /**
-           * Solar Array span in meters.
-           */
-          span?: number;
-
-          /**
-           * Optional array of provider/source specific tags for this data, where each
-           * element is no longer than 32 characters, used for implementing data owner
-           * conditional access controls to restrict access to the data. Should be left null
-           * by data providers unless conditional access controls are coordinated with the
-           * UDL team.
-           */
-          tags?: Array<string>;
-
-          /**
-           * Solar array technology (e.g. Ga-As).
-           */
-          technology?: string;
-
-          /**
-           * Type of solar array (e.g. U Shaped).
-           */
-          type?: string;
-
-          /**
-           * Time the row was last updated in the database, auto-populated by the system.
-           */
-          updatedAt?: string;
-
-          /**
-           * Application user who updated the row in the database, auto-populated by the
-           * system.
-           */
-          updatedBy?: string;
-        }
-
-        export namespace SolarArrayDetail {
-          /**
-           * An organization such as a corporation, manufacturer, consortium, government,
-           * etc. An organization may have parent and child organizations as well as link to
-           * a former organization if this org previously existed as another organization.
-           */
-          export interface ManufacturerOrg {
-            /**
-             * Classification marking of the data in IC/CAPCO Portion-marked format.
-             */
-            classificationMarking: string;
-
-            /**
-             * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-             *
-             * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-             * may include both real and simulated data.
-             *
-             * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-             * events, and analysis.
-             *
-             * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-             * datasets.
-             *
-             * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-             * requirements, and for validating technical, functional, and performance
-             * characteristics.
-             */
-            dataMode: string;
-
-            /**
-             * Organization name.
-             */
-            name: string;
-
-            /**
-             * Source of the data.
-             */
-            source: string;
-
-            /**
-             * Type of organization (e.g. GOVERNMENT, CORPORATION, CONSORTIUM, ACADEMIC).
-             */
-            type: string;
-
-            /**
-             * Unique identifier of the record, auto-generated by the system.
-             */
-            id?: string;
-
-            /**
-             * Boolean indicating if this organization is currently active.
-             */
-            active?: boolean;
-
-            /**
-             * Subtype or category of the organization (e.g. Private company, stock market
-             * quoted company, subsidiary, goverment department/agency, etc).
-             */
-            category?: string;
-
-            /**
-             * Country of the physical location of the organization. This value is typically
-             * the ISO 3166 Alpha-2 two-character country code. However, it can also represent
-             * various consortiums that do not appear in the ISO document. The code must
-             * correspond to an existing country in the UDL�s country API. Call
-             * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
-             * alternate code values that exist for the specified country code.
-             */
-            countryCode?: string;
-
-            /**
-             * Time the row was created in the database, auto-populated by the system.
-             */
-            createdAt?: string;
-
-            /**
-             * Application user who created the row in the database, auto-populated by the
-             * system.
-             */
-            createdBy?: string;
-
-            /**
-             * Organization description.
-             */
-            description?: string;
-
-            /**
-             * Optional externally provided identifier for this row.
-             */
-            externalId?: string;
-
-            /**
-             * Country of registration or ownership of the organization. This value is
-             * typically the ISO 3166 Alpha-2 two-character country code, however it can also
-             * represent various consortiums that do not appear in the ISO document. The code
-             * must correspond to an existing country in the UDL�s country API. Call
-             * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
-             * alternate code values that exist for the specified country code.
-             */
-            nationality?: string;
-
-            /**
-             * Read-only collection of additional OrganizationDetails by various sources for
-             * this organization, ignored on create/update. These details must be created
-             * separately via the /udl/organizationdetails operations.
-             */
-            organizationDetails?: Array<ManufacturerOrg.OrganizationDetail>;
-
-            /**
-             * Originating system or organization which produced the data, if different from
-             * the source. The origin may be different than the source if the source was a
-             * mediating system which forwarded the data on behalf of the origin system. If
-             * null, the source may be assumed to be the origin.
-             */
-            origin?: string;
-
-            /**
-             * The originating source network on which this record was created, auto-populated
-             * by the system.
-             */
-            origNetwork?: string;
-
-            /**
-             * Time the row was last updated in the database, auto-populated by the system.
-             */
-            updatedAt?: string;
-
-            /**
-             * Application user who updated the row in the database, auto-populated by the
-             * system.
-             */
-            updatedBy?: string;
-          }
-
-          export namespace ManufacturerOrg {
-            /**
-             * Model representation of additional detailed organization data as collected by a
-             * particular source.
-             */
-            export interface OrganizationDetail {
-              /**
-               * Classification marking of the data in IC/CAPCO Portion-marked format.
-               */
-              classificationMarking: string;
-
-              /**
-               * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-               *
-               * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-               * may include both real and simulated data.
-               *
-               * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-               * events, and analysis.
-               *
-               * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-               * datasets.
-               *
-               * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-               * requirements, and for validating technical, functional, and performance
-               * characteristics.
-               */
-              dataMode: string;
-
-              /**
-               * Unique identifier of the parent organization.
-               */
-              idOrganization: string;
-
-              /**
-               * Organization details name.
-               */
-              name: string;
-
-              /**
-               * Source of the data.
-               */
-              source: string;
-
-              /**
-               * Unique identifier of the record, auto-generated by the system.
-               */
-              id?: string;
-
-              /**
-               * Street number of the organization.
-               */
-              address1?: string;
-
-              /**
-               * Field for additional organization address information such as PO Box and unit
-               * number.
-               */
-              address2?: string;
-
-              /**
-               * Contains the third line of address information for an organization.
-               */
-              address3?: string;
-
-              /**
-               * Designated broker for this organization.
-               */
-              broker?: string;
-
-              /**
-               * For organizations of type CORPORATION, the name of the Chief Executive Officer.
-               */
-              ceo?: string;
-
-              /**
-               * For organizations of type CORPORATION, the name of the Chief Financial Officer.
-               */
-              cfo?: string;
-
-              /**
-               * Time the row was created in the database, auto-populated by the system.
-               */
-              createdAt?: string;
-
-              /**
-               * Application user who created the row in the database, auto-populated by the
-               * system.
-               */
-              createdBy?: string;
-
-              /**
-               * For organizations of type CORPORATION, the name of the Chief Technology Officer.
-               */
-              cto?: string;
-
-              /**
-               * Organization description.
-               */
-              description?: string;
-
-              /**
-               * For organizations of type CORPORATION, the company EBITDA value as of
-               * financialYearEndDate in US Dollars.
-               */
-              ebitda?: number;
-
-              /**
-               * Listed contact email address for the organization.
-               */
-              email?: string;
-
-              /**
-               * For organizations of type CORPORATION, notes on company financials.
-               */
-              financialNotes?: string;
-
-              /**
-               * For organizations of type CORPORATION, the effective financial year end date for
-               * revenue, EBITDA, and profit values.
-               */
-              financialYearEndDate?: string;
-
-              /**
-               * Satellite fleet planning notes for this organization.
-               */
-              fleetPlanNotes?: string;
-
-              /**
-               * Former organization ID (if this organization previously existed as another
-               * organization).
-               */
-              formerOrgId?: string;
-
-              /**
-               * Total number of FTEs in this organization.
-               */
-              ftes?: number;
-
-              /**
-               * Administrative boundaries of the first sub-national level. Level 1 is simply the
-               * largest demarcation under whatever demarcation criteria has been determined by
-               * the governing body. For example, this may be a state or province.
-               */
-              geoAdminLevel1?: string;
-
-              /**
-               * Administrative boundaries of the second sub-national level. Level 2 is simply
-               * the second largest demarcation under whatever demarcation criteria has been
-               * determined by the governing body. For example, this may be a county or district.
-               */
-              geoAdminLevel2?: string;
-
-              /**
-               * Administrative boundaries of the third sub-national level. Level 3 is simply the
-               * third largest demarcation under whatever demarcation criteria has been
-               * determined by the governing body. For example, this may be a city or township.
-               */
-              geoAdminLevel3?: string;
-
-              /**
-               * Mass ranking for this organization.
-               */
-              massRanking?: number;
-
-              /**
-               * Originating system or organization which produced the data, if different from
-               * the source. The origin may be different than the source if the source was a
-               * mediating system which forwarded the data on behalf of the origin system. If
-               * null, the source may be assumed to be the origin.
-               */
-              origin?: string;
-
-              /**
-               * The originating source network on which this record was created, auto-populated
-               * by the system.
-               */
-              origNetwork?: string;
-
-              /**
-               * Parent organization ID of this organization if it is a child organization.
-               */
-              parentOrgId?: string;
-
-              /**
-               * A postal code, such as PIN or ZIP Code, is a series of letters or digits or both
-               * included in the postal address of the organization.
-               */
-              postalCode?: string;
-
-              /**
-               * For organizations of type CORPORATION, total annual profit as of
-               * financialYearEndDate in US Dollars.
-               */
-              profit?: number;
-
-              /**
-               * For organizations of type CORPORATION, total annual revenue as of
-               * financialYearEndDate in US Dollars.
-               */
-              revenue?: number;
-
-              /**
-               * Revenue ranking for this organization.
-               */
-              revenueRanking?: number;
-
-              /**
-               * The name of the risk manager for the organization.
-               */
-              riskManager?: string;
-
-              /**
-               * Notes on the services provided by the organization.
-               */
-              servicesNotes?: string;
-
-              /**
-               * Optional array of provider/source specific tags for this data, where each
-               * element is no longer than 32 characters, used for implementing data owner
-               * conditional access controls to restrict access to the data. Should be left null
-               * by data providers unless conditional access controls are coordinated with the
-               * UDL team.
-               */
-              tags?: Array<string>;
-
-              /**
-               * Time the row was last updated in the database, auto-populated by the system.
-               */
-              updatedAt?: string;
-
-              /**
-               * Application user who updated the row in the database, auto-populated by the
-               * system.
-               */
-              updatedBy?: string;
-            }
-          }
-        }
-      }
-    }
-
-    /**
-     * Read-only collection of thrusters (engines) on this on-orbit object.
-     */
-    export interface Thruster {
-      /**
-       * Classification marking of the data in IC/CAPCO Portion-marked format.
-       */
-      classificationMarking: string;
-
-      /**
-       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-       *
-       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-       * may include both real and simulated data.
-       *
-       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-       * events, and analysis.
-       *
-       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-       * datasets.
-       *
-       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-       * requirements, and for validating technical, functional, and performance
-       * characteristics.
-       */
-      dataMode: string;
-
-      /**
-       * ID of the Engine.
-       */
-      idEngine: string;
-
-      /**
-       * ID of the on-orbit object.
-       */
-      idOnOrbit: string;
-
-      /**
-       * Source of the data.
-       */
-      source: string;
-
-      /**
-       * Unique identifier of the record, auto-generated by the system.
-       */
-      id?: string;
-
-      /**
-       * Time the row was created in the database, auto-populated by the system.
-       */
-      createdAt?: string;
-
-      /**
-       * Application user who created the row in the database, auto-populated by the
-       * system.
-       */
-      createdBy?: string;
-
-      /**
-       * Known launch vehicle engines and their performance characteristics and limits. A
-       * launch vehicle has 1 to many engines per stage.
-       */
-      engine?: EnginesAPI.Engine;
-
-      /**
-       * Originating system or organization which produced the data, if different from
-       * the source. The origin may be different than the source if the source was a
-       * mediating system which forwarded the data on behalf of the origin system. If
-       * null, the source may be assumed to be the origin.
-       */
-      origin?: string;
-
-      /**
-       * The originating source network on which this record was created, auto-populated
-       * by the system.
-       */
-      origNetwork?: string;
-
-      /**
-       * The number of engines/thrusters on the spacecraft of the type identified by
-       * idEngine.
-       */
-      quantity?: number;
-
-      /**
-       * The type of thruster associated with this record (e.g. LAE, Hydrazine REA,
-       * etc.).
-       */
-      type?: string;
-
-      /**
-       * Time the row was last updated in the database, auto-populated by the system.
-       */
-      updatedAt?: string;
-
-      /**
-       * Application user who updated the row in the database, auto-populated by the
-       * system.
-       */
-      updatedBy?: string;
-    }
-  }
-
-  /**
    * Model representation of a unit or organization which operates or controls an
    * space-related Entity such as an on-orbit payload, a sensor, etc. A contact may
    * belong to an organization.
@@ -2211,7 +799,7 @@ export namespace EntityFull {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Name of the operating unit.
@@ -2718,7 +1306,7 @@ export namespace EntityFull {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Location name.
@@ -2739,7 +1327,7 @@ export namespace EntityFull {
        * The country code. This value is typically the ISO 3166 Alpha-2 two-character
        * country code, however it can also represent various consortiums that do not
        * appear in the ISO document. The code must correspond to an existing country in
-       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
        * ISO Alpha-3 code, or alternate code values that exist for the specified country
        * code.
        */
@@ -2825,7 +1413,7 @@ export namespace EntityFull {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * The ID of the operating unit to which this remark applies.
@@ -2926,7 +1514,7 @@ export namespace EntityFull {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Organization name.
@@ -2963,7 +1551,7 @@ export namespace EntityFull {
        * Country of the physical location of the organization. This value is typically
        * the ISO 3166 Alpha-2 two-character country code. However, it can also represent
        * various consortiums that do not appear in the ISO document. The code must
-       * correspond to an existing country in the UDL�s country API. Call
+       * correspond to an existing country in the UDL’s country API. Call
        * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
        * alternate code values that exist for the specified country code.
        */
@@ -2994,7 +1582,7 @@ export namespace EntityFull {
        * Country of registration or ownership of the organization. This value is
        * typically the ISO 3166 Alpha-2 two-character country code, however it can also
        * represent various consortiums that do not appear in the ISO document. The code
-       * must correspond to an existing country in the UDL�s country API. Call
+       * must correspond to an existing country in the UDL’s country API. Call
        * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
        * alternate code values that exist for the specified country code.
        */
@@ -3060,7 +1648,7 @@ export namespace EntityFull {
          * requirements, and for validating technical, functional, and performance
          * characteristics.
          */
-        dataMode: string;
+        dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
         /**
          * Unique identifier of the parent organization.
@@ -3299,7 +1887,7 @@ export namespace EntityFull {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Unique identifier of the parent Entity which uses this band.
@@ -3397,7 +1985,7 @@ export namespace EntityFull {
     /**
      * RF Band mode (e.g. TX, RX).
      */
-    mode?: string;
+    mode?: 'TX' | 'RX';
 
     /**
      * Originating system or organization which produced the data, if different from
@@ -3425,13 +2013,13 @@ export namespace EntityFull {
      * R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
      * surface.
      */
-    polarization?: string;
+    polarization?: 'H' | 'V' | 'R' | 'L';
 
     /**
      * Purpose or use of the RF Band -- COMM = communications, TTC =
      * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
      */
-    purpose?: string;
+    purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
 
     /**
      * Time the row was last updated in the database, auto-populated by the system.
@@ -3471,7 +2059,7 @@ export namespace EntityFull {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Unique identifier of the parent entity.
@@ -3523,7 +2111,7 @@ export namespace EntityFull {
     /**
      * Operation capability of the entity, if applicable (e.g. FMC, NMC, PMC, UNK).
      */
-    opsCap?: string;
+    opsCap?: 'FMC' | 'NMC' | 'PMC' | 'UNK';
 
     /**
      * Originating system or organization which produced the data, if different from
@@ -3543,14 +2131,14 @@ export namespace EntityFull {
      * Overall state of the entity, if applicable (e.g. UNKNOWN, DEAD, ACTIVE, RF
      * ACTIVE, STANDBY).
      */
-    state?: string;
+    state?: 'UNKNOWN' | 'DEAD' | 'ACTIVE' | 'RF ACTIVE' | 'STANDBY';
 
     subStatusCollection?: Array<StatusCollection.SubStatusCollection>;
 
     /**
      * System capability of the entity, if applicable (e.g. FMC, NMC, PMC, UNK).
      */
-    sysCap?: string;
+    sysCap?: 'FMC' | 'NMC' | 'PMC' | 'UNK';
 
     /**
      * Time the row was last updated in the database, auto-populated by the system.
@@ -3590,7 +2178,7 @@ export namespace EntityFull {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Descriptions and/or comments associated with the sub-status.
@@ -3605,7 +2193,7 @@ export namespace EntityFull {
       /**
        * Status of the sub-system/capability, e.g. FMC, NMC, PMC, UNK.
        */
-      status: string;
+      status: 'FMC' | 'NMC' | 'PMC' | 'UNK';
 
       /**
        * Id of the parent status.
@@ -3615,7 +2203,7 @@ export namespace EntityFull {
       /**
        * Parent entity's sub-system or capability status: mwCap, mdCap, ssCap, etc.
        */
-      type: string;
+      type: 'mwCap' | 'ssCap' | 'mdCap';
 
       /**
        * Unique identifier of the record, auto-generated by the system.
@@ -3661,6 +2249,8 @@ export namespace EntityFull {
   }
 }
 
+export type EntityListResponse = Array<EntityAbridged>;
+
 export type EntityCountResponse = string;
 
 export type EntityGetAllTypesResponse = Array<EntityGetAllTypesResponse.EntityGetAllTypesResponseItem>;
@@ -3693,7 +2283,7 @@ export namespace EntityGetAllTypesResponse {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Unique entity name.
@@ -3709,13 +2299,24 @@ export namespace EntityGetAllTypesResponse {
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
      * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
-    type: string;
+    type:
+      | 'AIRCRAFT'
+      | 'BUS'
+      | 'COMM'
+      | 'IR'
+      | 'NAVIGATION'
+      | 'ONORBIT'
+      | 'RFEMITTER'
+      | 'SCIENTIFIC'
+      | 'SENSOR'
+      | 'SITE'
+      | 'VESSEL';
 
     /**
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
      * country code, however it can also represent various consortiums that do not
      * appear in the ISO document. The code must correspond to an existing country in
-     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
      * ISO Alpha-3 code, or alternate code values that exist for the specified country
      * code.
      */
@@ -3790,7 +2391,7 @@ export namespace EntityGetAllTypesResponse {
      * Type of organization which owns this entity (e.g. Commercial, Government,
      * Academic, Consortium, etc).
      */
-    ownerType?: string;
+    ownerType?: 'Commercial' | 'Government' | 'Academic' | 'Consortium' | 'Other';
 
     /**
      * Read-only collection of RF bands utilized by this entity for communication
@@ -3852,7 +2453,7 @@ export namespace EntityGetAllTypesResponse {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Location name.
@@ -3873,7 +2474,7 @@ export namespace EntityGetAllTypesResponse {
        * The country code. This value is typically the ISO 3166 Alpha-2 two-character
        * country code, however it can also represent various consortiums that do not
        * appear in the ISO document. The code must correspond to an existing country in
-       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
        * ISO Alpha-3 code, or alternate code values that exist for the specified country
        * code.
        */
@@ -3958,7 +2559,7 @@ export namespace EntityGetAllTypesResponse {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Satellite/Catalog number of the target on-orbit object.
@@ -3990,7 +2591,20 @@ export namespace EntityGetAllTypesResponse {
        * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
        * Heliocentric, Interplanetary, Lagrangian, Docked).
        */
-      category?: string;
+      category?:
+        | 'Unknown'
+        | 'On-Orbit'
+        | 'Decayed'
+        | 'Cataloged Without State'
+        | 'Launch Nominal'
+        | 'Analyst Satellite'
+        | 'Cislunar'
+        | 'Lunar'
+        | 'Hyperbolic'
+        | 'Heliocentric'
+        | 'Interplanetary'
+        | 'Lagrangian'
+        | 'Docked';
 
       /**
        * Common name of the on-orbit object.
@@ -4006,7 +2620,7 @@ export namespace EntityGetAllTypesResponse {
        * The country code. This value is typically the ISO 3166 Alpha-2 two-character
        * country code, however it can also represent various consortiums that do not
        * appear in the ISO document. The code must correspond to an existing country in
-       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
        * ISO Alpha-3 code, or alternate code values that exist for the specified country
        * code.
        */
@@ -4066,7 +2680,7 @@ export namespace EntityGetAllTypesResponse {
        * Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
        * UNKNOWN.
        */
-      objectType?: string;
+      objectType?: 'ROCKET BODY' | 'DEBRIS' | 'PAYLOAD' | 'PLATFORM' | 'MANNED' | 'UNKNOWN';
 
       /**
        * Read-only collection of details for this on-orbit object.
@@ -4135,7 +2749,7 @@ export namespace EntityGetAllTypesResponse {
          * requirements, and for validating technical, functional, and performance
          * characteristics.
          */
-        dataMode: string;
+        dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
         /**
          * ID of the antenna.
@@ -4224,7 +2838,7 @@ export namespace EntityGetAllTypesResponse {
            * requirements, and for validating technical, functional, and performance
            * characteristics.
            */
-          dataMode: string;
+          dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
           /**
            * Antenna name.
@@ -4312,7 +2926,7 @@ export namespace EntityGetAllTypesResponse {
              * requirements, and for validating technical, functional, and performance
              * characteristics.
              */
-            dataMode: string;
+            dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
             /**
              * Unique identifier of the parent Antenna.
@@ -4391,7 +3005,7 @@ export namespace EntityGetAllTypesResponse {
             /**
              * Antenna mode (e.g. TX,RX).
              */
-            mode?: string;
+            mode?: 'TX' | 'RX';
 
             /**
              * Originating system or organization which produced the data, if different from
@@ -4488,7 +3102,7 @@ export namespace EntityGetAllTypesResponse {
                * requirements, and for validating technical, functional, and performance
                * characteristics.
                */
-              dataMode: string;
+              dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
               /**
                * Organization name.
@@ -4525,7 +3139,7 @@ export namespace EntityGetAllTypesResponse {
                * Country of the physical location of the organization. This value is typically
                * the ISO 3166 Alpha-2 two-character country code. However, it can also represent
                * various consortiums that do not appear in the ISO document. The code must
-               * correspond to an existing country in the UDL�s country API. Call
+               * correspond to an existing country in the UDL’s country API. Call
                * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
                * alternate code values that exist for the specified country code.
                */
@@ -4556,7 +3170,7 @@ export namespace EntityGetAllTypesResponse {
                * Country of registration or ownership of the organization. This value is
                * typically the ISO 3166 Alpha-2 two-character country code, however it can also
                * represent various consortiums that do not appear in the ISO document. The code
-               * must correspond to an existing country in the UDL�s country API. Call
+               * must correspond to an existing country in the UDL’s country API. Call
                * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
                * alternate code values that exist for the specified country code.
                */
@@ -4622,7 +3236,7 @@ export namespace EntityGetAllTypesResponse {
                  * requirements, and for validating technical, functional, and performance
                  * characteristics.
                  */
-                dataMode: string;
+                dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
                 /**
                  * Unique identifier of the parent organization.
@@ -4862,7 +3476,7 @@ export namespace EntityGetAllTypesResponse {
          * requirements, and for validating technical, functional, and performance
          * characteristics.
          */
-        dataMode: string;
+        dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
         /**
          * ID of the battery.
@@ -4952,7 +3566,7 @@ export namespace EntityGetAllTypesResponse {
            * requirements, and for validating technical, functional, and performance
            * characteristics.
            */
-          dataMode: string;
+          dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
           /**
            * Battery name.
@@ -5040,7 +3654,7 @@ export namespace EntityGetAllTypesResponse {
              * requirements, and for validating technical, functional, and performance
              * characteristics.
              */
-            dataMode: string;
+            dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
             /**
              * Identifier of the parent battery type record.
@@ -5168,7 +3782,7 @@ export namespace EntityGetAllTypesResponse {
                * requirements, and for validating technical, functional, and performance
                * characteristics.
                */
-              dataMode: string;
+              dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
               /**
                * Organization name.
@@ -5205,7 +3819,7 @@ export namespace EntityGetAllTypesResponse {
                * Country of the physical location of the organization. This value is typically
                * the ISO 3166 Alpha-2 two-character country code. However, it can also represent
                * various consortiums that do not appear in the ISO document. The code must
-               * correspond to an existing country in the UDL�s country API. Call
+               * correspond to an existing country in the UDL’s country API. Call
                * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
                * alternate code values that exist for the specified country code.
                */
@@ -5236,7 +3850,7 @@ export namespace EntityGetAllTypesResponse {
                * Country of registration or ownership of the organization. This value is
                * typically the ISO 3166 Alpha-2 two-character country code, however it can also
                * represent various consortiums that do not appear in the ISO document. The code
-               * must correspond to an existing country in the UDL�s country API. Call
+               * must correspond to an existing country in the UDL’s country API. Call
                * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
                * alternate code values that exist for the specified country code.
                */
@@ -5302,7 +3916,7 @@ export namespace EntityGetAllTypesResponse {
                  * requirements, and for validating technical, functional, and performance
                  * characteristics.
                  */
-                dataMode: string;
+                dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
                 /**
                  * Unique identifier of the parent organization.
@@ -5542,7 +4156,7 @@ export namespace EntityGetAllTypesResponse {
          * requirements, and for validating technical, functional, and performance
          * characteristics.
          */
-        dataMode: string;
+        dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
         /**
          * UUID of the parent Onorbit record.
@@ -5835,7 +4449,7 @@ export namespace EntityGetAllTypesResponse {
          * requirements, and for validating technical, functional, and performance
          * characteristics.
          */
-        dataMode: string;
+        dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
         /**
          * ID of the on-orbit object.
@@ -5930,7 +4544,7 @@ export namespace EntityGetAllTypesResponse {
            * requirements, and for validating technical, functional, and performance
            * characteristics.
            */
-          dataMode: string;
+          dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
           /**
            * Solar Array name.
@@ -6018,7 +4632,7 @@ export namespace EntityGetAllTypesResponse {
              * requirements, and for validating technical, functional, and performance
              * characteristics.
              */
-            dataMode: string;
+            dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
             /**
              * Unique identifier of the parent SolarArray.
@@ -6151,7 +4765,7 @@ export namespace EntityGetAllTypesResponse {
                * requirements, and for validating technical, functional, and performance
                * characteristics.
                */
-              dataMode: string;
+              dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
               /**
                * Organization name.
@@ -6188,7 +4802,7 @@ export namespace EntityGetAllTypesResponse {
                * Country of the physical location of the organization. This value is typically
                * the ISO 3166 Alpha-2 two-character country code. However, it can also represent
                * various consortiums that do not appear in the ISO document. The code must
-               * correspond to an existing country in the UDL�s country API. Call
+               * correspond to an existing country in the UDL’s country API. Call
                * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
                * alternate code values that exist for the specified country code.
                */
@@ -6219,7 +4833,7 @@ export namespace EntityGetAllTypesResponse {
                * Country of registration or ownership of the organization. This value is
                * typically the ISO 3166 Alpha-2 two-character country code, however it can also
                * represent various consortiums that do not appear in the ISO document. The code
-               * must correspond to an existing country in the UDL�s country API. Call
+               * must correspond to an existing country in the UDL’s country API. Call
                * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
                * alternate code values that exist for the specified country code.
                */
@@ -6285,7 +4899,7 @@ export namespace EntityGetAllTypesResponse {
                  * requirements, and for validating technical, functional, and performance
                  * characteristics.
                  */
-                dataMode: string;
+                dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
                 /**
                  * Unique identifier of the parent organization.
@@ -6525,7 +5139,7 @@ export namespace EntityGetAllTypesResponse {
          * requirements, and for validating technical, functional, and performance
          * characteristics.
          */
-        dataMode: string;
+        dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
         /**
          * ID of the Engine.
@@ -6629,7 +5243,7 @@ export namespace EntityGetAllTypesResponse {
            * requirements, and for validating technical, functional, and performance
            * characteristics.
            */
-          dataMode: string;
+          dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
           /**
            * Engine name/variant.
@@ -6718,7 +5332,7 @@ export namespace EntityGetAllTypesResponse {
              * requirements, and for validating technical, functional, and performance
              * characteristics.
              */
-            dataMode: string;
+            dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
             /**
              * Identifier of the parent engine record.
@@ -6884,7 +5498,7 @@ export namespace EntityGetAllTypesResponse {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Name of the operating unit.
@@ -7391,7 +6005,7 @@ export namespace EntityGetAllTypesResponse {
          * requirements, and for validating technical, functional, and performance
          * characteristics.
          */
-        dataMode: string;
+        dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
         /**
          * Location name.
@@ -7412,7 +6026,7 @@ export namespace EntityGetAllTypesResponse {
          * The country code. This value is typically the ISO 3166 Alpha-2 two-character
          * country code, however it can also represent various consortiums that do not
          * appear in the ISO document. The code must correspond to an existing country in
-         * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+         * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
          * ISO Alpha-3 code, or alternate code values that exist for the specified country
          * code.
          */
@@ -7498,7 +6112,7 @@ export namespace EntityGetAllTypesResponse {
          * requirements, and for validating technical, functional, and performance
          * characteristics.
          */
-        dataMode: string;
+        dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
         /**
          * The ID of the operating unit to which this remark applies.
@@ -7599,7 +6213,7 @@ export namespace EntityGetAllTypesResponse {
          * requirements, and for validating technical, functional, and performance
          * characteristics.
          */
-        dataMode: string;
+        dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
         /**
          * Organization name.
@@ -7636,7 +6250,7 @@ export namespace EntityGetAllTypesResponse {
          * Country of the physical location of the organization. This value is typically
          * the ISO 3166 Alpha-2 two-character country code. However, it can also represent
          * various consortiums that do not appear in the ISO document. The code must
-         * correspond to an existing country in the UDL�s country API. Call
+         * correspond to an existing country in the UDL’s country API. Call
          * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
          * alternate code values that exist for the specified country code.
          */
@@ -7667,7 +6281,7 @@ export namespace EntityGetAllTypesResponse {
          * Country of registration or ownership of the organization. This value is
          * typically the ISO 3166 Alpha-2 two-character country code, however it can also
          * represent various consortiums that do not appear in the ISO document. The code
-         * must correspond to an existing country in the UDL�s country API. Call
+         * must correspond to an existing country in the UDL’s country API. Call
          * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
          * alternate code values that exist for the specified country code.
          */
@@ -7733,7 +6347,7 @@ export namespace EntityGetAllTypesResponse {
            * requirements, and for validating technical, functional, and performance
            * characteristics.
            */
-          dataMode: string;
+          dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
           /**
            * Unique identifier of the parent organization.
@@ -7972,7 +6586,7 @@ export namespace EntityGetAllTypesResponse {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Unique identifier of the parent Entity which uses this band.
@@ -8070,7 +6684,7 @@ export namespace EntityGetAllTypesResponse {
       /**
        * RF Band mode (e.g. TX, RX).
        */
-      mode?: string;
+      mode?: 'TX' | 'RX';
 
       /**
        * Originating system or organization which produced the data, if different from
@@ -8098,13 +6712,13 @@ export namespace EntityGetAllTypesResponse {
        * R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
        * surface.
        */
-      polarization?: string;
+      polarization?: 'H' | 'V' | 'R' | 'L';
 
       /**
        * Purpose or use of the RF Band -- COMM = communications, TTC =
        * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
        */
-      purpose?: string;
+      purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
 
       /**
        * Time the row was last updated in the database, auto-populated by the system.
@@ -8144,7 +6758,7 @@ export namespace EntityGetAllTypesResponse {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Unique identifier of the parent entity.
@@ -8196,7 +6810,7 @@ export namespace EntityGetAllTypesResponse {
       /**
        * Operation capability of the entity, if applicable (e.g. FMC, NMC, PMC, UNK).
        */
-      opsCap?: string;
+      opsCap?: 'FMC' | 'NMC' | 'PMC' | 'UNK';
 
       /**
        * Originating system or organization which produced the data, if different from
@@ -8216,14 +6830,14 @@ export namespace EntityGetAllTypesResponse {
        * Overall state of the entity, if applicable (e.g. UNKNOWN, DEAD, ACTIVE, RF
        * ACTIVE, STANDBY).
        */
-      state?: string;
+      state?: 'UNKNOWN' | 'DEAD' | 'ACTIVE' | 'RF ACTIVE' | 'STANDBY';
 
       subStatusCollection?: Array<StatusCollection.SubStatusCollection>;
 
       /**
        * System capability of the entity, if applicable (e.g. FMC, NMC, PMC, UNK).
        */
-      sysCap?: string;
+      sysCap?: 'FMC' | 'NMC' | 'PMC' | 'UNK';
 
       /**
        * Time the row was last updated in the database, auto-populated by the system.
@@ -8263,7 +6877,7 @@ export namespace EntityGetAllTypesResponse {
          * requirements, and for validating technical, functional, and performance
          * characteristics.
          */
-        dataMode: string;
+        dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
         /**
          * Descriptions and/or comments associated with the sub-status.
@@ -8278,7 +6892,7 @@ export namespace EntityGetAllTypesResponse {
         /**
          * Status of the sub-system/capability, e.g. FMC, NMC, PMC, UNK.
          */
-        status: string;
+        status: 'FMC' | 'NMC' | 'PMC' | 'UNK';
 
         /**
          * Id of the parent status.
@@ -8288,7 +6902,7 @@ export namespace EntityGetAllTypesResponse {
         /**
          * Parent entity's sub-system or capability status: mwCap, mdCap, ssCap, etc.
          */
-        type: string;
+        type: 'mwCap' | 'ssCap' | 'mdCap';
 
         /**
          * Unique identifier of the record, auto-generated by the system.
@@ -8359,7 +6973,7 @@ export interface EntityCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique entity name.
@@ -8375,28 +6989,28 @@ export interface EntityCreateParams {
    * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
    * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
    */
-  type: string;
+  type:
+    | 'AIRCRAFT'
+    | 'BUS'
+    | 'COMM'
+    | 'IR'
+    | 'NAVIGATION'
+    | 'ONORBIT'
+    | 'RFEMITTER'
+    | 'SCIENTIFIC'
+    | 'SENSOR'
+    | 'SITE'
+    | 'VESSEL';
 
   /**
    * The country code. This value is typically the ISO 3166 Alpha-2 two-character
    * country code, however it can also represent various consortiums that do not
    * appear in the ISO document. The code must correspond to an existing country in
-   * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+   * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
    * ISO Alpha-3 code, or alternate code values that exist for the specified country
    * code.
    */
   countryCode?: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Unique identifier of the record.
@@ -8440,16 +7054,10 @@ export interface EntityCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Type of organization which owns this entity (e.g. Commercial, Government,
    * Academic, Consortium, etc).
    */
-  ownerType?: string;
+  ownerType?: 'Commercial' | 'Government' | 'Academic' | 'Consortium' | 'Other';
 
   /**
    * Boolean indicating if this entity is taskable.
@@ -8489,7 +7097,7 @@ export namespace EntityCreateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Location name.
@@ -8510,22 +7118,11 @@ export namespace EntityCreateParams {
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
      * country code, however it can also represent various consortiums that do not
      * appear in the ISO document. The code must correspond to an existing country in
-     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
      * ISO Alpha-3 code, or alternate code values that exist for the specified country
      * code.
      */
     countryCode?: string;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
 
     /**
      * Unique identifier of the location, auto-generated by the system.
@@ -8551,12 +7148,6 @@ export namespace EntityCreateParams {
      * null, the source may be assumed to be the origin.
      */
     origin?: string;
-
-    /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
   }
 
   /**
@@ -8584,7 +7175,7 @@ export namespace EntityCreateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Satellite/Catalog number of the target on-orbit object.
@@ -8606,7 +7197,20 @@ export namespace EntityCreateParams {
      * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
      * Heliocentric, Interplanetary, Lagrangian, Docked).
      */
-    category?: string;
+    category?:
+      | 'Unknown'
+      | 'On-Orbit'
+      | 'Decayed'
+      | 'Cataloged Without State'
+      | 'Launch Nominal'
+      | 'Analyst Satellite'
+      | 'Cislunar'
+      | 'Lunar'
+      | 'Hyperbolic'
+      | 'Heliocentric'
+      | 'Interplanetary'
+      | 'Lagrangian'
+      | 'Docked';
 
     /**
      * Common name of the on-orbit object.
@@ -8622,22 +7226,11 @@ export namespace EntityCreateParams {
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
      * country code, however it can also represent various consortiums that do not
      * appear in the ISO document. The code must correspond to an existing country in
-     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
      * ISO Alpha-3 code, or alternate code values that exist for the specified country
      * code.
      */
     countryCode?: string;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
 
     /**
      * Date of decay.
@@ -8682,7 +7275,7 @@ export namespace EntityCreateParams {
      * Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
      * UNKNOWN.
      */
-    objectType?: string;
+    objectType?: 'ROCKET BODY' | 'DEBRIS' | 'PAYLOAD' | 'PLATFORM' | 'MANNED' | 'UNKNOWN';
 
     /**
      * Originating system or organization which produced the data, if different from
@@ -8691,47 +7284,17 @@ export namespace EntityCreateParams {
      * null, the source may be assumed to be the origin.
      */
     origin?: string;
-
-    /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
   }
-}
-
-export interface EntityRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Entity to find.
-   */
-  body_id: string;
 }
 
 export interface EntityUpdateParams {
   /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Entity to update.
-   */
-  body_id: string;
-
-  /**
-   * Body param: Classification marking of the data in IC/CAPCO Portion-marked
-   * format.
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
   classificationMarking: string;
 
   /**
-   * Body param: Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST
-   * data:
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
    *
    * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
    * may include both real and simulated data.
@@ -8746,108 +7309,99 @@ export interface EntityUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
-   * Body param: Unique entity name.
+   * Unique entity name.
    */
   name: string;
 
   /**
-   * Body param: Source of the data.
+   * Source of the data.
    */
   source: string;
 
   /**
-   * Body param: The type of entity represented by this record (AIRCRAFT, BUS, COMM,
-   * IR, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+   * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
+   * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
    */
-  type: string;
+  type:
+    | 'AIRCRAFT'
+    | 'BUS'
+    | 'COMM'
+    | 'IR'
+    | 'NAVIGATION'
+    | 'ONORBIT'
+    | 'RFEMITTER'
+    | 'SCIENTIFIC'
+    | 'SENSOR'
+    | 'SITE'
+    | 'VESSEL';
 
   /**
-   * Body param: The country code. This value is typically the ISO 3166 Alpha-2
-   * two-character country code, however it can also represent various consortiums
-   * that do not appear in the ISO document. The code must correspond to an existing
-   * country in the UDL�s country API. Call udl/country/{code} to get any associated
-   * FIPS code, ISO Alpha-3 code, or alternate code values that exist for the
-   * specified country code.
+   * The country code. This value is typically the ISO 3166 Alpha-2 two-character
+   * country code, however it can also represent various consortiums that do not
+   * appear in the ISO document. The code must correspond to an existing country in
+   * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+   * ISO Alpha-3 code, or alternate code values that exist for the specified country
+   * code.
    */
   countryCode?: string;
 
   /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
-
-  /**
-   * Body param: Unique identifier of the record.
+   * Unique identifier of the record.
    */
   idEntity?: string;
 
   /**
-   * Body param: Unique identifier of the entity location, if terrestrial/fixed.
+   * Unique identifier of the entity location, if terrestrial/fixed.
    */
   idLocation?: string;
 
   /**
-   * Body param: Onorbit identifier if this entity is part of an on-orbit object. For
-   * the public catalog, the idOnOrbit is typically the satellite number as a string,
-   * but may be a UUID for analyst or other unknown or untracked satellites.
+   * Onorbit identifier if this entity is part of an on-orbit object. For the public
+   * catalog, the idOnOrbit is typically the satellite number as a string, but may be
+   * a UUID for analyst or other unknown or untracked satellites.
    */
   idOnOrbit?: string;
 
   /**
-   * Body param: Unique identifier of the associated operating unit object.
+   * Unique identifier of the associated operating unit object.
    */
   idOperatingUnit?: string;
 
   /**
-   * Body param: Model representation of a location, which is a specific fixed point
-   * on the earth and is used to denote the locations of fixed sensors, operating
-   * units, etc.
+   * Model representation of a location, which is a specific fixed point on the earth
+   * and is used to denote the locations of fixed sensors, operating units, etc.
    */
   location?: EntityUpdateParams.Location;
 
   /**
-   * Body param: Model object representing on-orbit objects or satellites in the
-   * system.
+   * Model object representing on-orbit objects or satellites in the system.
    */
   onOrbit?: EntityUpdateParams.OnOrbit;
 
   /**
-   * Body param: Originating system or organization which produced the data, if
-   * different from the source. The origin may be different than the source if the
-   * source was a mediating system which forwarded the data on behalf of the origin
-   * system. If null, the source may be assumed to be the origin.
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
    */
   origin?: string;
 
   /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
+   * Type of organization which owns this entity (e.g. Commercial, Government,
+   * Academic, Consortium, etc).
    */
-  origNetwork?: string;
+  ownerType?: 'Commercial' | 'Government' | 'Academic' | 'Consortium' | 'Other';
 
   /**
-   * Body param: Type of organization which owns this entity (e.g. Commercial,
-   * Government, Academic, Consortium, etc).
-   */
-  ownerType?: string;
-
-  /**
-   * Body param: Boolean indicating if this entity is taskable.
+   * Boolean indicating if this entity is taskable.
    */
   taskable?: boolean;
 
   /**
-   * Body param: List of URLs to additional details/documents for this entity.
+   * List of URLs to additional details/documents for this entity.
    */
   urls?: Array<string>;
 }
@@ -8879,7 +7433,7 @@ export namespace EntityUpdateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Location name.
@@ -8900,22 +7454,11 @@ export namespace EntityUpdateParams {
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
      * country code, however it can also represent various consortiums that do not
      * appear in the ISO document. The code must correspond to an existing country in
-     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
      * ISO Alpha-3 code, or alternate code values that exist for the specified country
      * code.
      */
     countryCode?: string;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
 
     /**
      * Unique identifier of the location, auto-generated by the system.
@@ -8941,12 +7484,6 @@ export namespace EntityUpdateParams {
      * null, the source may be assumed to be the origin.
      */
     origin?: string;
-
-    /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
   }
 
   /**
@@ -8974,7 +7511,7 @@ export namespace EntityUpdateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Satellite/Catalog number of the target on-orbit object.
@@ -8996,7 +7533,20 @@ export namespace EntityUpdateParams {
      * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
      * Heliocentric, Interplanetary, Lagrangian, Docked).
      */
-    category?: string;
+    category?:
+      | 'Unknown'
+      | 'On-Orbit'
+      | 'Decayed'
+      | 'Cataloged Without State'
+      | 'Launch Nominal'
+      | 'Analyst Satellite'
+      | 'Cislunar'
+      | 'Lunar'
+      | 'Hyperbolic'
+      | 'Heliocentric'
+      | 'Interplanetary'
+      | 'Lagrangian'
+      | 'Docked';
 
     /**
      * Common name of the on-orbit object.
@@ -9012,22 +7562,11 @@ export namespace EntityUpdateParams {
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
      * country code, however it can also represent various consortiums that do not
      * appear in the ISO document. The code must correspond to an existing country in
-     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
      * ISO Alpha-3 code, or alternate code values that exist for the specified country
      * code.
      */
     countryCode?: string;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
 
     /**
      * Date of decay.
@@ -9072,7 +7611,7 @@ export namespace EntityUpdateParams {
      * Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
      * UNKNOWN.
      */
-    objectType?: string;
+    objectType?: 'ROCKET BODY' | 'DEBRIS' | 'PAYLOAD' | 'PLATFORM' | 'MANNED' | 'UNKNOWN';
 
     /**
      * Originating system or organization which produced the data, if different from
@@ -9081,32 +7620,14 @@ export namespace EntityUpdateParams {
      * null, the source may be assumed to be the origin.
      */
     origin?: string;
-
-    /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
   }
-}
-
-export interface EntityDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Entity to delete.
-   */
-  body_id: string;
 }
 
 export interface EntityTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -9116,13 +7637,12 @@ export declare namespace Entities {
   export {
     type EntityAbridged as EntityAbridged,
     type EntityFull as EntityFull,
+    type EntityListResponse as EntityListResponse,
     type EntityCountResponse as EntityCountResponse,
     type EntityGetAllTypesResponse as EntityGetAllTypesResponse,
     type EntityTupleResponse as EntityTupleResponse,
     type EntityCreateParams as EntityCreateParams,
-    type EntityRetrieveParams as EntityRetrieveParams,
     type EntityUpdateParams as EntityUpdateParams,
-    type EntityDeleteParams as EntityDeleteParams,
     type EntityTupleParams as EntityTupleParams,
   };
 }

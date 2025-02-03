@@ -22,9 +22,8 @@ export class Aircraft extends APIResource {
    * Service operation to get a single Aircraft record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(params: AircraftRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<AircraftFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/aircraft/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AircraftFull> {
+    return this._client.get(`/udl/aircraft/${id}`, options);
   }
 
   /**
@@ -32,9 +31,9 @@ export class Aircraft extends APIResource {
    * perform this service operation. Please contact the UDL team for assistance.
    */
   update(params: AircraftUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/aircraft/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -86,11 +85,10 @@ export class Aircraft extends APIResource {
    * hours ago.
    */
   tupleQuery(
-    params: AircraftTupleQueryParams,
+    query: AircraftTupleQueryParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AircraftTupleQueryResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/aircraft/tuple', options);
+    return this._client.get('/udl/aircraft/tuple', { query, ...options });
   }
 }
 
@@ -128,7 +126,7 @@ export interface AircraftAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Source of the data.
@@ -278,7 +276,7 @@ export interface AircraftFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Source of the data.
@@ -447,7 +445,7 @@ export interface AircraftCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Source of the data.
@@ -468,17 +466,6 @@ export interface AircraftCreateParams {
    * The Air Force major command (MAJCOM) overseeing the aircraft.
    */
   command?: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * The cruise speed of the aircraft, in kilometers/hour.
@@ -542,12 +529,6 @@ export interface AircraftCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * The wing or unit that owns the aircraft.
    */
   owner?: string;
@@ -556,13 +537,6 @@ export interface AircraftCreateParams {
    * Full serial number of the aircraft.
    */
   serialNumber?: string;
-
-  /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
 
   /**
    * The tail number of this aircraft.
@@ -598,7 +572,7 @@ export namespace AircraftCreateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Unique entity name.
@@ -614,28 +588,28 @@ export namespace AircraftCreateParams {
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
      * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
-    type: string;
+    type:
+      | 'AIRCRAFT'
+      | 'BUS'
+      | 'COMM'
+      | 'IR'
+      | 'NAVIGATION'
+      | 'ONORBIT'
+      | 'RFEMITTER'
+      | 'SCIENTIFIC'
+      | 'SENSOR'
+      | 'SITE'
+      | 'VESSEL';
 
     /**
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
      * country code, however it can also represent various consortiums that do not
      * appear in the ISO document. The code must correspond to an existing country in
-     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
      * ISO Alpha-3 code, or alternate code values that exist for the specified country
      * code.
      */
     countryCode?: string;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
 
     /**
      * Unique identifier of the record.
@@ -679,16 +653,10 @@ export namespace AircraftCreateParams {
     origin?: string;
 
     /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
-
-    /**
      * Type of organization which owns this entity (e.g. Commercial, Government,
      * Academic, Consortium, etc).
      */
-    ownerType?: string;
+    ownerType?: 'Commercial' | 'Government' | 'Academic' | 'Consortium' | 'Other';
 
     /**
      * Boolean indicating if this entity is taskable.
@@ -728,7 +696,7 @@ export namespace AircraftCreateParams {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Location name.
@@ -749,22 +717,11 @@ export namespace AircraftCreateParams {
        * The country code. This value is typically the ISO 3166 Alpha-2 two-character
        * country code, however it can also represent various consortiums that do not
        * appear in the ISO document. The code must correspond to an existing country in
-       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
        * ISO Alpha-3 code, or alternate code values that exist for the specified country
        * code.
        */
       countryCode?: string;
-
-      /**
-       * Time the row was created in the database, auto-populated by the system.
-       */
-      createdAt?: string;
-
-      /**
-       * Application user who created the row in the database, auto-populated by the
-       * system.
-       */
-      createdBy?: string;
 
       /**
        * Unique identifier of the location, auto-generated by the system.
@@ -790,12 +747,6 @@ export namespace AircraftCreateParams {
        * null, the source may be assumed to be the origin.
        */
       origin?: string;
-
-      /**
-       * The originating source network on which this record was created, auto-populated
-       * by the system.
-       */
-      origNetwork?: string;
     }
 
     /**
@@ -823,7 +774,7 @@ export namespace AircraftCreateParams {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Satellite/Catalog number of the target on-orbit object.
@@ -845,7 +796,20 @@ export namespace AircraftCreateParams {
        * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
        * Heliocentric, Interplanetary, Lagrangian, Docked).
        */
-      category?: string;
+      category?:
+        | 'Unknown'
+        | 'On-Orbit'
+        | 'Decayed'
+        | 'Cataloged Without State'
+        | 'Launch Nominal'
+        | 'Analyst Satellite'
+        | 'Cislunar'
+        | 'Lunar'
+        | 'Hyperbolic'
+        | 'Heliocentric'
+        | 'Interplanetary'
+        | 'Lagrangian'
+        | 'Docked';
 
       /**
        * Common name of the on-orbit object.
@@ -861,22 +825,11 @@ export namespace AircraftCreateParams {
        * The country code. This value is typically the ISO 3166 Alpha-2 two-character
        * country code, however it can also represent various consortiums that do not
        * appear in the ISO document. The code must correspond to an existing country in
-       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
        * ISO Alpha-3 code, or alternate code values that exist for the specified country
        * code.
        */
       countryCode?: string;
-
-      /**
-       * Time the row was created in the database, auto-populated by the system.
-       */
-      createdAt?: string;
-
-      /**
-       * Application user who created the row in the database, auto-populated by the
-       * system.
-       */
-      createdBy?: string;
 
       /**
        * Date of decay.
@@ -921,7 +874,7 @@ export namespace AircraftCreateParams {
        * Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
        * UNKNOWN.
        */
-      objectType?: string;
+      objectType?: 'ROCKET BODY' | 'DEBRIS' | 'PAYLOAD' | 'PLATFORM' | 'MANNED' | 'UNKNOWN';
 
       /**
        * Originating system or organization which produced the data, if different from
@@ -930,38 +883,15 @@ export namespace AircraftCreateParams {
        * null, the source may be assumed to be the origin.
        */
       origin?: string;
-
-      /**
-       * The originating source network on which this record was created, auto-populated
-       * by the system.
-       */
-      origNetwork?: string;
     }
   }
 }
 
-export interface AircraftRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Aircraft to find.
-   */
-  body_id: string;
-}
-
 export interface AircraftUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the Aircraft to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the Aircraft to update.
-   */
-  body_id: string;
 
   /**
    * Body param: The aircraft Model Design Series (MDS) designation (e.g. E-2C
@@ -994,7 +924,7 @@ export interface AircraftUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Source of the data.
@@ -1015,18 +945,6 @@ export interface AircraftUpdateParams {
    * Body param: The Air Force major command (MAJCOM) overseeing the aircraft.
    */
   command?: string;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: The cruise speed of the aircraft, in kilometers/hour.
@@ -1091,12 +1009,6 @@ export interface AircraftUpdateParams {
   origin?: string;
 
   /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Body param: The wing or unit that owns the aircraft.
    */
   owner?: string;
@@ -1105,13 +1017,6 @@ export interface AircraftUpdateParams {
    * Body param: Full serial number of the aircraft.
    */
   serialNumber?: string;
-
-  /**
-   * Body param: The source data library from which this record was received. This
-   * could be a remote or tactical UDL or another data library. If null, the record
-   * should be assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
 
   /**
    * Body param: The tail number of this aircraft.
@@ -1147,7 +1052,7 @@ export namespace AircraftUpdateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Unique entity name.
@@ -1163,28 +1068,28 @@ export namespace AircraftUpdateParams {
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
      * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
-    type: string;
+    type:
+      | 'AIRCRAFT'
+      | 'BUS'
+      | 'COMM'
+      | 'IR'
+      | 'NAVIGATION'
+      | 'ONORBIT'
+      | 'RFEMITTER'
+      | 'SCIENTIFIC'
+      | 'SENSOR'
+      | 'SITE'
+      | 'VESSEL';
 
     /**
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
      * country code, however it can also represent various consortiums that do not
      * appear in the ISO document. The code must correspond to an existing country in
-     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
      * ISO Alpha-3 code, or alternate code values that exist for the specified country
      * code.
      */
     countryCode?: string;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
 
     /**
      * Unique identifier of the record.
@@ -1228,16 +1133,10 @@ export namespace AircraftUpdateParams {
     origin?: string;
 
     /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
-
-    /**
      * Type of organization which owns this entity (e.g. Commercial, Government,
      * Academic, Consortium, etc).
      */
-    ownerType?: string;
+    ownerType?: 'Commercial' | 'Government' | 'Academic' | 'Consortium' | 'Other';
 
     /**
      * Boolean indicating if this entity is taskable.
@@ -1277,7 +1176,7 @@ export namespace AircraftUpdateParams {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Location name.
@@ -1298,22 +1197,11 @@ export namespace AircraftUpdateParams {
        * The country code. This value is typically the ISO 3166 Alpha-2 two-character
        * country code, however it can also represent various consortiums that do not
        * appear in the ISO document. The code must correspond to an existing country in
-       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
        * ISO Alpha-3 code, or alternate code values that exist for the specified country
        * code.
        */
       countryCode?: string;
-
-      /**
-       * Time the row was created in the database, auto-populated by the system.
-       */
-      createdAt?: string;
-
-      /**
-       * Application user who created the row in the database, auto-populated by the
-       * system.
-       */
-      createdBy?: string;
 
       /**
        * Unique identifier of the location, auto-generated by the system.
@@ -1339,12 +1227,6 @@ export namespace AircraftUpdateParams {
        * null, the source may be assumed to be the origin.
        */
       origin?: string;
-
-      /**
-       * The originating source network on which this record was created, auto-populated
-       * by the system.
-       */
-      origNetwork?: string;
     }
 
     /**
@@ -1372,7 +1254,7 @@ export namespace AircraftUpdateParams {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Satellite/Catalog number of the target on-orbit object.
@@ -1394,7 +1276,20 @@ export namespace AircraftUpdateParams {
        * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
        * Heliocentric, Interplanetary, Lagrangian, Docked).
        */
-      category?: string;
+      category?:
+        | 'Unknown'
+        | 'On-Orbit'
+        | 'Decayed'
+        | 'Cataloged Without State'
+        | 'Launch Nominal'
+        | 'Analyst Satellite'
+        | 'Cislunar'
+        | 'Lunar'
+        | 'Hyperbolic'
+        | 'Heliocentric'
+        | 'Interplanetary'
+        | 'Lagrangian'
+        | 'Docked';
 
       /**
        * Common name of the on-orbit object.
@@ -1410,22 +1305,11 @@ export namespace AircraftUpdateParams {
        * The country code. This value is typically the ISO 3166 Alpha-2 two-character
        * country code, however it can also represent various consortiums that do not
        * appear in the ISO document. The code must correspond to an existing country in
-       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
        * ISO Alpha-3 code, or alternate code values that exist for the specified country
        * code.
        */
       countryCode?: string;
-
-      /**
-       * Time the row was created in the database, auto-populated by the system.
-       */
-      createdAt?: string;
-
-      /**
-       * Application user who created the row in the database, auto-populated by the
-       * system.
-       */
-      createdBy?: string;
 
       /**
        * Date of decay.
@@ -1470,7 +1354,7 @@ export namespace AircraftUpdateParams {
        * Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
        * UNKNOWN.
        */
-      objectType?: string;
+      objectType?: 'ROCKET BODY' | 'DEBRIS' | 'PAYLOAD' | 'PLATFORM' | 'MANNED' | 'UNKNOWN';
 
       /**
        * Originating system or organization which produced the data, if different from
@@ -1479,12 +1363,6 @@ export namespace AircraftUpdateParams {
        * null, the source may be assumed to be the origin.
        */
       origin?: string;
-
-      /**
-       * The originating source network on which this record was created, auto-populated
-       * by the system.
-       */
-      origNetwork?: string;
     }
   }
 }
@@ -1493,7 +1371,7 @@ export interface AircraftTupleQueryParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -1507,7 +1385,6 @@ export declare namespace Aircraft {
     type AircraftCountResponse as AircraftCountResponse,
     type AircraftTupleQueryResponse as AircraftTupleQueryResponse,
     type AircraftCreateParams as AircraftCreateParams,
-    type AircraftRetrieveParams as AircraftRetrieveParams,
     type AircraftUpdateParams as AircraftUpdateParams,
     type AircraftTupleQueryParams as AircraftTupleQueryParams,
   };

@@ -9,12 +9,8 @@ export class Airfieldslots extends APIResource {
    * Service operation to get a single airfieldslot record by its unique ID passed as
    * a path parameter.
    */
-  retrieve(
-    params: AirfieldslotRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AirfieldSlotsAPI.AirfieldslotFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/airfieldslot/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AirfieldSlotsAPI.AirfieldslotFull> {
+    return this._client.get(`/udl/airfieldslot/${id}`, options);
   }
 
   /**
@@ -23,9 +19,9 @@ export class Airfieldslots extends APIResource {
    * assistance.
    */
   update(params: AirfieldslotUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/airfieldslot/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -36,9 +32,8 @@ export class Airfieldslots extends APIResource {
    * path parameter. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  delete(params: AirfieldslotDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/airfieldslot/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/airfieldslot/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -80,11 +75,10 @@ export class Airfieldslots extends APIResource {
    * hours ago.
    */
   tuple(
-    params: AirfieldslotTupleParams,
+    query: AirfieldslotTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AirfieldslotTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/airfieldslot/tuple', options);
+    return this._client.get('/udl/airfieldslot/tuple', { query, ...options });
   }
 }
 
@@ -92,28 +86,11 @@ export type AirfieldslotCountResponse = string;
 
 export type AirfieldslotTupleResponse = Array<AirfieldSlotsAPI.AirfieldslotFull>;
 
-export interface AirfieldslotRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the AirfieldSlot to find.
-   */
-  body_id: string;
-}
-
 export interface AirfieldslotUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the AirfieldSlot to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the AirfieldSlot to update.
-   */
-  body_id: string;
 
   /**
    * Body param: The name of the airfield where this slot is located.
@@ -143,7 +120,7 @@ export interface AirfieldslotUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Name of this slot.
@@ -164,7 +141,7 @@ export interface AirfieldslotUpdateParams {
    * Body param: Largest category of aircraft supported in this slot (WIDE, NARROW,
    * HELO, ALL, OTHER).
    */
-  acSlotCat?: string;
+  acSlotCat?: 'WIDE' | 'NARROW' | 'HELO' | 'ALL' | 'OTHER';
 
   /**
    * Body param: Alternate airfield identifier provided by the source.
@@ -175,18 +152,6 @@ export interface AirfieldslotUpdateParams {
    * Body param: Number of aircraft that can fit in this slot at the same time.
    */
   capacity?: number;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: Latest zulu time this slot is available based on daily standard
@@ -227,19 +192,6 @@ export interface AirfieldslotUpdateParams {
   origin?: string;
 
   /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-
-  /**
-   * Body param: The source data library from which this record was received. This
-   * could be a remote or tactical UDL or another data library. If null, the record
-   * should be assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
-
-  /**
    * Body param: Zulu time this slot is first available based on daily standard
    * hours. Not applicable to slots with type PARKING. Abnormal hours, such as
    * holidays, should be marked via the AirfieldSlotConsumption schema.
@@ -250,26 +202,14 @@ export interface AirfieldslotUpdateParams {
    * Body param: Designates how this slot can be used (WORKING, PARKING, TAKEOFF,
    * LANDING, OTHER).
    */
-  type?: string;
-}
-
-export interface AirfieldslotDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the AirfieldSlot entry to delete.
-   */
-  body_id: string;
+  type?: 'WORKING' | 'PARKING' | 'TAKEOFF' | 'LANDING' | 'OTHER';
 }
 
 export interface AirfieldslotTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -279,9 +219,7 @@ export declare namespace Airfieldslots {
   export {
     type AirfieldslotCountResponse as AirfieldslotCountResponse,
     type AirfieldslotTupleResponse as AirfieldslotTupleResponse,
-    type AirfieldslotRetrieveParams as AirfieldslotRetrieveParams,
     type AirfieldslotUpdateParams as AirfieldslotUpdateParams,
-    type AirfieldslotDeleteParams as AirfieldslotDeleteParams,
     type AirfieldslotTupleParams as AirfieldslotTupleParams,
   };
 }

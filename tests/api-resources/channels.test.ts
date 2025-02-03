@@ -4,19 +4,19 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource channels', () => {
   test('create: only required params', async () => {
     const responsePromise = client.channels.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idTransponder: 'idTransponder',
-      name: 'name',
-      source: 'source',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idTransponder: 'REF-TRANSPONDER-ID',
+      name: 'Example name',
+      source: 'system.source',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -29,33 +29,30 @@ describe('resource channels', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.channels.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idTransponder: 'idTransponder',
-      name: 'name',
-      source: 'source',
-      id: 'id',
-      apid: 'apid',
-      beamName: 'beamName',
-      compression: 'compression',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      encryption: 'encryption',
-      idBeam: 'idBeam',
-      idRFBand: 'idRFBand',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      owner: 'owner',
-      pkg: 'pkg',
-      res: 'res',
-      sid: 'sid',
-      type: 'type',
-      vpid: 'vpid',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idTransponder: 'REF-TRANSPONDER-ID',
+      name: 'Example name',
+      source: 'system.source',
+      id: 'CHANNEL-ID',
+      apid: 'AP-ID',
+      beamName: 'B8VD',
+      compression: 'Example compression',
+      encryption: 'Example encryption',
+      idBeam: 'REF-BEAM-ID',
+      idRFBand: 'REF-RFBAND-ID',
+      origin: 'example_origin',
+      owner: 'example_owner',
+      pkg: 'Example pkg',
+      res: 'Example res',
+      sid: 'S-ID',
+      type: 'Example type',
+      vpid: 'VP-ID',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.channels.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.channels.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -65,19 +62,21 @@ describe('resource channels', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.channels.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.channels.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.channels.update({
       path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idTransponder: 'idTransponder',
-      name: 'name',
-      source: 'source',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idTransponder: 'REF-TRANSPONDER-ID',
+      name: 'Example name',
+      source: 'system.source',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -91,29 +90,25 @@ describe('resource channels', () => {
   test('update: required and optional params', async () => {
     const response = await client.channels.update({
       path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idTransponder: 'idTransponder',
-      name: 'name',
-      source: 'source',
-      body_id: 'id',
-      apid: 'apid',
-      beamName: 'beamName',
-      compression: 'compression',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      encryption: 'encryption',
-      idBeam: 'idBeam',
-      idRFBand: 'idRFBand',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      owner: 'owner',
-      pkg: 'pkg',
-      res: 'res',
-      sid: 'sid',
-      type: 'type',
-      vpid: 'vpid',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idTransponder: 'REF-TRANSPONDER-ID',
+      name: 'Example name',
+      source: 'system.source',
+      body_id: 'CHANNEL-ID',
+      apid: 'AP-ID',
+      beamName: 'B8VD',
+      compression: 'Example compression',
+      encryption: 'Example encryption',
+      idBeam: 'REF-BEAM-ID',
+      idRFBand: 'REF-RFBAND-ID',
+      origin: 'example_origin',
+      owner: 'example_owner',
+      pkg: 'Example pkg',
+      res: 'Example res',
+      sid: 'S-ID',
+      type: 'Example type',
+      vpid: 'VP-ID',
     });
   });
 
@@ -135,8 +130,8 @@ describe('resource channels', () => {
     );
   });
 
-  test('delete: only required params', async () => {
-    const responsePromise = client.channels.delete({ path_id: 'id', body_id: 'id' });
+  test('delete', async () => {
+    const responsePromise = client.channels.delete('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -146,8 +141,11 @@ describe('resource channels', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: required and optional params', async () => {
-    const response = await client.channels.delete({ path_id: 'id', body_id: 'id' });
+  test('delete: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.channels.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('count', async () => {

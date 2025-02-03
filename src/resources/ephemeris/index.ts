@@ -13,8 +13,12 @@ export {
   type EphemerisAbridged,
   type EphemerisListResponse,
   type EphemerisCountResponse,
+  type EphemerisTupleResponse,
+  type EphemerisCreateParams,
   type EphemerisListParams,
   type EphemerisCountParams,
+  type EphemerisFileCreateParams,
+  type EphemerisTupleParams,
 } from './ephemeris';
 export {
   History,

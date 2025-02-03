@@ -4,18 +4,18 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource antennaDetails', () => {
   test('create: only required params', async () => {
     const responsePromise = client.onorbit.antennaDetails.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idAntenna: 'idAntenna',
-      source: 'source',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idAntenna: 'ANTENNA-ID',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,36 +28,33 @@ describe('resource antennaDetails', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.onorbit.antennaDetails.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idAntenna: 'idAntenna',
-      source: 'source',
-      id: 'id',
-      beamForming: true,
-      beamwidth: 0,
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      description: 'description',
-      diameter: 0,
-      endFrequency: 0,
-      gain: 0,
-      gainTolerance: 0,
-      manufacturerOrgId: 'manufacturerOrgId',
-      mode: 'mode',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      polarization: 0,
-      position: 'position',
-      size: [0],
-      startFrequency: 0,
-      steerable: true,
-      tags: ['string'],
-      type: 'type',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idAntenna: 'ANTENNA-ID',
+      source: 'Bluestaq',
+      id: 'ANTENNADETAILS-ID',
+      beamForming: false,
+      beamwidth: 14.1,
+      description: 'Description of antenna A',
+      diameter: 0.01,
+      endFrequency: 3.3,
+      gain: 20.1,
+      gainTolerance: 5.1,
+      manufacturerOrgId: 'MANUFACTUREORG-ID',
+      mode: 'TX',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      polarization: 45.1,
+      position: 'Top',
+      size: [0.03, 0.05],
+      startFrequency: 2.1,
+      steerable: false,
+      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+      type: 'Reflector',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.onorbit.antennaDetails.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.onorbit.antennaDetails.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -67,18 +64,20 @@ describe('resource antennaDetails', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.onorbit.antennaDetails.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.onorbit.antennaDetails.retrieve('id', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.onorbit.antennaDetails.update({
       path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idAntenna: 'idAntenna',
-      source: 'source',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idAntenna: 'ANTENNA-ID',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -92,32 +91,28 @@ describe('resource antennaDetails', () => {
   test('update: required and optional params', async () => {
     const response = await client.onorbit.antennaDetails.update({
       path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idAntenna: 'idAntenna',
-      source: 'source',
-      body_id: 'id',
-      beamForming: true,
-      beamwidth: 0,
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      description: 'description',
-      diameter: 0,
-      endFrequency: 0,
-      gain: 0,
-      gainTolerance: 0,
-      manufacturerOrgId: 'manufacturerOrgId',
-      mode: 'mode',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      polarization: 0,
-      position: 'position',
-      size: [0],
-      startFrequency: 0,
-      steerable: true,
-      tags: ['string'],
-      type: 'type',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idAntenna: 'ANTENNA-ID',
+      source: 'Bluestaq',
+      body_id: 'ANTENNADETAILS-ID',
+      beamForming: false,
+      beamwidth: 14.1,
+      description: 'Description of antenna A',
+      diameter: 0.01,
+      endFrequency: 3.3,
+      gain: 20.1,
+      gainTolerance: 5.1,
+      manufacturerOrgId: 'MANUFACTUREORG-ID',
+      mode: 'TX',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      polarization: 45.1,
+      position: 'Top',
+      size: [0.03, 0.05],
+      startFrequency: 2.1,
+      steerable: false,
+      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+      type: 'Reflector',
     });
   });
 
@@ -139,8 +134,8 @@ describe('resource antennaDetails', () => {
     );
   });
 
-  test('delete: only required params', async () => {
-    const responsePromise = client.onorbit.antennaDetails.delete({ path_id: 'id', body_id: 'id' });
+  test('delete', async () => {
+    const responsePromise = client.onorbit.antennaDetails.delete('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -150,7 +145,10 @@ describe('resource antennaDetails', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: required and optional params', async () => {
-    const response = await client.onorbit.antennaDetails.delete({ path_id: 'id', body_id: 'id' });
+  test('delete: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.onorbit.antennaDetails.delete('id', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 });

@@ -84,7 +84,7 @@ export interface AirfieldstatusAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique identifier of the Airfield for which this status is referencing.
@@ -316,7 +316,7 @@ export interface AirfieldstatusFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique identifier of the Airfield for which this status is referencing.
@@ -560,7 +560,7 @@ export interface AirfieldstatusCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Unique identifier of the Airfield for which this status is referencing.
@@ -594,17 +594,6 @@ export interface AirfieldstatusCreateParams {
    * be serviced simultaneously based on spacing and manpower at the time of status.
    */
   cargoMOG?: number;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Maximum on ground (MOG) number of fleet aircraft that can be serviced
@@ -700,12 +689,6 @@ export interface AirfieldstatusCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Maximum on ground (MOG) number of high-reach/wide-body passenger aircraft that
    * can be serviced simultaneously based on spacing and manpower at the time of
    * status.
@@ -746,13 +729,6 @@ export interface AirfieldstatusCreateParams {
    * order to consume a slot at this location.
    */
   slotTypesReq?: Array<string>;
-
-  /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
 
   /**
    * Maximum on ground (MOG) number of parking wide-body aircraft based on spacing

@@ -54,7 +54,7 @@ export namespace AirTaskingOrderCreateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Specifies the unique operation or exercise name, nickname, or codeword assigned
@@ -89,16 +89,6 @@ export namespace AirTaskingOrderCreateParams {
      * level tasking for this ATO.
      */
     acMsnTasking?: Array<Body.AcMsnTasking>;
-
-    /**
-     * Time the row was created in the database.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database.
-     */
-    createdBy?: string;
 
     /**
      * The effective end time for this ATO in ISO 8601 UTC format with millisecond
@@ -144,26 +134,6 @@ export namespace AirTaskingOrderCreateParams {
      * null, the source may be assumed to be the origin.
      */
     origin?: string;
-
-    /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
-
-    /**
-     * Optional URI location in the document repository of the raw file parsed by the
-     * system to produce this record. To download the raw file, prepend
-     * https://udl-hostname/scs/download?id= to this value.
-     */
-    rawFileURI?: string;
-
-    /**
-     * The source data library from which this record was received. This could be a
-     * remote or tactical UDL or another data library. If null, the record should be
-     * assumed to have originated from the primary Enterprise UDL.
-     */
-    sourceDL?: string;
   }
 
   export namespace Body {

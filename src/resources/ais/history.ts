@@ -11,9 +11,8 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(params: HistoryListParams, options?: Core.RequestOptions): Core.APIPromise<HistoryListResponse> {
-    const { ts, columns } = params;
-    return this._client.get('/udl/ais/history', options);
+  list(query: HistoryListParams, options?: Core.RequestOptions): Core.APIPromise<HistoryListResponse> {
+    return this._client.get('/udl/ais/history', { query, ...options });
   }
 
   /**
@@ -23,9 +22,9 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  aodr(params: HistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { ts, columns, notification, outputDelimiter, outputFormat } = params;
+  aodr(query: HistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.get('/udl/ais/history/aodr', {
+      query,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });

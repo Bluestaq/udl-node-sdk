@@ -11,8 +11,9 @@ export class Crewpapers extends APIResource {
    * for assistance.
    */
   create(params: CrewpaperCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { body } = params;
+    const { aircraftSortieIds, classificationMarking, paperStatus, papersVersion, body } = params;
     return this._client.post('/filedrop/crewpapers', {
+      query: { aircraftSortieIds, classificationMarking, paperStatus, papersVersion },
       body: body,
       ...options,
       headers: { 'Content-Type': 'application/pdf', Accept: '*/*', ...options?.headers },
@@ -25,8 +26,10 @@ export class Crewpapers extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  unpublish(body: CrewpaperUnpublishParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  unpublish(params: CrewpaperUnpublishParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { ids } = params;
     return this._client.post('/udl/crewpapers/unpublish', {
+      query: { ids },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -35,26 +38,30 @@ export class Crewpapers extends APIResource {
 
 export interface CrewpaperCreateParams {
   /**
-   * Comma-separated list of AircraftSortie IDs the Crew Papers are being added to.
+   * Query param: Comma-separated list of AircraftSortie IDs the Crew Papers are
+   * being added to.
    */
   aircraftSortieIds: string;
 
-  body: string | ArrayBufferView | ArrayBuffer | BlobLike;
-
   /**
-   * classificationMarking of the Crew Papers.
+   * Query param: classificationMarking of the Crew Papers.
    */
   classificationMarking: string;
 
   /**
-   * The status of the supporting document.
+   * Query param: The status of the supporting document.
    */
-  paperStatus: string;
+  paperStatus: 'PUBLISHED' | 'DELETED' | 'UPDATED' | 'READ';
 
   /**
-   * The version number of the crew paper.
+   * Query param: The version number of the crew paper.
    */
   papersVersion: string;
+
+  /**
+   * Body param:
+   */
+  body: string | ArrayBufferView | ArrayBuffer | BlobLike;
 }
 
 export interface CrewpaperUnpublishParams {

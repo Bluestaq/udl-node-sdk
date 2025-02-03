@@ -23,12 +23,8 @@ export class Batterydetails extends APIResource {
    * as a path parameter. A Battery record may have multiple details records from
    * several sources.
    */
-  retrieve(
-    params: BatterydetailRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<BatterydetailsFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/batterydetails/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<BatterydetailsFull> {
+    return this._client.get(`/udl/batterydetails/${id}`, options);
   }
 
   /**
@@ -37,9 +33,9 @@ export class Batterydetails extends APIResource {
    * perform this service operation. Please contact the UDL team for assistance.
    */
   update(params: BatterydetailUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/batterydetails/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -61,9 +57,8 @@ export class Batterydetails extends APIResource {
    * sources. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(params: BatterydetailDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/batterydetails/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/batterydetails/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -96,7 +91,7 @@ export interface BatterydetailsAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Identifier of the parent battery type record.
@@ -195,7 +190,7 @@ export interface BatterydetailsFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Identifier of the parent battery type record.
@@ -323,7 +318,7 @@ export namespace BatterydetailsFull {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Organization name.
@@ -360,7 +355,7 @@ export namespace BatterydetailsFull {
      * Country of the physical location of the organization. This value is typically
      * the ISO 3166 Alpha-2 two-character country code. However, it can also represent
      * various consortiums that do not appear in the ISO document. The code must
-     * correspond to an existing country in the UDL�s country API. Call
+     * correspond to an existing country in the UDL’s country API. Call
      * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
      * alternate code values that exist for the specified country code.
      */
@@ -391,7 +386,7 @@ export namespace BatterydetailsFull {
      * Country of registration or ownership of the organization. This value is
      * typically the ISO 3166 Alpha-2 two-character country code, however it can also
      * represent various consortiums that do not appear in the ISO document. The code
-     * must correspond to an existing country in the UDL�s country API. Call
+     * must correspond to an existing country in the UDL’s country API. Call
      * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
      * alternate code values that exist for the specified country code.
      */
@@ -457,7 +452,7 @@ export namespace BatterydetailsFull {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Unique identifier of the parent organization.
@@ -694,7 +689,7 @@ export interface BatterydetailCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Identifier of the parent battery type record.
@@ -715,17 +710,6 @@ export interface BatterydetailCreateParams {
    * Battery capacity in Ah.
    */
   capacity?: number;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Battery description/notes.
@@ -756,12 +740,6 @@ export interface BatterydetailCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Optional array of provider/source specific tags for this data, where each
    * element is no longer than 32 characters, used for implementing data owner
    * conditional access controls to restrict access to the data. Should be left null
@@ -776,28 +754,11 @@ export interface BatterydetailCreateParams {
   technology?: string;
 }
 
-export interface BatterydetailRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the BatteryDetails to find.
-   */
-  body_id: string;
-}
-
 export interface BatterydetailUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the BatteryDetails to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the BatteryDetails to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -822,7 +783,7 @@ export interface BatterydetailUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Identifier of the parent battery type record.
@@ -843,18 +804,6 @@ export interface BatterydetailUpdateParams {
    * Body param: Battery capacity in Ah.
    */
   capacity?: number;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: Battery description/notes.
@@ -885,12 +834,6 @@ export interface BatterydetailUpdateParams {
   origin?: string;
 
   /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Body param: Optional array of provider/source specific tags for this data, where
    * each element is no longer than 32 characters, used for implementing data owner
    * conditional access controls to restrict access to the data. Should be left null
@@ -905,26 +848,12 @@ export interface BatterydetailUpdateParams {
   technology?: string;
 }
 
-export interface BatterydetailDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the BatteryDetails to delete.
-   */
-  body_id: string;
-}
-
 export declare namespace Batterydetails {
   export {
     type BatterydetailsAbridged as BatterydetailsAbridged,
     type BatterydetailsFull as BatterydetailsFull,
     type BatterydetailListResponse as BatterydetailListResponse,
     type BatterydetailCreateParams as BatterydetailCreateParams,
-    type BatterydetailRetrieveParams as BatterydetailRetrieveParams,
     type BatterydetailUpdateParams as BatterydetailUpdateParams,
-    type BatterydetailDeleteParams as BatterydetailDeleteParams,
   };
 }

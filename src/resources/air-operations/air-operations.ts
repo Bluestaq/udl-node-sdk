@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
-import * as AirEventsAPI from './air-events';
-import { AirEventCreateParams, AirEvents } from './air-events';
 import * as AirTaskingOrdersAPI from './air-tasking-orders';
 import { AirTaskingOrderCreateParams, AirTaskingOrders } from './air-tasking-orders';
 import * as AircraftSortieAPI from './aircraft-sortie';
@@ -28,66 +26,35 @@ import * as AirspaceControlOrdersAPI from './airspace-control-orders';
 import { AirspaceControlOrderCreateParams, AirspaceControlOrders } from './airspace-control-orders';
 import * as CrewpapersAPI from './crewpapers';
 import { CrewpaperCreateParams, CrewpaperUnpublishParams, Crewpapers } from './crewpapers';
-import * as DiplomaticClearancesAPI from './diplomatic-clearances';
-import { DiplomaticClearances } from './diplomatic-clearances';
-import * as FlightplansAPI from './flightplans';
-import { Flightplans } from './flightplans';
-import * as LogisticsSupportsAPI from './logistics-supports';
-import { LogisticsSupports } from './logistics-supports';
-import * as DiplomaticClearanceAPI from './diplomatic-clearance/diplomatic-clearance';
+import * as DiplomaticClearanceAPI from './diplomatic-clearance';
 import {
   DiplomaticClearance,
+  DiplomaticClearanceCreateParams,
   DiplomaticclearanceAbridged,
   DiplomaticclearanceFull,
-} from './diplomatic-clearance/diplomatic-clearance';
+} from './diplomatic-clearance';
 
 export class AirOperations extends APIResource {
-  crewpapers: CrewpapersAPI.Crewpapers = new CrewpapersAPI.Crewpapers(this._client);
-  aircraftSorties: AircraftSortiesAPI.AircraftSorties = new AircraftSortiesAPI.AircraftSorties(this._client);
-  airEvents: AirEventsAPI.AirEvents = new AirEventsAPI.AirEvents(this._client);
-  airspaceControlOrders: AirspaceControlOrdersAPI.AirspaceControlOrders =
-    new AirspaceControlOrdersAPI.AirspaceControlOrders(this._client);
   airTaskingOrders: AirTaskingOrdersAPI.AirTaskingOrders = new AirTaskingOrdersAPI.AirTaskingOrders(
     this._client,
   );
   aircraftSortie: AircraftSortieAPI.AircraftSortie = new AircraftSortieAPI.AircraftSortie(this._client);
-  diplomaticClearances: DiplomaticClearancesAPI.DiplomaticClearances =
-    new DiplomaticClearancesAPI.DiplomaticClearances(this._client);
-  flightplans: FlightplansAPI.Flightplans = new FlightplansAPI.Flightplans(this._client);
-  logisticsSupports: LogisticsSupportsAPI.LogisticsSupports = new LogisticsSupportsAPI.LogisticsSupports(
-    this._client,
-  );
+  aircraftSorties: AircraftSortiesAPI.AircraftSorties = new AircraftSortiesAPI.AircraftSorties(this._client);
+  airspaceControlOrders: AirspaceControlOrdersAPI.AirspaceControlOrders =
+    new AirspaceControlOrdersAPI.AirspaceControlOrders(this._client);
+  crewpapers: CrewpapersAPI.Crewpapers = new CrewpapersAPI.Crewpapers(this._client);
   diplomaticClearance: DiplomaticClearanceAPI.DiplomaticClearance =
     new DiplomaticClearanceAPI.DiplomaticClearance(this._client);
 }
 
-AirOperations.Crewpapers = Crewpapers;
-AirOperations.AircraftSorties = AircraftSorties;
-AirOperations.AirEvents = AirEvents;
-AirOperations.AirspaceControlOrders = AirspaceControlOrders;
 AirOperations.AirTaskingOrders = AirTaskingOrders;
 AirOperations.AircraftSortie = AircraftSortie;
-AirOperations.DiplomaticClearances = DiplomaticClearances;
-AirOperations.Flightplans = Flightplans;
-AirOperations.LogisticsSupports = LogisticsSupports;
+AirOperations.AircraftSorties = AircraftSorties;
+AirOperations.AirspaceControlOrders = AirspaceControlOrders;
+AirOperations.Crewpapers = Crewpapers;
 AirOperations.DiplomaticClearance = DiplomaticClearance;
 
 export declare namespace AirOperations {
-  export {
-    Crewpapers as Crewpapers,
-    type CrewpaperCreateParams as CrewpaperCreateParams,
-    type CrewpaperUnpublishParams as CrewpaperUnpublishParams,
-  };
-
-  export { AircraftSorties as AircraftSorties, type AircraftSortyCreateParams as AircraftSortyCreateParams };
-
-  export { AirEvents as AirEvents, type AirEventCreateParams as AirEventCreateParams };
-
-  export {
-    AirspaceControlOrders as AirspaceControlOrders,
-    type AirspaceControlOrderCreateParams as AirspaceControlOrderCreateParams,
-  };
-
   export {
     AirTaskingOrders as AirTaskingOrders,
     type AirTaskingOrderCreateParams as AirTaskingOrderCreateParams,
@@ -110,15 +77,23 @@ export declare namespace AirOperations {
     type AircraftSortieHistoryQueryParams as AircraftSortieHistoryQueryParams,
   };
 
-  export { DiplomaticClearances as DiplomaticClearances };
+  export { AircraftSorties as AircraftSorties, type AircraftSortyCreateParams as AircraftSortyCreateParams };
 
-  export { Flightplans as Flightplans };
+  export {
+    AirspaceControlOrders as AirspaceControlOrders,
+    type AirspaceControlOrderCreateParams as AirspaceControlOrderCreateParams,
+  };
 
-  export { LogisticsSupports as LogisticsSupports };
+  export {
+    Crewpapers as Crewpapers,
+    type CrewpaperCreateParams as CrewpaperCreateParams,
+    type CrewpaperUnpublishParams as CrewpaperUnpublishParams,
+  };
 
   export {
     DiplomaticClearance as DiplomaticClearance,
     type DiplomaticclearanceAbridged as DiplomaticclearanceAbridged,
     type DiplomaticclearanceFull as DiplomaticclearanceFull,
+    type DiplomaticClearanceCreateParams as DiplomaticClearanceCreateParams,
   };
 }

@@ -3,22 +3,52 @@
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryListParams, HistoryListResponse } from './history';
-import * as EffectRequestsEffectRequestsAPI from '../mission-ops/effect-requests/effect-requests';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+} from './history';
 
 export class EffectRequests extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 
   /**
+   * Service operation to take a single EffectRequest as a POST body and ingest into
+   * the database. This operation is not intended to be used for automated feeds into
+   * UDL. Data providers should contact the UDL team for specific role assignments
+   * and for instructions on setting up a permanent feed through an alternate
+   * mechanism.
+   */
+  create(body: EffectRequestCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/udl/effectrequest', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Service operation to get a single EffectRequest by its unique ID passed as a
    * path parameter.
    */
-  retrieve(
-    params: EffectRequestRetrieveParams,
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EffectRequestRetrieveResponse> {
+    return this._client.get(`/udl/effectrequest/${id}`, options);
+  }
+
+  /**
+   * Service operation to dynamically query data by a variety of query parameters not
+   * specified in this API documentation. See the queryhelp operation
+   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+   * parameter information.
+   */
+  list(
+    query: EffectRequestListParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<EffectRequestsEffectRequestsAPI.EffectRequest> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/effectrequest/${path_id}`, options);
+  ): Core.APIPromise<EffectRequestListResponse> {
+    return this._client.get('/udl/effectrequest', { query, ...options });
   }
 
   /**
@@ -28,9 +58,9 @@ export class EffectRequests extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(params: EffectRequestCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { createdAt } = params;
+  count(query: EffectRequestCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.get('/udl/effectrequest/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
@@ -52,20 +82,16 @@ export class EffectRequests extends APIResource {
   }
 
   /**
-   * Service operation to return the count of records satisfying the specified query
-   * parameters. This operation is useful to determine how many records pass a
-   * particular query criteria without retrieving large amounts of data. See the
-   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
-   * valid/required query parameter information.
+   * Service operation to take multiple EffectRequests as a POST body and ingest into
+   * the database. This operation is intended to be used for automated feeds into
+   * UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
    */
-  historyCount(
-    params: EffectRequestHistoryCountParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    const { createdAt } = params;
-    return this._client.get('/udl/effectrequest/history/count', {
+  fileCreate(body: EffectRequestFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-effectrequest', {
+      body,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -91,47 +117,166 @@ export class EffectRequests extends APIResource {
    * hours ago.
    */
   tuple(
-    params: EffectRequestTupleParams,
+    query: EffectRequestTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<EffectRequestTupleResponse> {
-    const { columns, createdAt } = params;
-    return this._client.get('/udl/effectrequest/tuple', options);
+    return this._client.get('/udl/effectrequest/tuple', { query, ...options });
   }
 }
 
-export type EffectRequestCountResponse = string;
-
-export type EffectRequestHistoryCountResponse = string;
-
-export type EffectRequestTupleResponse = Array<EffectRequestsEffectRequestsAPI.EffectRequest>;
-
-export interface EffectRequestRetrieveParams {
+/**
+ * A request for various effects on a target.
+ */
+export interface EffectRequestRetrieveResponse {
   /**
-   * Path param:
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
-  path_id: string;
+  classificationMarking: string;
 
   /**
-   * Body param: The ID of the EffectRequest to retrieve.
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
    */
-  body_id: string;
-}
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
-export interface EffectRequestCountParams {
+  /**
+   * List of effects to be achieved on the target (e.g. COVER, DECEIVE, DEGRADE,
+   * DENY, DESTROY, DISRUPT, DIVERSION, DIVERT, FIX, INSPECT, INTERCEPT, ISOLATE,
+   * MANIPULATE, NEUTRALIZE, SHADOW, SUPPRESS, etc.). The effects included in this
+   * list are connected by implied AND.
+   */
+  effectList: Array<string>;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Specific descriptive instantiation of the effect, e.g., playbook to be used.
+   */
+  context?: string;
+
   /**
    * Time the row was created in the database, auto-populated by the system.
-   * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
-  createdAt: string;
+  createdAt?: string;
+
+  /**
+   * Application user who created the row in the database, auto-populated by the
+   * system.
+   */
+  createdBy?: string;
+
+  /**
+   * The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
+   * NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
+   * the given start and end times, equal penalty for being early or late
+   * IMMEDIATE:&nbsp;Start as soon as possible, earlier is always better
+   * NOEARLIERTHAN:&nbsp;Produce effect at this time or later. Large penalty for
+   * being earlier, no reward for being later NOLATERTHAN:&nbsp;Produce effect no
+   * later than the given startTime. Large penalty for being later, no reward for
+   * being even earlier as long as the effect starts by the given time.
+   */
+  deadlineType?: string;
+
+  /**
+   * The time the effect should end, in ISO8601 UTC format.
+   */
+  endTime?: string;
+
+  /**
+   * The extenal system identifier of this request. A human readable unique id.
+   */
+  externalRequestId?: string;
+
+  /**
+   * Array of the the metric classes to be evaluated (e.g. Cost, GoalAchievement,
+   * OpportunityCost, Risk, Timeliness, Unavailable, etc.). See the associated
+   * 'metricWeights' array for the weighting values, positionally corresponding to
+   * these types. The 'metricTypes' and 'metricWeights' arrays must match in size.
+   */
+  metricTypes?: Array<string>;
+
+  /**
+   * Array of the weights for the metric in the final evaluation score. Normalized (0
+   * to 1). See the associated 'metricTypes' array for the metric classes,
+   * positionally corresponding to these values. The 'metricTypes' and
+   * 'metricWeights' arrays must match in size.
+   */
+  metricWeights?: Array<number>;
+
+  /**
+   * The type or class of the preference model used to evaluate this offer.
+   */
+  modelClass?: string;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * The originating source network on which this record was created, auto-populated
+   * by the system.
+   */
+  origNetwork?: string;
+
+  /**
+   * The priority (LOW, MEDIUM, HIGH) of this request.
+   */
+  priority?: string;
+
+  /**
+   * The time the effect should start, in ISO8601 UTC format.
+   */
+  startTime?: string;
+
+  /**
+   * State of this effect request (e.g. CREATED, UPDATED, DELETED, etc.).
+   */
+  state?: string;
+
+  /**
+   * The record ID, depending on the type identified in targetSrcType, of the
+   * requested target. This identifier corresponds to either poi.poiid or track.trkId
+   * from their respective schemas.
+   */
+  targetSrcId?: string;
+
+  /**
+   * The source type of the targetId identifier (POI, TRACK).
+   */
+  targetSrcType?: string;
 }
 
-export type EffectRequestCreateBulkParams = Array<EffectRequestCreateBulkParams.Body>;
+export type EffectRequestListResponse = Array<EffectRequestListResponse.EffectRequestListResponseItem>;
 
-export namespace EffectRequestCreateBulkParams {
+export namespace EffectRequestListResponse {
   /**
    * A request for various effects on a target.
    */
-  export interface Body {
+  export interface EffectRequestListResponseItem {
     /**
      * Classification marking of the data in IC/CAPCO Portion-marked format.
      */
@@ -153,7 +298,7 @@ export namespace EffectRequestCreateBulkParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * List of effects to be achieved on the target (e.g. COVER, DECEIVE, DEGRADE,
@@ -275,7 +420,285 @@ export namespace EffectRequestCreateBulkParams {
   }
 }
 
-export interface EffectRequestHistoryCountParams {
+export type EffectRequestCountResponse = string;
+
+export type EffectRequestTupleResponse = Array<EffectRequestTupleResponse.EffectRequestTupleResponseItem>;
+
+export namespace EffectRequestTupleResponse {
+  /**
+   * A request for various effects on a target.
+   */
+  export interface EffectRequestTupleResponseItem {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * List of effects to be achieved on the target (e.g. COVER, DECEIVE, DEGRADE,
+     * DENY, DESTROY, DISRUPT, DIVERSION, DIVERT, FIX, INSPECT, INTERCEPT, ISOLATE,
+     * MANIPULATE, NEUTRALIZE, SHADOW, SUPPRESS, etc.). The effects included in this
+     * list are connected by implied AND.
+     */
+    effectList: Array<string>;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Specific descriptive instantiation of the effect, e.g., playbook to be used.
+     */
+    context?: string;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
+     * NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
+     * the given start and end times, equal penalty for being early or late
+     * IMMEDIATE:&nbsp;Start as soon as possible, earlier is always better
+     * NOEARLIERTHAN:&nbsp;Produce effect at this time or later. Large penalty for
+     * being earlier, no reward for being later NOLATERTHAN:&nbsp;Produce effect no
+     * later than the given startTime. Large penalty for being later, no reward for
+     * being even earlier as long as the effect starts by the given time.
+     */
+    deadlineType?: string;
+
+    /**
+     * The time the effect should end, in ISO8601 UTC format.
+     */
+    endTime?: string;
+
+    /**
+     * The extenal system identifier of this request. A human readable unique id.
+     */
+    externalRequestId?: string;
+
+    /**
+     * Array of the the metric classes to be evaluated (e.g. Cost, GoalAchievement,
+     * OpportunityCost, Risk, Timeliness, Unavailable, etc.). See the associated
+     * 'metricWeights' array for the weighting values, positionally corresponding to
+     * these types. The 'metricTypes' and 'metricWeights' arrays must match in size.
+     */
+    metricTypes?: Array<string>;
+
+    /**
+     * Array of the weights for the metric in the final evaluation score. Normalized (0
+     * to 1). See the associated 'metricTypes' array for the metric classes,
+     * positionally corresponding to these values. The 'metricTypes' and
+     * 'metricWeights' arrays must match in size.
+     */
+    metricWeights?: Array<number>;
+
+    /**
+     * The type or class of the preference model used to evaluate this offer.
+     */
+    modelClass?: string;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * The priority (LOW, MEDIUM, HIGH) of this request.
+     */
+    priority?: string;
+
+    /**
+     * The time the effect should start, in ISO8601 UTC format.
+     */
+    startTime?: string;
+
+    /**
+     * State of this effect request (e.g. CREATED, UPDATED, DELETED, etc.).
+     */
+    state?: string;
+
+    /**
+     * The record ID, depending on the type identified in targetSrcType, of the
+     * requested target. This identifier corresponds to either poi.poiid or track.trkId
+     * from their respective schemas.
+     */
+    targetSrcId?: string;
+
+    /**
+     * The source type of the targetId identifier (POI, TRACK).
+     */
+    targetSrcType?: string;
+  }
+}
+
+export interface EffectRequestCreateParams {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * List of effects to be achieved on the target (e.g. COVER, DECEIVE, DEGRADE,
+   * DENY, DESTROY, DISRUPT, DIVERSION, DIVERT, FIX, INSPECT, INTERCEPT, ISOLATE,
+   * MANIPULATE, NEUTRALIZE, SHADOW, SUPPRESS, etc.). The effects included in this
+   * list are connected by implied AND.
+   */
+  effectList: Array<string>;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Specific descriptive instantiation of the effect, e.g., playbook to be used.
+   */
+  context?: string;
+
+  /**
+   * The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
+   * NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
+   * the given start and end times, equal penalty for being early or late
+   * IMMEDIATE:&nbsp;Start as soon as possible, earlier is always better
+   * NOEARLIERTHAN:&nbsp;Produce effect at this time or later. Large penalty for
+   * being earlier, no reward for being later NOLATERTHAN:&nbsp;Produce effect no
+   * later than the given startTime. Large penalty for being later, no reward for
+   * being even earlier as long as the effect starts by the given time.
+   */
+  deadlineType?: string;
+
+  /**
+   * The time the effect should end, in ISO8601 UTC format.
+   */
+  endTime?: string;
+
+  /**
+   * The extenal system identifier of this request. A human readable unique id.
+   */
+  externalRequestId?: string;
+
+  /**
+   * Array of the the metric classes to be evaluated (e.g. Cost, GoalAchievement,
+   * OpportunityCost, Risk, Timeliness, Unavailable, etc.). See the associated
+   * 'metricWeights' array for the weighting values, positionally corresponding to
+   * these types. The 'metricTypes' and 'metricWeights' arrays must match in size.
+   */
+  metricTypes?: Array<string>;
+
+  /**
+   * Array of the weights for the metric in the final evaluation score. Normalized (0
+   * to 1). See the associated 'metricTypes' array for the metric classes,
+   * positionally corresponding to these values. The 'metricTypes' and
+   * 'metricWeights' arrays must match in size.
+   */
+  metricWeights?: Array<number>;
+
+  /**
+   * The type or class of the preference model used to evaluate this offer.
+   */
+  modelClass?: string;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * The priority (LOW, MEDIUM, HIGH) of this request.
+   */
+  priority?: string;
+
+  /**
+   * The time the effect should start, in ISO8601 UTC format.
+   */
+  startTime?: string;
+
+  /**
+   * State of this effect request (e.g. CREATED, UPDATED, DELETED, etc.).
+   */
+  state?: string;
+
+  /**
+   * The record ID, depending on the type identified in targetSrcType, of the
+   * requested target. This identifier corresponds to either poi.poiid or track.trkId
+   * from their respective schemas.
+   */
+  targetSrcId?: string;
+
+  /**
+   * The source type of the targetId identifier (POI, TRACK).
+   */
+  targetSrcType?: string;
+}
+
+export interface EffectRequestListParams {
   /**
    * Time the row was created in the database, auto-populated by the system.
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
@@ -283,11 +706,285 @@ export interface EffectRequestHistoryCountParams {
   createdAt: string;
 }
 
+export interface EffectRequestCountParams {
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  createdAt: string;
+}
+
+export type EffectRequestCreateBulkParams = Array<EffectRequestCreateBulkParams.Body>;
+
+export namespace EffectRequestCreateBulkParams {
+  /**
+   * A request for various effects on a target.
+   */
+  export interface Body {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * List of effects to be achieved on the target (e.g. COVER, DECEIVE, DEGRADE,
+     * DENY, DESTROY, DISRUPT, DIVERSION, DIVERT, FIX, INSPECT, INTERCEPT, ISOLATE,
+     * MANIPULATE, NEUTRALIZE, SHADOW, SUPPRESS, etc.). The effects included in this
+     * list are connected by implied AND.
+     */
+    effectList: Array<string>;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Specific descriptive instantiation of the effect, e.g., playbook to be used.
+     */
+    context?: string;
+
+    /**
+     * The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
+     * NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
+     * the given start and end times, equal penalty for being early or late
+     * IMMEDIATE:&nbsp;Start as soon as possible, earlier is always better
+     * NOEARLIERTHAN:&nbsp;Produce effect at this time or later. Large penalty for
+     * being earlier, no reward for being later NOLATERTHAN:&nbsp;Produce effect no
+     * later than the given startTime. Large penalty for being later, no reward for
+     * being even earlier as long as the effect starts by the given time.
+     */
+    deadlineType?: string;
+
+    /**
+     * The time the effect should end, in ISO8601 UTC format.
+     */
+    endTime?: string;
+
+    /**
+     * The extenal system identifier of this request. A human readable unique id.
+     */
+    externalRequestId?: string;
+
+    /**
+     * Array of the the metric classes to be evaluated (e.g. Cost, GoalAchievement,
+     * OpportunityCost, Risk, Timeliness, Unavailable, etc.). See the associated
+     * 'metricWeights' array for the weighting values, positionally corresponding to
+     * these types. The 'metricTypes' and 'metricWeights' arrays must match in size.
+     */
+    metricTypes?: Array<string>;
+
+    /**
+     * Array of the weights for the metric in the final evaluation score. Normalized (0
+     * to 1). See the associated 'metricTypes' array for the metric classes,
+     * positionally corresponding to these values. The 'metricTypes' and
+     * 'metricWeights' arrays must match in size.
+     */
+    metricWeights?: Array<number>;
+
+    /**
+     * The type or class of the preference model used to evaluate this offer.
+     */
+    modelClass?: string;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The priority (LOW, MEDIUM, HIGH) of this request.
+     */
+    priority?: string;
+
+    /**
+     * The time the effect should start, in ISO8601 UTC format.
+     */
+    startTime?: string;
+
+    /**
+     * State of this effect request (e.g. CREATED, UPDATED, DELETED, etc.).
+     */
+    state?: string;
+
+    /**
+     * The record ID, depending on the type identified in targetSrcType, of the
+     * requested target. This identifier corresponds to either poi.poiid or track.trkId
+     * from their respective schemas.
+     */
+    targetSrcId?: string;
+
+    /**
+     * The source type of the targetId identifier (POI, TRACK).
+     */
+    targetSrcType?: string;
+  }
+}
+
+export type EffectRequestFileCreateParams = Array<EffectRequestFileCreateParams.Body>;
+
+export namespace EffectRequestFileCreateParams {
+  /**
+   * A request for various effects on a target.
+   */
+  export interface Body {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * List of effects to be achieved on the target (e.g. COVER, DECEIVE, DEGRADE,
+     * DENY, DESTROY, DISRUPT, DIVERSION, DIVERT, FIX, INSPECT, INTERCEPT, ISOLATE,
+     * MANIPULATE, NEUTRALIZE, SHADOW, SUPPRESS, etc.). The effects included in this
+     * list are connected by implied AND.
+     */
+    effectList: Array<string>;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Specific descriptive instantiation of the effect, e.g., playbook to be used.
+     */
+    context?: string;
+
+    /**
+     * The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
+     * NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
+     * the given start and end times, equal penalty for being early or late
+     * IMMEDIATE:&nbsp;Start as soon as possible, earlier is always better
+     * NOEARLIERTHAN:&nbsp;Produce effect at this time or later. Large penalty for
+     * being earlier, no reward for being later NOLATERTHAN:&nbsp;Produce effect no
+     * later than the given startTime. Large penalty for being later, no reward for
+     * being even earlier as long as the effect starts by the given time.
+     */
+    deadlineType?: string;
+
+    /**
+     * The time the effect should end, in ISO8601 UTC format.
+     */
+    endTime?: string;
+
+    /**
+     * The extenal system identifier of this request. A human readable unique id.
+     */
+    externalRequestId?: string;
+
+    /**
+     * Array of the the metric classes to be evaluated (e.g. Cost, GoalAchievement,
+     * OpportunityCost, Risk, Timeliness, Unavailable, etc.). See the associated
+     * 'metricWeights' array for the weighting values, positionally corresponding to
+     * these types. The 'metricTypes' and 'metricWeights' arrays must match in size.
+     */
+    metricTypes?: Array<string>;
+
+    /**
+     * Array of the weights for the metric in the final evaluation score. Normalized (0
+     * to 1). See the associated 'metricTypes' array for the metric classes,
+     * positionally corresponding to these values. The 'metricTypes' and
+     * 'metricWeights' arrays must match in size.
+     */
+    metricWeights?: Array<number>;
+
+    /**
+     * The type or class of the preference model used to evaluate this offer.
+     */
+    modelClass?: string;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The priority (LOW, MEDIUM, HIGH) of this request.
+     */
+    priority?: string;
+
+    /**
+     * The time the effect should start, in ISO8601 UTC format.
+     */
+    startTime?: string;
+
+    /**
+     * State of this effect request (e.g. CREATED, UPDATED, DELETED, etc.).
+     */
+    state?: string;
+
+    /**
+     * The record ID, depending on the type identified in targetSrcType, of the
+     * requested target. This identifier corresponds to either poi.poiid or track.trkId
+     * from their respective schemas.
+     */
+    targetSrcId?: string;
+
+    /**
+     * The source type of the targetId identifier (POI, TRACK).
+     */
+    targetSrcType?: string;
+  }
+}
+
 export interface EffectRequestTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -303,20 +1000,24 @@ EffectRequests.History = History;
 
 export declare namespace EffectRequests {
   export {
+    type EffectRequestRetrieveResponse as EffectRequestRetrieveResponse,
+    type EffectRequestListResponse as EffectRequestListResponse,
     type EffectRequestCountResponse as EffectRequestCountResponse,
-    type EffectRequestHistoryCountResponse as EffectRequestHistoryCountResponse,
     type EffectRequestTupleResponse as EffectRequestTupleResponse,
-    type EffectRequestRetrieveParams as EffectRequestRetrieveParams,
+    type EffectRequestCreateParams as EffectRequestCreateParams,
+    type EffectRequestListParams as EffectRequestListParams,
     type EffectRequestCountParams as EffectRequestCountParams,
     type EffectRequestCreateBulkParams as EffectRequestCreateBulkParams,
-    type EffectRequestHistoryCountParams as EffectRequestHistoryCountParams,
+    type EffectRequestFileCreateParams as EffectRequestFileCreateParams,
     type EffectRequestTupleParams as EffectRequestTupleParams,
   };
 
   export {
     History as History,
     type HistoryListResponse as HistoryListResponse,
+    type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
+    type HistoryCountParams as HistoryCountParams,
   };
 }

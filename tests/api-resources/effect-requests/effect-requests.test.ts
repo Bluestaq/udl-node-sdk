@@ -4,14 +4,19 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource effectRequests', () => {
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.effectRequests.retrieve({ path_id: 'id', body_id: 'id' });
+  test('create: only required params', async () => {
+    const responsePromise = client.effectRequests.create({
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      effectList: ['COVER', 'DECEIVE'],
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,8 +26,60 @@ describe('resource effectRequests', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.effectRequests.retrieve({ path_id: 'id', body_id: 'id' });
+  test('create: required and optional params', async () => {
+    const response = await client.effectRequests.create({
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      effectList: ['COVER', 'DECEIVE'],
+      source: 'Bluestaq',
+      id: 'EFFECTREQUEST-ID',
+      context: 'Example Notes',
+      deadlineType: 'NoLaterThan',
+      endTime: '2018-01-01T16:00:00.123456Z',
+      externalRequestId: 'EXTERNALREQUEST-ID',
+      metricTypes: ['COST', 'RISK'],
+      metricWeights: [0.5, 0.6],
+      modelClass: 'Preference model',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      priority: 'LOW',
+      startTime: '2018-01-01T16:00:00.123456Z',
+      state: 'CREATED',
+      targetSrcId: 'TARGETSRC-ID',
+      targetSrcType: 'POI',
+    });
+  });
+
+  test('retrieve', async () => {
+    const responsePromise = client.effectRequests.retrieve('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.effectRequests.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('list: only required params', async () => {
+    const responsePromise = client.effectRequests.list({ createdAt: '2019-12-27' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await client.effectRequests.list({ createdAt: '2019-12-27' });
   });
 
   test('count: only required params', async () => {
@@ -42,12 +99,7 @@ describe('resource effectRequests', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.effectRequests.createBulk([
-      {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        effectList: ['string'],
-        source: 'source',
-      },
+      { classificationMarking: 'U', dataMode: 'REAL', effectList: ['COVER', 'DECEIVE'], source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -61,33 +113,32 @@ describe('resource effectRequests', () => {
   test('createBulk: required and optional params', async () => {
     const response = await client.effectRequests.createBulk([
       {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        effectList: ['string'],
-        source: 'source',
-        id: 'id',
-        context: 'context',
-        createdAt: '2019-12-27T18:11:19.117Z',
-        createdBy: 'createdBy',
-        deadlineType: 'deadlineType',
-        endTime: '2019-12-27T18:11:19.117Z',
-        externalRequestId: 'externalRequestId',
-        metricTypes: ['string'],
-        metricWeights: [0],
-        modelClass: 'modelClass',
-        origin: 'origin',
-        origNetwork: 'origNetwork',
-        priority: 'priority',
-        startTime: '2019-12-27T18:11:19.117Z',
-        state: 'state',
-        targetSrcId: 'targetSrcId',
-        targetSrcType: 'targetSrcType',
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        effectList: ['COVER', 'DECEIVE'],
+        source: 'Bluestaq',
+        id: 'EFFECTREQUEST-ID',
+        context: 'Example Notes',
+        deadlineType: 'NoLaterThan',
+        endTime: '2018-01-01T16:00:00.123456Z',
+        externalRequestId: 'EXTERNALREQUEST-ID',
+        metricTypes: ['COST', 'RISK'],
+        metricWeights: [0.5, 0.6],
+        modelClass: 'Preference model',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        priority: 'LOW',
+        startTime: '2018-01-01T16:00:00.123456Z',
+        state: 'CREATED',
+        targetSrcId: 'TARGETSRC-ID',
+        targetSrcType: 'POI',
       },
     ]);
   });
 
-  test('historyCount: only required params', async () => {
-    const responsePromise = client.effectRequests.historyCount({ createdAt: '2019-12-27' });
+  test('fileCreate: only required params', async () => {
+    const responsePromise = client.effectRequests.fileCreate([
+      { classificationMarking: 'U', dataMode: 'REAL', effectList: ['COVER', 'DECEIVE'], source: 'Bluestaq' },
+    ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -97,8 +148,29 @@ describe('resource effectRequests', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('historyCount: required and optional params', async () => {
-    const response = await client.effectRequests.historyCount({ createdAt: '2019-12-27' });
+  test('fileCreate: required and optional params', async () => {
+    const response = await client.effectRequests.fileCreate([
+      {
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        effectList: ['COVER', 'DECEIVE'],
+        source: 'Bluestaq',
+        id: 'EFFECTREQUEST-ID',
+        context: 'Example Notes',
+        deadlineType: 'NoLaterThan',
+        endTime: '2018-01-01T16:00:00.123456Z',
+        externalRequestId: 'EXTERNALREQUEST-ID',
+        metricTypes: ['COST', 'RISK'],
+        metricWeights: [0.5, 0.6],
+        modelClass: 'Preference model',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        priority: 'LOW',
+        startTime: '2018-01-01T16:00:00.123456Z',
+        state: 'CREATED',
+        targetSrcId: 'TARGETSRC-ID',
+        targetSrcType: 'POI',
+      },
+    ]);
   });
 
   test('queryHelp', async () => {

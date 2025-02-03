@@ -23,9 +23,8 @@ export class Datalink extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(params: DatalinkListParams, options?: Core.RequestOptions): Core.APIPromise<DatalinkListResponse> {
-    const { startTime } = params;
-    return this._client.get('/udl/datalink', options);
+  list(query: DatalinkListParams, options?: Core.RequestOptions): Core.APIPromise<DatalinkListResponse> {
+    return this._client.get('/udl/datalink', { query, ...options });
   }
 
   /**
@@ -35,11 +34,25 @@ export class Datalink extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(params: DatalinkCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { startTime } = params;
+  count(query: DatalinkCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.get('/udl/datalink/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to take multiple datalink records as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  fileCreate(body: DatalinkFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-datalink', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -64,9 +77,8 @@ export class Datalink extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(params: DatalinkTupleParams, options?: Core.RequestOptions): Core.APIPromise<DatalinkTupleResponse> {
-    const { columns, startTime } = params;
-    return this._client.get('/udl/datalink/tuple', options);
+  tuple(query: DatalinkTupleParams, options?: Core.RequestOptions): Core.APIPromise<DatalinkTupleResponse> {
+    return this._client.get('/udl/datalink/tuple', { query, ...options });
   }
 }
 
@@ -74,7 +86,7 @@ export class Datalink extends APIResource {
  * Beta Version DataLink: Detailed instructions regarding the operations of data
  * links.
  */
-export interface DatalinkAbridged {
+export interface DatalinkIngest {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -96,7 +108,7 @@ export interface DatalinkAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Specifies the unique operation or exercise name, nickname, or codeword assigned
@@ -312,7 +324,7 @@ export interface DatalinkAbridged {
    * coordinator duty assignments. There can be 0 to many DataLinkMultiDuty
    * collections within the datalink service.
    */
-  multiDuty?: Array<DatalinkAbridged.MultiDuty>;
+  multiDuty?: Array<DatalinkIngest.MultiDuty>;
 
   /**
    * Array of non-link specific data unit designators.
@@ -336,7 +348,7 @@ export interface DatalinkAbridged {
    * tactical data links. There can be 0 to many DataLinkOps collections within the
    * datalink service.
    */
-  ops?: Array<DatalinkAbridged.Op>;
+  ops?: Array<DatalinkIngest.Op>;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -420,19 +432,19 @@ export interface DatalinkAbridged {
    * Collection of reference information. There can be 0 to many DataLinkReferences
    * collections within the datalink service.
    */
-  references?: Array<DatalinkAbridged.Reference>;
+  references?: Array<DatalinkIngest.Reference>;
 
   /**
    * Collection that identifies points of reference used in the establishment of the
    * data links. There can be 1 to many DataLinkRefPoints collections within the
    * datalink service.
    */
-  refPoints?: Array<DatalinkAbridged.RefPoint>;
+  refPoints?: Array<DatalinkIngest.RefPoint>;
 
   /**
    * Collection of remarks associated with this data link message.
    */
-  remarks?: Array<DatalinkAbridged.Remark>;
+  remarks?: Array<DatalinkIngest.Remark>;
 
   /**
    * Track quality to enter if too many duals involving low track quality tracks are
@@ -457,7 +469,7 @@ export interface DatalinkAbridged {
    * Collection of special track numbers used on the data links. There can be 0 to
    * many DataLinkSpecTracks collections within the datalink service.
    */
-  specTracks?: Array<DatalinkAbridged.SpecTrack>;
+  specTracks?: Array<DatalinkIngest.SpecTrack>;
 
   /**
    * Maximum percentage the faster track speed may differ from the slower track
@@ -513,7 +525,7 @@ export interface DatalinkAbridged {
    * interface control and coordination nets for this data link message. There can be
    * 1 to many DataLinkVoiceCoord collections within the datalink service.
    */
-  voiceCoord?: Array<DatalinkAbridged.VoiceCoord>;
+  voiceCoord?: Array<DatalinkIngest.VoiceCoord>;
 
   /**
    * Number added to the basic window calculated from track qualities to ensure that
@@ -530,7 +542,7 @@ export interface DatalinkAbridged {
   winSizeMult?: number;
 }
 
-export namespace DatalinkAbridged {
+export namespace DatalinkIngest {
   /**
    * Collection of contact and identification information for designated multilink
    * coordinator duty assignments. There can be 0 to many DataLinkMultiDuty
@@ -794,735 +806,1463 @@ export namespace DatalinkAbridged {
   }
 }
 
-/**
- * Beta Version DataLink: Detailed instructions regarding the operations of data
- * links.
- */
-export interface DatalinkFull {
-  /**
-   * Classification marking of the data in IC/CAPCO Portion-marked format.
-   */
-  classificationMarking: string;
-
-  /**
-   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-   *
-   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-   * may include both real and simulated data.
-   *
-   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-   * events, and analysis.
-   *
-   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-   * datasets.
-   *
-   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-   * requirements, and for validating technical, functional, and performance
-   * characteristics.
-   */
-  dataMode: string;
-
-  /**
-   * Specifies the unique operation or exercise name, nickname, or codeword assigned
-   * to a joint exercise or operation plan.
-   */
-  opExName: string;
-
-  /**
-   * The identifier of the originator of this message.
-   */
-  originator: string;
-
-  /**
-   * Source of the data.
-   */
-  source: string;
-
-  /**
-   * The start of the effective time period of this data link message, in ISO 8601
-   * UTC format with millisecond precision.
-   */
-  startTime: string;
-
-  /**
-   * Unique identifier of the record, auto-generated by the system if not provided on
-   * create operations.
-   */
-  id?: string;
-
-  /**
-   * Array of instructions for acknowledging and the force or units required to
-   * acknowledge the data link message being sent.
-   */
-  ackInstUnits?: Array<string>;
-
-  /**
-   * Flag Indicating if formal acknowledgement is required for the particular data
-   * link message being sent.
-   */
-  ackReq?: boolean;
-
-  /**
-   * Maximum altitude difference between two air tracks, in thousands of feet.
-   * Required if sysDefaultCode field is "MAN". Allowable entires are 5 to 50 in
-   * increments of 5000 feet.
-   */
-  altDiff?: number;
-
-  /**
-   * The identifier for this data link message cancellation.
-   */
-  canxId?: string;
-
-  /**
-   * The originator of this data link message cancellation.
-   */
-  canxOriginator?: string;
-
-  /**
-   * Serial number assigned to this data link message cancellation.
-   */
-  canxSerialNum?: string;
-
-  /**
-   * Array of NATO Subject Indicator Codes (SIC) or filing numbers of this data link
-   * message or document being cancelled.
-   */
-  canxSICs?: Array<string>;
-
-  /**
-   * Indicates any special actions, restrictions, guidance, or information relating
-   * to this data link message cancellation.
-   */
-  canxSpecialNotation?: string;
-
-  /**
-   * Timestamp of the data link message cancellation, in ISO 8601 UTC format with
-   * millisecond precision.
-   */
-  canxTs?: string;
-
-  /**
-   * Array of codes that indicate the reasons material is classified.
-   */
-  classReasons?: Array<string>;
-
-  /**
-   * Markings that define the source material or the original classification
-   * authority for this data link message.
-   */
-  classSource?: string;
-
-  /**
-   * Number of consecutive remote track reports that must meet the decorrelation
-   * criteria before the decorrelation is executed. Required if sysDefaultCode field
-   * is "MAN". Allowable entries are integers from 1 to 5.
-   */
-  consecDecorr?: number;
-
-  /**
-   * Maximum difference between the reported course of the remote track and the
-   * calculated course of the local track. Required if sysDefaultCode field is "MAN".
-   * Allowable entries are 15 to 90 in increments of 15 degrees.
-   */
-  courseDiff?: number;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
-
-  /**
-   * Array of codes that provide justification for exemption from automatic
-   * downgrading or declassification.
-   */
-  decExemptCodes?: Array<string>;
-
-  /**
-   * Array of markings that provide the literal guidance or dates for the downgrading
-   * or declassification of this data link message.
-   */
-  decInstDates?: Array<string>;
-
-  /**
-   * Distance between the common and remote track is to exceed the applicable
-   * correlation window for the two tracks in order to be decorrelated. Required if
-   * sysDefaultCode field is "MAN". Allowable entries are 1.0 to 2.0 in increments of
-   * 0.1.
-   */
-  decorrWinMult?: number;
-
-  /**
-   * The code for the point of reference from which the coordinates and networks are
-   * computed.
-   */
-  geoDatum?: string;
-
-  /**
-   * Call sign which identifies one or more communications facilities, commands,
-   * authorities, or activities for Joint Range Extension (JRE) units.
-   */
-  jreCallSign?: string;
-
-  /**
-   * Joint Range Extension (JRE) unit details.
-   */
-  jreDetails?: string;
-
-  /**
-   * Link-16 octal track number assigned as the primary JTIDS unit address.
-   */
-  jrePriAdd?: number;
-
-  /**
-   * Link-16 octal track number assigned as the secondary JTIDS unit address.
-   */
-  jreSecAdd?: number;
-
-  /**
-   * Designator of the unit for Joint Range Extension (JRE).
-   */
-  jreUnitDes?: string;
-
-  /**
-   * Number used for maximum geodetic position quality. Required if sysDefaultCode
-   * field is "MAN". Allowable entires are integers from 1 to 15.
-   */
-  maxGeoPosQual?: number;
-
-  /**
-   * Track quality to prevent correlation windows from being unrealistically small.
-   * Required if sysDefaultCode field is "MAN". Allowable entries are integers from 8
-   * to 15.
-   */
-  maxTrackQual?: number;
-
-  /**
-   * Data link management code word.
-   */
-  mgmtCode?: string;
-
-  /**
-   * Data link management code word meaning.
-   */
-  mgmtCodeMeaning?: string;
-
-  /**
-   * Number used for minimum geodetic position quality. Required if sysDefaultCode
-   * field is "MAN". Allowable entries are integers from 1 to 5.
-   */
-  minGeoPosQual?: number;
-
-  /**
-   * Track quality to prevent correlation windows from being unrealistically large.
-   * Required if sysDefaultCode field is "MAN". Allowable entries are integers from 3
-   * to 7.
-   */
-  minTrackQual?: number;
-
-  /**
-   * The month in which this message originated.
-   */
-  month?: string;
-
-  /**
-   * Collection of contact and identification information for designated multilink
-   * coordinator duty assignments. There can be 0 to many DataLinkMultiDuty
-   * collections within the datalink service.
-   */
-  multiDuty?: Array<DatalinkFull.MultiDuty>;
-
-  /**
-   * Array of non-link specific data unit designators.
-   */
-  nonLinkUnitDes?: Array<string>;
-
-  /**
-   * Provides an additional caveat further identifying the exercise or modifies the
-   * exercise nickname.
-   */
-  opExInfo?: string;
-
-  /**
-   * The secondary nickname of the option or the alternative of the operational plan
-   * or order.
-   */
-  opExInfoAlt?: string;
-
-  /**
-   * Collection of information describing the establishment and detailed operation of
-   * tactical data links. There can be 0 to many DataLinkOps collections within the
-   * datalink service.
-   */
-  ops?: Array<DatalinkFull.Op>;
-
-  /**
-   * Originating system or organization which produced the data, if different from
-   * the source. The origin may be different than the source if the source was a
-   * mediating system which forwarded the data on behalf of the origin system. If
-   * null, the source may be assumed to be the origin.
-   */
-  origin?: string;
-
-  /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
-   * The official identifier of the military establishment responsible for the
-   * operation plan and the identification number assigned to this plan.
-   */
-  planOrigNum?: string;
-
-  /**
-   * The unit identifier or call sign of the point of contact for this data link
-   * message.
-   */
-  pocCallSign?: string;
-
-  /**
-   * WGS84 latitude of the point of contact for this data link message, in degrees.
-   * -90 to 90 degrees (negative values south of equator).
-   */
-  pocLat?: number;
-
-  /**
-   * The location name of the point of contact for this data link message.
-   */
-  pocLocName?: string;
-
-  /**
-   * WGS84 longitude of the point of contact for this data link message, in degrees.
-   * -180 to 180 degrees (negative values west of Prime Meridian).
-   */
-  pocLon?: number;
-
-  /**
-   * The name of the point of contact for this data link message.
-   */
-  pocName?: string;
-
-  /**
-   * Array of telephone numbers, radio frequency values, or email addresses of the
-   * point of contact for this data link message.
-   */
-  pocNums?: Array<string>;
-
-  /**
-   * The rank or position of the point of contact for this data link message in a
-   * military or civilian organization.
-   */
-  pocRank?: string;
-
-  /**
-   * The qualifier which caveats the message status such as AMP (Amplification), CHG
-   * (Change), etc.
-   */
-  qualifier?: string;
-
-  /**
-   * The serial number associated with the message qualifier.
-   */
-  qualSN?: number;
-
-  /**
-   * Optional URI location in the document repository of the raw file parsed by the
-   * system to produce this record. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this value.
-   */
-  rawFileURI?: string;
-
-  /**
-   * Collection of reference information. There can be 0 to many DataLinkReferences
-   * collections within the datalink service.
-   */
-  references?: Array<DatalinkFull.Reference>;
-
-  /**
-   * Collection that identifies points of reference used in the establishment of the
-   * data links. There can be 1 to many DataLinkRefPoints collections within the
-   * datalink service.
-   */
-  refPoints?: Array<DatalinkFull.RefPoint>;
-
-  /**
-   * Collection of remarks associated with this data link message.
-   */
-  remarks?: Array<DatalinkFull.Remark>;
-
-  /**
-   * Track quality to enter if too many duals involving low track quality tracks are
-   * occurring. Required if sysDefaultCode field is "MAN". Allowable entries are
-   * integers from 2 to 6.
-   */
-  resTrackQual?: number;
-
-  /**
-   * The unique message identifier assigned by the originator.
-   */
-  serialNum?: string;
-
-  /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
-
-  /**
-   * Collection of special track numbers used on the data links. There can be 0 to
-   * many DataLinkSpecTracks collections within the datalink service.
-   */
-  specTracks?: Array<DatalinkFull.SpecTrack>;
-
-  /**
-   * Maximum percentage the faster track speed may differ from the slower track
-   * speed. Required if sysDefaultCode field is "MAN". Allowable entries are 10 to
-   * 100 in increments of 10.
-   */
-  speedDiff?: number;
-
-  /**
-   * The end of the effective time period of this data link message, in ISO 8601 UTC
-   * format with millisecond precision. This may be a relative stop time if used with
-   * stopTimeMod.
-   */
-  stopTime?: string;
-
-  /**
-   * A qualifier for the end of the effective time period of this data link message,
-   * such as AFTER, ASOF, NLT, etc. Used with field stopTime to indicate a relative
-   * time.
-   */
-  stopTimeMod?: string;
-
-  /**
-   * Indicates the data terminal settings the system defaults to, either automatic
-   * correlation/decorrelation (AUTO) or manual (MAN).
-   */
-  sysDefaultCode?: string;
-
-  /**
-   * Array of Link-16 octal track numbers used as the lower limit of a track block.
-   */
-  trackNumBlockLLs?: Array<number>;
-
-  /**
-   * Array of defined ranges of Link-11/11B track numbers assigned to a participating
-   * unit or reporting unit.
-   */
-  trackNumBlocks?: Array<string>;
-
-  /**
-   * Time the row was updated in the database, auto-populated by the system.
-   */
-  updatedAt?: string;
-
-  /**
-   * Application user who updated the row in the database, auto-populated by the
-   * system.
-   */
-  updatedBy?: string;
-
-  /**
-   * Collection of information regarding the function, frequency, and priority of
-   * interface control and coordination nets for this data link message. There can be
-   * 1 to many DataLinkVoiceCoord collections within the datalink service.
-   */
-  voiceCoord?: Array<DatalinkFull.VoiceCoord>;
-
-  /**
-   * Number added to the basic window calculated from track qualities to ensure that
-   * windows still allow valid correlations. Required if sysDefaultCode field is
-   * "MAN". Allowable entries are 0.0 to 2.0 in increments of 0.25.
-   */
-  winSizeMin?: number;
-
-  /**
-   * The correlation window size multiplier to stretch or reduce the window size.
-   * Required if sysDefaultCode field is "MAN". Allowable entries are 0.5 to 3.0 in
-   * increments of 0.1.
-   */
-  winSizeMult?: number;
-}
+export type DatalinkListResponse = Array<DatalinkListResponse.DatalinkListResponseItem>;
 
-export namespace DatalinkFull {
+export namespace DatalinkListResponse {
   /**
-   * Collection of contact and identification information for designated multilink
-   * coordinator duty assignments. There can be 0 to many DataLinkMultiDuty
-   * collections within the datalink service.
+   * Beta Version DataLink: Detailed instructions regarding the operations of data
+   * links.
    */
-  export interface MultiDuty {
+  export interface DatalinkListResponseItem {
     /**
-     * Specific duties assigned for multilink coordination (e.g. ICO, RICO, SICO).
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
      */
-    duty?: string;
+    classificationMarking: string;
 
     /**
-     * Array of telephone numbers or the frequency values for radio transmission of the
-     * person to be contacted for multilink coordination.
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
      */
-    dutyTeleFreqNums?: Array<string>;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
-     * Collection of information regarding the function, frequency, and priority of
-     * interface control and coordination nets for multilink coordination. There can be
-     * 0 to many DataLinkMultiVoiceCoord collections within a DataLinkMultiDuty
-     * collection.
+     * Specifies the unique operation or exercise name, nickname, or codeword assigned
+     * to a joint exercise or operation plan.
      */
-    multiDutyVoiceCoord?: Array<MultiDuty.MultiDutyVoiceCoord>;
+    opExName: string;
 
     /**
-     * The name of the person to be contacted for multilink coordination.
+     * The identifier of the originator of this message.
      */
-    name?: string;
+    originator: string;
 
     /**
-     * The rank or position of the person to be contacted for multilink coordination.
+     * Source of the data.
      */
-    rank?: string;
+    source: string;
 
     /**
-     * Designated force of unit specified by ship name, unit call sign, or unit
-     * designator.
+     * The start of the effective time period of this data link message, in ISO 8601
+     * UTC format with millisecond precision.
      */
-    unitDes?: string;
-  }
-
-  export namespace MultiDuty {
-    /**
-     * Collection of information regarding the function, frequency, and priority of
-     * interface control and coordination nets for multilink coordination. There can be
-     * 0 to many DataLinkMultiVoiceCoord collections within a DataLinkMultiDuty
-     * collection.
-     */
-    export interface MultiDutyVoiceCoord {
-      /**
-       * Priority of a communication circuit, channel or frequency for multilink
-       * coordination (e.g. P - Primary, M - Monitor).
-       */
-      multiCommPri?: string;
-
-      /**
-       * Designator used in nonsecure communications to refer to a radio frequency for
-       * multilink coordination.
-       */
-      multiFreqDes?: string;
-
-      /**
-       * Array of telephone numbers or contact frequencies used for interface control for
-       * multilink coordination.
-       */
-      multiTeleFreqNums?: Array<string>;
-
-      /**
-       * Designator assigned to a voice interface control and coordination net for
-       * multilink coordination (e.g. ADCCN, DCN, VPN, etc.).
-       */
-      multiVoiceNetDes?: string;
-    }
-  }
-
-  /**
-   * Collection of information describing the establishment and detailed operation of
-   * tactical data links. There can be 0 to many DataLinkOps collections within the
-   * datalink service.
-   */
-  export interface Op {
-    /**
-     * Detailed characteristics of the data link.
-     */
-    linkDetails?: string;
+    startTime: string;
 
     /**
-     * Name of the data link.
+     * Unique identifier of the record, auto-generated by the system if not provided on
+     * create operations.
      */
-    linkName?: string;
+    id?: string;
 
     /**
-     * The start of the effective time period of the data link, in ISO 8601 UTC format
-     * with millisecond precision.
+     * Array of instructions for acknowledging and the force or units required to
+     * acknowledge the data link message being sent.
      */
-    linkStartTime?: string;
+    ackInstUnits?: Array<string>;
 
     /**
-     * The end of the effective time period of the data link, in ISO 8601 UTC format
-     * with millisecond precision.
+     * Flag Indicating if formal acknowledgement is required for the particular data
+     * link message being sent.
      */
-    linkStopTime?: string;
+    ackReq?: boolean;
 
     /**
-     * A qualifier for the end of the effective time period of this data link, such as
-     * AFTER, ASOF, NLT, etc. Used with field linkStopTimeMod to indicate a relative
-     * time.
+     * Maximum altitude difference between two air tracks, in thousands of feet.
+     * Required if sysDefaultCode field is "MAN". Allowable entires are 5 to 50 in
+     * increments of 5000 feet.
      */
-    linkStopTimeMod?: string;
-  }
-
-  /**
-   * Collection of reference information. There can be 0 to many DataLinkReferences
-   * collections within the datalink service.
-   */
-  export interface Reference {
-    /**
-     * The originator of this reference.
-     */
-    refOriginator?: string;
+    altDiff?: number;
 
     /**
-     * Specifies an alphabetic serial identifier a reference pertaining to the data
-     * link message.
+     * The identifier for this data link message cancellation.
      */
-    refSerialId?: string;
+    canxId?: string;
 
     /**
-     * Serial number assigned to this reference.
+     * The originator of this data link message cancellation.
      */
-    refSerialNum?: string;
+    canxOriginator?: string;
 
     /**
-     * Array of NATO Subject Indicator Codes (SIC) or filing numbers of the document
-     * being referenced.
+     * Serial number assigned to this data link message cancellation.
      */
-    refSICs?: Array<string>;
+    canxSerialNum?: string;
+
+    /**
+     * Array of NATO Subject Indicator Codes (SIC) or filing numbers of this data link
+     * message or document being cancelled.
+     */
+    canxSICs?: Array<string>;
 
     /**
      * Indicates any special actions, restrictions, guidance, or information relating
-     * to this reference.
+     * to this data link message cancellation.
      */
-    refSpecialNotation?: string;
+    canxSpecialNotation?: string;
 
     /**
-     * Timestamp of the referenced message, in ISO 8601 UTC format with millisecond
-     * precision.
+     * Timestamp of the data link message cancellation, in ISO 8601 UTC format with
+     * millisecond precision.
      */
-    refTs?: string;
+    canxTs?: string;
 
     /**
-     * Specifies the type of document referenced.
+     * Array of codes that indicate the reasons material is classified.
      */
-    refType?: string;
-  }
-
-  /**
-   * Collection that identifies points of reference used in the establishment of the
-   * data links. There can be 1 to many DataLinkRefPoints collections within the
-   * datalink service.
-   */
-  export interface RefPoint {
-    /**
-     * Indicates when a particular event or nickname becomes effective or the old event
-     * or nickname is deleted, in ISO 8601 UTC format with millisecond precision.
-     */
-    effEventTime?: string;
+    classReasons?: Array<string>;
 
     /**
-     * Identifier to designate a reference point.
+     * Markings that define the source material or the original classification
+     * authority for this data link message.
      */
-    refDes?: string;
+    classSource?: string;
 
     /**
-     * WGS84 latitude of the reference point for this data link message, in degrees.
+     * Number of consecutive remote track reports that must meet the decorrelation
+     * criteria before the decorrelation is executed. Required if sysDefaultCode field
+     * is "MAN". Allowable entries are integers from 1 to 5.
+     */
+    consecDecorr?: number;
+
+    /**
+     * Maximum difference between the reported course of the remote track and the
+     * calculated course of the local track. Required if sysDefaultCode field is "MAN".
+     * Allowable entries are 15 to 90 in increments of 15 degrees.
+     */
+    courseDiff?: number;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * Array of codes that provide justification for exemption from automatic
+     * downgrading or declassification.
+     */
+    decExemptCodes?: Array<string>;
+
+    /**
+     * Array of markings that provide the literal guidance or dates for the downgrading
+     * or declassification of this data link message.
+     */
+    decInstDates?: Array<string>;
+
+    /**
+     * Distance between the common and remote track is to exceed the applicable
+     * correlation window for the two tracks in order to be decorrelated. Required if
+     * sysDefaultCode field is "MAN". Allowable entries are 1.0 to 2.0 in increments of
+     * 0.1.
+     */
+    decorrWinMult?: number;
+
+    /**
+     * The code for the point of reference from which the coordinates and networks are
+     * computed.
+     */
+    geoDatum?: string;
+
+    /**
+     * Call sign which identifies one or more communications facilities, commands,
+     * authorities, or activities for Joint Range Extension (JRE) units.
+     */
+    jreCallSign?: string;
+
+    /**
+     * Joint Range Extension (JRE) unit details.
+     */
+    jreDetails?: string;
+
+    /**
+     * Link-16 octal track number assigned as the primary JTIDS unit address.
+     */
+    jrePriAdd?: number;
+
+    /**
+     * Link-16 octal track number assigned as the secondary JTIDS unit address.
+     */
+    jreSecAdd?: number;
+
+    /**
+     * Designator of the unit for Joint Range Extension (JRE).
+     */
+    jreUnitDes?: string;
+
+    /**
+     * Number used for maximum geodetic position quality. Required if sysDefaultCode
+     * field is "MAN". Allowable entires are integers from 1 to 15.
+     */
+    maxGeoPosQual?: number;
+
+    /**
+     * Track quality to prevent correlation windows from being unrealistically small.
+     * Required if sysDefaultCode field is "MAN". Allowable entries are integers from 8
+     * to 15.
+     */
+    maxTrackQual?: number;
+
+    /**
+     * Data link management code word.
+     */
+    mgmtCode?: string;
+
+    /**
+     * Data link management code word meaning.
+     */
+    mgmtCodeMeaning?: string;
+
+    /**
+     * Number used for minimum geodetic position quality. Required if sysDefaultCode
+     * field is "MAN". Allowable entries are integers from 1 to 5.
+     */
+    minGeoPosQual?: number;
+
+    /**
+     * Track quality to prevent correlation windows from being unrealistically large.
+     * Required if sysDefaultCode field is "MAN". Allowable entries are integers from 3
+     * to 7.
+     */
+    minTrackQual?: number;
+
+    /**
+     * The month in which this message originated.
+     */
+    month?: string;
+
+    /**
+     * Collection of contact and identification information for designated multilink
+     * coordinator duty assignments. There can be 0 to many DataLinkMultiDuty
+     * collections within the datalink service.
+     */
+    multiDuty?: Array<DatalinkListResponseItem.MultiDuty>;
+
+    /**
+     * Array of non-link specific data unit designators.
+     */
+    nonLinkUnitDes?: Array<string>;
+
+    /**
+     * Provides an additional caveat further identifying the exercise or modifies the
+     * exercise nickname.
+     */
+    opExInfo?: string;
+
+    /**
+     * The secondary nickname of the option or the alternative of the operational plan
+     * or order.
+     */
+    opExInfoAlt?: string;
+
+    /**
+     * Collection of information describing the establishment and detailed operation of
+     * tactical data links. There can be 0 to many DataLinkOps collections within the
+     * datalink service.
+     */
+    ops?: Array<DatalinkListResponseItem.Op>;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * The official identifier of the military establishment responsible for the
+     * operation plan and the identification number assigned to this plan.
+     */
+    planOrigNum?: string;
+
+    /**
+     * The unit identifier or call sign of the point of contact for this data link
+     * message.
+     */
+    pocCallSign?: string;
+
+    /**
+     * WGS84 latitude of the point of contact for this data link message, in degrees.
      * -90 to 90 degrees (negative values south of equator).
      */
-    refLat?: number;
+    pocLat?: number;
 
     /**
-     * The location name of the point of reference for this data link message.
+     * The location name of the point of contact for this data link message.
      */
-    refLocName?: string;
+    pocLocName?: string;
 
     /**
-     * WGS84 longitude of the reference point for this data link message, in degrees.
-     * -90 to 90 degrees (negative values south of equator).
+     * WGS84 longitude of the point of contact for this data link message, in degrees.
+     * -180 to 180 degrees (negative values west of Prime Meridian).
      */
-    refLon?: number;
+    pocLon?: number;
 
     /**
-     * Type of data link reference point or grid origin.
+     * The name of the point of contact for this data link message.
      */
-    refPointType?: string;
+    pocName?: string;
+
+    /**
+     * Array of telephone numbers, radio frequency values, or email addresses of the
+     * point of contact for this data link message.
+     */
+    pocNums?: Array<string>;
+
+    /**
+     * The rank or position of the point of contact for this data link message in a
+     * military or civilian organization.
+     */
+    pocRank?: string;
+
+    /**
+     * The qualifier which caveats the message status such as AMP (Amplification), CHG
+     * (Change), etc.
+     */
+    qualifier?: string;
+
+    /**
+     * The serial number associated with the message qualifier.
+     */
+    qualSN?: number;
+
+    /**
+     * Optional URI location in the document repository of the raw file parsed by the
+     * system to produce this record. To download the raw file, prepend
+     * https://udl-hostname/scs/download?id= to this value.
+     */
+    rawFileURI?: string;
+
+    /**
+     * Collection of reference information. There can be 0 to many DataLinkReferences
+     * collections within the datalink service.
+     */
+    references?: Array<DatalinkListResponseItem.Reference>;
+
+    /**
+     * Collection that identifies points of reference used in the establishment of the
+     * data links. There can be 1 to many DataLinkRefPoints collections within the
+     * datalink service.
+     */
+    refPoints?: Array<DatalinkListResponseItem.RefPoint>;
+
+    /**
+     * Collection of remarks associated with this data link message.
+     */
+    remarks?: Array<DatalinkListResponseItem.Remark>;
+
+    /**
+     * Track quality to enter if too many duals involving low track quality tracks are
+     * occurring. Required if sysDefaultCode field is "MAN". Allowable entries are
+     * integers from 2 to 6.
+     */
+    resTrackQual?: number;
+
+    /**
+     * The unique message identifier assigned by the originator.
+     */
+    serialNum?: string;
+
+    /**
+     * The source data library from which this record was received. This could be a
+     * remote or tactical UDL or another data library. If null, the record should be
+     * assumed to have originated from the primary Enterprise UDL.
+     */
+    sourceDL?: string;
+
+    /**
+     * Collection of special track numbers used on the data links. There can be 0 to
+     * many DataLinkSpecTracks collections within the datalink service.
+     */
+    specTracks?: Array<DatalinkListResponseItem.SpecTrack>;
+
+    /**
+     * Maximum percentage the faster track speed may differ from the slower track
+     * speed. Required if sysDefaultCode field is "MAN". Allowable entries are 10 to
+     * 100 in increments of 10.
+     */
+    speedDiff?: number;
+
+    /**
+     * The end of the effective time period of this data link message, in ISO 8601 UTC
+     * format with millisecond precision. This may be a relative stop time if used with
+     * stopTimeMod.
+     */
+    stopTime?: string;
+
+    /**
+     * A qualifier for the end of the effective time period of this data link message,
+     * such as AFTER, ASOF, NLT, etc. Used with field stopTime to indicate a relative
+     * time.
+     */
+    stopTimeMod?: string;
+
+    /**
+     * Indicates the data terminal settings the system defaults to, either automatic
+     * correlation/decorrelation (AUTO) or manual (MAN).
+     */
+    sysDefaultCode?: string;
+
+    /**
+     * Array of Link-16 octal track numbers used as the lower limit of a track block.
+     */
+    trackNumBlockLLs?: Array<number>;
+
+    /**
+     * Array of defined ranges of Link-11/11B track numbers assigned to a participating
+     * unit or reporting unit.
+     */
+    trackNumBlocks?: Array<string>;
+
+    /**
+     * Time the row was updated in the database, auto-populated by the system.
+     */
+    updatedAt?: string;
+
+    /**
+     * Application user who updated the row in the database, auto-populated by the
+     * system.
+     */
+    updatedBy?: string;
+
+    /**
+     * Collection of information regarding the function, frequency, and priority of
+     * interface control and coordination nets for this data link message. There can be
+     * 1 to many DataLinkVoiceCoord collections within the datalink service.
+     */
+    voiceCoord?: Array<DatalinkListResponseItem.VoiceCoord>;
+
+    /**
+     * Number added to the basic window calculated from track qualities to ensure that
+     * windows still allow valid correlations. Required if sysDefaultCode field is
+     * "MAN". Allowable entries are 0.0 to 2.0 in increments of 0.25.
+     */
+    winSizeMin?: number;
+
+    /**
+     * The correlation window size multiplier to stretch or reduce the window size.
+     * Required if sysDefaultCode field is "MAN". Allowable entries are 0.5 to 3.0 in
+     * increments of 0.1.
+     */
+    winSizeMult?: number;
   }
 
-  /**
-   * Collection of remarks associated with this data link message.
-   */
-  export interface Remark {
+  export namespace DatalinkListResponseItem {
     /**
-     * Text of the remark.
+     * Collection of contact and identification information for designated multilink
+     * coordinator duty assignments. There can be 0 to many DataLinkMultiDuty
+     * collections within the datalink service.
      */
-    text?: string;
+    export interface MultiDuty {
+      /**
+       * Specific duties assigned for multilink coordination (e.g. ICO, RICO, SICO).
+       */
+      duty?: string;
+
+      /**
+       * Array of telephone numbers or the frequency values for radio transmission of the
+       * person to be contacted for multilink coordination.
+       */
+      dutyTeleFreqNums?: Array<string>;
+
+      /**
+       * Collection of information regarding the function, frequency, and priority of
+       * interface control and coordination nets for multilink coordination. There can be
+       * 0 to many DataLinkMultiVoiceCoord collections within a DataLinkMultiDuty
+       * collection.
+       */
+      multiDutyVoiceCoord?: Array<MultiDuty.MultiDutyVoiceCoord>;
+
+      /**
+       * The name of the person to be contacted for multilink coordination.
+       */
+      name?: string;
+
+      /**
+       * The rank or position of the person to be contacted for multilink coordination.
+       */
+      rank?: string;
+
+      /**
+       * Designated force of unit specified by ship name, unit call sign, or unit
+       * designator.
+       */
+      unitDes?: string;
+    }
+
+    export namespace MultiDuty {
+      /**
+       * Collection of information regarding the function, frequency, and priority of
+       * interface control and coordination nets for multilink coordination. There can be
+       * 0 to many DataLinkMultiVoiceCoord collections within a DataLinkMultiDuty
+       * collection.
+       */
+      export interface MultiDutyVoiceCoord {
+        /**
+         * Priority of a communication circuit, channel or frequency for multilink
+         * coordination (e.g. P - Primary, M - Monitor).
+         */
+        multiCommPri?: string;
+
+        /**
+         * Designator used in nonsecure communications to refer to a radio frequency for
+         * multilink coordination.
+         */
+        multiFreqDes?: string;
+
+        /**
+         * Array of telephone numbers or contact frequencies used for interface control for
+         * multilink coordination.
+         */
+        multiTeleFreqNums?: Array<string>;
+
+        /**
+         * Designator assigned to a voice interface control and coordination net for
+         * multilink coordination (e.g. ADCCN, DCN, VPN, etc.).
+         */
+        multiVoiceNetDes?: string;
+      }
+    }
 
     /**
-     * Indicates the subject matter of the remark.
+     * Collection of information describing the establishment and detailed operation of
+     * tactical data links. There can be 0 to many DataLinkOps collections within the
+     * datalink service.
      */
-    type?: string;
-  }
+    export interface Op {
+      /**
+       * Detailed characteristics of the data link.
+       */
+      linkDetails?: string;
 
-  /**
-   * Collection of special track numbers used on the data links. There can be 0 to
-   * many DataLinkSpecTracks collections within the datalink service.
-   */
-  export interface SpecTrack {
-    /**
-     * The special track number used on the data link entered as an octal reference
-     * number. Used to identify a particular type of platform (e.g. MPA, KRESTA) or
-     * platform name (e.g. TROMP, MOUNT WHITNEY) which is not included in assigned
-     * track blocks.
-     */
-    specTrackNum?: string;
+      /**
+       * Name of the data link.
+       */
+      linkName?: string;
 
-    /**
-     * Description of the special track number.
-     */
-    specTrackNumDesc?: string;
-  }
+      /**
+       * The start of the effective time period of the data link, in ISO 8601 UTC format
+       * with millisecond precision.
+       */
+      linkStartTime?: string;
 
-  /**
-   * Collection of information regarding the function, frequency, and priority of
-   * interface control and coordination nets for this data link message. There can be
-   * 1 to many DataLinkVoiceCoord collections within the datalink service.
-   */
-  export interface VoiceCoord {
-    /**
-     * Priority of a communication circuit, channel or frequency for this data link
-     * message such as P (Primary), M (Monitor), etc.
-     */
-    commPri?: string;
+      /**
+       * The end of the effective time period of the data link, in ISO 8601 UTC format
+       * with millisecond precision.
+       */
+      linkStopTime?: string;
 
-    /**
-     * Designator used in nonsecure communications to refer to a radio frequency for
-     * this data link message.
-     */
-    freqDes?: string;
+      /**
+       * A qualifier for the end of the effective time period of this data link, such as
+       * AFTER, ASOF, NLT, etc. Used with field linkStopTimeMod to indicate a relative
+       * time.
+       */
+      linkStopTimeMod?: string;
+    }
 
     /**
-     * Array of telephone numbers or contact frequencies used for interface control for
-     * this data link message.
+     * Collection of reference information. There can be 0 to many DataLinkReferences
+     * collections within the datalink service.
      */
-    teleFreqNums?: Array<string>;
+    export interface Reference {
+      /**
+       * The originator of this reference.
+       */
+      refOriginator?: string;
+
+      /**
+       * Specifies an alphabetic serial identifier a reference pertaining to the data
+       * link message.
+       */
+      refSerialId?: string;
+
+      /**
+       * Serial number assigned to this reference.
+       */
+      refSerialNum?: string;
+
+      /**
+       * Array of NATO Subject Indicator Codes (SIC) or filing numbers of the document
+       * being referenced.
+       */
+      refSICs?: Array<string>;
+
+      /**
+       * Indicates any special actions, restrictions, guidance, or information relating
+       * to this reference.
+       */
+      refSpecialNotation?: string;
+
+      /**
+       * Timestamp of the referenced message, in ISO 8601 UTC format with millisecond
+       * precision.
+       */
+      refTs?: string;
+
+      /**
+       * Specifies the type of document referenced.
+       */
+      refType?: string;
+    }
 
     /**
-     * Designator assigned to a voice interface control and coordination net for this
-     * data link message (e.g. ADCCN, DCN, VPN, etc.).
+     * Collection that identifies points of reference used in the establishment of the
+     * data links. There can be 1 to many DataLinkRefPoints collections within the
+     * datalink service.
      */
-    voiceNetDes?: string;
+    export interface RefPoint {
+      /**
+       * Indicates when a particular event or nickname becomes effective or the old event
+       * or nickname is deleted, in ISO 8601 UTC format with millisecond precision.
+       */
+      effEventTime?: string;
+
+      /**
+       * Identifier to designate a reference point.
+       */
+      refDes?: string;
+
+      /**
+       * WGS84 latitude of the reference point for this data link message, in degrees.
+       * -90 to 90 degrees (negative values south of equator).
+       */
+      refLat?: number;
+
+      /**
+       * The location name of the point of reference for this data link message.
+       */
+      refLocName?: string;
+
+      /**
+       * WGS84 longitude of the reference point for this data link message, in degrees.
+       * -90 to 90 degrees (negative values south of equator).
+       */
+      refLon?: number;
+
+      /**
+       * Type of data link reference point or grid origin.
+       */
+      refPointType?: string;
+    }
+
+    /**
+     * Collection of remarks associated with this data link message.
+     */
+    export interface Remark {
+      /**
+       * Text of the remark.
+       */
+      text?: string;
+
+      /**
+       * Indicates the subject matter of the remark.
+       */
+      type?: string;
+    }
+
+    /**
+     * Collection of special track numbers used on the data links. There can be 0 to
+     * many DataLinkSpecTracks collections within the datalink service.
+     */
+    export interface SpecTrack {
+      /**
+       * The special track number used on the data link entered as an octal reference
+       * number. Used to identify a particular type of platform (e.g. MPA, KRESTA) or
+       * platform name (e.g. TROMP, MOUNT WHITNEY) which is not included in assigned
+       * track blocks.
+       */
+      specTrackNum?: string;
+
+      /**
+       * Description of the special track number.
+       */
+      specTrackNumDesc?: string;
+    }
+
+    /**
+     * Collection of information regarding the function, frequency, and priority of
+     * interface control and coordination nets for this data link message. There can be
+     * 1 to many DataLinkVoiceCoord collections within the datalink service.
+     */
+    export interface VoiceCoord {
+      /**
+       * Priority of a communication circuit, channel or frequency for this data link
+       * message such as P (Primary), M (Monitor), etc.
+       */
+      commPri?: string;
+
+      /**
+       * Designator used in nonsecure communications to refer to a radio frequency for
+       * this data link message.
+       */
+      freqDes?: string;
+
+      /**
+       * Array of telephone numbers or contact frequencies used for interface control for
+       * this data link message.
+       */
+      teleFreqNums?: Array<string>;
+
+      /**
+       * Designator assigned to a voice interface control and coordination net for this
+       * data link message (e.g. ADCCN, DCN, VPN, etc.).
+       */
+      voiceNetDes?: string;
+    }
   }
 }
-
-export type DatalinkListResponse = Array<DatalinkAbridged>;
 
 export type DatalinkCountResponse = string;
 
-export type DatalinkTupleResponse = Array<DatalinkFull>;
+export type DatalinkTupleResponse = Array<DatalinkTupleResponse.DatalinkTupleResponseItem>;
+
+export namespace DatalinkTupleResponse {
+  /**
+   * Beta Version DataLink: Detailed instructions regarding the operations of data
+   * links.
+   */
+  export interface DatalinkTupleResponseItem {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Specifies the unique operation or exercise name, nickname, or codeword assigned
+     * to a joint exercise or operation plan.
+     */
+    opExName: string;
+
+    /**
+     * The identifier of the originator of this message.
+     */
+    originator: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * The start of the effective time period of this data link message, in ISO 8601
+     * UTC format with millisecond precision.
+     */
+    startTime: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system if not provided on
+     * create operations.
+     */
+    id?: string;
+
+    /**
+     * Array of instructions for acknowledging and the force or units required to
+     * acknowledge the data link message being sent.
+     */
+    ackInstUnits?: Array<string>;
+
+    /**
+     * Flag Indicating if formal acknowledgement is required for the particular data
+     * link message being sent.
+     */
+    ackReq?: boolean;
+
+    /**
+     * Maximum altitude difference between two air tracks, in thousands of feet.
+     * Required if sysDefaultCode field is "MAN". Allowable entires are 5 to 50 in
+     * increments of 5000 feet.
+     */
+    altDiff?: number;
+
+    /**
+     * The identifier for this data link message cancellation.
+     */
+    canxId?: string;
+
+    /**
+     * The originator of this data link message cancellation.
+     */
+    canxOriginator?: string;
+
+    /**
+     * Serial number assigned to this data link message cancellation.
+     */
+    canxSerialNum?: string;
+
+    /**
+     * Array of NATO Subject Indicator Codes (SIC) or filing numbers of this data link
+     * message or document being cancelled.
+     */
+    canxSICs?: Array<string>;
+
+    /**
+     * Indicates any special actions, restrictions, guidance, or information relating
+     * to this data link message cancellation.
+     */
+    canxSpecialNotation?: string;
+
+    /**
+     * Timestamp of the data link message cancellation, in ISO 8601 UTC format with
+     * millisecond precision.
+     */
+    canxTs?: string;
+
+    /**
+     * Array of codes that indicate the reasons material is classified.
+     */
+    classReasons?: Array<string>;
+
+    /**
+     * Markings that define the source material or the original classification
+     * authority for this data link message.
+     */
+    classSource?: string;
+
+    /**
+     * Number of consecutive remote track reports that must meet the decorrelation
+     * criteria before the decorrelation is executed. Required if sysDefaultCode field
+     * is "MAN". Allowable entries are integers from 1 to 5.
+     */
+    consecDecorr?: number;
+
+    /**
+     * Maximum difference between the reported course of the remote track and the
+     * calculated course of the local track. Required if sysDefaultCode field is "MAN".
+     * Allowable entries are 15 to 90 in increments of 15 degrees.
+     */
+    courseDiff?: number;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * Array of codes that provide justification for exemption from automatic
+     * downgrading or declassification.
+     */
+    decExemptCodes?: Array<string>;
+
+    /**
+     * Array of markings that provide the literal guidance or dates for the downgrading
+     * or declassification of this data link message.
+     */
+    decInstDates?: Array<string>;
+
+    /**
+     * Distance between the common and remote track is to exceed the applicable
+     * correlation window for the two tracks in order to be decorrelated. Required if
+     * sysDefaultCode field is "MAN". Allowable entries are 1.0 to 2.0 in increments of
+     * 0.1.
+     */
+    decorrWinMult?: number;
+
+    /**
+     * The code for the point of reference from which the coordinates and networks are
+     * computed.
+     */
+    geoDatum?: string;
+
+    /**
+     * Call sign which identifies one or more communications facilities, commands,
+     * authorities, or activities for Joint Range Extension (JRE) units.
+     */
+    jreCallSign?: string;
+
+    /**
+     * Joint Range Extension (JRE) unit details.
+     */
+    jreDetails?: string;
+
+    /**
+     * Link-16 octal track number assigned as the primary JTIDS unit address.
+     */
+    jrePriAdd?: number;
+
+    /**
+     * Link-16 octal track number assigned as the secondary JTIDS unit address.
+     */
+    jreSecAdd?: number;
+
+    /**
+     * Designator of the unit for Joint Range Extension (JRE).
+     */
+    jreUnitDes?: string;
+
+    /**
+     * Number used for maximum geodetic position quality. Required if sysDefaultCode
+     * field is "MAN". Allowable entires are integers from 1 to 15.
+     */
+    maxGeoPosQual?: number;
+
+    /**
+     * Track quality to prevent correlation windows from being unrealistically small.
+     * Required if sysDefaultCode field is "MAN". Allowable entries are integers from 8
+     * to 15.
+     */
+    maxTrackQual?: number;
+
+    /**
+     * Data link management code word.
+     */
+    mgmtCode?: string;
+
+    /**
+     * Data link management code word meaning.
+     */
+    mgmtCodeMeaning?: string;
+
+    /**
+     * Number used for minimum geodetic position quality. Required if sysDefaultCode
+     * field is "MAN". Allowable entries are integers from 1 to 5.
+     */
+    minGeoPosQual?: number;
+
+    /**
+     * Track quality to prevent correlation windows from being unrealistically large.
+     * Required if sysDefaultCode field is "MAN". Allowable entries are integers from 3
+     * to 7.
+     */
+    minTrackQual?: number;
+
+    /**
+     * The month in which this message originated.
+     */
+    month?: string;
+
+    /**
+     * Collection of contact and identification information for designated multilink
+     * coordinator duty assignments. There can be 0 to many DataLinkMultiDuty
+     * collections within the datalink service.
+     */
+    multiDuty?: Array<DatalinkTupleResponseItem.MultiDuty>;
+
+    /**
+     * Array of non-link specific data unit designators.
+     */
+    nonLinkUnitDes?: Array<string>;
+
+    /**
+     * Provides an additional caveat further identifying the exercise or modifies the
+     * exercise nickname.
+     */
+    opExInfo?: string;
+
+    /**
+     * The secondary nickname of the option or the alternative of the operational plan
+     * or order.
+     */
+    opExInfoAlt?: string;
+
+    /**
+     * Collection of information describing the establishment and detailed operation of
+     * tactical data links. There can be 0 to many DataLinkOps collections within the
+     * datalink service.
+     */
+    ops?: Array<DatalinkTupleResponseItem.Op>;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * The official identifier of the military establishment responsible for the
+     * operation plan and the identification number assigned to this plan.
+     */
+    planOrigNum?: string;
+
+    /**
+     * The unit identifier or call sign of the point of contact for this data link
+     * message.
+     */
+    pocCallSign?: string;
+
+    /**
+     * WGS84 latitude of the point of contact for this data link message, in degrees.
+     * -90 to 90 degrees (negative values south of equator).
+     */
+    pocLat?: number;
+
+    /**
+     * The location name of the point of contact for this data link message.
+     */
+    pocLocName?: string;
+
+    /**
+     * WGS84 longitude of the point of contact for this data link message, in degrees.
+     * -180 to 180 degrees (negative values west of Prime Meridian).
+     */
+    pocLon?: number;
+
+    /**
+     * The name of the point of contact for this data link message.
+     */
+    pocName?: string;
+
+    /**
+     * Array of telephone numbers, radio frequency values, or email addresses of the
+     * point of contact for this data link message.
+     */
+    pocNums?: Array<string>;
+
+    /**
+     * The rank or position of the point of contact for this data link message in a
+     * military or civilian organization.
+     */
+    pocRank?: string;
+
+    /**
+     * The qualifier which caveats the message status such as AMP (Amplification), CHG
+     * (Change), etc.
+     */
+    qualifier?: string;
+
+    /**
+     * The serial number associated with the message qualifier.
+     */
+    qualSN?: number;
+
+    /**
+     * Optional URI location in the document repository of the raw file parsed by the
+     * system to produce this record. To download the raw file, prepend
+     * https://udl-hostname/scs/download?id= to this value.
+     */
+    rawFileURI?: string;
+
+    /**
+     * Collection of reference information. There can be 0 to many DataLinkReferences
+     * collections within the datalink service.
+     */
+    references?: Array<DatalinkTupleResponseItem.Reference>;
+
+    /**
+     * Collection that identifies points of reference used in the establishment of the
+     * data links. There can be 1 to many DataLinkRefPoints collections within the
+     * datalink service.
+     */
+    refPoints?: Array<DatalinkTupleResponseItem.RefPoint>;
+
+    /**
+     * Collection of remarks associated with this data link message.
+     */
+    remarks?: Array<DatalinkTupleResponseItem.Remark>;
+
+    /**
+     * Track quality to enter if too many duals involving low track quality tracks are
+     * occurring. Required if sysDefaultCode field is "MAN". Allowable entries are
+     * integers from 2 to 6.
+     */
+    resTrackQual?: number;
+
+    /**
+     * The unique message identifier assigned by the originator.
+     */
+    serialNum?: string;
+
+    /**
+     * The source data library from which this record was received. This could be a
+     * remote or tactical UDL or another data library. If null, the record should be
+     * assumed to have originated from the primary Enterprise UDL.
+     */
+    sourceDL?: string;
+
+    /**
+     * Collection of special track numbers used on the data links. There can be 0 to
+     * many DataLinkSpecTracks collections within the datalink service.
+     */
+    specTracks?: Array<DatalinkTupleResponseItem.SpecTrack>;
+
+    /**
+     * Maximum percentage the faster track speed may differ from the slower track
+     * speed. Required if sysDefaultCode field is "MAN". Allowable entries are 10 to
+     * 100 in increments of 10.
+     */
+    speedDiff?: number;
+
+    /**
+     * The end of the effective time period of this data link message, in ISO 8601 UTC
+     * format with millisecond precision. This may be a relative stop time if used with
+     * stopTimeMod.
+     */
+    stopTime?: string;
+
+    /**
+     * A qualifier for the end of the effective time period of this data link message,
+     * such as AFTER, ASOF, NLT, etc. Used with field stopTime to indicate a relative
+     * time.
+     */
+    stopTimeMod?: string;
+
+    /**
+     * Indicates the data terminal settings the system defaults to, either automatic
+     * correlation/decorrelation (AUTO) or manual (MAN).
+     */
+    sysDefaultCode?: string;
+
+    /**
+     * Array of Link-16 octal track numbers used as the lower limit of a track block.
+     */
+    trackNumBlockLLs?: Array<number>;
+
+    /**
+     * Array of defined ranges of Link-11/11B track numbers assigned to a participating
+     * unit or reporting unit.
+     */
+    trackNumBlocks?: Array<string>;
+
+    /**
+     * Time the row was updated in the database, auto-populated by the system.
+     */
+    updatedAt?: string;
+
+    /**
+     * Application user who updated the row in the database, auto-populated by the
+     * system.
+     */
+    updatedBy?: string;
+
+    /**
+     * Collection of information regarding the function, frequency, and priority of
+     * interface control and coordination nets for this data link message. There can be
+     * 1 to many DataLinkVoiceCoord collections within the datalink service.
+     */
+    voiceCoord?: Array<DatalinkTupleResponseItem.VoiceCoord>;
+
+    /**
+     * Number added to the basic window calculated from track qualities to ensure that
+     * windows still allow valid correlations. Required if sysDefaultCode field is
+     * "MAN". Allowable entries are 0.0 to 2.0 in increments of 0.25.
+     */
+    winSizeMin?: number;
+
+    /**
+     * The correlation window size multiplier to stretch or reduce the window size.
+     * Required if sysDefaultCode field is "MAN". Allowable entries are 0.5 to 3.0 in
+     * increments of 0.1.
+     */
+    winSizeMult?: number;
+  }
+
+  export namespace DatalinkTupleResponseItem {
+    /**
+     * Collection of contact and identification information for designated multilink
+     * coordinator duty assignments. There can be 0 to many DataLinkMultiDuty
+     * collections within the datalink service.
+     */
+    export interface MultiDuty {
+      /**
+       * Specific duties assigned for multilink coordination (e.g. ICO, RICO, SICO).
+       */
+      duty?: string;
+
+      /**
+       * Array of telephone numbers or the frequency values for radio transmission of the
+       * person to be contacted for multilink coordination.
+       */
+      dutyTeleFreqNums?: Array<string>;
+
+      /**
+       * Collection of information regarding the function, frequency, and priority of
+       * interface control and coordination nets for multilink coordination. There can be
+       * 0 to many DataLinkMultiVoiceCoord collections within a DataLinkMultiDuty
+       * collection.
+       */
+      multiDutyVoiceCoord?: Array<MultiDuty.MultiDutyVoiceCoord>;
+
+      /**
+       * The name of the person to be contacted for multilink coordination.
+       */
+      name?: string;
+
+      /**
+       * The rank or position of the person to be contacted for multilink coordination.
+       */
+      rank?: string;
+
+      /**
+       * Designated force of unit specified by ship name, unit call sign, or unit
+       * designator.
+       */
+      unitDes?: string;
+    }
+
+    export namespace MultiDuty {
+      /**
+       * Collection of information regarding the function, frequency, and priority of
+       * interface control and coordination nets for multilink coordination. There can be
+       * 0 to many DataLinkMultiVoiceCoord collections within a DataLinkMultiDuty
+       * collection.
+       */
+      export interface MultiDutyVoiceCoord {
+        /**
+         * Priority of a communication circuit, channel or frequency for multilink
+         * coordination (e.g. P - Primary, M - Monitor).
+         */
+        multiCommPri?: string;
+
+        /**
+         * Designator used in nonsecure communications to refer to a radio frequency for
+         * multilink coordination.
+         */
+        multiFreqDes?: string;
+
+        /**
+         * Array of telephone numbers or contact frequencies used for interface control for
+         * multilink coordination.
+         */
+        multiTeleFreqNums?: Array<string>;
+
+        /**
+         * Designator assigned to a voice interface control and coordination net for
+         * multilink coordination (e.g. ADCCN, DCN, VPN, etc.).
+         */
+        multiVoiceNetDes?: string;
+      }
+    }
+
+    /**
+     * Collection of information describing the establishment and detailed operation of
+     * tactical data links. There can be 0 to many DataLinkOps collections within the
+     * datalink service.
+     */
+    export interface Op {
+      /**
+       * Detailed characteristics of the data link.
+       */
+      linkDetails?: string;
+
+      /**
+       * Name of the data link.
+       */
+      linkName?: string;
+
+      /**
+       * The start of the effective time period of the data link, in ISO 8601 UTC format
+       * with millisecond precision.
+       */
+      linkStartTime?: string;
+
+      /**
+       * The end of the effective time period of the data link, in ISO 8601 UTC format
+       * with millisecond precision.
+       */
+      linkStopTime?: string;
+
+      /**
+       * A qualifier for the end of the effective time period of this data link, such as
+       * AFTER, ASOF, NLT, etc. Used with field linkStopTimeMod to indicate a relative
+       * time.
+       */
+      linkStopTimeMod?: string;
+    }
+
+    /**
+     * Collection of reference information. There can be 0 to many DataLinkReferences
+     * collections within the datalink service.
+     */
+    export interface Reference {
+      /**
+       * The originator of this reference.
+       */
+      refOriginator?: string;
+
+      /**
+       * Specifies an alphabetic serial identifier a reference pertaining to the data
+       * link message.
+       */
+      refSerialId?: string;
+
+      /**
+       * Serial number assigned to this reference.
+       */
+      refSerialNum?: string;
+
+      /**
+       * Array of NATO Subject Indicator Codes (SIC) or filing numbers of the document
+       * being referenced.
+       */
+      refSICs?: Array<string>;
+
+      /**
+       * Indicates any special actions, restrictions, guidance, or information relating
+       * to this reference.
+       */
+      refSpecialNotation?: string;
+
+      /**
+       * Timestamp of the referenced message, in ISO 8601 UTC format with millisecond
+       * precision.
+       */
+      refTs?: string;
+
+      /**
+       * Specifies the type of document referenced.
+       */
+      refType?: string;
+    }
+
+    /**
+     * Collection that identifies points of reference used in the establishment of the
+     * data links. There can be 1 to many DataLinkRefPoints collections within the
+     * datalink service.
+     */
+    export interface RefPoint {
+      /**
+       * Indicates when a particular event or nickname becomes effective or the old event
+       * or nickname is deleted, in ISO 8601 UTC format with millisecond precision.
+       */
+      effEventTime?: string;
+
+      /**
+       * Identifier to designate a reference point.
+       */
+      refDes?: string;
+
+      /**
+       * WGS84 latitude of the reference point for this data link message, in degrees.
+       * -90 to 90 degrees (negative values south of equator).
+       */
+      refLat?: number;
+
+      /**
+       * The location name of the point of reference for this data link message.
+       */
+      refLocName?: string;
+
+      /**
+       * WGS84 longitude of the reference point for this data link message, in degrees.
+       * -90 to 90 degrees (negative values south of equator).
+       */
+      refLon?: number;
+
+      /**
+       * Type of data link reference point or grid origin.
+       */
+      refPointType?: string;
+    }
+
+    /**
+     * Collection of remarks associated with this data link message.
+     */
+    export interface Remark {
+      /**
+       * Text of the remark.
+       */
+      text?: string;
+
+      /**
+       * Indicates the subject matter of the remark.
+       */
+      type?: string;
+    }
+
+    /**
+     * Collection of special track numbers used on the data links. There can be 0 to
+     * many DataLinkSpecTracks collections within the datalink service.
+     */
+    export interface SpecTrack {
+      /**
+       * The special track number used on the data link entered as an octal reference
+       * number. Used to identify a particular type of platform (e.g. MPA, KRESTA) or
+       * platform name (e.g. TROMP, MOUNT WHITNEY) which is not included in assigned
+       * track blocks.
+       */
+      specTrackNum?: string;
+
+      /**
+       * Description of the special track number.
+       */
+      specTrackNumDesc?: string;
+    }
+
+    /**
+     * Collection of information regarding the function, frequency, and priority of
+     * interface control and coordination nets for this data link message. There can be
+     * 1 to many DataLinkVoiceCoord collections within the datalink service.
+     */
+    export interface VoiceCoord {
+      /**
+       * Priority of a communication circuit, channel or frequency for this data link
+       * message such as P (Primary), M (Monitor), etc.
+       */
+      commPri?: string;
+
+      /**
+       * Designator used in nonsecure communications to refer to a radio frequency for
+       * this data link message.
+       */
+      freqDes?: string;
+
+      /**
+       * Array of telephone numbers or contact frequencies used for interface control for
+       * this data link message.
+       */
+      teleFreqNums?: Array<string>;
+
+      /**
+       * Designator assigned to a voice interface control and coordination net for this
+       * data link message (e.g. ADCCN, DCN, VPN, etc.).
+       */
+      voiceNetDes?: string;
+    }
+  }
+}
 
 export interface DatalinkCreateParams {
   /**
@@ -1546,7 +2286,7 @@ export interface DatalinkCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Specifies the unique operation or exercise name, nickname, or codeword assigned
@@ -1652,17 +2392,6 @@ export interface DatalinkCreateParams {
    * Allowable entries are 15 to 90 in increments of 15 degrees.
    */
   courseDiff?: number;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Array of codes that provide justification for exemption from automatic
@@ -1797,12 +2526,6 @@ export interface DatalinkCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * The official identifier of the military establishment responsible for the
    * operation plan and the identification number assigned to this plan.
    */
@@ -1860,13 +2583,6 @@ export interface DatalinkCreateParams {
   qualSN?: number;
 
   /**
-   * Optional URI location in the document repository of the raw file parsed by the
-   * system to produce this record. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this value.
-   */
-  rawFileURI?: string;
-
-  /**
    * Collection of reference information. There can be 0 to many DataLinkReferences
    * collections within the datalink service.
    */
@@ -1895,13 +2611,6 @@ export interface DatalinkCreateParams {
    * The unique message identifier assigned by the originator.
    */
   serialNum?: string;
-
-  /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
 
   /**
    * Collection of special track numbers used on the data links. There can be 0 to
@@ -1946,17 +2655,6 @@ export interface DatalinkCreateParams {
    * unit or reporting unit.
    */
   trackNumBlocks?: Array<string>;
-
-  /**
-   * Time the row was updated in the database, auto-populated by the system.
-   */
-  updatedAt?: string;
-
-  /**
-   * Application user who updated the row in the database, auto-populated by the
-   * system.
-   */
-  updatedBy?: string;
 
   /**
    * Collection of information regarding the function, frequency, and priority of
@@ -2260,11 +2958,13 @@ export interface DatalinkCountParams {
   startTime: string;
 }
 
+export type DatalinkFileCreateParams = Array<DatalinkIngest>;
+
 export interface DatalinkTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -2278,14 +2978,14 @@ export interface DatalinkTupleParams {
 
 export declare namespace Datalink {
   export {
-    type DatalinkAbridged as DatalinkAbridged,
-    type DatalinkFull as DatalinkFull,
+    type DatalinkIngest as DatalinkIngest,
     type DatalinkListResponse as DatalinkListResponse,
     type DatalinkCountResponse as DatalinkCountResponse,
     type DatalinkTupleResponse as DatalinkTupleResponse,
     type DatalinkCreateParams as DatalinkCreateParams,
     type DatalinkListParams as DatalinkListParams,
     type DatalinkCountParams as DatalinkCountParams,
+    type DatalinkFileCreateParams as DatalinkFileCreateParams,
     type DatalinkTupleParams as DatalinkTupleParams,
   };
 }

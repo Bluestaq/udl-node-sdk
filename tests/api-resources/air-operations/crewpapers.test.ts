@@ -4,8 +4,8 @@ import Unifieddatalibrary, { toFile } from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
@@ -13,10 +13,10 @@ describe('resource crewpapers', () => {
   test('create: only required params', async () => {
     const responsePromise = client.airOperations.crewpapers.create({
       aircraftSortieIds: 'aircraftSortieIds',
+      classificationMarking: 'x',
+      paperStatus: 'PUBLISHED',
+      papersVersion: 'x',
       body: await toFile(Buffer.from('# my file contents'), 'README.md'),
-      classificationMarking: 'U',
-      paperStatus: 'paperStatus',
-      papersVersion: '1.1',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -30,10 +30,10 @@ describe('resource crewpapers', () => {
   test('create: required and optional params', async () => {
     const response = await client.airOperations.crewpapers.create({
       aircraftSortieIds: 'aircraftSortieIds',
+      classificationMarking: 'x',
+      paperStatus: 'PUBLISHED',
+      papersVersion: 'x',
       body: await toFile(Buffer.from('# my file contents'), 'README.md'),
-      classificationMarking: 'U',
-      paperStatus: 'paperStatus',
-      papersVersion: '1.1',
     });
   });
 

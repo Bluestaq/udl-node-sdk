@@ -4,14 +4,18 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource antennas', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.antennas.create({ dataMode: 'dataMode', name: 'name', source: 'source' });
+    const responsePromise = client.antennas.create({
+      dataMode: 'REAL',
+      name: 'IRIDIUM NEXT 121-ANTENNA-10075',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,19 +27,16 @@ describe('resource antennas', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.antennas.create({
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
-      id: 'id',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
+      dataMode: 'REAL',
+      name: 'IRIDIUM NEXT 121-ANTENNA-10075',
+      source: 'Bluestaq',
+      id: 'ANTENNA-ID',
+      origin: 'THIRD_PARTY_DATASOURCE',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.antennas.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.antennas.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -45,17 +46,19 @@ describe('resource antennas', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.antennas.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.antennas.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.antennas.update({
       path_id: 'id',
-      body_id: 'id',
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
+      dataMode: 'REAL',
+      name: 'IRIDIUM NEXT 121-ANTENNA-10075',
+      source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -69,15 +72,11 @@ describe('resource antennas', () => {
   test('update: required and optional params', async () => {
     const response = await client.antennas.update({
       path_id: 'id',
-      body_id: 'id',
-      dataMode: 'dataMode',
-      name: 'name',
-      source: 'source',
-      body_id: 'id',
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
+      dataMode: 'REAL',
+      name: 'IRIDIUM NEXT 121-ANTENNA-10075',
+      source: 'Bluestaq',
+      body_id: 'ANTENNA-ID',
+      origin: 'THIRD_PARTY_DATASOURCE',
     });
   });
 
@@ -99,8 +98,8 @@ describe('resource antennas', () => {
     );
   });
 
-  test('delete: only required params', async () => {
-    const responsePromise = client.antennas.delete({ path_id: 'id', body_id: 'id' });
+  test('delete', async () => {
+    const responsePromise = client.antennas.delete('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -110,8 +109,11 @@ describe('resource antennas', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: required and optional params', async () => {
-    const response = await client.antennas.delete({ path_id: 'id', body_id: 'id' });
+  test('delete: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.antennas.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('count', async () => {

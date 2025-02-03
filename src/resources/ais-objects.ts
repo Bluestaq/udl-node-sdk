@@ -60,7 +60,7 @@ export namespace AIsObjectCreateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Source of the data.
@@ -109,17 +109,6 @@ export namespace AIsObjectCreateParams {
      * The course-over-ground reported by the vessel, in degrees.
      */
     course?: number;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
 
     /**
      * The US Geographic Unique Identifier of the current port hosting the vessel.
@@ -262,12 +251,6 @@ export namespace AIsObjectCreateParams {
     origin?: string;
 
     /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
-
-    /**
      * The type of electronic position fixing device (e.g. GPS, GLONASS, etc.).
      * Intended as, but not constrained to, the USCG NAVCEN electronic position fixing
      * device definitions. Users should refer to USCG Navigation Center documentation
@@ -312,13 +295,6 @@ export namespace AIsObjectCreateParams {
      * of vessels.
      */
     shipType?: string;
-
-    /**
-     * The source data library from which this record was received. This could be a
-     * remote or tactical UDL or another data library. If null, the record should be
-     * assumed to have originated from the primary Enterprise UDL.
-     */
-    sourceDL?: string;
 
     /**
      * The type of special craft designation of the vessel. This entry applies only

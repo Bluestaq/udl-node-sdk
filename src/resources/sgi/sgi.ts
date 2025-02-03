@@ -1,0 +1,2013 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import * as HistoryAPI from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+} from './history';
+import * as SgiHistoryAPI from '../udl/sgi/history';
+
+export class Sgi extends APIResource {
+  history: HistoryAPI.History = new HistoryAPI.History(this._client);
+
+  /**
+   * Service operation to take a single SGI record as a POST body and ingest into the
+   * database. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  create(body: SgiCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/udl/sgi', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to update a single SGI record. A specific role is required to
+   * perform this service operation. Please contact the UDL team for assistance.
+   */
+  update(params: SgiUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { path_id, body_id, ...body } = params;
+    return this._client.put(`/udl/sgi/${path_id}`, {
+      body: { id: body_id, ...body },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data by a variety of query parameters not
+   * specified in this API documentation. See the queryhelp operation
+   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+   * parameter information.
+   */
+  list(query?: SgiListParams, options?: Core.RequestOptions): Core.APIPromise<SgiListResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<SgiListResponse>;
+  list(
+    query: SgiListParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SgiListResponse> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
+    return this._client.get('/udl/sgi', { query, ...options });
+  }
+
+  /**
+   * Service operation to delete a SGI record specified by the passed ID path
+   * parameter. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/sgi/${id}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to return the count of records satisfying the specified query
+   * parameters. This operation is useful to determine how many records pass a
+   * particular query criteria without retrieving large amounts of data. See the
+   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+   * valid/required query parameter information.
+   */
+  count(query?: SgiCountParams, options?: Core.RequestOptions): Core.APIPromise<string>;
+  count(options?: Core.RequestOptions): Core.APIPromise<string>;
+  count(
+    query: SgiCountParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<string> {
+    if (isRequestOptions(query)) {
+      return this.count({}, query);
+    }
+    return this._client.get('/udl/sgi/count', {
+      query,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation intended for initial integration only, to take a list of SGI
+   * as a POST body and ingest into the database. This operation is not intended to
+   * be used for automated feeds into UDL. Data providers should contact the UDL team
+   * for specific role assignments and for instructions on setting up a permanent
+   * feed through an alternate mechanism.
+   */
+  createBulk(body: SgiCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/udl/sgi/createBulk', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to take multiple SGI as a POST body and ingest into the
+   * database. This operation is intended to be used for automated feeds into UDL. A
+   * specific role is required to perform this service operation. Please contact the
+   * UDL team for assistance.
+   */
+  fileCreate(body: SgiFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-sgi', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to get a single SGI record by its unique ID passed as a path
+   * parameter.
+   */
+  get(id: string, options?: Core.RequestOptions): Core.APIPromise<SgiHistoryAPI.SgiFull> {
+    return this._client.get(`/udl/sgi/${id}`, options);
+  }
+
+  /**
+   * Service to return matching SGI records as of the effective date.
+   */
+  getSGIDataByEffectiveAsOfDate(
+    query?: SgiGetSGIDataByEffectiveAsOfDateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SgiHistoryAPI.SgiFull>;
+  getSGIDataByEffectiveAsOfDate(options?: Core.RequestOptions): Core.APIPromise<SgiHistoryAPI.SgiFull>;
+  getSGIDataByEffectiveAsOfDate(
+    query: SgiGetSGIDataByEffectiveAsOfDateParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SgiHistoryAPI.SgiFull> {
+    if (isRequestOptions(query)) {
+      return this.getSGIDataByEffectiveAsOfDate({}, query);
+    }
+    return this._client.get('/udl/sgi/getSGIDataByEffectiveAsOfDate', { query, ...options });
+  }
+
+  /**
+   * Service operation to provide detailed information on available dynamic query
+   * parameters for a particular data type.
+   */
+  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/udl/sgi/queryhelp', {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data and only return specified
+   * columns/fields. Requested columns are specified by the 'columns' query parameter
+   * and should be a comma separated list of valid fields for the specified data
+   * type. classificationMarking is always returned. See the queryhelp operation
+   * (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+   * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+   * hours would return the satNo and period of elsets with an epoch greater than 5
+   * hours ago.
+   */
+  tuple(query: SgiTupleParams, options?: Core.RequestOptions): Core.APIPromise<SgiTupleResponse> {
+    return this._client.get('/udl/sgi/tuple', { query, ...options });
+  }
+}
+
+export type SgiListResponse = Array<SgiListResponse.SgiListResponseItem>;
+
+export namespace SgiListResponse {
+  /**
+   * Model representation of space weather/solar, geomagnetic, and radiation belt
+   * indices.
+   */
+  export interface SgiListResponseItem {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * ISO8601 UTC Time the data was received and processed from the source. Typically
+     * a source provides data for a date window with each transmission including past,
+     * present, and future predicted values.
+     */
+    effectiveDate: string;
+
+    /**
+     * ISO8601 UTC Time of the index value. This could be a past, current, or future
+     * predicted value. Note: sgiDate defines the start time of the time window for
+     * this data record.
+     */
+    sgiDate: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Signal analyzer's input attenuation level, in decibels. Attenuation is a setting
+     * on the hardware that measures the power of a signal.
+     */
+    analyzerAttenuation?: number;
+
+    /**
+     * Ap is the planetary geomagnetic 2 nT index (00-21 UT) for the timespan specified
+     * in apDuration. If apDuration is null, a 3 hour duration should be assumed.
+     */
+    ap?: number;
+
+    /**
+     * The time, in hours, for which the Ap index value is valid. If null, a span of 3
+     * hours is assumed.
+     */
+    apDuration?: number;
+
+    /**
+     * Array containing the degree of the temperature coefficients. The coeffDegree and
+     * coeffOrder arrays must be the same length.
+     */
+    coeffDegree?: Array<number>;
+
+    /**
+     * Array containing the order of the temperature coefficients. The coeffDegree and
+     * coeffOrder arrays must be the same length.
+     */
+    coeffOrder?: Array<number>;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * Array containing the cosine spherical-harmonic coefficients for Exospheric
+     * temperature (DTC) difference. Each array element corresponds to the positional
+     * index of the coeffDegree and coeffOrder arrays.
+     */
+    ctce?: Array<number>;
+
+    /**
+     * Array containing the cosine spherical-harmonic coefficients for Inflection
+     * temperature (DTX) difference. Each array element corresponds to the positional
+     * index of the coeffDegree and coeffOrder arrays.
+     */
+    ctci?: Array<number>;
+
+    /**
+     * Disturbance Storm Time geomagnetic index in nT.
+     */
+    dst?: number;
+
+    /**
+     * delta exospheric temperature correction in units of K.
+     */
+    dtc?: number;
+
+    /**
+     * Extreme Ultraviolet (EUV) proxy, E10.7, in x10-22 Watts per meter squared per
+     * Hertz, is the integrated solar EUV energy flux at the top of atmosphere and
+     * normalized to solar flux units.
+     */
+    e10?: number;
+
+    /**
+     * E54 (E10-Bar), in x10-22 Watts per meter squared per Hertz, uses the past
+     * 54-days E10 values to determine the E10 average.
+     */
+    e54?: number;
+
+    /**
+     * Daily solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
+     */
+    f10?: number;
+
+    /**
+     * 54 day solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
+     */
+    f54?: number;
+
+    /**
+     * 81 day solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
+     */
+    f81?: number;
+
+    /**
+     * The maximum measured gamma deflection during the kpDuration timespan. If
+     * kpDuration is null, a 3 hour duration should be assumed.
+     */
+    gamma?: number;
+
+    /**
+     * Unique identifier of the reporting sensor.
+     */
+    idSensor?: string;
+
+    /**
+     * The maximum measured K-Index at the associated station during the kpDuration
+     * timespan. The K-Index is a unitless measure (0 - 9) of the deviation in the
+     * Earth's magnetic field from normal at the station geographic location, with 0
+     * indicating the absence of geomagnetic disturbance, and 9 indicating the most
+     * significant disturbance. If kpDuration is null, a 3 hour duration should be
+     * assumed.
+     */
+    kIndex?: number;
+
+    /**
+     * The Planetary K-index (Kp) over the kpDuration timespan. The Kp-Index is the
+     * average K-Index for the entire Earth, utilizing a unitless scale (0-9, in
+     * incremenets of 1/3), with 0 indicating the absence of geomagnetic disturbance,
+     * and 9 indicating the most significant disturbance. If kpDuration is null, a 3
+     * hour duration should be assumed.
+     */
+    kp?: number;
+
+    /**
+     * The time, in hours, over which the K, Kp, and/or gamma index values are
+     * measured. If null, a span of 3 hours is assumed.
+     */
+    kpDuration?: number;
+
+    /**
+     * Daily M10.7 index for 100-110 km heating of O2 by solar photosphere. 160 nm SRC
+     * emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    m10?: number;
+
+    /**
+     * 54 day M10.7 index for 100-110 km heating of O2 by solar photosphere. 160 nm SRC
+     * emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    m54?: number;
+
+    /**
+     * The transmitted DCA mode of the record (1-3).
+     */
+    mode?: number;
+
+    /**
+     * The normalization factor that has already been applied to the index value prior
+     * to record ingest. Typically used to normalize the index value to a particular
+     * interval. Units of the normalization factor may vary depending on the provider
+     * of this data (REACH, POES, CEASE3, etc.).
+     */
+    normFactor?: number;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * Optional identifier provided by the reporting source to indicate the sensor
+     * identifier which produced this data. This may be an internal identifier and not
+     * necessarily a valid sensor ID.
+     */
+    origSensorId?: string;
+
+    /**
+     * The precedence of data in this record (O = Immediate, P = Priority, R = Routine,
+     * Y = Emergency, Z = Flash).
+     */
+    precedence?: 'O' | 'P' | 'R' | 'Y' | 'Z';
+
+    /**
+     * Optional URI location in the document repository of the raw file parsed by the
+     * system to produce this record. To download the raw file, prepend
+     * https://udl-hostname/scs/download?id= to this value.
+     */
+    rawFileURI?: string;
+
+    /**
+     * The timespan over which the associated radiation belt index is factored. If
+     * rbDuration is null, a 24 hour duration should be assumed. Note: rbDuration
+     * defines the length of the time window for this data record. The time window
+     * start time is defined by sgiDate, and the time window end time is defined by
+     * sgiDate plus rbDuration.
+     */
+    rbDuration?: number;
+
+    /**
+     * The value of the radiation belt index. This is the ratio of current intensity of
+     * a radiation belt to long-term average value. It's long-term average should be
+     * close to 1. Depending on the type of belt sensor, this ratio may measure Flux
+     * (number of particles / (cm^2 sec energy solid-angle)), dose rate (rad per
+     * second), or relative counts of particles per time (counts per second). The index
+     * value may also be normalized, the normalization value typically represents an
+     * average of the sensor measurements taken within a region over a given time
+     * interval. See the normFactor field for the specific normalization factor, if
+     * provided.
+     */
+    rbIndex?: number;
+
+    /**
+     * Region code for the associated radiation belt index. This is the code associated
+     * with the corresponding radiation belt location. See the provider card for
+     * reference to specific region code definitions.
+     */
+    rbRegionCode?: number;
+
+    /**
+     * Daily S10.7 index for >200 km heating of O by solar chromosphere. 28.4-30.4 nm
+     * emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    s10?: number;
+
+    /**
+     * 54 day S10.7 index for >200 km heating of O by solar chromosphere. 28.4-30.4 nm
+     * emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    s54?: number;
+
+    /**
+     * State indicating Issued (I), Nowcast (N), or Predicted (P) values for this
+     * record.
+     */
+    state?: 'I' | 'N' | 'P';
+
+    /**
+     * The name/location of the station that collected the geomagnetic data for this
+     * record.
+     */
+    stationName?: string;
+
+    /**
+     * Array containing the sine spherical-harmonic coefficients for Exospheric
+     * temperature (DTC) difference. Each array element corresponds to the positional
+     * index of the coeffDegree and coeffOrder arrays.
+     */
+    stce?: Array<number>;
+
+    /**
+     * Array containing the sine spherical harmonic coefficients for Inflection
+     * temperature (DTX) difference. Each array element corresponds to the positional
+     * index of the coeffDegree and coeffOrder arrays.
+     */
+    stci?: Array<number>;
+
+    /**
+     * Optional identifier to track a commercial or marketplace transaction executed to
+     * produce this data.
+     */
+    transactionId?: string;
+
+    /**
+     * The type of data contained in this record (e.g. HASDM, JBH09, K-Index, PSD-dB,
+     * RBI, RFI-SFU, etc).
+     */
+    type?: string;
+
+    /**
+     * Daily Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
+     * 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    y10?: number;
+
+    /**
+     * 54 day Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
+     * 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    y54?: number;
+  }
+}
+
+export type SgiCountResponse = string;
+
+export type SgiTupleResponse = Array<SgiHistoryAPI.SgiFull>;
+
+export interface SgiCreateParams {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * ISO8601 UTC Time the data was received and processed from the source. Typically
+   * a source provides data for a date window with each transmission including past,
+   * present, and future predicted values.
+   */
+  effectiveDate: string;
+
+  /**
+   * ISO8601 UTC Time of the index value. This could be a past, current, or future
+   * predicted value. Note: sgiDate defines the start time of the time window for
+   * this data record.
+   */
+  sgiDate: string;
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Signal analyzer's input attenuation level, in decibels. Attenuation is a setting
+   * on the hardware that measures the power of a signal.
+   */
+  analyzerAttenuation?: number;
+
+  /**
+   * Ap is the planetary geomagnetic 2 nT index (00-21 UT) for the timespan specified
+   * in apDuration. If apDuration is null, a 3 hour duration should be assumed.
+   */
+  ap?: number;
+
+  /**
+   * The time, in hours, for which the Ap index value is valid. If null, a span of 3
+   * hours is assumed.
+   */
+  apDuration?: number;
+
+  /**
+   * Array containing the degree of the temperature coefficients. The coeffDegree and
+   * coeffOrder arrays must be the same length.
+   */
+  coeffDegree?: Array<number>;
+
+  /**
+   * Array containing the order of the temperature coefficients. The coeffDegree and
+   * coeffOrder arrays must be the same length.
+   */
+  coeffOrder?: Array<number>;
+
+  /**
+   * Array containing the cosine spherical-harmonic coefficients for Exospheric
+   * temperature (DTC) difference. Each array element corresponds to the positional
+   * index of the coeffDegree and coeffOrder arrays.
+   */
+  ctce?: Array<number>;
+
+  /**
+   * Array containing the cosine spherical-harmonic coefficients for Inflection
+   * temperature (DTX) difference. Each array element corresponds to the positional
+   * index of the coeffDegree and coeffOrder arrays.
+   */
+  ctci?: Array<number>;
+
+  /**
+   * Disturbance Storm Time geomagnetic index in nT.
+   */
+  dst?: number;
+
+  /**
+   * delta exospheric temperature correction in units of K.
+   */
+  dtc?: number;
+
+  /**
+   * Extreme Ultraviolet (EUV) proxy, E10.7, in x10-22 Watts per meter squared per
+   * Hertz, is the integrated solar EUV energy flux at the top of atmosphere and
+   * normalized to solar flux units.
+   */
+  e10?: number;
+
+  /**
+   * E54 (E10-Bar), in x10-22 Watts per meter squared per Hertz, uses the past
+   * 54-days E10 values to determine the E10 average.
+   */
+  e54?: number;
+
+  /**
+   * Daily solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
+   */
+  f10?: number;
+
+  /**
+   * 54 day solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
+   */
+  f54?: number;
+
+  /**
+   * 81 day solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
+   */
+  f81?: number;
+
+  /**
+   * Array of individual power spectral density (PSD) frequencies of the signal, in
+   * megahertz. This array should correspond with the same-sized array of powers.
+   */
+  frequencies?: Array<number>;
+
+  /**
+   * The maximum measured gamma deflection during the kpDuration timespan. If
+   * kpDuration is null, a 3 hour duration should be assumed.
+   */
+  gamma?: number;
+
+  /**
+   * Unique identifier of the reporting sensor.
+   */
+  idSensor?: string;
+
+  /**
+   * The maximum measured K-Index at the associated station during the kpDuration
+   * timespan. The K-Index is a unitless measure (0 - 9) of the deviation in the
+   * Earth's magnetic field from normal at the station geographic location, with 0
+   * indicating the absence of geomagnetic disturbance, and 9 indicating the most
+   * significant disturbance. If kpDuration is null, a 3 hour duration should be
+   * assumed.
+   */
+  kIndex?: number;
+
+  /**
+   * The Planetary K-index (Kp) over the kpDuration timespan. The Kp-Index is the
+   * average K-Index for the entire Earth, utilizing a unitless scale (0-9, in
+   * incremenets of 1/3), with 0 indicating the absence of geomagnetic disturbance,
+   * and 9 indicating the most significant disturbance. If kpDuration is null, a 3
+   * hour duration should be assumed.
+   */
+  kp?: number;
+
+  /**
+   * The time, in hours, over which the K, Kp, and/or gamma index values are
+   * measured. If null, a span of 3 hours is assumed.
+   */
+  kpDuration?: number;
+
+  /**
+   * Daily M10.7 index for 100-110 km heating of O2 by solar photosphere. 160 nm SRC
+   * emissions in x10-22 Watts per meter squared per Hertz.
+   */
+  m10?: number;
+
+  /**
+   * 54 day M10.7 index for 100-110 km heating of O2 by solar photosphere. 160 nm SRC
+   * emissions in x10-22 Watts per meter squared per Hertz.
+   */
+  m54?: number;
+
+  /**
+   * The transmitted DCA mode of the record (1-3).
+   */
+  mode?: number;
+
+  /**
+   * The normalization factor that has already been applied to the index value prior
+   * to record ingest. Typically used to normalize the index value to a particular
+   * interval. Units of the normalization factor may vary depending on the provider
+   * of this data (REACH, POES, CEASE3, etc.).
+   */
+  normFactor?: number;
+
+  /**
+   * Observed baseline values of the frequencies specified in the frequencies field,
+   * in solar flux units. The baseline values will be used to help detect abnormal
+   * readings from the sun that might indicate a flare or other solar activity.
+   */
+  observedBaseline?: Array<number>;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * Optional identifier provided by the reporting source to indicate the sensor
+   * identifier which produced this data. This may be an internal identifier and not
+   * necessarily a valid sensor ID.
+   */
+  origSensorId?: string;
+
+  /**
+   * Array of individual power spectral density (PSD) powers of the signal, in watts.
+   * This array should correspond with the same-sized array of frequencies.
+   */
+  powers?: Array<number>;
+
+  /**
+   * The precedence of data in this record (O = Immediate, P = Priority, R = Routine,
+   * Y = Emergency, Z = Flash).
+   */
+  precedence?: 'O' | 'P' | 'R' | 'Y' | 'Z';
+
+  /**
+   * Optional URI location in the document repository of the raw file parsed by the
+   * system to produce this record. To download the raw file, prepend
+   * https://udl-hostname/scs/download?id= to this value.
+   */
+  rawFileURI?: string;
+
+  /**
+   * The timespan over which the associated radiation belt index is factored. If
+   * rbDuration is null, a 24 hour duration should be assumed. Note: rbDuration
+   * defines the length of the time window for this data record. The time window
+   * start time is defined by sgiDate, and the time window end time is defined by
+   * sgiDate plus rbDuration.
+   */
+  rbDuration?: number;
+
+  /**
+   * The value of the radiation belt index. This is the ratio of current intensity of
+   * a radiation belt to long-term average value. It's long-term average should be
+   * close to 1. Depending on the type of belt sensor, this ratio may measure Flux
+   * (number of particles / (cm^2 sec energy solid-angle)), dose rate (rad per
+   * second), or relative counts of particles per time (counts per second). The index
+   * value may also be normalized, the normalization value typically represents an
+   * average of the sensor measurements taken within a region over a given time
+   * interval. See the normFactor field for the specific normalization factor, if
+   * provided.
+   */
+  rbIndex?: number;
+
+  /**
+   * Region code for the associated radiation belt index. This is the code associated
+   * with the corresponding radiation belt location. See the provider card for
+   * reference to specific region code definitions.
+   */
+  rbRegionCode?: number;
+
+  /**
+   * Daily S10.7 index for >200 km heating of O by solar chromosphere. 28.4-30.4 nm
+   * emissions in x10-22 Watts per meter squared per Hertz.
+   */
+  s10?: number;
+
+  /**
+   * 54 day S10.7 index for >200 km heating of O by solar chromosphere. 28.4-30.4 nm
+   * emissions in x10-22 Watts per meter squared per Hertz.
+   */
+  s54?: number;
+
+  /**
+   * State indicating Issued (I), Nowcast (N), or Predicted (P) values for this
+   * record.
+   */
+  state?: 'I' | 'N' | 'P';
+
+  /**
+   * The name/location of the station that collected the geomagnetic data for this
+   * record.
+   */
+  stationName?: string;
+
+  /**
+   * Array containing the sine spherical-harmonic coefficients for Exospheric
+   * temperature (DTC) difference. Each array element corresponds to the positional
+   * index of the coeffDegree and coeffOrder arrays.
+   */
+  stce?: Array<number>;
+
+  /**
+   * Array containing the sine spherical harmonic coefficients for Inflection
+   * temperature (DTX) difference. Each array element corresponds to the positional
+   * index of the coeffDegree and coeffOrder arrays.
+   */
+  stci?: Array<number>;
+
+  /**
+   * Optional array of provider/source specific tags for this data, where each
+   * element is no longer than 32 characters, used for implementing data owner
+   * conditional access controls to restrict access to the data. Should be left null
+   * by data providers unless conditional access controls are coordinated with the
+   * UDL team.
+   */
+  tags?: Array<string>;
+
+  /**
+   * Optional identifier to track a commercial or marketplace transaction executed to
+   * produce this data.
+   */
+  transactionId?: string;
+
+  /**
+   * The type of data contained in this record (e.g. HASDM, JBH09, K-Index, PSD-dB,
+   * RBI, RFI-SFU, etc).
+   */
+  type?: string;
+
+  /**
+   * Daily Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
+   * 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
+   */
+  y10?: number;
+
+  /**
+   * 54 day Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
+   * 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
+   */
+  y54?: number;
+}
+
+export interface SgiUpdateParams {
+  /**
+   * Path param: The ID of the SGI record to update.
+   */
+  path_id: string;
+
+  /**
+   * Body param: Classification marking of the data in IC/CAPCO Portion-marked
+   * format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Body param: Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST
+   * data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Body param: ISO8601 UTC Time the data was received and processed from the
+   * source. Typically a source provides data for a date window with each
+   * transmission including past, present, and future predicted values.
+   */
+  effectiveDate: string;
+
+  /**
+   * Body param: ISO8601 UTC Time of the index value. This could be a past, current,
+   * or future predicted value. Note: sgiDate defines the start time of the time
+   * window for this data record.
+   */
+  sgiDate: string;
+
+  /**
+   * Body param: Source of the data.
+   */
+  source: string;
+
+  /**
+   * Body param: Unique identifier of the record, auto-generated by the system.
+   */
+  body_id?: string;
+
+  /**
+   * Body param: Signal analyzer's input attenuation level, in decibels. Attenuation
+   * is a setting on the hardware that measures the power of a signal.
+   */
+  analyzerAttenuation?: number;
+
+  /**
+   * Body param: Ap is the planetary geomagnetic 2 nT index (00-21 UT) for the
+   * timespan specified in apDuration. If apDuration is null, a 3 hour duration
+   * should be assumed.
+   */
+  ap?: number;
+
+  /**
+   * Body param: The time, in hours, for which the Ap index value is valid. If null,
+   * a span of 3 hours is assumed.
+   */
+  apDuration?: number;
+
+  /**
+   * Body param: Array containing the degree of the temperature coefficients. The
+   * coeffDegree and coeffOrder arrays must be the same length.
+   */
+  coeffDegree?: Array<number>;
+
+  /**
+   * Body param: Array containing the order of the temperature coefficients. The
+   * coeffDegree and coeffOrder arrays must be the same length.
+   */
+  coeffOrder?: Array<number>;
+
+  /**
+   * Body param: Array containing the cosine spherical-harmonic coefficients for
+   * Exospheric temperature (DTC) difference. Each array element corresponds to the
+   * positional index of the coeffDegree and coeffOrder arrays.
+   */
+  ctce?: Array<number>;
+
+  /**
+   * Body param: Array containing the cosine spherical-harmonic coefficients for
+   * Inflection temperature (DTX) difference. Each array element corresponds to the
+   * positional index of the coeffDegree and coeffOrder arrays.
+   */
+  ctci?: Array<number>;
+
+  /**
+   * Body param: Disturbance Storm Time geomagnetic index in nT.
+   */
+  dst?: number;
+
+  /**
+   * Body param: delta exospheric temperature correction in units of K.
+   */
+  dtc?: number;
+
+  /**
+   * Body param: Extreme Ultraviolet (EUV) proxy, E10.7, in x10-22 Watts per meter
+   * squared per Hertz, is the integrated solar EUV energy flux at the top of
+   * atmosphere and normalized to solar flux units.
+   */
+  e10?: number;
+
+  /**
+   * Body param: E54 (E10-Bar), in x10-22 Watts per meter squared per Hertz, uses the
+   * past 54-days E10 values to determine the E10 average.
+   */
+  e54?: number;
+
+  /**
+   * Body param: Daily solar 10.7 cm radio flux in x10-22 Watts per meter squared per
+   * Hertz.
+   */
+  f10?: number;
+
+  /**
+   * Body param: 54 day solar 10.7 cm radio flux in x10-22 Watts per meter squared
+   * per Hertz.
+   */
+  f54?: number;
+
+  /**
+   * Body param: 81 day solar 10.7 cm radio flux in x10-22 Watts per meter squared
+   * per Hertz.
+   */
+  f81?: number;
+
+  /**
+   * Body param: Array of individual power spectral density (PSD) frequencies of the
+   * signal, in megahertz. This array should correspond with the same-sized array of
+   * powers.
+   */
+  frequencies?: Array<number>;
+
+  /**
+   * Body param: The maximum measured gamma deflection during the kpDuration
+   * timespan. If kpDuration is null, a 3 hour duration should be assumed.
+   */
+  gamma?: number;
+
+  /**
+   * Body param: Unique identifier of the reporting sensor.
+   */
+  idSensor?: string;
+
+  /**
+   * Body param: The maximum measured K-Index at the associated station during the
+   * kpDuration timespan. The K-Index is a unitless measure (0 - 9) of the deviation
+   * in the Earth's magnetic field from normal at the station geographic location,
+   * with 0 indicating the absence of geomagnetic disturbance, and 9 indicating the
+   * most significant disturbance. If kpDuration is null, a 3 hour duration should be
+   * assumed.
+   */
+  kIndex?: number;
+
+  /**
+   * Body param: The Planetary K-index (Kp) over the kpDuration timespan. The
+   * Kp-Index is the average K-Index for the entire Earth, utilizing a unitless scale
+   * (0-9, in incremenets of 1/3), with 0 indicating the absence of geomagnetic
+   * disturbance, and 9 indicating the most significant disturbance. If kpDuration is
+   * null, a 3 hour duration should be assumed.
+   */
+  kp?: number;
+
+  /**
+   * Body param: The time, in hours, over which the K, Kp, and/or gamma index values
+   * are measured. If null, a span of 3 hours is assumed.
+   */
+  kpDuration?: number;
+
+  /**
+   * Body param: Daily M10.7 index for 100-110 km heating of O2 by solar photosphere.
+   * 160 nm SRC emissions in x10-22 Watts per meter squared per Hertz.
+   */
+  m10?: number;
+
+  /**
+   * Body param: 54 day M10.7 index for 100-110 km heating of O2 by solar
+   * photosphere. 160 nm SRC emissions in x10-22 Watts per meter squared per Hertz.
+   */
+  m54?: number;
+
+  /**
+   * Body param: The transmitted DCA mode of the record (1-3).
+   */
+  mode?: number;
+
+  /**
+   * Body param: The normalization factor that has already been applied to the index
+   * value prior to record ingest. Typically used to normalize the index value to a
+   * particular interval. Units of the normalization factor may vary depending on the
+   * provider of this data (REACH, POES, CEASE3, etc.).
+   */
+  normFactor?: number;
+
+  /**
+   * Body param: Observed baseline values of the frequencies specified in the
+   * frequencies field, in solar flux units. The baseline values will be used to help
+   * detect abnormal readings from the sun that might indicate a flare or other solar
+   * activity.
+   */
+  observedBaseline?: Array<number>;
+
+  /**
+   * Body param: Originating system or organization which produced the data, if
+   * different from the source. The origin may be different than the source if the
+   * source was a mediating system which forwarded the data on behalf of the origin
+   * system. If null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * Body param: Optional identifier provided by the reporting source to indicate the
+   * sensor identifier which produced this data. This may be an internal identifier
+   * and not necessarily a valid sensor ID.
+   */
+  origSensorId?: string;
+
+  /**
+   * Body param: Array of individual power spectral density (PSD) powers of the
+   * signal, in watts. This array should correspond with the same-sized array of
+   * frequencies.
+   */
+  powers?: Array<number>;
+
+  /**
+   * Body param: The precedence of data in this record (O = Immediate, P = Priority,
+   * R = Routine, Y = Emergency, Z = Flash).
+   */
+  precedence?: 'O' | 'P' | 'R' | 'Y' | 'Z';
+
+  /**
+   * Body param: Optional URI location in the document repository of the raw file
+   * parsed by the system to produce this record. To download the raw file, prepend
+   * https://udl-hostname/scs/download?id= to this value.
+   */
+  rawFileURI?: string;
+
+  /**
+   * Body param: The timespan over which the associated radiation belt index is
+   * factored. If rbDuration is null, a 24 hour duration should be assumed. Note:
+   * rbDuration defines the length of the time window for this data record. The time
+   * window start time is defined by sgiDate, and the time window end time is defined
+   * by sgiDate plus rbDuration.
+   */
+  rbDuration?: number;
+
+  /**
+   * Body param: The value of the radiation belt index. This is the ratio of current
+   * intensity of a radiation belt to long-term average value. It's long-term average
+   * should be close to 1. Depending on the type of belt sensor, this ratio may
+   * measure Flux (number of particles / (cm^2 sec energy solid-angle)), dose rate
+   * (rad per second), or relative counts of particles per time (counts per second).
+   * The index value may also be normalized, the normalization value typically
+   * represents an average of the sensor measurements taken within a region over a
+   * given time interval. See the normFactor field for the specific normalization
+   * factor, if provided.
+   */
+  rbIndex?: number;
+
+  /**
+   * Body param: Region code for the associated radiation belt index. This is the
+   * code associated with the corresponding radiation belt location. See the provider
+   * card for reference to specific region code definitions.
+   */
+  rbRegionCode?: number;
+
+  /**
+   * Body param: Daily S10.7 index for >200 km heating of O by solar chromosphere.
+   * 28.4-30.4 nm emissions in x10-22 Watts per meter squared per Hertz.
+   */
+  s10?: number;
+
+  /**
+   * Body param: 54 day S10.7 index for >200 km heating of O by solar chromosphere.
+   * 28.4-30.4 nm emissions in x10-22 Watts per meter squared per Hertz.
+   */
+  s54?: number;
+
+  /**
+   * Body param: State indicating Issued (I), Nowcast (N), or Predicted (P) values
+   * for this record.
+   */
+  state?: 'I' | 'N' | 'P';
+
+  /**
+   * Body param: The name/location of the station that collected the geomagnetic data
+   * for this record.
+   */
+  stationName?: string;
+
+  /**
+   * Body param: Array containing the sine spherical-harmonic coefficients for
+   * Exospheric temperature (DTC) difference. Each array element corresponds to the
+   * positional index of the coeffDegree and coeffOrder arrays.
+   */
+  stce?: Array<number>;
+
+  /**
+   * Body param: Array containing the sine spherical harmonic coefficients for
+   * Inflection temperature (DTX) difference. Each array element corresponds to the
+   * positional index of the coeffDegree and coeffOrder arrays.
+   */
+  stci?: Array<number>;
+
+  /**
+   * Body param: Optional array of provider/source specific tags for this data, where
+   * each element is no longer than 32 characters, used for implementing data owner
+   * conditional access controls to restrict access to the data. Should be left null
+   * by data providers unless conditional access controls are coordinated with the
+   * UDL team.
+   */
+  tags?: Array<string>;
+
+  /**
+   * Body param: Optional identifier to track a commercial or marketplace transaction
+   * executed to produce this data.
+   */
+  transactionId?: string;
+
+  /**
+   * Body param: The type of data contained in this record (e.g. HASDM, JBH09,
+   * K-Index, PSD-dB, RBI, RFI-SFU, etc).
+   */
+  type?: string;
+
+  /**
+   * Body param: Daily Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar
+   * coronal. 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared
+   * per Hertz.
+   */
+  y10?: number;
+
+  /**
+   * Body param: 54 day Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar
+   * coronal. 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared
+   * per Hertz.
+   */
+  y54?: number;
+}
+
+export interface SgiListParams {
+  /**
+   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
+   * the data was received and processed from the source. Typically a source provides
+   * solar data for a date window with each transmission including past, present, and
+   * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  effectiveDate?: string;
+
+  /**
+   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
+   * of the index value. This could be a past, current, or future predicted value.
+   * Note: sgiDate defines the start time of the time window for this data record.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  sgiDate?: string;
+}
+
+export interface SgiCountParams {
+  /**
+   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
+   * the data was received and processed from the source. Typically a source provides
+   * solar data for a date window with each transmission including past, present, and
+   * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  effectiveDate?: string;
+
+  /**
+   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
+   * of the index value. This could be a past, current, or future predicted value.
+   * Note: sgiDate defines the start time of the time window for this data record.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  sgiDate?: string;
+}
+
+export type SgiCreateBulkParams = Array<SgiCreateBulkParams.Body>;
+
+export namespace SgiCreateBulkParams {
+  /**
+   * Model representation of space weather/solar, geomagnetic, and radiation belt
+   * indices.
+   */
+  export interface Body {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * ISO8601 UTC Time the data was received and processed from the source. Typically
+     * a source provides data for a date window with each transmission including past,
+     * present, and future predicted values.
+     */
+    effectiveDate: string;
+
+    /**
+     * ISO8601 UTC Time of the index value. This could be a past, current, or future
+     * predicted value. Note: sgiDate defines the start time of the time window for
+     * this data record.
+     */
+    sgiDate: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Signal analyzer's input attenuation level, in decibels. Attenuation is a setting
+     * on the hardware that measures the power of a signal.
+     */
+    analyzerAttenuation?: number;
+
+    /**
+     * Ap is the planetary geomagnetic 2 nT index (00-21 UT) for the timespan specified
+     * in apDuration. If apDuration is null, a 3 hour duration should be assumed.
+     */
+    ap?: number;
+
+    /**
+     * The time, in hours, for which the Ap index value is valid. If null, a span of 3
+     * hours is assumed.
+     */
+    apDuration?: number;
+
+    /**
+     * Array containing the degree of the temperature coefficients. The coeffDegree and
+     * coeffOrder arrays must be the same length.
+     */
+    coeffDegree?: Array<number>;
+
+    /**
+     * Array containing the order of the temperature coefficients. The coeffDegree and
+     * coeffOrder arrays must be the same length.
+     */
+    coeffOrder?: Array<number>;
+
+    /**
+     * Array containing the cosine spherical-harmonic coefficients for Exospheric
+     * temperature (DTC) difference. Each array element corresponds to the positional
+     * index of the coeffDegree and coeffOrder arrays.
+     */
+    ctce?: Array<number>;
+
+    /**
+     * Array containing the cosine spherical-harmonic coefficients for Inflection
+     * temperature (DTX) difference. Each array element corresponds to the positional
+     * index of the coeffDegree and coeffOrder arrays.
+     */
+    ctci?: Array<number>;
+
+    /**
+     * Disturbance Storm Time geomagnetic index in nT.
+     */
+    dst?: number;
+
+    /**
+     * delta exospheric temperature correction in units of K.
+     */
+    dtc?: number;
+
+    /**
+     * Extreme Ultraviolet (EUV) proxy, E10.7, in x10-22 Watts per meter squared per
+     * Hertz, is the integrated solar EUV energy flux at the top of atmosphere and
+     * normalized to solar flux units.
+     */
+    e10?: number;
+
+    /**
+     * E54 (E10-Bar), in x10-22 Watts per meter squared per Hertz, uses the past
+     * 54-days E10 values to determine the E10 average.
+     */
+    e54?: number;
+
+    /**
+     * Daily solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
+     */
+    f10?: number;
+
+    /**
+     * 54 day solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
+     */
+    f54?: number;
+
+    /**
+     * 81 day solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
+     */
+    f81?: number;
+
+    /**
+     * Array of individual power spectral density (PSD) frequencies of the signal, in
+     * megahertz. This array should correspond with the same-sized array of powers.
+     */
+    frequencies?: Array<number>;
+
+    /**
+     * The maximum measured gamma deflection during the kpDuration timespan. If
+     * kpDuration is null, a 3 hour duration should be assumed.
+     */
+    gamma?: number;
+
+    /**
+     * Unique identifier of the reporting sensor.
+     */
+    idSensor?: string;
+
+    /**
+     * The maximum measured K-Index at the associated station during the kpDuration
+     * timespan. The K-Index is a unitless measure (0 - 9) of the deviation in the
+     * Earth's magnetic field from normal at the station geographic location, with 0
+     * indicating the absence of geomagnetic disturbance, and 9 indicating the most
+     * significant disturbance. If kpDuration is null, a 3 hour duration should be
+     * assumed.
+     */
+    kIndex?: number;
+
+    /**
+     * The Planetary K-index (Kp) over the kpDuration timespan. The Kp-Index is the
+     * average K-Index for the entire Earth, utilizing a unitless scale (0-9, in
+     * incremenets of 1/3), with 0 indicating the absence of geomagnetic disturbance,
+     * and 9 indicating the most significant disturbance. If kpDuration is null, a 3
+     * hour duration should be assumed.
+     */
+    kp?: number;
+
+    /**
+     * The time, in hours, over which the K, Kp, and/or gamma index values are
+     * measured. If null, a span of 3 hours is assumed.
+     */
+    kpDuration?: number;
+
+    /**
+     * Daily M10.7 index for 100-110 km heating of O2 by solar photosphere. 160 nm SRC
+     * emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    m10?: number;
+
+    /**
+     * 54 day M10.7 index for 100-110 km heating of O2 by solar photosphere. 160 nm SRC
+     * emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    m54?: number;
+
+    /**
+     * The transmitted DCA mode of the record (1-3).
+     */
+    mode?: number;
+
+    /**
+     * The normalization factor that has already been applied to the index value prior
+     * to record ingest. Typically used to normalize the index value to a particular
+     * interval. Units of the normalization factor may vary depending on the provider
+     * of this data (REACH, POES, CEASE3, etc.).
+     */
+    normFactor?: number;
+
+    /**
+     * Observed baseline values of the frequencies specified in the frequencies field,
+     * in solar flux units. The baseline values will be used to help detect abnormal
+     * readings from the sun that might indicate a flare or other solar activity.
+     */
+    observedBaseline?: Array<number>;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * Optional identifier provided by the reporting source to indicate the sensor
+     * identifier which produced this data. This may be an internal identifier and not
+     * necessarily a valid sensor ID.
+     */
+    origSensorId?: string;
+
+    /**
+     * Array of individual power spectral density (PSD) powers of the signal, in watts.
+     * This array should correspond with the same-sized array of frequencies.
+     */
+    powers?: Array<number>;
+
+    /**
+     * The precedence of data in this record (O = Immediate, P = Priority, R = Routine,
+     * Y = Emergency, Z = Flash).
+     */
+    precedence?: 'O' | 'P' | 'R' | 'Y' | 'Z';
+
+    /**
+     * Optional URI location in the document repository of the raw file parsed by the
+     * system to produce this record. To download the raw file, prepend
+     * https://udl-hostname/scs/download?id= to this value.
+     */
+    rawFileURI?: string;
+
+    /**
+     * The timespan over which the associated radiation belt index is factored. If
+     * rbDuration is null, a 24 hour duration should be assumed. Note: rbDuration
+     * defines the length of the time window for this data record. The time window
+     * start time is defined by sgiDate, and the time window end time is defined by
+     * sgiDate plus rbDuration.
+     */
+    rbDuration?: number;
+
+    /**
+     * The value of the radiation belt index. This is the ratio of current intensity of
+     * a radiation belt to long-term average value. It's long-term average should be
+     * close to 1. Depending on the type of belt sensor, this ratio may measure Flux
+     * (number of particles / (cm^2 sec energy solid-angle)), dose rate (rad per
+     * second), or relative counts of particles per time (counts per second). The index
+     * value may also be normalized, the normalization value typically represents an
+     * average of the sensor measurements taken within a region over a given time
+     * interval. See the normFactor field for the specific normalization factor, if
+     * provided.
+     */
+    rbIndex?: number;
+
+    /**
+     * Region code for the associated radiation belt index. This is the code associated
+     * with the corresponding radiation belt location. See the provider card for
+     * reference to specific region code definitions.
+     */
+    rbRegionCode?: number;
+
+    /**
+     * Daily S10.7 index for >200 km heating of O by solar chromosphere. 28.4-30.4 nm
+     * emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    s10?: number;
+
+    /**
+     * 54 day S10.7 index for >200 km heating of O by solar chromosphere. 28.4-30.4 nm
+     * emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    s54?: number;
+
+    /**
+     * State indicating Issued (I), Nowcast (N), or Predicted (P) values for this
+     * record.
+     */
+    state?: 'I' | 'N' | 'P';
+
+    /**
+     * The name/location of the station that collected the geomagnetic data for this
+     * record.
+     */
+    stationName?: string;
+
+    /**
+     * Array containing the sine spherical-harmonic coefficients for Exospheric
+     * temperature (DTC) difference. Each array element corresponds to the positional
+     * index of the coeffDegree and coeffOrder arrays.
+     */
+    stce?: Array<number>;
+
+    /**
+     * Array containing the sine spherical harmonic coefficients for Inflection
+     * temperature (DTX) difference. Each array element corresponds to the positional
+     * index of the coeffDegree and coeffOrder arrays.
+     */
+    stci?: Array<number>;
+
+    /**
+     * Optional array of provider/source specific tags for this data, where each
+     * element is no longer than 32 characters, used for implementing data owner
+     * conditional access controls to restrict access to the data. Should be left null
+     * by data providers unless conditional access controls are coordinated with the
+     * UDL team.
+     */
+    tags?: Array<string>;
+
+    /**
+     * Optional identifier to track a commercial or marketplace transaction executed to
+     * produce this data.
+     */
+    transactionId?: string;
+
+    /**
+     * The type of data contained in this record (e.g. HASDM, JBH09, K-Index, PSD-dB,
+     * RBI, RFI-SFU, etc).
+     */
+    type?: string;
+
+    /**
+     * Daily Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
+     * 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    y10?: number;
+
+    /**
+     * 54 day Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
+     * 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    y54?: number;
+  }
+}
+
+export type SgiFileCreateParams = Array<SgiFileCreateParams.Body>;
+
+export namespace SgiFileCreateParams {
+  /**
+   * Model representation of space weather/solar, geomagnetic, and radiation belt
+   * indices.
+   */
+  export interface Body {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * ISO8601 UTC Time the data was received and processed from the source. Typically
+     * a source provides data for a date window with each transmission including past,
+     * present, and future predicted values.
+     */
+    effectiveDate: string;
+
+    /**
+     * ISO8601 UTC Time of the index value. This could be a past, current, or future
+     * predicted value. Note: sgiDate defines the start time of the time window for
+     * this data record.
+     */
+    sgiDate: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Signal analyzer's input attenuation level, in decibels. Attenuation is a setting
+     * on the hardware that measures the power of a signal.
+     */
+    analyzerAttenuation?: number;
+
+    /**
+     * Ap is the planetary geomagnetic 2 nT index (00-21 UT) for the timespan specified
+     * in apDuration. If apDuration is null, a 3 hour duration should be assumed.
+     */
+    ap?: number;
+
+    /**
+     * The time, in hours, for which the Ap index value is valid. If null, a span of 3
+     * hours is assumed.
+     */
+    apDuration?: number;
+
+    /**
+     * Array containing the degree of the temperature coefficients. The coeffDegree and
+     * coeffOrder arrays must be the same length.
+     */
+    coeffDegree?: Array<number>;
+
+    /**
+     * Array containing the order of the temperature coefficients. The coeffDegree and
+     * coeffOrder arrays must be the same length.
+     */
+    coeffOrder?: Array<number>;
+
+    /**
+     * Array containing the cosine spherical-harmonic coefficients for Exospheric
+     * temperature (DTC) difference. Each array element corresponds to the positional
+     * index of the coeffDegree and coeffOrder arrays.
+     */
+    ctce?: Array<number>;
+
+    /**
+     * Array containing the cosine spherical-harmonic coefficients for Inflection
+     * temperature (DTX) difference. Each array element corresponds to the positional
+     * index of the coeffDegree and coeffOrder arrays.
+     */
+    ctci?: Array<number>;
+
+    /**
+     * Disturbance Storm Time geomagnetic index in nT.
+     */
+    dst?: number;
+
+    /**
+     * delta exospheric temperature correction in units of K.
+     */
+    dtc?: number;
+
+    /**
+     * Extreme Ultraviolet (EUV) proxy, E10.7, in x10-22 Watts per meter squared per
+     * Hertz, is the integrated solar EUV energy flux at the top of atmosphere and
+     * normalized to solar flux units.
+     */
+    e10?: number;
+
+    /**
+     * E54 (E10-Bar), in x10-22 Watts per meter squared per Hertz, uses the past
+     * 54-days E10 values to determine the E10 average.
+     */
+    e54?: number;
+
+    /**
+     * Daily solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
+     */
+    f10?: number;
+
+    /**
+     * 54 day solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
+     */
+    f54?: number;
+
+    /**
+     * 81 day solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
+     */
+    f81?: number;
+
+    /**
+     * Array of individual power spectral density (PSD) frequencies of the signal, in
+     * megahertz. This array should correspond with the same-sized array of powers.
+     */
+    frequencies?: Array<number>;
+
+    /**
+     * The maximum measured gamma deflection during the kpDuration timespan. If
+     * kpDuration is null, a 3 hour duration should be assumed.
+     */
+    gamma?: number;
+
+    /**
+     * Unique identifier of the reporting sensor.
+     */
+    idSensor?: string;
+
+    /**
+     * The maximum measured K-Index at the associated station during the kpDuration
+     * timespan. The K-Index is a unitless measure (0 - 9) of the deviation in the
+     * Earth's magnetic field from normal at the station geographic location, with 0
+     * indicating the absence of geomagnetic disturbance, and 9 indicating the most
+     * significant disturbance. If kpDuration is null, a 3 hour duration should be
+     * assumed.
+     */
+    kIndex?: number;
+
+    /**
+     * The Planetary K-index (Kp) over the kpDuration timespan. The Kp-Index is the
+     * average K-Index for the entire Earth, utilizing a unitless scale (0-9, in
+     * incremenets of 1/3), with 0 indicating the absence of geomagnetic disturbance,
+     * and 9 indicating the most significant disturbance. If kpDuration is null, a 3
+     * hour duration should be assumed.
+     */
+    kp?: number;
+
+    /**
+     * The time, in hours, over which the K, Kp, and/or gamma index values are
+     * measured. If null, a span of 3 hours is assumed.
+     */
+    kpDuration?: number;
+
+    /**
+     * Daily M10.7 index for 100-110 km heating of O2 by solar photosphere. 160 nm SRC
+     * emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    m10?: number;
+
+    /**
+     * 54 day M10.7 index for 100-110 km heating of O2 by solar photosphere. 160 nm SRC
+     * emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    m54?: number;
+
+    /**
+     * The transmitted DCA mode of the record (1-3).
+     */
+    mode?: number;
+
+    /**
+     * The normalization factor that has already been applied to the index value prior
+     * to record ingest. Typically used to normalize the index value to a particular
+     * interval. Units of the normalization factor may vary depending on the provider
+     * of this data (REACH, POES, CEASE3, etc.).
+     */
+    normFactor?: number;
+
+    /**
+     * Observed baseline values of the frequencies specified in the frequencies field,
+     * in solar flux units. The baseline values will be used to help detect abnormal
+     * readings from the sun that might indicate a flare or other solar activity.
+     */
+    observedBaseline?: Array<number>;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * Optional identifier provided by the reporting source to indicate the sensor
+     * identifier which produced this data. This may be an internal identifier and not
+     * necessarily a valid sensor ID.
+     */
+    origSensorId?: string;
+
+    /**
+     * Array of individual power spectral density (PSD) powers of the signal, in watts.
+     * This array should correspond with the same-sized array of frequencies.
+     */
+    powers?: Array<number>;
+
+    /**
+     * The precedence of data in this record (O = Immediate, P = Priority, R = Routine,
+     * Y = Emergency, Z = Flash).
+     */
+    precedence?: 'O' | 'P' | 'R' | 'Y' | 'Z';
+
+    /**
+     * Optional URI location in the document repository of the raw file parsed by the
+     * system to produce this record. To download the raw file, prepend
+     * https://udl-hostname/scs/download?id= to this value.
+     */
+    rawFileURI?: string;
+
+    /**
+     * The timespan over which the associated radiation belt index is factored. If
+     * rbDuration is null, a 24 hour duration should be assumed. Note: rbDuration
+     * defines the length of the time window for this data record. The time window
+     * start time is defined by sgiDate, and the time window end time is defined by
+     * sgiDate plus rbDuration.
+     */
+    rbDuration?: number;
+
+    /**
+     * The value of the radiation belt index. This is the ratio of current intensity of
+     * a radiation belt to long-term average value. It's long-term average should be
+     * close to 1. Depending on the type of belt sensor, this ratio may measure Flux
+     * (number of particles / (cm^2 sec energy solid-angle)), dose rate (rad per
+     * second), or relative counts of particles per time (counts per second). The index
+     * value may also be normalized, the normalization value typically represents an
+     * average of the sensor measurements taken within a region over a given time
+     * interval. See the normFactor field for the specific normalization factor, if
+     * provided.
+     */
+    rbIndex?: number;
+
+    /**
+     * Region code for the associated radiation belt index. This is the code associated
+     * with the corresponding radiation belt location. See the provider card for
+     * reference to specific region code definitions.
+     */
+    rbRegionCode?: number;
+
+    /**
+     * Daily S10.7 index for >200 km heating of O by solar chromosphere. 28.4-30.4 nm
+     * emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    s10?: number;
+
+    /**
+     * 54 day S10.7 index for >200 km heating of O by solar chromosphere. 28.4-30.4 nm
+     * emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    s54?: number;
+
+    /**
+     * State indicating Issued (I), Nowcast (N), or Predicted (P) values for this
+     * record.
+     */
+    state?: 'I' | 'N' | 'P';
+
+    /**
+     * The name/location of the station that collected the geomagnetic data for this
+     * record.
+     */
+    stationName?: string;
+
+    /**
+     * Array containing the sine spherical-harmonic coefficients for Exospheric
+     * temperature (DTC) difference. Each array element corresponds to the positional
+     * index of the coeffDegree and coeffOrder arrays.
+     */
+    stce?: Array<number>;
+
+    /**
+     * Array containing the sine spherical harmonic coefficients for Inflection
+     * temperature (DTX) difference. Each array element corresponds to the positional
+     * index of the coeffDegree and coeffOrder arrays.
+     */
+    stci?: Array<number>;
+
+    /**
+     * Optional array of provider/source specific tags for this data, where each
+     * element is no longer than 32 characters, used for implementing data owner
+     * conditional access controls to restrict access to the data. Should be left null
+     * by data providers unless conditional access controls are coordinated with the
+     * UDL team.
+     */
+    tags?: Array<string>;
+
+    /**
+     * Optional identifier to track a commercial or marketplace transaction executed to
+     * produce this data.
+     */
+    transactionId?: string;
+
+    /**
+     * The type of data contained in this record (e.g. HASDM, JBH09, K-Index, PSD-dB,
+     * RBI, RFI-SFU, etc).
+     */
+    type?: string;
+
+    /**
+     * Daily Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
+     * 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    y10?: number;
+
+    /**
+     * 54 day Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
+     * 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
+     */
+    y54?: number;
+  }
+}
+
+export interface SgiGetSGIDataByEffectiveAsOfDateParams {
+  /**
+   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
+   * the data was received and processed from the source. Typically a source provides
+   * solar data for a date window with each transmission including past, present, and
+   * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  effectiveDate?: string;
+
+  /**
+   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
+   * of the index value. This could be a past, current, or future predicted value.
+   * Note: sgiDate defines the start time of the time window for this data record.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  sgiDate?: string;
+}
+
+export interface SgiTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
+   * the data was received and processed from the source. Typically a source provides
+   * solar data for a date window with each transmission including past, present, and
+   * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  effectiveDate?: string;
+
+  /**
+   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
+   * of the index value. This could be a past, current, or future predicted value.
+   * Note: sgiDate defines the start time of the time window for this data record.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  sgiDate?: string;
+}
+
+Sgi.History = History;
+
+export declare namespace Sgi {
+  export {
+    type SgiListResponse as SgiListResponse,
+    type SgiCountResponse as SgiCountResponse,
+    type SgiTupleResponse as SgiTupleResponse,
+    type SgiCreateParams as SgiCreateParams,
+    type SgiUpdateParams as SgiUpdateParams,
+    type SgiListParams as SgiListParams,
+    type SgiCountParams as SgiCountParams,
+    type SgiCreateBulkParams as SgiCreateBulkParams,
+    type SgiFileCreateParams as SgiFileCreateParams,
+    type SgiGetSGIDataByEffectiveAsOfDateParams as SgiGetSGIDataByEffectiveAsOfDateParams,
+    type SgiTupleParams as SgiTupleParams,
+  };
+
+  export {
+    History as History,
+    type HistoryListResponse as HistoryListResponse,
+    type HistoryCountResponse as HistoryCountResponse,
+    type HistoryListParams as HistoryListParams,
+    type HistoryAodrParams as HistoryAodrParams,
+    type HistoryCountParams as HistoryCountParams,
+  };
+}

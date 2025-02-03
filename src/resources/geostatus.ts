@@ -1,0 +1,587 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../resource';
+import * as Core from '../core';
+import * as HistoryAPI from './udl/geostatus/history';
+
+export class Geostatus extends APIResource {
+  /**
+   * Service operation to take a single GEOStatus record as a POST body and ingest
+   * into the database. This operation is not intended to be used for automated feeds
+   * into UDL. Data providers should contact the UDL team for specific role
+   * assignments and for instructions on setting up a permanent feed through an
+   * alternate mechanism.
+   */
+  create(body: GeostatusCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/udl/geostatus', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data by a variety of query parameters not
+   * specified in this API documentation. See the queryhelp operation
+   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+   * parameter information.
+   */
+  list(query: GeostatusListParams, options?: Core.RequestOptions): Core.APIPromise<GeostatusListResponse> {
+    return this._client.get('/udl/geostatus', { query, ...options });
+  }
+
+  /**
+   * Service operation to return the count of records satisfying the specified query
+   * parameters. This operation is useful to determine how many records pass a
+   * particular query criteria without retrieving large amounts of data. See the
+   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+   * valid/required query parameter information.
+   */
+  count(query: GeostatusCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.get('/udl/geostatus/count', {
+      query,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation intended for initial integration only, to take a list of
+   * GEOStatus records as a POST body and ingest into the database. This operation is
+   * not intended to be used for automated feeds into UDL. Data providers should
+   * contact the UDL team for specific role assignments and for instructions on
+   * setting up a permanent feed through an alternate mechanism.
+   */
+  createBulk(body: GeostatusCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/udl/geostatus/createBulk', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to get a single GEOStatus record by its unique ID passed as a
+   * path parameter.
+   */
+  get(id: string, options?: Core.RequestOptions): Core.APIPromise<HistoryAPI.GeoStatusFull> {
+    return this._client.get(`/udl/geostatus/${id}`, options);
+  }
+
+  /**
+   * Service operation to provide detailed information on available dynamic query
+   * parameters for a particular data type.
+   */
+  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/udl/geostatus/queryhelp', {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to dynamically query data and only return specified
+   * columns/fields. Requested columns are specified by the 'columns' query parameter
+   * and should be a comma separated list of valid fields for the specified data
+   * type. classificationMarking is always returned. See the queryhelp operation
+   * (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+   * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+   * hours would return the satNo and period of elsets with an epoch greater than 5
+   * hours ago.
+   */
+  tuple(query: GeostatusTupleParams, options?: Core.RequestOptions): Core.APIPromise<GeostatusTupleResponse> {
+    return this._client.get('/udl/geostatus/tuple', { query, ...options });
+  }
+}
+
+export type GeostatusListResponse = Array<GeostatusListResponse.GeostatusListResponseItem>;
+
+export namespace GeostatusListResponse {
+  /**
+   * Information for the specified on-orbit GEO spacecraft, including status,
+   * expected longitude limits, and drift rates.
+   */
+  export interface GeostatusListResponseItem {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Indicates the confidence level in the entry. (Low, Medium, High).
+     */
+    confidenceLevel?: string;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * Unique identifier of the object on-orbit object.
+     */
+    idOnOrbit?: string;
+
+    /**
+     * Maximum longitude for this object. WGS-84 longitude of the spacecraft position,
+     * in degrees. 0 to 360 degrees.
+     */
+    longitudeMax?: number;
+
+    /**
+     * Minimum longitude for this object. WGS-84 longitude of the spacecraft position,
+     * in degrees. 0 to 360 degrees.
+     */
+    longitudeMin?: number;
+
+    /**
+     * Corrective or overriding long term trend for longitudinal change in degrees/day.
+     */
+    longitudeRate?: number;
+
+    /**
+     * Lost space object indicator. (True or False).
+     */
+    lostFlag?: boolean;
+
+    /**
+     * Space object status. (Active, Dead, Unknown).
+     */
+    objectStatus?: string;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * Optional identifier provided to indicate the target onorbit. This may be an
+     * internal identifier and not necessarily map to a valid satellite number.
+     */
+    origObjectId?: string;
+
+    /**
+     * Geosynchronous plane changing status. (Current, Never, Former, Future).
+     */
+    planeChangeStatus?: string;
+
+    /**
+     * Optional URI location in the document repository of the raw file parsed by the
+     * system to produce this record. To download the raw file, prepend
+     * https://udl-hostname/scs/download?id= to this value.
+     */
+    rawFileURI?: string;
+
+    /**
+     * Objects displacement from geostationary orbit in deg^2/day^2.
+     */
+    relativeEnergy?: number;
+
+    /**
+     * Satellite/catalog number of the target on-orbit object.
+     */
+    satNo?: number;
+
+    /**
+     * Sine of inclination times the cosine of right ascension.
+     */
+    sc?: number;
+
+    /**
+     * Semi-annual correction. (True or False).
+     */
+    semiAnnualCorrFlag?: boolean;
+
+    /**
+     * Sine of inclination times the sine of right ascension.
+     */
+    ss?: number;
+
+    /**
+     * Indicates the trough (gravity well) or drift direction of a space object:
+     *
+     * 255 - Influenced by 255° longitude trough.
+     *
+     * 75 - Influenced by 75° longitude trough.
+     *
+     * Both - Oscillating between both 255 and 75 troughs.
+     *
+     * East - Drifting eastward; large relative energy and a period less than 1436.1
+     * minutes.
+     *
+     * West - Drifting westward; large relative energy and a period greater than 1436.2
+     * minutes.
+     */
+    troughType?: string;
+  }
+}
+
+export type GeostatusCountResponse = string;
+
+export type GeostatusTupleResponse = Array<HistoryAPI.GeoStatusFull>;
+
+export interface GeostatusCreateParams {
+  /**
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
+   */
+  classificationMarking: string;
+
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Source of the data.
+   */
+  source: string;
+
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
+
+  /**
+   * Indicates the confidence level in the entry. (Low, Medium, High).
+   */
+  confidenceLevel?: string;
+
+  /**
+   * Maximum longitude for this object. WGS-84 longitude of the spacecraft position,
+   * in degrees. 0 to 360 degrees.
+   */
+  longitudeMax?: number;
+
+  /**
+   * Minimum longitude for this object. WGS-84 longitude of the spacecraft position,
+   * in degrees. 0 to 360 degrees.
+   */
+  longitudeMin?: number;
+
+  /**
+   * Corrective or overriding long term trend for longitudinal change in degrees/day.
+   */
+  longitudeRate?: number;
+
+  /**
+   * Lost space object indicator. (True or False).
+   */
+  lostFlag?: boolean;
+
+  /**
+   * Space object status. (Active, Dead, Unknown).
+   */
+  objectStatus?: string;
+
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
+
+  /**
+   * Optional identifier provided to indicate the target onorbit. This may be an
+   * internal identifier and not necessarily map to a valid satellite number.
+   */
+  origObjectId?: string;
+
+  /**
+   * Geosynchronous plane changing status. (Current, Never, Former, Future).
+   */
+  planeChangeStatus?: string;
+
+  /**
+   * Optional URI location in the document repository of the raw file parsed by the
+   * system to produce this record. To download the raw file, prepend
+   * https://udl-hostname/scs/download?id= to this value.
+   */
+  rawFileURI?: string;
+
+  /**
+   * Objects displacement from geostationary orbit in deg^2/day^2.
+   */
+  relativeEnergy?: number;
+
+  /**
+   * Satellite/catalog number of the target on-orbit object.
+   */
+  satNo?: number;
+
+  /**
+   * Sine of inclination times the cosine of right ascension.
+   */
+  sc?: number;
+
+  /**
+   * Semi-annual correction. (True or False).
+   */
+  semiAnnualCorrFlag?: boolean;
+
+  /**
+   * Sine of inclination times the sine of right ascension.
+   */
+  ss?: number;
+
+  /**
+   * Indicates the trough (gravity well) or drift direction of a space object:
+   *
+   * 255 - Influenced by 255° longitude trough.
+   *
+   * 75 - Influenced by 75° longitude trough.
+   *
+   * Both - Oscillating between both 255 and 75 troughs.
+   *
+   * East - Drifting eastward; large relative energy and a period less than 1436.1
+   * minutes.
+   *
+   * West - Drifting westward; large relative energy and a period greater than 1436.2
+   * minutes.
+   */
+  troughType?: string;
+}
+
+export interface GeostatusListParams {
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  createdAt: string;
+}
+
+export interface GeostatusCountParams {
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  createdAt: string;
+}
+
+export type GeostatusCreateBulkParams = Array<GeostatusCreateBulkParams.Body>;
+
+export namespace GeostatusCreateBulkParams {
+  /**
+   * Information for the specified on-orbit GEO spacecraft, including status,
+   * expected longitude limits, and drift rates.
+   */
+  export interface Body {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    id?: string;
+
+    /**
+     * Indicates the confidence level in the entry. (Low, Medium, High).
+     */
+    confidenceLevel?: string;
+
+    /**
+     * Maximum longitude for this object. WGS-84 longitude of the spacecraft position,
+     * in degrees. 0 to 360 degrees.
+     */
+    longitudeMax?: number;
+
+    /**
+     * Minimum longitude for this object. WGS-84 longitude of the spacecraft position,
+     * in degrees. 0 to 360 degrees.
+     */
+    longitudeMin?: number;
+
+    /**
+     * Corrective or overriding long term trend for longitudinal change in degrees/day.
+     */
+    longitudeRate?: number;
+
+    /**
+     * Lost space object indicator. (True or False).
+     */
+    lostFlag?: boolean;
+
+    /**
+     * Space object status. (Active, Dead, Unknown).
+     */
+    objectStatus?: string;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * Optional identifier provided to indicate the target onorbit. This may be an
+     * internal identifier and not necessarily map to a valid satellite number.
+     */
+    origObjectId?: string;
+
+    /**
+     * Geosynchronous plane changing status. (Current, Never, Former, Future).
+     */
+    planeChangeStatus?: string;
+
+    /**
+     * Optional URI location in the document repository of the raw file parsed by the
+     * system to produce this record. To download the raw file, prepend
+     * https://udl-hostname/scs/download?id= to this value.
+     */
+    rawFileURI?: string;
+
+    /**
+     * Objects displacement from geostationary orbit in deg^2/day^2.
+     */
+    relativeEnergy?: number;
+
+    /**
+     * Satellite/catalog number of the target on-orbit object.
+     */
+    satNo?: number;
+
+    /**
+     * Sine of inclination times the cosine of right ascension.
+     */
+    sc?: number;
+
+    /**
+     * Semi-annual correction. (True or False).
+     */
+    semiAnnualCorrFlag?: boolean;
+
+    /**
+     * Sine of inclination times the sine of right ascension.
+     */
+    ss?: number;
+
+    /**
+     * Indicates the trough (gravity well) or drift direction of a space object:
+     *
+     * 255 - Influenced by 255° longitude trough.
+     *
+     * 75 - Influenced by 75° longitude trough.
+     *
+     * Both - Oscillating between both 255 and 75 troughs.
+     *
+     * East - Drifting eastward; large relative energy and a period less than 1436.1
+     * minutes.
+     *
+     * West - Drifting westward; large relative energy and a period greater than 1436.2
+     * minutes.
+     */
+    troughType?: string;
+  }
+}
+
+export interface GeostatusTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  createdAt: string;
+}
+
+export declare namespace Geostatus {
+  export {
+    type GeostatusListResponse as GeostatusListResponse,
+    type GeostatusCountResponse as GeostatusCountResponse,
+    type GeostatusTupleResponse as GeostatusTupleResponse,
+    type GeostatusCreateParams as GeostatusCreateParams,
+    type GeostatusListParams as GeostatusListParams,
+    type GeostatusCountParams as GeostatusCountParams,
+    type GeostatusCreateBulkParams as GeostatusCreateBulkParams,
+    type GeostatusTupleParams as GeostatusTupleParams,
+  };
+}

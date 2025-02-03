@@ -10,9 +10,9 @@ export class Airloadplans extends APIResource {
    * assistance.
    */
   update(params: AirloadplanUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/airloadplan/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -23,9 +23,8 @@ export class Airloadplans extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(params: AirloadplanDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/airloadplan/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/airloadplan/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -34,14 +33,9 @@ export class Airloadplans extends APIResource {
 
 export interface AirloadplanUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the AirLoadPlan to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the AirLoadPlan to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -66,7 +60,7 @@ export interface AirloadplanUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: The current estimated time that the aircraft is planned to depart,
@@ -214,18 +208,6 @@ export interface AirloadplanUpdateParams {
    * Body param: The weight of the cargo on board the aircraft, in kilograms.
    */
   cargoWeight?: number;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: The number of crew members on the aircraft.
@@ -381,12 +363,6 @@ export interface AirloadplanUpdateParams {
   origin?: string;
 
   /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Body param: Number of pallet positions on the aircraft.
    */
   ppOnboard?: number;
@@ -414,13 +390,6 @@ export interface AirloadplanUpdateParams {
   seatsReleased?: number;
 
   /**
-   * Body param: The source data library from which this record was received. This
-   * could be a remote or tactical UDL or another data library. If null, the record
-   * should be assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
-
-  /**
    * Body param: The tail number of the aircraft supporting this load plan.
    */
   tailNumber?: string;
@@ -430,18 +399,6 @@ export interface AirloadplanUpdateParams {
    * etc.). Configuration meanings are determined by the data source.
    */
   tankConfig?: string;
-
-  /**
-   * Body param: Time the row was updated in the database, auto-populated by the
-   * system.
-   */
-  updatedAt?: string;
-
-  /**
-   * Body param: Application user who updated the row in the database, auto-populated
-   * by the system.
-   */
-  updatedBy?: string;
 
   /**
    * Body param: Alphanumeric code that describes general cargo-related utilization
@@ -851,21 +808,6 @@ export namespace AirloadplanUpdateParams {
   }
 }
 
-export interface AirloadplanDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the airloadplan to delete.
-   */
-  body_id: string;
-}
-
 export declare namespace Airloadplans {
-  export {
-    type AirloadplanUpdateParams as AirloadplanUpdateParams,
-    type AirloadplanDeleteParams as AirloadplanDeleteParams,
-  };
+  export { type AirloadplanUpdateParams as AirloadplanUpdateParams };
 }

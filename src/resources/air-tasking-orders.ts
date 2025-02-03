@@ -21,12 +21,8 @@ export class AirTaskingOrders extends APIResource {
    * Service operation to get a single airtaskingorder record by its unique ID passed
    * as a path parameter.
    */
-  retrieve(
-    params: AirTaskingOrderRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AirTaskingOrderFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/airtaskingorder/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AirTaskingOrderFull> {
+    return this._client.get(`/udl/airtaskingorder/${id}`, options);
   }
 
   /**
@@ -65,11 +61,10 @@ export class AirTaskingOrders extends APIResource {
    * hours ago.
    */
   tuple(
-    params: AirTaskingOrderTupleParams,
+    query: AirTaskingOrderTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<AirTaskingOrderTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/airtaskingorder/tuple', options);
+    return this._client.get('/udl/airtaskingorder/tuple', { query, ...options });
   }
 }
 
@@ -105,7 +100,7 @@ export interface AirTaskingOrderFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Specifies the unique operation or exercise name, nickname, or codeword assigned
@@ -568,7 +563,7 @@ export interface AirTaskingOrderCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Specifies the unique operation or exercise name, nickname, or codeword assigned
@@ -603,16 +598,6 @@ export interface AirTaskingOrderCreateParams {
    * level tasking for this ATO.
    */
   acMsnTasking?: Array<AirTaskingOrderCreateParams.AcMsnTasking>;
-
-  /**
-   * Time the row was created in the database.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database.
-   */
-  createdBy?: string;
 
   /**
    * The effective end time for this ATO in ISO 8601 UTC format with millisecond
@@ -658,26 +643,6 @@ export interface AirTaskingOrderCreateParams {
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
-   * Optional URI location in the document repository of the raw file parsed by the
-   * system to produce this record. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this value.
-   */
-  rawFileURI?: string;
-
-  /**
-   * The source data library from which this record was received. This could be a
-   * remote or tactical UDL or another data library. If null, the record should be
-   * assumed to have originated from the primary Enterprise UDL.
-   */
-  sourceDL?: string;
 }
 
 export namespace AirTaskingOrderCreateParams {
@@ -999,23 +964,11 @@ export namespace AirTaskingOrderCreateParams {
   }
 }
 
-export interface AirTaskingOrderRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the airtaskingorder to retrieve.
-   */
-  body_id: string;
-}
-
 export interface AirTaskingOrderTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -1027,7 +980,6 @@ export declare namespace AirTaskingOrders {
     type AirTaskingOrderCountResponse as AirTaskingOrderCountResponse,
     type AirTaskingOrderTupleResponse as AirTaskingOrderTupleResponse,
     type AirTaskingOrderCreateParams as AirTaskingOrderCreateParams,
-    type AirTaskingOrderRetrieveParams as AirTaskingOrderRetrieveParams,
     type AirTaskingOrderTupleParams as AirTaskingOrderTupleParams,
   };
 }

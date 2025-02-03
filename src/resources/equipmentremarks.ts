@@ -21,12 +21,8 @@ export class Equipmentremarks extends APIResource {
    * Service operation to get a single equipmentremark record by its unique ID passed
    * as a path parameter.
    */
-  retrieve(
-    params: EquipmentremarkRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EquipmentRemarkFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/equipmentremark/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EquipmentRemarkFull> {
+    return this._client.get(`/udl/equipmentremark/${id}`, options);
   }
 
   /**
@@ -90,11 +86,10 @@ export class Equipmentremarks extends APIResource {
    * hours ago.
    */
   tuple(
-    params: EquipmentremarkTupleParams,
+    query: EquipmentremarkTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<EquipmentremarkTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/equipmentremark/tuple', options);
+    return this._client.get('/udl/equipmentremark/tuple', { query, ...options });
   }
 }
 
@@ -124,7 +119,7 @@ export interface EquipmentRemarkAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The ID of the Equipment to which this remark applies.
@@ -213,7 +208,7 @@ export interface EquipmentRemarkFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The ID of the Equipment to which this remark applies.
@@ -315,7 +310,7 @@ export interface EquipmentremarkCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * The ID of the Equipment to which this remark applies.
@@ -349,17 +344,6 @@ export interface EquipmentremarkCreateParams {
   code?: string;
 
   /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
-
-  /**
    * The name of the remark.
    */
   name?: string;
@@ -376,18 +360,6 @@ export interface EquipmentremarkCreateParams {
    * The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
    */
   type?: string;
-}
-
-export interface EquipmentremarkRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the EquipmentRemark to find.
-   */
-  body_id: string;
 }
 
 export type EquipmentremarkCreateBulkParams = Array<EquipmentremarkCreateBulkParams.Body>;
@@ -419,7 +391,7 @@ export namespace EquipmentremarkCreateBulkParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * The ID of the Equipment to which this remark applies.
@@ -453,17 +425,6 @@ export namespace EquipmentremarkCreateBulkParams {
     code?: string;
 
     /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
-
-    /**
      * The name of the remark.
      */
     name?: string;
@@ -487,7 +448,7 @@ export interface EquipmentremarkTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -501,7 +462,6 @@ export declare namespace Equipmentremarks {
     type EquipmentremarkCountResponse as EquipmentremarkCountResponse,
     type EquipmentremarkTupleResponse as EquipmentremarkTupleResponse,
     type EquipmentremarkCreateParams as EquipmentremarkCreateParams,
-    type EquipmentremarkRetrieveParams as EquipmentremarkRetrieveParams,
     type EquipmentremarkCreateBulkParams as EquipmentremarkCreateBulkParams,
     type EquipmentremarkTupleParams as EquipmentremarkTupleParams,
   };

@@ -47,7 +47,7 @@ export interface AirtaskingorderAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Specifies the unique operation or exercise name, nickname, or codeword assigned

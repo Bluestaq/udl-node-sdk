@@ -22,9 +22,8 @@ export class Buses extends APIResource {
    * Service operation to get a single Bus record by its unique ID passed as a path
    * parameter.
    */
-  retrieve(params: BusRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<BusFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/bus/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<BusFull> {
+    return this._client.get(`/udl/bus/${id}`, options);
   }
 
   /**
@@ -32,9 +31,9 @@ export class Buses extends APIResource {
    * this service operation. Please contact the UDL team for assistance.
    */
   update(params: BusUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, body_id, ...body } = params;
+    const { path_id, body_id, ...body } = params;
     return this._client.put(`/udl/bus/${path_id}`, {
-      body: { id: body_id, id: body_id, ...body },
+      body: { id: body_id, ...body },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -55,9 +54,8 @@ export class Buses extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(params: BusDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id } = params;
-    return this._client.delete(`/udl/bus/${path_id}`, {
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/udl/bus/${id}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -98,9 +96,8 @@ export class Buses extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(params: BusTupleParams, options?: Core.RequestOptions): Core.APIPromise<BusTupleResponse> {
-    const { columns } = params;
-    return this._client.get('/udl/bus/tuple', options);
+  tuple(query: BusTupleParams, options?: Core.RequestOptions): Core.APIPromise<BusTupleResponse> {
+    return this._client.get('/udl/bus/tuple', { query, ...options });
   }
 }
 
@@ -130,7 +127,7 @@ export interface BusAbridged {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Name of this bus.
@@ -201,7 +198,7 @@ export interface BusAbridged {
    * Country where this bus was manufactured. This value is typically the ISO 3166
    * Alpha-2 two-character country code, however it can also represent various
    * consortiums that do not appear in the ISO document. The code must correspond to
-   * an existing country in the UDL�s country API. Call udl/country/{code} to get any
+   * an existing country in the UDL’s country API. Call udl/country/{code} to get any
    * associated FIPS code, ISO Alpha-3 code, or alternate code values that exist for
    * the specified country code.
    */
@@ -440,7 +437,7 @@ export interface BusFull {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Name of this bus.
@@ -511,7 +508,7 @@ export interface BusFull {
    * Country where this bus was manufactured. This value is typically the ISO 3166
    * Alpha-2 two-character country code, however it can also represent various
    * consortiums that do not appear in the ISO document. The code must correspond to
-   * an existing country in the UDL�s country API. Call udl/country/{code} to get any
+   * an existing country in the UDL’s country API. Call udl/country/{code} to get any
    * associated FIPS code, ISO Alpha-3 code, or alternate code values that exist for
    * the specified country code.
    */
@@ -776,7 +773,7 @@ export interface BusCreateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Name of this bus.
@@ -847,22 +844,11 @@ export interface BusCreateParams {
    * Country where this bus was manufactured. This value is typically the ISO 3166
    * Alpha-2 two-character country code, however it can also represent various
    * consortiums that do not appear in the ISO document. The code must correspond to
-   * an existing country in the UDL�s country API. Call udl/country/{code} to get any
+   * an existing country in the UDL’s country API. Call udl/country/{code} to get any
    * associated FIPS code, ISO Alpha-3 code, or alternate code values that exist for
    * the specified country code.
    */
   countryCode?: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   */
-  createdAt?: string;
-
-  /**
-   * Application user who created the row in the database, auto-populated by the
-   * system.
-   */
-  createdBy?: string;
 
   /**
    * Notes/description of the bus.
@@ -1031,12 +1017,6 @@ export interface BusCreateParams {
   origin?: string;
 
   /**
-   * The originating source network on which this record was created, auto-populated
-   * by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * The radial dimension available on this bus for payloads, in meters.
    */
   payloadDimensionX?: number;
@@ -1101,7 +1081,7 @@ export namespace BusCreateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Unique entity name.
@@ -1117,28 +1097,28 @@ export namespace BusCreateParams {
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
      * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
-    type: string;
+    type:
+      | 'AIRCRAFT'
+      | 'BUS'
+      | 'COMM'
+      | 'IR'
+      | 'NAVIGATION'
+      | 'ONORBIT'
+      | 'RFEMITTER'
+      | 'SCIENTIFIC'
+      | 'SENSOR'
+      | 'SITE'
+      | 'VESSEL';
 
     /**
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
      * country code, however it can also represent various consortiums that do not
      * appear in the ISO document. The code must correspond to an existing country in
-     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
      * ISO Alpha-3 code, or alternate code values that exist for the specified country
      * code.
      */
     countryCode?: string;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
 
     /**
      * Unique identifier of the record.
@@ -1182,16 +1162,10 @@ export namespace BusCreateParams {
     origin?: string;
 
     /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
-
-    /**
      * Type of organization which owns this entity (e.g. Commercial, Government,
      * Academic, Consortium, etc).
      */
-    ownerType?: string;
+    ownerType?: 'Commercial' | 'Government' | 'Academic' | 'Consortium' | 'Other';
 
     /**
      * Boolean indicating if this entity is taskable.
@@ -1231,7 +1205,7 @@ export namespace BusCreateParams {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Location name.
@@ -1252,22 +1226,11 @@ export namespace BusCreateParams {
        * The country code. This value is typically the ISO 3166 Alpha-2 two-character
        * country code, however it can also represent various consortiums that do not
        * appear in the ISO document. The code must correspond to an existing country in
-       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
        * ISO Alpha-3 code, or alternate code values that exist for the specified country
        * code.
        */
       countryCode?: string;
-
-      /**
-       * Time the row was created in the database, auto-populated by the system.
-       */
-      createdAt?: string;
-
-      /**
-       * Application user who created the row in the database, auto-populated by the
-       * system.
-       */
-      createdBy?: string;
 
       /**
        * Unique identifier of the location, auto-generated by the system.
@@ -1293,12 +1256,6 @@ export namespace BusCreateParams {
        * null, the source may be assumed to be the origin.
        */
       origin?: string;
-
-      /**
-       * The originating source network on which this record was created, auto-populated
-       * by the system.
-       */
-      origNetwork?: string;
     }
 
     /**
@@ -1326,7 +1283,7 @@ export namespace BusCreateParams {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Satellite/Catalog number of the target on-orbit object.
@@ -1348,7 +1305,20 @@ export namespace BusCreateParams {
        * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
        * Heliocentric, Interplanetary, Lagrangian, Docked).
        */
-      category?: string;
+      category?:
+        | 'Unknown'
+        | 'On-Orbit'
+        | 'Decayed'
+        | 'Cataloged Without State'
+        | 'Launch Nominal'
+        | 'Analyst Satellite'
+        | 'Cislunar'
+        | 'Lunar'
+        | 'Hyperbolic'
+        | 'Heliocentric'
+        | 'Interplanetary'
+        | 'Lagrangian'
+        | 'Docked';
 
       /**
        * Common name of the on-orbit object.
@@ -1364,22 +1334,11 @@ export namespace BusCreateParams {
        * The country code. This value is typically the ISO 3166 Alpha-2 two-character
        * country code, however it can also represent various consortiums that do not
        * appear in the ISO document. The code must correspond to an existing country in
-       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
        * ISO Alpha-3 code, or alternate code values that exist for the specified country
        * code.
        */
       countryCode?: string;
-
-      /**
-       * Time the row was created in the database, auto-populated by the system.
-       */
-      createdAt?: string;
-
-      /**
-       * Application user who created the row in the database, auto-populated by the
-       * system.
-       */
-      createdBy?: string;
 
       /**
        * Date of decay.
@@ -1424,7 +1383,7 @@ export namespace BusCreateParams {
        * Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
        * UNKNOWN.
        */
-      objectType?: string;
+      objectType?: 'ROCKET BODY' | 'DEBRIS' | 'PAYLOAD' | 'PLATFORM' | 'MANNED' | 'UNKNOWN';
 
       /**
        * Originating system or organization which produced the data, if different from
@@ -1433,38 +1392,15 @@ export namespace BusCreateParams {
        * null, the source may be assumed to be the origin.
        */
       origin?: string;
-
-      /**
-       * The originating source network on which this record was created, auto-populated
-       * by the system.
-       */
-      origNetwork?: string;
     }
   }
 }
 
-export interface BusRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Bus to find.
-   */
-  body_id: string;
-}
-
 export interface BusUpdateParams {
   /**
-   * Path param:
+   * Path param: The ID of the Bus to update.
    */
   path_id: string;
-
-  /**
-   * Body param: The ID of the Bus to update.
-   */
-  body_id: string;
 
   /**
    * Body param: Classification marking of the data in IC/CAPCO Portion-marked
@@ -1489,7 +1425,7 @@ export interface BusUpdateParams {
    * requirements, and for validating technical, functional, and performance
    * characteristics.
    */
-  dataMode: string;
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
    * Body param: Name of this bus.
@@ -1561,23 +1497,11 @@ export interface BusUpdateParams {
    * Body param: Country where this bus was manufactured. This value is typically the
    * ISO 3166 Alpha-2 two-character country code, however it can also represent
    * various consortiums that do not appear in the ISO document. The code must
-   * correspond to an existing country in the UDL�s country API. Call
+   * correspond to an existing country in the UDL’s country API. Call
    * udl/country/{code} to get any associated FIPS code, ISO Alpha-3 code, or
    * alternate code values that exist for the specified country code.
    */
   countryCode?: string;
-
-  /**
-   * Body param: Time the row was created in the database, auto-populated by the
-   * system.
-   */
-  createdAt?: string;
-
-  /**
-   * Body param: Application user who created the row in the database, auto-populated
-   * by the system.
-   */
-  createdBy?: string;
 
   /**
    * Body param: Notes/description of the bus.
@@ -1750,12 +1674,6 @@ export interface BusUpdateParams {
   origin?: string;
 
   /**
-   * Body param: The originating source network on which this record was created,
-   * auto-populated by the system.
-   */
-  origNetwork?: string;
-
-  /**
    * Body param: The radial dimension available on this bus for payloads, in meters.
    */
   payloadDimensionX?: number;
@@ -1822,7 +1740,7 @@ export namespace BusUpdateParams {
      * requirements, and for validating technical, functional, and performance
      * characteristics.
      */
-    dataMode: string;
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
     /**
      * Unique entity name.
@@ -1838,28 +1756,28 @@ export namespace BusUpdateParams {
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
      * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
-    type: string;
+    type:
+      | 'AIRCRAFT'
+      | 'BUS'
+      | 'COMM'
+      | 'IR'
+      | 'NAVIGATION'
+      | 'ONORBIT'
+      | 'RFEMITTER'
+      | 'SCIENTIFIC'
+      | 'SENSOR'
+      | 'SITE'
+      | 'VESSEL';
 
     /**
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
      * country code, however it can also represent various consortiums that do not
      * appear in the ISO document. The code must correspond to an existing country in
-     * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
      * ISO Alpha-3 code, or alternate code values that exist for the specified country
      * code.
      */
     countryCode?: string;
-
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
-
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
 
     /**
      * Unique identifier of the record.
@@ -1903,16 +1821,10 @@ export namespace BusUpdateParams {
     origin?: string;
 
     /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
-
-    /**
      * Type of organization which owns this entity (e.g. Commercial, Government,
      * Academic, Consortium, etc).
      */
-    ownerType?: string;
+    ownerType?: 'Commercial' | 'Government' | 'Academic' | 'Consortium' | 'Other';
 
     /**
      * Boolean indicating if this entity is taskable.
@@ -1952,7 +1864,7 @@ export namespace BusUpdateParams {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Location name.
@@ -1973,22 +1885,11 @@ export namespace BusUpdateParams {
        * The country code. This value is typically the ISO 3166 Alpha-2 two-character
        * country code, however it can also represent various consortiums that do not
        * appear in the ISO document. The code must correspond to an existing country in
-       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
        * ISO Alpha-3 code, or alternate code values that exist for the specified country
        * code.
        */
       countryCode?: string;
-
-      /**
-       * Time the row was created in the database, auto-populated by the system.
-       */
-      createdAt?: string;
-
-      /**
-       * Application user who created the row in the database, auto-populated by the
-       * system.
-       */
-      createdBy?: string;
 
       /**
        * Unique identifier of the location, auto-generated by the system.
@@ -2014,12 +1915,6 @@ export namespace BusUpdateParams {
        * null, the source may be assumed to be the origin.
        */
       origin?: string;
-
-      /**
-       * The originating source network on which this record was created, auto-populated
-       * by the system.
-       */
-      origNetwork?: string;
     }
 
     /**
@@ -2047,7 +1942,7 @@ export namespace BusUpdateParams {
        * requirements, and for validating technical, functional, and performance
        * characteristics.
        */
-      dataMode: string;
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
       /**
        * Satellite/Catalog number of the target on-orbit object.
@@ -2069,7 +1964,20 @@ export namespace BusUpdateParams {
        * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
        * Heliocentric, Interplanetary, Lagrangian, Docked).
        */
-      category?: string;
+      category?:
+        | 'Unknown'
+        | 'On-Orbit'
+        | 'Decayed'
+        | 'Cataloged Without State'
+        | 'Launch Nominal'
+        | 'Analyst Satellite'
+        | 'Cislunar'
+        | 'Lunar'
+        | 'Hyperbolic'
+        | 'Heliocentric'
+        | 'Interplanetary'
+        | 'Lagrangian'
+        | 'Docked';
 
       /**
        * Common name of the on-orbit object.
@@ -2085,22 +1993,11 @@ export namespace BusUpdateParams {
        * The country code. This value is typically the ISO 3166 Alpha-2 two-character
        * country code, however it can also represent various consortiums that do not
        * appear in the ISO document. The code must correspond to an existing country in
-       * the UDL�s country API. Call udl/country/{code} to get any associated FIPS code,
+       * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
        * ISO Alpha-3 code, or alternate code values that exist for the specified country
        * code.
        */
       countryCode?: string;
-
-      /**
-       * Time the row was created in the database, auto-populated by the system.
-       */
-      createdAt?: string;
-
-      /**
-       * Application user who created the row in the database, auto-populated by the
-       * system.
-       */
-      createdBy?: string;
 
       /**
        * Date of decay.
@@ -2145,7 +2042,7 @@ export namespace BusUpdateParams {
        * Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
        * UNKNOWN.
        */
-      objectType?: string;
+      objectType?: 'ROCKET BODY' | 'DEBRIS' | 'PAYLOAD' | 'PLATFORM' | 'MANNED' | 'UNKNOWN';
 
       /**
        * Originating system or organization which produced the data, if different from
@@ -2154,33 +2051,15 @@ export namespace BusUpdateParams {
        * null, the source may be assumed to be the origin.
        */
       origin?: string;
-
-      /**
-       * The originating source network on which this record was created, auto-populated
-       * by the system.
-       */
-      origNetwork?: string;
     }
   }
-}
-
-export interface BusDeleteParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the Bus to delete.
-   */
-  body_id: string;
 }
 
 export interface BusTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -2194,9 +2073,7 @@ export declare namespace Buses {
     type BusCountResponse as BusCountResponse,
     type BusTupleResponse as BusTupleResponse,
     type BusCreateParams as BusCreateParams,
-    type BusRetrieveParams as BusRetrieveParams,
     type BusUpdateParams as BusUpdateParams,
-    type BusDeleteParams as BusDeleteParams,
     type BusTupleParams as BusTupleParams,
   };
 }

@@ -11,9 +11,9 @@ export class History extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(params: HistoryCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { obTime } = params;
+  count(query: HistoryCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.get('/udl/diffofarrival/history/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });

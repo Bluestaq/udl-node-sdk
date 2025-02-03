@@ -4,19 +4,19 @@ import Unifieddatalibrary from 'unifieddatalibrary';
 import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
-  username: 'My Username',
   password: 'My Password',
+  username: 'My Username',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource beamContours', () => {
   test('create: only required params', async () => {
     const responsePromise = client.beamContours.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idBeam: 'idBeam',
-      source: 'source',
-      type: 'type',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idBeam: 'REF-BEAM-ID',
+      source: 'Bluestaq',
+      type: 'BORESIGHT',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -29,30 +29,30 @@ describe('resource beamContours', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.beamContours.create({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idBeam: 'idBeam',
-      source: 'source',
-      type: 'type',
-      id: 'id',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idBeam: 'REF-BEAM-ID',
+      source: 'Bluestaq',
+      type: 'BORESIGHT',
+      id: 'BEAMCONTOUR-ID',
       contourIdx: 0,
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      gain: 0,
-      geography: 'geography',
-      geographyJson: 'geographyJson',
+      gain: 17.1,
+      geography:
+        'POLYGON((26.156175339112 67.3291113966927,26.0910220642717 67.2580009640721,26.6637992964562 67.1795862381682,26.730115808233 67.2501237475598,26.156175339112 67.3291113966927))',
+      geographyJson:
+        '{"type":"Polygon","coordinates":[[[67.3291113966927,26.156175339112],[67.2580009640721,26.091022064271],[67.1795862381682,26.6637992964562],[67.2501237475598,26.730115808233],[67.3291113966927,26.156175339112]]]}',
       geographyNdims: 0,
-      geographySrid: 0,
-      geographyText: 'geographyText',
-      geographyType: 'geographyType',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      regionName: 'regionName',
+      geographySrid: 4326,
+      geographyText:
+        'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
+      geographyType: 'ST_Polygon',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      regionName: 'Example region name',
     });
   });
 
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.beamContours.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve', async () => {
+    const responsePromise = client.beamContours.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -62,19 +62,21 @@ describe('resource beamContours', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.beamContours.retrieve({ path_id: 'id', body_id: 'id' });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.beamContours.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.beamContours.update({
       path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idBeam: 'idBeam',
-      source: 'source',
-      type: 'type',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idBeam: 'REF-BEAM-ID',
+      source: 'Bluestaq',
+      type: 'BORESIGHT',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -88,26 +90,25 @@ describe('resource beamContours', () => {
   test('update: required and optional params', async () => {
     const response = await client.beamContours.update({
       path_id: 'id',
-      body_id: 'id',
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      idBeam: 'idBeam',
-      source: 'source',
-      type: 'type',
-      body_id: 'id',
+      classificationMarking: 'U',
+      dataMode: 'REAL',
+      idBeam: 'REF-BEAM-ID',
+      source: 'Bluestaq',
+      type: 'BORESIGHT',
+      body_id: 'BEAMCONTOUR-ID',
       contourIdx: 0,
-      createdAt: '2019-12-27T18:11:19.117Z',
-      createdBy: 'createdBy',
-      gain: 0,
-      geography: 'geography',
-      geographyJson: 'geographyJson',
+      gain: 17.1,
+      geography:
+        'POLYGON((26.156175339112 67.3291113966927,26.0910220642717 67.2580009640721,26.6637992964562 67.1795862381682,26.730115808233 67.2501237475598,26.156175339112 67.3291113966927))',
+      geographyJson:
+        '{"type":"Polygon","coordinates":[[[67.3291113966927,26.156175339112],[67.2580009640721,26.091022064271],[67.1795862381682,26.6637992964562],[67.2501237475598,26.730115808233],[67.3291113966927,26.156175339112]]]}',
       geographyNdims: 0,
-      geographySrid: 0,
-      geographyText: 'geographyText',
-      geographyType: 'geographyType',
-      origin: 'origin',
-      origNetwork: 'origNetwork',
-      regionName: 'regionName',
+      geographySrid: 4326,
+      geographyText:
+        'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
+      geographyType: 'ST_Polygon',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      regionName: 'Example region name',
     });
   });
 
@@ -126,8 +127,8 @@ describe('resource beamContours', () => {
     const response = await client.beamContours.list({ idBeam: 'idBeam' });
   });
 
-  test('delete: only required params', async () => {
-    const responsePromise = client.beamContours.delete({ path_id: 'id', body_id: 'id' });
+  test('delete', async () => {
+    const responsePromise = client.beamContours.delete('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -137,8 +138,11 @@ describe('resource beamContours', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: required and optional params', async () => {
-    const response = await client.beamContours.delete({ path_id: 'id', body_id: 'id' });
+  test('delete: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.beamContours.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
   test('count: only required params', async () => {
@@ -159,11 +163,11 @@ describe('resource beamContours', () => {
   test('createBulk: only required params', async () => {
     const responsePromise = client.beamContours.createBulk([
       {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        idBeam: 'idBeam',
-        source: 'source',
-        type: 'type',
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        idBeam: 'REF-BEAM-ID',
+        source: 'Bluestaq',
+        type: 'BORESIGHT',
       },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -178,25 +182,25 @@ describe('resource beamContours', () => {
   test('createBulk: required and optional params', async () => {
     const response = await client.beamContours.createBulk([
       {
-        classificationMarking: 'classificationMarking',
-        dataMode: 'dataMode',
-        idBeam: 'idBeam',
-        source: 'source',
-        type: 'type',
-        id: 'id',
+        classificationMarking: 'U',
+        dataMode: 'REAL',
+        idBeam: 'REF-BEAM-ID',
+        source: 'Bluestaq',
+        type: 'BORESIGHT',
+        id: 'BEAMCONTOUR-ID',
         contourIdx: 0,
-        createdAt: '2019-12-27T18:11:19.117Z',
-        createdBy: 'createdBy',
-        gain: 0,
-        geography: 'geography',
-        geographyJson: 'geographyJson',
+        gain: 17.1,
+        geography:
+          'POLYGON((26.156175339112 67.3291113966927,26.0910220642717 67.2580009640721,26.6637992964562 67.1795862381682,26.730115808233 67.2501237475598,26.156175339112 67.3291113966927))',
+        geographyJson:
+          '{"type":"Polygon","coordinates":[[[67.3291113966927,26.156175339112],[67.2580009640721,26.091022064271],[67.1795862381682,26.6637992964562],[67.2501237475598,26.730115808233],[67.3291113966927,26.156175339112]]]}',
         geographyNdims: 0,
-        geographySrid: 0,
-        geographyText: 'geographyText',
-        geographyType: 'geographyType',
-        origin: 'origin',
-        origNetwork: 'origNetwork',
-        regionName: 'regionName',
+        geographySrid: 4326,
+        geographyText:
+          'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
+        geographyType: 'ST_Polygon',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        regionName: 'Example region name',
       },
     ]);
   });

@@ -9,12 +9,8 @@ export class Eoobservations extends APIResource {
    * Service operation to get a single EO observation by its unique ID passed as a
    * path parameter.
    */
-  retrieve(
-    params: EoobservationRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<HistoryAPI.EoObservationFull> {
-    const { path_id, body_id } = params;
-    return this._client.get(`/udl/eoobservation/${path_id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<HistoryAPI.EoObservationFull> {
+    return this._client.get(`/udl/eoobservation/${id}`, options);
   }
 
   /**
@@ -39,33 +35,20 @@ export class Eoobservations extends APIResource {
    * hours ago.
    */
   tuple(
-    params: EoobservationTupleParams,
+    query: EoobservationTupleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<EoobservationTupleResponse> {
-    const { columns, obTime } = params;
-    return this._client.get('/udl/eoobservation/tuple', options);
+    return this._client.get('/udl/eoobservation/tuple', { query, ...options });
   }
 }
 
 export type EoobservationTupleResponse = Array<HistoryAPI.EoObservationFull>;
 
-export interface EoobservationRetrieveParams {
-  /**
-   * Path param:
-   */
-  path_id: string;
-
-  /**
-   * Body param: The ID of the observation to retrieve.
-   */
-  body_id: string;
-}
-
 export interface EoobservationTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the �queryhelp� operation
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
    * for a complete list of possible fields.
    */
   columns: string;
@@ -80,7 +63,6 @@ export interface EoobservationTupleParams {
 export declare namespace Eoobservations {
   export {
     type EoobservationTupleResponse as EoobservationTupleResponse,
-    type EoobservationRetrieveParams as EoobservationRetrieveParams,
     type EoobservationTupleParams as EoobservationTupleParams,
   };
 }
