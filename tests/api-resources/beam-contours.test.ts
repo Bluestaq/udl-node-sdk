@@ -70,8 +70,7 @@ describe('resource beamContours', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.beamContours.update({
-      path_id: 'id',
+    const responsePromise = client.beamContours.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idBeam: 'REF-BEAM-ID',
@@ -88,14 +87,13 @@ describe('resource beamContours', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.beamContours.update({
-      path_id: 'id',
+    const response = await client.beamContours.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idBeam: 'REF-BEAM-ID',
       source: 'Bluestaq',
       type: 'BORESIGHT',
-      body_id: 'BEAMCONTOUR-ID',
+      id: 'BEAMCONTOUR-ID',
       contourIdx: 0,
       gain: 17.1,
       geography:

@@ -129,8 +129,7 @@ describe('resource airTransportMissions', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.airTransportMissions.update({
-      path_id: 'id',
+    const responsePromise = client.airTransportMissions.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
@@ -145,12 +144,11 @@ describe('resource airTransportMissions', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.airTransportMissions.update({
-      path_id: 'id',
+    const response = await client.airTransportMissions.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
-      body_id: 'bdad6945-c9e4-b829-f7be-1ad075541921',
+      id: 'bdad6945-c9e4-b829-f7be-1ad075541921',
       alias: 'PACIFIC DEPLOY / CHAP 3 MOVEMENT',
       allocatedUnit: '437 AEW',
       amcMissionId: 'AJM7939B1123',

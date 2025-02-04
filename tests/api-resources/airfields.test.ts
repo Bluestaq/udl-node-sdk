@@ -82,8 +82,7 @@ describe('resource airfields', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.airfields.update({
-      path_id: 'id',
+    const responsePromise = client.airfields.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'USAF Academy AFLD',
@@ -100,14 +99,13 @@ describe('resource airfields', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.airfields.update({
-      path_id: 'id',
+    const response = await client.airfields.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'USAF Academy AFLD',
       source: 'Bluestaq',
       type: 'Commercial',
-      body_id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
+      id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
       altAirfieldId: '45301',
       city: 'Colorado Springs',
       countryCode: 'US',

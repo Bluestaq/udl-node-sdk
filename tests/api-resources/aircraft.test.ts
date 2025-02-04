@@ -117,8 +117,7 @@ describe('resource aircraft', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.aircraft.update({
-      path_id: 'id',
+    const responsePromise = client.aircraft.update('id', {
       aircraftMDS: 'E-2C HAWKEYE',
       classificationMarking: 'U',
       dataMode: 'REAL',
@@ -134,13 +133,12 @@ describe('resource aircraft', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.aircraft.update({
-      path_id: 'id',
+    const response = await client.aircraft.update('id', {
       aircraftMDS: 'E-2C HAWKEYE',
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
-      body_id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       category: 'M',
       command: 'HQACC',
       cruiseSpeed: 915,

@@ -151,8 +151,7 @@ describe('resource buses', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.buses.update({
-      path_id: 'id',
+    const responsePromise = client.buses.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'Example name',
@@ -168,13 +167,12 @@ describe('resource buses', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.buses.update({
-      path_id: 'id',
+    const response = await client.buses.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'Example name',
       source: 'Bluestaq',
-      body_id: 'BUS-ID',
+      id: 'BUS-ID',
       aocsNotes: 'Example notes',
       avgDryMass: 2879.1,
       avgPayloadMass: 10.1,

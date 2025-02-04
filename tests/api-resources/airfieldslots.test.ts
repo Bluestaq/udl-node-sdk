@@ -29,8 +29,7 @@ describe('resource airfieldslots', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.airfieldslots.update({
-      path_id: 'id',
+    const responsePromise = client.airfieldslots.update('id', {
       airfieldName: 'USAF Academy AFLD',
       classificationMarking: 'U',
       dataMode: 'REAL',
@@ -47,14 +46,13 @@ describe('resource airfieldslots', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.airfieldslots.update({
-      path_id: 'id',
+    const response = await client.airfieldslots.update('id', {
       airfieldName: 'USAF Academy AFLD',
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'Apron 5',
       source: 'Bluestaq',
-      body_id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+      id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       acSlotCat: 'WIDE',
       altAirfieldId: 'ALT-AIRFIELD-ID',
       capacity: 5,

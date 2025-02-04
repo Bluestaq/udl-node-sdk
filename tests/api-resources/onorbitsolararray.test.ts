@@ -48,8 +48,7 @@ describe('resource onorbitsolararray', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.onorbitsolararray.update({
-      path_id: 'id',
+    const responsePromise = client.onorbitsolararray.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idOnOrbit: 'ONORBIT-ID',
@@ -66,14 +65,13 @@ describe('resource onorbitsolararray', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.onorbitsolararray.update({
-      path_id: 'id',
+    const response = await client.onorbitsolararray.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idOnOrbit: 'ONORBIT-ID',
       idSolarArray: 'SOLARARRAY-ID',
       source: 'Bluestaq',
-      body_id: 'ONORBITSOLARARRAY-ID',
+      id: 'ONORBITSOLARARRAY-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
       quantity: 10,
       solarArray: {

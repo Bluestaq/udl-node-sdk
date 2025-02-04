@@ -11,8 +11,7 @@ const client = new Unifieddatalibrary({
 
 describe('resource aircraftstatusremark', () => {
   test('update: only required params', async () => {
-    const responsePromise = client.aircraftstatusremark.update({
-      path_id: 'id',
+    const responsePromise = client.aircraftstatusremark.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idAircraftStatus: '388b1f64-ccff-4113-b049-3cf5542c2a42',
@@ -29,14 +28,13 @@ describe('resource aircraftstatusremark', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.aircraftstatusremark.update({
-      path_id: 'id',
+    const response = await client.aircraftstatusremark.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idAircraftStatus: '388b1f64-ccff-4113-b049-3cf5542c2a42',
       source: 'Bluestaq',
       text: 'Remark text',
-      body_id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       altRmkId: 'GDSSBL022307131714250077',
       lastUpdatedAt: '2024-01-01T16:00:00.123Z',
       lastUpdatedBy: 'JOHN SMITH',

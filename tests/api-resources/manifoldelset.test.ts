@@ -56,8 +56,7 @@ describe('resource manifoldelset', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.manifoldelset.update({
-      path_id: 'id',
+    const responsePromise = client.manifoldelset.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       epoch: '2021-01-01T01:01:01.123456Z',
@@ -75,15 +74,14 @@ describe('resource manifoldelset', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.manifoldelset.update({
-      path_id: 'id',
+    const response = await client.manifoldelset.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       epoch: '2021-01-01T01:01:01.123456Z',
       idManifold: 'REF-MANIFOLD-ID',
       source: 'Bluestaq',
       tmpSatNo: 10,
-      body_id: 'MANIFOLDELSET-ID',
+      id: 'MANIFOLDELSET-ID',
       apogee: 10.23,
       argOfPerigee: 10.23,
       bStar: 10.23,

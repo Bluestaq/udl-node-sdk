@@ -9,6 +9,10 @@ export class ScsViews extends APIResource {
    * Return a single file to view in browser.
    */
   retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.get(`/scs/view/${id}`, { ...options, __binaryResponse: true });
+    return this._client.get(`/scs/view/${id}`, {
+      ...options,
+      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      __binaryResponse: true,
+    });
   }
 }

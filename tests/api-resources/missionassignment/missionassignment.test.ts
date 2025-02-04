@@ -96,8 +96,7 @@ describe('resource missionassignment', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.missionassignment.update({
-      path_id: 'id',
+    const responsePromise = client.missionassignment.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       mad: 'MAD',
@@ -114,14 +113,13 @@ describe('resource missionassignment', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.missionassignment.update({
-      path_id: 'id',
+    const response = await client.missionassignment.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       mad: 'MAD',
       source: 'Bluestaq',
       ts: '2021-01-01T01:01:01.123456Z',
-      body_id: 'MISSIONASSIGNMENT-ID',
+      id: 'MISSIONASSIGNMENT-ID',
       c1associateddmpis: 3,
       c2air: 'C2AIR',
       c2alt: 3,

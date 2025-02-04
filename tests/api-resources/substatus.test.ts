@@ -44,8 +44,7 @@ describe('resource substatus', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.substatus.update({
-      path_id: 'id',
+    const responsePromise = client.substatus.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       notes: 'Sample Notes',
@@ -64,8 +63,7 @@ describe('resource substatus', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.substatus.update({
-      path_id: 'id',
+    const response = await client.substatus.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       notes: 'Sample Notes',
@@ -73,7 +71,7 @@ describe('resource substatus', () => {
       status: 'FMC',
       statusId: 'REF-STATUS-ID',
       type: 'mwCap',
-      body_id: 'SUBSTATUS-ID',
+      id: 'SUBSTATUS-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

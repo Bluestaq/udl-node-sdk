@@ -79,8 +79,7 @@ describe('resource starcatalog', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.starcatalog.update({
-      path_id: 'id',
+    const responsePromise = client.starcatalog.update('id', {
       astrometryOrigin: 'GAIADR3',
       classificationMarking: 'U',
       csId: 12345,
@@ -100,8 +99,7 @@ describe('resource starcatalog', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.starcatalog.update({
-      path_id: 'id',
+    const response = await client.starcatalog.update('id', {
       astrometryOrigin: 'GAIADR3',
       classificationMarking: 'U',
       csId: 12345,
@@ -110,7 +108,7 @@ describe('resource starcatalog', () => {
       ra: 14.43,
       source: 'Bluestaq',
       starEpoch: 2016,
-      body_id: 'STAR-CAT-DATASET-ID',
+      id: 'STAR-CAT-DATASET-ID',
       bpmag: 0.04559,
       bpmagUnc: 0.2227,
       catVersion: '1.23',

@@ -54,8 +54,7 @@ describe('resource batteries', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.batteries.update({
-      path_id: 'id',
+    const responsePromise = client.batteries.update('id', {
       dataMode: 'REAL',
       name: 'JAK-BATTERY-1479',
       source: 'Bluestaq',
@@ -70,12 +69,11 @@ describe('resource batteries', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.batteries.update({
-      path_id: 'id',
+    const response = await client.batteries.update('id', {
       dataMode: 'REAL',
       name: 'JAK-BATTERY-1479',
       source: 'Bluestaq',
-      body_id: 'BATTERY-ID',
+      id: 'BATTERY-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

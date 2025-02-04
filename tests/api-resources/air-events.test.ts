@@ -123,8 +123,7 @@ describe('resource airEvents', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.airEvents.update({
-      path_id: 'id',
+    const responsePromise = client.airEvents.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
@@ -140,13 +139,12 @@ describe('resource airEvents', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.airEvents.update({
-      path_id: 'id',
+    const response = await client.airEvents.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
       type: 'FUEL TRANSFER',
-      body_id: '026dd511-8ba5-47d3-9909-836149f87686',
+      id: '026dd511-8ba5-47d3-9909-836149f87686',
       actualArrTime: '2024-01-07T14:00:03.123Z',
       actualDepTime: '2024-01-07T14:17:03.123Z',
       arct: '2024-01-07T15:11:27.123Z',

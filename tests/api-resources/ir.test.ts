@@ -88,8 +88,7 @@ describe('resource ir', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.ir.update({
-      path_id: 'id',
+    const responsePromise = client.ir.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'Example name',
@@ -105,13 +104,12 @@ describe('resource ir', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.ir.update({
-      path_id: 'id',
+    const response = await client.ir.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'Example name',
       source: 'Bluestaq',
-      body_id: 'IR-ID',
+      id: 'IR-ID',
       description: 'Example description',
       entity: {
         classificationMarking: 'U',

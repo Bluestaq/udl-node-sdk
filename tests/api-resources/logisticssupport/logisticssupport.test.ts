@@ -170,8 +170,7 @@ describe('resource logisticssupport', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.logisticssupport.update({
-      path_id: 'id',
+    const responsePromise = client.logisticssupport.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       rptCreatedTime: '2023-07-13T13:47:00.123Z',
@@ -187,13 +186,12 @@ describe('resource logisticssupport', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.logisticssupport.update({
-      path_id: 'id',
+    const response = await client.logisticssupport.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       rptCreatedTime: '2023-07-13T13:47:00.123Z',
       source: 'Bluestaq',
-      body_id: 'LOGISTICS-SUPPORT-DETAILS UUID',
+      id: 'LOGISTICS-SUPPORT-DETAILS UUID',
       aircraftMDS: 'CO17A',
       currICAO: 'KCOS',
       etic: '2023-07-13T13:47:00.123Z',

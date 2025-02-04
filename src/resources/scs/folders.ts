@@ -15,7 +15,6 @@ export class Folders extends APIResource {
     return this._client.post('/scs/folder', {
       query: { id, classificationMarking, description, read, tags, write },
       ...options,
-      headers: { Accept: 'application/json', ...options?.headers },
     });
   }
 

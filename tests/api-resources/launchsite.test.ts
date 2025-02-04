@@ -43,8 +43,7 @@ describe('resource launchsite', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.launchsite.update({
-      path_id: 'id',
+    const responsePromise = client.launchsite.update('id', {
       classificationMarking: 'U',
       code: 'SAN MARCO',
       dataMode: 'REAL',
@@ -61,14 +60,13 @@ describe('resource launchsite', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.launchsite.update({
-      path_id: 'id',
+    const response = await client.launchsite.update('id', {
       classificationMarking: 'U',
       code: 'SAN MARCO',
       dataMode: 'REAL',
       name: 'Example launch site name',
       source: 'Bluestaq',
-      body_id: 'LAUNCHSITE-ID',
+      id: 'LAUNCHSITE-ID',
       altCode: '35',
       idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
       origin: 'THIRD_PARTY_DATASOURCE',

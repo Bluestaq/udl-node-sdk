@@ -93,8 +93,7 @@ describe('resource trackroute', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.trackroute.update({
-      path_id: 'id',
+    const responsePromise = client.trackroute.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       lastUpdateDate: '2024-09-17T16:00:00.123Z',
@@ -111,14 +110,13 @@ describe('resource trackroute', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.trackroute.update({
-      path_id: 'id',
+    const response = await client.trackroute.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       lastUpdateDate: '2024-09-17T16:00:00.123Z',
       source: 'Bluestaq',
       type: 'AIR REFUELING',
-      body_id: '026dd511-8ba5-47d3-9909-836149f87686',
+      id: '026dd511-8ba5-47d3-9909-836149f87686',
       altitudeBlocks: [{ altitudeSequenceId: 'A1', lowerAltitude: 27000.1, upperAltitude: 27200.5 }],
       apnSetting: '1-3-1',
       apxBeaconCode: '5/1',

@@ -63,8 +63,7 @@ describe('resource batterydetails', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.batterydetails.update({
-      path_id: 'id',
+    const responsePromise = client.batterydetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idBattery: 'BATTERY-ID',
@@ -80,13 +79,12 @@ describe('resource batterydetails', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.batterydetails.update({
-      path_id: 'id',
+    const response = await client.batterydetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idBattery: 'BATTERY-ID',
       source: 'Bluestaq',
-      body_id: 'BATTERYDETAILS-ID',
+      id: 'BATTERYDETAILS-ID',
       capacity: 10.1,
       description: 'example notes',
       dischargeDepth: 0.2,

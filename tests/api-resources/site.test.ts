@@ -142,8 +142,7 @@ describe('resource site', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.site.update({
-      path_id: 'id',
+    const responsePromise = client.site.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'Site Name',
@@ -159,13 +158,12 @@ describe('resource site', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.site.update({
-      path_id: 'id',
+    const response = await client.site.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'Site Name',
       source: 'Bluestaq',
-      body_id: 'SITE-ID',
+      id: 'SITE-ID',
       activity: 'OCC',
       airDefArea: 'AL006',
       allegiance: 'OTHR',

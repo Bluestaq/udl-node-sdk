@@ -61,8 +61,7 @@ describe('resource seradataradarpayload', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.seradataradarpayload.update({
-      path_id: 'id',
+    const responsePromise = client.seradataradarpayload.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
@@ -78,13 +77,12 @@ describe('resource seradataradarpayload', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.seradataradarpayload.update({
-      path_id: 'id',
+    const response = await client.seradataradarpayload.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
       spacecraftId: '12345',
-      body_id: 'SERADATARADARPAYLOAD-ID',
+      id: 'SERADATARADARPAYLOAD-ID',
       bandwidth: 1.23,
       bestResolution: 1.23,
       category: 'SAR',

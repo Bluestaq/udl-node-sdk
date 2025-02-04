@@ -67,8 +67,7 @@ describe('resource organizationdetails', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.organizationdetails.update({
-      path_id: 'id',
+    const responsePromise = client.organizationdetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idOrganization: 'ORGANIZATION-ID',
@@ -85,14 +84,13 @@ describe('resource organizationdetails', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.organizationdetails.update({
-      path_id: 'id',
+    const response = await client.organizationdetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idOrganization: 'ORGANIZATION-ID',
       name: 'some.user',
       source: 'some.user',
-      body_id: 'ORGANIZATIONDETAILS-ID',
+      id: 'ORGANIZATIONDETAILS-ID',
       address1: '123 Main Street',
       address2: 'Apt 4B',
       address3: 'Colorado Springs CO, 80903',

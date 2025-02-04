@@ -98,8 +98,7 @@ describe('resource diplomaticClearance', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.diplomaticClearance.update({
-      path_id: 'id',
+    const responsePromise = client.diplomaticClearance.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       firstDepDate: '2024-01-01T01:01:01.123Z',
@@ -116,14 +115,13 @@ describe('resource diplomaticClearance', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.diplomaticClearance.update({
-      path_id: 'id',
+    const response = await client.diplomaticClearance.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       firstDepDate: '2024-01-01T01:01:01.123Z',
       idMission: '0dba1363-2d09-49fa-a784-4bb4cbb1674a',
       source: 'Bluestaq',
-      body_id: '25059135-4afc-45c2-b78b-d6e843dbd96d',
+      id: '25059135-4afc-45c2-b78b-d6e843dbd96d',
       apacsId: '1083034',
       diplomaticClearanceDetails: [
         {

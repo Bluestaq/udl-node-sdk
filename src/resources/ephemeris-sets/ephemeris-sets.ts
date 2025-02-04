@@ -104,7 +104,11 @@ export class EphemerisSets extends APIResource {
    * EphemerisSet. The file is returned as an attachment Content-Disposition.
    */
   fileRetrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.get(`/udl/ephemerisset/getFile/${id}`, { ...options, __binaryResponse: true });
+    return this._client.get(`/udl/ephemerisset/getFile/${id}`, {
+      ...options,
+      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      __binaryResponse: true,
+    });
   }
 
   /**

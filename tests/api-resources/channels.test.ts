@@ -70,8 +70,7 @@ describe('resource channels', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.channels.update({
-      path_id: 'id',
+    const responsePromise = client.channels.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idTransponder: 'REF-TRANSPONDER-ID',
@@ -88,14 +87,13 @@ describe('resource channels', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.channels.update({
-      path_id: 'id',
+    const response = await client.channels.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idTransponder: 'REF-TRANSPONDER-ID',
       name: 'Example name',
       source: 'system.source',
-      body_id: 'CHANNEL-ID',
+      id: 'CHANNEL-ID',
       apid: 'AP-ID',
       beamName: 'B8VD',
       compression: 'Example compression',

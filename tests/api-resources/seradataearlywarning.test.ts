@@ -51,8 +51,7 @@ describe('resource seradataearlywarning', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.seradataearlywarning.update({
-      path_id: 'id',
+    const responsePromise = client.seradataearlywarning.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
@@ -68,13 +67,12 @@ describe('resource seradataearlywarning', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.seradataearlywarning.update({
-      path_id: 'id',
+    const response = await client.seradataearlywarning.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
-      body_id: 'SERADATAEARLYWARNING-ID',
+      id: 'SERADATAEARLYWARNING-ID',
       bestResolution: 1.23,
       earthPointing: true,
       frequencyLimits: 'frequencyLimits',

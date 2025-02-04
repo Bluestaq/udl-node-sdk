@@ -24,7 +24,11 @@ export class UdlSigact extends APIResource {
    * path parameter. The text file is returned as an attachment Content-Disposition.
    */
   fileGet(id: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.get(`/udl/sigact/getFile/${id}`, { ...options, __binaryResponse: true });
+    return this._client.get(`/udl/sigact/getFile/${id}`, {
+      ...options,
+      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      __binaryResponse: true,
+    });
   }
 }
 

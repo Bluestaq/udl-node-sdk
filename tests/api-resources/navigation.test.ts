@@ -88,8 +88,7 @@ describe('resource navigation', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.navigation.update({
-      path_id: 'id',
+    const responsePromise = client.navigation.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'NAME',
@@ -105,13 +104,12 @@ describe('resource navigation', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.navigation.update({
-      path_id: 'id',
+    const response = await client.navigation.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'NAME',
       source: 'Bluestaq',
-      body_id: 'NAVIGATION-ID',
+      id: 'NAVIGATION-ID',
       description: 'DESCRIPTION',
       entity: {
         classificationMarking: 'U',

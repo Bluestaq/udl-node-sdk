@@ -106,8 +106,7 @@ describe('resource navigationalobstruction', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.navigationalobstruction.update({
-      path_id: 'id',
+    const responsePromise = client.navigationalobstruction.update('id', {
       classificationMarking: 'U',
       cycleDate: '2024-06-13',
       dataMode: 'REAL',
@@ -125,15 +124,14 @@ describe('resource navigationalobstruction', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.navigationalobstruction.update({
-      path_id: 'id',
+    const response = await client.navigationalobstruction.update('id', {
       classificationMarking: 'U',
       cycleDate: '2024-06-13',
       dataMode: 'REAL',
       obstacleId: '359655',
       obstacleType: 'V',
       source: 'Bluestaq',
-      body_id: '026dd511-8ba5-47d3-9909-836149f87686',
+      id: '026dd511-8ba5-47d3-9909-836149f87686',
       actDelCode: 'A',
       airacCycle: 2406,
       baseAiracCycle: 2405,

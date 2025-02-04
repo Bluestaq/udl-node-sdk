@@ -102,8 +102,7 @@ describe('resource surface', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.surface.update({
-      path_id: 'id',
+    const responsePromise = client.surface.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'West lot',
@@ -120,14 +119,13 @@ describe('resource surface', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.surface.update({
-      path_id: 'id',
+    const response = await client.surface.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'West lot',
       source: 'Bluestaq',
       type: 'PARKING',
-      body_id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+      id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       altSiteId: 'ORIG-SITE-ID',
       condition: 'GOOD',
       ddtWtKip: 833.5,

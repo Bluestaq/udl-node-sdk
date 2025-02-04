@@ -55,8 +55,7 @@ describe('resource seradataopticalpayload', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.seradataopticalpayload.update({
-      path_id: 'id',
+    const responsePromise = client.seradataopticalpayload.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
@@ -72,13 +71,12 @@ describe('resource seradataopticalpayload', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.seradataopticalpayload.update({
-      path_id: 'id',
+    const response = await client.seradataopticalpayload.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
-      body_id: 'SERADATAOPTICALPAYLOAD-ID',
+      id: 'SERADATAOPTICALPAYLOAD-ID',
       bestResolution: 1.23,
       fieldOfRegard: 1.23,
       fieldOfView: 1.23,

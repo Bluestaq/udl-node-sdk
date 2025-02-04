@@ -58,8 +58,7 @@ describe('resource launchdetection', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.launchdetection.update({
-      path_id: 'id',
+    const responsePromise = client.launchdetection.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       messageType: 'Example-Msg-Type',
@@ -79,8 +78,7 @@ describe('resource launchdetection', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.launchdetection.update({
-      path_id: 'id',
+    const response = await client.launchdetection.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       messageType: 'Example-Msg-Type',
@@ -89,7 +87,7 @@ describe('resource launchdetection', () => {
       observationTime: '2018-01-01T16:00:00.123Z',
       sequenceNumber: 5,
       source: 'Bluestaq',
-      body_id: 'LAUNCHDETECTION-ID',
+      id: 'LAUNCHDETECTION-ID',
       descriptor: 'Example descriptor',
       eventId: 'EVENT-ID',
       highZenithAzimuth: false,

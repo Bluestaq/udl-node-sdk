@@ -110,8 +110,7 @@ describe('resource vessel', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.vessel.update({
-      path_id: 'id',
+    const responsePromise = client.vessel.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
@@ -126,12 +125,11 @@ describe('resource vessel', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.vessel.update({
-      path_id: 'id',
+    const response = await client.vessel.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
-      body_id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       altVesselId: '590b5194fc32e75dd00682ba',
       callsign: 'V2OZ',
       entity: {

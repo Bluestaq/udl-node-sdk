@@ -270,8 +270,7 @@ describe('resource sensorplan', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.sensorplan.update({
-      path_id: 'id',
+    const responsePromise = client.sensorplan.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       recType: 'COLLECT',
@@ -289,15 +288,14 @@ describe('resource sensorplan', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.sensorplan.update({
-      path_id: 'id',
+    const response = await client.sensorplan.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       recType: 'COLLECT',
       source: 'Bluestaq',
       startTime: '2018-01-01T16:00:00.123456Z',
       type: 'PLAN',
-      body_id: 'SENSORPLAN-ID',
+      id: 'SENSORPLAN-ID',
       collectRequests: [
         {
           classificationMarking: 'U',
