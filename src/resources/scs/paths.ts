@@ -16,11 +16,7 @@ export class Paths extends APIResource {
       query: { id, classificationMarking, description, tags },
       body: body,
       ...options,
-      headers: {
-        'Content-Type': 'application/octet-stream',
-        Accept: 'application/json',
-        ...options?.headers,
-      },
+      headers: { 'Content-Type': 'application/octet-stream', ...options?.headers },
       __binaryRequest: true,
     });
   }

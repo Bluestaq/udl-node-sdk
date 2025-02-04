@@ -29,10 +29,9 @@ export class Countries extends APIResource {
    * Service operation to update a single Country. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(params: CountryUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_code, body_code, ...body } = params;
-    return this._client.put(`/udl/country/${path_code}`, {
-      body: { code: body_code, ...body },
+  update(code1: string, body: CountryUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.put(`/udl/country/${code1}`, {
+      body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -332,20 +331,14 @@ export interface CountryCreateParams {
 
 export interface CountryUpdateParams {
   /**
-   * Path param: The Code of the Country to update.
+   * The country code. Optimally, this value is the ISO 3166 Alpha-2-two-character
+   * country code, however it can represent various consortiums that do not appear in
+   * the ISO document.
    */
-  path_code: string;
+  code: string;
 
   /**
-   * Body param: The country code. Optimally, this value is the ISO 3166
-   * Alpha-2-two-character country code, however it can represent various consortiums
-   * that do not appear in the ISO document.
-   */
-  body_code: string;
-
-  /**
-   * Body param: Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST
-   * data:
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
    *
    * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
    * may include both real and simulated data.
@@ -363,32 +356,32 @@ export interface CountryUpdateParams {
   dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
-   * Body param: Source of the data.
+   * Source of the data.
    */
   source: string;
 
   /**
-   * Body param: 3 Digit or other alternate country code.
+   * 3 Digit or other alternate country code.
    */
   codeAlt?: string;
 
   /**
-   * Body param: Federal Information Processing Standard (FIPS) two-character country
-   * code. This field is used when the country code for FIPS differs from the country
-   * code for ISO-3166 value. For example, the ISO-3166 Alpha-2-country code for
-   * Vanuatu is VU, whereas Vanuatu's FIPS equivalent country code is NH.
+   * Federal Information Processing Standard (FIPS) two-character country code. This
+   * field is used when the country code for FIPS differs from the country code for
+   * ISO-3166 value. For example, the ISO-3166 Alpha-2-country code for Vanuatu is
+   * VU, whereas Vanuatu's FIPS equivalent country code is NH.
    */
   fipsCode?: string;
 
   /**
-   * Body param: ISO 3166 Alpha-3 country code. This is a three-character code that
-   * represents a country name, which may be more closely related to the country name
-   * than its corresponding Alpha-2 code.
+   * ISO 3166 Alpha-3 country code. This is a three-character code that represents a
+   * country name, which may be more closely related to the country name than its
+   * corresponding Alpha-2 code.
    */
   iso3Code?: string;
 
   /**
-   * Body param: Country name.
+   * Country name.
    */
   name?: string;
 }

@@ -40,8 +40,7 @@ describe('resource onorbitantenna', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.onorbitantenna.update({
-      path_id: 'id',
+    const responsePromise = client.onorbitantenna.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idAntenna: 'ANTENNA-ID',
@@ -58,14 +57,13 @@ describe('resource onorbitantenna', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.onorbitantenna.update({
-      path_id: 'id',
+    const response = await client.onorbitantenna.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idAntenna: 'ANTENNA-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
-      body_id: 'ONORBITANTENNA-ID',
+      id: 'ONORBITANTENNA-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

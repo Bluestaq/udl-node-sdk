@@ -57,8 +57,7 @@ describe('resource beam', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.beam.update({
-      path_id: 'id',
+    const responsePromise = client.beam.update('id', {
       beamName: 'BEAMNAME-ID',
       classificationMarking: 'U',
       dataMode: 'REAL',
@@ -74,13 +73,12 @@ describe('resource beam', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.beam.update({
-      path_id: 'id',
+    const response = await client.beam.update('id', {
       beamName: 'BEAMNAME-ID',
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
-      body_id: 'BEAM-ID',
+      id: 'BEAM-ID',
       notes: 'Example notes',
       origin: 'THIRD_PARTY_DATASOURCE',
     });

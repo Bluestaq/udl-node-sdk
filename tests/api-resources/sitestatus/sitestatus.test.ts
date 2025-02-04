@@ -66,8 +66,7 @@ describe('resource sitestatus', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.sitestatus.update({
-      path_id: 'id',
+    const responsePromise = client.sitestatus.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idSite: '41e3e554-9790-40b9-bd7b-f30d864dcad8',
@@ -83,13 +82,12 @@ describe('resource sitestatus', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.sitestatus.update({
-      path_id: 'id',
+    const response = await client.sitestatus.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idSite: '41e3e554-9790-40b9-bd7b-f30d864dcad8',
       source: 'Bluestaq',
-      body_id: 'SITESTATUS-ID',
+      id: 'SITESTATUS-ID',
       cat: 'COLD',
       coldInventory: 1,
       commImpairment: 'commImpairment',

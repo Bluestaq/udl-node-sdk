@@ -41,9 +41,8 @@ describe('resource rfbandtype', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.rfbandtype.update({
-      path_id: 'id',
-      body_id: 'Ku',
+    const responsePromise = client.rfbandtype.update('id', {
+      id: 'Ku',
       classificationMarking: 'U',
       dataMode: 'REAL',
       description: 'Example description',
@@ -59,9 +58,8 @@ describe('resource rfbandtype', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.rfbandtype.update({
-      path_id: 'id',
-      body_id: 'Ku',
+    const response = await client.rfbandtype.update('id', {
+      id: 'Ku',
       classificationMarking: 'U',
       dataMode: 'REAL',
       description: 'Example description',

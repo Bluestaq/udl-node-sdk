@@ -91,25 +91,31 @@ export class Scs extends APIResource {
    */
   copy(params: ScCopyParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     const { id, targetPath } = params;
-    return this._client.post('/scs/copy', {
-      query: { id, targetPath },
-      ...options,
-      headers: { Accept: 'application/json', ...options?.headers },
-    });
+    return this._client.post('/scs/copy', { query: { id, targetPath }, ...options });
   }
 
   /**
    * Downloads a zip of one or more files and/or folders.
    */
   download(body: ScDownloadParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.post('/scs/download', { body, ...options, __binaryResponse: true });
+    return this._client.post('/scs/download', {
+      body,
+      ...options,
+      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      __binaryResponse: true,
+    });
   }
 
   /**
    * Download a single file from SCS.
    */
   fileDownload(query: ScFileDownloadParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.get('/scs/download', { query, ...options, __binaryResponse: true });
+    return this._client.get('/scs/download', {
+      query,
+      ...options,
+      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      __binaryResponse: true,
+    });
   }
 
   /**
@@ -122,11 +128,7 @@ export class Scs extends APIResource {
       query: { classificationMarking, fileName, path, description, tags },
       body: body,
       ...options,
-      headers: {
-        'Content-Type': 'application/octet-stream',
-        Accept: 'application/json',
-        ...options?.headers,
-      },
+      headers: { 'Content-Type': 'application/octet-stream', ...options?.headers },
       __binaryRequest: true,
     });
   }
@@ -137,11 +139,7 @@ export class Scs extends APIResource {
    */
   move(params: ScMoveParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     const { id, targetPath } = params;
-    return this._client.put('/scs/move', {
-      query: { id, targetPath },
-      ...options,
-      headers: { Accept: 'application/json', ...options?.headers },
-    });
+    return this._client.put('/scs/move', { query: { id, targetPath }, ...options });
   }
 
   /**

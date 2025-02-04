@@ -42,8 +42,7 @@ describe('resource onorbitthruster', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.onorbitthruster.update({
-      path_id: 'id',
+    const responsePromise = client.onorbitthruster.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idEngine: 'ENGINE-ID',
@@ -60,14 +59,13 @@ describe('resource onorbitthruster', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.onorbitthruster.update({
-      path_id: 'id',
+    const response = await client.onorbitthruster.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idEngine: 'ENGINE-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
-      body_id: 'ONORBITTHRUSTER-ID',
+      id: 'ONORBITTHRUSTER-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
       quantity: 10,
       type: 'Hydrazine REA',

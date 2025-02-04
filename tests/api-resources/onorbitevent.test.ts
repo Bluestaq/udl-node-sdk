@@ -83,8 +83,7 @@ describe('resource onorbitevent', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.onorbitevent.update({
-      path_id: 'id',
+    const responsePromise = client.onorbitevent.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       eventTime: '2018-01-01T16:00:00.123Z',
@@ -100,13 +99,12 @@ describe('resource onorbitevent', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.onorbitevent.update({
-      path_id: 'id',
+    const response = await client.onorbitevent.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       eventTime: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
-      body_id: 'ONORBITEVENT-ID',
+      id: 'ONORBITEVENT-ID',
       achievedFlightPhase: 'Phase 2',
       ageAtEvent: 5.23,
       capabilityLoss: 0.5,

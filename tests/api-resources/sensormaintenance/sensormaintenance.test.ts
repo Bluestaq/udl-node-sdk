@@ -61,8 +61,7 @@ describe('resource sensormaintenance', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.sensormaintenance.update({
-      path_id: 'id',
+    const responsePromise = client.sensormaintenance.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       endTime: '2018-01-01T16:00:00.123456Z',
@@ -80,15 +79,14 @@ describe('resource sensormaintenance', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.sensormaintenance.update({
-      path_id: 'id',
+    const response = await client.sensormaintenance.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       endTime: '2018-01-01T16:00:00.123456Z',
       siteCode: 'site01',
       source: 'Bluestaq',
       startTime: '2018-01-01T16:00:00.123456Z',
-      body_id: 'SENSORMAINTENANCE-ID',
+      id: 'SENSORMAINTENANCE-ID',
       activity: 'Activity Description',
       approver: 'approver',
       changer: 'changer',

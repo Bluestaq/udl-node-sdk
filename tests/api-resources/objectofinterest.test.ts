@@ -75,8 +75,7 @@ describe('resource objectofinterest', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.objectofinterest.update({
-      path_id: 'id',
+    const responsePromise = client.objectofinterest.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idOnOrbit: 'REF-ONORBIT-ID',
@@ -94,15 +93,14 @@ describe('resource objectofinterest', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.objectofinterest.update({
-      path_id: 'id',
+    const response = await client.objectofinterest.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idOnOrbit: 'REF-ONORBIT-ID',
       sensorTaskingStartTime: '2021-01-01T01:01:01.123Z',
       source: 'Bluestaq',
       statusDate: '2021-01-01T01:01:01.123Z',
-      body_id: 'OBJECTOFINTEREST-ID',
+      id: 'OBJECTOFINTEREST-ID',
       affectedObjects: ['AFFECTEDOBJECT1-ID', 'AFFECTEDOBJECT2-ID'],
       apogee: 123.4,
       argOfPerigee: 123.4,

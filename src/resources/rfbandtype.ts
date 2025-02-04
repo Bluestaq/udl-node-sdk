@@ -21,10 +21,9 @@ export class Rfbandtype extends APIResource {
    * Service operation to update an RFBandType. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(params: RfbandtypeUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { path_id, body_id, ...body } = params;
-    return this._client.put(`/udl/rfbandtype/${path_id}`, {
-      body: { id: body_id, ...body },
+  update(id1: string, body: RfbandtypeUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.put(`/udl/rfbandtype/${id1}`, {
+      body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -411,24 +410,17 @@ export interface RfbandtypeCreateParams {
 
 export interface RfbandtypeUpdateParams {
   /**
-   * Path param: The ID of the RFBandType to update.
+   * Unique identifier for the RF band (e.g. X, K, Ku, etc).
    */
-  path_id: string;
+  id: string;
 
   /**
-   * Body param: Unique identifier for the RF band (e.g. X, K, Ku, etc).
-   */
-  body_id: string;
-
-  /**
-   * Body param: Classification marking of the data in IC/CAPCO Portion-marked
-   * format.
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
   classificationMarking: string;
 
   /**
-   * Body param: Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST
-   * data:
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
    *
    * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
    * may include both real and simulated data.
@@ -446,30 +438,30 @@ export interface RfbandtypeUpdateParams {
   dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
-   * Body param: Description of the band and common uses.
+   * Description of the band and common uses.
    */
   description: string;
 
   /**
-   * Body param: Source of the data.
+   * Source of the data.
    */
   source: string;
 
   /**
-   * Body param: Approximate end of the band frequency range, in Ghz.
+   * Approximate end of the band frequency range, in Ghz.
    */
   endFreq?: number;
 
   /**
-   * Body param: Originating system or organization which produced the data, if
-   * different from the source. The origin may be different than the source if the
-   * source was a mediating system which forwarded the data on behalf of the origin
-   * system. If null, the source may be assumed to be the origin.
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
    */
   origin?: string;
 
   /**
-   * Body param: Approximate start of the band frequency range, in Ghz.
+   * Approximate start of the band frequency range, in Ghz.
    */
   startFreq?: number;
 }

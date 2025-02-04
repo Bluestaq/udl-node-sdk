@@ -84,8 +84,7 @@ describe('resource eop', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.eop.update({
-      path_id: 'id',
+    const responsePromise = client.eop.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       eopDate: '2018-01-01T16:00:00.123Z',
@@ -101,13 +100,12 @@ describe('resource eop', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.eop.update({
-      path_id: 'id',
+    const response = await client.eop.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       eopDate: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
-      body_id: 'EOP-ID',
+      id: 'EOP-ID',
       dEpsilon: -0.917,
       dEpsilonB: -1.7,
       dEpsilonUnc: 0.165,

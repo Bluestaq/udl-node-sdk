@@ -50,8 +50,7 @@ describe('resource seradatanavigation', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.seradatanavigation.update({
-      path_id: 'id',
+    const responsePromise = client.seradatanavigation.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
@@ -67,13 +66,12 @@ describe('resource seradatanavigation', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.seradatanavigation.update({
-      path_id: 'id',
+    const response = await client.seradatanavigation.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
-      body_id: 'SERADATANAVIGATION-ID',
+      id: 'SERADATANAVIGATION-ID',
       areaCoverage: 'Worldwide',
       clockType: 'Rubidium',
       hostedForCompanyOrgId: 'hostedForCompanyOrgId',

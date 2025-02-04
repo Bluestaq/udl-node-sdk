@@ -103,8 +103,7 @@ describe('resource equipment', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.equipment.update({
-      path_id: 'id',
+    const responsePromise = client.equipment.update('id', {
       classificationMarking: 'U',
       countryCode: 'IQ',
       dataMode: 'REAL',
@@ -122,15 +121,14 @@ describe('resource equipment', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.equipment.update({
-      path_id: 'id',
+    const response = await client.equipment.update('id', {
       classificationMarking: 'U',
       countryCode: 'IQ',
       dataMode: 'REAL',
       lat: 39.019242,
       lon: -104.251659,
       source: 'Bluestaq',
-      body_id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       airDefArea: 'AL006',
       allegiance: 'OTHR',
       altAllegiance: 'HL',

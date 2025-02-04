@@ -98,8 +98,7 @@ describe('resource aircraftStatuses', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.aircraftStatuses.update({
-      path_id: 'id',
+    const responsePromise = client.aircraftStatuses.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idAircraft: '29232269-e4c2-45c9-aa21-039a33209340',
@@ -115,13 +114,12 @@ describe('resource aircraftStatuses', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.aircraftStatuses.update({
-      path_id: 'id',
+    const response = await client.aircraftStatuses.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idAircraft: '29232269-e4c2-45c9-aa21-039a33209340',
       source: 'Bluestaq',
-      body_id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       additionalSys: ['ATOMS', 'TUDL', 'BLOS1'],
       airToAirStatus: 'OPERATIONAL',
       airToGroundStatus: 'OPERATIONAL',

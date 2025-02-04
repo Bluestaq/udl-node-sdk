@@ -65,8 +65,7 @@ describe('resource seradatacommdetails', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.seradatacommdetails.update({
-      path_id: 'id',
+    const responsePromise = client.seradatacommdetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
@@ -81,12 +80,11 @@ describe('resource seradatacommdetails', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.seradatacommdetails.update({
-      path_id: 'id',
+    const response = await client.seradatacommdetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
-      body_id: 'SERADATACOMMDETAILS-ID',
+      id: 'SERADATACOMMDETAILS-ID',
       band: 'X',
       bandwidth: 1.23,
       eirp: 1.23,

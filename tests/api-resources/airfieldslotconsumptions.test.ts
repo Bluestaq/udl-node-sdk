@@ -86,8 +86,7 @@ describe('resource airfieldslotconsumptions', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.airfieldslotconsumptions.update({
-      path_id: 'id',
+    const responsePromise = client.airfieldslotconsumptions.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       endTime: '2023-01-01T01:01:01.123Z',
@@ -106,8 +105,7 @@ describe('resource airfieldslotconsumptions', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.airfieldslotconsumptions.update({
-      path_id: 'id',
+    const response = await client.airfieldslotconsumptions.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       endTime: '2023-01-01T01:01:01.123Z',
@@ -115,7 +113,7 @@ describe('resource airfieldslotconsumptions', () => {
       numAircraft: 1,
       source: 'Bluestaq',
       startTime: '2023-01-01T01:01:01.123Z',
-      body_id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+      id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       altArrSortieId: 'ALT-SORTIE-ID',
       altDepSortieId: 'ALT-SORTIE-ID',
       appComment: 'The request was denied due to inoperable fuel pumps.',

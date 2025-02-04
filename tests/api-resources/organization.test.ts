@@ -46,8 +46,7 @@ describe('resource organization', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.organization.update({
-      path_id: 'id',
+    const responsePromise = client.organization.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'some.user',
@@ -64,14 +63,13 @@ describe('resource organization', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.organization.update({
-      path_id: 'id',
+    const response = await client.organization.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'some.user',
       source: 'some.user',
       type: 'GOVERNMENT',
-      body_id: 'ORGANIZATION-ID',
+      id: 'ORGANIZATION-ID',
       active: false,
       category: 'Private company',
       countryCode: 'US',

@@ -49,8 +49,7 @@ describe('resource surfaceobstruction', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.surfaceobstruction.update({
-      path_id: 'id',
+    const responsePromise = client.surfaceobstruction.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idSurface: 'be831d39-1822-da9f-7ace-6cc5643397dc',
@@ -66,13 +65,12 @@ describe('resource surfaceobstruction', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.surfaceobstruction.update({
-      path_id: 'id',
+    const response = await client.surfaceobstruction.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idSurface: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       source: 'Bluestaq',
-      body_id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+      id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       advisoryRequired: ['C20', 'C17'],
       approvalRequired: ['C20', 'C17'],
       distanceFromCenterLine: 17.8,

@@ -83,8 +83,7 @@ describe('resource sgi', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.sgi.update({
-      path_id: 'id',
+    const responsePromise = client.sgi.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       effectiveDate: '2018-01-01T16:00:00.123Z',
@@ -101,14 +100,13 @@ describe('resource sgi', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.sgi.update({
-      path_id: 'id',
+    const response = await client.sgi.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       effectiveDate: '2018-01-01T16:00:00.123Z',
       sgiDate: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
-      body_id: 'SGI-ID',
+      id: 'SGI-ID',
       analyzerAttenuation: 5.1,
       ap: 1.23,
       apDuration: 3,

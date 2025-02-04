@@ -78,8 +78,7 @@ describe('resource onorbitdetails', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.onorbitdetails.update({
-      path_id: 'id',
+    const responsePromise = client.onorbitdetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idOnOrbit: 'REF-ONORBIT-ID',
@@ -95,13 +94,12 @@ describe('resource onorbitdetails', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.onorbitdetails.update({
-      path_id: 'id',
+    const response = await client.onorbitdetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idOnOrbit: 'REF-ONORBIT-ID',
       source: 'Bluestaq',
-      body_id: 'ONORBITDETAILS-ID',
+      id: 'ONORBITDETAILS-ID',
       additionalMass: 10.23,
       adeptRadius: 10.23,
       bolDeltaV: 1000.1,

@@ -88,8 +88,7 @@ describe('resource rfemitter', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.rfemitter.update({
-      path_id: 'id',
+    const responsePromise = client.rfemitter.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'RF_NAME',
@@ -105,13 +104,12 @@ describe('resource rfemitter', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.rfemitter.update({
-      path_id: 'id',
+    const response = await client.rfemitter.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'RF_NAME',
       source: 'Bluestaq',
-      body_id: 'RFEMITTER-ID',
+      id: 'RFEMITTER-ID',
       entity: {
         classificationMarking: 'U',
         dataMode: 'REAL',

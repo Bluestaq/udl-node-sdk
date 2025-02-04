@@ -42,8 +42,7 @@ describe('resource manifold', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.manifold.update({
-      path_id: 'id',
+    const responsePromise = client.manifold.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idObjectOfInterest: 'OBJECTOFINTEREST-ID',
@@ -59,13 +58,12 @@ describe('resource manifold', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.manifold.update({
-      path_id: 'id',
+    const response = await client.manifold.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idObjectOfInterest: 'OBJECTOFINTEREST-ID',
       source: 'Bluestaq',
-      body_id: 'MANIFOLD-ID',
+      id: 'MANIFOLD-ID',
       deltaT: 10.23,
       deltaV: 10.23,
       origin: 'THIRD_PARTY_DATASOURCE',

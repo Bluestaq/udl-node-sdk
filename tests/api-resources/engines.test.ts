@@ -56,8 +56,7 @@ describe('resource engines', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.engines.update({
-      path_id: 'id',
+    const responsePromise = client.engines.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'ENGINE_VARIANT1',
@@ -73,13 +72,12 @@ describe('resource engines', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.engines.update({
-      path_id: 'id',
+    const response = await client.engines.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'ENGINE_VARIANT1',
       source: 'Bluestaq',
-      body_id: 'ENGINE-ID',
+      id: 'ENGINE-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

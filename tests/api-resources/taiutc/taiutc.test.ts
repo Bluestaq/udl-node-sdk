@@ -41,8 +41,7 @@ describe('resource taiutc', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.taiutc.update({
-      path_id: 'id',
+    const responsePromise = client.taiutc.update('id', {
       adjustmentDate: '2017-01-01T00:00:00.123Z',
       classificationMarking: 'U',
       dataMode: 'REAL',
@@ -58,13 +57,12 @@ describe('resource taiutc', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.taiutc.update({
-      path_id: 'id',
+    const response = await client.taiutc.update('id', {
       adjustmentDate: '2017-01-01T00:00:00.123Z',
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
-      body_id: 'TAIUTC-ID',
+      id: 'TAIUTC-ID',
       multiplicationFactor: 0.001296,
       origin: 'THIRD_PARTY_DATASOURCE',
       rawFileURI: '/TAI/2019/01/22/4318471007562436-tai-utc.dat',

@@ -109,8 +109,7 @@ describe('resource crew', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.crew.update({
-      path_id: 'id',
+    const responsePromise = client.crew.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       origCrewId: 'JHJDHjhuu929o92',
@@ -126,13 +125,12 @@ describe('resource crew', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.crew.update({
-      path_id: 'id',
+    const response = await client.crew.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       origCrewId: 'JHJDHjhuu929o92',
       source: 'Bluestaq',
-      body_id: 'bdad6945-c9e4-b829-f7be-1ad075541921',
+      id: 'bdad6945-c9e4-b829-f7be-1ad075541921',
       adjReturnTime: '2024-01-01T16:00:00.123Z',
       adjReturnTimeApprover: 'Smith',
       aircraftMDS: 'C017A',

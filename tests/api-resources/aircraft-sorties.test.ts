@@ -29,8 +29,7 @@ describe('resource aircraftSorties', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.aircraftSorties.update({
-      path_id: 'id',
+    const responsePromise = client.aircraftSorties.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       plannedDepTime: '2021-01-01T01:01:01.123Z',
@@ -46,13 +45,12 @@ describe('resource aircraftSorties', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.aircraftSorties.update({
-      path_id: 'id',
+    const response = await client.aircraftSorties.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       plannedDepTime: '2021-01-01T01:01:01.123Z',
       source: 'Bluestaq',
-      body_id: 'AIRCRAFTSORTIE-ID',
+      id: 'AIRCRAFTSORTIE-ID',
       actualArrTime: '2021-01-01T01:01:01.123Z',
       actualBlockInTime: '2021-01-01T01:06:01.123Z',
       actualBlockOutTime: '2021-01-01T00:55:01.123Z',

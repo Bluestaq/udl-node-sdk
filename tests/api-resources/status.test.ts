@@ -58,8 +58,7 @@ describe('resource status', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.status.update({
-      path_id: 'id',
+    const responsePromise = client.status.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idEntity: 'ENTITY-ID',
@@ -75,13 +74,12 @@ describe('resource status', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.status.update({
-      path_id: 'id',
+    const response = await client.status.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idEntity: 'ENTITY-ID',
       source: 'Bluestaq',
-      body_id: 'STATUS-ID',
+      id: 'STATUS-ID',
       declassificationDate: '2021-01-01T01:02:02.123Z',
       declassificationString: 'U',
       derivedFrom: 'SOME_SOURCE',

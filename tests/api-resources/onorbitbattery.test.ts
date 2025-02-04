@@ -41,8 +41,7 @@ describe('resource onorbitbattery', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.onorbitbattery.update({
-      path_id: 'id',
+    const responsePromise = client.onorbitbattery.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idBattery: 'BATTERY-ID',
@@ -59,14 +58,13 @@ describe('resource onorbitbattery', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.onorbitbattery.update({
-      path_id: 'id',
+    const response = await client.onorbitbattery.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idBattery: 'BATTERY-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
-      body_id: 'ONORBITBATTERY-ID',
+      id: 'ONORBITBATTERY-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
       quantity: 5,
     });

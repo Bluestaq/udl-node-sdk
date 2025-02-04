@@ -39,8 +39,7 @@ describe('resource launchvehicle', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.launchvehicle.update({
-      path_id: 'id',
+    const responsePromise = client.launchvehicle.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'Example-name',
@@ -56,13 +55,12 @@ describe('resource launchvehicle', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.launchvehicle.update({
-      path_id: 'id',
+    const response = await client.launchvehicle.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'Example-name',
       source: 'Bluestaq',
-      body_id: 'LAUNCHVEHICLE-ID',
+      id: 'LAUNCHVEHICLE-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
       type: 'Example-vehicle-type',
     });

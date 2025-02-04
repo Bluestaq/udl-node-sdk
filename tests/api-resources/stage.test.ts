@@ -70,8 +70,7 @@ describe('resource stage', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.stage.update({
-      path_id: 'id',
+    const responsePromise = client.stage.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idEngine: 'ENGINE-ID',
@@ -88,14 +87,13 @@ describe('resource stage', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.stage.update({
-      path_id: 'id',
+    const response = await client.stage.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idEngine: 'ENGINE-ID',
       idLaunchVehicle: 'LAUNCHVEHICLE-ID',
       source: 'Bluestaq',
-      body_id: 'STAGE-ID',
+      id: 'STAGE-ID',
       avionicsNotes: 'Sample Notes',
       burnTime: 256.3,
       controlThruster1: 'controlThruster1',

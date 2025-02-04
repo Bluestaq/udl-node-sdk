@@ -64,8 +64,7 @@ describe('resource rfemitterdetails', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.rfemitterdetails.update({
-      path_id: 'id',
+    const responsePromise = client.rfemitterdetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idRFEmitter: 'RFEMITTER-ID',
@@ -81,13 +80,12 @@ describe('resource rfemitterdetails', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.rfemitterdetails.update({
-      path_id: 'id',
+    const response = await client.rfemitterdetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idRFEmitter: 'RFEMITTER-ID',
       source: 'Bluestaq',
-      body_id: 'RFEMITTERDETAILS-ID',
+      id: 'RFEMITTERDETAILS-ID',
       alternateFacilityName: 'ALTERNATE_FACILITY_NAME',
       altName: 'ALTERNATE_NAME',
       antennaDiameter: 20.23,

@@ -80,8 +80,7 @@ describe('resource item', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.item.update({
-      path_id: 'id',
+    const responsePromise = client.item.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       scanCode: '12345ABCD',
@@ -98,14 +97,13 @@ describe('resource item', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.item.update({
-      path_id: 'id',
+    const response = await client.item.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       scanCode: '12345ABCD',
       source: 'Bluestaq',
       type: 'CARGO',
-      body_id: '22f1f6da-a568-655a-ea37-76d013d04853',
+      id: '22f1f6da-a568-655a-ea37-76d013d04853',
       accSysKeys: ['System key1', 'System key2'],
       accSysNotes: 'Accepting System Notes',
       accSystem: 'Accepting System',

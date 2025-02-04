@@ -50,8 +50,7 @@ describe('resource seradatasigintpayload', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.seradatasigintpayload.update({
-      path_id: 'id',
+    const responsePromise = client.seradatasigintpayload.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
@@ -67,13 +66,12 @@ describe('resource seradatasigintpayload', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.seradatasigintpayload.update({
-      path_id: 'id',
+    const response = await client.seradatasigintpayload.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
-      body_id: 'SERADATASIGINTPAYLOAD-ID',
+      id: 'SERADATASIGINTPAYLOAD-ID',
       frequencyCoverage: '1.1 to 3.3',
       groundStationLocations: 'groundStationLocations',
       groundStations: 'groundStations',

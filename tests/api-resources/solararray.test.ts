@@ -36,8 +36,7 @@ describe('resource solararray', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.solararray.update({
-      path_id: 'id',
+    const responsePromise = client.solararray.update('id', {
       dataMode: 'REAL',
       name: 'Solar1',
       source: 'Bluestaq',
@@ -52,12 +51,11 @@ describe('resource solararray', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.solararray.update({
-      path_id: 'id',
+    const response = await client.solararray.update('id', {
       dataMode: 'REAL',
       name: 'Solar1',
       source: 'Bluestaq',
-      body_id: 'SOLARARRAY-ID',
+      id: 'SOLARARRAY-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

@@ -124,8 +124,7 @@ describe('resource seradataspacecraftdetails', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.seradataspacecraftdetails.update({
-      path_id: 'id',
+    const responsePromise = client.seradataspacecraftdetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'name',
@@ -141,13 +140,12 @@ describe('resource seradataspacecraftdetails', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.seradataspacecraftdetails.update({
-      path_id: 'id',
+    const response = await client.seradataspacecraftdetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'name',
       source: 'Bluestaq',
-      body_id: 'SERADATASPACECRAFTDETAILS-ID',
+      id: 'SERADATASPACECRAFTDETAILS-ID',
       additionalMissionsGroups: 'additionalMissionsGroups',
       altitude: 36036.6330576414,
       annualInsuredDepreciationFactor: 1.23,

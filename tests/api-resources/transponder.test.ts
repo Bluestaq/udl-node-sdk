@@ -47,8 +47,7 @@ describe('resource transponder', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.transponder.update({
-      path_id: 'id',
+    const responsePromise = client.transponder.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idComm: 'REF-COMM-ID',
@@ -64,13 +63,12 @@ describe('resource transponder', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.transponder.update({
-      path_id: 'id',
+    const response = await client.transponder.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idComm: 'REF-COMM-ID',
       source: 'Bluestaq',
-      body_id: 'TRANSPONDER-ID',
+      id: 'TRANSPONDER-ID',
       fec: 0,
       format: 'format',
       modulation: 'Auto',

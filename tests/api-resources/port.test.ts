@@ -50,8 +50,7 @@ describe('resource port', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.port.update({
-      path_id: 'id',
+    const responsePromise = client.port.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
@@ -66,12 +65,11 @@ describe('resource port', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.port.update({
-      path_id: 'id',
+    const response = await client.port.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
-      body_id: '026dd511-8ba5-47d3-9909-836149f87686',
+      id: '026dd511-8ba5-47d3-9909-836149f87686',
       avgDuration: 41.1,
       countryCode: 'US',
       externalId: 'fe4ad5dc-0128-4ce8-b09c-0b404322025e',

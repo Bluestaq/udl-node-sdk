@@ -94,8 +94,7 @@ describe('resource scientific', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.scientific.update({
-      path_id: 'id',
+    const responsePromise = client.scientific.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'SEM/MAG',
@@ -112,14 +111,13 @@ describe('resource scientific', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.scientific.update({
-      path_id: 'id',
+    const response = await client.scientific.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'SEM/MAG',
       source: 'Bluestaq',
       spacecraftId: 'REF-SPACECRAFT-ID',
-      body_id: 'SCIENTIFIC-ID',
+      id: 'SCIENTIFIC-ID',
       entity: {
         classificationMarking: 'U',
         dataMode: 'REAL',

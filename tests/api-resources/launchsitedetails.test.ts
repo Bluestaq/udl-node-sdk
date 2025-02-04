@@ -54,8 +54,7 @@ describe('resource launchsitedetails', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.launchsitedetails.update({
-      path_id: 'id',
+    const responsePromise = client.launchsitedetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idLaunchSite: 'LAUNCHSITE-ID',
@@ -71,13 +70,12 @@ describe('resource launchsitedetails', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.launchsitedetails.update({
-      path_id: 'id',
+    const response = await client.launchsitedetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idLaunchSite: 'LAUNCHSITE-ID',
       source: 'Bluestaq',
-      body_id: 'LAUNCHSITEDETAILS-ID',
+      id: 'LAUNCHSITEDETAILS-ID',
       availableInclinations: [10.23, 10.23, 12.23, 14.23],
       description: 'Example notes',
       idLocation: 'LOCATION-ID',

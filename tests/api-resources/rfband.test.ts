@@ -53,8 +53,7 @@ describe('resource rfband', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.rfband.update({
-      path_id: 'id',
+    const responsePromise = client.rfband.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idEntity: 'ENTITY-ID',
@@ -71,14 +70,13 @@ describe('resource rfband', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.rfband.update({
-      path_id: 'id',
+    const response = await client.rfband.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idEntity: 'ENTITY-ID',
       name: 'BAND_NAME',
       source: 'Bluestaq',
-      body_id: 'RFBAND-ID',
+      id: 'RFBAND-ID',
       band: 'Ku',
       bandwidth: 100.23,
       beamwidth: 45.23,

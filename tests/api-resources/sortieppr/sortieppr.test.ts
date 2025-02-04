@@ -46,8 +46,7 @@ describe('resource sortieppr', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.sortieppr.update({
-      path_id: 'id',
+    const responsePromise = client.sortieppr.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
@@ -63,13 +62,12 @@ describe('resource sortieppr', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.sortieppr.update({
-      path_id: 'id',
+    const response = await client.sortieppr.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
       source: 'Bluestaq',
-      body_id: 'SORTIEPPR-ID',
+      id: 'SORTIEPPR-ID',
       endTime: '2024-01-01T01:01:01.123Z',
       externalId: 'aa714f4d52a37ab1a00b21af9566e379',
       grantor: 'SMITH',

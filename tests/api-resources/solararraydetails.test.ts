@@ -46,8 +46,7 @@ describe('resource solararraydetails', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.solararraydetails.update({
-      path_id: 'id',
+    const responsePromise = client.solararraydetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idSolarArray: 'SOLARARRAY-ID',
@@ -63,13 +62,12 @@ describe('resource solararraydetails', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.solararraydetails.update({
-      path_id: 'id',
+    const response = await client.solararraydetails.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       idSolarArray: 'SOLARARRAY-ID',
       source: 'Bluestaq',
-      body_id: 'SOLARARRAYDETAILS-ID',
+      id: 'SOLARARRAYDETAILS-ID',
       area: 123.4,
       description: 'Example notes',
       junctionTechnology: 'Triple',

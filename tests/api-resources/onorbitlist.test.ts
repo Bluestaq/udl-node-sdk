@@ -40,8 +40,7 @@ describe('resource onorbitlist', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.onorbitlist.update({
-      path_id: 'id',
+    const responsePromise = client.onorbitlist.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'People',
@@ -57,13 +56,12 @@ describe('resource onorbitlist', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.onorbitlist.update({
-      path_id: 'id',
+    const response = await client.onorbitlist.update('id', {
       classificationMarking: 'U',
       dataMode: 'REAL',
       name: 'People',
       source: 'Bluestaq',
-      body_id: 'ONORBITLIST-ID',
+      id: 'ONORBITLIST-ID',
       description: 'DESCRIPTION_OF_LIST',
       onorbits: ['ID1', 'ID2'],
       origin: 'THIRD_PARTY_DATASOURCE',

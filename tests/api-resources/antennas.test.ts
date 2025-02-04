@@ -54,8 +54,7 @@ describe('resource antennas', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.antennas.update({
-      path_id: 'id',
+    const responsePromise = client.antennas.update('id', {
       dataMode: 'REAL',
       name: 'IRIDIUM NEXT 121-ANTENNA-10075',
       source: 'Bluestaq',
@@ -70,12 +69,11 @@ describe('resource antennas', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.antennas.update({
-      path_id: 'id',
+    const response = await client.antennas.update('id', {
       dataMode: 'REAL',
       name: 'IRIDIUM NEXT 121-ANTENNA-10075',
       source: 'Bluestaq',
-      body_id: 'ANTENNA-ID',
+      id: 'ANTENNA-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });
