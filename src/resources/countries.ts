@@ -29,8 +29,8 @@ export class Countries extends APIResource {
    * Service operation to update a single Country. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(code1: string, body: CountryUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/country/${code1}`, {
+  update(pathCode: string, body: CountryUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.put(`/udl/country/${pathCode}`, {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -335,7 +335,7 @@ export interface CountryUpdateParams {
    * country code, however it can represent various consortiums that do not appear in
    * the ISO document.
    */
-  code: string;
+  body_code: string;
 
   /**
    * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

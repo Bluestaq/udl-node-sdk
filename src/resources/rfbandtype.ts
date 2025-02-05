@@ -21,8 +21,8 @@ export class Rfbandtype extends APIResource {
    * Service operation to update an RFBandType. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(id1: string, body: RfbandtypeUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/rfbandtype/${id1}`, {
+  update(pathId: string, body: RfbandtypeUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.put(`/udl/rfbandtype/${pathId}`, {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -412,7 +412,7 @@ export interface RfbandtypeUpdateParams {
   /**
    * Unique identifier for the RF band (e.g. X, K, Ku, etc).
    */
-  id: string;
+  body_id: string;
 
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
