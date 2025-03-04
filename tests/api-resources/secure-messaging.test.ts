@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource secureMessaging', () => {
-  test('describeTopic', async () => {
-    const responsePromise = client.secureMessaging.describeTopic('topic');
+  test('describeTopic: only required params', async () => {
+    const responsePromise = client.secureMessaging.describeTopic('topic', { query_topic: 'topic' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,15 +21,12 @@ describe('resource secureMessaging', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('describeTopic: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.secureMessaging.describeTopic('topic', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  test('describeTopic: required and optional params', async () => {
+    const response = await client.secureMessaging.describeTopic('topic', { query_topic: 'topic' });
   });
 
-  test('getLatestOffset', async () => {
-    const responsePromise = client.secureMessaging.getLatestOffset('topic');
+  test('getLatestOffset: only required params', async () => {
+    const responsePromise = client.secureMessaging.getLatestOffset('topic', { query_topic: 'topic' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -39,15 +36,15 @@ describe('resource secureMessaging', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('getLatestOffset: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.secureMessaging.getLatestOffset('topic', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  test('getLatestOffset: required and optional params', async () => {
+    const response = await client.secureMessaging.getLatestOffset('topic', { query_topic: 'topic' });
   });
 
-  test('getMessages', async () => {
-    const responsePromise = client.secureMessaging.getMessages('topic', 0);
+  test('getMessages: only required params', async () => {
+    const responsePromise = client.secureMessaging.getMessages('topic', 'offset', {
+      query_offset: 0,
+      query_topic: 'topic',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -57,11 +54,11 @@ describe('resource secureMessaging', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('getMessages: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.secureMessaging.getMessages('topic', 0, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  test('getMessages: required and optional params', async () => {
+    const response = await client.secureMessaging.getMessages('topic', 'offset', {
+      query_offset: 0,
+      query_topic: 'topic',
+    });
   });
 
   test('listTopics', async () => {

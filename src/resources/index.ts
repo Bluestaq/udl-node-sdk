@@ -1220,10 +1220,8 @@ export {
   type ScFileUploadResponse,
   type ScMoveResponse,
   type ScSearchResponse,
-  type ScDeleteParams,
   type ScCopyParams,
   type ScDownloadParams,
-  type ScFileDownloadParams,
   type ScFileUploadParams,
   type ScMoveParams,
   type ScRenameParams,
@@ -1235,6 +1233,9 @@ export {
   SecureMessaging,
   type TopicDetails,
   type SecureMessagingListTopicsResponse,
+  type SecureMessagingDescribeTopicParams,
+  type SecureMessagingGetLatestOffsetParams,
+  type SecureMessagingGetMessagesParams,
 } from './secure-messaging';
 export {
   Sensor,
@@ -1511,6 +1512,8 @@ export {
   type StatusTupleResponse,
   type StatusCreateParams,
   type StatusUpdateParams,
+  type StatusGetByEntityIDParams,
+  type StatusGetByEntityTypeParams,
   type StatusTupleParams,
 } from './status';
 export {
