@@ -6,7 +6,7 @@ This library provides convenient access to the Unifieddatalibrary REST API from 
 
 The REST API documentation can be found on [docs.unifieddatalibrary.com](https://docs.unifieddatalibrary.com). The full API of this library can be found in [api.md](api.md).
 
-It is generated with [Stainless](https://www.stainlessapi.com/).
+It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
@@ -15,7 +15,7 @@ npm install git+ssh://git@github.com:stainless-sdks/unifieddatalibrary-node.git
 ```
 
 > [!NOTE]
-> Once this package is [published to npm](https://app.stainlessapi.com/docs/guides/publish), this will become: `npm install unifieddatalibrary`
+> Once this package is [published to npm](https://app.stainless.com/docs/guides/publish), this will become: `npm install unifieddatalibrary`
 
 ## Usage
 
