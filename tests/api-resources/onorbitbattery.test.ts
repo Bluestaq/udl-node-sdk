@@ -64,7 +64,7 @@ describe('resource onorbitbattery', () => {
       idBattery: 'BATTERY-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
-      id: 'ONORBITBATTERY-ID',
+      body_id: 'ONORBITBATTERY-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
       quantity: 5,
     });

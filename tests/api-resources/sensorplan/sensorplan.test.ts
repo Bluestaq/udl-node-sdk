@@ -295,7 +295,7 @@ describe('resource sensorplan', () => {
       source: 'Bluestaq',
       startTime: '2018-01-01T16:00:00.123456Z',
       type: 'PLAN',
-      id: 'SENSORPLAN-ID',
+      body_id: 'SENSORPLAN-ID',
       collectRequests: [
         {
           classificationMarking: 'U',

@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
 import * as Core from '../core';
 
 export class Equipmentremarks extends APIResource {
@@ -56,7 +57,15 @@ export class Equipmentremarks extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: EquipmentremarkCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(body?: EquipmentremarkCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(
+    body?: EquipmentremarkCreateBulkParams | Core.RequestOptions,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    if (isRequestOptions(body)) {
+      return this.createBulk(undefined, body);
+    }
     return this._client.post('/udl/equipmentremark/createBulk', {
       body,
       ...options,

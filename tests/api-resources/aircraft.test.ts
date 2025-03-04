@@ -138,7 +138,7 @@ describe('resource aircraft', () => {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
-      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      body_id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       category: 'M',
       command: 'HQACC',
       cruiseSpeed: 915,

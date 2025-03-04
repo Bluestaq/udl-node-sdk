@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as HistoryAPI from './history';
 import {
@@ -65,9 +66,17 @@ export class Passiveradarobservation extends APIResource {
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
   createBulk(
-    body: PassiveradarobservationCreateBulkParams,
+    body?: PassiveradarobservationCreateBulkParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void>;
+  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(
+    body?: PassiveradarobservationCreateBulkParams | Core.RequestOptions,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
+    if (isRequestOptions(body)) {
+      return this.createBulk(undefined, body);
+    }
     return this._client.post('/udl/passiveradarobservation/createBulk', {
       body,
       ...options,

@@ -113,7 +113,7 @@ describe('resource airfieldslotconsumptions', () => {
       numAircraft: 1,
       source: 'Bluestaq',
       startTime: '2023-01-01T01:01:01.123Z',
-      id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+      body_id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       altArrSortieId: 'ALT-SORTIE-ID',
       altDepSortieId: 'ALT-SORTIE-ID',
       appComment: 'The request was denied due to inoperable fuel pumps.',

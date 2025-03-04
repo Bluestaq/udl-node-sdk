@@ -77,7 +77,7 @@ describe('resource engines', () => {
       dataMode: 'REAL',
       name: 'ENGINE_VARIANT1',
       source: 'Bluestaq',
-      id: 'ENGINE-ID',
+      body_id: 'ENGINE-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

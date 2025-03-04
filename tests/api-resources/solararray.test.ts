@@ -55,7 +55,7 @@ describe('resource solararray', () => {
       dataMode: 'REAL',
       name: 'Solar1',
       source: 'Bluestaq',
-      id: 'SOLARARRAY-ID',
+      body_id: 'SOLARARRAY-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

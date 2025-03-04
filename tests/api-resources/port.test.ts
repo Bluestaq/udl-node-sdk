@@ -69,7 +69,7 @@ describe('resource port', () => {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
-      id: '026dd511-8ba5-47d3-9909-836149f87686',
+      body_id: '026dd511-8ba5-47d3-9909-836149f87686',
       avgDuration: 41.1,
       countryCode: 'US',
       externalId: 'fe4ad5dc-0128-4ce8-b09c-0b404322025e',

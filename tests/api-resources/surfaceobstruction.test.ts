@@ -70,7 +70,7 @@ describe('resource surfaceobstruction', () => {
       dataMode: 'REAL',
       idSurface: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       source: 'Bluestaq',
-      id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+      body_id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       advisoryRequired: ['C20', 'C17'],
       approvalRequired: ['C20', 'C17'],
       distanceFromCenterLine: 17.8,

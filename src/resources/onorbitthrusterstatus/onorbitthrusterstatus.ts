@@ -87,9 +87,17 @@ export class Onorbitthrusterstatus extends APIResource {
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
   createBulk(
-    body: OnorbitthrusterstatusCreateBulkParams,
+    body?: OnorbitthrusterstatusCreateBulkParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void>;
+  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(
+    body?: OnorbitthrusterstatusCreateBulkParams | Core.RequestOptions,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
+    if (isRequestOptions(body)) {
+      return this.createBulk(undefined, body);
+    }
     return this._client.post('/udl/onorbitthrusterstatus/createBulk', {
       body,
       ...options,

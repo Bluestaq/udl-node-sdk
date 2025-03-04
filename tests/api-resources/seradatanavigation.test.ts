@@ -71,7 +71,7 @@ describe('resource seradatanavigation', () => {
       dataMode: 'REAL',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
-      id: 'SERADATANAVIGATION-ID',
+      body_id: 'SERADATANAVIGATION-ID',
       areaCoverage: 'Worldwide',
       clockType: 'Rubidium',
       hostedForCompanyOrgId: 'hostedForCompanyOrgId',

@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
 import * as Core from '../core';
 
 export class Manifold extends APIResource {
@@ -74,7 +75,15 @@ export class Manifold extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  createBulk(body: ManifoldCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(body?: ManifoldCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(
+    body?: ManifoldCreateBulkParams | Core.RequestOptions,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    if (isRequestOptions(body)) {
+      return this.createBulk(undefined, body);
+    }
     return this._client.post('/udl/manifold/createBulk', {
       body,
       ...options,

@@ -50,7 +50,7 @@ describe('resource aircraftSorties', () => {
       dataMode: 'REAL',
       plannedDepTime: '2021-01-01T01:01:01.123Z',
       source: 'Bluestaq',
-      id: 'AIRCRAFTSORTIE-ID',
+      body_id: 'AIRCRAFTSORTIE-ID',
       actualArrTime: '2021-01-01T01:01:01.123Z',
       actualBlockInTime: '2021-01-01T01:06:01.123Z',
       actualBlockOutTime: '2021-01-01T00:55:01.123Z',

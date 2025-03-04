@@ -129,7 +129,7 @@ describe('resource vessel', () => {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
-      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      body_id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       altVesselId: '590b5194fc32e75dd00682ba',
       callsign: 'V2OZ',
       entity: {

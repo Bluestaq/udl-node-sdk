@@ -109,7 +109,7 @@ describe('resource rfemitter', () => {
       dataMode: 'REAL',
       name: 'RF_NAME',
       source: 'Bluestaq',
-      id: 'RFEMITTER-ID',
+      body_id: 'RFEMITTER-ID',
       entity: {
         classificationMarking: 'U',
         dataMode: 'REAL',

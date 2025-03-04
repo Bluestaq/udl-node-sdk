@@ -67,7 +67,7 @@ describe('resource solararraydetails', () => {
       dataMode: 'REAL',
       idSolarArray: 'SOLARARRAY-ID',
       source: 'Bluestaq',
-      id: 'SOLARARRAYDETAILS-ID',
+      body_id: 'SOLARARRAYDETAILS-ID',
       area: 123.4,
       description: 'Example notes',
       junctionTechnology: 'Triple',

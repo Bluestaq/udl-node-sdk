@@ -116,7 +116,7 @@ describe('resource trackroute', () => {
       lastUpdateDate: '2024-09-17T16:00:00.123Z',
       source: 'Bluestaq',
       type: 'AIR REFUELING',
-      id: '026dd511-8ba5-47d3-9909-836149f87686',
+      body_id: '026dd511-8ba5-47d3-9909-836149f87686',
       altitudeBlocks: [{ altitudeSequenceId: 'A1', lowerAltitude: 27000.1, upperAltitude: 27200.5 }],
       apnSetting: '1-3-1',
       apxBeaconCode: '5/1',

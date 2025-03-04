@@ -75,7 +75,7 @@ describe('resource launchsitedetails', () => {
       dataMode: 'REAL',
       idLaunchSite: 'LAUNCHSITE-ID',
       source: 'Bluestaq',
-      id: 'LAUNCHSITEDETAILS-ID',
+      body_id: 'LAUNCHSITEDETAILS-ID',
       availableInclinations: [10.23, 10.23, 12.23, 14.23],
       description: 'Example notes',
       idLocation: 'LOCATION-ID',

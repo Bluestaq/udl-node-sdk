@@ -163,7 +163,7 @@ describe('resource site', () => {
       dataMode: 'REAL',
       name: 'Site Name',
       source: 'Bluestaq',
-      id: 'SITE-ID',
+      body_id: 'SITE-ID',
       activity: 'OCC',
       airDefArea: 'AL006',
       allegiance: 'OTHR',

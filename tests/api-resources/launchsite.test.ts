@@ -66,7 +66,7 @@ describe('resource launchsite', () => {
       dataMode: 'REAL',
       name: 'Example launch site name',
       source: 'Bluestaq',
-      id: 'LAUNCHSITE-ID',
+      body_id: 'LAUNCHSITE-ID',
       altCode: '35',
       idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
       origin: 'THIRD_PARTY_DATASOURCE',

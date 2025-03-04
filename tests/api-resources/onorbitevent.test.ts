@@ -104,7 +104,7 @@ describe('resource onorbitevent', () => {
       dataMode: 'REAL',
       eventTime: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
-      id: 'ONORBITEVENT-ID',
+      body_id: 'ONORBITEVENT-ID',
       achievedFlightPhase: 'Phase 2',
       ageAtEvent: 5.23,
       capabilityLoss: 0.5,

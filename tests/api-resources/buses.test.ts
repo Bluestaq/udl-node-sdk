@@ -172,7 +172,7 @@ describe('resource buses', () => {
       dataMode: 'REAL',
       name: 'Example name',
       source: 'Bluestaq',
-      id: 'BUS-ID',
+      body_id: 'BUS-ID',
       aocsNotes: 'Example notes',
       avgDryMass: 2879.1,
       avgPayloadMass: 10.1,

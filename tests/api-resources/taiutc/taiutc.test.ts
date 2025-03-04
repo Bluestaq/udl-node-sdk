@@ -62,7 +62,7 @@ describe('resource taiutc', () => {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
-      id: 'TAIUTC-ID',
+      body_id: 'TAIUTC-ID',
       multiplicationFactor: 0.001296,
       origin: 'THIRD_PARTY_DATASOURCE',
       rawFileURI: '/TAI/2019/01/22/4318471007562436-tai-utc.dat',

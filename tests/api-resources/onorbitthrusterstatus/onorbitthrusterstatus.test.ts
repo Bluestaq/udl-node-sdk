@@ -127,16 +127,8 @@ describe('resource onorbitthrusterstatus', () => {
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
-  test('createBulk: only required params', async () => {
-    const responsePromise = client.onorbitthrusterstatus.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'REAL',
-        idOnorbitThruster: 'ff7dc909-e8b4-4a54-8529-1963d4e9b353',
-        source: 'Bluestaq',
-        statusTime: '2024-01-01T16:00:00.123Z',
-      },
-    ]);
+  test('createBulk', async () => {
+    const responsePromise = client.onorbitthrusterstatus.createBulk();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -146,32 +138,45 @@ describe('resource onorbitthrusterstatus', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulk: required and optional params', async () => {
-    const response = await client.onorbitthrusterstatus.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'REAL',
-        idOnorbitThruster: 'ff7dc909-e8b4-4a54-8529-1963d4e9b353',
-        source: 'Bluestaq',
-        statusTime: '2024-01-01T16:00:00.123Z',
-        id: 'af103c-1f917dc-002c1bd',
-        estDeltaV: 10.1,
-        fuelMass: 100.1,
-        fuelMassUnc: 10.1,
-        isp: 300.1,
-        maxDeltaV: 100.1,
-        minDeltaV: 0.1,
-        name: 'REA1',
-        operational: true,
-        origin: 'THIRD_PARTY_DATASOURCE',
-        propMassAvg: 907.6,
-        propMassMax: 2333.3,
-        propMassMedian: 200.1,
-        propMassMin: 0.1,
-        thrustMax: 22.1,
-        totalDeltaV: 100.1,
-      },
-    ]);
+  test('createBulk: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.onorbitthrusterstatus.createBulk({ path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
+  test('createBulk: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.onorbitthrusterstatus.createBulk(
+        [
+          {
+            classificationMarking: 'U',
+            dataMode: 'REAL',
+            idOnorbitThruster: 'ff7dc909-e8b4-4a54-8529-1963d4e9b353',
+            source: 'Bluestaq',
+            statusTime: '2024-01-01T16:00:00.123Z',
+            id: 'af103c-1f917dc-002c1bd',
+            estDeltaV: 10.1,
+            fuelMass: 100.1,
+            fuelMassUnc: 10.1,
+            isp: 300.1,
+            maxDeltaV: 100.1,
+            minDeltaV: 0.1,
+            name: 'REA1',
+            operational: true,
+            origin: 'THIRD_PARTY_DATASOURCE',
+            propMassAvg: 907.6,
+            propMassMax: 2333.3,
+            propMassMedian: 200.1,
+            propMassMin: 0.1,
+            thrustMax: 22.1,
+            totalDeltaV: 100.1,
+          },
+        ],
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('get', async () => {

@@ -97,16 +97,8 @@ describe('resource equipmentremarks', () => {
     );
   });
 
-  test('createBulk: only required params', async () => {
-    const responsePromise = client.equipmentremarks.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'REAL',
-        idEquipment: 'EQUIPMENT-ID',
-        source: 'Bluestaq',
-        text: 'This is a remark',
-      },
-    ]);
+  test('createBulk', async () => {
+    const responsePromise = client.equipmentremarks.createBulk();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -116,22 +108,35 @@ describe('resource equipmentremarks', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulk: required and optional params', async () => {
-    const response = await client.equipmentremarks.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'REAL',
-        idEquipment: 'EQUIPMENT-ID',
-        source: 'Bluestaq',
-        text: 'This is a remark',
-        id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
-        altRmkId: '123456ABC',
-        code: 'M',
-        name: 'Remark name',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        type: 'Restriction',
-      },
-    ]);
+  test('createBulk: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.equipmentremarks.createBulk({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('createBulk: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.equipmentremarks.createBulk(
+        [
+          {
+            classificationMarking: 'U',
+            dataMode: 'REAL',
+            idEquipment: 'EQUIPMENT-ID',
+            source: 'Bluestaq',
+            text: 'This is a remark',
+            id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+            altRmkId: '123456ABC',
+            code: 'M',
+            name: 'Remark name',
+            origin: 'THIRD_PARTY_DATASOURCE',
+            type: 'Restriction',
+          },
+        ],
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryHelp', async () => {

@@ -125,7 +125,7 @@ describe('resource surface', () => {
       name: 'West lot',
       source: 'Bluestaq',
       type: 'PARKING',
-      id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+      body_id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       altSiteId: 'ORIG-SITE-ID',
       condition: 'GOOD',
       ddtWtKip: 833.5,
