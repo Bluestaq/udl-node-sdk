@@ -3528,8 +3528,8 @@ Methods:
 - <code title="delete /udl/status/{id}">client.status.<a href="./src/resources/status.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/status/count">client.status.<a href="./src/resources/status.ts">count</a>() -> string</code>
 - <code title="get /udl/status/{id}">client.status.<a href="./src/resources/status.ts">get</a>(id) -> StatusGetResponse</code>
-- <code title="get /udl/status/byIdEntity/{idEntity}">client.status.<a href="./src/resources/status.ts">getByEntityId</a>(pathIdEntity, { ...params }) -> StatusGetByEntityIDResponse</code>
-- <code title="get /udl/status/byEntityType/{entityType}">client.status.<a href="./src/resources/status.ts">getByEntityType</a>(pathEntityType, { ...params }) -> StatusGetByEntityTypeResponse</code>
+- <code title="get /udl/status/byIdEntity/{idEntity}">client.status.<a href="./src/resources/status.ts">getByEntityId</a>(idEntity) -> StatusGetByEntityIDResponse</code>
+- <code title="get /udl/status/byEntityType/{entityType}">client.status.<a href="./src/resources/status.ts">getByEntityType</a>(entityType) -> StatusGetByEntityTypeResponse</code>
 - <code title="get /udl/status/queryhelp">client.status.<a href="./src/resources/status.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/status/tuple">client.status.<a href="./src/resources/status.ts">tuple</a>({ ...params }) -> StatusTupleResponse</code>
 
@@ -4374,9 +4374,9 @@ Types:
 
 Methods:
 
-- <code title="get /sm/describeTopic/{topic}">client.secureMessaging.<a href="./src/resources/secure-messaging.ts">describeTopic</a>(pathTopic, { ...params }) -> TopicDetails</code>
-- <code title="get /sm/getLatestOffset/{topic}">client.secureMessaging.<a href="./src/resources/secure-messaging.ts">getLatestOffset</a>(pathTopic, { ...params }) -> void</code>
-- <code title="get /sm/getMessages/{topic}/{offset}">client.secureMessaging.<a href="./src/resources/secure-messaging.ts">getMessages</a>(pathTopic, pathOffset, { ...params }) -> void</code>
+- <code title="get /sm/describeTopic/{topic}">client.secureMessaging.<a href="./src/resources/secure-messaging.ts">describeTopic</a>(topic) -> TopicDetails</code>
+- <code title="get /sm/getLatestOffset/{topic}">client.secureMessaging.<a href="./src/resources/secure-messaging.ts">getLatestOffset</a>(topic) -> void</code>
+- <code title="get /sm/getMessages/{topic}/{offset}">client.secureMessaging.<a href="./src/resources/secure-messaging.ts">getMessages</a>(topic, offset) -> void</code>
 - <code title="get /sm/listTopics">client.secureMessaging.<a href="./src/resources/secure-messaging.ts">listTopics</a>() -> SecureMessagingListTopicsResponse</code>
 
 # Scs
@@ -4393,13 +4393,13 @@ Types:
 
 Methods:
 
-- <code title="delete /scs/delete">client.scs.<a href="./src/resources/scs/scs.ts">delete</a>() -> void</code>
+- <code title="delete /scs/delete">client.scs.<a href="./src/resources/scs/scs.ts">delete</a>({ ...params }) -> void</code>
 - <code title="get /scs/aggregateDocType">client.scs.<a href="./src/resources/scs/scs.ts">aggregateDocType</a>() -> ScAggregateDocTypeResponse</code>
 - <code title="get /scs/allowableFileExtensions">client.scs.<a href="./src/resources/scs/scs.ts">allowableFileExtensions</a>() -> ScAllowableFileExtensionsResponse</code>
 - <code title="get /scs/allowableFileMimes">client.scs.<a href="./src/resources/scs/scs.ts">allowableFileMimes</a>() -> ScAllowableFileMimesResponse</code>
 - <code title="post /scs/copy">client.scs.<a href="./src/resources/scs/scs.ts">copy</a>({ ...params }) -> string</code>
 - <code title="post /scs/download">client.scs.<a href="./src/resources/scs/scs.ts">download</a>({ ...params }) -> Response</code>
-- <code title="get /scs/download">client.scs.<a href="./src/resources/scs/scs.ts">fileDownload</a>() -> Response</code>
+- <code title="get /scs/download">client.scs.<a href="./src/resources/scs/scs.ts">fileDownload</a>({ ...params }) -> Response</code>
 - <code title="post /scs/file">client.scs.<a href="./src/resources/scs/scs.ts">fileUpload</a>({ ...params }) -> string</code>
 - <code title="put /scs/move">client.scs.<a href="./src/resources/scs/scs.ts">move</a>({ ...params }) -> string</code>
 - <code title="put /scs/rename">client.scs.<a href="./src/resources/scs/scs.ts">rename</a>({ ...params }) -> void</code>
@@ -4415,7 +4415,7 @@ Types:
 Methods:
 
 - <code title="post /scs/folder">client.scs.folders.<a href="./src/resources/scs/folders.ts">create</a>({ ...params }) -> string</code>
-- <code title="get /scs/folder">client.scs.folders.<a href="./src/resources/scs/folders.ts">retrieve</a>() -> FileData</code>
+- <code title="get /scs/folder">client.scs.folders.<a href="./src/resources/scs/folders.ts">retrieve</a>({ ...params }) -> FileData</code>
 - <code title="patch /scs/folder">client.scs.folders.<a href="./src/resources/scs/folders.ts">update</a>({ ...params }) -> void</code>
 
 ## ClassificationMarkings
@@ -4489,7 +4489,7 @@ Methods:
 
 Methods:
 
-- <code title="get /scs/file">client.scs.file.<a href="./src/resources/scs/file.ts">retrieve</a>() -> FileData</code>
+- <code title="get /scs/file">client.scs.file.<a href="./src/resources/scs/file.ts">retrieve</a>({ ...params }) -> FileData</code>
 - <code title="patch /scs/file">client.scs.file.<a href="./src/resources/scs/file.ts">update</a>({ ...params }) -> void</code>
 - <code title="get /scs/list">client.scs.file.<a href="./src/resources/scs/file.ts">list</a>({ ...params }) -> FileDataOffsetPage</code>
 

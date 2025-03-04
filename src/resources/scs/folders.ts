@@ -11,9 +11,9 @@ export class Folders extends APIResource {
    * assistance.
    */
   create(params: FolderCreateParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { classificationMarking, description, read, tags, write } = params;
+    const { id, classificationMarking, description, read, tags, write } = params;
     return this._client.post('/scs/folder', {
-      query: { classificationMarking, description, read, tags, write },
+      query: { id, classificationMarking, description, read, tags, write },
       ...options,
     });
   }
@@ -22,8 +22,8 @@ export class Folders extends APIResource {
    * Returns a FileData object representing the folder ID that is visible to the
    * calling user.
    */
-  retrieve(options?: Core.RequestOptions): Core.APIPromise<Shared.FileData> {
-    return this._client.get('/scs/folder', options);
+  retrieve(query: FolderRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Shared.FileData> {
+    return this._client.get('/scs/folder', { query, ...options });
   }
 
   /**
@@ -42,6 +42,11 @@ export class Folders extends APIResource {
 export type FolderCreateResponse = string;
 
 export interface FolderCreateParams {
+  /**
+   * Path to create folder.
+   */
+  id: string;
+
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -66,6 +71,13 @@ export interface FolderCreateParams {
    * Comma separated list of user ids who can write to the folder.
    */
   write?: string;
+}
+
+export interface FolderRetrieveParams {
+  /**
+   * The folder ID
+   */
+  id: string;
 }
 
 export interface FolderUpdateParams {
@@ -150,6 +162,7 @@ export declare namespace Folders {
   export {
     type FolderCreateResponse as FolderCreateResponse,
     type FolderCreateParams as FolderCreateParams,
+    type FolderRetrieveParams as FolderRetrieveParams,
     type FolderUpdateParams as FolderUpdateParams,
   };
 }

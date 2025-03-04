@@ -77,22 +77,20 @@ export class Status extends APIResource {
    * Service operation to get all statuses related to a particular entity.
    */
   getByEntityId(
-    pathIdEntity: string,
-    query: StatusGetByEntityIDParams,
+    idEntity: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<StatusGetByEntityIDResponse> {
-    return this._client.get(`/udl/status/byIdEntity/${pathIdEntity}`, { query, ...options });
+    return this._client.get(`/udl/status/byIdEntity/${idEntity}`, options);
   }
 
   /**
    * Service operation to get all statuses related to a particular entity type.
    */
   getByEntityType(
-    pathEntityType: string,
-    query: StatusGetByEntityTypeParams,
+    entityType: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<StatusGetByEntityTypeResponse> {
-    return this._client.get(`/udl/status/byEntityType/${pathEntityType}`, { query, ...options });
+    return this._client.get(`/udl/status/byEntityType/${entityType}`, options);
   }
 
   /**
@@ -1503,20 +1501,6 @@ export namespace StatusUpdateParams {
   }
 }
 
-export interface StatusGetByEntityIDParams {
-  /**
-   * The entity id to find the list of statuses for.
-   */
-  query_idEntity: string;
-}
-
-export interface StatusGetByEntityTypeParams {
-  /**
-   * The entity type of the Status to find.
-   */
-  query_entityType: string;
-}
-
 export interface StatusTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1537,8 +1521,6 @@ export declare namespace Status {
     type StatusTupleResponse as StatusTupleResponse,
     type StatusCreateParams as StatusCreateParams,
     type StatusUpdateParams as StatusUpdateParams,
-    type StatusGetByEntityIDParams as StatusGetByEntityIDParams,
-    type StatusGetByEntityTypeParams as StatusGetByEntityTypeParams,
     type StatusTupleParams as StatusTupleParams,
   };
 }

@@ -1,12 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export { ClassificationMarkings, type ClassificationMarkingListResponse } from './classification-markings';
-export { File, type FileUpdateParams, type FileListParams } from './file';
+export { File, type FileRetrieveParams, type FileUpdateParams, type FileListParams } from './file';
 export { FileMetadata, type FileMetadataListResponse } from './file-metadata';
 export {
   Folders,
   type FolderCreateResponse,
   type FolderCreateParams,
+  type FolderRetrieveParams,
   type FolderUpdateParams,
 } from './folders';
 export { Groups, type GroupListResponse } from './groups';
@@ -21,8 +22,10 @@ export {
   type ScFileUploadResponse,
   type ScMoveResponse,
   type ScSearchResponse,
+  type ScDeleteParams,
   type ScCopyParams,
   type ScDownloadParams,
+  type ScFileDownloadParams,
   type ScFileUploadParams,
   type ScMoveParams,
   type ScRenameParams,

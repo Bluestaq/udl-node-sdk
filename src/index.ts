@@ -791,9 +791,6 @@ import {
 import { ScsViews } from './resources/scs-views';
 import {
   SecureMessaging,
-  SecureMessagingDescribeTopicParams,
-  SecureMessagingGetLatestOffsetParams,
-  SecureMessagingGetMessagesParams,
   SecureMessagingListTopicsResponse,
   TopicDetails,
 } from './resources/secure-messaging';
@@ -934,9 +931,7 @@ import {
   Status,
   StatusCountResponse,
   StatusCreateParams,
-  StatusGetByEntityIDParams,
   StatusGetByEntityIDResponse,
-  StatusGetByEntityTypeParams,
   StatusGetByEntityTypeResponse,
   StatusGetResponse,
   StatusListResponse,
@@ -1432,7 +1427,9 @@ import {
   ScAllowableFileMimesResponse,
   ScCopyParams,
   ScCopyResponse,
+  ScDeleteParams,
   ScDownloadParams,
+  ScFileDownloadParams,
   ScFileUploadParams,
   ScFileUploadResponse,
   ScMoveParams,
@@ -3845,8 +3842,6 @@ export declare namespace Unifieddatalibrary {
     type StatusTupleResponse as StatusTupleResponse,
     type StatusCreateParams as StatusCreateParams,
     type StatusUpdateParams as StatusUpdateParams,
-    type StatusGetByEntityIDParams as StatusGetByEntityIDParams,
-    type StatusGetByEntityTypeParams as StatusGetByEntityTypeParams,
     type StatusTupleParams as StatusTupleParams,
   };
 
@@ -4028,9 +4023,6 @@ export declare namespace Unifieddatalibrary {
     SecureMessaging as SecureMessaging,
     type TopicDetails as TopicDetails,
     type SecureMessagingListTopicsResponse as SecureMessagingListTopicsResponse,
-    type SecureMessagingDescribeTopicParams as SecureMessagingDescribeTopicParams,
-    type SecureMessagingGetLatestOffsetParams as SecureMessagingGetLatestOffsetParams,
-    type SecureMessagingGetMessagesParams as SecureMessagingGetMessagesParams,
   };
 
   export {
@@ -4042,8 +4034,10 @@ export declare namespace Unifieddatalibrary {
     type ScFileUploadResponse as ScFileUploadResponse,
     type ScMoveResponse as ScMoveResponse,
     type ScSearchResponse as ScSearchResponse,
+    type ScDeleteParams as ScDeleteParams,
     type ScCopyParams as ScCopyParams,
     type ScDownloadParams as ScDownloadParams,
+    type ScFileDownloadParams as ScFileDownloadParams,
     type ScFileUploadParams as ScFileUploadParams,
     type ScMoveParams as ScMoveParams,
     type ScRenameParams as ScRenameParams,

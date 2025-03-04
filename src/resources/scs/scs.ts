@@ -6,11 +6,17 @@ import * as Shared from '../shared';
 import * as ClassificationMarkingsAPI from './classification-markings';
 import { ClassificationMarkingListResponse, ClassificationMarkings } from './classification-markings';
 import * as FileAPI from './file';
-import { File, FileListParams, FileUpdateParams } from './file';
+import { File, FileListParams, FileRetrieveParams, FileUpdateParams } from './file';
 import * as FileMetadataAPI from './file-metadata';
 import { FileMetadata, FileMetadataListResponse } from './file-metadata';
 import * as FoldersAPI from './folders';
-import { FolderCreateParams, FolderCreateResponse, FolderUpdateParams, Folders } from './folders';
+import {
+  FolderCreateParams,
+  FolderCreateResponse,
+  FolderRetrieveParams,
+  FolderUpdateParams,
+  Folders,
+} from './folders';
 import * as GroupsAPI from './groups';
 import { GroupListResponse, Groups } from './groups';
 import * as PathsAPI from './paths';
@@ -49,8 +55,10 @@ export class Scs extends APIResource {
    * visible to the calling user. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  delete(options?: Core.RequestOptions): Core.APIPromise<void> {
+  delete(params: ScDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { id } = params;
     return this._client.delete('/scs/delete', {
+      query: { id },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -82,8 +90,8 @@ export class Scs extends APIResource {
    * service operation. Please contact the UDL team for assistance.
    */
   copy(params: ScCopyParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { targetPath } = params;
-    return this._client.post('/scs/copy', { query: { targetPath }, ...options });
+    const { id, targetPath } = params;
+    return this._client.post('/scs/copy', { query: { id, targetPath }, ...options });
   }
 
   /**
@@ -101,8 +109,9 @@ export class Scs extends APIResource {
   /**
    * Download a single file from SCS.
    */
-  fileDownload(options?: Core.RequestOptions): Core.APIPromise<Response> {
+  fileDownload(query: ScFileDownloadParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
     return this._client.get('/scs/download', {
+      query,
       ...options,
       headers: { Accept: 'application/octet-stream', ...options?.headers },
       __binaryResponse: true,
@@ -129,8 +138,8 @@ export class Scs extends APIResource {
    * service operation. Please contact the UDL team for assistance.
    */
   move(params: ScMoveParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { targetPath } = params;
-    return this._client.put('/scs/move', { query: { targetPath }, ...options });
+    const { id, targetPath } = params;
+    return this._client.put('/scs/move', { query: { id, targetPath }, ...options });
   }
 
   /**
@@ -138,9 +147,9 @@ export class Scs extends APIResource {
    * this service operation. Please contact the UDL team for assistance.
    */
   rename(params: ScRenameParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { newName } = params;
+    const { id, newName } = params;
     return this._client.put('/scs/rename', {
-      query: { newName },
+      query: { id, newName },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -181,7 +190,19 @@ export type ScMoveResponse = string;
 
 export type ScSearchResponse = Array<Shared.FileData>;
 
+export interface ScDeleteParams {
+  /**
+   * The id of the item to delete
+   */
+  id: string;
+}
+
 export interface ScCopyParams {
+  /**
+   * The path of the item to copy
+   */
+  id: string;
+
   /**
    * The path to copy to
    */
@@ -189,6 +210,13 @@ export interface ScCopyParams {
 }
 
 export type ScDownloadParams = string;
+
+export interface ScFileDownloadParams {
+  /**
+   * The complete path and filename of the file to download.
+   */
+  id: string;
+}
 
 export interface ScFileUploadParams {
   /**
@@ -224,12 +252,22 @@ export interface ScFileUploadParams {
 
 export interface ScMoveParams {
   /**
+   * The path of the item to copy
+   */
+  id: string;
+
+  /**
    * The path to copy to
    */
   targetPath: string;
 }
 
 export interface ScRenameParams {
+  /**
+   * The path of the item to rename.
+   */
+  id: string;
+
   /**
    * The new name for the file or folder. Do not include the path.
    */
@@ -308,8 +346,10 @@ export declare namespace Scs {
     type ScFileUploadResponse as ScFileUploadResponse,
     type ScMoveResponse as ScMoveResponse,
     type ScSearchResponse as ScSearchResponse,
+    type ScDeleteParams as ScDeleteParams,
     type ScCopyParams as ScCopyParams,
     type ScDownloadParams as ScDownloadParams,
+    type ScFileDownloadParams as ScFileDownloadParams,
     type ScFileUploadParams as ScFileUploadParams,
     type ScMoveParams as ScMoveParams,
     type ScRenameParams as ScRenameParams,
@@ -321,6 +361,7 @@ export declare namespace Scs {
     Folders as Folders,
     type FolderCreateResponse as FolderCreateResponse,
     type FolderCreateParams as FolderCreateParams,
+    type FolderRetrieveParams as FolderRetrieveParams,
     type FolderUpdateParams as FolderUpdateParams,
   };
 
@@ -357,5 +398,10 @@ export declare namespace Scs {
     type V2MoveParams as V2MoveParams,
   };
 
-  export { File as File, type FileUpdateParams as FileUpdateParams, type FileListParams as FileListParams };
+  export {
+    File as File,
+    type FileRetrieveParams as FileRetrieveParams,
+    type FileUpdateParams as FileUpdateParams,
+    type FileListParams as FileListParams,
+  };
 }

@@ -11,9 +11,9 @@ export class Paths extends APIResource {
    * service operation. Please contact the UDL team for assistance.
    */
   create(params: PathCreateParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { classificationMarking, body, description, tags } = params;
+    const { id, classificationMarking, body, description, tags } = params;
     return this._client.post('/scs/path', {
-      query: { classificationMarking, description, tags },
+      query: { id, classificationMarking, description, tags },
       body: body,
       ...options,
       headers: { 'Content-Type': 'application/octet-stream', ...options?.headers },
@@ -25,6 +25,11 @@ export class Paths extends APIResource {
 export type PathCreateResponse = string;
 
 export interface PathCreateParams {
+  /**
+   * Query param: The full path to create, including path and file name
+   */
+  id: string;
+
   /**
    * Query param: Classification (ex. U//FOUO)
    */

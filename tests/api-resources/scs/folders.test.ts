@@ -11,7 +11,10 @@ const client = new Unifieddatalibrary({
 
 describe('resource folders', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.scs.folders.create({ classificationMarking: 'classificationMarking' });
+    const responsePromise = client.scs.folders.create({
+      id: 'id',
+      classificationMarking: 'classificationMarking',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,6 +26,7 @@ describe('resource folders', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.scs.folders.create({
+      id: 'id',
       classificationMarking: 'classificationMarking',
       description: 'description',
       read: 'read',
@@ -31,8 +35,8 @@ describe('resource folders', () => {
     });
   });
 
-  test('retrieve', async () => {
-    const responsePromise = client.scs.folders.retrieve();
+  test('retrieve: only required params', async () => {
+    const responsePromise = client.scs.folders.retrieve({ id: 'id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -42,11 +46,8 @@ describe('resource folders', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.scs.folders.retrieve({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
+  test('retrieve: required and optional params', async () => {
+    const response = await client.scs.folders.retrieve({ id: 'id' });
   });
 
   test('update', async () => {
