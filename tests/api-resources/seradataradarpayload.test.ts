@@ -82,7 +82,7 @@ describe('resource seradataradarpayload', () => {
       dataMode: 'REAL',
       source: 'Bluestaq',
       spacecraftId: '12345',
-      id: 'SERADATARADARPAYLOAD-ID',
+      body_id: 'SERADATARADARPAYLOAD-ID',
       bandwidth: 1.23,
       bestResolution: 1.23,
       category: 'SAR',

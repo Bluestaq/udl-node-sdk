@@ -97,15 +97,8 @@ describe('resource weatherdata', () => {
     const response = await client.weatherdata.count({ obTime: '2019-12-27T18:11:19.117Z' });
   });
 
-  test('createBulk: only required params', async () => {
-    const responsePromise = client.weatherdata.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'REAL',
-        obTime: '2018-01-01T16:00:00.123456Z',
-        source: 'Bluestaq',
-      },
-    ]);
+  test('createBulk', async () => {
+    const responsePromise = client.weatherdata.createBulk();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -115,47 +108,60 @@ describe('resource weatherdata', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulk: required and optional params', async () => {
-    const response = await client.weatherdata.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'REAL',
-        obTime: '2018-01-01T16:00:00.123456Z',
-        source: 'Bluestaq',
-        id: 'WEATHER-DATA-ID',
-        angleOrientation: 75.7,
-        avgRefPwr: 714.9,
-        avgTxPwr: 20.23,
-        checksum: 133,
-        coIntegs: [4, 3],
-        consRecs: [5, 2],
-        doppVels: [44.4, 467.3],
-        fileCreation: '2018-01-01T16:00:00.123456Z',
-        firstGuessAvgs: [16, 1],
-        idSensor: '0129f577-e04c-441e-65ca-0a04a750bed9',
-        interpulsePeriods: [1000.3, 1000.2],
-        lightDetSensors: [11, 28, 190],
-        lightEventNum: 9,
-        noiseLvls: [58.2, 58.3],
-        numElements: 640,
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origSensorId: 'ORIGSENSOR-ID',
-        posConfidence: 0.1,
-        qcValue: 4,
-        sectorNum: 20,
-        semiMajorAxis: 3.4,
-        semiMinorAxis: 0.3,
-        sigPwrs: [116.5, 121.6],
-        sigStrength: 163.7,
-        snrs: [14.5, -16.2],
-        specAvgs: [4, 3],
-        specWidths: [0.3, 0.6],
-        srcIds: ['1b23ba93-0957-4654-b5ca-8c3703f3ec57', '32944ee4-0437-4d94-95ce-2f2823ffa001'],
-        srcTyps: ['SENSOR', 'WEATHERREPORT'],
-        tdAvgSampleNums: [32, 30],
-        termAlt: 19505.1,
-      },
-    ]);
+  test('createBulk: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.weatherdata.createBulk({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('createBulk: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.weatherdata.createBulk(
+        [
+          {
+            classificationMarking: 'U',
+            dataMode: 'REAL',
+            obTime: '2018-01-01T16:00:00.123456Z',
+            source: 'Bluestaq',
+            id: 'WEATHER-DATA-ID',
+            angleOrientation: 75.7,
+            avgRefPwr: 714.9,
+            avgTxPwr: 20.23,
+            checksum: 133,
+            coIntegs: [4, 3],
+            consRecs: [5, 2],
+            doppVels: [44.4, 467.3],
+            fileCreation: '2018-01-01T16:00:00.123456Z',
+            firstGuessAvgs: [16, 1],
+            idSensor: '0129f577-e04c-441e-65ca-0a04a750bed9',
+            interpulsePeriods: [1000.3, 1000.2],
+            lightDetSensors: [11, 28, 190],
+            lightEventNum: 9,
+            noiseLvls: [58.2, 58.3],
+            numElements: 640,
+            origin: 'THIRD_PARTY_DATASOURCE',
+            origSensorId: 'ORIGSENSOR-ID',
+            posConfidence: 0.1,
+            qcValue: 4,
+            sectorNum: 20,
+            semiMajorAxis: 3.4,
+            semiMinorAxis: 0.3,
+            sigPwrs: [116.5, 121.6],
+            sigStrength: 163.7,
+            snrs: [14.5, -16.2],
+            specAvgs: [4, 3],
+            specWidths: [0.3, 0.6],
+            srcIds: ['1b23ba93-0957-4654-b5ca-8c3703f3ec57', '32944ee4-0437-4d94-95ce-2f2823ffa001'],
+            srcTyps: ['SENSOR', 'WEATHERREPORT'],
+            tdAvgSampleNums: [32, 30],
+            termAlt: 19505.1,
+          },
+        ],
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('fileCreate: only required params', async () => {

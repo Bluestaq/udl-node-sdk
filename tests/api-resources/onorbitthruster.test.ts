@@ -65,7 +65,7 @@ describe('resource onorbitthruster', () => {
       idEngine: 'ENGINE-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
-      id: 'ONORBITTHRUSTER-ID',
+      body_id: 'ONORBITTHRUSTER-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
       quantity: 10,
       type: 'Hydrazine REA',

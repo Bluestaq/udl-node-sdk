@@ -50,7 +50,7 @@ describe('resource airfieldStatus', () => {
       dataMode: 'REAL',
       idAirfield: '3136498f-2969-3535-1432-e984b2e2e686',
       source: 'Bluestaq',
-      id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+      body_id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       altAirfieldId: 'AIRFIELD-ID',
       arffCat: 'FAA-A',
       cargoMOG: 8,

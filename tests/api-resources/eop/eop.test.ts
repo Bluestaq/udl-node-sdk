@@ -105,7 +105,7 @@ describe('resource eop', () => {
       dataMode: 'REAL',
       eopDate: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
-      id: 'EOP-ID',
+      body_id: 'EOP-ID',
       dEpsilon: -0.917,
       dEpsilonB: -1.7,
       dEpsilonUnc: 0.165,

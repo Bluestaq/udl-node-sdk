@@ -84,7 +84,7 @@ describe('resource seradatacommdetails', () => {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
-      id: 'SERADATACOMMDETAILS-ID',
+      body_id: 'SERADATACOMMDETAILS-ID',
       band: 'X',
       bandwidth: 1.23,
       eirp: 1.23,

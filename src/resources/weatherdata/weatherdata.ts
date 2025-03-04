@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as HistoryAPI from './history';
 import {
@@ -62,7 +63,15 @@ export class Weatherdata extends APIResource {
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  createBulk(body: WeatherdataCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(body?: WeatherdataCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(
+    body?: WeatherdataCreateBulkParams | Core.RequestOptions,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    if (isRequestOptions(body)) {
+      return this.createBulk(undefined, body);
+    }
     return this._client.post('/udl/weatherdata/createBulk', {
       body,
       ...options,

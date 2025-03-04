@@ -108,7 +108,7 @@ describe('resource starcatalog', () => {
       ra: 14.43,
       source: 'Bluestaq',
       starEpoch: 2016,
-      id: 'STAR-CAT-DATASET-ID',
+      body_id: 'STAR-CAT-DATASET-ID',
       bpmag: 0.04559,
       bpmagUnc: 0.2227,
       catVersion: '1.23',

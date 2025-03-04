@@ -61,7 +61,7 @@ describe('resource onorbitlist', () => {
       dataMode: 'REAL',
       name: 'People',
       source: 'Bluestaq',
-      id: 'ONORBITLIST-ID',
+      body_id: 'ONORBITLIST-ID',
       description: 'DESCRIPTION_OF_LIST',
       onorbits: ['ID1', 'ID2'],
       origin: 'THIRD_PARTY_DATASOURCE',

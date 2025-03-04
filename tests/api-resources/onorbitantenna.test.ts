@@ -63,7 +63,7 @@ describe('resource onorbitantenna', () => {
       idAntenna: 'ANTENNA-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
-      id: 'ONORBITANTENNA-ID',
+      body_id: 'ONORBITANTENNA-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

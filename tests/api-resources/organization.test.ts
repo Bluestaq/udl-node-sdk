@@ -69,7 +69,7 @@ describe('resource organization', () => {
       name: 'some.user',
       source: 'some.user',
       type: 'GOVERNMENT',
-      id: 'ORGANIZATION-ID',
+      body_id: 'ORGANIZATION-ID',
       active: false,
       category: 'Private company',
       countryCode: 'US',

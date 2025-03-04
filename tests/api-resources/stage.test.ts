@@ -93,7 +93,7 @@ describe('resource stage', () => {
       idEngine: 'ENGINE-ID',
       idLaunchVehicle: 'LAUNCHVEHICLE-ID',
       source: 'Bluestaq',
-      id: 'STAGE-ID',
+      body_id: 'STAGE-ID',
       avionicsNotes: 'Sample Notes',
       burnTime: 256.3,
       controlThruster1: 'controlThruster1',

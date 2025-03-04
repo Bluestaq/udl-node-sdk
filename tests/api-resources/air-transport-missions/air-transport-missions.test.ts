@@ -148,7 +148,7 @@ describe('resource airTransportMissions', () => {
       classificationMarking: 'U',
       dataMode: 'REAL',
       source: 'Bluestaq',
-      id: 'bdad6945-c9e4-b829-f7be-1ad075541921',
+      body_id: 'bdad6945-c9e4-b829-f7be-1ad075541921',
       alias: 'PACIFIC DEPLOY / CHAP 3 MOVEMENT',
       allocatedUnit: '437 AEW',
       amcMissionId: 'AJM7939B1123',

@@ -87,9 +87,17 @@ export class Navigationalobstruction extends APIResource {
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
   createBulk(
-    body: NavigationalobstructionCreateBulkParams,
+    body?: NavigationalobstructionCreateBulkParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void>;
+  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(
+    body?: NavigationalobstructionCreateBulkParams | Core.RequestOptions,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
+    if (isRequestOptions(body)) {
+      return this.createBulk(undefined, body);
+    }
     return this._client.post('/udl/navigationalobstruction/createBulk', {
       body,
       ...options,

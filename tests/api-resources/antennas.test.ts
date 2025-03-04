@@ -73,7 +73,7 @@ describe('resource antennas', () => {
       dataMode: 'REAL',
       name: 'IRIDIUM NEXT 121-ANTENNA-10075',
       source: 'Bluestaq',
-      id: 'ANTENNA-ID',
+      body_id: 'ANTENNA-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

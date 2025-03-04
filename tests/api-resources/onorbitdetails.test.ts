@@ -99,7 +99,7 @@ describe('resource onorbitdetails', () => {
       dataMode: 'REAL',
       idOnOrbit: 'REF-ONORBIT-ID',
       source: 'Bluestaq',
-      id: 'ONORBITDETAILS-ID',
+      body_id: 'ONORBITDETAILS-ID',
       additionalMass: 10.23,
       adeptRadius: 10.23,
       bolDeltaV: 1000.1,

@@ -109,10 +109,18 @@ export class Sensormaintenance extends APIResource {
    * operation. Please contact the UDL team for assistance.
    */
   createBulk(
-    params: SensormaintenanceCreateBulkParams,
+    params?: SensormaintenanceCreateBulkParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void>;
+  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(
+    params?: SensormaintenanceCreateBulkParams | Core.RequestOptions,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    const { body, origin, source } = params;
+    if (isRequestOptions(params)) {
+      return this.createBulk(undefined, params);
+    }
+    const { origin, source, body } = params ?? {};
     return this._client.post('/udl/sensormaintenance/createBulk', {
       query: { origin, source },
       body: body,
@@ -706,11 +714,6 @@ export interface SensormaintenanceCountParams {
 
 export interface SensormaintenanceCreateBulkParams {
   /**
-   * Body param:
-   */
-  body: Array<SensormaintenanceCreateBulkParams.Body>;
-
-  /**
    * Query param: Origin of the SensorMaintenance data.
    */
   origin?: string;
@@ -719,6 +722,11 @@ export interface SensormaintenanceCreateBulkParams {
    * Query param: Source of the SensorMaintenance data.
    */
   source?: string;
+
+  /**
+   * Body param:
+   */
+  body?: Array<SensormaintenanceCreateBulkParams.Body>;
 }
 
 export namespace SensormaintenanceCreateBulkParams {

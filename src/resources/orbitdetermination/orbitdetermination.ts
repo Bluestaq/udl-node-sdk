@@ -82,7 +82,15 @@ export class Orbitdetermination extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: OrbitdeterminationCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(body?: OrbitdeterminationCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(
+    body?: OrbitdeterminationCreateBulkParams | Core.RequestOptions,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    if (isRequestOptions(body)) {
+      return this.createBulk(undefined, body);
+    }
     return this._client.post('/udl/orbitdetermination/createBulk', {
       body,
       ...options,

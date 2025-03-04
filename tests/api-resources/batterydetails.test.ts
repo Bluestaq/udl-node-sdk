@@ -84,7 +84,7 @@ describe('resource batterydetails', () => {
       dataMode: 'REAL',
       idBattery: 'BATTERY-ID',
       source: 'Bluestaq',
-      id: 'BATTERYDETAILS-ID',
+      body_id: 'BATTERYDETAILS-ID',
       capacity: 10.1,
       description: 'example notes',
       dischargeDepth: 0.2,

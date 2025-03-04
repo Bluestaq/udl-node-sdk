@@ -103,7 +103,7 @@ describe('resource item', () => {
       scanCode: '12345ABCD',
       source: 'Bluestaq',
       type: 'CARGO',
-      id: '22f1f6da-a568-655a-ea37-76d013d04853',
+      body_id: '22f1f6da-a568-655a-ea37-76d013d04853',
       accSysKeys: ['System key1', 'System key2'],
       accSysNotes: 'Accepting System Notes',
       accSystem: 'Accepting System',

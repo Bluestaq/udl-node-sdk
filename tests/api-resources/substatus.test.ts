@@ -71,7 +71,7 @@ describe('resource substatus', () => {
       status: 'FMC',
       statusId: 'REF-STATUS-ID',
       type: 'mwCap',
-      id: 'SUBSTATUS-ID',
+      body_id: 'SUBSTATUS-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

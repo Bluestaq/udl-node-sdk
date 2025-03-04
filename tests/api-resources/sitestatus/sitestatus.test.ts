@@ -87,7 +87,7 @@ describe('resource sitestatus', () => {
       dataMode: 'REAL',
       idSite: '41e3e554-9790-40b9-bd7b-f30d864dcad8',
       source: 'Bluestaq',
-      id: 'SITESTATUS-ID',
+      body_id: 'SITESTATUS-ID',
       cat: 'COLD',
       coldInventory: 1,
       commImpairment: 'commImpairment',

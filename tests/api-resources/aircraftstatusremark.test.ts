@@ -34,7 +34,7 @@ describe('resource aircraftstatusremark', () => {
       idAircraftStatus: '388b1f64-ccff-4113-b049-3cf5542c2a42',
       source: 'Bluestaq',
       text: 'Remark text',
-      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      body_id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       altRmkId: 'GDSSBL022307131714250077',
       lastUpdatedAt: '2024-01-01T16:00:00.123Z',
       lastUpdatedBy: 'JOHN SMITH',

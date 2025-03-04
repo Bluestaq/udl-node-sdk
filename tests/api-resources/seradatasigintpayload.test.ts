@@ -71,7 +71,7 @@ describe('resource seradatasigintpayload', () => {
       dataMode: 'REAL',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
-      id: 'SERADATASIGINTPAYLOAD-ID',
+      body_id: 'SERADATASIGINTPAYLOAD-ID',
       frequencyCoverage: '1.1 to 3.3',
       groundStationLocations: 'groundStationLocations',
       groundStations: 'groundStations',

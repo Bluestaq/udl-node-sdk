@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as HistoryAPI from './udl/mti/history';
 
@@ -38,7 +39,15 @@ export class Mti extends APIResource {
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
    */
-  createBulk(body: MtiCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(body?: MtiCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
+  createBulk(
+    body?: MtiCreateBulkParams | Core.RequestOptions,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    if (isRequestOptions(body)) {
+      return this.createBulk(undefined, body);
+    }
     return this._client.post('/udl/mti/createBulk', {
       body,
       ...options,

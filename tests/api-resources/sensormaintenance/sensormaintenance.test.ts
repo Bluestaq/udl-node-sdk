@@ -86,7 +86,7 @@ describe('resource sensormaintenance', () => {
       siteCode: 'site01',
       source: 'Bluestaq',
       startTime: '2018-01-01T16:00:00.123456Z',
-      id: 'SENSORMAINTENANCE-ID',
+      body_id: 'SENSORMAINTENANCE-ID',
       activity: 'Activity Description',
       approver: 'approver',
       changer: 'changer',
@@ -184,19 +184,8 @@ describe('resource sensormaintenance', () => {
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
-  test('createBulk: only required params', async () => {
-    const responsePromise = client.sensormaintenance.createBulk({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'REAL',
-          endTime: '2018-01-01T16:00:00.123456Z',
-          siteCode: 'site01',
-          source: 'Bluestaq',
-          startTime: '2018-01-01T16:00:00.123456Z',
-        },
-      ],
-    });
+  test('createBulk', async () => {
+    const responsePromise = client.sensormaintenance.createBulk();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -206,42 +195,55 @@ describe('resource sensormaintenance', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulk: required and optional params', async () => {
-    const response = await client.sensormaintenance.createBulk({
-      body: [
+  test('createBulk: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.sensormaintenance.createBulk({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('createBulk: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.sensormaintenance.createBulk(
         {
-          classificationMarking: 'U',
-          dataMode: 'REAL',
-          endTime: '2018-01-01T16:00:00.123456Z',
-          siteCode: 'site01',
-          source: 'Bluestaq',
-          startTime: '2018-01-01T16:00:00.123456Z',
-          id: 'SENSORMAINTENANCE-ID',
-          activity: 'Activity Description',
-          approver: 'approver',
-          changer: 'changer',
-          duration: '128:16:52',
-          eowId: 'eowId',
-          equipStatus: 'FMC',
-          idSensor: 'idSensor',
-          impactedFaces: 'impactedFaces',
-          lineNumber: 'lineNumber',
-          mdOpsCap: 'R',
-          mwOpsCap: 'G',
-          origin: 'THIRD_PARTY_DATASOURCE',
-          priority: 'low',
-          recall: '128:16:52',
-          rel: 'rel',
-          remark: 'Remarks',
-          requestor: 'requestor',
-          resource: 'resource',
-          rev: 'rev',
-          ssOpsCap: 'Y',
+          origin: 'origin',
+          source: 'source',
+          body: [
+            {
+              classificationMarking: 'U',
+              dataMode: 'REAL',
+              endTime: '2018-01-01T16:00:00.123456Z',
+              siteCode: 'site01',
+              source: 'Bluestaq',
+              startTime: '2018-01-01T16:00:00.123456Z',
+              id: 'SENSORMAINTENANCE-ID',
+              activity: 'Activity Description',
+              approver: 'approver',
+              changer: 'changer',
+              duration: '128:16:52',
+              eowId: 'eowId',
+              equipStatus: 'FMC',
+              idSensor: 'idSensor',
+              impactedFaces: 'impactedFaces',
+              lineNumber: 'lineNumber',
+              mdOpsCap: 'R',
+              mwOpsCap: 'G',
+              origin: 'THIRD_PARTY_DATASOURCE',
+              priority: 'low',
+              recall: '128:16:52',
+              rel: 'rel',
+              remark: 'Remarks',
+              requestor: 'requestor',
+              resource: 'resource',
+              rev: 'rev',
+              ssOpsCap: 'Y',
+            },
+          ],
         },
-      ],
-      origin: 'origin',
-      source: 'source',
-    });
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('current', async () => {

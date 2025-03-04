@@ -105,7 +105,7 @@ describe('resource airfields', () => {
       name: 'USAF Academy AFLD',
       source: 'Bluestaq',
       type: 'Commercial',
-      id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
+      body_id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
       altAirfieldId: '45301',
       city: 'Colorado Springs',
       countryCode: 'US',

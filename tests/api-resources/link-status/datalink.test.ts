@@ -52,7 +52,7 @@ describe('resource datalink', () => {
       courseDiff: 60,
       decExemptCodes: ['X1', 'X2'],
       decInstDates: ['AT EXERCISE ENDEX', 'DATE:25NOV1997'],
-      decorrWinMult: 2,
+      decorrWinMult: 1.7,
       geoDatum: 'EUR-T',
       jreCallSign: 'CHARLIE ONE',
       jreDetails: 'JRE details',
@@ -145,8 +145,8 @@ describe('resource datalink', () => {
           voiceNetDes: 'VPN',
         },
       ],
-      winSizeMin: 1,
-      winSizeMult: 1.5,
+      winSizeMin: 1.25,
+      winSizeMult: 2.1,
     });
   });
 
@@ -225,7 +225,7 @@ describe('resource datalink', () => {
         courseDiff: 60,
         decExemptCodes: ['X1', 'X2'],
         decInstDates: ['AT EXERCISE ENDEX', 'DATE:25NOV1997'],
-        decorrWinMult: 2,
+        decorrWinMult: 1.7,
         geoDatum: 'EUR-T',
         jreCallSign: 'CHARLIE ONE',
         jreDetails: 'JRE details',
@@ -318,8 +318,8 @@ describe('resource datalink', () => {
             voiceNetDes: 'VPN',
           },
         ],
-        winSizeMin: 1,
-        winSizeMult: 1.5,
+        winSizeMin: 1.25,
+        winSizeMult: 2.1,
       },
     ]);
   });

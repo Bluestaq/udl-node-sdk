@@ -67,7 +67,7 @@ describe('resource sortieppr', () => {
       dataMode: 'REAL',
       idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
       source: 'Bluestaq',
-      id: 'SORTIEPPR-ID',
+      body_id: 'SORTIEPPR-ID',
       endTime: '2024-01-01T01:01:01.123Z',
       externalId: 'aa714f4d52a37ab1a00b21af9566e379',
       grantor: 'SMITH',

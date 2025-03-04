@@ -85,7 +85,7 @@ describe('resource rfemitterdetails', () => {
       dataMode: 'REAL',
       idRFEmitter: 'RFEMITTER-ID',
       source: 'Bluestaq',
-      id: 'RFEMITTERDETAILS-ID',
+      body_id: 'RFEMITTERDETAILS-ID',
       alternateFacilityName: 'ALTERNATE_FACILITY_NAME',
       altName: 'ALTERNATE_NAME',
       antennaDiameter: 20.23,

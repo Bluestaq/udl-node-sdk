@@ -105,7 +105,7 @@ describe('resource launchvehicledetails', () => {
       dataMode: 'REAL',
       idLaunchVehicle: 'LAUNCHVEHICLE-ID',
       source: 'Bluestaq',
-      id: 'LAUNCHVEHICLEDETAILS-ID',
+      body_id: 'LAUNCHVEHICLEDETAILS-ID',
       attitudeAccuracy: 10.23,
       category: 'Example-category',
       deploymentRotationRate: 10.23,

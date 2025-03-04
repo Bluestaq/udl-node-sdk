@@ -60,7 +60,7 @@ describe('resource launchvehicle', () => {
       dataMode: 'REAL',
       name: 'Example-name',
       source: 'Bluestaq',
-      id: 'LAUNCHVEHICLE-ID',
+      body_id: 'LAUNCHVEHICLE-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
       type: 'Example-vehicle-type',
     });

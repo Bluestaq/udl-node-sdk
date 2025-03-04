@@ -76,7 +76,7 @@ describe('resource rfband', () => {
       idEntity: 'ENTITY-ID',
       name: 'BAND_NAME',
       source: 'Bluestaq',
-      id: 'RFBAND-ID',
+      body_id: 'RFBAND-ID',
       band: 'Ku',
       bandwidth: 100.23,
       beamwidth: 45.23,
