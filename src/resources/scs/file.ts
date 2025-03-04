@@ -11,8 +11,8 @@ export class File extends APIResource {
    * Returns a FileData object representing the file with the given ID that is
    * visible to the calling user.
    */
-  retrieve(query: FileRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Shared.FileData> {
-    return this._client.get('/scs/file', { query, ...options });
+  retrieve(options?: Core.RequestOptions): Core.APIPromise<Shared.FileData> {
+    return this._client.get('/scs/file', options);
   }
 
   /**
@@ -40,13 +40,6 @@ export class File extends APIResource {
   }
 }
 
-export interface FileRetrieveParams {
-  /**
-   * The file ID to view
-   */
-  id: string;
-}
-
 export interface FileUpdateParams {
   fileDataList?: Array<Shared.FileData>;
 }
@@ -59,11 +52,7 @@ export interface FileListParams extends OffsetPageParams {
 }
 
 export declare namespace File {
-  export {
-    type FileRetrieveParams as FileRetrieveParams,
-    type FileUpdateParams as FileUpdateParams,
-    type FileListParams as FileListParams,
-  };
+  export { type FileUpdateParams as FileUpdateParams, type FileListParams as FileListParams };
 }
 
 export { FileDataOffsetPage };

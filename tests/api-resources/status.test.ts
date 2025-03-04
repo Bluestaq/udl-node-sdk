@@ -176,8 +176,8 @@ describe('resource status', () => {
     );
   });
 
-  test('getByEntityId', async () => {
-    const responsePromise = client.status.getByEntityId('idEntity');
+  test('getByEntityId: only required params', async () => {
+    const responsePromise = client.status.getByEntityId('idEntity', { query_idEntity: 'idEntity' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -187,15 +187,12 @@ describe('resource status', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('getByEntityId: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.status.getByEntityId('idEntity', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  test('getByEntityId: required and optional params', async () => {
+    const response = await client.status.getByEntityId('idEntity', { query_idEntity: 'idEntity' });
   });
 
-  test('getByEntityType', async () => {
-    const responsePromise = client.status.getByEntityType('entityType');
+  test('getByEntityType: only required params', async () => {
+    const responsePromise = client.status.getByEntityType('entityType', { query_entityType: 'entityType' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -205,11 +202,8 @@ describe('resource status', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('getByEntityType: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.status.getByEntityType('entityType', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  test('getByEntityType: required and optional params', async () => {
+    const response = await client.status.getByEntityType('entityType', { query_entityType: 'entityType' });
   });
 
   test('queryhelp', async () => {
