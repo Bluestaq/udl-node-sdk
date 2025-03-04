@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource scs', () => {
-  test('delete', async () => {
-    const responsePromise = client.scs.delete();
+  test('delete: only required params', async () => {
+    const responsePromise = client.scs.delete({ id: 'id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,11 +21,8 @@ describe('resource scs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.scs.delete({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
+  test('delete: required and optional params', async () => {
+    const response = await client.scs.delete({ id: 'id' });
   });
 
   test('aggregateDocType', async () => {
@@ -83,7 +80,7 @@ describe('resource scs', () => {
   });
 
   test('copy: only required params', async () => {
-    const responsePromise = client.scs.copy({ targetPath: 'targetPath' });
+    const responsePromise = client.scs.copy({ id: 'id', targetPath: 'targetPath' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -94,18 +91,15 @@ describe('resource scs', () => {
   });
 
   test('copy: required and optional params', async () => {
-    const response = await client.scs.copy({ targetPath: 'targetPath' });
+    const response = await client.scs.copy({ id: 'id', targetPath: 'targetPath' });
   });
 
   test('download: required and optional params', async () => {
     const response = await client.scs.download('body');
   });
 
-  test('fileDownload: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.scs.fileDownload({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
+  test('fileDownload: required and optional params', async () => {
+    const response = await client.scs.fileDownload({ id: 'id' });
   });
 
   test('fileUpload: only required params', async () => {
@@ -136,7 +130,7 @@ describe('resource scs', () => {
   });
 
   test('move: only required params', async () => {
-    const responsePromise = client.scs.move({ targetPath: 'targetPath' });
+    const responsePromise = client.scs.move({ id: 'id', targetPath: 'targetPath' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -147,11 +141,11 @@ describe('resource scs', () => {
   });
 
   test('move: required and optional params', async () => {
-    const response = await client.scs.move({ targetPath: 'targetPath' });
+    const response = await client.scs.move({ id: 'id', targetPath: 'targetPath' });
   });
 
   test('rename: only required params', async () => {
-    const responsePromise = client.scs.rename({ newName: 'newName' });
+    const responsePromise = client.scs.rename({ id: 'id', newName: 'newName' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -162,7 +156,7 @@ describe('resource scs', () => {
   });
 
   test('rename: required and optional params', async () => {
-    const response = await client.scs.rename({ newName: 'newName' });
+    const response = await client.scs.rename({ id: 'id', newName: 'newName' });
   });
 
   test('search: only required params', async () => {

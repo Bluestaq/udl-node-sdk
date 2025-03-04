@@ -7,24 +7,15 @@ export class SecureMessaging extends APIResource {
   /**
    * Retrieve the details of the specified topic or data type.
    */
-  describeTopic(
-    pathTopic: string,
-    query: SecureMessagingDescribeTopicParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TopicDetails> {
-    return this._client.get(`/sm/describeTopic/${pathTopic}`, { query, ...options });
+  describeTopic(topic: string, options?: Core.RequestOptions): Core.APIPromise<TopicDetails> {
+    return this._client.get(`/sm/describeTopic/${topic}`, options);
   }
 
   /**
    * Returns the current/latest offset for the passed topic name.
    */
-  getLatestOffset(
-    pathTopic: string,
-    query: SecureMessagingGetLatestOffsetParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.get(`/sm/getLatestOffset/${pathTopic}`, {
-      query,
+  getLatestOffset(topic: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get(`/sm/getLatestOffset/${topic}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -34,14 +25,8 @@ export class SecureMessaging extends APIResource {
    * Retrieve a set of messages from the given topic at the given offset. See Help >
    * Secure Messaging API on Storefront for more details on how to use getMessages.
    */
-  getMessages(
-    pathTopic: string,
-    pathOffset: string,
-    query: SecureMessagingGetMessagesParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.get(`/sm/getMessages/${pathTopic}/${pathOffset}`, {
-      query,
+  getMessages(topic: string, offset: number, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get(`/sm/getMessages/${topic}/${offset}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -84,38 +69,9 @@ export interface TopicDetails {
 
 export type SecureMessagingListTopicsResponse = Array<TopicDetails>;
 
-export interface SecureMessagingDescribeTopicParams {
-  /**
-   * The topic to be described.
-   */
-  query_topic: string;
-}
-
-export interface SecureMessagingGetLatestOffsetParams {
-  /**
-   * The topic name to return the latest offset.
-   */
-  query_topic: string;
-}
-
-export interface SecureMessagingGetMessagesParams {
-  /**
-   * The message offset.
-   */
-  query_offset: number;
-
-  /**
-   * The topic from which messages are to be retrieved.
-   */
-  query_topic: string;
-}
-
 export declare namespace SecureMessaging {
   export {
     type TopicDetails as TopicDetails,
     type SecureMessagingListTopicsResponse as SecureMessagingListTopicsResponse,
-    type SecureMessagingDescribeTopicParams as SecureMessagingDescribeTopicParams,
-    type SecureMessagingGetLatestOffsetParams as SecureMessagingGetLatestOffsetParams,
-    type SecureMessagingGetMessagesParams as SecureMessagingGetMessagesParams,
   };
 }
