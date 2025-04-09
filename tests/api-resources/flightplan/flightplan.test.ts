@@ -260,8 +260,8 @@ describe('resource flightplan', () => {
     );
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.flightplan.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.flightplan.createBulkV2([
       {
         arrAirfield: 'KCHS',
         classificationMarking: 'U',
@@ -280,8 +280,8 @@ describe('resource flightplan', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.flightplan.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.flightplan.createBulkV2([
       {
         arrAirfield: 'KCHS',
         classificationMarking: 'U',

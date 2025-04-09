@@ -78,7 +78,10 @@ export class Soiobservationset extends APIResource {
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  fileCreate(body: SoiobservationsetFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(
+    body: SoiobservationsetCreateBulkV2Params,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-soiobservationset', {
       body,
       ...options,
@@ -2420,9 +2423,9 @@ export namespace SoiobservationsetCreateBulkParams {
   }
 }
 
-export type SoiobservationsetFileCreateParams = Array<SoiobservationsetFileCreateParams.Body>;
+export type SoiobservationsetCreateBulkV2Params = Array<SoiobservationsetCreateBulkV2Params.Body>;
 
-export namespace SoiobservationsetFileCreateParams {
+export namespace SoiobservationsetCreateBulkV2Params {
   /**
    * These services provide operations for posting space object idenfification
    * observation sets.
@@ -3328,7 +3331,7 @@ export declare namespace Soiobservationset {
     type SoiobservationsetListParams as SoiobservationsetListParams,
     type SoiobservationsetCountParams as SoiobservationsetCountParams,
     type SoiobservationsetCreateBulkParams as SoiobservationsetCreateBulkParams,
-    type SoiobservationsetFileCreateParams as SoiobservationsetFileCreateParams,
+    type SoiobservationsetCreateBulkV2Params as SoiobservationsetCreateBulkV2Params,
     type SoiobservationsetTupleParams as SoiobservationsetTupleParams,
   };
 

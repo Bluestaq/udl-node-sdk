@@ -99,8 +99,8 @@ describe('resource itemTrackings', () => {
     const response = await client.itemTrackings.count({ ts: '2019-12-27T18:11:19.117Z' });
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.itemTrackings.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.itemTrackings.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -119,8 +119,8 @@ describe('resource itemTrackings', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.itemTrackings.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.itemTrackings.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

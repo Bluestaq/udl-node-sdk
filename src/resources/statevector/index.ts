@@ -16,7 +16,9 @@ export {
 } from './history';
 export {
   Statevector,
+  type StateVectorAbridged,
   type StateVectorFull,
+  type StateVectorIngest,
   type StatevectorListResponse,
   type StatevectorCountResponse,
   type StatevectorTupleResponse,
@@ -24,6 +26,6 @@ export {
   type StatevectorListParams,
   type StatevectorCountParams,
   type StatevectorCreateBulkParams,
-  type StatevectorFileCreateParams,
+  type StatevectorCreateBulkV2Params,
   type StatevectorTupleParams,
 } from './statevector';

@@ -213,8 +213,8 @@ describe('resource effectResponses', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.effectResponses.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.effectResponses.createBulkV2([
       { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', type: 'COA' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -226,8 +226,8 @@ describe('resource effectResponses', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.effectResponses.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.effectResponses.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

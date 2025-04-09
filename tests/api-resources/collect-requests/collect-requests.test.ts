@@ -534,8 +534,8 @@ describe('resource collectRequests', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.collectRequests.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.collectRequests.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -553,8 +553,8 @@ describe('resource collectRequests', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.collectRequests.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.collectRequests.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

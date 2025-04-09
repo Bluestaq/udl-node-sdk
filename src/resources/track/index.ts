@@ -17,6 +17,6 @@ export {
   type TrackListParams,
   type TrackCountParams,
   type TrackCreateBulkParams,
-  type TrackFileCreateParams,
+  type TrackCreateBulkV2Params,
   type TrackTupleParams,
 } from './track';

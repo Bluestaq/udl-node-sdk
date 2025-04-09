@@ -55,7 +55,10 @@ export class Ionoobservation extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  fileCreate(body: IonoobservationFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(
+    body: IonoobservationCreateBulkV2Params,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-ionoobs', {
       body,
       ...options,
@@ -3109,9 +3112,9 @@ export namespace IonoobservationCreateBulkParams {
   }
 }
 
-export type IonoobservationFileCreateParams = Array<IonoobservationFileCreateParams.Body>;
+export type IonoobservationCreateBulkV2Params = Array<IonoobservationCreateBulkV2Params.Body>;
 
-export namespace IonoobservationFileCreateParams {
+export namespace IonoobservationCreateBulkV2Params {
   /**
    * These services provide operations for posting and querying ionospheric
    * observation data. Characteristics are defined by the CHARS: URSI IIWG format for
@@ -4617,7 +4620,7 @@ export declare namespace Ionoobservation {
     type IonoobservationListParams as IonoobservationListParams,
     type IonoobservationCountParams as IonoobservationCountParams,
     type IonoobservationCreateBulkParams as IonoobservationCreateBulkParams,
-    type IonoobservationFileCreateParams as IonoobservationFileCreateParams,
+    type IonoobservationCreateBulkV2Params as IonoobservationCreateBulkV2Params,
     type IonoobservationTupleParams as IonoobservationTupleParams,
   };
 }

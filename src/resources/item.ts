@@ -72,7 +72,7 @@ export class Item extends APIResource {
    * UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  fileCreate(body: ItemFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: ItemCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-item', {
       body,
       ...options,
@@ -1628,9 +1628,9 @@ export interface ItemUpdateParams {
   width?: number;
 }
 
-export type ItemFileCreateParams = Array<ItemFileCreateParams.Body>;
+export type ItemCreateBulkV2Params = Array<ItemCreateBulkV2Params.Body>;
 
-export namespace ItemFileCreateParams {
+export namespace ItemCreateBulkV2Params {
   export interface Body {
     /**
      * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -1932,7 +1932,7 @@ export declare namespace Item {
     type ItemTupleResponse as ItemTupleResponse,
     type ItemCreateParams as ItemCreateParams,
     type ItemUpdateParams as ItemUpdateParams,
-    type ItemFileCreateParams as ItemFileCreateParams,
+    type ItemCreateBulkV2Params as ItemCreateBulkV2Params,
     type ItemTupleParams as ItemTupleParams,
   };
 }

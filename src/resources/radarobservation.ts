@@ -69,7 +69,10 @@ export class Radarobservation extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  fileCreate(body: RadarobservationFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(
+    body: RadarobservationCreateBulkV2Params,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-radar', {
       body,
       ...options,
@@ -1126,9 +1129,9 @@ export namespace RadarobservationCreateBulkParams {
   }
 }
 
-export type RadarobservationFileCreateParams = Array<RadarobservationFileCreateParams.Body>;
+export type RadarobservationCreateBulkV2Params = Array<RadarobservationCreateBulkV2Params.Body>;
 
-export namespace RadarobservationFileCreateParams {
+export namespace RadarobservationCreateBulkV2Params {
   /**
    * Model representation of observation data for radar based sensor phenomenologies.
    * J2000 is the preferred coordinate frame for all observations, but in some cases
@@ -1476,7 +1479,7 @@ export declare namespace Radarobservation {
     type RadarobservationListParams as RadarobservationListParams,
     type RadarobservationCountParams as RadarobservationCountParams,
     type RadarobservationCreateBulkParams as RadarobservationCreateBulkParams,
-    type RadarobservationFileCreateParams as RadarobservationFileCreateParams,
+    type RadarobservationCreateBulkV2Params as RadarobservationCreateBulkV2Params,
     type RadarobservationTupleParams as RadarobservationTupleParams,
   };
 }

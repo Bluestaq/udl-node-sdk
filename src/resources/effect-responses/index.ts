@@ -10,7 +10,7 @@ export {
   type EffectResponseListParams,
   type EffectResponseCountParams,
   type EffectResponseCreateBulkParams,
-  type EffectResponseFileCreateParams,
+  type EffectResponseCreateBulkV2Params,
   type EffectResponseTupleParams,
 } from './effect-responses';
 export {

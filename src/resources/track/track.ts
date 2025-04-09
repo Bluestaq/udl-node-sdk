@@ -62,7 +62,7 @@ export class Track extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  fileCreate(body: TrackFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: TrackCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-tracks', {
       body,
       ...options,
@@ -1170,9 +1170,9 @@ export namespace TrackCreateBulkParams {
   }
 }
 
-export type TrackFileCreateParams = Array<TrackFileCreateParams.Body>;
+export type TrackCreateBulkV2Params = Array<TrackCreateBulkV2Params.Body>;
 
-export namespace TrackFileCreateParams {
+export namespace TrackCreateBulkV2Params {
   /**
    * A track is a position and optionally a heading/velocity of an object such as an
    * aircraft at a particular timestamp. It also includes optional information
@@ -1711,7 +1711,7 @@ export declare namespace Track {
     type TrackListParams as TrackListParams,
     type TrackCountParams as TrackCountParams,
     type TrackCreateBulkParams as TrackCreateBulkParams,
-    type TrackFileCreateParams as TrackFileCreateParams,
+    type TrackCreateBulkV2Params as TrackCreateBulkV2Params,
     type TrackTupleParams as TrackTupleParams,
   };
 

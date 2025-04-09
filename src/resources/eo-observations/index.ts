@@ -9,7 +9,7 @@ export {
   type EoObservationListParams,
   type EoObservationCountParams,
   type EoObservationCreateBulkParams,
-  type EoObservationFileCreateParams,
+  type EoObservationCreateBulkV2Params,
 } from './eo-observations';
 export {
   History,

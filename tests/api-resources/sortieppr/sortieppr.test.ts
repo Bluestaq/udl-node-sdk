@@ -167,8 +167,8 @@ describe('resource sortieppr', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.sortieppr.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.sortieppr.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -185,8 +185,8 @@ describe('resource sortieppr', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.sortieppr.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.sortieppr.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

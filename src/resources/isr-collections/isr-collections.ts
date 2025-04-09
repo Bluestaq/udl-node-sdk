@@ -17,20 +17,6 @@ export class IsrCollections extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 
   /**
-   * Service operation to take multiple ISR Collections as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  create(body: IsrCollectionCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-isrcollection', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to dynamically query data by a variety of query parameters not
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
@@ -67,6 +53,20 @@ export class IsrCollections extends APIResource {
    */
   createBulk(body: IsrCollectionCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/udl/isrcollection/createBulk', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to take multiple ISR Collections as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  createBulkV2(body: IsrCollectionCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-isrcollection', {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -1011,9 +1011,25 @@ export type IsrCollectionCountResponse = string;
 
 export type IsrCollectionTupleResponse = Array<IsrcollectionHistoryAPI.IsrCollectionFull>;
 
-export type IsrCollectionCreateParams = Array<IsrCollectionCreateParams.Body>;
+export interface IsrCollectionListParams {
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  createdAt: string;
+}
 
-export namespace IsrCollectionCreateParams {
+export interface IsrCollectionCountParams {
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  createdAt: string;
+}
+
+export type IsrCollectionCreateBulkParams = Array<IsrCollectionCreateBulkParams.Body>;
+
+export namespace IsrCollectionCreateBulkParams {
   /**
    * ISR Collection data.
    */
@@ -1887,25 +1903,9 @@ export namespace IsrCollectionCreateParams {
   }
 }
 
-export interface IsrCollectionListParams {
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   * (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  createdAt: string;
-}
+export type IsrCollectionCreateBulkV2Params = Array<IsrCollectionCreateBulkV2Params.Body>;
 
-export interface IsrCollectionCountParams {
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   * (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  createdAt: string;
-}
-
-export type IsrCollectionCreateBulkParams = Array<IsrCollectionCreateBulkParams.Body>;
-
-export namespace IsrCollectionCreateBulkParams {
+export namespace IsrCollectionCreateBulkV2Params {
   /**
    * ISR Collection data.
    */
@@ -2802,10 +2802,10 @@ export declare namespace IsrCollections {
     type IsrCollectionListResponse as IsrCollectionListResponse,
     type IsrCollectionCountResponse as IsrCollectionCountResponse,
     type IsrCollectionTupleResponse as IsrCollectionTupleResponse,
-    type IsrCollectionCreateParams as IsrCollectionCreateParams,
     type IsrCollectionListParams as IsrCollectionListParams,
     type IsrCollectionCountParams as IsrCollectionCountParams,
     type IsrCollectionCreateBulkParams as IsrCollectionCreateBulkParams,
+    type IsrCollectionCreateBulkV2Params as IsrCollectionCreateBulkV2Params,
     type IsrCollectionTupleParams as IsrCollectionTupleParams,
   };
 

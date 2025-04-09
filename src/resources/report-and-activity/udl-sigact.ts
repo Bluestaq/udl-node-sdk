@@ -11,7 +11,7 @@ export class UdlSigact extends APIResource {
    * specific role, please contact the UDL team to gain access. This operation is
    * intended to be used for automated feeds into UDL.
    */
-  fileCreate(body: UdlSigactFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: UdlSigactCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-sigact', {
       body,
       ...options,
@@ -32,9 +32,9 @@ export class UdlSigact extends APIResource {
   }
 }
 
-export type UdlSigactFileCreateParams = Array<UdlSigactFileCreateParams.Body>;
+export type UdlSigactCreateBulkV2Params = Array<UdlSigactCreateBulkV2Params.Body>;
 
-export namespace UdlSigactFileCreateParams {
+export namespace UdlSigactCreateBulkV2Params {
   /**
    * Provides information on the dates, actors, locations, fatalities, and types of
    * all reported political violence and protest events across the world.
@@ -588,5 +588,5 @@ export namespace UdlSigactFileCreateParams {
 }
 
 export declare namespace UdlSigact {
-  export { type UdlSigactFileCreateParams as UdlSigactFileCreateParams };
+  export { type UdlSigactCreateBulkV2Params as UdlSigactCreateBulkV2Params };
 }

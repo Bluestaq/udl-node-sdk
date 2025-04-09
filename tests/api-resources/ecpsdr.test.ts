@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource ecpsdr', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.ecpsdr.create([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.ecpsdr.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -29,8 +29,8 @@ describe('resource ecpsdr', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: required and optional params', async () => {
-    const response = await client.ecpsdr.create([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.ecpsdr.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

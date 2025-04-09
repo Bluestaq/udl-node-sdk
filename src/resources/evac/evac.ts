@@ -84,7 +84,7 @@ export class Evac extends APIResource {
    * the database. Requires a specific role, please contact the UDL team to gain
    * access. This operation is intended to be used for automated feeds into UDL.
    */
-  fileCreate(body: EvacFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: EvacCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-evac', {
       body,
       ...options,
@@ -2248,9 +2248,9 @@ export namespace EvacCreateBulkParams {
   }
 }
 
-export type EvacFileCreateParams = Array<EvacFileCreateParams.Body>;
+export type EvacCreateBulkV2Params = Array<EvacCreateBulkV2Params.Body>;
 
-export namespace EvacFileCreateParams {
+export namespace EvacCreateBulkV2Params {
   /**
    * Casualty report and evacuation request. Used to report and request support to
    * evacuate friendly and enemy casualties.
@@ -2967,7 +2967,7 @@ export declare namespace Evac {
     type EvacListParams as EvacListParams,
     type EvacCountParams as EvacCountParams,
     type EvacCreateBulkParams as EvacCreateBulkParams,
-    type EvacFileCreateParams as EvacFileCreateParams,
+    type EvacCreateBulkV2Params as EvacCreateBulkV2Params,
   };
 
   export {

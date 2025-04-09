@@ -224,8 +224,8 @@ describe('resource crew', () => {
     );
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.crew.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.crew.createBulkV2([
       { classificationMarking: 'U', dataMode: 'REAL', origCrewId: 'JHJDHjhuu929o92', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -237,8 +237,8 @@ describe('resource crew', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.crew.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.crew.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

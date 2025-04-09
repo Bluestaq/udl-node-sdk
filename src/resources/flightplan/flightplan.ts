@@ -52,7 +52,7 @@ export class Flightplan extends APIResource {
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  fileCreate(body: FlightplanFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: FlightplanCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-flightplan', {
       body,
       ...options,
@@ -2289,9 +2289,9 @@ export namespace FlightplanCreateParams {
   }
 }
 
-export type FlightplanFileCreateParams = Array<FlightplanFileCreateParams.Body>;
+export type FlightplanCreateBulkV2Params = Array<FlightplanCreateBulkV2Params.Body>;
 
-export namespace FlightplanFileCreateParams {
+export namespace FlightplanCreateBulkV2Params {
   /**
    * Flight Plan contains data specifying the details of an intended flight including
    * schedule and expected route.
@@ -3399,7 +3399,7 @@ export declare namespace Flightplan {
     type FlightplanCountResponse as FlightplanCountResponse,
     type FlightplanTupleResponse as FlightplanTupleResponse,
     type FlightplanCreateParams as FlightplanCreateParams,
-    type FlightplanFileCreateParams as FlightplanFileCreateParams,
+    type FlightplanCreateBulkV2Params as FlightplanCreateBulkV2Params,
     type FlightplanTupleParams as FlightplanTupleParams,
   };
 

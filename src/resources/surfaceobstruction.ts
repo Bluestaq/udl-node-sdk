@@ -76,7 +76,10 @@ export class Surfaceobstruction extends APIResource {
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  fileCreate(body: SurfaceobstructionFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(
+    body: SurfaceobstructionCreateBulkV2Params,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-surfaceobstruction', {
       body,
       ...options,
@@ -707,9 +710,9 @@ export interface SurfaceobstructionUpdateParams {
   surfaceEndLon?: number;
 }
 
-export type SurfaceobstructionFileCreateParams = Array<SurfaceobstructionFileCreateParams.Body>;
+export type SurfaceobstructionCreateBulkV2Params = Array<SurfaceobstructionCreateBulkV2Params.Body>;
 
-export namespace SurfaceobstructionFileCreateParams {
+export namespace SurfaceobstructionCreateBulkV2Params {
   export interface Body {
     /**
      * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -825,7 +828,7 @@ export declare namespace Surfaceobstruction {
     type SurfaceobstructionTupleResponse as SurfaceobstructionTupleResponse,
     type SurfaceobstructionCreateParams as SurfaceobstructionCreateParams,
     type SurfaceobstructionUpdateParams as SurfaceobstructionUpdateParams,
-    type SurfaceobstructionFileCreateParams as SurfaceobstructionFileCreateParams,
+    type SurfaceobstructionCreateBulkV2Params as SurfaceobstructionCreateBulkV2Params,
     type SurfaceobstructionTupleParams as SurfaceobstructionTupleParams,
   };
 }

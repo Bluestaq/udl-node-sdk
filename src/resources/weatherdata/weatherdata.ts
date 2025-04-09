@@ -85,7 +85,7 @@ export class Weatherdata extends APIResource {
    * UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  fileCreate(body: WeatherdataFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: WeatherdataCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-weatherdata', {
       body,
       ...options,
@@ -904,9 +904,9 @@ export namespace WeatherdataCreateBulkParams {
   }
 }
 
-export type WeatherdataFileCreateParams = Array<WeatherdataFileCreateParams.Body>;
+export type WeatherdataCreateBulkV2Params = Array<WeatherdataCreateBulkV2Params.Body>;
 
-export namespace WeatherdataFileCreateParams {
+export namespace WeatherdataCreateBulkV2Params {
   /**
    * These services provide for posting and querying Weather Data. Weather Data
    * integrates dynamic data measured by Doppler/CG such as signal power and noise
@@ -1180,7 +1180,7 @@ export declare namespace Weatherdata {
     type WeatherdataListParams as WeatherdataListParams,
     type WeatherdataCountParams as WeatherdataCountParams,
     type WeatherdataCreateBulkParams as WeatherdataCreateBulkParams,
-    type WeatherdataFileCreateParams as WeatherdataFileCreateParams,
+    type WeatherdataCreateBulkV2Params as WeatherdataCreateBulkV2Params,
     type WeatherdataTupleParams as WeatherdataTupleParams,
   };
 

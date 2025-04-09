@@ -17,6 +17,6 @@ export {
   type SensorplanUpdateParams,
   type SensorplanListParams,
   type SensorplanCountParams,
-  type SensorplanFileCreateParams,
+  type SensorplanCreateBulkV2Params,
   type SensorplanTupleParams,
 } from './sensorplan';

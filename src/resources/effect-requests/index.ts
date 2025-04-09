@@ -10,7 +10,7 @@ export {
   type EffectRequestListParams,
   type EffectRequestCountParams,
   type EffectRequestCreateBulkParams,
-  type EffectRequestFileCreateParams,
+  type EffectRequestCreateBulkV2Params,
   type EffectRequestTupleParams,
 } from './effect-requests';
 export {

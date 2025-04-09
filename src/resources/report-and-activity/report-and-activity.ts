@@ -2,9 +2,9 @@
 
 import { APIResource } from '../../resource';
 import * as UdlH3geoAPI from './udl-h3geo';
-import { UdlH3geo, UdlH3geoFileCreateParams } from './udl-h3geo';
+import { UdlH3geo, UdlH3geoCreateBulkV2Params } from './udl-h3geo';
 import * as UdlSigactAPI from './udl-sigact';
-import { UdlSigact, UdlSigactFileCreateParams } from './udl-sigact';
+import { UdlSigact, UdlSigactCreateBulkV2Params } from './udl-sigact';
 import * as PoiAPI from './poi/poi';
 import { Poi } from './poi/poi';
 
@@ -21,7 +21,7 @@ ReportAndActivity.UdlSigact = UdlSigact;
 export declare namespace ReportAndActivity {
   export { Poi as Poi };
 
-  export { UdlH3geo as UdlH3geo, type UdlH3geoFileCreateParams as UdlH3geoFileCreateParams };
+  export { UdlH3geo as UdlH3geo, type UdlH3geoCreateBulkV2Params as UdlH3geoCreateBulkV2Params };
 
-  export { UdlSigact as UdlSigact, type UdlSigactFileCreateParams as UdlSigactFileCreateParams };
+  export { UdlSigact as UdlSigact, type UdlSigactCreateBulkV2Params as UdlSigactCreateBulkV2Params };
 }

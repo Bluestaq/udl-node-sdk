@@ -243,8 +243,8 @@ describe('resource mti', () => {
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.mti.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.mti.createBulkV2([
       { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -256,8 +256,8 @@ describe('resource mti', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.mti.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.mti.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

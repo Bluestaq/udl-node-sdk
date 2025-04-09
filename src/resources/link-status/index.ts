@@ -9,7 +9,7 @@ export {
   type DatalinkCreateParams,
   type DatalinkListParams,
   type DatalinkCountParams,
-  type DatalinkFileCreateParams,
+  type DatalinkCreateBulkV2Params,
   type DatalinkTupleParams,
 } from './datalink';
 export {

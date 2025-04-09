@@ -10,6 +10,7 @@ export {
 } from './antenna-details';
 export {
   Onorbit,
+  type OnorbitIngest,
   type OnorbitListResponse,
   type OnorbitCountResponse,
   type OnorbitGetSignatureResponse,

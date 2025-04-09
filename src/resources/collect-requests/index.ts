@@ -10,7 +10,7 @@ export {
   type CollectRequestListParams,
   type CollectRequestCountParams,
   type CollectRequestCreateBulkParams,
-  type CollectRequestFileCreateParams,
+  type CollectRequestCreateBulkV2Params,
   type CollectRequestTupleParams,
 } from './collect-requests';
 export {

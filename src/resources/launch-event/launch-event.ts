@@ -21,7 +21,7 @@ export class LaunchEvent extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  fileCreate(body: LaunchEventFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: LaunchEventCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-launchevent', {
       body,
       ...options,
@@ -30,9 +30,9 @@ export class LaunchEvent extends APIResource {
   }
 }
 
-export type LaunchEventFileCreateParams = Array<LaunchEventFileCreateParams.Body>;
+export type LaunchEventCreateBulkV2Params = Array<LaunchEventCreateBulkV2Params.Body>;
 
-export namespace LaunchEventFileCreateParams {
+export namespace LaunchEventCreateBulkV2Params {
   /**
    * Information on known launch events.
    */
@@ -139,7 +139,7 @@ export namespace LaunchEventFileCreateParams {
 LaunchEvent.History = History;
 
 export declare namespace LaunchEvent {
-  export { type LaunchEventFileCreateParams as LaunchEventFileCreateParams };
+  export { type LaunchEventCreateBulkV2Params as LaunchEventCreateBulkV2Params };
 
   export {
     History as History,

@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource monoradar', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.observations.monoradar.create([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.observations.monoradar.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -31,8 +31,8 @@ describe('resource monoradar', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: required and optional params', async () => {
-    const response = await client.observations.monoradar.create([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.observations.monoradar.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

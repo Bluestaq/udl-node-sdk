@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../resource';
 import * as AirTaskingOrdersAPI from './air-tasking-orders';
-import { AirTaskingOrderCreateParams, AirTaskingOrders } from './air-tasking-orders';
+import { AirTaskingOrderCreateBulkV2Params, AirTaskingOrders } from './air-tasking-orders';
 import * as AircraftSortieAPI from './aircraft-sortie';
 import {
   AircraftSortie,
@@ -21,15 +21,15 @@ import {
   AircraftsortieFull,
 } from './aircraft-sortie';
 import * as AircraftSortiesAPI from './aircraft-sorties';
-import { AircraftSorties, AircraftSortyCreateParams } from './aircraft-sorties';
+import { AircraftSorties, AircraftSortyCreateBulkV2Params } from './aircraft-sorties';
 import * as AirspaceControlOrdersAPI from './airspace-control-orders';
-import { AirspaceControlOrderCreateParams, AirspaceControlOrders } from './airspace-control-orders';
+import { AirspaceControlOrderCreateBulkV2Params, AirspaceControlOrders } from './airspace-control-orders';
 import * as CrewpapersAPI from './crewpapers';
-import { CrewpaperCreateParams, CrewpaperUnpublishParams, Crewpapers } from './crewpapers';
+import { CrewpaperUnpublishParams, CrewpaperUploadPdfParams, Crewpapers } from './crewpapers';
 import * as DiplomaticClearanceAPI from './diplomatic-clearance';
 import {
   DiplomaticClearance,
-  DiplomaticClearanceCreateParams,
+  DiplomaticClearanceCreateBulkV2Params,
   DiplomaticclearanceAbridged,
   DiplomaticclearanceFull,
 } from './diplomatic-clearance';
@@ -57,7 +57,7 @@ AirOperations.DiplomaticClearance = DiplomaticClearance;
 export declare namespace AirOperations {
   export {
     AirTaskingOrders as AirTaskingOrders,
-    type AirTaskingOrderCreateParams as AirTaskingOrderCreateParams,
+    type AirTaskingOrderCreateBulkV2Params as AirTaskingOrderCreateBulkV2Params,
   };
 
   export {
@@ -77,23 +77,26 @@ export declare namespace AirOperations {
     type AircraftSortieHistoryQueryParams as AircraftSortieHistoryQueryParams,
   };
 
-  export { AircraftSorties as AircraftSorties, type AircraftSortyCreateParams as AircraftSortyCreateParams };
+  export {
+    AircraftSorties as AircraftSorties,
+    type AircraftSortyCreateBulkV2Params as AircraftSortyCreateBulkV2Params,
+  };
 
   export {
     AirspaceControlOrders as AirspaceControlOrders,
-    type AirspaceControlOrderCreateParams as AirspaceControlOrderCreateParams,
+    type AirspaceControlOrderCreateBulkV2Params as AirspaceControlOrderCreateBulkV2Params,
   };
 
   export {
     Crewpapers as Crewpapers,
-    type CrewpaperCreateParams as CrewpaperCreateParams,
     type CrewpaperUnpublishParams as CrewpaperUnpublishParams,
+    type CrewpaperUploadPdfParams as CrewpaperUploadPdfParams,
   };
 
   export {
     DiplomaticClearance as DiplomaticClearance,
     type DiplomaticclearanceAbridged as DiplomaticclearanceAbridged,
     type DiplomaticclearanceFull as DiplomaticclearanceFull,
-    type DiplomaticClearanceCreateParams as DiplomaticClearanceCreateParams,
+    type DiplomaticClearanceCreateBulkV2Params as DiplomaticClearanceCreateBulkV2Params,
   };
 }

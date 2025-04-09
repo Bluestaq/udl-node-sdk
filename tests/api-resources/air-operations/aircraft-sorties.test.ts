@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource aircraftSorties', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.airOperations.aircraftSorties.create([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.airOperations.aircraftSorties.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -28,8 +28,8 @@ describe('resource aircraftSorties', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: required and optional params', async () => {
-    const response = await client.airOperations.aircraftSorties.create([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.airOperations.aircraftSorties.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

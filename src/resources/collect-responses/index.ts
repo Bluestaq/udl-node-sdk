@@ -9,7 +9,7 @@ export {
   type CollectResponseListParams,
   type CollectResponseCountParams,
   type CollectResponseCreateBulkParams,
-  type CollectResponseFileCreateParams,
+  type CollectResponseCreateBulkV2Params,
 } from './collect-responses';
 export {
   History,

@@ -43,26 +43,6 @@ export class Skyimagery extends APIResource {
   }
 
   /**
-   * This service operation requires a zip file in the body of the POST request. The
-   * zip file must contains exactly two files. 1) A json file with any file name that
-   * ends in .json e.g. MyFitsFile.json The contents of the json file must be valid
-   * according to the schema for SkyImagery. 2) A binary image file. This can be png,
-   * jpeg or fits/eossa file. e.g. MyFitsFile.fits. The metadata and image files will
-   * be stored and associated with each other allowing queries of the data retrieval
-   * of the binary images. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  fileCreate(body: SkyimageryFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-skyimagery', {
-      body,
-      ...options,
-      headers: { 'Content-Type': 'application/zip', Accept: '*/*', ...options?.headers },
-      __binaryRequest: true,
-    });
-  }
-
-  /**
    * Service operation to get a single SkyImagery binary image by its unique ID
    * passed as a path parameter. The image is returned as an attachment
    * Content-Disposition.
@@ -110,6 +90,26 @@ export class Skyimagery extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<SkyimageryTupleResponse> {
     return this._client.get('/udl/skyimagery/tuple', { query, ...options });
+  }
+
+  /**
+   * This service operation requires a zip file in the body of the POST request. The
+   * zip file must contains exactly two files. 1) A json file with any file name that
+   * ends in .json e.g. MyFitsFile.json The contents of the json file must be valid
+   * according to the schema for SkyImagery. 2) A binary image file. This can be png,
+   * jpeg or fits/eossa file. e.g. MyFitsFile.fits. The metadata and image files will
+   * be stored and associated with each other allowing queries of the data retrieval
+   * of the binary images. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  uploadZip(body: SkyimageryUploadZipParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-skyimagery', {
+      body,
+      ...options,
+      headers: { 'Content-Type': 'application/zip', Accept: '*/*', ...options?.headers },
+      __binaryRequest: true,
+    });
   }
 }
 
@@ -443,7 +443,23 @@ export interface SkyimageryCountParams {
   expStartTime: string;
 }
 
-export interface SkyimageryFileCreateParams {
+export interface SkyimageryTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * Start time of the exposure, in ISO 8601 UTC format with microsecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  expStartTime: string;
+}
+
+export interface SkyimageryUploadZipParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -505,7 +521,7 @@ export interface SkyimageryFileCreateParams {
   /**
    * Collection of linked EOObservations.
    */
-  eoObservations?: Array<SkyimageryFileCreateParams.EoObservation>;
+  eoObservations?: Array<SkyimageryUploadZipParams.EoObservation>;
 
   /**
    * End time of the exposure, in ISO 8601 UTC format with microsecond precision.
@@ -713,7 +729,7 @@ export interface SkyimageryFileCreateParams {
   transactionId?: string;
 }
 
-export namespace SkyimageryFileCreateParams {
+export namespace SkyimageryUploadZipParams {
   /**
    * Model representation of observation data for electro-optical based sensor
    * phenomenologies. ECI J2K is the preferred reference frame for EOObservations,
@@ -1760,22 +1776,6 @@ export namespace SkyimageryFileCreateParams {
   }
 }
 
-export interface SkyimageryTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Start time of the exposure, in ISO 8601 UTC format with microsecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  expStartTime: string;
-}
-
 Skyimagery.History = History;
 
 export declare namespace Skyimagery {
@@ -1785,8 +1785,8 @@ export declare namespace Skyimagery {
     type SkyimageryTupleResponse as SkyimageryTupleResponse,
     type SkyimageryListParams as SkyimageryListParams,
     type SkyimageryCountParams as SkyimageryCountParams,
-    type SkyimageryFileCreateParams as SkyimageryFileCreateParams,
     type SkyimageryTupleParams as SkyimageryTupleParams,
+    type SkyimageryUploadZipParams as SkyimageryUploadZipParams,
   };
 
   export {

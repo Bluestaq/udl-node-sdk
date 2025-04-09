@@ -68,8 +68,8 @@ export class Spaceenvobservation extends APIResource {
    * automated feeds into UDL. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  fileCreate(
-    body: SpaceenvobservationFileCreateParams,
+  createBulkV2(
+    body: SpaceenvobservationCreateBulkV2Params,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-spaceenvobs', {
@@ -776,9 +776,9 @@ export namespace SpaceenvobservationCreateBulkParams {
   }
 }
 
-export type SpaceenvobservationFileCreateParams = Array<SpaceenvobservationFileCreateParams.Body>;
+export type SpaceenvobservationCreateBulkV2Params = Array<SpaceenvobservationCreateBulkV2Params.Body>;
 
-export namespace SpaceenvobservationFileCreateParams {
+export namespace SpaceenvobservationCreateBulkV2Params {
   /**
    * SpaceEnvObservation data.
    */
@@ -1114,7 +1114,7 @@ export declare namespace Spaceenvobservation {
     type SpaceenvobservationListParams as SpaceenvobservationListParams,
     type SpaceenvobservationCountParams as SpaceenvobservationCountParams,
     type SpaceenvobservationCreateBulkParams as SpaceenvobservationCreateBulkParams,
-    type SpaceenvobservationFileCreateParams as SpaceenvobservationFileCreateParams,
+    type SpaceenvobservationCreateBulkV2Params as SpaceenvobservationCreateBulkV2Params,
     type SpaceenvobservationTupleParams as SpaceenvobservationTupleParams,
   };
 

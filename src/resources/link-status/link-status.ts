@@ -8,8 +8,8 @@ import {
   Datalink,
   DatalinkCountParams,
   DatalinkCountResponse,
+  DatalinkCreateBulkV2Params,
   DatalinkCreateParams,
-  DatalinkFileCreateParams,
   DatalinkIngest,
   DatalinkListParams,
   DatalinkListResponse,
@@ -577,7 +577,7 @@ export declare namespace LinkStatus {
     type DatalinkCreateParams as DatalinkCreateParams,
     type DatalinkListParams as DatalinkListParams,
     type DatalinkCountParams as DatalinkCountParams,
-    type DatalinkFileCreateParams as DatalinkFileCreateParams,
+    type DatalinkCreateBulkV2Params as DatalinkCreateBulkV2Params,
     type DatalinkTupleParams as DatalinkTupleParams,
   };
 

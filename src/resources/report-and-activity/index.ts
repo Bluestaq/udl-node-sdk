@@ -2,5 +2,5 @@
 
 export { Poi } from './poi/index';
 export { ReportAndActivity } from './report-and-activity';
-export { UdlH3geo, type UdlH3geoFileCreateParams } from './udl-h3geo';
-export { UdlSigact, type UdlSigactFileCreateParams } from './udl-sigact';
+export { UdlH3geo, type UdlH3geoCreateBulkV2Params } from './udl-h3geo';
+export { UdlSigact, type UdlSigactCreateBulkV2Params } from './udl-sigact';

@@ -9,6 +9,7 @@ export {
 export {
   Elsets,
   type Elset,
+  type ElsetIngest,
   type ElsetAbridged,
   type ElsetListResponse,
   type ElsetCountResponse,
@@ -18,7 +19,7 @@ export {
   type ElsetCountParams,
   type ElsetCreateBulkParams,
   type ElsetCreateBulkFromTleParams,
-  type ElsetFileCreateParams,
+  type ElsetCreateBulkV2Params,
   type ElsetTupleParams,
 } from './elsets';
 export {

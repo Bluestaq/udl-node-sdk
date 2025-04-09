@@ -202,8 +202,8 @@ describe('resource item', () => {
     );
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.item.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.item.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -221,8 +221,8 @@ describe('resource item', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.item.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.item.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

@@ -286,8 +286,8 @@ describe('resource starcatalog', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.starcatalog.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.starcatalog.createBulkV2([
       {
         astrometryOrigin: 'GAIADR3',
         classificationMarking: 'U',
@@ -308,8 +308,8 @@ describe('resource starcatalog', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.starcatalog.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.starcatalog.createBulkV2([
       {
         astrometryOrigin: 'GAIADR3',
         classificationMarking: 'U',

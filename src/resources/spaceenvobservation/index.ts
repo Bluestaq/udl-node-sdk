@@ -17,6 +17,6 @@ export {
   type SpaceenvobservationListParams,
   type SpaceenvobservationCountParams,
   type SpaceenvobservationCreateBulkParams,
-  type SpaceenvobservationFileCreateParams,
+  type SpaceenvobservationCreateBulkV2Params,
   type SpaceenvobservationTupleParams,
 } from './spaceenvobservation';

@@ -794,8 +794,8 @@ describe('resource maneuvers', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.maneuvers.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.maneuvers.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -812,8 +812,8 @@ describe('resource maneuvers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.maneuvers.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.maneuvers.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

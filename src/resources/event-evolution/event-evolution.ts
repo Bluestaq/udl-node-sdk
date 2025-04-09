@@ -104,7 +104,7 @@ export class EventEvolution extends APIResource {
    * to gain access. This operation is intended to be used for automated feeds into
    * UDL.
    */
-  fileCreate(body: EventEvolutionFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: EventEvolutionCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-eventevolution', {
       body,
       ...options,
@@ -810,9 +810,9 @@ export namespace EventEvolutionCreateBulkParams {
   }
 }
 
-export type EventEvolutionFileCreateParams = Array<EventEvolutionFileCreateParams.Body>;
+export type EventEvolutionCreateBulkV2Params = Array<EventEvolutionCreateBulkV2Params.Body>;
 
-export namespace EventEvolutionFileCreateParams {
+export namespace EventEvolutionCreateBulkV2Params {
   /**
    * Event Evolution is a unique service supporting the association of UDL records of
    * various data types to a common event or activity. The associations may be a one
@@ -1056,7 +1056,7 @@ export declare namespace EventEvolution {
     type EventEvolutionListParams as EventEvolutionListParams,
     type EventEvolutionCountParams as EventEvolutionCountParams,
     type EventEvolutionCreateBulkParams as EventEvolutionCreateBulkParams,
-    type EventEvolutionFileCreateParams as EventEvolutionFileCreateParams,
+    type EventEvolutionCreateBulkV2Params as EventEvolutionCreateBulkV2Params,
     type EventEvolutionTupleParams as EventEvolutionTupleParams,
   };
 

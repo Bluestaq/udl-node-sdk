@@ -78,7 +78,7 @@ import Unifieddatalibrary, { toFile } from 'unifieddatalibrary';
 const client = new Unifieddatalibrary();
 
 // If you have access to Node `fs` we recommend using `fs.createReadStream()`:
-await client.airOperations.crewpapers.create({
+await client.airOperations.crewpapers.uploadPdf({
   aircraftSortieIds: 'aircraftSortieIds',
   classificationMarking: 'x',
   paperStatus: 'PUBLISHED',
@@ -87,7 +87,7 @@ await client.airOperations.crewpapers.create({
 });
 
 // Or if you have the web `File` API you can pass a `File` instance:
-await client.airOperations.crewpapers.create({
+await client.airOperations.crewpapers.uploadPdf({
   aircraftSortieIds: 'aircraftSortieIds',
   classificationMarking: 'x',
   paperStatus: 'PUBLISHED',
@@ -96,7 +96,7 @@ await client.airOperations.crewpapers.create({
 });
 
 // You can also pass a `fetch` `Response`:
-await client.airOperations.crewpapers.create({
+await client.airOperations.crewpapers.uploadPdf({
   aircraftSortieIds: 'aircraftSortieIds',
   classificationMarking: 'x',
   paperStatus: 'PUBLISHED',
@@ -105,14 +105,14 @@ await client.airOperations.crewpapers.create({
 });
 
 // Finally, if none of the above are convenient, you can use our `toFile` helper:
-await client.airOperations.crewpapers.create({
+await client.airOperations.crewpapers.uploadPdf({
   aircraftSortieIds: 'aircraftSortieIds',
   classificationMarking: 'x',
   paperStatus: 'PUBLISHED',
   papersVersion: 'x',
   body: await toFile(Buffer.from('my bytes'), 'file'),
 });
-await client.airOperations.crewpapers.create({
+await client.airOperations.crewpapers.uploadPdf({
   aircraftSortieIds: 'aircraftSortieIds',
   classificationMarking: 'x',
   paperStatus: 'PUBLISHED',

@@ -10,7 +10,10 @@ export class DiplomaticClearance extends APIResource {
    * automated feeds into UDL. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: DiplomaticClearanceCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(
+    body: DiplomaticClearanceCreateBulkV2Params,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-diplomaticclearance', {
       body,
       ...options,
@@ -621,9 +624,9 @@ export namespace DiplomaticclearanceFull {
   }
 }
 
-export type DiplomaticClearanceCreateParams = Array<DiplomaticClearanceCreateParams.Body>;
+export type DiplomaticClearanceCreateBulkV2Params = Array<DiplomaticClearanceCreateBulkV2Params.Body>;
 
-export namespace DiplomaticClearanceCreateParams {
+export namespace DiplomaticClearanceCreateBulkV2Params {
   /**
    * A diplomatic clearance is an authorization for an aircraft to traverse or land
    * within a specified country.
@@ -895,6 +898,6 @@ export declare namespace DiplomaticClearance {
   export {
     type DiplomaticclearanceAbridged as DiplomaticclearanceAbridged,
     type DiplomaticclearanceFull as DiplomaticclearanceFull,
-    type DiplomaticClearanceCreateParams as DiplomaticClearanceCreateParams,
+    type DiplomaticClearanceCreateBulkV2Params as DiplomaticClearanceCreateBulkV2Params,
   };
 }

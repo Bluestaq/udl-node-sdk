@@ -206,8 +206,8 @@ describe('resource elsets', () => {
     });
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.elsets.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.elsets.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -224,8 +224,8 @@ describe('resource elsets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.elsets.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.elsets.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

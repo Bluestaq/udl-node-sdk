@@ -10,8 +10,38 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource isrCollections', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.isrCollections.create([
+  test('list: only required params', async () => {
+    const responsePromise = client.isrCollections.list({ createdAt: '2019-12-27' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await client.isrCollections.list({ createdAt: '2019-12-27' });
+  });
+
+  test('count: only required params', async () => {
+    const responsePromise = client.isrCollections.count({ createdAt: '2019-12-27' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('count: required and optional params', async () => {
+    const response = await client.isrCollections.count({ createdAt: '2019-12-27' });
+  });
+
+  test('createBulk: only required params', async () => {
+    const responsePromise = client.isrCollections.createBulk([
       { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -23,8 +53,8 @@ describe('resource isrCollections', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: required and optional params', async () => {
-    const response = await client.isrCollections.create([
+  test('createBulk: required and optional params', async () => {
+    const response = await client.isrCollections.createBulk([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -200,38 +230,8 @@ describe('resource isrCollections', () => {
     ]);
   });
 
-  test('list: only required params', async () => {
-    const responsePromise = client.isrCollections.list({ createdAt: '2019-12-27' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await client.isrCollections.list({ createdAt: '2019-12-27' });
-  });
-
-  test('count: only required params', async () => {
-    const responsePromise = client.isrCollections.count({ createdAt: '2019-12-27' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('count: required and optional params', async () => {
-    const response = await client.isrCollections.count({ createdAt: '2019-12-27' });
-  });
-
-  test('createBulk: only required params', async () => {
-    const responsePromise = client.isrCollections.createBulk([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.isrCollections.createBulkV2([
       { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -243,8 +243,8 @@ describe('resource isrCollections', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulk: required and optional params', async () => {
-    const response = await client.isrCollections.createBulk([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.isrCollections.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

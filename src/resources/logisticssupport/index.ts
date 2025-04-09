@@ -9,6 +9,7 @@ export {
 } from './history';
 export {
   Logisticssupport,
+  type LogisticsRemarksFull,
   type LogisticssupportListResponse,
   type LogisticssupportCountResponse,
   type LogisticssupportGetResponse,
@@ -16,6 +17,6 @@ export {
   type LogisticssupportCreateParams,
   type LogisticssupportUpdateParams,
   type LogisticssupportCreateBulkParams,
-  type LogisticssupportFileCreateParams,
+  type LogisticssupportCreateBulkV2Params,
   type LogisticssupportTupleParams,
 } from './logisticssupport';

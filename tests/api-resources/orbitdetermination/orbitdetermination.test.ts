@@ -459,8 +459,8 @@ describe('resource orbitdetermination', () => {
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.orbitdetermination.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.orbitdetermination.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -480,8 +480,8 @@ describe('resource orbitdetermination', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.orbitdetermination.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.orbitdetermination.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

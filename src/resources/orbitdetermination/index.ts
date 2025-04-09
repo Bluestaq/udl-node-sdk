@@ -17,6 +17,6 @@ export {
   type OrbitdeterminationListParams,
   type OrbitdeterminationCountParams,
   type OrbitdeterminationCreateBulkParams,
-  type OrbitdeterminationFileCreateParams,
+  type OrbitdeterminationCreateBulkV2Params,
   type OrbitdeterminationTupleParams,
 } from './orbitdetermination';

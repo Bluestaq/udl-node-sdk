@@ -15,8 +15,8 @@ export {
 } from './ecpsdr';
 export { Eo } from './eo';
 export { Gnssobservations } from './gnssobservations';
-export { Monoradar, type MonoradarCreateParams } from './monoradar/index';
+export { Monoradar, type MonoradarCreateBulkV2Params } from './monoradar/index';
 export { Observations } from './observations';
 export { Radarobservation } from './radarobservation/index';
 export { Rfobservation } from './rfobservation/index';
-export { Swir, type SwirCreateParams } from './swir';
+export { Swir, type SwirCreateBulkV2Params } from './swir';

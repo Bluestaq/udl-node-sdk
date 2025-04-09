@@ -160,8 +160,47 @@ describe('resource sigact', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.sigact.fileCreate({
+  test('queryhelp', async () => {
+    const responsePromise = client.sigact.queryhelp();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('queryhelp: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.sigact.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('tuple: only required params', async () => {
+    const responsePromise = client.sigact.tuple({
+      columns: 'columns',
+      reportDate: '2019-12-27T18:11:19.117Z',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('tuple: required and optional params', async () => {
+    const response = await client.sigact.tuple({
+      columns: 'columns',
+      reportDate: '2019-12-27T18:11:19.117Z',
+    });
+  });
+
+  test('uploadZip: only required params', async () => {
+    const responsePromise = client.sigact.uploadZip({
       classificationMarking: 'U',
       dataMode: 'REAL',
       reportDate: '2018-01-01T16:00:00.123Z',
@@ -176,8 +215,8 @@ describe('resource sigact', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.sigact.fileCreate({
+  test('uploadZip: required and optional params', async () => {
+    const response = await client.sigact.uploadZip({
       classificationMarking: 'U',
       dataMode: 'REAL',
       reportDate: '2018-01-01T16:00:00.123Z',
@@ -273,45 +312,6 @@ describe('resource sigact', () => {
       target: 'US',
       theater: 'Kabul',
       typeOfAttack: 'IED Explosion',
-    });
-  });
-
-  test('queryhelp', async () => {
-    const responsePromise = client.sigact.queryhelp();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sigact.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
-  test('tuple: only required params', async () => {
-    const responsePromise = client.sigact.tuple({
-      columns: 'columns',
-      reportDate: '2019-12-27T18:11:19.117Z',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('tuple: required and optional params', async () => {
-    const response = await client.sigact.tuple({
-      columns: 'columns',
-      reportDate: '2019-12-27T18:11:19.117Z',
     });
   });
 });

@@ -18,6 +18,6 @@ export {
   type WeatherdataListParams,
   type WeatherdataCountParams,
   type WeatherdataCreateBulkParams,
-  type WeatherdataFileCreateParams,
+  type WeatherdataCreateBulkV2Params,
   type WeatherdataTupleParams,
 } from './weatherdata';

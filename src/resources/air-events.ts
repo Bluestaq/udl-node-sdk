@@ -88,7 +88,7 @@ export class AirEvents extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  fileCreate(body: AirEventFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: AirEventCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-airevent', {
       body,
       ...options,
@@ -3241,9 +3241,9 @@ export namespace AirEventCreateBulkParams {
   }
 }
 
-export type AirEventFileCreateParams = Array<AirEventFileCreateParams.Body>;
+export type AirEventCreateBulkV2Params = Array<AirEventCreateBulkV2Params.Body>;
 
-export namespace AirEventFileCreateParams {
+export namespace AirEventCreateBulkV2Params {
   /**
    * Information related to an air event (e.g. FUEL TRANSFER, AIR DROP) and the
    * associated aircraft.
@@ -3764,7 +3764,7 @@ export declare namespace AirEvents {
     type AirEventCreateParams as AirEventCreateParams,
     type AirEventUpdateParams as AirEventUpdateParams,
     type AirEventCreateBulkParams as AirEventCreateBulkParams,
-    type AirEventFileCreateParams as AirEventFileCreateParams,
+    type AirEventCreateBulkV2Params as AirEventCreateBulkV2Params,
     type AirEventTupleParams as AirEventTupleParams,
   };
 }

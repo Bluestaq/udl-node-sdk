@@ -2,8 +2,8 @@
 
 export {
   GroundImagery,
-  type GroundImageryCreateParams,
   type GroundImageryHistoryAodrParams,
+  type GroundImageryUploadZipParams,
 } from './ground-imagery';
 export {
   History,

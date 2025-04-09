@@ -54,7 +54,10 @@ export class Onboardnavigation extends APIResource {
    * automated feeds into UDL. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  fileCreate(body: OnboardnavigationFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(
+    body: OnboardnavigationCreateBulkV2Params,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-onboardnavigation', {
       body,
       ...options,
@@ -406,9 +409,9 @@ export namespace OnboardnavigationCreateBulkParams {
   }
 }
 
-export type OnboardnavigationFileCreateParams = Array<OnboardnavigationFileCreateParams.Body>;
+export type OnboardnavigationCreateBulkV2Params = Array<OnboardnavigationCreateBulkV2Params.Body>;
 
-export namespace OnboardnavigationFileCreateParams {
+export namespace OnboardnavigationCreateBulkV2Params {
   /**
    * These services provide spacecraft positional data derived from on-board
    * navigational sensors. Navigational points are provided in kilometers and in a
@@ -566,7 +569,7 @@ export declare namespace Onboardnavigation {
     type OnboardnavigationListParams as OnboardnavigationListParams,
     type OnboardnavigationCountParams as OnboardnavigationCountParams,
     type OnboardnavigationCreateBulkParams as OnboardnavigationCreateBulkParams,
-    type OnboardnavigationFileCreateParams as OnboardnavigationFileCreateParams,
+    type OnboardnavigationCreateBulkV2Params as OnboardnavigationCreateBulkV2Params,
     type OnboardnavigationTupleParams as OnboardnavigationTupleParams,
   };
 }

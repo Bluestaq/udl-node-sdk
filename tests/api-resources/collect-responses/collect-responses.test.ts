@@ -145,8 +145,8 @@ describe('resource collectResponses', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.collectResponses.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.collectResponses.createBulkV2([
       { classificationMarking: 'U', dataMode: 'REAL', idRequest: 'REF-REQUEST-ID', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -158,8 +158,8 @@ describe('resource collectResponses', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.collectResponses.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.collectResponses.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

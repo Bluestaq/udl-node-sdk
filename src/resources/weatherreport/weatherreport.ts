@@ -63,7 +63,7 @@ export class Weatherreport extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  fileCreate(body: WeatherreportFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: WeatherreportCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-weatherreport', {
       body,
       ...options,
@@ -1236,9 +1236,9 @@ export interface WeatherreportCountParams {
   obTime: string;
 }
 
-export type WeatherreportFileCreateParams = Array<WeatherreportFileCreateParams.Body>;
+export type WeatherreportCreateBulkV2Params = Array<WeatherreportCreateBulkV2Params.Body>;
 
-export namespace WeatherreportFileCreateParams {
+export namespace WeatherreportCreateBulkV2Params {
   /**
    * These services provide for posting and querying Weather Over Target information.
    * The information contained within describes the current weather conditions over a
@@ -1816,7 +1816,7 @@ export declare namespace Weatherreport {
     type WeatherreportCreateParams as WeatherreportCreateParams,
     type WeatherreportListParams as WeatherreportListParams,
     type WeatherreportCountParams as WeatherreportCountParams,
-    type WeatherreportFileCreateParams as WeatherreportFileCreateParams,
+    type WeatherreportCreateBulkV2Params as WeatherreportCreateBulkV2Params,
     type WeatherreportTupleParams as WeatherreportTupleParams,
   };
 

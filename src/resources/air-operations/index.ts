@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export { AirOperations } from './air-operations';
-export { AirTaskingOrders, type AirTaskingOrderCreateParams } from './air-tasking-orders';
+export { AirTaskingOrders, type AirTaskingOrderCreateBulkV2Params } from './air-tasking-orders';
 export {
   AircraftSortie,
   type AircraftsortieAbridged,
@@ -18,12 +18,15 @@ export {
   type AircraftSortieHistoryCountParams,
   type AircraftSortieHistoryQueryParams,
 } from './aircraft-sortie';
-export { AircraftSorties, type AircraftSortyCreateParams } from './aircraft-sorties';
-export { AirspaceControlOrders, type AirspaceControlOrderCreateParams } from './airspace-control-orders';
-export { Crewpapers, type CrewpaperCreateParams, type CrewpaperUnpublishParams } from './crewpapers';
+export { AircraftSorties, type AircraftSortyCreateBulkV2Params } from './aircraft-sorties';
+export {
+  AirspaceControlOrders,
+  type AirspaceControlOrderCreateBulkV2Params,
+} from './airspace-control-orders';
+export { Crewpapers, type CrewpaperUnpublishParams, type CrewpaperUploadPdfParams } from './crewpapers';
 export {
   DiplomaticClearance,
   type DiplomaticclearanceAbridged,
   type DiplomaticclearanceFull,
-  type DiplomaticClearanceCreateParams,
+  type DiplomaticClearanceCreateBulkV2Params,
 } from './diplomatic-clearance';
