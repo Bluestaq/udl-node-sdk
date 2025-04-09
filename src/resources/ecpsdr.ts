@@ -10,7 +10,7 @@ export class Ecpsdr extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  create(body: EcpsdrCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: EcpsdrCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-ecpsdr', {
       body,
       ...options,
@@ -19,9 +19,9 @@ export class Ecpsdr extends APIResource {
   }
 }
 
-export type EcpsdrCreateParams = Array<EcpsdrCreateParams.Body>;
+export type EcpsdrCreateBulkV2Params = Array<EcpsdrCreateBulkV2Params.Body>;
 
-export namespace EcpsdrCreateParams {
+export namespace EcpsdrCreateBulkV2Params {
   /**
    * Supports Sensor Data Records (SDR) from space-borne Energetic Charged Particle
    * (ECP) Sensors. SDR contains sensor status telemetry and raw dosimeter
@@ -313,5 +313,5 @@ export namespace EcpsdrCreateParams {
 }
 
 export declare namespace Ecpsdr {
-  export { type EcpsdrCreateParams as EcpsdrCreateParams };
+  export { type EcpsdrCreateBulkV2Params as EcpsdrCreateBulkV2Params };
 }

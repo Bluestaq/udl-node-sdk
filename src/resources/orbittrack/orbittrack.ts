@@ -62,7 +62,7 @@ export class Orbittrack extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  orbitTrack(body: OrbittrackOrbitTrackParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: OrbittrackCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-orbittrack', {
       body,
       ...options,
@@ -885,9 +885,9 @@ export namespace OrbittrackCreateBulkParams {
   }
 }
 
-export type OrbittrackOrbitTrackParams = Array<OrbittrackOrbitTrackParams.Body>;
+export type OrbittrackCreateBulkV2Params = Array<OrbittrackCreateBulkV2Params.Body>;
 
-export namespace OrbittrackOrbitTrackParams {
+export namespace OrbittrackCreateBulkV2Params {
   /**
    * Keplerian orbital elements describing an orbit for a particular on-orbit
    * satellite and applicable sensor data aiding in the orbit prediction.
@@ -1286,7 +1286,7 @@ export declare namespace Orbittrack {
     type OrbittrackListParams as OrbittrackListParams,
     type OrbittrackCountParams as OrbittrackCountParams,
     type OrbittrackCreateBulkParams as OrbittrackCreateBulkParams,
-    type OrbittrackOrbitTrackParams as OrbittrackOrbitTrackParams,
+    type OrbittrackCreateBulkV2Params as OrbittrackCreateBulkV2Params,
     type OrbittrackTupleParams as OrbittrackTupleParams,
   };
 

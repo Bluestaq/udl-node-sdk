@@ -67,7 +67,7 @@ export class Crew extends APIResource {
    * UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  fileCreate(body: CrewFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: CrewCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-crew', {
       body,
       ...options,
@@ -1445,9 +1445,9 @@ export namespace CrewUpdateParams {
   }
 }
 
-export type CrewFileCreateParams = Array<CrewFileCreateParams.Body>;
+export type CrewCreateBulkV2Params = Array<CrewCreateBulkV2Params.Body>;
 
-export namespace CrewFileCreateParams {
+export namespace CrewCreateBulkV2Params {
   /**
    * Crew Services.
    */
@@ -1790,7 +1790,7 @@ export declare namespace Crew {
     type CrewTupleResponse as CrewTupleResponse,
     type CrewCreateParams as CrewCreateParams,
     type CrewUpdateParams as CrewUpdateParams,
-    type CrewFileCreateParams as CrewFileCreateParams,
+    type CrewCreateBulkV2Params as CrewCreateBulkV2Params,
     type CrewTupleParams as CrewTupleParams,
   };
 }

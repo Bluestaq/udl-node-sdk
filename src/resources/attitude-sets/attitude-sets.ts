@@ -90,7 +90,7 @@ export class AttitudeSets extends APIResource {
    *     + If only origObjectId is provided then origObjectId will be populated with the posted value.  In this case, no checks are made against existing UDL sat numbers.
    * </h3>
    */
-  fileCreate(body: AttitudeSetFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: AttitudeSetCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-attitudeset', {
       body,
       ...options,
@@ -734,7 +734,7 @@ export interface AttitudeSetCountParams {
   startTime: string;
 }
 
-export interface AttitudeSetFileCreateParams {
+export interface AttitudeSetCreateBulkV2Params {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -830,7 +830,7 @@ export interface AttitudeSetFileCreateParams {
   /**
    * Collection of attitude data associated with this Attitude Set.
    */
-  attitudeList?: Array<AttitudeSetFileCreateParams.AttitudeList>;
+  attitudeList?: Array<AttitudeSetCreateBulkV2Params.AttitudeList>;
 
   /**
    * Unique identifier of the parent (positional) Ephemeris Set, if this data is
@@ -922,7 +922,7 @@ export interface AttitudeSetFileCreateParams {
   stepSize?: number;
 }
 
-export namespace AttitudeSetFileCreateParams {
+export namespace AttitudeSetCreateBulkV2Params {
   /**
    * These services provide operations for posting and querying attitude of on-orbit
    * objects. Attitude describes the orientation of an object, which can be
@@ -1141,7 +1141,7 @@ export declare namespace AttitudeSets {
     type AttitudeSetCreateParams as AttitudeSetCreateParams,
     type AttitudeSetListParams as AttitudeSetListParams,
     type AttitudeSetCountParams as AttitudeSetCountParams,
-    type AttitudeSetFileCreateParams as AttitudeSetFileCreateParams,
+    type AttitudeSetCreateBulkV2Params as AttitudeSetCreateBulkV2Params,
     type AttitudeSetTupleParams as AttitudeSetTupleParams,
   };
 

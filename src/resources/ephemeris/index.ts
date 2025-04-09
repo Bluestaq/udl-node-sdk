@@ -14,10 +14,10 @@ export {
   type EphemerisListResponse,
   type EphemerisCountResponse,
   type EphemerisTupleResponse,
-  type EphemerisCreateParams,
   type EphemerisListParams,
   type EphemerisCountParams,
-  type EphemerisFileCreateParams,
+  type EphemerisCreateBulkV2Params,
+  type EphemerisFileUploadParams,
   type EphemerisTupleParams,
 } from './ephemeris';
 export {

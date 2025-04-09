@@ -10,8 +10,38 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource missileTracks', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.missileTracks.create([
+  test('list: only required params', async () => {
+    const responsePromise = client.missileTracks.list({ ts: '2019-12-27T18:11:19.117Z' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await client.missileTracks.list({ ts: '2019-12-27T18:11:19.117Z' });
+  });
+
+  test('count: only required params', async () => {
+    const responsePromise = client.missileTracks.count({ ts: '2019-12-27T18:11:19.117Z' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('count: required and optional params', async () => {
+    const response = await client.missileTracks.count({ ts: '2019-12-27T18:11:19.117Z' });
+  });
+
+  test('createBulk: only required params', async () => {
+    const responsePromise = client.missileTracks.createBulk([
       { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', ts: '2021-02-25T12:00:00.123456Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -23,8 +53,8 @@ describe('resource missileTracks', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: required and optional params', async () => {
-    const response = await client.missileTracks.create([
+  test('createBulk: required and optional params', async () => {
+    const response = await client.missileTracks.createBulk([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -108,38 +138,8 @@ describe('resource missileTracks', () => {
     ]);
   });
 
-  test('list: only required params', async () => {
-    const responsePromise = client.missileTracks.list({ ts: '2019-12-27T18:11:19.117Z' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await client.missileTracks.list({ ts: '2019-12-27T18:11:19.117Z' });
-  });
-
-  test('count: only required params', async () => {
-    const responsePromise = client.missileTracks.count({ ts: '2019-12-27T18:11:19.117Z' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('count: required and optional params', async () => {
-    const response = await client.missileTracks.count({ ts: '2019-12-27T18:11:19.117Z' });
-  });
-
-  test('createBulk: only required params', async () => {
-    const responsePromise = client.missileTracks.createBulk([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.missileTracks.createBulkV2([
       { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', ts: '2021-02-25T12:00:00.123456Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -151,8 +151,8 @@ describe('resource missileTracks', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulk: required and optional params', async () => {
-    const response = await client.missileTracks.createBulk([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.missileTracks.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

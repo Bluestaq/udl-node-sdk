@@ -15,6 +15,6 @@ export {
   type SkyimageryTupleResponse,
   type SkyimageryListParams,
   type SkyimageryCountParams,
-  type SkyimageryFileCreateParams,
   type SkyimageryTupleParams,
+  type SkyimageryUploadZipParams,
 } from './skyimagery';

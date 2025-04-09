@@ -88,7 +88,10 @@ export class CollectResponses extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  fileCreate(body: CollectResponseFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(
+    body: CollectResponseCreateBulkV2Params,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-collectresponse', {
       body,
       ...options,
@@ -731,9 +734,9 @@ export namespace CollectResponseCreateBulkParams {
   }
 }
 
-export type CollectResponseFileCreateParams = Array<CollectResponseFileCreateParams.Body>;
+export type CollectResponseCreateBulkV2Params = Array<CollectResponseCreateBulkV2Params.Body>;
 
-export namespace CollectResponseFileCreateParams {
+export namespace CollectResponseCreateBulkV2Params {
   /**
    * Collect response supports the response and status of individual collect
    * requests. Each response is referenced by the UUID of the request, and contains
@@ -945,7 +948,7 @@ export declare namespace CollectResponses {
     type CollectResponseListParams as CollectResponseListParams,
     type CollectResponseCountParams as CollectResponseCountParams,
     type CollectResponseCreateBulkParams as CollectResponseCreateBulkParams,
-    type CollectResponseFileCreateParams as CollectResponseFileCreateParams,
+    type CollectResponseCreateBulkV2Params as CollectResponseCreateBulkV2Params,
   };
 
   export {

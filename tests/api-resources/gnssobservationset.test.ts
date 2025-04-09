@@ -102,8 +102,8 @@ describe('resource gnssobservationset', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.gnssobservationset.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.gnssobservationset.createBulkV2([
       { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', ts: '2022-01-01T00:00:00.123456Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -115,8 +115,8 @@ describe('resource gnssobservationset', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.gnssobservationset.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.gnssobservationset.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

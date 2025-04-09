@@ -123,8 +123,8 @@ describe('resource attitudeSets', () => {
     const response = await client.attitudeSets.count({ startTime: '2019-12-27T18:11:19.117Z' });
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.attitudeSets.fileCreate({
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.attitudeSets.createBulkV2({
       classificationMarking: 'U',
       dataMode: 'REAL',
       endTime: '2022-07-07T18:00:00.654321Z',
@@ -144,8 +144,8 @@ describe('resource attitudeSets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.attitudeSets.fileCreate({
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.attitudeSets.createBulkV2({
       classificationMarking: 'U',
       dataMode: 'REAL',
       endTime: '2022-07-07T18:00:00.654321Z',

@@ -25,6 +25,7 @@ import * as RangeParametersAPI from './range-parameters';
 import { RangeParameterListResponse, RangeParameters } from './range-parameters';
 import * as V2API from './v2';
 import {
+  Attachment,
   ScsEntity,
   V2,
   V2CopyParams,
@@ -387,6 +388,7 @@ export declare namespace Scs {
 
   export {
     V2 as V2,
+    type Attachment as Attachment,
     type ScsEntity as ScsEntity,
     type V2ListResponse as V2ListResponse,
     type V2UpdateParams as V2UpdateParams,

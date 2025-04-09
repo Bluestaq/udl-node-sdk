@@ -8,8 +8,8 @@ export {
   type RfobservationTupleResponse,
   type RfobservationCreateParams,
   type RfobservationListParams,
-  type RfobservationAfileCreateParams,
   type RfobservationCountParams,
   type RfobservationCreateBulkParams,
+  type RfobservationCreateBulkV2Params,
   type RfobservationTupleParams,
 } from './rfobservation';

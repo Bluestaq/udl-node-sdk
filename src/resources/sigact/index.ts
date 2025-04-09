@@ -15,6 +15,6 @@ export {
   type SigactListParams,
   type SigactCountParams,
   type SigactCreateBulkParams,
-  type SigactFileCreateParams,
   type SigactTupleParams,
+  type SigactUploadZipParams,
 } from './sigact';

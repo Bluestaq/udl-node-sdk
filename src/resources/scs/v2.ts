@@ -103,13 +103,31 @@ export class V2 extends APIResource {
   }
 }
 
+export interface Attachment {
+  author?: string;
+
+  content?: string;
+
+  content_length?: number;
+
+  content_type?: string;
+
+  date?: string;
+
+  keywords?: string;
+
+  language?: string;
+
+  title?: string;
+}
+
 /**
  * An SCS file or folder.
  */
 export interface ScsEntity {
   id?: string;
 
-  attachment?: ScsEntity.Attachment;
+  attachment?: Attachment;
 
   /**
    * Classification marking of the folder or file in IC/CAPCO portion-marked format.
@@ -162,26 +180,6 @@ export interface ScsEntity {
   writeAcl?: string;
 }
 
-export namespace ScsEntity {
-  export interface Attachment {
-    author?: string;
-
-    content?: string;
-
-    content_length?: number;
-
-    content_type?: string;
-
-    date?: string;
-
-    keywords?: string;
-
-    language?: string;
-
-    title?: string;
-  }
-}
-
 export type V2ListResponse = Array<ScsEntity>;
 
 export interface V2UpdateParams {
@@ -198,7 +196,7 @@ export interface V2UpdateParams {
   /**
    * Body param:
    */
-  attachment?: V2UpdateParams.Attachment;
+  attachment?: Attachment;
 
   /**
    * Body param: Classification marking of the folder or file in IC/CAPCO
@@ -284,26 +282,6 @@ export interface V2UpdateParams {
    * should have write access on this folder and the items nested in it.
    */
   writeAcl?: string;
-}
-
-export namespace V2UpdateParams {
-  export interface Attachment {
-    author?: string;
-
-    content?: string;
-
-    content_length?: number;
-
-    content_type?: string;
-
-    date?: string;
-
-    keywords?: string;
-
-    language?: string;
-
-    title?: string;
-  }
 }
 
 export interface V2ListParams {
@@ -378,7 +356,7 @@ export interface V2FolderCreateParams {
   /**
    * Body param:
    */
-  attachment?: V2FolderCreateParams.Attachment;
+  attachment?: Attachment;
 
   /**
    * Body param: Classification marking of the folder or file in IC/CAPCO
@@ -466,26 +444,6 @@ export interface V2FolderCreateParams {
   writeAcl?: string;
 }
 
-export namespace V2FolderCreateParams {
-  export interface Attachment {
-    author?: string;
-
-    content?: string;
-
-    content_length?: number;
-
-    content_type?: string;
-
-    date?: string;
-
-    keywords?: string;
-
-    language?: string;
-
-    title?: string;
-  }
-}
-
 export interface V2MoveParams {
   /**
    * The path of the file or folder to move or rename. Must start with '/'.
@@ -501,6 +459,7 @@ export interface V2MoveParams {
 
 export declare namespace V2 {
   export {
+    type Attachment as Attachment,
     type ScsEntity as ScsEntity,
     type V2ListResponse as V2ListResponse,
     type V2UpdateParams as V2UpdateParams,

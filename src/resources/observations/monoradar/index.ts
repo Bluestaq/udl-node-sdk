@@ -8,4 +8,4 @@ export {
   type HistoryCountParams,
   type HistoryQueryParams,
 } from './history';
-export { Monoradar, type MonoradarCreateParams } from './monoradar';
+export { Monoradar, type MonoradarCreateBulkV2Params } from './monoradar';

@@ -32,25 +32,6 @@ export class Gnssrawif extends APIResource {
   }
 
   /**
-   * The GNSSRawIF service allows for contribution of raw GNSS IF data.. This service
-   * operation requires a zip file in the body of the POST request. The zip file must
-   * contain exactly two files. <h3> 1) A json file with any file name that ends in
-   * .json e.g. payload.json The contents of the json file must be valid according to
-   * the schema for GNSSRawIF. 2) A .hdf5 file for GNSSRawIF. </h3> The metadata and
-   * hdf5 files will be stored and associated with each other allowing queries of the
-   * data retrieval of the binary images. This operation is intended to be used for
-   * automated feeds into UDL. A specific role is required to perform this service
-   * operation. Please contact the UDL team for assistance.
-   */
-  fileCreate(body: GnssrawifFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-gnssrawif', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single GNSSRAWIF hdf5 file by its unique ID passed as
    * a path parameter. The file is returned as an attachment Content-Disposition.
    */
@@ -93,6 +74,25 @@ export class Gnssrawif extends APIResource {
    */
   tuple(query: GnssrawifTupleParams, options?: Core.RequestOptions): Core.APIPromise<GnssrawifTupleResponse> {
     return this._client.get('/udl/gnssrawif/tuple', { query, ...options });
+  }
+
+  /**
+   * The GNSSRawIF service allows for contribution of raw GNSS IF data.. This service
+   * operation requires a zip file in the body of the POST request. The zip file must
+   * contain exactly two files. <h3> 1) A json file with any file name that ends in
+   * .json e.g. payload.json The contents of the json file must be valid according to
+   * the schema for GNSSRawIF. 2) A .hdf5 file for GNSSRawIF. </h3> The metadata and
+   * hdf5 files will be stored and associated with each other allowing queries of the
+   * data retrieval of the binary images. This operation is intended to be used for
+   * automated feeds into UDL. A specific role is required to perform this service
+   * operation. Please contact the UDL team for assistance.
+   */
+  uploadZip(body: GnssrawifUploadZipParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-gnssrawif', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -411,7 +411,23 @@ export interface GnssrawifCountParams {
   startTime: string;
 }
 
-export interface GnssrawifFileCreateParams {
+export interface GnssrawifTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * Start time of the data contained in the associated binary file, in ISO 8601 UTC
+   * format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  startTime: string;
+}
+
+export interface GnssrawifUploadZipParams {
   /**
    * The center frequency, in MHz, of the observation bands. More than one band may
    * be reported in each binary file, so this is an array of the center frequency of
@@ -665,22 +681,6 @@ export interface GnssrawifFileCreateParams {
   tags?: Array<string>;
 }
 
-export interface GnssrawifTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Start time of the data contained in the associated binary file, in ISO 8601 UTC
-   * format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  startTime: string;
-}
-
 export declare namespace Gnssrawif {
   export {
     type GnssrawifListResponse as GnssrawifListResponse,
@@ -688,7 +688,7 @@ export declare namespace Gnssrawif {
     type GnssrawifTupleResponse as GnssrawifTupleResponse,
     type GnssrawifListParams as GnssrawifListParams,
     type GnssrawifCountParams as GnssrawifCountParams,
-    type GnssrawifFileCreateParams as GnssrawifFileCreateParams,
     type GnssrawifTupleParams as GnssrawifTupleParams,
+    type GnssrawifUploadZipParams as GnssrawifUploadZipParams,
   };
 }

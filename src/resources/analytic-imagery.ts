@@ -6,27 +6,6 @@ import { type Response } from '../_shims/index';
 
 export class AnalyticImagery extends APIResource {
   /**
-   * The analytic imagery service allows for contribution of general images, such as
-   * data plots, graphs, heatmaps, and other graphics not supported as UDL ground or
-   * sky imagery. This service operation requires a zip file in the body of the POST
-   * request. The zip file must contain exactly two files. <h3> 1) A json file with
-   * any file name that ends in .json e.g. MyFitsFile.json The contents of the json
-   * file must be valid according to the schema for Analytic Imagery. 2) A binary
-   * image file of the specified types allowed for AnalyticImagery. </h3> The
-   * metadata and image files will be stored and associated with each other allowing
-   * queries of the data retrieval of the binary images. This operation is intended
-   * to be used for automated feeds into UDL. A specific role is required to perform
-   * this service operation. Please contact the UDL team for assistance.
-   */
-  create(body: AnalyticImageryCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-analyticimagery', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single AnalyticImagery record by its unique ID passed
    * as a path parameter. AnalyticImagery represents metadata about an image, as well
    * as the actual binary image data.
@@ -60,6 +39,30 @@ export class AnalyticImagery extends APIResource {
       query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
+   * The analytic imagery service allows for contribution of general images, such as
+   * data plots, graphs, heatmaps, and other graphics not supported as UDL ground or
+   * sky imagery. This service operation requires a zip file in the body of the POST
+   * request. The zip file must contain exactly two files. <h3> 1) A json file with
+   * any file name that ends in .json e.g. MyFitsFile.json The contents of the json
+   * file must be valid according to the schema for Analytic Imagery. 2) A binary
+   * image file of the specified types allowed for AnalyticImagery. </h3> The
+   * metadata and image files will be stored and associated with each other allowing
+   * queries of the data retrieval of the binary images. This operation is intended
+   * to be used for automated feeds into UDL. A specific role is required to perform
+   * this service operation. Please contact the UDL team for assistance.
+   */
+  createBulkV2(
+    body: AnalyticImageryCreateBulkV2Params,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-analyticimagery', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -677,7 +680,23 @@ export type AnalyticImageryHistoryCountResponse = string;
 
 export type AnalyticImageryTupleResponse = Array<AnalyticImageryFull>;
 
-export interface AnalyticImageryCreateParams {
+export interface AnalyticImageryListParams {
+  /**
+   * The message time of this image record, in ISO8601 UTC format with millisecond
+   * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  msgTime: string;
+}
+
+export interface AnalyticImageryCountParams {
+  /**
+   * The message time of this image record, in ISO8601 UTC format with millisecond
+   * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  msgTime: string;
+}
+
+export interface AnalyticImageryCreateBulkV2Params {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -903,22 +922,6 @@ export interface AnalyticImageryCreateParams {
   zUnits?: string;
 }
 
-export interface AnalyticImageryListParams {
-  /**
-   * The message time of this image record, in ISO8601 UTC format with millisecond
-   * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  msgTime: string;
-}
-
-export interface AnalyticImageryCountParams {
-  /**
-   * The message time of this image record, in ISO8601 UTC format with millisecond
-   * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  msgTime: string;
-}
-
 export interface AnalyticImageryHistoryParams {
   /**
    * The message time of this image record, in ISO8601 UTC format with millisecond
@@ -1002,9 +1005,9 @@ export declare namespace AnalyticImagery {
     type AnalyticImageryHistoryResponse as AnalyticImageryHistoryResponse,
     type AnalyticImageryHistoryCountResponse as AnalyticImageryHistoryCountResponse,
     type AnalyticImageryTupleResponse as AnalyticImageryTupleResponse,
-    type AnalyticImageryCreateParams as AnalyticImageryCreateParams,
     type AnalyticImageryListParams as AnalyticImageryListParams,
     type AnalyticImageryCountParams as AnalyticImageryCountParams,
+    type AnalyticImageryCreateBulkV2Params as AnalyticImageryCreateBulkV2Params,
     type AnalyticImageryHistoryParams as AnalyticImageryHistoryParams,
     type AnalyticImageryHistoryAodrParams as AnalyticImageryHistoryAodrParams,
     type AnalyticImageryHistoryCountParams as AnalyticImageryHistoryCountParams,

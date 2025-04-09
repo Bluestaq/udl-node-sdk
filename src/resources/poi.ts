@@ -64,7 +64,7 @@ export class Poi extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  fileCreate(body: PoiFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: PoiCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-poi', {
       body,
       ...options,
@@ -1034,9 +1034,9 @@ export namespace PoiCreateBulkParams {
   }
 }
 
-export type PoiFileCreateParams = Array<PoiFileCreateParams.Body>;
+export type PoiCreateBulkV2Params = Array<PoiCreateBulkV2Params.Body>;
 
-export namespace PoiFileCreateParams {
+export namespace PoiCreateBulkV2Params {
   /**
    * A Point of Interest is loosely based on the MITRE CoT (Cursor on Target) schema
    * (https://www.mitre.org/publications/technical-papers/cursorontarget-message-router-users-guide)
@@ -1368,7 +1368,7 @@ export declare namespace Poi {
     type PoiListParams as PoiListParams,
     type PoiCountParams as PoiCountParams,
     type PoiCreateBulkParams as PoiCreateBulkParams,
-    type PoiFileCreateParams as PoiFileCreateParams,
+    type PoiCreateBulkV2Params as PoiCreateBulkV2Params,
     type PoiTupleParams as PoiTupleParams,
   };
 }

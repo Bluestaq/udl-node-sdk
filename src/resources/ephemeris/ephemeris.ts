@@ -27,49 +27,6 @@ export class Ephemeris extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 
   /**
-   * Service operation to post/store Ephemeris data. This operation is intended to be
-   * used for automated feeds into UDL. The payload is in Ephemeris format as
-   * described by the "Flight Safety Handbook" published by 18th Space Command. A
-   * specific role is required to perform this service operation. Please contact the
-   * UDL team for assistance.
-   *
-   * **Example:**
-   * /filedrop/ephem?classification=U&dataMode=TEST&source=Bluestaq&satNo=25544&ephemFormatType=NASA&hasMnvr=false&type=ROUTINE&category=EXTERNAL&origin=NASA&tags=tag1,tag2
-   */
-  create(params: EphemerisCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const {
-      category,
-      classification,
-      dataMode,
-      ephemFormatType,
-      hasMnvr,
-      satNo,
-      source,
-      type,
-      body,
-      origin,
-      tags,
-    } = params;
-    return this._client.post('/filedrop/ephem', {
-      query: {
-        category,
-        classification,
-        dataMode,
-        ephemFormatType,
-        hasMnvr,
-        satNo,
-        source,
-        type,
-        origin,
-        tags,
-      },
-      body: body,
-      ...options,
-      headers: { 'Content-Type': 'text/plain', Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to dynamically query data by a variety of query parameters not
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
@@ -111,11 +68,54 @@ export class Ephemeris extends APIResource {
    *     + If only origObjectId is provided then origObjectId will be populated with the posted value.  In this case, no checks are made against existing UDL sat numbers.
    * </h3>
    */
-  fileCreate(body: EphemerisFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: EphemerisCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-ephset', {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to post/store Ephemeris data. This operation is intended to be
+   * used for automated feeds into UDL. The payload is in Ephemeris format as
+   * described by the "Flight Safety Handbook" published by 18th Space Command. A
+   * specific role is required to perform this service operation. Please contact the
+   * UDL team for assistance.
+   *
+   * **Example:**
+   * /filedrop/ephem?classification=U&dataMode=TEST&source=Bluestaq&satNo=25544&ephemFormatType=NASA&hasMnvr=false&type=ROUTINE&category=EXTERNAL&origin=NASA&tags=tag1,tag2
+   */
+  fileUpload(params: EphemerisFileUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const {
+      category,
+      classification,
+      dataMode,
+      ephemFormatType,
+      hasMnvr,
+      satNo,
+      source,
+      type,
+      body,
+      origin,
+      tags,
+    } = params;
+    return this._client.post('/filedrop/ephem', {
+      query: {
+        category,
+        classification,
+        dataMode,
+        ephemFormatType,
+        hasMnvr,
+        satNo,
+        source,
+        type,
+        origin,
+        tags,
+      },
+      body: body,
+      ...options,
+      headers: { 'Content-Type': 'text/plain', Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -324,70 +324,6 @@ export type EphemerisCountResponse = string;
 
 export type EphemerisTupleResponse = Array<Shared.EphemerisFull>;
 
-export interface EphemerisCreateParams {
-  /**
-   * Query param: Ephemeris category.
-   */
-  category: string;
-
-  /**
-   * Query param: Classification marking of the data in IC/CAPCO Portion-marked
-   * format.
-   */
-  classification: string;
-
-  /**
-   * Query param: Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE
-   * data.
-   */
-  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
-
-  /**
-   * Query param: Ephemeris format as documented in Flight Safety Handbook.
-   */
-  ephemFormatType: 'ModITC' | 'GOO' | 'NASA' | 'OEM' | 'OASYS';
-
-  /**
-   * Query param: Boolean indicating whether maneuver(s) are incorporated into the
-   * ephemeris.
-   */
-  hasMnvr: boolean;
-
-  /**
-   * Query param: Satellite/Catalog number of the target on-orbit object.
-   */
-  satNo: number;
-
-  /**
-   * Query param: Source of the Ephemeris data.
-   */
-  source: string;
-
-  /**
-   * Query param: Ephemeris type.
-   */
-  type: string;
-
-  /**
-   * Body param:
-   */
-  body: string;
-
-  /**
-   * Query param: Optional origin of the Ephemeris.
-   */
-  origin?: string;
-
-  /**
-   * Query param: Optional array of provider/source specific tags for this data,
-   * where each element is no longer than 32 characters, used for implementing data
-   * owner conditional access controls to restrict access to the data. Should be left
-   * null by data providers unless conditional access controls are coordinated with
-   * the UDL team.
-   */
-  tags?: string;
-}
-
 export interface EphemerisListParams {
   /**
    * Unique identifier of the parent EphemerisSet, auto-generated by the system. The
@@ -406,7 +342,7 @@ export interface EphemerisCountParams {
   esId: string;
 }
 
-export interface EphemerisFileCreateParams {
+export interface EphemerisCreateBulkV2Params {
   /**
    * The source category of the ephemeris (e.g. OWNER_OPERATOR, ANALYST, EXTERNAL).
    */
@@ -513,7 +449,7 @@ export interface EphemerisFileCreateParams {
    * The list of ephemeris states belonging to the EphemerisSet. Each ephemeris point
    * is associated with a parent Ephemeris Set via the EphemerisSet ID (esId).
    */
-  ephemerisList?: Array<EphemerisFileCreateParams.EphemerisList>;
+  ephemerisList?: Array<EphemerisCreateBulkV2Params.EphemerisList>;
 
   /**
    * Filename of the raw file used to provide the ephemeris data including filetype
@@ -649,7 +585,7 @@ export interface EphemerisFileCreateParams {
   usableStartTime?: string;
 }
 
-export namespace EphemerisFileCreateParams {
+export namespace EphemerisCreateBulkV2Params {
   /**
    * An ephemeris record is a position and velocity vector identifying the location
    * and trajectory of an on-orbit object at a specified time. Ephemeris points,
@@ -813,6 +749,70 @@ export namespace EphemerisFileCreateParams {
   }
 }
 
+export interface EphemerisFileUploadParams {
+  /**
+   * Query param: Ephemeris category.
+   */
+  category: string;
+
+  /**
+   * Query param: Classification marking of the data in IC/CAPCO Portion-marked
+   * format.
+   */
+  classification: string;
+
+  /**
+   * Query param: Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE
+   * data.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Query param: Ephemeris format as documented in Flight Safety Handbook.
+   */
+  ephemFormatType: 'ModITC' | 'GOO' | 'NASA' | 'OEM' | 'OASYS';
+
+  /**
+   * Query param: Boolean indicating whether maneuver(s) are incorporated into the
+   * ephemeris.
+   */
+  hasMnvr: boolean;
+
+  /**
+   * Query param: Satellite/Catalog number of the target on-orbit object.
+   */
+  satNo: number;
+
+  /**
+   * Query param: Source of the Ephemeris data.
+   */
+  source: string;
+
+  /**
+   * Query param: Ephemeris type.
+   */
+  type: string;
+
+  /**
+   * Body param:
+   */
+  body: string;
+
+  /**
+   * Query param: Optional origin of the Ephemeris.
+   */
+  origin?: string;
+
+  /**
+   * Query param: Optional array of provider/source specific tags for this data,
+   * where each element is no longer than 32 characters, used for implementing data
+   * owner conditional access controls to restrict access to the data. Should be left
+   * null by data providers unless conditional access controls are coordinated with
+   * the UDL team.
+   */
+  tags?: string;
+}
+
 export interface EphemerisTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -839,10 +839,10 @@ export declare namespace Ephemeris {
     type EphemerisListResponse as EphemerisListResponse,
     type EphemerisCountResponse as EphemerisCountResponse,
     type EphemerisTupleResponse as EphemerisTupleResponse,
-    type EphemerisCreateParams as EphemerisCreateParams,
     type EphemerisListParams as EphemerisListParams,
     type EphemerisCountParams as EphemerisCountParams,
-    type EphemerisFileCreateParams as EphemerisFileCreateParams,
+    type EphemerisCreateBulkV2Params as EphemerisCreateBulkV2Params,
+    type EphemerisFileUploadParams as EphemerisFileUploadParams,
     type EphemerisTupleParams as EphemerisTupleParams,
   };
 

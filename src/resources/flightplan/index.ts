@@ -7,7 +7,7 @@ export {
   type FlightplanCountResponse,
   type FlightplanTupleResponse,
   type FlightplanCreateParams,
-  type FlightplanFileCreateParams,
+  type FlightplanCreateBulkV2Params,
   type FlightplanTupleParams,
 } from './flightplan';
 export { History, type HistoryListResponse, type HistoryListParams } from './history';

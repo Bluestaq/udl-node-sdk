@@ -116,7 +116,7 @@ export class Starcatalog extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  fileCreate(body: StarcatalogFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: StarcatalogCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-starcatalog', {
       body,
       ...options,
@@ -1798,9 +1798,9 @@ export namespace StarcatalogCreateBulkParams {
   }
 }
 
-export type StarcatalogFileCreateParams = Array<StarcatalogFileCreateParams.Body>;
+export type StarcatalogCreateBulkV2Params = Array<StarcatalogCreateBulkV2Params.Body>;
 
-export namespace StarcatalogFileCreateParams {
+export namespace StarcatalogCreateBulkV2Params {
   /**
    * The star catalog provides the position, proper motion, parallax, and photometric
    * magnitudes at various bandpasses of a star.
@@ -2092,7 +2092,7 @@ export declare namespace Starcatalog {
     type StarcatalogListParams as StarcatalogListParams,
     type StarcatalogCountParams as StarcatalogCountParams,
     type StarcatalogCreateBulkParams as StarcatalogCreateBulkParams,
-    type StarcatalogFileCreateParams as StarcatalogFileCreateParams,
+    type StarcatalogCreateBulkV2Params as StarcatalogCreateBulkV2Params,
     type StarcatalogTupleParams as StarcatalogTupleParams,
   };
 

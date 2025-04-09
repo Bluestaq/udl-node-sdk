@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource udlSigact', () => {
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.reportAndActivity.udlSigact.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.reportAndActivity.udlSigact.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -28,8 +28,8 @@ describe('resource udlSigact', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.reportAndActivity.udlSigact.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.reportAndActivity.udlSigact.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

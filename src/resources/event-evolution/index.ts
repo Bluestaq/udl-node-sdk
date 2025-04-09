@@ -9,7 +9,7 @@ export {
   type EventEvolutionListParams,
   type EventEvolutionCountParams,
   type EventEvolutionCreateBulkParams,
-  type EventEvolutionFileCreateParams,
+  type EventEvolutionCreateBulkV2Params,
   type EventEvolutionTupleParams,
 } from './event-evolution';
 export {

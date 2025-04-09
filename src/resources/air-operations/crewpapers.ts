@@ -6,22 +6,6 @@ import { type BlobLike } from '../../uploads';
 
 export class Crewpapers extends APIResource {
   /**
-   * Service operation to upload a supporting PDF for the aircraft sortie. A specific
-   * role is required to perform this service operation. Please contact the UDL team
-   * for assistance.
-   */
-  create(params: CrewpaperCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { aircraftSortieIds, classificationMarking, paperStatus, papersVersion, body } = params;
-    return this._client.post('/filedrop/crewpapers', {
-      query: { aircraftSortieIds, classificationMarking, paperStatus, papersVersion },
-      body: body,
-      ...options,
-      headers: { 'Content-Type': 'application/pdf', Accept: '*/*', ...options?.headers },
-      __binaryRequest: true,
-    });
-  }
-
-  /**
    * Service operation to remove supporting PDF from an aircraft sortie or sorties. A
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
@@ -34,9 +18,32 @@ export class Crewpapers extends APIResource {
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
+
+  /**
+   * Service operation to upload a supporting PDF for the aircraft sortie. A specific
+   * role is required to perform this service operation. Please contact the UDL team
+   * for assistance.
+   */
+  uploadPdf(params: CrewpaperUploadPdfParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { aircraftSortieIds, classificationMarking, paperStatus, papersVersion, body } = params;
+    return this._client.post('/filedrop/crewpapers', {
+      query: { aircraftSortieIds, classificationMarking, paperStatus, papersVersion },
+      body: body,
+      ...options,
+      headers: { 'Content-Type': 'application/pdf', Accept: '*/*', ...options?.headers },
+      __binaryRequest: true,
+    });
+  }
 }
 
-export interface CrewpaperCreateParams {
+export interface CrewpaperUnpublishParams {
+  /**
+   * Comma-separated list of AircraftSortie IDs where Crew Papers are unpublished.
+   */
+  ids: string;
+}
+
+export interface CrewpaperUploadPdfParams {
   /**
    * Query param: Comma-separated list of AircraftSortie IDs the Crew Papers are
    * being added to.
@@ -64,16 +71,9 @@ export interface CrewpaperCreateParams {
   body: string | ArrayBufferView | ArrayBuffer | BlobLike;
 }
 
-export interface CrewpaperUnpublishParams {
-  /**
-   * Comma-separated list of AircraftSortie IDs where Crew Papers are unpublished.
-   */
-  ids: string;
-}
-
 export declare namespace Crewpapers {
   export {
-    type CrewpaperCreateParams as CrewpaperCreateParams,
     type CrewpaperUnpublishParams as CrewpaperUnpublishParams,
+    type CrewpaperUploadPdfParams as CrewpaperUploadPdfParams,
   };
 }

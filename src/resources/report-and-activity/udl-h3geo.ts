@@ -10,7 +10,7 @@ export class UdlH3geo extends APIResource {
    * intended to be used for automated feeds into UDL. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  fileCreate(body: UdlH3geoFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: UdlH3geoCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-h3geo', {
       body,
       ...options,
@@ -19,12 +19,12 @@ export class UdlH3geo extends APIResource {
   }
 }
 
-export interface UdlH3geoFileCreateParams {
+export interface UdlH3geoCreateBulkV2Params {
   /**
    * The collection of hex cells contained in this H3 data set. The number of cells
    * is a function of the specified resolution.
    */
-  cells: Array<UdlH3geoFileCreateParams.Cell>;
+  cells: Array<UdlH3geoCreateBulkV2Params.Cell>;
 
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -110,7 +110,7 @@ export interface UdlH3geoFileCreateParams {
   type?: string;
 }
 
-export namespace UdlH3geoFileCreateParams {
+export namespace UdlH3geoCreateBulkV2Params {
   /**
    * Model representation of a hex cell array containing data for a set of
    * observations.
@@ -230,5 +230,5 @@ export namespace UdlH3geoFileCreateParams {
 }
 
 export declare namespace UdlH3geo {
-  export { type UdlH3geoFileCreateParams as UdlH3geoFileCreateParams };
+  export { type UdlH3geoCreateBulkV2Params as UdlH3geoCreateBulkV2Params };
 }

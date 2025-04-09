@@ -118,8 +118,8 @@ describe('resource launchevent', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.launchevent.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.launchevent.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -136,8 +136,8 @@ describe('resource launchevent', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.launchevent.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.launchevent.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

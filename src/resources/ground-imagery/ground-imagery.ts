@@ -15,26 +15,6 @@ export class GroundImagery extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 
   /**
-   * The ground imagery service allows for contribution of images. This service
-   * operation requires a zip file in the body of the POST request. The zip file must
-   * contain exactly two files. <h3> 1) A json file with any file name that ends in
-   * .json e.g. MyDataFile.json The contents of the json file must be valid according
-   * to the schema for Ground Imagery. 2) A binary image file of the specified types
-   * allowed for GroundImagery. </h3> The metadata and image files will be stored and
-   * associated with each other allowing queries of the data retrieval of the binary
-   * images. This operation is intended to be used for automated feeds into UDL. A
-   * specific role is required to perform this service operation. Please contact the
-   * UDL team for assistance.
-   */
-  create(body: GroundImageryCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-groundimagery', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to dynamically query historical data by a variety of query
    * parameters not specified in this API documentation, then write that data to the
    * Secure Content Store. See the queryhelp operation
@@ -48,9 +28,63 @@ export class GroundImagery extends APIResource {
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
+
+  /**
+   * The ground imagery service allows for contribution of images. This service
+   * operation requires a zip file in the body of the POST request. The zip file must
+   * contain exactly two files. <h3> 1) A json file with any file name that ends in
+   * .json e.g. MyDataFile.json The contents of the json file must be valid according
+   * to the schema for Ground Imagery. 2) A binary image file of the specified types
+   * allowed for GroundImagery. </h3> The metadata and image files will be stored and
+   * associated with each other allowing queries of the data retrieval of the binary
+   * images. This operation is intended to be used for automated feeds into UDL. A
+   * specific role is required to perform this service operation. Please contact the
+   * UDL team for assistance.
+   */
+  uploadZip(body: GroundImageryUploadZipParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-groundimagery', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
 }
 
-export interface GroundImageryCreateParams {
+export interface GroundImageryHistoryAodrParams {
+  /**
+   * Timestamp the image was captured/produced. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  imageTime: string;
+
+  /**
+   * optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+   * query fields that can be selected.
+   */
+  columns?: string;
+
+  /**
+   * optional, notification method for the created file link. When omitted, EMAIL is
+   * assumed. Current valid values are: EMAIL, SMS.
+   */
+  notification?: string;
+
+  /**
+   * optional, field delimiter when the created file is not JSON. Must be a single
+   * character chosen from this set: (',', ';', ':', '|'). When omitted, "," is used.
+   * It is strongly encouraged that your field delimiter be a character unlikely to
+   * occur within the data.
+   */
+  outputDelimiter?: string;
+
+  /**
+   * optional, output format for the file. When omitted, JSON is assumed. Current
+   * valid values are: JSON and CSV.
+   */
+  outputFormat?: string;
+}
+
+export interface GroundImageryUploadZipParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -208,46 +242,12 @@ export interface GroundImageryCreateParams {
   transactionId?: string;
 }
 
-export interface GroundImageryHistoryAodrParams {
-  /**
-   * Timestamp the image was captured/produced. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  imageTime: string;
-
-  /**
-   * optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
-   * query fields that can be selected.
-   */
-  columns?: string;
-
-  /**
-   * optional, notification method for the created file link. When omitted, EMAIL is
-   * assumed. Current valid values are: EMAIL, SMS.
-   */
-  notification?: string;
-
-  /**
-   * optional, field delimiter when the created file is not JSON. Must be a single
-   * character chosen from this set: (',', ';', ':', '|'). When omitted, "," is used.
-   * It is strongly encouraged that your field delimiter be a character unlikely to
-   * occur within the data.
-   */
-  outputDelimiter?: string;
-
-  /**
-   * optional, output format for the file. When omitted, JSON is assumed. Current
-   * valid values are: JSON and CSV.
-   */
-  outputFormat?: string;
-}
-
 GroundImagery.History = History;
 
 export declare namespace GroundImagery {
   export {
-    type GroundImageryCreateParams as GroundImageryCreateParams,
     type GroundImageryHistoryAodrParams as GroundImageryHistoryAodrParams,
+    type GroundImageryUploadZipParams as GroundImageryUploadZipParams,
   };
 
   export {

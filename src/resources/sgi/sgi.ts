@@ -116,7 +116,7 @@ export class Sgi extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  fileCreate(body: SgiFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: SgiCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-sgi', {
       body,
       ...options,
@@ -1577,9 +1577,9 @@ export namespace SgiCreateBulkParams {
   }
 }
 
-export type SgiFileCreateParams = Array<SgiFileCreateParams.Body>;
+export type SgiCreateBulkV2Params = Array<SgiCreateBulkV2Params.Body>;
 
-export namespace SgiFileCreateParams {
+export namespace SgiCreateBulkV2Params {
   /**
    * Model representation of space weather/solar, geomagnetic, and radiation belt
    * indices.
@@ -1980,7 +1980,7 @@ export declare namespace Sgi {
     type SgiListParams as SgiListParams,
     type SgiCountParams as SgiCountParams,
     type SgiCreateBulkParams as SgiCreateBulkParams,
-    type SgiFileCreateParams as SgiFileCreateParams,
+    type SgiCreateBulkV2Params as SgiCreateBulkV2Params,
     type SgiGetSGIDataByEffectiveAsOfDateParams as SgiGetSGIDataByEffectiveAsOfDateParams,
     type SgiTupleParams as SgiTupleParams,
   };

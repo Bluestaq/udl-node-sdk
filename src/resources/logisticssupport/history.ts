@@ -3,6 +3,7 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
+import * as LogisticssupportAPI from './logisticssupport';
 
 export class History extends APIResource {
   /**
@@ -174,7 +175,7 @@ export namespace HistoryListResponse {
     /**
      * Remarks associated with this LogisticsSupport record.
      */
-    logisticsRemarks?: Array<HistoryListResponseItem.LogisticsRemark>;
+    logisticsRemarks?: Array<LogisticssupportAPI.LogisticsRemarksFull>;
 
     /**
      * Support items associated with this LogisticsSupport record.
@@ -287,27 +288,6 @@ export namespace HistoryListResponse {
     }
 
     /**
-     * Remarks associated with this LogisticsSupport record.
-     */
-    export interface LogisticsRemark {
-      /**
-       * Date the remark was published or updated, in ISO 8601 UTC format, with
-       * millisecond precision.
-       */
-      lastChanged?: string;
-
-      /**
-       * Text of the remark.
-       */
-      remark?: string;
-
-      /**
-       * User who published the remark.
-       */
-      username?: string;
-    }
-
-    /**
      * Support items associated with this LogisticsSupport record.
      */
     export interface LogisticsSupportItem {
@@ -354,7 +334,7 @@ export namespace HistoryListResponse {
       /**
        * Remarks associated with this support item.
        */
-      logisticsRemarks?: Array<LogisticsSupportItem.LogisticsRemark>;
+      logisticsRemarks?: Array<LogisticssupportAPI.LogisticsRemarksFull>;
 
       /**
        * The specialties required to implement this support item.
@@ -520,27 +500,6 @@ export namespace HistoryListResponse {
       }
 
       /**
-       * Remarks associated with this LogisticsSupport record.
-       */
-      export interface LogisticsRemark {
-        /**
-         * Date the remark was published or updated, in ISO 8601 UTC format, with
-         * millisecond precision.
-         */
-        lastChanged?: string;
-
-        /**
-         * Text of the remark.
-         */
-        remark?: string;
-
-        /**
-         * User who published the remark.
-         */
-        username?: string;
-      }
-
-      /**
        * The specialties required to implement this support item.
        */
       export interface LogisticsSpecialty {
@@ -670,7 +629,7 @@ export namespace HistoryListResponse {
       /**
        * Remarks associated with this transportation plan.
        */
-      logisticsTransportationPlansRemarks?: Array<LogisticsTransportationPlan.LogisticsTransportationPlansRemark>;
+      logisticsTransportationPlansRemarks?: Array<LogisticssupportAPI.LogisticsRemarksFull>;
 
       /**
        * The major command for the current unit.
@@ -824,27 +783,6 @@ export namespace HistoryListResponse {
          * The identifier that represents a specific aircraft within an aircraft type.
          */
         segTailNumber?: string;
-      }
-
-      /**
-       * Remarks associated with this LogisticsSupport record.
-       */
-      export interface LogisticsTransportationPlansRemark {
-        /**
-         * Date the remark was published or updated, in ISO 8601 UTC format, with
-         * millisecond precision.
-         */
-        lastChanged?: string;
-
-        /**
-         * Text of the remark.
-         */
-        remark?: string;
-
-        /**
-         * User who published the remark.
-         */
-        username?: string;
       }
     }
   }

@@ -80,7 +80,7 @@ export class Sarobservation extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  fileCreate(body: SarobservationFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: SarobservationCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-sar', {
       body,
       ...options,
@@ -1335,9 +1335,9 @@ export namespace SarobservationCreateBulkParams {
   }
 }
 
-export type SarobservationFileCreateParams = Array<SarobservationFileCreateParams.Body>;
+export type SarobservationCreateBulkV2Params = Array<SarobservationCreateBulkV2Params.Body>;
 
-export namespace SarobservationFileCreateParams {
+export namespace SarobservationCreateBulkV2Params {
   /**
    * Model representation of observation data for SAR based sensor phenomenologies.
    * J2000 is the preferred coordinate frame for all observations, but in some cases
@@ -1756,7 +1756,7 @@ export declare namespace Sarobservation {
     type SarobservationListParams as SarobservationListParams,
     type SarobservationCountParams as SarobservationCountParams,
     type SarobservationCreateBulkParams as SarobservationCreateBulkParams,
-    type SarobservationFileCreateParams as SarobservationFileCreateParams,
+    type SarobservationCreateBulkV2Params as SarobservationCreateBulkV2Params,
     type SarobservationTupleParams as SarobservationTupleParams,
   };
 

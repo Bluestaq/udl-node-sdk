@@ -10,8 +10,29 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource groundImagery', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.groundImagery.create({
+  test('historyAodr: only required params', async () => {
+    const responsePromise = client.groundImagery.historyAodr({ imageTime: '2019-12-27T18:11:19.117Z' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('historyAodr: required and optional params', async () => {
+    const response = await client.groundImagery.historyAodr({
+      imageTime: '2019-12-27T18:11:19.117Z',
+      columns: 'columns',
+      notification: 'notification',
+      outputDelimiter: 'outputDelimiter',
+      outputFormat: 'outputFormat',
+    });
+  });
+
+  test('uploadZip: only required params', async () => {
+    const responsePromise = client.groundImagery.uploadZip({
       classificationMarking: 'U',
       dataMode: 'REAL',
       filename: 'Example file name',
@@ -27,8 +48,8 @@ describe('resource groundImagery', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: required and optional params', async () => {
-    const response = await client.groundImagery.create({
+  test('uploadZip: required and optional params', async () => {
+    const response = await client.groundImagery.uploadZip({
       classificationMarking: 'U',
       dataMode: 'REAL',
       filename: 'Example file name',
@@ -56,27 +77,6 @@ describe('resource groundImagery', () => {
       subjectId: 'SUBJECT-ID',
       tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
       transactionId: '37bdef1f-5a4f-4776-bee4-7a1e0ec7d35a',
-    });
-  });
-
-  test('historyAodr: only required params', async () => {
-    const responsePromise = client.groundImagery.historyAodr({ imageTime: '2019-12-27T18:11:19.117Z' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('historyAodr: required and optional params', async () => {
-    const response = await client.groundImagery.historyAodr({
-      imageTime: '2019-12-27T18:11:19.117Z',
-      columns: 'columns',
-      notification: 'notification',
-      outputDelimiter: 'outputDelimiter',
-      outputFormat: 'outputFormat',
     });
   });
 });

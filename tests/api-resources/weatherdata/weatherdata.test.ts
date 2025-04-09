@@ -164,8 +164,8 @@ describe('resource weatherdata', () => {
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.weatherdata.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.weatherdata.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -182,8 +182,8 @@ describe('resource weatherdata', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.weatherdata.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.weatherdata.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

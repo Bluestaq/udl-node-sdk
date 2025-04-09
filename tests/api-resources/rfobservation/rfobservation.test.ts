@@ -139,8 +139,23 @@ describe('resource rfobservation', () => {
     const response = await client.rfobservation.list({ obTime: '2019-12-27T18:11:19.117Z' });
   });
 
-  test('afileCreate: only required params', async () => {
-    const responsePromise = client.rfobservation.afileCreate([
+  test('count: only required params', async () => {
+    const responsePromise = client.rfobservation.count({ obTime: '2019-12-27T18:11:19.117Z' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('count: required and optional params', async () => {
+    const response = await client.rfobservation.count({ obTime: '2019-12-27T18:11:19.117Z' });
+  });
+
+  test('createBulk: only required params', async () => {
+    const responsePromise = client.rfobservation.createBulk([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -158,8 +173,8 @@ describe('resource rfobservation', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('afileCreate: required and optional params', async () => {
-    const response = await client.rfobservation.afileCreate([
+  test('createBulk: required and optional params', async () => {
+    const response = await client.rfobservation.createBulk([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -257,23 +272,8 @@ describe('resource rfobservation', () => {
     ]);
   });
 
-  test('count: only required params', async () => {
-    const responsePromise = client.rfobservation.count({ obTime: '2019-12-27T18:11:19.117Z' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('count: required and optional params', async () => {
-    const response = await client.rfobservation.count({ obTime: '2019-12-27T18:11:19.117Z' });
-  });
-
-  test('createBulk: only required params', async () => {
-    const responsePromise = client.rfobservation.createBulk([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.rfobservation.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -291,8 +291,8 @@ describe('resource rfobservation', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulk: required and optional params', async () => {
-    const response = await client.rfobservation.createBulk([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.rfobservation.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

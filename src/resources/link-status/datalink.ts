@@ -48,7 +48,7 @@ export class Datalink extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  fileCreate(body: DatalinkFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: DatalinkCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-datalink', {
       body,
       ...options,
@@ -2958,7 +2958,7 @@ export interface DatalinkCountParams {
   startTime: string;
 }
 
-export type DatalinkFileCreateParams = Array<DatalinkIngest>;
+export type DatalinkCreateBulkV2Params = Array<DatalinkIngest>;
 
 export interface DatalinkTupleParams {
   /**
@@ -2985,7 +2985,7 @@ export declare namespace Datalink {
     type DatalinkCreateParams as DatalinkCreateParams,
     type DatalinkListParams as DatalinkListParams,
     type DatalinkCountParams as DatalinkCountParams,
-    type DatalinkFileCreateParams as DatalinkFileCreateParams,
+    type DatalinkCreateBulkV2Params as DatalinkCreateBulkV2Params,
     type DatalinkTupleParams as DatalinkTupleParams,
   };
 }

@@ -39,20 +39,6 @@ export class Rfobservation extends APIResource {
   }
 
   /**
-   * Service operation to take multiple RF observations as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  afileCreate(body: RfobservationAfileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-rf', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to return the count of records satisfying the specified query
    * parameters. This operation is useful to determine how many records pass a
    * particular query criteria without retrieving large amounts of data. See the
@@ -76,6 +62,20 @@ export class Rfobservation extends APIResource {
    */
   createBulk(body: RfobservationCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/udl/rfobservation/createBulk', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to take multiple RF observations as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  createBulkV2(body: RfobservationCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-rf', {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -1607,9 +1607,17 @@ export interface RfobservationListParams {
   obTime: string;
 }
 
-export type RfobservationAfileCreateParams = Array<RfobservationAfileCreateParams.Body>;
+export interface RfobservationCountParams {
+  /**
+   * Ob detection time in ISO 8601 UTC with microsecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  obTime: string;
+}
 
-export namespace RfobservationAfileCreateParams {
+export type RfobservationCreateBulkParams = Array<RfobservationCreateBulkParams.Body>;
+
+export namespace RfobservationCreateBulkParams {
   /**
    * Model representation of observation data for active/passive radio frequency (RF)
    * based sensor phenomenologies. J2000 is the preferred coordinate frame for all
@@ -2140,17 +2148,9 @@ export namespace RfobservationAfileCreateParams {
   }
 }
 
-export interface RfobservationCountParams {
-  /**
-   * Ob detection time in ISO 8601 UTC with microsecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  obTime: string;
-}
+export type RfobservationCreateBulkV2Params = Array<RfobservationCreateBulkV2Params.Body>;
 
-export type RfobservationCreateBulkParams = Array<RfobservationCreateBulkParams.Body>;
-
-export namespace RfobservationCreateBulkParams {
+export namespace RfobservationCreateBulkV2Params {
   /**
    * Model representation of observation data for active/passive radio frequency (RF)
    * based sensor phenomenologies. J2000 is the preferred coordinate frame for all
@@ -2706,9 +2706,9 @@ export declare namespace Rfobservation {
     type RfobservationTupleResponse as RfobservationTupleResponse,
     type RfobservationCreateParams as RfobservationCreateParams,
     type RfobservationListParams as RfobservationListParams,
-    type RfobservationAfileCreateParams as RfobservationAfileCreateParams,
     type RfobservationCountParams as RfobservationCountParams,
     type RfobservationCreateBulkParams as RfobservationCreateBulkParams,
+    type RfobservationCreateBulkV2Params as RfobservationCreateBulkV2Params,
     type RfobservationTupleParams as RfobservationTupleParams,
   };
 

@@ -17,20 +17,6 @@ export class MissileTracks extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 
   /**
-   * Service operation to take multiple missile track records as a POST body and
-   * ingest into the database. This operation is intended to be used for automated
-   * feeds into UDL. A specific role is required to perform this service operation.
-   * Please contact the UDL team for assistance.
-   */
-  create(body: MissileTrackCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-missiletrack', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to dynamically query data by a variety of query parameters not
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
@@ -67,6 +53,20 @@ export class MissileTracks extends APIResource {
    */
   createBulk(body: MissileTrackCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/udl/missiletrack/createBulk', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Service operation to take multiple missile track records as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  createBulkV2(body: MissileTrackCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-missiletrack', {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -775,9 +775,25 @@ export type MissileTrackCountResponse = string;
 
 export type MissileTrackTupleResponse = Array<MissiletrackHistoryAPI.MissileTrackFull>;
 
-export type MissileTrackCreateParams = Array<MissileTrackCreateParams.Body>;
+export interface MissileTrackListParams {
+  /**
+   * The receipt time of the data by the processing system, in ISO8601 UTC format
+   * with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  ts: string;
+}
 
-export namespace MissileTrackCreateParams {
+export interface MissileTrackCountParams {
+  /**
+   * The receipt time of the data by the processing system, in ISO8601 UTC format
+   * with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  ts: string;
+}
+
+export type MissileTrackCreateBulkParams = Array<MissileTrackCreateBulkParams.Body>;
+
+export namespace MissileTrackCreateBulkParams {
   /**
    * These services provide operations for querying of all available missile track
    * details and amplifying missile data. A missile track is a position and
@@ -1428,25 +1444,9 @@ export namespace MissileTrackCreateParams {
   }
 }
 
-export interface MissileTrackListParams {
-  /**
-   * The receipt time of the data by the processing system, in ISO8601 UTC format
-   * with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  ts: string;
-}
+export type MissileTrackCreateBulkV2Params = Array<MissileTrackCreateBulkV2Params.Body>;
 
-export interface MissileTrackCountParams {
-  /**
-   * The receipt time of the data by the processing system, in ISO8601 UTC format
-   * with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  ts: string;
-}
-
-export type MissileTrackCreateBulkParams = Array<MissileTrackCreateBulkParams.Body>;
-
-export namespace MissileTrackCreateBulkParams {
+export namespace MissileTrackCreateBulkV2Params {
   /**
    * These services provide operations for querying of all available missile track
    * details and amplifying missile data. A missile track is a position and
@@ -2120,10 +2120,10 @@ export declare namespace MissileTracks {
     type MissileTrackListResponse as MissileTrackListResponse,
     type MissileTrackCountResponse as MissileTrackCountResponse,
     type MissileTrackTupleResponse as MissileTrackTupleResponse,
-    type MissileTrackCreateParams as MissileTrackCreateParams,
     type MissileTrackListParams as MissileTrackListParams,
     type MissileTrackCountParams as MissileTrackCountParams,
     type MissileTrackCreateBulkParams as MissileTrackCreateBulkParams,
+    type MissileTrackCreateBulkV2Params as MissileTrackCreateBulkV2Params,
     type MissileTrackTupleParams as MissileTrackTupleParams,
   };
 

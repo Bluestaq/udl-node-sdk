@@ -10,20 +10,6 @@ export class Diffofarrival extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 
   /**
-   * Service operation to take multiple TDOA/FDOA records as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  create(body: DiffofarrivalCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-diffofarrival', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single TDOA/FDOA record by its unique ID passed as a
    * path parameter.
    */
@@ -32,6 +18,20 @@ export class Diffofarrival extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<DiffofarrivalDiffofarrivalAPI.DiffofarrivalFull> {
     return this._client.get(`/udl/diffofarrival/${id}`, options);
+  }
+
+  /**
+   * Service operation to take multiple TDOA/FDOA records as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  createBulkV2(body: DiffofarrivalCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-diffofarrival', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 
   /**
@@ -65,9 +65,9 @@ export class Diffofarrival extends APIResource {
 
 export type DiffofarrivalTupleResponse = Array<DiffofarrivalDiffofarrivalAPI.DiffofarrivalFull>;
 
-export type DiffofarrivalCreateParams = Array<DiffofarrivalCreateParams.Body>;
+export type DiffofarrivalCreateBulkV2Params = Array<DiffofarrivalCreateBulkV2Params.Body>;
 
-export namespace DiffofarrivalCreateParams {
+export namespace DiffofarrivalCreateBulkV2Params {
   /**
    * Model representation of Signal time and frequency difference of arrival
    * (TDOA/FDOA) information obtained by using passive RF based sensor
@@ -334,7 +334,7 @@ Diffofarrival.History = History;
 export declare namespace Diffofarrival {
   export {
     type DiffofarrivalTupleResponse as DiffofarrivalTupleResponse,
-    type DiffofarrivalCreateParams as DiffofarrivalCreateParams,
+    type DiffofarrivalCreateBulkV2Params as DiffofarrivalCreateBulkV2Params,
     type DiffofarrivalTupleParams as DiffofarrivalTupleParams,
   };
 

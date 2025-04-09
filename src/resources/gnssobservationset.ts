@@ -54,7 +54,10 @@ export class Gnssobservationset extends APIResource {
    * is intended to be used for automated feeds into UDL. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
    */
-  fileCreate(body: GnssobservationsetFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(
+    body: GnssobservationsetCreateBulkV2Params,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-gnssobset', {
       body,
       ...options,
@@ -742,9 +745,9 @@ export namespace GnssobservationsetCreateBulkParams {
   }
 }
 
-export type GnssobservationsetFileCreateParams = Array<GnssobservationsetFileCreateParams.Body>;
+export type GnssobservationsetCreateBulkV2Params = Array<GnssobservationsetCreateBulkV2Params.Body>;
 
-export namespace GnssobservationsetFileCreateParams {
+export namespace GnssobservationsetCreateBulkV2Params {
   /**
    * Set of GNSSObservation data.
    */
@@ -1070,7 +1073,7 @@ export declare namespace Gnssobservationset {
     type GnssobservationsetListParams as GnssobservationsetListParams,
     type GnssobservationsetCountParams as GnssobservationsetCountParams,
     type GnssobservationsetCreateBulkParams as GnssobservationsetCreateBulkParams,
-    type GnssobservationsetFileCreateParams as GnssobservationsetFileCreateParams,
+    type GnssobservationsetCreateBulkV2Params as GnssobservationsetCreateBulkV2Params,
     type GnssobservationsetTupleParams as GnssobservationsetTupleParams,
   };
 }

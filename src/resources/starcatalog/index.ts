@@ -12,6 +12,6 @@ export {
   type StarcatalogListParams,
   type StarcatalogCountParams,
   type StarcatalogCreateBulkParams,
-  type StarcatalogFileCreateParams,
+  type StarcatalogCreateBulkV2Params,
   type StarcatalogTupleParams,
 } from './starcatalog';

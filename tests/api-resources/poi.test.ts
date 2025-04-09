@@ -190,8 +190,8 @@ describe('resource poi', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.poi.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.poi.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -210,8 +210,8 @@ describe('resource poi', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.poi.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.poi.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

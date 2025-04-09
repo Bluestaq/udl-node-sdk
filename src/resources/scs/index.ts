@@ -34,6 +34,7 @@ export {
 } from './scs';
 export {
   V2,
+  type Attachment,
   type ScsEntity,
   type V2ListResponse,
   type V2UpdateParams,

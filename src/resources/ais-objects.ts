@@ -10,7 +10,7 @@ export class AIsObjects extends APIResource {
    * UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: AIsObjectCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: AIsObjectCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-ais', {
       body,
       ...options,
@@ -19,9 +19,9 @@ export class AIsObjects extends APIResource {
   }
 }
 
-export type AIsObjectCreateParams = Array<AIsObjectCreateParams.Body>;
+export type AIsObjectCreateBulkV2Params = Array<AIsObjectCreateBulkV2Params.Body>;
 
-export namespace AIsObjectCreateParams {
+export namespace AIsObjectCreateBulkV2Params {
   /**
    * Self-reported information obtained from Automatic Identification System (AIS)
    * equipment. This contains information such as unique identification, status,
@@ -332,5 +332,5 @@ export namespace AIsObjectCreateParams {
 }
 
 export declare namespace AIsObjects {
-  export { type AIsObjectCreateParams as AIsObjectCreateParams };
+  export { type AIsObjectCreateBulkV2Params as AIsObjectCreateBulkV2Params };
 }

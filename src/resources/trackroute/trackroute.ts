@@ -100,7 +100,7 @@ export class Trackroute extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  fileCreate(body: TrackrouteFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: TrackrouteCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-trackroute', {
       body,
       ...options,
@@ -1600,7 +1600,7 @@ export namespace TrackrouteCreateBulkParams {
   }
 }
 
-export interface TrackrouteFileCreateParams {
+export interface TrackrouteCreateBulkV2Params {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -1648,7 +1648,7 @@ export interface TrackrouteFileCreateParams {
   /**
    * Minimum and maximum altitude bounds for the track.
    */
-  altitudeBlocks?: Array<TrackrouteFileCreateParams.AltitudeBlock>;
+  altitudeBlocks?: Array<TrackrouteCreateBulkV2Params.AltitudeBlock>;
 
   /**
    * The APN radar code sent and received by the aircraft for identification.
@@ -1710,7 +1710,7 @@ export interface TrackrouteFileCreateParams {
   /**
    * Point of contacts for scheduling or modifying the route.
    */
-  poc?: Array<TrackrouteFileCreateParams.Poc>;
+  poc?: Array<TrackrouteCreateBulkV2Params.Poc>;
 
   /**
    * The primary UHF radio frequency used for the track route in megahertz.
@@ -1741,7 +1741,7 @@ export interface TrackrouteFileCreateParams {
   /**
    * Points identified within the route.
    */
-  routePoints?: Array<TrackrouteFileCreateParams.RoutePoint>;
+  routePoints?: Array<TrackrouteCreateBulkV2Params.RoutePoint>;
 
   /**
    * Point of contact for the air refueling track route scheduler.
@@ -1790,7 +1790,7 @@ export interface TrackrouteFileCreateParams {
   typeCode?: string;
 }
 
-export namespace TrackrouteFileCreateParams {
+export namespace TrackrouteCreateBulkV2Params {
   /**
    * Minimum and maximum altitude bounds for the track.
    */
@@ -1974,7 +1974,7 @@ export declare namespace Trackroute {
     type TrackrouteListParams as TrackrouteListParams,
     type TrackrouteCountParams as TrackrouteCountParams,
     type TrackrouteCreateBulkParams as TrackrouteCreateBulkParams,
-    type TrackrouteFileCreateParams as TrackrouteFileCreateParams,
+    type TrackrouteCreateBulkV2Params as TrackrouteCreateBulkV2Params,
     type TrackrouteTupleParams as TrackrouteTupleParams,
   };
 

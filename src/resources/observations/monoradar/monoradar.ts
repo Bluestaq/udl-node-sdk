@@ -21,7 +21,7 @@ export class Monoradar extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: MonoradarCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: MonoradarCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/monoradar', {
       body,
       ...options,
@@ -30,9 +30,9 @@ export class Monoradar extends APIResource {
   }
 }
 
-export type MonoradarCreateParams = Array<MonoradarCreateParams.Body>;
+export type MonoradarCreateBulkV2Params = Array<MonoradarCreateBulkV2Params.Body>;
 
-export namespace MonoradarCreateParams {
+export namespace MonoradarCreateBulkV2Params {
   /**
    * A monoradar record contains the raw, and in some cases, processed target reports
    * from primary and secondary air surveillance radars. All target positions for
@@ -429,7 +429,7 @@ export namespace MonoradarCreateParams {
 Monoradar.History = History;
 
 export declare namespace Monoradar {
-  export { type MonoradarCreateParams as MonoradarCreateParams };
+  export { type MonoradarCreateBulkV2Params as MonoradarCreateBulkV2Params };
 
   export {
     History as History,

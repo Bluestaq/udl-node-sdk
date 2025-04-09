@@ -533,8 +533,8 @@ describe('resource logisticssupport', () => {
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.logisticssupport.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.logisticssupport.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -551,8 +551,8 @@ describe('resource logisticssupport', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.logisticssupport.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.logisticssupport.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

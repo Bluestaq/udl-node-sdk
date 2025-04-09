@@ -10,8 +10,26 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource diffofarrival', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.diffofarrival.create([
+  test('retrieve', async () => {
+    const responsePromise = client.diffofarrival.retrieve('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.diffofarrival.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.diffofarrival.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -28,8 +46,8 @@ describe('resource diffofarrival', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: required and optional params', async () => {
-    const response = await client.diffofarrival.create([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.diffofarrival.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -71,24 +89,6 @@ describe('resource diffofarrival', () => {
         uct: false,
       },
     ]);
-  });
-
-  test('retrieve', async () => {
-    const responsePromise = client.diffofarrival.retrieve('id');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.diffofarrival.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('queryhelp', async () => {

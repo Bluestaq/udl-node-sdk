@@ -61,7 +61,7 @@ export class Mti extends APIResource {
    * used for automated feeds into UDL. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  fileCreate(body: MtiFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: MtiCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-mti', {
       body,
       ...options,
@@ -2250,9 +2250,9 @@ export namespace MtiCreateBulkParams {
   }
 }
 
-export type MtiFileCreateParams = Array<MtiFileCreateParams.Body>;
+export type MtiCreateBulkV2Params = Array<MtiCreateBulkV2Params.Body>;
 
-export namespace MtiFileCreateParams {
+export namespace MtiCreateBulkV2Params {
   /**
    * Information on the mission and flight plans, the type and configuration of the
    * platform, and the reference time.
@@ -3336,7 +3336,7 @@ export declare namespace Mti {
     type MtiListParams as MtiListParams,
     type MtiCountParams as MtiCountParams,
     type MtiCreateBulkParams as MtiCreateBulkParams,
-    type MtiFileCreateParams as MtiFileCreateParams,
+    type MtiCreateBulkV2Params as MtiCreateBulkV2Params,
     type MtiTupleParams as MtiTupleParams,
   };
 }

@@ -429,8 +429,8 @@ describe('resource eoObservations', () => {
     });
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.eoObservations.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.eoObservations.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -447,8 +447,8 @@ describe('resource eoObservations', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.eoObservations.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.eoObservations.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

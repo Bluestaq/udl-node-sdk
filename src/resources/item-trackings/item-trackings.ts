@@ -74,7 +74,7 @@ export class ItemTrackings extends APIResource {
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  fileCreate(body: ItemTrackingFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: ItemTrackingCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-itemtracking', {
       body,
       ...options,
@@ -401,9 +401,9 @@ export interface ItemTrackingCountParams {
   ts: string;
 }
 
-export type ItemTrackingFileCreateParams = Array<ItemTrackingFileCreateParams.Body>;
+export type ItemTrackingCreateBulkV2Params = Array<ItemTrackingCreateBulkV2Params.Body>;
 
-export namespace ItemTrackingFileCreateParams {
+export namespace ItemTrackingCreateBulkV2Params {
   export interface Body {
     /**
      * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -548,7 +548,7 @@ export declare namespace ItemTrackings {
     type ItemTrackingCreateParams as ItemTrackingCreateParams,
     type ItemTrackingListParams as ItemTrackingListParams,
     type ItemTrackingCountParams as ItemTrackingCountParams,
-    type ItemTrackingFileCreateParams as ItemTrackingFileCreateParams,
+    type ItemTrackingCreateBulkV2Params as ItemTrackingCreateBulkV2Params,
     type ItemTrackingTupleParams as ItemTrackingTupleParams,
   };
 

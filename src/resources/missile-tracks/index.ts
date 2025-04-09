@@ -13,9 +13,9 @@ export {
   type MissileTrackListResponse,
   type MissileTrackCountResponse,
   type MissileTrackTupleResponse,
-  type MissileTrackCreateParams,
   type MissileTrackListParams,
   type MissileTrackCountParams,
   type MissileTrackCreateBulkParams,
+  type MissileTrackCreateBulkV2Params,
   type MissileTrackTupleParams,
 } from './missile-tracks';

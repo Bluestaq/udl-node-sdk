@@ -119,8 +119,8 @@ describe('resource orbittrack', () => {
     ]);
   });
 
-  test('orbitTrack: only required params', async () => {
-    const responsePromise = client.orbittrack.orbitTrack([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.orbittrack.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -139,8 +139,8 @@ describe('resource orbittrack', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('orbitTrack: required and optional params', async () => {
-    const response = await client.orbittrack.orbitTrack([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.orbittrack.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

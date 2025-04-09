@@ -399,8 +399,8 @@ describe('resource airEvents', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.airEvents.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.airEvents.createBulkV2([
       { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', type: 'FUEL TRANSFER' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -412,8 +412,8 @@ describe('resource airEvents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.airEvents.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.airEvents.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

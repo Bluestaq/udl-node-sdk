@@ -222,8 +222,8 @@ describe('resource sarobservation', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.sarobservation.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.sarobservation.createBulkV2([
       {
         classificationMarking: 'U',
         collectionEnd: '2023-04-22T17:38:10.20177Z',
@@ -242,8 +242,8 @@ describe('resource sarobservation', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.sarobservation.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.sarobservation.createBulkV2([
       {
         classificationMarking: 'U',
         collectionEnd: '2023-04-22T17:38:10.20177Z',

@@ -308,8 +308,8 @@ describe('resource trackroute', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.trackroute.fileCreate({
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.trackroute.createBulkV2({
       classificationMarking: 'U',
       dataMode: 'REAL',
       lastUpdateDate: '2024-09-17T16:00:00.123Z',
@@ -325,8 +325,8 @@ describe('resource trackroute', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.trackroute.fileCreate({
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.trackroute.createBulkV2({
       classificationMarking: 'U',
       dataMode: 'REAL',
       lastUpdateDate: '2024-09-17T16:00:00.123Z',

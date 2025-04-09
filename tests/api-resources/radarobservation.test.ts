@@ -194,8 +194,8 @@ describe('resource radarobservation', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.radarobservation.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.radarobservation.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',
@@ -212,8 +212,8 @@ describe('resource radarobservation', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.radarobservation.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.radarobservation.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

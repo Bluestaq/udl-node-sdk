@@ -15,6 +15,6 @@ export {
   type ItemTrackingCreateParams,
   type ItemTrackingListParams,
   type ItemTrackingCountParams,
-  type ItemTrackingFileCreateParams,
+  type ItemTrackingCreateBulkV2Params,
   type ItemTrackingTupleParams,
 } from './item-trackings';

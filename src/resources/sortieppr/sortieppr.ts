@@ -100,7 +100,7 @@ export class Sortieppr extends APIResource {
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
    */
-  fileCreate(body: SortiepprFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: SortiepprCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-sortieppr', {
       body,
       ...options,
@@ -578,9 +578,9 @@ export namespace SortiepprCreateBulkParams {
   }
 }
 
-export type SortiepprFileCreateParams = Array<SortiepprFileCreateParams.Body>;
+export type SortiepprCreateBulkV2Params = Array<SortiepprCreateBulkV2Params.Body>;
 
-export namespace SortiepprFileCreateParams {
+export namespace SortiepprCreateBulkV2Params {
   /**
    * SortiePPR is a regulatory requirement where operators must obtain permissions to
    * full operational access to a runway, taxiway, or airport service.
@@ -708,7 +708,7 @@ export declare namespace Sortieppr {
     type SortiepprListParams as SortiepprListParams,
     type SortiepprCountParams as SortiepprCountParams,
     type SortiepprCreateBulkParams as SortiepprCreateBulkParams,
-    type SortiepprFileCreateParams as SortiepprFileCreateParams,
+    type SortiepprCreateBulkV2Params as SortiepprCreateBulkV2Params,
     type SortiepprTupleParams as SortiepprTupleParams,
   };
 

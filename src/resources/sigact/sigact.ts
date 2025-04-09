@@ -57,26 +57,6 @@ export class Sigact extends APIResource {
   }
 
   /**
-   * The sigact-txt service allows for contribution of large text that exceeds the
-   * limits of the sigact.eventDescription field (4096 characters). This service
-   * operation requires a zip file in the body of the POST request. The zip file must
-   * contain exactly two files. <h3> 1) A json file with any file name that ends in
-   * .json e.g. MyDataFile.json. The contents of the json file must be valid
-   * according to the schema for sigact. 2) A txt file of the text encoded in UTF-8.
-   * </h3> The sigact metadata and text file will be stored and associated with each
-   * other allowing queries of the data retrieval of the text. This operation is
-   * intended to be used for automated feeds into UDL. A specific role is required to
-   * perform this service operation. Please contact the UDL team for assistance.
-   */
-  fileCreate(body: SigactFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-sigact-text', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -99,6 +79,26 @@ export class Sigact extends APIResource {
    */
   tuple(query: SigactTupleParams, options?: Core.RequestOptions): Core.APIPromise<SigactTupleResponse> {
     return this._client.get('/udl/sigact/tuple', { query, ...options });
+  }
+
+  /**
+   * The sigact-txt service allows for contribution of large text that exceeds the
+   * limits of the sigact.eventDescription field (4096 characters). This service
+   * operation requires a zip file in the body of the POST request. The zip file must
+   * contain exactly two files. <h3> 1) A json file with any file name that ends in
+   * .json e.g. MyDataFile.json. The contents of the json file must be valid
+   * according to the schema for sigact. 2) A txt file of the text encoded in UTF-8.
+   * </h3> The sigact metadata and text file will be stored and associated with each
+   * other allowing queries of the data retrieval of the text. This operation is
+   * intended to be used for automated feeds into UDL. A specific role is required to
+   * perform this service operation. Please contact the UDL team for assistance.
+   */
+  uploadZip(body: SigactUploadZipParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-sigact-text', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1242,7 +1242,22 @@ export namespace SigactCreateBulkParams {
   }
 }
 
-export interface SigactFileCreateParams {
+export interface SigactTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * Date of the report or filing. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  reportDate: string;
+}
+
+export interface SigactUploadZipParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -1645,7 +1660,7 @@ export interface SigactFileCreateParams {
   /**
    * Related document ids.
    */
-  relatedDocs?: Array<SigactFileCreateParams.RelatedDoc>;
+  relatedDocs?: Array<SigactUploadZipParams.RelatedDoc>;
 
   /**
    * The reporting unit.
@@ -1740,7 +1755,7 @@ export interface SigactFileCreateParams {
   typeOfAttack?: string;
 }
 
-export namespace SigactFileCreateParams {
+export namespace SigactUploadZipParams {
   /**
    * Related document ids.
    */
@@ -1789,21 +1804,6 @@ export namespace SigactFileCreateParams {
   }
 }
 
-export interface SigactTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Date of the report or filing. (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  reportDate: string;
-}
-
 Sigact.History = History;
 
 export declare namespace Sigact {
@@ -1814,8 +1814,8 @@ export declare namespace Sigact {
     type SigactListParams as SigactListParams,
     type SigactCountParams as SigactCountParams,
     type SigactCreateBulkParams as SigactCreateBulkParams,
-    type SigactFileCreateParams as SigactFileCreateParams,
     type SigactTupleParams as SigactTupleParams,
+    type SigactUploadZipParams as SigactUploadZipParams,
   };
 
   export {

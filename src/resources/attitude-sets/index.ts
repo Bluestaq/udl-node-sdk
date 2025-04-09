@@ -9,7 +9,7 @@ export {
   type AttitudeSetCreateParams,
   type AttitudeSetListParams,
   type AttitudeSetCountParams,
-  type AttitudeSetFileCreateParams,
+  type AttitudeSetCreateBulkV2Params,
   type AttitudeSetTupleParams,
 } from './attitude-sets';
 export {

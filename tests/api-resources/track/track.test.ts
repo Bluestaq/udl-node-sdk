@@ -124,8 +124,8 @@ describe('resource track', () => {
     ]);
   });
 
-  test('fileCreate: only required params', async () => {
-    const responsePromise = client.track.fileCreate([
+  test('createBulkV2: only required params', async () => {
+    const responsePromise = client.track.createBulkV2([
       { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', ts: '2021-06-07T14:17:39.653Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -137,8 +137,8 @@ describe('resource track', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('fileCreate: required and optional params', async () => {
-    const response = await client.track.fileCreate([
+  test('createBulkV2: required and optional params', async () => {
+    const response = await client.track.createBulkV2([
       {
         classificationMarking: 'U',
         dataMode: 'REAL',

@@ -87,7 +87,7 @@ export class EffectRequests extends APIResource {
    * UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  fileCreate(body: EffectRequestFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulkV2(body: EffectRequestCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-effectrequest', {
       body,
       ...options,
@@ -847,9 +847,9 @@ export namespace EffectRequestCreateBulkParams {
   }
 }
 
-export type EffectRequestFileCreateParams = Array<EffectRequestFileCreateParams.Body>;
+export type EffectRequestCreateBulkV2Params = Array<EffectRequestCreateBulkV2Params.Body>;
 
-export namespace EffectRequestFileCreateParams {
+export namespace EffectRequestCreateBulkV2Params {
   /**
    * A request for various effects on a target.
    */
@@ -1008,7 +1008,7 @@ export declare namespace EffectRequests {
     type EffectRequestListParams as EffectRequestListParams,
     type EffectRequestCountParams as EffectRequestCountParams,
     type EffectRequestCreateBulkParams as EffectRequestCreateBulkParams,
-    type EffectRequestFileCreateParams as EffectRequestFileCreateParams,
+    type EffectRequestCreateBulkV2Params as EffectRequestCreateBulkV2Params,
     type EffectRequestTupleParams as EffectRequestTupleParams,
   };
 
