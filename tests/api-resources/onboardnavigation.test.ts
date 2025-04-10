@@ -44,7 +44,7 @@ describe('resource onboardnavigation', () => {
     const responsePromise = client.onboardnavigation.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         startTime: '2021-07-20T01:02:03.123456Z',
       },
@@ -62,7 +62,7 @@ describe('resource onboardnavigation', () => {
     const response = await client.onboardnavigation.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         startTime: '2021-07-20T01:02:03.123456Z',
         id: 'ONBOARD-NAVIGATION-ID',
@@ -88,7 +88,7 @@ describe('resource onboardnavigation', () => {
     const responsePromise = client.onboardnavigation.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         startTime: '2021-07-20T01:02:03.123456Z',
       },
@@ -106,7 +106,7 @@ describe('resource onboardnavigation', () => {
     const response = await client.onboardnavigation.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         startTime: '2021-07-20T01:02:03.123456Z',
         id: 'ONBOARD-NAVIGATION-ID',

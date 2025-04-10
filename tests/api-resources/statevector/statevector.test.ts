@@ -13,7 +13,7 @@ describe('resource statevector', () => {
   test('create: only required params', async () => {
     const responsePromise = client.statevector.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       epoch: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource statevector', () => {
   test('create: required and optional params', async () => {
     const response = await client.statevector.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       epoch: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
       actualODSpan: 3.5,
@@ -86,7 +86,7 @@ describe('resource statevector', () => {
       solarRadPressCoeff: 0.0244394,
       solidEarthTides: true,
       sourcedData: ['DATA1', 'DATA2'],
-      sourcedDataTypes: ['EO'],
+      sourcedDataTypes: ['RADAR'],
       srpArea: 4.311,
       stepMode: 'AUTO',
       stepSize: 1.23,
@@ -180,7 +180,7 @@ describe('resource statevector', () => {
         [
           {
             classificationMarking: 'U',
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             epoch: '2018-01-01T16:00:00.123456Z',
             source: 'Bluestaq',
             actualODSpan: 3.5,
@@ -237,7 +237,7 @@ describe('resource statevector', () => {
             solarRadPressCoeff: 0.0244394,
             solidEarthTides: true,
             sourcedData: ['DATA1', 'DATA2'],
-            sourcedDataTypes: ['EO'],
+            sourcedDataTypes: ['RADAR'],
             srpArea: 4.311,
             stepMode: 'AUTO',
             stepSize: 1.23,
@@ -284,7 +284,7 @@ describe('resource statevector', () => {
     const responsePromise = client.statevector.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
       },
@@ -302,7 +302,7 @@ describe('resource statevector', () => {
     const response = await client.statevector.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         actualODSpan: 3.5,
@@ -359,7 +359,7 @@ describe('resource statevector', () => {
         solarRadPressCoeff: 0.0244394,
         solidEarthTides: true,
         sourcedData: ['DATA1', 'DATA2'],
-        sourcedDataTypes: ['EO'],
+        sourcedDataTypes: ['RADAR'],
         srpArea: 4.311,
         stepMode: 'AUTO',
         stepSize: 1.23,

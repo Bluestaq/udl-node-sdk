@@ -42,7 +42,7 @@ describe('resource ais', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.ais.createBulk([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', ts: '2021-02-25T12:00:00.123456Z' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-02-25T12:00:00.123456Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -57,7 +57,7 @@ describe('resource ais', () => {
     const response = await client.ais.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         ts: '2021-02-25T12:00:00.123456Z',
         id: 'AIS-ID',

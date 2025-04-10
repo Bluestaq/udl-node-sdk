@@ -13,7 +13,7 @@ describe('resource surface', () => {
   test('create: only required params', async () => {
     const responsePromise = client.surface.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'West lot',
       source: 'Bluestaq',
       type: 'PARKING',
@@ -30,7 +30,7 @@ describe('resource surface', () => {
   test('create: required and optional params', async () => {
     const response = await client.surface.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'West lot',
       source: 'Bluestaq',
       type: 'PARKING',
@@ -104,7 +104,7 @@ describe('resource surface', () => {
   test('update: only required params', async () => {
     const responsePromise = client.surface.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'West lot',
       source: 'Bluestaq',
       type: 'PARKING',
@@ -121,7 +121,7 @@ describe('resource surface', () => {
   test('update: required and optional params', async () => {
     const response = await client.surface.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'West lot',
       source: 'Bluestaq',
       type: 'PARKING',

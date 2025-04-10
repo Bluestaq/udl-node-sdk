@@ -44,7 +44,7 @@ describe('resource ionoobservation', () => {
     const responsePromise = client.ionoobservation.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         startTimeUTC: '2021-01-01T01:01:01.123456Z',
         stationId: 'STATION-ID',
@@ -65,7 +65,7 @@ describe('resource ionoobservation', () => {
     const response = await client.ionoobservation.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         startTimeUTC: '2021-01-01T01:01:01.123456Z',
         stationId: 'STATION-ID',
@@ -344,7 +344,7 @@ describe('resource ionoobservation', () => {
     const responsePromise = client.ionoobservation.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         startTimeUTC: '2021-01-01T01:01:01.123456Z',
         stationId: 'STATION-ID',
@@ -365,7 +365,7 @@ describe('resource ionoobservation', () => {
     const response = await client.ionoobservation.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         startTimeUTC: '2021-01-01T01:01:01.123456Z',
         stationId: 'STATION-ID',

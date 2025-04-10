@@ -62,7 +62,7 @@ describe('resource conjunctions', () => {
     const responsePromise = client.conjunctions.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         tca: '2021-01-01T01:01:01.123456Z',
       },
@@ -80,7 +80,7 @@ describe('resource conjunctions', () => {
     const response = await client.conjunctions.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         tca: '2021-01-01T01:01:01.123456Z',
         id: 'CONJUNCTION-ID',
@@ -134,7 +134,7 @@ describe('resource conjunctions', () => {
         stateDeptNotified: false,
         stateVector1: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           actualODSpan: 3.5,
@@ -191,7 +191,7 @@ describe('resource conjunctions', () => {
           solarRadPressCoeff: 0.0244394,
           solidEarthTides: true,
           sourcedData: ['DATA1', 'DATA2'],
-          sourcedDataTypes: ['EO'],
+          sourcedDataTypes: ['RADAR'],
           srpArea: 4.311,
           stepMode: 'AUTO',
           stepSize: 1.23,
@@ -230,7 +230,7 @@ describe('resource conjunctions', () => {
         },
         stateVector2: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           actualODSpan: 3.5,
@@ -287,7 +287,7 @@ describe('resource conjunctions', () => {
           solarRadPressCoeff: 0.0244394,
           solidEarthTides: true,
           sourcedData: ['DATA1', 'DATA2'],
-          sourcedDataTypes: ['EO'],
+          sourcedDataTypes: ['RADAR'],
           srpArea: 4.311,
           stepMode: 'AUTO',
           stepSize: 1.23,
@@ -340,7 +340,7 @@ describe('resource conjunctions', () => {
   test('createUdl: only required params', async () => {
     const responsePromise = client.conjunctions.createUdl({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       tca: '2021-01-01T01:01:01.123456Z',
     });
@@ -356,7 +356,7 @@ describe('resource conjunctions', () => {
   test('createUdl: required and optional params', async () => {
     const response = await client.conjunctions.createUdl({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       tca: '2021-01-01T01:01:01.123456Z',
       convertPosVel: true,
@@ -411,7 +411,7 @@ describe('resource conjunctions', () => {
       stateDeptNotified: false,
       stateVector1: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         actualODSpan: 3.5,
@@ -468,7 +468,7 @@ describe('resource conjunctions', () => {
         solarRadPressCoeff: 0.0244394,
         solidEarthTides: true,
         sourcedData: ['DATA1', 'DATA2'],
-        sourcedDataTypes: ['EO'],
+        sourcedDataTypes: ['RADAR'],
         srpArea: 4.311,
         stepMode: 'AUTO',
         stepSize: 1.23,
@@ -507,7 +507,7 @@ describe('resource conjunctions', () => {
       },
       stateVector2: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         actualODSpan: 3.5,
@@ -564,7 +564,7 @@ describe('resource conjunctions', () => {
         solarRadPressCoeff: 0.0244394,
         solidEarthTides: true,
         sourcedData: ['DATA1', 'DATA2'],
-        sourcedDataTypes: ['EO'],
+        sourcedDataTypes: ['RADAR'],
         srpArea: 4.311,
         stepMode: 'AUTO',
         stepSize: 1.23,
@@ -617,7 +617,7 @@ describe('resource conjunctions', () => {
     const responsePromise = client.conjunctions.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         tca: '2021-01-01T01:01:01.123456Z',
       },
@@ -635,7 +635,7 @@ describe('resource conjunctions', () => {
     const response = await client.conjunctions.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         tca: '2021-01-01T01:01:01.123456Z',
         id: 'CONJUNCTION-ID',
@@ -689,7 +689,7 @@ describe('resource conjunctions', () => {
         stateDeptNotified: false,
         stateVector1: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           actualODSpan: 3.5,
@@ -746,7 +746,7 @@ describe('resource conjunctions', () => {
           solarRadPressCoeff: 0.0244394,
           solidEarthTides: true,
           sourcedData: ['DATA1', 'DATA2'],
-          sourcedDataTypes: ['EO'],
+          sourcedDataTypes: ['RADAR'],
           srpArea: 4.311,
           stepMode: 'AUTO',
           stepSize: 1.23,
@@ -785,7 +785,7 @@ describe('resource conjunctions', () => {
         },
         stateVector2: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           actualODSpan: 3.5,
@@ -842,7 +842,7 @@ describe('resource conjunctions', () => {
           solarRadPressCoeff: 0.0244394,
           solidEarthTides: true,
           sourcedData: ['DATA1', 'DATA2'],
-          sourcedDataTypes: ['EO'],
+          sourcedDataTypes: ['RADAR'],
           srpArea: 4.311,
           stepMode: 'AUTO',
           stepSize: 1.23,

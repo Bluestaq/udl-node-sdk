@@ -42,7 +42,7 @@ describe('resource missileTracks', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.missileTracks.createBulk([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', ts: '2021-02-25T12:00:00.123456Z' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-02-25T12:00:00.123456Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -57,7 +57,7 @@ describe('resource missileTracks', () => {
     const response = await client.missileTracks.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         ts: '2021-02-25T12:00:00.123456Z',
         id: 'MissileTrack_ID',
@@ -94,7 +94,7 @@ describe('resource missileTracks', () => {
         muidSrcTrk: 'MUID-SRC-ID',
         name: 'TRACK-NAME',
         objAct: 'HOLDING',
-        objIdent: 'ASSUMED FRIEND',
+        objIdent: 'FRIEND',
         objPlat: 'WEAPON',
         objType: 'Ballistic',
         objTypeConf: 90,
@@ -140,7 +140,7 @@ describe('resource missileTracks', () => {
 
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.missileTracks.createBulkV2([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', ts: '2021-02-25T12:00:00.123456Z' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-02-25T12:00:00.123456Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -155,7 +155,7 @@ describe('resource missileTracks', () => {
     const response = await client.missileTracks.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         ts: '2021-02-25T12:00:00.123456Z',
         id: 'MissileTrack_ID',
@@ -192,7 +192,7 @@ describe('resource missileTracks', () => {
         muidSrcTrk: 'MUID-SRC-ID',
         name: 'TRACK-NAME',
         objAct: 'HOLDING',
-        objIdent: 'ASSUMED FRIEND',
+        objIdent: 'FRIEND',
         objPlat: 'WEAPON',
         objType: 'Ballistic',
         objTypeConf: 90,

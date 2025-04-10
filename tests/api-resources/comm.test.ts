@@ -13,7 +13,7 @@ describe('resource comm', () => {
   test('create: only required params', async () => {
     const responsePromise = client.comm.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'DSCS II C-7-COMM Payload',
       source: 'Bluestaq',
     });
@@ -29,17 +29,17 @@ describe('resource comm', () => {
   test('create: required and optional params', async () => {
     const response = await client.comm.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'DSCS II C-7-COMM Payload',
       source: 'Bluestaq',
       id: 'COMM-ID',
       description: 'Description for comm A',
       entity: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         name: 'Example name',
         source: 'Bluestaq',
-        type: 'AIRCRAFT',
+        type: 'ONORBIT',
         countryCode: 'US',
         idEntity: 'ENTITY-ID',
         idLocation: 'LOCATION-ID',
@@ -47,7 +47,7 @@ describe('resource comm', () => {
         idOperatingUnit: 'OPERATINGUNIT-ID',
         location: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           name: 'Example location',
           source: 'Bluestaq',
           altitude: 10.23,
@@ -59,11 +59,11 @@ describe('resource comm', () => {
         },
         onOrbit: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           satNo: 1,
           source: 'Bluestaq',
           altName: 'Alternate Name',
-          category: 'Unknown',
+          category: 'Lunar',
           commonName: 'Example common name',
           constellation: 'Big Dipper',
           countryCode: 'US',
@@ -74,7 +74,7 @@ describe('resource comm', () => {
           launchSiteId: 'LAUNCHSITE-ID',
           lifetimeYears: 10,
           missionNumber: 'Expedition 1',
-          objectType: 'ROCKET BODY',
+          objectType: 'PAYLOAD',
           origin: 'THIRD_PARTY_DATASOURCE',
         },
         origin: 'THIRD_PARTY_DATASOURCE',
@@ -108,7 +108,7 @@ describe('resource comm', () => {
   test('update: only required params', async () => {
     const responsePromise = client.comm.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'DSCS II C-7-COMM Payload',
       source: 'Bluestaq',
     });
@@ -124,7 +124,7 @@ describe('resource comm', () => {
   test('update: required and optional params', async () => {
     const response = await client.comm.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'DSCS II C-7-COMM Payload',
       source: 'Bluestaq',
       body_id: 'COMM-ID',

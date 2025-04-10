@@ -13,7 +13,7 @@ describe('resource operatingunit', () => {
   test('create: only required params', async () => {
     const responsePromise = client.operatingunit.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'SOME_NAME',
       source: 'some.user',
     });
@@ -29,7 +29,7 @@ describe('resource operatingunit', () => {
   test('create: required and optional params', async () => {
     const response = await client.operatingunit.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'SOME_NAME',
       source: 'some.user',
       airDefArea: 'AL006',
@@ -92,7 +92,7 @@ describe('resource operatingunit', () => {
   test('update: only required params', async () => {
     const responsePromise = client.operatingunit.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'SOME_NAME',
       source: 'some.user',
     });
@@ -108,7 +108,7 @@ describe('resource operatingunit', () => {
   test('update: required and optional params', async () => {
     const response = await client.operatingunit.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'SOME_NAME',
       source: 'some.user',
       airDefArea: 'AL006',

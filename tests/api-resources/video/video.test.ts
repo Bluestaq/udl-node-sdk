@@ -13,7 +13,7 @@ describe('resource video', () => {
   test('create: only required params', async () => {
     const responsePromise = client.video.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       description: 'description',
       name: 'name',
       source: 'Bluestaq',
@@ -30,7 +30,7 @@ describe('resource video', () => {
   test('create: required and optional params', async () => {
     const response = await client.video.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       description: 'description',
       name: 'name',
       source: 'Bluestaq',

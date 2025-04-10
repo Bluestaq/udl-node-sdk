@@ -13,7 +13,7 @@ describe('resource launchdetection', () => {
   test('create: only required params', async () => {
     const responsePromise = client.launchdetection.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       messageType: 'Example-Msg-Type',
       observationLatitude: 45.23,
       observationLongitude: 1.23,
@@ -33,7 +33,7 @@ describe('resource launchdetection', () => {
   test('create: required and optional params', async () => {
     const response = await client.launchdetection.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       messageType: 'Example-Msg-Type',
       observationLatitude: 45.23,
       observationLongitude: 1.23,
@@ -60,7 +60,7 @@ describe('resource launchdetection', () => {
   test('update: only required params', async () => {
     const responsePromise = client.launchdetection.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       messageType: 'Example-Msg-Type',
       observationLatitude: 45.23,
       observationLongitude: 1.23,
@@ -80,7 +80,7 @@ describe('resource launchdetection', () => {
   test('update: required and optional params', async () => {
     const response = await client.launchdetection.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       messageType: 'Example-Msg-Type',
       observationLatitude: 45.23,
       observationLongitude: 1.23,

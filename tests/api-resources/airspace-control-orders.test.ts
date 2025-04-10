@@ -13,7 +13,7 @@ describe('resource airspaceControlOrders', () => {
   test('create: only required params', async () => {
     const responsePromise = client.airspaceControlOrders.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       opExName: 'DESERT WIND',
       originator: 'USCENTCOM',
       source: 'Bluestaq',
@@ -31,7 +31,7 @@ describe('resource airspaceControlOrders', () => {
   test('create: required and optional params', async () => {
     const response = await client.airspaceControlOrders.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       opExName: 'DESERT WIND',
       originator: 'USCENTCOM',
       source: 'Bluestaq',
@@ -182,7 +182,7 @@ describe('resource airspaceControlOrders', () => {
     const responsePromise = client.airspaceControlOrders.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         opExName: 'DESERT WIND',
         originator: 'USCENTCOM',
         source: 'Bluestaq',
@@ -202,7 +202,7 @@ describe('resource airspaceControlOrders', () => {
     const response = await client.airspaceControlOrders.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         opExName: 'DESERT WIND',
         originator: 'USCENTCOM',
         source: 'Bluestaq',

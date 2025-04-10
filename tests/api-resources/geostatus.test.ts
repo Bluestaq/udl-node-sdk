@@ -13,7 +13,7 @@ describe('resource geostatus', () => {
   test('create: only required params', async () => {
     const responsePromise = client.geostatus.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -28,7 +28,7 @@ describe('resource geostatus', () => {
   test('create: required and optional params', async () => {
     const response = await client.geostatus.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       id: 'GEOSTATUS-ID',
       confidenceLevel: 'Low',
@@ -82,7 +82,7 @@ describe('resource geostatus', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.geostatus.createBulk([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -97,7 +97,7 @@ describe('resource geostatus', () => {
     const response = await client.geostatus.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         id: 'GEOSTATUS-ID',
         confidenceLevel: 'Low',

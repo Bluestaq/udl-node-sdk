@@ -11,7 +11,7 @@ const client = new Unifieddatalibrary({
 
 describe('resource countries', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.countries.create({ code: 'US', dataMode: 'REAL', source: 'Bluestaq' });
+    const responsePromise = client.countries.create({ code: 'US', dataMode: 'TEST', source: 'Bluestaq' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,7 +24,7 @@ describe('resource countries', () => {
   test('create: required and optional params', async () => {
     const response = await client.countries.create({
       code: 'US',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       codeAlt: 'US',
       fipsCode: 'US',
@@ -54,7 +54,7 @@ describe('resource countries', () => {
   test('update: only required params', async () => {
     const responsePromise = client.countries.update('code', {
       body_code: 'US',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -69,7 +69,7 @@ describe('resource countries', () => {
   test('update: required and optional params', async () => {
     const response = await client.countries.update('code', {
       body_code: 'US',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       codeAlt: 'US',
       fipsCode: 'US',

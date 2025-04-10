@@ -44,7 +44,7 @@ describe('resource spaceenvobservation', () => {
     const responsePromise = client.spaceenvobservation.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2023-06-07T14:17:39.653Z',
         source: 'Bluestaq',
       },
@@ -62,7 +62,7 @@ describe('resource spaceenvobservation', () => {
     const response = await client.spaceenvobservation.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2023-06-07T14:17:39.653Z',
         source: 'Bluestaq',
         id: 'f13f82b8-5d2a-407a-b3f3-1fe30ca79eae',
@@ -117,7 +117,7 @@ describe('resource spaceenvobservation', () => {
     const responsePromise = client.spaceenvobservation.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2023-06-07T14:17:39.653Z',
         source: 'Bluestaq',
       },
@@ -135,7 +135,7 @@ describe('resource spaceenvobservation', () => {
     const response = await client.spaceenvobservation.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2023-06-07T14:17:39.653Z',
         source: 'Bluestaq',
         id: 'f13f82b8-5d2a-407a-b3f3-1fe30ca79eae',

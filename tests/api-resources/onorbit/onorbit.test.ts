@@ -13,7 +13,7 @@ describe('resource onorbit', () => {
   test('create: only required params', async () => {
     const responsePromise = client.onorbit.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       satNo: 1,
       source: 'Bluestaq',
     });
@@ -29,11 +29,11 @@ describe('resource onorbit', () => {
   test('create: required and optional params', async () => {
     const response = await client.onorbit.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       satNo: 1,
       source: 'Bluestaq',
       altName: 'Alternate Name',
-      category: 'Unknown',
+      category: 'Lunar',
       commonName: 'Example common name',
       constellation: 'Big Dipper',
       countryCode: 'US',
@@ -44,7 +44,7 @@ describe('resource onorbit', () => {
       launchSiteId: 'LAUNCHSITE-ID',
       lifetimeYears: 10,
       missionNumber: 'Expedition 1',
-      objectType: 'ROCKET BODY',
+      objectType: 'PAYLOAD',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });
@@ -52,7 +52,7 @@ describe('resource onorbit', () => {
   test('update: only required params', async () => {
     const responsePromise = client.onorbit.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       satNo: 1,
       source: 'Bluestaq',
     });
@@ -68,11 +68,11 @@ describe('resource onorbit', () => {
   test('update: required and optional params', async () => {
     const response = await client.onorbit.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       satNo: 1,
       source: 'Bluestaq',
       altName: 'Alternate Name',
-      category: 'Unknown',
+      category: 'Lunar',
       commonName: 'Example common name',
       constellation: 'Big Dipper',
       countryCode: 'US',
@@ -83,7 +83,7 @@ describe('resource onorbit', () => {
       launchSiteId: 'LAUNCHSITE-ID',
       lifetimeYears: 10,
       missionNumber: 'Expedition 1',
-      objectType: 'ROCKET BODY',
+      objectType: 'PAYLOAD',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

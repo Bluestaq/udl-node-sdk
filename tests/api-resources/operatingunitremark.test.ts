@@ -13,7 +13,7 @@ describe('resource operatingunitremark', () => {
   test('create: only required params', async () => {
     const responsePromise = client.operatingunitremark.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOperatingUnit: 'OperatingUnit-ID',
       source: 'some.user',
       text: 'This is a remark',
@@ -30,7 +30,7 @@ describe('resource operatingunitremark', () => {
   test('create: required and optional params', async () => {
     const response = await client.operatingunitremark.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOperatingUnit: 'OperatingUnit-ID',
       source: 'some.user',
       text: 'This is a remark',
@@ -83,7 +83,7 @@ describe('resource operatingunitremark', () => {
     const responsePromise = client.operatingunitremark.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         idOperatingUnit: 'OperatingUnit-ID',
         source: 'some.user',
         text: 'This is a remark',
@@ -102,7 +102,7 @@ describe('resource operatingunitremark', () => {
     const response = await client.operatingunitremark.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         idOperatingUnit: 'OperatingUnit-ID',
         source: 'some.user',
         text: 'This is a remark',

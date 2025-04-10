@@ -42,7 +42,7 @@ describe('resource isrCollections', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.isrCollections.createBulk([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -57,7 +57,7 @@ describe('resource isrCollections', () => {
     const response = await client.isrCollections.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         id: 'ISRCOLLECTION-ID',
         collectionRequirements: [
@@ -232,7 +232,7 @@ describe('resource isrCollections', () => {
 
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.isrCollections.createBulkV2([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -247,7 +247,7 @@ describe('resource isrCollections', () => {
     const response = await client.isrCollections.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         id: 'ISRCOLLECTION-ID',
         collectionRequirements: [

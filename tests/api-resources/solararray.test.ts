@@ -12,7 +12,7 @@ const client = new Unifieddatalibrary({
 describe('resource solararray', () => {
   test('create: only required params', async () => {
     const responsePromise = client.solararray.create({
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Solar1',
       source: 'Bluestaq',
     });
@@ -27,7 +27,7 @@ describe('resource solararray', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.solararray.create({
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Solar1',
       source: 'Bluestaq',
       id: 'SOLARARRAY-ID',
@@ -37,7 +37,7 @@ describe('resource solararray', () => {
 
   test('update: only required params', async () => {
     const responsePromise = client.solararray.update('id', {
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Solar1',
       source: 'Bluestaq',
     });
@@ -52,7 +52,7 @@ describe('resource solararray', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.solararray.update('id', {
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Solar1',
       source: 'Bluestaq',
       body_id: 'SOLARARRAY-ID',

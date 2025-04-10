@@ -44,7 +44,7 @@ describe('resource ephemeris', () => {
     const responsePromise = client.ephemeris.createBulkV2({
       category: 'ANALYST',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       numPoints: 1,
       pointEndTime: '2018-01-01T16:00:00.123456Z',
       pointStartTime: '2018-01-01T16:00:00.123456Z',
@@ -64,7 +64,7 @@ describe('resource ephemeris', () => {
     const response = await client.ephemeris.createBulkV2({
       category: 'ANALYST',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       numPoints: 1,
       pointEndTime: '2018-01-01T16:00:00.123456Z',
       pointStartTime: '2018-01-01T16:00:00.123456Z',
@@ -82,7 +82,7 @@ describe('resource ephemeris', () => {
       ephemerisList: [
         {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           source: 'Bluestaq',
           ts: '2018-01-01T16:00:00.123456Z',
           xpos: 1.1,

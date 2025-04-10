@@ -13,7 +13,7 @@ describe('resource orbitdetermination', () => {
   test('create: only required params', async () => {
     const responsePromise = client.orbitdetermination.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endTime: '2023-08-28T15:20:21.247192Z',
       initialOD: false,
       method: 'BLS',
@@ -32,7 +32,7 @@ describe('resource orbitdetermination', () => {
   test('create: required and optional params', async () => {
     const response = await client.orbitdetermination.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endTime: '2023-08-28T15:20:21.247192Z',
       initialOD: false,
       method: 'BLS',
@@ -45,7 +45,7 @@ describe('resource orbitdetermination', () => {
       agomModel: 'RandomWalk',
       aprioriElset: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         agom: 0.0126,
@@ -74,7 +74,7 @@ describe('resource orbitdetermination', () => {
         satNo: 12,
         semiMajorAxis: 1.1,
         sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-        sourcedDataTypes: ['EO', 'RADAR'],
+        sourcedDataTypes: ['RADAR', 'RF'],
         tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
         transactionId: 'TRANSACTION-ID',
         uct: false,
@@ -83,7 +83,7 @@ describe('resource orbitdetermination', () => {
       aprioriIdStateVector: '6e291992-8ae3-4592-bb0f-055715bf4803',
       aprioriStateVector: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         actualODSpan: 3.5,
@@ -140,7 +140,7 @@ describe('resource orbitdetermination', () => {
         solarRadPressCoeff: 0.0244394,
         solidEarthTides: true,
         sourcedData: ['DATA1', 'DATA2'],
-        sourcedDataTypes: ['EO'],
+        sourcedDataTypes: ['RADAR'],
         srpArea: 4.311,
         stepMode: 'AUTO',
         stepSize: 1.23,
@@ -284,7 +284,7 @@ describe('resource orbitdetermination', () => {
         [
           {
             classificationMarking: 'U',
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             endTime: '2023-08-28T15:20:21.247192Z',
             initialOD: false,
             method: 'BLS',
@@ -297,7 +297,7 @@ describe('resource orbitdetermination', () => {
             agomModel: 'RandomWalk',
             aprioriElset: {
               classificationMarking: 'U',
-              dataMode: 'REAL',
+              dataMode: 'TEST',
               epoch: '2018-01-01T16:00:00.123456Z',
               source: 'Bluestaq',
               agom: 0.0126,
@@ -326,7 +326,7 @@ describe('resource orbitdetermination', () => {
               satNo: 12,
               semiMajorAxis: 1.1,
               sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-              sourcedDataTypes: ['EO', 'RADAR'],
+              sourcedDataTypes: ['RADAR', 'RF'],
               tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
               transactionId: 'TRANSACTION-ID',
               uct: false,
@@ -335,7 +335,7 @@ describe('resource orbitdetermination', () => {
             aprioriIdStateVector: '6e291992-8ae3-4592-bb0f-055715bf4803',
             aprioriStateVector: {
               classificationMarking: 'U',
-              dataMode: 'REAL',
+              dataMode: 'TEST',
               epoch: '2018-01-01T16:00:00.123456Z',
               source: 'Bluestaq',
               actualODSpan: 3.5,
@@ -392,7 +392,7 @@ describe('resource orbitdetermination', () => {
               solarRadPressCoeff: 0.0244394,
               solidEarthTides: true,
               sourcedData: ['DATA1', 'DATA2'],
-              sourcedDataTypes: ['EO'],
+              sourcedDataTypes: ['RADAR'],
               srpArea: 4.311,
               stepMode: 'AUTO',
               stepSize: 1.23,
@@ -463,7 +463,7 @@ describe('resource orbitdetermination', () => {
     const responsePromise = client.orbitdetermination.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         endTime: '2023-08-28T15:20:21.247192Z',
         initialOD: false,
         method: 'BLS',
@@ -484,7 +484,7 @@ describe('resource orbitdetermination', () => {
     const response = await client.orbitdetermination.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         endTime: '2023-08-28T15:20:21.247192Z',
         initialOD: false,
         method: 'BLS',
@@ -497,7 +497,7 @@ describe('resource orbitdetermination', () => {
         agomModel: 'RandomWalk',
         aprioriElset: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           agom: 0.0126,
@@ -526,7 +526,7 @@ describe('resource orbitdetermination', () => {
           satNo: 12,
           semiMajorAxis: 1.1,
           sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-          sourcedDataTypes: ['EO', 'RADAR'],
+          sourcedDataTypes: ['RADAR', 'RF'],
           tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
           transactionId: 'TRANSACTION-ID',
           uct: false,
@@ -535,7 +535,7 @@ describe('resource orbitdetermination', () => {
         aprioriIdStateVector: '6e291992-8ae3-4592-bb0f-055715bf4803',
         aprioriStateVector: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           actualODSpan: 3.5,
@@ -592,7 +592,7 @@ describe('resource orbitdetermination', () => {
           solarRadPressCoeff: 0.0244394,
           solidEarthTides: true,
           sourcedData: ['DATA1', 'DATA2'],
-          sourcedDataTypes: ['EO'],
+          sourcedDataTypes: ['RADAR'],
           srpArea: 4.311,
           stepMode: 'AUTO',
           stepSize: 1.23,

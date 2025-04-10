@@ -13,7 +13,7 @@ describe('resource location', () => {
   test('create: only required params', async () => {
     const responsePromise = client.location.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Example location',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource location', () => {
   test('create: required and optional params', async () => {
     const response = await client.location.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Example location',
       source: 'Bluestaq',
       altitude: 10.23,
@@ -44,7 +44,7 @@ describe('resource location', () => {
   test('update: only required params', async () => {
     const responsePromise = client.location.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Example location',
       source: 'Bluestaq',
     });
@@ -60,7 +60,7 @@ describe('resource location', () => {
   test('update: required and optional params', async () => {
     const response = await client.location.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Example location',
       source: 'Bluestaq',
       altitude: 10.23,

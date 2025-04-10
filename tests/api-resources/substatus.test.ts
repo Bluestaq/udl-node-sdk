@@ -13,12 +13,12 @@ describe('resource substatus', () => {
   test('create: only required params', async () => {
     const responsePromise = client.substatus.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       notes: 'Sample Notes',
       source: 'Bluestaq',
       status: 'FMC',
       statusId: 'REF-STATUS-ID',
-      type: 'mwCap',
+      type: 'mdCap',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -32,12 +32,12 @@ describe('resource substatus', () => {
   test('create: required and optional params', async () => {
     const response = await client.substatus.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       notes: 'Sample Notes',
       source: 'Bluestaq',
       status: 'FMC',
       statusId: 'REF-STATUS-ID',
-      type: 'mwCap',
+      type: 'mdCap',
       id: 'SUBSTATUS-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
@@ -46,12 +46,12 @@ describe('resource substatus', () => {
   test('update: only required params', async () => {
     const responsePromise = client.substatus.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       notes: 'Sample Notes',
       source: 'Bluestaq',
       status: 'FMC',
       statusId: 'REF-STATUS-ID',
-      type: 'mwCap',
+      type: 'mdCap',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -65,12 +65,12 @@ describe('resource substatus', () => {
   test('update: required and optional params', async () => {
     const response = await client.substatus.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       notes: 'Sample Notes',
       source: 'Bluestaq',
       status: 'FMC',
       statusId: 'REF-STATUS-ID',
-      type: 'mwCap',
+      type: 'mdCap',
       body_id: 'SUBSTATUS-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });

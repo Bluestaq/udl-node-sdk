@@ -14,7 +14,7 @@ describe('resource airTaskingOrders', () => {
     const responsePromise = client.airTaskingOrders.create({
       beginTs: '2023-10-25T12:00:00.123Z',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       opExerName: 'DESERT WIND',
       source: 'Bluestaq',
     });
@@ -31,7 +31,7 @@ describe('resource airTaskingOrders', () => {
     const response = await client.airTaskingOrders.create({
       beginTs: '2023-10-25T12:00:00.123Z',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       opExerName: 'DESERT WIND',
       source: 'Bluestaq',
       id: 'POI-ID',

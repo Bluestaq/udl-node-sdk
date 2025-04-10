@@ -13,7 +13,7 @@ describe('resource airfields', () => {
   test('create: only required params', async () => {
     const responsePromise = client.airfields.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'USAF Academy AFLD',
       source: 'Bluestaq',
       type: 'Commercial',
@@ -30,7 +30,7 @@ describe('resource airfields', () => {
   test('create: required and optional params', async () => {
     const response = await client.airfields.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'USAF Academy AFLD',
       source: 'Bluestaq',
       type: 'Commercial',
@@ -84,7 +84,7 @@ describe('resource airfields', () => {
   test('update: only required params', async () => {
     const responsePromise = client.airfields.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'USAF Academy AFLD',
       source: 'Bluestaq',
       type: 'Commercial',
@@ -101,7 +101,7 @@ describe('resource airfields', () => {
   test('update: required and optional params', async () => {
     const response = await client.airfields.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'USAF Academy AFLD',
       source: 'Bluestaq',
       type: 'Commercial',

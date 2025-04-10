@@ -13,7 +13,7 @@ describe('resource rfobservation', () => {
   test('create: only required params', async () => {
     const responsePromise = client.rfobservation.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obTime: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
       type: 'RF',
@@ -30,7 +30,7 @@ describe('resource rfobservation', () => {
   test('create: required and optional params', async () => {
     const response = await client.rfobservation.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obTime: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
       type: 'RF',
@@ -158,7 +158,7 @@ describe('resource rfobservation', () => {
     const responsePromise = client.rfobservation.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         type: 'RF',
@@ -177,7 +177,7 @@ describe('resource rfobservation', () => {
     const response = await client.rfobservation.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         type: 'RF',
@@ -276,7 +276,7 @@ describe('resource rfobservation', () => {
     const responsePromise = client.rfobservation.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         type: 'RF',
@@ -295,7 +295,7 @@ describe('resource rfobservation', () => {
     const response = await client.rfobservation.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         type: 'RF',

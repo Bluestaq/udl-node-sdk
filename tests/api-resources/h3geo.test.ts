@@ -13,10 +13,10 @@ describe('resource h3geo', () => {
   test('create: only required params', async () => {
     const responsePromise = client.h3geo.create({
       cells: [
-        { cellId: '830b90fffffffff', classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq' },
+        { cellId: '830b90fffffffff', classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' },
       ],
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       numCells: 1,
       source: 'Bluestaq',
       startTime: '2024-07-02T00:00:00.123Z',
@@ -36,7 +36,7 @@ describe('resource h3geo', () => {
         {
           cellId: '830b90fffffffff',
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           source: 'Bluestaq',
           id: '443fg911-4ab6-3d74-1991-372149d87f89',
           altMean: 450.1,
@@ -54,7 +54,7 @@ describe('resource h3geo', () => {
         },
       ],
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       numCells: 1,
       source: 'Bluestaq',
       startTime: '2024-07-02T00:00:00.123Z',

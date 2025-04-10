@@ -32,7 +32,7 @@ describe('resource airfieldslots', () => {
     const responsePromise = client.airfieldslots.update('id', {
       airfieldName: 'USAF Academy AFLD',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Apron 5',
       source: 'Bluestaq',
     });
@@ -49,7 +49,7 @@ describe('resource airfieldslots', () => {
     const response = await client.airfieldslots.update('id', {
       airfieldName: 'USAF Academy AFLD',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Apron 5',
       source: 'Bluestaq',
       body_id: 'be831d39-1822-da9f-7ace-6cc5643397dc',

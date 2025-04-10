@@ -13,7 +13,7 @@ describe('resource onorbitthruster', () => {
   test('create: only required params', async () => {
     const responsePromise = client.onorbitthruster.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEngine: 'ENGINE-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
@@ -30,7 +30,7 @@ describe('resource onorbitthruster', () => {
   test('create: required and optional params', async () => {
     const response = await client.onorbitthruster.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEngine: 'ENGINE-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
@@ -44,7 +44,7 @@ describe('resource onorbitthruster', () => {
   test('update: only required params', async () => {
     const responsePromise = client.onorbitthruster.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEngine: 'ENGINE-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
@@ -61,7 +61,7 @@ describe('resource onorbitthruster', () => {
   test('update: required and optional params', async () => {
     const response = await client.onorbitthruster.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEngine: 'ENGINE-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',

@@ -13,7 +13,7 @@ describe('resource aircraftSortie', () => {
   test('create: only required params', async () => {
     const responsePromise = client.airOperations.aircraftSortie.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       plannedDepTime: '2021-01-01T01:01:01.123Z',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource aircraftSortie', () => {
   test('create: required and optional params', async () => {
     const response = await client.airOperations.aircraftSortie.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       plannedDepTime: '2021-01-01T01:01:01.123Z',
       source: 'Bluestaq',
       id: 'AIRCRAFTSORTIE-ID',
@@ -89,11 +89,11 @@ describe('resource aircraftSortie', () => {
       parkingLoc: 'KCOS',
       passengers: 17,
       plannedArrTime: '2021-01-01T01:01:01.123Z',
-      pprStatus: 'NOT REQUIRED',
+      pprStatus: 'PENDING',
       primarySCL: 'ABC',
       reqConfig: 'C-1',
       resultRemarks: 'Some remark about aircraft A',
-      rvnReq: 'N',
+      rvnReq: 'R',
       scheduleRemarks: 'Some schedule remark about aircraft A',
       secondarySCL: 'ABC',
       soe: 'OPS',
@@ -144,7 +144,7 @@ describe('resource aircraftSortie', () => {
     const responsePromise = client.airOperations.aircraftSortie.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         plannedDepTime: '2021-01-01T01:01:01.123Z',
         source: 'Bluestaq',
       },
@@ -162,7 +162,7 @@ describe('resource aircraftSortie', () => {
     const response = await client.airOperations.aircraftSortie.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         plannedDepTime: '2021-01-01T01:01:01.123Z',
         source: 'Bluestaq',
         id: 'AIRCRAFTSORTIE-ID',
@@ -222,11 +222,11 @@ describe('resource aircraftSortie', () => {
         parkingLoc: 'KCOS',
         passengers: 17,
         plannedArrTime: '2021-01-01T01:01:01.123Z',
-        pprStatus: 'NOT REQUIRED',
+        pprStatus: 'PENDING',
         primarySCL: 'ABC',
         reqConfig: 'C-1',
         resultRemarks: 'Some remark about aircraft A',
-        rvnReq: 'N',
+        rvnReq: 'R',
         scheduleRemarks: 'Some schedule remark about aircraft A',
         secondarySCL: 'ABC',
         soe: 'OPS',

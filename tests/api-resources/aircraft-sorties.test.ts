@@ -31,7 +31,7 @@ describe('resource aircraftSorties', () => {
   test('update: only required params', async () => {
     const responsePromise = client.aircraftSorties.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       plannedDepTime: '2021-01-01T01:01:01.123Z',
       source: 'Bluestaq',
     });
@@ -47,7 +47,7 @@ describe('resource aircraftSorties', () => {
   test('update: required and optional params', async () => {
     const response = await client.aircraftSorties.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       plannedDepTime: '2021-01-01T01:01:01.123Z',
       source: 'Bluestaq',
       body_id: 'AIRCRAFTSORTIE-ID',
@@ -107,11 +107,11 @@ describe('resource aircraftSorties', () => {
       parkingLoc: 'KCOS',
       passengers: 17,
       plannedArrTime: '2021-01-01T01:01:01.123Z',
-      pprStatus: 'NOT REQUIRED',
+      pprStatus: 'PENDING',
       primarySCL: 'ABC',
       reqConfig: 'C-1',
       resultRemarks: 'Some remark about aircraft A',
-      rvnReq: 'N',
+      rvnReq: 'R',
       scheduleRemarks: 'Some schedule remark about aircraft A',
       secondarySCL: 'ABC',
       soe: 'OPS',

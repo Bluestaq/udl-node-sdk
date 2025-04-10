@@ -15,7 +15,7 @@ describe('resource airTaskingOrders', () => {
       {
         beginTs: '2023-10-25T12:00:00.123Z',
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         opExerName: 'DESERT WIND',
         source: 'Bluestaq',
       },
@@ -34,7 +34,7 @@ describe('resource airTaskingOrders', () => {
       {
         beginTs: '2023-10-25T12:00:00.123Z',
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         opExerName: 'DESERT WIND',
         source: 'Bluestaq',
         id: 'POI-ID',

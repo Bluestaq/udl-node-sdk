@@ -13,7 +13,7 @@ describe('resource equipmentremarks', () => {
   test('create: only required params', async () => {
     const responsePromise = client.equipmentremarks.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEquipment: 'EQUIPMENT-ID',
       source: 'Bluestaq',
       text: 'This is a remark',
@@ -30,7 +30,7 @@ describe('resource equipmentremarks', () => {
   test('create: required and optional params', async () => {
     const response = await client.equipmentremarks.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEquipment: 'EQUIPMENT-ID',
       source: 'Bluestaq',
       text: 'This is a remark',
@@ -122,7 +122,7 @@ describe('resource equipmentremarks', () => {
         [
           {
             classificationMarking: 'U',
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             idEquipment: 'EQUIPMENT-ID',
             source: 'Bluestaq',
             text: 'This is a remark',

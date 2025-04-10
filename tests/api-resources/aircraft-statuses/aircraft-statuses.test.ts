@@ -13,7 +13,7 @@ describe('resource aircraftStatuses', () => {
   test('create: only required params', async () => {
     const responsePromise = client.aircraftStatuses.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idAircraft: '29232269-e4c2-45c9-aa21-039a33209340',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource aircraftStatuses', () => {
   test('create: required and optional params', async () => {
     const response = await client.aircraftStatuses.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idAircraft: '29232269-e4c2-45c9-aa21-039a33209340',
       source: 'Bluestaq',
       id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
@@ -100,7 +100,7 @@ describe('resource aircraftStatuses', () => {
   test('update: only required params', async () => {
     const responsePromise = client.aircraftStatuses.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idAircraft: '29232269-e4c2-45c9-aa21-039a33209340',
       source: 'Bluestaq',
     });
@@ -116,7 +116,7 @@ describe('resource aircraftStatuses', () => {
   test('update: required and optional params', async () => {
     const response = await client.aircraftStatuses.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idAircraft: '29232269-e4c2-45c9-aa21-039a33209340',
       source: 'Bluestaq',
       body_id: '0167f577-e06c-358e-85aa-0a07a730bdd0',

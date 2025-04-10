@@ -13,7 +13,7 @@ describe('resource linkStatus', () => {
   test('create: only required params', async () => {
     const responsePromise = client.linkStatus.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endPoint1Lat: 45.23,
       endPoint1Lon: 80.23,
       endPoint1Name: 'Example endpoint',
@@ -37,7 +37,7 @@ describe('resource linkStatus', () => {
   test('create: required and optional params', async () => {
     const response = await client.linkStatus.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endPoint1Lat: 45.23,
       endPoint1Lon: 80.23,
       endPoint1Name: 'Example endpoint',

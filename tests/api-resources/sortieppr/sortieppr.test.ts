@@ -13,7 +13,7 @@ describe('resource sortieppr', () => {
   test('create: only required params', async () => {
     const responsePromise = client.sortieppr.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource sortieppr', () => {
   test('create: required and optional params', async () => {
     const response = await client.sortieppr.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
       source: 'Bluestaq',
       id: 'SORTIEPPR-ID',
@@ -48,7 +48,7 @@ describe('resource sortieppr', () => {
   test('update: only required params', async () => {
     const responsePromise = client.sortieppr.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
       source: 'Bluestaq',
     });
@@ -64,7 +64,7 @@ describe('resource sortieppr', () => {
   test('update: required and optional params', async () => {
     const response = await client.sortieppr.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
       source: 'Bluestaq',
       body_id: 'SORTIEPPR-ID',
@@ -132,7 +132,7 @@ describe('resource sortieppr', () => {
     const responsePromise = client.sortieppr.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
         source: 'Bluestaq',
       },
@@ -150,7 +150,7 @@ describe('resource sortieppr', () => {
     const response = await client.sortieppr.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
         source: 'Bluestaq',
         id: 'SORTIEPPR-ID',
@@ -171,7 +171,7 @@ describe('resource sortieppr', () => {
     const responsePromise = client.sortieppr.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
         source: 'Bluestaq',
       },
@@ -189,7 +189,7 @@ describe('resource sortieppr', () => {
     const response = await client.sortieppr.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
         source: 'Bluestaq',
         id: 'SORTIEPPR-ID',

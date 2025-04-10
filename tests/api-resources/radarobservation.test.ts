@@ -13,7 +13,7 @@ describe('resource radarobservation', () => {
   test('create: only required params', async () => {
     const responsePromise = client.radarobservation.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obTime: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource radarobservation', () => {
   test('create: required and optional params', async () => {
     const response = await client.radarobservation.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obTime: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
       id: 'RADAROBSERVATION-ID',
@@ -119,7 +119,7 @@ describe('resource radarobservation', () => {
     const responsePromise = client.radarobservation.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
       },
@@ -137,7 +137,7 @@ describe('resource radarobservation', () => {
     const response = await client.radarobservation.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         id: 'RADAROBSERVATION-ID',
@@ -198,7 +198,7 @@ describe('resource radarobservation', () => {
     const responsePromise = client.radarobservation.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
       },
@@ -216,7 +216,7 @@ describe('resource radarobservation', () => {
     const response = await client.radarobservation.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         id: 'RADAROBSERVATION-ID',

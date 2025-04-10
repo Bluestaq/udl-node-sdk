@@ -13,7 +13,7 @@ describe('resource aircraftStatusRemarks', () => {
   test('create: only required params', async () => {
     const responsePromise = client.aircraftStatusRemarks.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idAircraftStatus: '388b1f64-ccff-4113-b049-3cf5542c2a42',
       source: 'Bluestaq',
       text: 'Remark text',
@@ -30,7 +30,7 @@ describe('resource aircraftStatusRemarks', () => {
   test('create: required and optional params', async () => {
     const response = await client.aircraftStatusRemarks.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idAircraftStatus: '388b1f64-ccff-4113-b049-3cf5542c2a42',
       source: 'Bluestaq',
       text: 'Remark text',

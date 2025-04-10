@@ -13,7 +13,7 @@ describe('resource onorbitdetails', () => {
   test('create: only required params', async () => {
     const responsePromise = client.onorbitdetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnOrbit: 'REF-ONORBIT-ID',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource onorbitdetails', () => {
   test('create: required and optional params', async () => {
     const response = await client.onorbitdetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnOrbit: 'REF-ONORBIT-ID',
       source: 'Bluestaq',
       id: 'ONORBITDETAILS-ID',
@@ -80,7 +80,7 @@ describe('resource onorbitdetails', () => {
   test('update: only required params', async () => {
     const responsePromise = client.onorbitdetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnOrbit: 'REF-ONORBIT-ID',
       source: 'Bluestaq',
     });
@@ -96,7 +96,7 @@ describe('resource onorbitdetails', () => {
   test('update: required and optional params', async () => {
     const response = await client.onorbitdetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnOrbit: 'REF-ONORBIT-ID',
       source: 'Bluestaq',
       body_id: 'ONORBITDETAILS-ID',

@@ -13,7 +13,7 @@ describe('resource onorbitsolararray', () => {
   test('create: only required params', async () => {
     const responsePromise = client.onorbitsolararray.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnOrbit: 'ONORBIT-ID',
       idSolarArray: 'SOLARARRAY-ID',
       source: 'Bluestaq',
@@ -30,7 +30,7 @@ describe('resource onorbitsolararray', () => {
   test('create: required and optional params', async () => {
     const response = await client.onorbitsolararray.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnOrbit: 'ONORBIT-ID',
       idSolarArray: 'SOLARARRAY-ID',
       source: 'Bluestaq',
@@ -38,7 +38,7 @@ describe('resource onorbitsolararray', () => {
       origin: 'THIRD_PARTY_DATASOURCE',
       quantity: 10,
       solarArray: {
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         name: 'Solar1',
         source: 'Bluestaq',
         id: 'SOLARARRAY-ID',
@@ -50,7 +50,7 @@ describe('resource onorbitsolararray', () => {
   test('update: only required params', async () => {
     const responsePromise = client.onorbitsolararray.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnOrbit: 'ONORBIT-ID',
       idSolarArray: 'SOLARARRAY-ID',
       source: 'Bluestaq',
@@ -67,7 +67,7 @@ describe('resource onorbitsolararray', () => {
   test('update: required and optional params', async () => {
     const response = await client.onorbitsolararray.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnOrbit: 'ONORBIT-ID',
       idSolarArray: 'SOLARARRAY-ID',
       source: 'Bluestaq',
@@ -75,7 +75,7 @@ describe('resource onorbitsolararray', () => {
       origin: 'THIRD_PARTY_DATASOURCE',
       quantity: 10,
       solarArray: {
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         name: 'Solar1',
         source: 'Bluestaq',
         id: 'SOLARARRAY-ID',

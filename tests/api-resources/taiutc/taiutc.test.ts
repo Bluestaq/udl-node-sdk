@@ -14,7 +14,7 @@ describe('resource taiutc', () => {
     const responsePromise = client.taiutc.create({
       adjustmentDate: '2017-01-01T00:00:00.123Z',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -30,7 +30,7 @@ describe('resource taiutc', () => {
     const response = await client.taiutc.create({
       adjustmentDate: '2017-01-01T00:00:00.123Z',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       id: 'TAIUTC-ID',
       multiplicationFactor: 0.001296,
@@ -44,7 +44,7 @@ describe('resource taiutc', () => {
     const responsePromise = client.taiutc.update('id', {
       adjustmentDate: '2017-01-01T00:00:00.123Z',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -60,7 +60,7 @@ describe('resource taiutc', () => {
     const response = await client.taiutc.update('id', {
       adjustmentDate: '2017-01-01T00:00:00.123Z',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       body_id: 'TAIUTC-ID',
       multiplicationFactor: 0.001296,

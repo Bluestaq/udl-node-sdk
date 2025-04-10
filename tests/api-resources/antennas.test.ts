@@ -12,7 +12,7 @@ const client = new Unifieddatalibrary({
 describe('resource antennas', () => {
   test('create: only required params', async () => {
     const responsePromise = client.antennas.create({
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'IRIDIUM NEXT 121-ANTENNA-10075',
       source: 'Bluestaq',
     });
@@ -27,7 +27,7 @@ describe('resource antennas', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.antennas.create({
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'IRIDIUM NEXT 121-ANTENNA-10075',
       source: 'Bluestaq',
       id: 'ANTENNA-ID',
@@ -55,7 +55,7 @@ describe('resource antennas', () => {
 
   test('update: only required params', async () => {
     const responsePromise = client.antennas.update('id', {
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'IRIDIUM NEXT 121-ANTENNA-10075',
       source: 'Bluestaq',
     });
@@ -70,7 +70,7 @@ describe('resource antennas', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.antennas.update('id', {
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'IRIDIUM NEXT 121-ANTENNA-10075',
       source: 'Bluestaq',
       body_id: 'ANTENNA-ID',

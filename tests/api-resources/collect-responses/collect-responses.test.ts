@@ -13,7 +13,7 @@ describe('resource collectResponses', () => {
   test('create: only required params', async () => {
     const responsePromise = client.collectResponses.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idRequest: 'REF-REQUEST-ID',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource collectResponses', () => {
   test('create: required and optional params', async () => {
     const response = await client.collectResponses.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idRequest: 'REF-REQUEST-ID',
       source: 'Bluestaq',
       id: 'COLLECTRESPONSE-ID',
@@ -104,7 +104,7 @@ describe('resource collectResponses', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.collectResponses.createBulk([
-      { classificationMarking: 'U', dataMode: 'REAL', idRequest: 'REF-REQUEST-ID', source: 'Bluestaq' },
+      { classificationMarking: 'U', dataMode: 'TEST', idRequest: 'REF-REQUEST-ID', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -119,7 +119,7 @@ describe('resource collectResponses', () => {
     const response = await client.collectResponses.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         idRequest: 'REF-REQUEST-ID',
         source: 'Bluestaq',
         id: 'COLLECTRESPONSE-ID',
@@ -147,7 +147,7 @@ describe('resource collectResponses', () => {
 
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.collectResponses.createBulkV2([
-      { classificationMarking: 'U', dataMode: 'REAL', idRequest: 'REF-REQUEST-ID', source: 'Bluestaq' },
+      { classificationMarking: 'U', dataMode: 'TEST', idRequest: 'REF-REQUEST-ID', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -162,7 +162,7 @@ describe('resource collectResponses', () => {
     const response = await client.collectResponses.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         idRequest: 'REF-REQUEST-ID',
         source: 'Bluestaq',
         id: 'COLLECTRESPONSE-ID',

@@ -13,7 +13,7 @@ describe('resource passiveradarobservation', () => {
   test('create: only required params', async () => {
     const responsePromise = client.passiveradarobservation.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obTime: '2023-01-24T23:35:26.518152Z',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource passiveradarobservation', () => {
   test('create: required and optional params', async () => {
     const response = await client.passiveradarobservation.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obTime: '2023-01-24T23:35:26.518152Z',
       source: 'Bluestaq',
       id: 'bdcacfb0-3c47-4bd0-9d6c-9fa7d2c4fbb0',
@@ -147,7 +147,7 @@ describe('resource passiveradarobservation', () => {
         [
           {
             classificationMarking: 'U',
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             obTime: '2023-01-24T23:35:26.518152Z',
             source: 'Bluestaq',
             id: 'bdcacfb0-3c47-4bd0-9d6c-9fa7d2c4fbb0',
@@ -218,7 +218,7 @@ describe('resource passiveradarobservation', () => {
     const responsePromise = client.passiveradarobservation.fileCreate([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2023-01-24T23:35:26.518152Z',
         source: 'Bluestaq',
       },
@@ -236,7 +236,7 @@ describe('resource passiveradarobservation', () => {
     const response = await client.passiveradarobservation.fileCreate([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2023-01-24T23:35:26.518152Z',
         source: 'Bluestaq',
         id: 'bdcacfb0-3c47-4bd0-9d6c-9fa7d2c4fbb0',

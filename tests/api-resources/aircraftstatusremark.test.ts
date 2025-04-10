@@ -13,7 +13,7 @@ describe('resource aircraftstatusremark', () => {
   test('update: only required params', async () => {
     const responsePromise = client.aircraftstatusremark.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idAircraftStatus: '388b1f64-ccff-4113-b049-3cf5542c2a42',
       source: 'Bluestaq',
       text: 'Remark text',
@@ -30,7 +30,7 @@ describe('resource aircraftstatusremark', () => {
   test('update: required and optional params', async () => {
     const response = await client.aircraftstatusremark.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idAircraftStatus: '388b1f64-ccff-4113-b049-3cf5542c2a42',
       source: 'Bluestaq',
       text: 'Remark text',

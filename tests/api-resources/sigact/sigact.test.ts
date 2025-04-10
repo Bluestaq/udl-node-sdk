@@ -44,7 +44,7 @@ describe('resource sigact', () => {
     const responsePromise = client.sigact.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         reportDate: '2018-01-01T16:00:00.123Z',
         source: 'Bluestaq',
       },
@@ -62,7 +62,7 @@ describe('resource sigact', () => {
     const response = await client.sigact.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         reportDate: '2018-01-01T16:00:00.123Z',
         source: 'Bluestaq',
         id: 'SIGACT-ID',
@@ -202,7 +202,7 @@ describe('resource sigact', () => {
   test('uploadZip: only required params', async () => {
     const responsePromise = client.sigact.uploadZip({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       reportDate: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
     });
@@ -218,7 +218,7 @@ describe('resource sigact', () => {
   test('uploadZip: required and optional params', async () => {
     const response = await client.sigact.uploadZip({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       reportDate: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
       id: 'SIGACT-ID',

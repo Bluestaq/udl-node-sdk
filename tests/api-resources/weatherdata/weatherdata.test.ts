@@ -13,7 +13,7 @@ describe('resource weatherdata', () => {
   test('create: only required params', async () => {
     const responsePromise = client.weatherdata.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obTime: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource weatherdata', () => {
   test('create: required and optional params', async () => {
     const response = await client.weatherdata.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obTime: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
       id: 'WEATHER-DATA-ID',
@@ -122,7 +122,7 @@ describe('resource weatherdata', () => {
         [
           {
             classificationMarking: 'U',
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             obTime: '2018-01-01T16:00:00.123456Z',
             source: 'Bluestaq',
             id: 'WEATHER-DATA-ID',
@@ -168,7 +168,7 @@ describe('resource weatherdata', () => {
     const responsePromise = client.weatherdata.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
       },
@@ -186,7 +186,7 @@ describe('resource weatherdata', () => {
     const response = await client.weatherdata.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         id: 'WEATHER-DATA-ID',

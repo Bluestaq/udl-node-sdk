@@ -13,7 +13,7 @@ describe('resource onorbitbattery', () => {
   test('create: only required params', async () => {
     const responsePromise = client.onorbitbattery.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idBattery: 'BATTERY-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
@@ -30,7 +30,7 @@ describe('resource onorbitbattery', () => {
   test('create: required and optional params', async () => {
     const response = await client.onorbitbattery.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idBattery: 'BATTERY-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
@@ -43,7 +43,7 @@ describe('resource onorbitbattery', () => {
   test('update: only required params', async () => {
     const responsePromise = client.onorbitbattery.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idBattery: 'BATTERY-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
@@ -60,7 +60,7 @@ describe('resource onorbitbattery', () => {
   test('update: required and optional params', async () => {
     const response = await client.onorbitbattery.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idBattery: 'BATTERY-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',

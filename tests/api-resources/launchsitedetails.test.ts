@@ -13,7 +13,7 @@ describe('resource launchsitedetails', () => {
   test('create: only required params', async () => {
     const responsePromise = client.launchsitedetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idLaunchSite: 'LAUNCHSITE-ID',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource launchsitedetails', () => {
   test('create: required and optional params', async () => {
     const response = await client.launchsitedetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idLaunchSite: 'LAUNCHSITE-ID',
       source: 'Bluestaq',
       id: 'LAUNCHSITEDETAILS-ID',
@@ -39,7 +39,7 @@ describe('resource launchsitedetails', () => {
       launchGroup: 'Example-group-name',
       location: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         name: 'Example location',
         source: 'Bluestaq',
         altitude: 10.23,
@@ -56,7 +56,7 @@ describe('resource launchsitedetails', () => {
   test('update: only required params', async () => {
     const responsePromise = client.launchsitedetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idLaunchSite: 'LAUNCHSITE-ID',
       source: 'Bluestaq',
     });
@@ -72,7 +72,7 @@ describe('resource launchsitedetails', () => {
   test('update: required and optional params', async () => {
     const response = await client.launchsitedetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idLaunchSite: 'LAUNCHSITE-ID',
       source: 'Bluestaq',
       body_id: 'LAUNCHSITEDETAILS-ID',
@@ -82,7 +82,7 @@ describe('resource launchsitedetails', () => {
       launchGroup: 'Example-group-name',
       location: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         name: 'Example location',
         source: 'Bluestaq',
         altitude: 10.23,

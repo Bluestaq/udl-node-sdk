@@ -13,7 +13,7 @@ describe('resource seradatacommdetails', () => {
   test('create: only required params', async () => {
     const responsePromise = client.seradatacommdetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -28,7 +28,7 @@ describe('resource seradatacommdetails', () => {
   test('create: required and optional params', async () => {
     const response = await client.seradatacommdetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       id: 'SERADATACOMMDETAILS-ID',
       band: 'X',
@@ -67,7 +67,7 @@ describe('resource seradatacommdetails', () => {
   test('update: only required params', async () => {
     const responsePromise = client.seradatacommdetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -82,7 +82,7 @@ describe('resource seradatacommdetails', () => {
   test('update: required and optional params', async () => {
     const response = await client.seradatacommdetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       body_id: 'SERADATACOMMDETAILS-ID',
       band: 'X',

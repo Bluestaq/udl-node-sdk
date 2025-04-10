@@ -13,7 +13,7 @@ describe('resource channels', () => {
   test('create: only required params', async () => {
     const responsePromise = client.channels.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idTransponder: 'REF-TRANSPONDER-ID',
       name: 'Example name',
       source: 'system.source',
@@ -30,7 +30,7 @@ describe('resource channels', () => {
   test('create: required and optional params', async () => {
     const response = await client.channels.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idTransponder: 'REF-TRANSPONDER-ID',
       name: 'Example name',
       source: 'system.source',
@@ -72,7 +72,7 @@ describe('resource channels', () => {
   test('update: only required params', async () => {
     const responsePromise = client.channels.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idTransponder: 'REF-TRANSPONDER-ID',
       name: 'Example name',
       source: 'system.source',
@@ -89,7 +89,7 @@ describe('resource channels', () => {
   test('update: required and optional params', async () => {
     const response = await client.channels.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idTransponder: 'REF-TRANSPONDER-ID',
       name: 'Example name',
       source: 'system.source',

@@ -13,7 +13,7 @@ describe('resource elsets', () => {
   test('create: only required params', async () => {
     const responsePromise = client.elsets.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       epoch: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource elsets', () => {
   test('create: required and optional params', async () => {
     const response = await client.elsets.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       epoch: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
       agom: 0.0126,
@@ -58,7 +58,7 @@ describe('resource elsets', () => {
       satNo: 12,
       semiMajorAxis: 1.1,
       sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-      sourcedDataTypes: ['EO', 'RADAR'],
+      sourcedDataTypes: ['RADAR', 'RF'],
       tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
       transactionId: 'TRANSACTION-ID',
       uct: false,
@@ -118,7 +118,7 @@ describe('resource elsets', () => {
       body: [
         {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
         },
@@ -138,7 +138,7 @@ describe('resource elsets', () => {
       body: [
         {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           agom: 0.0126,
@@ -167,7 +167,7 @@ describe('resource elsets', () => {
           satNo: 12,
           semiMajorAxis: 1.1,
           sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-          sourcedDataTypes: ['EO', 'RADAR'],
+          sourcedDataTypes: ['RADAR', 'RF'],
           tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
           transactionId: 'TRANSACTION-ID',
           uct: false,
@@ -210,7 +210,7 @@ describe('resource elsets', () => {
     const responsePromise = client.elsets.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
       },
@@ -228,7 +228,7 @@ describe('resource elsets', () => {
     const response = await client.elsets.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         agom: 0.0126,
@@ -257,7 +257,7 @@ describe('resource elsets', () => {
         satNo: 12,
         semiMajorAxis: 1.1,
         sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-        sourcedDataTypes: ['EO', 'RADAR'],
+        sourcedDataTypes: ['RADAR', 'RF'],
         tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
         transactionId: 'TRANSACTION-ID',
         uct: false,

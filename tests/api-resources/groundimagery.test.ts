@@ -13,7 +13,7 @@ describe('resource groundimagery', () => {
   test('create: only required params', async () => {
     const responsePromise = client.groundimagery.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       filename: 'Example file name',
       imageTime: '2021-01-01T01:01:01.123456Z',
       source: 'Bluestaq',
@@ -30,7 +30,7 @@ describe('resource groundimagery', () => {
   test('create: required and optional params', async () => {
     const response = await client.groundimagery.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       filename: 'Example file name',
       imageTime: '2021-01-01T01:01:01.123456Z',
       source: 'Bluestaq',

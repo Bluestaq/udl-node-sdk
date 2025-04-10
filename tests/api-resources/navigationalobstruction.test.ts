@@ -14,7 +14,7 @@ describe('resource navigationalobstruction', () => {
     const responsePromise = client.navigationalobstruction.create({
       classificationMarking: 'U',
       cycleDate: '2024-06-13',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obstacleId: '359655',
       obstacleType: 'V',
       source: 'Bluestaq',
@@ -32,7 +32,7 @@ describe('resource navigationalobstruction', () => {
     const response = await client.navigationalobstruction.create({
       classificationMarking: 'U',
       cycleDate: '2024-06-13',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obstacleId: '359655',
       obstacleType: 'V',
       source: 'Bluestaq',
@@ -109,7 +109,7 @@ describe('resource navigationalobstruction', () => {
     const responsePromise = client.navigationalobstruction.update('id', {
       classificationMarking: 'U',
       cycleDate: '2024-06-13',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obstacleId: '359655',
       obstacleType: 'V',
       source: 'Bluestaq',
@@ -127,7 +127,7 @@ describe('resource navigationalobstruction', () => {
     const response = await client.navigationalobstruction.update('id', {
       classificationMarking: 'U',
       cycleDate: '2024-06-13',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obstacleId: '359655',
       obstacleType: 'V',
       source: 'Bluestaq',
@@ -282,7 +282,7 @@ describe('resource navigationalobstruction', () => {
           {
             classificationMarking: 'U',
             cycleDate: '2024-06-13',
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             obstacleId: '359655',
             obstacleType: 'V',
             source: 'Bluestaq',

@@ -42,7 +42,7 @@ describe('resource gnssobservationset', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.gnssobservationset.createBulk([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', ts: '2022-01-01T00:00:00.123456Z' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2022-01-01T00:00:00.123456Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -57,7 +57,7 @@ describe('resource gnssobservationset', () => {
     const response = await client.gnssobservationset.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         ts: '2022-01-01T00:00:00.123456Z',
         id: 'GNSSObSet-ID',
@@ -104,7 +104,7 @@ describe('resource gnssobservationset', () => {
 
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.gnssobservationset.createBulkV2([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', ts: '2022-01-01T00:00:00.123456Z' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2022-01-01T00:00:00.123456Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -119,7 +119,7 @@ describe('resource gnssobservationset', () => {
     const response = await client.gnssobservationset.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         ts: '2022-01-01T00:00:00.123456Z',
         id: 'GNSSObSet-ID',

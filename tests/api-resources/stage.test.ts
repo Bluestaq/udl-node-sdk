@@ -13,7 +13,7 @@ describe('resource stage', () => {
   test('create: only required params', async () => {
     const responsePromise = client.stage.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEngine: 'ENGINE-ID',
       idLaunchVehicle: 'LAUNCHVEHICLE-ID',
       source: 'Bluestaq',
@@ -30,7 +30,7 @@ describe('resource stage', () => {
   test('create: required and optional params', async () => {
     const response = await client.stage.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEngine: 'ENGINE-ID',
       idLaunchVehicle: 'LAUNCHVEHICLE-ID',
       source: 'Bluestaq',
@@ -72,7 +72,7 @@ describe('resource stage', () => {
   test('update: only required params', async () => {
     const responsePromise = client.stage.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEngine: 'ENGINE-ID',
       idLaunchVehicle: 'LAUNCHVEHICLE-ID',
       source: 'Bluestaq',
@@ -89,7 +89,7 @@ describe('resource stage', () => {
   test('update: required and optional params', async () => {
     const response = await client.stage.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEngine: 'ENGINE-ID',
       idLaunchVehicle: 'LAUNCHVEHICLE-ID',
       source: 'Bluestaq',

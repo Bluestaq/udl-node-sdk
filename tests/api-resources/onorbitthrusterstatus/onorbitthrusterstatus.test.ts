@@ -13,7 +13,7 @@ describe('resource onorbitthrusterstatus', () => {
   test('create: only required params', async () => {
     const responsePromise = client.onorbitthrusterstatus.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnorbitThruster: 'ff7dc909-e8b4-4a54-8529-1963d4e9b353',
       source: 'Bluestaq',
       statusTime: '2024-01-01T16:00:00.123Z',
@@ -30,7 +30,7 @@ describe('resource onorbitthrusterstatus', () => {
   test('create: required and optional params', async () => {
     const response = await client.onorbitthrusterstatus.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnorbitThruster: 'ff7dc909-e8b4-4a54-8529-1963d4e9b353',
       source: 'Bluestaq',
       statusTime: '2024-01-01T16:00:00.123Z',
@@ -152,7 +152,7 @@ describe('resource onorbitthrusterstatus', () => {
         [
           {
             classificationMarking: 'U',
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             idOnorbitThruster: 'ff7dc909-e8b4-4a54-8529-1963d4e9b353',
             source: 'Bluestaq',
             statusTime: '2024-01-01T16:00:00.123Z',

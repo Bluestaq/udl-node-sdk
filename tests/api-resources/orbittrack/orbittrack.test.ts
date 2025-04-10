@@ -44,7 +44,7 @@ describe('resource orbittrack', () => {
     const responsePromise = client.orbittrack.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         lat: 19.88550102,
         lon: 46.74596844,
         source: 'Bluestaq',
@@ -64,7 +64,7 @@ describe('resource orbittrack', () => {
     const response = await client.orbittrack.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         lat: 19.88550102,
         lon: 46.74596844,
         source: 'Bluestaq',
@@ -89,8 +89,8 @@ describe('resource orbittrack', () => {
         idOnOrbit: '32375',
         iff: 'ID Mode',
         installation: false,
-        objectType: 'DEBRIS',
-        objIdent: 'ASSUMED FRIEND',
+        objectType: 'PAYLOAD',
+        objIdent: 'FRIEND',
         origin: 'THIRD_PARTY_DATASOURCE',
         origObjectId: 'L2045',
         rdfRF: 1.5273,
@@ -107,7 +107,7 @@ describe('resource orbittrack', () => {
             range: 4023.95,
             minRangeLimit: 20.23,
             missionNumber: 'Example Mission',
-            sensorFOVType: 'BUTTERFLY',
+            sensorFOVType: 'UNKNOWN',
             sensorName: 'SENSOR_NAME',
             sensorNumber: 1234,
           },
@@ -123,7 +123,7 @@ describe('resource orbittrack', () => {
     const responsePromise = client.orbittrack.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         lat: 19.88550102,
         lon: 46.74596844,
         source: 'Bluestaq',
@@ -143,7 +143,7 @@ describe('resource orbittrack', () => {
     const response = await client.orbittrack.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         lat: 19.88550102,
         lon: 46.74596844,
         source: 'Bluestaq',
@@ -168,8 +168,8 @@ describe('resource orbittrack', () => {
         idOnOrbit: '32375',
         iff: 'ID Mode',
         installation: false,
-        objectType: 'DEBRIS',
-        objIdent: 'ASSUMED FRIEND',
+        objectType: 'PAYLOAD',
+        objIdent: 'FRIEND',
         origin: 'THIRD_PARTY_DATASOURCE',
         origObjectId: 'L2045',
         rdfRF: 1.5273,
@@ -186,7 +186,7 @@ describe('resource orbittrack', () => {
             range: 4023.95,
             minRangeLimit: 20.23,
             missionNumber: 'Example Mission',
-            sensorFOVType: 'BUTTERFLY',
+            sensorFOVType: 'UNKNOWN',
             sensorName: 'SENSOR_NAME',
             sensorNumber: 1234,
           },

@@ -13,7 +13,7 @@ describe('resource crew', () => {
   test('create: only required params', async () => {
     const responsePromise = client.crew.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       origCrewId: 'JHJDHjhuu929o92',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource crew', () => {
   test('create: required and optional params', async () => {
     const response = await client.crew.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       origCrewId: 'JHJDHjhuu929o92',
       source: 'Bluestaq',
       id: 'bdad6945-c9e4-b829-f7be-1ad075541921',
@@ -111,7 +111,7 @@ describe('resource crew', () => {
   test('update: only required params', async () => {
     const responsePromise = client.crew.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       origCrewId: 'JHJDHjhuu929o92',
       source: 'Bluestaq',
     });
@@ -127,7 +127,7 @@ describe('resource crew', () => {
   test('update: required and optional params', async () => {
     const response = await client.crew.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       origCrewId: 'JHJDHjhuu929o92',
       source: 'Bluestaq',
       body_id: 'bdad6945-c9e4-b829-f7be-1ad075541921',
@@ -226,7 +226,7 @@ describe('resource crew', () => {
 
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.crew.createBulkV2([
-      { classificationMarking: 'U', dataMode: 'REAL', origCrewId: 'JHJDHjhuu929o92', source: 'Bluestaq' },
+      { classificationMarking: 'U', dataMode: 'TEST', origCrewId: 'JHJDHjhuu929o92', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -241,7 +241,7 @@ describe('resource crew', () => {
     const response = await client.crew.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         origCrewId: 'JHJDHjhuu929o92',
         source: 'Bluestaq',
         id: 'bdad6945-c9e4-b829-f7be-1ad075541921',

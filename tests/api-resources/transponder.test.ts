@@ -13,7 +13,7 @@ describe('resource transponder', () => {
   test('create: only required params', async () => {
     const responsePromise = client.transponder.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idComm: 'REF-COMM-ID',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource transponder', () => {
   test('create: required and optional params', async () => {
     const response = await client.transponder.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idComm: 'REF-COMM-ID',
       source: 'Bluestaq',
       id: 'TRANSPONDER-ID',
@@ -49,7 +49,7 @@ describe('resource transponder', () => {
   test('update: only required params', async () => {
     const responsePromise = client.transponder.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idComm: 'REF-COMM-ID',
       source: 'Bluestaq',
     });
@@ -65,7 +65,7 @@ describe('resource transponder', () => {
   test('update: required and optional params', async () => {
     const response = await client.transponder.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idComm: 'REF-COMM-ID',
       source: 'Bluestaq',
       body_id: 'TRANSPONDER-ID',

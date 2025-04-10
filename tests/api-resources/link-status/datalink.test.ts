@@ -13,7 +13,7 @@ describe('resource datalink', () => {
   test('create: only required params', async () => {
     const responsePromise = client.linkStatus.datalink.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       opExName: 'DESERT WIND',
       originator: 'USCENTCOM',
       source: 'Bluestaq',
@@ -31,7 +31,7 @@ describe('resource datalink', () => {
   test('create: required and optional params', async () => {
     const response = await client.linkStatus.datalink.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       opExName: 'DESERT WIND',
       originator: 'USCENTCOM',
       source: 'Bluestaq',
@@ -184,7 +184,7 @@ describe('resource datalink', () => {
     const responsePromise = client.linkStatus.datalink.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         opExName: 'DESERT WIND',
         originator: 'USCENTCOM',
         source: 'Bluestaq',
@@ -204,7 +204,7 @@ describe('resource datalink', () => {
     const response = await client.linkStatus.datalink.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         opExName: 'DESERT WIND',
         originator: 'USCENTCOM',
         source: 'Bluestaq',
