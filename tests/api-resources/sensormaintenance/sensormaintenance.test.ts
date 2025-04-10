@@ -13,7 +13,7 @@ describe('resource sensormaintenance', () => {
   test('create: only required params', async () => {
     const responsePromise = client.sensormaintenance.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endTime: '2018-01-01T16:00:00.123456Z',
       siteCode: 'site01',
       source: 'Bluestaq',
@@ -31,7 +31,7 @@ describe('resource sensormaintenance', () => {
   test('create: required and optional params', async () => {
     const response = await client.sensormaintenance.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endTime: '2018-01-01T16:00:00.123456Z',
       siteCode: 'site01',
       source: 'Bluestaq',
@@ -63,7 +63,7 @@ describe('resource sensormaintenance', () => {
   test('update: only required params', async () => {
     const responsePromise = client.sensormaintenance.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endTime: '2018-01-01T16:00:00.123456Z',
       siteCode: 'site01',
       source: 'Bluestaq',
@@ -81,7 +81,7 @@ describe('resource sensormaintenance', () => {
   test('update: required and optional params', async () => {
     const response = await client.sensormaintenance.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endTime: '2018-01-01T16:00:00.123456Z',
       siteCode: 'site01',
       source: 'Bluestaq',
@@ -212,7 +212,7 @@ describe('resource sensormaintenance', () => {
           body: [
             {
               classificationMarking: 'U',
-              dataMode: 'REAL',
+              dataMode: 'TEST',
               endTime: '2018-01-01T16:00:00.123456Z',
               siteCode: 'site01',
               source: 'Bluestaq',

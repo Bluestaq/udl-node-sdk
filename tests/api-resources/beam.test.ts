@@ -14,7 +14,7 @@ describe('resource beam', () => {
     const responsePromise = client.beam.create({
       beamName: 'BEAMNAME-ID',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -30,7 +30,7 @@ describe('resource beam', () => {
     const response = await client.beam.create({
       beamName: 'BEAMNAME-ID',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       id: 'BEAM-ID',
       notes: 'Example notes',
@@ -60,7 +60,7 @@ describe('resource beam', () => {
     const responsePromise = client.beam.update('id', {
       beamName: 'BEAMNAME-ID',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -76,7 +76,7 @@ describe('resource beam', () => {
     const response = await client.beam.update('id', {
       beamName: 'BEAMNAME-ID',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       body_id: 'BEAM-ID',
       notes: 'Example notes',

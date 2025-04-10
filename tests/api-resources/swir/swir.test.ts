@@ -13,7 +13,7 @@ describe('resource swir', () => {
   test('create: only required params', async () => {
     const responsePromise = client.swir.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       ts: '2021-01-01T01:01:01.123456Z',
     });
@@ -29,7 +29,7 @@ describe('resource swir', () => {
   test('create: required and optional params', async () => {
     const response = await client.swir.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       ts: '2021-01-01T01:01:01.123456Z',
       id: 'SWIR-ID',
@@ -80,7 +80,7 @@ describe('resource swir', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.swir.createBulk([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', ts: '2021-01-01T01:01:01.123456Z' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-01-01T01:01:01.123456Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -95,7 +95,7 @@ describe('resource swir', () => {
     const response = await client.swir.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         ts: '2021-01-01T01:01:01.123456Z',
         id: 'SWIR-ID',

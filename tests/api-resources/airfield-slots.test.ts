@@ -14,7 +14,7 @@ describe('resource airfieldSlots', () => {
     const responsePromise = client.airfieldSlots.create({
       airfieldName: 'USAF Academy AFLD',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Apron 5',
       source: 'Bluestaq',
     });
@@ -31,7 +31,7 @@ describe('resource airfieldSlots', () => {
     const response = await client.airfieldSlots.create({
       airfieldName: 'USAF Academy AFLD',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Apron 5',
       source: 'Bluestaq',
       id: 'be831d39-1822-da9f-7ace-6cc5643397dc',

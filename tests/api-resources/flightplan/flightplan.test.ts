@@ -14,7 +14,7 @@ describe('resource flightplan', () => {
     const responsePromise = client.flightplan.create({
       arrAirfield: 'KCHS',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       depAirfield: 'KSLV',
       genTS: '2023-05-01T01:01:01.123Z',
       source: 'Bluestaq',
@@ -32,7 +32,7 @@ describe('resource flightplan', () => {
     const response = await client.flightplan.create({
       arrAirfield: 'KCHS',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       depAirfield: 'KSLV',
       genTS: '2023-05-01T01:01:01.123Z',
       source: 'Bluestaq',
@@ -265,7 +265,7 @@ describe('resource flightplan', () => {
       {
         arrAirfield: 'KCHS',
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         depAirfield: 'KSLV',
         genTS: '2023-05-01T01:01:01.123Z',
         source: 'Bluestaq',
@@ -285,7 +285,7 @@ describe('resource flightplan', () => {
       {
         arrAirfield: 'KCHS',
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         depAirfield: 'KSLV',
         genTS: '2023-05-01T01:01:01.123Z',
         source: 'Bluestaq',

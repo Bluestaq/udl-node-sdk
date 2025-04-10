@@ -13,7 +13,7 @@ describe('resource sgi', () => {
   test('create: only required params', async () => {
     const responsePromise = client.sgi.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       effectiveDate: '2018-01-01T16:00:00.123Z',
       sgiDate: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
@@ -30,7 +30,7 @@ describe('resource sgi', () => {
   test('create: required and optional params', async () => {
     const response = await client.sgi.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       effectiveDate: '2018-01-01T16:00:00.123Z',
       sgiDate: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
@@ -63,7 +63,7 @@ describe('resource sgi', () => {
       origin: 'THIRD_PARTY_DATASOURCE',
       origSensorId: 'ORIGSENSOR-ID',
       powers: [67.1, 65.2, 68.1, 74.3, 68.1, 96.4, 97.3, 68.1],
-      precedence: 'O',
+      precedence: 'R',
       rawFileURI: 'rawFileURI',
       rbDuration: 24,
       rbIndex: 1.02947164506,
@@ -85,7 +85,7 @@ describe('resource sgi', () => {
   test('update: only required params', async () => {
     const responsePromise = client.sgi.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       effectiveDate: '2018-01-01T16:00:00.123Z',
       sgiDate: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
@@ -102,7 +102,7 @@ describe('resource sgi', () => {
   test('update: required and optional params', async () => {
     const response = await client.sgi.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       effectiveDate: '2018-01-01T16:00:00.123Z',
       sgiDate: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
@@ -135,7 +135,7 @@ describe('resource sgi', () => {
       origin: 'THIRD_PARTY_DATASOURCE',
       origSensorId: 'ORIGSENSOR-ID',
       powers: [67.1, 65.2, 68.1, 74.3, 68.1, 96.4, 97.3, 68.1],
-      precedence: 'O',
+      precedence: 'R',
       rawFileURI: 'rawFileURI',
       rbDuration: 24,
       rbIndex: 1.02947164506,
@@ -232,7 +232,7 @@ describe('resource sgi', () => {
     const responsePromise = client.sgi.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         effectiveDate: '2018-01-01T16:00:00.123Z',
         sgiDate: '2018-01-01T16:00:00.123Z',
         source: 'Bluestaq',
@@ -251,7 +251,7 @@ describe('resource sgi', () => {
     const response = await client.sgi.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         effectiveDate: '2018-01-01T16:00:00.123Z',
         sgiDate: '2018-01-01T16:00:00.123Z',
         source: 'Bluestaq',
@@ -284,7 +284,7 @@ describe('resource sgi', () => {
         origin: 'THIRD_PARTY_DATASOURCE',
         origSensorId: 'ORIGSENSOR-ID',
         powers: [67.1, 65.2, 68.1, 74.3, 68.1, 96.4, 97.3, 68.1],
-        precedence: 'O',
+        precedence: 'R',
         rawFileURI: 'rawFileURI',
         rbDuration: 24,
         rbIndex: 1.02947164506,
@@ -308,7 +308,7 @@ describe('resource sgi', () => {
     const responsePromise = client.sgi.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         effectiveDate: '2018-01-01T16:00:00.123Z',
         sgiDate: '2018-01-01T16:00:00.123Z',
         source: 'Bluestaq',
@@ -327,7 +327,7 @@ describe('resource sgi', () => {
     const response = await client.sgi.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         effectiveDate: '2018-01-01T16:00:00.123Z',
         sgiDate: '2018-01-01T16:00:00.123Z',
         source: 'Bluestaq',
@@ -360,7 +360,7 @@ describe('resource sgi', () => {
         origin: 'THIRD_PARTY_DATASOURCE',
         origSensorId: 'ORIGSENSOR-ID',
         powers: [67.1, 65.2, 68.1, 74.3, 68.1, 96.4, 97.3, 68.1],
-        precedence: 'O',
+        precedence: 'R',
         rawFileURI: 'rawFileURI',
         rbDuration: 24,
         rbIndex: 1.02947164506,

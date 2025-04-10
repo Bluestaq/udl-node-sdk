@@ -13,7 +13,7 @@ describe('resource port', () => {
   test('create: only required params', async () => {
     const responsePromise = client.port.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -28,7 +28,7 @@ describe('resource port', () => {
   test('create: required and optional params', async () => {
     const response = await client.port.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       id: '026dd511-8ba5-47d3-9909-836149f87686',
       avgDuration: 41.1,
@@ -52,7 +52,7 @@ describe('resource port', () => {
   test('update: only required params', async () => {
     const responsePromise = client.port.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -67,7 +67,7 @@ describe('resource port', () => {
   test('update: required and optional params', async () => {
     const response = await client.port.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       body_id: '026dd511-8ba5-47d3-9909-836149f87686',
       avgDuration: 41.1,
@@ -126,7 +126,7 @@ describe('resource port', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.port.createBulk([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -141,7 +141,7 @@ describe('resource port', () => {
     const response = await client.port.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         id: '026dd511-8ba5-47d3-9909-836149f87686',
         avgDuration: 41.1,

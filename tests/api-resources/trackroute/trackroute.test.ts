@@ -13,7 +13,7 @@ describe('resource trackroute', () => {
   test('create: only required params', async () => {
     const responsePromise = client.trackroute.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       lastUpdateDate: '2024-09-17T16:00:00.123Z',
       source: 'Bluestaq',
       type: 'AIR REFUELING',
@@ -30,7 +30,7 @@ describe('resource trackroute', () => {
   test('create: required and optional params', async () => {
     const response = await client.trackroute.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       lastUpdateDate: '2024-09-17T16:00:00.123Z',
       source: 'Bluestaq',
       type: 'AIR REFUELING',
@@ -95,7 +95,7 @@ describe('resource trackroute', () => {
   test('update: only required params', async () => {
     const responsePromise = client.trackroute.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       lastUpdateDate: '2024-09-17T16:00:00.123Z',
       source: 'Bluestaq',
       type: 'AIR REFUELING',
@@ -112,7 +112,7 @@ describe('resource trackroute', () => {
   test('update: required and optional params', async () => {
     const response = await client.trackroute.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       lastUpdateDate: '2024-09-17T16:00:00.123Z',
       source: 'Bluestaq',
       type: 'AIR REFUELING',
@@ -226,7 +226,7 @@ describe('resource trackroute', () => {
     const responsePromise = client.trackroute.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         lastUpdateDate: '2024-09-17T16:00:00.123Z',
         source: 'Bluestaq',
         type: 'AIR REFUELING',
@@ -245,7 +245,7 @@ describe('resource trackroute', () => {
     const response = await client.trackroute.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         lastUpdateDate: '2024-09-17T16:00:00.123Z',
         source: 'Bluestaq',
         type: 'AIR REFUELING',
@@ -311,7 +311,7 @@ describe('resource trackroute', () => {
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.trackroute.createBulkV2({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       lastUpdateDate: '2024-09-17T16:00:00.123Z',
       source: 'Bluestaq',
       type: 'AIR REFUELING',
@@ -328,7 +328,7 @@ describe('resource trackroute', () => {
   test('createBulkV2: required and optional params', async () => {
     const response = await client.trackroute.createBulkV2({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       lastUpdateDate: '2024-09-17T16:00:00.123Z',
       source: 'Bluestaq',
       type: 'AIR REFUELING',

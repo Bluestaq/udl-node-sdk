@@ -65,7 +65,7 @@ describe('resource mti', () => {
         [
           {
             classificationMarking: 'U',
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             source: 'Bluestaq',
             id: 'MTI-ID',
             dwells: [
@@ -245,7 +245,7 @@ describe('resource mti', () => {
 
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.mti.createBulkV2([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -260,7 +260,7 @@ describe('resource mti', () => {
     const response = await client.mti.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         id: 'MTI-ID',
         dwells: [

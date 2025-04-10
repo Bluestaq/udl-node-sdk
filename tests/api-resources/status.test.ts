@@ -13,7 +13,7 @@ describe('resource status', () => {
   test('create: only required params', async () => {
     const responsePromise = client.status.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEntity: 'ENTITY-ID',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource status', () => {
   test('create: required and optional params', async () => {
     const response = await client.status.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEntity: 'ENTITY-ID',
       source: 'Bluestaq',
       id: 'STATUS-ID',
@@ -39,16 +39,16 @@ describe('resource status', () => {
       notes: 'Example Notes',
       opsCap: 'FMC',
       origin: 'THIRD_PARTY_DATASOURCE',
-      state: 'UNKNOWN',
+      state: 'ACTIVE',
       subStatusCollection: [
         {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           notes: 'Sample Notes',
           source: 'Bluestaq',
           status: 'FMC',
           statusId: 'REF-STATUS-ID',
-          type: 'mwCap',
+          type: 'mdCap',
           id: 'SUBSTATUS-ID',
           origin: 'THIRD_PARTY_DATASOURCE',
         },
@@ -60,7 +60,7 @@ describe('resource status', () => {
   test('update: only required params', async () => {
     const responsePromise = client.status.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEntity: 'ENTITY-ID',
       source: 'Bluestaq',
     });
@@ -76,7 +76,7 @@ describe('resource status', () => {
   test('update: required and optional params', async () => {
     const response = await client.status.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEntity: 'ENTITY-ID',
       source: 'Bluestaq',
       body_id: 'STATUS-ID',
@@ -86,16 +86,16 @@ describe('resource status', () => {
       notes: 'Example Notes',
       opsCap: 'FMC',
       origin: 'THIRD_PARTY_DATASOURCE',
-      state: 'UNKNOWN',
+      state: 'ACTIVE',
       subStatusCollection: [
         {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           notes: 'Sample Notes',
           source: 'Bluestaq',
           status: 'FMC',
           statusId: 'REF-STATUS-ID',
-          type: 'mwCap',
+          type: 'mdCap',
           id: 'SUBSTATUS-ID',
           origin: 'THIRD_PARTY_DATASOURCE',
         },

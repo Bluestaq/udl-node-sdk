@@ -12,7 +12,7 @@ const client = new Unifieddatalibrary({
 describe('resource batteries', () => {
   test('create: only required params', async () => {
     const responsePromise = client.batteries.create({
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'JAK-BATTERY-1479',
       source: 'Bluestaq',
     });
@@ -27,7 +27,7 @@ describe('resource batteries', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.batteries.create({
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'JAK-BATTERY-1479',
       source: 'Bluestaq',
       id: 'BATTERY-ID',
@@ -55,7 +55,7 @@ describe('resource batteries', () => {
 
   test('update: only required params', async () => {
     const responsePromise = client.batteries.update('id', {
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'JAK-BATTERY-1479',
       source: 'Bluestaq',
     });
@@ -70,7 +70,7 @@ describe('resource batteries', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.batteries.update('id', {
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'JAK-BATTERY-1479',
       source: 'Bluestaq',
       body_id: 'BATTERY-ID',

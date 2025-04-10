@@ -13,7 +13,7 @@ describe('resource airTransportMissions', () => {
   test('create: only required params', async () => {
     const responsePromise = client.airTransportMissions.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -28,7 +28,7 @@ describe('resource airTransportMissions', () => {
   test('create: required and optional params', async () => {
     const response = await client.airTransportMissions.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       id: 'bdad6945-c9e4-b829-f7be-1ad075541921',
       alias: 'PACIFIC DEPLOY / CHAP 3 MOVEMENT',
@@ -131,7 +131,7 @@ describe('resource airTransportMissions', () => {
   test('update: only required params', async () => {
     const responsePromise = client.airTransportMissions.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -146,7 +146,7 @@ describe('resource airTransportMissions', () => {
   test('update: required and optional params', async () => {
     const response = await client.airTransportMissions.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       body_id: 'bdad6945-c9e4-b829-f7be-1ad075541921',
       alias: 'PACIFIC DEPLOY / CHAP 3 MOVEMENT',

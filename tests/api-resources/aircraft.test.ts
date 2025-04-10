@@ -14,7 +14,7 @@ describe('resource aircraft', () => {
     const responsePromise = client.aircraft.create({
       aircraftMDS: 'E-2C HAWKEYE',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -30,7 +30,7 @@ describe('resource aircraft', () => {
     const response = await client.aircraft.create({
       aircraftMDS: 'E-2C HAWKEYE',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       category: 'M',
@@ -39,10 +39,10 @@ describe('resource aircraft', () => {
       dtd: '005',
       entity: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         name: 'Example name',
         source: 'Bluestaq',
-        type: 'AIRCRAFT',
+        type: 'ONORBIT',
         countryCode: 'US',
         idEntity: 'ENTITY-ID',
         idLocation: 'LOCATION-ID',
@@ -50,7 +50,7 @@ describe('resource aircraft', () => {
         idOperatingUnit: 'OPERATINGUNIT-ID',
         location: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           name: 'Example location',
           source: 'Bluestaq',
           altitude: 10.23,
@@ -62,11 +62,11 @@ describe('resource aircraft', () => {
         },
         onOrbit: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           satNo: 1,
           source: 'Bluestaq',
           altName: 'Alternate Name',
-          category: 'Unknown',
+          category: 'Lunar',
           commonName: 'Example common name',
           constellation: 'Big Dipper',
           countryCode: 'US',
@@ -77,7 +77,7 @@ describe('resource aircraft', () => {
           launchSiteId: 'LAUNCHSITE-ID',
           lifetimeYears: 10,
           missionNumber: 'Expedition 1',
-          objectType: 'ROCKET BODY',
+          objectType: 'PAYLOAD',
           origin: 'THIRD_PARTY_DATASOURCE',
         },
         origin: 'THIRD_PARTY_DATASOURCE',
@@ -120,7 +120,7 @@ describe('resource aircraft', () => {
     const responsePromise = client.aircraft.update('id', {
       aircraftMDS: 'E-2C HAWKEYE',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -136,7 +136,7 @@ describe('resource aircraft', () => {
     const response = await client.aircraft.update('id', {
       aircraftMDS: 'E-2C HAWKEYE',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       body_id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       category: 'M',
@@ -145,10 +145,10 @@ describe('resource aircraft', () => {
       dtd: '005',
       entity: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         name: 'Example name',
         source: 'Bluestaq',
-        type: 'AIRCRAFT',
+        type: 'ONORBIT',
         countryCode: 'US',
         idEntity: 'ENTITY-ID',
         idLocation: 'LOCATION-ID',
@@ -156,7 +156,7 @@ describe('resource aircraft', () => {
         idOperatingUnit: 'OPERATINGUNIT-ID',
         location: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           name: 'Example location',
           source: 'Bluestaq',
           altitude: 10.23,
@@ -168,11 +168,11 @@ describe('resource aircraft', () => {
         },
         onOrbit: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           satNo: 1,
           source: 'Bluestaq',
           altName: 'Alternate Name',
-          category: 'Unknown',
+          category: 'Lunar',
           commonName: 'Example common name',
           constellation: 'Big Dipper',
           countryCode: 'US',
@@ -183,7 +183,7 @@ describe('resource aircraft', () => {
           launchSiteId: 'LAUNCHSITE-ID',
           lifetimeYears: 10,
           missionNumber: 'Expedition 1',
-          objectType: 'ROCKET BODY',
+          objectType: 'PAYLOAD',
           origin: 'THIRD_PARTY_DATASOURCE',
         },
         origin: 'THIRD_PARTY_DATASOURCE',

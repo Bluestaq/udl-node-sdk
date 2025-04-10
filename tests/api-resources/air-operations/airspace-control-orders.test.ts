@@ -14,7 +14,7 @@ describe('resource airspaceControlOrders', () => {
     const responsePromise = client.airOperations.airspaceControlOrders.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         opExName: 'DESERT WIND',
         originator: 'USCENTCOM',
         source: 'Bluestaq',
@@ -34,7 +34,7 @@ describe('resource airspaceControlOrders', () => {
     const response = await client.airOperations.airspaceControlOrders.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         opExName: 'DESERT WIND',
         originator: 'USCENTCOM',
         source: 'Bluestaq',

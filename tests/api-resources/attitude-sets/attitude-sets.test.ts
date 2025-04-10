@@ -13,7 +13,7 @@ describe('resource attitudeSets', () => {
   test('create: only required params', async () => {
     const responsePromise = client.attitudeSets.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endTime: '2022-07-07T18:00:00.654321Z',
       frame1: 'SCBODY',
       frame2: 'J2000',
@@ -34,7 +34,7 @@ describe('resource attitudeSets', () => {
   test('create: required and optional params', async () => {
     const response = await client.attitudeSets.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endTime: '2022-07-07T18:00:00.654321Z',
       frame1: 'SCBODY',
       frame2: 'J2000',
@@ -47,7 +47,7 @@ describe('resource attitudeSets', () => {
       attitudeList: [
         {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           source: 'Bluestaq',
           ts: '2022-03-07T14:51:39.653043Z',
           id: 'ATTITUDEDATA-ID',
@@ -126,7 +126,7 @@ describe('resource attitudeSets', () => {
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.attitudeSets.createBulkV2({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endTime: '2022-07-07T18:00:00.654321Z',
       frame1: 'SCBODY',
       frame2: 'J2000',
@@ -147,7 +147,7 @@ describe('resource attitudeSets', () => {
   test('createBulkV2: required and optional params', async () => {
     const response = await client.attitudeSets.createBulkV2({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endTime: '2022-07-07T18:00:00.654321Z',
       frame1: 'SCBODY',
       frame2: 'J2000',
@@ -160,7 +160,7 @@ describe('resource attitudeSets', () => {
       attitudeList: [
         {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           source: 'Bluestaq',
           ts: '2022-03-07T14:51:39.653043Z',
           id: 'ATTITUDEDATA-ID',

@@ -13,7 +13,7 @@ describe('resource seradataopticalpayload', () => {
   test('create: only required params', async () => {
     const responsePromise = client.seradataopticalpayload.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
     });
@@ -29,7 +29,7 @@ describe('resource seradataopticalpayload', () => {
   test('create: required and optional params', async () => {
     const response = await client.seradataopticalpayload.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
       id: 'SERADATAOPTICALPAYLOAD-ID',
@@ -57,7 +57,7 @@ describe('resource seradataopticalpayload', () => {
   test('update: only required params', async () => {
     const responsePromise = client.seradataopticalpayload.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
     });
@@ -73,7 +73,7 @@ describe('resource seradataopticalpayload', () => {
   test('update: required and optional params', async () => {
     const response = await client.seradataopticalpayload.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
       body_id: 'SERADATAOPTICALPAYLOAD-ID',

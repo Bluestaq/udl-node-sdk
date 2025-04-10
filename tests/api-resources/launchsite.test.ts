@@ -14,7 +14,7 @@ describe('resource launchsite', () => {
     const responsePromise = client.launchsite.create({
       classificationMarking: 'U',
       code: 'SAN MARCO',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Example launch site name',
       source: 'Bluestaq',
     });
@@ -31,7 +31,7 @@ describe('resource launchsite', () => {
     const response = await client.launchsite.create({
       classificationMarking: 'U',
       code: 'SAN MARCO',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Example launch site name',
       source: 'Bluestaq',
       id: 'LAUNCHSITE-ID',
@@ -46,7 +46,7 @@ describe('resource launchsite', () => {
     const responsePromise = client.launchsite.update('id', {
       classificationMarking: 'U',
       code: 'SAN MARCO',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Example launch site name',
       source: 'Bluestaq',
     });
@@ -63,7 +63,7 @@ describe('resource launchsite', () => {
     const response = await client.launchsite.update('id', {
       classificationMarking: 'U',
       code: 'SAN MARCO',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'Example launch site name',
       source: 'Bluestaq',
       body_id: 'LAUNCHSITE-ID',

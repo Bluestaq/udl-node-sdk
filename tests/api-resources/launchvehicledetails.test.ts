@@ -13,7 +13,7 @@ describe('resource launchvehicledetails', () => {
   test('create: only required params', async () => {
     const responsePromise = client.launchvehicledetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idLaunchVehicle: 'LAUNCHVEHICLE-ID',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource launchvehicledetails', () => {
   test('create: required and optional params', async () => {
     const response = await client.launchvehicledetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idLaunchVehicle: 'LAUNCHVEHICLE-ID',
       source: 'Bluestaq',
       id: 'LAUNCHVEHICLEDETAILS-ID',
@@ -86,7 +86,7 @@ describe('resource launchvehicledetails', () => {
   test('update: only required params', async () => {
     const responsePromise = client.launchvehicledetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idLaunchVehicle: 'LAUNCHVEHICLE-ID',
       source: 'Bluestaq',
     });
@@ -102,7 +102,7 @@ describe('resource launchvehicledetails', () => {
   test('update: required and optional params', async () => {
     const response = await client.launchvehicledetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idLaunchVehicle: 'LAUNCHVEHICLE-ID',
       source: 'Bluestaq',
       body_id: 'LAUNCHVEHICLEDETAILS-ID',

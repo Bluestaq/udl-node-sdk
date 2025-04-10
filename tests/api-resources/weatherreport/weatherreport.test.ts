@@ -13,7 +13,7 @@ describe('resource weatherreport', () => {
   test('create: only required params', async () => {
     const responsePromise = client.weatherreport.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       lat: 56.12,
       lon: -156.6,
       obTime: '2018-01-01T16:00:00.123456Z',
@@ -32,7 +32,7 @@ describe('resource weatherreport', () => {
   test('create: required and optional params', async () => {
     const response = await client.weatherreport.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       lat: 56.12,
       lon: -156.6,
       obTime: '2018-01-01T16:00:00.123456Z',
@@ -155,7 +155,7 @@ describe('resource weatherreport', () => {
     const responsePromise = client.weatherreport.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         lat: 56.12,
         lon: -156.6,
         obTime: '2018-01-01T16:00:00.123456Z',
@@ -176,7 +176,7 @@ describe('resource weatherreport', () => {
     const response = await client.weatherreport.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         lat: 56.12,
         lon: -156.6,
         obTime: '2018-01-01T16:00:00.123456Z',

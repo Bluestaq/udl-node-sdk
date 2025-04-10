@@ -13,7 +13,7 @@ describe('resource launchevent', () => {
   test('create: only required params', async () => {
     const responsePromise = client.launchevent.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       msgCreateDate: '2020-01-01T00:00:00.123Z',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource launchevent', () => {
   test('create: required and optional params', async () => {
     const response = await client.launchevent.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       msgCreateDate: '2020-01-01T00:00:00.123Z',
       source: 'Bluestaq',
       id: 'LAUNCHEVENT-ID',
@@ -81,7 +81,7 @@ describe('resource launchevent', () => {
     const responsePromise = client.launchevent.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgCreateDate: '2020-01-01T00:00:00.123Z',
         source: 'Bluestaq',
       },
@@ -99,7 +99,7 @@ describe('resource launchevent', () => {
     const response = await client.launchevent.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgCreateDate: '2020-01-01T00:00:00.123Z',
         source: 'Bluestaq',
         id: 'LAUNCHEVENT-ID',
@@ -122,7 +122,7 @@ describe('resource launchevent', () => {
     const responsePromise = client.launchevent.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgCreateDate: '2020-01-01T00:00:00.123Z',
         source: 'Bluestaq',
       },
@@ -140,7 +140,7 @@ describe('resource launchevent', () => {
     const response = await client.launchevent.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgCreateDate: '2020-01-01T00:00:00.123Z',
         source: 'Bluestaq',
         id: 'LAUNCHEVENT-ID',

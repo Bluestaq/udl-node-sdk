@@ -107,7 +107,7 @@ describe('resource skyimagery', () => {
   test('uploadZip: only required params', async () => {
     const responsePromise = client.skyimagery.uploadZip({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       expStartTime: '2021-01-01T01:01:01.123456Z',
       imageType: 'imageType',
       source: 'Bluestaq',
@@ -124,7 +124,7 @@ describe('resource skyimagery', () => {
   test('uploadZip: required and optional params', async () => {
     const response = await client.skyimagery.uploadZip({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       expStartTime: '2021-01-01T01:01:01.123456Z',
       imageType: 'imageType',
       source: 'Bluestaq',
@@ -135,7 +135,7 @@ describe('resource skyimagery', () => {
       eoObservations: [
         {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           obTime: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           id: 'EOOBSERVATION-ID',
@@ -176,7 +176,7 @@ describe('resource skyimagery', () => {
             columnVariance: 0.1,
             currentNeutralDensityFilterNum: 3,
             currentSpectralFilterNum: 23,
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             declinationCov: 123.2,
             distFromStreakCenter: [-127.153, -126.153, -125.153],
             does: 123.2,

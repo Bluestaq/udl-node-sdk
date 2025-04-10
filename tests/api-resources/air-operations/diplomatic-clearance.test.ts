@@ -14,7 +14,7 @@ describe('resource diplomaticClearance', () => {
     const responsePromise = client.airOperations.diplomaticClearance.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         firstDepDate: '2024-01-01T01:01:01.123Z',
         idMission: '0dba1363-2d09-49fa-a784-4bb4cbb1674a',
         source: 'Bluestaq',
@@ -33,7 +33,7 @@ describe('resource diplomaticClearance', () => {
     const response = await client.airOperations.diplomaticClearance.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         firstDepDate: '2024-01-01T01:01:01.123Z',
         idMission: '0dba1363-2d09-49fa-a784-4bb4cbb1674a',
         source: 'Bluestaq',

@@ -13,7 +13,7 @@ describe('resource itemTrackings', () => {
   test('create: only required params', async () => {
     const responsePromise = client.itemTrackings.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       scanCode: 'ABC1234',
       scannerId: '2051M',
       source: 'Bluestaq',
@@ -31,7 +31,7 @@ describe('resource itemTrackings', () => {
   test('create: required and optional params', async () => {
     const response = await client.itemTrackings.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       scanCode: 'ABC1234',
       scannerId: '2051M',
       source: 'Bluestaq',
@@ -103,7 +103,7 @@ describe('resource itemTrackings', () => {
     const responsePromise = client.itemTrackings.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         scanCode: 'ABC1234',
         scannerId: '2051M',
         source: 'Bluestaq',
@@ -123,7 +123,7 @@ describe('resource itemTrackings', () => {
     const response = await client.itemTrackings.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         scanCode: 'ABC1234',
         scannerId: '2051M',
         source: 'Bluestaq',

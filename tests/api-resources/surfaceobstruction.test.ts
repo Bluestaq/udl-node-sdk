@@ -13,7 +13,7 @@ describe('resource surfaceobstruction', () => {
   test('create: only required params', async () => {
     const responsePromise = client.surfaceobstruction.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSurface: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource surfaceobstruction', () => {
   test('create: required and optional params', async () => {
     const response = await client.surfaceobstruction.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSurface: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       source: 'Bluestaq',
       id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
@@ -51,7 +51,7 @@ describe('resource surfaceobstruction', () => {
   test('update: only required params', async () => {
     const responsePromise = client.surfaceobstruction.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSurface: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       source: 'Bluestaq',
     });
@@ -67,7 +67,7 @@ describe('resource surfaceobstruction', () => {
   test('update: required and optional params', async () => {
     const response = await client.surfaceobstruction.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSurface: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       source: 'Bluestaq',
       body_id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
@@ -144,7 +144,7 @@ describe('resource surfaceobstruction', () => {
     const responsePromise = client.surfaceobstruction.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         idSurface: 'be831d39-1822-da9f-7ace-6cc5643397dc',
         source: 'Bluestaq',
       },
@@ -162,7 +162,7 @@ describe('resource surfaceobstruction', () => {
     const response = await client.surfaceobstruction.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         idSurface: 'be831d39-1822-da9f-7ace-6cc5643397dc',
         source: 'Bluestaq',
         id: 'be831d39-1822-da9f-7ace-6cc5643397dc',

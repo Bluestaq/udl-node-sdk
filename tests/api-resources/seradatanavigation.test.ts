@@ -13,7 +13,7 @@ describe('resource seradatanavigation', () => {
   test('create: only required params', async () => {
     const responsePromise = client.seradatanavigation.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
     });
@@ -29,7 +29,7 @@ describe('resource seradatanavigation', () => {
   test('create: required and optional params', async () => {
     const response = await client.seradatanavigation.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
       id: 'SERADATANAVIGATION-ID',
@@ -52,7 +52,7 @@ describe('resource seradatanavigation', () => {
   test('update: only required params', async () => {
     const responsePromise = client.seradatanavigation.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
     });
@@ -68,7 +68,7 @@ describe('resource seradatanavigation', () => {
   test('update: required and optional params', async () => {
     const response = await client.seradatanavigation.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
       body_id: 'SERADATANAVIGATION-ID',

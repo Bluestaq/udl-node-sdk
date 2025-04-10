@@ -13,7 +13,7 @@ describe('resource ecpsdr', () => {
   test('create: only required params', async () => {
     const responsePromise = client.observations.ecpsdr.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       msgTime: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
       type: 'STANDARD',
@@ -30,7 +30,7 @@ describe('resource ecpsdr', () => {
   test('create: required and optional params', async () => {
     const response = await client.observations.ecpsdr.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       msgTime: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
       type: 'STANDARD',
@@ -132,7 +132,7 @@ describe('resource ecpsdr', () => {
     const responsePromise = client.observations.ecpsdr.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgTime: '2018-01-01T16:00:00.123Z',
         source: 'Bluestaq',
         type: 'STANDARD',
@@ -151,7 +151,7 @@ describe('resource ecpsdr', () => {
     const response = await client.observations.ecpsdr.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgTime: '2018-01-01T16:00:00.123Z',
         source: 'Bluestaq',
         type: 'STANDARD',

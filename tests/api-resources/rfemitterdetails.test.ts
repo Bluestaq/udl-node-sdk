@@ -13,7 +13,7 @@ describe('resource rfemitterdetails', () => {
   test('create: only required params', async () => {
     const responsePromise = client.rfemitterdetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idRFEmitter: 'RFEMITTER-ID',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource rfemitterdetails', () => {
   test('create: required and optional params', async () => {
     const response = await client.rfemitterdetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idRFEmitter: 'RFEMITTER-ID',
       source: 'Bluestaq',
       id: 'RFEMITTERDETAILS-ID',
@@ -66,7 +66,7 @@ describe('resource rfemitterdetails', () => {
   test('update: only required params', async () => {
     const responsePromise = client.rfemitterdetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idRFEmitter: 'RFEMITTER-ID',
       source: 'Bluestaq',
     });
@@ -82,7 +82,7 @@ describe('resource rfemitterdetails', () => {
   test('update: required and optional params', async () => {
     const response = await client.rfemitterdetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idRFEmitter: 'RFEMITTER-ID',
       source: 'Bluestaq',
       body_id: 'RFEMITTERDETAILS-ID',

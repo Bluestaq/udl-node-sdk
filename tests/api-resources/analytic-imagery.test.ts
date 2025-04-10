@@ -62,7 +62,7 @@ describe('resource analyticImagery', () => {
     const responsePromise = client.analyticImagery.createBulkV2({
       classificationMarking: 'U',
       content: 'CONTOUR',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       description: 'Image description',
       filename: 'IMAGE-NAME',
       filesize: 7654321,
@@ -83,7 +83,7 @@ describe('resource analyticImagery', () => {
     const response = await client.analyticImagery.createBulkV2({
       classificationMarking: 'U',
       content: 'CONTOUR',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       description: 'Image description',
       filename: 'IMAGE-NAME',
       filesize: 7654321,

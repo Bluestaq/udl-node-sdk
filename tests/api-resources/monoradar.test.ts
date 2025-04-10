@@ -44,7 +44,7 @@ describe('resource monoradar', () => {
     const responsePromise = client.monoradar.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgfmt: 'CAT48',
         msgts: '2021-01-01T01:01:01.123456Z',
         msgtyp: 'BCN',
@@ -65,7 +65,7 @@ describe('resource monoradar', () => {
     const response = await client.monoradar.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgfmt: 'CAT48',
         msgts: '2021-01-01T01:01:01.123456Z',
         msgtyp: 'BCN',

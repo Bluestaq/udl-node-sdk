@@ -13,7 +13,7 @@ describe('resource maneuvers', () => {
   test('create: only required params', async () => {
     const responsePromise = client.maneuvers.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       eventStartTime: '2023-11-16T01:05:16.835689Z',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource maneuvers', () => {
   test('create: required and optional params', async () => {
     const response = await client.maneuvers.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       eventStartTime: '2023-11-16T01:05:16.835689Z',
       source: 'Bluestaq',
       id: 'MANEUVER-ID',
@@ -68,7 +68,7 @@ describe('resource maneuvers', () => {
       postEccentricity: 0.000164,
       postEventElset: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         agom: 0.0126,
@@ -97,7 +97,7 @@ describe('resource maneuvers', () => {
         satNo: 12,
         semiMajorAxis: 1.1,
         sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-        sourcedDataTypes: ['EO', 'RADAR'],
+        sourcedDataTypes: ['RADAR', 'RF'],
         tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
         transactionId: 'TRANSACTION-ID',
         uct: false,
@@ -106,7 +106,7 @@ describe('resource maneuvers', () => {
       postEventIdStateVector: 'd83a23f8-1496-485a-bd88-ec5808c73299',
       postEventStateVector: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         actualODSpan: 3.5,
@@ -163,7 +163,7 @@ describe('resource maneuvers', () => {
         solarRadPressCoeff: 0.0244394,
         solidEarthTides: true,
         sourcedData: ['DATA1', 'DATA2'],
-        sourcedDataTypes: ['EO'],
+        sourcedDataTypes: ['RADAR'],
         srpArea: 4.311,
         stepMode: 'AUTO',
         stepSize: 1.23,
@@ -223,7 +223,7 @@ describe('resource maneuvers', () => {
       preEccentricity: 0.00017,
       preEventElset: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         agom: 0.0126,
@@ -252,7 +252,7 @@ describe('resource maneuvers', () => {
         satNo: 12,
         semiMajorAxis: 1.1,
         sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-        sourcedDataTypes: ['EO', 'RADAR'],
+        sourcedDataTypes: ['RADAR', 'RF'],
         tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
         transactionId: 'TRANSACTION-ID',
         uct: false,
@@ -261,7 +261,7 @@ describe('resource maneuvers', () => {
       preEventIdStateVector: '6e291992-8ae3-4592-bb0f-055715bf4803',
       preEventStateVector: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         actualODSpan: 3.5,
@@ -318,7 +318,7 @@ describe('resource maneuvers', () => {
         solarRadPressCoeff: 0.0244394,
         solidEarthTides: true,
         sourcedData: ['DATA1', 'DATA2'],
-        sourcedDataTypes: ['EO'],
+        sourcedDataTypes: ['RADAR'],
         srpArea: 4.311,
         stepMode: 'AUTO',
         stepSize: 1.23,
@@ -419,7 +419,7 @@ describe('resource maneuvers', () => {
     const responsePromise = client.maneuvers.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         eventStartTime: '2023-11-16T01:05:16.835689Z',
         source: 'Bluestaq',
       },
@@ -437,7 +437,7 @@ describe('resource maneuvers', () => {
     const response = await client.maneuvers.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         eventStartTime: '2023-11-16T01:05:16.835689Z',
         source: 'Bluestaq',
         id: 'MANEUVER-ID',
@@ -476,7 +476,7 @@ describe('resource maneuvers', () => {
         postEccentricity: 0.000164,
         postEventElset: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           agom: 0.0126,
@@ -505,7 +505,7 @@ describe('resource maneuvers', () => {
           satNo: 12,
           semiMajorAxis: 1.1,
           sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-          sourcedDataTypes: ['EO', 'RADAR'],
+          sourcedDataTypes: ['RADAR', 'RF'],
           tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
           transactionId: 'TRANSACTION-ID',
           uct: false,
@@ -514,7 +514,7 @@ describe('resource maneuvers', () => {
         postEventIdStateVector: 'd83a23f8-1496-485a-bd88-ec5808c73299',
         postEventStateVector: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           actualODSpan: 3.5,
@@ -571,7 +571,7 @@ describe('resource maneuvers', () => {
           solarRadPressCoeff: 0.0244394,
           solidEarthTides: true,
           sourcedData: ['DATA1', 'DATA2'],
-          sourcedDataTypes: ['EO'],
+          sourcedDataTypes: ['RADAR'],
           srpArea: 4.311,
           stepMode: 'AUTO',
           stepSize: 1.23,
@@ -631,7 +631,7 @@ describe('resource maneuvers', () => {
         preEccentricity: 0.00017,
         preEventElset: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           agom: 0.0126,
@@ -660,7 +660,7 @@ describe('resource maneuvers', () => {
           satNo: 12,
           semiMajorAxis: 1.1,
           sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-          sourcedDataTypes: ['EO', 'RADAR'],
+          sourcedDataTypes: ['RADAR', 'RF'],
           tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
           transactionId: 'TRANSACTION-ID',
           uct: false,
@@ -669,7 +669,7 @@ describe('resource maneuvers', () => {
         preEventIdStateVector: '6e291992-8ae3-4592-bb0f-055715bf4803',
         preEventStateVector: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           actualODSpan: 3.5,
@@ -726,7 +726,7 @@ describe('resource maneuvers', () => {
           solarRadPressCoeff: 0.0244394,
           solidEarthTides: true,
           sourcedData: ['DATA1', 'DATA2'],
-          sourcedDataTypes: ['EO'],
+          sourcedDataTypes: ['RADAR'],
           srpArea: 4.311,
           stepMode: 'AUTO',
           stepSize: 1.23,
@@ -798,7 +798,7 @@ describe('resource maneuvers', () => {
     const responsePromise = client.maneuvers.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         eventStartTime: '2023-11-16T01:05:16.835689Z',
         source: 'Bluestaq',
       },
@@ -816,7 +816,7 @@ describe('resource maneuvers', () => {
     const response = await client.maneuvers.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         eventStartTime: '2023-11-16T01:05:16.835689Z',
         source: 'Bluestaq',
         id: 'MANEUVER-ID',
@@ -855,7 +855,7 @@ describe('resource maneuvers', () => {
         postEccentricity: 0.000164,
         postEventElset: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           agom: 0.0126,
@@ -884,7 +884,7 @@ describe('resource maneuvers', () => {
           satNo: 12,
           semiMajorAxis: 1.1,
           sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-          sourcedDataTypes: ['EO', 'RADAR'],
+          sourcedDataTypes: ['RADAR', 'RF'],
           tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
           transactionId: 'TRANSACTION-ID',
           uct: false,
@@ -893,7 +893,7 @@ describe('resource maneuvers', () => {
         postEventIdStateVector: 'd83a23f8-1496-485a-bd88-ec5808c73299',
         postEventStateVector: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           actualODSpan: 3.5,
@@ -950,7 +950,7 @@ describe('resource maneuvers', () => {
           solarRadPressCoeff: 0.0244394,
           solidEarthTides: true,
           sourcedData: ['DATA1', 'DATA2'],
-          sourcedDataTypes: ['EO'],
+          sourcedDataTypes: ['RADAR'],
           srpArea: 4.311,
           stepMode: 'AUTO',
           stepSize: 1.23,
@@ -1010,7 +1010,7 @@ describe('resource maneuvers', () => {
         preEccentricity: 0.00017,
         preEventElset: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           agom: 0.0126,
@@ -1039,7 +1039,7 @@ describe('resource maneuvers', () => {
           satNo: 12,
           semiMajorAxis: 1.1,
           sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-          sourcedDataTypes: ['EO', 'RADAR'],
+          sourcedDataTypes: ['RADAR', 'RF'],
           tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
           transactionId: 'TRANSACTION-ID',
           uct: false,
@@ -1048,7 +1048,7 @@ describe('resource maneuvers', () => {
         preEventIdStateVector: '6e291992-8ae3-4592-bb0f-055715bf4803',
         preEventStateVector: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           actualODSpan: 3.5,
@@ -1105,7 +1105,7 @@ describe('resource maneuvers', () => {
           solarRadPressCoeff: 0.0244394,
           solidEarthTides: true,
           sourcedData: ['DATA1', 'DATA2'],
-          sourcedDataTypes: ['EO'],
+          sourcedDataTypes: ['RADAR'],
           srpArea: 4.311,
           stepMode: 'AUTO',
           stepSize: 1.23,

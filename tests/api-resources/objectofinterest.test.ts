@@ -13,7 +13,7 @@ describe('resource objectofinterest', () => {
   test('create: only required params', async () => {
     const responsePromise = client.objectofinterest.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnOrbit: 'REF-ONORBIT-ID',
       sensorTaskingStartTime: '2021-01-01T01:01:01.123Z',
       source: 'Bluestaq',
@@ -31,7 +31,7 @@ describe('resource objectofinterest', () => {
   test('create: required and optional params', async () => {
     const response = await client.objectofinterest.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnOrbit: 'REF-ONORBIT-ID',
       sensorTaskingStartTime: '2021-01-01T01:01:01.123Z',
       source: 'Bluestaq',
@@ -77,7 +77,7 @@ describe('resource objectofinterest', () => {
   test('update: only required params', async () => {
     const responsePromise = client.objectofinterest.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnOrbit: 'REF-ONORBIT-ID',
       sensorTaskingStartTime: '2021-01-01T01:01:01.123Z',
       source: 'Bluestaq',
@@ -95,7 +95,7 @@ describe('resource objectofinterest', () => {
   test('update: required and optional params', async () => {
     const response = await client.objectofinterest.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idOnOrbit: 'REF-ONORBIT-ID',
       sensorTaskingStartTime: '2021-01-01T01:01:01.123Z',
       source: 'Bluestaq',

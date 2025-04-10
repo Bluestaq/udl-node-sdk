@@ -13,7 +13,7 @@ describe('resource soiobservationset', () => {
   test('create: only required params', async () => {
     const responsePromise = client.soiobservationset.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       numObs: 1,
       source: 'Bluestaq',
       startTime: '2018-01-01T16:00:00.123456Z',
@@ -31,7 +31,7 @@ describe('resource soiobservationset', () => {
   test('create: required and optional params', async () => {
     const response = await client.soiobservationset.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       numObs: 1,
       source: 'Bluestaq',
       startTime: '2018-01-01T16:00:00.123456Z',
@@ -216,7 +216,7 @@ describe('resource soiobservationset', () => {
     const responsePromise = client.soiobservationset.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         numObs: 1,
         source: 'Bluestaq',
         startTime: '2018-01-01T16:00:00.123456Z',
@@ -236,7 +236,7 @@ describe('resource soiobservationset', () => {
     const response = await client.soiobservationset.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         numObs: 1,
         source: 'Bluestaq',
         startTime: '2018-01-01T16:00:00.123456Z',
@@ -396,7 +396,7 @@ describe('resource soiobservationset', () => {
     const responsePromise = client.soiobservationset.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         numObs: 1,
         source: 'Bluestaq',
         startTime: '2018-01-01T16:00:00.123456Z',
@@ -416,7 +416,7 @@ describe('resource soiobservationset', () => {
     const response = await client.soiobservationset.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         numObs: 1,
         source: 'Bluestaq',
         startTime: '2018-01-01T16:00:00.123456Z',

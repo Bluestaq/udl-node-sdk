@@ -13,7 +13,7 @@ describe('resource organization', () => {
   test('create: only required params', async () => {
     const responsePromise = client.organization.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'some.user',
       source: 'some.user',
       type: 'GOVERNMENT',
@@ -30,7 +30,7 @@ describe('resource organization', () => {
   test('create: required and optional params', async () => {
     const response = await client.organization.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'some.user',
       source: 'some.user',
       type: 'GOVERNMENT',
@@ -48,7 +48,7 @@ describe('resource organization', () => {
   test('update: only required params', async () => {
     const responsePromise = client.organization.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'some.user',
       source: 'some.user',
       type: 'GOVERNMENT',
@@ -65,7 +65,7 @@ describe('resource organization', () => {
   test('update: required and optional params', async () => {
     const response = await client.organization.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'some.user',
       source: 'some.user',
       type: 'GOVERNMENT',

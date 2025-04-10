@@ -32,7 +32,7 @@ describe('resource diffofarrival', () => {
     const responsePromise = client.diffofarrival.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
       },
@@ -50,7 +50,7 @@ describe('resource diffofarrival', () => {
     const response = await client.diffofarrival.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         id: 'DIFFOFARRIVAL-ID',

@@ -13,7 +13,7 @@ describe('resource missionassignment', () => {
   test('create: only required params', async () => {
     const responsePromise = client.missionassignment.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       mad: 'MAD',
       source: 'Bluestaq',
       ts: '2021-01-01T01:01:01.123456Z',
@@ -30,7 +30,7 @@ describe('resource missionassignment', () => {
   test('create: required and optional params', async () => {
     const response = await client.missionassignment.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       mad: 'MAD',
       source: 'Bluestaq',
       ts: '2021-01-01T01:01:01.123456Z',
@@ -98,7 +98,7 @@ describe('resource missionassignment', () => {
   test('update: only required params', async () => {
     const responsePromise = client.missionassignment.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       mad: 'MAD',
       source: 'Bluestaq',
       ts: '2021-01-01T01:01:01.123456Z',
@@ -115,7 +115,7 @@ describe('resource missionassignment', () => {
   test('update: required and optional params', async () => {
     const response = await client.missionassignment.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       mad: 'MAD',
       source: 'Bluestaq',
       ts: '2021-01-01T01:01:01.123456Z',
@@ -253,7 +253,7 @@ describe('resource missionassignment', () => {
         [
           {
             classificationMarking: 'U',
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             mad: 'MAD',
             source: 'Bluestaq',
             ts: '2021-01-01T01:01:01.123456Z',

@@ -13,7 +13,7 @@ describe('resource siteremark', () => {
   test('create: only required params', async () => {
     const responsePromise = client.siteremark.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSite: 'SITE-ID',
       source: 'Bluestaq',
       text: 'This is a remark',
@@ -30,7 +30,7 @@ describe('resource siteremark', () => {
   test('create: required and optional params', async () => {
     const response = await client.siteremark.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSite: 'SITE-ID',
       source: 'Bluestaq',
       text: 'This is a remark',

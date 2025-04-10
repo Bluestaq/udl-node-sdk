@@ -14,7 +14,7 @@ describe('resource udlSigact', () => {
     const responsePromise = client.reportAndActivity.udlSigact.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         reportDate: '2018-01-01T16:00:00.123Z',
         source: 'Bluestaq',
       },
@@ -32,7 +32,7 @@ describe('resource udlSigact', () => {
     const response = await client.reportAndActivity.udlSigact.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         reportDate: '2018-01-01T16:00:00.123Z',
         source: 'Bluestaq',
         id: 'SIGACT-ID',

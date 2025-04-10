@@ -13,7 +13,7 @@ describe('resource seradataspacecraftdetails', () => {
   test('create: only required params', async () => {
     const responsePromise = client.seradataspacecraftdetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'name',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource seradataspacecraftdetails', () => {
   test('create: required and optional params', async () => {
     const response = await client.seradataspacecraftdetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'name',
       source: 'Bluestaq',
       id: 'SERADATASPACECRAFTDETAILS-ID',
@@ -126,7 +126,7 @@ describe('resource seradataspacecraftdetails', () => {
   test('update: only required params', async () => {
     const responsePromise = client.seradataspacecraftdetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'name',
       source: 'Bluestaq',
     });
@@ -142,7 +142,7 @@ describe('resource seradataspacecraftdetails', () => {
   test('update: required and optional params', async () => {
     const response = await client.seradataspacecraftdetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'name',
       source: 'Bluestaq',
       body_id: 'SERADATASPACECRAFTDETAILS-ID',

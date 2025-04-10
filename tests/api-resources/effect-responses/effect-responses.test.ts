@@ -13,7 +13,7 @@ describe('resource effectResponses', () => {
   test('create: only required params', async () => {
     const responsePromise = client.effectResponses.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       type: 'COA',
     });
@@ -29,7 +29,7 @@ describe('resource effectResponses', () => {
   test('create: required and optional params', async () => {
     const response = await client.effectResponses.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       type: 'COA',
       id: 'EFFECTRESPONSE-ID',
@@ -138,7 +138,7 @@ describe('resource effectResponses', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.effectResponses.createBulk([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', type: 'COA' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', type: 'COA' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -153,7 +153,7 @@ describe('resource effectResponses', () => {
     const response = await client.effectResponses.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         type: 'COA',
         id: 'EFFECTRESPONSE-ID',
@@ -215,7 +215,7 @@ describe('resource effectResponses', () => {
 
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.effectResponses.createBulkV2([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', type: 'COA' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', type: 'COA' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -230,7 +230,7 @@ describe('resource effectResponses', () => {
     const response = await client.effectResponses.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         type: 'COA',
         id: 'EFFECTRESPONSE-ID',

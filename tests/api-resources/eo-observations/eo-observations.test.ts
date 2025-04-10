@@ -13,7 +13,7 @@ describe('resource eoObservations', () => {
   test('create: only required params', async () => {
     const responsePromise = client.eoObservations.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obTime: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource eoObservations', () => {
   test('create: required and optional params', async () => {
     const response = await client.eoObservations.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obTime: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
       id: 'EOOBSERVATION-ID',
@@ -70,7 +70,7 @@ describe('resource eoObservations', () => {
         columnVariance: 0.1,
         currentNeutralDensityFilterNum: 3,
         currentSpectralFilterNum: 23,
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         declinationCov: 123.2,
         distFromStreakCenter: [-127.153, -126.153, -125.153],
         does: 123.2,
@@ -235,7 +235,7 @@ describe('resource eoObservations', () => {
       body: [
         {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           obTime: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
         },
@@ -255,7 +255,7 @@ describe('resource eoObservations', () => {
       body: [
         {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           obTime: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           id: 'EOOBSERVATION-ID',
@@ -296,7 +296,7 @@ describe('resource eoObservations', () => {
             columnVariance: 0.1,
             currentNeutralDensityFilterNum: 3,
             currentSpectralFilterNum: 23,
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             declinationCov: 123.2,
             distFromStreakCenter: [-127.153, -126.153, -125.153],
             does: 123.2,
@@ -433,7 +433,7 @@ describe('resource eoObservations', () => {
     const responsePromise = client.eoObservations.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
       },
@@ -451,7 +451,7 @@ describe('resource eoObservations', () => {
     const response = await client.eoObservations.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         id: 'EOOBSERVATION-ID',
@@ -492,7 +492,7 @@ describe('resource eoObservations', () => {
           columnVariance: 0.1,
           currentNeutralDensityFilterNum: 3,
           currentSpectralFilterNum: 23,
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           declinationCov: 123.2,
           distFromStreakCenter: [-127.153, -126.153, -125.153],
           does: 123.2,

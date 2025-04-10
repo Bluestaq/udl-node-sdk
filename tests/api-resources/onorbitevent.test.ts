@@ -13,7 +13,7 @@ describe('resource onorbitevent', () => {
   test('create: only required params', async () => {
     const responsePromise = client.onorbitevent.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       eventTime: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource onorbitevent', () => {
   test('create: required and optional params', async () => {
     const response = await client.onorbitevent.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       eventTime: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
       id: 'ONORBITEVENT-ID',
@@ -85,7 +85,7 @@ describe('resource onorbitevent', () => {
   test('update: only required params', async () => {
     const responsePromise = client.onorbitevent.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       eventTime: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
     });
@@ -101,7 +101,7 @@ describe('resource onorbitevent', () => {
   test('update: required and optional params', async () => {
     const response = await client.onorbitevent.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       eventTime: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
       body_id: 'ONORBITEVENT-ID',

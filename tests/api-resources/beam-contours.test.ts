@@ -13,7 +13,7 @@ describe('resource beamContours', () => {
   test('create: only required params', async () => {
     const responsePromise = client.beamContours.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idBeam: 'REF-BEAM-ID',
       source: 'Bluestaq',
       type: 'BORESIGHT',
@@ -30,7 +30,7 @@ describe('resource beamContours', () => {
   test('create: required and optional params', async () => {
     const response = await client.beamContours.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idBeam: 'REF-BEAM-ID',
       source: 'Bluestaq',
       type: 'BORESIGHT',
@@ -72,7 +72,7 @@ describe('resource beamContours', () => {
   test('update: only required params', async () => {
     const responsePromise = client.beamContours.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idBeam: 'REF-BEAM-ID',
       source: 'Bluestaq',
       type: 'BORESIGHT',
@@ -89,7 +89,7 @@ describe('resource beamContours', () => {
   test('update: required and optional params', async () => {
     const response = await client.beamContours.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idBeam: 'REF-BEAM-ID',
       source: 'Bluestaq',
       type: 'BORESIGHT',
@@ -162,7 +162,7 @@ describe('resource beamContours', () => {
     const responsePromise = client.beamContours.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         idBeam: 'REF-BEAM-ID',
         source: 'Bluestaq',
         type: 'BORESIGHT',
@@ -181,7 +181,7 @@ describe('resource beamContours', () => {
     const response = await client.beamContours.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         idBeam: 'REF-BEAM-ID',
         source: 'Bluestaq',
         type: 'BORESIGHT',

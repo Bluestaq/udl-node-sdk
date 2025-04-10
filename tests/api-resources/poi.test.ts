@@ -13,7 +13,7 @@ describe('resource poi', () => {
   test('create: only required params', async () => {
     const responsePromise = client.poi.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'POI_NAME',
       poiid: 'POI-ID',
       source: 'Bluestaq',
@@ -31,7 +31,7 @@ describe('resource poi', () => {
   test('create: required and optional params', async () => {
     const response = await client.poi.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'POI_NAME',
       poiid: 'POI-ID',
       source: 'Bluestaq',
@@ -117,7 +117,7 @@ describe('resource poi', () => {
     const responsePromise = client.poi.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         name: 'POI_NAME',
         poiid: 'POI-ID',
         source: 'Bluestaq',
@@ -137,7 +137,7 @@ describe('resource poi', () => {
     const response = await client.poi.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         name: 'POI_NAME',
         poiid: 'POI-ID',
         source: 'Bluestaq',
@@ -194,7 +194,7 @@ describe('resource poi', () => {
     const responsePromise = client.poi.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         name: 'POI_NAME',
         poiid: 'POI-ID',
         source: 'Bluestaq',
@@ -214,7 +214,7 @@ describe('resource poi', () => {
     const response = await client.poi.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         name: 'POI_NAME',
         poiid: 'POI-ID',
         source: 'Bluestaq',

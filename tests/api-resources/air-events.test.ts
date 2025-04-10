@@ -13,7 +13,7 @@ describe('resource airEvents', () => {
   test('create: only required params', async () => {
     const responsePromise = client.airEvents.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       type: 'FUEL TRANSFER',
     });
@@ -29,7 +29,7 @@ describe('resource airEvents', () => {
   test('create: required and optional params', async () => {
     const response = await client.airEvents.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       type: 'FUEL TRANSFER',
       id: '026dd511-8ba5-47d3-9909-836149f87686',
@@ -125,7 +125,7 @@ describe('resource airEvents', () => {
   test('update: only required params', async () => {
     const responsePromise = client.airEvents.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       type: 'FUEL TRANSFER',
     });
@@ -141,7 +141,7 @@ describe('resource airEvents', () => {
   test('update: required and optional params', async () => {
     const response = await client.airEvents.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       type: 'FUEL TRANSFER',
       body_id: '026dd511-8ba5-47d3-9909-836149f87686',
@@ -290,7 +290,7 @@ describe('resource airEvents', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.airEvents.createBulk([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', type: 'FUEL TRANSFER' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', type: 'FUEL TRANSFER' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -305,7 +305,7 @@ describe('resource airEvents', () => {
     const response = await client.airEvents.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         type: 'FUEL TRANSFER',
         id: '026dd511-8ba5-47d3-9909-836149f87686',
@@ -401,7 +401,7 @@ describe('resource airEvents', () => {
 
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.airEvents.createBulkV2([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', type: 'FUEL TRANSFER' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', type: 'FUEL TRANSFER' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -416,7 +416,7 @@ describe('resource airEvents', () => {
     const response = await client.airEvents.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         type: 'FUEL TRANSFER',
         id: '026dd511-8ba5-47d3-9909-836149f87686',

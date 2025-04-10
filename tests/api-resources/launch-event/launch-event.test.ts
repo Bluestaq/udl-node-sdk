@@ -14,7 +14,7 @@ describe('resource launchEvent', () => {
     const responsePromise = client.launchEvent.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgCreateDate: '2020-01-01T00:00:00.123Z',
         source: 'Bluestaq',
       },
@@ -32,7 +32,7 @@ describe('resource launchEvent', () => {
     const response = await client.launchEvent.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgCreateDate: '2020-01-01T00:00:00.123Z',
         source: 'Bluestaq',
         id: 'LAUNCHEVENT-ID',

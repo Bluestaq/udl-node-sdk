@@ -14,7 +14,7 @@ describe('resource ephemerisSets', () => {
     const responsePromise = client.ephemerisSets.create({
       category: 'ANALYST',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       numPoints: 1,
       pointEndTime: '2018-01-01T16:00:00.123456Z',
       pointStartTime: '2018-01-01T16:00:00.123456Z',
@@ -34,7 +34,7 @@ describe('resource ephemerisSets', () => {
     const response = await client.ephemerisSets.create({
       category: 'ANALYST',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       numPoints: 1,
       pointEndTime: '2018-01-01T16:00:00.123456Z',
       pointStartTime: '2018-01-01T16:00:00.123456Z',
@@ -52,7 +52,7 @@ describe('resource ephemerisSets', () => {
       ephemerisList: [
         {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           source: 'Bluestaq',
           ts: '2018-01-01T16:00:00.123456Z',
           xpos: 1.1,

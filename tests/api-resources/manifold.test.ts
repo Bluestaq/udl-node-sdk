@@ -13,7 +13,7 @@ describe('resource manifold', () => {
   test('create: only required params', async () => {
     const responsePromise = client.manifold.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idObjectOfInterest: 'OBJECTOFINTEREST-ID',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource manifold', () => {
   test('create: required and optional params', async () => {
     const response = await client.manifold.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idObjectOfInterest: 'OBJECTOFINTEREST-ID',
       source: 'Bluestaq',
       id: 'MANIFOLD-ID',
@@ -44,7 +44,7 @@ describe('resource manifold', () => {
   test('update: only required params', async () => {
     const responsePromise = client.manifold.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idObjectOfInterest: 'OBJECTOFINTEREST-ID',
       source: 'Bluestaq',
     });
@@ -60,7 +60,7 @@ describe('resource manifold', () => {
   test('update: required and optional params', async () => {
     const response = await client.manifold.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idObjectOfInterest: 'OBJECTOFINTEREST-ID',
       source: 'Bluestaq',
       body_id: 'MANIFOLD-ID',
@@ -151,7 +151,7 @@ describe('resource manifold', () => {
         [
           {
             classificationMarking: 'U',
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             idObjectOfInterest: 'OBJECTOFINTEREST-ID',
             source: 'Bluestaq',
             id: 'MANIFOLD-ID',

@@ -13,7 +13,7 @@ describe('resource sitestatus', () => {
   test('create: only required params', async () => {
     const responsePromise = client.sitestatus.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSite: '41e3e554-9790-40b9-bd7b-f30d864dcad8',
       source: 'Bluestaq',
     });
@@ -29,19 +29,19 @@ describe('resource sitestatus', () => {
   test('create: required and optional params', async () => {
     const response = await client.sitestatus.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSite: '41e3e554-9790-40b9-bd7b-f30d864dcad8',
       source: 'Bluestaq',
       id: 'SITESTATUS-ID',
       cat: 'COLD',
       coldInventory: 1,
       commImpairment: 'commImpairment',
-      cpcon: '1',
-      eoc: 'COLD',
-      fpcon: 'NORMAL',
+      cpcon: '4',
+      eoc: 'WARM',
+      fpcon: 'BRAVO',
       hotInventory: 1,
-      hpcon: '0',
-      instStatus: 'FMC',
+      hpcon: 'CHARLIE',
+      instStatus: 'PMC',
       link: ['ATDL', 'IJMS', 'LINK-1'],
       linkStatus: ['AVAILABLE', 'DEGRADED', 'NOT AVAILABLE'],
       missile: ['GMD', 'HARPOON', 'JAVELIN'],
@@ -68,7 +68,7 @@ describe('resource sitestatus', () => {
   test('update: only required params', async () => {
     const responsePromise = client.sitestatus.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSite: '41e3e554-9790-40b9-bd7b-f30d864dcad8',
       source: 'Bluestaq',
     });
@@ -84,19 +84,19 @@ describe('resource sitestatus', () => {
   test('update: required and optional params', async () => {
     const response = await client.sitestatus.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idSite: '41e3e554-9790-40b9-bd7b-f30d864dcad8',
       source: 'Bluestaq',
       body_id: 'SITESTATUS-ID',
       cat: 'COLD',
       coldInventory: 1,
       commImpairment: 'commImpairment',
-      cpcon: '1',
-      eoc: 'COLD',
-      fpcon: 'NORMAL',
+      cpcon: '4',
+      eoc: 'WARM',
+      fpcon: 'BRAVO',
       hotInventory: 1,
-      hpcon: '0',
-      instStatus: 'FMC',
+      hpcon: 'CHARLIE',
+      instStatus: 'PMC',
       link: ['ATDL', 'IJMS', 'LINK-1'],
       linkStatus: ['AVAILABLE', 'DEGRADED', 'NOT AVAILABLE'],
       missile: ['GMD', 'HARPOON', 'JAVELIN'],

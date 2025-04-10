@@ -13,7 +13,7 @@ describe('resource collectRequests', () => {
   test('create: only required params', async () => {
     const responsePromise = client.collectRequests.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       startTime: '2018-01-01T16:00:00.123456Z',
       type: 'DWELL',
@@ -30,7 +30,7 @@ describe('resource collectRequests', () => {
   test('create: required and optional params', async () => {
     const response = await client.collectRequests.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       startTime: '2018-01-01T16:00:00.123456Z',
       type: 'DWELL',
@@ -46,7 +46,7 @@ describe('resource collectRequests', () => {
       el: 1.1,
       elset: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         agom: 0.0126,
@@ -75,7 +75,7 @@ describe('resource collectRequests', () => {
         satNo: 12,
         semiMajorAxis: 1.1,
         sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-        sourcedDataTypes: ['EO', 'RADAR'],
+        sourcedDataTypes: ['RADAR', 'RF'],
         tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
         transactionId: 'TRANSACTION-ID',
         uct: false,
@@ -133,7 +133,7 @@ describe('resource collectRequests', () => {
       srchPattern: 'SCAN',
       stateVector: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         epoch: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         actualODSpan: 3.5,
@@ -190,7 +190,7 @@ describe('resource collectRequests', () => {
         solarRadPressCoeff: 0.0244394,
         solidEarthTides: true,
         sourcedData: ['DATA1', 'DATA2'],
-        sourcedDataTypes: ['EO'],
+        sourcedDataTypes: ['RADAR'],
         srpArea: 4.311,
         stepMode: 'AUTO',
         stepSize: 1.23,
@@ -298,7 +298,7 @@ describe('resource collectRequests', () => {
     const responsePromise = client.collectRequests.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         startTime: '2018-01-01T16:00:00.123456Z',
         type: 'DWELL',
@@ -317,7 +317,7 @@ describe('resource collectRequests', () => {
     const response = await client.collectRequests.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         startTime: '2018-01-01T16:00:00.123456Z',
         type: 'DWELL',
@@ -333,7 +333,7 @@ describe('resource collectRequests', () => {
         el: 1.1,
         elset: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           agom: 0.0126,
@@ -362,7 +362,7 @@ describe('resource collectRequests', () => {
           satNo: 12,
           semiMajorAxis: 1.1,
           sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-          sourcedDataTypes: ['EO', 'RADAR'],
+          sourcedDataTypes: ['RADAR', 'RF'],
           tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
           transactionId: 'TRANSACTION-ID',
           uct: false,
@@ -420,7 +420,7 @@ describe('resource collectRequests', () => {
         srchPattern: 'SCAN',
         stateVector: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           actualODSpan: 3.5,
@@ -477,7 +477,7 @@ describe('resource collectRequests', () => {
           solarRadPressCoeff: 0.0244394,
           solidEarthTides: true,
           sourcedData: ['DATA1', 'DATA2'],
-          sourcedDataTypes: ['EO'],
+          sourcedDataTypes: ['RADAR'],
           srpArea: 4.311,
           stepMode: 'AUTO',
           stepSize: 1.23,
@@ -538,7 +538,7 @@ describe('resource collectRequests', () => {
     const responsePromise = client.collectRequests.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         startTime: '2018-01-01T16:00:00.123456Z',
         type: 'DWELL',
@@ -557,7 +557,7 @@ describe('resource collectRequests', () => {
     const response = await client.collectRequests.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         startTime: '2018-01-01T16:00:00.123456Z',
         type: 'DWELL',
@@ -573,7 +573,7 @@ describe('resource collectRequests', () => {
         el: 1.1,
         elset: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           agom: 0.0126,
@@ -602,7 +602,7 @@ describe('resource collectRequests', () => {
           satNo: 12,
           semiMajorAxis: 1.1,
           sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-          sourcedDataTypes: ['EO', 'RADAR'],
+          sourcedDataTypes: ['RADAR', 'RF'],
           tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
           transactionId: 'TRANSACTION-ID',
           uct: false,
@@ -660,7 +660,7 @@ describe('resource collectRequests', () => {
         srchPattern: 'SCAN',
         stateVector: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           epoch: '2018-01-01T16:00:00.123456Z',
           source: 'Bluestaq',
           actualODSpan: 3.5,
@@ -717,7 +717,7 @@ describe('resource collectRequests', () => {
           solarRadPressCoeff: 0.0244394,
           solidEarthTides: true,
           sourcedData: ['DATA1', 'DATA2'],
-          sourcedDataTypes: ['EO'],
+          sourcedDataTypes: ['RADAR'],
           srpArea: 4.311,
           stepMode: 'AUTO',
           stepSize: 1.23,

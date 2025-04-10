@@ -13,7 +13,7 @@ describe('resource diplomaticClearance', () => {
   test('create: only required params', async () => {
     const responsePromise = client.diplomaticClearance.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       firstDepDate: '2024-01-01T01:01:01.123Z',
       idMission: '0dba1363-2d09-49fa-a784-4bb4cbb1674a',
       source: 'Bluestaq',
@@ -30,7 +30,7 @@ describe('resource diplomaticClearance', () => {
   test('create: required and optional params', async () => {
     const response = await client.diplomaticClearance.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       firstDepDate: '2024-01-01T01:01:01.123Z',
       idMission: '0dba1363-2d09-49fa-a784-4bb4cbb1674a',
       source: 'Bluestaq',
@@ -100,7 +100,7 @@ describe('resource diplomaticClearance', () => {
   test('update: only required params', async () => {
     const responsePromise = client.diplomaticClearance.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       firstDepDate: '2024-01-01T01:01:01.123Z',
       idMission: '0dba1363-2d09-49fa-a784-4bb4cbb1674a',
       source: 'Bluestaq',
@@ -117,7 +117,7 @@ describe('resource diplomaticClearance', () => {
   test('update: required and optional params', async () => {
     const response = await client.diplomaticClearance.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       firstDepDate: '2024-01-01T01:01:01.123Z',
       idMission: '0dba1363-2d09-49fa-a784-4bb4cbb1674a',
       source: 'Bluestaq',
@@ -239,7 +239,7 @@ describe('resource diplomaticClearance', () => {
         [
           {
             classificationMarking: 'U',
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             firstDepDate: '2024-01-01T01:01:01.123Z',
             idMission: '0dba1363-2d09-49fa-a784-4bb4cbb1674a',
             source: 'Bluestaq',

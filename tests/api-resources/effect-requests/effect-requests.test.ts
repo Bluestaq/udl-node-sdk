@@ -13,7 +13,7 @@ describe('resource effectRequests', () => {
   test('create: only required params', async () => {
     const responsePromise = client.effectRequests.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       effectList: ['COVER', 'DECEIVE'],
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource effectRequests', () => {
   test('create: required and optional params', async () => {
     const response = await client.effectRequests.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       effectList: ['COVER', 'DECEIVE'],
       source: 'Bluestaq',
       id: 'EFFECTREQUEST-ID',
@@ -99,7 +99,7 @@ describe('resource effectRequests', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.effectRequests.createBulk([
-      { classificationMarking: 'U', dataMode: 'REAL', effectList: ['COVER', 'DECEIVE'], source: 'Bluestaq' },
+      { classificationMarking: 'U', dataMode: 'TEST', effectList: ['COVER', 'DECEIVE'], source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -114,7 +114,7 @@ describe('resource effectRequests', () => {
     const response = await client.effectRequests.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         effectList: ['COVER', 'DECEIVE'],
         source: 'Bluestaq',
         id: 'EFFECTREQUEST-ID',
@@ -137,7 +137,7 @@ describe('resource effectRequests', () => {
 
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.effectRequests.createBulkV2([
-      { classificationMarking: 'U', dataMode: 'REAL', effectList: ['COVER', 'DECEIVE'], source: 'Bluestaq' },
+      { classificationMarking: 'U', dataMode: 'TEST', effectList: ['COVER', 'DECEIVE'], source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -152,7 +152,7 @@ describe('resource effectRequests', () => {
     const response = await client.effectRequests.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         effectList: ['COVER', 'DECEIVE'],
         source: 'Bluestaq',
         id: 'EFFECTREQUEST-ID',

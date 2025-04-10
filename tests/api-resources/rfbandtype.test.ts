@@ -14,7 +14,7 @@ describe('resource rfbandtype', () => {
     const responsePromise = client.rfbandtype.create({
       id: 'Ku',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       description: 'Example description',
       source: 'Bluestaq',
     });
@@ -31,7 +31,7 @@ describe('resource rfbandtype', () => {
     const response = await client.rfbandtype.create({
       id: 'Ku',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       description: 'Example description',
       source: 'Bluestaq',
       endFreq: 123.4,
@@ -44,7 +44,7 @@ describe('resource rfbandtype', () => {
     const responsePromise = client.rfbandtype.update('id', {
       body_id: 'Ku',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       description: 'Example description',
       source: 'Bluestaq',
     });
@@ -61,7 +61,7 @@ describe('resource rfbandtype', () => {
     const response = await client.rfbandtype.update('id', {
       body_id: 'Ku',
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       description: 'Example description',
       source: 'Bluestaq',
       endFreq: 123.4,

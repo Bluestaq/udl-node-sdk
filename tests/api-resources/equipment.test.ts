@@ -14,7 +14,7 @@ describe('resource equipment', () => {
     const responsePromise = client.equipment.create({
       classificationMarking: 'U',
       countryCode: 'IQ',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       lat: 39.019242,
       lon: -104.251659,
       source: 'Bluestaq',
@@ -32,7 +32,7 @@ describe('resource equipment', () => {
     const response = await client.equipment.create({
       classificationMarking: 'U',
       countryCode: 'IQ',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       lat: 39.019242,
       lon: -104.251659,
       source: 'Bluestaq',
@@ -106,7 +106,7 @@ describe('resource equipment', () => {
     const responsePromise = client.equipment.update('id', {
       classificationMarking: 'U',
       countryCode: 'IQ',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       lat: 39.019242,
       lon: -104.251659,
       source: 'Bluestaq',
@@ -124,7 +124,7 @@ describe('resource equipment', () => {
     const response = await client.equipment.update('id', {
       classificationMarking: 'U',
       countryCode: 'IQ',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       lat: 39.019242,
       lon: -104.251659,
       source: 'Bluestaq',
@@ -256,7 +256,7 @@ describe('resource equipment', () => {
           {
             classificationMarking: 'U',
             countryCode: 'IQ',
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             lat: 39.019242,
             lon: -104.251659,
             source: 'Bluestaq',

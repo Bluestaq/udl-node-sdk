@@ -34,7 +34,7 @@ describe('resource groundImagery', () => {
   test('uploadZip: only required params', async () => {
     const responsePromise = client.groundImagery.uploadZip({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       filename: 'Example file name',
       imageTime: '2021-01-01T01:01:01.123456Z',
       source: 'Bluestaq',
@@ -51,7 +51,7 @@ describe('resource groundImagery', () => {
   test('uploadZip: required and optional params', async () => {
     const response = await client.groundImagery.uploadZip({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       filename: 'Example file name',
       imageTime: '2021-01-01T01:01:01.123456Z',
       source: 'Bluestaq',

@@ -13,7 +13,7 @@ describe('resource seradatasigintpayload', () => {
   test('create: only required params', async () => {
     const responsePromise = client.seradatasigintpayload.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
     });
@@ -29,7 +29,7 @@ describe('resource seradatasigintpayload', () => {
   test('create: required and optional params', async () => {
     const response = await client.seradatasigintpayload.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
       id: 'SERADATASIGINTPAYLOAD-ID',
@@ -52,7 +52,7 @@ describe('resource seradatasigintpayload', () => {
   test('update: only required params', async () => {
     const responsePromise = client.seradatasigintpayload.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
     });
@@ -68,7 +68,7 @@ describe('resource seradatasigintpayload', () => {
   test('update: required and optional params', async () => {
     const response = await client.seradatasigintpayload.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
       body_id: 'SERADATASIGINTPAYLOAD-ID',

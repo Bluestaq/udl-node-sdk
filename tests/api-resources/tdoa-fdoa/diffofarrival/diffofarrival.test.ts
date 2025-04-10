@@ -13,7 +13,7 @@ describe('resource diffofarrival', () => {
   test('create: only required params', async () => {
     const responsePromise = client.tdoaFdoa.diffofarrival.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obTime: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource diffofarrival', () => {
   test('create: required and optional params', async () => {
     const response = await client.tdoaFdoa.diffofarrival.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       obTime: '2018-01-01T16:00:00.123456Z',
       source: 'Bluestaq',
       id: 'DIFFOFARRIVAL-ID',
@@ -103,7 +103,7 @@ describe('resource diffofarrival', () => {
     const responsePromise = client.tdoaFdoa.diffofarrival.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
       },
@@ -121,7 +121,7 @@ describe('resource diffofarrival', () => {
     const response = await client.tdoaFdoa.diffofarrival.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         obTime: '2018-01-01T16:00:00.123456Z',
         source: 'Bluestaq',
         id: 'DIFFOFARRIVAL-ID',

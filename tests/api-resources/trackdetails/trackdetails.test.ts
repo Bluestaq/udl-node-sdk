@@ -44,7 +44,7 @@ describe('resource trackdetails', () => {
     const responsePromise = client.trackdetails.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         lat: 19.88550102,
         lon: 46.74596844,
         source: 'Bluestaq',
@@ -64,7 +64,7 @@ describe('resource trackdetails', () => {
     const response = await client.trackdetails.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         lat: 19.88550102,
         lon: 46.74596844,
         source: 'Bluestaq',
@@ -113,7 +113,7 @@ describe('resource trackdetails', () => {
         elnot2: 'A123B',
         emgInd: false,
         emitterName: 'RAY1500',
-        env: 'AIR',
+        env: 'LAND',
         errAreaOrient: 69.6,
         errGeoAreaSwitch: 'CIRCLE_ELLIPSE',
         errSemiIntAxis: 7010.882,
@@ -163,7 +163,7 @@ describe('resource trackdetails', () => {
         numBlades: 4,
         numShafts: 3,
         objAct: 'HOLDING',
-        objIdent: 'ASSUMED FRIEND',
+        objIdent: 'FRIEND',
         objNat: 'USA',
         objPlat: 'WEAPON',
         objType: 'TRACKED',

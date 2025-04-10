@@ -108,7 +108,7 @@ describe('resource gnssrawif', () => {
     const responsePromise = client.gnssrawif.uploadZip({
       centerFreq: [1227.6, 1575.4],
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endTime: '2022-04-09T18:12:28.919768Z',
       fileName: 'somefile.hdf5',
       source: 'Bluestaq',
@@ -127,7 +127,7 @@ describe('resource gnssrawif', () => {
     const response = await client.gnssrawif.uploadZip({
       centerFreq: [1227.6, 1575.4],
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       endTime: '2022-04-09T18:12:28.919768Z',
       fileName: 'somefile.hdf5',
       source: 'Bluestaq',

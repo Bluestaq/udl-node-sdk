@@ -13,7 +13,7 @@ describe('resource logisticssupport', () => {
   test('create: only required params', async () => {
     const responsePromise = client.logisticssupport.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       rptCreatedTime: '2023-07-13T13:47:00.123Z',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource logisticssupport', () => {
   test('create: required and optional params', async () => {
     const response = await client.logisticssupport.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       rptCreatedTime: '2023-07-13T13:47:00.123Z',
       source: 'Bluestaq',
       id: 'LOGISTICS-SUPPORT-DETAILS UUID',
@@ -172,7 +172,7 @@ describe('resource logisticssupport', () => {
   test('update: only required params', async () => {
     const responsePromise = client.logisticssupport.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       rptCreatedTime: '2023-07-13T13:47:00.123Z',
       source: 'Bluestaq',
     });
@@ -188,7 +188,7 @@ describe('resource logisticssupport', () => {
   test('update: required and optional params', async () => {
     const response = await client.logisticssupport.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       rptCreatedTime: '2023-07-13T13:47:00.123Z',
       source: 'Bluestaq',
       body_id: 'LOGISTICS-SUPPORT-DETAILS UUID',
@@ -389,7 +389,7 @@ describe('resource logisticssupport', () => {
         [
           {
             classificationMarking: 'U',
-            dataMode: 'REAL',
+            dataMode: 'TEST',
             rptCreatedTime: '2023-07-13T13:47:00.123Z',
             source: 'Bluestaq',
             id: 'LOGISTICS-SUPPORT-DETAILS UUID',
@@ -537,7 +537,7 @@ describe('resource logisticssupport', () => {
     const responsePromise = client.logisticssupport.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         rptCreatedTime: '2023-07-13T13:47:00.123Z',
         source: 'Bluestaq',
       },
@@ -555,7 +555,7 @@ describe('resource logisticssupport', () => {
     const response = await client.logisticssupport.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         rptCreatedTime: '2023-07-13T13:47:00.123Z',
         source: 'Bluestaq',
         id: 'LOGISTICS-SUPPORT-DETAILS UUID',

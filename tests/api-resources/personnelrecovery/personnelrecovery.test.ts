@@ -13,7 +13,7 @@ describe('resource personnelrecovery', () => {
   test('create: only required params', async () => {
     const responsePromise = client.personnelrecovery.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       msgTime: '2021-10-15T16:00:00.123Z',
       pickupLat: 75.1234,
       pickupLon: 175.1234,
@@ -32,7 +32,7 @@ describe('resource personnelrecovery', () => {
   test('create: required and optional params', async () => {
     const response = await client.personnelrecovery.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       msgTime: '2021-10-15T16:00:00.123Z',
       pickupLat: 75.1234,
       pickupLon: 175.1234,
@@ -124,7 +124,7 @@ describe('resource personnelrecovery', () => {
     const responsePromise = client.personnelrecovery.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgTime: '2021-10-15T16:00:00.123Z',
         pickupLat: 75.1234,
         pickupLon: 175.1234,
@@ -145,7 +145,7 @@ describe('resource personnelrecovery', () => {
     const response = await client.personnelrecovery.createBulk([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgTime: '2021-10-15T16:00:00.123Z',
         pickupLat: 75.1234,
         pickupLon: 175.1234,
@@ -208,7 +208,7 @@ describe('resource personnelrecovery', () => {
     const responsePromise = client.personnelrecovery.fileCreate([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgTime: '2021-10-15T16:00:00.123Z',
         pickupLat: 75.1234,
         pickupLon: 175.1234,
@@ -229,7 +229,7 @@ describe('resource personnelrecovery', () => {
     const response = await client.personnelrecovery.fileCreate([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgTime: '2021-10-15T16:00:00.123Z',
         pickupLat: 75.1234,
         pickupLon: 175.1234,

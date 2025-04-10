@@ -13,7 +13,7 @@ describe('resource rfband', () => {
   test('create: only required params', async () => {
     const responsePromise = client.rfband.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEntity: 'ENTITY-ID',
       name: 'BAND_NAME',
       source: 'Bluestaq',
@@ -30,7 +30,7 @@ describe('resource rfband', () => {
   test('create: required and optional params', async () => {
     const response = await client.rfband.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEntity: 'ENTITY-ID',
       name: 'BAND_NAME',
       source: 'Bluestaq',
@@ -48,14 +48,14 @@ describe('resource rfband', () => {
       origin: 'THIRD_PARTY_DATASOURCE',
       peakGain: 120.23,
       polarization: 'H',
-      purpose: 'COMM',
+      purpose: 'TTC',
     });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.rfband.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEntity: 'ENTITY-ID',
       name: 'BAND_NAME',
       source: 'Bluestaq',
@@ -72,7 +72,7 @@ describe('resource rfband', () => {
   test('update: required and optional params', async () => {
     const response = await client.rfband.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idEntity: 'ENTITY-ID',
       name: 'BAND_NAME',
       source: 'Bluestaq',
@@ -90,7 +90,7 @@ describe('resource rfband', () => {
       origin: 'THIRD_PARTY_DATASOURCE',
       peakGain: 120.23,
       polarization: 'H',
-      purpose: 'COMM',
+      purpose: 'TTC',
     });
   });
 

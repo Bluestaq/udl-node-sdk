@@ -31,7 +31,7 @@ describe('resource airfieldStatus', () => {
   test('update: only required params', async () => {
     const responsePromise = client.airfieldStatus.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idAirfield: '3136498f-2969-3535-1432-e984b2e2e686',
       source: 'Bluestaq',
     });
@@ -47,7 +47,7 @@ describe('resource airfieldStatus', () => {
   test('update: required and optional params', async () => {
     const response = await client.airfieldStatus.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idAirfield: '3136498f-2969-3535-1432-e984b2e2e686',
       source: 'Bluestaq',
       body_id: 'be831d39-1822-da9f-7ace-6cc5643397dc',

@@ -14,7 +14,7 @@ describe('resource ecpsdr', () => {
     const responsePromise = client.ecpsdr.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgTime: '2018-01-01T16:00:00.123Z',
         source: 'Bluestaq',
         type: 'STANDARD',
@@ -33,7 +33,7 @@ describe('resource ecpsdr', () => {
     const response = await client.ecpsdr.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         msgTime: '2018-01-01T16:00:00.123Z',
         source: 'Bluestaq',
         type: 'STANDARD',

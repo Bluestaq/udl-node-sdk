@@ -13,7 +13,7 @@ describe('resource scientific', () => {
   test('create: only required params', async () => {
     const responsePromise = client.scientific.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'SEM/MAG',
       source: 'Bluestaq',
       spacecraftId: 'REF-SPACECRAFT-ID',
@@ -30,17 +30,17 @@ describe('resource scientific', () => {
   test('create: required and optional params', async () => {
     const response = await client.scientific.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'SEM/MAG',
       source: 'Bluestaq',
       spacecraftId: 'REF-SPACECRAFT-ID',
       id: 'SCIENTIFIC-ID',
       entity: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         name: 'Example name',
         source: 'Bluestaq',
-        type: 'AIRCRAFT',
+        type: 'ONORBIT',
         countryCode: 'US',
         idEntity: 'ENTITY-ID',
         idLocation: 'LOCATION-ID',
@@ -48,7 +48,7 @@ describe('resource scientific', () => {
         idOperatingUnit: 'OPERATINGUNIT-ID',
         location: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           name: 'Example location',
           source: 'Bluestaq',
           altitude: 10.23,
@@ -60,11 +60,11 @@ describe('resource scientific', () => {
         },
         onOrbit: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           satNo: 1,
           source: 'Bluestaq',
           altName: 'Alternate Name',
-          category: 'Unknown',
+          category: 'Lunar',
           commonName: 'Example common name',
           constellation: 'Big Dipper',
           countryCode: 'US',
@@ -75,7 +75,7 @@ describe('resource scientific', () => {
           launchSiteId: 'LAUNCHSITE-ID',
           lifetimeYears: 10,
           missionNumber: 'Expedition 1',
-          objectType: 'ROCKET BODY',
+          objectType: 'PAYLOAD',
           origin: 'THIRD_PARTY_DATASOURCE',
         },
         origin: 'THIRD_PARTY_DATASOURCE',
@@ -96,7 +96,7 @@ describe('resource scientific', () => {
   test('update: only required params', async () => {
     const responsePromise = client.scientific.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'SEM/MAG',
       source: 'Bluestaq',
       spacecraftId: 'REF-SPACECRAFT-ID',
@@ -113,17 +113,17 @@ describe('resource scientific', () => {
   test('update: required and optional params', async () => {
     const response = await client.scientific.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       name: 'SEM/MAG',
       source: 'Bluestaq',
       spacecraftId: 'REF-SPACECRAFT-ID',
       body_id: 'SCIENTIFIC-ID',
       entity: {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         name: 'Example name',
         source: 'Bluestaq',
-        type: 'AIRCRAFT',
+        type: 'ONORBIT',
         countryCode: 'US',
         idEntity: 'ENTITY-ID',
         idLocation: 'LOCATION-ID',
@@ -131,7 +131,7 @@ describe('resource scientific', () => {
         idOperatingUnit: 'OPERATINGUNIT-ID',
         location: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           name: 'Example location',
           source: 'Bluestaq',
           altitude: 10.23,
@@ -143,11 +143,11 @@ describe('resource scientific', () => {
         },
         onOrbit: {
           classificationMarking: 'U',
-          dataMode: 'REAL',
+          dataMode: 'TEST',
           satNo: 1,
           source: 'Bluestaq',
           altName: 'Alternate Name',
-          category: 'Unknown',
+          category: 'Lunar',
           commonName: 'Example common name',
           constellation: 'Big Dipper',
           countryCode: 'US',
@@ -158,7 +158,7 @@ describe('resource scientific', () => {
           launchSiteId: 'LAUNCHSITE-ID',
           lifetimeYears: 10,
           missionNumber: 'Expedition 1',
-          objectType: 'ROCKET BODY',
+          objectType: 'PAYLOAD',
           origin: 'THIRD_PARTY_DATASOURCE',
         },
         origin: 'THIRD_PARTY_DATASOURCE',

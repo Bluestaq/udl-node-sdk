@@ -12,7 +12,7 @@ const client = new Unifieddatalibrary({
 describe('resource swir', () => {
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.observations.swir.createBulkV2([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', ts: '2021-01-01T01:01:01.123456Z' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-01-01T01:01:01.123456Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,7 +27,7 @@ describe('resource swir', () => {
     const response = await client.observations.swir.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         ts: '2021-01-01T01:01:01.123456Z',
         id: 'SWIR-ID',

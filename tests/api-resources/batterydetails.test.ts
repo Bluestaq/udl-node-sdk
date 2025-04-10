@@ -13,7 +13,7 @@ describe('resource batterydetails', () => {
   test('create: only required params', async () => {
     const responsePromise = client.batterydetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idBattery: 'BATTERY-ID',
       source: 'Bluestaq',
     });
@@ -29,7 +29,7 @@ describe('resource batterydetails', () => {
   test('create: required and optional params', async () => {
     const response = await client.batterydetails.create({
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idBattery: 'BATTERY-ID',
       source: 'Bluestaq',
       id: 'BATTERYDETAILS-ID',
@@ -65,7 +65,7 @@ describe('resource batterydetails', () => {
   test('update: only required params', async () => {
     const responsePromise = client.batterydetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idBattery: 'BATTERY-ID',
       source: 'Bluestaq',
     });
@@ -81,7 +81,7 @@ describe('resource batterydetails', () => {
   test('update: required and optional params', async () => {
     const response = await client.batterydetails.update('id', {
       classificationMarking: 'U',
-      dataMode: 'REAL',
+      dataMode: 'TEST',
       idBattery: 'BATTERY-ID',
       source: 'Bluestaq',
       body_id: 'BATTERYDETAILS-ID',

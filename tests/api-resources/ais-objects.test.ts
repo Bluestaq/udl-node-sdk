@@ -12,7 +12,7 @@ const client = new Unifieddatalibrary({
 describe('resource aisObjects', () => {
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.aisObjects.createBulkV2([
-      { classificationMarking: 'U', dataMode: 'REAL', source: 'Bluestaq', ts: '2021-02-25T12:00:00.123456Z' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-02-25T12:00:00.123456Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,7 +27,7 @@ describe('resource aisObjects', () => {
     const response = await client.aisObjects.createBulkV2([
       {
         classificationMarking: 'U',
-        dataMode: 'REAL',
+        dataMode: 'TEST',
         source: 'Bluestaq',
         ts: '2021-02-25T12:00:00.123456Z',
         id: 'AIS-ID',
