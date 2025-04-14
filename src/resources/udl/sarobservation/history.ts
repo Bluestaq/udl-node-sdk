@@ -98,6 +98,12 @@ export interface SarobservationFull {
   atype?: string;
 
   /**
+   * The azimuth angle, in degrees, of the SAR satellite nadir subpoint measured
+   * clockwise from true north at the subpoint.
+   */
+  azimuthAngle?: number;
+
+  /**
    * The datetime at the center point of the collection in ISO 8601 UTC format with
    * microsecond precision.
    */
@@ -171,6 +177,12 @@ export interface SarobservationFull {
   grazeAngle?: number;
 
   /**
+   * Distance between independent measurements, representing the physical dimension
+   * that represents a pixel of the image.
+   */
+  groundResolutionProjection?: number;
+
+  /**
    * Unique identifier of the spacecraft hosting the sensor associated with this
    * collection.
    */
@@ -195,6 +207,13 @@ export interface SarobservationFull {
    * The number of looks in the range direction.
    */
   looksRange?: number;
+
+  /**
+   * Averages the input synthetic aperture radar (SAR) data by looks in range and
+   * azimuth to approximate square pixels, mitigates speckle, and reduces SAR tool
+   * processing time.
+   */
+  multilookNumber?: number;
 
   /**
    * Specifies the closest range, in kilometers, from the flight path to target

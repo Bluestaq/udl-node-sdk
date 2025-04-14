@@ -9,7 +9,7 @@ export class Operatingunit extends APIResource {
   /**
    * Service operation to take a single Operatingunit as a POST body and ingest into
    * the database. Operatingunit defines a unit or organization which operates or
-   * controls an space-related Entity. A specific role is required to perform this
+   * controls a space-related Entity. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
   create(body: OperatingunitCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -22,7 +22,7 @@ export class Operatingunit extends APIResource {
 
   /**
    * Service operation to update a single Operatingunit. Operatingunit defines a unit
-   * or organization which operates or controls an space-related Entity. A specific
+   * or organization which operates or controls a space-related Entity. A specific
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
    */
@@ -47,7 +47,7 @@ export class Operatingunit extends APIResource {
   /**
    * Service operation to delete an Operatingunit object specified by the passed ID
    * path parameter. Operatingunit defines a unit or organization which operates or
-   * controls an space-related Entity. A specific role is required to perform this
+   * controls a space-related Entity. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
   delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -74,7 +74,7 @@ export class Operatingunit extends APIResource {
   /**
    * Service operation to get a single Operatingunit record by its unique ID passed
    * as a path parameter. Operatingunit defines a unit or organization which operates
-   * or controls an space-related Entity.
+   * or controls a space-related Entity.
    */
   get(id: string, options?: Core.RequestOptions): Core.APIPromise<OperatingunitGetResponse> {
     return this._client.get(`/udl/operatingunit/${id}`, options);
@@ -113,7 +113,7 @@ export type OperatingunitListResponse = Array<OperatingunitListResponse.Operatin
 
 export namespace OperatingunitListResponse {
   /**
-   * Model representation of a unit or organization which operates or controls an
+   * Model representation of a unit or organization which operates or controls a
    * space-related Entity such as an on-orbit payload, a sensor, etc. A contact may
    * belong to an organization.
    */
@@ -213,14 +213,30 @@ export namespace OperatingunitListResponse {
     conditionAvail?: string;
 
     /**
-     * "Indicates any of the magnitudes that serve to define the position of a point by
-     * reference to a fixed figure, system of lines, etc. Pos. 1-2. Latitude Degrees
-     * [00-90] Pos. 3-4. Latitude Minutes [00-59] Pos. 5-6. Latitude Seconds [00-59]
+     * Indicates any of the magnitudes that serve to define the position of a point by
+     * reference to a fixed figure, system of lines, etc.
+     *
+     * Pos. 1-2. Latitude Degrees [00-90]
+     *
+     * Pos. 3-4. Latitude Minutes [00-59]
+     *
+     * Pos. 5-6. Latitude Seconds [00-59]
+     *
      * Pos. 7-9. Latitude Thousandths Of Seconds [000-999]
-     * Pos. 10. Latitude Hemisphere [NS] Pos. 11-13. Longitude Degrees [00-180] Pos.
-     * 14-15. Longitude Minutes [00-59] Pos. 16-17. Longitude Seconds [00-59] Pos.
-     * 18-20. Longitude Thousandths Of Seconds [000-999] Pos. 21. Longitude Hemisphere
-     * [EW] Pos. 1-21. Unknown Latitude and Unknown Longitude [000000000U000000000U]]".
+     *
+     * Pos. 10. Latitude Hemisphere [NS]
+     *
+     * Pos. 11-13. Longitude Degrees [00-180]
+     *
+     * Pos. 14-15. Longitude Minutes [00-59]
+     *
+     * Pos. 16-17. Longitude Seconds [00-59]
+     *
+     * Pos. 18-20. Longitude Thousandths Of Seconds [000-999]
+     *
+     * Pos. 21. Longitude Hemisphere [EW]
+     *
+     * Pos. 1-21. Unknown Latitude and Unknown Longitude [000000000U000000000U]
      */
     coord?: string;
 
@@ -474,8 +490,12 @@ export namespace OperatingunitListResponse {
     milGrid?: string;
 
     /**
-     * "Indicates the grid system used in the development of the milGrid coordinates.
-     * Values are: UPS - Universal Polar System UTM - Universal Transverse Mercator".
+     * Indicates the grid system used in the development of the milGrid coordinates.
+     * Values are:
+     *
+     * UPS - Universal Polar System
+     *
+     * UTM - Universal Transverse Mercator
      */
     milGridSys?: string;
 
@@ -593,7 +613,7 @@ export namespace OperatingunitListResponse {
 export type OperatingunitCountResponse = string;
 
 /**
- * Model representation of a unit or organization which operates or controls an
+ * Model representation of a unit or organization which operates or controls a
  * space-related Entity such as an on-orbit payload, a sensor, etc. A contact may
  * belong to an organization.
  */
@@ -693,14 +713,30 @@ export interface OperatingunitGetResponse {
   conditionAvail?: string;
 
   /**
-   * "Indicates any of the magnitudes that serve to define the position of a point by
-   * reference to a fixed figure, system of lines, etc. Pos. 1-2. Latitude Degrees
-   * [00-90] Pos. 3-4. Latitude Minutes [00-59] Pos. 5-6. Latitude Seconds [00-59]
+   * Indicates any of the magnitudes that serve to define the position of a point by
+   * reference to a fixed figure, system of lines, etc.
+   *
+   * Pos. 1-2. Latitude Degrees [00-90]
+   *
+   * Pos. 3-4. Latitude Minutes [00-59]
+   *
+   * Pos. 5-6. Latitude Seconds [00-59]
+   *
    * Pos. 7-9. Latitude Thousandths Of Seconds [000-999]
-   * Pos. 10. Latitude Hemisphere [NS] Pos. 11-13. Longitude Degrees [00-180] Pos.
-   * 14-15. Longitude Minutes [00-59] Pos. 16-17. Longitude Seconds [00-59] Pos.
-   * 18-20. Longitude Thousandths Of Seconds [000-999] Pos. 21. Longitude Hemisphere
-   * [EW] Pos. 1-21. Unknown Latitude and Unknown Longitude [000000000U000000000U]]".
+   *
+   * Pos. 10. Latitude Hemisphere [NS]
+   *
+   * Pos. 11-13. Longitude Degrees [00-180]
+   *
+   * Pos. 14-15. Longitude Minutes [00-59]
+   *
+   * Pos. 16-17. Longitude Seconds [00-59]
+   *
+   * Pos. 18-20. Longitude Thousandths Of Seconds [000-999]
+   *
+   * Pos. 21. Longitude Hemisphere [EW]
+   *
+   * Pos. 1-21. Unknown Latitude and Unknown Longitude [000000000U000000000U]
    */
   coord?: string;
 
@@ -960,8 +996,12 @@ export interface OperatingunitGetResponse {
   milGrid?: string;
 
   /**
-   * "Indicates the grid system used in the development of the milGrid coordinates.
-   * Values are: UPS - Universal Polar System UTM - Universal Transverse Mercator".
+   * Indicates the grid system used in the development of the milGrid coordinates.
+   * Values are:
+   *
+   * UPS - Universal Polar System
+   *
+   * UTM - Universal Transverse Mercator
    */
   milGridSys?: string;
 
@@ -1205,7 +1245,7 @@ export type OperatingunitTupleResponse = Array<OperatingunitTupleResponse.Operat
 
 export namespace OperatingunitTupleResponse {
   /**
-   * Model representation of a unit or organization which operates or controls an
+   * Model representation of a unit or organization which operates or controls a
    * space-related Entity such as an on-orbit payload, a sensor, etc. A contact may
    * belong to an organization.
    */
@@ -1305,14 +1345,30 @@ export namespace OperatingunitTupleResponse {
     conditionAvail?: string;
 
     /**
-     * "Indicates any of the magnitudes that serve to define the position of a point by
-     * reference to a fixed figure, system of lines, etc. Pos. 1-2. Latitude Degrees
-     * [00-90] Pos. 3-4. Latitude Minutes [00-59] Pos. 5-6. Latitude Seconds [00-59]
+     * Indicates any of the magnitudes that serve to define the position of a point by
+     * reference to a fixed figure, system of lines, etc.
+     *
+     * Pos. 1-2. Latitude Degrees [00-90]
+     *
+     * Pos. 3-4. Latitude Minutes [00-59]
+     *
+     * Pos. 5-6. Latitude Seconds [00-59]
+     *
      * Pos. 7-9. Latitude Thousandths Of Seconds [000-999]
-     * Pos. 10. Latitude Hemisphere [NS] Pos. 11-13. Longitude Degrees [00-180] Pos.
-     * 14-15. Longitude Minutes [00-59] Pos. 16-17. Longitude Seconds [00-59] Pos.
-     * 18-20. Longitude Thousandths Of Seconds [000-999] Pos. 21. Longitude Hemisphere
-     * [EW] Pos. 1-21. Unknown Latitude and Unknown Longitude [000000000U000000000U]]".
+     *
+     * Pos. 10. Latitude Hemisphere [NS]
+     *
+     * Pos. 11-13. Longitude Degrees [00-180]
+     *
+     * Pos. 14-15. Longitude Minutes [00-59]
+     *
+     * Pos. 16-17. Longitude Seconds [00-59]
+     *
+     * Pos. 18-20. Longitude Thousandths Of Seconds [000-999]
+     *
+     * Pos. 21. Longitude Hemisphere [EW]
+     *
+     * Pos. 1-21. Unknown Latitude and Unknown Longitude [000000000U000000000U]
      */
     coord?: string;
 
@@ -1572,8 +1628,12 @@ export namespace OperatingunitTupleResponse {
     milGrid?: string;
 
     /**
-     * "Indicates the grid system used in the development of the milGrid coordinates.
-     * Values are: UPS - Universal Polar System UTM - Universal Transverse Mercator".
+     * Indicates the grid system used in the development of the milGrid coordinates.
+     * Values are:
+     *
+     * UPS - Universal Polar System
+     *
+     * UTM - Universal Transverse Mercator
      */
     milGridSys?: string;
 
@@ -1910,14 +1970,30 @@ export interface OperatingunitCreateParams {
   conditionAvail?: string;
 
   /**
-   * "Indicates any of the magnitudes that serve to define the position of a point by
-   * reference to a fixed figure, system of lines, etc. Pos. 1-2. Latitude Degrees
-   * [00-90] Pos. 3-4. Latitude Minutes [00-59] Pos. 5-6. Latitude Seconds [00-59]
+   * Indicates any of the magnitudes that serve to define the position of a point by
+   * reference to a fixed figure, system of lines, etc.
+   *
+   * Pos. 1-2. Latitude Degrees [00-90]
+   *
+   * Pos. 3-4. Latitude Minutes [00-59]
+   *
+   * Pos. 5-6. Latitude Seconds [00-59]
+   *
    * Pos. 7-9. Latitude Thousandths Of Seconds [000-999]
-   * Pos. 10. Latitude Hemisphere [NS] Pos. 11-13. Longitude Degrees [00-180] Pos.
-   * 14-15. Longitude Minutes [00-59] Pos. 16-17. Longitude Seconds [00-59] Pos.
-   * 18-20. Longitude Thousandths Of Seconds [000-999] Pos. 21. Longitude Hemisphere
-   * [EW] Pos. 1-21. Unknown Latitude and Unknown Longitude [000000000U000000000U]]".
+   *
+   * Pos. 10. Latitude Hemisphere [NS]
+   *
+   * Pos. 11-13. Longitude Degrees [00-180]
+   *
+   * Pos. 14-15. Longitude Minutes [00-59]
+   *
+   * Pos. 16-17. Longitude Seconds [00-59]
+   *
+   * Pos. 18-20. Longitude Thousandths Of Seconds [000-999]
+   *
+   * Pos. 21. Longitude Hemisphere [EW]
+   *
+   * Pos. 1-21. Unknown Latitude and Unknown Longitude [000000000U000000000U]
    */
   coord?: string;
 
@@ -2160,8 +2236,12 @@ export interface OperatingunitCreateParams {
   milGrid?: string;
 
   /**
-   * "Indicates the grid system used in the development of the milGrid coordinates.
-   * Values are: UPS - Universal Polar System UTM - Universal Transverse Mercator".
+   * Indicates the grid system used in the development of the milGrid coordinates.
+   * Values are:
+   *
+   * UPS - Universal Polar System
+   *
+   * UTM - Universal Transverse Mercator
    */
   milGridSys?: string;
 
@@ -2371,14 +2451,30 @@ export interface OperatingunitUpdateParams {
   conditionAvail?: string;
 
   /**
-   * "Indicates any of the magnitudes that serve to define the position of a point by
-   * reference to a fixed figure, system of lines, etc. Pos. 1-2. Latitude Degrees
-   * [00-90] Pos. 3-4. Latitude Minutes [00-59] Pos. 5-6. Latitude Seconds [00-59]
+   * Indicates any of the magnitudes that serve to define the position of a point by
+   * reference to a fixed figure, system of lines, etc.
+   *
+   * Pos. 1-2. Latitude Degrees [00-90]
+   *
+   * Pos. 3-4. Latitude Minutes [00-59]
+   *
+   * Pos. 5-6. Latitude Seconds [00-59]
+   *
    * Pos. 7-9. Latitude Thousandths Of Seconds [000-999]
-   * Pos. 10. Latitude Hemisphere [NS] Pos. 11-13. Longitude Degrees [00-180] Pos.
-   * 14-15. Longitude Minutes [00-59] Pos. 16-17. Longitude Seconds [00-59] Pos.
-   * 18-20. Longitude Thousandths Of Seconds [000-999] Pos. 21. Longitude Hemisphere
-   * [EW] Pos. 1-21. Unknown Latitude and Unknown Longitude [000000000U000000000U]]".
+   *
+   * Pos. 10. Latitude Hemisphere [NS]
+   *
+   * Pos. 11-13. Longitude Degrees [00-180]
+   *
+   * Pos. 14-15. Longitude Minutes [00-59]
+   *
+   * Pos. 16-17. Longitude Seconds [00-59]
+   *
+   * Pos. 18-20. Longitude Thousandths Of Seconds [000-999]
+   *
+   * Pos. 21. Longitude Hemisphere [EW]
+   *
+   * Pos. 1-21. Unknown Latitude and Unknown Longitude [000000000U000000000U]
    */
   coord?: string;
 
@@ -2621,8 +2717,12 @@ export interface OperatingunitUpdateParams {
   milGrid?: string;
 
   /**
-   * "Indicates the grid system used in the development of the milGrid coordinates.
-   * Values are: UPS - Universal Polar System UTM - Universal Transverse Mercator".
+   * Indicates the grid system used in the development of the milGrid coordinates.
+   * Values are:
+   *
+   * UPS - Universal Polar System
+   *
+   * UTM - Universal Transverse Mercator
    */
   milGridSys?: string;
 

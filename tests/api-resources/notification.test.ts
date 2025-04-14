@@ -77,7 +77,7 @@ describe('resource notification', () => {
       msgType: 'msgType',
       origin: 'origin',
       source: 'source',
-      body: 'body',
+      body: '{ "Alert": "Warning",  "Code": 12345 }',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -95,7 +95,7 @@ describe('resource notification', () => {
       msgType: 'msgType',
       origin: 'origin',
       source: 'source',
-      body: 'body',
+      body: '{ "Alert": "Warning",  "Code": 12345 }',
       msgId: 'msgId',
       tags: ['string'],
     });

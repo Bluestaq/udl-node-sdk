@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as DiplomaticClearanceAPI from '../air-operations/diplomatic-clearance';
 import * as HistoryAPI from './history';
@@ -106,17 +105,9 @@ export class DiplomaticClearance extends APIResource {
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
   createBulk(
-    body?: DiplomaticClearanceCreateBulkParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void>;
-  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
-  createBulk(
-    body?: DiplomaticClearanceCreateBulkParams | Core.RequestOptions,
+    body: DiplomaticClearanceCreateBulkParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    if (isRequestOptions(body)) {
-      return this.createBulk(undefined, body);
-    }
     return this._client.post('/udl/diplomaticclearance/createBulk', {
       body,
       ...options,

@@ -132,6 +132,12 @@ export namespace H3geohexcellListResponse {
     anomScoreSpoofing?: number;
 
     /**
+     * The percentage degree of change in the aggregated observables for a particular
+     * H3 bin.
+     */
+    changeScore?: number;
+
+    /**
      * The total number of available observations in the H3 cell during the start/end
      * times.
      */
@@ -277,6 +283,12 @@ export namespace H3geohexcellTupleResponse {
      * / #total obs or coverage.
      */
     anomScoreSpoofing?: number;
+
+    /**
+     * The percentage degree of change in the aggregated observables for a particular
+     * H3 bin.
+     */
+    changeScore?: number;
 
     /**
      * The total number of available observations in the H3 cell during the start/end

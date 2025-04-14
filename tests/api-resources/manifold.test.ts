@@ -126,8 +126,15 @@ describe('resource manifold', () => {
     );
   });
 
-  test('createBulk', async () => {
-    const responsePromise = client.manifold.createBulk();
+  test('createBulk: only required params', async () => {
+    const responsePromise = client.manifold.createBulk([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        idObjectOfInterest: 'OBJECTOFINTEREST-ID',
+        source: 'Bluestaq',
+      },
+    ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -137,34 +144,21 @@ describe('resource manifold', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulk: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.manifold.createBulk({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
-  test('createBulk: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.manifold.createBulk(
-        [
-          {
-            classificationMarking: 'U',
-            dataMode: 'TEST',
-            idObjectOfInterest: 'OBJECTOFINTEREST-ID',
-            source: 'Bluestaq',
-            id: 'MANIFOLD-ID',
-            deltaT: 10.23,
-            deltaV: 10.23,
-            origin: 'THIRD_PARTY_DATASOURCE',
-            status: 'PENDING',
-            weight: 0.3,
-          },
-        ],
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  test('createBulk: required and optional params', async () => {
+    const response = await client.manifold.createBulk([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        idObjectOfInterest: 'OBJECTOFINTEREST-ID',
+        source: 'Bluestaq',
+        id: 'MANIFOLD-ID',
+        deltaT: 10.23,
+        deltaV: 10.23,
+        origin: 'THIRD_PARTY_DATASOURCE',
+        status: 'PENDING',
+        weight: 0.3,
+      },
+    ]);
   });
 
   test('get', async () => {

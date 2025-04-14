@@ -35,6 +35,13 @@ describe('resource onorbitbattery', () => {
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
       id: 'ONORBITBATTERY-ID',
+      battery: {
+        dataMode: 'TEST',
+        name: 'JAK-BATTERY-1479',
+        source: 'Bluestaq',
+        id: 'BATTERY-ID',
+        origin: 'THIRD_PARTY_DATASOURCE',
+      },
       origin: 'THIRD_PARTY_DATASOURCE',
       quantity: 5,
     });
@@ -65,6 +72,13 @@ describe('resource onorbitbattery', () => {
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
       body_id: 'ONORBITBATTERY-ID',
+      battery: {
+        dataMode: 'TEST',
+        name: 'JAK-BATTERY-1479',
+        source: 'Bluestaq',
+        id: 'BATTERY-ID',
+        origin: 'THIRD_PARTY_DATASOURCE',
+      },
       origin: 'THIRD_PARTY_DATASOURCE',
       quantity: 5,
     });

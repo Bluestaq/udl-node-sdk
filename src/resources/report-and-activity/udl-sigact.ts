@@ -538,9 +538,6 @@ export namespace UdlSigactCreateBulkV2Params {
   }
 
   export namespace Body {
-    /**
-     * Related document ids.
-     */
     export interface RelatedDoc {
       /**
        * List of data sources related to this document.
@@ -554,9 +551,6 @@ export namespace UdlSigactCreateBulkV2Params {
     }
 
     export namespace RelatedDoc {
-      /**
-       * List of data sources related to this document.
-       */
       export interface DataSourceRef {
         /**
          * Data source id.

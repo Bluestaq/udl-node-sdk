@@ -144,7 +144,12 @@ export interface AirfieldAbridged {
   altAirfieldId?: string;
 
   /**
-   * Closest city to the airfield's location.
+   * Alternative names for this airfield.
+   */
+  alternativeNames?: Array<string>;
+
+  /**
+   * The closest city to the location of this airfield.
    */
   city?: string;
 
@@ -159,6 +164,11 @@ export interface AirfieldAbridged {
   countryCode?: string;
 
   /**
+   * The country name where this airfield is located.
+   */
+  countryName?: string;
+
+  /**
    * Time the row was created in the database, auto-populated by the system.
    */
   createdAt?: string;
@@ -168,6 +178,12 @@ export interface AirfieldAbridged {
    * system.
    */
   createdBy?: string;
+
+  /**
+   * Information regarding daylight saving time as is relevant to the location and
+   * operation of this airfield.
+   */
+  dstInfo?: string;
 
   /**
    * Elevation of the airfield above mean sea level, in feet. Note: The corresponding
@@ -271,6 +287,11 @@ export interface AirfieldAbridged {
   origNetwork?: string;
 
   /**
+   * The regional authority of the airfield.
+   */
+  regionalAuthority?: string;
+
+  /**
    * Region where the airfield resides.
    */
   regionName?: string;
@@ -279,6 +300,13 @@ export interface AirfieldAbridged {
    * The number of runways at the site.
    */
   runways?: number;
+
+  /**
+   * The secondary ICAO code for this airfield. Some airfields have two associated
+   * ICAO codes, this can occur in cases when a single airfield supports both
+   * military and civilian operations.
+   */
+  secondaryICAO?: string;
 
   /**
    * The source data library from which this record was received. This could be a
@@ -291,6 +319,19 @@ export interface AirfieldAbridged {
    * State or province of the airfield's location.
    */
   state?: string;
+
+  /**
+   * The code for the state or province in which this airfield is located. Intended
+   * as, but not constrained to, FIPS 10-4 region code designations.
+   */
+  stateProvinceCode?: string;
+
+  /**
+   * Array of descriptions for given suitability codes. The index of the description
+   * corresponds to the position of the letter code in the string provided in the
+   * suitabilityCodes field.
+   */
+  suitabilityCodeDescs?: Array<string>;
 
   /**
    * Associated suitability codes according to the Airfield Suitability and
@@ -364,7 +405,12 @@ export interface AirfieldFull {
   altAirfieldId?: string;
 
   /**
-   * Closest city to the airfield's location.
+   * Alternative names for this airfield.
+   */
+  alternativeNames?: Array<string>;
+
+  /**
+   * The closest city to the location of this airfield.
    */
   city?: string;
 
@@ -379,6 +425,11 @@ export interface AirfieldFull {
   countryCode?: string;
 
   /**
+   * The country name where this airfield is located.
+   */
+  countryName?: string;
+
+  /**
    * Time the row was created in the database, auto-populated by the system.
    */
   createdAt?: string;
@@ -388,6 +439,12 @@ export interface AirfieldFull {
    * system.
    */
   createdBy?: string;
+
+  /**
+   * Information regarding daylight saving time as is relevant to the location and
+   * operation of this airfield.
+   */
+  dstInfo?: string;
 
   /**
    * Elevation of the airfield above mean sea level, in feet. Note: The corresponding
@@ -491,6 +548,11 @@ export interface AirfieldFull {
   origNetwork?: string;
 
   /**
+   * The regional authority of the airfield.
+   */
+  regionalAuthority?: string;
+
+  /**
    * Region where the airfield resides.
    */
   regionName?: string;
@@ -499,6 +561,13 @@ export interface AirfieldFull {
    * The number of runways at the site.
    */
   runways?: number;
+
+  /**
+   * The secondary ICAO code for this airfield. Some airfields have two associated
+   * ICAO codes, this can occur in cases when a single airfield supports both
+   * military and civilian operations.
+   */
+  secondaryICAO?: string;
 
   /**
    * The source data library from which this record was received. This could be a
@@ -511,6 +580,19 @@ export interface AirfieldFull {
    * State or province of the airfield's location.
    */
   state?: string;
+
+  /**
+   * The code for the state or province in which this airfield is located. Intended
+   * as, but not constrained to, FIPS 10-4 region code designations.
+   */
+  stateProvinceCode?: string;
+
+  /**
+   * Array of descriptions for given suitability codes. The index of the description
+   * corresponds to the position of the letter code in the string provided in the
+   * suitabilityCodes field.
+   */
+  suitabilityCodeDescs?: Array<string>;
 
   /**
    * Associated suitability codes according to the Airfield Suitability and
@@ -597,7 +679,12 @@ export interface AirfieldCreateParams {
   altAirfieldId?: string;
 
   /**
-   * Closest city to the airfield's location.
+   * Alternative names for this airfield.
+   */
+  alternativeNames?: Array<string>;
+
+  /**
+   * The closest city to the location of this airfield.
    */
   city?: string;
 
@@ -610,6 +697,17 @@ export interface AirfieldCreateParams {
    * code.
    */
   countryCode?: string;
+
+  /**
+   * The country name where this airfield is located.
+   */
+  countryName?: string;
+
+  /**
+   * Information regarding daylight saving time as is relevant to the location and
+   * operation of this airfield.
+   */
+  dstInfo?: string;
 
   /**
    * Elevation of the airfield above mean sea level, in feet. Note: The corresponding
@@ -707,6 +805,11 @@ export interface AirfieldCreateParams {
   origin?: string;
 
   /**
+   * The regional authority of the airfield.
+   */
+  regionalAuthority?: string;
+
+  /**
    * Region where the airfield resides.
    */
   regionName?: string;
@@ -717,9 +820,29 @@ export interface AirfieldCreateParams {
   runways?: number;
 
   /**
+   * The secondary ICAO code for this airfield. Some airfields have two associated
+   * ICAO codes, this can occur in cases when a single airfield supports both
+   * military and civilian operations.
+   */
+  secondaryICAO?: string;
+
+  /**
    * State or province of the airfield's location.
    */
   state?: string;
+
+  /**
+   * The code for the state or province in which this airfield is located. Intended
+   * as, but not constrained to, FIPS 10-4 region code designations.
+   */
+  stateProvinceCode?: string;
+
+  /**
+   * Array of descriptions for given suitability codes. The index of the description
+   * corresponds to the position of the letter code in the string provided in the
+   * suitabilityCodes field.
+   */
+  suitabilityCodeDescs?: Array<string>;
 
   /**
    * Associated suitability codes according to the Airfield Suitability and
@@ -789,7 +912,12 @@ export interface AirfieldUpdateParams {
   altAirfieldId?: string;
 
   /**
-   * Closest city to the airfield's location.
+   * Alternative names for this airfield.
+   */
+  alternativeNames?: Array<string>;
+
+  /**
+   * The closest city to the location of this airfield.
    */
   city?: string;
 
@@ -802,6 +930,17 @@ export interface AirfieldUpdateParams {
    * code.
    */
   countryCode?: string;
+
+  /**
+   * The country name where this airfield is located.
+   */
+  countryName?: string;
+
+  /**
+   * Information regarding daylight saving time as is relevant to the location and
+   * operation of this airfield.
+   */
+  dstInfo?: string;
 
   /**
    * Elevation of the airfield above mean sea level, in feet. Note: The corresponding
@@ -899,6 +1038,11 @@ export interface AirfieldUpdateParams {
   origin?: string;
 
   /**
+   * The regional authority of the airfield.
+   */
+  regionalAuthority?: string;
+
+  /**
    * Region where the airfield resides.
    */
   regionName?: string;
@@ -909,9 +1053,29 @@ export interface AirfieldUpdateParams {
   runways?: number;
 
   /**
+   * The secondary ICAO code for this airfield. Some airfields have two associated
+   * ICAO codes, this can occur in cases when a single airfield supports both
+   * military and civilian operations.
+   */
+  secondaryICAO?: string;
+
+  /**
    * State or province of the airfield's location.
    */
   state?: string;
+
+  /**
+   * The code for the state or province in which this airfield is located. Intended
+   * as, but not constrained to, FIPS 10-4 region code designations.
+   */
+  stateProvinceCode?: string;
+
+  /**
+   * Array of descriptions for given suitability codes. The index of the description
+   * corresponds to the position of the letter code in the string provided in the
+   * suitabilityCodes field.
+   */
+  suitabilityCodeDescs?: Array<string>;
 
   /**
    * Associated suitability codes according to the Airfield Suitability and

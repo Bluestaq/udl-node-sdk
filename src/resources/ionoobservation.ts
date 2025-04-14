@@ -161,19 +161,8 @@ export namespace IonoobservationListResponse {
      */
     id?: string;
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension antenna_element. This variable is enabled for post-process
-     * polarization or antenna array determination. Can be combined with phase to
-     * create a phasors and subsequently enable post-processing of polarization and/or
-     * antenna array determination.
-     */
     amplitude?: IonoobservationListResponseItem.Amplitude;
 
-    /**
-     * For phased arrays, a 2D array. 1st dimension spans the dimension antenna_element
-     * (see phase or amplitude). 2nd dimension spans 3 (x, y, z) Cartesian coordinates.
-     */
     antennaElementPosition?: IonoobservationListResponseItem.AntennaElementPosition;
 
     /**
@@ -193,11 +182,6 @@ export namespace IonoobservationListResponse {
      */
     artistFlags?: Array<number>;
 
-    /**
-     * Multidimensional array of incoming azimuth at the receiver. Has the same
-     * dimensions as power. Antenna type, configuration, and method of determination to
-     * be documented in the azimuthNotes field.
-     */
     azimuth?: IonoobservationListResponseItem.Azimuth;
 
     /**
@@ -240,9 +224,6 @@ export namespace IonoobservationListResponse {
      */
     d1?: number;
 
-    /**
-     * Array to support sparse data collections.
-     */
     datum?: IonoobservationListResponseItem.Datum;
 
     /**
@@ -256,9 +237,6 @@ export namespace IonoobservationListResponse {
      */
     densityProfile?: IonoobservationListResponseItem.DensityProfile;
 
-    /**
-     * Array of Doppler.
-     */
     doppler?: IonoobservationListResponseItem.Doppler;
 
     /**
@@ -288,11 +266,6 @@ export namespace IonoobservationListResponse {
      */
     electronDensityUncertainty?: Array<number>;
 
-    /**
-     * Multidimensional array of incoming elevation at the receiver. Has the same
-     * dimensions as power. Antenna type, configuration, and method of determination to
-     * be documented in the metadata notes field.
-     */
     elevation?: IonoobservationListResponseItem.Elevation;
 
     /**
@@ -395,9 +368,6 @@ export namespace IonoobservationListResponse {
      */
     foP?: number;
 
-    /**
-     * Array of transmit frequencies for the power received in MHz.
-     */
     frequency?: IonoobservationListResponseItem.Frequency;
 
     /**
@@ -536,13 +506,6 @@ export namespace IonoobservationListResponse {
      */
     origSensorId?: string;
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension for antenna_element (where each array element corresponds to a single
-     * antenna element). This variable is enabled for post-process polarization and/or
-     * antenna array determination. Note: this phase_array can be combined with
-     * power_array or amplitude_array to create a phasor.
-     */
     phase?: IonoobservationListResponseItem.Phase;
 
     /**
@@ -562,18 +525,8 @@ export namespace IonoobservationListResponse {
      */
     platformName?: string;
 
-    /**
-     * Multidimensional array of enums that identifies either classic/basic
-     * polarization discrimination “O” or “X” corresponding to ordinary or
-     * extraordinary polarizations, respectively. Exclude this enumeration if no
-     * classic/basic polarization discrimination is implemented. May accommodate other
-     * modes in addition to “O” and “X” with proper documentation in notes field.
-     */
     polarization?: IonoobservationListResponseItem.Polarization;
 
-    /**
-     * Multi dimensional array of received power in db.
-     */
     power?: IonoobservationListResponseItem.Power;
 
     /**
@@ -586,9 +539,6 @@ export namespace IonoobservationListResponse {
      */
     qf?: number;
 
-    /**
-     * The group path from transmitter to receiver.
-     */
     range?: IonoobservationListResponseItem.Range;
 
     /**
@@ -625,12 +575,6 @@ export namespace IonoobservationListResponse {
      */
     scalerInfo?: IonoobservationListResponseItem.ScalerInfo;
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension spanning an S dimension for S1, S2, and S3 (the normalized Stokes
-     * parameters 1, 2, and 3). It is advised to describe the antenna type, antenna
-     * configuration, and Stokes coordinate system as a notes to the variable.
-     */
     stokes?: IonoobservationListResponseItem.Stokes;
 
     /**
@@ -662,15 +606,8 @@ export namespace IonoobservationListResponse {
      */
     tidPhaseSpeeds?: Array<number>;
 
-    /**
-     * Array of times in number of seconds passed since January 1st, 1970 with the same
-     * dimensions as power.
-     */
     time?: IonoobservationListResponseItem.Time;
 
-    /**
-     * Multi dimensional array of trace generic data.
-     */
     traceGeneric?: IonoobservationListResponseItem.TraceGeneric;
 
     /**
@@ -730,13 +667,6 @@ export namespace IonoobservationListResponse {
   }
 
   export namespace IonoobservationListResponseItem {
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension antenna_element. This variable is enabled for post-process
-     * polarization or antenna array determination. Can be combined with phase to
-     * create a phasors and subsequently enable post-processing of polarization and/or
-     * antenna array determination.
-     */
     export interface Amplitude {
       /**
        * Array of amplitude data.
@@ -759,10 +689,6 @@ export namespace IonoobservationListResponse {
       notes?: string;
     }
 
-    /**
-     * For phased arrays, a 2D array. 1st dimension spans the dimension antenna_element
-     * (see phase or amplitude). 2nd dimension spans 3 (x, y, z) Cartesian coordinates.
-     */
     export interface AntennaElementPosition {
       /**
        * Array of 3-element tuples (x,y,z) in km.
@@ -780,11 +706,6 @@ export namespace IonoobservationListResponse {
       dimensions?: Array<number>;
     }
 
-    /**
-     * Multidimensional array of incoming azimuth at the receiver. Has the same
-     * dimensions as power. Antenna type, configuration, and method of determination to
-     * be documented in the azimuthNotes field.
-     */
     export interface Azimuth {
       /**
        * Array of incoming azimuth at the receiver.
@@ -871,9 +792,6 @@ export namespace IonoobservationListResponse {
       ursiID?: string;
     }
 
-    /**
-     * Array to support sparse data collections.
-     */
     export interface Datum {
       /**
        * Array to support sparse data collections.
@@ -1304,9 +1222,6 @@ export namespace IonoobservationListResponse {
       }
     }
 
-    /**
-     * Array of Doppler.
-     */
     export interface Doppler {
       /**
        * Array of received doppler shifts in Hz.
@@ -1329,11 +1244,6 @@ export namespace IonoobservationListResponse {
       notes?: string;
     }
 
-    /**
-     * Multidimensional array of incoming elevation at the receiver. Has the same
-     * dimensions as power. Antenna type, configuration, and method of determination to
-     * be documented in the metadata notes field.
-     */
     export interface Elevation {
       /**
        * Array of incoming elevation at the receiver.
@@ -1356,9 +1266,6 @@ export namespace IonoobservationListResponse {
       notes?: string;
     }
 
-    /**
-     * Array of transmit frequencies for the power received in MHz.
-     */
     export interface Frequency {
       /**
        * Array of frequency data.
@@ -1381,13 +1288,6 @@ export namespace IonoobservationListResponse {
       notes?: string;
     }
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension for antenna_element (where each array element corresponds to a single
-     * antenna element). This variable is enabled for post-process polarization and/or
-     * antenna array determination. Note: this phase_array can be combined with
-     * power_array or amplitude_array to create a phasor.
-     */
     export interface Phase {
       /**
        * Array of phase data.
@@ -1411,18 +1311,11 @@ export namespace IonoobservationListResponse {
       notes?: string;
     }
 
-    /**
-     * Multidimensional array of enums that identifies either classic/basic
-     * polarization discrimination “O” or “X” corresponding to ordinary or
-     * extraordinary polarizations, respectively. Exclude this enumeration if no
-     * classic/basic polarization discrimination is implemented. May accommodate other
-     * modes in addition to “O” and “X” with proper documentation in notes field.
-     */
     export interface Polarization {
       /**
        * Array of polarization data.
        */
-      data?: Array<Array<Array<Array<Array<Array<Array<string>>>>>>>;
+      data?: Array<Array<Array<Array<Array<Array<Array<'X' | 'O'>>>>>>>;
 
       /**
        * Array of names for dimensions.
@@ -1440,9 +1333,6 @@ export namespace IonoobservationListResponse {
       notes?: string;
     }
 
-    /**
-     * Multi dimensional array of received power in db.
-     */
     export interface Power {
       /**
        * Array of received power in db.
@@ -1465,9 +1355,6 @@ export namespace IonoobservationListResponse {
       notes?: string;
     }
 
-    /**
-     * The group path from transmitter to receiver.
-     */
     export interface Range {
       /**
        * Array of range data.
@@ -1526,12 +1413,6 @@ export namespace IonoobservationListResponse {
       version?: number;
     }
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension spanning an S dimension for S1, S2, and S3 (the normalized Stokes
-     * parameters 1, 2, and 3). It is advised to describe the antenna type, antenna
-     * configuration, and Stokes coordinate system as a notes to the variable.
-     */
     export interface Stokes {
       /**
        * Array of received stokes data.
@@ -1559,10 +1440,6 @@ export namespace IonoobservationListResponse {
       s?: Array<number>;
     }
 
-    /**
-     * Array of times in number of seconds passed since January 1st, 1970 with the same
-     * dimensions as power.
-     */
     export interface Time {
       /**
        * Array of times in number of seconds passed since January 1st, 1970 with the same
@@ -1586,9 +1463,6 @@ export namespace IonoobservationListResponse {
       notes?: string;
     }
 
-    /**
-     * Multi dimensional array of trace generic data.
-     */
     export interface TraceGeneric {
       /**
        * Multi-dimensional Array. The 1st dimension spans points along the trace while
@@ -1693,19 +1567,8 @@ export namespace IonoobservationCreateBulkParams {
      */
     id?: string;
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension antenna_element. This variable is enabled for post-process
-     * polarization or antenna array determination. Can be combined with phase to
-     * create a phasors and subsequently enable post-processing of polarization and/or
-     * antenna array determination.
-     */
     amplitude?: Body.Amplitude;
 
-    /**
-     * For phased arrays, a 2D array. 1st dimension spans the dimension antenna_element
-     * (see phase or amplitude). 2nd dimension spans 3 (x, y, z) Cartesian coordinates.
-     */
     antennaElementPosition?: Body.AntennaElementPosition;
 
     /**
@@ -1725,11 +1588,6 @@ export namespace IonoobservationCreateBulkParams {
      */
     artistFlags?: Array<number>;
 
-    /**
-     * Multidimensional array of incoming azimuth at the receiver. Has the same
-     * dimensions as power. Antenna type, configuration, and method of determination to
-     * be documented in the azimuthNotes field.
-     */
     azimuth?: Body.Azimuth;
 
     /**
@@ -1761,9 +1619,6 @@ export namespace IonoobservationCreateBulkParams {
      */
     d1?: number;
 
-    /**
-     * Array to support sparse data collections.
-     */
     datum?: Body.Datum;
 
     /**
@@ -1777,9 +1632,6 @@ export namespace IonoobservationCreateBulkParams {
      */
     densityProfile?: Body.DensityProfile;
 
-    /**
-     * Array of Doppler.
-     */
     doppler?: Body.Doppler;
 
     /**
@@ -1809,11 +1661,6 @@ export namespace IonoobservationCreateBulkParams {
      */
     electronDensityUncertainty?: Array<number>;
 
-    /**
-     * Multidimensional array of incoming elevation at the receiver. Has the same
-     * dimensions as power. Antenna type, configuration, and method of determination to
-     * be documented in the metadata notes field.
-     */
     elevation?: Body.Elevation;
 
     /**
@@ -1916,9 +1763,6 @@ export namespace IonoobservationCreateBulkParams {
      */
     foP?: number;
 
-    /**
-     * Array of transmit frequencies for the power received in MHz.
-     */
     frequency?: Body.Frequency;
 
     /**
@@ -2051,13 +1895,6 @@ export namespace IonoobservationCreateBulkParams {
      */
     origSensorId?: string;
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension for antenna_element (where each array element corresponds to a single
-     * antenna element). This variable is enabled for post-process polarization and/or
-     * antenna array determination. Note: this phase_array can be combined with
-     * power_array or amplitude_array to create a phasor.
-     */
     phase?: Body.Phase;
 
     /**
@@ -2077,18 +1914,8 @@ export namespace IonoobservationCreateBulkParams {
      */
     platformName?: string;
 
-    /**
-     * Multidimensional array of enums that identifies either classic/basic
-     * polarization discrimination “O” or “X” corresponding to ordinary or
-     * extraordinary polarizations, respectively. Exclude this enumeration if no
-     * classic/basic polarization discrimination is implemented. May accommodate other
-     * modes in addition to “O” and “X” with proper documentation in notes field.
-     */
     polarization?: Body.Polarization;
 
-    /**
-     * Multi dimensional array of received power in db.
-     */
     power?: Body.Power;
 
     /**
@@ -2101,9 +1928,6 @@ export namespace IonoobservationCreateBulkParams {
      */
     qf?: number;
 
-    /**
-     * The group path from transmitter to receiver.
-     */
     range?: Body.Range;
 
     /**
@@ -2140,12 +1964,6 @@ export namespace IonoobservationCreateBulkParams {
      */
     scalerInfo?: Body.ScalerInfo;
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension spanning an S dimension for S1, S2, and S3 (the normalized Stokes
-     * parameters 1, 2, and 3). It is advised to describe the antenna type, antenna
-     * configuration, and Stokes coordinate system as a notes to the variable.
-     */
     stokes?: Body.Stokes;
 
     /**
@@ -2177,15 +1995,8 @@ export namespace IonoobservationCreateBulkParams {
      */
     tidPhaseSpeeds?: Array<number>;
 
-    /**
-     * Array of times in number of seconds passed since January 1st, 1970 with the same
-     * dimensions as power.
-     */
     time?: Body.Time;
 
-    /**
-     * Multi dimensional array of trace generic data.
-     */
     traceGeneric?: Body.TraceGeneric;
 
     /**
@@ -2233,13 +2044,6 @@ export namespace IonoobservationCreateBulkParams {
   }
 
   export namespace Body {
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension antenna_element. This variable is enabled for post-process
-     * polarization or antenna array determination. Can be combined with phase to
-     * create a phasors and subsequently enable post-processing of polarization and/or
-     * antenna array determination.
-     */
     export interface Amplitude {
       /**
        * Array of amplitude data.
@@ -2262,10 +2066,6 @@ export namespace IonoobservationCreateBulkParams {
       notes?: string;
     }
 
-    /**
-     * For phased arrays, a 2D array. 1st dimension spans the dimension antenna_element
-     * (see phase or amplitude). 2nd dimension spans 3 (x, y, z) Cartesian coordinates.
-     */
     export interface AntennaElementPosition {
       /**
        * Array of 3-element tuples (x,y,z) in km.
@@ -2283,11 +2083,6 @@ export namespace IonoobservationCreateBulkParams {
       dimensions?: Array<number>;
     }
 
-    /**
-     * Multidimensional array of incoming azimuth at the receiver. Has the same
-     * dimensions as power. Antenna type, configuration, and method of determination to
-     * be documented in the azimuthNotes field.
-     */
     export interface Azimuth {
       /**
        * Array of incoming azimuth at the receiver.
@@ -2374,9 +2169,6 @@ export namespace IonoobservationCreateBulkParams {
       ursiID?: string;
     }
 
-    /**
-     * Array to support sparse data collections.
-     */
     export interface Datum {
       /**
        * Array to support sparse data collections.
@@ -2807,9 +2599,6 @@ export namespace IonoobservationCreateBulkParams {
       }
     }
 
-    /**
-     * Array of Doppler.
-     */
     export interface Doppler {
       /**
        * Array of received doppler shifts in Hz.
@@ -2832,11 +2621,6 @@ export namespace IonoobservationCreateBulkParams {
       notes?: string;
     }
 
-    /**
-     * Multidimensional array of incoming elevation at the receiver. Has the same
-     * dimensions as power. Antenna type, configuration, and method of determination to
-     * be documented in the metadata notes field.
-     */
     export interface Elevation {
       /**
        * Array of incoming elevation at the receiver.
@@ -2859,9 +2643,6 @@ export namespace IonoobservationCreateBulkParams {
       notes?: string;
     }
 
-    /**
-     * Array of transmit frequencies for the power received in MHz.
-     */
     export interface Frequency {
       /**
        * Array of frequency data.
@@ -2884,13 +2665,6 @@ export namespace IonoobservationCreateBulkParams {
       notes?: string;
     }
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension for antenna_element (where each array element corresponds to a single
-     * antenna element). This variable is enabled for post-process polarization and/or
-     * antenna array determination. Note: this phase_array can be combined with
-     * power_array or amplitude_array to create a phasor.
-     */
     export interface Phase {
       /**
        * Array of phase data.
@@ -2914,18 +2688,11 @@ export namespace IonoobservationCreateBulkParams {
       notes?: string;
     }
 
-    /**
-     * Multidimensional array of enums that identifies either classic/basic
-     * polarization discrimination “O” or “X” corresponding to ordinary or
-     * extraordinary polarizations, respectively. Exclude this enumeration if no
-     * classic/basic polarization discrimination is implemented. May accommodate other
-     * modes in addition to “O” and “X” with proper documentation in notes field.
-     */
     export interface Polarization {
       /**
        * Array of polarization data.
        */
-      data?: Array<Array<Array<Array<Array<Array<Array<string>>>>>>>;
+      data?: Array<Array<Array<Array<Array<Array<Array<'X' | 'O'>>>>>>>;
 
       /**
        * Array of names for dimensions.
@@ -2943,9 +2710,6 @@ export namespace IonoobservationCreateBulkParams {
       notes?: string;
     }
 
-    /**
-     * Multi dimensional array of received power in db.
-     */
     export interface Power {
       /**
        * Array of received power in db.
@@ -2968,9 +2732,6 @@ export namespace IonoobservationCreateBulkParams {
       notes?: string;
     }
 
-    /**
-     * The group path from transmitter to receiver.
-     */
     export interface Range {
       /**
        * Array of range data.
@@ -3029,12 +2790,6 @@ export namespace IonoobservationCreateBulkParams {
       version?: number;
     }
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension spanning an S dimension for S1, S2, and S3 (the normalized Stokes
-     * parameters 1, 2, and 3). It is advised to describe the antenna type, antenna
-     * configuration, and Stokes coordinate system as a notes to the variable.
-     */
     export interface Stokes {
       /**
        * Array of received stokes data.
@@ -3062,10 +2817,6 @@ export namespace IonoobservationCreateBulkParams {
       s?: Array<number>;
     }
 
-    /**
-     * Array of times in number of seconds passed since January 1st, 1970 with the same
-     * dimensions as power.
-     */
     export interface Time {
       /**
        * Array of times in number of seconds passed since January 1st, 1970 with the same
@@ -3089,9 +2840,6 @@ export namespace IonoobservationCreateBulkParams {
       notes?: string;
     }
 
-    /**
-     * Multi dimensional array of trace generic data.
-     */
     export interface TraceGeneric {
       /**
        * Multi-dimensional Array. The 1st dimension spans points along the trace while
@@ -3178,19 +2926,8 @@ export namespace IonoobservationCreateBulkV2Params {
      */
     id?: string;
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension antenna_element. This variable is enabled for post-process
-     * polarization or antenna array determination. Can be combined with phase to
-     * create a phasors and subsequently enable post-processing of polarization and/or
-     * antenna array determination.
-     */
     amplitude?: Body.Amplitude;
 
-    /**
-     * For phased arrays, a 2D array. 1st dimension spans the dimension antenna_element
-     * (see phase or amplitude). 2nd dimension spans 3 (x, y, z) Cartesian coordinates.
-     */
     antennaElementPosition?: Body.AntennaElementPosition;
 
     /**
@@ -3210,11 +2947,6 @@ export namespace IonoobservationCreateBulkV2Params {
      */
     artistFlags?: Array<number>;
 
-    /**
-     * Multidimensional array of incoming azimuth at the receiver. Has the same
-     * dimensions as power. Antenna type, configuration, and method of determination to
-     * be documented in the azimuthNotes field.
-     */
     azimuth?: Body.Azimuth;
 
     /**
@@ -3246,9 +2978,6 @@ export namespace IonoobservationCreateBulkV2Params {
      */
     d1?: number;
 
-    /**
-     * Array to support sparse data collections.
-     */
     datum?: Body.Datum;
 
     /**
@@ -3262,9 +2991,6 @@ export namespace IonoobservationCreateBulkV2Params {
      */
     densityProfile?: Body.DensityProfile;
 
-    /**
-     * Array of Doppler.
-     */
     doppler?: Body.Doppler;
 
     /**
@@ -3294,11 +3020,6 @@ export namespace IonoobservationCreateBulkV2Params {
      */
     electronDensityUncertainty?: Array<number>;
 
-    /**
-     * Multidimensional array of incoming elevation at the receiver. Has the same
-     * dimensions as power. Antenna type, configuration, and method of determination to
-     * be documented in the metadata notes field.
-     */
     elevation?: Body.Elevation;
 
     /**
@@ -3401,9 +3122,6 @@ export namespace IonoobservationCreateBulkV2Params {
      */
     foP?: number;
 
-    /**
-     * Array of transmit frequencies for the power received in MHz.
-     */
     frequency?: Body.Frequency;
 
     /**
@@ -3536,13 +3254,6 @@ export namespace IonoobservationCreateBulkV2Params {
      */
     origSensorId?: string;
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension for antenna_element (where each array element corresponds to a single
-     * antenna element). This variable is enabled for post-process polarization and/or
-     * antenna array determination. Note: this phase_array can be combined with
-     * power_array or amplitude_array to create a phasor.
-     */
     phase?: Body.Phase;
 
     /**
@@ -3562,18 +3273,8 @@ export namespace IonoobservationCreateBulkV2Params {
      */
     platformName?: string;
 
-    /**
-     * Multidimensional array of enums that identifies either classic/basic
-     * polarization discrimination “O” or “X” corresponding to ordinary or
-     * extraordinary polarizations, respectively. Exclude this enumeration if no
-     * classic/basic polarization discrimination is implemented. May accommodate other
-     * modes in addition to “O” and “X” with proper documentation in notes field.
-     */
     polarization?: Body.Polarization;
 
-    /**
-     * Multi dimensional array of received power in db.
-     */
     power?: Body.Power;
 
     /**
@@ -3586,9 +3287,6 @@ export namespace IonoobservationCreateBulkV2Params {
      */
     qf?: number;
 
-    /**
-     * The group path from transmitter to receiver.
-     */
     range?: Body.Range;
 
     /**
@@ -3625,12 +3323,6 @@ export namespace IonoobservationCreateBulkV2Params {
      */
     scalerInfo?: Body.ScalerInfo;
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension spanning an S dimension for S1, S2, and S3 (the normalized Stokes
-     * parameters 1, 2, and 3). It is advised to describe the antenna type, antenna
-     * configuration, and Stokes coordinate system as a notes to the variable.
-     */
     stokes?: Body.Stokes;
 
     /**
@@ -3662,15 +3354,8 @@ export namespace IonoobservationCreateBulkV2Params {
      */
     tidPhaseSpeeds?: Array<number>;
 
-    /**
-     * Array of times in number of seconds passed since January 1st, 1970 with the same
-     * dimensions as power.
-     */
     time?: Body.Time;
 
-    /**
-     * Multi dimensional array of trace generic data.
-     */
     traceGeneric?: Body.TraceGeneric;
 
     /**
@@ -3718,13 +3403,6 @@ export namespace IonoobservationCreateBulkV2Params {
   }
 
   export namespace Body {
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension antenna_element. This variable is enabled for post-process
-     * polarization or antenna array determination. Can be combined with phase to
-     * create a phasors and subsequently enable post-processing of polarization and/or
-     * antenna array determination.
-     */
     export interface Amplitude {
       /**
        * Array of amplitude data.
@@ -3747,10 +3425,6 @@ export namespace IonoobservationCreateBulkV2Params {
       notes?: string;
     }
 
-    /**
-     * For phased arrays, a 2D array. 1st dimension spans the dimension antenna_element
-     * (see phase or amplitude). 2nd dimension spans 3 (x, y, z) Cartesian coordinates.
-     */
     export interface AntennaElementPosition {
       /**
        * Array of 3-element tuples (x,y,z) in km.
@@ -3768,11 +3442,6 @@ export namespace IonoobservationCreateBulkV2Params {
       dimensions?: Array<number>;
     }
 
-    /**
-     * Multidimensional array of incoming azimuth at the receiver. Has the same
-     * dimensions as power. Antenna type, configuration, and method of determination to
-     * be documented in the azimuthNotes field.
-     */
     export interface Azimuth {
       /**
        * Array of incoming azimuth at the receiver.
@@ -3859,9 +3528,6 @@ export namespace IonoobservationCreateBulkV2Params {
       ursiID?: string;
     }
 
-    /**
-     * Array to support sparse data collections.
-     */
     export interface Datum {
       /**
        * Array to support sparse data collections.
@@ -4292,9 +3958,6 @@ export namespace IonoobservationCreateBulkV2Params {
       }
     }
 
-    /**
-     * Array of Doppler.
-     */
     export interface Doppler {
       /**
        * Array of received doppler shifts in Hz.
@@ -4317,11 +3980,6 @@ export namespace IonoobservationCreateBulkV2Params {
       notes?: string;
     }
 
-    /**
-     * Multidimensional array of incoming elevation at the receiver. Has the same
-     * dimensions as power. Antenna type, configuration, and method of determination to
-     * be documented in the metadata notes field.
-     */
     export interface Elevation {
       /**
        * Array of incoming elevation at the receiver.
@@ -4344,9 +4002,6 @@ export namespace IonoobservationCreateBulkV2Params {
       notes?: string;
     }
 
-    /**
-     * Array of transmit frequencies for the power received in MHz.
-     */
     export interface Frequency {
       /**
        * Array of frequency data.
@@ -4369,13 +4024,6 @@ export namespace IonoobservationCreateBulkV2Params {
       notes?: string;
     }
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension for antenna_element (where each array element corresponds to a single
-     * antenna element). This variable is enabled for post-process polarization and/or
-     * antenna array determination. Note: this phase_array can be combined with
-     * power_array or amplitude_array to create a phasor.
-     */
     export interface Phase {
       /**
        * Array of phase data.
@@ -4399,18 +4047,11 @@ export namespace IonoobservationCreateBulkV2Params {
       notes?: string;
     }
 
-    /**
-     * Multidimensional array of enums that identifies either classic/basic
-     * polarization discrimination “O” or “X” corresponding to ordinary or
-     * extraordinary polarizations, respectively. Exclude this enumeration if no
-     * classic/basic polarization discrimination is implemented. May accommodate other
-     * modes in addition to “O” and “X” with proper documentation in notes field.
-     */
     export interface Polarization {
       /**
        * Array of polarization data.
        */
-      data?: Array<Array<Array<Array<Array<Array<Array<string>>>>>>>;
+      data?: Array<Array<Array<Array<Array<Array<Array<'X' | 'O'>>>>>>>;
 
       /**
        * Array of names for dimensions.
@@ -4428,9 +4069,6 @@ export namespace IonoobservationCreateBulkV2Params {
       notes?: string;
     }
 
-    /**
-     * Multi dimensional array of received power in db.
-     */
     export interface Power {
       /**
        * Array of received power in db.
@@ -4453,9 +4091,6 @@ export namespace IonoobservationCreateBulkV2Params {
       notes?: string;
     }
 
-    /**
-     * The group path from transmitter to receiver.
-     */
     export interface Range {
       /**
        * Array of range data.
@@ -4514,12 +4149,6 @@ export namespace IonoobservationCreateBulkV2Params {
       version?: number;
     }
 
-    /**
-     * Multi-dimensional array with the same dimensions as power plus one additional
-     * dimension spanning an S dimension for S1, S2, and S3 (the normalized Stokes
-     * parameters 1, 2, and 3). It is advised to describe the antenna type, antenna
-     * configuration, and Stokes coordinate system as a notes to the variable.
-     */
     export interface Stokes {
       /**
        * Array of received stokes data.
@@ -4547,10 +4176,6 @@ export namespace IonoobservationCreateBulkV2Params {
       s?: Array<number>;
     }
 
-    /**
-     * Array of times in number of seconds passed since January 1st, 1970 with the same
-     * dimensions as power.
-     */
     export interface Time {
       /**
        * Array of times in number of seconds passed since January 1st, 1970 with the same
@@ -4574,9 +4199,6 @@ export namespace IonoobservationCreateBulkV2Params {
       notes?: string;
     }
 
-    /**
-     * Multi dimensional array of trace generic data.
-     */
     export interface TraceGeneric {
       /**
        * Multi-dimensional Array. The 1st dimension spans points along the trace while

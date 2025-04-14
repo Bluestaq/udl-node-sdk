@@ -24,32 +24,10 @@ describe('resource v2', () => {
   test('update: required and optional params', async () => {
     const response = await client.scs.v2.update({
       path: 'path',
-      id: 'id',
-      attachment: {
-        author: 'author',
-        content: 'content',
-        content_length: 0,
-        content_type: 'content_type',
-        date: 'date',
-        keywords: 'keywords',
-        language: 'language',
-        title: 'title',
-      },
       classificationMarking: 'U',
-      createdAt: 'createdAt',
-      createdBy: 'createdBy',
-      data: 'data',
       description: 'A description of the updated folder.',
-      fileName: 'fileName',
-      filePath: 'filePath',
-      keywords: 'keywords',
-      parentPath: 'parentPath',
-      pathType: 'pathType',
       readAcl: 'user.id1,group.id1',
-      size: 0,
       tags: ['TAG1', 'TAG2'],
-      updatedAt: 'updatedAt',
-      updatedBy: 'updatedBy',
       writeAcl: 'user.id1,group.id1',
     });
   });
@@ -120,6 +98,7 @@ describe('resource v2', () => {
       path: 'path',
       body: await toFile(Buffer.from('# my file contents'), 'README.md'),
       description: 'description',
+      overwrite: true,
       tags: 'tags',
     });
   });
@@ -138,32 +117,10 @@ describe('resource v2', () => {
   test('folderCreate: required and optional params', async () => {
     const response = await client.scs.v2.folderCreate({
       path: 'path',
-      id: 'id',
-      attachment: {
-        author: 'author',
-        content: 'content',
-        content_length: 0,
-        content_type: 'content_type',
-        date: 'date',
-        keywords: 'keywords',
-        language: 'language',
-        title: 'title',
-      },
       classificationMarking: 'U',
-      createdAt: 'createdAt',
-      createdBy: 'createdBy',
-      data: 'data',
       description: 'My first folder',
-      fileName: 'fileName',
-      filePath: 'filePath',
-      keywords: 'keywords',
-      parentPath: 'parentPath',
-      pathType: 'pathType',
       readAcl: 'user.id1,group.id1',
-      size: 0,
       tags: ['TAG1', 'TAG2'],
-      updatedAt: 'updatedAt',
-      updatedBy: 'updatedBy',
       writeAcl: 'user.id1,group.id1',
     });
   });

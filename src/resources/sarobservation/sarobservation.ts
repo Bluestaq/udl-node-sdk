@@ -218,6 +218,12 @@ export namespace SarobservationListResponse {
     atype?: string;
 
     /**
+     * The azimuth angle, in degrees, of the SAR satellite nadir subpoint measured
+     * clockwise from true north at the subpoint.
+     */
+    azimuthAngle?: number;
+
+    /**
      * The datetime at the center point of the collection in ISO 8601 UTC format with
      * microsecond precision.
      */
@@ -291,6 +297,12 @@ export namespace SarobservationListResponse {
     grazeAngle?: number;
 
     /**
+     * Distance between independent measurements, representing the physical dimension
+     * that represents a pixel of the image.
+     */
+    groundResolutionProjection?: number;
+
+    /**
      * Unique identifier of the spacecraft hosting the sensor associated with this
      * collection.
      */
@@ -315,6 +327,13 @@ export namespace SarobservationListResponse {
      * The number of looks in the range direction.
      */
     looksRange?: number;
+
+    /**
+     * Averages the input synthetic aperture radar (SAR) data by looks in range and
+     * azimuth to approximate square pixels, mitigates speckle, and reduces SAR tool
+     * processing time.
+     */
+    multilookNumber?: number;
 
     /**
      * Specifies the closest range, in kilometers, from the flight path to target
@@ -628,6 +647,12 @@ export interface SarobservationCreateParams {
   atype?: string;
 
   /**
+   * The azimuth angle, in degrees, of the SAR satellite nadir subpoint measured
+   * clockwise from true north at the subpoint.
+   */
+  azimuthAngle?: number;
+
+  /**
    * The datetime at the center point of the collection in ISO 8601 UTC format with
    * microsecond precision.
    */
@@ -690,6 +715,12 @@ export interface SarobservationCreateParams {
   grazeAngle?: number;
 
   /**
+   * Distance between independent measurements, representing the physical dimension
+   * that represents a pixel of the image.
+   */
+  groundResolutionProjection?: number;
+
+  /**
    * Unique identifier of the reporting sensor.
    */
   idSensor?: string;
@@ -708,6 +739,13 @@ export interface SarobservationCreateParams {
    * The number of looks in the range direction.
    */
   looksRange?: number;
+
+  /**
+   * Averages the input synthetic aperture radar (SAR) data by looks in range and
+   * azimuth to approximate square pixels, mitigates speckle, and reduces SAR tool
+   * processing time.
+   */
+  multilookNumber?: number;
 
   /**
    * Specifies the closest range, in kilometers, from the flight path to target
@@ -1037,6 +1075,12 @@ export namespace SarobservationCreateBulkParams {
     atype?: string;
 
     /**
+     * The azimuth angle, in degrees, of the SAR satellite nadir subpoint measured
+     * clockwise from true north at the subpoint.
+     */
+    azimuthAngle?: number;
+
+    /**
      * The datetime at the center point of the collection in ISO 8601 UTC format with
      * microsecond precision.
      */
@@ -1099,6 +1143,12 @@ export namespace SarobservationCreateBulkParams {
     grazeAngle?: number;
 
     /**
+     * Distance between independent measurements, representing the physical dimension
+     * that represents a pixel of the image.
+     */
+    groundResolutionProjection?: number;
+
+    /**
      * Unique identifier of the reporting sensor.
      */
     idSensor?: string;
@@ -1117,6 +1167,13 @@ export namespace SarobservationCreateBulkParams {
      * The number of looks in the range direction.
      */
     looksRange?: number;
+
+    /**
+     * Averages the input synthetic aperture radar (SAR) data by looks in range and
+     * azimuth to approximate square pixels, mitigates speckle, and reduces SAR tool
+     * processing time.
+     */
+    multilookNumber?: number;
 
     /**
      * Specifies the closest range, in kilometers, from the flight path to target
@@ -1431,6 +1488,12 @@ export namespace SarobservationCreateBulkV2Params {
     atype?: string;
 
     /**
+     * The azimuth angle, in degrees, of the SAR satellite nadir subpoint measured
+     * clockwise from true north at the subpoint.
+     */
+    azimuthAngle?: number;
+
+    /**
      * The datetime at the center point of the collection in ISO 8601 UTC format with
      * microsecond precision.
      */
@@ -1493,6 +1556,12 @@ export namespace SarobservationCreateBulkV2Params {
     grazeAngle?: number;
 
     /**
+     * Distance between independent measurements, representing the physical dimension
+     * that represents a pixel of the image.
+     */
+    groundResolutionProjection?: number;
+
+    /**
      * Unique identifier of the reporting sensor.
      */
     idSensor?: string;
@@ -1511,6 +1580,13 @@ export namespace SarobservationCreateBulkV2Params {
      * The number of looks in the range direction.
      */
     looksRange?: number;
+
+    /**
+     * Averages the input synthetic aperture radar (SAR) data by looks in range and
+     * azimuth to approximate square pixels, mitigates speckle, and reduces SAR tool
+     * processing time.
+     */
+    multilookNumber?: number;
 
     /**
      * Specifies the closest range, in kilometers, from the flight path to target

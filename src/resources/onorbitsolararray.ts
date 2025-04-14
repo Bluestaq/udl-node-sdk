@@ -231,9 +231,6 @@ export namespace OnorbitsolararrayListResponse {
   }
 }
 
-/**
- * Read-only collection of solar arrays on this on-orbit object.
- */
 export interface OnorbitsolararrayGetResponse {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.

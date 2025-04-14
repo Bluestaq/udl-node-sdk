@@ -92,7 +92,7 @@ describe('resource analyticImagery', () => {
       source: 'Bluestaq',
       id: 'ANALYTIC-IMAGERY-ID',
       agjson:
-        '{"type":"Polygon","coordinates":[[[67.3291113966927,26.156175339112],[67.2580009640721,26.091022064271],[67.1795862381682,26.6637992964562],[67.2501237475598,26.730115808233],[67.3291113966927,26.156175339112]]]}',
+        '{"type":"Polygon","coordinates":[ [ [ 67.3291113966927, 26.156175339112 ], [ 67.2580009640721, 26.091022064271 ], [ 67.1795862381682, 26.6637992964562 ], [ 67.2501237475598, 26.730115808233 ], [ 67.3291113966927, 26.156175339112 ] ] ] }',
       andims: 2,
       annLims: [
         [1, 1],
@@ -108,12 +108,14 @@ describe('resource analyticImagery', () => {
       atype: 'POLYGON',
       dataStart: '2018-01-01T16:00:00.123Z',
       dataStop: '2018-01-01T16:00:00.123Z',
+      idSensor: 'SENSOR-ID',
       imageSetId: 'IMAGE-IDS',
       imageSetLength: 123,
       imgHeight: 123,
       imgWidth: 123,
       keywords: ['Key1', 'Key2'],
       origin: 'ORIGIN',
+      origSensorId: 'ORIG-SENSOR-ID',
       satId: ['12004', '12005'],
       satIdConf: [0.98, 0.22],
       sequenceId: 123,

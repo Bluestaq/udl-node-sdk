@@ -701,28 +701,29 @@ export namespace SoiObservationSetFull {
     obStartTime: string;
 
     /**
-     * Array of the aspect angle at the center of the image in degrees. The 'tov' and
-     * 'aspectAngle' arrays must match in size.
+     * Array of the aspect angle at the center of the image in degrees. The 'tovs' and
+     * 'aspectAngles' arrays must match in size, if 'aspectAngles' is provided.
      */
     aspectAngles?: Array<number>;
 
     /**
-     * Array of sensor azimuth angle biases in degrees. The 'tov' and 'azimuthBias'
-     * arrays must match in size.
+     * Array of sensor azimuth angle biases in degrees. The 'tovs' and 'azimuthBiases'
+     * arrays must match in size, if 'azimuthBiases' is provided.
      */
     azimuthBiases?: Array<number>;
 
     /**
-     * Array of the azimuth rates of target in degrees per second. The 'tov' and
-     * 'azimuthRate' arrays must match in size. If there is an associated image the
-     * azimuth rate is assumed to be at image center.
+     * Array of the azimuth rate of target at image center in degrees per second. The
+     * 'tovs' and 'azimuthRates' arrays must match in size, if 'azimuthRates' is
+     * provided. If there is an associated image the azimuth rate is assumed to be at
+     * image center.
      */
     azimuthRates?: Array<number>;
 
     /**
-     * Array of the azimuth angles to target in degrees. The 'tov' and 'azimuth' arrays
-     * must match in size. If there is an associated image the azimuth angle is assumed
-     * to be at image center.
+     * Array of the azimuth angle to target at image center in degrees. The 'tovs' and
+     * 'azimuths' arrays must match in size, if 'azimuths' is provided. If there is an
+     * associated image the azimuth angle is assumed to be at image center.
      */
     azimuths?: Array<number>;
 
@@ -738,39 +739,43 @@ export namespace SoiObservationSetFull {
 
     /**
      * Array of cross-range resolutions (accounting for weighting function) in
-     * kilometers. The 'tov' and 'crossRangeRes' arrays must match in size.
+     * kilometers. The 'tovs' and 'crossRangeRes' arrays must match in size, if
+     * 'crossRangeRes' is provided.
      */
     crossRangeRes?: Array<number>;
 
     /**
-     * Array of average Interpulse spacing in seconds. The 'tov' and 'deltaTime' arrays
-     * must match in size.
+     * Array of average Interpulse spacing in seconds. The 'tovs' and 'deltaTimes'
+     * arrays must match in size, if 'deltaTimes' is provided.
      */
     deltaTimes?: Array<number>;
 
     /**
      * Array of conversion factors between Doppler in hertz and cross-range in meters.
-     * The 'tov' and 'doppler2XR' arrays must match in size.
+     * The 'tovs' and 'doppler2XRs' arrays must match in size, if 'doppler2XRs' is
+     * provided.
      */
     doppler2XRs?: Array<number>;
 
     /**
-     * Array of sensor elevation biases in degrees. The 'tov' and 'elevationBias'
-     * arrays must match in size.
+     * Array of sensor elevation biases in degrees. The 'tovs' and 'elevationBiases'
+     * arrays must match in size, if 'elevationBiases' is provided.
      */
     elevationBiases?: Array<number>;
 
     /**
-     * Array of the elevation rates of target in degrees per second. The 'tov' and
-     * 'elevationRate' arrays must match in size. If there is an associated image the
-     * elevation rate is assumed to be at image center.
+     * Array of the elevation rate of target at image center in degrees per second. The
+     * 'tovs' and 'elevationRates' arrays must match in size, if 'elevationRates' is
+     * provided. If there is an associated image the elevation rate is assumed to be at
+     * image center.
      */
     elevationRates?: Array<number>;
 
     /**
-     * Array of the elevation angles to target in degrees. The 'tov' and 'elevation'
-     * arrays must match in size. If there is an associated image the elevation angle
-     * is assumed to be at image center.
+     * Array of the elevation angle to target at image center in degrees. The 'tovs'
+     * and 'elevations' arrays must match in size, if 'elevations' is provided. If
+     * there is an associated image the elevation angle is assumed to be at image
+     * center.
      */
     elevations?: Array<number>;
 
@@ -785,8 +790,8 @@ export namespace SoiObservationSetFull {
     idStateVector?: string;
 
     /**
-     * Array of Integration angles in degrees. The 'tov' and 'integrationAngle' arrays
-     * must match in size.
+     * Array of Integration angles in degrees. The 'tovs' and 'integrationAngles'
+     * arrays must match in size, if 'integrationAngles' is provided.
      */
     integrationAngles?: Array<number>;
 
@@ -796,8 +801,8 @@ export namespace SoiObservationSetFull {
     kappa?: number;
 
     /**
-     * Array of the peak pixel amplitude for each image in decibels. The 'tov' and
-     * 'peakAmplitude' arrays must match in size.
+     * Array of the peak pixel amplitude for each image in decibels. The 'tovs' and
+     * 'peakAmplitudes' arrays must match in size, if 'peakAmplitudes' is provided.
      */
     peakAmplitudes?: Array<number>;
 
@@ -814,7 +819,8 @@ export namespace SoiObservationSetFull {
 
     /**
      * Array of the component of target angular velocity observable by radar in radians
-     * per second. The 'tov' and 'projAngVel' arrays must match in size.
+     * per second. The 'tovs' and 'projAngVels' arrays must match in size, if
+     * 'projAngVels' is provided.
      */
     projAngVels?: Array<number>;
 
@@ -825,33 +831,34 @@ export namespace SoiObservationSetFull {
 
     /**
      * Array of the range acceleratons of target in kilometers per second squared. The
-     * 'tov' and 'rangeAccels' arrays must match in size. If there is an associated
-     * image the range acceleration is assumed to be at image center.
+     * 'tovs' and 'rangeAccels' arrays must match in size, if 'rangeAccels' is
+     * provided. If there is an associated image the range acceleration is assumed to
+     * be at image center.
      */
     rangeAccels?: Array<number>;
 
     /**
-     * Array of sensor range biases in kilometers. The 'tov' and 'rangeBias' arrays
-     * must match in size.
+     * Array of sensor range biases in kilometers. The 'tovs' and 'rangeBiases' arrays
+     * must match in size, if 'rangeBiases' is provided.
      */
     rangeBiases?: Array<number>;
 
     /**
-     * Array of the range rates of target in kilometers per second. The 'tov' and
-     * 'rangeRate' arrays must match in size. If there is an associated image the range
-     * rate is assumed to be at image center.
+     * Array of the range rate of target at image center in kilometers per second. The
+     * 'tovs' and 'rangeRates' arrays must match in size, if 'rangeRates' is provided.
+     * If there is an associated image the range rate is assumed to be at image center.
      */
     rangeRates?: Array<number>;
 
     /**
-     * Array of the ranges to target in kilometers. The 'tov' and 'range' arrays must
-     * match in size. If there is an associated image the range is assumed to be at
-     * image center.
+     * Array of the range to target at image center in kilometers. The 'tovs' and
+     * 'ranges' arrays must match in size, if 'ranges' is provided. If there is an
+     * associated image the range is assumed to be at image center.
      */
     ranges?: Array<number>;
 
     /**
-     * Array of error estimates of RCS vaues, in square meters.
+     * Array of error estimates of RCS values, in square meters.
      */
     rcsErrorEsts?: Array<number>;
 
@@ -861,8 +868,8 @@ export namespace SoiObservationSetFull {
     rcsValues?: Array<number>;
 
     /**
-     * Array of range sample spacing in meters. The 'tov' and 'rspace' arrays must
-     * match in size.
+     * Array of range sample spacing in meters. The 'tovs' and 'rspaces' arrays must
+     * match in size, if 'rspaces' is provided.
      */
     rspaces?: Array<number>;
 
@@ -883,69 +890,69 @@ export namespace SoiObservationSetFull {
     /**
      * Array of the cartesian X accelerations, in kilometers per second squared, in the
      * specified referenceFrame. If referenceFrame is null then J2K should be assumed.
-     * The 'tov' and 'xaccel' arrays must match in size.
+     * The 'tovs' and 'xaccel' arrays must match in size, if 'xaccel' is provided.
      */
     xaccel?: Array<number>;
 
     /**
      * Array of the cartesian X positions of the target, in kilometers, in the
      * specified referenceFrame. If referenceFrame is null then J2K should be assumed.
-     * The 'tov' and 'xpos' arrays must match in size.
+     * The 'tovs' and 'xpos' arrays must match in size, if 'xpos' is provided.
      */
     xpos?: Array<number>;
 
     /**
-     * Array of cross-range sample spacing in meters. The 'tov' and 'xspace' arrays
-     * must match in size.
+     * Array of cross-range sample spacing in meters. The 'tovs' and 'xspaces' arrays
+     * must match in size, if 'xspaces' is provided.
      */
     xspaces?: Array<number>;
 
     /**
      * Array of the cartesian X velocities of target, in kilometers per second, in the
      * specified referenceFrame. If referenceFrame is null then J2K should be assumed.
-     * The 'tov' and 'xvel' arrays must match in size.
+     * The 'tovs' and 'xvel' arrays must match in size, if 'xvel' is provided.
      */
     xvel?: Array<number>;
 
     /**
      * Array of the cartesian Y accelerations, in kilometers per second squared, in the
      * specified referenceFrame. If referenceFrame is null then J2K should be assumed.
-     * The 'tov' and 'yaccel' arrays must match in size.
+     * The 'tovs' and 'yaccel' arrays must match in size, if 'yaccel' is provided.
      */
     yaccel?: Array<number>;
 
     /**
      * Array of the cartesian Y positions of the target, in kilometers, in the
      * specified referenceFrame. If referenceFrame is null then J2K should be assumed.
-     * The 'tov' and 'ypos' arrays must match in size.
+     * The 'tovs' and 'ypos' arrays must match in size, if 'ypos' is provided.
      */
     ypos?: Array<number>;
 
     /**
      * Array of the cartesian Y velocities of target, in kilometers per second, in the
      * specified referenceFrame. If referenceFrame is null then J2K should be assumed.
-     * The 'tov' and 'yvel' arrays must match in size.
+     * The 'tovs' and 'yvel' arrays must match in size, if 'yvel' is provided.
      */
     yvel?: Array<number>;
 
     /**
      * Array of the cartesian Z accelerations, in kilometers per second squared, in the
      * specified referenceFrame. If referenceFrame is null then J2K should be assumed.
-     * The 'tov' and 'zaccel' arrays must match in size.
+     * The 'tovs' and 'zaccel' arrays must match in size, if 'zaccel' is provided.
      */
     zaccel?: Array<number>;
 
     /**
      * Array of the cartesian Z positions of the target, in kilometers, in the
      * specified referenceFrame. If referenceFrame is null then J2K should be assumed.
-     * The 'tov' and 'zpos' arrays must match in size.
+     * The 'tovs' and 'zpos' arrays must match in size, if 'zpos' is provided.
      */
     zpos?: Array<number>;
 
     /**
      * Array of the cartesian Z velocities of target, in kilometers per second, in the
      * specified referenceFrame. If referenceFrame is null then J2K should be assumed.
-     * The 'tov' and 'zvel' arrays must match in size.
+     * The 'tovs' and 'zvel' arrays must match in size, if 'zvel' is provided.
      */
     zvel?: Array<number>;
   }

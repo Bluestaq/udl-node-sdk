@@ -131,6 +131,8 @@ export {
   type AirfieldslotconsumptionTupleResponse,
   type AirfieldslotconsumptionCreateParams,
   type AirfieldslotconsumptionUpdateParams,
+  type AirfieldslotconsumptionListParams,
+  type AirfieldslotconsumptionCountParams,
   type AirfieldslotconsumptionTupleParams,
 } from './airfieldslotconsumptions';
 export {

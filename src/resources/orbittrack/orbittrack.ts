@@ -313,7 +313,7 @@ export namespace OrbittrackListResponse {
     idOnOrbit?: string;
 
     /**
-     * A text aplifier displaying IFF/SIF/AIS Identification modes and codes.
+     * A text amplifier displaying IFF/SIF/AIS Identification modes and codes.
      */
     iff?: string;
 
@@ -714,7 +714,7 @@ export namespace OrbittrackCreateBulkParams {
     idOnOrbit?: string;
 
     /**
-     * A text aplifier displaying IFF/SIF/AIS Identification modes and codes.
+     * A text amplifier displaying IFF/SIF/AIS Identification modes and codes.
      */
     iff?: string;
 
@@ -1089,7 +1089,7 @@ export namespace OrbittrackCreateBulkV2Params {
     idOnOrbit?: string;
 
     /**
-     * A text aplifier displaying IFF/SIF/AIS Identification modes and codes.
+     * A text amplifier displaying IFF/SIF/AIS Identification modes and codes.
      */
     iff?: string;
 

@@ -244,7 +244,7 @@ export interface AirloadplanAbridged {
   cargoMoment?: number;
 
   /**
-   * The volume of cargo space in the aircraft in cubic meters.
+   * Volume of cargo space in the aircraft, in cubic meters.
    */
   cargoVolume?: number;
 
@@ -1042,7 +1042,7 @@ export interface AirloadplanFull {
   cargoMoment?: number;
 
   /**
-   * The volume of cargo space in the aircraft in cubic meters.
+   * Volume of cargo space in the aircraft, in cubic meters.
    */
   cargoVolume?: number;
 
@@ -1842,7 +1842,7 @@ export interface AirLoadPlanCreateParams {
   cargoMoment?: number;
 
   /**
-   * The volume of cargo space in the aircraft in cubic meters.
+   * Volume of cargo space in the aircraft, in cubic meters.
    */
   cargoVolume?: number;
 

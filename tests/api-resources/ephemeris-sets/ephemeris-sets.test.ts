@@ -62,7 +62,7 @@ describe('resource ephemerisSets', () => {
           zpos: 1.1,
           zvel: 1.1,
           id: 'EPHEMERIS-ID',
-          cov: [0],
+          cov: [1.1, 2.4, 3.8, 4.2, 5.5, 6],
           esId: 'ES-ID',
           idOnOrbit: 'ONORBIT-ID',
           origin: 'THIRD_PARTY_DATASOURCE',

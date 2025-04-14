@@ -107,6 +107,17 @@ export interface AirfieldstatusAbridged {
   altAirfieldId?: string;
 
   /**
+   * The name of the person who approved the airfield survey review.
+   */
+  approvedBy?: string;
+
+  /**
+   * The date that survey review changes were approved for this airfield, in ISO 8601
+   * UTC format with millisecond precision.
+   */
+  approvedDate?: string;
+
+  /**
    * The category of aircraft rescue and fire fighting (ARFF) services that are
    * currently available at the airfield. Entries should include the code (FAA or
    * ICAO) and the category.
@@ -247,6 +258,17 @@ export interface AirfieldstatusAbridged {
   priRwyNum?: string;
 
   /**
+   * The name of the person who reviewed the airfield survey.
+   */
+  reviewedBy?: string;
+
+  /**
+   * The date the airfield survey was reviewed, in ISO 8601 UTC format with
+   * millisecond precision.
+   */
+  reviewedDate?: string;
+
+  /**
    * The primary runway condition reading value used for determining runway braking
    * action, from 0 to 26. A value of 0 indicates braking action is poor or
    * non-existent, where a value of 26 indicates braking action is good.
@@ -279,14 +301,24 @@ export interface AirfieldstatusAbridged {
   sourceDL?: string;
 
   /**
+   * The date the airfield survey was performed, in ISO 8601 UTC format with
+   * millisecond precision.
+   */
+  surveyDate?: string;
+
+  /**
    * Maximum on ground (MOG) number of parking wide-body aircraft based on spacing
-   * and manpower at the time of status.
+   * and manpower at the time of status. Additional information about this field as
+   * it pertains to specific aircraft type may be available in an associated
+   * SiteOperations record.
    */
   wideParkingMOG?: number;
 
   /**
    * Maximum on ground (MOG) number of working wide-body aircraft based on spacing
-   * and manpower at the time of status.
+   * and manpower at the time of status. Additional information about this field as
+   * it pertains to specific aircraft type may be available in an associated
+   * SiteOperations record.
    */
   wideWorkingMOG?: number;
 }
@@ -339,6 +371,17 @@ export interface AirfieldstatusFull {
   altAirfieldId?: string;
 
   /**
+   * The name of the person who approved the airfield survey review.
+   */
+  approvedBy?: string;
+
+  /**
+   * The date that survey review changes were approved for this airfield, in ISO 8601
+   * UTC format with millisecond precision.
+   */
+  approvedDate?: string;
+
+  /**
    * The category of aircraft rescue and fire fighting (ARFF) services that are
    * currently available at the airfield. Entries should include the code (FAA or
    * ICAO) and the category.
@@ -479,6 +522,17 @@ export interface AirfieldstatusFull {
   priRwyNum?: string;
 
   /**
+   * The name of the person who reviewed the airfield survey.
+   */
+  reviewedBy?: string;
+
+  /**
+   * The date the airfield survey was reviewed, in ISO 8601 UTC format with
+   * millisecond precision.
+   */
+  reviewedDate?: string;
+
+  /**
    * The primary runway condition reading value used for determining runway braking
    * action, from 0 to 26. A value of 0 indicates braking action is poor or
    * non-existent, where a value of 26 indicates braking action is good.
@@ -511,6 +565,12 @@ export interface AirfieldstatusFull {
   sourceDL?: string;
 
   /**
+   * The date the airfield survey was performed, in ISO 8601 UTC format with
+   * millisecond precision.
+   */
+  surveyDate?: string;
+
+  /**
    * Time the row was last updated in the database, auto-populated by the system.
    */
   updatedAt?: string;
@@ -523,13 +583,17 @@ export interface AirfieldstatusFull {
 
   /**
    * Maximum on ground (MOG) number of parking wide-body aircraft based on spacing
-   * and manpower at the time of status.
+   * and manpower at the time of status. Additional information about this field as
+   * it pertains to specific aircraft type may be available in an associated
+   * SiteOperations record.
    */
   wideParkingMOG?: number;
 
   /**
    * Maximum on ground (MOG) number of working wide-body aircraft based on spacing
-   * and manpower at the time of status.
+   * and manpower at the time of status. Additional information about this field as
+   * it pertains to specific aircraft type may be available in an associated
+   * SiteOperations record.
    */
   wideWorkingMOG?: number;
 }
@@ -583,6 +647,17 @@ export interface AirfieldstatusCreateParams {
   altAirfieldId?: string;
 
   /**
+   * The name of the person who approved the airfield survey review.
+   */
+  approvedBy?: string;
+
+  /**
+   * The date that survey review changes were approved for this airfield, in ISO 8601
+   * UTC format with millisecond precision.
+   */
+  approvedDate?: string;
+
+  /**
    * The category of aircraft rescue and fire fighting (ARFF) services that are
    * currently available at the airfield. Entries should include the code (FAA or
    * ICAO) and the category.
@@ -706,6 +781,17 @@ export interface AirfieldstatusCreateParams {
   priRwyNum?: string;
 
   /**
+   * The name of the person who reviewed the airfield survey.
+   */
+  reviewedBy?: string;
+
+  /**
+   * The date the airfield survey was reviewed, in ISO 8601 UTC format with
+   * millisecond precision.
+   */
+  reviewedDate?: string;
+
+  /**
    * The primary runway condition reading value used for determining runway braking
    * action, from 0 to 26. A value of 0 indicates braking action is poor or
    * non-existent, where a value of 26 indicates braking action is good.
@@ -731,14 +817,24 @@ export interface AirfieldstatusCreateParams {
   slotTypesReq?: Array<string>;
 
   /**
+   * The date the airfield survey was performed, in ISO 8601 UTC format with
+   * millisecond precision.
+   */
+  surveyDate?: string;
+
+  /**
    * Maximum on ground (MOG) number of parking wide-body aircraft based on spacing
-   * and manpower at the time of status.
+   * and manpower at the time of status. Additional information about this field as
+   * it pertains to specific aircraft type may be available in an associated
+   * SiteOperations record.
    */
   wideParkingMOG?: number;
 
   /**
    * Maximum on ground (MOG) number of working wide-body aircraft based on spacing
-   * and manpower at the time of status.
+   * and manpower at the time of status. Additional information about this field as
+   * it pertains to specific aircraft type may be available in an associated
+   * SiteOperations record.
    */
   wideWorkingMOG?: number;
 }

@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../../resource';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountResponse } from './history';
+import { History } from './history';
 
 export class Flightplan extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -11,9 +11,5 @@ export class Flightplan extends APIResource {
 Flightplan.History = History;
 
 export declare namespace Flightplan {
-  export {
-    History as History,
-    type HistoryCountResponse as HistoryCountResponse,
-    type HistoryAodrParams as HistoryAodrParams,
-  };
+  export { History as History };
 }

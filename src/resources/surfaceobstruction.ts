@@ -234,18 +234,6 @@ export namespace SurfaceobstructionListResponse {
      * assumed to have originated from the primary Enterprise UDL.
      */
     sourceDL?: string;
-
-    /**
-     * WGS-84 latitude of the coordinate representing the end-point of a surface, in
-     * degrees. -90 to 90 degrees (negative values south of equator).
-     */
-    surfaceEndLat?: number;
-
-    /**
-     * WGS-84 longitude of the coordinate representing the end-point of a surface, in
-     * degrees. -180 to 180 degrees (negative values west of Prime Meridian).
-     */
-    surfaceEndLon?: number;
   }
 }
 
@@ -357,18 +345,6 @@ export interface SurfaceobstructionGetResponse {
    * assumed to have originated from the primary Enterprise UDL.
    */
   sourceDL?: string;
-
-  /**
-   * WGS-84 latitude of the coordinate representing the end-point of a surface, in
-   * degrees. -90 to 90 degrees (negative values south of equator).
-   */
-  surfaceEndLat?: number;
-
-  /**
-   * WGS-84 longitude of the coordinate representing the end-point of a surface, in
-   * degrees. -180 to 180 degrees (negative values west of Prime Meridian).
-   */
-  surfaceEndLon?: number;
 
   /**
    * Time the row was last updated in the database, auto-populated by the system.
@@ -494,18 +470,6 @@ export namespace SurfaceobstructionTupleResponse {
     sourceDL?: string;
 
     /**
-     * WGS-84 latitude of the coordinate representing the end-point of a surface, in
-     * degrees. -90 to 90 degrees (negative values south of equator).
-     */
-    surfaceEndLat?: number;
-
-    /**
-     * WGS-84 longitude of the coordinate representing the end-point of a surface, in
-     * degrees. -180 to 180 degrees (negative values west of Prime Meridian).
-     */
-    surfaceEndLon?: number;
-
-    /**
      * Time the row was last updated in the database, auto-populated by the system.
      */
     updatedAt?: string;
@@ -600,18 +564,6 @@ export interface SurfaceobstructionCreateParams {
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * WGS-84 latitude of the coordinate representing the end-point of a surface, in
-   * degrees. -90 to 90 degrees (negative values south of equator).
-   */
-  surfaceEndLat?: number;
-
-  /**
-   * WGS-84 longitude of the coordinate representing the end-point of a surface, in
-   * degrees. -180 to 180 degrees (negative values west of Prime Meridian).
-   */
-  surfaceEndLon?: number;
 }
 
 export interface SurfaceobstructionUpdateParams {
@@ -696,18 +648,6 @@ export interface SurfaceobstructionUpdateParams {
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
-
-  /**
-   * WGS-84 latitude of the coordinate representing the end-point of a surface, in
-   * degrees. -90 to 90 degrees (negative values south of equator).
-   */
-  surfaceEndLat?: number;
-
-  /**
-   * WGS-84 longitude of the coordinate representing the end-point of a surface, in
-   * degrees. -180 to 180 degrees (negative values west of Prime Meridian).
-   */
-  surfaceEndLon?: number;
 }
 
 export type SurfaceobstructionCreateBulkV2Params = Array<SurfaceobstructionCreateBulkV2Params.Body>;
@@ -795,18 +735,6 @@ export namespace SurfaceobstructionCreateBulkV2Params {
      * null, the source may be assumed to be the origin.
      */
     origin?: string;
-
-    /**
-     * WGS-84 latitude of the coordinate representing the end-point of a surface, in
-     * degrees. -90 to 90 degrees (negative values south of equator).
-     */
-    surfaceEndLat?: number;
-
-    /**
-     * WGS-84 longitude of the coordinate representing the end-point of a surface, in
-     * degrees. -180 to 180 degrees (negative values west of Prime Meridian).
-     */
-    surfaceEndLon?: number;
   }
 }
 

@@ -527,6 +527,13 @@ export namespace OnorbitGetSignatureResponse {
     azimuthBias?: number;
 
     /**
+     * Optional flag indicating whether the azimuth value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    azimuthMeasured?: boolean;
+
+    /**
      * Rate of change of the line of sight azimuth in degrees per second.
      */
     azimuthRate?: number;
@@ -559,6 +566,13 @@ export namespace OnorbitGetSignatureResponse {
     declination?: number;
 
     /**
+     * Optional flag indicating whether the declination value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    declinationMeasured?: boolean;
+
+    /**
      * Optional source-provided and searchable metadata or descriptor of the data.
      */
     descriptor?: string;
@@ -582,6 +596,13 @@ export namespace OnorbitGetSignatureResponse {
      * Sensor elevation bias in degrees.
      */
     elevationBias?: number;
+
+    /**
+     * Optional flag indicating whether the elevation value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    elevationMeasured?: boolean;
 
     /**
      * Rate of change of the line of sight elevation in degrees per second.
@@ -656,6 +677,13 @@ export namespace OnorbitGetSignatureResponse {
     ra?: number;
 
     /**
+     * Optional flag indicating whether the ra value is measured (true) or computed
+     * (false). If null, consumers may consult the data provider for information
+     * regarding whether the corresponding value is computed or measured.
+     */
+    raMeasured?: boolean;
+
+    /**
      * Target range in km.
      */
     range?: number;
@@ -677,9 +705,23 @@ export namespace OnorbitGetSignatureResponse {
     rangeBias?: number;
 
     /**
+     * Optional flag indicating whether the range value is measured (true) or computed
+     * (false). If null, consumers may consult the data provider for information
+     * regarding whether the corresponding value is computed or measured.
+     */
+    rangeMeasured?: boolean;
+
+    /**
      * Rate of change of the line of sight range in km/sec.
      */
     rangeRate?: number;
+
+    /**
+     * Optional flag indicating whether the rangeRate value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    rangeRateMeasured?: boolean;
 
     /**
      * One sigma uncertainty in the range rate measurement, in kilometers/second.
@@ -765,6 +807,32 @@ export namespace OnorbitGetSignatureResponse {
      * Optional identifier of the track to which this observation belongs.
      */
     trackId?: string;
+
+    /**
+     * The beam type (or tracking state) in use at the time of collection of this
+     * observation. Values include:
+     *
+     * INIT ACQ WITH INIT VALUES: Initial acquisition based on predefined initial
+     * values such as position, velocity, or other specific parameters.
+     *
+     * INIT ACQ: Initial acquisition when no prior information or initial values such
+     * as position or velocity are available.
+     *
+     * TRACKING SINGLE BEAM: Continuously tracks and monitors a single target using one
+     * specific radar beam.
+     *
+     * TRACKING SEQUENTIAL ROVING: Sequentially tracks different targets or areas by
+     * "roving" from one sector to the next in a systematic order.
+     *
+     * SELF ACQ WITH INIT VALUES: Autonomously acquires targets using predefined
+     * starting parameters or initial values.
+     *
+     * SELF ACQ: Automatically detects and locks onto targets without the need for
+     * predefined initial settings.
+     *
+     * NON-TRACKING: Non-tracking.
+     */
+    trackingState?: string;
 
     /**
      * Optional identifier to track a commercial or marketplace transaction executed to
@@ -885,6 +953,13 @@ export namespace OnorbitGetSignatureResponse {
     azimuth?: number;
 
     /**
+     * Optional flag indicating whether the azimuth value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    azimuthMeasured?: boolean;
+
+    /**
      * Rate of change of the azimuth in degrees per second.
      */
     azimuthRate?: number;
@@ -962,6 +1037,13 @@ export namespace OnorbitGetSignatureResponse {
      * elevation in degrees and J2000 coordinate frame.
      */
     elevation?: number;
+
+    /**
+     * Optional flag indicating whether the elevation value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    elevationMeasured?: boolean;
 
     /**
      * Rate of change of the elevation in degrees per second.
@@ -1130,9 +1212,23 @@ export namespace OnorbitGetSignatureResponse {
     range?: number;
 
     /**
+     * Optional flag indicating whether the range value is measured (true) or computed
+     * (false). If null, consumers may consult the data provider for information
+     * regarding whether the corresponding value is computed or measured.
+     */
+    rangeMeasured?: boolean;
+
+    /**
      * Rate of change of the range in km/sec.
      */
     rangeRate?: number;
+
+    /**
+     * Optional flag indicating whether the rangeRate value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    rangeRateMeasured?: boolean;
 
     /**
      * One sigma uncertainty in the range rate measurement, in kilometers/second.

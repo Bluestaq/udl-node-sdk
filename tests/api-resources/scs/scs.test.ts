@@ -95,7 +95,10 @@ describe('resource scs', () => {
   });
 
   test('download: required and optional params', async () => {
-    const response = await client.scs.download('body');
+    const response = await client.scs.download([
+      '/processPalantirXml/media/PT_MEDIA6831731772984708680',
+      '/processPalantirXml/media/PT_MEDIA7297147303810886654',
+    ]);
   });
 
   test('fileDownload: required and optional params', async () => {
@@ -125,6 +128,7 @@ describe('resource scs', () => {
       path: 'path',
       body: await toFile(Buffer.from('# my file contents'), 'README.md'),
       description: 'description',
+      overwrite: true,
       tags: 'tags',
     });
   });

@@ -315,6 +315,20 @@ export namespace SgiListResponse {
     f10?: number;
 
     /**
+     * Daily F10.7 index - high range, in x10-22 Watts per meter squared per Hertz.
+     * This field usually applies to forecast values, based on the consensus of the
+     * Solar Cycle 24 Prediction Panel.
+     */
+    f10High?: number;
+
+    /**
+     * Daily F10.7 index - low range, in x10-22 Watts per meter squared per Hertz. This
+     * field usually applies to forecast values, based on the consensus of the Solar
+     * Cycle 24 Prediction Panel.
+     */
+    f10Low?: number;
+
+    /**
      * 54 day solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
      */
     f54?: number;
@@ -487,6 +501,23 @@ export namespace SgiListResponse {
     stci?: Array<number>;
 
     /**
+     * Daily sunspot number.
+     */
+    sunspotNum?: number;
+
+    /**
+     * Daily sunspot number - high range. This field usually applies to forecast
+     * values, based on the consensus of the Solar Cycle 24 Prediction Panel.
+     */
+    sunspotNumHigh?: number;
+
+    /**
+     * Daily sunspot number - low range. This field usually applies to forecast values,
+     * based on the consensus of the Solar Cycle 24 Prediction Panel.
+     */
+    sunspotNumLow?: number;
+
+    /**
      * Optional identifier to track a commercial or marketplace transaction executed to
      * produce this data.
      */
@@ -635,6 +666,20 @@ export interface SgiCreateParams {
    * Daily solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
    */
   f10?: number;
+
+  /**
+   * Daily F10.7 index - high range, in x10-22 Watts per meter squared per Hertz.
+   * This field usually applies to forecast values, based on the consensus of the
+   * Solar Cycle 24 Prediction Panel.
+   */
+  f10High?: number;
+
+  /**
+   * Daily F10.7 index - low range, in x10-22 Watts per meter squared per Hertz. This
+   * field usually applies to forecast values, based on the consensus of the Solar
+   * Cycle 24 Prediction Panel.
+   */
+  f10Low?: number;
 
   /**
    * 54 day solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
@@ -820,6 +865,23 @@ export interface SgiCreateParams {
    * index of the coeffDegree and coeffOrder arrays.
    */
   stci?: Array<number>;
+
+  /**
+   * Daily sunspot number.
+   */
+  sunspotNum?: number;
+
+  /**
+   * Daily sunspot number - high range. This field usually applies to forecast
+   * values, based on the consensus of the Solar Cycle 24 Prediction Panel.
+   */
+  sunspotNumHigh?: number;
+
+  /**
+   * Daily sunspot number - low range. This field usually applies to forecast values,
+   * based on the consensus of the Solar Cycle 24 Prediction Panel.
+   */
+  sunspotNumLow?: number;
 
   /**
    * Optional array of provider/source specific tags for this data, where each
@@ -976,6 +1038,20 @@ export interface SgiUpdateParams {
   f10?: number;
 
   /**
+   * Daily F10.7 index - high range, in x10-22 Watts per meter squared per Hertz.
+   * This field usually applies to forecast values, based on the consensus of the
+   * Solar Cycle 24 Prediction Panel.
+   */
+  f10High?: number;
+
+  /**
+   * Daily F10.7 index - low range, in x10-22 Watts per meter squared per Hertz. This
+   * field usually applies to forecast values, based on the consensus of the Solar
+   * Cycle 24 Prediction Panel.
+   */
+  f10Low?: number;
+
+  /**
    * 54 day solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
    */
   f54?: number;
@@ -1159,6 +1235,23 @@ export interface SgiUpdateParams {
    * index of the coeffDegree and coeffOrder arrays.
    */
   stci?: Array<number>;
+
+  /**
+   * Daily sunspot number.
+   */
+  sunspotNum?: number;
+
+  /**
+   * Daily sunspot number - high range. This field usually applies to forecast
+   * values, based on the consensus of the Solar Cycle 24 Prediction Panel.
+   */
+  sunspotNumHigh?: number;
+
+  /**
+   * Daily sunspot number - low range. This field usually applies to forecast values,
+   * based on the consensus of the Solar Cycle 24 Prediction Panel.
+   */
+  sunspotNumLow?: number;
 
   /**
    * Optional array of provider/source specific tags for this data, where each
@@ -1358,6 +1451,20 @@ export namespace SgiCreateBulkParams {
     f10?: number;
 
     /**
+     * Daily F10.7 index - high range, in x10-22 Watts per meter squared per Hertz.
+     * This field usually applies to forecast values, based on the consensus of the
+     * Solar Cycle 24 Prediction Panel.
+     */
+    f10High?: number;
+
+    /**
+     * Daily F10.7 index - low range, in x10-22 Watts per meter squared per Hertz. This
+     * field usually applies to forecast values, based on the consensus of the Solar
+     * Cycle 24 Prediction Panel.
+     */
+    f10Low?: number;
+
+    /**
      * 54 day solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
      */
     f54?: number;
@@ -1541,6 +1648,23 @@ export namespace SgiCreateBulkParams {
      * index of the coeffDegree and coeffOrder arrays.
      */
     stci?: Array<number>;
+
+    /**
+     * Daily sunspot number.
+     */
+    sunspotNum?: number;
+
+    /**
+     * Daily sunspot number - high range. This field usually applies to forecast
+     * values, based on the consensus of the Solar Cycle 24 Prediction Panel.
+     */
+    sunspotNumHigh?: number;
+
+    /**
+     * Daily sunspot number - low range. This field usually applies to forecast values,
+     * based on the consensus of the Solar Cycle 24 Prediction Panel.
+     */
+    sunspotNumLow?: number;
 
     /**
      * Optional array of provider/source specific tags for this data, where each
@@ -1705,6 +1829,20 @@ export namespace SgiCreateBulkV2Params {
     f10?: number;
 
     /**
+     * Daily F10.7 index - high range, in x10-22 Watts per meter squared per Hertz.
+     * This field usually applies to forecast values, based on the consensus of the
+     * Solar Cycle 24 Prediction Panel.
+     */
+    f10High?: number;
+
+    /**
+     * Daily F10.7 index - low range, in x10-22 Watts per meter squared per Hertz. This
+     * field usually applies to forecast values, based on the consensus of the Solar
+     * Cycle 24 Prediction Panel.
+     */
+    f10Low?: number;
+
+    /**
      * 54 day solar 10.7 cm radio flux in x10-22 Watts per meter squared per Hertz.
      */
     f54?: number;
@@ -1888,6 +2026,23 @@ export namespace SgiCreateBulkV2Params {
      * index of the coeffDegree and coeffOrder arrays.
      */
     stci?: Array<number>;
+
+    /**
+     * Daily sunspot number.
+     */
+    sunspotNum?: number;
+
+    /**
+     * Daily sunspot number - high range. This field usually applies to forecast
+     * values, based on the consensus of the Solar Cycle 24 Prediction Panel.
+     */
+    sunspotNumHigh?: number;
+
+    /**
+     * Daily sunspot number - low range. This field usually applies to forecast values,
+     * based on the consensus of the Solar Cycle 24 Prediction Panel.
+     */
+    sunspotNumLow?: number;
 
     /**
      * Optional array of provider/source specific tags for this data, where each

@@ -192,7 +192,7 @@ export interface AirloadplanUpdateParams {
   cargoMoment?: number;
 
   /**
-   * The volume of cargo space in the aircraft in cubic meters.
+   * Volume of cargo space in the aircraft, in cubic meters.
    */
   cargoVolume?: number;
 

@@ -94,9 +94,11 @@ import {
 } from './resources/airfields';
 import {
   AirfieldslotconsumptionAbridged,
+  AirfieldslotconsumptionCountParams,
   AirfieldslotconsumptionCountResponse,
   AirfieldslotconsumptionCreateParams,
   AirfieldslotconsumptionFull,
+  AirfieldslotconsumptionListParams,
   AirfieldslotconsumptionListResponse,
   AirfieldslotconsumptionTupleParams,
   AirfieldslotconsumptionTupleResponse,
@@ -1977,20 +1979,6 @@ export class Unifieddatalibrary extends Core.APIClient {
     };
   }
 
-  protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
-    if (!this.username) {
-      return {};
-    }
-
-    if (!this.password) {
-      return {};
-    }
-
-    const credentials = `${this.username}:${this.password}`;
-    const Authorization = `Basic ${Core.toBase64(credentials)}`;
-    return { Authorization };
-  }
-
   protected override stringifyQuery(query: Record<string, unknown>): string {
     return qs.stringify(query, { arrayFormat: 'comma' });
   }
@@ -2327,6 +2315,8 @@ export declare namespace Unifieddatalibrary {
     type AirfieldslotconsumptionTupleResponse as AirfieldslotconsumptionTupleResponse,
     type AirfieldslotconsumptionCreateParams as AirfieldslotconsumptionCreateParams,
     type AirfieldslotconsumptionUpdateParams as AirfieldslotconsumptionUpdateParams,
+    type AirfieldslotconsumptionListParams as AirfieldslotconsumptionListParams,
+    type AirfieldslotconsumptionCountParams as AirfieldslotconsumptionCountParams,
     type AirfieldslotconsumptionTupleParams as AirfieldslotconsumptionTupleParams,
   };
 

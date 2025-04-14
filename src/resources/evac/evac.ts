@@ -164,6 +164,9 @@ export interface EvacAbridged {
    */
   id?: string;
 
+  /**
+   * Identity and medical information on the patient to be evacuated.
+   */
   casualtyInfo?: Array<EvacAbridged.CasualtyInfo>;
 
   /**
@@ -193,6 +196,9 @@ export interface EvacAbridged {
    */
   createdBy?: string;
 
+  /**
+   * Data defining any enemy intelligence reported by the requestor.
+   */
   enemyData?: Array<EvacAbridged.EnemyData>;
 
   /**
@@ -338,9 +344,6 @@ export interface EvacAbridged {
 }
 
 export namespace EvacAbridged {
-  /**
-   * Identity and medical information on the patient to be evacuated.
-   */
   export interface CasualtyInfo {
     /**
      * The patient age, in years.
@@ -548,9 +551,6 @@ export namespace EvacAbridged {
   }
 
   export namespace CasualtyInfo {
-    /**
-     * Allergy information.
-     */
     export interface Allergy {
       /**
        * Additional comments on the patient's allergy information.
@@ -563,9 +563,6 @@ export namespace EvacAbridged {
       type?: string;
     }
 
-    /**
-     * The group path from transmitter to receiver.
-     */
     export interface Condition {
       /**
        * Body part location or body part referenced in condition. Intended as, but not
@@ -594,9 +591,6 @@ export namespace EvacAbridged {
       type?: string;
     }
 
-    /**
-     * Medical condition causation information.
-     */
     export interface Etiology {
       /**
        * The body part or location affected from the etiology. Intended as, but not
@@ -625,9 +619,6 @@ export namespace EvacAbridged {
       type?: string;
     }
 
-    /**
-     * Health state information.
-     */
     export interface HealthState {
       /**
        * Medical color code used to quickly identify various medical state (e.g. AMBER,
@@ -652,9 +643,6 @@ export namespace EvacAbridged {
       type?: string;
     }
 
-    /**
-     * Injury specifics.
-     */
     export interface Injury {
       /**
        * Body part location of the injury. Intended as, but not constrained to, K07.1
@@ -688,9 +676,6 @@ export namespace EvacAbridged {
       type?: string;
     }
 
-    /**
-     * Medication specifics.
-     */
     export interface Medication {
       /**
        * Route of medication delivery (e.g. INJECTION, ORAL, etc.).
@@ -731,9 +716,6 @@ export namespace EvacAbridged {
       type?: string;
     }
 
-    /**
-     * Treatment information.
-     */
     export interface Treatment {
       /**
        * Body part location or body part treated or to be treated. Intended as, but not
@@ -763,9 +745,6 @@ export namespace EvacAbridged {
       type?: string;
     }
 
-    /**
-     * Information obtained for vital signs.
-     */
     export interface VitalSignData {
       /**
        * Medical confidence factor.
@@ -797,9 +776,6 @@ export namespace EvacAbridged {
     }
   }
 
-  /**
-   * Data defining any enemy intelligence reported by the requestor.
-   */
   export interface EnemyData {
     /**
      * Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -884,6 +860,9 @@ export interface EvacCreateParams {
    */
   id?: string;
 
+  /**
+   * Identity and medical information on the patient to be evacuated.
+   */
   casualtyInfo?: Array<EvacCreateParams.CasualtyInfo>;
 
   /**
@@ -902,6 +881,9 @@ export interface EvacCreateParams {
    */
   comments?: string;
 
+  /**
+   * Data defining any enemy intelligence reported by the requestor.
+   */
   enemyData?: Array<EvacCreateParams.EnemyData>;
 
   /**
@@ -1041,9 +1023,6 @@ export interface EvacCreateParams {
 }
 
 export namespace EvacCreateParams {
-  /**
-   * Identity and medical information on the patient to be evacuated.
-   */
   export interface CasualtyInfo {
     /**
      * The patient age, in years.
@@ -1251,9 +1230,6 @@ export namespace EvacCreateParams {
   }
 
   export namespace CasualtyInfo {
-    /**
-     * Allergy information.
-     */
     export interface Allergy {
       /**
        * Additional comments on the patient's allergy information.
@@ -1266,9 +1242,6 @@ export namespace EvacCreateParams {
       type?: string;
     }
 
-    /**
-     * The group path from transmitter to receiver.
-     */
     export interface Condition {
       /**
        * Body part location or body part referenced in condition. Intended as, but not
@@ -1297,9 +1270,6 @@ export namespace EvacCreateParams {
       type?: string;
     }
 
-    /**
-     * Medical condition causation information.
-     */
     export interface Etiology {
       /**
        * The body part or location affected from the etiology. Intended as, but not
@@ -1328,9 +1298,6 @@ export namespace EvacCreateParams {
       type?: string;
     }
 
-    /**
-     * Health state information.
-     */
     export interface HealthState {
       /**
        * Medical color code used to quickly identify various medical state (e.g. AMBER,
@@ -1355,9 +1322,6 @@ export namespace EvacCreateParams {
       type?: string;
     }
 
-    /**
-     * Injury specifics.
-     */
     export interface Injury {
       /**
        * Body part location of the injury. Intended as, but not constrained to, K07.1
@@ -1391,9 +1355,6 @@ export namespace EvacCreateParams {
       type?: string;
     }
 
-    /**
-     * Medication specifics.
-     */
     export interface Medication {
       /**
        * Route of medication delivery (e.g. INJECTION, ORAL, etc.).
@@ -1434,9 +1395,6 @@ export namespace EvacCreateParams {
       type?: string;
     }
 
-    /**
-     * Treatment information.
-     */
     export interface Treatment {
       /**
        * Body part location or body part treated or to be treated. Intended as, but not
@@ -1466,9 +1424,6 @@ export namespace EvacCreateParams {
       type?: string;
     }
 
-    /**
-     * Information obtained for vital signs.
-     */
     export interface VitalSignData {
       /**
        * Medical confidence factor.
@@ -1500,9 +1455,6 @@ export namespace EvacCreateParams {
     }
   }
 
-  /**
-   * Data defining any enemy intelligence reported by the requestor.
-   */
   export interface EnemyData {
     /**
      * Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -1604,6 +1556,9 @@ export namespace EvacCreateBulkParams {
      */
     id?: string;
 
+    /**
+     * Identity and medical information on the patient to be evacuated.
+     */
     casualtyInfo?: Array<Body.CasualtyInfo>;
 
     /**
@@ -1622,6 +1577,9 @@ export namespace EvacCreateBulkParams {
      */
     comments?: string;
 
+    /**
+     * Data defining any enemy intelligence reported by the requestor.
+     */
     enemyData?: Array<Body.EnemyData>;
 
     /**
@@ -1761,9 +1719,6 @@ export namespace EvacCreateBulkParams {
   }
 
   export namespace Body {
-    /**
-     * Identity and medical information on the patient to be evacuated.
-     */
     export interface CasualtyInfo {
       /**
        * The patient age, in years.
@@ -1971,9 +1926,6 @@ export namespace EvacCreateBulkParams {
     }
 
     export namespace CasualtyInfo {
-      /**
-       * Allergy information.
-       */
       export interface Allergy {
         /**
          * Additional comments on the patient's allergy information.
@@ -1986,9 +1938,6 @@ export namespace EvacCreateBulkParams {
         type?: string;
       }
 
-      /**
-       * The group path from transmitter to receiver.
-       */
       export interface Condition {
         /**
          * Body part location or body part referenced in condition. Intended as, but not
@@ -2017,9 +1966,6 @@ export namespace EvacCreateBulkParams {
         type?: string;
       }
 
-      /**
-       * Medical condition causation information.
-       */
       export interface Etiology {
         /**
          * The body part or location affected from the etiology. Intended as, but not
@@ -2048,9 +1994,6 @@ export namespace EvacCreateBulkParams {
         type?: string;
       }
 
-      /**
-       * Health state information.
-       */
       export interface HealthState {
         /**
          * Medical color code used to quickly identify various medical state (e.g. AMBER,
@@ -2075,9 +2018,6 @@ export namespace EvacCreateBulkParams {
         type?: string;
       }
 
-      /**
-       * Injury specifics.
-       */
       export interface Injury {
         /**
          * Body part location of the injury. Intended as, but not constrained to, K07.1
@@ -2111,9 +2051,6 @@ export namespace EvacCreateBulkParams {
         type?: string;
       }
 
-      /**
-       * Medication specifics.
-       */
       export interface Medication {
         /**
          * Route of medication delivery (e.g. INJECTION, ORAL, etc.).
@@ -2154,9 +2091,6 @@ export namespace EvacCreateBulkParams {
         type?: string;
       }
 
-      /**
-       * Treatment information.
-       */
       export interface Treatment {
         /**
          * Body part location or body part treated or to be treated. Intended as, but not
@@ -2186,9 +2120,6 @@ export namespace EvacCreateBulkParams {
         type?: string;
       }
 
-      /**
-       * Information obtained for vital signs.
-       */
       export interface VitalSignData {
         /**
          * Medical confidence factor.
@@ -2220,9 +2151,6 @@ export namespace EvacCreateBulkParams {
       }
     }
 
-    /**
-     * Data defining any enemy intelligence reported by the requestor.
-     */
     export interface EnemyData {
       /**
        * Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -2311,6 +2239,9 @@ export namespace EvacCreateBulkV2Params {
      */
     id?: string;
 
+    /**
+     * Identity and medical information on the patient to be evacuated.
+     */
     casualtyInfo?: Array<Body.CasualtyInfo>;
 
     /**
@@ -2329,6 +2260,9 @@ export namespace EvacCreateBulkV2Params {
      */
     comments?: string;
 
+    /**
+     * Data defining any enemy intelligence reported by the requestor.
+     */
     enemyData?: Array<Body.EnemyData>;
 
     /**
@@ -2468,9 +2402,6 @@ export namespace EvacCreateBulkV2Params {
   }
 
   export namespace Body {
-    /**
-     * Identity and medical information on the patient to be evacuated.
-     */
     export interface CasualtyInfo {
       /**
        * The patient age, in years.
@@ -2678,9 +2609,6 @@ export namespace EvacCreateBulkV2Params {
     }
 
     export namespace CasualtyInfo {
-      /**
-       * Allergy information.
-       */
       export interface Allergy {
         /**
          * Additional comments on the patient's allergy information.
@@ -2693,9 +2621,6 @@ export namespace EvacCreateBulkV2Params {
         type?: string;
       }
 
-      /**
-       * The group path from transmitter to receiver.
-       */
       export interface Condition {
         /**
          * Body part location or body part referenced in condition. Intended as, but not
@@ -2724,9 +2649,6 @@ export namespace EvacCreateBulkV2Params {
         type?: string;
       }
 
-      /**
-       * Medical condition causation information.
-       */
       export interface Etiology {
         /**
          * The body part or location affected from the etiology. Intended as, but not
@@ -2755,9 +2677,6 @@ export namespace EvacCreateBulkV2Params {
         type?: string;
       }
 
-      /**
-       * Health state information.
-       */
       export interface HealthState {
         /**
          * Medical color code used to quickly identify various medical state (e.g. AMBER,
@@ -2782,9 +2701,6 @@ export namespace EvacCreateBulkV2Params {
         type?: string;
       }
 
-      /**
-       * Injury specifics.
-       */
       export interface Injury {
         /**
          * Body part location of the injury. Intended as, but not constrained to, K07.1
@@ -2818,9 +2734,6 @@ export namespace EvacCreateBulkV2Params {
         type?: string;
       }
 
-      /**
-       * Medication specifics.
-       */
       export interface Medication {
         /**
          * Route of medication delivery (e.g. INJECTION, ORAL, etc.).
@@ -2861,9 +2774,6 @@ export namespace EvacCreateBulkV2Params {
         type?: string;
       }
 
-      /**
-       * Treatment information.
-       */
       export interface Treatment {
         /**
          * Body part location or body part treated or to be treated. Intended as, but not
@@ -2893,9 +2803,6 @@ export namespace EvacCreateBulkV2Params {
         type?: string;
       }
 
-      /**
-       * Information obtained for vital signs.
-       */
       export interface VitalSignData {
         /**
          * Medical confidence factor.
@@ -2927,9 +2834,6 @@ export namespace EvacCreateBulkV2Params {
       }
     }
 
-    /**
-     * Data defining any enemy intelligence reported by the requestor.
-     */
     export interface EnemyData {
       /**
        * Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,

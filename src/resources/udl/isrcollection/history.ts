@@ -204,9 +204,6 @@ export interface IsrCollectionFull {
 }
 
 export namespace IsrCollectionFull {
-  /**
-   * Tasking desired collection requirements.
-   */
   export interface CollectionRequirement {
     /**
      * Collection Requirement Unique Identifier.
@@ -224,9 +221,6 @@ export namespace IsrCollectionFull {
      */
     cridNumbers?: string;
 
-    /**
-     * High priority time windows.
-     */
     criticalTimes?: CollectionRequirement.CriticalTimes;
 
     /**
@@ -234,9 +228,6 @@ export namespace IsrCollectionFull {
      */
     emphasized?: boolean;
 
-    /**
-     * What it is that is trying to be exploited.
-     */
     exploitationRequirement?: CollectionRequirement.ExploitationRequirement;
 
     /**
@@ -323,9 +314,6 @@ export namespace IsrCollectionFull {
   }
 
   export namespace CollectionRequirement {
-    /**
-     * High priority time windows.
-     */
     export interface CriticalTimes {
       /**
        * Critical start time to collect an image for this requirement.
@@ -338,9 +326,6 @@ export namespace IsrCollectionFull {
       latestImagingTime: string;
     }
 
-    /**
-     * What it is that is trying to be exploited.
-     */
     export interface ExploitationRequirement {
       /**
        * Exploitation requirement id.
@@ -362,9 +347,6 @@ export namespace IsrCollectionFull {
        */
       eei?: string;
 
-      /**
-       * Information about the Point of Contact (POC) for this ISR Collection.
-       */
       poc?: ExploitationRequirement.Poc;
 
       /**
@@ -374,9 +356,6 @@ export namespace IsrCollectionFull {
     }
 
     export namespace ExploitationRequirement {
-      /**
-       * Information about the Point of Contact (POC) for this ISR Collection.
-       */
       export interface Poc {
         /**
          * Unique identifier of the collection requirement POC.
@@ -431,18 +410,12 @@ export namespace IsrCollectionFull {
     }
   }
 
-  /**
-   * Individual taskings to complete the mission.
-   */
   export interface Tasking {
     /**
      * Tasking Unique Identifier.
      */
     id?: string;
 
-    /**
-     * Tasking collection periods.
-     */
     collectionPeriods?: Tasking.CollectionPeriods;
 
     /**
@@ -528,7 +501,7 @@ export namespace IsrCollectionFull {
     taskingRetaskTime?: string;
 
     /**
-     * What is the primary objective(Role) of this task.
+     * What is the primary objective (role) of this task.
      */
     taskingRole?: string;
 
@@ -577,25 +550,16 @@ export namespace IsrCollectionFull {
   }
 
   export namespace Tasking {
-    /**
-     * Tasking collection periods.
-     */
     export interface CollectionPeriods {
       /**
        * Actual start and stop for the collection.
        */
       actual?: Array<CollectionPeriods.Actual>;
 
-      /**
-       * Planned start and stop for the collection.
-       */
       planned?: CollectionPeriods.Planned;
     }
 
     export namespace CollectionPeriods {
-      /**
-       * Actual start and stop for the collection.
-       */
       export interface Actual {
         /**
          * Unique Identifier of actual collection period for historical archive.
@@ -613,9 +577,6 @@ export namespace IsrCollectionFull {
         stop?: string;
       }
 
-      /**
-       * Planned start and stop for the collection.
-       */
       export interface Planned {
         /**
          * Additional start and stop for the collection.
@@ -634,9 +595,6 @@ export namespace IsrCollectionFull {
       }
 
       export namespace Planned {
-        /**
-         * Additional start and stop for the collection.
-         */
         export interface Additional {
           /**
            * Unique Identifier of additional collection period.
@@ -656,9 +614,6 @@ export namespace IsrCollectionFull {
       }
     }
 
-    /**
-     * Tasking desired collection requirements.
-     */
     export interface TaskingCollectionRequirement {
       /**
        * Collection Requirement Unique Identifier.
@@ -676,9 +631,6 @@ export namespace IsrCollectionFull {
        */
       cridNumbers?: string;
 
-      /**
-       * High priority time windows.
-       */
       criticalTimes?: TaskingCollectionRequirement.CriticalTimes;
 
       /**
@@ -686,9 +638,6 @@ export namespace IsrCollectionFull {
        */
       emphasized?: boolean;
 
-      /**
-       * What it is that is trying to be exploited.
-       */
       exploitationRequirement?: TaskingCollectionRequirement.ExploitationRequirement;
 
       /**
@@ -775,9 +724,6 @@ export namespace IsrCollectionFull {
     }
 
     export namespace TaskingCollectionRequirement {
-      /**
-       * High priority time windows.
-       */
       export interface CriticalTimes {
         /**
          * Critical start time to collect an image for this requirement.
@@ -790,9 +736,6 @@ export namespace IsrCollectionFull {
         latestImagingTime: string;
       }
 
-      /**
-       * What it is that is trying to be exploited.
-       */
       export interface ExploitationRequirement {
         /**
          * Exploitation requirement id.
@@ -814,9 +757,6 @@ export namespace IsrCollectionFull {
          */
         eei?: string;
 
-        /**
-         * Information about the Point of Contact (POC) for this ISR Collection.
-         */
         poc?: ExploitationRequirement.Poc;
 
         /**
@@ -826,9 +766,6 @@ export namespace IsrCollectionFull {
       }
 
       export namespace ExploitationRequirement {
-        /**
-         * Information about the Point of Contact (POC) for this ISR Collection.
-         */
         export interface Poc {
           /**
            * Unique identifier of the collection requirement POC.
@@ -884,9 +821,6 @@ export namespace IsrCollectionFull {
     }
   }
 
-  /**
-   * Object for data dissemination.
-   */
   export interface Transit {
     /**
      * Transit Unique Identifier.

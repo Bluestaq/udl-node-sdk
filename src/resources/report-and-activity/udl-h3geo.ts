@@ -179,6 +179,12 @@ export namespace UdlH3geoCreateBulkV2Params {
     anomScoreSpoofing?: number;
 
     /**
+     * The percentage degree of change in the aggregated observables for a particular
+     * H3 bin.
+     */
+    changeScore?: number;
+
+    /**
      * The total number of available observations in the H3 cell during the start/end
      * times.
      */

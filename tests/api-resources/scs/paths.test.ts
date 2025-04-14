@@ -31,6 +31,7 @@ describe('resource paths', () => {
       classificationMarking: 'classificationMarking',
       body: await toFile(Buffer.from('# my file contents'), 'README.md'),
       description: 'description',
+      overwrite: true,
       tags: 'tags',
     });
   });

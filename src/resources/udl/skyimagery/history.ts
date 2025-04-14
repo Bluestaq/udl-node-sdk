@@ -9,8 +9,8 @@ export class History extends APIResource {}
 /**
  * Model representation of sky imagery data. Sky imagery is ground or space based
  * telescope imagery of RSO's and includes metadata on the image (time, source,
- * etc) as well as binary image content (e.g. FITS, EOSSA, EOCHIP) . Binary content
- * must be downloaded individually by ID using the 'getFile' operation.
+ * etc) as well as binary image content (e.g. FITS, EOSSA, EOCHIP, MP4). Binary
+ * content must be downloaded individually by ID using the 'getFile' operation.
  */
 export interface SkyimageryFull {
   /**
@@ -42,7 +42,7 @@ export interface SkyimageryFull {
   expStartTime: string;
 
   /**
-   * The type of image associated with this record (e.g. FITS, EOSSA, EOCHIP).
+   * The type of image associated with this record (e.g. FITS, EOSSA, EOCHIP, MP4).
    */
   imageType: string;
 

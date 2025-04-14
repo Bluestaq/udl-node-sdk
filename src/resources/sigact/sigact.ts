@@ -82,22 +82,31 @@ export class Sigact extends APIResource {
   }
 
   /**
-   * The sigact-txt service allows for contribution of large text that exceeds the
-   * limits of the sigact.eventDescription field (4096 characters). This service
-   * operation requires a zip file in the body of the POST request. The zip file must
-   * contain exactly two files. <h3> 1) A json file with any file name that ends in
-   * .json e.g. MyDataFile.json. The contents of the json file must be valid
-   * according to the schema for sigact. 2) A txt file of the text encoded in UTF-8.
-   * </h3> The sigact metadata and text file will be stored and associated with each
-   * other allowing queries of the data retrieval of the text. This operation is
-   * intended to be used for automated feeds into UDL. A specific role is required to
-   * perform this service operation. Please contact the UDL team for assistance.
+   * Upload a text file with its metadata. This operation bypasses the length
+   * constraints of the `eventDescription` field.
+   *
+   * The request body requires a zip file containing exactly two files:\
+   * 1\) A file with the `.json` file extension whose content conforms to the `SigAct_Ingest`
+   * schema.\
+   * 2\) A UTF-8 encoded file with the `.txt` file extension.
+   *
+   * The JSON and text files will be associated with each other via the `id` field.
+   * Query the metadata via `GET /udl/sigact` and use `GET /udl/sigact/getFile/{id}`
+   * to retrieve the text file.
+   *
+   * This operation only accepts application/zip media. The application/json request
+   * body is documented to provide a convenient reference to the ingest schema.
+   *
+   * This operation is intended to be used for automated feeds into UDL. A specific
+   * role is required to perform this service operation. Please contact the UDL team
+   * for assistance.
    */
   uploadZip(body: SigactUploadZipParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-sigact-text', {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
+      __binaryRequest: true,
     });
   }
 }
@@ -620,9 +629,6 @@ export namespace SigactListResponse {
   }
 
   export namespace SigactListResponseItem {
-    /**
-     * Related document ids.
-     */
     export interface RelatedDoc {
       /**
        * List of data sources related to this document.
@@ -636,9 +642,6 @@ export namespace SigactListResponse {
     }
 
     export namespace RelatedDoc {
-      /**
-       * List of data sources related to this document.
-       */
       export interface DataSourceRef {
         /**
          * Data source id.
@@ -1193,9 +1196,6 @@ export namespace SigactCreateBulkParams {
   }
 
   export namespace Body {
-    /**
-     * Related document ids.
-     */
     export interface RelatedDoc {
       /**
        * List of data sources related to this document.
@@ -1209,9 +1209,6 @@ export namespace SigactCreateBulkParams {
     }
 
     export namespace RelatedDoc {
-      /**
-       * List of data sources related to this document.
-       */
       export interface DataSourceRef {
         /**
          * Data source id.
@@ -1756,9 +1753,6 @@ export interface SigactUploadZipParams {
 }
 
 export namespace SigactUploadZipParams {
-  /**
-   * Related document ids.
-   */
   export interface RelatedDoc {
     /**
      * List of data sources related to this document.
@@ -1772,9 +1766,6 @@ export namespace SigactUploadZipParams {
   }
 
   export namespace RelatedDoc {
-    /**
-     * List of data sources related to this document.
-     */
     export interface DataSourceRef {
       /**
        * Data source id.
