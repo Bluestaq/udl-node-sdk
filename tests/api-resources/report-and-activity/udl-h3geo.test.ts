@@ -43,6 +43,7 @@ describe('resource udlH3geo', () => {
           altSigma: 400.1,
           anomScoreInterference: 0.125,
           anomScoreSpoofing: 0.125,
+          changeScore: 12.34,
           coverage: 8,
           idH3Geo: '026dd511-8ba5-47d3-9909-836149f87686',
           origin: 'THIRD_PARTY_DATASOURCE',

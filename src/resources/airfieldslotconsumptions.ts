@@ -48,8 +48,11 @@ export class Airfieldslotconsumptions extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<AirfieldslotconsumptionListResponse> {
-    return this._client.get('/udl/airfieldslotconsumption', options);
+  list(
+    query: AirfieldslotconsumptionListParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<AirfieldslotconsumptionListResponse> {
+    return this._client.get('/udl/airfieldslotconsumption', { query, ...options });
   }
 
   /**
@@ -71,8 +74,9 @@ export class Airfieldslotconsumptions extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: AirfieldslotconsumptionCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.get('/udl/airfieldslotconsumption/count', {
+      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
@@ -134,11 +138,6 @@ export interface AirfieldslotconsumptionAbridged {
    * characteristics.
    */
   dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
-
-  /**
-   * The end of the slot window, in ISO 8601 UTC format.
-   */
-  endTime: string;
 
   /**
    * Unique identifier of the airfield slot for which this slot consumption record is
@@ -215,6 +214,11 @@ export interface AirfieldslotconsumptionAbridged {
    * system.
    */
   createdBy?: string;
+
+  /**
+   * The end of the slot window, in ISO 8601 UTC format.
+   */
+  endTime?: string;
 
   /**
    * Unique identifier of the sortie arriving at the slot start time.
@@ -360,11 +364,6 @@ export interface AirfieldslotconsumptionFull {
   dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
-   * The end of the slot window, in ISO 8601 UTC format.
-   */
-  endTime: string;
-
-  /**
    * Unique identifier of the airfield slot for which this slot consumption record is
    * referencing.
    */
@@ -439,6 +438,11 @@ export interface AirfieldslotconsumptionFull {
    * system.
    */
   createdBy?: string;
+
+  /**
+   * The end of the slot window, in ISO 8601 UTC format.
+   */
+  endTime?: string;
 
   /**
    * Unique identifier of the sortie arriving at the slot start time.
@@ -597,11 +601,6 @@ export interface AirfieldslotconsumptionCreateParams {
   dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
-   * The end of the slot window, in ISO 8601 UTC format.
-   */
-  endTime: string;
-
-  /**
    * Unique identifier of the airfield slot for which this slot consumption record is
    * referencing.
    */
@@ -665,6 +664,11 @@ export interface AirfieldslotconsumptionCreateParams {
    * Permission Required (PPR) numbers or other similar human-readable identifiers.
    */
   consumer?: string;
+
+  /**
+   * The end of the slot window, in ISO 8601 UTC format.
+   */
+  endTime?: string;
 
   /**
    * Unique identifier of the sortie arriving at the slot start time.
@@ -793,11 +797,6 @@ export interface AirfieldslotconsumptionUpdateParams {
   dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
-   * The end of the slot window, in ISO 8601 UTC format.
-   */
-  endTime: string;
-
-  /**
    * Unique identifier of the airfield slot for which this slot consumption record is
    * referencing.
    */
@@ -861,6 +860,11 @@ export interface AirfieldslotconsumptionUpdateParams {
    * Permission Required (PPR) numbers or other similar human-readable identifiers.
    */
   consumer?: string;
+
+  /**
+   * The end of the slot window, in ISO 8601 UTC format.
+   */
+  endTime?: string;
 
   /**
    * Unique identifier of the sortie arriving at the slot start time.
@@ -964,6 +968,20 @@ export interface AirfieldslotconsumptionUpdateParams {
   targetTime?: string;
 }
 
+export interface AirfieldslotconsumptionListParams {
+  /**
+   * The start of the slot window, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  startTime: string;
+}
+
+export interface AirfieldslotconsumptionCountParams {
+  /**
+   * The start of the slot window, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  startTime: string;
+}
+
 export interface AirfieldslotconsumptionTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -972,6 +990,11 @@ export interface AirfieldslotconsumptionTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  /**
+   * The start of the slot window, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  startTime: string;
 }
 
 export declare namespace Airfieldslotconsumptions {
@@ -983,6 +1006,8 @@ export declare namespace Airfieldslotconsumptions {
     type AirfieldslotconsumptionTupleResponse as AirfieldslotconsumptionTupleResponse,
     type AirfieldslotconsumptionCreateParams as AirfieldslotconsumptionCreateParams,
     type AirfieldslotconsumptionUpdateParams as AirfieldslotconsumptionUpdateParams,
+    type AirfieldslotconsumptionListParams as AirfieldslotconsumptionListParams,
+    type AirfieldslotconsumptionCountParams as AirfieldslotconsumptionCountParams,
     type AirfieldslotconsumptionTupleParams as AirfieldslotconsumptionTupleParams,
   };
 }

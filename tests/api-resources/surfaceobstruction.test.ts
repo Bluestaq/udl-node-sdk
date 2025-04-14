@@ -43,8 +43,6 @@ describe('resource surfaceobstruction', () => {
       obstructionHeight: 35.25,
       obstructionSideCode: 'F',
       origin: 'THIRD_PARTY_DATASOURCE',
-      surfaceEndLat: 46.757211,
-      surfaceEndLon: -67.759494,
     });
   });
 
@@ -81,8 +79,6 @@ describe('resource surfaceobstruction', () => {
       obstructionHeight: 35.25,
       obstructionSideCode: 'F',
       origin: 'THIRD_PARTY_DATASOURCE',
-      surfaceEndLat: 46.757211,
-      surfaceEndLon: -67.759494,
     });
   });
 
@@ -176,8 +172,6 @@ describe('resource surfaceobstruction', () => {
         obstructionHeight: 35.25,
         obstructionSideCode: 'F',
         origin: 'THIRD_PARTY_DATASOURCE',
-        surfaceEndLat: 46.757211,
-        surfaceEndLon: -67.759494,
       },
     ]);
   });

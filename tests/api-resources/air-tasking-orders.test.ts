@@ -70,7 +70,7 @@ describe('resource airTaskingOrders', () => {
               iffSifMode1Code: '111',
               iffSifMode2Code: '20147',
               iffSifMode3Code: '30147',
-              juAddress: [12345],
+              juAddress: [12345, 65432],
               link16CallSign: 'EE47',
               numAcft: 2,
               priConfigCode: '6A2W3',

@@ -82,6 +82,7 @@ describe('resource sensor', () => {
         origin: 'THIRD_PARTY_DATASOURCE',
         ownerType: 'Commercial',
         taskable: false,
+        terrestrialId: 'TERRESTRIAL-ID',
         urls: ['URL1', 'URL2'],
       },
       idEntity: 'ENTITY-ID',
@@ -185,7 +186,7 @@ describe('resource sensor', () => {
         },
       ],
       sensorNumber: 1234,
-      sensorObservationType: { id: 'x', type: '5' },
+      sensorObservationType: { id: '3', type: '5' },
       sensorStats: [
         {
           classificationMarking: 'U',
@@ -273,6 +274,7 @@ describe('resource sensor', () => {
         origin: 'THIRD_PARTY_DATASOURCE',
         ownerType: 'Commercial',
         taskable: false,
+        terrestrialId: 'TERRESTRIAL-ID',
         urls: ['URL1', 'URL2'],
       },
       idEntity: 'ENTITY-ID',
@@ -376,7 +378,7 @@ describe('resource sensor', () => {
         },
       ],
       sensorNumber: 1234,
-      sensorObservationType: { id: 'x', type: '5' },
+      sensorObservationType: { id: '3', type: '5' },
       sensorStats: [
         {
           classificationMarking: 'U',

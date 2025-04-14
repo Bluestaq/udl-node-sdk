@@ -10,4 +10,4 @@ export {
   type FlightplanCreateBulkV2Params,
   type FlightplanTupleParams,
 } from './flightplan';
-export { History, type HistoryListResponse, type HistoryListParams } from './history';
+export { History } from './history';

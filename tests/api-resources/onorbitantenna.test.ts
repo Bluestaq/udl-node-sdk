@@ -35,6 +35,13 @@ describe('resource onorbitantenna', () => {
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
       id: 'ONORBITANTENNA-ID',
+      antenna: {
+        dataMode: 'TEST',
+        name: 'IRIDIUM NEXT 121-ANTENNA-10075',
+        source: 'Bluestaq',
+        id: 'ANTENNA-ID',
+        origin: 'THIRD_PARTY_DATASOURCE',
+      },
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });
@@ -64,6 +71,13 @@ describe('resource onorbitantenna', () => {
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
       body_id: 'ONORBITANTENNA-ID',
+      antenna: {
+        dataMode: 'TEST',
+        name: 'IRIDIUM NEXT 121-ANTENNA-10075',
+        source: 'Bluestaq',
+        id: 'ANTENNA-ID',
+        origin: 'THIRD_PARTY_DATASOURCE',
+      },
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

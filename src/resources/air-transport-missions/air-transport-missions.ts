@@ -152,6 +152,12 @@ export interface AirTransportMissionAbridged {
   id?: string;
 
   /**
+   * The Air Battle Plan used to coordinate and integrate air assets for this
+   * mission.
+   */
+  abp?: string;
+
+  /**
    * Mission alias.
    */
   alias?: string;
@@ -172,6 +178,16 @@ export interface AirTransportMissionAbridged {
    * used to process and approve clearance requests.
    */
   apacsId?: string;
+
+  /**
+   * The call sign assigned to this mission according to the Air Tasking Order (ATO).
+   */
+  atoCallSign?: string;
+
+  /**
+   * The mission number according to the Air Tasking Order (ATO).
+   */
+  atoMissionId?: string;
 
   /**
    * The call sign for this mission.
@@ -212,8 +228,8 @@ export interface AirTransportMissionAbridged {
   gdssMissionId?: string;
 
   /**
-   * Collection of Hazardous Material information associated with this Air Transport
-   * Mission.
+   * Collection of Hazardous Material information planned to be associated with this
+   * Air Transport Mission.
    */
   hazMat?: Array<AirTransportMissionAbridged.HazMat>;
 
@@ -234,6 +250,24 @@ export interface AirTransportMissionAbridged {
   loadCategoryType?: string;
 
   /**
+   * Mode-1 interrogation response (mission code), indicating mission or aircraft
+   * type.
+   */
+  m1?: string;
+
+  /**
+   * Mode-2 interrogation response (military identification code).
+   */
+  m2?: string;
+
+  /**
+   * Mode-3/A interrogation response (aircraft identification), provides a 4-digit
+   * octal identification code for the aircraft, assigned by the air traffic
+   * controller. Mode-3/A is shared military/civilian use.
+   */
+  m3a?: string;
+
+  /**
    * Numbered Air Force (NAF) organization that owns the mission.
    */
   naf?: string;
@@ -251,6 +285,12 @@ export interface AirTransportMissionAbridged {
    * chronologically for tasking and planning purposes.
    */
   nextMissionId?: string;
+
+  /**
+   * Designates the location responsible for mission transportation, logistics, or
+   * distribution activities for an Area of Responsibility (AOR) within USTRANSCOM.
+   */
+  node?: string;
 
   /**
    * A description of this mission's objective.
@@ -308,8 +348,8 @@ export interface AirTransportMissionAbridged {
   remarks?: Array<AirTransportMissionAbridged.Remark>;
 
   /**
-   * Information related to the planning, load, status, and deployment or dispatch of
-   * one aircraft to carry out a mission.
+   * Collection of Requirements planned to be associated with this Air Transport
+   * Mission.
    */
   requirements?: Array<AirTransportMissionAbridged.Requirement>;
 
@@ -350,8 +390,8 @@ export interface AirTransportMissionAbridged {
 
 export namespace AirTransportMissionAbridged {
   /**
-   * Collection of Hazardous Material information associated with this Air Transport
-   * Mission.
+   * Collection of Hazardous Material information planned to be associated with this
+   * Air Transport Mission.
    */
   export interface HazMat {
     /**
@@ -480,7 +520,8 @@ export namespace AirTransportMissionAbridged {
   }
 
   /**
-   * Collection of Requirements associated with this Air Transport Mission.
+   * Collection of Requirements planned to be associated with this Air Transport
+   * Mission.
    */
   export interface Requirement {
     /**
@@ -489,7 +530,8 @@ export namespace AirTransportMissionAbridged {
     bulkWeight?: number;
 
     /**
-     * Earliest available date the cargo can be picked up.
+     * Earliest available date the cargo can be picked up, in ISO 8601 UTC format with
+     * millisecond precision.
      */
     ead?: string;
 
@@ -499,7 +541,8 @@ export namespace AirTransportMissionAbridged {
     gdssReqId?: string;
 
     /**
-     * Latest available date the cargo may be delivered.
+     * Latest available date the cargo may be delivered, in ISO 8601 UTC format with
+     * millisecond precision.
      */
     lad?: string;
 
@@ -617,6 +660,12 @@ export interface AirTransportMissionCreateParams {
   id?: string;
 
   /**
+   * The Air Battle Plan used to coordinate and integrate air assets for this
+   * mission.
+   */
+  abp?: string;
+
+  /**
    * Mission alias.
    */
   alias?: string;
@@ -637,6 +686,16 @@ export interface AirTransportMissionCreateParams {
    * used to process and approve clearance requests.
    */
   apacsId?: string;
+
+  /**
+   * The call sign assigned to this mission according to the Air Tasking Order (ATO).
+   */
+  atoCallSign?: string;
+
+  /**
+   * The mission number according to the Air Tasking Order (ATO).
+   */
+  atoMissionId?: string;
 
   /**
    * The call sign for this mission.
@@ -666,8 +725,8 @@ export interface AirTransportMissionCreateParams {
   gdssMissionId?: string;
 
   /**
-   * Collection of Hazardous Material information associated with this Air Transport
-   * Mission.
+   * Collection of Hazardous Material information planned to be associated with this
+   * Air Transport Mission.
    */
   hazMat?: Array<AirTransportMissionCreateParams.HazMat>;
 
@@ -688,6 +747,24 @@ export interface AirTransportMissionCreateParams {
   loadCategoryType?: string;
 
   /**
+   * Mode-1 interrogation response (mission code), indicating mission or aircraft
+   * type.
+   */
+  m1?: string;
+
+  /**
+   * Mode-2 interrogation response (military identification code).
+   */
+  m2?: string;
+
+  /**
+   * Mode-3/A interrogation response (aircraft identification), provides a 4-digit
+   * octal identification code for the aircraft, assigned by the air traffic
+   * controller. Mode-3/A is shared military/civilian use.
+   */
+  m3a?: string;
+
+  /**
    * Numbered Air Force (NAF) organization that owns the mission.
    */
   naf?: string;
@@ -705,6 +782,12 @@ export interface AirTransportMissionCreateParams {
    * chronologically for tasking and planning purposes.
    */
   nextMissionId?: string;
+
+  /**
+   * Designates the location responsible for mission transportation, logistics, or
+   * distribution activities for an Area of Responsibility (AOR) within USTRANSCOM.
+   */
+  node?: string;
 
   /**
    * A description of this mission's objective.
@@ -756,8 +839,8 @@ export interface AirTransportMissionCreateParams {
   remarks?: Array<AirTransportMissionCreateParams.Remark>;
 
   /**
-   * Information related to the planning, load, status, and deployment or dispatch of
-   * one aircraft to carry out a mission.
+   * Collection of Requirements planned to be associated with this Air Transport
+   * Mission.
    */
   requirements?: Array<AirTransportMissionCreateParams.Requirement>;
 
@@ -780,8 +863,8 @@ export interface AirTransportMissionCreateParams {
 
 export namespace AirTransportMissionCreateParams {
   /**
-   * Collection of Hazardous Material information associated with this Air Transport
-   * Mission.
+   * Collection of Hazardous Material information planned to be associated with this
+   * Air Transport Mission.
    */
   export interface HazMat {
     /**
@@ -910,7 +993,8 @@ export namespace AirTransportMissionCreateParams {
   }
 
   /**
-   * Collection of Requirements associated with this Air Transport Mission.
+   * Collection of Requirements planned to be associated with this Air Transport
+   * Mission.
    */
   export interface Requirement {
     /**
@@ -919,7 +1003,8 @@ export namespace AirTransportMissionCreateParams {
     bulkWeight?: number;
 
     /**
-     * Earliest available date the cargo can be picked up.
+     * Earliest available date the cargo can be picked up, in ISO 8601 UTC format with
+     * millisecond precision.
      */
     ead?: string;
 
@@ -929,7 +1014,8 @@ export namespace AirTransportMissionCreateParams {
     gdssReqId?: string;
 
     /**
-     * Latest available date the cargo may be delivered.
+     * Latest available date the cargo may be delivered, in ISO 8601 UTC format with
+     * millisecond precision.
      */
     lad?: string;
 
@@ -1041,6 +1127,12 @@ export interface AirTransportMissionUpdateParams {
   body_id?: string;
 
   /**
+   * The Air Battle Plan used to coordinate and integrate air assets for this
+   * mission.
+   */
+  abp?: string;
+
+  /**
    * Mission alias.
    */
   alias?: string;
@@ -1061,6 +1153,16 @@ export interface AirTransportMissionUpdateParams {
    * used to process and approve clearance requests.
    */
   apacsId?: string;
+
+  /**
+   * The call sign assigned to this mission according to the Air Tasking Order (ATO).
+   */
+  atoCallSign?: string;
+
+  /**
+   * The mission number according to the Air Tasking Order (ATO).
+   */
+  atoMissionId?: string;
 
   /**
    * The call sign for this mission.
@@ -1090,8 +1192,8 @@ export interface AirTransportMissionUpdateParams {
   gdssMissionId?: string;
 
   /**
-   * Collection of Hazardous Material information associated with this Air Transport
-   * Mission.
+   * Collection of Hazardous Material information planned to be associated with this
+   * Air Transport Mission.
    */
   hazMat?: Array<AirTransportMissionUpdateParams.HazMat>;
 
@@ -1112,6 +1214,24 @@ export interface AirTransportMissionUpdateParams {
   loadCategoryType?: string;
 
   /**
+   * Mode-1 interrogation response (mission code), indicating mission or aircraft
+   * type.
+   */
+  m1?: string;
+
+  /**
+   * Mode-2 interrogation response (military identification code).
+   */
+  m2?: string;
+
+  /**
+   * Mode-3/A interrogation response (aircraft identification), provides a 4-digit
+   * octal identification code for the aircraft, assigned by the air traffic
+   * controller. Mode-3/A is shared military/civilian use.
+   */
+  m3a?: string;
+
+  /**
    * Numbered Air Force (NAF) organization that owns the mission.
    */
   naf?: string;
@@ -1129,6 +1249,12 @@ export interface AirTransportMissionUpdateParams {
    * chronologically for tasking and planning purposes.
    */
   nextMissionId?: string;
+
+  /**
+   * Designates the location responsible for mission transportation, logistics, or
+   * distribution activities for an Area of Responsibility (AOR) within USTRANSCOM.
+   */
+  node?: string;
 
   /**
    * A description of this mission's objective.
@@ -1180,8 +1306,8 @@ export interface AirTransportMissionUpdateParams {
   remarks?: Array<AirTransportMissionUpdateParams.Remark>;
 
   /**
-   * Information related to the planning, load, status, and deployment or dispatch of
-   * one aircraft to carry out a mission.
+   * Collection of Requirements planned to be associated with this Air Transport
+   * Mission.
    */
   requirements?: Array<AirTransportMissionUpdateParams.Requirement>;
 
@@ -1204,8 +1330,8 @@ export interface AirTransportMissionUpdateParams {
 
 export namespace AirTransportMissionUpdateParams {
   /**
-   * Collection of Hazardous Material information associated with this Air Transport
-   * Mission.
+   * Collection of Hazardous Material information planned to be associated with this
+   * Air Transport Mission.
    */
   export interface HazMat {
     /**
@@ -1334,7 +1460,8 @@ export namespace AirTransportMissionUpdateParams {
   }
 
   /**
-   * Collection of Requirements associated with this Air Transport Mission.
+   * Collection of Requirements planned to be associated with this Air Transport
+   * Mission.
    */
   export interface Requirement {
     /**
@@ -1343,7 +1470,8 @@ export namespace AirTransportMissionUpdateParams {
     bulkWeight?: number;
 
     /**
-     * Earliest available date the cargo can be picked up.
+     * Earliest available date the cargo can be picked up, in ISO 8601 UTC format with
+     * millisecond precision.
      */
     ead?: string;
 
@@ -1353,7 +1481,8 @@ export namespace AirTransportMissionUpdateParams {
     gdssReqId?: string;
 
     /**
-     * Latest available date the cargo may be delivered.
+     * Latest available date the cargo may be delivered, in ISO 8601 UTC format with
+     * millisecond precision.
      */
     lad?: string;
 

@@ -216,7 +216,7 @@ export interface OrbittrackFull {
   idOnOrbit?: string;
 
   /**
-   * A text aplifier displaying IFF/SIF/AIS Identification modes and codes.
+   * A text amplifier displaying IFF/SIF/AIS Identification modes and codes.
    */
   iff?: string;
 

@@ -4,7 +4,7 @@ import { APIResource } from '../../resource';
 import * as Core from '../../core';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryListParams, HistoryListResponse } from './history';
+import { History } from './history';
 
 export class Flightplan extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -556,6 +556,11 @@ export interface FlightPlanAbridged {
   star?: string;
 
   /**
+   * Status of this flight plan (e.g., ACTIVE, APPROVED, PLANNED, etc.).
+   */
+  status?: string;
+
+  /**
    * The tail number of the aircraft associated with this flight plan.
    */
   tailNumber?: string;
@@ -605,6 +610,17 @@ export interface FlightPlanAbridged {
    * The amount of unusable fuel in pounds.
    */
   unusableFuel?: number;
+
+  /**
+   * Time the row was last updated in the database, auto-populated by the system.
+   */
+  updatedAt?: string;
+
+  /**
+   * Application user who updated the row in the database, auto-populated by the
+   * system.
+   */
+  updatedBy?: string;
 
   /**
    * The wake turbulence category for this flight. The categories are assigned by the
@@ -1643,6 +1659,11 @@ export interface FlightplanCreateParams {
    * Name of the planned Standard Terminal Arrival (STAR) procedure.
    */
   star?: string;
+
+  /**
+   * Status of this flight plan (e.g., ACTIVE, APPROVED, PLANNED, etc.).
+   */
+  status?: string;
 
   /**
    * The tail number of the aircraft associated with this flight plan.
@@ -2735,6 +2756,11 @@ export namespace FlightplanCreateBulkV2Params {
     star?: string;
 
     /**
+     * Status of this flight plan (e.g., ACTIVE, APPROVED, PLANNED, etc.).
+     */
+    status?: string;
+
+    /**
      * The tail number of the aircraft associated with this flight plan.
      */
     tailNumber?: string;
@@ -3403,9 +3429,5 @@ export declare namespace Flightplan {
     type FlightplanTupleParams as FlightplanTupleParams,
   };
 
-  export {
-    History as History,
-    type HistoryListResponse as HistoryListResponse,
-    type HistoryListParams as HistoryListParams,
-  };
+  export { History as History };
 }

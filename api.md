@@ -318,9 +318,9 @@ Methods:
 - <code title="post /udl/airfieldslotconsumption">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">create</a>({ ...params }) -> void</code>
 - <code title="get /udl/airfieldslotconsumption/{id}">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">retrieve</a>(id) -> AirfieldslotconsumptionFull</code>
 - <code title="put /udl/airfieldslotconsumption/{id}">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">update</a>(pathId, { ...params }) -> void</code>
-- <code title="get /udl/airfieldslotconsumption">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">list</a>() -> AirfieldslotconsumptionListResponse</code>
+- <code title="get /udl/airfieldslotconsumption">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">list</a>({ ...params }) -> AirfieldslotconsumptionListResponse</code>
 - <code title="delete /udl/airfieldslotconsumption/{id}">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/airfieldslotconsumption/count">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">count</a>() -> string</code>
+- <code title="get /udl/airfieldslotconsumption/count">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/airfieldslotconsumption/queryhelp">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/airfieldslotconsumption/tuple">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">tuple</a>({ ...params }) -> AirfieldslotconsumptionTupleResponse</code>
 
@@ -1402,14 +1402,6 @@ Methods:
 - <code title="get /udl/flightplan/tuple">client.flightplan.<a href="./src/resources/flightplan/flightplan.ts">tuple</a>({ ...params }) -> FlightplanTupleResponse</code>
 
 ## History
-
-Types:
-
-- <code><a href="./src/resources/flightplan/history.ts">HistoryListResponse</a></code>
-
-Methods:
-
-- <code title="get /udl/flightplan/history">client.flightplan.history.<a href="./src/resources/flightplan/history.ts">list</a>({ ...params }) -> HistoryListResponse</code>
 
 # Geostatus
 
@@ -3969,15 +3961,6 @@ Methods:
 
 ### History
 
-Types:
-
-- <code><a href="./src/resources/udl/flightplan/history.ts">HistoryCountResponse</a></code>
-
-Methods:
-
-- <code title="get /udl/flightplan/history/aodr">client.udl.flightplan.history.<a href="./src/resources/udl/flightplan/history.ts">aodr</a>({ ...params }) -> void</code>
-- <code title="get /udl/flightplan/history/count">client.udl.flightplan.history.<a href="./src/resources/udl/flightplan/history.ts">count</a>() -> string</code>
-
 ## Geostatus
 
 ### History
@@ -4385,7 +4368,7 @@ Methods:
 - <code title="get /scs/allowableFileExtensions">client.scs.<a href="./src/resources/scs/scs.ts">allowableFileExtensions</a>() -> ScAllowableFileExtensionsResponse</code>
 - <code title="get /scs/allowableFileMimes">client.scs.<a href="./src/resources/scs/scs.ts">allowableFileMimes</a>() -> ScAllowableFileMimesResponse</code>
 - <code title="post /scs/copy">client.scs.<a href="./src/resources/scs/scs.ts">copy</a>({ ...params }) -> string</code>
-- <code title="post /scs/download">client.scs.<a href="./src/resources/scs/scs.ts">download</a>({ ...params }) -> Response</code>
+- <code title="post /scs/download">client.scs.<a href="./src/resources/scs/scs.ts">download</a>([ ...body ]) -> Response</code>
 - <code title="get /scs/download">client.scs.<a href="./src/resources/scs/scs.ts">fileDownload</a>({ ...params }) -> Response</code>
 - <code title="post /scs/file">client.scs.<a href="./src/resources/scs/scs.ts">fileUpload</a>({ ...params }) -> string</code>
 - <code title="put /scs/move">client.scs.<a href="./src/resources/scs/scs.ts">move</a>({ ...params }) -> string</code>

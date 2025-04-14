@@ -280,9 +280,6 @@ export interface EffectResponseRetrieveResponse {
 }
 
 export namespace EffectResponseRetrieveResponse {
-  /**
-   * List of actions associated with this effect response.
-   */
   export interface ActionsList {
     /**
      * The record ID, depending on the type identified in actorSrcType, of the
@@ -384,9 +381,6 @@ export namespace EffectResponseRetrieveResponse {
   }
 
   export namespace ActionsList {
-    /**
-     * List of COA metrics associated with this effect response.
-     */
     export interface ActionMetric {
       /**
        * The metric score specific to its domain.
@@ -411,9 +405,6 @@ export namespace EffectResponseRetrieveResponse {
     }
   }
 
-  /**
-   * List of COA metrics associated with this effect response.
-   */
   export interface CoaMetric {
     /**
      * The metric score specific to its domain.
@@ -597,9 +588,6 @@ export namespace EffectResponseListResponse {
   }
 
   export namespace EffectResponseListResponseItem {
-    /**
-     * List of actions associated with this effect response.
-     */
     export interface ActionsList {
       /**
        * The record ID, depending on the type identified in actorSrcType, of the
@@ -701,9 +689,6 @@ export namespace EffectResponseListResponse {
     }
 
     export namespace ActionsList {
-      /**
-       * List of COA metrics associated with this effect response.
-       */
       export interface ActionMetric {
         /**
          * The metric score specific to its domain.
@@ -728,9 +713,6 @@ export namespace EffectResponseListResponse {
       }
     }
 
-    /**
-     * List of COA metrics associated with this effect response.
-     */
     export interface CoaMetric {
       /**
        * The metric score specific to its domain.
@@ -917,9 +899,6 @@ export namespace EffectResponseTupleResponse {
   }
 
   export namespace EffectResponseTupleResponseItem {
-    /**
-     * List of actions associated with this effect response.
-     */
     export interface ActionsList {
       /**
        * The record ID, depending on the type identified in actorSrcType, of the
@@ -1021,9 +1000,6 @@ export namespace EffectResponseTupleResponse {
     }
 
     export namespace ActionsList {
-      /**
-       * List of COA metrics associated with this effect response.
-       */
       export interface ActionMetric {
         /**
          * The metric score specific to its domain.
@@ -1048,9 +1024,6 @@ export namespace EffectResponseTupleResponse {
       }
     }
 
-    /**
-     * List of COA metrics associated with this effect response.
-     */
     export interface CoaMetric {
       /**
        * The metric score specific to its domain.
@@ -1212,9 +1185,6 @@ export interface EffectResponseCreateParams {
 }
 
 export namespace EffectResponseCreateParams {
-  /**
-   * List of actions associated with this effect response.
-   */
   export interface ActionsList {
     /**
      * The record ID, depending on the type identified in actorSrcType, of the
@@ -1316,9 +1286,6 @@ export namespace EffectResponseCreateParams {
   }
 
   export namespace ActionsList {
-    /**
-     * List of COA metrics associated with this effect response.
-     */
     export interface ActionMetric {
       /**
        * The metric score specific to its domain.
@@ -1343,9 +1310,6 @@ export namespace EffectResponseCreateParams {
     }
   }
 
-  /**
-   * List of COA metrics associated with this effect response.
-   */
   export interface CoaMetric {
     /**
      * The metric score specific to its domain.
@@ -1528,9 +1492,6 @@ export namespace EffectResponseCreateBulkParams {
   }
 
   export namespace Body {
-    /**
-     * List of actions associated with this effect response.
-     */
     export interface ActionsList {
       /**
        * The record ID, depending on the type identified in actorSrcType, of the
@@ -1632,9 +1593,6 @@ export namespace EffectResponseCreateBulkParams {
     }
 
     export namespace ActionsList {
-      /**
-       * List of COA metrics associated with this effect response.
-       */
       export interface ActionMetric {
         /**
          * The metric score specific to its domain.
@@ -1659,9 +1617,6 @@ export namespace EffectResponseCreateBulkParams {
       }
     }
 
-    /**
-     * List of COA metrics associated with this effect response.
-     */
     export interface CoaMetric {
       /**
        * The metric score specific to its domain.
@@ -1829,9 +1784,6 @@ export namespace EffectResponseCreateBulkV2Params {
   }
 
   export namespace Body {
-    /**
-     * List of actions associated with this effect response.
-     */
     export interface ActionsList {
       /**
        * The record ID, depending on the type identified in actorSrcType, of the
@@ -1933,9 +1885,6 @@ export namespace EffectResponseCreateBulkV2Params {
     }
 
     export namespace ActionsList {
-      /**
-       * List of COA metrics associated with this effect response.
-       */
       export interface ActionMetric {
         /**
          * The metric score specific to its domain.
@@ -1960,9 +1909,6 @@ export namespace EffectResponseCreateBulkV2Params {
       }
     }
 
-    /**
-     * List of COA metrics associated with this effect response.
-     */
     export interface CoaMetric {
       /**
        * The metric score specific to its domain.

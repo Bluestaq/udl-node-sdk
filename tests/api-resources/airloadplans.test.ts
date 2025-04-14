@@ -82,7 +82,7 @@ describe('resource airloadplans', () => {
           ppOffICAO: 'MBPV',
           ppPieces: 3,
           ppRemarks: 'Pallet remarks',
-          ppTcn: 'ppTcn',
+          ppTcn: 'M1358232245912XXX',
           ppWeight: 100.1,
           specialInterest: true,
         },

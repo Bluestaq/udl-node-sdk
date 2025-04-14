@@ -54,7 +54,8 @@ export interface EoobservationTupleParams {
   columns: string;
 
   /**
-   * Ob detection time in ISO 8601 UTC with microsecond precision.
+   * Ob detection time in ISO 8601 UTC, up to microsecond precision. Consumers should
+   * contact the provider for details on their obTime specifications.
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;

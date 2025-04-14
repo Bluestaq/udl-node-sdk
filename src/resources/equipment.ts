@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as EquipmentremarksAPI from './equipmentremarks';
 
@@ -77,19 +76,13 @@ export class Equipment extends APIResource {
   }
 
   /**
-   * Service operation to take multiple Equipment records as a POST body and ingest
-   * into the database. A specific role is required to perform this service
-   * operation. Please contact the UDL team for assistance.
+   * Service operation intended for initial integration only, to take a list of
+   * Equipment records as a POST body and ingest into the database. This operation is
+   * not intended to be used for automated feeds into UDL. Data providers should
+   * contact the UDL team for specific role assignments and for instructions on
+   * setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body?: EquipmentCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void>;
-  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
-  createBulk(
-    body?: EquipmentCreateBulkParams | Core.RequestOptions,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    if (isRequestOptions(body)) {
-      return this.createBulk(undefined, body);
-    }
+  createBulk(body: EquipmentCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/udl/equipment/createBulk', {
       body,
       ...options,

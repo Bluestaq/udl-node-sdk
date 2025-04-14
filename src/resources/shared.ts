@@ -4,11 +4,10 @@ import * as AntennasAPI from './antennas';
 import * as AttitudeDataAPI from './attitude-data';
 import * as BatteriesAPI from './batteries';
 import * as EnginesAPI from './engines';
-import * as EntitiesAPI from './entities';
+import * as LocationAPI from './location';
+import * as OrganizationAPI from './organization';
 import * as SolararraydetailsAPI from './solararraydetails';
 import * as AircraftSortieAPI from './air-operations/aircraft-sortie';
-import * as ElsetsAPI from './elsets/elsets';
-import * as StatevectorAPI from './statevector/statevector';
 import { OffsetPage } from '../pagination';
 
 /**
@@ -52,6 +51,12 @@ export interface AirTransportMissionFull {
   id?: string;
 
   /**
+   * The Air Battle Plan used to coordinate and integrate air assets for this
+   * mission.
+   */
+  abp?: string;
+
+  /**
    * The Aircraft Sortie Records linked to this mission. Do not set this field to
    * send data to the UDL. This field is set by the UDL when returning full Air
    * Transport Mission records.
@@ -79,6 +84,16 @@ export interface AirTransportMissionFull {
    * used to process and approve clearance requests.
    */
   apacsId?: string;
+
+  /**
+   * The call sign assigned to this mission according to the Air Tasking Order (ATO).
+   */
+  atoCallSign?: string;
+
+  /**
+   * The mission number according to the Air Tasking Order (ATO).
+   */
+  atoMissionId?: string;
 
   /**
    * The call sign for this mission.
@@ -119,8 +134,8 @@ export interface AirTransportMissionFull {
   gdssMissionId?: string;
 
   /**
-   * Collection of Hazardous Material information associated with this Air Transport
-   * Mission.
+   * Collection of Hazardous Material information planned to be associated with this
+   * Air Transport Mission.
    */
   hazMat?: Array<AirTransportMissionFull.HazMat>;
 
@@ -141,6 +156,24 @@ export interface AirTransportMissionFull {
   loadCategoryType?: string;
 
   /**
+   * Mode-1 interrogation response (mission code), indicating mission or aircraft
+   * type.
+   */
+  m1?: string;
+
+  /**
+   * Mode-2 interrogation response (military identification code).
+   */
+  m2?: string;
+
+  /**
+   * Mode-3/A interrogation response (aircraft identification), provides a 4-digit
+   * octal identification code for the aircraft, assigned by the air traffic
+   * controller. Mode-3/A is shared military/civilian use.
+   */
+  m3a?: string;
+
+  /**
    * Numbered Air Force (NAF) organization that owns the mission.
    */
   naf?: string;
@@ -158,6 +191,12 @@ export interface AirTransportMissionFull {
    * chronologically for tasking and planning purposes.
    */
   nextMissionId?: string;
+
+  /**
+   * Designates the location responsible for mission transportation, logistics, or
+   * distribution activities for an Area of Responsibility (AOR) within USTRANSCOM.
+   */
+  node?: string;
 
   /**
    * A description of this mission's objective.
@@ -215,8 +254,8 @@ export interface AirTransportMissionFull {
   remarks?: Array<AirTransportMissionFull.Remark>;
 
   /**
-   * Information related to the planning, load, status, and deployment or dispatch of
-   * one aircraft to carry out a mission.
+   * Collection of Requirements planned to be associated with this Air Transport
+   * Mission.
    */
   requirements?: Array<AirTransportMissionFull.Requirement>;
 
@@ -257,8 +296,8 @@ export interface AirTransportMissionFull {
 
 export namespace AirTransportMissionFull {
   /**
-   * Collection of Hazardous Material information associated with this Air Transport
-   * Mission.
+   * Collection of Hazardous Material information planned to be associated with this
+   * Air Transport Mission.
    */
   export interface HazMat {
     /**
@@ -387,7 +426,8 @@ export namespace AirTransportMissionFull {
   }
 
   /**
-   * Collection of Requirements associated with this Air Transport Mission.
+   * Collection of Requirements planned to be associated with this Air Transport
+   * Mission.
    */
   export interface Requirement {
     /**
@@ -396,7 +436,8 @@ export namespace AirTransportMissionFull {
     bulkWeight?: number;
 
     /**
-     * Earliest available date the cargo can be picked up.
+     * Earliest available date the cargo can be picked up, in ISO 8601 UTC format with
+     * millisecond precision.
      */
     ead?: string;
 
@@ -406,7 +447,8 @@ export namespace AirTransportMissionFull {
     gdssReqId?: string;
 
     /**
-     * Latest available date the cargo may be delivered.
+     * Latest available date the cargo may be delivered, in ISO 8601 UTC format with
+     * millisecond precision.
      */
     lad?: string;
 
@@ -1499,7 +1541,7 @@ export interface CollectRequestFull {
    * order to predict the motion of a satellite. The element set, or elset for short,
    * consists of identification data, the classical elements and drag parameters.
    */
-  elset?: ElsetsAPI.Elset;
+  elset?: CollectRequestFull.Elset;
 
   /**
    * The end time of the collect or contact request window, in ISO 8601 UTC format.
@@ -1834,7 +1876,7 @@ export interface CollectRequestFull {
    * the 'Discover' tab in the storefront to confirm coordinate frames by data
    * provider.
    */
-  stateVector?: StatevectorAPI.StateVectorFull;
+  stateVector?: CollectRequestFull.StateVector;
 
   /**
    * The stopping HAE WGS-84 height above ellipsoid (HAE), of a volume definition, in
@@ -1898,6 +1940,12 @@ export interface CollectRequestFull {
   taskId?: string;
 
   /**
+   * Optional identifier to track a commercial or marketplace transaction executed to
+   * produce this data.
+   */
+  transactionId?: string;
+
+  /**
    * The true anomaly defines the angular position, in degrees, of the object on it's
    * orbital path as measured from the orbit focal point at epoch. The true anomaly
    * is referenced from perigee.
@@ -1953,6 +2001,1074 @@ export interface CollectRequestFull {
    * vector.
    */
   yAngle?: number;
+}
+
+export namespace CollectRequestFull {
+  /**
+   * An element set is a collection of Keplerian orbital elements describing an orbit
+   * of a particular satellite. The data is used along with an orbit propagator in
+   * order to predict the motion of a satellite. The element set, or elset for short,
+   * consists of identification data, the classical elements and drag parameters.
+   */
+  export interface Elset {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Elset epoch time in ISO 8601 UTC format, with microsecond precision.
+     */
+    epoch: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * AGOM, expressed in m^2/kg, is the value of the (averaged) object Area times the
+     * solar radiation pressure coefficient(Gamma) over the object Mass. Applicable
+     * only with ephemType4.
+     */
+    agom?: number;
+
+    /**
+     * Optional algorithm used to produce this record.
+     */
+    algorithm?: string;
+
+    /**
+     * The orbit point furthest from the center of the earth in kilometers. If not
+     * provided, apogee will be computed from the TLE according to the following. Using
+     * mu, the standard gravitational parameter for the earth (398600.4418), semi-major
+     * axis A = (mu/(n _ 2 _ pi/(24*3600))^2)(1/3). Using semi-major axis A,
+     * eccentricity E, apogee = (A * (1 + E)) in km. Note that the calculations are for
+     * computing the apogee radius from the center of the earth, to compute apogee
+     * altitude the radius of the earth should be subtracted (6378.135 km).
+     */
+    apogee?: number;
+
+    /**
+     * The argument of perigee is the angle in degrees formed between the perigee and
+     * the ascending node. If the perigee would occur at the ascending node, the
+     * argument of perigee would be 0.
+     */
+    argOfPerigee?: number;
+
+    /**
+     * Ballistic coefficient, in m^2/kg. Applicable only with ephemType4.
+     */
+    ballisticCoeff?: number;
+
+    /**
+     * The drag term for SGP4 orbital model, used for calculating decay constants for
+     * altitude, eccentricity etc, measured in inverse earth radii.
+     */
+    bStar?: number;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * Optional source-provided and searchable metadata or descriptor of the data.
+     */
+    descriptor?: string;
+
+    /**
+     * The orbital eccentricity of an astronomical object is a parameter that
+     * determines the amount by which its orbit around another body deviates from a
+     * perfect circle. A value of 0 is a circular orbit, values between 0 and 1 form an
+     * elliptic orbit, 1 is a parabolic escape orbit, and greater than 1 is a
+     * hyperbolic escape orbit.
+     */
+    eccentricity?: number;
+
+    /**
+     * Read-only start time at which this elset was the 'current' elset for its
+     * satellite. This field and is set by the system automatically and ignored on
+     * create/edit operations.
+     */
+    effectiveFrom?: string;
+
+    /**
+     * Read-only end time at which this elset was no longer the 'current' elset for its
+     * satellite. This field and is set by the system automatically and ignored on
+     * create/edit operations.
+     */
+    effectiveUntil?: string;
+
+    /**
+     * The ephemeris type associated with this TLE:
+     *
+     * 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+     *
+     * 1:&nbsp;SGP (Kozai mean motion)
+     *
+     * 2:&nbsp;SGP4 (Brouver mean motion)
+     *
+     * 3:&nbsp;SDP4
+     *
+     * 4:&nbsp;SGP4-XP
+     *
+     * 5:&nbsp;SDP8
+     *
+     * 6:&nbsp;SP (osculating mean motion)
+     */
+    ephemType?: number;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    idElset?: string;
+
+    /**
+     * Unique identifier of the satellite on-orbit object, if correlated. For the
+     * public catalog, the idOnOrbit is typically the satellite number as a string, but
+     * may be a UUID for analyst or other unknown or untracked satellites.
+     */
+    idOnOrbit?: string;
+
+    /**
+     * Unique identifier of the OD solution record that produced this elset. This ID
+     * can be used to obtain additional information on an OrbitDetermination object
+     * using the 'get by ID' operation (e.g. /udl/orbitdetermination/{id}). For
+     * example, the OrbitDetermination with idOrbitDetermination = abc would be queried
+     * as /udl/orbitdetermination/abc.
+     */
+    idOrbitDetermination?: string;
+
+    /**
+     * The angle between the equator and the orbit when looking from the center of the
+     * Earth. If the orbit went exactly around the equator from left to right, then the
+     * inclination would be 0. The inclination ranges from 0 to 180 degrees.
+     */
+    inclination?: number;
+
+    /**
+     * Read only derived/generated line1 of a legacy TLE (two line element set) format,
+     * ignored on create/edit operations.
+     */
+    line1?: string;
+
+    /**
+     * Read only derived/generated line2 of a legacy TLE (two line element set) format,
+     * ignored on create/edit operations.
+     */
+    line2?: string;
+
+    /**
+     * Where the satellite is in its orbital path. The mean anomaly ranges from 0 to
+     * 360 degrees. The mean anomaly is referenced to the perigee. If the satellite
+     * were at the perigee, the mean anomaly would be 0.
+     */
+    meanAnomaly?: number;
+
+    /**
+     * Mean motion is the angular speed required for a body to complete one orbit,
+     * assuming constant speed in a circular orbit which completes in the same time as
+     * the variable speed, elliptical orbit of the actual body. Measured in revolutions
+     * per day.
+     */
+    meanMotion?: number;
+
+    /**
+     * 2nd derivative of the mean motion with respect to time. Units are revolutions
+     * per day cubed.
+     */
+    meanMotionDDot?: number;
+
+    /**
+     * 1st derivative of the mean motion with respect to time. Units are revolutions
+     * per day squared.
+     */
+    meanMotionDot?: number;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * Optional identifier provided by elset source to indicate the target onorbit
+     * object of this elset. This may be an internal identifier and not necessarily map
+     * to a valid satellite number.
+     */
+    origObjectId?: string;
+
+    /**
+     * The orbit point nearest to the center of the earth in kilometers. If not
+     * provided, perigee will be computed from the TLE according to the following.
+     * Using mu, the standard gravitational parameter for the earth (398600.4418),
+     * semi-major axis A = (mu/(n _ 2 _ pi/(24*3600))^2)(1/3). Using semi-major axis A,
+     * eccentricity E, perigee = (A * (1 - E)) in km. Note that the calculations are
+     * for computing the perigee radius from the center of the earth, to compute
+     * perigee altitude the radius of the earth should be subtracted (6378.135 km).
+     */
+    perigee?: number;
+
+    /**
+     * Period of the orbit equal to inverse of mean motion, in minutes.
+     */
+    period?: number;
+
+    /**
+     * Right ascension of the ascending node, or RAAN is the angle as measured in
+     * degrees eastwards (or, as seen from the north, counterclockwise) from the First
+     * Point of Aries to the ascending node, which is where the orbit crosses the
+     * equator when traveling north.
+     */
+    raan?: number;
+
+    /**
+     * Optional URI location in the document repository of the raw file parsed by the
+     * system to produce this record. To download the raw file, prepend
+     * https://udl-hostname/scs/download?id= to this value.
+     */
+    rawFileURI?: string;
+
+    /**
+     * The current revolution number. The value is incremented when a satellite crosses
+     * the equator on an ascending pass.
+     */
+    revNo?: number;
+
+    /**
+     * Satellite/catalog number of the target on-orbit object.
+     */
+    satNo?: number;
+
+    /**
+     * The sum of the periapsis and apoapsis distances divided by two. For circular
+     * orbits, the semimajor axis is the distance between the centers of the bodies,
+     * not the distance of the bodies from the center of mass. Units are kilometers.
+     */
+    semiMajorAxis?: number;
+
+    /**
+     * Optional array of UDL data (observation) UUIDs used to build this element set.
+     * See the associated sourcedDataTypes array for the specific types of observations
+     * for the positionally corresponding UUIDs in this array (the two arrays must
+     * match in size).
+     */
+    sourcedData?: Array<string>;
+
+    /**
+     * Optional array of UDL observation data types used to build this element set
+     * (e.g. EO, RADAR, RF, DOA). See the associated sourcedData array for the specific
+     * UUIDs of observations for the positionally corresponding data types in this
+     * array (the two arrays must match in size).
+     */
+    sourcedDataTypes?: Array<'EO' | 'RADAR' | 'RF' | 'DOA' | 'ELSET' | 'SV'>;
+
+    /**
+     * The source data library from which this record was received. This could be a
+     * remote or tactical UDL or another data library. If null, the record should be
+     * assumed to have originated from the primary Enterprise UDL.
+     */
+    sourceDL?: string;
+
+    /**
+     * Optional array of provider/source specific tags for this data, where each
+     * element is no longer than 32 characters, used for implementing data owner
+     * conditional access controls to restrict access to the data. Should be left null
+     * by data providers unless conditional access controls are coordinated with the
+     * UDL team.
+     */
+    tags?: Array<string>;
+
+    /**
+     * Optional identifier to track a commercial or marketplace transaction executed to
+     * produce this data.
+     */
+    transactionId?: string;
+
+    /**
+     * Boolean indicating this Elset was unable to be correlated to a known object.
+     * This flag should only be set to true by data providers after an attempt to
+     * correlate to an on-orbit object was made and failed. If unable to correlate, the
+     * 'origObjectId' field may be populated with an internal data provider specific
+     * identifier.
+     */
+    uct?: boolean;
+  }
+
+  /**
+   * This service provides operations for querying and manipulation of state vectors
+   * for OnOrbit objects. State vectors are cartesian vectors of position (r) and
+   * velocity (v) that, together with their time (epoch) (t), uniquely determine the
+   * trajectory of the orbiting body in space. J2000 is the preferred coordinate
+   * frame for all state vector positions/velocities in UDL, but in some cases data
+   * may be in another frame depending on the provider and/or datatype. Please see
+   * the 'Discover' tab in the storefront to confirm coordinate frames by data
+   * provider.
+   */
+  export interface StateVector {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Time of validity for state vector in ISO 8601 UTC datetime format, with
+     * microsecond precision.
+     */
+    epoch: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * The actual time span used for the OD of the object, expressed in days.
+     */
+    actualODSpan?: number;
+
+    /**
+     * Optional algorithm used to produce this record.
+     */
+    algorithm?: string;
+
+    /**
+     * The reference frame of the alternate1 (Alt1) cartesian orbital state.
+     */
+    alt1ReferenceFrame?: string;
+
+    /**
+     * The reference frame of the alternate2 (Alt2) cartesian orbital state.
+     */
+    alt2ReferenceFrame?: string;
+
+    /**
+     * The actual area of the object at it's largest cross-section, expressed in
+     * meters^2.
+     */
+    area?: number;
+
+    /**
+     * First derivative of drag/ballistic coefficient (m2/kg-s).
+     */
+    bDot?: number;
+
+    /**
+     * Model parameter value for center of mass offset (m).
+     */
+    cmOffset?: number;
+
+    /**
+     * Covariance matrix, in kilometer and second based units, in the specified
+     * covReferenceFrame. If the covReferenceFrame is null it is assumed to be J2000.
+     * The array values (1-21) represent the lower triangular half of the
+     * position-velocity covariance matrix. The size of the covariance matrix is
+     * dynamic, depending on whether the covariance for position only or position &
+     * velocity. The covariance elements are position dependent within the array with
+     * values ordered as follows:
+     *
+     * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+     *
+     * x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+     *
+     * y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+     *
+     * z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+     *
+     * x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+     *
+     * y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+     *
+     * z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+     *
+     * The cov array should contain only the lower left triangle values from top left
+     * down to bottom right, in order.
+     *
+     * If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
+     * matrix can be extended with the following order of elements:
+     *
+     * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+     *
+     * DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+     *
+     * SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+     *
+     * THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+     */
+    cov?: Array<number>;
+
+    /**
+     * The method used to generate the covariance during the orbit determination (OD)
+     * that produced the state vector, or whether an arbitrary, non-calculated default
+     * value was used (CALCULATED, DEFAULT).
+     */
+    covMethod?: string;
+
+    /**
+     * The reference frame of the covariance matrix elements. If the covReferenceFrame
+     * is null it is assumed to be J2000.
+     */
+    covReferenceFrame?: 'J2000' | 'UVW';
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * Optional source-provided and searchable metadata or descriptor of the data.
+     */
+    descriptor?: string;
+
+    /**
+     * The effective area of the object exposed to atmospheric drag, expressed in
+     * meters^2.
+     */
+    dragArea?: number;
+
+    /**
+     * Area-to-mass ratio coefficient for atmospheric ballistic drag (m2/kg).
+     */
+    dragCoeff?: number;
+
+    /**
+     * The Drag Model used for this vector (e.g. HARRIS-PRIESTER, JAC70, JBH09, MSIS90,
+     * NONE, etc.).
+     */
+    dragModel?: string;
+
+    /**
+     * Model parameter value for energy dissipation rate (EDR) (w/kg).
+     */
+    edr?: number;
+
+    /**
+     * Start time at which this state vector was the 'current' state vector for its
+     * satellite.
+     */
+    effectiveFrom?: string;
+
+    /**
+     * End time at which this state vector was no longer the 'current' state vector for
+     * its satellite.
+     */
+    effectiveUntil?: string;
+
+    /**
+     * The covariance matrix values represent the lower triangular half of the
+     * covariance matrix in terms of equinoctial elements.&nbsp; The size of the
+     * covariance matrix is dynamic.&nbsp; The values are outputted in order across
+     * each row, i.e.:
+     *
+     * 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+     *
+     * 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+     *
+     * :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+     *
+     * :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+     *
+     * 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+     *
+     * :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+     *
+     * :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+     *
+     * The ordering of values is as follows:
+     *
+     * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
+     * Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
+     * B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+     *
+     * Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+     *
+     * Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+     *
+     * L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     * 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+     *
+     * N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     * 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+     *
+     * Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
+     * 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+     *
+     * Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
+     * 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+     *
+     * B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
+     * 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+     *
+     * BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
+     * 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+     *
+     * AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
+     * 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+     *
+     * T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
+     * 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
+     * 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+     *
+     * C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
+     * 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
+     * 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+     *
+     * C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
+     * 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
+     * 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+     *
+     * :
+     *
+     * :
+     *
+     * where C1, C2, etc, are the "consider parameters" that may be added to the
+     * covariance matrix.&nbsp; The covariance matrix will be as large as the last
+     * element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+     * elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
+     * BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
+     * will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
+     * only the lower left triangle values from top left down to bottom right, in
+     * order.
+     */
+    eqCov?: Array<number>;
+
+    /**
+     * Integrator error control.
+     */
+    errorControl?: number;
+
+    /**
+     * Boolean indicating use of fixed step size for this vector.
+     */
+    fixedStep?: boolean;
+
+    /**
+     * Geopotential model used for this vector (e.g. EGM-96, WGS-84, WGS-72, JGM-2, or
+     * GEM-T3), including mm degree zonals, nn degree/order tesserals. E.g. EGM-96
+     * 24Z,24T.
+     */
+    geopotentialModel?: string;
+
+    /**
+     * Number of terms used in the IAU 1980 nutation model (4, 50, or 106).
+     */
+    iau1980Terms?: number;
+
+    /**
+     * Unique identifier of the satellite on-orbit object, if correlated. For the
+     * public catalog, the idOnOrbit is typically the satellite number as a string, but
+     * may be a UUID for analyst or other unknown or untracked satellites.
+     */
+    idOnOrbit?: string;
+
+    /**
+     * Unique identifier of the OD solution record that produced this state vector.
+     * This ID can be used to obtain additional information on an OrbitDetermination
+     * object using the 'get by ID' operation (e.g. /udl/orbitdetermination/{id}). For
+     * example, the OrbitDetermination with idOrbitDetermination = abc would be queries
+     * as /udl/orbitdetermination/abc.
+     */
+    idOrbitDetermination?: string;
+
+    /**
+     * Unique identifier of the record, auto-generated by the system.
+     */
+    idStateVector?: string;
+
+    /**
+     * Integrator Mode.
+     */
+    integratorMode?: string;
+
+    /**
+     * Boolean indicating use of in-track thrust perturbations for this vector.
+     */
+    inTrackThrust?: boolean;
+
+    /**
+     * The end of the time interval containing the time of the last accepted
+     * observation, in ISO 8601 UTC format with microsecond precision. For an exact
+     * observation time, the firstObTime and lastObTime are the same.
+     */
+    lastObEnd?: string;
+
+    /**
+     * The start of the time interval containing the time of the last accepted
+     * observation, in ISO 8601 UTC format with microsecond precision. For an exact
+     * observation time, the firstObTime and lastObTime are the same.
+     */
+    lastObStart?: string;
+
+    /**
+     * Time of the next leap second after epoch in ISO 8601 UTC time. If the next leap
+     * second is not known, the time of the previous leap second is used.
+     */
+    leapSecondTime?: string;
+
+    /**
+     * Boolean indicating use of lunar/solar perturbations for this vector.
+     */
+    lunarSolar?: boolean;
+
+    /**
+     * The mass of the object, in kilograms.
+     */
+    mass?: number;
+
+    /**
+     * The number of observations available for the OD of the object.
+     */
+    obsAvailable?: number;
+
+    /**
+     * The number of observations accepted for the OD of the object.
+     */
+    obsUsed?: number;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * Optional identifier provided by state vector source to indicate the target
+     * onorbit object of this state vector. This may be an internal identifier and not
+     * necessarily map to a valid satellite number.
+     */
+    origObjectId?: string;
+
+    /**
+     * Type of partial derivatives used (ANALYTIC, FULL NUM, or FAST NUM).
+     */
+    partials?: string;
+
+    /**
+     * The pedigree of state vector, or methods used for its generation to include
+     * state update/orbit determination, propagation from another state, or a state
+     * from a calibration satellite (e.g. ORBIT_UPDATE, PROPAGATION, CALIBRATION,
+     * CONJUNCTION, FLIGHT_PLAN).
+     */
+    pedigree?: string;
+
+    /**
+     * Polar Wander Motion X (arc seconds).
+     */
+    polarMotionX?: number;
+
+    /**
+     * Polar Wander Motion Y (arc seconds).
+     */
+    polarMotionY?: number;
+
+    /**
+     * One sigma position uncertainty, in kilometers.
+     */
+    posUnc?: number;
+
+    /**
+     * Optional URI location in the document repository of the raw file parsed by the
+     * system to produce this record. To download the raw file, prepend
+     * https://udl-hostname/scs/download?id= to this value.
+     */
+    rawFileURI?: string;
+
+    /**
+     * The recommended OD time span calculated for the object, expressed in days.
+     */
+    recODSpan?: number;
+
+    /**
+     * The reference frame of the cartesian orbital states. If the referenceFrame is
+     * null it is assumed to be J2000.
+     */
+    referenceFrame?: 'J2000' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'ITRF' | 'GCRF';
+
+    /**
+     * The percentage of residuals accepted in the OD of the object.
+     */
+    residualsAcc?: number;
+
+    /**
+     * Epoch revolution number.
+     */
+    revNo?: number;
+
+    /**
+     * The Weighted Root Mean Squared (RMS) of the differential correction on the
+     * target object that produced this vector. WRMS is a quality indicator of the
+     * state vector update, with a value of 1.00 being optimal. WRMS applies to Batch
+     * Least Squares (BLS) processes.
+     */
+    rms?: number;
+
+    /**
+     * Satellite/Catalog number of the target OnOrbit object.
+     */
+    satNo?: number;
+
+    /**
+     * Array containing the standard deviation of error in target object position, U, V
+     * and W direction respectively (km).
+     */
+    sigmaPosUVW?: Array<number>;
+
+    /**
+     * Array containing the standard deviation of error in target object velocity, U, V
+     * and W direction respectively (km/sec).
+     */
+    sigmaVelUVW?: Array<number>;
+
+    /**
+     * Average solar flux geomagnetic index.
+     */
+    solarFluxAPAvg?: number;
+
+    /**
+     * F10 (10.7 cm) solar flux value.
+     */
+    solarFluxF10?: number;
+
+    /**
+     * F10 (10.7 cm) solar flux 81-day average value.
+     */
+    solarFluxF10Avg?: number;
+
+    /**
+     * Boolean indicating use of solar radiation pressure perturbations for this
+     * vector.
+     */
+    solarRadPress?: boolean;
+
+    /**
+     * Area-to-mass ratio coefficient for solar radiation pressure.
+     */
+    solarRadPressCoeff?: number;
+
+    /**
+     * Boolean indicating use of solid earth tide perturbations for this vector.
+     */
+    solidEarthTides?: boolean;
+
+    /**
+     * Optional array of UDL data (observation) UUIDs used to build this state vector.
+     * See the associated sourcedDataTypes array for the specific types of observations
+     * for the positionally corresponding UUIDs in this array (the two arrays must
+     * match in size).
+     */
+    sourcedData?: Array<string>;
+
+    /**
+     * Optional array of UDL observation data types used to build this state vector
+     * (e.g. EO, RADAR, RF, DOA). See the associated sourcedData array for the specific
+     * UUIDs of observations for the positionally corresponding data types in this
+     * array (the two arrays must match in size).
+     */
+    sourcedDataTypes?: Array<'EO' | 'RADAR' | 'RF' | 'DOA' | 'ELSET' | 'SV'>;
+
+    /**
+     * The source data library from which this record was received. This could be a
+     * remote or tactical UDL or another data library. If null, the record should be
+     * assumed to have originated from the primary Enterprise UDL.
+     */
+    sourceDL?: string;
+
+    /**
+     * The effective area of the object exposed to solar radiation pressure, expressed
+     * in meters^2.
+     */
+    srpArea?: number;
+
+    /**
+     * Integrator step mode (AUTO, TIME, or S).
+     */
+    stepMode?: string;
+
+    /**
+     * Initial integration step size (seconds).
+     */
+    stepSize?: number;
+
+    /**
+     * Initial step size selection (AUTO or MANUAL).
+     */
+    stepSizeSelection?: string;
+
+    /**
+     * Optional array of provider/source specific tags for this data, where each
+     * element is no longer than 32 characters, used for implementing data owner
+     * conditional access controls to restrict access to the data. Should be left null
+     * by data providers unless conditional access controls are coordinated with the
+     * UDL team.
+     */
+    tags?: Array<string>;
+
+    /**
+     * TAI (Temps Atomique International) minus UTC (Universal Time Coordinates) offset
+     * in seconds.
+     */
+    taiUtc?: number;
+
+    /**
+     * Model parameter value for thrust acceleration (m/s2).
+     */
+    thrustAccel?: number;
+
+    /**
+     * The number of sensor tracks available for the OD of the object.
+     */
+    tracksAvail?: number;
+
+    /**
+     * The number of sensor tracks accepted for the OD of the object.
+     */
+    tracksUsed?: number;
+
+    /**
+     * Optional identifier to track a commercial or marketplace transaction executed to
+     * produce this data.
+     */
+    transactionId?: string;
+
+    /**
+     * Boolean indicating this state vector was unable to be correlated to a known
+     * object. This flag should only be set to true by data providers after an attempt
+     * to correlate to an OnOrbit object was made and failed. If unable to correlate,
+     * the 'origObjectId' field may be populated with an internal data provider
+     * specific identifier.
+     */
+    uct?: boolean;
+
+    /**
+     * Rate of change of UT1 (milliseconds/day) - first derivative of ut1Utc.
+     */
+    ut1Rate?: number;
+
+    /**
+     * Universal Time-1 (UT1) minus UTC offset, in seconds.
+     */
+    ut1Utc?: number;
+
+    /**
+     * One sigma velocity uncertainty, in kilometers/second.
+     */
+    velUnc?: number;
+
+    /**
+     * Cartesian X acceleration of target, in kilometers/second^2, in the specified
+     * referenceFrame. If referenceFrame is null then J2K should be assumed.
+     */
+    xaccel?: number;
+
+    /**
+     * Cartesian X position of the target, in kilometers, in the specified
+     * referenceFrame. If referenceFrame is null then J2K should be assumed.
+     */
+    xpos?: number;
+
+    /**
+     * Cartesian X position of the target, in kilometers, in the specified
+     * alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+     * allow a data source to provide an equivalent vector in a different cartesian
+     * frame than the primary vector.
+     */
+    xposAlt1?: number;
+
+    /**
+     * Cartesian X position of the target, in kilometers, in the specified
+     * alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+     * allow a data source to provide an equivalent vector in a different cartesian
+     * frame than the primary vector.
+     */
+    xposAlt2?: number;
+
+    /**
+     * Cartesian X velocity of target, in kilometers/second, in the specified
+     * referenceFrame. If referenceFrame is null then J2K should be assumed.
+     */
+    xvel?: number;
+
+    /**
+     * Cartesian X velocity of the target, in kilometers/second, in the specified
+     * alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+     * allow a data source to provide an equivalent vector in a different cartesian
+     * frame than the primary vector.
+     */
+    xvelAlt1?: number;
+
+    /**
+     * Cartesian X velocity of the target, in kilometers/second, in the specified
+     * alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+     * allow a data source to provide an equivalent vector in a different cartesian
+     * frame than the primary vector.
+     */
+    xvelAlt2?: number;
+
+    /**
+     * Cartesian Y acceleration of target, in kilometers/second^2, in the specified
+     * referenceFrame. If referenceFrame is null then J2K should be assumed.
+     */
+    yaccel?: number;
+
+    /**
+     * Cartesian Y position of the target, in kilometers, in the specified
+     * referenceFrame. If referenceFrame is null then J2K should be assumed.
+     */
+    ypos?: number;
+
+    /**
+     * Cartesian Y position of the target, in kilometers, in the specified
+     * alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+     * allow a data source to provide an equivalent vector in a different cartesian
+     * frame than the primary vector.
+     */
+    yposAlt1?: number;
+
+    /**
+     * Cartesian Y position of the target, in kilometers, in the specified
+     * alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+     * allow a data source to provide an equivalent vector in a different cartesian
+     * frame than the primary vector.
+     */
+    yposAlt2?: number;
+
+    /**
+     * Cartesian Y velocity of target, in kilometers/second, in the specified
+     * referenceFrame. If referenceFrame is null then J2K should be assumed.
+     */
+    yvel?: number;
+
+    /**
+     * Cartesian Y velocity of the target, in kilometers/second, in the specified
+     * alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+     * allow a data source to provide an equivalent vector in a different cartesian
+     * frame than the primary vector.
+     */
+    yvelAlt1?: number;
+
+    /**
+     * Cartesian Y velocity of the target, in kilometers/second, in the specified
+     * alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+     * allow a data source to provide an equivalent vector in a different cartesian
+     * frame than the primary vector.
+     */
+    yvelAlt2?: number;
+
+    /**
+     * Cartesian Z acceleration of target, in kilometers/second^2, in the specified
+     * referenceFrame. If referenceFrame is null then J2K should be assumed.
+     */
+    zaccel?: number;
+
+    /**
+     * Cartesian Z position of the target, in kilometers, in the specified
+     * referenceFrame. If referenceFrame is null then J2K should be assumed.
+     */
+    zpos?: number;
+
+    /**
+     * Cartesian Z position of the target, in kilometers, in the specified
+     * alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+     * allow a data source to provide an equivalent vector in a different cartesian
+     * frame than the primary vector.
+     */
+    zposAlt1?: number;
+
+    /**
+     * Cartesian Z position of the target, in kilometers, in the specified
+     * alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+     * allow a data source to provide an equivalent vector in a different cartesian
+     * frame than the primary vector.
+     */
+    zposAlt2?: number;
+
+    /**
+     * Cartesian Z velocity of target, in kilometers/second, in the specified
+     * referenceFrame. If referenceFrame is null then J2K should be assumed.
+     */
+    zvel?: number;
+
+    /**
+     * Cartesian Z velocity of the target, in kilometers/second, in the specified
+     * alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+     * allow a data source to provide an equivalent vector in a different cartesian
+     * frame than the primary vector.
+     */
+    zvelAlt1?: number;
+
+    /**
+     * Cartesian Z velocity of the target, in kilometers/second, in the specified
+     * alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+     * allow a data source to provide an equivalent vector in a different cartesian
+     * frame than the primary vector.
+     */
+    zvelAlt2?: number;
+  }
 }
 
 /**
@@ -2850,6 +3966,9 @@ export interface EvacFull {
    */
   id?: string;
 
+  /**
+   * Identity and medical information on the patient to be evacuated.
+   */
   casualtyInfo?: Array<EvacFull.CasualtyInfo>;
 
   /**
@@ -2879,6 +3998,9 @@ export interface EvacFull {
    */
   createdBy?: string;
 
+  /**
+   * Data defining any enemy intelligence reported by the requestor.
+   */
   enemyData?: Array<EvacFull.EnemyData>;
 
   /**
@@ -3029,9 +4151,6 @@ export interface EvacFull {
 }
 
 export namespace EvacFull {
-  /**
-   * Identity and medical information on the patient to be evacuated.
-   */
   export interface CasualtyInfo {
     /**
      * The patient age, in years.
@@ -3239,9 +4358,6 @@ export namespace EvacFull {
   }
 
   export namespace CasualtyInfo {
-    /**
-     * Allergy information.
-     */
     export interface Allergy {
       /**
        * Additional comments on the patient's allergy information.
@@ -3254,9 +4370,6 @@ export namespace EvacFull {
       type?: string;
     }
 
-    /**
-     * The group path from transmitter to receiver.
-     */
     export interface Condition {
       /**
        * Body part location or body part referenced in condition. Intended as, but not
@@ -3285,9 +4398,6 @@ export namespace EvacFull {
       type?: string;
     }
 
-    /**
-     * Medical condition causation information.
-     */
     export interface Etiology {
       /**
        * The body part or location affected from the etiology. Intended as, but not
@@ -3316,9 +4426,6 @@ export namespace EvacFull {
       type?: string;
     }
 
-    /**
-     * Health state information.
-     */
     export interface HealthState {
       /**
        * Medical color code used to quickly identify various medical state (e.g. AMBER,
@@ -3343,9 +4450,6 @@ export namespace EvacFull {
       type?: string;
     }
 
-    /**
-     * Injury specifics.
-     */
     export interface Injury {
       /**
        * Body part location of the injury. Intended as, but not constrained to, K07.1
@@ -3379,9 +4483,6 @@ export namespace EvacFull {
       type?: string;
     }
 
-    /**
-     * Medication specifics.
-     */
     export interface Medication {
       /**
        * Route of medication delivery (e.g. INJECTION, ORAL, etc.).
@@ -3422,9 +4523,6 @@ export namespace EvacFull {
       type?: string;
     }
 
-    /**
-     * Treatment information.
-     */
     export interface Treatment {
       /**
        * Body part location or body part treated or to be treated. Intended as, but not
@@ -3454,9 +4552,6 @@ export namespace EvacFull {
       type?: string;
     }
 
-    /**
-     * Information obtained for vital signs.
-     */
     export interface VitalSignData {
       /**
        * Medical confidence factor.
@@ -3488,9 +4583,6 @@ export namespace EvacFull {
     }
   }
 
-  /**
-   * Data defining any enemy intelligence reported by the requestor.
-   */
   export interface EnemyData {
     /**
      * Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -3514,9 +4606,6 @@ export namespace EvacFull {
     hostileFireType?: string;
   }
 
-  /**
-   * Related document ids.
-   */
   export interface RelatedDoc {
     /**
      * List of data sources related to this document.
@@ -3530,9 +4619,6 @@ export namespace EvacFull {
   }
 
   export namespace RelatedDoc {
-    /**
-     * List of data sources related to this document.
-     */
     export interface DataSourceRef {
       /**
        * Data source id.
@@ -4330,6 +5416,11 @@ export interface FlightPlanFull {
   star?: string;
 
   /**
+   * Status of this flight plan (e.g., ACTIVE, APPROVED, PLANNED, etc.).
+   */
+  status?: string;
+
+  /**
    * The tail number of the aircraft associated with this flight plan.
    */
   tailNumber?: string;
@@ -4379,6 +5470,17 @@ export interface FlightPlanFull {
    * The amount of unusable fuel in pounds.
    */
   unusableFuel?: number;
+
+  /**
+   * Time the row was last updated in the database, auto-populated by the system.
+   */
+  updatedAt?: string;
+
+  /**
+   * Application user who updated the row in the database, auto-populated by the
+   * system.
+   */
+  updatedBy?: string;
 
   /**
    * The wake turbulence category for this flight. The categories are assigned by the
@@ -5082,7 +6184,10 @@ export interface Onorbit {
    */
   decayDate?: string;
 
-  entityCollection?: Array<EntitiesAPI.EntityFull>;
+  /**
+   * Read-only entity details (only returned/used on detail queries).
+   */
+  entityCollection?: Array<Onorbit.EntityCollection>;
 
   /**
    * For the public catalog, the idOnOrbit is typically the satellite number as a
@@ -5166,9 +6271,6 @@ export interface Onorbit {
 }
 
 export namespace Onorbit {
-  /**
-   * Read-only collection of antennas on this on-orbit object.
-   */
   export interface Antenna {
     /**
      * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -5257,9 +6359,6 @@ export namespace Onorbit {
     updatedBy?: string;
   }
 
-  /**
-   * Read-only collection of batteries on this on-orbit object.
-   */
   export interface Battery {
     /**
      * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -5349,6 +6448,1194 @@ export namespace Onorbit {
      * system.
      */
     updatedBy?: string;
+  }
+
+  /**
+   * An entity is a generic representation of any object within a space/SSA system
+   * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+   * entity can have an operating unit, a location (if terrestrial), and statuses.
+   */
+  export interface EntityCollection {
+    /**
+     * Classification marking of the data in IC/CAPCO Portion-marked format.
+     */
+    classificationMarking: string;
+
+    /**
+     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+     *
+     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+     * may include both real and simulated data.
+     *
+     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+     * events, and analysis.
+     *
+     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+     * datasets.
+     *
+     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+     * requirements, and for validating technical, functional, and performance
+     * characteristics.
+     */
+    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+    /**
+     * Unique entity name.
+     */
+    name: string;
+
+    /**
+     * Source of the data.
+     */
+    source: string;
+
+    /**
+     * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
+     * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+     */
+    type:
+      | 'AIRCRAFT'
+      | 'BUS'
+      | 'COMM'
+      | 'IR'
+      | 'NAVIGATION'
+      | 'ONORBIT'
+      | 'RFEMITTER'
+      | 'SCIENTIFIC'
+      | 'SENSOR'
+      | 'SITE'
+      | 'VESSEL';
+
+    /**
+     * The country code. This value is typically the ISO 3166 Alpha-2 two-character
+     * country code, however it can also represent various consortiums that do not
+     * appear in the ISO document. The code must correspond to an existing country in
+     * the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+     * ISO Alpha-3 code, or alternate code values that exist for the specified country
+     * code.
+     */
+    countryCode?: string;
+
+    /**
+     * Time the row was created in the database, auto-populated by the system.
+     */
+    createdAt?: string;
+
+    /**
+     * Application user who created the row in the database, auto-populated by the
+     * system.
+     */
+    createdBy?: string;
+
+    /**
+     * Unique identifier of the record.
+     */
+    idEntity?: string;
+
+    /**
+     * Unique identifier of the entity location, if terrestrial/fixed.
+     */
+    idLocation?: string;
+
+    /**
+     * Onorbit identifier if this entity is part of an on-orbit object. For the public
+     * catalog, the idOnOrbit is typically the satellite number as a string, but may be
+     * a UUID for analyst or other unknown or untracked satellites.
+     */
+    idOnOrbit?: string;
+
+    /**
+     * Unique identifier of the associated operating unit object.
+     */
+    idOperatingUnit?: string;
+
+    /**
+     * Model representation of a location, which is a specific fixed point on the earth
+     * and is used to denote the locations of fixed sensors, operating units, etc.
+     */
+    location?: LocationAPI.LocationFull;
+
+    /**
+     * Model representation of a unit or organization which operates or controls a
+     * space-related Entity such as an on-orbit payload, a sensor, etc. A contact may
+     * belong to an organization.
+     */
+    operatingUnit?: EntityCollection.OperatingUnit;
+
+    /**
+     * Originating system or organization which produced the data, if different from
+     * the source. The origin may be different than the source if the source was a
+     * mediating system which forwarded the data on behalf of the origin system. If
+     * null, the source may be assumed to be the origin.
+     */
+    origin?: string;
+
+    /**
+     * The originating source network on which this record was created, auto-populated
+     * by the system.
+     */
+    origNetwork?: string;
+
+    /**
+     * Type of organization which owns this entity (e.g. Commercial, Government,
+     * Academic, Consortium, etc).
+     */
+    ownerType?: 'Commercial' | 'Government' | 'Academic' | 'Consortium' | 'Other';
+
+    /**
+     * Read-only collection of RF bands utilized by this entity for communication
+     * and/or operation.
+     */
+    rfBands?: Array<EntityCollection.RfBand>;
+
+    /**
+     * Read-only collection of statuses which can be collected by multiple sources.
+     */
+    statusCollection?: Array<EntityCollection.StatusCollection>;
+
+    /**
+     * Boolean indicating if this entity is taskable.
+     */
+    taskable?: boolean;
+
+    /**
+     * Terrestrial identifier of this entity, if applicable.
+     */
+    terrestrialId?: string;
+
+    /**
+     * Time the row was last updated in the database, auto-populated by the system.
+     */
+    updatedAt?: string;
+
+    /**
+     * Application user who updated the row in the database, auto-populated by the
+     * system.
+     */
+    updatedBy?: string;
+
+    /**
+     * List of URLs to additional details/documents for this entity.
+     */
+    urls?: Array<string>;
+  }
+
+  export namespace EntityCollection {
+    /**
+     * Model representation of a unit or organization which operates or controls a
+     * space-related Entity such as an on-orbit payload, a sensor, etc. A contact may
+     * belong to an organization.
+     */
+    export interface OperatingUnit {
+      /**
+       * Classification marking of the data in IC/CAPCO Portion-marked format.
+       */
+      classificationMarking: string;
+
+      /**
+       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+       *
+       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+       * may include both real and simulated data.
+       *
+       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+       * events, and analysis.
+       *
+       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+       * datasets.
+       *
+       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+       * requirements, and for validating technical, functional, and performance
+       * characteristics.
+       */
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+      /**
+       * Name of the operating unit.
+       */
+      name: string;
+
+      /**
+       * Source of the data.
+       */
+      source: string;
+
+      /**
+       * Air Defense District (ADD) or Air Defense Area (ADA) in which the geographic
+       * coordinates reside.
+       */
+      airDefArea?: string;
+
+      /**
+       * The DoD Standard country code designator for the country or political entity to
+       * which the operating unit owes its allegiance. This field will be set to "OTHR"
+       * if the source value does not match a UDL country code value (ISO-3166-ALPHA-2).
+       */
+      allegiance?: string;
+
+      /**
+       * Specifies an alternate allegiance code if the data provider code is not part of
+       * an official Country Code standard such as ISO-3166 or FIPS. This field will be
+       * set to the value provided by the source and should be used for all Queries
+       * specifying allegiance.
+       */
+      altAllegiance?: string;
+
+      /**
+       * Specifies an alternate country code if the data provider code is not part of an
+       * official Country Code standard such as ISO-3166 or FIPS. This field will be set
+       * to the value provided by the source and should be used for all Queries
+       * specifying a Country Code.
+       */
+      altCountryCode?: string;
+
+      /**
+       * Unique identifier of the operating unit record from the originating system.
+       */
+      altOperatingUnitId?: string;
+
+      /**
+       * Indicates the importance of the operating unit to the OES or MIR system. This
+       * data element is restricted to update by DIA (DB-4). Valid values are: 0 - Does
+       * not meet criteria above 1 - Primary importance to system 2 - Secondary
+       * importance to system 3 - Tertiary importance to system O - Other. Explain in
+       * Remarks.
+       */
+      classRating?: string;
+
+      /**
+       * The physical manner of being or state of existence of the operating unit. A
+       * physical condition that must be considered in the determining of a course of
+       * action. The specific usage and enumerations contained in this field may be found
+       * in the documentation provided in the referenceDoc field. If referenceDoc not
+       * provided, users may consult the data provider.
+       */
+      condition?: string;
+
+      /**
+       * Availability of the operating unit relative to its condition. Indicates the
+       * reason the operating unit is not fully operational. The specific usage and
+       * enumerations contained in this field may be found in the documentation provided
+       * in the referenceDoc field. If referenceDoc not provided, users may consult the
+       * data provider.
+       */
+      conditionAvail?: string;
+
+      /**
+       * Indicates any of the magnitudes that serve to define the position of a point by
+       * reference to a fixed figure, system of lines, etc.
+       *
+       * Pos. 1-2. Latitude Degrees [00-90]
+       *
+       * Pos. 3-4. Latitude Minutes [00-59]
+       *
+       * Pos. 5-6. Latitude Seconds [00-59]
+       *
+       * Pos. 7-9. Latitude Thousandths Of Seconds [000-999]
+       *
+       * Pos. 10. Latitude Hemisphere [NS]
+       *
+       * Pos. 11-13. Longitude Degrees [00-180]
+       *
+       * Pos. 14-15. Longitude Minutes [00-59]
+       *
+       * Pos. 16-17. Longitude Seconds [00-59]
+       *
+       * Pos. 18-20. Longitude Thousandths Of Seconds [000-999]
+       *
+       * Pos. 21. Longitude Hemisphere [EW]
+       *
+       * Pos. 1-21. Unknown Latitude and Unknown Longitude [000000000U000000000U]
+       */
+      coord?: string;
+
+      /**
+       * A mathematical model of the earth used to calculate coordinates on a map. US
+       * Forces use the World Geodetic System 1984 (WGS 84), but also use maps by allied
+       * countries with local datums. The datum must be specified to ensure accuracy of
+       * coordinates. The specific usage and enumerations contained in this field may be
+       * found in the documentation provided in the referenceDoc field. If referenceDoc
+       * not provided, users may consult the data provider.
+       */
+      coordDatum?: string;
+
+      /**
+       * Indicates the plus or minus error assessed against the method used to derive the
+       * coordinate.
+       */
+      coordDerivAcc?: number;
+
+      /**
+       * The DoD Standard country code designator for the country or political entity to
+       * which the operating unit geographic coordinates reside . This field will be set
+       * to "OTHR" if the source value does not match a UDL country code value
+       * (ISO-3166-ALPHA-2).
+       */
+      countryCode?: string;
+
+      /**
+       * Time the row was created in the database, auto-populated by the system.
+       */
+      createdAt?: string;
+
+      /**
+       * Application user who created the row in the database, auto-populated by the
+       * system.
+       */
+      createdBy?: string;
+
+      /**
+       * A code describing the amount of operating unit participation in a deployment.
+       * The specific usage and enumerations contained in this field may be found in the
+       * documentation provided in the referenceDoc field. If referenceDoc not provided,
+       * users may consult the data provider.
+       */
+      deployStatus?: string;
+
+      /**
+       * Description of the operating unit.
+       */
+      description?: string;
+
+      /**
+       * Combat status of a divisional or equivalent operating unit. Currently, this data
+       * element applies only to operating units of the Former Soviet Union. The specific
+       * usage and enumerations contained in this field may be found in the documentation
+       * provided in the referenceDoc field. If referenceDoc not provided, users may
+       * consult the data provider.
+       */
+      divCat?: string;
+
+      /**
+       * Organizational level of the operating unit. The specific usage and enumerations
+       * contained in this field may be found in the documentation provided in the
+       * referenceDoc field. If referenceDoc not provided, users may consult the data
+       * provider.
+       */
+      echelon?: string;
+
+      /**
+       * Indicates the major group or level to which an echelon belongs. The specific
+       * usage and enumerations contained in this field may be found in the documentation
+       * provided in the referenceDoc field. If referenceDoc not provided, users may
+       * consult the data provider.
+       */
+      echelonTier?: string;
+
+      /**
+       * Ground elevation of the geographic coordinates referenced to (above or below)
+       * Mean Sea Level (MSL) vertical datum.
+       */
+      elevMsl?: number;
+
+      /**
+       * Indicates the confidence level expressed as a percent that a specific geometric
+       * spatial element, ELEVATION_MSL linear accuracy, has been vertically positioned
+       * to within a specified vertical accuracy.
+       */
+      elevMslConfLvl?: number;
+
+      /**
+       * Indicates the plus or minus error assessed against the method used to derive the
+       * elevation.
+       */
+      elevMslDerivAcc?: number;
+
+      /**
+       * The Intelligence Confidence Level or the Reliability/degree of confidence that
+       * the analyst has assigned to the data within this record. The numerical range is
+       * from 1 to 9 with 1 representing the highest confidence level.
+       */
+      eval?: number;
+
+      /**
+       * The country code of the observed flag flown.
+       */
+      flagFlown?: string;
+
+      /**
+       * Naval fleet to which an operating unit is assigned. The specific usage and
+       * enumerations contained in this field may be found in the documentation provided
+       * in the referenceDoc field. If referenceDoc not provided, users may consult the
+       * data provider.
+       */
+      fleetId?: string;
+
+      /**
+       * An aggregation of military units within a single service (i.e., ARMY, AIR FORCE,
+       * etc.) which operates under a single authority to accomplish a common mission.
+       * The specific usage and enumerations contained in this field may be found in the
+       * documentation provided in the referenceDoc field. If referenceDoc not provided,
+       * users may consult the data provider.
+       */
+      force?: string;
+
+      /**
+       * The specific name for a given force. For example, Force = ADF (Air Defense
+       * Force) and Force Name = Army Air Defense Force.
+       */
+      forceName?: string;
+
+      /**
+       * Functional Production Area (FPA) under the Shared Production Program (SPP).
+       * Producers are defined per country per FPA. The specific usage and enumerations
+       * contained in this field may be found in the documentation provided in the
+       * referenceDoc field. If referenceDoc not provided, users may consult the data
+       * provider.
+       */
+      fpa?: string;
+
+      /**
+       * Principal combat-related role that an operating unit is organized, structured
+       * and equipped to perform. Or, the specialized military or paramilitary branch in
+       * which an individual serves, their specialization. The specific usage and
+       * enumerations contained in this field may be found in the documentation provided
+       * in the referenceDoc field. If referenceDoc not provided, users may consult the
+       * data provider.
+       */
+      functRole?: string;
+
+      /**
+       * The distance between Mean Sea Level and a referenced ellipsoid.
+       */
+      geoidalMslSep?: number;
+
+      /**
+       * Unique identifier of the contact for this operating unit.
+       */
+      idContact?: string;
+
+      /**
+       * Estimated identity of the Site (ASSUMED FRIEND, FRIEND, HOSTILE, FAKER, JOKER,
+       * NEUTRAL, PENDING, SUSPECT, UNKNOWN):
+       *
+       * ASSUMED FRIEND: Track assumed to be a friend due to the object characteristics,
+       * behavior, and/or origin.
+       *
+       * FRIEND: Track object supporting friendly forces and belonging to a declared
+       * friendly nation or entity.
+       *
+       * HOSTILE: Track object belonging to an opposing nation, party, group, or entity
+       * deemed to contribute to a threat to friendly forces or their mission due to its
+       * behavior, characteristics, nationality, or origin.
+       *
+       * FAKER: Friendly track, object, or entity acting as an exercise hostile.
+       *
+       * JOKER: Friendly track, object, or entity acting as an exercise suspect.
+       *
+       * NEUTRAL: Track object whose characteristics, behavior, nationality, and/or
+       * origin indicate that it is neither supporting nor opposing friendly forces or
+       * their mission.
+       *
+       * PENDING: Track object which has not been evaluated.
+       *
+       * SUSPECT: Track object deemed potentially hostile due to the object
+       * characteristics, behavior, nationality, and/or origin.
+       *
+       * UNKNOWN: Track object which has been evaluated and does not meet criteria for
+       * any standard identity.
+       */
+      ident?: string;
+
+      /**
+       * Unique identifier of the location record for this operating unit.
+       */
+      idLocation?: string;
+
+      /**
+       * Unique identifier of the record, auto-generated by the system.
+       */
+      idOperatingUnit?: string;
+
+      /**
+       * Unique identifier of the organization record for this operating unit.
+       */
+      idOrganization?: string;
+
+      /**
+       * WGS84 latitude of the location, in degrees. -90 to 90 degrees (negative values
+       * south of equator).
+       */
+      lat?: number;
+
+      /**
+       * Model representation of a location, which is a specific fixed point on the earth
+       * and is used to denote the locations of fixed sensors, operating units, etc.
+       */
+      location?: LocationAPI.LocationFull;
+
+      /**
+       * Location name for the coordinates.
+       */
+      locName?: string;
+
+      /**
+       * Indicates the reason that the operating unit is at that location. The specific
+       * usage and enumerations contained in this field may be found in the documentation
+       * provided in the referenceDoc field. If referenceDoc not provided, users may
+       * consult the data provider.
+       */
+      locReason?: string;
+
+      /**
+       * WGS84 longitude of the location, in degrees. -180 to 180 degrees (negative
+       * values west of Prime Meridian).
+       */
+      lon?: number;
+
+      /**
+       * This field contains a value indicating whether the record is a master unit
+       * record (True) or a detail record (False). Master records contain basic
+       * information that does not change over time for each unit that has been selected
+       * to be projected.
+       */
+      masterUnit?: boolean;
+
+      /**
+       * The Military Grid Reference System is the geocoordinate standard used by NATO
+       * militaries for locating points on Earth. The MGRS is derived from the Universal
+       * Transverse Mercator (UTM) grid system and the Universal Polar Stereographic
+       * (UPS) grid system, but uses a different labeling convention. The MGRS is used as
+       * geocode for the entire Earth. Example of an milgrid coordinate, or grid
+       * reference, would be 4QFJ12345678, which consists of three parts: 4Q (grid zone
+       * designator, GZD) FJ (the 100,000-meter square identifier) 12345678 (numerical
+       * location; easting is 1234 and northing is 5678, in this case specifying a
+       * location with 10 m resolution).
+       */
+      milGrid?: string;
+
+      /**
+       * Indicates the grid system used in the development of the milGrid coordinates.
+       * Values are:
+       *
+       * UPS - Universal Polar System
+       *
+       * UTM - Universal Transverse Mercator
+       */
+      milGridSys?: string;
+
+      /**
+       * Indicates the principal type of mission that an operating unit is organized and
+       * equipped to perform. The specific usage and enumerations contained in this field
+       * may be found in the documentation provided in the referenceDoc field. If
+       * referenceDoc not provided, users may consult the data provider.
+       */
+      msnPrimary?: string;
+
+      /**
+       * Indicates the principal specialty type of mission that an operating unit is
+       * organized and equipped to perform. The specific usage and enumerations contained
+       * in this field may be found in the documentation provided in the referenceDoc
+       * field. If referenceDoc not provided, users may consult the data provider.
+       */
+      msnPrimarySpecialty?: string;
+
+      /**
+       * Remarks contain amplifying information for a specific service. The information
+       * may contain context and interpretations for consumer use.
+       */
+      operatingUnitRemarks?: Array<OperatingUnit.OperatingUnitRemark>;
+
+      /**
+       * The Degree to which an operating unit is ready to perform the overall
+       * operational mission(s) for which it was organized and equipped. The specific
+       * usage and enumerations contained in this field may be found in the documentation
+       * provided in the referenceDoc field. If referenceDoc not provided, users may
+       * consult the data provider.
+       */
+      operStatus?: string;
+
+      /**
+       * An organization such as a corporation, manufacturer, consortium, government,
+       * etc. An organization may have parent and child organizations as well as link to
+       * a former organization if this org previously existed as another organization.
+       */
+      organization?: OrganizationAPI.OrganizationFull;
+
+      /**
+       * Originating system or organization which produced the data, if different from
+       * the source. The origin may be different than the source if the source was a
+       * mediating system which forwarded the data on behalf of the origin system. If
+       * null, the source may be assumed to be the origin.
+       */
+      origin?: string;
+
+      /**
+       * Political subdivision in which the geographic coordinates reside. The specific
+       * usage and enumerations contained in this field may be found in the documentation
+       * provided in the referenceDoc field. If referenceDoc not provided, users may
+       * consult the data provider.
+       */
+      polSubdiv?: string;
+
+      /**
+       * Validity and currency of the data in the record to be used in conjunction with
+       * the other elements in the record as defined by SOPs. Values are: A - Active I -
+       * Inactive K - Acknowledged L - Local Q - A nominated (NOM) or Data Change Request
+       * (DCR) record R - Production reduced by CMD decision W - Working Record.
+       */
+      recStatus?: string;
+
+      /**
+       * The reference documentiation that specifies the usage and enumerations contained
+       * in this record. If referenceDoc not provided, users may consult the data
+       * provider.
+       */
+      referenceDoc?: string;
+
+      /**
+       * Responsible Producer - Organization that is responsible for the maintenance of
+       * the record.
+       */
+      resProd?: string;
+
+      /**
+       * Date on which the data in the record was last reviewed by the responsible
+       * analyst for accuracy and currency. This date cannot be greater than the current
+       * date.
+       */
+      reviewDate?: string;
+
+      /**
+       * This field contains a value indicating whether the record is a stylized
+       * operating unit record (True) or a regular operating unit record (False). A
+       * stylized operating unit is a type of operating unit with one set of equipment
+       * that can be assigned to one or more superiors. A stylized operating unit is
+       * generally useful for lower echelon operating units where the number of operating
+       * units and types of equipment are equal for multiple organizations. In lieu of
+       * creating unique operating unit records for each operating unit, a template is
+       * created for the operating unit and its equipment. This template enables the user
+       * to assign the operating unit to multiple organizations.
+       */
+      stylizedUnit?: boolean;
+
+      /**
+       * A standard scheme for symbol coding enabling the transfer, display and use of
+       * symbols and graphics among information systems, as per MIL-STD 2525B, and
+       * supported by the element AFFILIATION.
+       */
+      symCode?: string;
+
+      /**
+       * An optional identifier for this operating unit that may be composed from items
+       * such as the originating organization, allegiance, one-up number, etc.
+       */
+      unitIdentifier?: string;
+
+      /**
+       * Time the row was last updated in the database, auto-populated by the system.
+       */
+      updatedAt?: string;
+
+      /**
+       * Application user who updated the row in the database, auto-populated by the
+       * system.
+       */
+      updatedBy?: string;
+
+      /**
+       * Universal Transverse Mercator (UTM) grid coordinates. Pos. 1-2, UTM Zone Column
+       * [01-60 Pos. 3, UTM Zone Row [C-HJ-NP-X] Pos. 4, UTM False Easting [0-9] Pos.
+       * 5-9, UTM Meter Easting [0-9][0-9][0-9][0-9][0-9] Pos. 10-11, UTM False Northing
+       * [0-9][0-9] Pos. 12-16, UTM Meter Northing [0-9][0-9][0-9][0-9][0-9].
+       */
+      utm?: string;
+
+      /**
+       * World Aeronautical Chart identifier for the area in which a designated operating
+       * unit is located.
+       */
+      wac?: string;
+    }
+
+    export namespace OperatingUnit {
+      /**
+       * Remarks contain amplifying information for a specific service. The information
+       * may contain context and interpretations for consumer use.
+       */
+      export interface OperatingUnitRemark {
+        /**
+         * Classification marking of the data in IC/CAPCO Portion-marked format.
+         */
+        classificationMarking: string;
+
+        /**
+         * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+         *
+         * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+         * may include both real and simulated data.
+         *
+         * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+         * events, and analysis.
+         *
+         * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+         * datasets.
+         *
+         * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+         * requirements, and for validating technical, functional, and performance
+         * characteristics.
+         */
+        dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+        /**
+         * The ID of the operating unit to which this remark applies.
+         */
+        idOperatingUnit: string;
+
+        /**
+         * Source of the data.
+         */
+        source: string;
+
+        /**
+         * The text of the remark.
+         */
+        text: string;
+
+        /**
+         * Unique identifier of the record, auto-generated by the system.
+         */
+        id?: string;
+
+        /**
+         * Unique identifier of the unit remark record from the originating system.
+         */
+        altRmkId?: string;
+
+        /**
+         * The remark type identifier. For example, the Mobility Air Forces (MAF) remark
+         * code, defined in the Airfield Suitability and Restriction Report (ASRR).
+         */
+        code?: string;
+
+        /**
+         * Time the row was created in the database, auto-populated by the system.
+         */
+        createdAt?: string;
+
+        /**
+         * Application user who created the row in the database, auto-populated by the
+         * system.
+         */
+        createdBy?: string;
+
+        /**
+         * The name of the remark.
+         */
+        name?: string;
+
+        /**
+         * Originating system or organization which produced the data, if different from
+         * the source. The origin may be different than the source if the source was a
+         * mediating system which forwarded the data on behalf of the origin system. If
+         * null, the source may be assumed to be the origin.
+         */
+        origin?: string;
+
+        /**
+         * The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
+         */
+        type?: string;
+
+        /**
+         * Time the row was last updated in the database, auto-populated by the system.
+         */
+        updatedAt?: string;
+
+        /**
+         * Application user who updated the row in the database, auto-populated by the
+         * system.
+         */
+        updatedBy?: string;
+      }
+    }
+
+    /**
+     * Details on a particular Radio Frequency (RF) band, also known as a carrier,
+     * which may be in use by any type of Entity for communications or operations.
+     */
+    export interface RfBand {
+      /**
+       * Classification marking of the data in IC/CAPCO Portion-marked format.
+       */
+      classificationMarking: string;
+
+      /**
+       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+       *
+       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+       * may include both real and simulated data.
+       *
+       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+       * events, and analysis.
+       *
+       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+       * datasets.
+       *
+       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+       * requirements, and for validating technical, functional, and performance
+       * characteristics.
+       */
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+      /**
+       * Unique identifier of the parent Entity which uses this band.
+       */
+      idEntity: string;
+
+      /**
+       * RF Band name.
+       */
+      name: string;
+
+      /**
+       * Source of the data.
+       */
+      source: string;
+
+      /**
+       * Unique identifier of the record, auto-generated by the system.
+       */
+      id?: string;
+
+      /**
+       * Name of the band of this RF range (e.g.
+       * X,K,Ku,Ka,L,S,C,UHF,VHF,EHF,SHF,UNK,VLF,HF,E,Q,V,W). See RFBandType for more
+       * details and descriptions of each band name.
+       */
+      band?: string;
+
+      /**
+       * RF Band frequency range bandwidth in Mhz.
+       */
+      bandwidth?: number;
+
+      /**
+       * Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
+       * degrees.
+       */
+      beamwidth?: number;
+
+      /**
+       * Center frequency of RF frequency range, if applicable, in Mhz.
+       */
+      centerFreq?: number;
+
+      /**
+       * Time the row was created in the database, auto-populated by the system.
+       */
+      createdAt?: string;
+
+      /**
+       * Application user who created the row in the database, auto-populated by the
+       * system.
+       */
+      createdBy?: string;
+
+      /**
+       * RF Range edge gain, in dBi.
+       */
+      edgeGain?: number;
+
+      /**
+       * EIRP is defined as the RMS power input in decibel watts required to a lossless
+       * half-wave dipole antenna to give the same maximum power density far from the
+       * antenna as the actual transmitter. It is equal to the power input to the
+       * transmitter's antenna multiplied by the antenna gain relative to a half-wave
+       * dipole. Effective radiated power and effective isotropic radiated power both
+       * measure the amount of power a radio transmitter and antenna (or other source of
+       * electromagnetic waves) radiates in a specific direction: in the direction of
+       * maximum signal strength (the "main lobe") of its radiation pattern.
+       */
+      eirp?: number;
+
+      /**
+       * Effective Radiated Power (ERP) is the total power in decibel watts radiated by
+       * an actual antenna relative to a half-wave dipole rather than a theoretical
+       * isotropic antenna. A half-wave dipole has a gain of 2.15 dB compared to an
+       * isotropic antenna. EIRP(dB) = ERP (dB)+2.15 dB or EIRP (W) = 1.64\*ERP(W).
+       * Effective radiated power and effective isotropic radiated power both measure the
+       * amount of power a radio transmitter and antenna (or other source of
+       * electromagnetic waves) radiates in a specific direction: in the direction of
+       * maximum signal strength (the "main lobe") of its radiation pattern.
+       */
+      erp?: number;
+
+      /**
+       * End/maximum of transmit RF frequency range, if applicable, in Mhz.
+       */
+      freqMax?: number;
+
+      /**
+       * Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+       */
+      freqMin?: number;
+
+      /**
+       * RF Band mode (e.g. TX, RX).
+       */
+      mode?: 'TX' | 'RX';
+
+      /**
+       * Originating system or organization which produced the data, if different from
+       * the source. The origin may be different than the source if the source was a
+       * mediating system which forwarded the data on behalf of the origin system. If
+       * null, the source may be assumed to be the origin.
+       */
+      origin?: string;
+
+      /**
+       * The originating source network on which this record was created, auto-populated
+       * by the system.
+       */
+      origNetwork?: string;
+
+      /**
+       * RF Range maximum gain, in dBi.
+       */
+      peakGain?: number;
+
+      /**
+       * Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
+       * Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
+       * (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
+       * R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
+       * surface.
+       */
+      polarization?: 'H' | 'V' | 'R' | 'L';
+
+      /**
+       * Purpose or use of the RF Band -- COMM = communications, TTC =
+       * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+       */
+      purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
+
+      /**
+       * Time the row was last updated in the database, auto-populated by the system.
+       */
+      updatedAt?: string;
+
+      /**
+       * Application user who updated the row in the database, auto-populated by the
+       * system.
+       */
+      updatedBy?: string;
+    }
+
+    /**
+     * Status for a particular Entity. An entity may have multiple status records
+     * collected by various sources.
+     */
+    export interface StatusCollection {
+      /**
+       * Classification marking of the data in IC/CAPCO Portion-marked format.
+       */
+      classificationMarking: string;
+
+      /**
+       * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+       *
+       * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+       * may include both real and simulated data.
+       *
+       * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+       * events, and analysis.
+       *
+       * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+       * datasets.
+       *
+       * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+       * requirements, and for validating technical, functional, and performance
+       * characteristics.
+       */
+      dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+      /**
+       * Unique identifier of the parent entity.
+       */
+      idEntity: string;
+
+      /**
+       * Source of the data.
+       */
+      source: string;
+
+      /**
+       * Unique identifier of the record, auto-generated by the system.
+       */
+      id?: string;
+
+      /**
+       * Time the row was created in the database, auto-populated by the system.
+       */
+      createdAt?: string;
+
+      /**
+       * Application user who created the row in the database, auto-populated by the
+       * system.
+       */
+      createdBy?: string;
+
+      /**
+       * The declassification date of this data, in ISO 8601 UTC format.
+       */
+      declassificationDate?: string;
+
+      /**
+       * Declassification string of this data.
+       */
+      declassificationString?: string;
+
+      /**
+       * The sources or SCG references from which the classification of this data is
+       * derived.
+       */
+      derivedFrom?: string;
+
+      /**
+       * Comments describing the status creation and or updates to an entity.
+       */
+      notes?: string;
+
+      /**
+       * Operation capability of the entity, if applicable (e.g. FMC, NMC, PMC, UNK).
+       */
+      opsCap?: 'FMC' | 'NMC' | 'PMC' | 'UNK';
+
+      /**
+       * Originating system or organization which produced the data, if different from
+       * the source. The origin may be different than the source if the source was a
+       * mediating system which forwarded the data on behalf of the origin system. If
+       * null, the source may be assumed to be the origin.
+       */
+      origin?: string;
+
+      /**
+       * The originating source network on which this record was created, auto-populated
+       * by the system.
+       */
+      origNetwork?: string;
+
+      /**
+       * Overall state of the entity, if applicable (e.g. UNKNOWN, DEAD, ACTIVE, RF
+       * ACTIVE, STANDBY).
+       */
+      state?: 'UNKNOWN' | 'DEAD' | 'ACTIVE' | 'RF ACTIVE' | 'STANDBY';
+
+      subStatusCollection?: Array<StatusCollection.SubStatusCollection>;
+
+      /**
+       * System capability of the entity, if applicable (e.g. FMC, NMC, PMC, UNK).
+       */
+      sysCap?: 'FMC' | 'NMC' | 'PMC' | 'UNK';
+
+      /**
+       * Time the row was last updated in the database, auto-populated by the system.
+       */
+      updatedAt?: string;
+
+      /**
+       * Application user who updated the row in the database, auto-populated by the
+       * system.
+       */
+      updatedBy?: string;
+    }
+
+    export namespace StatusCollection {
+      /**
+       * Additional sub-system or capability status for the parent entity.
+       */
+      export interface SubStatusCollection {
+        /**
+         * Classification marking of the data in IC/CAPCO Portion-marked format.
+         */
+        classificationMarking: string;
+
+        /**
+         * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+         *
+         * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+         * may include both real and simulated data.
+         *
+         * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+         * events, and analysis.
+         *
+         * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+         * datasets.
+         *
+         * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+         * requirements, and for validating technical, functional, and performance
+         * characteristics.
+         */
+        dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+        /**
+         * Descriptions and/or comments associated with the sub-status.
+         */
+        notes: string;
+
+        /**
+         * Source of the data.
+         */
+        source: string;
+
+        /**
+         * Status of the sub-system/capability, e.g. FMC, NMC, PMC, UNK.
+         */
+        status: 'FMC' | 'NMC' | 'PMC' | 'UNK';
+
+        /**
+         * Id of the parent status.
+         */
+        statusId: string;
+
+        /**
+         * Parent entity's sub-system or capability status: mwCap, mdCap, ssCap, etc.
+         */
+        type: 'mwCap' | 'ssCap' | 'mdCap';
+
+        /**
+         * Unique identifier of the record, auto-generated by the system.
+         */
+        id?: string;
+
+        /**
+         * Time the row was created in the database, auto-populated by the system.
+         */
+        createdAt?: string;
+
+        /**
+         * Application user who created the row in the database, auto-populated by the
+         * system.
+         */
+        createdBy?: string;
+
+        /**
+         * Originating system or organization which produced the data, if different from
+         * the source. The origin may be different than the source if the source was a
+         * mediating system which forwarded the data on behalf of the origin system. If
+         * null, the source may be assumed to be the origin.
+         */
+        origin?: string;
+
+        /**
+         * The originating source network on which this record was created, auto-populated
+         * by the system.
+         */
+        origNetwork?: string;
+
+        /**
+         * Time the row was updated in the database, auto-populated by the system.
+         */
+        updatedAt?: string;
+
+        /**
+         * Application user who updated the row in the database, auto-populated by the
+         * system.
+         */
+        updatedBy?: string;
+      }
+    }
   }
 
   /**
@@ -5644,9 +7931,6 @@ export namespace Onorbit {
     vismagMin?: number;
   }
 
-  /**
-   * Read-only collection of solar arrays on this on-orbit object.
-   */
   export interface SolarArray {
     /**
      * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -5826,9 +8110,6 @@ export namespace Onorbit {
     }
   }
 
-  /**
-   * Read-only collection of thrusters (engines) on this on-orbit object.
-   */
   export interface Thruster {
     /**
      * Classification marking of the data in IC/CAPCO Portion-marked format.

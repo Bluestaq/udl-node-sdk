@@ -78,7 +78,8 @@ export interface EoObservationFull {
   dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
   /**
-   * Ob detection time in ISO 8601 UTC with microsecond precision.
+   * Ob detection time in ISO 8601 UTC, up to microsecond precision. Consumers should
+   * contact the provider for details on their obTime specifications.
    */
   obTime: string;
 
@@ -93,7 +94,10 @@ export interface EoObservationFull {
   id?: string;
 
   /**
-   * Line of sight azimuth angle in degrees and topocentric frame.
+   * Line of sight azimuth angle in degrees and topocentric frame. Reported value
+   * should include all applicable corrections as specified on the source provider
+   * data card. If uncertain, consumers should contact the provider for details on
+   * the applied corrections.
    */
   azimuth?: number;
 
@@ -101,6 +105,13 @@ export interface EoObservationFull {
    * Sensor line of sight azimuth angle bias in degrees.
    */
   azimuthBias?: number;
+
+  /**
+   * Optional flag indicating whether the azimuth value is measured (true) or
+   * computed (false). If null, consumers may consult the data provider for
+   * information regarding whether the corresponding value is computed or measured.
+   */
+  azimuthMeasured?: boolean;
 
   /**
    * Rate of change of the line of sight azimuth in degrees per second.
@@ -124,8 +135,9 @@ export interface EoObservationFull {
   collectMethod?: string;
 
   /**
-   * Object Correlation Quality value (non-standardized). Users should consult data
-   * providers regarding the expected range of values.
+   * Object Correlation Quality score of the observation when compared to a known
+   * orbit state, (non-standardized). Users should consult data providers regarding
+   * the expected range of values.
    */
   corrQuality?: number;
 
@@ -142,7 +154,10 @@ export interface EoObservationFull {
 
   /**
    * Line of sight declination, in degrees, in the specified referenceFrame. If
-   * referenceFrame is null then J2K should be assumed.
+   * referenceFrame is null then J2K should be assumed. Reported value should include
+   * all applicable corrections as specified on the source provider data card. If
+   * uncertain, consumers should contact the provider for details on the applied
+   * corrections.
    */
   declination?: number;
 
@@ -150,6 +165,13 @@ export interface EoObservationFull {
    * Sensor line of sight declination angle bias in degrees.
    */
   declinationBias?: number;
+
+  /**
+   * Optional flag indicating whether the declination value is measured (true) or
+   * computed (false). If null, consumers may consult the data provider for
+   * information regarding whether the corresponding value is computed or measured.
+   */
+  declinationMeasured?: boolean;
 
   /**
    * Line of sight declination rate of change, in degrees/sec, in the specified
@@ -168,7 +190,10 @@ export interface EoObservationFull {
   descriptor?: string;
 
   /**
-   * Line of sight elevation in degrees and topocentric frame.
+   * Line of sight elevation in degrees and topocentric frame. Reported value should
+   * include all applicable corrections as specified on the source provider data
+   * card. If uncertain, consumers should contact the provider for details on the
+   * applied corrections.
    */
   elevation?: number;
 
@@ -176,6 +201,13 @@ export interface EoObservationFull {
    * Sensor line of sight elevation bias in degrees.
    */
   elevationBias?: number;
+
+  /**
+   * Optional flag indicating whether the elevation value is measured (true) or
+   * computed (false). If null, consumers may consult the data provider for
+   * information regarding whether the corresponding value is computed or measured.
+   */
+  elevationMeasured?: boolean;
 
   /**
    * Rate of change of the line of sight elevation in degrees per second.
@@ -194,7 +226,10 @@ export interface EoObservationFull {
   eoobservationDetails?: EoObservationFull.EoobservationDetails;
 
   /**
-   * Image exposure duration in seconds.
+   * Image exposure duration in seconds. For observations performed using frame
+   * stacking or synthetic tracking methods, the exposure duration should be the
+   * total integration time. This field is highly recommended / required if the
+   * observations are going to be used for photometric processing.
    */
   expDuration?: number;
 
@@ -202,6 +237,11 @@ export interface EoObservationFull {
    * The number of RSOs detected in the sensor field of view.
    */
   fovCount?: number;
+
+  /**
+   * The number of uncorrelated tracks in the field of view.
+   */
+  fovCountUCT?: number;
 
   /**
    * For GEO detections, the altitude in km.
@@ -285,7 +325,8 @@ export interface EoObservationFull {
   loszvel?: number;
 
   /**
-   * Calibrated magnitude in units of magnitudes.
+   * Measure of observed brightness calibrated against the Gaia G-band in units of
+   * magnitudes.
    */
   mag?: number;
 
@@ -295,7 +336,7 @@ export interface EoObservationFull {
   magNormRange?: number;
 
   /**
-   * Uncertainty of calibrated magnitude in units of magnitudes.
+   * Uncertainty of the observed brightness in units of magnitudes.
    */
   magUnc?: number;
 
@@ -373,7 +414,10 @@ export interface EoObservationFull {
 
   /**
    * Line of sight right ascension, in degrees, in the specified referenceFrame. If
-   * referenceFrame is null then J2K should be assumed.
+   * referenceFrame is null then J2K should be assumed. Reported value should include
+   * all applicable corrections as specified on the source provider data card. If
+   * uncertain, consumers should contact the provider for details on the applied
+   * corrections.
    */
   ra?: number;
 
@@ -383,7 +427,17 @@ export interface EoObservationFull {
   raBias?: number;
 
   /**
-   * Line of sight range in km.
+   * Optional flag indicating whether the ra value is measured (true) or computed
+   * (false). If null, consumers may consult the data provider for information
+   * regarding whether the corresponding value is computed or measured.
+   */
+  raMeasured?: boolean;
+
+  /**
+   * Line of sight range in km. If referenceFrame is null then J2K should be assumed.
+   * Reported value should include all applicable corrections as specified on the
+   * source provider data card. If uncertain, consumers should contact the provider
+   * for details on the applied corrections.
    */
   range?: number;
 
@@ -393,9 +447,26 @@ export interface EoObservationFull {
   rangeBias?: number;
 
   /**
-   * Rate of change of the line of sight range in km/sec.
+   * Optional flag indicating whether the range value is measured (true) or computed
+   * (false). If null, consumers may consult the data provider for information
+   * regarding whether the corresponding value is computed or measured.
+   */
+  rangeMeasured?: boolean;
+
+  /**
+   * Range rate in km/s. If referenceFrame is null then J2K should be assumed.
+   * Reported value should include all applicable corrections as specified on the
+   * source provider data card. If uncertain, consumers should contact the provider
+   * for details on the applied corrections.
    */
   rangeRate?: number;
+
+  /**
+   * Optional flag indicating whether the rangeRate value is measured (true) or
+   * computed (false). If null, consumers may consult the data provider for
+   * information regarding whether the corresponding value is computed or measured.
+   */
+  rangeRateMeasured?: boolean;
 
   /**
    * One sigma uncertainty in the line of sight range rate, in kilometers/second.
@@ -529,7 +600,8 @@ export interface EoObservationFull {
   /**
    * The angle, in degrees, between the projections of the target-to-observer vector
    * and the target-to-sun vector onto the equatorial plane. The angle is represented
-   * as negative when closing and positive when opening.
+   * as negative when closing (i.e. before the opposition) and positive when opening
+   * (after the opposition).
    */
   solarEqPhaseAngle?: number;
 
@@ -578,8 +650,8 @@ export interface EoObservationFull {
   transactionId?: string;
 
   /**
-   * Read only enumeration specifying the type of observation (e.g. OPTICAL, RADAR,
-   * RF, etc).
+   * Read only field specifying the type of observation (e.g. OPTICAL, OPTICAL_IR,
+   * LASER_RANGING, etc).
    */
   type?: string;
 
@@ -780,7 +852,7 @@ export namespace EoObservationFull {
     distFromStreakCenter?: Array<number>;
 
     /**
-     * Degrees Off Element Set.
+     * Angle off element set reported in degrees.
      */
     does?: number;
 
@@ -945,9 +1017,9 @@ export namespace EoObservationFull {
 
     /**
      * Predicted Azimuth angle of the target object from a ground -based sensor (no
-     * atmospheric refraction correction required). AZ_EL implies apparent topocentric
-     * place in true of date reference frame as seen from the observer with aberration
-     * due to the observer velocity and light travel time applied.
+     * atmospheric refraction correction required) in degrees. AZ_EL implies apparent
+     * topocentric place in true of date reference frame as seen from the observer with
+     * aberration due to the observer velocity and light travel time applied.
      */
     predictedAzimuth?: number;
 
@@ -969,9 +1041,9 @@ export namespace EoObservationFull {
 
     /**
      * Predicted elevation angle of the target object from a ground -based sensor (no
-     * atmospheric refraction correction required). AZ_EL implies apparent topocentric
-     * place in true of date reference frame as seen from the observer with aberration
-     * due to the observer velocity and light travel time applied.
+     * atmospheric refraction correction required) in degrees. AZ_EL implies apparent
+     * topocentric place in true of date reference frame as seen from the observer with
+     * aberration due to the observer velocity and light travel time applied.
      */
     predictedElevation?: number;
 
@@ -1057,13 +1129,13 @@ export namespace EoObservationFull {
     /**
      * Azimuth angle of the sun from a ground-based telescope (no atmospheric
      * refraction correction required) the observer with aberration due to the observer
-     * velocity and light travel time applied.
+     * velocity and light travel time applied in degrees.
      */
     sunAzimuth?: number;
 
     /**
      * Elevation angle of the sun from a ground-based telescope (no atmospheric
-     * refraction correction required).
+     * refraction correction required) in degrees.
      */
     sunElevation?: number;
 
@@ -1119,7 +1191,7 @@ export namespace EoObservationFull {
     timesUnc?: number;
 
     /**
-     * Time off element set.
+     * Time off element set reported in seconds.
      */
     toes?: number;
 
@@ -1148,7 +1220,8 @@ export type HistoryCountResponse = string;
 
 export interface HistoryListParams {
   /**
-   * Ob detection time in ISO 8601 UTC with microsecond precision.
+   * Ob detection time in ISO 8601 UTC, up to microsecond precision. Consumers should
+   * contact the provider for details on their obTime specifications.
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
@@ -1163,7 +1236,8 @@ export interface HistoryListParams {
 
 export interface HistoryAodrParams {
   /**
-   * Ob detection time in ISO 8601 UTC with microsecond precision.
+   * Ob detection time in ISO 8601 UTC, up to microsecond precision. Consumers should
+   * contact the provider for details on their obTime specifications.
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
@@ -1198,7 +1272,8 @@ export interface HistoryAodrParams {
 
 export interface HistoryCountParams {
   /**
-   * Ob detection time in ISO 8601 UTC with microsecond precision.
+   * Ob detection time in ISO 8601 UTC, up to microsecond precision. Consumers should
+   * contact the provider for details on their obTime specifications.
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;

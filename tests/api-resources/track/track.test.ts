@@ -42,7 +42,7 @@ describe('resource track', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.track.createBulk([
-      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-06-07T14:17:39.653Z' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-06-07T14:17:39.653043Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -59,7 +59,7 @@ describe('resource track', () => {
         classificationMarking: 'U',
         dataMode: 'TEST',
         source: 'Bluestaq',
-        ts: '2021-06-07T14:17:39.653Z',
+        ts: '2021-06-07T14:17:39.653043Z',
         id: 'TRACK-ID',
         alt: 1.23,
         asset: 'asset',
@@ -126,7 +126,7 @@ describe('resource track', () => {
 
   test('createBulkV2: only required params', async () => {
     const responsePromise = client.track.createBulkV2([
-      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-06-07T14:17:39.653Z' },
+      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-06-07T14:17:39.653043Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -143,7 +143,7 @@ describe('resource track', () => {
         classificationMarking: 'U',
         dataMode: 'TEST',
         source: 'Bluestaq',
-        ts: '2021-06-07T14:17:39.653Z',
+        ts: '2021-06-07T14:17:39.653043Z',
         id: 'TRACK-ID',
         alt: 1.23,
         asset: 'asset',

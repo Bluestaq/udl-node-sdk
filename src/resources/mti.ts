@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as HistoryAPI from './udl/mti/history';
 
@@ -39,15 +38,7 @@ export class Mti extends APIResource {
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
    */
-  createBulk(body?: MtiCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void>;
-  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
-  createBulk(
-    body?: MtiCreateBulkParams | Core.RequestOptions,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    if (isRequestOptions(body)) {
-      return this.createBulk(undefined, body);
-    }
+  createBulk(body: MtiCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/udl/mti/createBulk', {
       body,
       ...options,
@@ -246,11 +237,6 @@ export namespace MtiListResponse {
   }
 
   export namespace MtiListResponseItem {
-    /**
-     * A grouping of zero or more target reports for which the sensor provides a single
-     * time, sensor position, reference position on the ground with simple estimates
-     * for the observed area at the reported time, and other pertinent data.
-     */
     export interface Dwell {
       /**
        * Factor which modifies the value of the reported target latitude (Delta Latitude,
@@ -557,9 +543,6 @@ export namespace MtiListResponse {
       }
     }
 
-    /**
-     * Provides a means of sending Basic Character Set alphanumeric text messages.
-     */
     export interface FreeText {
       /**
        * The originator of the Free Text message.
@@ -577,10 +560,6 @@ export namespace MtiListResponse {
       f3?: string;
     }
 
-    /**
-     * Data on High-Range Resolution (HRR) targets or High Range Resolution Range
-     * Doppler Maps (RDM) for a specified area.
-     */
     export interface Hrr {
       /**
        * Detection threshold used to isolate significant target scatterer pixels,
@@ -944,11 +923,6 @@ export namespace MtiListResponse {
       j9?: number;
     }
 
-    /**
-     * A grouping of zero or more target reports for which the sensor provides a single
-     * time, sensor position, reference position on the ground with simple estimates
-     * for the observed area at the reported time, and other pertinent data.
-     */
     export interface JobRequest {
       /**
        * Specifies the Earliest Start Time for which the service is requested. Composite
@@ -1079,10 +1053,6 @@ export namespace MtiListResponse {
       r9?: number;
     }
 
-    /**
-     * Information on the mission and flight plans, the type and configuration of the
-     * platform, and the reference time.
-     */
     export interface Mission {
       /**
        * The mission plan id.
@@ -1110,13 +1080,6 @@ export namespace MtiListResponse {
       msnRefTs?: string;
     }
 
-    /**
-     * Provides information pertaining to the location of the sensor platform during
-     * periods when the sensor is not collecting data. It shall be sent as required
-     * during periods in which the sensor is not collecting data, such as enroute to an
-     * orbit location, during a turn, or any other time at which platform location is
-     * required.
-     */
     export interface PlatformLoc {
       /**
        * Elapsed time, expressed in milliseconds, from midnight at the beginning of the
@@ -1321,11 +1284,6 @@ export namespace MtiCreateBulkParams {
   }
 
   export namespace Body {
-    /**
-     * A grouping of zero or more target reports for which the sensor provides a single
-     * time, sensor position, reference position on the ground with simple estimates
-     * for the observed area at the reported time, and other pertinent data.
-     */
     export interface Dwell {
       /**
        * Factor which modifies the value of the reported target latitude (Delta Latitude,
@@ -1632,9 +1590,6 @@ export namespace MtiCreateBulkParams {
       }
     }
 
-    /**
-     * Provides a means of sending Basic Character Set alphanumeric text messages.
-     */
     export interface FreeText {
       /**
        * The originator of the Free Text message.
@@ -1652,10 +1607,6 @@ export namespace MtiCreateBulkParams {
       f3?: string;
     }
 
-    /**
-     * Data on High-Range Resolution (HRR) targets or High Range Resolution Range
-     * Doppler Maps (RDM) for a specified area.
-     */
     export interface Hrr {
       /**
        * Detection threshold used to isolate significant target scatterer pixels,
@@ -2025,11 +1976,6 @@ export namespace MtiCreateBulkParams {
       j9?: number;
     }
 
-    /**
-     * A grouping of zero or more target reports for which the sensor provides a single
-     * time, sensor position, reference position on the ground with simple estimates
-     * for the observed area at the reported time, and other pertinent data.
-     */
     export interface JobRequest {
       /**
        * Specifies the Earliest Start Time for which the service is requested. Composite
@@ -2160,10 +2106,6 @@ export namespace MtiCreateBulkParams {
       r9?: number;
     }
 
-    /**
-     * Information on the mission and flight plans, the type and configuration of the
-     * platform, and the reference time.
-     */
     export interface Mission {
       /**
        * The mission plan id.
@@ -2191,13 +2133,6 @@ export namespace MtiCreateBulkParams {
       msnRefTs?: string;
     }
 
-    /**
-     * Provides information pertaining to the location of the sensor platform during
-     * periods when the sensor is not collecting data. It shall be sent as required
-     * during periods in which the sensor is not collecting data, such as enroute to an
-     * orbit location, during a turn, or any other time at which platform location is
-     * required.
-     */
     export interface PlatformLoc {
       /**
        * Elapsed time, expressed in milliseconds, from midnight at the beginning of the
@@ -2384,11 +2319,6 @@ export namespace MtiCreateBulkV2Params {
   }
 
   export namespace Body {
-    /**
-     * A grouping of zero or more target reports for which the sensor provides a single
-     * time, sensor position, reference position on the ground with simple estimates
-     * for the observed area at the reported time, and other pertinent data.
-     */
     export interface Dwell {
       /**
        * Factor which modifies the value of the reported target latitude (Delta Latitude,
@@ -2695,9 +2625,6 @@ export namespace MtiCreateBulkV2Params {
       }
     }
 
-    /**
-     * Provides a means of sending Basic Character Set alphanumeric text messages.
-     */
     export interface FreeText {
       /**
        * The originator of the Free Text message.
@@ -2715,10 +2642,6 @@ export namespace MtiCreateBulkV2Params {
       f3?: string;
     }
 
-    /**
-     * Data on High-Range Resolution (HRR) targets or High Range Resolution Range
-     * Doppler Maps (RDM) for a specified area.
-     */
     export interface Hrr {
       /**
        * Detection threshold used to isolate significant target scatterer pixels,
@@ -3088,11 +3011,6 @@ export namespace MtiCreateBulkV2Params {
       j9?: number;
     }
 
-    /**
-     * A grouping of zero or more target reports for which the sensor provides a single
-     * time, sensor position, reference position on the ground with simple estimates
-     * for the observed area at the reported time, and other pertinent data.
-     */
     export interface JobRequest {
       /**
        * Specifies the Earliest Start Time for which the service is requested. Composite
@@ -3223,10 +3141,6 @@ export namespace MtiCreateBulkV2Params {
       r9?: number;
     }
 
-    /**
-     * Information on the mission and flight plans, the type and configuration of the
-     * platform, and the reference time.
-     */
     export interface Mission {
       /**
        * The mission plan id.
@@ -3254,13 +3168,6 @@ export namespace MtiCreateBulkV2Params {
       msnRefTs?: string;
     }
 
-    /**
-     * Provides information pertaining to the location of the sensor platform during
-     * periods when the sensor is not collecting data. It shall be sent as required
-     * during periods in which the sensor is not collecting data, such as enroute to an
-     * orbit location, during a turn, or any other time at which platform location is
-     * required.
-     */
     export interface PlatformLoc {
       /**
        * Elapsed time, expressed in milliseconds, from midnight at the beginning of the

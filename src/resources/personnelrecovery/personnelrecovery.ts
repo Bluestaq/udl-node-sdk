@@ -254,9 +254,6 @@ export interface PersonnelRecoveryFullL {
    */
   createdBy?: string;
 
-  /**
-   * Information pertaining to the details of executing the recovery.
-   */
   executionInfo?: PersonnelRecoveryFullL.ExecutionInfo;
 
   /**
@@ -315,9 +312,6 @@ export interface PersonnelRecoveryFullL {
    */
   numPersons?: number;
 
-  /**
-   * Objective Area Information.
-   */
   objectiveAreaInfo?: PersonnelRecoveryFullL.ObjectiveAreaInfo;
 
   /**
@@ -386,9 +380,6 @@ export interface PersonnelRecoveryFullL {
 }
 
 export namespace PersonnelRecoveryFullL {
-  /**
-   * Information pertaining to the details of executing the recovery.
-   */
   export interface ExecutionInfo {
     /**
      * The heading, in degrees, of leaving the recovery zone.
@@ -404,9 +395,6 @@ export namespace PersonnelRecoveryFullL {
      */
     egressPoint?: Array<number>;
 
-    /**
-     * Information regarding the recovery vehicle.
-     */
     escortVehicle?: ExecutionInfo.EscortVehicle;
 
     /**
@@ -428,16 +416,10 @@ export namespace PersonnelRecoveryFullL {
      */
     objStrategy?: string;
 
-    /**
-     * Information regarding the recovery vehicle.
-     */
     recoveryVehicle?: ExecutionInfo.RecoveryVehicle;
   }
 
   export namespace ExecutionInfo {
-    /**
-     * Information regarding the recovery vehicle.
-     */
     export interface EscortVehicle {
       /**
        * The call sign of the recovery vehicle.
@@ -465,9 +447,6 @@ export namespace PersonnelRecoveryFullL {
       type?: string;
     }
 
-    /**
-     * Information regarding the recovery vehicle.
-     */
     export interface RecoveryVehicle {
       /**
        * The call sign of the recovery vehicle.
@@ -496,9 +475,6 @@ export namespace PersonnelRecoveryFullL {
     }
   }
 
-  /**
-   * Objective Area Information.
-   */
   export interface ObjectiveAreaInfo {
     /**
      * Information detailing knowledge of enemies in the area.
@@ -531,9 +507,6 @@ export namespace PersonnelRecoveryFullL {
   }
 
   export namespace ObjectiveAreaInfo {
-    /**
-     * Information detailing knowledge of enemies in the area.
-     */
     export interface EnemyData {
       /**
        * Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -695,9 +668,6 @@ export namespace PersonnelrecoveryListResponse {
      */
     createdBy?: string;
 
-    /**
-     * Information pertaining to the details of executing the recovery.
-     */
     executionInfo?: PersonnelrecoveryListResponseItem.ExecutionInfo;
 
     /**
@@ -756,9 +726,6 @@ export namespace PersonnelrecoveryListResponse {
      */
     numPersons?: number;
 
-    /**
-     * Objective Area Information.
-     */
     objectiveAreaInfo?: PersonnelrecoveryListResponseItem.ObjectiveAreaInfo;
 
     /**
@@ -827,9 +794,6 @@ export namespace PersonnelrecoveryListResponse {
   }
 
   export namespace PersonnelrecoveryListResponseItem {
-    /**
-     * Information pertaining to the details of executing the recovery.
-     */
     export interface ExecutionInfo {
       /**
        * The heading, in degrees, of leaving the recovery zone.
@@ -845,9 +809,6 @@ export namespace PersonnelrecoveryListResponse {
        */
       egressPoint?: Array<number>;
 
-      /**
-       * Information regarding the recovery vehicle.
-       */
       escortVehicle?: ExecutionInfo.EscortVehicle;
 
       /**
@@ -869,16 +830,10 @@ export namespace PersonnelrecoveryListResponse {
        */
       objStrategy?: string;
 
-      /**
-       * Information regarding the recovery vehicle.
-       */
       recoveryVehicle?: ExecutionInfo.RecoveryVehicle;
     }
 
     export namespace ExecutionInfo {
-      /**
-       * Information regarding the recovery vehicle.
-       */
       export interface EscortVehicle {
         /**
          * The call sign of the recovery vehicle.
@@ -906,9 +861,6 @@ export namespace PersonnelrecoveryListResponse {
         type?: string;
       }
 
-      /**
-       * Information regarding the recovery vehicle.
-       */
       export interface RecoveryVehicle {
         /**
          * The call sign of the recovery vehicle.
@@ -937,9 +889,6 @@ export namespace PersonnelrecoveryListResponse {
       }
     }
 
-    /**
-     * Objective Area Information.
-     */
     export interface ObjectiveAreaInfo {
       /**
        * Information detailing knowledge of enemies in the area.
@@ -972,9 +921,6 @@ export namespace PersonnelrecoveryListResponse {
     }
 
     export namespace ObjectiveAreaInfo {
-      /**
-       * Information detailing knowledge of enemies in the area.
-       */
       export interface EnemyData {
         /**
          * Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -1122,9 +1068,6 @@ export interface PersonnelrecoveryCreateParams {
    */
   commEq3?: string;
 
-  /**
-   * Information pertaining to the details of executing the recovery.
-   */
   executionInfo?: PersonnelrecoveryCreateParams.ExecutionInfo;
 
   /**
@@ -1183,9 +1126,6 @@ export interface PersonnelrecoveryCreateParams {
    */
   numPersons?: number;
 
-  /**
-   * Objective Area Information.
-   */
   objectiveAreaInfo?: PersonnelrecoveryCreateParams.ObjectiveAreaInfo;
 
   /**
@@ -1248,9 +1188,6 @@ export interface PersonnelrecoveryCreateParams {
 }
 
 export namespace PersonnelrecoveryCreateParams {
-  /**
-   * Information pertaining to the details of executing the recovery.
-   */
   export interface ExecutionInfo {
     /**
      * The heading, in degrees, of leaving the recovery zone.
@@ -1266,9 +1203,6 @@ export namespace PersonnelrecoveryCreateParams {
      */
     egressPoint?: Array<number>;
 
-    /**
-     * Information regarding the recovery vehicle.
-     */
     escortVehicle?: ExecutionInfo.EscortVehicle;
 
     /**
@@ -1290,16 +1224,10 @@ export namespace PersonnelrecoveryCreateParams {
      */
     objStrategy?: string;
 
-    /**
-     * Information regarding the recovery vehicle.
-     */
     recoveryVehicle?: ExecutionInfo.RecoveryVehicle;
   }
 
   export namespace ExecutionInfo {
-    /**
-     * Information regarding the recovery vehicle.
-     */
     export interface EscortVehicle {
       /**
        * The call sign of the recovery vehicle.
@@ -1327,9 +1255,6 @@ export namespace PersonnelrecoveryCreateParams {
       type?: string;
     }
 
-    /**
-     * Information regarding the recovery vehicle.
-     */
     export interface RecoveryVehicle {
       /**
        * The call sign of the recovery vehicle.
@@ -1358,9 +1283,6 @@ export namespace PersonnelrecoveryCreateParams {
     }
   }
 
-  /**
-   * Objective Area Information.
-   */
   export interface ObjectiveAreaInfo {
     /**
      * Information detailing knowledge of enemies in the area.
@@ -1393,9 +1315,6 @@ export namespace PersonnelrecoveryCreateParams {
   }
 
   export namespace ObjectiveAreaInfo {
-    /**
-     * Information detailing knowledge of enemies in the area.
-     */
     export interface EnemyData {
       /**
        * Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -1561,9 +1480,6 @@ export namespace PersonnelrecoveryCreateBulkParams {
      */
     commEq3?: string;
 
-    /**
-     * Information pertaining to the details of executing the recovery.
-     */
     executionInfo?: Body.ExecutionInfo;
 
     /**
@@ -1622,9 +1538,6 @@ export namespace PersonnelrecoveryCreateBulkParams {
      */
     numPersons?: number;
 
-    /**
-     * Objective Area Information.
-     */
     objectiveAreaInfo?: Body.ObjectiveAreaInfo;
 
     /**
@@ -1687,9 +1600,6 @@ export namespace PersonnelrecoveryCreateBulkParams {
   }
 
   export namespace Body {
-    /**
-     * Information pertaining to the details of executing the recovery.
-     */
     export interface ExecutionInfo {
       /**
        * The heading, in degrees, of leaving the recovery zone.
@@ -1705,9 +1615,6 @@ export namespace PersonnelrecoveryCreateBulkParams {
        */
       egressPoint?: Array<number>;
 
-      /**
-       * Information regarding the recovery vehicle.
-       */
       escortVehicle?: ExecutionInfo.EscortVehicle;
 
       /**
@@ -1729,16 +1636,10 @@ export namespace PersonnelrecoveryCreateBulkParams {
        */
       objStrategy?: string;
 
-      /**
-       * Information regarding the recovery vehicle.
-       */
       recoveryVehicle?: ExecutionInfo.RecoveryVehicle;
     }
 
     export namespace ExecutionInfo {
-      /**
-       * Information regarding the recovery vehicle.
-       */
       export interface EscortVehicle {
         /**
          * The call sign of the recovery vehicle.
@@ -1766,9 +1667,6 @@ export namespace PersonnelrecoveryCreateBulkParams {
         type?: string;
       }
 
-      /**
-       * Information regarding the recovery vehicle.
-       */
       export interface RecoveryVehicle {
         /**
          * The call sign of the recovery vehicle.
@@ -1797,9 +1695,6 @@ export namespace PersonnelrecoveryCreateBulkParams {
       }
     }
 
-    /**
-     * Objective Area Information.
-     */
     export interface ObjectiveAreaInfo {
       /**
        * Information detailing knowledge of enemies in the area.
@@ -1832,9 +1727,6 @@ export namespace PersonnelrecoveryCreateBulkParams {
     }
 
     export namespace ObjectiveAreaInfo {
-      /**
-       * Information detailing knowledge of enemies in the area.
-       */
       export interface EnemyData {
         /**
          * Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -1985,9 +1877,6 @@ export namespace PersonnelrecoveryFileCreateParams {
      */
     commEq3?: string;
 
-    /**
-     * Information pertaining to the details of executing the recovery.
-     */
     executionInfo?: Body.ExecutionInfo;
 
     /**
@@ -2046,9 +1935,6 @@ export namespace PersonnelrecoveryFileCreateParams {
      */
     numPersons?: number;
 
-    /**
-     * Objective Area Information.
-     */
     objectiveAreaInfo?: Body.ObjectiveAreaInfo;
 
     /**
@@ -2111,9 +1997,6 @@ export namespace PersonnelrecoveryFileCreateParams {
   }
 
   export namespace Body {
-    /**
-     * Information pertaining to the details of executing the recovery.
-     */
     export interface ExecutionInfo {
       /**
        * The heading, in degrees, of leaving the recovery zone.
@@ -2129,9 +2012,6 @@ export namespace PersonnelrecoveryFileCreateParams {
        */
       egressPoint?: Array<number>;
 
-      /**
-       * Information regarding the recovery vehicle.
-       */
       escortVehicle?: ExecutionInfo.EscortVehicle;
 
       /**
@@ -2153,16 +2033,10 @@ export namespace PersonnelrecoveryFileCreateParams {
        */
       objStrategy?: string;
 
-      /**
-       * Information regarding the recovery vehicle.
-       */
       recoveryVehicle?: ExecutionInfo.RecoveryVehicle;
     }
 
     export namespace ExecutionInfo {
-      /**
-       * Information regarding the recovery vehicle.
-       */
       export interface EscortVehicle {
         /**
          * The call sign of the recovery vehicle.
@@ -2190,9 +2064,6 @@ export namespace PersonnelrecoveryFileCreateParams {
         type?: string;
       }
 
-      /**
-       * Information regarding the recovery vehicle.
-       */
       export interface RecoveryVehicle {
         /**
          * The call sign of the recovery vehicle.
@@ -2221,9 +2092,6 @@ export namespace PersonnelrecoveryFileCreateParams {
       }
     }
 
-    /**
-     * Objective Area Information.
-     */
     export interface ObjectiveAreaInfo {
       /**
        * Information detailing knowledge of enemies in the area.
@@ -2256,9 +2124,6 @@ export namespace PersonnelrecoveryFileCreateParams {
     }
 
     export namespace ObjectiveAreaInfo {
-      /**
-       * Information detailing knowledge of enemies in the area.
-       */
       export interface EnemyData {
         /**
          * Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,

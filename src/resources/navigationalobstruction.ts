@@ -87,17 +87,9 @@ export class Navigationalobstruction extends APIResource {
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
   createBulk(
-    body?: NavigationalobstructionCreateBulkParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void>;
-  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
-  createBulk(
-    body?: NavigationalobstructionCreateBulkParams | Core.RequestOptions,
+    body: NavigationalobstructionCreateBulkParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    if (isRequestOptions(body)) {
-      return this.createBulk(undefined, body);
-    }
     return this._client.post('/udl/navigationalobstruction/createBulk', {
       body,
       ...options,
@@ -355,8 +347,8 @@ export namespace NavigationalobstructionListResponse {
     heightAGL?: number;
 
     /**
-     * The accuracy of the height Above Ground Level (AGL) AGL value for this point
-     * obstacle in feet.
+     * The accuracy of the height Above Ground Level (AGL) value for this point
+     * obstacle, in feet.
      */
     heightAGLAcc?: number;
 
@@ -830,8 +822,8 @@ export interface NavigationalobstructionGetResponse {
   heightAGL?: number;
 
   /**
-   * The accuracy of the height Above Ground Level (AGL) AGL value for this point
-   * obstacle in feet.
+   * The accuracy of the height Above Ground Level (AGL) value for this point
+   * obstacle, in feet.
    */
   heightAGLAcc?: number;
 
@@ -1317,8 +1309,8 @@ export namespace NavigationalobstructionTupleResponse {
     heightAGL?: number;
 
     /**
-     * The accuracy of the height Above Ground Level (AGL) AGL value for this point
-     * obstacle in feet.
+     * The accuracy of the height Above Ground Level (AGL) value for this point
+     * obstacle, in feet.
      */
     heightAGLAcc?: number;
 
@@ -1785,8 +1777,8 @@ export interface NavigationalobstructionCreateParams {
   heightAGL?: number;
 
   /**
-   * The accuracy of the height Above Ground Level (AGL) AGL value for this point
-   * obstacle in feet.
+   * The accuracy of the height Above Ground Level (AGL) value for this point
+   * obstacle, in feet.
    */
   heightAGLAcc?: number;
 
@@ -2221,8 +2213,8 @@ export interface NavigationalobstructionUpdateParams {
   heightAGL?: number;
 
   /**
-   * The accuracy of the height Above Ground Level (AGL) AGL value for this point
-   * obstacle in feet.
+   * The accuracy of the height Above Ground Level (AGL) value for this point
+   * obstacle, in feet.
    */
   heightAGLAcc?: number;
 
@@ -2693,8 +2685,8 @@ export namespace NavigationalobstructionCreateBulkParams {
     heightAGL?: number;
 
     /**
-     * The accuracy of the height Above Ground Level (AGL) AGL value for this point
-     * obstacle in feet.
+     * The accuracy of the height Above Ground Level (AGL) value for this point
+     * obstacle, in feet.
      */
     heightAGLAcc?: number;
 

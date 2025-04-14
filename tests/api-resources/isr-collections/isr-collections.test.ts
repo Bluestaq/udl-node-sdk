@@ -63,7 +63,7 @@ describe('resource isrCollections', () => {
         collectionRequirements: [
           {
             id: 'ISCRCOLLECTIONREQUIREMENTS',
-            country: 'xxxx',
+            country: 'VE',
             cridNumbers: 'CRID',
             criticalTimes: {
               earliestImagingTime: '2021-01-19T01:01:15.001Z',
@@ -103,7 +103,7 @@ describe('resource isrCollections', () => {
             stop: '2021-01-19T01:20:01.001Z',
             subregion: 'SUBREGION',
             supportedUnit: 'UNIT',
-            targetList: ['x'],
+            targetList: ['string'],
             type: 'COLLECTION_TYPE',
           },
         ],
@@ -161,7 +161,7 @@ describe('resource isrCollections', () => {
             taskingCollectionRequirements: [
               {
                 id: 'ISCRCOLLECTIONREQUIREMENTS',
-                country: 'xxxx',
+                country: 'VE',
                 cridNumbers: 'CRID',
                 criticalTimes: {
                   earliestImagingTime: '2021-01-19T01:01:15.001Z',
@@ -201,7 +201,7 @@ describe('resource isrCollections', () => {
                 stop: '2021-01-19T01:20:01.001Z',
                 subregion: 'SUBREGION',
                 supportedUnit: 'UNIT',
-                targetList: ['x'],
+                targetList: ['string'],
                 type: 'COLLECTION_TYPE',
               },
             ],
@@ -214,7 +214,7 @@ describe('resource isrCollections', () => {
             taskingPriority: 10.23,
             taskingRegion: 'REGION',
             taskingRetaskTime: '2021-01-19T01:01:15.001Z',
-            taskingRole: 'taskingRole',
+            taskingRole: 'Track Lead Vehicle',
             taskingSecondaryIntelDiscipline: 'Intelligence_2',
             taskingSecondarySubCategory: 'Convoy',
             taskingStartPointLat: 45.23,
@@ -253,7 +253,7 @@ describe('resource isrCollections', () => {
         collectionRequirements: [
           {
             id: 'ISCRCOLLECTIONREQUIREMENTS',
-            country: 'xxxx',
+            country: 'VE',
             cridNumbers: 'CRID',
             criticalTimes: {
               earliestImagingTime: '2021-01-19T01:01:15.001Z',
@@ -293,7 +293,7 @@ describe('resource isrCollections', () => {
             stop: '2021-01-19T01:20:01.001Z',
             subregion: 'SUBREGION',
             supportedUnit: 'UNIT',
-            targetList: ['x'],
+            targetList: ['string'],
             type: 'COLLECTION_TYPE',
           },
         ],
@@ -351,7 +351,7 @@ describe('resource isrCollections', () => {
             taskingCollectionRequirements: [
               {
                 id: 'ISCRCOLLECTIONREQUIREMENTS',
-                country: 'xxxx',
+                country: 'VE',
                 cridNumbers: 'CRID',
                 criticalTimes: {
                   earliestImagingTime: '2021-01-19T01:01:15.001Z',
@@ -391,7 +391,7 @@ describe('resource isrCollections', () => {
                 stop: '2021-01-19T01:20:01.001Z',
                 subregion: 'SUBREGION',
                 supportedUnit: 'UNIT',
-                targetList: ['x'],
+                targetList: ['string'],
                 type: 'COLLECTION_TYPE',
               },
             ],
@@ -404,7 +404,7 @@ describe('resource isrCollections', () => {
             taskingPriority: 10.23,
             taskingRegion: 'REGION',
             taskingRetaskTime: '2021-01-19T01:01:15.001Z',
-            taskingRole: 'taskingRole',
+            taskingRole: 'Track Lead Vehicle',
             taskingSecondaryIntelDiscipline: 'Intelligence_2',
             taskingSecondarySubCategory: 'Convoy',
             taskingStartPointLat: 45.23,

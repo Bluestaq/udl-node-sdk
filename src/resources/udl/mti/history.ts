@@ -193,11 +193,6 @@ export interface MtiFull {
 }
 
 export namespace MtiFull {
-  /**
-   * A grouping of zero or more target reports for which the sensor provides a single
-   * time, sensor position, reference position on the ground with simple estimates
-   * for the observed area at the reported time, and other pertinent data.
-   */
   export interface Dwell {
     /**
      * Factor which modifies the value of the reported target latitude (Delta Latitude,
@@ -504,9 +499,6 @@ export namespace MtiFull {
     }
   }
 
-  /**
-   * Provides a means of sending Basic Character Set alphanumeric text messages.
-   */
   export interface FreeText {
     /**
      * The originator of the Free Text message.
@@ -524,10 +516,6 @@ export namespace MtiFull {
     f3?: string;
   }
 
-  /**
-   * Data on High-Range Resolution (HRR) targets or High Range Resolution Range
-   * Doppler Maps (RDM) for a specified area.
-   */
   export interface Hrr {
     /**
      * Detection threshold used to isolate significant target scatterer pixels,
@@ -897,11 +885,6 @@ export namespace MtiFull {
     j9?: number;
   }
 
-  /**
-   * A grouping of zero or more target reports for which the sensor provides a single
-   * time, sensor position, reference position on the ground with simple estimates
-   * for the observed area at the reported time, and other pertinent data.
-   */
   export interface JobRequest {
     /**
      * Specifies the Earliest Start Time for which the service is requested. Composite
@@ -1032,10 +1015,6 @@ export namespace MtiFull {
     r9?: number;
   }
 
-  /**
-   * Information on the mission and flight plans, the type and configuration of the
-   * platform, and the reference time.
-   */
   export interface Mission {
     /**
      * The mission plan id.
@@ -1063,13 +1042,6 @@ export namespace MtiFull {
     msnRefTs?: string;
   }
 
-  /**
-   * Provides information pertaining to the location of the sensor platform during
-   * periods when the sensor is not collecting data. It shall be sent as required
-   * during periods in which the sensor is not collecting data, such as enroute to an
-   * orbit location, during a turn, or any other time at which platform location is
-   * required.
-   */
   export interface PlatformLoc {
     /**
      * Elapsed time, expressed in milliseconds, from midnight at the beginning of the

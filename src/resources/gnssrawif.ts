@@ -77,21 +77,30 @@ export class Gnssrawif extends APIResource {
   }
 
   /**
-   * The GNSSRawIF service allows for contribution of raw GNSS IF data.. This service
-   * operation requires a zip file in the body of the POST request. The zip file must
-   * contain exactly two files. <h3> 1) A json file with any file name that ends in
-   * .json e.g. payload.json The contents of the json file must be valid according to
-   * the schema for GNSSRawIF. 2) A .hdf5 file for GNSSRawIF. </h3> The metadata and
-   * hdf5 files will be stored and associated with each other allowing queries of the
-   * data retrieval of the binary images. This operation is intended to be used for
-   * automated feeds into UDL. A specific role is required to perform this service
-   * operation. Please contact the UDL team for assistance.
+   * Upload an HDF5 file with its metadata.
+   *
+   * The request body requires a zip file containing exactly two files:\
+   * 1\) A file with the `.json` file extension whose content conforms to the `GNSSRawIF_Ingest`
+   * schema.\
+   * 2\) A file with the `.hdf5` file extension.
+   *
+   * The JSON and HDF5 files will be associated with each other via the `id` field.
+   * Query the metadata via `GET /udl/gnssrawif` and use
+   * `GET /udl/gnssrawif/getFile/{id}` to retrieve the HDF5 file.
+   *
+   * This operation only accepts application/zip media. The application/json request
+   * body is documented to provide a convenient reference to the ingest schema.
+   *
+   * This operation is intended to be used for automated feeds into UDL. A specific
+   * role is required to perform this service operation. Please contact the UDL team
+   * for assistance.
    */
   uploadZip(body: GnssrawifUploadZipParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-gnssrawif', {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
+      __binaryRequest: true,
     });
   }
 }

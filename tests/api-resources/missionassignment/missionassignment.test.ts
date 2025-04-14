@@ -228,8 +228,16 @@ describe('resource missionassignment', () => {
     const response = await client.missionassignment.count({ ts: '2019-12-27T18:11:19.117Z' });
   });
 
-  test('createBulk', async () => {
-    const responsePromise = client.missionassignment.createBulk();
+  test('createBulk: only required params', async () => {
+    const responsePromise = client.missionassignment.createBulk([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        mad: 'MAD',
+        source: 'Bluestaq',
+        ts: '2021-01-01T01:01:01.123456Z',
+      },
+    ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -239,87 +247,74 @@ describe('resource missionassignment', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulk: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.missionassignment.createBulk({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
-  test('createBulk: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.missionassignment.createBulk(
-        [
-          {
-            classificationMarking: 'U',
-            dataMode: 'TEST',
-            mad: 'MAD',
-            source: 'Bluestaq',
-            ts: '2021-01-01T01:01:01.123456Z',
-            id: 'MISSIONASSIGNMENT-ID',
-            c1associateddmpis: 3,
-            c2air: 'C2AIR',
-            c2alt: 3,
-            c2crs: 3,
-            c2exerciseindicator: 'C2EXERCISE',
-            c2exercisemof: 'MOF',
-            c2id: 'C2ID',
-            c2idamplifyingdescriptor: 'C2IDAMP',
-            c2lnd: 'C2LND',
-            c2spc: 'C2SPC',
-            c2spd: 3,
-            c2specialinterestindicator: 'C2SPECIAL',
-            c2sur: 'C2SUR',
-            c3elv: 10.23,
-            c3lat: 10.23,
-            c3lon: 10.23,
-            c3ptl: 'C3PTL',
-            c3ptnum: 'C3PTNUM',
-            c4colon: 5,
-            c4def: 'C4DEF',
-            c4egress: 4,
-            c4mod: 5,
-            c4numberofstores: 3,
-            c4runin: 5,
-            c4tgt: 'C4TGT',
-            c4timediscrete: 'C4TIMED',
-            c4tm: 4,
-            c4typeofstores: 2,
-            c5colon: 5,
-            c5elevationlsbs: 5,
-            c5haeadj: 5,
-            c5latlsb: 5,
-            c5lonlsb: 5,
-            c5tgtbrng: 5,
-            c5tw: 5,
-            c6dspc: 'C6DSPC',
-            c6dspct: 'C6DSPCT',
-            c6fplpm: 'C6FPLPM',
-            c6intel: 5,
-            c6laser: 5,
-            c6longpm: 'C6LONGPM',
-            c6tnr3: 5,
-            c7elang2: 5.23,
-            c7in3p: 3,
-            c7tnor: 'C7TNOR',
-            env: 'ENV',
-            index: 5,
-            lat: 45.23,
-            lon: 45.23,
-            orginx: 'ORIGIN',
-            origin: 'THIRD_PARTY_DATASOURCE',
-            rc: 'RC-123',
-            rr: 2,
-            sz: 'STRENGTH',
-            tno: 'TRACK_NUMBER',
-            trkId: 'TRK-ID',
-            twenv: 'THREAT_WARNING',
-          },
-        ],
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  test('createBulk: required and optional params', async () => {
+    const response = await client.missionassignment.createBulk([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        mad: 'MAD',
+        source: 'Bluestaq',
+        ts: '2021-01-01T01:01:01.123456Z',
+        id: 'MISSIONASSIGNMENT-ID',
+        c1associateddmpis: 3,
+        c2air: 'C2AIR',
+        c2alt: 3,
+        c2crs: 3,
+        c2exerciseindicator: 'C2EXERCISE',
+        c2exercisemof: 'MOF',
+        c2id: 'C2ID',
+        c2idamplifyingdescriptor: 'C2IDAMP',
+        c2lnd: 'C2LND',
+        c2spc: 'C2SPC',
+        c2spd: 3,
+        c2specialinterestindicator: 'C2SPECIAL',
+        c2sur: 'C2SUR',
+        c3elv: 10.23,
+        c3lat: 10.23,
+        c3lon: 10.23,
+        c3ptl: 'C3PTL',
+        c3ptnum: 'C3PTNUM',
+        c4colon: 5,
+        c4def: 'C4DEF',
+        c4egress: 4,
+        c4mod: 5,
+        c4numberofstores: 3,
+        c4runin: 5,
+        c4tgt: 'C4TGT',
+        c4timediscrete: 'C4TIMED',
+        c4tm: 4,
+        c4typeofstores: 2,
+        c5colon: 5,
+        c5elevationlsbs: 5,
+        c5haeadj: 5,
+        c5latlsb: 5,
+        c5lonlsb: 5,
+        c5tgtbrng: 5,
+        c5tw: 5,
+        c6dspc: 'C6DSPC',
+        c6dspct: 'C6DSPCT',
+        c6fplpm: 'C6FPLPM',
+        c6intel: 5,
+        c6laser: 5,
+        c6longpm: 'C6LONGPM',
+        c6tnr3: 5,
+        c7elang2: 5.23,
+        c7in3p: 3,
+        c7tnor: 'C7TNOR',
+        env: 'ENV',
+        index: 5,
+        lat: 45.23,
+        lon: 45.23,
+        orginx: 'ORIGIN',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        rc: 'RC-123',
+        rr: 2,
+        sz: 'STRENGTH',
+        tno: 'TRACK_NUMBER',
+        trkId: 'TRK-ID',
+        twenv: 'THREAT_WARNING',
+      },
+    ]);
   });
 
   test('get', async () => {

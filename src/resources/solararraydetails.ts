@@ -515,7 +515,8 @@ export interface SolararraydetailListParams {
 
   /**
    * (One or more of fields 'classificationMarking, dataMode, source' are required.)
-   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data.
+   * Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data. (REAL,
+   * TEST, SIMULATED, or EXERCISE)
    */
   dataMode?: string;
 

@@ -525,9 +525,6 @@ export interface SigactFull {
 }
 
 export namespace SigactFull {
-  /**
-   * Related document ids.
-   */
   export interface RelatedDoc {
     /**
      * List of data sources related to this document.
@@ -541,9 +538,6 @@ export namespace SigactFull {
   }
 
   export namespace RelatedDoc {
-    /**
-     * List of data sources related to this document.
-     */
     export interface DataSourceRef {
       /**
        * Data source id.

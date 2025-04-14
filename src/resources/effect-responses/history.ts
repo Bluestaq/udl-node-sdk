@@ -204,9 +204,6 @@ export namespace HistoryListResponse {
   }
 
   export namespace HistoryListResponseItem {
-    /**
-     * List of actions associated with this effect response.
-     */
     export interface ActionsList {
       /**
        * The record ID, depending on the type identified in actorSrcType, of the
@@ -308,9 +305,6 @@ export namespace HistoryListResponse {
     }
 
     export namespace ActionsList {
-      /**
-       * List of COA metrics associated with this effect response.
-       */
       export interface ActionMetric {
         /**
          * The metric score specific to its domain.
@@ -335,9 +329,6 @@ export namespace HistoryListResponse {
       }
     }
 
-    /**
-     * List of COA metrics associated with this effect response.
-     */
     export interface CoaMetric {
       /**
        * The metric score specific to its domain.

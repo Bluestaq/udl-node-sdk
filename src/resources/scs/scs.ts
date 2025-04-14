@@ -52,7 +52,7 @@ export class Scs extends APIResource {
   file: FileAPI.File = new FileAPI.File(this._client);
 
   /**
-   * Deletes the requested File or folder in the passed path directory that is
+   * Deletes the requested file or folder in the passed path directory that is
    * visible to the calling user. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
@@ -124,9 +124,9 @@ export class Scs extends APIResource {
    * operation. Please contact the UDL team for assistance.
    */
   fileUpload(params: ScFileUploadParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { classificationMarking, fileName, path, body, description, tags } = params;
+    const { classificationMarking, fileName, path, body, description, overwrite, tags } = params;
     return this._client.post('/scs/file', {
-      query: { classificationMarking, fileName, path, description, tags },
+      query: { classificationMarking, fileName, path, description, overwrite, tags },
       body: body,
       ...options,
       headers: { 'Content-Type': 'application/octet-stream', ...options?.headers },
@@ -210,7 +210,7 @@ export interface ScCopyParams {
   targetPath: string;
 }
 
-export type ScDownloadParams = string;
+export type ScDownloadParams = Array<string>;
 
 export interface ScFileDownloadParams {
   /**
@@ -244,6 +244,12 @@ export interface ScFileUploadParams {
    * Query param: Description
    */
   description?: string;
+
+  /**
+   * Query param: Whether or not to overwrite a file with the same name and path, if
+   * one exists.
+   */
+  overwrite?: boolean;
 
   /**
    * Query param: Tags

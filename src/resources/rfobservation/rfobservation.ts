@@ -192,6 +192,13 @@ export namespace RfobservationListResponse {
     azimuth?: number;
 
     /**
+     * Optional flag indicating whether the azimuth value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    azimuthMeasured?: boolean;
+
+    /**
      * Rate of change of the azimuth in degrees per second.
      */
     azimuthRate?: number;
@@ -269,6 +276,13 @@ export namespace RfobservationListResponse {
      * elevation in degrees and J2000 coordinate frame.
      */
     elevation?: number;
+
+    /**
+     * Optional flag indicating whether the elevation value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    elevationMeasured?: boolean;
 
     /**
      * Rate of change of the elevation in degrees per second.
@@ -437,9 +451,23 @@ export namespace RfobservationListResponse {
     range?: number;
 
     /**
+     * Optional flag indicating whether the range value is measured (true) or computed
+     * (false). If null, consumers may consult the data provider for information
+     * regarding whether the corresponding value is computed or measured.
+     */
+    rangeMeasured?: boolean;
+
+    /**
      * Rate of change of the range in km/sec.
      */
     rangeRate?: number;
+
+    /**
+     * Optional flag indicating whether the rangeRate value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    rangeRateMeasured?: boolean;
 
     /**
      * One sigma uncertainty in the range rate measurement, in kilometers/second.
@@ -666,6 +694,13 @@ export namespace RfobservationTupleResponse {
     azimuth?: number;
 
     /**
+     * Optional flag indicating whether the azimuth value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    azimuthMeasured?: boolean;
+
+    /**
      * Rate of change of the azimuth in degrees per second.
      */
     azimuthRate?: number;
@@ -743,6 +778,13 @@ export namespace RfobservationTupleResponse {
      * elevation in degrees and J2000 coordinate frame.
      */
     elevation?: number;
+
+    /**
+     * Optional flag indicating whether the elevation value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    elevationMeasured?: boolean;
 
     /**
      * Rate of change of the elevation in degrees per second.
@@ -916,9 +958,23 @@ export namespace RfobservationTupleResponse {
     range?: number;
 
     /**
+     * Optional flag indicating whether the range value is measured (true) or computed
+     * (false). If null, consumers may consult the data provider for information
+     * regarding whether the corresponding value is computed or measured.
+     */
+    rangeMeasured?: boolean;
+
+    /**
      * Rate of change of the range in km/sec.
      */
     rangeRate?: number;
+
+    /**
+     * Optional flag indicating whether the rangeRate value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    rangeRateMeasured?: boolean;
 
     /**
      * One sigma uncertainty in the range rate measurement, in kilometers/second.
@@ -1137,6 +1193,13 @@ export interface RfobservationCreateParams {
   azimuth?: number;
 
   /**
+   * Optional flag indicating whether the azimuth value is measured (true) or
+   * computed (false). If null, consumers may consult the data provider for
+   * information regarding whether the corresponding value is computed or measured.
+   */
+  azimuthMeasured?: boolean;
+
+  /**
    * Rate of change of the azimuth in degrees per second.
    */
   azimuthRate?: number;
@@ -1251,6 +1314,13 @@ export interface RfobservationCreateParams {
    * elevation in degrees and J2000 coordinate frame.
    */
   elevation?: number;
+
+  /**
+   * Optional flag indicating whether the elevation value is measured (true) or
+   * computed (false). If null, consumers may consult the data provider for
+   * information regarding whether the corresponding value is computed or measured.
+   */
+  elevationMeasured?: boolean;
 
   /**
    * Rate of change of the elevation in degrees per second.
@@ -1425,9 +1495,23 @@ export interface RfobservationCreateParams {
   range?: number;
 
   /**
+   * Optional flag indicating whether the range value is measured (true) or computed
+   * (false). If null, consumers may consult the data provider for information
+   * regarding whether the corresponding value is computed or measured.
+   */
+  rangeMeasured?: boolean;
+
+  /**
    * Rate of change of the range in km/sec.
    */
   rangeRate?: number;
+
+  /**
+   * Optional flag indicating whether the rangeRate value is measured (true) or
+   * computed (false). If null, consumers may consult the data provider for
+   * information regarding whether the corresponding value is computed or measured.
+   */
+  rangeRateMeasured?: boolean;
 
   /**
    * One sigma uncertainty in the range rate measurement, in kilometers/second.
@@ -1685,6 +1769,13 @@ export namespace RfobservationCreateBulkParams {
     azimuth?: number;
 
     /**
+     * Optional flag indicating whether the azimuth value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    azimuthMeasured?: boolean;
+
+    /**
      * Rate of change of the azimuth in degrees per second.
      */
     azimuthRate?: number;
@@ -1799,6 +1890,13 @@ export namespace RfobservationCreateBulkParams {
      * elevation in degrees and J2000 coordinate frame.
      */
     elevation?: number;
+
+    /**
+     * Optional flag indicating whether the elevation value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    elevationMeasured?: boolean;
 
     /**
      * Rate of change of the elevation in degrees per second.
@@ -1973,9 +2071,23 @@ export namespace RfobservationCreateBulkParams {
     range?: number;
 
     /**
+     * Optional flag indicating whether the range value is measured (true) or computed
+     * (false). If null, consumers may consult the data provider for information
+     * regarding whether the corresponding value is computed or measured.
+     */
+    rangeMeasured?: boolean;
+
+    /**
      * Rate of change of the range in km/sec.
      */
     rangeRate?: number;
+
+    /**
+     * Optional flag indicating whether the rangeRate value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    rangeRateMeasured?: boolean;
 
     /**
      * One sigma uncertainty in the range rate measurement, in kilometers/second.
@@ -2218,6 +2330,13 @@ export namespace RfobservationCreateBulkV2Params {
     azimuth?: number;
 
     /**
+     * Optional flag indicating whether the azimuth value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    azimuthMeasured?: boolean;
+
+    /**
      * Rate of change of the azimuth in degrees per second.
      */
     azimuthRate?: number;
@@ -2332,6 +2451,13 @@ export namespace RfobservationCreateBulkV2Params {
      * elevation in degrees and J2000 coordinate frame.
      */
     elevation?: number;
+
+    /**
+     * Optional flag indicating whether the elevation value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    elevationMeasured?: boolean;
 
     /**
      * Rate of change of the elevation in degrees per second.
@@ -2506,9 +2632,23 @@ export namespace RfobservationCreateBulkV2Params {
     range?: number;
 
     /**
+     * Optional flag indicating whether the range value is measured (true) or computed
+     * (false). If null, consumers may consult the data provider for information
+     * regarding whether the corresponding value is computed or measured.
+     */
+    rangeMeasured?: boolean;
+
+    /**
      * Rate of change of the range in km/sec.
      */
     rangeRate?: number;
+
+    /**
+     * Optional flag indicating whether the rangeRate value is measured (true) or
+     * computed (false). If null, consumers may consult the data provider for
+     * information regarding whether the corresponding value is computed or measured.
+     */
+    rangeRateMeasured?: boolean;
 
     /**
      * One sigma uncertainty in the range rate measurement, in kilometers/second.

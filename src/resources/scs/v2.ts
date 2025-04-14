@@ -60,9 +60,9 @@ export class V2 extends APIResource {
    * operation. Please contact the UDL team for assistance.
    */
   fileUpload(params: V2FileUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { classificationMarking, path, body, description, tags } = params;
+    const { classificationMarking, path, body, description, overwrite, tags } = params;
     return this._client.post('/scs/v2/file', {
-      query: { classificationMarking, path, description, tags },
+      query: { classificationMarking, path, description, overwrite, tags },
       body: body,
       ...options,
       headers: { 'Content-Type': 'application/octet-stream', Accept: '*/*', ...options?.headers },
@@ -189,65 +189,15 @@ export interface V2UpdateParams {
   path: string;
 
   /**
-   * Body param:
-   */
-  id?: string;
-
-  /**
-   * Body param:
-   */
-  attachment?: Attachment;
-
-  /**
    * Body param: Classification marking of the folder or file in IC/CAPCO
    * portion-marked format.
    */
   classificationMarking?: string;
 
   /**
-   * Body param:
-   */
-  createdAt?: string;
-
-  /**
-   * Body param:
-   */
-  createdBy?: string;
-
-  /**
-   * Body param:
-   */
-  data?: string;
-
-  /**
    * Body param: Optional description for the file or folder.
    */
   description?: string;
-
-  /**
-   * Body param:
-   */
-  fileName?: string;
-
-  /**
-   * Body param:
-   */
-  filePath?: string;
-
-  /**
-   * Body param:
-   */
-  keywords?: string;
-
-  /**
-   * Body param:
-   */
-  parentPath?: string;
-
-  /**
-   * Body param:
-   */
-  pathType?: string;
 
   /**
    * Body param: For folders only. Comma separated list of user and group ids that
@@ -256,26 +206,11 @@ export interface V2UpdateParams {
   readAcl?: string;
 
   /**
-   * Body param:
-   */
-  size?: number;
-
-  /**
    * Body param: Array of provider/source specific tags for this data, used for
    * implementing data owner conditional access controls to restrict access to the
    * data.
    */
   tags?: Array<string>;
-
-  /**
-   * Body param:
-   */
-  updatedAt?: string;
-
-  /**
-   * Body param:
-   */
-  updatedBy?: string;
 
   /**
    * Body param: For folders only. Comma separated list of user and group ids that
@@ -334,6 +269,12 @@ export interface V2FileUploadParams {
   description?: string;
 
   /**
+   * Query param: Whether or not to overwrite a file with the same name and path, if
+   * one exists.
+   */
+  overwrite?: boolean;
+
+  /**
    * Query param: Optional array of provider/source specific tags for this data, used
    * for implementing data owner conditional access controls to restrict access to
    * the data.
@@ -349,65 +290,15 @@ export interface V2FolderCreateParams {
   path: string;
 
   /**
-   * Body param:
-   */
-  id?: string;
-
-  /**
-   * Body param:
-   */
-  attachment?: Attachment;
-
-  /**
    * Body param: Classification marking of the folder or file in IC/CAPCO
    * portion-marked format.
    */
   classificationMarking?: string;
 
   /**
-   * Body param:
-   */
-  createdAt?: string;
-
-  /**
-   * Body param:
-   */
-  createdBy?: string;
-
-  /**
-   * Body param:
-   */
-  data?: string;
-
-  /**
    * Body param: Optional description for the file or folder.
    */
   description?: string;
-
-  /**
-   * Body param:
-   */
-  fileName?: string;
-
-  /**
-   * Body param:
-   */
-  filePath?: string;
-
-  /**
-   * Body param:
-   */
-  keywords?: string;
-
-  /**
-   * Body param:
-   */
-  parentPath?: string;
-
-  /**
-   * Body param:
-   */
-  pathType?: string;
 
   /**
    * Body param: For folders only. Comma separated list of user and group ids that
@@ -416,26 +307,11 @@ export interface V2FolderCreateParams {
   readAcl?: string;
 
   /**
-   * Body param:
-   */
-  size?: number;
-
-  /**
    * Body param: Array of provider/source specific tags for this data, used for
    * implementing data owner conditional access controls to restrict access to the
    * data.
    */
   tags?: Array<string>;
-
-  /**
-   * Body param:
-   */
-  updatedAt?: string;
-
-  /**
-   * Body param:
-   */
-  updatedBy?: string;
 
   /**
    * Body param: For folders only. Comma separated list of user and group ids that

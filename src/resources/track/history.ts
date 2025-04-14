@@ -587,7 +587,8 @@ export type HistoryCountResponse = string;
 
 export interface HistoryListParams {
   /**
-   * Track timestamp in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   * Track timestamp in ISO8601 UTC format with microsecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
 
@@ -601,7 +602,8 @@ export interface HistoryListParams {
 
 export interface HistoryAodrParams {
   /**
-   * Track timestamp in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   * Track timestamp in ISO8601 UTC format with microsecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
 
@@ -635,7 +637,8 @@ export interface HistoryAodrParams {
 
 export interface HistoryCountParams {
   /**
-   * Track timestamp in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   * Track timestamp in ISO8601 UTC format with microsecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
 }

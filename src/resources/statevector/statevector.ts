@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as Shared from '../shared';
 import * as CurrentAPI from './current';
@@ -70,15 +69,7 @@ export class Statevector extends APIResource {
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
    */
-  createBulk(body?: StatevectorCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void>;
-  createBulk(options?: Core.RequestOptions): Core.APIPromise<void>;
-  createBulk(
-    body?: StatevectorCreateBulkParams | Core.RequestOptions,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    if (isRequestOptions(body)) {
-      return this.createBulk(undefined, body);
-    }
+  createBulk(body: StatevectorCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/udl/statevector/createBulk', {
       body,
       ...options,

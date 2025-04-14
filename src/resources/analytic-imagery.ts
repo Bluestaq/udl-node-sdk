@@ -43,17 +43,23 @@ export class AnalyticImagery extends APIResource {
   }
 
   /**
-   * The analytic imagery service allows for contribution of general images, such as
-   * data plots, graphs, heatmaps, and other graphics not supported as UDL ground or
-   * sky imagery. This service operation requires a zip file in the body of the POST
-   * request. The zip file must contain exactly two files. <h3> 1) A json file with
-   * any file name that ends in .json e.g. MyFitsFile.json The contents of the json
-   * file must be valid according to the schema for Analytic Imagery. 2) A binary
-   * image file of the specified types allowed for AnalyticImagery. </h3> The
-   * metadata and image files will be stored and associated with each other allowing
-   * queries of the data retrieval of the binary images. This operation is intended
-   * to be used for automated feeds into UDL. A specific role is required to perform
-   * this service operation. Please contact the UDL team for assistance.
+   * Upload a new image with its metadata.
+   *
+   * The request body requires a zip file containing exactly two files:\
+   * 1\) A file with the `.json` file extension whose content conforms to the `AnalyticImagery_Ingest`
+   * schema.\
+   * 2\) A binary image file of the allowed types for this service.
+   *
+   * The JSON and image files will be associated with each other via the `id` field.
+   * Query the metadata via `GET /udl/analyticimagery` and use
+   * `GET /udl/analyticimagery/getFile/{id}` to retrieve the binary image file.
+   *
+   * This operation only accepts application/zip media. The application/json request
+   * body is documented to provide a convenient reference to the ingest schema.
+   *
+   * This operation is intended to be used for automated feeds into UDL. A specific
+   * role is required to perform this service operation. Please contact the UDL team
+   * for assistance.
    */
   createBulkV2(
     body: AnalyticImageryCreateBulkV2Params,
@@ -63,6 +69,7 @@ export class AnalyticImagery extends APIResource {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
+      __binaryRequest: true,
     });
   }
 
@@ -293,6 +300,11 @@ export interface AnalyticImageryAbridged {
   dataStop?: string;
 
   /**
+   * Unique identifier of the reporting sensor.
+   */
+  idSensor?: string;
+
+  /**
    * User-defined set ID of a sequence of images. Used to associate related analytic
    * image records.
    */
@@ -331,6 +343,13 @@ export interface AnalyticImageryAbridged {
    * by the system.
    */
   origNetwork?: string;
+
+  /**
+   * Optional identifier provided by the source to indicate the sensor for this
+   * collection. This may be an internal identifier and not necessarily a valid
+   * sensor ID.
+   */
+  origSensorId?: string;
 
   /**
    * Assessed satellite ID (NORAD RSO object number). The 'satId' and 'satIdConf'
@@ -554,6 +573,11 @@ export interface AnalyticImageryFull {
   dataStop?: string;
 
   /**
+   * Unique identifier of the reporting sensor.
+   */
+  idSensor?: string;
+
+  /**
    * User-defined set ID of a sequence of images. Used to associate related analytic
    * image records.
    */
@@ -592,6 +616,13 @@ export interface AnalyticImageryFull {
    * by the system.
    */
   origNetwork?: string;
+
+  /**
+   * Optional identifier provided by the source to indicate the sensor for this
+   * collection. This may be an internal identifier and not necessarily a valid
+   * sensor ID.
+   */
+  origSensorId?: string;
 
   /**
    * Assessed satellite ID (NORAD RSO object number). The 'satId' and 'satIdConf'
@@ -819,6 +850,11 @@ export interface AnalyticImageryCreateBulkV2Params {
   dataStop?: string;
 
   /**
+   * Unique identifier of the reporting sensor.
+   */
+  idSensor?: string;
+
+  /**
    * User-defined set ID of a sequence of images. Used to associate related analytic
    * image records.
    */
@@ -851,6 +887,13 @@ export interface AnalyticImageryCreateBulkV2Params {
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
+
+  /**
+   * Optional identifier provided by the source to indicate the sensor for this
+   * collection. This may be an internal identifier and not necessarily a valid
+   * sensor ID.
+   */
+  origSensorId?: string;
 
   /**
    * Assessed satellite ID (NORAD RSO object number). The 'satId' and 'satIdConf'

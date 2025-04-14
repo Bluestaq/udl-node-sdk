@@ -11,9 +11,9 @@ export class Paths extends APIResource {
    * service operation. Please contact the UDL team for assistance.
    */
   create(params: PathCreateParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { id, classificationMarking, body, description, tags } = params;
+    const { id, classificationMarking, body, description, overwrite, tags } = params;
     return this._client.post('/scs/path', {
-      query: { id, classificationMarking, description, tags },
+      query: { id, classificationMarking, description, overwrite, tags },
       body: body,
       ...options,
       headers: { 'Content-Type': 'application/octet-stream', ...options?.headers },
@@ -44,6 +44,12 @@ export interface PathCreateParams {
    * Query param: Description
    */
   description?: string;
+
+  /**
+   * Query param: Whether or not to overwrite a file with the same name and path, if
+   * one exists.
+   */
+  overwrite?: boolean;
 
   /**
    * Query param: Tags
