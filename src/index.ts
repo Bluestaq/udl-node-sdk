@@ -166,6 +166,20 @@ import {
 } from './resources/attitude-data';
 import { Attitudesets } from './resources/attitudesets';
 import {
+  Aviationriskmanagement,
+  AviationriskmanagementCountParams,
+  AviationriskmanagementCountResponse,
+  AviationriskmanagementCreateBulkParams,
+  AviationriskmanagementCreateBulkV2Params,
+  AviationriskmanagementCreateParams,
+  AviationriskmanagementQueryParams,
+  AviationriskmanagementQueryResponse,
+  AviationriskmanagementRetrieveResponse,
+  AviationriskmanagementTupleParams,
+  AviationriskmanagementTupleResponse,
+  AviationriskmanagementUpdateParams,
+} from './resources/aviationriskmanagement';
+import {
   Batteries,
   BatteryAbridged,
   BatteryCountResponse,
@@ -273,7 +287,32 @@ import {
   DriftHistoryTupleParams,
   DriftHistoryTupleResponse,
 } from './resources/drift-history';
+import {
+  Dropzone,
+  DropzoneCountResponse,
+  DropzoneCreateBulkParams,
+  DropzoneCreateBulkV2Params,
+  DropzoneCreateParams,
+  DropzoneQueryResponse,
+  DropzoneRetrieveResponse,
+  DropzoneTupleParams,
+  DropzoneTupleResponse,
+  DropzoneUpdateParams,
+} from './resources/dropzone';
 import { Ecpsdr, EcpsdrCreateBulkV2Params } from './resources/ecpsdr';
+import {
+  Emittergeolocation,
+  EmittergeolocationCountParams,
+  EmittergeolocationCountResponse,
+  EmittergeolocationCreateBulkParams,
+  EmittergeolocationCreateBulkV2Params,
+  EmittergeolocationCreateParams,
+  EmittergeolocationQueryParams,
+  EmittergeolocationQueryResponse,
+  EmittergeolocationRetrieveResponse,
+  EmittergeolocationTupleParams,
+  EmittergeolocationTupleResponse,
+} from './resources/emittergeolocation';
 import {
   EngineDetailCreateParams,
   EngineDetailUpdateParams,
@@ -342,6 +381,7 @@ import {
   FlightplanListResponse,
   FlightplanTupleParams,
   FlightplanTupleResponse,
+  FlightplanUpdateParams,
 } from './resources/flightplan';
 import {
   Geostatus,
@@ -385,17 +425,6 @@ import {
   GroundimageryTupleParams,
   GroundimageryTupleResponse,
 } from './resources/groundimagery';
-import {
-  H3geo,
-  H3geoCountParams,
-  H3geoCountResponse,
-  H3geoCreateParams,
-  H3geoGetResponse,
-  H3geoListParams,
-  H3geoListResponse,
-  H3geoTupleParams,
-  H3geoTupleResponse,
-} from './resources/h3geo';
 import {
   H3geohexcell,
   H3geohexcellCountParams,
@@ -780,6 +809,18 @@ import {
   Rfemitterdetails,
 } from './resources/rfemitterdetails';
 import {
+  RoutestatCountResponse,
+  RoutestatCreateBulkParams,
+  RoutestatCreateBulkV2Params,
+  RoutestatCreateParams,
+  RoutestatQueryResponse,
+  RoutestatRetrieveResponse,
+  RoutestatTupleParams,
+  RoutestatTupleResponse,
+  RoutestatUpdateParams,
+  Routestats,
+} from './resources/routestats';
+import {
   Scientific,
   ScientificCountResponse,
   ScientificCreateParams,
@@ -795,16 +836,6 @@ import {
   SecureMessagingListTopicsResponse,
   TopicDetails,
 } from './resources/secure-messaging';
-import {
-  Sensor,
-  SensorCountResponse,
-  SensorCreateParams,
-  SensorGetResponse,
-  SensorListResponse,
-  SensorTupleParams,
-  SensorTupleResponse,
-  SensorUpdateParams,
-} from './resources/sensor';
 import {
   Sensorobservationtype,
   SensorobservationtypeGetResponse,
@@ -881,16 +912,6 @@ import {
   SeradataspacecraftdetailUpdateParams,
   Seradataspacecraftdetails,
 } from './resources/seradataspacecraftdetails';
-import {
-  Site,
-  SiteCountResponse,
-  SiteCreateParams,
-  SiteGetResponse,
-  SiteListResponse,
-  SiteTupleParams,
-  SiteTupleResponse,
-  SiteUpdateParams,
-} from './resources/site';
 import {
   Siteremark,
   SiteremarkCountResponse,
@@ -1219,6 +1240,30 @@ import {
   EventEvolutionTupleParams,
   EventEvolutionTupleResponse,
 } from './resources/event-evolution/event-evolution';
+import {
+  Featureassessment,
+  FeatureassessmentCountParams,
+  FeatureassessmentCountResponse,
+  FeatureassessmentCreateBulkParams,
+  FeatureassessmentCreateBulkV2Params,
+  FeatureassessmentCreateParams,
+  FeatureassessmentQueryParams,
+  FeatureassessmentQueryResponse,
+  FeatureassessmentRetrieveResponse,
+  FeatureassessmentTupleParams,
+  FeatureassessmentTupleResponse,
+} from './resources/featureassessment/featureassessment';
+import {
+  Globalatmosphericmodel,
+  GlobalatmosphericmodelCountParams,
+  GlobalatmosphericmodelCountResponse,
+  GlobalatmosphericmodelCreateBulkV2Params,
+  GlobalatmosphericmodelQueryParams,
+  GlobalatmosphericmodelQueryResponse,
+  GlobalatmosphericmodelRetrieveResponse,
+  GlobalatmosphericmodelTupleParams,
+  GlobalatmosphericmodelTupleResponse,
+} from './resources/globalatmosphericmodel/globalatmosphericmodel';
 import { GnssObservations } from './resources/gnss-observations/gnss-observations';
 import { GnssRawIf } from './resources/gnss-raw-if/gnss-raw-if';
 import {
@@ -1226,6 +1271,17 @@ import {
   GroundImageryHistoryAodrParams,
   GroundImageryUploadZipParams,
 } from './resources/ground-imagery/ground-imagery';
+import {
+  H3geo,
+  H3geoCountParams,
+  H3geoCountResponse,
+  H3geoCreateParams,
+  H3geoGetResponse,
+  H3geoListParams,
+  H3geoListResponse,
+  H3geoTupleParams,
+  H3geoTupleResponse,
+} from './resources/h3geo/h3geo';
 import {
   Hazard,
   HazardCountParams,
@@ -1436,6 +1492,16 @@ import {
   Scs,
 } from './resources/scs/scs';
 import {
+  Sensor,
+  SensorCountResponse,
+  SensorCreateParams,
+  SensorGetResponse,
+  SensorListResponse,
+  SensorTupleParams,
+  SensorTupleResponse,
+  SensorUpdateParams,
+} from './resources/sensor/sensor';
+import {
   Sensormaintenance,
   SensormaintenanceCountParams,
   SensormaintenanceCountResponse,
@@ -1467,7 +1533,7 @@ import {
   SgiCreateBulkParams,
   SgiCreateBulkV2Params,
   SgiCreateParams,
-  SgiGetSGIDataByEffectiveAsOfDateParams,
+  SgiGetDataByEffectiveAsOfDateParams,
   SgiListParams,
   SgiListResponse,
   SgiTupleParams,
@@ -1485,6 +1551,16 @@ import {
   SigactTupleResponse,
   SigactUploadZipParams,
 } from './resources/sigact/sigact';
+import {
+  Site,
+  SiteCountResponse,
+  SiteCreateParams,
+  SiteGetResponse,
+  SiteListResponse,
+  SiteTupleParams,
+  SiteTupleResponse,
+  SiteUpdateParams,
+} from './resources/site/site';
 import {
   Sitestatus,
   SitestatusCountResponse,
@@ -1831,6 +1907,12 @@ export class Unifieddatalibrary extends Core.APIClient {
   comm: API.Comm = new API.Comm(this);
   conjunctions: API.Conjunctions = new API.Conjunctions(this);
   cots: API.Cots = new API.Cots(this);
+  aviationriskmanagement: API.Aviationriskmanagement = new API.Aviationriskmanagement(this);
+  dropzone: API.Dropzone = new API.Dropzone(this);
+  emittergeolocation: API.Emittergeolocation = new API.Emittergeolocation(this);
+  featureassessment: API.Featureassessment = new API.Featureassessment(this);
+  globalatmosphericmodel: API.Globalatmosphericmodel = new API.Globalatmosphericmodel(this);
+  routestats: API.Routestats = new API.Routestats(this);
   countries: API.Countries = new API.Countries(this);
   crew: API.Crew = new API.Crew(this);
   diffofarrival: API.Diffofarrival = new API.Diffofarrival(this);
@@ -2041,6 +2123,12 @@ Unifieddatalibrary.CollectResponses = CollectResponses;
 Unifieddatalibrary.Comm = Comm;
 Unifieddatalibrary.Conjunctions = Conjunctions;
 Unifieddatalibrary.Cots = Cots;
+Unifieddatalibrary.Aviationriskmanagement = Aviationriskmanagement;
+Unifieddatalibrary.Dropzone = Dropzone;
+Unifieddatalibrary.Emittergeolocation = Emittergeolocation;
+Unifieddatalibrary.Featureassessment = Featureassessment;
+Unifieddatalibrary.Globalatmosphericmodel = Globalatmosphericmodel;
+Unifieddatalibrary.Routestats = Routestats;
 Unifieddatalibrary.Countries = Countries;
 Unifieddatalibrary.Crew = Crew;
 Unifieddatalibrary.Diffofarrival = Diffofarrival;
@@ -2556,6 +2644,87 @@ export declare namespace Unifieddatalibrary {
   export { Cots as Cots, type CotCreateParams as CotCreateParams };
 
   export {
+    Aviationriskmanagement as Aviationriskmanagement,
+    type AviationriskmanagementRetrieveResponse as AviationriskmanagementRetrieveResponse,
+    type AviationriskmanagementCountResponse as AviationriskmanagementCountResponse,
+    type AviationriskmanagementQueryResponse as AviationriskmanagementQueryResponse,
+    type AviationriskmanagementTupleResponse as AviationriskmanagementTupleResponse,
+    type AviationriskmanagementCreateParams as AviationriskmanagementCreateParams,
+    type AviationriskmanagementUpdateParams as AviationriskmanagementUpdateParams,
+    type AviationriskmanagementCountParams as AviationriskmanagementCountParams,
+    type AviationriskmanagementCreateBulkParams as AviationriskmanagementCreateBulkParams,
+    type AviationriskmanagementCreateBulkV2Params as AviationriskmanagementCreateBulkV2Params,
+    type AviationriskmanagementQueryParams as AviationriskmanagementQueryParams,
+    type AviationriskmanagementTupleParams as AviationriskmanagementTupleParams,
+  };
+
+  export {
+    Dropzone as Dropzone,
+    type DropzoneRetrieveResponse as DropzoneRetrieveResponse,
+    type DropzoneCountResponse as DropzoneCountResponse,
+    type DropzoneQueryResponse as DropzoneQueryResponse,
+    type DropzoneTupleResponse as DropzoneTupleResponse,
+    type DropzoneCreateParams as DropzoneCreateParams,
+    type DropzoneUpdateParams as DropzoneUpdateParams,
+    type DropzoneCreateBulkParams as DropzoneCreateBulkParams,
+    type DropzoneCreateBulkV2Params as DropzoneCreateBulkV2Params,
+    type DropzoneTupleParams as DropzoneTupleParams,
+  };
+
+  export {
+    Emittergeolocation as Emittergeolocation,
+    type EmittergeolocationRetrieveResponse as EmittergeolocationRetrieveResponse,
+    type EmittergeolocationCountResponse as EmittergeolocationCountResponse,
+    type EmittergeolocationQueryResponse as EmittergeolocationQueryResponse,
+    type EmittergeolocationTupleResponse as EmittergeolocationTupleResponse,
+    type EmittergeolocationCreateParams as EmittergeolocationCreateParams,
+    type EmittergeolocationCountParams as EmittergeolocationCountParams,
+    type EmittergeolocationCreateBulkParams as EmittergeolocationCreateBulkParams,
+    type EmittergeolocationCreateBulkV2Params as EmittergeolocationCreateBulkV2Params,
+    type EmittergeolocationQueryParams as EmittergeolocationQueryParams,
+    type EmittergeolocationTupleParams as EmittergeolocationTupleParams,
+  };
+
+  export {
+    Featureassessment as Featureassessment,
+    type FeatureassessmentRetrieveResponse as FeatureassessmentRetrieveResponse,
+    type FeatureassessmentCountResponse as FeatureassessmentCountResponse,
+    type FeatureassessmentQueryResponse as FeatureassessmentQueryResponse,
+    type FeatureassessmentTupleResponse as FeatureassessmentTupleResponse,
+    type FeatureassessmentCreateParams as FeatureassessmentCreateParams,
+    type FeatureassessmentCountParams as FeatureassessmentCountParams,
+    type FeatureassessmentCreateBulkParams as FeatureassessmentCreateBulkParams,
+    type FeatureassessmentCreateBulkV2Params as FeatureassessmentCreateBulkV2Params,
+    type FeatureassessmentQueryParams as FeatureassessmentQueryParams,
+    type FeatureassessmentTupleParams as FeatureassessmentTupleParams,
+  };
+
+  export {
+    Globalatmosphericmodel as Globalatmosphericmodel,
+    type GlobalatmosphericmodelRetrieveResponse as GlobalatmosphericmodelRetrieveResponse,
+    type GlobalatmosphericmodelCountResponse as GlobalatmosphericmodelCountResponse,
+    type GlobalatmosphericmodelQueryResponse as GlobalatmosphericmodelQueryResponse,
+    type GlobalatmosphericmodelTupleResponse as GlobalatmosphericmodelTupleResponse,
+    type GlobalatmosphericmodelCountParams as GlobalatmosphericmodelCountParams,
+    type GlobalatmosphericmodelCreateBulkV2Params as GlobalatmosphericmodelCreateBulkV2Params,
+    type GlobalatmosphericmodelQueryParams as GlobalatmosphericmodelQueryParams,
+    type GlobalatmosphericmodelTupleParams as GlobalatmosphericmodelTupleParams,
+  };
+
+  export {
+    Routestats as Routestats,
+    type RoutestatRetrieveResponse as RoutestatRetrieveResponse,
+    type RoutestatCountResponse as RoutestatCountResponse,
+    type RoutestatQueryResponse as RoutestatQueryResponse,
+    type RoutestatTupleResponse as RoutestatTupleResponse,
+    type RoutestatCreateParams as RoutestatCreateParams,
+    type RoutestatUpdateParams as RoutestatUpdateParams,
+    type RoutestatCreateBulkParams as RoutestatCreateBulkParams,
+    type RoutestatCreateBulkV2Params as RoutestatCreateBulkV2Params,
+    type RoutestatTupleParams as RoutestatTupleParams,
+  };
+
+  export {
     Countries as Countries,
     type CountryAbridged as CountryAbridged,
     type CountryFull as CountryFull,
@@ -2808,6 +2977,7 @@ export declare namespace Unifieddatalibrary {
     type FlightplanCountResponse as FlightplanCountResponse,
     type FlightplanTupleResponse as FlightplanTupleResponse,
     type FlightplanCreateParams as FlightplanCreateParams,
+    type FlightplanUpdateParams as FlightplanUpdateParams,
     type FlightplanCreateBulkV2Params as FlightplanCreateBulkV2Params,
     type FlightplanTupleParams as FlightplanTupleParams,
   };
@@ -3650,7 +3820,7 @@ export declare namespace Unifieddatalibrary {
     type SgiCountParams as SgiCountParams,
     type SgiCreateBulkParams as SgiCreateBulkParams,
     type SgiCreateBulkV2Params as SgiCreateBulkV2Params,
-    type SgiGetSGIDataByEffectiveAsOfDateParams as SgiGetSGIDataByEffectiveAsOfDateParams,
+    type SgiGetDataByEffectiveAsOfDateParams as SgiGetDataByEffectiveAsOfDateParams,
     type SgiTupleParams as SgiTupleParams,
   };
 

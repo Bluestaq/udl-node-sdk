@@ -4,7 +4,7 @@ import { APIResource } from '../../resource';
 import * as HistoryAPI from './history';
 import {
   History,
-  HistoryAdorParams,
+  HistoryAodrParams,
   HistoryCountParams,
   HistoryCountResponse,
   HistoryQueryParams,
@@ -22,7 +22,7 @@ export declare namespace GnssRawIf {
     History as History,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryQueryResponse as HistoryQueryResponse,
-    type HistoryAdorParams as HistoryAdorParams,
+    type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
     type HistoryQueryParams as HistoryQueryParams,
   };

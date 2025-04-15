@@ -215,6 +215,20 @@ export {
 } from './attitude-sets/attitude-sets';
 export { Attitudesets } from './attitudesets';
 export {
+  Aviationriskmanagement,
+  type AviationriskmanagementRetrieveResponse,
+  type AviationriskmanagementCountResponse,
+  type AviationriskmanagementQueryResponse,
+  type AviationriskmanagementTupleResponse,
+  type AviationriskmanagementCreateParams,
+  type AviationriskmanagementUpdateParams,
+  type AviationriskmanagementCountParams,
+  type AviationriskmanagementCreateBulkParams,
+  type AviationriskmanagementCreateBulkV2Params,
+  type AviationriskmanagementQueryParams,
+  type AviationriskmanagementTupleParams,
+} from './aviationriskmanagement';
+export {
   Batteries,
   type BatteryAbridged,
   type BatteryFull,
@@ -381,6 +395,18 @@ export {
   type DriftHistoryTupleResponse,
   type DriftHistoryTupleParams,
 } from './drift-history';
+export {
+  Dropzone,
+  type DropzoneRetrieveResponse,
+  type DropzoneCountResponse,
+  type DropzoneQueryResponse,
+  type DropzoneTupleResponse,
+  type DropzoneCreateParams,
+  type DropzoneUpdateParams,
+  type DropzoneCreateBulkParams,
+  type DropzoneCreateBulkV2Params,
+  type DropzoneTupleParams,
+} from './dropzone';
 export { Ecpsdr, type EcpsdrCreateBulkV2Params } from './ecpsdr';
 export {
   EffectRequests,
@@ -424,6 +450,19 @@ export {
   type ElsetCreateBulkV2Params,
   type ElsetTupleParams,
 } from './elsets/elsets';
+export {
+  Emittergeolocation,
+  type EmittergeolocationRetrieveResponse,
+  type EmittergeolocationCountResponse,
+  type EmittergeolocationQueryResponse,
+  type EmittergeolocationTupleResponse,
+  type EmittergeolocationCreateParams,
+  type EmittergeolocationCountParams,
+  type EmittergeolocationCreateBulkParams,
+  type EmittergeolocationCreateBulkV2Params,
+  type EmittergeolocationQueryParams,
+  type EmittergeolocationTupleParams,
+} from './emittergeolocation';
 export {
   EngineDetails,
   type EngineDetailsFull,
@@ -554,12 +593,26 @@ export {
   type EventEvolutionTupleParams,
 } from './event-evolution/event-evolution';
 export {
+  Featureassessment,
+  type FeatureassessmentRetrieveResponse,
+  type FeatureassessmentCountResponse,
+  type FeatureassessmentQueryResponse,
+  type FeatureassessmentTupleResponse,
+  type FeatureassessmentCreateParams,
+  type FeatureassessmentCountParams,
+  type FeatureassessmentCreateBulkParams,
+  type FeatureassessmentCreateBulkV2Params,
+  type FeatureassessmentQueryParams,
+  type FeatureassessmentTupleParams,
+} from './featureassessment/featureassessment';
+export {
   Flightplan,
   type FlightPlanAbridged,
   type FlightplanListResponse,
   type FlightplanCountResponse,
   type FlightplanTupleResponse,
   type FlightplanCreateParams,
+  type FlightplanUpdateParams,
   type FlightplanCreateBulkV2Params,
   type FlightplanTupleParams,
 } from './flightplan';
@@ -574,6 +627,17 @@ export {
   type GeostatusCreateBulkParams,
   type GeostatusTupleParams,
 } from './geostatus';
+export {
+  Globalatmosphericmodel,
+  type GlobalatmosphericmodelRetrieveResponse,
+  type GlobalatmosphericmodelCountResponse,
+  type GlobalatmosphericmodelQueryResponse,
+  type GlobalatmosphericmodelTupleResponse,
+  type GlobalatmosphericmodelCountParams,
+  type GlobalatmosphericmodelCreateBulkV2Params,
+  type GlobalatmosphericmodelQueryParams,
+  type GlobalatmosphericmodelTupleParams,
+} from './globalatmosphericmodel/globalatmosphericmodel';
 export { GnssObservations } from './gnss-observations/gnss-observations';
 export { GnssRawIf } from './gnss-raw-if/gnss-raw-if';
 export {
@@ -622,7 +686,7 @@ export {
   type H3geoListParams,
   type H3geoCountParams,
   type H3geoTupleParams,
-} from './h3geo';
+} from './h3geo/h3geo';
 export {
   H3geohexcell,
   type H3geohexcellListResponse,
@@ -1185,6 +1249,18 @@ export {
   type RfobservationTupleParams,
 } from './rfobservation/rfobservation';
 export {
+  Routestats,
+  type RoutestatRetrieveResponse,
+  type RoutestatCountResponse,
+  type RoutestatQueryResponse,
+  type RoutestatTupleResponse,
+  type RoutestatCreateParams,
+  type RoutestatUpdateParams,
+  type RoutestatCreateBulkParams,
+  type RoutestatCreateBulkV2Params,
+  type RoutestatTupleParams,
+} from './routestats';
+export {
   Sarobservation,
   type SarobservationListResponse,
   type SarobservationCountResponse,
@@ -1240,7 +1316,7 @@ export {
   type SensorCreateParams,
   type SensorUpdateParams,
   type SensorTupleParams,
-} from './sensor';
+} from './sensor/sensor';
 export {
   Sensormaintenance,
   type SensormaintenanceListResponse,
@@ -1353,7 +1429,7 @@ export {
   type SgiCountParams,
   type SgiCreateBulkParams,
   type SgiCreateBulkV2Params,
-  type SgiGetSGIDataByEffectiveAsOfDateParams,
+  type SgiGetDataByEffectiveAsOfDateParams,
   type SgiTupleParams,
 } from './sgi/sgi';
 export {
@@ -1376,7 +1452,7 @@ export {
   type SiteCreateParams,
   type SiteUpdateParams,
   type SiteTupleParams,
-} from './site';
+} from './site/site';
 export {
   Siteremark,
   type SiteremarkListResponse,

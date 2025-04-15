@@ -800,6 +800,158 @@ Methods:
 
 - <code title="post /udl/cot">client.cots.<a href="./src/resources/cots.ts">create</a>({ ...params }) -> void</code>
 
+# Aviationriskmanagement
+
+Types:
+
+- <code><a href="./src/resources/aviationriskmanagement.ts">AviationriskmanagementRetrieveResponse</a></code>
+- <code><a href="./src/resources/aviationriskmanagement.ts">AviationriskmanagementCountResponse</a></code>
+- <code><a href="./src/resources/aviationriskmanagement.ts">AviationriskmanagementQueryResponse</a></code>
+- <code><a href="./src/resources/aviationriskmanagement.ts">AviationriskmanagementTupleResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/aviationriskmanagement">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/aviationriskmanagement/{id}">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">retrieve</a>(id) -> AviationriskmanagementRetrieveResponse</code>
+- <code title="put /udl/aviationriskmanagement/{id}">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">update</a>(pathId, { ...params }) -> void</code>
+- <code title="delete /udl/aviationriskmanagement/{id}">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">delete</a>(id) -> void</code>
+- <code title="get /udl/aviationriskmanagement/count">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">count</a>({ ...params }) -> string</code>
+- <code title="post /udl/aviationriskmanagement/createBulk">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-aviationriskmanagement">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="get /udl/aviationriskmanagement">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">query</a>({ ...params }) -> AviationriskmanagementQueryResponse</code>
+- <code title="get /udl/aviationriskmanagement/queryhelp">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">queryHelp</a>() -> void</code>
+- <code title="get /udl/aviationriskmanagement/tuple">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">tuple</a>({ ...params }) -> AviationriskmanagementTupleResponse</code>
+
+# Dropzone
+
+Types:
+
+- <code><a href="./src/resources/dropzone.ts">DropzoneRetrieveResponse</a></code>
+- <code><a href="./src/resources/dropzone.ts">DropzoneCountResponse</a></code>
+- <code><a href="./src/resources/dropzone.ts">DropzoneQueryResponse</a></code>
+- <code><a href="./src/resources/dropzone.ts">DropzoneTupleResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/dropzone">client.dropzone.<a href="./src/resources/dropzone.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/dropzone/{id}">client.dropzone.<a href="./src/resources/dropzone.ts">retrieve</a>(id) -> DropzoneRetrieveResponse</code>
+- <code title="put /udl/dropzone/{id}">client.dropzone.<a href="./src/resources/dropzone.ts">update</a>(pathId, { ...params }) -> void</code>
+- <code title="delete /udl/dropzone/{id}">client.dropzone.<a href="./src/resources/dropzone.ts">delete</a>(id) -> void</code>
+- <code title="get /udl/dropzone/count">client.dropzone.<a href="./src/resources/dropzone.ts">count</a>() -> string</code>
+- <code title="post /udl/dropzone/createBulk">client.dropzone.<a href="./src/resources/dropzone.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-dropzone">client.dropzone.<a href="./src/resources/dropzone.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="get /udl/dropzone">client.dropzone.<a href="./src/resources/dropzone.ts">query</a>() -> DropzoneQueryResponse</code>
+- <code title="get /udl/dropzone/queryhelp">client.dropzone.<a href="./src/resources/dropzone.ts">queryHelp</a>() -> void</code>
+- <code title="get /udl/dropzone/tuple">client.dropzone.<a href="./src/resources/dropzone.ts">tuple</a>({ ...params }) -> DropzoneTupleResponse</code>
+
+# Emittergeolocation
+
+Types:
+
+- <code><a href="./src/resources/emittergeolocation.ts">EmittergeolocationRetrieveResponse</a></code>
+- <code><a href="./src/resources/emittergeolocation.ts">EmittergeolocationCountResponse</a></code>
+- <code><a href="./src/resources/emittergeolocation.ts">EmittergeolocationQueryResponse</a></code>
+- <code><a href="./src/resources/emittergeolocation.ts">EmittergeolocationTupleResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/emittergeolocation">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/emittergeolocation/{id}">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">retrieve</a>(id) -> EmittergeolocationRetrieveResponse</code>
+- <code title="delete /udl/emittergeolocation/{id}">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">delete</a>(id) -> void</code>
+- <code title="get /udl/emittergeolocation/count">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">count</a>({ ...params }) -> string</code>
+- <code title="post /udl/emittergeolocation/createBulk">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-emittergeolocation">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="get /udl/emittergeolocation">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">query</a>({ ...params }) -> EmittergeolocationQueryResponse</code>
+- <code title="get /udl/emittergeolocation/queryhelp">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">queryHelp</a>() -> void</code>
+- <code title="get /udl/emittergeolocation/tuple">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">tuple</a>({ ...params }) -> EmittergeolocationTupleResponse</code>
+
+# Featureassessment
+
+Types:
+
+- <code><a href="./src/resources/featureassessment/featureassessment.ts">FeatureassessmentRetrieveResponse</a></code>
+- <code><a href="./src/resources/featureassessment/featureassessment.ts">FeatureassessmentCountResponse</a></code>
+- <code><a href="./src/resources/featureassessment/featureassessment.ts">FeatureassessmentQueryResponse</a></code>
+- <code><a href="./src/resources/featureassessment/featureassessment.ts">FeatureassessmentTupleResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/featureassessment">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/featureassessment/{id}">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">retrieve</a>(id) -> FeatureassessmentRetrieveResponse</code>
+- <code title="get /udl/featureassessment/count">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">count</a>({ ...params }) -> string</code>
+- <code title="post /udl/featureassessment/createBulk">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-featureassessment">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="get /udl/featureassessment">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">query</a>({ ...params }) -> FeatureassessmentQueryResponse</code>
+- <code title="get /udl/featureassessment/queryhelp">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">queryHelp</a>() -> void</code>
+- <code title="get /udl/featureassessment/tuple">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">tuple</a>({ ...params }) -> FeatureassessmentTupleResponse</code>
+
+## History
+
+Types:
+
+- <code><a href="./src/resources/featureassessment/history.ts">HistoryCountResponse</a></code>
+- <code><a href="./src/resources/featureassessment/history.ts">HistoryQueryResponse</a></code>
+
+Methods:
+
+- <code title="get /udl/featureassessment/history/count">client.featureassessment.history.<a href="./src/resources/featureassessment/history.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/featureassessment/history">client.featureassessment.history.<a href="./src/resources/featureassessment/history.ts">query</a>({ ...params }) -> HistoryQueryResponse</code>
+- <code title="get /udl/featureassessment/history/aodr">client.featureassessment.history.<a href="./src/resources/featureassessment/history.ts">writeAodr</a>({ ...params }) -> void</code>
+
+# Globalatmosphericmodel
+
+Types:
+
+- <code><a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">GlobalatmosphericmodelRetrieveResponse</a></code>
+- <code><a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">GlobalatmosphericmodelCountResponse</a></code>
+- <code><a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">GlobalatmosphericmodelQueryResponse</a></code>
+- <code><a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">GlobalatmosphericmodelTupleResponse</a></code>
+
+Methods:
+
+- <code title="get /udl/globalatmosphericmodel/{id}">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">retrieve</a>(id) -> GlobalatmosphericmodelRetrieveResponse</code>
+- <code title="get /udl/globalatmosphericmodel/count">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">count</a>({ ...params }) -> string</code>
+- <code title="post /filedrop/udl-globalatmosphericmodel">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">createBulkV2</a>({ ...params }) -> void</code>
+- <code title="get /udl/globalatmosphericmodel/getFile/{id}">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">getFile</a>(id) -> Response</code>
+- <code title="get /udl/globalatmosphericmodel">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">query</a>({ ...params }) -> GlobalatmosphericmodelQueryResponse</code>
+- <code title="get /udl/globalatmosphericmodel/queryhelp">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">queryHelp</a>() -> void</code>
+- <code title="get /udl/globalatmosphericmodel/tuple">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">tuple</a>({ ...params }) -> GlobalatmosphericmodelTupleResponse</code>
+
+## History
+
+Types:
+
+- <code><a href="./src/resources/globalatmosphericmodel/history.ts">HistoryCountResponse</a></code>
+- <code><a href="./src/resources/globalatmosphericmodel/history.ts">HistoryQueryResponse</a></code>
+
+Methods:
+
+- <code title="get /udl/globalatmosphericmodel/history/count">client.globalatmosphericmodel.history.<a href="./src/resources/globalatmosphericmodel/history.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/globalatmosphericmodel/history">client.globalatmosphericmodel.history.<a href="./src/resources/globalatmosphericmodel/history.ts">query</a>({ ...params }) -> HistoryQueryResponse</code>
+- <code title="get /udl/globalatmosphericmodel/history/aodr">client.globalatmosphericmodel.history.<a href="./src/resources/globalatmosphericmodel/history.ts">writeAodr</a>({ ...params }) -> void</code>
+
+# Routestats
+
+Types:
+
+- <code><a href="./src/resources/routestats.ts">RoutestatRetrieveResponse</a></code>
+- <code><a href="./src/resources/routestats.ts">RoutestatCountResponse</a></code>
+- <code><a href="./src/resources/routestats.ts">RoutestatQueryResponse</a></code>
+- <code><a href="./src/resources/routestats.ts">RoutestatTupleResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/routestats">client.routestats.<a href="./src/resources/routestats.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/routestats/{id}">client.routestats.<a href="./src/resources/routestats.ts">retrieve</a>(id) -> RoutestatRetrieveResponse</code>
+- <code title="put /udl/routestats/{id}">client.routestats.<a href="./src/resources/routestats.ts">update</a>(pathId, { ...params }) -> void</code>
+- <code title="delete /udl/routestats/{id}">client.routestats.<a href="./src/resources/routestats.ts">delete</a>(id) -> void</code>
+- <code title="get /udl/routestats/count">client.routestats.<a href="./src/resources/routestats.ts">count</a>() -> string</code>
+- <code title="post /udl/routestats/createBulk">client.routestats.<a href="./src/resources/routestats.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-routestats">client.routestats.<a href="./src/resources/routestats.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="get /udl/routestats">client.routestats.<a href="./src/resources/routestats.ts">query</a>() -> RoutestatQueryResponse</code>
+- <code title="get /udl/routestats/queryhelp">client.routestats.<a href="./src/resources/routestats.ts">queryHelp</a>() -> void</code>
+- <code title="get /udl/routestats/tuple">client.routestats.<a href="./src/resources/routestats.ts">tuple</a>({ ...params }) -> RoutestatTupleResponse</code>
+
 # Countries
 
 Types:
@@ -897,6 +1049,28 @@ Methods:
 - <code title="get /udl/diplomaticclearance/history">client.diplomaticClearance.history.<a href="./src/resources/diplomatic-clearance/history.ts">list</a>({ ...params }) -> HistoryListResponse</code>
 - <code title="get /udl/diplomaticclearance/history/aodr">client.diplomaticClearance.history.<a href="./src/resources/diplomatic-clearance/history.ts">aodr</a>({ ...params }) -> void</code>
 - <code title="get /udl/diplomaticclearance/history/count">client.diplomaticClearance.history.<a href="./src/resources/diplomatic-clearance/history.ts">count</a>({ ...params }) -> string</code>
+
+## Country
+
+Types:
+
+- <code><a href="./src/resources/diplomatic-clearance/country.ts">CountryRetrieveResponse</a></code>
+- <code><a href="./src/resources/diplomatic-clearance/country.ts">CountryListResponse</a></code>
+- <code><a href="./src/resources/diplomatic-clearance/country.ts">CountryCountResponse</a></code>
+- <code><a href="./src/resources/diplomatic-clearance/country.ts">CountryTupleResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/diplomaticclearancecountry">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/diplomaticclearancecountry/{id}">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">retrieve</a>(id) -> CountryRetrieveResponse</code>
+- <code title="put /udl/diplomaticclearancecountry/{id}">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">update</a>(pathId, { ...params }) -> void</code>
+- <code title="get /udl/diplomaticclearancecountry">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">list</a>() -> CountryListResponse</code>
+- <code title="delete /udl/diplomaticclearancecountry/{id}">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">delete</a>(id) -> void</code>
+- <code title="get /udl/diplomaticclearancecountry/count">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">count</a>() -> string</code>
+- <code title="post /udl/diplomaticclearancecountry/createBulk">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-diplomaticclearancecountry">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="get /udl/diplomaticclearancecountry/queryhelp">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">queryHelp</a>() -> void</code>
+- <code title="get /udl/diplomaticclearancecountry/tuple">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">tuple</a>({ ...params }) -> CountryTupleResponse</code>
 
 # DriftHistory
 
@@ -1395,7 +1569,10 @@ Types:
 Methods:
 
 - <code title="post /udl/flightplan">client.flightplan.<a href="./src/resources/flightplan.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/flightplan/{id}">client.flightplan.<a href="./src/resources/flightplan.ts">retrieve</a>(id) -> FlightPlanFull</code>
+- <code title="put /udl/flightplan/{id}">client.flightplan.<a href="./src/resources/flightplan.ts">update</a>(pathId, { ...params }) -> void</code>
 - <code title="get /udl/flightplan">client.flightplan.<a href="./src/resources/flightplan.ts">list</a>() -> FlightplanListResponse</code>
+- <code title="delete /udl/flightplan/{id}">client.flightplan.<a href="./src/resources/flightplan.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/flightplan/count">client.flightplan.<a href="./src/resources/flightplan.ts">count</a>() -> string</code>
 - <code title="post /filedrop/udl-flightplan">client.flightplan.<a href="./src/resources/flightplan.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/flightplan/queryhelp">client.flightplan.<a href="./src/resources/flightplan.ts">queryhelp</a>() -> void</code>
@@ -1495,19 +1672,32 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/h3geo.ts">H3geoListResponse</a></code>
-- <code><a href="./src/resources/h3geo.ts">H3geoCountResponse</a></code>
-- <code><a href="./src/resources/h3geo.ts">H3geoGetResponse</a></code>
-- <code><a href="./src/resources/h3geo.ts">H3geoTupleResponse</a></code>
+- <code><a href="./src/resources/h3geo/h3geo.ts">H3geoListResponse</a></code>
+- <code><a href="./src/resources/h3geo/h3geo.ts">H3geoCountResponse</a></code>
+- <code><a href="./src/resources/h3geo/h3geo.ts">H3geoGetResponse</a></code>
+- <code><a href="./src/resources/h3geo/h3geo.ts">H3geoTupleResponse</a></code>
 
 Methods:
 
-- <code title="post /udl/h3geo">client.h3geo.<a href="./src/resources/h3geo.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/h3geo">client.h3geo.<a href="./src/resources/h3geo.ts">list</a>({ ...params }) -> H3geoListResponse</code>
-- <code title="get /udl/h3geo/count">client.h3geo.<a href="./src/resources/h3geo.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/h3geo/{id}">client.h3geo.<a href="./src/resources/h3geo.ts">get</a>(id) -> H3geoGetResponse</code>
-- <code title="get /udl/h3geo/queryhelp">client.h3geo.<a href="./src/resources/h3geo.ts">queryhelp</a>() -> void</code>
-- <code title="get /udl/h3geo/tuple">client.h3geo.<a href="./src/resources/h3geo.ts">tuple</a>({ ...params }) -> H3geoTupleResponse</code>
+- <code title="post /udl/h3geo">client.h3geo.<a href="./src/resources/h3geo/h3geo.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/h3geo">client.h3geo.<a href="./src/resources/h3geo/h3geo.ts">list</a>({ ...params }) -> H3geoListResponse</code>
+- <code title="get /udl/h3geo/count">client.h3geo.<a href="./src/resources/h3geo/h3geo.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/h3geo/{id}">client.h3geo.<a href="./src/resources/h3geo/h3geo.ts">get</a>(id) -> H3geoGetResponse</code>
+- <code title="get /udl/h3geo/queryhelp">client.h3geo.<a href="./src/resources/h3geo/h3geo.ts">queryhelp</a>() -> void</code>
+- <code title="get /udl/h3geo/tuple">client.h3geo.<a href="./src/resources/h3geo/h3geo.ts">tuple</a>({ ...params }) -> H3geoTupleResponse</code>
+
+## History
+
+Types:
+
+- <code><a href="./src/resources/h3geo/history.ts">HistoryCountResponse</a></code>
+- <code><a href="./src/resources/h3geo/history.ts">HistoryQueryResponse</a></code>
+
+Methods:
+
+- <code title="get /udl/h3geo/history/aodr">client.h3geo.history.<a href="./src/resources/h3geo/history.ts">ador</a>({ ...params }) -> void</code>
+- <code title="get /udl/h3geo/history/count">client.h3geo.history.<a href="./src/resources/h3geo/history.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/h3geo/history">client.h3geo.history.<a href="./src/resources/h3geo/history.ts">query</a>({ ...params }) -> HistoryQueryResponse</code>
 
 # H3geohexcell
 
@@ -2845,21 +3035,54 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/sensor.ts">SensorListResponse</a></code>
-- <code><a href="./src/resources/sensor.ts">SensorCountResponse</a></code>
-- <code><a href="./src/resources/sensor.ts">SensorGetResponse</a></code>
-- <code><a href="./src/resources/sensor.ts">SensorTupleResponse</a></code>
+- <code><a href="./src/resources/sensor/sensor.ts">SensorListResponse</a></code>
+- <code><a href="./src/resources/sensor/sensor.ts">SensorCountResponse</a></code>
+- <code><a href="./src/resources/sensor/sensor.ts">SensorGetResponse</a></code>
+- <code><a href="./src/resources/sensor/sensor.ts">SensorTupleResponse</a></code>
 
 Methods:
 
-- <code title="post /udl/sensor">client.sensor.<a href="./src/resources/sensor.ts">create</a>({ ...params }) -> void</code>
-- <code title="put /udl/sensor/{id}">client.sensor.<a href="./src/resources/sensor.ts">update</a>(id, { ...params }) -> void</code>
-- <code title="get /udl/sensor">client.sensor.<a href="./src/resources/sensor.ts">list</a>() -> SensorListResponse</code>
-- <code title="delete /udl/sensor/{id}">client.sensor.<a href="./src/resources/sensor.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/sensor/count">client.sensor.<a href="./src/resources/sensor.ts">count</a>() -> string</code>
-- <code title="get /udl/sensor/{id}">client.sensor.<a href="./src/resources/sensor.ts">get</a>(id) -> SensorGetResponse</code>
-- <code title="get /udl/sensor/queryhelp">client.sensor.<a href="./src/resources/sensor.ts">queryhelp</a>() -> void</code>
-- <code title="get /udl/sensor/tuple">client.sensor.<a href="./src/resources/sensor.ts">tuple</a>({ ...params }) -> SensorTupleResponse</code>
+- <code title="post /udl/sensor">client.sensor.<a href="./src/resources/sensor/sensor.ts">create</a>({ ...params }) -> void</code>
+- <code title="put /udl/sensor/{id}">client.sensor.<a href="./src/resources/sensor/sensor.ts">update</a>(id, { ...params }) -> void</code>
+- <code title="get /udl/sensor">client.sensor.<a href="./src/resources/sensor/sensor.ts">list</a>() -> SensorListResponse</code>
+- <code title="delete /udl/sensor/{id}">client.sensor.<a href="./src/resources/sensor/sensor.ts">delete</a>(id) -> void</code>
+- <code title="get /udl/sensor/count">client.sensor.<a href="./src/resources/sensor/sensor.ts">count</a>() -> string</code>
+- <code title="get /udl/sensor/{id}">client.sensor.<a href="./src/resources/sensor/sensor.ts">get</a>(id) -> SensorGetResponse</code>
+- <code title="get /udl/sensor/queryhelp">client.sensor.<a href="./src/resources/sensor/sensor.ts">queryhelp</a>() -> void</code>
+- <code title="get /udl/sensor/tuple">client.sensor.<a href="./src/resources/sensor/sensor.ts">tuple</a>({ ...params }) -> SensorTupleResponse</code>
+
+## Calibration
+
+Types:
+
+- <code><a href="./src/resources/sensor/calibration/calibration.ts">CalibrationRetrieveResponse</a></code>
+- <code><a href="./src/resources/sensor/calibration/calibration.ts">CalibrationCountResponse</a></code>
+- <code><a href="./src/resources/sensor/calibration/calibration.ts">CalibrationQueryResponse</a></code>
+- <code><a href="./src/resources/sensor/calibration/calibration.ts">CalibrationTupleResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/sensorcalibration">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/sensorcalibration/{id}">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">retrieve</a>(id) -> CalibrationRetrieveResponse</code>
+- <code title="get /udl/sensorcalibration/count">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">count</a>({ ...params }) -> string</code>
+- <code title="post /udl/sensorcalibration/createBulk">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-sensorcalibration">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="get /udl/sensorcalibration">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">query</a>({ ...params }) -> CalibrationQueryResponse</code>
+- <code title="get /udl/sensorcalibration/queryhelp">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">queryHelp</a>() -> void</code>
+- <code title="get /udl/sensorcalibration/tuple">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">tuple</a>({ ...params }) -> CalibrationTupleResponse</code>
+
+### History
+
+Types:
+
+- <code><a href="./src/resources/sensor/calibration/history.ts">HistoryCountResponse</a></code>
+- <code><a href="./src/resources/sensor/calibration/history.ts">HistoryQueryResponse</a></code>
+
+Methods:
+
+- <code title="get /udl/sensorcalibration/history/count">client.sensor.calibration.history.<a href="./src/resources/sensor/calibration/history.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/sensorcalibration/history">client.sensor.calibration.history.<a href="./src/resources/sensor/calibration/history.ts">query</a>({ ...params }) -> HistoryQueryResponse</code>
+- <code title="get /udl/sensorcalibration/history/aodr">client.sensor.calibration.history.<a href="./src/resources/sensor/calibration/history.ts">writeAodr</a>({ ...params }) -> void</code>
 
 # Sensormaintenance
 
@@ -3112,7 +3335,7 @@ Methods:
 - <code title="post /udl/sgi/createBulk">client.sgi.<a href="./src/resources/sgi/sgi.ts">createBulk</a>([ ...body ]) -> void</code>
 - <code title="post /filedrop/udl-sgi">client.sgi.<a href="./src/resources/sgi/sgi.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/sgi/{id}">client.sgi.<a href="./src/resources/sgi/sgi.ts">get</a>(id) -> SgiFull</code>
-- <code title="get /udl/sgi/getSGIDataByEffectiveAsOfDate">client.sgi.<a href="./src/resources/sgi/sgi.ts">getSGIDataByEffectiveAsOfDate</a>({ ...params }) -> SgiFull</code>
+- <code title="get /udl/sgi/getSGIDataByEffectiveAsOfDate">client.sgi.<a href="./src/resources/sgi/sgi.ts">getDataByEffectiveAsOfDate</a>({ ...params }) -> SgiFull</code>
 - <code title="get /udl/sgi/queryhelp">client.sgi.<a href="./src/resources/sgi/sgi.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/sgi/tuple">client.sgi.<a href="./src/resources/sgi/sgi.ts">tuple</a>({ ...params }) -> SgiTupleResponse</code>
 
@@ -3162,20 +3385,42 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/site.ts">SiteListResponse</a></code>
-- <code><a href="./src/resources/site.ts">SiteCountResponse</a></code>
-- <code><a href="./src/resources/site.ts">SiteGetResponse</a></code>
-- <code><a href="./src/resources/site.ts">SiteTupleResponse</a></code>
+- <code><a href="./src/resources/site/site.ts">SiteListResponse</a></code>
+- <code><a href="./src/resources/site/site.ts">SiteCountResponse</a></code>
+- <code><a href="./src/resources/site/site.ts">SiteGetResponse</a></code>
+- <code><a href="./src/resources/site/site.ts">SiteTupleResponse</a></code>
 
 Methods:
 
-- <code title="post /udl/site">client.site.<a href="./src/resources/site.ts">create</a>({ ...params }) -> void</code>
-- <code title="put /udl/site/{id}">client.site.<a href="./src/resources/site.ts">update</a>(pathId, { ...params }) -> void</code>
-- <code title="get /udl/site">client.site.<a href="./src/resources/site.ts">list</a>() -> SiteListResponse</code>
-- <code title="get /udl/site/count">client.site.<a href="./src/resources/site.ts">count</a>() -> string</code>
-- <code title="get /udl/site/{id}">client.site.<a href="./src/resources/site.ts">get</a>(id) -> SiteGetResponse</code>
-- <code title="get /udl/site/queryhelp">client.site.<a href="./src/resources/site.ts">queryhelp</a>() -> void</code>
-- <code title="get /udl/site/tuple">client.site.<a href="./src/resources/site.ts">tuple</a>({ ...params }) -> SiteTupleResponse</code>
+- <code title="post /udl/site">client.site.<a href="./src/resources/site/site.ts">create</a>({ ...params }) -> void</code>
+- <code title="put /udl/site/{id}">client.site.<a href="./src/resources/site/site.ts">update</a>(pathId, { ...params }) -> void</code>
+- <code title="get /udl/site">client.site.<a href="./src/resources/site/site.ts">list</a>() -> SiteListResponse</code>
+- <code title="get /udl/site/count">client.site.<a href="./src/resources/site/site.ts">count</a>() -> string</code>
+- <code title="get /udl/site/{id}">client.site.<a href="./src/resources/site/site.ts">get</a>(id) -> SiteGetResponse</code>
+- <code title="get /udl/site/queryhelp">client.site.<a href="./src/resources/site/site.ts">queryhelp</a>() -> void</code>
+- <code title="get /udl/site/tuple">client.site.<a href="./src/resources/site/site.ts">tuple</a>({ ...params }) -> SiteTupleResponse</code>
+
+## Operations
+
+Types:
+
+- <code><a href="./src/resources/site/operations.ts">OperationRetrieveResponse</a></code>
+- <code><a href="./src/resources/site/operations.ts">OperationListResponse</a></code>
+- <code><a href="./src/resources/site/operations.ts">OperationCountResponse</a></code>
+- <code><a href="./src/resources/site/operations.ts">OperationTupleResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/siteoperations">client.site.operations.<a href="./src/resources/site/operations.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/siteoperations/{id}">client.site.operations.<a href="./src/resources/site/operations.ts">retrieve</a>(id) -> OperationRetrieveResponse</code>
+- <code title="put /udl/siteoperations/{id}">client.site.operations.<a href="./src/resources/site/operations.ts">update</a>(pathId, { ...params }) -> void</code>
+- <code title="get /udl/siteoperations">client.site.operations.<a href="./src/resources/site/operations.ts">list</a>({ ...params }) -> OperationListResponse</code>
+- <code title="delete /udl/siteoperations/{id}">client.site.operations.<a href="./src/resources/site/operations.ts">delete</a>(id) -> void</code>
+- <code title="get /udl/siteoperations/count">client.site.operations.<a href="./src/resources/site/operations.ts">count</a>({ ...params }) -> string</code>
+- <code title="post /udl/siteoperations/createBulk">client.site.operations.<a href="./src/resources/site/operations.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-siteoperations">client.site.operations.<a href="./src/resources/site/operations.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="get /udl/siteoperations/queryhelp">client.site.operations.<a href="./src/resources/site/operations.ts">queryHelp</a>() -> void</code>
+- <code title="get /udl/siteoperations/tuple">client.site.operations.<a href="./src/resources/site/operations.ts">tuple</a>({ ...params }) -> OperationTupleResponse</code>
 
 # Siteremark
 
@@ -4261,7 +4506,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/gnssrawif/history/aodr">client.gnssRawIf.history.<a href="./src/resources/gnss-raw-if/history.ts">ador</a>({ ...params }) -> void</code>
+- <code title="get /udl/gnssrawif/history/aodr">client.gnssRawIf.history.<a href="./src/resources/gnss-raw-if/history.ts">aodr</a>({ ...params }) -> void</code>
 - <code title="get /udl/gnssrawif/history/count">client.gnssRawIf.history.<a href="./src/resources/gnss-raw-if/history.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/gnssrawif/history">client.gnssRawIf.history.<a href="./src/resources/gnss-raw-if/history.ts">query</a>({ ...params }) -> HistoryQueryResponse</code>
 

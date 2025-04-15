@@ -3,6 +3,19 @@
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
 import * as DiplomaticClearanceAPI from '../air-operations/diplomatic-clearance';
+import * as CountryAPI from './country';
+import {
+  Country,
+  CountryCountResponse,
+  CountryCreateBulkParams,
+  CountryCreateBulkV2Params,
+  CountryCreateParams,
+  CountryListResponse,
+  CountryRetrieveResponse,
+  CountryTupleParams,
+  CountryTupleResponse,
+  CountryUpdateParams,
+} from './country';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -15,6 +28,7 @@ import {
 
 export class DiplomaticClearance extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
+  country: CountryAPI.Country = new CountryAPI.Country(this._client);
 
   /**
    * Service operation to take a single diplomatic clearance record as a POST body
@@ -977,6 +991,7 @@ export interface DiplomaticClearanceTupleParams {
 }
 
 DiplomaticClearance.History = History;
+DiplomaticClearance.Country = Country;
 
 export declare namespace DiplomaticClearance {
   export {
@@ -998,5 +1013,18 @@ export declare namespace DiplomaticClearance {
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
+  };
+
+  export {
+    Country as Country,
+    type CountryRetrieveResponse as CountryRetrieveResponse,
+    type CountryListResponse as CountryListResponse,
+    type CountryCountResponse as CountryCountResponse,
+    type CountryTupleResponse as CountryTupleResponse,
+    type CountryCreateParams as CountryCreateParams,
+    type CountryUpdateParams as CountryUpdateParams,
+    type CountryCreateBulkParams as CountryCreateBulkParams,
+    type CountryCreateBulkV2Params as CountryCreateBulkV2Params,
+    type CountryTupleParams as CountryTupleParams,
   };
 }
