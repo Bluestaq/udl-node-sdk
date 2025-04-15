@@ -562,7 +562,7 @@ export {
   type FlightplanCreateParams,
   type FlightplanCreateBulkV2Params,
   type FlightplanTupleParams,
-} from './flightplan/flightplan';
+} from './flightplan';
 export {
   Geostatus,
   type GeostatusListResponse,
