@@ -1387,21 +1387,19 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/flightplan/flightplan.ts">FlightPlanAbridged</a></code>
-- <code><a href="./src/resources/flightplan/flightplan.ts">FlightplanListResponse</a></code>
-- <code><a href="./src/resources/flightplan/flightplan.ts">FlightplanCountResponse</a></code>
-- <code><a href="./src/resources/flightplan/flightplan.ts">FlightplanTupleResponse</a></code>
+- <code><a href="./src/resources/flightplan.ts">FlightPlanAbridged</a></code>
+- <code><a href="./src/resources/flightplan.ts">FlightplanListResponse</a></code>
+- <code><a href="./src/resources/flightplan.ts">FlightplanCountResponse</a></code>
+- <code><a href="./src/resources/flightplan.ts">FlightplanTupleResponse</a></code>
 
 Methods:
 
-- <code title="post /udl/flightplan">client.flightplan.<a href="./src/resources/flightplan/flightplan.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/flightplan">client.flightplan.<a href="./src/resources/flightplan/flightplan.ts">list</a>() -> FlightplanListResponse</code>
-- <code title="get /udl/flightplan/count">client.flightplan.<a href="./src/resources/flightplan/flightplan.ts">count</a>() -> string</code>
-- <code title="post /filedrop/udl-flightplan">client.flightplan.<a href="./src/resources/flightplan/flightplan.ts">createBulkV2</a>([ ...body ]) -> void</code>
-- <code title="get /udl/flightplan/queryhelp">client.flightplan.<a href="./src/resources/flightplan/flightplan.ts">queryhelp</a>() -> void</code>
-- <code title="get /udl/flightplan/tuple">client.flightplan.<a href="./src/resources/flightplan/flightplan.ts">tuple</a>({ ...params }) -> FlightplanTupleResponse</code>
-
-## History
+- <code title="post /udl/flightplan">client.flightplan.<a href="./src/resources/flightplan.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/flightplan">client.flightplan.<a href="./src/resources/flightplan.ts">list</a>() -> FlightplanListResponse</code>
+- <code title="get /udl/flightplan/count">client.flightplan.<a href="./src/resources/flightplan.ts">count</a>() -> string</code>
+- <code title="post /filedrop/udl-flightplan">client.flightplan.<a href="./src/resources/flightplan.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="get /udl/flightplan/queryhelp">client.flightplan.<a href="./src/resources/flightplan.ts">queryhelp</a>() -> void</code>
+- <code title="get /udl/flightplan/tuple">client.flightplan.<a href="./src/resources/flightplan.ts">tuple</a>({ ...params }) -> FlightplanTupleResponse</code>
 
 # Geostatus
 
@@ -3956,10 +3954,6 @@ Methods:
 - <code title="get /udl/weatherreport/history/count">client.weatherreport.history.<a href="./src/resources/weatherreport/history.ts">count</a>({ ...params }) -> string</code>
 
 # Udl
-
-## Flightplan
-
-### History
 
 ## Geostatus
 

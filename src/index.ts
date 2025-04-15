@@ -334,6 +334,16 @@ import {
   Equipmentremarks,
 } from './resources/equipmentremarks';
 import {
+  FlightPlanAbridged,
+  Flightplan,
+  FlightplanCountResponse,
+  FlightplanCreateBulkV2Params,
+  FlightplanCreateParams,
+  FlightplanListResponse,
+  FlightplanTupleParams,
+  FlightplanTupleResponse,
+} from './resources/flightplan';
+import {
   Geostatus,
   GeostatusCountParams,
   GeostatusCountResponse,
@@ -1209,16 +1219,6 @@ import {
   EventEvolutionTupleParams,
   EventEvolutionTupleResponse,
 } from './resources/event-evolution/event-evolution';
-import {
-  FlightPlanAbridged,
-  Flightplan,
-  FlightplanCountResponse,
-  FlightplanCreateBulkV2Params,
-  FlightplanCreateParams,
-  FlightplanListResponse,
-  FlightplanTupleParams,
-  FlightplanTupleResponse,
-} from './resources/flightplan/flightplan';
 import { GnssObservations } from './resources/gnss-observations/gnss-observations';
 import { GnssRawIf } from './resources/gnss-raw-if/gnss-raw-if';
 import {

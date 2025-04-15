@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
-import * as FlightplanAPI from './flightplan/flightplan';
-import { Flightplan } from './flightplan/flightplan';
 import * as GeostatusAPI from './geostatus/geostatus';
 import { Geostatus } from './geostatus/geostatus';
 import * as GnssobservationsetAPI from './gnssobservationset/gnssobservationset';
@@ -65,7 +63,6 @@ import * as SkyimageryAPI from './skyimagery/skyimagery';
 import { Skyimagery } from './skyimagery/skyimagery';
 
 export class Udl extends APIResource {
-  flightplan: FlightplanAPI.Flightplan = new FlightplanAPI.Flightplan(this._client);
   geostatus: GeostatusAPI.Geostatus = new GeostatusAPI.Geostatus(this._client);
   gnssobservationset: GnssobservationsetAPI.Gnssobservationset = new GnssobservationsetAPI.Gnssobservationset(
     this._client,
@@ -112,7 +109,6 @@ export class Udl extends APIResource {
   skyimagery: SkyimageryAPI.Skyimagery = new SkyimageryAPI.Skyimagery(this._client);
 }
 
-Udl.Flightplan = Flightplan;
 Udl.Geostatus = Geostatus;
 Udl.Gnssobservationset = Gnssobservationset;
 Udl.Mti = Mti;
@@ -145,8 +141,6 @@ Udl.Sitestatus = Sitestatus;
 Udl.Skyimagery = Skyimagery;
 
 export declare namespace Udl {
-  export { Flightplan as Flightplan };
-
   export { Geostatus as Geostatus };
 
   export { Gnssobservationset as Gnssobservationset };
