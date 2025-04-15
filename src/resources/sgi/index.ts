@@ -19,6 +19,6 @@ export {
   type SgiCountParams,
   type SgiCreateBulkParams,
   type SgiCreateBulkV2Params,
-  type SgiGetSGIDataByEffectiveAsOfDateParams,
+  type SgiGetDataByEffectiveAsOfDateParams,
   type SgiTupleParams,
 } from './sgi';

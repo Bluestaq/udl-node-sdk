@@ -135,17 +135,17 @@ export class Sgi extends APIResource {
   /**
    * Service to return matching SGI records as of the effective date.
    */
-  getSGIDataByEffectiveAsOfDate(
-    query?: SgiGetSGIDataByEffectiveAsOfDateParams,
+  getDataByEffectiveAsOfDate(
+    query?: SgiGetDataByEffectiveAsOfDateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<SgiHistoryAPI.SgiFull>;
-  getSGIDataByEffectiveAsOfDate(options?: Core.RequestOptions): Core.APIPromise<SgiHistoryAPI.SgiFull>;
-  getSGIDataByEffectiveAsOfDate(
-    query: SgiGetSGIDataByEffectiveAsOfDateParams | Core.RequestOptions = {},
+  getDataByEffectiveAsOfDate(options?: Core.RequestOptions): Core.APIPromise<SgiHistoryAPI.SgiFull>;
+  getDataByEffectiveAsOfDate(
+    query: SgiGetDataByEffectiveAsOfDateParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<SgiHistoryAPI.SgiFull> {
     if (isRequestOptions(query)) {
-      return this.getSGIDataByEffectiveAsOfDate({}, query);
+      return this.getDataByEffectiveAsOfDate({}, query);
     }
     return this._client.get('/udl/sgi/getSGIDataByEffectiveAsOfDate', { query, ...options });
   }
@@ -2079,7 +2079,7 @@ export namespace SgiCreateBulkV2Params {
   }
 }
 
-export interface SgiGetSGIDataByEffectiveAsOfDateParams {
+export interface SgiGetDataByEffectiveAsOfDateParams {
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
    * the data was received and processed from the source. Typically a source provides
@@ -2136,7 +2136,7 @@ export declare namespace Sgi {
     type SgiCountParams as SgiCountParams,
     type SgiCreateBulkParams as SgiCreateBulkParams,
     type SgiCreateBulkV2Params as SgiCreateBulkV2Params,
-    type SgiGetSGIDataByEffectiveAsOfDateParams as SgiGetSGIDataByEffectiveAsOfDateParams,
+    type SgiGetDataByEffectiveAsOfDateParams as SgiGetDataByEffectiveAsOfDateParams,
     type SgiTupleParams as SgiTupleParams,
   };
 

@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource history', () => {
-  test('aodr: only required params', async () => {
-    const responsePromise = client.gnssRawIf.history.aodr({ startTime: '2019-12-27T18:11:19.117Z' });
+  test('ador: only required params', async () => {
+    const responsePromise = client.h3geo.history.ador({ startTime: '2019-12-27T18:11:19.117Z' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,8 +21,8 @@ describe('resource history', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('aodr: required and optional params', async () => {
-    const response = await client.gnssRawIf.history.aodr({
+  test('ador: required and optional params', async () => {
+    const response = await client.h3geo.history.ador({
       startTime: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
       notification: 'notification',
@@ -32,7 +32,7 @@ describe('resource history', () => {
   });
 
   test('count: only required params', async () => {
-    const responsePromise = client.gnssRawIf.history.count({ startTime: '2019-12-27T18:11:19.117Z' });
+    const responsePromise = client.h3geo.history.count({ startTime: '2019-12-27T18:11:19.117Z' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -43,11 +43,11 @@ describe('resource history', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.gnssRawIf.history.count({ startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.h3geo.history.count({ startTime: '2019-12-27T18:11:19.117Z' });
   });
 
   test('query: only required params', async () => {
-    const responsePromise = client.gnssRawIf.history.query({ startTime: '2019-12-27T18:11:19.117Z' });
+    const responsePromise = client.h3geo.history.query({ startTime: '2019-12-27T18:11:19.117Z' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -58,7 +58,7 @@ describe('resource history', () => {
   });
 
   test('query: required and optional params', async () => {
-    const response = await client.gnssRawIf.history.query({
+    const response = await client.h3geo.history.query({
       startTime: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
     });

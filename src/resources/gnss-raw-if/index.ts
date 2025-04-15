@@ -5,7 +5,7 @@ export {
   History,
   type HistoryCountResponse,
   type HistoryQueryResponse,
-  type HistoryAdorParams,
+  type HistoryAodrParams,
   type HistoryCountParams,
   type HistoryQueryParams,
 } from './history';

@@ -12,7 +12,7 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  ador(query: HistoryAdorParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  aodr(query: HistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.get('/udl/gnssrawif/history/aodr', {
       query,
       ...options,
@@ -50,7 +50,7 @@ export type HistoryCountResponse = string;
 
 export type HistoryQueryResponse = Array<GnssrawifHistoryAPI.GnssRawIfFull>;
 
-export interface HistoryAdorParams {
+export interface HistoryAodrParams {
   /**
    * Start time of the data contained in the associated binary file, in ISO 8601 UTC
    * format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
@@ -112,7 +112,7 @@ export declare namespace History {
   export {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryQueryResponse as HistoryQueryResponse,
-    type HistoryAdorParams as HistoryAdorParams,
+    type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
     type HistoryQueryParams as HistoryQueryParams,
   };

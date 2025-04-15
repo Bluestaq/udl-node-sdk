@@ -418,8 +418,8 @@ describe('resource sgi', () => {
     );
   });
 
-  test('getSGIDataByEffectiveAsOfDate', async () => {
-    const responsePromise = client.sgi.getSGIDataByEffectiveAsOfDate();
+  test('getDataByEffectiveAsOfDate', async () => {
+    const responsePromise = client.sgi.getDataByEffectiveAsOfDate();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -429,17 +429,17 @@ describe('resource sgi', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('getSGIDataByEffectiveAsOfDate: request options instead of params are passed correctly', async () => {
+  test('getDataByEffectiveAsOfDate: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.sgi.getSGIDataByEffectiveAsOfDate({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.sgi.getDataByEffectiveAsOfDate({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
   });
 
-  test('getSGIDataByEffectiveAsOfDate: request options and params are passed correctly', async () => {
+  test('getDataByEffectiveAsOfDate: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.sgi.getSGIDataByEffectiveAsOfDate(
+      client.sgi.getDataByEffectiveAsOfDate(
         { effectiveDate: '2019-12-27T18:11:19.117Z', sgiDate: '2019-12-27T18:11:19.117Z' },
         { path: '/_stainless_unknown_path' },
       ),
