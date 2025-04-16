@@ -10,11 +10,11 @@ export {
   type ConjunctionTupleResponse,
   type ConjunctionListParams,
   type ConjunctionCountParams,
-  type ConjunctionCreateBulkV2Params,
   type ConjunctionCreateUdlParams,
   type ConjunctionCreateBulkParams,
   type ConjunctionGetHistoryParams,
   type ConjunctionTupleParams,
+  type ConjunctionUnvalidatedPublishParams,
   type ConjunctionUploadConjunctionDataMessageParams,
 } from './conjunctions';
 export {

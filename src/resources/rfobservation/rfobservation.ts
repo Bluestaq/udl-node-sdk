@@ -69,20 +69,6 @@ export class Rfobservation extends APIResource {
   }
 
   /**
-   * Service operation to take multiple RF observations as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: RfobservationCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-rf', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single RF observation by its unique ID passed as a
    * path parameter.
    */
@@ -119,6 +105,23 @@ export class Rfobservation extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<RfobservationTupleResponse> {
     return this._client.get('/udl/rfobservation/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple RF observations as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: RfobservationUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-rf', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -2260,9 +2263,25 @@ export namespace RfobservationCreateBulkParams {
   }
 }
 
-export type RfobservationCreateBulkV2Params = Array<RfobservationCreateBulkV2Params.Body>;
+export interface RfobservationTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace RfobservationCreateBulkV2Params {
+  /**
+   * Ob detection time in ISO 8601 UTC with microsecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  obTime: string;
+}
+
+export type RfobservationUnvalidatedPublishParams = Array<RfobservationUnvalidatedPublishParams.Body>;
+
+export namespace RfobservationUnvalidatedPublishParams {
   /**
    * Model representation of observation data for active/passive radio frequency (RF)
    * based sensor phenomenologies. J2000 is the preferred coordinate frame for all
@@ -2821,22 +2840,6 @@ export namespace RfobservationCreateBulkV2Params {
   }
 }
 
-export interface RfobservationTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Ob detection time in ISO 8601 UTC with microsecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  obTime: string;
-}
-
 Rfobservation.History = History;
 
 export declare namespace Rfobservation {
@@ -2848,8 +2851,8 @@ export declare namespace Rfobservation {
     type RfobservationListParams as RfobservationListParams,
     type RfobservationCountParams as RfobservationCountParams,
     type RfobservationCreateBulkParams as RfobservationCreateBulkParams,
-    type RfobservationCreateBulkV2Params as RfobservationCreateBulkV2Params,
     type RfobservationTupleParams as RfobservationTupleParams,
+    type RfobservationUnvalidatedPublishParams as RfobservationUnvalidatedPublishParams,
   };
 
   export {

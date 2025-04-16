@@ -62,20 +62,6 @@ export class Launchevent extends APIResource {
   }
 
   /**
-   * Service operation to take LaunchEvent entries as a POST body and ingest into the
-   * database. This operation is intended to be used for automated feeds into UDL. A
-   * specific role is required to perform this service operation. Please contact the
-   * UDL team for assistance.
-   */
-  createBulkV2(body: LauncheventCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-launchevent', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single LaunchEvent record by its unique ID passed as
    * a path parameter.
    */
@@ -109,6 +95,23 @@ export class Launchevent extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<LauncheventTupleResponse> {
     return this._client.get('/udl/launchevent/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take LaunchEvent entries as a POST body and ingest into the
+   * database. This operation is intended to be used for automated feeds into UDL. A
+   * specific role is required to perform this service operation. Please contact the
+   * UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: LauncheventUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-launchevent', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -725,9 +728,25 @@ export namespace LauncheventCreateBulkParams {
   }
 }
 
-export type LauncheventCreateBulkV2Params = Array<LauncheventCreateBulkV2Params.Body>;
+export interface LauncheventTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace LauncheventCreateBulkV2Params {
+  /**
+   * Timestamp of the originating message in ISO8601 UTC format.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  msgCreateDate: string;
+}
+
+export type LauncheventUnvalidatedPublishParams = Array<LauncheventUnvalidatedPublishParams.Body>;
+
+export namespace LauncheventUnvalidatedPublishParams {
   /**
    * Information on known launch events.
    */
@@ -831,22 +850,6 @@ export namespace LauncheventCreateBulkV2Params {
   }
 }
 
-export interface LauncheventTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Timestamp of the originating message in ISO8601 UTC format.
-   * (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  msgCreateDate: string;
-}
-
 export declare namespace Launchevent {
   export {
     type LauncheventListResponse as LauncheventListResponse,
@@ -857,7 +860,7 @@ export declare namespace Launchevent {
     type LauncheventListParams as LauncheventListParams,
     type LauncheventCountParams as LauncheventCountParams,
     type LauncheventCreateBulkParams as LauncheventCreateBulkParams,
-    type LauncheventCreateBulkV2Params as LauncheventCreateBulkV2Params,
     type LauncheventTupleParams as LauncheventTupleParams,
+    type LauncheventUnvalidatedPublishParams as LauncheventUnvalidatedPublishParams,
   };
 }

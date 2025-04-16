@@ -99,20 +99,6 @@ export class EventEvolution extends APIResource {
   }
 
   /**
-   * Service operation to take a list of EventEvolution records as a POST body and
-   * ingest into the database. Requires a specific role, please contact the UDL team
-   * to gain access. This operation is intended to be used for automated feeds into
-   * UDL.
-   */
-  createBulkV2(body: EventEvolutionCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-eventevolution', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -138,6 +124,23 @@ export class EventEvolution extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<EventEvolutionTupleResponse> {
     return this._client.get('/udl/eventevolution/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take a list of EventEvolution records as a POST body and
+   * ingest into the database. Requires a specific role, please contact the UDL team
+   * to gain access. This operation is intended to be used for automated feeds into
+   * UDL.
+   */
+  unvalidatedPublish(
+    body: EventEvolutionUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-eventevolution', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -810,9 +813,34 @@ export namespace EventEvolutionCreateBulkParams {
   }
 }
 
-export type EventEvolutionCreateBulkV2Params = Array<EventEvolutionCreateBulkV2Params.Body>;
+export interface EventEvolutionTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace EventEvolutionCreateBulkV2Params {
+  /**
+   * (One or more of fields 'eventId, startTime' are required.) User-provided unique
+   * identifier of this activity or event. This ID should remain the same on
+   * subsequent updates in order to associate all records pertaining to the activity
+   * or event.
+   */
+  eventId?: string;
+
+  /**
+   * (One or more of fields 'eventId, startTime' are required.) The actual or
+   * estimated start time of the activity or event, in ISO 8601 UTC format.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  startTime?: string;
+}
+
+export type EventEvolutionUnvalidatedPublishParams = Array<EventEvolutionUnvalidatedPublishParams.Body>;
+
+export namespace EventEvolutionUnvalidatedPublishParams {
   /**
    * Event Evolution is a unique service supporting the association of UDL records of
    * various data types to a common event or activity. The associations may be a one
@@ -1020,31 +1048,6 @@ export namespace EventEvolutionCreateBulkV2Params {
   }
 }
 
-export interface EventEvolutionTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * (One or more of fields 'eventId, startTime' are required.) User-provided unique
-   * identifier of this activity or event. This ID should remain the same on
-   * subsequent updates in order to associate all records pertaining to the activity
-   * or event.
-   */
-  eventId?: string;
-
-  /**
-   * (One or more of fields 'eventId, startTime' are required.) The actual or
-   * estimated start time of the activity or event, in ISO 8601 UTC format.
-   * (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  startTime?: string;
-}
-
 EventEvolution.History = History;
 
 export declare namespace EventEvolution {
@@ -1056,8 +1059,8 @@ export declare namespace EventEvolution {
     type EventEvolutionListParams as EventEvolutionListParams,
     type EventEvolutionCountParams as EventEvolutionCountParams,
     type EventEvolutionCreateBulkParams as EventEvolutionCreateBulkParams,
-    type EventEvolutionCreateBulkV2Params as EventEvolutionCreateBulkV2Params,
     type EventEvolutionTupleParams as EventEvolutionTupleParams,
+    type EventEvolutionUnvalidatedPublishParams as EventEvolutionUnvalidatedPublishParams,
   };
 
   export {

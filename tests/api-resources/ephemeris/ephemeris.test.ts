@@ -40,94 +40,6 @@ describe('resource ephemeris', () => {
     const response = await client.ephemeris.count({ esId: 'esId' });
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.ephemeris.createBulkV2({
-      category: 'ANALYST',
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      numPoints: 1,
-      pointEndTime: '2018-01-01T16:00:00.123456Z',
-      pointStartTime: '2018-01-01T16:00:00.123456Z',
-      source: 'Bluestaq',
-      type: 'LAUNCH',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.ephemeris.createBulkV2({
-      category: 'ANALYST',
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      numPoints: 1,
-      pointEndTime: '2018-01-01T16:00:00.123456Z',
-      pointStartTime: '2018-01-01T16:00:00.123456Z',
-      source: 'Bluestaq',
-      type: 'LAUNCH',
-      id: 'EPHEMERISSET-ID',
-      bDot: 1.1,
-      centBody: 'Earth',
-      comments: 'Example notes',
-      covReferenceFrame: 'J2000',
-      description: 'Example notes',
-      descriptor: 'Example descriptor',
-      dragModel: 'JAC70',
-      edr: 1.1,
-      ephemerisList: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          source: 'Bluestaq',
-          ts: '2018-01-01T16:00:00.123456Z',
-          xpos: 1.1,
-          xvel: 1.1,
-          ypos: 1.1,
-          yvel: 1.1,
-          zpos: 1.1,
-          zvel: 1.1,
-          id: 'EPHEMERIS-ID',
-          cov: [1.1, 2.4, 3.8, 4.2, 5.5, 6],
-          esId: 'ES-ID',
-          idOnOrbit: 'ONORBIT-ID',
-          origin: 'THIRD_PARTY_DATASOURCE',
-          origObjectId: 'ORIGOBJECT-ID',
-          xaccel: 1.1,
-          yaccel: 1.1,
-          zaccel: 1.1,
-        },
-      ],
-      filename: 'Example file name',
-      geopotentialModel: 'GEM-T3',
-      hasAccel: false,
-      hasCov: false,
-      hasMnvr: false,
-      idManeuvers: ['EXAMPLE_ID1', 'EXAMPLE_ID2'],
-      idOnOrbit: 'ONORBIT-ID',
-      idStateVector: 'STATEVECTOR-ID',
-      integrator: 'COWELL',
-      interpolation: 'LINEAR',
-      interpolationDegree: 5,
-      lunarSolar: false,
-      origin: 'THIRD_PARTY_DATASOURCE',
-      origObjectId: 'ORIGOBJECT-ID',
-      pedigree: 'PROPAGATED',
-      referenceFrame: 'J2000',
-      satNo: 2,
-      solidEarthTides: false,
-      stepSize: 1,
-      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-      transactionId: 'TRANSACTION-ID',
-      usableEndTime: '2018-01-01T20:50:00.123456Z',
-      usableStartTime: '2018-01-01T16:10:00.123456Z',
-    });
-  });
-
   test('fileUpload: only required params', async () => {
     const responsePromise = client.ephemeris.fileUpload({
       category: 'category',
@@ -196,5 +108,93 @@ describe('resource ephemeris', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.ephemeris.tuple({ columns: 'columns', esId: 'esId' });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.ephemeris.unvalidatedPublish({
+      category: 'ANALYST',
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      numPoints: 1,
+      pointEndTime: '2018-01-01T16:00:00.123456Z',
+      pointStartTime: '2018-01-01T16:00:00.123456Z',
+      source: 'Bluestaq',
+      type: 'LAUNCH',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.ephemeris.unvalidatedPublish({
+      category: 'ANALYST',
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      numPoints: 1,
+      pointEndTime: '2018-01-01T16:00:00.123456Z',
+      pointStartTime: '2018-01-01T16:00:00.123456Z',
+      source: 'Bluestaq',
+      type: 'LAUNCH',
+      id: 'EPHEMERISSET-ID',
+      bDot: 1.1,
+      centBody: 'Earth',
+      comments: 'Example notes',
+      covReferenceFrame: 'J2000',
+      description: 'Example notes',
+      descriptor: 'Example descriptor',
+      dragModel: 'JAC70',
+      edr: 1.1,
+      ephemerisList: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          ts: '2018-01-01T16:00:00.123456Z',
+          xpos: 1.1,
+          xvel: 1.1,
+          ypos: 1.1,
+          yvel: 1.1,
+          zpos: 1.1,
+          zvel: 1.1,
+          id: 'EPHEMERIS-ID',
+          cov: [1.1, 2.4, 3.8, 4.2, 5.5, 6],
+          esId: 'ES-ID',
+          idOnOrbit: 'ONORBIT-ID',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origObjectId: 'ORIGOBJECT-ID',
+          xaccel: 1.1,
+          yaccel: 1.1,
+          zaccel: 1.1,
+        },
+      ],
+      filename: 'Example file name',
+      geopotentialModel: 'GEM-T3',
+      hasAccel: false,
+      hasCov: false,
+      hasMnvr: false,
+      idManeuvers: ['EXAMPLE_ID1', 'EXAMPLE_ID2'],
+      idOnOrbit: 'ONORBIT-ID',
+      idStateVector: 'STATEVECTOR-ID',
+      integrator: 'COWELL',
+      interpolation: 'LINEAR',
+      interpolationDegree: 5,
+      lunarSolar: false,
+      origin: 'THIRD_PARTY_DATASOURCE',
+      origObjectId: 'ORIGOBJECT-ID',
+      pedigree: 'PROPAGATED',
+      referenceFrame: 'J2000',
+      satNo: 2,
+      solidEarthTides: false,
+      stepSize: 1,
+      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+      transactionId: 'TRANSACTION-ID',
+      usableEndTime: '2018-01-01T20:50:00.123456Z',
+      usableStartTime: '2018-01-01T16:10:00.123456Z',
+    });
   });
 });

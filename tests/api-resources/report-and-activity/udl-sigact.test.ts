@@ -10,8 +10,15 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource udlSigact', () => {
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.reportAndActivity.udlSigact.createBulkV2([
+  test('fileGet: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.reportAndActivity.udlSigact.fileGet('id', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.reportAndActivity.udlSigact.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -28,8 +35,8 @@ describe('resource udlSigact', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.reportAndActivity.udlSigact.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.reportAndActivity.udlSigact.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -128,12 +135,5 @@ describe('resource udlSigact', () => {
         typeOfAttack: 'IED Explosion',
       },
     ]);
-  });
-
-  test('fileGet: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.reportAndActivity.udlSigact.fileGet('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 });

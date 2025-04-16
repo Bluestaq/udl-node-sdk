@@ -9,9 +9,9 @@ export {
   type FeatureassessmentCreateParams,
   type FeatureassessmentCountParams,
   type FeatureassessmentCreateBulkParams,
-  type FeatureassessmentCreateBulkV2Params,
   type FeatureassessmentQueryParams,
   type FeatureassessmentTupleParams,
+  type FeatureassessmentUnvalidatedPublishParams,
 } from './featureassessment';
 export {
   History,

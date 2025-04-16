@@ -9,8 +9,8 @@ export {
   type AttitudeSetCreateParams,
   type AttitudeSetListParams,
   type AttitudeSetCountParams,
-  type AttitudeSetCreateBulkV2Params,
   type AttitudeSetTupleParams,
+  type AttitudeSetUnvalidatedPublishParams,
 } from './attitude-sets';
 export {
   History,

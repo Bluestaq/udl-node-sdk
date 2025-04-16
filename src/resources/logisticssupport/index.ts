@@ -17,6 +17,6 @@ export {
   type LogisticssupportCreateParams,
   type LogisticssupportUpdateParams,
   type LogisticssupportCreateBulkParams,
-  type LogisticssupportCreateBulkV2Params,
   type LogisticssupportTupleParams,
+  type LogisticssupportUnvalidatedPublishParams,
 } from './logisticssupport';

@@ -10,8 +10,8 @@ export class AirTaskingOrders extends APIResource {
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  createBulkV2(
-    body: AirTaskingOrderCreateBulkV2Params,
+  unvalidatedPublish(
+    body: AirTaskingOrderUnvalidatedPublishParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-airtaskingorder', {
@@ -22,9 +22,9 @@ export class AirTaskingOrders extends APIResource {
   }
 }
 
-export type AirTaskingOrderCreateBulkV2Params = Array<AirTaskingOrderCreateBulkV2Params.Body>;
+export type AirTaskingOrderUnvalidatedPublishParams = Array<AirTaskingOrderUnvalidatedPublishParams.Body>;
 
-export namespace AirTaskingOrderCreateBulkV2Params {
+export namespace AirTaskingOrderUnvalidatedPublishParams {
   /**
    * Beta Version Air Tasking Order: The ATO is used to task air missions, assign
    * cross force tasking as well as intraservice tasking.
@@ -460,5 +460,5 @@ export namespace AirTaskingOrderCreateBulkV2Params {
 }
 
 export declare namespace AirTaskingOrders {
-  export { type AirTaskingOrderCreateBulkV2Params as AirTaskingOrderCreateBulkV2Params };
+  export { type AirTaskingOrderUnvalidatedPublishParams as AirTaskingOrderUnvalidatedPublishParams };
 }

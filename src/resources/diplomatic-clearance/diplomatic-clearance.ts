@@ -8,12 +8,12 @@ import {
   Country,
   CountryCountResponse,
   CountryCreateBulkParams,
-  CountryCreateBulkV2Params,
   CountryCreateParams,
   CountryListResponse,
   CountryRetrieveResponse,
   CountryTupleParams,
   CountryTupleResponse,
+  CountryUnvalidatedPublishParams,
   CountryUpdateParams,
 } from './country';
 import * as HistoryAPI from './history';
@@ -1024,7 +1024,7 @@ export declare namespace DiplomaticClearance {
     type CountryCreateParams as CountryCreateParams,
     type CountryUpdateParams as CountryUpdateParams,
     type CountryCreateBulkParams as CountryCreateBulkParams,
-    type CountryCreateBulkV2Params as CountryCreateBulkV2Params,
     type CountryTupleParams as CountryTupleParams,
+    type CountryUnvalidatedPublishParams as CountryUnvalidatedPublishParams,
   };
 }

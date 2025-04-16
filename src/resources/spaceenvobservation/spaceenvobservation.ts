@@ -63,23 +63,6 @@ export class Spaceenvobservation extends APIResource {
   }
 
   /**
-   * Service operation to accept one or more SpaceEnvObservation(s) as a POST body
-   * and ingest into the database. This operation is intended to be used for
-   * automated feeds into UDL. A specific role is required to perform this service
-   * operation. Please contact the UDL team for assistance.
-   */
-  createBulkV2(
-    body: SpaceenvobservationCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-spaceenvobs', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -105,6 +88,23 @@ export class Spaceenvobservation extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<SpaceenvobservationTupleResponse> {
     return this._client.get('/udl/spaceenvobservation/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to accept one or more SpaceEnvObservation(s) as a POST body
+   * and ingest into the database. This operation is intended to be used for
+   * automated feeds into UDL. A specific role is required to perform this service
+   * operation. Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: SpaceenvobservationUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-spaceenvobs', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -776,9 +776,26 @@ export namespace SpaceenvobservationCreateBulkParams {
   }
 }
 
-export type SpaceenvobservationCreateBulkV2Params = Array<SpaceenvobservationCreateBulkV2Params.Body>;
+export interface SpaceenvobservationTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace SpaceenvobservationCreateBulkV2Params {
+  /**
+   * Time of the observation, in ISO 8601 UTC format with millisecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  obTime: string;
+}
+
+export type SpaceenvobservationUnvalidatedPublishParams =
+  Array<SpaceenvobservationUnvalidatedPublishParams.Body>;
+
+export namespace SpaceenvobservationUnvalidatedPublishParams {
   /**
    * SpaceEnvObservation data.
    */
@@ -1088,22 +1105,6 @@ export namespace SpaceenvobservationCreateBulkV2Params {
   }
 }
 
-export interface SpaceenvobservationTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Time of the observation, in ISO 8601 UTC format with millisecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  obTime: string;
-}
-
 Spaceenvobservation.History = History;
 
 export declare namespace Spaceenvobservation {
@@ -1114,8 +1115,8 @@ export declare namespace Spaceenvobservation {
     type SpaceenvobservationListParams as SpaceenvobservationListParams,
     type SpaceenvobservationCountParams as SpaceenvobservationCountParams,
     type SpaceenvobservationCreateBulkParams as SpaceenvobservationCreateBulkParams,
-    type SpaceenvobservationCreateBulkV2Params as SpaceenvobservationCreateBulkV2Params,
     type SpaceenvobservationTupleParams as SpaceenvobservationTupleParams,
+    type SpaceenvobservationUnvalidatedPublishParams as SpaceenvobservationUnvalidatedPublishParams,
   };
 
   export {

@@ -278,8 +278,62 @@ describe('resource aviationriskmanagement', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.aviationriskmanagement.createBulkV2([
+  test('query: only required params', async () => {
+    const responsePromise = client.aviationriskmanagement.query({ idMission: 'idMission' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('query: required and optional params', async () => {
+    const response = await client.aviationriskmanagement.query({ idMission: 'idMission' });
+  });
+
+  test('queryHelp', async () => {
+    const responsePromise = client.aviationriskmanagement.queryHelp();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('queryHelp: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.aviationriskmanagement.queryHelp({ path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
+  test('tuple: only required params', async () => {
+    const responsePromise = client.aviationriskmanagement.tuple({
+      columns: 'columns',
+      idMission: 'idMission',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('tuple: required and optional params', async () => {
+    const response = await client.aviationriskmanagement.tuple({
+      columns: 'columns',
+      idMission: 'idMission',
+    });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.aviationriskmanagement.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -296,8 +350,8 @@ describe('resource aviationriskmanagement', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.aviationriskmanagement.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.aviationriskmanagement.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -351,59 +405,5 @@ describe('resource aviationriskmanagement', () => {
         unitId: '63',
       },
     ]);
-  });
-
-  test('query: only required params', async () => {
-    const responsePromise = client.aviationriskmanagement.query({ idMission: 'idMission' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('query: required and optional params', async () => {
-    const response = await client.aviationriskmanagement.query({ idMission: 'idMission' });
-  });
-
-  test('queryHelp', async () => {
-    const responsePromise = client.aviationriskmanagement.queryHelp();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryHelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.aviationriskmanagement.queryHelp({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
-  });
-
-  test('tuple: only required params', async () => {
-    const responsePromise = client.aviationriskmanagement.tuple({
-      columns: 'columns',
-      idMission: 'idMission',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('tuple: required and optional params', async () => {
-    const response = await client.aviationriskmanagement.tuple({
-      columns: 'columns',
-      idMission: 'idMission',
-    });
   });
 });

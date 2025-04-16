@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource swir', () => {
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.observations.swir.createBulkV2([
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.observations.swir.unvalidatedPublish([
       { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-01-01T01:01:01.123456Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -23,8 +23,8 @@ describe('resource swir', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.observations.swir.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.observations.swir.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',

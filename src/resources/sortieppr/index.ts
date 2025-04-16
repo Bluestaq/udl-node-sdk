@@ -19,6 +19,6 @@ export {
   type SortiepprListParams,
   type SortiepprCountParams,
   type SortiepprCreateBulkParams,
-  type SortiepprCreateBulkV2Params,
   type SortiepprTupleParams,
+  type SortiepprUnvalidatedPublishParams,
 } from './sortieppr';

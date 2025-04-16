@@ -59,20 +59,6 @@ export class Poi extends APIResource {
   }
 
   /**
-   * Service operation to take a list of POIs as a POST body and ingest into the
-   * database. This operation is intended to be used for automated feeds into UDL. A
-   * specific role is required to perform this service operation. Please contact the
-   * UDL team for assistance.
-   */
-  createBulkV2(body: PoiCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-poi', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single POI by its unique ID passed as a path
    * parameter.
    */
@@ -103,6 +89,23 @@ export class Poi extends APIResource {
    */
   tuple(query: PoiTupleParams, options?: Core.RequestOptions): Core.APIPromise<PoiTupleResponse> {
     return this._client.get('/udl/poi/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take a list of POIs as a POST body and ingest into the
+   * database. This operation is intended to be used for automated feeds into UDL. A
+   * specific role is required to perform this service operation. Please contact the
+   * UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: PoiUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-poi', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1034,9 +1037,24 @@ export namespace PoiCreateBulkParams {
   }
 }
 
-export type PoiCreateBulkV2Params = Array<PoiCreateBulkV2Params.Body>;
+export interface PoiTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace PoiCreateBulkV2Params {
+  /**
+   * Activity/POI timestamp in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  ts: string;
+}
+
+export type PoiUnvalidatedPublishParams = Array<PoiUnvalidatedPublishParams.Body>;
+
+export namespace PoiUnvalidatedPublishParams {
   /**
    * A Point of Interest is loosely based on the MITRE CoT (Cursor on Target) schema
    * (https://www.mitre.org/publications/technical-papers/cursorontarget-message-router-users-guide)
@@ -1344,21 +1362,6 @@ export namespace PoiCreateBulkV2Params {
   }
 }
 
-export interface PoiTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Activity/POI timestamp in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  ts: string;
-}
-
 export declare namespace Poi {
   export {
     type PoiListResponse as PoiListResponse,
@@ -1368,7 +1371,7 @@ export declare namespace Poi {
     type PoiListParams as PoiListParams,
     type PoiCountParams as PoiCountParams,
     type PoiCreateBulkParams as PoiCreateBulkParams,
-    type PoiCreateBulkV2Params as PoiCreateBulkV2Params,
     type PoiTupleParams as PoiTupleParams,
+    type PoiUnvalidatedPublishParams as PoiUnvalidatedPublishParams,
   };
 }

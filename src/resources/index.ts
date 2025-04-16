@@ -14,7 +14,7 @@ export {
   type AIHistoryCountParams,
   type AITupleParams,
 } from './ais/ais';
-export { AIsObjects, type AIsObjectCreateBulkV2Params } from './ais-objects';
+export { AIsObjects, type AIsObjectUnvalidatedPublishParams } from './ais-objects';
 export {
   AirEvents,
   type AirEventListResponse,
@@ -24,8 +24,8 @@ export {
   type AirEventCreateParams,
   type AirEventUpdateParams,
   type AirEventCreateBulkParams,
-  type AirEventCreateBulkV2Params,
   type AirEventTupleParams,
+  type AirEventUnvalidatedPublishParams,
 } from './air-events';
 export {
   AirLoadPlans,
@@ -178,11 +178,11 @@ export {
   type AnalyticImageryTupleResponse,
   type AnalyticImageryListParams,
   type AnalyticImageryCountParams,
-  type AnalyticImageryCreateBulkV2Params,
   type AnalyticImageryHistoryParams,
   type AnalyticImageryHistoryAodrParams,
   type AnalyticImageryHistoryCountParams,
   type AnalyticImageryTupleParams,
+  type AnalyticImageryUnvalidatedPublishParams,
 } from './analytic-imagery';
 export {
   Antennas,
@@ -210,8 +210,8 @@ export {
   type AttitudeSetCreateParams,
   type AttitudeSetListParams,
   type AttitudeSetCountParams,
-  type AttitudeSetCreateBulkV2Params,
   type AttitudeSetTupleParams,
+  type AttitudeSetUnvalidatedPublishParams,
 } from './attitude-sets/attitude-sets';
 export { Attitudesets } from './attitudesets';
 export {
@@ -224,9 +224,9 @@ export {
   type AviationriskmanagementUpdateParams,
   type AviationriskmanagementCountParams,
   type AviationriskmanagementCreateBulkParams,
-  type AviationriskmanagementCreateBulkV2Params,
   type AviationriskmanagementQueryParams,
   type AviationriskmanagementTupleParams,
+  type AviationriskmanagementUnvalidatedPublishParams,
 } from './aviationriskmanagement';
 export {
   Batteries,
@@ -304,8 +304,8 @@ export {
   type CollectRequestListParams,
   type CollectRequestCountParams,
   type CollectRequestCreateBulkParams,
-  type CollectRequestCreateBulkV2Params,
   type CollectRequestTupleParams,
+  type CollectRequestUnvalidatedPublishParams,
 } from './collect-requests/collect-requests';
 export {
   CollectResponses,
@@ -316,7 +316,7 @@ export {
   type CollectResponseListParams,
   type CollectResponseCountParams,
   type CollectResponseCreateBulkParams,
-  type CollectResponseCreateBulkV2Params,
+  type CollectResponseUnvalidatedPublishParams,
 } from './collect-responses/collect-responses';
 export {
   Comm,
@@ -339,11 +339,11 @@ export {
   type ConjunctionTupleResponse,
   type ConjunctionListParams,
   type ConjunctionCountParams,
-  type ConjunctionCreateBulkV2Params,
   type ConjunctionCreateUdlParams,
   type ConjunctionCreateBulkParams,
   type ConjunctionGetHistoryParams,
   type ConjunctionTupleParams,
+  type ConjunctionUnvalidatedPublishParams,
   type ConjunctionUploadConjunctionDataMessageParams,
 } from './conjunctions/conjunctions';
 export { Cots, type CotCreateParams } from './cots';
@@ -367,14 +367,14 @@ export {
   type CrewTupleResponse,
   type CrewCreateParams,
   type CrewUpdateParams,
-  type CrewCreateBulkV2Params,
   type CrewTupleParams,
+  type CrewUnvalidatedPublishParams,
 } from './crew';
 export {
   Diffofarrival,
   type DiffofarrivalTupleResponse,
-  type DiffofarrivalCreateBulkV2Params,
   type DiffofarrivalTupleParams,
+  type DiffofarrivalUnvalidatedPublishParams,
 } from './diffofarrival/diffofarrival';
 export {
   DiplomaticClearance,
@@ -404,10 +404,10 @@ export {
   type DropzoneCreateParams,
   type DropzoneUpdateParams,
   type DropzoneCreateBulkParams,
-  type DropzoneCreateBulkV2Params,
   type DropzoneTupleParams,
+  type DropzoneUnvalidatedPublishParams,
 } from './dropzone';
-export { Ecpsdr, type EcpsdrCreateBulkV2Params } from './ecpsdr';
+export { Ecpsdr, type EcpsdrUnvalidatedPublishParams } from './ecpsdr';
 export {
   EffectRequests,
   type EffectRequestRetrieveResponse,
@@ -418,8 +418,8 @@ export {
   type EffectRequestListParams,
   type EffectRequestCountParams,
   type EffectRequestCreateBulkParams,
-  type EffectRequestCreateBulkV2Params,
   type EffectRequestTupleParams,
+  type EffectRequestUnvalidatedPublishParams,
 } from './effect-requests/effect-requests';
 export {
   EffectResponses,
@@ -431,8 +431,8 @@ export {
   type EffectResponseListParams,
   type EffectResponseCountParams,
   type EffectResponseCreateBulkParams,
-  type EffectResponseCreateBulkV2Params,
   type EffectResponseTupleParams,
+  type EffectResponseUnvalidatedPublishParams,
 } from './effect-responses/effect-responses';
 export {
   Elsets,
@@ -447,8 +447,8 @@ export {
   type ElsetCountParams,
   type ElsetCreateBulkParams,
   type ElsetCreateBulkFromTleParams,
-  type ElsetCreateBulkV2Params,
   type ElsetTupleParams,
+  type ElsetUnvalidatedPublishParams,
 } from './elsets/elsets';
 export {
   Emittergeolocation,
@@ -459,9 +459,9 @@ export {
   type EmittergeolocationCreateParams,
   type EmittergeolocationCountParams,
   type EmittergeolocationCreateBulkParams,
-  type EmittergeolocationCreateBulkV2Params,
   type EmittergeolocationQueryParams,
   type EmittergeolocationTupleParams,
+  type EmittergeolocationUnvalidatedPublishParams,
 } from './emittergeolocation';
 export {
   EngineDetails,
@@ -503,7 +503,7 @@ export {
   type EoObservationListParams,
   type EoObservationCountParams,
   type EoObservationCreateBulkParams,
-  type EoObservationCreateBulkV2Params,
+  type EoObservationUnvalidatedPublishParams,
 } from './eo-observations/eo-observations';
 export {
   Eoobservations,
@@ -530,9 +530,9 @@ export {
   type EphemerisTupleResponse,
   type EphemerisListParams,
   type EphemerisCountParams,
-  type EphemerisCreateBulkV2Params,
   type EphemerisFileUploadParams,
   type EphemerisTupleParams,
+  type EphemerisUnvalidatedPublishParams,
 } from './ephemeris/ephemeris';
 export {
   EphemerisSets,
@@ -578,7 +578,7 @@ export {
   type EvacListParams,
   type EvacCountParams,
   type EvacCreateBulkParams,
-  type EvacCreateBulkV2Params,
+  type EvacUnvalidatedPublishParams,
 } from './evac/evac';
 export {
   EventEvolution,
@@ -589,8 +589,8 @@ export {
   type EventEvolutionListParams,
   type EventEvolutionCountParams,
   type EventEvolutionCreateBulkParams,
-  type EventEvolutionCreateBulkV2Params,
   type EventEvolutionTupleParams,
+  type EventEvolutionUnvalidatedPublishParams,
 } from './event-evolution/event-evolution';
 export {
   Featureassessment,
@@ -601,9 +601,9 @@ export {
   type FeatureassessmentCreateParams,
   type FeatureassessmentCountParams,
   type FeatureassessmentCreateBulkParams,
-  type FeatureassessmentCreateBulkV2Params,
   type FeatureassessmentQueryParams,
   type FeatureassessmentTupleParams,
+  type FeatureassessmentUnvalidatedPublishParams,
 } from './featureassessment/featureassessment';
 export {
   Flightplan,
@@ -613,8 +613,8 @@ export {
   type FlightplanTupleResponse,
   type FlightplanCreateParams,
   type FlightplanUpdateParams,
-  type FlightplanCreateBulkV2Params,
   type FlightplanTupleParams,
+  type FlightplanUnvalidatedPublishParams,
 } from './flightplan';
 export {
   Geostatus,
@@ -634,9 +634,9 @@ export {
   type GlobalatmosphericmodelQueryResponse,
   type GlobalatmosphericmodelTupleResponse,
   type GlobalatmosphericmodelCountParams,
-  type GlobalatmosphericmodelCreateBulkV2Params,
   type GlobalatmosphericmodelQueryParams,
   type GlobalatmosphericmodelTupleParams,
+  type GlobalatmosphericmodelUnvalidatedPublishParams,
 } from './globalatmosphericmodel/globalatmosphericmodel';
 export { GnssObservations } from './gnss-observations/gnss-observations';
 export { GnssRawIf } from './gnss-raw-if/gnss-raw-if';
@@ -648,8 +648,8 @@ export {
   type GnssobservationsetListParams,
   type GnssobservationsetCountParams,
   type GnssobservationsetCreateBulkParams,
-  type GnssobservationsetCreateBulkV2Params,
   type GnssobservationsetTupleParams,
+  type GnssobservationsetUnvalidatedPublishParams,
 } from './gnssobservationset';
 export {
   Gnssrawif,
@@ -716,8 +716,8 @@ export {
   type IonoobservationListParams,
   type IonoobservationCountParams,
   type IonoobservationCreateBulkParams,
-  type IonoobservationCreateBulkV2Params,
   type IonoobservationTupleParams,
+  type IonoobservationUnvalidatedPublishParams,
 } from './ionoobservation';
 export {
   Ir,
@@ -737,8 +737,8 @@ export {
   type IsrCollectionListParams,
   type IsrCollectionCountParams,
   type IsrCollectionCreateBulkParams,
-  type IsrCollectionCreateBulkV2Params,
   type IsrCollectionTupleParams,
+  type IsrCollectionUnvalidatedPublishParams,
 } from './isr-collections/isr-collections';
 export {
   Item,
@@ -748,8 +748,8 @@ export {
   type ItemTupleResponse,
   type ItemCreateParams,
   type ItemUpdateParams,
-  type ItemCreateBulkV2Params,
   type ItemTupleParams,
+  type ItemUnvalidatedPublishParams,
 } from './item';
 export {
   ItemTrackings,
@@ -759,10 +759,10 @@ export {
   type ItemTrackingCreateParams,
   type ItemTrackingListParams,
   type ItemTrackingCountParams,
-  type ItemTrackingCreateBulkV2Params,
   type ItemTrackingTupleParams,
+  type ItemTrackingUnvalidatedPublishParams,
 } from './item-trackings/item-trackings';
-export { LaunchEvent, type LaunchEventCreateBulkV2Params } from './launch-event/launch-event';
+export { LaunchEvent, type LaunchEventUnvalidatedPublishParams } from './launch-event/launch-event';
 export {
   Launchdetection,
   type LaunchdetectionListResponse,
@@ -783,8 +783,8 @@ export {
   type LauncheventListParams,
   type LauncheventCountParams,
   type LauncheventCreateBulkParams,
-  type LauncheventCreateBulkV2Params,
   type LauncheventTupleParams,
+  type LauncheventUnvalidatedPublishParams,
 } from './launchevent';
 export {
   Launchsite,
@@ -853,8 +853,8 @@ export {
   type LogisticssupportCreateParams,
   type LogisticssupportUpdateParams,
   type LogisticssupportCreateBulkParams,
-  type LogisticssupportCreateBulkV2Params,
   type LogisticssupportTupleParams,
+  type LogisticssupportUnvalidatedPublishParams,
 } from './logisticssupport/logisticssupport';
 export {
   Maneuvers,
@@ -865,8 +865,8 @@ export {
   type ManeuverListParams,
   type ManeuverCountParams,
   type ManeuverCreateBulkParams,
-  type ManeuverCreateBulkV2Params,
   type ManeuverTupleParams,
+  type ManeuverUnvalidatedPublishParams,
 } from './maneuvers/maneuvers';
 export {
   Manifold,
@@ -900,8 +900,8 @@ export {
   type MissileTrackListParams,
   type MissileTrackCountParams,
   type MissileTrackCreateBulkParams,
-  type MissileTrackCreateBulkV2Params,
   type MissileTrackTupleParams,
+  type MissileTrackUnvalidatedPublishParams,
 } from './missile-tracks/missile-tracks';
 export {
   Missionassignment,
@@ -933,8 +933,8 @@ export {
   type MtiListParams,
   type MtiCountParams,
   type MtiCreateBulkParams,
-  type MtiCreateBulkV2Params,
   type MtiTupleParams,
+  type MtiUnvalidatedPublishParams,
 } from './mti';
 export {
   Navigation,
@@ -989,8 +989,8 @@ export {
   type OnboardnavigationListParams,
   type OnboardnavigationCountParams,
   type OnboardnavigationCreateBulkParams,
-  type OnboardnavigationCreateBulkV2Params,
   type OnboardnavigationTupleParams,
+  type OnboardnavigationUnvalidatedPublishParams,
 } from './onboardnavigation';
 export {
   Onorbit,
@@ -1099,8 +1099,8 @@ export {
   type OrbitdeterminationListParams,
   type OrbitdeterminationCountParams,
   type OrbitdeterminationCreateBulkParams,
-  type OrbitdeterminationCreateBulkV2Params,
   type OrbitdeterminationTupleParams,
+  type OrbitdeterminationUnvalidatedPublishParams,
 } from './orbitdetermination/orbitdetermination';
 export {
   Orbittrack,
@@ -1110,8 +1110,8 @@ export {
   type OrbittrackListParams,
   type OrbittrackCountParams,
   type OrbittrackCreateBulkParams,
-  type OrbittrackCreateBulkV2Params,
   type OrbittrackTupleParams,
+  type OrbittrackUnvalidatedPublishParams,
 } from './orbittrack/orbittrack';
 export {
   Organization,
@@ -1169,8 +1169,8 @@ export {
   type PoiListParams,
   type PoiCountParams,
   type PoiCreateBulkParams,
-  type PoiCreateBulkV2Params,
   type PoiTupleParams,
+  type PoiUnvalidatedPublishParams,
 } from './poi';
 export {
   Port,
@@ -1192,8 +1192,8 @@ export {
   type RadarobservationListParams,
   type RadarobservationCountParams,
   type RadarobservationCreateBulkParams,
-  type RadarobservationCreateBulkV2Params,
   type RadarobservationTupleParams,
+  type RadarobservationUnvalidatedPublishParams,
 } from './radarobservation';
 export { ReportAndActivity } from './report-and-activity/report-and-activity';
 export {
@@ -1245,8 +1245,8 @@ export {
   type RfobservationListParams,
   type RfobservationCountParams,
   type RfobservationCreateBulkParams,
-  type RfobservationCreateBulkV2Params,
   type RfobservationTupleParams,
+  type RfobservationUnvalidatedPublishParams,
 } from './rfobservation/rfobservation';
 export {
   Routestats,
@@ -1257,8 +1257,8 @@ export {
   type RoutestatCreateParams,
   type RoutestatUpdateParams,
   type RoutestatCreateBulkParams,
-  type RoutestatCreateBulkV2Params,
   type RoutestatTupleParams,
+  type RoutestatUnvalidatedPublishParams,
 } from './routestats';
 export {
   Sarobservation,
@@ -1269,8 +1269,8 @@ export {
   type SarobservationListParams,
   type SarobservationCountParams,
   type SarobservationCreateBulkParams,
-  type SarobservationCreateBulkV2Params,
   type SarobservationTupleParams,
+  type SarobservationUnvalidatedPublishParams,
 } from './sarobservation/sarobservation';
 export {
   Scientific,
@@ -1344,8 +1344,8 @@ export {
   type SensorplanUpdateParams,
   type SensorplanListParams,
   type SensorplanCountParams,
-  type SensorplanCreateBulkV2Params,
   type SensorplanTupleParams,
+  type SensorplanUnvalidatedPublishParams,
 } from './sensorplan/sensorplan';
 export { Sensortype, type SensortypeListResponse, type SensortypeGetResponse } from './sensortype';
 export {
@@ -1428,9 +1428,9 @@ export {
   type SgiListParams,
   type SgiCountParams,
   type SgiCreateBulkParams,
-  type SgiCreateBulkV2Params,
   type SgiGetDataByEffectiveAsOfDateParams,
   type SgiTupleParams,
+  type SgiUnvalidatedPublishParams,
 } from './sgi/sgi';
 export {
   Sigact,
@@ -1490,8 +1490,8 @@ export {
   type SoiobservationsetListParams,
   type SoiobservationsetCountParams,
   type SoiobservationsetCreateBulkParams,
-  type SoiobservationsetCreateBulkV2Params,
   type SoiobservationsetTupleParams,
+  type SoiobservationsetUnvalidatedPublishParams,
 } from './soiobservationset/soiobservationset';
 export {
   Solararray,
@@ -1521,8 +1521,8 @@ export {
   type SortiepprListParams,
   type SortiepprCountParams,
   type SortiepprCreateBulkParams,
-  type SortiepprCreateBulkV2Params,
   type SortiepprTupleParams,
+  type SortiepprUnvalidatedPublishParams,
 } from './sortieppr/sortieppr';
 export {
   Spaceenvobservation,
@@ -1532,8 +1532,8 @@ export {
   type SpaceenvobservationListParams,
   type SpaceenvobservationCountParams,
   type SpaceenvobservationCreateBulkParams,
-  type SpaceenvobservationCreateBulkV2Params,
   type SpaceenvobservationTupleParams,
+  type SpaceenvobservationUnvalidatedPublishParams,
 } from './spaceenvobservation/spaceenvobservation';
 export {
   Stage,
@@ -1556,8 +1556,8 @@ export {
   type StarcatalogListParams,
   type StarcatalogCountParams,
   type StarcatalogCreateBulkParams,
-  type StarcatalogCreateBulkV2Params,
   type StarcatalogTupleParams,
+  type StarcatalogUnvalidatedPublishParams,
 } from './starcatalog/starcatalog';
 export {
   Statevector,
@@ -1571,8 +1571,8 @@ export {
   type StatevectorListParams,
   type StatevectorCountParams,
   type StatevectorCreateBulkParams,
-  type StatevectorCreateBulkV2Params,
   type StatevectorTupleParams,
+  type StatevectorUnvalidatedPublishParams,
 } from './statevector/statevector';
 export {
   Status,
@@ -1615,8 +1615,8 @@ export {
   type SurfaceobstructionTupleResponse,
   type SurfaceobstructionCreateParams,
   type SurfaceobstructionUpdateParams,
-  type SurfaceobstructionCreateBulkV2Params,
   type SurfaceobstructionTupleParams,
+  type SurfaceobstructionUnvalidatedPublishParams,
 } from './surfaceobstruction';
 export {
   Swir,
@@ -1649,8 +1649,8 @@ export {
   type TrackListParams,
   type TrackCountParams,
   type TrackCreateBulkParams,
-  type TrackCreateBulkV2Params,
   type TrackTupleParams,
+  type TrackUnvalidatedPublishParams,
 } from './track/track';
 export {
   Trackdetails,
@@ -1672,8 +1672,8 @@ export {
   type TrackrouteListParams,
   type TrackrouteCountParams,
   type TrackrouteCreateBulkParams,
-  type TrackrouteCreateBulkV2Params,
   type TrackrouteTupleParams,
+  type TrackrouteUnvalidatedPublishParams,
 } from './trackroute/trackroute';
 export {
   Transponder,
@@ -1720,8 +1720,8 @@ export {
   type WeatherdataListParams,
   type WeatherdataCountParams,
   type WeatherdataCreateBulkParams,
-  type WeatherdataCreateBulkV2Params,
   type WeatherdataTupleParams,
+  type WeatherdataUnvalidatedPublishParams,
 } from './weatherdata/weatherdata';
 export {
   Weatherreport,
@@ -1731,6 +1731,6 @@ export {
   type WeatherreportCreateParams,
   type WeatherreportListParams,
   type WeatherreportCountParams,
-  type WeatherreportCreateBulkV2Params,
   type WeatherreportTupleParams,
+  type WeatherreportUnvalidatedPublishParams,
 } from './weatherreport/weatherreport';

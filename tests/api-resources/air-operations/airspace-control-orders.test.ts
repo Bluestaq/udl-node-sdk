@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource airspaceControlOrders', () => {
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.airOperations.airspaceControlOrders.createBulkV2([
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.airOperations.airspaceControlOrders.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -30,8 +30,8 @@ describe('resource airspaceControlOrders', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.airOperations.airspaceControlOrders.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.airOperations.airspaceControlOrders.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',

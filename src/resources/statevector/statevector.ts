@@ -78,20 +78,6 @@ export class Statevector extends APIResource {
   }
 
   /**
-   * Service operation to take multiple state vectors as a POST body and ingest into
-   * the database. This operation is intended to be used for automated feeds into
-   * UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: StatevectorCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-sv', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single state vector by its unique ID passed as a path
    * parameter.
    */
@@ -125,6 +111,23 @@ export class Statevector extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<StatevectorTupleResponse> {
     return this._client.get('/udl/statevector/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple state vectors as a POST body and ingest into
+   * the database. This operation is intended to be used for automated feeds into
+   * UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: StatevectorUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-sv', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -3016,8 +3019,6 @@ export interface StatevectorCountParams {
 
 export type StatevectorCreateBulkParams = Array<StateVectorIngest>;
 
-export type StatevectorCreateBulkV2Params = Array<StateVectorIngest>;
-
 export interface StatevectorTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -3034,6 +3035,8 @@ export interface StatevectorTupleParams {
   epoch: string;
 }
 
+export type StatevectorUnvalidatedPublishParams = Array<StateVectorIngest>;
+
 Statevector.History = History;
 Statevector.Current = Current;
 
@@ -3049,8 +3052,8 @@ export declare namespace Statevector {
     type StatevectorListParams as StatevectorListParams,
     type StatevectorCountParams as StatevectorCountParams,
     type StatevectorCreateBulkParams as StatevectorCreateBulkParams,
-    type StatevectorCreateBulkV2Params as StatevectorCreateBulkV2Params,
     type StatevectorTupleParams as StatevectorTupleParams,
+    type StatevectorUnvalidatedPublishParams as StatevectorUnvalidatedPublishParams,
   };
 
   export {

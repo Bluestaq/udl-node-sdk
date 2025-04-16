@@ -71,20 +71,6 @@ export class Weatherdata extends APIResource {
   }
 
   /**
-   * Service operation to take a list of WeatherData as a POST body and ingest into
-   * the database. This operation is intended to be used for automated feeds into
-   * UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: WeatherdataCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-weatherdata', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single WeatherData by its unique ID passed as a path
    * parameter.
    */
@@ -118,6 +104,23 @@ export class Weatherdata extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<WeatherdataTupleResponse> {
     return this._client.get('/udl/weatherdata/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take a list of WeatherData as a POST body and ingest into
+   * the database. This operation is intended to be used for automated feeds into
+   * UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: WeatherdataUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-weatherdata', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -895,9 +898,25 @@ export namespace WeatherdataCreateBulkParams {
   }
 }
 
-export type WeatherdataCreateBulkV2Params = Array<WeatherdataCreateBulkV2Params.Body>;
+export interface WeatherdataTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace WeatherdataCreateBulkV2Params {
+  /**
+   * Datetime of the weather observation in ISO 8601 UTC datetime format with
+   * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  obTime: string;
+}
+
+export type WeatherdataUnvalidatedPublishParams = Array<WeatherdataUnvalidatedPublishParams.Body>;
+
+export namespace WeatherdataUnvalidatedPublishParams {
   /**
    * These services provide for posting and querying Weather Data. Weather Data
    * integrates dynamic data measured by Doppler/CG such as signal power and noise
@@ -1144,22 +1163,6 @@ export namespace WeatherdataCreateBulkV2Params {
   }
 }
 
-export interface WeatherdataTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Datetime of the weather observation in ISO 8601 UTC datetime format with
-   * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  obTime: string;
-}
-
 Weatherdata.History = History;
 
 export declare namespace Weatherdata {
@@ -1171,8 +1174,8 @@ export declare namespace Weatherdata {
     type WeatherdataListParams as WeatherdataListParams,
     type WeatherdataCountParams as WeatherdataCountParams,
     type WeatherdataCreateBulkParams as WeatherdataCreateBulkParams,
-    type WeatherdataCreateBulkV2Params as WeatherdataCreateBulkV2Params,
     type WeatherdataTupleParams as WeatherdataTupleParams,
+    type WeatherdataUnvalidatedPublishParams as WeatherdataUnvalidatedPublishParams,
   };
 
   export {

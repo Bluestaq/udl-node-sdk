@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource diplomaticClearance', () => {
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.airOperations.diplomaticClearance.createBulkV2([
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.airOperations.diplomaticClearance.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -29,8 +29,8 @@ describe('resource diplomaticClearance', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.airOperations.diplomaticClearance.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.airOperations.diplomaticClearance.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',

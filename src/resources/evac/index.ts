@@ -9,7 +9,7 @@ export {
   type EvacListParams,
   type EvacCountParams,
   type EvacCreateBulkParams,
-  type EvacCreateBulkV2Params,
+  type EvacUnvalidatedPublishParams,
 } from './evac';
 export {
   History,

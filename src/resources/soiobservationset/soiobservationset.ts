@@ -73,23 +73,6 @@ export class Soiobservationset extends APIResource {
   }
 
   /**
-   * Service operation to take multiple SOIObservationSet records as a POST body and
-   * ingest into the database. This operation is intended to be used for automated
-   * feeds into UDL. A specific role is required to perform this service operation.
-   * Please contact the UDL team for assistance.
-   */
-  createBulkV2(
-    body: SoiobservationsetCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-soiobservationset', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single SOIObservationSet by its unique ID passed as a
    * path parameter.
    */
@@ -123,6 +106,23 @@ export class Soiobservationset extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<SoiobservationsetTupleResponse> {
     return this._client.get('/udl/soiobservationset/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple SOIObservationSet records as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: SoiobservationsetUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-soiobservationset', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -2437,9 +2437,25 @@ export namespace SoiobservationsetCreateBulkParams {
   }
 }
 
-export type SoiobservationsetCreateBulkV2Params = Array<SoiobservationsetCreateBulkV2Params.Body>;
+export interface SoiobservationsetTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace SoiobservationsetCreateBulkV2Params {
+  /**
+   * Observation set detection start time in ISO 8601 UTC with microsecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  startTime: string;
+}
+
+export type SoiobservationsetUnvalidatedPublishParams = Array<SoiobservationsetUnvalidatedPublishParams.Body>;
+
+export namespace SoiobservationsetUnvalidatedPublishParams {
   /**
    * These services provide operations for posting space object idenfification
    * observation sets.
@@ -3325,22 +3341,6 @@ export namespace SoiobservationsetCreateBulkV2Params {
   }
 }
 
-export interface SoiobservationsetTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Observation set detection start time in ISO 8601 UTC with microsecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  startTime: string;
-}
-
 Soiobservationset.History = History;
 
 export declare namespace Soiobservationset {
@@ -3352,8 +3352,8 @@ export declare namespace Soiobservationset {
     type SoiobservationsetListParams as SoiobservationsetListParams,
     type SoiobservationsetCountParams as SoiobservationsetCountParams,
     type SoiobservationsetCreateBulkParams as SoiobservationsetCreateBulkParams,
-    type SoiobservationsetCreateBulkV2Params as SoiobservationsetCreateBulkV2Params,
     type SoiobservationsetTupleParams as SoiobservationsetTupleParams,
+    type SoiobservationsetUnvalidatedPublishParams as SoiobservationsetUnvalidatedPublishParams,
   };
 
   export {

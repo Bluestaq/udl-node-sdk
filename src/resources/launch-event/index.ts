@@ -8,4 +8,4 @@ export {
   type HistoryAodrParams,
   type HistoryCountParams,
 } from './history';
-export { LaunchEvent, type LaunchEventCreateBulkV2Params } from './launch-event';
+export { LaunchEvent, type LaunchEventUnvalidatedPublishParams } from './launch-event';

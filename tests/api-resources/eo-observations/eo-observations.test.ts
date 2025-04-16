@@ -443,8 +443,8 @@ describe('resource eoObservations', () => {
     });
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.eoObservations.createBulkV2([
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.eoObservations.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -461,8 +461,8 @@ describe('resource eoObservations', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.eoObservations.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.eoObservations.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',

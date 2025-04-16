@@ -47,20 +47,6 @@ export class Mti extends APIResource {
   }
 
   /**
-   * Service operation to take a list of Moving Target Indicator (MTI) formatted data
-   * as a POST body and ingest into the database. This operation is intended to be
-   * used for automated feeds into UDL. A specific role is required to perform this
-   * service operation. Please contact the UDL team for assistance.
-   */
-  createBulkV2(body: MtiCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-mti', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -83,6 +69,23 @@ export class Mti extends APIResource {
    */
   tuple(query: MtiTupleParams, options?: Core.RequestOptions): Core.APIPromise<MtiTupleResponse> {
     return this._client.get('/udl/mti/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take a list of Moving Target Indicator (MTI) formatted data
+   * as a POST body and ingest into the database. This operation is intended to be
+   * used for automated feeds into UDL. A specific role is required to perform this
+   * service operation. Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: MtiUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-mti', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -2185,9 +2188,24 @@ export namespace MtiCreateBulkParams {
   }
 }
 
-export type MtiCreateBulkV2Params = Array<MtiCreateBulkV2Params.Body>;
+export interface MtiTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace MtiCreateBulkV2Params {
+  /**
+   * Time the row was created in the database. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  createdAt: string;
+}
+
+export type MtiUnvalidatedPublishParams = Array<MtiUnvalidatedPublishParams.Body>;
+
+export namespace MtiUnvalidatedPublishParams {
   /**
    * Information on the mission and flight plans, the type and configuration of the
    * platform, and the reference time.
@@ -3220,21 +3238,6 @@ export namespace MtiCreateBulkV2Params {
   }
 }
 
-export interface MtiTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Time the row was created in the database. (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  createdAt: string;
-}
-
 export declare namespace Mti {
   export {
     type MtiListResponse as MtiListResponse,
@@ -3243,7 +3246,7 @@ export declare namespace Mti {
     type MtiListParams as MtiListParams,
     type MtiCountParams as MtiCountParams,
     type MtiCreateBulkParams as MtiCreateBulkParams,
-    type MtiCreateBulkV2Params as MtiCreateBulkV2Params,
     type MtiTupleParams as MtiTupleParams,
+    type MtiUnvalidatedPublishParams as MtiUnvalidatedPublishParams,
   };
 }

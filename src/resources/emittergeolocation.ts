@@ -72,23 +72,6 @@ export class Emittergeolocation extends APIResource {
   }
 
   /**
-   * Service operation to take multiple emittergeolocation records as a POST body and
-   * ingest into the database. This operation is intended to be used for automated
-   * feeds into UDL. A specific role is required to perform this service operation.
-   * Please contact the UDL team for assistance.
-   */
-  createBulkV2(
-    body: EmittergeolocationCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-emittergeolocation', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to dynamically query data by a variety of query parameters not
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
@@ -127,6 +110,23 @@ export class Emittergeolocation extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<EmittergeolocationTupleResponse> {
     return this._client.get('/udl/emittergeolocation/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple emittergeolocation records as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: EmittergeolocationUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-emittergeolocation', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1529,9 +1529,34 @@ export namespace EmittergeolocationCreateBulkParams {
   }
 }
 
-export type EmittergeolocationCreateBulkV2Params = Array<EmittergeolocationCreateBulkV2Params.Body>;
+export interface EmittergeolocationQueryParams {
+  /**
+   * The start time for this Emitter Geo Location data set in ISO 8601 UTC with
+   * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  startTime: string;
+}
 
-export namespace EmittergeolocationCreateBulkV2Params {
+export interface EmittergeolocationTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * The start time for this Emitter Geo Location data set in ISO 8601 UTC with
+   * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  startTime: string;
+}
+
+export type EmittergeolocationUnvalidatedPublishParams =
+  Array<EmittergeolocationUnvalidatedPublishParams.Body>;
+
+export namespace EmittergeolocationUnvalidatedPublishParams {
   /**
    * Model representation of Emitter geolocation data for a signal of interest.
    */
@@ -1788,30 +1813,6 @@ export namespace EmittergeolocationCreateBulkV2Params {
   }
 }
 
-export interface EmittergeolocationQueryParams {
-  /**
-   * The start time for this Emitter Geo Location data set in ISO 8601 UTC with
-   * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  startTime: string;
-}
-
-export interface EmittergeolocationTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * The start time for this Emitter Geo Location data set in ISO 8601 UTC with
-   * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  startTime: string;
-}
-
 export declare namespace Emittergeolocation {
   export {
     type EmittergeolocationRetrieveResponse as EmittergeolocationRetrieveResponse,
@@ -1821,8 +1822,8 @@ export declare namespace Emittergeolocation {
     type EmittergeolocationCreateParams as EmittergeolocationCreateParams,
     type EmittergeolocationCountParams as EmittergeolocationCountParams,
     type EmittergeolocationCreateBulkParams as EmittergeolocationCreateBulkParams,
-    type EmittergeolocationCreateBulkV2Params as EmittergeolocationCreateBulkV2Params,
     type EmittergeolocationQueryParams as EmittergeolocationQueryParams,
     type EmittergeolocationTupleParams as EmittergeolocationTupleParams,
+    type EmittergeolocationUnvalidatedPublishParams as EmittergeolocationUnvalidatedPublishParams,
   };
 }

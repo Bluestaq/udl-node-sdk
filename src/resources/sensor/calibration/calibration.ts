@@ -69,20 +69,6 @@ export class Calibration extends APIResource {
   }
 
   /**
-   * Service operation to take multiple sensorcalibration records as a POST body and
-   * ingest into the database. This operation is intended to be used for automated
-   * feeds into UDL. A specific role is required to perform this service operation.
-   * Please contact the UDL team for assistance.
-   */
-  createBulkV2(body: CalibrationCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-sensorcalibration', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to dynamically query data by a variety of query parameters not
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
@@ -121,6 +107,23 @@ export class Calibration extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<CalibrationTupleResponse> {
     return this._client.get('/udl/sensorcalibration/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple sensorcalibration records as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: CalibrationUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-sensorcalibration', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1827,9 +1830,33 @@ export namespace CalibrationCreateBulkParams {
   }
 }
 
-export type CalibrationCreateBulkV2Params = Array<CalibrationCreateBulkV2Params.Body>;
+export interface CalibrationQueryParams {
+  /**
+   * Calibration data span start time in ISO 8601 UTC format with millisecond
+   * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  startTime: string;
+}
 
-export namespace CalibrationCreateBulkV2Params {
+export interface CalibrationTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * Calibration data span start time in ISO 8601 UTC format with millisecond
+   * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  startTime: string;
+}
+
+export type CalibrationUnvalidatedPublishParams = Array<CalibrationUnvalidatedPublishParams.Body>;
+
+export namespace CalibrationUnvalidatedPublishParams {
   /**
    * The Sensor Calibration service records data about a sensor's overall accuracy
    * and is used to adjust sensor settings to achieve and maintain that accuracy in
@@ -2154,30 +2181,6 @@ export namespace CalibrationCreateBulkV2Params {
   }
 }
 
-export interface CalibrationQueryParams {
-  /**
-   * Calibration data span start time in ISO 8601 UTC format with millisecond
-   * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  startTime: string;
-}
-
-export interface CalibrationTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Calibration data span start time in ISO 8601 UTC format with millisecond
-   * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  startTime: string;
-}
-
 Calibration.History = History;
 
 export declare namespace Calibration {
@@ -2189,9 +2192,9 @@ export declare namespace Calibration {
     type CalibrationCreateParams as CalibrationCreateParams,
     type CalibrationCountParams as CalibrationCountParams,
     type CalibrationCreateBulkParams as CalibrationCreateBulkParams,
-    type CalibrationCreateBulkV2Params as CalibrationCreateBulkV2Params,
     type CalibrationQueryParams as CalibrationQueryParams,
     type CalibrationTupleParams as CalibrationTupleParams,
+    type CalibrationUnvalidatedPublishParams as CalibrationUnvalidatedPublishParams,
   };
 
   export {

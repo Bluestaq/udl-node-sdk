@@ -67,23 +67,6 @@ export class Featureassessment extends APIResource {
   }
 
   /**
-   * Service operation to take multiple FeatureAssessment records as a POST body and
-   * ingest into the database. This operation is intended to be used for automated
-   * feeds into UDL. A specific role is required to perform this service operation.
-   * Please contact the UDL team for assistance.
-   */
-  createBulkV2(
-    body: FeatureassessmentCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-featureassessment', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to dynamically query data by a variety of query parameters not
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
@@ -122,6 +105,23 @@ export class Featureassessment extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<FeatureassessmentTupleResponse> {
     return this._client.get('/udl/featureassessment/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple FeatureAssessment records as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: FeatureassessmentUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-featureassessment', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1569,9 +1569,33 @@ export namespace FeatureassessmentCreateBulkParams {
   }
 }
 
-export type FeatureassessmentCreateBulkV2Params = Array<FeatureassessmentCreateBulkV2Params.Body>;
+export interface FeatureassessmentQueryParams {
+  /**
+   * Unique identifier of the Analytic Imagery associated with this Feature
+   * Assessment record.
+   */
+  idAnalyticImagery: string;
+}
 
-export namespace FeatureassessmentCreateBulkV2Params {
+export interface FeatureassessmentTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * Unique identifier of the Analytic Imagery associated with this Feature
+   * Assessment record.
+   */
+  idAnalyticImagery: string;
+}
+
+export type FeatureassessmentUnvalidatedPublishParams = Array<FeatureassessmentUnvalidatedPublishParams.Body>;
+
+export namespace FeatureassessmentUnvalidatedPublishParams {
   /**
    * Feature assessments obtained from imagery analysis or other data analytics.
    * Feature assessments are georeferenced terrestrial features such as marine
@@ -1847,30 +1871,6 @@ export namespace FeatureassessmentCreateBulkV2Params {
   }
 }
 
-export interface FeatureassessmentQueryParams {
-  /**
-   * Unique identifier of the Analytic Imagery associated with this Feature
-   * Assessment record.
-   */
-  idAnalyticImagery: string;
-}
-
-export interface FeatureassessmentTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Unique identifier of the Analytic Imagery associated with this Feature
-   * Assessment record.
-   */
-  idAnalyticImagery: string;
-}
-
 Featureassessment.History = History;
 
 export declare namespace Featureassessment {
@@ -1882,9 +1882,9 @@ export declare namespace Featureassessment {
     type FeatureassessmentCreateParams as FeatureassessmentCreateParams,
     type FeatureassessmentCountParams as FeatureassessmentCountParams,
     type FeatureassessmentCreateBulkParams as FeatureassessmentCreateBulkParams,
-    type FeatureassessmentCreateBulkV2Params as FeatureassessmentCreateBulkV2Params,
     type FeatureassessmentQueryParams as FeatureassessmentQueryParams,
     type FeatureassessmentTupleParams as FeatureassessmentTupleParams,
+    type FeatureassessmentUnvalidatedPublishParams as FeatureassessmentUnvalidatedPublishParams,
   };
 
   export {

@@ -83,28 +83,28 @@ export class CollectResponses extends APIResource {
   }
 
   /**
-   * Service operation to take a list of CollectResponse as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
+   * Service operation to provide detailed information on available dynamic query
+   * parameters for a particular data type.
    */
-  createBulkV2(
-    body: CollectResponseCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-collectresponse', {
-      body,
+  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/udl/collectresponse/queryhelp', {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
   /**
-   * Service operation to provide detailed information on available dynamic query
-   * parameters for a particular data type.
+   * Service operation to take a list of CollectResponse as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.get('/udl/collectresponse/queryhelp', {
+  unvalidatedPublish(
+    body: CollectResponseUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-collectresponse', {
+      body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -734,9 +734,9 @@ export namespace CollectResponseCreateBulkParams {
   }
 }
 
-export type CollectResponseCreateBulkV2Params = Array<CollectResponseCreateBulkV2Params.Body>;
+export type CollectResponseUnvalidatedPublishParams = Array<CollectResponseUnvalidatedPublishParams.Body>;
 
-export namespace CollectResponseCreateBulkV2Params {
+export namespace CollectResponseUnvalidatedPublishParams {
   /**
    * Collect response supports the response and status of individual collect
    * requests. Each response is referenced by the UUID of the request, and contains
@@ -948,7 +948,7 @@ export declare namespace CollectResponses {
     type CollectResponseListParams as CollectResponseListParams,
     type CollectResponseCountParams as CollectResponseCountParams,
     type CollectResponseCreateBulkParams as CollectResponseCreateBulkParams,
-    type CollectResponseCreateBulkV2Params as CollectResponseCreateBulkV2Params,
+    type CollectResponseUnvalidatedPublishParams as CollectResponseUnvalidatedPublishParams,
   };
 
   export {

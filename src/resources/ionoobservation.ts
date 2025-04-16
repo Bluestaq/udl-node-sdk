@@ -49,24 +49,6 @@ export class Ionoobservation extends APIResource {
   }
 
   /**
-   * Service operation to take Ionospheric Observation entries as a POST body and
-   * ingest into the database with or without dupe detection. Default is no dupe
-   * checking. This operation is intended to be used for automated feeds into UDL. A
-   * specific role is required to perform this service operation. Please contact the
-   * UDL team for assistance.
-   */
-  createBulkV2(
-    body: IonoobservationCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-ionoobs', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -92,6 +74,24 @@ export class Ionoobservation extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<IonoobservationTupleResponse> {
     return this._client.get('/udl/ionoobservation/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take Ionospheric Observation entries as a POST body and
+   * ingest into the database with or without dupe detection. Default is no dupe
+   * checking. This operation is intended to be used for automated feeds into UDL. A
+   * specific role is required to perform this service operation. Please contact the
+   * UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: IonoobservationUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-ionoobs', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -2860,9 +2860,24 @@ export namespace IonoobservationCreateBulkParams {
   }
 }
 
-export type IonoobservationCreateBulkV2Params = Array<IonoobservationCreateBulkV2Params.Body>;
+export interface IonoobservationTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace IonoobservationCreateBulkV2Params {
+  /**
+   * Sounding Start time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  startTimeUTC: string;
+}
+
+export type IonoobservationUnvalidatedPublishParams = Array<IonoobservationUnvalidatedPublishParams.Body>;
+
+export namespace IonoobservationUnvalidatedPublishParams {
   /**
    * These services provide operations for posting and querying ionospheric
    * observation data. Characteristics are defined by the CHARS: URSI IIWG format for
@@ -4219,21 +4234,6 @@ export namespace IonoobservationCreateBulkV2Params {
   }
 }
 
-export interface IonoobservationTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Sounding Start time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  startTimeUTC: string;
-}
-
 export declare namespace Ionoobservation {
   export {
     type IonoobservationListResponse as IonoobservationListResponse,
@@ -4242,7 +4242,7 @@ export declare namespace Ionoobservation {
     type IonoobservationListParams as IonoobservationListParams,
     type IonoobservationCountParams as IonoobservationCountParams,
     type IonoobservationCreateBulkParams as IonoobservationCreateBulkParams,
-    type IonoobservationCreateBulkV2Params as IonoobservationCreateBulkV2Params,
     type IonoobservationTupleParams as IonoobservationTupleParams,
+    type IonoobservationUnvalidatedPublishParams as IonoobservationUnvalidatedPublishParams,
   };
 }

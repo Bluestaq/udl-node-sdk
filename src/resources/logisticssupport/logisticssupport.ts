@@ -85,23 +85,6 @@ export class Logisticssupport extends APIResource {
   }
 
   /**
-   * Service operation to take multiple logisticssupport records as a POST body and
-   * ingest into the database. This operation is intended to be used for automated
-   * feeds into UDL. A specific role is required to perform this service operation.
-   * Please contact the UDL team for assistance.
-   */
-  createBulkV2(
-    body: LogisticssupportCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-logisticssupport', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single LogisticsSupport record by its unique ID
    * passed as a path parameter.
    */
@@ -135,6 +118,23 @@ export class Logisticssupport extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<LogisticssupportTupleResponse> {
     return this._client.get('/udl/logisticssupport/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple logisticssupport records as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: LogisticssupportUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-logisticssupport', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -4668,9 +4668,19 @@ export namespace LogisticssupportCreateBulkParams {
   }
 }
 
-export type LogisticssupportCreateBulkV2Params = Array<LogisticssupportCreateBulkV2Params.Body>;
+export interface LogisticssupportTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
 
-export namespace LogisticssupportCreateBulkV2Params {
+export type LogisticssupportUnvalidatedPublishParams = Array<LogisticssupportUnvalidatedPublishParams.Body>;
+
+export namespace LogisticssupportUnvalidatedPublishParams {
   /**
    * Comprehensive logistical details concerning the planned support of maintenance
    * operations required by an aircraft, including transportation information,
@@ -5430,16 +5440,6 @@ export namespace LogisticssupportCreateBulkV2Params {
   }
 }
 
-export interface LogisticssupportTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-}
-
 Logisticssupport.History = History;
 
 export declare namespace Logisticssupport {
@@ -5452,8 +5452,8 @@ export declare namespace Logisticssupport {
     type LogisticssupportCreateParams as LogisticssupportCreateParams,
     type LogisticssupportUpdateParams as LogisticssupportUpdateParams,
     type LogisticssupportCreateBulkParams as LogisticssupportCreateBulkParams,
-    type LogisticssupportCreateBulkV2Params as LogisticssupportCreateBulkV2Params,
     type LogisticssupportTupleParams as LogisticssupportTupleParams,
+    type LogisticssupportUnvalidatedPublishParams as LogisticssupportUnvalidatedPublishParams,
   };
 
   export {

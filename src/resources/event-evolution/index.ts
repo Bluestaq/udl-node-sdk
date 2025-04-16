@@ -9,8 +9,8 @@ export {
   type EventEvolutionListParams,
   type EventEvolutionCountParams,
   type EventEvolutionCreateBulkParams,
-  type EventEvolutionCreateBulkV2Params,
   type EventEvolutionTupleParams,
+  type EventEvolutionUnvalidatedPublishParams,
 } from './event-evolution';
 export {
   History,

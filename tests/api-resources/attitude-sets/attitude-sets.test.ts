@@ -123,8 +123,47 @@ describe('resource attitudeSets', () => {
     const response = await client.attitudeSets.count({ startTime: '2019-12-27T18:11:19.117Z' });
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.attitudeSets.createBulkV2({
+  test('queryHelp', async () => {
+    const responsePromise = client.attitudeSets.queryHelp();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('queryHelp: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.attitudeSets.queryHelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('tuple: only required params', async () => {
+    const responsePromise = client.attitudeSets.tuple({
+      columns: 'columns',
+      startTime: '2019-12-27T18:11:19.117Z',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('tuple: required and optional params', async () => {
+    const response = await client.attitudeSets.tuple({
+      columns: 'columns',
+      startTime: '2019-12-27T18:11:19.117Z',
+    });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.attitudeSets.unvalidatedPublish({
       classificationMarking: 'U',
       dataMode: 'TEST',
       endTime: '2022-07-07T18:00:00.654321Z',
@@ -144,8 +183,8 @@ describe('resource attitudeSets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.attitudeSets.createBulkV2({
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.attitudeSets.unvalidatedPublish({
       classificationMarking: 'U',
       dataMode: 'TEST',
       endTime: '2022-07-07T18:00:00.654321Z',
@@ -203,45 +242,6 @@ describe('resource attitudeSets', () => {
       satNo: 41947,
       spinAngleInit: 25.5,
       stepSize: 60,
-    });
-  });
-
-  test('queryHelp', async () => {
-    const responsePromise = client.attitudeSets.queryHelp();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryHelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.attitudeSets.queryHelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
-  test('tuple: only required params', async () => {
-    const responsePromise = client.attitudeSets.tuple({
-      columns: 'columns',
-      startTime: '2019-12-27T18:11:19.117Z',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('tuple: required and optional params', async () => {
-    const response = await client.attitudeSets.tuple({
-      columns: 'columns',
-      startTime: '2019-12-27T18:11:19.117Z',
     });
   });
 });

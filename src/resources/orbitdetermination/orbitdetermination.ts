@@ -90,23 +90,6 @@ export class Orbitdetermination extends APIResource {
   }
 
   /**
-   * Service operation to take multiple OrbitDetermination records as a POST body and
-   * ingest into the database. This operation is intended to be used for automated
-   * feeds into UDL. A specific role is required to perform this service operation.
-   * Please contact the UDL team for assistance.
-   */
-  createBulkV2(
-    body: OrbitdeterminationCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-orbitdetermination', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single OrbitDetermination record by its unique ID
    * passed as a path parameter.
    */
@@ -143,6 +126,23 @@ export class Orbitdetermination extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<OrbitdeterminationTupleResponse> {
     return this._client.get('/udl/orbitdetermination/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple OrbitDetermination records as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: OrbitdeterminationUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-orbitdetermination', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -3944,9 +3944,36 @@ export namespace OrbitdeterminationCreateBulkParams {
   }
 }
 
-export type OrbitdeterminationCreateBulkV2Params = Array<OrbitdeterminationCreateBulkV2Params.Body>;
+export interface OrbitdeterminationTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace OrbitdeterminationCreateBulkV2Params {
+  /**
+   * (One or more of fields 'idOnOrbit, startTime' are required.) Unique identifier
+   * of the target satellite on-orbit object. This ID can be used to obtain
+   * additional information on an OnOrbit object using the 'get by ID' operation
+   * (e.g. /udl/onorbit/{id}). For example, the OnOrbit with idOnOrbit = 25544 would
+   * be queried as /udl/onorbit/25544.
+   */
+  idOnOrbit?: string;
+
+  /**
+   * (One or more of fields 'idOnOrbit, startTime' are required.) Start time for OD
+   * solution in ISO 8601 UTC datetime format, with microsecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  startTime?: string;
+}
+
+export type OrbitdeterminationUnvalidatedPublishParams =
+  Array<OrbitdeterminationUnvalidatedPublishParams.Body>;
+
+export namespace OrbitdeterminationUnvalidatedPublishParams {
   /**
    * Model representation of orbit determination algorithm results describing General
    * Perturbations or Special Perturbations orbital updates.
@@ -5185,32 +5212,6 @@ export namespace OrbitdeterminationCreateBulkV2Params {
   }
 }
 
-export interface OrbitdeterminationTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * (One or more of fields 'idOnOrbit, startTime' are required.) Unique identifier
-   * of the target satellite on-orbit object. This ID can be used to obtain
-   * additional information on an OnOrbit object using the 'get by ID' operation
-   * (e.g. /udl/onorbit/{id}). For example, the OnOrbit with idOnOrbit = 25544 would
-   * be queried as /udl/onorbit/25544.
-   */
-  idOnOrbit?: string;
-
-  /**
-   * (One or more of fields 'idOnOrbit, startTime' are required.) Start time for OD
-   * solution in ISO 8601 UTC datetime format, with microsecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  startTime?: string;
-}
-
 Orbitdetermination.History = History;
 
 export declare namespace Orbitdetermination {
@@ -5222,8 +5223,8 @@ export declare namespace Orbitdetermination {
     type OrbitdeterminationListParams as OrbitdeterminationListParams,
     type OrbitdeterminationCountParams as OrbitdeterminationCountParams,
     type OrbitdeterminationCreateBulkParams as OrbitdeterminationCreateBulkParams,
-    type OrbitdeterminationCreateBulkV2Params as OrbitdeterminationCreateBulkV2Params,
     type OrbitdeterminationTupleParams as OrbitdeterminationTupleParams,
+    type OrbitdeterminationUnvalidatedPublishParams as OrbitdeterminationUnvalidatedPublishParams,
   };
 
   export {

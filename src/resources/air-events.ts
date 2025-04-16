@@ -83,20 +83,6 @@ export class AirEvents extends APIResource {
   }
 
   /**
-   * Service operation to take multiple airevent records as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: AirEventCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-airevent', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single airevent record by its unique ID passed as a
    * path parameter.
    */
@@ -127,6 +113,23 @@ export class AirEvents extends APIResource {
    */
   tuple(query: AirEventTupleParams, options?: Core.RequestOptions): Core.APIPromise<AirEventTupleResponse> {
     return this._client.get('/udl/airevent/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple airevent records as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: AirEventUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-airevent', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -3241,9 +3244,19 @@ export namespace AirEventCreateBulkParams {
   }
 }
 
-export type AirEventCreateBulkV2Params = Array<AirEventCreateBulkV2Params.Body>;
+export interface AirEventTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
 
-export namespace AirEventCreateBulkV2Params {
+export type AirEventUnvalidatedPublishParams = Array<AirEventUnvalidatedPublishParams.Body>;
+
+export namespace AirEventUnvalidatedPublishParams {
   /**
    * Information related to an air event (e.g. FUEL TRANSFER, AIR DROP) and the
    * associated aircraft.
@@ -3745,16 +3758,6 @@ export namespace AirEventCreateBulkV2Params {
   }
 }
 
-export interface AirEventTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-}
-
 export declare namespace AirEvents {
   export {
     type AirEventListResponse as AirEventListResponse,
@@ -3764,7 +3767,7 @@ export declare namespace AirEvents {
     type AirEventCreateParams as AirEventCreateParams,
     type AirEventUpdateParams as AirEventUpdateParams,
     type AirEventCreateBulkParams as AirEventCreateBulkParams,
-    type AirEventCreateBulkV2Params as AirEventCreateBulkV2Params,
     type AirEventTupleParams as AirEventTupleParams,
+    type AirEventUnvalidatedPublishParams as AirEventUnvalidatedPublishParams,
   };
 }

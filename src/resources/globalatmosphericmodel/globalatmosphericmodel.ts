@@ -43,38 +43,6 @@ export class Globalatmosphericmodel extends APIResource {
   }
 
   /**
-   * Upload a file with its metadata.
-   *
-   * The request body requires a zip file containing exactly two files:\
-   * 1\) A file with the `.json` file extension whose content conforms to the `GlobalAtmosphericModel_Ingest`
-   * schema.\
-   * 2\) A file with the `.geojson` file extension.
-   *
-   * The JSON and GEOJSON files will be associated with each other other via the `id`
-   * field. Query the metadata via `GET /udl/globalatmosphericmodel` and use
-   * `GET /udl/globalatmosphericmodel/getFile/{id}` to retrieve the compressed
-   * GEOJSON file as `.gz` extension.
-   *
-   * This operation only accepts application/zip media. The application/json request
-   * body is documented to provide a convenient reference to the ingest schema.
-   *
-   * This operation is intended to be used for automated feeds into UDL. A specific
-   * role is required to perform this service operation. Please contact the UDL team
-   * for assistance.
-   */
-  createBulkV2(
-    body: GlobalatmosphericmodelCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-globalatmosphericmodel', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-      __binaryRequest: true,
-    });
-  }
-
-  /**
    * Service operation to get a single GlobalAtmosphericModel compressed data file by
    * its unique ID passed as a path parameter. The compressed data file is returned
    * as an attachment Content-Disposition.
@@ -126,6 +94,38 @@ export class Globalatmosphericmodel extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<GlobalatmosphericmodelTupleResponse> {
     return this._client.get('/udl/globalatmosphericmodel/tuple', { query, ...options });
+  }
+
+  /**
+   * Upload a file with its metadata.
+   *
+   * The request body requires a zip file containing exactly two files:\
+   * 1\) A file with the `.json` file extension whose content conforms to the `GlobalAtmosphericModel_Ingest`
+   * schema.\
+   * 2\) A file with the `.geojson` file extension.
+   *
+   * The JSON and GEOJSON files will be associated with each other other via the `id`
+   * field. Query the metadata via `GET /udl/globalatmosphericmodel` and use
+   * `GET /udl/globalatmosphericmodel/getFile/{id}` to retrieve the compressed
+   * GEOJSON file as `.gz` extension.
+   *
+   * This operation only accepts application/zip media. The application/json request
+   * body is documented to provide a convenient reference to the ingest schema.
+   *
+   * This operation is intended to be used for automated feeds into UDL. A specific
+   * role is required to perform this service operation. Please contact the UDL team
+   * for assistance.
+   */
+  unvalidatedPublish(
+    body: GlobalatmosphericmodelUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-globalatmosphericmodel', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+      __binaryRequest: true,
+    });
   }
 }
 
@@ -677,7 +677,31 @@ export interface GlobalatmosphericmodelCountParams {
   ts: string;
 }
 
-export interface GlobalatmosphericmodelCreateBulkV2Params {
+export interface GlobalatmosphericmodelQueryParams {
+  /**
+   * Target time of the model in ISO 8601 UTC format with millisecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  ts: string;
+}
+
+export interface GlobalatmosphericmodelTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * Target time of the model in ISO 8601 UTC format with millisecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  ts: string;
+}
+
+export interface GlobalatmosphericmodelUnvalidatedPublishParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -818,30 +842,6 @@ export interface GlobalatmosphericmodelCreateBulkV2Params {
   stepLon?: number;
 }
 
-export interface GlobalatmosphericmodelQueryParams {
-  /**
-   * Target time of the model in ISO 8601 UTC format with millisecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  ts: string;
-}
-
-export interface GlobalatmosphericmodelTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Target time of the model in ISO 8601 UTC format with millisecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  ts: string;
-}
-
 Globalatmosphericmodel.History = History;
 
 export declare namespace Globalatmosphericmodel {
@@ -851,9 +851,9 @@ export declare namespace Globalatmosphericmodel {
     type GlobalatmosphericmodelQueryResponse as GlobalatmosphericmodelQueryResponse,
     type GlobalatmosphericmodelTupleResponse as GlobalatmosphericmodelTupleResponse,
     type GlobalatmosphericmodelCountParams as GlobalatmosphericmodelCountParams,
-    type GlobalatmosphericmodelCreateBulkV2Params as GlobalatmosphericmodelCreateBulkV2Params,
     type GlobalatmosphericmodelQueryParams as GlobalatmosphericmodelQueryParams,
     type GlobalatmosphericmodelTupleParams as GlobalatmosphericmodelTupleParams,
+    type GlobalatmosphericmodelUnvalidatedPublishParams as GlobalatmosphericmodelUnvalidatedPublishParams,
   };
 
   export {

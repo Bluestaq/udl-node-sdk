@@ -95,20 +95,6 @@ export class Trackroute extends APIResource {
   }
 
   /**
-   * Service operation to take multiple trackroute records as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: TrackrouteCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-trackroute', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single trackroute record by its unique ID passed as a
    * path parameter.
    */
@@ -142,6 +128,23 @@ export class Trackroute extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<TrackrouteTupleResponse> {
     return this._client.get('/udl/trackroute/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple trackroute records as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: TrackrouteUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-trackroute', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1600,7 +1603,23 @@ export namespace TrackrouteCreateBulkParams {
   }
 }
 
-export interface TrackrouteCreateBulkV2Params {
+export interface TrackrouteTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * The last updated date of the track route in ISO 8601 UTC format with millisecond
+   * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  lastUpdateDate: string;
+}
+
+export interface TrackrouteUnvalidatedPublishParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -1648,7 +1667,7 @@ export interface TrackrouteCreateBulkV2Params {
   /**
    * Minimum and maximum altitude bounds for the track.
    */
-  altitudeBlocks?: Array<TrackrouteCreateBulkV2Params.AltitudeBlock>;
+  altitudeBlocks?: Array<TrackrouteUnvalidatedPublishParams.AltitudeBlock>;
 
   /**
    * The APN radar code sent and received by the aircraft for identification.
@@ -1710,7 +1729,7 @@ export interface TrackrouteCreateBulkV2Params {
   /**
    * Point of contacts for scheduling or modifying the route.
    */
-  poc?: Array<TrackrouteCreateBulkV2Params.Poc>;
+  poc?: Array<TrackrouteUnvalidatedPublishParams.Poc>;
 
   /**
    * The primary UHF radio frequency used for the track route in megahertz.
@@ -1741,7 +1760,7 @@ export interface TrackrouteCreateBulkV2Params {
   /**
    * Points identified within the route.
    */
-  routePoints?: Array<TrackrouteCreateBulkV2Params.RoutePoint>;
+  routePoints?: Array<TrackrouteUnvalidatedPublishParams.RoutePoint>;
 
   /**
    * Point of contact for the air refueling track route scheduler.
@@ -1790,7 +1809,7 @@ export interface TrackrouteCreateBulkV2Params {
   typeCode?: string;
 }
 
-export namespace TrackrouteCreateBulkV2Params {
+export namespace TrackrouteUnvalidatedPublishParams {
   /**
    * Minimum and maximum altitude bounds for the track.
    */
@@ -1946,22 +1965,6 @@ export namespace TrackrouteCreateBulkV2Params {
   }
 }
 
-export interface TrackrouteTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * The last updated date of the track route in ISO 8601 UTC format with millisecond
-   * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  lastUpdateDate: string;
-}
-
 Trackroute.History = History;
 
 export declare namespace Trackroute {
@@ -1974,8 +1977,8 @@ export declare namespace Trackroute {
     type TrackrouteListParams as TrackrouteListParams,
     type TrackrouteCountParams as TrackrouteCountParams,
     type TrackrouteCreateBulkParams as TrackrouteCreateBulkParams,
-    type TrackrouteCreateBulkV2Params as TrackrouteCreateBulkV2Params,
     type TrackrouteTupleParams as TrackrouteTupleParams,
+    type TrackrouteUnvalidatedPublishParams as TrackrouteUnvalidatedPublishParams,
   };
 
   export {

@@ -57,20 +57,6 @@ export class Orbittrack extends APIResource {
   }
 
   /**
-   * Service operation to take multiple orbit track records as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: OrbittrackCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-orbittrack', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -96,6 +82,23 @@ export class Orbittrack extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<OrbittrackTupleResponse> {
     return this._client.get('/udl/orbittrack/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple orbit track records as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: OrbittrackUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-orbittrack', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -885,9 +888,25 @@ export namespace OrbittrackCreateBulkParams {
   }
 }
 
-export type OrbittrackCreateBulkV2Params = Array<OrbittrackCreateBulkV2Params.Body>;
+export interface OrbittrackTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace OrbittrackCreateBulkV2Params {
+  /**
+   * Track timestamp in ISO8601 UTC format, with microsecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  ts: string;
+}
+
+export type OrbittrackUnvalidatedPublishParams = Array<OrbittrackUnvalidatedPublishParams.Body>;
+
+export namespace OrbittrackUnvalidatedPublishParams {
   /**
    * Keplerian orbital elements describing an orbit for a particular on-orbit
    * satellite and applicable sensor data aiding in the orbit prediction.
@@ -1260,22 +1279,6 @@ export namespace OrbittrackCreateBulkV2Params {
   }
 }
 
-export interface OrbittrackTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Track timestamp in ISO8601 UTC format, with microsecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  ts: string;
-}
-
 Orbittrack.History = History;
 
 export declare namespace Orbittrack {
@@ -1286,8 +1289,8 @@ export declare namespace Orbittrack {
     type OrbittrackListParams as OrbittrackListParams,
     type OrbittrackCountParams as OrbittrackCountParams,
     type OrbittrackCreateBulkParams as OrbittrackCreateBulkParams,
-    type OrbittrackCreateBulkV2Params as OrbittrackCreateBulkV2Params,
     type OrbittrackTupleParams as OrbittrackTupleParams,
+    type OrbittrackUnvalidatedPublishParams as OrbittrackUnvalidatedPublishParams,
   };
 
   export {

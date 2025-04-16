@@ -8,13 +8,13 @@ import {
   OperationCountParams,
   OperationCountResponse,
   OperationCreateBulkParams,
-  OperationCreateBulkV2Params,
   OperationCreateParams,
   OperationListParams,
   OperationListResponse,
   OperationRetrieveResponse,
   OperationTupleParams,
   OperationTupleResponse,
+  OperationUnvalidatedPublishParams,
   OperationUpdateParams,
   Operations,
 } from './operations';
@@ -4166,7 +4166,7 @@ export declare namespace Site {
     type OperationListParams as OperationListParams,
     type OperationCountParams as OperationCountParams,
     type OperationCreateBulkParams as OperationCreateBulkParams,
-    type OperationCreateBulkV2Params as OperationCreateBulkV2Params,
     type OperationTupleParams as OperationTupleParams,
+    type OperationUnvalidatedPublishParams as OperationUnvalidatedPublishParams,
   };
 }

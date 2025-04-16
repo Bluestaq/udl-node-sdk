@@ -21,20 +21,6 @@ export class Diffofarrival extends APIResource {
   }
 
   /**
-   * Service operation to take multiple TDOA/FDOA records as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: DiffofarrivalCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-diffofarrival', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -61,13 +47,46 @@ export class Diffofarrival extends APIResource {
   ): Core.APIPromise<DiffofarrivalTupleResponse> {
     return this._client.get('/udl/diffofarrival/tuple', { query, ...options });
   }
+
+  /**
+   * Service operation to take multiple TDOA/FDOA records as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: DiffofarrivalUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-diffofarrival', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
 }
 
 export type DiffofarrivalTupleResponse = Array<DiffofarrivalDiffofarrivalAPI.DiffofarrivalFull>;
 
-export type DiffofarrivalCreateBulkV2Params = Array<DiffofarrivalCreateBulkV2Params.Body>;
+export interface DiffofarrivalTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace DiffofarrivalCreateBulkV2Params {
+  /**
+   * Ob detection time in ISO 8601 UTC with microsecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  obTime: string;
+}
+
+export type DiffofarrivalUnvalidatedPublishParams = Array<DiffofarrivalUnvalidatedPublishParams.Body>;
+
+export namespace DiffofarrivalUnvalidatedPublishParams {
   /**
    * Model representation of Signal time and frequency difference of arrival
    * (TDOA/FDOA) information obtained by using passive RF based sensor
@@ -313,29 +332,13 @@ export namespace DiffofarrivalCreateBulkV2Params {
   }
 }
 
-export interface DiffofarrivalTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Ob detection time in ISO 8601 UTC with microsecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  obTime: string;
-}
-
 Diffofarrival.History = History;
 
 export declare namespace Diffofarrival {
   export {
     type DiffofarrivalTupleResponse as DiffofarrivalTupleResponse,
-    type DiffofarrivalCreateBulkV2Params as DiffofarrivalCreateBulkV2Params,
     type DiffofarrivalTupleParams as DiffofarrivalTupleParams,
+    type DiffofarrivalUnvalidatedPublishParams as DiffofarrivalUnvalidatedPublishParams,
   };
 
   export {

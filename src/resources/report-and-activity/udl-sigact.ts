@@ -6,20 +6,6 @@ import { type Response } from '../../_shims/index';
 
 export class UdlSigact extends APIResource {
   /**
-   * Service operation to take a list of SigAct as a POST body and ingest into the
-   * database. A SigAct provides data for Report and Activity information. Requires a
-   * specific role, please contact the UDL team to gain access. This operation is
-   * intended to be used for automated feeds into UDL.
-   */
-  createBulkV2(body: UdlSigactCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-sigact', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single SigAct text file by its unique ID passed as a
    * path parameter. The text file is returned as an attachment Content-Disposition.
    */
@@ -30,11 +16,28 @@ export class UdlSigact extends APIResource {
       __binaryResponse: true,
     });
   }
+
+  /**
+   * Service operation to take a list of SigAct as a POST body and ingest into the
+   * database. A SigAct provides data for Report and Activity information. Requires a
+   * specific role, please contact the UDL team to gain access. This operation is
+   * intended to be used for automated feeds into UDL.
+   */
+  unvalidatedPublish(
+    body: UdlSigactUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-sigact', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
 }
 
-export type UdlSigactCreateBulkV2Params = Array<UdlSigactCreateBulkV2Params.Body>;
+export type UdlSigactUnvalidatedPublishParams = Array<UdlSigactUnvalidatedPublishParams.Body>;
 
-export namespace UdlSigactCreateBulkV2Params {
+export namespace UdlSigactUnvalidatedPublishParams {
   /**
    * Provides information on the dates, actors, locations, fatalities, and types of
    * all reported political violence and protest events across the world.
@@ -582,5 +585,5 @@ export namespace UdlSigactCreateBulkV2Params {
 }
 
 export declare namespace UdlSigact {
-  export { type UdlSigactCreateBulkV2Params as UdlSigactCreateBulkV2Params };
+  export { type UdlSigactUnvalidatedPublishParams as UdlSigactUnvalidatedPublishParams };
 }

@@ -67,20 +67,6 @@ export class Sensorplan extends APIResource {
   }
 
   /**
-   * Service operation to take one or more sensorplan record(s) as a POST body and
-   * ingest into the database. This operation is intended to be used for automated
-   * feeds into UDL. A specific role is required to perform this service operation.
-   * Please contact the UDL team for assistance.
-   */
-  createBulkV2(body: SensorplanCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-sensorplan', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single SensorPlan by its unique ID passed as a path
    * parameter.
    */
@@ -114,6 +100,23 @@ export class Sensorplan extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<SensorplanTupleResponse> {
     return this._client.get('/udl/sensorplan/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take one or more sensorplan record(s) as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: SensorplanUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-sensorplan', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -3562,9 +3565,25 @@ export interface SensorplanCountParams {
   startTime: string;
 }
 
-export type SensorplanCreateBulkV2Params = Array<SensorplanCreateBulkV2Params.Body>;
+export interface SensorplanTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace SensorplanCreateBulkV2Params {
+  /**
+   * The start time of the plan or schedule, in ISO 8601 UTC format.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  startTime: string;
+}
+
+export type SensorplanUnvalidatedPublishParams = Array<SensorplanUnvalidatedPublishParams.Body>;
+
+export namespace SensorplanUnvalidatedPublishParams {
   /**
    * A Plan is used to aggregate two or more of the same type of record to a parent
    * entity, with the planId (UUID) being included in all of the subordinate records,
@@ -5216,22 +5235,6 @@ export namespace SensorplanCreateBulkV2Params {
   }
 }
 
-export interface SensorplanTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * The start time of the plan or schedule, in ISO 8601 UTC format.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  startTime: string;
-}
-
 Sensorplan.History = History;
 
 export declare namespace Sensorplan {
@@ -5243,8 +5246,8 @@ export declare namespace Sensorplan {
     type SensorplanUpdateParams as SensorplanUpdateParams,
     type SensorplanListParams as SensorplanListParams,
     type SensorplanCountParams as SensorplanCountParams,
-    type SensorplanCreateBulkV2Params as SensorplanCreateBulkV2Params,
     type SensorplanTupleParams as SensorplanTupleParams,
+    type SensorplanUnvalidatedPublishParams as SensorplanUnvalidatedPublishParams,
   };
 
   export {

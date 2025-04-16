@@ -26,6 +26,6 @@ export {
   type StatevectorListParams,
   type StatevectorCountParams,
   type StatevectorCreateBulkParams,
-  type StatevectorCreateBulkV2Params,
   type StatevectorTupleParams,
+  type StatevectorUnvalidatedPublishParams,
 } from './statevector';

@@ -49,23 +49,6 @@ export class Onboardnavigation extends APIResource {
   }
 
   /**
-   * Service operation to take a list of onboard navigation records as a POST body
-   * and ingest into the database. This operation is intended to be used for
-   * automated feeds into UDL. A specific role is required to perform this service
-   * operation. Please contact the UDL team for assistance.
-   */
-  createBulkV2(
-    body: OnboardnavigationCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-onboardnavigation', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -91,6 +74,23 @@ export class Onboardnavigation extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<OnboardnavigationTupleResponse> {
     return this._client.get('/udl/onboardnavigation/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take a list of onboard navigation records as a POST body
+   * and ingest into the database. This operation is intended to be used for
+   * automated feeds into UDL. A specific role is required to perform this service
+   * operation. Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: OnboardnavigationUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-onboardnavigation', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -409,9 +409,25 @@ export namespace OnboardnavigationCreateBulkParams {
   }
 }
 
-export type OnboardnavigationCreateBulkV2Params = Array<OnboardnavigationCreateBulkV2Params.Body>;
+export interface OnboardnavigationTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace OnboardnavigationCreateBulkV2Params {
+  /**
+   * Start time of the sensor data, in ISO 8601 UTC format.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  startTime: string;
+}
+
+export type OnboardnavigationUnvalidatedPublishParams = Array<OnboardnavigationUnvalidatedPublishParams.Body>;
+
+export namespace OnboardnavigationUnvalidatedPublishParams {
   /**
    * These services provide spacecraft positional data derived from on-board
    * navigational sensors. Navigational points are provided in kilometers and in a
@@ -545,22 +561,6 @@ export namespace OnboardnavigationCreateBulkV2Params {
   }
 }
 
-export interface OnboardnavigationTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Start time of the sensor data, in ISO 8601 UTC format.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  startTime: string;
-}
-
 export declare namespace Onboardnavigation {
   export {
     type OnboardnavigationListResponse as OnboardnavigationListResponse,
@@ -569,7 +569,7 @@ export declare namespace Onboardnavigation {
     type OnboardnavigationListParams as OnboardnavigationListParams,
     type OnboardnavigationCountParams as OnboardnavigationCountParams,
     type OnboardnavigationCreateBulkParams as OnboardnavigationCreateBulkParams,
-    type OnboardnavigationCreateBulkV2Params as OnboardnavigationCreateBulkV2Params,
     type OnboardnavigationTupleParams as OnboardnavigationTupleParams,
+    type OnboardnavigationUnvalidatedPublishParams as OnboardnavigationUnvalidatedPublishParams,
   };
 }

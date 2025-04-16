@@ -16,9 +16,9 @@ export {
   type EphemerisTupleResponse,
   type EphemerisListParams,
   type EphemerisCountParams,
-  type EphemerisCreateBulkV2Params,
   type EphemerisFileUploadParams,
   type EphemerisTupleParams,
+  type EphemerisUnvalidatedPublishParams,
 } from './ephemeris';
 export {
   History,

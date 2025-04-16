@@ -16,6 +16,6 @@ export {
   type IsrCollectionListParams,
   type IsrCollectionCountParams,
   type IsrCollectionCreateBulkParams,
-  type IsrCollectionCreateBulkV2Params,
   type IsrCollectionTupleParams,
+  type IsrCollectionUnvalidatedPublishParams,
 } from './isr-collections';

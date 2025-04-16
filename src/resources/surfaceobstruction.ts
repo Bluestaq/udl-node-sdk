@@ -71,23 +71,6 @@ export class Surfaceobstruction extends APIResource {
   }
 
   /**
-   * Service operation to take multiple surfaceobstruction records as a POST body and
-   * ingest into the database. This operation is intended to be used for automated
-   * feeds into UDL. A specific role is required to perform this service operation.
-   * Please contact the UDL team for assistance.
-   */
-  createBulkV2(
-    body: SurfaceobstructionCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-surfaceobstruction', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single surfaceobstruction record by its unique ID
    * passed as a path parameter.
    */
@@ -121,6 +104,23 @@ export class Surfaceobstruction extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<SurfaceobstructionTupleResponse> {
     return this._client.get('/udl/surfaceobstruction/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple surfaceobstruction records as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: SurfaceobstructionUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-surfaceobstruction', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -650,9 +650,20 @@ export interface SurfaceobstructionUpdateParams {
   origin?: string;
 }
 
-export type SurfaceobstructionCreateBulkV2Params = Array<SurfaceobstructionCreateBulkV2Params.Body>;
+export interface SurfaceobstructionTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
 
-export namespace SurfaceobstructionCreateBulkV2Params {
+export type SurfaceobstructionUnvalidatedPublishParams =
+  Array<SurfaceobstructionUnvalidatedPublishParams.Body>;
+
+export namespace SurfaceobstructionUnvalidatedPublishParams {
   export interface Body {
     /**
      * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -738,16 +749,6 @@ export namespace SurfaceobstructionCreateBulkV2Params {
   }
 }
 
-export interface SurfaceobstructionTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-}
-
 export declare namespace Surfaceobstruction {
   export {
     type SurfaceobstructionListResponse as SurfaceobstructionListResponse,
@@ -756,7 +757,7 @@ export declare namespace Surfaceobstruction {
     type SurfaceobstructionTupleResponse as SurfaceobstructionTupleResponse,
     type SurfaceobstructionCreateParams as SurfaceobstructionCreateParams,
     type SurfaceobstructionUpdateParams as SurfaceobstructionUpdateParams,
-    type SurfaceobstructionCreateBulkV2Params as SurfaceobstructionCreateBulkV2Params,
     type SurfaceobstructionTupleParams as SurfaceobstructionTupleParams,
+    type SurfaceobstructionUnvalidatedPublishParams as SurfaceobstructionUnvalidatedPublishParams,
   };
 }

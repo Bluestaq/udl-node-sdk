@@ -91,20 +91,6 @@ export class Operations extends APIResource {
   }
 
   /**
-   * Service operation to take multiple siteoperations records as a POST body and
-   * ingest into the database. This operation is intended to be used for automated
-   * feeds into UDL. A specific role is required to perform this service operation.
-   * Please contact the UDL team for assistance.
-   */
-  createBulkV2(body: OperationCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-siteoperations', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -127,6 +113,23 @@ export class Operations extends APIResource {
    */
   tuple(query: OperationTupleParams, options?: Core.RequestOptions): Core.APIPromise<OperationTupleResponse> {
     return this._client.get('/udl/siteoperations/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple siteoperations records as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: OperationUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-siteoperations', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -2697,9 +2700,24 @@ export namespace OperationCreateBulkParams {
   }
 }
 
-export type OperationCreateBulkV2Params = Array<OperationCreateBulkV2Params.Body>;
+export interface OperationTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace OperationCreateBulkV2Params {
+  /**
+   * The ID of the parent site.
+   */
+  idSite: string;
+}
+
+export type OperationUnvalidatedPublishParams = Array<OperationUnvalidatedPublishParams.Body>;
+
+export namespace OperationUnvalidatedPublishParams {
   /**
    * Site operating details concerning the hours of operation, operational
    * limitations, site navigation, and waivers associated with the Site.
@@ -3108,21 +3126,6 @@ export namespace OperationCreateBulkV2Params {
   }
 }
 
-export interface OperationTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * The ID of the parent site.
-   */
-  idSite: string;
-}
-
 export declare namespace Operations {
   export {
     type OperationRetrieveResponse as OperationRetrieveResponse,
@@ -3134,7 +3137,7 @@ export declare namespace Operations {
     type OperationListParams as OperationListParams,
     type OperationCountParams as OperationCountParams,
     type OperationCreateBulkParams as OperationCreateBulkParams,
-    type OperationCreateBulkV2Params as OperationCreateBulkV2Params,
     type OperationTupleParams as OperationTupleParams,
+    type OperationUnvalidatedPublishParams as OperationUnvalidatedPublishParams,
   };
 }

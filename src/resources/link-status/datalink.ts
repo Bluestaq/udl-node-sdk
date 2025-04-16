@@ -43,20 +43,6 @@ export class Datalink extends APIResource {
   }
 
   /**
-   * Service operation to take multiple datalink records as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: DatalinkCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-datalink', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -79,6 +65,23 @@ export class Datalink extends APIResource {
    */
   tuple(query: DatalinkTupleParams, options?: Core.RequestOptions): Core.APIPromise<DatalinkTupleResponse> {
     return this._client.get('/udl/datalink/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple datalink records as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: DatalinkUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-datalink', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -2958,8 +2961,6 @@ export interface DatalinkCountParams {
   startTime: string;
 }
 
-export type DatalinkCreateBulkV2Params = Array<DatalinkIngest>;
-
 export interface DatalinkTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -2976,6 +2977,8 @@ export interface DatalinkTupleParams {
   startTime: string;
 }
 
+export type DatalinkUnvalidatedPublishParams = Array<DatalinkIngest>;
+
 export declare namespace Datalink {
   export {
     type DatalinkIngest as DatalinkIngest,
@@ -2985,7 +2988,7 @@ export declare namespace Datalink {
     type DatalinkCreateParams as DatalinkCreateParams,
     type DatalinkListParams as DatalinkListParams,
     type DatalinkCountParams as DatalinkCountParams,
-    type DatalinkCreateBulkV2Params as DatalinkCreateBulkV2Params,
     type DatalinkTupleParams as DatalinkTupleParams,
+    type DatalinkUnvalidatedPublishParams as DatalinkUnvalidatedPublishParams,
   };
 }

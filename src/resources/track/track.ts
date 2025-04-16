@@ -57,20 +57,6 @@ export class Track extends APIResource {
   }
 
   /**
-   * Service operation to take multiple tracks as a POST body and ingest into the
-   * database. This operation is intended to be used for automated feeds into UDL. A
-   * specific role is required to perform this service operation. Please contact the
-   * UDL team for assistance.
-   */
-  createBulkV2(body: TrackCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-tracks', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -93,6 +79,23 @@ export class Track extends APIResource {
    */
   tuple(query: TrackTupleParams, options?: Core.RequestOptions): Core.APIPromise<TrackTupleResponse> {
     return this._client.get('/udl/track/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple tracks as a POST body and ingest into the
+   * database. This operation is intended to be used for automated feeds into UDL. A
+   * specific role is required to perform this service operation. Please contact the
+   * UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: TrackUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-tracks', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1172,9 +1175,25 @@ export namespace TrackCreateBulkParams {
   }
 }
 
-export type TrackCreateBulkV2Params = Array<TrackCreateBulkV2Params.Body>;
+export interface TrackTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace TrackCreateBulkV2Params {
+  /**
+   * Track timestamp in ISO8601 UTC format with microsecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  ts: string;
+}
+
+export type TrackUnvalidatedPublishParams = Array<TrackUnvalidatedPublishParams.Body>;
+
+export namespace TrackUnvalidatedPublishParams {
   /**
    * A track is a position and optionally a heading/velocity of an object such as an
    * aircraft at a particular timestamp. It also includes optional information
@@ -1688,22 +1707,6 @@ export namespace TrackCreateBulkV2Params {
   }
 }
 
-export interface TrackTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Track timestamp in ISO8601 UTC format with microsecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  ts: string;
-}
-
 Track.History = History;
 
 export declare namespace Track {
@@ -1714,8 +1717,8 @@ export declare namespace Track {
     type TrackListParams as TrackListParams,
     type TrackCountParams as TrackCountParams,
     type TrackCreateBulkParams as TrackCreateBulkParams,
-    type TrackCreateBulkV2Params as TrackCreateBulkV2Params,
     type TrackTupleParams as TrackTupleParams,
+    type TrackUnvalidatedPublishParams as TrackUnvalidatedPublishParams,
   };
 
   export {

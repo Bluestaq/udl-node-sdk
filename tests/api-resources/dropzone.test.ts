@@ -230,64 +230,6 @@ describe('resource dropzone', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.dropzone.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        lat: 33.54,
-        lon: -117.162,
-        name: 'Viper DZ',
-        source: 'Bluestaq',
-      },
-    ]);
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.dropzone.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        lat: 33.54,
-        lon: -117.162,
-        name: 'Viper DZ',
-        source: 'Bluestaq',
-        id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
-        altCountryCode: 'USA',
-        altCountryName: 'United States of America',
-        approvalDate: '2018-01-05T16:00:00.123Z',
-        code: 'DZ',
-        countryCode: 'US',
-        countryName: 'United States',
-        expirationDate: '2022-12-09T16:00:00.123Z',
-        extIdentifier: '1001',
-        idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
-        lastUpdate: '2022-11-07T18:44:41.123Z',
-        length: 549.1,
-        majcom: 'United States Northern Command',
-        nearestLoc: 'March AFB',
-        operationalApprovalDate: '2018-01-05T16:00:00.123Z',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        pointName: 'CENTER POINT',
-        radius: 495.1,
-        recertDate: '2022-07-05T16:00:00.123Z',
-        remark: 'The text of the remark.',
-        stateAbbr: 'CA',
-        stateName: 'CALIFORNIA',
-        surveyDate: '2017-12-09T16:00:00.123Z',
-        width: 549.1,
-        zarId: '1001',
-      },
-    ]);
-  });
-
   test('query', async () => {
     const responsePromise = client.dropzone.query();
     const rawResponse = await responsePromise.asResponse();
@@ -337,5 +279,63 @@ describe('resource dropzone', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.dropzone.tuple({ columns: 'columns' });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.dropzone.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        lat: 33.54,
+        lon: -117.162,
+        name: 'Viper DZ',
+        source: 'Bluestaq',
+      },
+    ]);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.dropzone.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        lat: 33.54,
+        lon: -117.162,
+        name: 'Viper DZ',
+        source: 'Bluestaq',
+        id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
+        altCountryCode: 'USA',
+        altCountryName: 'United States of America',
+        approvalDate: '2018-01-05T16:00:00.123Z',
+        code: 'DZ',
+        countryCode: 'US',
+        countryName: 'United States',
+        expirationDate: '2022-12-09T16:00:00.123Z',
+        extIdentifier: '1001',
+        idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
+        lastUpdate: '2022-11-07T18:44:41.123Z',
+        length: 549.1,
+        majcom: 'United States Northern Command',
+        nearestLoc: 'March AFB',
+        operationalApprovalDate: '2018-01-05T16:00:00.123Z',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        pointName: 'CENTER POINT',
+        radius: 495.1,
+        recertDate: '2022-07-05T16:00:00.123Z',
+        remark: 'The text of the remark.',
+        stateAbbr: 'CA',
+        stateName: 'CALIFORNIA',
+        surveyDate: '2017-12-09T16:00:00.123Z',
+        width: 549.1,
+        zarId: '1001',
+      },
+    ]);
   });
 });

@@ -10,8 +10,8 @@ export {
   type EffectRequestListParams,
   type EffectRequestCountParams,
   type EffectRequestCreateBulkParams,
-  type EffectRequestCreateBulkV2Params,
   type EffectRequestTupleParams,
+  type EffectRequestUnvalidatedPublishParams,
 } from './effect-requests';
 export {
   History,

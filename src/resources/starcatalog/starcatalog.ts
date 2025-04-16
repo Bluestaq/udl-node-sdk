@@ -111,20 +111,6 @@ export class Starcatalog extends APIResource {
   }
 
   /**
-   * Service operation to take multiple StarCatalog records as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: StarcatalogCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-starcatalog', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single StarCatalog record by its unique ID passed as
    * a path parameter.
    */
@@ -158,6 +144,23 @@ export class Starcatalog extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<StarcatalogTupleResponse> {
     return this._client.get('/udl/starcatalog/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple StarCatalog records as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: StarcatalogUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-starcatalog', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1798,9 +1801,33 @@ export namespace StarcatalogCreateBulkParams {
   }
 }
 
-export type StarcatalogCreateBulkV2Params = Array<StarcatalogCreateBulkV2Params.Body>;
+export interface StarcatalogTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace StarcatalogCreateBulkV2Params {
+  /**
+   * (One or more of fields 'dec, ra' are required.) Barycentric declination of the
+   * source in International Celestial Reference System (ICRS) at the reference
+   * epoch, in degrees.
+   */
+  dec?: number;
+
+  /**
+   * (One or more of fields 'dec, ra' are required.) Barycentric right ascension of
+   * the source in the International Celestial Reference System (ICRS) frame at the
+   * reference epoch, in degrees.
+   */
+  ra?: number;
+}
+
+export type StarcatalogUnvalidatedPublishParams = Array<StarcatalogUnvalidatedPublishParams.Body>;
+
+export namespace StarcatalogUnvalidatedPublishParams {
   /**
    * The star catalog provides the position, proper motion, parallax, and photometric
    * magnitudes at various bandpasses of a star.
@@ -2055,30 +2082,6 @@ export namespace StarcatalogCreateBulkV2Params {
   }
 }
 
-export interface StarcatalogTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * (One or more of fields 'dec, ra' are required.) Barycentric declination of the
-   * source in International Celestial Reference System (ICRS) at the reference
-   * epoch, in degrees.
-   */
-  dec?: number;
-
-  /**
-   * (One or more of fields 'dec, ra' are required.) Barycentric right ascension of
-   * the source in the International Celestial Reference System (ICRS) frame at the
-   * reference epoch, in degrees.
-   */
-  ra?: number;
-}
-
 Starcatalog.History = History;
 
 export declare namespace Starcatalog {
@@ -2092,8 +2095,8 @@ export declare namespace Starcatalog {
     type StarcatalogListParams as StarcatalogListParams,
     type StarcatalogCountParams as StarcatalogCountParams,
     type StarcatalogCreateBulkParams as StarcatalogCreateBulkParams,
-    type StarcatalogCreateBulkV2Params as StarcatalogCreateBulkV2Params,
     type StarcatalogTupleParams as StarcatalogTupleParams,
+    type StarcatalogUnvalidatedPublishParams as StarcatalogUnvalidatedPublishParams,
   };
 
   export { History as History, type HistoryAodrParams as HistoryAodrParams };
