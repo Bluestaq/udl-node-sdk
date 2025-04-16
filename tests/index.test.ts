@@ -222,8 +222,8 @@ describe('instantiate client', () => {
 
   test('with environment variable arguments', () => {
     // set options via env var
-    process.env['HTTP_BASIC_AUTH_PASSWORD'] = 'My Password';
-    process.env['HTTP_BASIC_AUTH_USERNAME'] = 'My Username';
+    process.env['UDL_AUTH_PASSWORD'] = 'My Password';
+    process.env['UDL_AUTH_USERNAME'] = 'My Username';
     const client = new Unifieddatalibrary();
     expect(client.password).toBe('My Password');
     expect(client.username).toBe('My Username');
@@ -231,8 +231,8 @@ describe('instantiate client', () => {
 
   test('with overridden environment variable arguments', () => {
     // set options via env var
-    process.env['HTTP_BASIC_AUTH_PASSWORD'] = 'another My Password';
-    process.env['HTTP_BASIC_AUTH_USERNAME'] = 'another My Username';
+    process.env['UDL_AUTH_PASSWORD'] = 'another My Password';
+    process.env['UDL_AUTH_USERNAME'] = 'another My Username';
     const client = new Unifieddatalibrary({ password: 'My Password', username: 'My Username' });
     expect(client.password).toBe('My Password');
     expect(client.username).toBe('My Username');
