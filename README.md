@@ -25,7 +25,10 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Unifieddatalibrary from 'unifieddatalibrary';
 
-const client = new Unifieddatalibrary();
+const client = new Unifieddatalibrary({
+  username: process.env['UDL_AUTH_USERNAME'], // This is the default and can be omitted
+  password: process.env['UDL_AUTH_PASSWORD'], // This is the default and can be omitted
+});
 
 async function main() {
   const conjunctionFull = await client.conjunctions.retrieve('id');
@@ -44,7 +47,10 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import Unifieddatalibrary from 'unifieddatalibrary';
 
-const client = new Unifieddatalibrary();
+const client = new Unifieddatalibrary({
+  username: process.env['UDL_AUTH_USERNAME'], // This is the default and can be omitted
+  password: process.env['UDL_AUTH_PASSWORD'], // This is the default and can be omitted
+});
 
 async function main() {
   const conjunctionFull: Unifieddatalibrary.ConjunctionFull = await client.conjunctions.retrieve('id');
@@ -134,8 +140,6 @@ You can use the `maxRetries` option to configure or disable this:
 // Configure the default for all requests:
 const client = new Unifieddatalibrary({
   maxRetries: 0, // default is 2
-  password: 'My Password',
-  username: 'My Username',
 });
 
 // Or, configure per-request:
@@ -153,8 +157,6 @@ Requests time out after 1 minute by default. You can configure this with a `time
 // Configure the default for all requests:
 const client = new Unifieddatalibrary({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
-  password: 'My Password',
-  username: 'My Username',
 });
 
 // Override per-request:
@@ -286,8 +288,6 @@ import { HttpsProxyAgent } from 'https-proxy-agent';
 // Configure the default for all requests:
 const client = new Unifieddatalibrary({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
-  password: 'My Password',
-  username: 'My Username',
 });
 
 // Override per-request:

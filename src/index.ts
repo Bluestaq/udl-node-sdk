@@ -1822,8 +1822,8 @@ export class Unifieddatalibrary extends Core.APIClient {
   /**
    * API Client for interfacing with the Unifieddatalibrary API.
    *
-   * @param {string | undefined} [opts.password=process.env['HTTP_BASIC_AUTH_PASSWORD'] ?? undefined]
-   * @param {string | undefined} [opts.username=process.env['HTTP_BASIC_AUTH_USERNAME'] ?? undefined]
+   * @param {string | undefined} [opts.password=process.env['UDL_AUTH_PASSWORD'] ?? undefined]
+   * @param {string | undefined} [opts.username=process.env['UDL_AUTH_USERNAME'] ?? undefined]
    * @param {string} [opts.baseURL=process.env['UNIFIEDDATALIBRARY_BASE_URL'] ?? https://unifieddatalibrary.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
@@ -1834,18 +1834,18 @@ export class Unifieddatalibrary extends Core.APIClient {
    */
   constructor({
     baseURL = Core.readEnv('UNIFIEDDATALIBRARY_BASE_URL'),
-    password = Core.readEnv('HTTP_BASIC_AUTH_PASSWORD'),
-    username = Core.readEnv('HTTP_BASIC_AUTH_USERNAME'),
+    password = Core.readEnv('UDL_AUTH_PASSWORD'),
+    username = Core.readEnv('UDL_AUTH_USERNAME'),
     ...opts
   }: ClientOptions = {}) {
     if (password === undefined) {
       throw new Errors.UnifieddatalibraryError(
-        "The HTTP_BASIC_AUTH_PASSWORD environment variable is missing or empty; either provide it, or instantiate the Unifieddatalibrary client with an password option, like new Unifieddatalibrary({ password: 'My Password' }).",
+        "The UDL_AUTH_PASSWORD environment variable is missing or empty; either provide it, or instantiate the Unifieddatalibrary client with an password option, like new Unifieddatalibrary({ password: 'My Password' }).",
       );
     }
     if (username === undefined) {
       throw new Errors.UnifieddatalibraryError(
-        "The HTTP_BASIC_AUTH_USERNAME environment variable is missing or empty; either provide it, or instantiate the Unifieddatalibrary client with an username option, like new Unifieddatalibrary({ username: 'My Username' }).",
+        "The UDL_AUTH_USERNAME environment variable is missing or empty; either provide it, or instantiate the Unifieddatalibrary client with an username option, like new Unifieddatalibrary({ username: 'My Username' }).",
       );
     }
 
@@ -2059,6 +2059,20 @@ export class Unifieddatalibrary extends Core.APIClient {
       ...super.defaultHeaders(opts),
       ...this._options.defaultHeaders,
     };
+  }
+
+  protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
+    if (!this.username) {
+      return {};
+    }
+
+    if (!this.password) {
+      return {};
+    }
+
+    const credentials = `${this.username}:${this.password}`;
+    const Authorization = `Basic ${Core.toBase64(credentials)}`;
+    return { Authorization };
   }
 
   protected override stringifyQuery(query: Record<string, unknown>): string {
