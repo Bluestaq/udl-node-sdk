@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource aisObjects', () => {
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.aisObjects.createBulkV2([
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.aisObjects.unvalidatedPublish([
       { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-02-25T12:00:00.123456Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -23,8 +23,8 @@ describe('resource aisObjects', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.aisObjects.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.aisObjects.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',

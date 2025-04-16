@@ -10,7 +10,10 @@ export class AircraftSorties extends APIResource {
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  createBulkV2(body: AircraftSortyCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
+  unvalidatedPublish(
+    body: AircraftSortyUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-aircraftsortie', {
       body,
       ...options,
@@ -19,9 +22,9 @@ export class AircraftSorties extends APIResource {
   }
 }
 
-export type AircraftSortyCreateBulkV2Params = Array<AircraftSortyCreateBulkV2Params.Body>;
+export type AircraftSortyUnvalidatedPublishParams = Array<AircraftSortyUnvalidatedPublishParams.Body>;
 
-export namespace AircraftSortyCreateBulkV2Params {
+export namespace AircraftSortyUnvalidatedPublishParams {
   /**
    * Information related to the planning, load, status, and deployment or dispatch of
    * one aircraft to carry out a mission.
@@ -425,5 +428,5 @@ export namespace AircraftSortyCreateBulkV2Params {
 }
 
 export declare namespace AircraftSorties {
-  export { type AircraftSortyCreateBulkV2Params as AircraftSortyCreateBulkV2Params };
+  export { type AircraftSortyUnvalidatedPublishParams as AircraftSortyUnvalidatedPublishParams };
 }

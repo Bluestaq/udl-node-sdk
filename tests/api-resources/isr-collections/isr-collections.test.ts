@@ -230,8 +230,41 @@ describe('resource isrCollections', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.isrCollections.createBulkV2([
+  test('queryhelp', async () => {
+    const responsePromise = client.isrCollections.queryhelp();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('queryhelp: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.isrCollections.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('tuple: only required params', async () => {
+    const responsePromise = client.isrCollections.tuple({ columns: 'columns', createdAt: '2019-12-27' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('tuple: required and optional params', async () => {
+    const response = await client.isrCollections.tuple({ columns: 'columns', createdAt: '2019-12-27' });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.isrCollections.unvalidatedPublish([
       { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -243,8 +276,8 @@ describe('resource isrCollections', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.isrCollections.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.isrCollections.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -418,38 +451,5 @@ describe('resource isrCollections', () => {
         transit: [{ id: 'ISRCOLLECTIONTRANSIT-ID', base: 'ENVOYS', duration: 200.23 }],
       },
     ]);
-  });
-
-  test('queryhelp', async () => {
-    const responsePromise = client.isrCollections.queryhelp();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.isrCollections.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
-  test('tuple: only required params', async () => {
-    const responsePromise = client.isrCollections.tuple({ columns: 'columns', createdAt: '2019-12-27' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('tuple: required and optional params', async () => {
-    const response = await client.isrCollections.tuple({ columns: 'columns', createdAt: '2019-12-27' });
   });
 });

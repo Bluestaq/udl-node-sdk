@@ -377,8 +377,41 @@ describe('resource operations', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.site.operations.createBulkV2([
+  test('queryHelp', async () => {
+    const responsePromise = client.site.operations.queryHelp();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('queryHelp: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.site.operations.queryHelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('tuple: only required params', async () => {
+    const responsePromise = client.site.operations.tuple({ columns: 'columns', idSite: 'idSite' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('tuple: required and optional params', async () => {
+    const response = await client.site.operations.tuple({ columns: 'columns', idSite: 'idSite' });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.site.operations.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -395,8 +428,8 @@ describe('resource operations', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.site.operations.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.site.operations.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -478,38 +511,5 @@ describe('resource operations', () => {
         ],
       },
     ]);
-  });
-
-  test('queryHelp', async () => {
-    const responsePromise = client.site.operations.queryHelp();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryHelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.site.operations.queryHelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
-  test('tuple: only required params', async () => {
-    const responsePromise = client.site.operations.tuple({ columns: 'columns', idSite: 'idSite' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('tuple: required and optional params', async () => {
-    const response = await client.site.operations.tuple({ columns: 'columns', idSite: 'idSite' });
   });
 });

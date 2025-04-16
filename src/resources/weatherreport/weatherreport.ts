@@ -58,20 +58,6 @@ export class Weatherreport extends APIResource {
   }
 
   /**
-   * Service operation to take a list of WeatherReports as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: WeatherreportCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-weatherreport', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single WeatherReport by its unique ID passed as a
    * path parameter.
    */
@@ -105,6 +91,23 @@ export class Weatherreport extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<WeatherreportTupleResponse> {
     return this._client.get('/udl/weatherreport/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take a list of WeatherReports as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: WeatherreportUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-weatherreport', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1236,9 +1239,25 @@ export interface WeatherreportCountParams {
   obTime: string;
 }
 
-export type WeatherreportCreateBulkV2Params = Array<WeatherreportCreateBulkV2Params.Body>;
+export interface WeatherreportTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace WeatherreportCreateBulkV2Params {
+  /**
+   * Datetime when a weather observation was made or forecast was issued in ISO 8601
+   * UTC datetime format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  obTime: string;
+}
+
+export type WeatherreportUnvalidatedPublishParams = Array<WeatherreportUnvalidatedPublishParams.Body>;
+
+export namespace WeatherreportUnvalidatedPublishParams {
   /**
    * These services provide for posting and querying Weather Over Target information.
    * The information contained within describes the current weather conditions over a
@@ -1790,22 +1809,6 @@ export namespace WeatherreportCreateBulkV2Params {
   }
 }
 
-export interface WeatherreportTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Datetime when a weather observation was made or forecast was issued in ISO 8601
-   * UTC datetime format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  obTime: string;
-}
-
 Weatherreport.History = History;
 
 export declare namespace Weatherreport {
@@ -1816,8 +1819,8 @@ export declare namespace Weatherreport {
     type WeatherreportCreateParams as WeatherreportCreateParams,
     type WeatherreportListParams as WeatherreportListParams,
     type WeatherreportCountParams as WeatherreportCountParams,
-    type WeatherreportCreateBulkV2Params as WeatherreportCreateBulkV2Params,
     type WeatherreportTupleParams as WeatherreportTupleParams,
+    type WeatherreportUnvalidatedPublishParams as WeatherreportUnvalidatedPublishParams,
   };
 
   export {

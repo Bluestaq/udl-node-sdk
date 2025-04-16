@@ -19,8 +19,8 @@ export {
   type ElsetCountParams,
   type ElsetCreateBulkParams,
   type ElsetCreateBulkFromTleParams,
-  type ElsetCreateBulkV2Params,
   type ElsetTupleParams,
+  type ElsetUnvalidatedPublishParams,
 } from './elsets';
 export {
   History,

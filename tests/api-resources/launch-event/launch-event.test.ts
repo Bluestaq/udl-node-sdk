@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource launchEvent', () => {
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.launchEvent.createBulkV2([
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.launchEvent.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -28,8 +28,8 @@ describe('resource launchEvent', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.launchEvent.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.launchEvent.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',

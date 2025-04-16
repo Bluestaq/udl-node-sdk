@@ -60,20 +60,6 @@ export class MissileTracks extends APIResource {
   }
 
   /**
-   * Service operation to take multiple missile track records as a POST body and
-   * ingest into the database. This operation is intended to be used for automated
-   * feeds into UDL. A specific role is required to perform this service operation.
-   * Please contact the UDL team for assistance.
-   */
-  createBulkV2(body: MissileTrackCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-missiletrack', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -99,6 +85,23 @@ export class MissileTracks extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<MissileTrackTupleResponse> {
     return this._client.get('/udl/missiletrack/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple missile track records as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: MissileTrackUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-missiletrack', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1444,9 +1447,25 @@ export namespace MissileTrackCreateBulkParams {
   }
 }
 
-export type MissileTrackCreateBulkV2Params = Array<MissileTrackCreateBulkV2Params.Body>;
+export interface MissileTrackTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace MissileTrackCreateBulkV2Params {
+  /**
+   * The receipt time of the data by the processing system, in ISO8601 UTC format
+   * with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  ts: string;
+}
+
+export type MissileTrackUnvalidatedPublishParams = Array<MissileTrackUnvalidatedPublishParams.Body>;
+
+export namespace MissileTrackUnvalidatedPublishParams {
   /**
    * These services provide operations for querying of all available missile track
    * details and amplifying missile data. A missile track is a position and
@@ -2097,22 +2116,6 @@ export namespace MissileTrackCreateBulkV2Params {
   }
 }
 
-export interface MissileTrackTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * The receipt time of the data by the processing system, in ISO8601 UTC format
-   * with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  ts: string;
-}
-
 MissileTracks.History = History;
 
 export declare namespace MissileTracks {
@@ -2123,8 +2126,8 @@ export declare namespace MissileTracks {
     type MissileTrackListParams as MissileTrackListParams,
     type MissileTrackCountParams as MissileTrackCountParams,
     type MissileTrackCreateBulkParams as MissileTrackCreateBulkParams,
-    type MissileTrackCreateBulkV2Params as MissileTrackCreateBulkV2Params,
     type MissileTrackTupleParams as MissileTrackTupleParams,
+    type MissileTrackUnvalidatedPublishParams as MissileTrackUnvalidatedPublishParams,
   };
 
   export {

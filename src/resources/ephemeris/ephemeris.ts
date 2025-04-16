@@ -52,31 +52,6 @@ export class Ephemeris extends APIResource {
   }
 
   /**
-   * Service operation to take a single EphemerisSet and many associated Ephemeris
-   * records as a POST body for ingest into the database. A specific role is required
-   * to perform this service operation. Please contact the UDL team for assistance.
-   *
-   * The following rules apply to this operation:
-   *
-   * <h3>
-   *   * Ephemeris Set numPoints value must correspond exactly to the number of Ephemeris states associated with that Ephemeris Set.  The numPoints value is checked against the actual posted number of states and mismatch will result in the post being rejected.
-   *   * Ephemeris Set pointStartTime and pointEndTime must correspond to the earliest and latest state times, respectively, of the associated Ephemeris states.
-   *   * Either satNo, idOnOrbit, or origObjectId must be provided.  The preferred option is to post with satNo for a cataloged object, and with (only) origObjectId for an unknown, uncatalogued, or internal/test object.  There are several cases for the logic associated with these fields:
-   *     + If satNo is provided and correlates to a known UDL sat number then the idOnOrbit will be populated appropriately in addition to the satNo.
-   *     + If satNo is provided and does not correlate to a known UDL sat number then the provided satNo value will be moved to the origObjectId field and satNo left null.
-   *     + If origObjectId and a valid satNo or idOnOrbit are provided then both the satNo/idOnOrbit and origObjectId will maintain the provided values.
-   *     + If only origObjectId is provided then origObjectId will be populated with the posted value.  In this case, no checks are made against existing UDL sat numbers.
-   * </h3>
-   */
-  createBulkV2(body: EphemerisCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-ephset', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to post/store Ephemeris data. This operation is intended to be
    * used for automated feeds into UDL. The payload is in Ephemeris format as
    * described by the "Flight Safety Handbook" published by 18th Space Command. A
@@ -142,6 +117,34 @@ export class Ephemeris extends APIResource {
    */
   tuple(query: EphemerisTupleParams, options?: Core.RequestOptions): Core.APIPromise<EphemerisTupleResponse> {
     return this._client.get('/udl/ephemeris/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take a single EphemerisSet and many associated Ephemeris
+   * records as a POST body for ingest into the database. A specific role is required
+   * to perform this service operation. Please contact the UDL team for assistance.
+   *
+   * The following rules apply to this operation:
+   *
+   * <h3>
+   *   * Ephemeris Set numPoints value must correspond exactly to the number of Ephemeris states associated with that Ephemeris Set.  The numPoints value is checked against the actual posted number of states and mismatch will result in the post being rejected.
+   *   * Ephemeris Set pointStartTime and pointEndTime must correspond to the earliest and latest state times, respectively, of the associated Ephemeris states.
+   *   * Either satNo, idOnOrbit, or origObjectId must be provided.  The preferred option is to post with satNo for a cataloged object, and with (only) origObjectId for an unknown, uncatalogued, or internal/test object.  There are several cases for the logic associated with these fields:
+   *     + If satNo is provided and correlates to a known UDL sat number then the idOnOrbit will be populated appropriately in addition to the satNo.
+   *     + If satNo is provided and does not correlate to a known UDL sat number then the provided satNo value will be moved to the origObjectId field and satNo left null.
+   *     + If origObjectId and a valid satNo or idOnOrbit are provided then both the satNo/idOnOrbit and origObjectId will maintain the provided values.
+   *     + If only origObjectId is provided then origObjectId will be populated with the posted value.  In this case, no checks are made against existing UDL sat numbers.
+   * </h3>
+   */
+  unvalidatedPublish(
+    body: EphemerisUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-ephset', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -342,7 +345,88 @@ export interface EphemerisCountParams {
   esId: string;
 }
 
-export interface EphemerisCreateBulkV2Params {
+export interface EphemerisFileUploadParams {
+  /**
+   * Query param: Ephemeris category.
+   */
+  category: string;
+
+  /**
+   * Query param: Classification marking of the data in IC/CAPCO Portion-marked
+   * format.
+   */
+  classification: string;
+
+  /**
+   * Query param: Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE
+   * data.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+
+  /**
+   * Query param: Ephemeris format as documented in Flight Safety Handbook.
+   */
+  ephemFormatType: 'ModITC' | 'GOO' | 'NASA' | 'OEM' | 'OASYS';
+
+  /**
+   * Query param: Boolean indicating whether maneuver(s) are incorporated into the
+   * ephemeris.
+   */
+  hasMnvr: boolean;
+
+  /**
+   * Query param: Satellite/Catalog number of the target on-orbit object.
+   */
+  satNo: number;
+
+  /**
+   * Query param: Source of the Ephemeris data.
+   */
+  source: string;
+
+  /**
+   * Query param: Ephemeris type.
+   */
+  type: string;
+
+  /**
+   * Body param:
+   */
+  body: string;
+
+  /**
+   * Query param: Optional origin of the Ephemeris.
+   */
+  origin?: string;
+
+  /**
+   * Query param: Optional array of provider/source specific tags for this data,
+   * where each element is no longer than 32 characters, used for implementing data
+   * owner conditional access controls to restrict access to the data. Should be left
+   * null by data providers unless conditional access controls are coordinated with
+   * the UDL team.
+   */
+  tags?: string;
+}
+
+export interface EphemerisTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * Unique identifier of the parent EphemerisSet, auto-generated by the system. The
+   * esId (ephemerisSet id) is used to identify all individual ephemeris states
+   * associated with a parent ephemerisSet. (uuid)
+   */
+  esId: string;
+}
+
+export interface EphemerisUnvalidatedPublishParams {
   /**
    * The source category of the ephemeris (e.g. OWNER_OPERATOR, ANALYST, EXTERNAL).
    */
@@ -449,7 +533,7 @@ export interface EphemerisCreateBulkV2Params {
    * The list of ephemeris states belonging to the EphemerisSet. Each ephemeris point
    * is associated with a parent Ephemeris Set via the EphemerisSet ID (esId).
    */
-  ephemerisList?: Array<EphemerisCreateBulkV2Params.EphemerisList>;
+  ephemerisList?: Array<EphemerisUnvalidatedPublishParams.EphemerisList>;
 
   /**
    * Filename of the raw file used to provide the ephemeris data including filetype
@@ -585,7 +669,7 @@ export interface EphemerisCreateBulkV2Params {
   usableStartTime?: string;
 }
 
-export namespace EphemerisCreateBulkV2Params {
+export namespace EphemerisUnvalidatedPublishParams {
   /**
    * An ephemeris record is a position and velocity vector identifying the location
    * and trajectory of an on-orbit object at a specified time. Ephemeris points,
@@ -749,87 +833,6 @@ export namespace EphemerisCreateBulkV2Params {
   }
 }
 
-export interface EphemerisFileUploadParams {
-  /**
-   * Query param: Ephemeris category.
-   */
-  category: string;
-
-  /**
-   * Query param: Classification marking of the data in IC/CAPCO Portion-marked
-   * format.
-   */
-  classification: string;
-
-  /**
-   * Query param: Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE
-   * data.
-   */
-  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
-
-  /**
-   * Query param: Ephemeris format as documented in Flight Safety Handbook.
-   */
-  ephemFormatType: 'ModITC' | 'GOO' | 'NASA' | 'OEM' | 'OASYS';
-
-  /**
-   * Query param: Boolean indicating whether maneuver(s) are incorporated into the
-   * ephemeris.
-   */
-  hasMnvr: boolean;
-
-  /**
-   * Query param: Satellite/Catalog number of the target on-orbit object.
-   */
-  satNo: number;
-
-  /**
-   * Query param: Source of the Ephemeris data.
-   */
-  source: string;
-
-  /**
-   * Query param: Ephemeris type.
-   */
-  type: string;
-
-  /**
-   * Body param:
-   */
-  body: string;
-
-  /**
-   * Query param: Optional origin of the Ephemeris.
-   */
-  origin?: string;
-
-  /**
-   * Query param: Optional array of provider/source specific tags for this data,
-   * where each element is no longer than 32 characters, used for implementing data
-   * owner conditional access controls to restrict access to the data. Should be left
-   * null by data providers unless conditional access controls are coordinated with
-   * the UDL team.
-   */
-  tags?: string;
-}
-
-export interface EphemerisTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Unique identifier of the parent EphemerisSet, auto-generated by the system. The
-   * esId (ephemerisSet id) is used to identify all individual ephemeris states
-   * associated with a parent ephemerisSet. (uuid)
-   */
-  esId: string;
-}
-
 Ephemeris.AttitudeData = AttitudeData;
 Ephemeris.History = History;
 
@@ -841,9 +844,9 @@ export declare namespace Ephemeris {
     type EphemerisTupleResponse as EphemerisTupleResponse,
     type EphemerisListParams as EphemerisListParams,
     type EphemerisCountParams as EphemerisCountParams,
-    type EphemerisCreateBulkV2Params as EphemerisCreateBulkV2Params,
     type EphemerisFileUploadParams as EphemerisFileUploadParams,
     type EphemerisTupleParams as EphemerisTupleParams,
+    type EphemerisUnvalidatedPublishParams as EphemerisUnvalidatedPublishParams,
   };
 
   export {

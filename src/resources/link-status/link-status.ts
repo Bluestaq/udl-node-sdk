@@ -8,13 +8,13 @@ import {
   Datalink,
   DatalinkCountParams,
   DatalinkCountResponse,
-  DatalinkCreateBulkV2Params,
   DatalinkCreateParams,
   DatalinkIngest,
   DatalinkListParams,
   DatalinkListResponse,
   DatalinkTupleParams,
   DatalinkTupleResponse,
+  DatalinkUnvalidatedPublishParams,
 } from './datalink';
 import * as HistoryAPI from './history';
 import {
@@ -577,8 +577,8 @@ export declare namespace LinkStatus {
     type DatalinkCreateParams as DatalinkCreateParams,
     type DatalinkListParams as DatalinkListParams,
     type DatalinkCountParams as DatalinkCountParams,
-    type DatalinkCreateBulkV2Params as DatalinkCreateBulkV2Params,
     type DatalinkTupleParams as DatalinkTupleParams,
+    type DatalinkUnvalidatedPublishParams as DatalinkUnvalidatedPublishParams,
   };
 
   export {

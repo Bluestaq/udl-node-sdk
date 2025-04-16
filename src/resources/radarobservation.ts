@@ -64,23 +64,6 @@ export class Radarobservation extends APIResource {
   }
 
   /**
-   * Service operation to take multiple radar observations as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(
-    body: RadarobservationCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-radar', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single radar observations by its unique ID passed as
    * a path parameter.
    */
@@ -114,6 +97,23 @@ export class Radarobservation extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<RadarobservationTupleResponse> {
     return this._client.get('/udl/radarobservation/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple radar observations as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: RadarobservationUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-radar', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1333,9 +1333,25 @@ export namespace RadarobservationCreateBulkParams {
   }
 }
 
-export type RadarobservationCreateBulkV2Params = Array<RadarobservationCreateBulkV2Params.Body>;
+export interface RadarobservationTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace RadarobservationCreateBulkV2Params {
+  /**
+   * Ob detection time in ISO 8601 UTC with microsecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  obTime: string;
+}
+
+export type RadarobservationUnvalidatedPublishParams = Array<RadarobservationUnvalidatedPublishParams.Body>;
+
+export namespace RadarobservationUnvalidatedPublishParams {
   /**
    * Model representation of observation data for radar based sensor phenomenologies.
    * J2000 is the preferred coordinate frame for all observations, but in some cases
@@ -1726,22 +1742,6 @@ export namespace RadarobservationCreateBulkV2Params {
   }
 }
 
-export interface RadarobservationTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Ob detection time in ISO 8601 UTC with microsecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  obTime: string;
-}
-
 export declare namespace Radarobservation {
   export {
     type RadarobservationListResponse as RadarobservationListResponse,
@@ -1751,7 +1751,7 @@ export declare namespace Radarobservation {
     type RadarobservationListParams as RadarobservationListParams,
     type RadarobservationCountParams as RadarobservationCountParams,
     type RadarobservationCreateBulkParams as RadarobservationCreateBulkParams,
-    type RadarobservationCreateBulkV2Params as RadarobservationCreateBulkV2Params,
     type RadarobservationTupleParams as RadarobservationTupleParams,
+    type RadarobservationUnvalidatedPublishParams as RadarobservationUnvalidatedPublishParams,
   };
 }

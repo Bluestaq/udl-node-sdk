@@ -17,6 +17,6 @@ export {
   type ManeuverListParams,
   type ManeuverCountParams,
   type ManeuverCreateBulkParams,
-  type ManeuverCreateBulkV2Params,
   type ManeuverTupleParams,
+  type ManeuverUnvalidatedPublishParams,
 } from './maneuvers';

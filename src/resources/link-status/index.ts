@@ -9,8 +9,8 @@ export {
   type DatalinkCreateParams,
   type DatalinkListParams,
   type DatalinkCountParams,
-  type DatalinkCreateBulkV2Params,
   type DatalinkTupleParams,
+  type DatalinkUnvalidatedPublishParams,
 } from './datalink';
 export {
   History,

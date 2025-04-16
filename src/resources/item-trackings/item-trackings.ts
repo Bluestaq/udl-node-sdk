@@ -69,20 +69,6 @@ export class ItemTrackings extends APIResource {
   }
 
   /**
-   * Service operation to take multiple itemtracking records as a POST body and
-   * ingest into the database. This operation is intended to be used for automated
-   * feeds into UDL. A specific role is required to perform this service operation.
-   * Please contact the UDL team for assistance.
-   */
-  createBulkV2(body: ItemTrackingCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-itemtracking', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single item tracking record by its unique ID passed
    * as a path parameter.
    */
@@ -116,6 +102,23 @@ export class ItemTrackings extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<ItemTrackingTupleResponse> {
     return this._client.get('/udl/itemtracking/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple itemtracking records as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: ItemTrackingUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-itemtracking', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -401,9 +404,25 @@ export interface ItemTrackingCountParams {
   ts: string;
 }
 
-export type ItemTrackingCreateBulkV2Params = Array<ItemTrackingCreateBulkV2Params.Body>;
+export interface ItemTrackingTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace ItemTrackingCreateBulkV2Params {
+  /**
+   * The timestamp of the scan, in ISO 8601 UTC format with millisecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  ts: string;
+}
+
+export type ItemTrackingUnvalidatedPublishParams = Array<ItemTrackingUnvalidatedPublishParams.Body>;
+
+export namespace ItemTrackingUnvalidatedPublishParams {
   export interface Body {
     /**
      * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -522,22 +541,6 @@ export namespace ItemTrackingCreateBulkV2Params {
   }
 }
 
-export interface ItemTrackingTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * The timestamp of the scan, in ISO 8601 UTC format with millisecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  ts: string;
-}
-
 ItemTrackings.History = History;
 
 export declare namespace ItemTrackings {
@@ -548,8 +551,8 @@ export declare namespace ItemTrackings {
     type ItemTrackingCreateParams as ItemTrackingCreateParams,
     type ItemTrackingListParams as ItemTrackingListParams,
     type ItemTrackingCountParams as ItemTrackingCountParams,
-    type ItemTrackingCreateBulkV2Params as ItemTrackingCreateBulkV2Params,
     type ItemTrackingTupleParams as ItemTrackingTupleParams,
+    type ItemTrackingUnvalidatedPublishParams as ItemTrackingUnvalidatedPublishParams,
   };
 
   export {

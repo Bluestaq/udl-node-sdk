@@ -80,24 +80,27 @@ export class Evac extends APIResource {
   }
 
   /**
-   * Service operation to take a list of Evac events as a POST body and ingest into
-   * the database. Requires a specific role, please contact the UDL team to gain
-   * access. This operation is intended to be used for automated feeds into UDL.
+   * Service operation to provide detailed information on available dynamic query
+   * parameters for a particular data type.
    */
-  createBulkV2(body: EvacCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-evac', {
-      body,
+  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/udl/evac/queryhelp', {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
   /**
-   * Service operation to provide detailed information on available dynamic query
-   * parameters for a particular data type.
+   * Service operation to take a list of Evac events as a POST body and ingest into
+   * the database. Requires a specific role, please contact the UDL team to gain
+   * access. This operation is intended to be used for automated feeds into UDL.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.get('/udl/evac/queryhelp', {
+  unvalidatedPublish(
+    body: EvacUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-evac', {
+      body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -2176,9 +2179,9 @@ export namespace EvacCreateBulkParams {
   }
 }
 
-export type EvacCreateBulkV2Params = Array<EvacCreateBulkV2Params.Body>;
+export type EvacUnvalidatedPublishParams = Array<EvacUnvalidatedPublishParams.Body>;
 
-export namespace EvacCreateBulkV2Params {
+export namespace EvacUnvalidatedPublishParams {
   /**
    * Casualty report and evacuation request. Used to report and request support to
    * evacuate friendly and enemy casualties.
@@ -2871,7 +2874,7 @@ export declare namespace Evac {
     type EvacListParams as EvacListParams,
     type EvacCountParams as EvacCountParams,
     type EvacCreateBulkParams as EvacCreateBulkParams,
-    type EvacCreateBulkV2Params as EvacCreateBulkV2Params,
+    type EvacUnvalidatedPublishParams as EvacUnvalidatedPublishParams,
   };
 
   export {

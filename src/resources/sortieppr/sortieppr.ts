@@ -95,20 +95,6 @@ export class Sortieppr extends APIResource {
   }
 
   /**
-   * Service operation to take SortiePPR as a POST body and ingest into the database.
-   * This operation is intended to be used for automated feeds into UDL. A specific
-   * role is required to perform this service operation. Please contact the UDL team
-   * for assistance.
-   */
-  createBulkV2(body: SortiepprCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-sortieppr', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single sortieppr record by its unique ID passed as a
    * path parameter.
    */
@@ -139,6 +125,23 @@ export class Sortieppr extends APIResource {
    */
   tuple(query: SortiepprTupleParams, options?: Core.RequestOptions): Core.APIPromise<SortiepprTupleResponse> {
     return this._client.get('/udl/sortieppr/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take SortiePPR as a POST body and ingest into the database.
+   * This operation is intended to be used for automated feeds into UDL. A specific
+   * role is required to perform this service operation. Please contact the UDL team
+   * for assistance.
+   */
+  unvalidatedPublish(
+    body: SortiepprUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-sortieppr', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -578,9 +581,25 @@ export namespace SortiepprCreateBulkParams {
   }
 }
 
-export type SortiepprCreateBulkV2Params = Array<SortiepprCreateBulkV2Params.Body>;
+export interface SortiepprTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace SortiepprCreateBulkV2Params {
+  /**
+   * Unique identifier of the Aircraft Sortie associated with this prior permission
+   * required (PPR) record.
+   */
+  idSortie: string;
+}
+
+export type SortiepprUnvalidatedPublishParams = Array<SortiepprUnvalidatedPublishParams.Body>;
+
+export namespace SortiepprUnvalidatedPublishParams {
   /**
    * SortiePPR is a regulatory requirement where operators must obtain permissions to
    * full operational access to a runway, taxiway, or airport service.
@@ -680,22 +699,6 @@ export namespace SortiepprCreateBulkV2Params {
   }
 }
 
-export interface SortiepprTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Unique identifier of the Aircraft Sortie associated with this prior permission
-   * required (PPR) record.
-   */
-  idSortie: string;
-}
-
 Sortieppr.History = History;
 
 export declare namespace Sortieppr {
@@ -708,8 +711,8 @@ export declare namespace Sortieppr {
     type SortiepprListParams as SortiepprListParams,
     type SortiepprCountParams as SortiepprCountParams,
     type SortiepprCreateBulkParams as SortiepprCreateBulkParams,
-    type SortiepprCreateBulkV2Params as SortiepprCreateBulkV2Params,
     type SortiepprTupleParams as SortiepprTupleParams,
+    type SortiepprUnvalidatedPublishParams as SortiepprUnvalidatedPublishParams,
   };
 
   export {

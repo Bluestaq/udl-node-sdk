@@ -35,10 +35,10 @@ Methods:
 - <code title="delete /udl/airevent/{id}">client.airEvents.<a href="./src/resources/air-events.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/airevent/count">client.airEvents.<a href="./src/resources/air-events.ts">count</a>() -> string</code>
 - <code title="post /udl/airevent/createBulk">client.airEvents.<a href="./src/resources/air-events.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-airevent">client.airEvents.<a href="./src/resources/air-events.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/airevent/{id}">client.airEvents.<a href="./src/resources/air-events.ts">get</a>(id) -> AirEventGetResponse</code>
 - <code title="get /udl/airevent/queryhelp">client.airEvents.<a href="./src/resources/air-events.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/airevent/tuple">client.airEvents.<a href="./src/resources/air-events.ts">tuple</a>({ ...params }) -> AirEventTupleResponse</code>
+- <code title="post /filedrop/udl-airevent">client.airEvents.<a href="./src/resources/air-events.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # AirLoadPlans
 
@@ -65,7 +65,7 @@ Methods:
 
 Methods:
 
-- <code title="post /filedrop/udl-airtaskingorder">client.airOperations.airTaskingOrders.<a href="./src/resources/air-operations/air-tasking-orders.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-airtaskingorder">client.airOperations.airTaskingOrders.<a href="./src/resources/air-operations/air-tasking-orders.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## AircraftSortie
 
@@ -92,13 +92,13 @@ Methods:
 
 Methods:
 
-- <code title="post /filedrop/udl-aircraftsortie">client.airOperations.aircraftSorties.<a href="./src/resources/air-operations/aircraft-sorties.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-aircraftsortie">client.airOperations.aircraftSorties.<a href="./src/resources/air-operations/aircraft-sorties.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## AirspaceControlOrders
 
 Methods:
 
-- <code title="post /filedrop/udl-airspacecontrolorder">client.airOperations.airspaceControlOrders.<a href="./src/resources/air-operations/airspace-control-orders.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-airspacecontrolorder">client.airOperations.airspaceControlOrders.<a href="./src/resources/air-operations/airspace-control-orders.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## Crewpapers
 
@@ -116,7 +116,7 @@ Types:
 
 Methods:
 
-- <code title="post /filedrop/udl-diplomaticclearance">client.airOperations.diplomaticClearance.<a href="./src/resources/air-operations/diplomatic-clearance.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-diplomaticclearance">client.airOperations.diplomaticClearance.<a href="./src/resources/air-operations/diplomatic-clearance.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # AirTaskingOrders
 
@@ -440,7 +440,7 @@ Methods:
 
 Methods:
 
-- <code title="post /filedrop/udl-ais">client.aisObjects.<a href="./src/resources/ais-objects.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-ais">client.aisObjects.<a href="./src/resources/ais-objects.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # AnalyticImagery
 
@@ -459,13 +459,13 @@ Methods:
 - <code title="get /udl/analyticimagery/{id}">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">retrieve</a>(id) -> AnalyticImageryFull</code>
 - <code title="get /udl/analyticimagery">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">list</a>({ ...params }) -> AnalyticImageryListResponse</code>
 - <code title="get /udl/analyticimagery/count">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">count</a>({ ...params }) -> string</code>
-- <code title="post /filedrop/udl-analyticimagery">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">createBulkV2</a>({ ...params }) -> void</code>
 - <code title="get /udl/analyticimagery/getFile/{id}">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">fileGet</a>(id) -> Response</code>
 - <code title="get /udl/analyticimagery/history">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">history</a>({ ...params }) -> AnalyticImageryHistoryResponse</code>
 - <code title="get /udl/analyticimagery/history/aodr">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">historyAodr</a>({ ...params }) -> void</code>
 - <code title="get /udl/analyticimagery/history/count">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">historyCount</a>({ ...params }) -> string</code>
 - <code title="get /udl/analyticimagery/queryhelp">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/analyticimagery/tuple">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">tuple</a>({ ...params }) -> AnalyticImageryTupleResponse</code>
+- <code title="post /filedrop/udl-analyticimagery">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">unvalidatedPublish</a>({ ...params }) -> void</code>
 
 # Antennas
 
@@ -514,9 +514,9 @@ Methods:
 - <code title="post /udl/attitudeset">client.attitudeSets.<a href="./src/resources/attitude-sets/attitude-sets.ts">create</a>({ ...params }) -> void</code>
 - <code title="get /udl/attitudeset">client.attitudeSets.<a href="./src/resources/attitude-sets/attitude-sets.ts">list</a>({ ...params }) -> AttitudeSetListResponse</code>
 - <code title="get /udl/attitudeset/count">client.attitudeSets.<a href="./src/resources/attitude-sets/attitude-sets.ts">count</a>({ ...params }) -> string</code>
-- <code title="post /filedrop/udl-attitudeset">client.attitudeSets.<a href="./src/resources/attitude-sets/attitude-sets.ts">createBulkV2</a>({ ...params }) -> void</code>
 - <code title="get /udl/attitudeset/queryhelp">client.attitudeSets.<a href="./src/resources/attitude-sets/attitude-sets.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/attitudeset/tuple">client.attitudeSets.<a href="./src/resources/attitude-sets/attitude-sets.ts">tuple</a>({ ...params }) -> AttitudeSetTupleResponse</code>
+- <code title="post /filedrop/udl-attitudeset">client.attitudeSets.<a href="./src/resources/attitude-sets/attitude-sets.ts">unvalidatedPublish</a>({ ...params }) -> void</code>
 
 ## History
 
@@ -675,9 +675,9 @@ Methods:
 - <code title="get /udl/collectrequest">client.collectRequests.<a href="./src/resources/collect-requests/collect-requests.ts">list</a>({ ...params }) -> CollectRequestListResponse</code>
 - <code title="get /udl/collectrequest/count">client.collectRequests.<a href="./src/resources/collect-requests/collect-requests.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/collectrequest/createBulk">client.collectRequests.<a href="./src/resources/collect-requests/collect-requests.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-collectrequest">client.collectRequests.<a href="./src/resources/collect-requests/collect-requests.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/collectrequest/queryhelp">client.collectRequests.<a href="./src/resources/collect-requests/collect-requests.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/collectrequest/tuple">client.collectRequests.<a href="./src/resources/collect-requests/collect-requests.ts">tuple</a>({ ...params }) -> CollectRequestTupleResponse</code>
+- <code title="post /filedrop/udl-collectrequest">client.collectRequests.<a href="./src/resources/collect-requests/collect-requests.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -707,8 +707,8 @@ Methods:
 - <code title="get /udl/collectresponse">client.collectResponses.<a href="./src/resources/collect-responses/collect-responses.ts">list</a>({ ...params }) -> CollectResponseListResponse</code>
 - <code title="get /udl/collectresponse/count">client.collectResponses.<a href="./src/resources/collect-responses/collect-responses.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/collectresponse/createBulk">client.collectResponses.<a href="./src/resources/collect-responses/collect-responses.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-collectresponse">client.collectResponses.<a href="./src/resources/collect-responses/collect-responses.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/collectresponse/queryhelp">client.collectResponses.<a href="./src/resources/collect-responses/collect-responses.ts">queryHelp</a>() -> void</code>
+- <code title="post /filedrop/udl-collectresponse">client.collectResponses.<a href="./src/resources/collect-responses/collect-responses.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -775,12 +775,12 @@ Methods:
 - <code title="get /udl/conjunction/{id}">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">retrieve</a>(id) -> ConjunctionFull</code>
 - <code title="get /udl/conjunction">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">list</a>({ ...params }) -> ConjunctionListResponse</code>
 - <code title="get /udl/conjunction/count">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">count</a>({ ...params }) -> string</code>
-- <code title="post /filedrop/udl-conjunction">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="post /udl/conjunction">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">createUdl</a>({ ...params }) -> void</code>
 - <code title="post /udl/conjunction/createBulk">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">createBulk</a>([ ...body ]) -> void</code>
 - <code title="get /udl/conjunction/history">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">getHistory</a>({ ...params }) -> ConjunctionGetHistoryResponse</code>
 - <code title="get /udl/conjunction/queryhelp">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/conjunction/tuple">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">tuple</a>({ ...params }) -> ConjunctionTupleResponse</code>
+- <code title="post /filedrop/udl-conjunction">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 - <code title="post /filedrop/cdms">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">uploadConjunctionDataMessage</a>({ ...params }) -> void</code>
 
 ## History
@@ -817,10 +817,10 @@ Methods:
 - <code title="delete /udl/aviationriskmanagement/{id}">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/aviationriskmanagement/count">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/aviationriskmanagement/createBulk">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-aviationriskmanagement">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/aviationriskmanagement">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">query</a>({ ...params }) -> AviationriskmanagementQueryResponse</code>
 - <code title="get /udl/aviationriskmanagement/queryhelp">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/aviationriskmanagement/tuple">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">tuple</a>({ ...params }) -> AviationriskmanagementTupleResponse</code>
+- <code title="post /filedrop/udl-aviationriskmanagement">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Dropzone
 
@@ -839,10 +839,10 @@ Methods:
 - <code title="delete /udl/dropzone/{id}">client.dropzone.<a href="./src/resources/dropzone.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/dropzone/count">client.dropzone.<a href="./src/resources/dropzone.ts">count</a>() -> string</code>
 - <code title="post /udl/dropzone/createBulk">client.dropzone.<a href="./src/resources/dropzone.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-dropzone">client.dropzone.<a href="./src/resources/dropzone.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/dropzone">client.dropzone.<a href="./src/resources/dropzone.ts">query</a>() -> DropzoneQueryResponse</code>
 - <code title="get /udl/dropzone/queryhelp">client.dropzone.<a href="./src/resources/dropzone.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/dropzone/tuple">client.dropzone.<a href="./src/resources/dropzone.ts">tuple</a>({ ...params }) -> DropzoneTupleResponse</code>
+- <code title="post /filedrop/udl-dropzone">client.dropzone.<a href="./src/resources/dropzone.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Emittergeolocation
 
@@ -860,10 +860,10 @@ Methods:
 - <code title="delete /udl/emittergeolocation/{id}">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/emittergeolocation/count">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/emittergeolocation/createBulk">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-emittergeolocation">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/emittergeolocation">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">query</a>({ ...params }) -> EmittergeolocationQueryResponse</code>
 - <code title="get /udl/emittergeolocation/queryhelp">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/emittergeolocation/tuple">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">tuple</a>({ ...params }) -> EmittergeolocationTupleResponse</code>
+- <code title="post /filedrop/udl-emittergeolocation">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Featureassessment
 
@@ -880,10 +880,10 @@ Methods:
 - <code title="get /udl/featureassessment/{id}">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">retrieve</a>(id) -> FeatureassessmentRetrieveResponse</code>
 - <code title="get /udl/featureassessment/count">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/featureassessment/createBulk">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-featureassessment">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/featureassessment">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">query</a>({ ...params }) -> FeatureassessmentQueryResponse</code>
 - <code title="get /udl/featureassessment/queryhelp">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/featureassessment/tuple">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">tuple</a>({ ...params }) -> FeatureassessmentTupleResponse</code>
+- <code title="post /filedrop/udl-featureassessment">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -911,11 +911,11 @@ Methods:
 
 - <code title="get /udl/globalatmosphericmodel/{id}">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">retrieve</a>(id) -> GlobalatmosphericmodelRetrieveResponse</code>
 - <code title="get /udl/globalatmosphericmodel/count">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">count</a>({ ...params }) -> string</code>
-- <code title="post /filedrop/udl-globalatmosphericmodel">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">createBulkV2</a>({ ...params }) -> void</code>
 - <code title="get /udl/globalatmosphericmodel/getFile/{id}">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">getFile</a>(id) -> Response</code>
 - <code title="get /udl/globalatmosphericmodel">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">query</a>({ ...params }) -> GlobalatmosphericmodelQueryResponse</code>
 - <code title="get /udl/globalatmosphericmodel/queryhelp">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/globalatmosphericmodel/tuple">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">tuple</a>({ ...params }) -> GlobalatmosphericmodelTupleResponse</code>
+- <code title="post /filedrop/udl-globalatmosphericmodel">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">unvalidatedPublish</a>({ ...params }) -> void</code>
 
 ## History
 
@@ -947,10 +947,10 @@ Methods:
 - <code title="delete /udl/routestats/{id}">client.routestats.<a href="./src/resources/routestats.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/routestats/count">client.routestats.<a href="./src/resources/routestats.ts">count</a>() -> string</code>
 - <code title="post /udl/routestats/createBulk">client.routestats.<a href="./src/resources/routestats.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-routestats">client.routestats.<a href="./src/resources/routestats.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/routestats">client.routestats.<a href="./src/resources/routestats.ts">query</a>() -> RoutestatQueryResponse</code>
 - <code title="get /udl/routestats/queryhelp">client.routestats.<a href="./src/resources/routestats.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/routestats/tuple">client.routestats.<a href="./src/resources/routestats.ts">tuple</a>({ ...params }) -> RoutestatTupleResponse</code>
+- <code title="post /filedrop/udl-routestats">client.routestats.<a href="./src/resources/routestats.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Countries
 
@@ -990,9 +990,9 @@ Methods:
 - <code title="put /udl/crew/{id}">client.crew.<a href="./src/resources/crew.ts">update</a>(pathId, { ...params }) -> void</code>
 - <code title="get /udl/crew">client.crew.<a href="./src/resources/crew.ts">list</a>() -> CrewListResponse</code>
 - <code title="get /udl/crew/count">client.crew.<a href="./src/resources/crew.ts">count</a>() -> string</code>
-- <code title="post /filedrop/udl-crew">client.crew.<a href="./src/resources/crew.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/crew/queryhelp">client.crew.<a href="./src/resources/crew.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/crew/tuple">client.crew.<a href="./src/resources/crew.ts">tuple</a>({ ...params }) -> CrewTupleResponse</code>
+- <code title="post /filedrop/udl-crew">client.crew.<a href="./src/resources/crew.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Diffofarrival
 
@@ -1003,9 +1003,9 @@ Types:
 Methods:
 
 - <code title="get /udl/diffofarrival/{id}">client.diffofarrival.<a href="./src/resources/diffofarrival/diffofarrival.ts">retrieve</a>(id) -> DiffofarrivalFull</code>
-- <code title="post /filedrop/udl-diffofarrival">client.diffofarrival.<a href="./src/resources/diffofarrival/diffofarrival.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/diffofarrival/queryhelp">client.diffofarrival.<a href="./src/resources/diffofarrival/diffofarrival.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/diffofarrival/tuple">client.diffofarrival.<a href="./src/resources/diffofarrival/diffofarrival.ts">tuple</a>({ ...params }) -> DiffofarrivalTupleResponse</code>
+- <code title="post /filedrop/udl-diffofarrival">client.diffofarrival.<a href="./src/resources/diffofarrival/diffofarrival.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -1068,9 +1068,9 @@ Methods:
 - <code title="delete /udl/diplomaticclearancecountry/{id}">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/diplomaticclearancecountry/count">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">count</a>() -> string</code>
 - <code title="post /udl/diplomaticclearancecountry/createBulk">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-diplomaticclearancecountry">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/diplomaticclearancecountry/queryhelp">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/diplomaticclearancecountry/tuple">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">tuple</a>({ ...params }) -> CountryTupleResponse</code>
+- <code title="post /filedrop/udl-diplomaticclearancecountry">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # DriftHistory
 
@@ -1092,7 +1092,7 @@ Methods:
 
 Methods:
 
-- <code title="post /filedrop/udl-ecpsdr">client.ecpsdr.<a href="./src/resources/ecpsdr.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-ecpsdr">client.ecpsdr.<a href="./src/resources/ecpsdr.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # EffectRequests
 
@@ -1110,9 +1110,9 @@ Methods:
 - <code title="get /udl/effectrequest">client.effectRequests.<a href="./src/resources/effect-requests/effect-requests.ts">list</a>({ ...params }) -> EffectRequestListResponse</code>
 - <code title="get /udl/effectrequest/count">client.effectRequests.<a href="./src/resources/effect-requests/effect-requests.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/effectrequest/createBulk">client.effectRequests.<a href="./src/resources/effect-requests/effect-requests.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-effectrequest">client.effectRequests.<a href="./src/resources/effect-requests/effect-requests.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/effectrequest/queryhelp">client.effectRequests.<a href="./src/resources/effect-requests/effect-requests.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/effectrequest/tuple">client.effectRequests.<a href="./src/resources/effect-requests/effect-requests.ts">tuple</a>({ ...params }) -> EffectRequestTupleResponse</code>
+- <code title="post /filedrop/udl-effectrequest">client.effectRequests.<a href="./src/resources/effect-requests/effect-requests.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -1143,9 +1143,9 @@ Methods:
 - <code title="get /udl/effectresponse">client.effectResponses.<a href="./src/resources/effect-responses/effect-responses.ts">list</a>({ ...params }) -> EffectResponseListResponse</code>
 - <code title="get /udl/effectresponse/count">client.effectResponses.<a href="./src/resources/effect-responses/effect-responses.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/effectresponse/createBulk">client.effectResponses.<a href="./src/resources/effect-responses/effect-responses.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-effectresponse">client.effectResponses.<a href="./src/resources/effect-responses/effect-responses.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/effectresponse/queryhelp">client.effectResponses.<a href="./src/resources/effect-responses/effect-responses.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/effectresponse/tuple">client.effectResponses.<a href="./src/resources/effect-responses/effect-responses.ts">tuple</a>({ ...params }) -> EffectResponseTupleResponse</code>
+- <code title="post /filedrop/udl-effectresponse">client.effectResponses.<a href="./src/resources/effect-responses/effect-responses.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -1179,10 +1179,10 @@ Methods:
 - <code title="get /udl/elset/count">client.elsets.<a href="./src/resources/elsets/elsets.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/elset/createBulk">client.elsets.<a href="./src/resources/elsets/elsets.ts">createBulk</a>([ ...body ]) -> void</code>
 - <code title="post /udl/elset/createBulkFromTLE">client.elsets.<a href="./src/resources/elsets/elsets.ts">createBulkFromTle</a>({ ...params }) -> void</code>
-- <code title="post /filedrop/udl-elset">client.elsets.<a href="./src/resources/elsets/elsets.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/currentelset/queryhelp">client.elsets.<a href="./src/resources/elsets/elsets.ts">queryCurrentElsetHelp</a>() -> void</code>
 - <code title="get /udl/elset/queryhelp">client.elsets.<a href="./src/resources/elsets/elsets.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/elset/tuple">client.elsets.<a href="./src/resources/elsets/elsets.ts">tuple</a>({ ...params }) -> ElsetTupleResponse</code>
+- <code title="post /filedrop/udl-elset">client.elsets.<a href="./src/resources/elsets/elsets.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## Current
 
@@ -1292,7 +1292,7 @@ Methods:
 - <code title="get /udl/eoobservation">client.eoObservations.<a href="./src/resources/eo-observations/eo-observations.ts">list</a>({ ...params }) -> EoObservationListResponse</code>
 - <code title="get /udl/eoobservation/count">client.eoObservations.<a href="./src/resources/eo-observations/eo-observations.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/eoobservation/createBulk">client.eoObservations.<a href="./src/resources/eo-observations/eo-observations.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-eo">client.eoObservations.<a href="./src/resources/eo-observations/eo-observations.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-eo">client.eoObservations.<a href="./src/resources/eo-observations/eo-observations.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -1366,10 +1366,10 @@ Methods:
 
 - <code title="get /udl/ephemeris">client.ephemeris.<a href="./src/resources/ephemeris/ephemeris.ts">list</a>({ ...params }) -> EphemerisListResponse</code>
 - <code title="get /udl/ephemeris/count">client.ephemeris.<a href="./src/resources/ephemeris/ephemeris.ts">count</a>({ ...params }) -> string</code>
-- <code title="post /filedrop/udl-ephset">client.ephemeris.<a href="./src/resources/ephemeris/ephemeris.ts">createBulkV2</a>({ ...params }) -> void</code>
 - <code title="post /filedrop/ephem">client.ephemeris.<a href="./src/resources/ephemeris/ephemeris.ts">fileUpload</a>({ ...params }) -> void</code>
 - <code title="get /udl/ephemeris/queryhelp">client.ephemeris.<a href="./src/resources/ephemeris/ephemeris.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/ephemeris/tuple">client.ephemeris.<a href="./src/resources/ephemeris/ephemeris.ts">tuple</a>({ ...params }) -> EphemerisTupleResponse</code>
+- <code title="post /filedrop/udl-ephset">client.ephemeris.<a href="./src/resources/ephemeris/ephemeris.ts">unvalidatedPublish</a>({ ...params }) -> void</code>
 
 ## AttitudeData
 
@@ -1500,8 +1500,8 @@ Methods:
 - <code title="get /udl/evac">client.evac.<a href="./src/resources/evac/evac.ts">list</a>({ ...params }) -> EvacListResponse</code>
 - <code title="get /udl/evac/count">client.evac.<a href="./src/resources/evac/evac.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/evac/createBulk">client.evac.<a href="./src/resources/evac/evac.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-evac">client.evac.<a href="./src/resources/evac/evac.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/evac/queryhelp">client.evac.<a href="./src/resources/evac/evac.ts">queryHelp</a>() -> void</code>
+- <code title="post /filedrop/udl-evac">client.evac.<a href="./src/resources/evac/evac.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -1540,9 +1540,9 @@ Methods:
 - <code title="get /udl/eventevolution">client.eventEvolution.<a href="./src/resources/event-evolution/event-evolution.ts">list</a>({ ...params }) -> EventEvolutionListResponse</code>
 - <code title="get /udl/eventevolution/count">client.eventEvolution.<a href="./src/resources/event-evolution/event-evolution.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/eventevolution/createBulk">client.eventEvolution.<a href="./src/resources/event-evolution/event-evolution.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-eventevolution">client.eventEvolution.<a href="./src/resources/event-evolution/event-evolution.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/eventevolution/queryhelp">client.eventEvolution.<a href="./src/resources/event-evolution/event-evolution.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/eventevolution/tuple">client.eventEvolution.<a href="./src/resources/event-evolution/event-evolution.ts">tuple</a>({ ...params }) -> EventEvolutionTupleResponse</code>
+- <code title="post /filedrop/udl-eventevolution">client.eventEvolution.<a href="./src/resources/event-evolution/event-evolution.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -1574,9 +1574,9 @@ Methods:
 - <code title="get /udl/flightplan">client.flightplan.<a href="./src/resources/flightplan.ts">list</a>() -> FlightplanListResponse</code>
 - <code title="delete /udl/flightplan/{id}">client.flightplan.<a href="./src/resources/flightplan.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/flightplan/count">client.flightplan.<a href="./src/resources/flightplan.ts">count</a>() -> string</code>
-- <code title="post /filedrop/udl-flightplan">client.flightplan.<a href="./src/resources/flightplan.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/flightplan/queryhelp">client.flightplan.<a href="./src/resources/flightplan.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/flightplan/tuple">client.flightplan.<a href="./src/resources/flightplan.ts">tuple</a>({ ...params }) -> FlightplanTupleResponse</code>
+- <code title="post /filedrop/udl-flightplan">client.flightplan.<a href="./src/resources/flightplan.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Geostatus
 
@@ -1609,9 +1609,9 @@ Methods:
 - <code title="get /udl/gnssobservationset">client.gnssobservationset.<a href="./src/resources/gnssobservationset.ts">list</a>({ ...params }) -> GnssobservationsetListResponse</code>
 - <code title="get /udl/gnssobservationset/count">client.gnssobservationset.<a href="./src/resources/gnssobservationset.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/gnssobservationset/createBulk">client.gnssobservationset.<a href="./src/resources/gnssobservationset.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-gnssobset">client.gnssobservationset.<a href="./src/resources/gnssobservationset.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/gnssobservationset/queryhelp">client.gnssobservationset.<a href="./src/resources/gnssobservationset.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/gnssobservationset/tuple">client.gnssobservationset.<a href="./src/resources/gnssobservationset.ts">tuple</a>({ ...params }) -> GnssobservationsetTupleResponse</code>
+- <code title="post /filedrop/udl-gnssobset">client.gnssobservationset.<a href="./src/resources/gnssobservationset.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Gnssrawif
 
@@ -1758,9 +1758,9 @@ Methods:
 - <code title="get /udl/ionoobservation">client.ionoobservation.<a href="./src/resources/ionoobservation.ts">list</a>({ ...params }) -> IonoobservationListResponse</code>
 - <code title="get /udl/ionoobservation/count">client.ionoobservation.<a href="./src/resources/ionoobservation.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/ionoobservation/createBulk">client.ionoobservation.<a href="./src/resources/ionoobservation.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-ionoobs">client.ionoobservation.<a href="./src/resources/ionoobservation.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/ionoobservation/queryhelp">client.ionoobservation.<a href="./src/resources/ionoobservation.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/ionoobservation/tuple">client.ionoobservation.<a href="./src/resources/ionoobservation.ts">tuple</a>({ ...params }) -> IonoobservationTupleResponse</code>
+- <code title="post /filedrop/udl-ionoobs">client.ionoobservation.<a href="./src/resources/ionoobservation.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Ir
 
@@ -1795,9 +1795,9 @@ Methods:
 - <code title="get /udl/isrcollection">client.isrCollections.<a href="./src/resources/isr-collections/isr-collections.ts">list</a>({ ...params }) -> IsrCollectionListResponse</code>
 - <code title="get /udl/isrcollection/count">client.isrCollections.<a href="./src/resources/isr-collections/isr-collections.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/isrcollection/createBulk">client.isrCollections.<a href="./src/resources/isr-collections/isr-collections.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-isrcollection">client.isrCollections.<a href="./src/resources/isr-collections/isr-collections.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/isrcollection/queryhelp">client.isrCollections.<a href="./src/resources/isr-collections/isr-collections.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/isrcollection/tuple">client.isrCollections.<a href="./src/resources/isr-collections/isr-collections.ts">tuple</a>({ ...params }) -> IsrCollectionTupleResponse</code>
+- <code title="post /filedrop/udl-isrcollection">client.isrCollections.<a href="./src/resources/isr-collections/isr-collections.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -1828,10 +1828,10 @@ Methods:
 - <code title="get /udl/item">client.item.<a href="./src/resources/item.ts">list</a>() -> ItemListResponse</code>
 - <code title="delete /udl/item/{id}">client.item.<a href="./src/resources/item.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/item/count">client.item.<a href="./src/resources/item.ts">count</a>() -> string</code>
-- <code title="post /filedrop/udl-item">client.item.<a href="./src/resources/item.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/item/{id}">client.item.<a href="./src/resources/item.ts">get</a>(id) -> ItemGetResponse</code>
 - <code title="get /udl/item/queryhelp">client.item.<a href="./src/resources/item.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/item/tuple">client.item.<a href="./src/resources/item.ts">tuple</a>({ ...params }) -> ItemTupleResponse</code>
+- <code title="post /filedrop/udl-item">client.item.<a href="./src/resources/item.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # ItemTrackings
 
@@ -1847,10 +1847,10 @@ Methods:
 - <code title="get /udl/itemtracking">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">list</a>({ ...params }) -> ItemTrackingListResponse</code>
 - <code title="delete /udl/itemtracking/{id}">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/itemtracking/count">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">count</a>({ ...params }) -> string</code>
-- <code title="post /filedrop/udl-itemtracking">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/itemtracking/{id}">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">get</a>(id) -> ItemTrackingFull</code>
 - <code title="get /udl/itemtracking/queryhelp">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/itemtracking/tuple">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">tuple</a>({ ...params }) -> ItemTrackingTupleResponse</code>
+- <code title="post /filedrop/udl-itemtracking">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -1899,10 +1899,10 @@ Methods:
 - <code title="get /udl/launchevent">client.launchevent.<a href="./src/resources/launchevent.ts">list</a>({ ...params }) -> LauncheventListResponse</code>
 - <code title="get /udl/launchevent/count">client.launchevent.<a href="./src/resources/launchevent.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/launchevent/createBulk">client.launchevent.<a href="./src/resources/launchevent.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-launchevent">client.launchevent.<a href="./src/resources/launchevent.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/launchevent/{id}">client.launchevent.<a href="./src/resources/launchevent.ts">get</a>(id) -> LauncheventGetResponse</code>
 - <code title="get /udl/launchevent/queryhelp">client.launchevent.<a href="./src/resources/launchevent.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/launchevent/tuple">client.launchevent.<a href="./src/resources/launchevent.ts">tuple</a>({ ...params }) -> LauncheventTupleResponse</code>
+- <code title="post /filedrop/udl-launchevent">client.launchevent.<a href="./src/resources/launchevent.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Launchsite
 
@@ -2007,9 +2007,9 @@ Methods:
 - <code title="post /udl/datalink">client.linkStatus.datalink.<a href="./src/resources/link-status/datalink.ts">create</a>({ ...params }) -> void</code>
 - <code title="get /udl/datalink">client.linkStatus.datalink.<a href="./src/resources/link-status/datalink.ts">list</a>({ ...params }) -> DatalinkListResponse</code>
 - <code title="get /udl/datalink/count">client.linkStatus.datalink.<a href="./src/resources/link-status/datalink.ts">count</a>({ ...params }) -> string</code>
-- <code title="post /filedrop/udl-datalink">client.linkStatus.datalink.<a href="./src/resources/link-status/datalink.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/datalink/queryhelp">client.linkStatus.datalink.<a href="./src/resources/link-status/datalink.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/datalink/tuple">client.linkStatus.datalink.<a href="./src/resources/link-status/datalink.ts">tuple</a>({ ...params }) -> DatalinkTupleResponse</code>
+- <code title="post /filedrop/udl-datalink">client.linkStatus.datalink.<a href="./src/resources/link-status/datalink.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -2062,10 +2062,10 @@ Methods:
 - <code title="get /udl/logisticssupport">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">list</a>() -> LogisticssupportListResponse</code>
 - <code title="get /udl/logisticssupport/count">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">count</a>() -> string</code>
 - <code title="post /udl/logisticssupport/createBulk">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-logisticssupport">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/logisticssupport/{id}">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">get</a>(id) -> LogisticssupportGetResponse</code>
 - <code title="get /udl/logisticssupport/queryhelp">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/logisticssupport/tuple">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">tuple</a>({ ...params }) -> LogisticssupportTupleResponse</code>
+- <code title="post /filedrop/udl-logisticssupport">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -2094,10 +2094,10 @@ Methods:
 - <code title="get /udl/maneuver">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">list</a>({ ...params }) -> ManeuverListResponse</code>
 - <code title="get /udl/maneuver/count">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/maneuver/createBulk">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-maneuver">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/maneuver/{id}">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">get</a>(id) -> ManeuverFull</code>
 - <code title="get /udl/maneuver/queryhelp">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/maneuver/tuple">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">tuple</a>({ ...params }) -> ManeuverTupleResponse</code>
+- <code title="post /filedrop/udl-maneuver">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -2167,9 +2167,9 @@ Methods:
 - <code title="get /udl/missiletrack">client.missileTracks.<a href="./src/resources/missile-tracks/missile-tracks.ts">list</a>({ ...params }) -> MissileTrackListResponse</code>
 - <code title="get /udl/missiletrack/count">client.missileTracks.<a href="./src/resources/missile-tracks/missile-tracks.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/missiletrack/createBulk">client.missileTracks.<a href="./src/resources/missile-tracks/missile-tracks.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-missiletrack">client.missileTracks.<a href="./src/resources/missile-tracks/missile-tracks.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/missiletrack/queryhelp">client.missileTracks.<a href="./src/resources/missile-tracks/missile-tracks.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/missiletrack/tuple">client.missileTracks.<a href="./src/resources/missile-tracks/missile-tracks.ts">tuple</a>({ ...params }) -> MissileTrackTupleResponse</code>
+- <code title="post /filedrop/udl-missiletrack">client.missileTracks.<a href="./src/resources/missile-tracks/missile-tracks.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -2246,9 +2246,9 @@ Methods:
 - <code title="get /udl/mti">client.mti.<a href="./src/resources/mti.ts">list</a>({ ...params }) -> MtiListResponse</code>
 - <code title="get /udl/mti/count">client.mti.<a href="./src/resources/mti.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/mti/createBulk">client.mti.<a href="./src/resources/mti.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-mti">client.mti.<a href="./src/resources/mti.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/mti/queryhelp">client.mti.<a href="./src/resources/mti.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/mti/tuple">client.mti.<a href="./src/resources/mti.ts">tuple</a>({ ...params }) -> MtiTupleResponse</code>
+- <code title="post /filedrop/udl-mti">client.mti.<a href="./src/resources/mti.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Navigation
 
@@ -2358,7 +2358,7 @@ Methods:
 
 Methods:
 
-- <code title="post /filedrop/monoradar">client.observations.monoradar.<a href="./src/resources/observations/monoradar/monoradar.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/monoradar">client.observations.monoradar.<a href="./src/resources/observations/monoradar/monoradar.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ### History
 
@@ -2377,7 +2377,7 @@ Methods:
 
 Methods:
 
-- <code title="post /filedrop/swir">client.observations.swir.<a href="./src/resources/observations/swir.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/swir">client.observations.swir.<a href="./src/resources/observations/swir.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## Radarobservation
 
@@ -2420,9 +2420,9 @@ Methods:
 - <code title="get /udl/onboardnavigation">client.onboardnavigation.<a href="./src/resources/onboardnavigation.ts">list</a>({ ...params }) -> OnboardnavigationListResponse</code>
 - <code title="get /udl/onboardnavigation/count">client.onboardnavigation.<a href="./src/resources/onboardnavigation.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/onboardnavigation/createBulk">client.onboardnavigation.<a href="./src/resources/onboardnavigation.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-onboardnavigation">client.onboardnavigation.<a href="./src/resources/onboardnavigation.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/onboardnavigation/queryhelp">client.onboardnavigation.<a href="./src/resources/onboardnavigation.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/onboardnavigation/tuple">client.onboardnavigation.<a href="./src/resources/onboardnavigation.ts">tuple</a>({ ...params }) -> OnboardnavigationTupleResponse</code>
+- <code title="post /filedrop/udl-onboardnavigation">client.onboardnavigation.<a href="./src/resources/onboardnavigation.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Onorbit
 
@@ -2659,10 +2659,10 @@ Methods:
 - <code title="get /udl/orbitdetermination">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">list</a>({ ...params }) -> OrbitdeterminationListResponse</code>
 - <code title="get /udl/orbitdetermination/count">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/orbitdetermination/createBulk">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-orbitdetermination">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/orbitdetermination/{id}">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">get</a>(id) -> OrbitdeterminationFull</code>
 - <code title="get /udl/orbitdetermination/queryhelp">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/orbitdetermination/tuple">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">tuple</a>({ ...params }) -> OrbitdeterminationTupleResponse</code>
+- <code title="post /filedrop/udl-orbitdetermination">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -2690,9 +2690,9 @@ Methods:
 - <code title="get /udl/orbittrack">client.orbittrack.<a href="./src/resources/orbittrack/orbittrack.ts">list</a>({ ...params }) -> OrbittrackListResponse</code>
 - <code title="get /udl/orbittrack/count">client.orbittrack.<a href="./src/resources/orbittrack/orbittrack.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/orbittrack/createBulk">client.orbittrack.<a href="./src/resources/orbittrack/orbittrack.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-orbittrack">client.orbittrack.<a href="./src/resources/orbittrack/orbittrack.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/orbittrack/queryhelp">client.orbittrack.<a href="./src/resources/orbittrack/orbittrack.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/orbittrack/tuple">client.orbittrack.<a href="./src/resources/orbittrack/orbittrack.ts">tuple</a>({ ...params }) -> OrbittrackTupleResponse</code>
+- <code title="post /filedrop/udl-orbittrack">client.orbittrack.<a href="./src/resources/orbittrack/orbittrack.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -2826,10 +2826,10 @@ Methods:
 - <code title="get /udl/poi">client.poi.<a href="./src/resources/poi.ts">list</a>({ ...params }) -> PoiListResponse</code>
 - <code title="get /udl/poi/count">client.poi.<a href="./src/resources/poi.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/poi/createBulk">client.poi.<a href="./src/resources/poi.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-poi">client.poi.<a href="./src/resources/poi.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/poi/{id}">client.poi.<a href="./src/resources/poi.ts">get</a>(id) -> PoiFull</code>
 - <code title="get /udl/poi/queryhelp">client.poi.<a href="./src/resources/poi.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/poi/tuple">client.poi.<a href="./src/resources/poi.ts">tuple</a>({ ...params }) -> PoiTupleResponse</code>
+- <code title="post /filedrop/udl-poi">client.poi.<a href="./src/resources/poi.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Port
 
@@ -2865,10 +2865,10 @@ Methods:
 - <code title="get /udl/radarobservation">client.radarobservation.<a href="./src/resources/radarobservation.ts">list</a>({ ...params }) -> RadarobservationListResponse</code>
 - <code title="get /udl/radarobservation/count">client.radarobservation.<a href="./src/resources/radarobservation.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/radarobservation/createBulk">client.radarobservation.<a href="./src/resources/radarobservation.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-radar">client.radarobservation.<a href="./src/resources/radarobservation.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/radarobservation/{id}">client.radarobservation.<a href="./src/resources/radarobservation.ts">get</a>(id) -> RadarobservationFull</code>
 - <code title="get /udl/radarobservation/queryhelp">client.radarobservation.<a href="./src/resources/radarobservation.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/radarobservation/tuple">client.radarobservation.<a href="./src/resources/radarobservation.ts">tuple</a>({ ...params }) -> RadarobservationTupleResponse</code>
+- <code title="post /filedrop/udl-radar">client.radarobservation.<a href="./src/resources/radarobservation.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Rfband
 
@@ -2964,10 +2964,10 @@ Methods:
 - <code title="get /udl/rfobservation">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">list</a>({ ...params }) -> RfobservationListResponse</code>
 - <code title="get /udl/rfobservation/count">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/rfobservation/createBulk">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-rf">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/rfobservation/{id}">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">get</a>(id) -> RfobservationdetailsFull</code>
 - <code title="get /udl/rfobservation/queryhelp">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/rfobservation/tuple">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">tuple</a>({ ...params }) -> RfobservationTupleResponse</code>
+- <code title="post /filedrop/udl-rf">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -2993,10 +2993,10 @@ Methods:
 - <code title="get /udl/sarobservation">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">list</a>({ ...params }) -> SarobservationListResponse</code>
 - <code title="get /udl/sarobservation/count">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/sarobservation/createBulk">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-sar">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/sarobservation/{id}">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">get</a>(id) -> SarobservationFull</code>
 - <code title="get /udl/sarobservation/queryhelp">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/sarobservation/tuple">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">tuple</a>({ ...params }) -> SarobservationTupleResponse</code>
+- <code title="post /filedrop/udl-sar">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -3066,10 +3066,10 @@ Methods:
 - <code title="get /udl/sensorcalibration/{id}">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">retrieve</a>(id) -> CalibrationRetrieveResponse</code>
 - <code title="get /udl/sensorcalibration/count">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/sensorcalibration/createBulk">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-sensorcalibration">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/sensorcalibration">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">query</a>({ ...params }) -> CalibrationQueryResponse</code>
 - <code title="get /udl/sensorcalibration/queryhelp">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/sensorcalibration/tuple">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">tuple</a>({ ...params }) -> CalibrationTupleResponse</code>
+- <code title="post /filedrop/udl-sensorcalibration">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ### History
 
@@ -3146,10 +3146,10 @@ Methods:
 - <code title="put /udl/sensorplan/{id}">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">update</a>(pathId, { ...params }) -> void</code>
 - <code title="get /udl/sensorplan">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">list</a>({ ...params }) -> SensorplanListResponse</code>
 - <code title="get /udl/sensorplan/count">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">count</a>({ ...params }) -> string</code>
-- <code title="post /filedrop/udl-sensorplan">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/sensorplan/{id}">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">get</a>(id) -> SensorplanFull</code>
 - <code title="get /udl/sensorplan/queryhelp">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/sensorplan/tuple">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">tuple</a>({ ...params }) -> SensorplanTupleResponse</code>
+- <code title="post /filedrop/udl-sensorplan">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -3333,11 +3333,11 @@ Methods:
 - <code title="delete /udl/sgi/{id}">client.sgi.<a href="./src/resources/sgi/sgi.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/sgi/count">client.sgi.<a href="./src/resources/sgi/sgi.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/sgi/createBulk">client.sgi.<a href="./src/resources/sgi/sgi.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-sgi">client.sgi.<a href="./src/resources/sgi/sgi.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/sgi/{id}">client.sgi.<a href="./src/resources/sgi/sgi.ts">get</a>(id) -> SgiFull</code>
 - <code title="get /udl/sgi/getSGIDataByEffectiveAsOfDate">client.sgi.<a href="./src/resources/sgi/sgi.ts">getDataByEffectiveAsOfDate</a>({ ...params }) -> SgiFull</code>
 - <code title="get /udl/sgi/queryhelp">client.sgi.<a href="./src/resources/sgi/sgi.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/sgi/tuple">client.sgi.<a href="./src/resources/sgi/sgi.ts">tuple</a>({ ...params }) -> SgiTupleResponse</code>
+- <code title="post /filedrop/udl-sgi">client.sgi.<a href="./src/resources/sgi/sgi.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -3418,9 +3418,9 @@ Methods:
 - <code title="delete /udl/siteoperations/{id}">client.site.operations.<a href="./src/resources/site/operations.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/siteoperations/count">client.site.operations.<a href="./src/resources/site/operations.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/siteoperations/createBulk">client.site.operations.<a href="./src/resources/site/operations.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-siteoperations">client.site.operations.<a href="./src/resources/site/operations.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/siteoperations/queryhelp">client.site.operations.<a href="./src/resources/site/operations.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/siteoperations/tuple">client.site.operations.<a href="./src/resources/site/operations.ts">tuple</a>({ ...params }) -> OperationTupleResponse</code>
+- <code title="post /filedrop/udl-siteoperations">client.site.operations.<a href="./src/resources/site/operations.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Siteremark
 
@@ -3516,10 +3516,10 @@ Methods:
 - <code title="get /udl/soiobservationset">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">list</a>({ ...params }) -> SoiobservationsetListResponse</code>
 - <code title="get /udl/soiobservationset/count">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/soiobservationset/createBulk">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-soiobservationset">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/soiobservationset/{id}">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">get</a>(id) -> SoiObservationSetFull</code>
 - <code title="get /udl/soiobservationset/queryhelp">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/soiobservationset/tuple">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">tuple</a>({ ...params }) -> SoiobservationsetTupleResponse</code>
+- <code title="post /filedrop/udl-soiobservationset">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -3586,10 +3586,10 @@ Methods:
 - <code title="delete /udl/sortieppr/{id}">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/sortieppr/count">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/sortieppr/createBulk">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-sortieppr">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/sortieppr/{id}">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">get</a>(id) -> SortiePprFull</code>
 - <code title="get /udl/sortieppr/queryhelp">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/sortieppr/tuple">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">tuple</a>({ ...params }) -> SortiepprTupleResponse</code>
+- <code title="post /filedrop/udl-sortieppr">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -3618,9 +3618,9 @@ Methods:
 - <code title="get /udl/spaceenvobservation">client.spaceenvobservation.<a href="./src/resources/spaceenvobservation/spaceenvobservation.ts">list</a>({ ...params }) -> SpaceenvobservationListResponse</code>
 - <code title="get /udl/spaceenvobservation/count">client.spaceenvobservation.<a href="./src/resources/spaceenvobservation/spaceenvobservation.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/spaceenvobservation/createBulk">client.spaceenvobservation.<a href="./src/resources/spaceenvobservation/spaceenvobservation.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-spaceenvobs">client.spaceenvobservation.<a href="./src/resources/spaceenvobservation/spaceenvobservation.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/spaceenvobservation/queryhelp">client.spaceenvobservation.<a href="./src/resources/spaceenvobservation/spaceenvobservation.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/spaceenvobservation/tuple">client.spaceenvobservation.<a href="./src/resources/spaceenvobservation/spaceenvobservation.ts">tuple</a>({ ...params }) -> SpaceenvobservationTupleResponse</code>
+- <code title="post /filedrop/udl-spaceenvobs">client.spaceenvobservation.<a href="./src/resources/spaceenvobservation/spaceenvobservation.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -3673,10 +3673,10 @@ Methods:
 - <code title="delete /udl/starcatalog/{id}">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/starcatalog/count">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/starcatalog/createBulk">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-starcatalog">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/starcatalog/{id}">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">get</a>(id) -> StarcatalogGetResponse</code>
 - <code title="get /udl/starcatalog/queryhelp">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/starcatalog/tuple">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">tuple</a>({ ...params }) -> StarcatalogTupleResponse</code>
+- <code title="post /filedrop/udl-starcatalog">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -3701,10 +3701,10 @@ Methods:
 - <code title="get /udl/statevector">client.statevector.<a href="./src/resources/statevector/statevector.ts">list</a>({ ...params }) -> StatevectorListResponse</code>
 - <code title="get /udl/statevector/count">client.statevector.<a href="./src/resources/statevector/statevector.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/statevector/createBulk">client.statevector.<a href="./src/resources/statevector/statevector.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-sv">client.statevector.<a href="./src/resources/statevector/statevector.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/statevector/{id}">client.statevector.<a href="./src/resources/statevector/statevector.ts">get</a>(id) -> StateVectorFull</code>
 - <code title="get /udl/statevector/queryhelp">client.statevector.<a href="./src/resources/statevector/statevector.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/statevector/tuple">client.statevector.<a href="./src/resources/statevector/statevector.ts">tuple</a>({ ...params }) -> StatevectorTupleResponse</code>
+- <code title="post /filedrop/udl-sv">client.statevector.<a href="./src/resources/statevector/statevector.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -3862,10 +3862,10 @@ Methods:
 - <code title="get /udl/surfaceobstruction">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">list</a>() -> SurfaceobstructionListResponse</code>
 - <code title="delete /udl/surfaceobstruction/{id}">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/surfaceobstruction/count">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">count</a>() -> string</code>
-- <code title="post /filedrop/udl-surfaceobstruction">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/surfaceobstruction/{id}">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">get</a>(id) -> SurfaceobstructionGetResponse</code>
 - <code title="get /udl/surfaceobstruction/queryhelp">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/surfaceobstruction/tuple">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">tuple</a>({ ...params }) -> SurfaceobstructionTupleResponse</code>
+- <code title="post /filedrop/udl-surfaceobstruction">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # Swir
 
@@ -3974,9 +3974,9 @@ Methods:
 - <code title="get /udl/track">client.track.<a href="./src/resources/track/track.ts">list</a>({ ...params }) -> TrackListResponse</code>
 - <code title="get /udl/track/count">client.track.<a href="./src/resources/track/track.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/track/createBulk">client.track.<a href="./src/resources/track/track.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-tracks">client.track.<a href="./src/resources/track/track.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/track/queryhelp">client.track.<a href="./src/resources/track/track.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/track/tuple">client.track.<a href="./src/resources/track/track.ts">tuple</a>({ ...params }) -> TrackTupleResponse</code>
+- <code title="post /filedrop/udl-tracks">client.track.<a href="./src/resources/track/track.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -4038,10 +4038,10 @@ Methods:
 - <code title="delete /udl/trackroute/{id}">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/trackroute/count">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/trackroute/createBulk">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-trackroute">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">createBulkV2</a>({ ...params }) -> void</code>
 - <code title="get /udl/trackroute/{id}">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">get</a>(id) -> TrackRouteFull</code>
 - <code title="get /udl/trackroute/queryhelp">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/trackroute/tuple">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">tuple</a>({ ...params }) -> TrackrouteTupleResponse</code>
+- <code title="post /filedrop/udl-trackroute">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">unvalidatedPublish</a>({ ...params }) -> void</code>
 
 ## History
 
@@ -4147,10 +4147,10 @@ Methods:
 - <code title="get /udl/weatherdata">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">list</a>({ ...params }) -> WeatherdataListResponse</code>
 - <code title="get /udl/weatherdata/count">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/weatherdata/createBulk">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/udl-weatherdata">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/weatherdata/{id}">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">get</a>(id) -> WeatherDataFull</code>
 - <code title="get /udl/weatherdata/queryhelp">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/weatherdata/tuple">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">tuple</a>({ ...params }) -> WeatherdataTupleResponse</code>
+- <code title="post /filedrop/udl-weatherdata">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -4179,10 +4179,10 @@ Methods:
 - <code title="post /udl/weatherreport">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">create</a>({ ...params }) -> void</code>
 - <code title="get /udl/weatherreport">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">list</a>({ ...params }) -> WeatherreportListResponse</code>
 - <code title="get /udl/weatherreport/count">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">count</a>({ ...params }) -> string</code>
-- <code title="post /filedrop/udl-weatherreport">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/weatherreport/{id}">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">get</a>(id) -> WeatherReportFull</code>
 - <code title="get /udl/weatherreport/queryhelp">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/weatherreport/tuple">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">tuple</a>({ ...params }) -> WeatherreportTupleResponse</code>
+- <code title="post /filedrop/udl-weatherreport">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -4529,7 +4529,7 @@ Methods:
 
 Methods:
 
-- <code title="post /filedrop/udl-launchevent">client.launchEvent.<a href="./src/resources/launch-event/launch-event.ts">createBulkV2</a>([ ...body ]) -> void</code>
+- <code title="post /filedrop/udl-launchevent">client.launchEvent.<a href="./src/resources/launch-event/launch-event.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 ## History
 
@@ -4565,14 +4565,14 @@ Methods:
 
 Methods:
 
-- <code title="post /filedrop/udl-h3geo">client.reportAndActivity.udlH3geo.<a href="./src/resources/report-and-activity/udl-h3geo.ts">createBulkV2</a>({ ...params }) -> void</code>
+- <code title="post /filedrop/udl-h3geo">client.reportAndActivity.udlH3geo.<a href="./src/resources/report-and-activity/udl-h3geo.ts">unvalidatedPublish</a>({ ...params }) -> void</code>
 
 ## UdlSigact
 
 Methods:
 
-- <code title="post /filedrop/udl-sigact">client.reportAndActivity.udlSigact.<a href="./src/resources/report-and-activity/udl-sigact.ts">createBulkV2</a>([ ...body ]) -> void</code>
 - <code title="get /udl/sigact/getFile/{id}">client.reportAndActivity.udlSigact.<a href="./src/resources/report-and-activity/udl-sigact.ts">fileGet</a>(id) -> Response</code>
+- <code title="post /filedrop/udl-sigact">client.reportAndActivity.udlSigact.<a href="./src/resources/report-and-activity/udl-sigact.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # SecureMessaging
 

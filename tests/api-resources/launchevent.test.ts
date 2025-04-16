@@ -118,47 +118,6 @@ describe('resource launchevent', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.launchevent.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        msgCreateDate: '2020-01-01T00:00:00.123Z',
-        source: 'Bluestaq',
-      },
-    ]);
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.launchevent.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        msgCreateDate: '2020-01-01T00:00:00.123Z',
-        source: 'Bluestaq',
-        id: 'LAUNCHEVENT-ID',
-        beNumber: 'ENC-123',
-        declassificationDate: '2021-01-01T01:02:02.123Z',
-        declassificationString: 'Example Declassification',
-        derivedFrom: 'Example source',
-        launchDate: '2020-01-01T00:00:00.123Z',
-        launchFacilityName: 'Example launch facility name',
-        launchFailureCode: 'Example failure code',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origObjectId: 'ORIGOBJECT-ID',
-        oSuffix: 'oSuffix',
-        satNo: 12,
-      },
-    ]);
-  });
-
   test('get', async () => {
     const responsePromise = client.launchevent.get('id');
     const rawResponse = await responsePromise.asResponse();
@@ -214,5 +173,46 @@ describe('resource launchevent', () => {
       columns: 'columns',
       msgCreateDate: '2019-12-27T18:11:19.117Z',
     });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.launchevent.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        msgCreateDate: '2020-01-01T00:00:00.123Z',
+        source: 'Bluestaq',
+      },
+    ]);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.launchevent.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        msgCreateDate: '2020-01-01T00:00:00.123Z',
+        source: 'Bluestaq',
+        id: 'LAUNCHEVENT-ID',
+        beNumber: 'ENC-123',
+        declassificationDate: '2021-01-01T01:02:02.123Z',
+        declassificationString: 'Example Declassification',
+        derivedFrom: 'Example source',
+        launchDate: '2020-01-01T00:00:00.123Z',
+        launchFacilityName: 'Example launch facility name',
+        launchFailureCode: 'Example failure code',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        origObjectId: 'ORIGOBJECT-ID',
+        oSuffix: 'oSuffix',
+        satNo: 12,
+      },
+    ]);
   });
 });

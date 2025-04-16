@@ -91,23 +91,6 @@ export class Aviationriskmanagement extends APIResource {
   }
 
   /**
-   * Service operation to take multiple Aviation Risk Management records as a POST
-   * body and ingest into the database. This operation is intended to be used for
-   * automated feeds into UDL. A specific role is required to perform this service
-   * operation. Please contact the UDL team for assistance.
-   */
-  createBulkV2(
-    body: AviationriskmanagementCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-aviationriskmanagement', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to dynamically query data by a variety of query parameters not
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
@@ -146,6 +129,23 @@ export class Aviationriskmanagement extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<AviationriskmanagementTupleResponse> {
     return this._client.get('/udl/aviationriskmanagement/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple Aviation Risk Management records as a POST
+   * body and ingest into the database. This operation is intended to be used for
+   * automated feeds into UDL. A specific role is required to perform this service
+   * operation. Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: AviationriskmanagementUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-aviationriskmanagement', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1942,9 +1942,34 @@ export namespace AviationriskmanagementCreateBulkParams {
   }
 }
 
-export type AviationriskmanagementCreateBulkV2Params = Array<AviationriskmanagementCreateBulkV2Params.Body>;
+export interface AviationriskmanagementQueryParams {
+  /**
+   * The unique identifier of the mission to which this risk management record is
+   * assigned.
+   */
+  idMission: string;
+}
 
-export namespace AviationriskmanagementCreateBulkV2Params {
+export interface AviationriskmanagementTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * The unique identifier of the mission to which this risk management record is
+   * assigned.
+   */
+  idMission: string;
+}
+
+export type AviationriskmanagementUnvalidatedPublishParams =
+  Array<AviationriskmanagementUnvalidatedPublishParams.Body>;
+
+export namespace AviationriskmanagementUnvalidatedPublishParams {
   /**
    * Aviation Risk Management is used to identify, evaluate, and track risks when
    * mission planning by accounting for factors such as crew fatigue and mission
@@ -2225,30 +2250,6 @@ export namespace AviationriskmanagementCreateBulkV2Params {
   }
 }
 
-export interface AviationriskmanagementQueryParams {
-  /**
-   * The unique identifier of the mission to which this risk management record is
-   * assigned.
-   */
-  idMission: string;
-}
-
-export interface AviationriskmanagementTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * The unique identifier of the mission to which this risk management record is
-   * assigned.
-   */
-  idMission: string;
-}
-
 export declare namespace Aviationriskmanagement {
   export {
     type AviationriskmanagementRetrieveResponse as AviationriskmanagementRetrieveResponse,
@@ -2259,8 +2260,8 @@ export declare namespace Aviationriskmanagement {
     type AviationriskmanagementUpdateParams as AviationriskmanagementUpdateParams,
     type AviationriskmanagementCountParams as AviationriskmanagementCountParams,
     type AviationriskmanagementCreateBulkParams as AviationriskmanagementCreateBulkParams,
-    type AviationriskmanagementCreateBulkV2Params as AviationriskmanagementCreateBulkV2Params,
     type AviationriskmanagementQueryParams as AviationriskmanagementQueryParams,
     type AviationriskmanagementTupleParams as AviationriskmanagementTupleParams,
+    type AviationriskmanagementUnvalidatedPublishParams as AviationriskmanagementUnvalidatedPublishParams,
   };
 }

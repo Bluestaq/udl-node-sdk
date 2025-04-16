@@ -58,25 +58,6 @@ describe('resource analyticImagery', () => {
     const response = await client.analyticImagery.count({ msgTime: '2019-12-27T18:11:19.117Z' });
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.analyticImagery.createBulkV2({
-      file: await toFile(Buffer.from('# my file contents'), 'README.md'),
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.analyticImagery.createBulkV2({
-      file: await toFile(Buffer.from('# my file contents'), 'README.md'),
-    });
-  });
-
   test('fileGet: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(client.analyticImagery.fileGet('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
@@ -174,6 +155,25 @@ describe('resource analyticImagery', () => {
     const response = await client.analyticImagery.tuple({
       columns: 'columns',
       msgTime: '2019-12-27T18:11:19.117Z',
+    });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.analyticImagery.unvalidatedPublish({
+      file: await toFile(Buffer.from('# my file contents'), 'README.md'),
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.analyticImagery.unvalidatedPublish({
+      file: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
   });
 });

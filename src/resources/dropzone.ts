@@ -80,20 +80,6 @@ export class Dropzone extends APIResource {
   }
 
   /**
-   * Service operation to take multiple dropzone records as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: DropzoneCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-dropzone', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to dynamically query data by a variety of query parameters not
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
@@ -126,6 +112,23 @@ export class Dropzone extends APIResource {
    */
   tuple(query: DropzoneTupleParams, options?: Core.RequestOptions): Core.APIPromise<DropzoneTupleResponse> {
     return this._client.get('/udl/dropzone/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple dropzone records as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: DropzoneUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-dropzone', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1393,9 +1396,19 @@ export namespace DropzoneCreateBulkParams {
   }
 }
 
-export type DropzoneCreateBulkV2Params = Array<DropzoneCreateBulkV2Params.Body>;
+export interface DropzoneTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
 
-export namespace DropzoneCreateBulkV2Params {
+export type DropzoneUnvalidatedPublishParams = Array<DropzoneUnvalidatedPublishParams.Body>;
+
+export namespace DropzoneUnvalidatedPublishParams {
   /**
    * Properties and characteristics of a Drop Zone, including name, location, shape,
    * type code, survey date, and remarks.
@@ -1591,16 +1604,6 @@ export namespace DropzoneCreateBulkV2Params {
   }
 }
 
-export interface DropzoneTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-}
-
 export declare namespace Dropzone {
   export {
     type DropzoneRetrieveResponse as DropzoneRetrieveResponse,
@@ -1610,7 +1613,7 @@ export declare namespace Dropzone {
     type DropzoneCreateParams as DropzoneCreateParams,
     type DropzoneUpdateParams as DropzoneUpdateParams,
     type DropzoneCreateBulkParams as DropzoneCreateBulkParams,
-    type DropzoneCreateBulkV2Params as DropzoneCreateBulkV2Params,
     type DropzoneTupleParams as DropzoneTupleParams,
+    type DropzoneUnvalidatedPublishParams as DropzoneUnvalidatedPublishParams,
   };
 }

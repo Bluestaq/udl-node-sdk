@@ -76,20 +76,6 @@ export class Flightplan extends APIResource {
   }
 
   /**
-   * Service operation to take one or many flight plan records as a POST body and
-   * ingest into the database. This operation is intended to be used for automated
-   * feeds into UDL. A specific role is required to perform this service operation.
-   * Please contact the UDL team for assistance.
-   */
-  createBulkV2(body: FlightplanCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-flightplan', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -115,6 +101,23 @@ export class Flightplan extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<FlightplanTupleResponse> {
     return this._client.get('/udl/flightplan/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take one or many flight plan records as a POST body and
+   * ingest into the database. This operation is intended to be used for automated
+   * feeds into UDL. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: FlightplanUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-flightplan', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -3427,9 +3430,19 @@ export namespace FlightplanUpdateParams {
   }
 }
 
-export type FlightplanCreateBulkV2Params = Array<FlightplanCreateBulkV2Params.Body>;
+export interface FlightplanTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
 
-export namespace FlightplanCreateBulkV2Params {
+export type FlightplanUnvalidatedPublishParams = Array<FlightplanUnvalidatedPublishParams.Body>;
+
+export namespace FlightplanUnvalidatedPublishParams {
   /**
    * Flight Plan contains data specifying the details of an intended flight including
    * schedule and expected route.
@@ -4523,16 +4536,6 @@ export namespace FlightplanCreateBulkV2Params {
   }
 }
 
-export interface FlightplanTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-}
-
 export declare namespace Flightplan {
   export {
     type FlightPlanAbridged as FlightPlanAbridged,
@@ -4541,7 +4544,7 @@ export declare namespace Flightplan {
     type FlightplanTupleResponse as FlightplanTupleResponse,
     type FlightplanCreateParams as FlightplanCreateParams,
     type FlightplanUpdateParams as FlightplanUpdateParams,
-    type FlightplanCreateBulkV2Params as FlightplanCreateBulkV2Params,
     type FlightplanTupleParams as FlightplanTupleParams,
+    type FlightplanUnvalidatedPublishParams as FlightplanUnvalidatedPublishParams,
   };
 }

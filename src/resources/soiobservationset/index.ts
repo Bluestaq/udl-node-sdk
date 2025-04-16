@@ -18,6 +18,6 @@ export {
   type SoiobservationsetListParams,
   type SoiobservationsetCountParams,
   type SoiobservationsetCreateBulkParams,
-  type SoiobservationsetCreateBulkV2Params,
   type SoiobservationsetTupleParams,
+  type SoiobservationsetUnvalidatedPublishParams,
 } from './soiobservationset';

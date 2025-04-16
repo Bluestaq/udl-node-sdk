@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource airTaskingOrders', () => {
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.airOperations.airTaskingOrders.createBulkV2([
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.airOperations.airTaskingOrders.unvalidatedPublish([
       {
         beginTs: '2023-10-25T12:00:00.123Z',
         classificationMarking: 'U',
@@ -29,8 +29,8 @@ describe('resource airTaskingOrders', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.airOperations.airTaskingOrders.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.airOperations.airTaskingOrders.unvalidatedPublish([
       {
         beginTs: '2023-10-25T12:00:00.123Z',
         classificationMarking: 'U',

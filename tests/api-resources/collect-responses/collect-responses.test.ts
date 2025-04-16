@@ -145,8 +145,26 @@ describe('resource collectResponses', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.collectResponses.createBulkV2([
+  test('queryHelp', async () => {
+    const responsePromise = client.collectResponses.queryHelp();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('queryHelp: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.collectResponses.queryHelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.collectResponses.unvalidatedPublish([
       { classificationMarking: 'U', dataMode: 'TEST', idRequest: 'REF-REQUEST-ID', source: 'Bluestaq' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -158,8 +176,8 @@ describe('resource collectResponses', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.collectResponses.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.collectResponses.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -186,23 +204,5 @@ describe('resource collectResponses', () => {
         taskId: 'TASK-ID',
       },
     ]);
-  });
-
-  test('queryHelp', async () => {
-    const responsePromise = client.collectResponses.queryHelp();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryHelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.collectResponses.queryHelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 });

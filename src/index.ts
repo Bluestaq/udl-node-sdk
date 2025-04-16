@@ -11,12 +11,12 @@ import * as API from './resources/index';
 import {
   AirEventCountResponse,
   AirEventCreateBulkParams,
-  AirEventCreateBulkV2Params,
   AirEventCreateParams,
   AirEventGetResponse,
   AirEventListResponse,
   AirEventTupleParams,
   AirEventTupleResponse,
+  AirEventUnvalidatedPublishParams,
   AirEventUpdateParams,
   AirEvents,
 } from './resources/air-events';
@@ -129,13 +129,12 @@ import {
   AirtaskingorderListResponse,
   Airtaskingorders,
 } from './resources/airtaskingorders';
-import { AIsObjectCreateBulkV2Params, AIsObjects } from './resources/ais-objects';
+import { AIsObjectUnvalidatedPublishParams, AIsObjects } from './resources/ais-objects';
 import {
   AnalyticImagery,
   AnalyticImageryAbridged,
   AnalyticImageryCountParams,
   AnalyticImageryCountResponse,
-  AnalyticImageryCreateBulkV2Params,
   AnalyticImageryFull,
   AnalyticImageryHistoryAodrParams,
   AnalyticImageryHistoryCountParams,
@@ -146,6 +145,7 @@ import {
   AnalyticImageryListResponse,
   AnalyticImageryTupleParams,
   AnalyticImageryTupleResponse,
+  AnalyticImageryUnvalidatedPublishParams,
 } from './resources/analytic-imagery';
 import {
   AntennaAbridged,
@@ -170,13 +170,13 @@ import {
   AviationriskmanagementCountParams,
   AviationriskmanagementCountResponse,
   AviationriskmanagementCreateBulkParams,
-  AviationriskmanagementCreateBulkV2Params,
   AviationriskmanagementCreateParams,
   AviationriskmanagementQueryParams,
   AviationriskmanagementQueryResponse,
   AviationriskmanagementRetrieveResponse,
   AviationriskmanagementTupleParams,
   AviationriskmanagementTupleResponse,
+  AviationriskmanagementUnvalidatedPublishParams,
   AviationriskmanagementUpdateParams,
 } from './resources/aviationriskmanagement';
 import {
@@ -272,12 +272,12 @@ import {
   Crew,
   CrewAbridged,
   CrewCountResponse,
-  CrewCreateBulkV2Params,
   CrewCreateParams,
   CrewFull,
   CrewListResponse,
   CrewTupleParams,
   CrewTupleResponse,
+  CrewUnvalidatedPublishParams,
   CrewUpdateParams,
 } from './resources/crew';
 import {
@@ -291,27 +291,27 @@ import {
   Dropzone,
   DropzoneCountResponse,
   DropzoneCreateBulkParams,
-  DropzoneCreateBulkV2Params,
   DropzoneCreateParams,
   DropzoneQueryResponse,
   DropzoneRetrieveResponse,
   DropzoneTupleParams,
   DropzoneTupleResponse,
+  DropzoneUnvalidatedPublishParams,
   DropzoneUpdateParams,
 } from './resources/dropzone';
-import { Ecpsdr, EcpsdrCreateBulkV2Params } from './resources/ecpsdr';
+import { Ecpsdr, EcpsdrUnvalidatedPublishParams } from './resources/ecpsdr';
 import {
   Emittergeolocation,
   EmittergeolocationCountParams,
   EmittergeolocationCountResponse,
   EmittergeolocationCreateBulkParams,
-  EmittergeolocationCreateBulkV2Params,
   EmittergeolocationCreateParams,
   EmittergeolocationQueryParams,
   EmittergeolocationQueryResponse,
   EmittergeolocationRetrieveResponse,
   EmittergeolocationTupleParams,
   EmittergeolocationTupleResponse,
+  EmittergeolocationUnvalidatedPublishParams,
 } from './resources/emittergeolocation';
 import {
   EngineDetailCreateParams,
@@ -376,11 +376,11 @@ import {
   FlightPlanAbridged,
   Flightplan,
   FlightplanCountResponse,
-  FlightplanCreateBulkV2Params,
   FlightplanCreateParams,
   FlightplanListResponse,
   FlightplanTupleParams,
   FlightplanTupleResponse,
+  FlightplanUnvalidatedPublishParams,
   FlightplanUpdateParams,
 } from './resources/flightplan';
 import {
@@ -399,11 +399,11 @@ import {
   GnssobservationsetCountParams,
   GnssobservationsetCountResponse,
   GnssobservationsetCreateBulkParams,
-  GnssobservationsetCreateBulkV2Params,
   GnssobservationsetListParams,
   GnssobservationsetListResponse,
   GnssobservationsetTupleParams,
   GnssobservationsetTupleResponse,
+  GnssobservationsetUnvalidatedPublishParams,
 } from './resources/gnssobservationset';
 import {
   Gnssrawif,
@@ -439,11 +439,11 @@ import {
   IonoobservationCountParams,
   IonoobservationCountResponse,
   IonoobservationCreateBulkParams,
-  IonoobservationCreateBulkV2Params,
   IonoobservationListParams,
   IonoobservationListResponse,
   IonoobservationTupleParams,
   IonoobservationTupleResponse,
+  IonoobservationUnvalidatedPublishParams,
 } from './resources/ionoobservation';
 import {
   Ir,
@@ -458,12 +458,12 @@ import {
 import {
   Item,
   ItemCountResponse,
-  ItemCreateBulkV2Params,
   ItemCreateParams,
   ItemGetResponse,
   ItemListResponse,
   ItemTupleParams,
   ItemTupleResponse,
+  ItemUnvalidatedPublishParams,
   ItemUpdateParams,
 } from './resources/item';
 import {
@@ -481,13 +481,13 @@ import {
   LauncheventCountParams,
   LauncheventCountResponse,
   LauncheventCreateBulkParams,
-  LauncheventCreateBulkV2Params,
   LauncheventCreateParams,
   LauncheventGetResponse,
   LauncheventListParams,
   LauncheventListResponse,
   LauncheventTupleParams,
   LauncheventTupleResponse,
+  LauncheventUnvalidatedPublishParams,
 } from './resources/launchevent';
 import {
   Launchsite,
@@ -575,11 +575,11 @@ import {
   MtiCountParams,
   MtiCountResponse,
   MtiCreateBulkParams,
-  MtiCreateBulkV2Params,
   MtiListParams,
   MtiListResponse,
   MtiTupleParams,
   MtiTupleResponse,
+  MtiUnvalidatedPublishParams,
 } from './resources/mti';
 import {
   Navigation,
@@ -630,11 +630,11 @@ import {
   OnboardnavigationCountParams,
   OnboardnavigationCountResponse,
   OnboardnavigationCreateBulkParams,
-  OnboardnavigationCreateBulkV2Params,
   OnboardnavigationListParams,
   OnboardnavigationListResponse,
   OnboardnavigationTupleParams,
   OnboardnavigationTupleResponse,
+  OnboardnavigationUnvalidatedPublishParams,
 } from './resources/onboardnavigation';
 import {
   Onorbitantenna,
@@ -738,12 +738,12 @@ import {
   PoiCountParams,
   PoiCountResponse,
   PoiCreateBulkParams,
-  PoiCreateBulkV2Params,
   PoiCreateParams,
   PoiListParams,
   PoiListResponse,
   PoiTupleParams,
   PoiTupleResponse,
+  PoiUnvalidatedPublishParams,
 } from './resources/poi';
 import {
   Port,
@@ -761,12 +761,12 @@ import {
   RadarobservationCountParams,
   RadarobservationCountResponse,
   RadarobservationCreateBulkParams,
-  RadarobservationCreateBulkV2Params,
   RadarobservationCreateParams,
   RadarobservationListParams,
   RadarobservationListResponse,
   RadarobservationTupleParams,
   RadarobservationTupleResponse,
+  RadarobservationUnvalidatedPublishParams,
 } from './resources/radarobservation';
 import {
   Rfband,
@@ -811,12 +811,12 @@ import {
 import {
   RoutestatCountResponse,
   RoutestatCreateBulkParams,
-  RoutestatCreateBulkV2Params,
   RoutestatCreateParams,
   RoutestatQueryResponse,
   RoutestatRetrieveResponse,
   RoutestatTupleParams,
   RoutestatTupleResponse,
+  RoutestatUnvalidatedPublishParams,
   RoutestatUpdateParams,
   Routestats,
 } from './resources/routestats';
@@ -984,12 +984,12 @@ import {
 import {
   Surfaceobstruction,
   SurfaceobstructionCountResponse,
-  SurfaceobstructionCreateBulkV2Params,
   SurfaceobstructionCreateParams,
   SurfaceobstructionGetResponse,
   SurfaceobstructionListResponse,
   SurfaceobstructionTupleParams,
   SurfaceobstructionTupleResponse,
+  SurfaceobstructionUnvalidatedPublishParams,
   SurfaceobstructionUpdateParams,
 } from './resources/surfaceobstruction';
 import {
@@ -1060,12 +1060,12 @@ import {
 import {
   AttitudeSetCountParams,
   AttitudeSetCountResponse,
-  AttitudeSetCreateBulkV2Params,
   AttitudeSetCreateParams,
   AttitudeSetListParams,
   AttitudeSetListResponse,
   AttitudeSetTupleParams,
   AttitudeSetTupleResponse,
+  AttitudeSetUnvalidatedPublishParams,
   AttitudeSets,
   AttitudesetAbridged,
 } from './resources/attitude-sets/attitude-sets';
@@ -1074,12 +1074,12 @@ import {
   CollectRequestCountParams,
   CollectRequestCountResponse,
   CollectRequestCreateBulkParams,
-  CollectRequestCreateBulkV2Params,
   CollectRequestCreateParams,
   CollectRequestListParams,
   CollectRequestListResponse,
   CollectRequestTupleParams,
   CollectRequestTupleResponse,
+  CollectRequestUnvalidatedPublishParams,
   CollectRequests,
 } from './resources/collect-requests/collect-requests';
 import {
@@ -1087,10 +1087,10 @@ import {
   CollectResponseCountParams,
   CollectResponseCountResponse,
   CollectResponseCreateBulkParams,
-  CollectResponseCreateBulkV2Params,
   CollectResponseCreateParams,
   CollectResponseListParams,
   CollectResponseListResponse,
+  CollectResponseUnvalidatedPublishParams,
   CollectResponses,
 } from './resources/collect-responses/collect-responses';
 import {
@@ -1098,7 +1098,6 @@ import {
   ConjunctionCountParams,
   ConjunctionCountResponse,
   ConjunctionCreateBulkParams,
-  ConjunctionCreateBulkV2Params,
   ConjunctionCreateUdlParams,
   ConjunctionFull,
   ConjunctionGetHistoryParams,
@@ -1107,14 +1106,15 @@ import {
   ConjunctionListResponse,
   ConjunctionTupleParams,
   ConjunctionTupleResponse,
+  ConjunctionUnvalidatedPublishParams,
   ConjunctionUploadConjunctionDataMessageParams,
   Conjunctions,
 } from './resources/conjunctions/conjunctions';
 import {
   Diffofarrival,
-  DiffofarrivalCreateBulkV2Params,
   DiffofarrivalTupleParams,
   DiffofarrivalTupleResponse,
+  DiffofarrivalUnvalidatedPublishParams,
 } from './resources/diffofarrival/diffofarrival';
 import {
   DiplomaticClearance,
@@ -1132,26 +1132,26 @@ import {
   EffectRequestCountParams,
   EffectRequestCountResponse,
   EffectRequestCreateBulkParams,
-  EffectRequestCreateBulkV2Params,
   EffectRequestCreateParams,
   EffectRequestListParams,
   EffectRequestListResponse,
   EffectRequestRetrieveResponse,
   EffectRequestTupleParams,
   EffectRequestTupleResponse,
+  EffectRequestUnvalidatedPublishParams,
   EffectRequests,
 } from './resources/effect-requests/effect-requests';
 import {
   EffectResponseCountParams,
   EffectResponseCountResponse,
   EffectResponseCreateBulkParams,
-  EffectResponseCreateBulkV2Params,
   EffectResponseCreateParams,
   EffectResponseListParams,
   EffectResponseListResponse,
   EffectResponseRetrieveResponse,
   EffectResponseTupleParams,
   EffectResponseTupleResponse,
+  EffectResponseUnvalidatedPublishParams,
   EffectResponses,
 } from './resources/effect-responses/effect-responses';
 import {
@@ -1161,13 +1161,13 @@ import {
   ElsetCountResponse,
   ElsetCreateBulkFromTleParams,
   ElsetCreateBulkParams,
-  ElsetCreateBulkV2Params,
   ElsetCreateParams,
   ElsetIngest,
   ElsetListParams,
   ElsetListResponse,
   ElsetTupleParams,
   ElsetTupleResponse,
+  ElsetUnvalidatedPublishParams,
   Elsets,
 } from './resources/elsets/elsets';
 import {
@@ -1175,10 +1175,10 @@ import {
   EoObservationCountParams,
   EoObservationCountResponse,
   EoObservationCreateBulkParams,
-  EoObservationCreateBulkV2Params,
   EoObservationCreateParams,
   EoObservationListParams,
   EoObservationListResponse,
+  EoObservationUnvalidatedPublishParams,
   EoObservations,
 } from './resources/eo-observations/eo-observations';
 import {
@@ -1210,12 +1210,12 @@ import {
   EphemerisAbridged,
   EphemerisCountParams,
   EphemerisCountResponse,
-  EphemerisCreateBulkV2Params,
   EphemerisFileUploadParams,
   EphemerisListParams,
   EphemerisListResponse,
   EphemerisTupleParams,
   EphemerisTupleResponse,
+  EphemerisUnvalidatedPublishParams,
 } from './resources/ephemeris/ephemeris';
 import {
   Evac,
@@ -1223,46 +1223,46 @@ import {
   EvacCountParams,
   EvacCountResponse,
   EvacCreateBulkParams,
-  EvacCreateBulkV2Params,
   EvacCreateParams,
   EvacListParams,
   EvacListResponse,
+  EvacUnvalidatedPublishParams,
 } from './resources/evac/evac';
 import {
   EventEvolution,
   EventEvolutionCountParams,
   EventEvolutionCountResponse,
   EventEvolutionCreateBulkParams,
-  EventEvolutionCreateBulkV2Params,
   EventEvolutionCreateParams,
   EventEvolutionListParams,
   EventEvolutionListResponse,
   EventEvolutionTupleParams,
   EventEvolutionTupleResponse,
+  EventEvolutionUnvalidatedPublishParams,
 } from './resources/event-evolution/event-evolution';
 import {
   Featureassessment,
   FeatureassessmentCountParams,
   FeatureassessmentCountResponse,
   FeatureassessmentCreateBulkParams,
-  FeatureassessmentCreateBulkV2Params,
   FeatureassessmentCreateParams,
   FeatureassessmentQueryParams,
   FeatureassessmentQueryResponse,
   FeatureassessmentRetrieveResponse,
   FeatureassessmentTupleParams,
   FeatureassessmentTupleResponse,
+  FeatureassessmentUnvalidatedPublishParams,
 } from './resources/featureassessment/featureassessment';
 import {
   Globalatmosphericmodel,
   GlobalatmosphericmodelCountParams,
   GlobalatmosphericmodelCountResponse,
-  GlobalatmosphericmodelCreateBulkV2Params,
   GlobalatmosphericmodelQueryParams,
   GlobalatmosphericmodelQueryResponse,
   GlobalatmosphericmodelRetrieveResponse,
   GlobalatmosphericmodelTupleParams,
   GlobalatmosphericmodelTupleResponse,
+  GlobalatmosphericmodelUnvalidatedPublishParams,
 } from './resources/globalatmosphericmodel/globalatmosphericmodel';
 import { GnssObservations } from './resources/gnss-observations/gnss-observations';
 import { GnssRawIf } from './resources/gnss-raw-if/gnss-raw-if';
@@ -1298,25 +1298,25 @@ import {
   IsrCollectionCountParams,
   IsrCollectionCountResponse,
   IsrCollectionCreateBulkParams,
-  IsrCollectionCreateBulkV2Params,
   IsrCollectionListParams,
   IsrCollectionListResponse,
   IsrCollectionTupleParams,
   IsrCollectionTupleResponse,
+  IsrCollectionUnvalidatedPublishParams,
   IsrCollections,
 } from './resources/isr-collections/isr-collections';
 import {
   ItemTrackingCountParams,
   ItemTrackingCountResponse,
-  ItemTrackingCreateBulkV2Params,
   ItemTrackingCreateParams,
   ItemTrackingListParams,
   ItemTrackingListResponse,
   ItemTrackingTupleParams,
   ItemTrackingTupleResponse,
+  ItemTrackingUnvalidatedPublishParams,
   ItemTrackings,
 } from './resources/item-trackings/item-trackings';
-import { LaunchEvent, LaunchEventCreateBulkV2Params } from './resources/launch-event/launch-event';
+import { LaunchEvent, LaunchEventUnvalidatedPublishParams } from './resources/launch-event/launch-event';
 import {
   LinkStatus,
   LinkStatusCountParams,
@@ -1332,35 +1332,35 @@ import {
   Logisticssupport,
   LogisticssupportCountResponse,
   LogisticssupportCreateBulkParams,
-  LogisticssupportCreateBulkV2Params,
   LogisticssupportCreateParams,
   LogisticssupportGetResponse,
   LogisticssupportListResponse,
   LogisticssupportTupleParams,
   LogisticssupportTupleResponse,
+  LogisticssupportUnvalidatedPublishParams,
   LogisticssupportUpdateParams,
 } from './resources/logisticssupport/logisticssupport';
 import {
   ManeuverCountParams,
   ManeuverCountResponse,
   ManeuverCreateBulkParams,
-  ManeuverCreateBulkV2Params,
   ManeuverCreateParams,
   ManeuverListParams,
   ManeuverListResponse,
   ManeuverTupleParams,
   ManeuverTupleResponse,
+  ManeuverUnvalidatedPublishParams,
   Maneuvers,
 } from './resources/maneuvers/maneuvers';
 import {
   MissileTrackCountParams,
   MissileTrackCountResponse,
   MissileTrackCreateBulkParams,
-  MissileTrackCreateBulkV2Params,
   MissileTrackListParams,
   MissileTrackListResponse,
   MissileTrackTupleParams,
   MissileTrackTupleResponse,
+  MissileTrackUnvalidatedPublishParams,
   MissileTracks,
 } from './resources/missile-tracks/missile-tracks';
 import {
@@ -1404,23 +1404,23 @@ import {
   OrbitdeterminationCountParams,
   OrbitdeterminationCountResponse,
   OrbitdeterminationCreateBulkParams,
-  OrbitdeterminationCreateBulkV2Params,
   OrbitdeterminationCreateParams,
   OrbitdeterminationListParams,
   OrbitdeterminationListResponse,
   OrbitdeterminationTupleParams,
   OrbitdeterminationTupleResponse,
+  OrbitdeterminationUnvalidatedPublishParams,
 } from './resources/orbitdetermination/orbitdetermination';
 import {
   Orbittrack,
   OrbittrackCountParams,
   OrbittrackCountResponse,
   OrbittrackCreateBulkParams,
-  OrbittrackCreateBulkV2Params,
   OrbittrackListParams,
   OrbittrackListResponse,
   OrbittrackTupleParams,
   OrbittrackTupleResponse,
+  OrbittrackUnvalidatedPublishParams,
 } from './resources/orbittrack/orbittrack';
 import {
   Passiveradarobservation,
@@ -1453,24 +1453,24 @@ import {
   RfobservationCountParams,
   RfobservationCountResponse,
   RfobservationCreateBulkParams,
-  RfobservationCreateBulkV2Params,
   RfobservationCreateParams,
   RfobservationListParams,
   RfobservationListResponse,
   RfobservationTupleParams,
   RfobservationTupleResponse,
+  RfobservationUnvalidatedPublishParams,
 } from './resources/rfobservation/rfobservation';
 import {
   Sarobservation,
   SarobservationCountParams,
   SarobservationCountResponse,
   SarobservationCreateBulkParams,
-  SarobservationCreateBulkV2Params,
   SarobservationCreateParams,
   SarobservationListParams,
   SarobservationListResponse,
   SarobservationTupleParams,
   SarobservationTupleResponse,
+  SarobservationUnvalidatedPublishParams,
 } from './resources/sarobservation/sarobservation';
 import {
   ScAggregateDocTypeResponse,
@@ -1518,12 +1518,12 @@ import {
   Sensorplan,
   SensorplanCountParams,
   SensorplanCountResponse,
-  SensorplanCreateBulkV2Params,
   SensorplanCreateParams,
   SensorplanListParams,
   SensorplanListResponse,
   SensorplanTupleParams,
   SensorplanTupleResponse,
+  SensorplanUnvalidatedPublishParams,
   SensorplanUpdateParams,
 } from './resources/sensorplan/sensorplan';
 import {
@@ -1531,13 +1531,13 @@ import {
   SgiCountParams,
   SgiCountResponse,
   SgiCreateBulkParams,
-  SgiCreateBulkV2Params,
   SgiCreateParams,
   SgiGetDataByEffectiveAsOfDateParams,
   SgiListParams,
   SgiListResponse,
   SgiTupleParams,
   SgiTupleResponse,
+  SgiUnvalidatedPublishParams,
   SgiUpdateParams,
 } from './resources/sgi/sgi';
 import {
@@ -1585,24 +1585,24 @@ import {
   SoiobservationsetCountParams,
   SoiobservationsetCountResponse,
   SoiobservationsetCreateBulkParams,
-  SoiobservationsetCreateBulkV2Params,
   SoiobservationsetCreateParams,
   SoiobservationsetListParams,
   SoiobservationsetListResponse,
   SoiobservationsetTupleParams,
   SoiobservationsetTupleResponse,
+  SoiobservationsetUnvalidatedPublishParams,
 } from './resources/soiobservationset/soiobservationset';
 import {
   Sortieppr,
   SortiepprCountParams,
   SortiepprCountResponse,
   SortiepprCreateBulkParams,
-  SortiepprCreateBulkV2Params,
   SortiepprCreateParams,
   SortiepprListParams,
   SortiepprListResponse,
   SortiepprTupleParams,
   SortiepprTupleResponse,
+  SortiepprUnvalidatedPublishParams,
   SortiepprUpdateParams,
 } from './resources/sortieppr/sortieppr';
 import {
@@ -1610,24 +1610,24 @@ import {
   SpaceenvobservationCountParams,
   SpaceenvobservationCountResponse,
   SpaceenvobservationCreateBulkParams,
-  SpaceenvobservationCreateBulkV2Params,
   SpaceenvobservationListParams,
   SpaceenvobservationListResponse,
   SpaceenvobservationTupleParams,
   SpaceenvobservationTupleResponse,
+  SpaceenvobservationUnvalidatedPublishParams,
 } from './resources/spaceenvobservation/spaceenvobservation';
 import {
   Starcatalog,
   StarcatalogCountParams,
   StarcatalogCountResponse,
   StarcatalogCreateBulkParams,
-  StarcatalogCreateBulkV2Params,
   StarcatalogCreateParams,
   StarcatalogGetResponse,
   StarcatalogListParams,
   StarcatalogListResponse,
   StarcatalogTupleParams,
   StarcatalogTupleResponse,
+  StarcatalogUnvalidatedPublishParams,
   StarcatalogUpdateParams,
 } from './resources/starcatalog/starcatalog';
 import {
@@ -1638,12 +1638,12 @@ import {
   StatevectorCountParams,
   StatevectorCountResponse,
   StatevectorCreateBulkParams,
-  StatevectorCreateBulkV2Params,
   StatevectorCreateParams,
   StatevectorListParams,
   StatevectorListResponse,
   StatevectorTupleParams,
   StatevectorTupleResponse,
+  StatevectorUnvalidatedPublishParams,
 } from './resources/statevector/statevector';
 import { SupportingData } from './resources/supporting-data/supporting-data';
 import {
@@ -1674,11 +1674,11 @@ import {
   TrackCountParams,
   TrackCountResponse,
   TrackCreateBulkParams,
-  TrackCreateBulkV2Params,
   TrackListParams,
   TrackListResponse,
   TrackTupleParams,
   TrackTupleResponse,
+  TrackUnvalidatedPublishParams,
 } from './resources/track/track';
 import {
   TrackdetailCountParams,
@@ -1695,12 +1695,12 @@ import {
   TrackrouteCountParams,
   TrackrouteCountResponse,
   TrackrouteCreateBulkParams,
-  TrackrouteCreateBulkV2Params,
   TrackrouteCreateParams,
   TrackrouteListParams,
   TrackrouteListResponse,
   TrackrouteTupleParams,
   TrackrouteTupleResponse,
+  TrackrouteUnvalidatedPublishParams,
   TrackrouteUpdateParams,
 } from './resources/trackroute/trackroute';
 import { Udl } from './resources/udl/udl';
@@ -1723,23 +1723,23 @@ import {
   WeatherdataCountParams,
   WeatherdataCountResponse,
   WeatherdataCreateBulkParams,
-  WeatherdataCreateBulkV2Params,
   WeatherdataCreateParams,
   WeatherdataListParams,
   WeatherdataListResponse,
   WeatherdataTupleParams,
   WeatherdataTupleResponse,
+  WeatherdataUnvalidatedPublishParams,
 } from './resources/weatherdata/weatherdata';
 import {
   Weatherreport,
   WeatherreportCountParams,
   WeatherreportCountResponse,
-  WeatherreportCreateBulkV2Params,
   WeatherreportCreateParams,
   WeatherreportListParams,
   WeatherreportListResponse,
   WeatherreportTupleParams,
   WeatherreportTupleResponse,
+  WeatherreportUnvalidatedPublishParams,
 } from './resources/weatherreport/weatherreport';
 
 export interface ClientOptions {
@@ -2280,8 +2280,8 @@ export declare namespace Unifieddatalibrary {
     type AirEventCreateParams as AirEventCreateParams,
     type AirEventUpdateParams as AirEventUpdateParams,
     type AirEventCreateBulkParams as AirEventCreateBulkParams,
-    type AirEventCreateBulkV2Params as AirEventCreateBulkV2Params,
     type AirEventTupleParams as AirEventTupleParams,
+    type AirEventUnvalidatedPublishParams as AirEventUnvalidatedPublishParams,
   };
 
   export {
@@ -2459,7 +2459,10 @@ export declare namespace Unifieddatalibrary {
     type AITupleParams as AITupleParams,
   };
 
-  export { AIsObjects as AIsObjects, type AIsObjectCreateBulkV2Params as AIsObjectCreateBulkV2Params };
+  export {
+    AIsObjects as AIsObjects,
+    type AIsObjectUnvalidatedPublishParams as AIsObjectUnvalidatedPublishParams,
+  };
 
   export {
     AnalyticImagery as AnalyticImagery,
@@ -2472,11 +2475,11 @@ export declare namespace Unifieddatalibrary {
     type AnalyticImageryTupleResponse as AnalyticImageryTupleResponse,
     type AnalyticImageryListParams as AnalyticImageryListParams,
     type AnalyticImageryCountParams as AnalyticImageryCountParams,
-    type AnalyticImageryCreateBulkV2Params as AnalyticImageryCreateBulkV2Params,
     type AnalyticImageryHistoryParams as AnalyticImageryHistoryParams,
     type AnalyticImageryHistoryAodrParams as AnalyticImageryHistoryAodrParams,
     type AnalyticImageryHistoryCountParams as AnalyticImageryHistoryCountParams,
     type AnalyticImageryTupleParams as AnalyticImageryTupleParams,
+    type AnalyticImageryUnvalidatedPublishParams as AnalyticImageryUnvalidatedPublishParams,
   };
 
   export {
@@ -2507,8 +2510,8 @@ export declare namespace Unifieddatalibrary {
     type AttitudeSetCreateParams as AttitudeSetCreateParams,
     type AttitudeSetListParams as AttitudeSetListParams,
     type AttitudeSetCountParams as AttitudeSetCountParams,
-    type AttitudeSetCreateBulkV2Params as AttitudeSetCreateBulkV2Params,
     type AttitudeSetTupleParams as AttitudeSetTupleParams,
+    type AttitudeSetUnvalidatedPublishParams as AttitudeSetUnvalidatedPublishParams,
   };
 
   export { Attitudesets as Attitudesets };
@@ -2595,8 +2598,8 @@ export declare namespace Unifieddatalibrary {
     type CollectRequestListParams as CollectRequestListParams,
     type CollectRequestCountParams as CollectRequestCountParams,
     type CollectRequestCreateBulkParams as CollectRequestCreateBulkParams,
-    type CollectRequestCreateBulkV2Params as CollectRequestCreateBulkV2Params,
     type CollectRequestTupleParams as CollectRequestTupleParams,
+    type CollectRequestUnvalidatedPublishParams as CollectRequestUnvalidatedPublishParams,
   };
 
   export {
@@ -2608,7 +2611,7 @@ export declare namespace Unifieddatalibrary {
     type CollectResponseListParams as CollectResponseListParams,
     type CollectResponseCountParams as CollectResponseCountParams,
     type CollectResponseCreateBulkParams as CollectResponseCreateBulkParams,
-    type CollectResponseCreateBulkV2Params as CollectResponseCreateBulkV2Params,
+    type CollectResponseUnvalidatedPublishParams as CollectResponseUnvalidatedPublishParams,
   };
 
   export {
@@ -2633,11 +2636,11 @@ export declare namespace Unifieddatalibrary {
     type ConjunctionTupleResponse as ConjunctionTupleResponse,
     type ConjunctionListParams as ConjunctionListParams,
     type ConjunctionCountParams as ConjunctionCountParams,
-    type ConjunctionCreateBulkV2Params as ConjunctionCreateBulkV2Params,
     type ConjunctionCreateUdlParams as ConjunctionCreateUdlParams,
     type ConjunctionCreateBulkParams as ConjunctionCreateBulkParams,
     type ConjunctionGetHistoryParams as ConjunctionGetHistoryParams,
     type ConjunctionTupleParams as ConjunctionTupleParams,
+    type ConjunctionUnvalidatedPublishParams as ConjunctionUnvalidatedPublishParams,
     type ConjunctionUploadConjunctionDataMessageParams as ConjunctionUploadConjunctionDataMessageParams,
   };
 
@@ -2653,9 +2656,9 @@ export declare namespace Unifieddatalibrary {
     type AviationriskmanagementUpdateParams as AviationriskmanagementUpdateParams,
     type AviationriskmanagementCountParams as AviationriskmanagementCountParams,
     type AviationriskmanagementCreateBulkParams as AviationriskmanagementCreateBulkParams,
-    type AviationriskmanagementCreateBulkV2Params as AviationriskmanagementCreateBulkV2Params,
     type AviationriskmanagementQueryParams as AviationriskmanagementQueryParams,
     type AviationriskmanagementTupleParams as AviationriskmanagementTupleParams,
+    type AviationriskmanagementUnvalidatedPublishParams as AviationriskmanagementUnvalidatedPublishParams,
   };
 
   export {
@@ -2667,8 +2670,8 @@ export declare namespace Unifieddatalibrary {
     type DropzoneCreateParams as DropzoneCreateParams,
     type DropzoneUpdateParams as DropzoneUpdateParams,
     type DropzoneCreateBulkParams as DropzoneCreateBulkParams,
-    type DropzoneCreateBulkV2Params as DropzoneCreateBulkV2Params,
     type DropzoneTupleParams as DropzoneTupleParams,
+    type DropzoneUnvalidatedPublishParams as DropzoneUnvalidatedPublishParams,
   };
 
   export {
@@ -2680,9 +2683,9 @@ export declare namespace Unifieddatalibrary {
     type EmittergeolocationCreateParams as EmittergeolocationCreateParams,
     type EmittergeolocationCountParams as EmittergeolocationCountParams,
     type EmittergeolocationCreateBulkParams as EmittergeolocationCreateBulkParams,
-    type EmittergeolocationCreateBulkV2Params as EmittergeolocationCreateBulkV2Params,
     type EmittergeolocationQueryParams as EmittergeolocationQueryParams,
     type EmittergeolocationTupleParams as EmittergeolocationTupleParams,
+    type EmittergeolocationUnvalidatedPublishParams as EmittergeolocationUnvalidatedPublishParams,
   };
 
   export {
@@ -2694,9 +2697,9 @@ export declare namespace Unifieddatalibrary {
     type FeatureassessmentCreateParams as FeatureassessmentCreateParams,
     type FeatureassessmentCountParams as FeatureassessmentCountParams,
     type FeatureassessmentCreateBulkParams as FeatureassessmentCreateBulkParams,
-    type FeatureassessmentCreateBulkV2Params as FeatureassessmentCreateBulkV2Params,
     type FeatureassessmentQueryParams as FeatureassessmentQueryParams,
     type FeatureassessmentTupleParams as FeatureassessmentTupleParams,
+    type FeatureassessmentUnvalidatedPublishParams as FeatureassessmentUnvalidatedPublishParams,
   };
 
   export {
@@ -2706,9 +2709,9 @@ export declare namespace Unifieddatalibrary {
     type GlobalatmosphericmodelQueryResponse as GlobalatmosphericmodelQueryResponse,
     type GlobalatmosphericmodelTupleResponse as GlobalatmosphericmodelTupleResponse,
     type GlobalatmosphericmodelCountParams as GlobalatmosphericmodelCountParams,
-    type GlobalatmosphericmodelCreateBulkV2Params as GlobalatmosphericmodelCreateBulkV2Params,
     type GlobalatmosphericmodelQueryParams as GlobalatmosphericmodelQueryParams,
     type GlobalatmosphericmodelTupleParams as GlobalatmosphericmodelTupleParams,
+    type GlobalatmosphericmodelUnvalidatedPublishParams as GlobalatmosphericmodelUnvalidatedPublishParams,
   };
 
   export {
@@ -2720,8 +2723,8 @@ export declare namespace Unifieddatalibrary {
     type RoutestatCreateParams as RoutestatCreateParams,
     type RoutestatUpdateParams as RoutestatUpdateParams,
     type RoutestatCreateBulkParams as RoutestatCreateBulkParams,
-    type RoutestatCreateBulkV2Params as RoutestatCreateBulkV2Params,
     type RoutestatTupleParams as RoutestatTupleParams,
+    type RoutestatUnvalidatedPublishParams as RoutestatUnvalidatedPublishParams,
   };
 
   export {
@@ -2745,15 +2748,15 @@ export declare namespace Unifieddatalibrary {
     type CrewTupleResponse as CrewTupleResponse,
     type CrewCreateParams as CrewCreateParams,
     type CrewUpdateParams as CrewUpdateParams,
-    type CrewCreateBulkV2Params as CrewCreateBulkV2Params,
     type CrewTupleParams as CrewTupleParams,
+    type CrewUnvalidatedPublishParams as CrewUnvalidatedPublishParams,
   };
 
   export {
     Diffofarrival as Diffofarrival,
     type DiffofarrivalTupleResponse as DiffofarrivalTupleResponse,
-    type DiffofarrivalCreateBulkV2Params as DiffofarrivalCreateBulkV2Params,
     type DiffofarrivalTupleParams as DiffofarrivalTupleParams,
+    type DiffofarrivalUnvalidatedPublishParams as DiffofarrivalUnvalidatedPublishParams,
   };
 
   export {
@@ -2777,7 +2780,7 @@ export declare namespace Unifieddatalibrary {
     type DriftHistoryTupleParams as DriftHistoryTupleParams,
   };
 
-  export { Ecpsdr as Ecpsdr, type EcpsdrCreateBulkV2Params as EcpsdrCreateBulkV2Params };
+  export { Ecpsdr as Ecpsdr, type EcpsdrUnvalidatedPublishParams as EcpsdrUnvalidatedPublishParams };
 
   export {
     EffectRequests as EffectRequests,
@@ -2789,8 +2792,8 @@ export declare namespace Unifieddatalibrary {
     type EffectRequestListParams as EffectRequestListParams,
     type EffectRequestCountParams as EffectRequestCountParams,
     type EffectRequestCreateBulkParams as EffectRequestCreateBulkParams,
-    type EffectRequestCreateBulkV2Params as EffectRequestCreateBulkV2Params,
     type EffectRequestTupleParams as EffectRequestTupleParams,
+    type EffectRequestUnvalidatedPublishParams as EffectRequestUnvalidatedPublishParams,
   };
 
   export {
@@ -2803,8 +2806,8 @@ export declare namespace Unifieddatalibrary {
     type EffectResponseListParams as EffectResponseListParams,
     type EffectResponseCountParams as EffectResponseCountParams,
     type EffectResponseCreateBulkParams as EffectResponseCreateBulkParams,
-    type EffectResponseCreateBulkV2Params as EffectResponseCreateBulkV2Params,
     type EffectResponseTupleParams as EffectResponseTupleParams,
+    type EffectResponseUnvalidatedPublishParams as EffectResponseUnvalidatedPublishParams,
   };
 
   export {
@@ -2820,8 +2823,8 @@ export declare namespace Unifieddatalibrary {
     type ElsetCountParams as ElsetCountParams,
     type ElsetCreateBulkParams as ElsetCreateBulkParams,
     type ElsetCreateBulkFromTleParams as ElsetCreateBulkFromTleParams,
-    type ElsetCreateBulkV2Params as ElsetCreateBulkV2Params,
     type ElsetTupleParams as ElsetTupleParams,
+    type ElsetUnvalidatedPublishParams as ElsetUnvalidatedPublishParams,
   };
 
   export {
@@ -2872,7 +2875,7 @@ export declare namespace Unifieddatalibrary {
     type EoObservationListParams as EoObservationListParams,
     type EoObservationCountParams as EoObservationCountParams,
     type EoObservationCreateBulkParams as EoObservationCreateBulkParams,
-    type EoObservationCreateBulkV2Params as EoObservationCreateBulkV2Params,
+    type EoObservationUnvalidatedPublishParams as EoObservationUnvalidatedPublishParams,
   };
 
   export {
@@ -2902,9 +2905,9 @@ export declare namespace Unifieddatalibrary {
     type EphemerisTupleResponse as EphemerisTupleResponse,
     type EphemerisListParams as EphemerisListParams,
     type EphemerisCountParams as EphemerisCountParams,
-    type EphemerisCreateBulkV2Params as EphemerisCreateBulkV2Params,
     type EphemerisFileUploadParams as EphemerisFileUploadParams,
     type EphemerisTupleParams as EphemerisTupleParams,
+    type EphemerisUnvalidatedPublishParams as EphemerisUnvalidatedPublishParams,
   };
 
   export {
@@ -2954,7 +2957,7 @@ export declare namespace Unifieddatalibrary {
     type EvacListParams as EvacListParams,
     type EvacCountParams as EvacCountParams,
     type EvacCreateBulkParams as EvacCreateBulkParams,
-    type EvacCreateBulkV2Params as EvacCreateBulkV2Params,
+    type EvacUnvalidatedPublishParams as EvacUnvalidatedPublishParams,
   };
 
   export {
@@ -2966,8 +2969,8 @@ export declare namespace Unifieddatalibrary {
     type EventEvolutionListParams as EventEvolutionListParams,
     type EventEvolutionCountParams as EventEvolutionCountParams,
     type EventEvolutionCreateBulkParams as EventEvolutionCreateBulkParams,
-    type EventEvolutionCreateBulkV2Params as EventEvolutionCreateBulkV2Params,
     type EventEvolutionTupleParams as EventEvolutionTupleParams,
+    type EventEvolutionUnvalidatedPublishParams as EventEvolutionUnvalidatedPublishParams,
   };
 
   export {
@@ -2978,8 +2981,8 @@ export declare namespace Unifieddatalibrary {
     type FlightplanTupleResponse as FlightplanTupleResponse,
     type FlightplanCreateParams as FlightplanCreateParams,
     type FlightplanUpdateParams as FlightplanUpdateParams,
-    type FlightplanCreateBulkV2Params as FlightplanCreateBulkV2Params,
     type FlightplanTupleParams as FlightplanTupleParams,
+    type FlightplanUnvalidatedPublishParams as FlightplanUnvalidatedPublishParams,
   };
 
   export {
@@ -3002,8 +3005,8 @@ export declare namespace Unifieddatalibrary {
     type GnssobservationsetListParams as GnssobservationsetListParams,
     type GnssobservationsetCountParams as GnssobservationsetCountParams,
     type GnssobservationsetCreateBulkParams as GnssobservationsetCreateBulkParams,
-    type GnssobservationsetCreateBulkV2Params as GnssobservationsetCreateBulkV2Params,
     type GnssobservationsetTupleParams as GnssobservationsetTupleParams,
+    type GnssobservationsetUnvalidatedPublishParams as GnssobservationsetUnvalidatedPublishParams,
   };
 
   export {
@@ -3076,8 +3079,8 @@ export declare namespace Unifieddatalibrary {
     type IonoobservationListParams as IonoobservationListParams,
     type IonoobservationCountParams as IonoobservationCountParams,
     type IonoobservationCreateBulkParams as IonoobservationCreateBulkParams,
-    type IonoobservationCreateBulkV2Params as IonoobservationCreateBulkV2Params,
     type IonoobservationTupleParams as IonoobservationTupleParams,
+    type IonoobservationUnvalidatedPublishParams as IonoobservationUnvalidatedPublishParams,
   };
 
   export {
@@ -3099,8 +3102,8 @@ export declare namespace Unifieddatalibrary {
     type IsrCollectionListParams as IsrCollectionListParams,
     type IsrCollectionCountParams as IsrCollectionCountParams,
     type IsrCollectionCreateBulkParams as IsrCollectionCreateBulkParams,
-    type IsrCollectionCreateBulkV2Params as IsrCollectionCreateBulkV2Params,
     type IsrCollectionTupleParams as IsrCollectionTupleParams,
+    type IsrCollectionUnvalidatedPublishParams as IsrCollectionUnvalidatedPublishParams,
   };
 
   export {
@@ -3111,8 +3114,8 @@ export declare namespace Unifieddatalibrary {
     type ItemTupleResponse as ItemTupleResponse,
     type ItemCreateParams as ItemCreateParams,
     type ItemUpdateParams as ItemUpdateParams,
-    type ItemCreateBulkV2Params as ItemCreateBulkV2Params,
     type ItemTupleParams as ItemTupleParams,
+    type ItemUnvalidatedPublishParams as ItemUnvalidatedPublishParams,
   };
 
   export {
@@ -3123,8 +3126,8 @@ export declare namespace Unifieddatalibrary {
     type ItemTrackingCreateParams as ItemTrackingCreateParams,
     type ItemTrackingListParams as ItemTrackingListParams,
     type ItemTrackingCountParams as ItemTrackingCountParams,
-    type ItemTrackingCreateBulkV2Params as ItemTrackingCreateBulkV2Params,
     type ItemTrackingTupleParams as ItemTrackingTupleParams,
+    type ItemTrackingUnvalidatedPublishParams as ItemTrackingUnvalidatedPublishParams,
   };
 
   export {
@@ -3148,8 +3151,8 @@ export declare namespace Unifieddatalibrary {
     type LauncheventListParams as LauncheventListParams,
     type LauncheventCountParams as LauncheventCountParams,
     type LauncheventCreateBulkParams as LauncheventCreateBulkParams,
-    type LauncheventCreateBulkV2Params as LauncheventCreateBulkV2Params,
     type LauncheventTupleParams as LauncheventTupleParams,
+    type LauncheventUnvalidatedPublishParams as LauncheventUnvalidatedPublishParams,
   };
 
   export {
@@ -3225,8 +3228,8 @@ export declare namespace Unifieddatalibrary {
     type LogisticssupportCreateParams as LogisticssupportCreateParams,
     type LogisticssupportUpdateParams as LogisticssupportUpdateParams,
     type LogisticssupportCreateBulkParams as LogisticssupportCreateBulkParams,
-    type LogisticssupportCreateBulkV2Params as LogisticssupportCreateBulkV2Params,
     type LogisticssupportTupleParams as LogisticssupportTupleParams,
+    type LogisticssupportUnvalidatedPublishParams as LogisticssupportUnvalidatedPublishParams,
   };
 
   export {
@@ -3238,8 +3241,8 @@ export declare namespace Unifieddatalibrary {
     type ManeuverListParams as ManeuverListParams,
     type ManeuverCountParams as ManeuverCountParams,
     type ManeuverCreateBulkParams as ManeuverCreateBulkParams,
-    type ManeuverCreateBulkV2Params as ManeuverCreateBulkV2Params,
     type ManeuverTupleParams as ManeuverTupleParams,
+    type ManeuverUnvalidatedPublishParams as ManeuverUnvalidatedPublishParams,
   };
 
   export {
@@ -3276,8 +3279,8 @@ export declare namespace Unifieddatalibrary {
     type MissileTrackListParams as MissileTrackListParams,
     type MissileTrackCountParams as MissileTrackCountParams,
     type MissileTrackCreateBulkParams as MissileTrackCreateBulkParams,
-    type MissileTrackCreateBulkV2Params as MissileTrackCreateBulkV2Params,
     type MissileTrackTupleParams as MissileTrackTupleParams,
+    type MissileTrackUnvalidatedPublishParams as MissileTrackUnvalidatedPublishParams,
   };
 
   export {
@@ -3312,8 +3315,8 @@ export declare namespace Unifieddatalibrary {
     type MtiListParams as MtiListParams,
     type MtiCountParams as MtiCountParams,
     type MtiCreateBulkParams as MtiCreateBulkParams,
-    type MtiCreateBulkV2Params as MtiCreateBulkV2Params,
     type MtiTupleParams as MtiTupleParams,
+    type MtiUnvalidatedPublishParams as MtiUnvalidatedPublishParams,
   };
 
   export {
@@ -3374,8 +3377,8 @@ export declare namespace Unifieddatalibrary {
     type OnboardnavigationListParams as OnboardnavigationListParams,
     type OnboardnavigationCountParams as OnboardnavigationCountParams,
     type OnboardnavigationCreateBulkParams as OnboardnavigationCreateBulkParams,
-    type OnboardnavigationCreateBulkV2Params as OnboardnavigationCreateBulkV2Params,
     type OnboardnavigationTupleParams as OnboardnavigationTupleParams,
+    type OnboardnavigationUnvalidatedPublishParams as OnboardnavigationUnvalidatedPublishParams,
   };
 
   export {
@@ -3496,8 +3499,8 @@ export declare namespace Unifieddatalibrary {
     type OrbitdeterminationListParams as OrbitdeterminationListParams,
     type OrbitdeterminationCountParams as OrbitdeterminationCountParams,
     type OrbitdeterminationCreateBulkParams as OrbitdeterminationCreateBulkParams,
-    type OrbitdeterminationCreateBulkV2Params as OrbitdeterminationCreateBulkV2Params,
     type OrbitdeterminationTupleParams as OrbitdeterminationTupleParams,
+    type OrbitdeterminationUnvalidatedPublishParams as OrbitdeterminationUnvalidatedPublishParams,
   };
 
   export {
@@ -3508,8 +3511,8 @@ export declare namespace Unifieddatalibrary {
     type OrbittrackListParams as OrbittrackListParams,
     type OrbittrackCountParams as OrbittrackCountParams,
     type OrbittrackCreateBulkParams as OrbittrackCreateBulkParams,
-    type OrbittrackCreateBulkV2Params as OrbittrackCreateBulkV2Params,
     type OrbittrackTupleParams as OrbittrackTupleParams,
+    type OrbittrackUnvalidatedPublishParams as OrbittrackUnvalidatedPublishParams,
   };
 
   export {
@@ -3572,8 +3575,8 @@ export declare namespace Unifieddatalibrary {
     type PoiListParams as PoiListParams,
     type PoiCountParams as PoiCountParams,
     type PoiCreateBulkParams as PoiCreateBulkParams,
-    type PoiCreateBulkV2Params as PoiCreateBulkV2Params,
     type PoiTupleParams as PoiTupleParams,
+    type PoiUnvalidatedPublishParams as PoiUnvalidatedPublishParams,
   };
 
   export {
@@ -3597,8 +3600,8 @@ export declare namespace Unifieddatalibrary {
     type RadarobservationListParams as RadarobservationListParams,
     type RadarobservationCountParams as RadarobservationCountParams,
     type RadarobservationCreateBulkParams as RadarobservationCreateBulkParams,
-    type RadarobservationCreateBulkV2Params as RadarobservationCreateBulkV2Params,
     type RadarobservationTupleParams as RadarobservationTupleParams,
+    type RadarobservationUnvalidatedPublishParams as RadarobservationUnvalidatedPublishParams,
   };
 
   export {
@@ -3654,8 +3657,8 @@ export declare namespace Unifieddatalibrary {
     type RfobservationListParams as RfobservationListParams,
     type RfobservationCountParams as RfobservationCountParams,
     type RfobservationCreateBulkParams as RfobservationCreateBulkParams,
-    type RfobservationCreateBulkV2Params as RfobservationCreateBulkV2Params,
     type RfobservationTupleParams as RfobservationTupleParams,
+    type RfobservationUnvalidatedPublishParams as RfobservationUnvalidatedPublishParams,
   };
 
   export {
@@ -3667,8 +3670,8 @@ export declare namespace Unifieddatalibrary {
     type SarobservationListParams as SarobservationListParams,
     type SarobservationCountParams as SarobservationCountParams,
     type SarobservationCreateBulkParams as SarobservationCreateBulkParams,
-    type SarobservationCreateBulkV2Params as SarobservationCreateBulkV2Params,
     type SarobservationTupleParams as SarobservationTupleParams,
+    type SarobservationUnvalidatedPublishParams as SarobservationUnvalidatedPublishParams,
   };
 
   export {
@@ -3722,8 +3725,8 @@ export declare namespace Unifieddatalibrary {
     type SensorplanUpdateParams as SensorplanUpdateParams,
     type SensorplanListParams as SensorplanListParams,
     type SensorplanCountParams as SensorplanCountParams,
-    type SensorplanCreateBulkV2Params as SensorplanCreateBulkV2Params,
     type SensorplanTupleParams as SensorplanTupleParams,
+    type SensorplanUnvalidatedPublishParams as SensorplanUnvalidatedPublishParams,
   };
 
   export {
@@ -3819,9 +3822,9 @@ export declare namespace Unifieddatalibrary {
     type SgiListParams as SgiListParams,
     type SgiCountParams as SgiCountParams,
     type SgiCreateBulkParams as SgiCreateBulkParams,
-    type SgiCreateBulkV2Params as SgiCreateBulkV2Params,
     type SgiGetDataByEffectiveAsOfDateParams as SgiGetDataByEffectiveAsOfDateParams,
     type SgiTupleParams as SgiTupleParams,
+    type SgiUnvalidatedPublishParams as SgiUnvalidatedPublishParams,
   };
 
   export {
@@ -3887,8 +3890,8 @@ export declare namespace Unifieddatalibrary {
     type SoiobservationsetListParams as SoiobservationsetListParams,
     type SoiobservationsetCountParams as SoiobservationsetCountParams,
     type SoiobservationsetCreateBulkParams as SoiobservationsetCreateBulkParams,
-    type SoiobservationsetCreateBulkV2Params as SoiobservationsetCreateBulkV2Params,
     type SoiobservationsetTupleParams as SoiobservationsetTupleParams,
+    type SoiobservationsetUnvalidatedPublishParams as SoiobservationsetUnvalidatedPublishParams,
   };
 
   export {
@@ -3921,8 +3924,8 @@ export declare namespace Unifieddatalibrary {
     type SortiepprListParams as SortiepprListParams,
     type SortiepprCountParams as SortiepprCountParams,
     type SortiepprCreateBulkParams as SortiepprCreateBulkParams,
-    type SortiepprCreateBulkV2Params as SortiepprCreateBulkV2Params,
     type SortiepprTupleParams as SortiepprTupleParams,
+    type SortiepprUnvalidatedPublishParams as SortiepprUnvalidatedPublishParams,
   };
 
   export {
@@ -3933,8 +3936,8 @@ export declare namespace Unifieddatalibrary {
     type SpaceenvobservationListParams as SpaceenvobservationListParams,
     type SpaceenvobservationCountParams as SpaceenvobservationCountParams,
     type SpaceenvobservationCreateBulkParams as SpaceenvobservationCreateBulkParams,
-    type SpaceenvobservationCreateBulkV2Params as SpaceenvobservationCreateBulkV2Params,
     type SpaceenvobservationTupleParams as SpaceenvobservationTupleParams,
+    type SpaceenvobservationUnvalidatedPublishParams as SpaceenvobservationUnvalidatedPublishParams,
   };
 
   export {
@@ -3959,8 +3962,8 @@ export declare namespace Unifieddatalibrary {
     type StarcatalogListParams as StarcatalogListParams,
     type StarcatalogCountParams as StarcatalogCountParams,
     type StarcatalogCreateBulkParams as StarcatalogCreateBulkParams,
-    type StarcatalogCreateBulkV2Params as StarcatalogCreateBulkV2Params,
     type StarcatalogTupleParams as StarcatalogTupleParams,
+    type StarcatalogUnvalidatedPublishParams as StarcatalogUnvalidatedPublishParams,
   };
 
   export {
@@ -3975,8 +3978,8 @@ export declare namespace Unifieddatalibrary {
     type StatevectorListParams as StatevectorListParams,
     type StatevectorCountParams as StatevectorCountParams,
     type StatevectorCreateBulkParams as StatevectorCreateBulkParams,
-    type StatevectorCreateBulkV2Params as StatevectorCreateBulkV2Params,
     type StatevectorTupleParams as StatevectorTupleParams,
+    type StatevectorUnvalidatedPublishParams as StatevectorUnvalidatedPublishParams,
   };
 
   export {
@@ -4024,8 +4027,8 @@ export declare namespace Unifieddatalibrary {
     type SurfaceobstructionTupleResponse as SurfaceobstructionTupleResponse,
     type SurfaceobstructionCreateParams as SurfaceobstructionCreateParams,
     type SurfaceobstructionUpdateParams as SurfaceobstructionUpdateParams,
-    type SurfaceobstructionCreateBulkV2Params as SurfaceobstructionCreateBulkV2Params,
     type SurfaceobstructionTupleParams as SurfaceobstructionTupleParams,
+    type SurfaceobstructionUnvalidatedPublishParams as SurfaceobstructionUnvalidatedPublishParams,
   };
 
   export {
@@ -4062,8 +4065,8 @@ export declare namespace Unifieddatalibrary {
     type TrackListParams as TrackListParams,
     type TrackCountParams as TrackCountParams,
     type TrackCreateBulkParams as TrackCreateBulkParams,
-    type TrackCreateBulkV2Params as TrackCreateBulkV2Params,
     type TrackTupleParams as TrackTupleParams,
+    type TrackUnvalidatedPublishParams as TrackUnvalidatedPublishParams,
   };
 
   export {
@@ -4087,8 +4090,8 @@ export declare namespace Unifieddatalibrary {
     type TrackrouteListParams as TrackrouteListParams,
     type TrackrouteCountParams as TrackrouteCountParams,
     type TrackrouteCreateBulkParams as TrackrouteCreateBulkParams,
-    type TrackrouteCreateBulkV2Params as TrackrouteCreateBulkV2Params,
     type TrackrouteTupleParams as TrackrouteTupleParams,
+    type TrackrouteUnvalidatedPublishParams as TrackrouteUnvalidatedPublishParams,
   };
 
   export {
@@ -4138,8 +4141,8 @@ export declare namespace Unifieddatalibrary {
     type WeatherdataListParams as WeatherdataListParams,
     type WeatherdataCountParams as WeatherdataCountParams,
     type WeatherdataCreateBulkParams as WeatherdataCreateBulkParams,
-    type WeatherdataCreateBulkV2Params as WeatherdataCreateBulkV2Params,
     type WeatherdataTupleParams as WeatherdataTupleParams,
+    type WeatherdataUnvalidatedPublishParams as WeatherdataUnvalidatedPublishParams,
   };
 
   export {
@@ -4150,8 +4153,8 @@ export declare namespace Unifieddatalibrary {
     type WeatherreportCreateParams as WeatherreportCreateParams,
     type WeatherreportListParams as WeatherreportListParams,
     type WeatherreportCountParams as WeatherreportCountParams,
-    type WeatherreportCreateBulkV2Params as WeatherreportCreateBulkV2Params,
     type WeatherreportTupleParams as WeatherreportTupleParams,
+    type WeatherreportUnvalidatedPublishParams as WeatherreportUnvalidatedPublishParams,
   };
 
   export { Udl as Udl };
@@ -4162,7 +4165,10 @@ export declare namespace Unifieddatalibrary {
 
   export { IonoObservation as IonoObservation };
 
-  export { LaunchEvent as LaunchEvent, type LaunchEventCreateBulkV2Params as LaunchEventCreateBulkV2Params };
+  export {
+    LaunchEvent as LaunchEvent,
+    type LaunchEventUnvalidatedPublishParams as LaunchEventUnvalidatedPublishParams,
+  };
 
   export { ReportAndActivity as ReportAndActivity };
 

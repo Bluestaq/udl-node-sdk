@@ -62,20 +62,6 @@ export class Crew extends APIResource {
   }
 
   /**
-   * Service operation to take multiple Crew objects as a POST body and ingest into
-   * the database. This operation is intended to be used for automated feeds into
-   * UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: CrewCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-crew', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -98,6 +84,23 @@ export class Crew extends APIResource {
    */
   tuple(query: CrewTupleParams, options?: Core.RequestOptions): Core.APIPromise<CrewTupleResponse> {
     return this._client.get('/udl/crew/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple Crew objects as a POST body and ingest into
+   * the database. This operation is intended to be used for automated feeds into
+   * UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: CrewUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-crew', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -3023,9 +3026,19 @@ export namespace CrewUpdateParams {
   }
 }
 
-export type CrewCreateBulkV2Params = Array<CrewCreateBulkV2Params.Body>;
+export interface CrewTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
 
-export namespace CrewCreateBulkV2Params {
+export type CrewUnvalidatedPublishParams = Array<CrewUnvalidatedPublishParams.Body>;
+
+export namespace CrewUnvalidatedPublishParams {
   /**
    * Crew Services.
    */
@@ -3740,16 +3753,6 @@ export namespace CrewCreateBulkV2Params {
   }
 }
 
-export interface CrewTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-}
-
 export declare namespace Crew {
   export {
     type CrewAbridged as CrewAbridged,
@@ -3759,7 +3762,7 @@ export declare namespace Crew {
     type CrewTupleResponse as CrewTupleResponse,
     type CrewCreateParams as CrewCreateParams,
     type CrewUpdateParams as CrewUpdateParams,
-    type CrewCreateBulkV2Params as CrewCreateBulkV2Params,
     type CrewTupleParams as CrewTupleParams,
+    type CrewUnvalidatedPublishParams as CrewUnvalidatedPublishParams,
   };
 }

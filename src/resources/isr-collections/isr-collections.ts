@@ -60,20 +60,6 @@ export class IsrCollections extends APIResource {
   }
 
   /**
-   * Service operation to take multiple ISR Collections as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: IsrCollectionCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-isrcollection', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -99,6 +85,23 @@ export class IsrCollections extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<IsrCollectionTupleResponse> {
     return this._client.get('/udl/isrcollection/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple ISR Collections as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: IsrCollectionUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-isrcollection', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1771,9 +1774,25 @@ export namespace IsrCollectionCreateBulkParams {
   }
 }
 
-export type IsrCollectionCreateBulkV2Params = Array<IsrCollectionCreateBulkV2Params.Body>;
+export interface IsrCollectionTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace IsrCollectionCreateBulkV2Params {
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  createdAt: string;
+}
+
+export type IsrCollectionUnvalidatedPublishParams = Array<IsrCollectionUnvalidatedPublishParams.Body>;
+
+export namespace IsrCollectionUnvalidatedPublishParams {
   /**
    * ISR Collection data.
    */
@@ -2581,22 +2600,6 @@ export namespace IsrCollectionCreateBulkV2Params {
   }
 }
 
-export interface IsrCollectionTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   * (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  createdAt: string;
-}
-
 IsrCollections.History = History;
 
 export declare namespace IsrCollections {
@@ -2607,8 +2610,8 @@ export declare namespace IsrCollections {
     type IsrCollectionListParams as IsrCollectionListParams,
     type IsrCollectionCountParams as IsrCollectionCountParams,
     type IsrCollectionCreateBulkParams as IsrCollectionCreateBulkParams,
-    type IsrCollectionCreateBulkV2Params as IsrCollectionCreateBulkV2Params,
     type IsrCollectionTupleParams as IsrCollectionTupleParams,
+    type IsrCollectionUnvalidatedPublishParams as IsrCollectionUnvalidatedPublishParams,
   };
 
   export {

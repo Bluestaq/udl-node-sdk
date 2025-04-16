@@ -10,8 +10,8 @@ export {
   type CollectRequestListParams,
   type CollectRequestCountParams,
   type CollectRequestCreateBulkParams,
-  type CollectRequestCreateBulkV2Params,
   type CollectRequestTupleParams,
+  type CollectRequestUnvalidatedPublishParams,
 } from './collect-requests';
 export {
   History,

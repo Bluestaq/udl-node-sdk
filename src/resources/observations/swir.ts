@@ -10,7 +10,10 @@ export class Swir extends APIResource {
    * UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  createBulkV2(body: SwirCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
+  unvalidatedPublish(
+    body: SwirUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
     return this._client.post('/filedrop/swir', {
       body,
       ...options,
@@ -19,9 +22,9 @@ export class Swir extends APIResource {
   }
 }
 
-export type SwirCreateBulkV2Params = Array<SwirCreateBulkV2Params.Body>;
+export type SwirUnvalidatedPublishParams = Array<SwirUnvalidatedPublishParams.Body>;
 
-export namespace SwirCreateBulkV2Params {
+export namespace SwirUnvalidatedPublishParams {
   /**
    * Data representing observed short wave infrared (SWIR) measurements.
    */
@@ -137,5 +140,5 @@ export namespace SwirCreateBulkV2Params {
 }
 
 export declare namespace Swir {
-  export { type SwirCreateBulkV2Params as SwirCreateBulkV2Params };
+  export { type SwirUnvalidatedPublishParams as SwirUnvalidatedPublishParams };
 }

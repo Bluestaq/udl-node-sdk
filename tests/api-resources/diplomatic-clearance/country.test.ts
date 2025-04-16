@@ -467,8 +467,41 @@ describe('resource country', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.diplomaticClearance.country.createBulkV2([
+  test('queryHelp', async () => {
+    const responsePromise = client.diplomaticClearance.country.queryHelp();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('queryHelp: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.diplomaticClearance.country.queryHelp({ path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
+  test('tuple: only required params', async () => {
+    const responsePromise = client.diplomaticClearance.country.tuple({ columns: 'columns' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('tuple: required and optional params', async () => {
+    const response = await client.diplomaticClearance.country.tuple({ columns: 'columns' });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.diplomaticClearance.country.unvalidatedPublish([
       {
         classificationMarking: 'U',
         countryCode: 'NL',
@@ -486,8 +519,8 @@ describe('resource country', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.diplomaticClearance.country.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.diplomaticClearance.country.unvalidatedPublish([
       {
         classificationMarking: 'U',
         countryCode: 'NL',
@@ -596,38 +629,5 @@ describe('resource country', () => {
         origin: 'THIRD_PARTY_DATASOURCE',
       },
     ]);
-  });
-
-  test('queryHelp', async () => {
-    const responsePromise = client.diplomaticClearance.country.queryHelp();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryHelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.diplomaticClearance.country.queryHelp({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
-  });
-
-  test('tuple: only required params', async () => {
-    const responsePromise = client.diplomaticClearance.country.tuple({ columns: 'columns' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('tuple: required and optional params', async () => {
-    const response = await client.diplomaticClearance.country.tuple({ columns: 'columns' });
   });
 });

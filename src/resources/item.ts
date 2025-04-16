@@ -67,20 +67,6 @@ export class Item extends APIResource {
   }
 
   /**
-   * Service operation to take multiple item records as a POST body and ingest into
-   * the database. This operation is intended to be used for automated feeds into
-   * UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: ItemCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-item', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single item record by its unique ID passed as a path
    * parameter.
    */
@@ -111,6 +97,23 @@ export class Item extends APIResource {
    */
   tuple(query: ItemTupleParams, options?: Core.RequestOptions): Core.APIPromise<ItemTupleResponse> {
     return this._client.get('/udl/item/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple item records as a POST body and ingest into
+   * the database. This operation is intended to be used for automated feeds into
+   * UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: ItemUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-item', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1628,9 +1631,19 @@ export interface ItemUpdateParams {
   width?: number;
 }
 
-export type ItemCreateBulkV2Params = Array<ItemCreateBulkV2Params.Body>;
+export interface ItemTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
 
-export namespace ItemCreateBulkV2Params {
+export type ItemUnvalidatedPublishParams = Array<ItemUnvalidatedPublishParams.Body>;
+
+export namespace ItemUnvalidatedPublishParams {
   export interface Body {
     /**
      * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -1914,16 +1927,6 @@ export namespace ItemCreateBulkV2Params {
   }
 }
 
-export interface ItemTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-}
-
 export declare namespace Item {
   export {
     type ItemListResponse as ItemListResponse,
@@ -1932,7 +1935,7 @@ export declare namespace Item {
     type ItemTupleResponse as ItemTupleResponse,
     type ItemCreateParams as ItemCreateParams,
     type ItemUpdateParams as ItemUpdateParams,
-    type ItemCreateBulkV2Params as ItemCreateBulkV2Params,
     type ItemTupleParams as ItemTupleParams,
+    type ItemUnvalidatedPublishParams as ItemUnvalidatedPublishParams,
   };
 }

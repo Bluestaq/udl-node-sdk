@@ -82,7 +82,10 @@ export class EoObservations extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  createBulkV2(body: EoObservationCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
+  unvalidatedPublish(
+    body: EoObservationUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-eo', {
       body,
       ...options,
@@ -2964,9 +2967,9 @@ export namespace EoObservationCreateBulkParams {
   }
 }
 
-export type EoObservationCreateBulkV2Params = Array<EoObservationCreateBulkV2Params.Body>;
+export type EoObservationUnvalidatedPublishParams = Array<EoObservationUnvalidatedPublishParams.Body>;
 
-export namespace EoObservationCreateBulkV2Params {
+export namespace EoObservationUnvalidatedPublishParams {
   /**
    * Model representation of observation data for electro-optical based sensor
    * phenomenologies. ECI J2K is the preferred reference frame for EOObservations,
@@ -4096,7 +4099,7 @@ export declare namespace EoObservations {
     type EoObservationListParams as EoObservationListParams,
     type EoObservationCountParams as EoObservationCountParams,
     type EoObservationCreateBulkParams as EoObservationCreateBulkParams,
-    type EoObservationCreateBulkV2Params as EoObservationCreateBulkV2Params,
+    type EoObservationUnvalidatedPublishParams as EoObservationUnvalidatedPublishParams,
   };
 
   export {

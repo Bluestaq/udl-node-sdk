@@ -124,8 +124,41 @@ describe('resource track', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.track.createBulkV2([
+  test('queryhelp', async () => {
+    const responsePromise = client.track.queryhelp();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('queryhelp: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.track.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('tuple: only required params', async () => {
+    const responsePromise = client.track.tuple({ columns: 'columns', ts: '2019-12-27T18:11:19.117Z' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('tuple: required and optional params', async () => {
+    const response = await client.track.tuple({ columns: 'columns', ts: '2019-12-27T18:11:19.117Z' });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.track.unvalidatedPublish([
       { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-06-07T14:17:39.653043Z' },
     ]);
     const rawResponse = await responsePromise.asResponse();
@@ -137,8 +170,8 @@ describe('resource track', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.track.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.track.unvalidatedPublish([
       {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -206,38 +239,5 @@ describe('resource track', () => {
         trkStat: 'INITIATING',
       },
     ]);
-  });
-
-  test('queryhelp', async () => {
-    const responsePromise = client.track.queryhelp();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.track.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
-  test('tuple: only required params', async () => {
-    const responsePromise = client.track.tuple({ columns: 'columns', ts: '2019-12-27T18:11:19.117Z' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('tuple: required and optional params', async () => {
-    const response = await client.track.tuple({ columns: 'columns', ts: '2019-12-27T18:11:19.117Z' });
   });
 });

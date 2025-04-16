@@ -11,8 +11,8 @@ export {
   type OperationListParams,
   type OperationCountParams,
   type OperationCreateBulkParams,
-  type OperationCreateBulkV2Params,
   type OperationTupleParams,
+  type OperationUnvalidatedPublishParams,
 } from './operations';
 export {
   Site,

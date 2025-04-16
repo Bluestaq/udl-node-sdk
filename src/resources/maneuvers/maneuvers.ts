@@ -72,20 +72,6 @@ export class Maneuvers extends APIResource {
   }
 
   /**
-   * Service operation to take multiple maneuvers as a POST body and ingest into the
-   * database. This operation is intended to be used for automated feeds into UDL. A
-   * specific role is required to perform this service operation. Please contact the
-   * UDL team for assistance.
-   */
-  createBulkV2(body: ManeuverCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-maneuver', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single maneuver by its unique ID passed as a path
    * parameter.
    */
@@ -116,6 +102,23 @@ export class Maneuvers extends APIResource {
    */
   tuple(query: ManeuverTupleParams, options?: Core.RequestOptions): Core.APIPromise<ManeuverTupleResponse> {
     return this._client.get('/udl/maneuver/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple maneuvers as a POST body and ingest into the
+   * database. This operation is intended to be used for automated feeds into UDL. A
+   * specific role is required to perform this service operation. Please contact the
+   * UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: ManeuverUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-maneuver', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -7751,9 +7754,26 @@ export namespace ManeuverCreateBulkParams {
   }
 }
 
-export type ManeuverCreateBulkV2Params = Array<ManeuverCreateBulkV2Params.Body>;
+export interface ManeuverTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace ManeuverCreateBulkV2Params {
+  /**
+   * Maneuver event start time in ISO 8601 UTC with microsecond precision. For
+   * maneuvers without start and end times, the start time is considered to be the
+   * maneuver event time. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  eventStartTime: string;
+}
+
+export type ManeuverUnvalidatedPublishParams = Array<ManeuverUnvalidatedPublishParams.Body>;
+
+export namespace ManeuverUnvalidatedPublishParams {
   /**
    * Model representation of on-orbit object maneuver information for detected,
    * possible, and confirmed maneuvers.
@@ -10284,23 +10304,6 @@ export namespace ManeuverCreateBulkV2Params {
   }
 }
 
-export interface ManeuverTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Maneuver event start time in ISO 8601 UTC with microsecond precision. For
-   * maneuvers without start and end times, the start time is considered to be the
-   * maneuver event time. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  eventStartTime: string;
-}
-
 Maneuvers.History = History;
 
 export declare namespace Maneuvers {
@@ -10312,8 +10315,8 @@ export declare namespace Maneuvers {
     type ManeuverListParams as ManeuverListParams,
     type ManeuverCountParams as ManeuverCountParams,
     type ManeuverCreateBulkParams as ManeuverCreateBulkParams,
-    type ManeuverCreateBulkV2Params as ManeuverCreateBulkV2Params,
     type ManeuverTupleParams as ManeuverTupleParams,
+    type ManeuverUnvalidatedPublishParams as ManeuverUnvalidatedPublishParams,
   };
 
   export {

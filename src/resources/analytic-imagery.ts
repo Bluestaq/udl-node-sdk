@@ -43,35 +43,6 @@ export class AnalyticImagery extends APIResource {
   }
 
   /**
-   * Upload a new image with its metadata.
-   *
-   * The request body requires a zip file containing exactly two files:\
-   * 1\) A file with the `.json` file extension whose content conforms to the `AnalyticImagery_Ingest`
-   * schema.\
-   * 2\) A binary image file of the allowed types for this service.
-   *
-   * The JSON and image files will be associated with each other via the `id` field.
-   * Query the metadata via `GET /udl/analyticimagery` and use
-   * `GET /udl/analyticimagery/getFile/{id}` to retrieve the binary image file.
-   *
-   * This operation only accepts application/zip media. The application/json request
-   * body is documented to provide a convenient reference to the ingest schema.
-   *
-   * This operation is intended to be used for automated feeds into UDL. A specific
-   * role is required to perform this service operation. Please contact the UDL team
-   * for assistance.
-   */
-  createBulkV2(
-    body: AnalyticImageryCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post(
-      '/filedrop/udl-analyticimagery',
-      Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
-    );
-  }
-
-  /**
    * Service operation to get a single AnalyticImagery binary image by its unique ID
    * passed as a path parameter. The image is returned as an attachment
    * Content-Disposition.
@@ -156,6 +127,35 @@ export class AnalyticImagery extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<AnalyticImageryTupleResponse> {
     return this._client.get('/udl/analyticimagery/tuple', { query, ...options });
+  }
+
+  /**
+   * Upload a new image with its metadata.
+   *
+   * The request body requires a zip file containing exactly two files:\
+   * 1\) A file with the `.json` file extension whose content conforms to the `AnalyticImagery_Ingest`
+   * schema.\
+   * 2\) A binary image file of the allowed types for this service.
+   *
+   * The JSON and image files will be associated with each other via the `id` field.
+   * Query the metadata via `GET /udl/analyticimagery` and use
+   * `GET /udl/analyticimagery/getFile/{id}` to retrieve the binary image file.
+   *
+   * This operation only accepts application/zip media. The application/json request
+   * body is documented to provide a convenient reference to the ingest schema.
+   *
+   * This operation is intended to be used for automated feeds into UDL. A specific
+   * role is required to perform this service operation. Please contact the UDL team
+   * for assistance.
+   */
+  unvalidatedPublish(
+    body: AnalyticImageryUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post(
+      '/filedrop/udl-analyticimagery',
+      Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
+    );
   }
 }
 
@@ -725,13 +725,6 @@ export interface AnalyticImageryCountParams {
   msgTime: string;
 }
 
-export interface AnalyticImageryCreateBulkV2Params {
-  /**
-   * Zip file containing files described in the specification
-   */
-  file: Core.Uploadable;
-}
-
 export interface AnalyticImageryHistoryParams {
   /**
    * The message time of this image record, in ISO8601 UTC format with millisecond
@@ -806,6 +799,13 @@ export interface AnalyticImageryTupleParams {
   msgTime: string;
 }
 
+export interface AnalyticImageryUnvalidatedPublishParams {
+  /**
+   * Zip file containing files described in the specification
+   */
+  file: Core.Uploadable;
+}
+
 export declare namespace AnalyticImagery {
   export {
     type AnalyticImageryAbridged as AnalyticImageryAbridged,
@@ -817,10 +817,10 @@ export declare namespace AnalyticImagery {
     type AnalyticImageryTupleResponse as AnalyticImageryTupleResponse,
     type AnalyticImageryListParams as AnalyticImageryListParams,
     type AnalyticImageryCountParams as AnalyticImageryCountParams,
-    type AnalyticImageryCreateBulkV2Params as AnalyticImageryCreateBulkV2Params,
     type AnalyticImageryHistoryParams as AnalyticImageryHistoryParams,
     type AnalyticImageryHistoryAodrParams as AnalyticImageryHistoryAodrParams,
     type AnalyticImageryHistoryCountParams as AnalyticImageryHistoryCountParams,
     type AnalyticImageryTupleParams as AnalyticImageryTupleParams,
+    type AnalyticImageryUnvalidatedPublishParams as AnalyticImageryUnvalidatedPublishParams,
   };
 }

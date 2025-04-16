@@ -9,8 +9,8 @@ export {
   type CountryCreateParams,
   type CountryUpdateParams,
   type CountryCreateBulkParams,
-  type CountryCreateBulkV2Params,
   type CountryTupleParams,
+  type CountryUnvalidatedPublishParams,
 } from './country';
 export {
   DiplomaticClearance,

@@ -75,20 +75,6 @@ export class Sarobservation extends APIResource {
   }
 
   /**
-   * Service operation to take SAR observations as a POST body and ingest into the
-   * database. This operation is intended to be used for automated feeds into UDL. A
-   * specific role is required to perform this service operation. Please contact the
-   * UDL team for assistance.
-   */
-  createBulkV2(body: SarobservationCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-sar', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single SAR observations by its unique ID passed as a
    * path parameter.
    */
@@ -125,6 +111,23 @@ export class Sarobservation extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<SarobservationTupleResponse> {
     return this._client.get('/udl/sarobservation/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take SAR observations as a POST body and ingest into the
+   * database. This operation is intended to be used for automated feeds into UDL. A
+   * specific role is required to perform this service operation. Please contact the
+   * UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: SarobservationUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-sar', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1392,9 +1395,25 @@ export namespace SarobservationCreateBulkParams {
   }
 }
 
-export type SarobservationCreateBulkV2Params = Array<SarobservationCreateBulkV2Params.Body>;
+export interface SarobservationTupleParams {
+  /**
+   * Collection start time in ISO 8601 UTC format with microsecond precision.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  collectionStart: string;
 
-export namespace SarobservationCreateBulkV2Params {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
+
+export type SarobservationUnvalidatedPublishParams = Array<SarobservationUnvalidatedPublishParams.Body>;
+
+export namespace SarobservationUnvalidatedPublishParams {
   /**
    * Model representation of observation data for SAR based sensor phenomenologies.
    * J2000 is the preferred coordinate frame for all observations, but in some cases
@@ -1805,22 +1824,6 @@ export namespace SarobservationCreateBulkV2Params {
   }
 }
 
-export interface SarobservationTupleParams {
-  /**
-   * Collection start time in ISO 8601 UTC format with microsecond precision.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  collectionStart: string;
-
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-}
-
 Sarobservation.History = History;
 
 export declare namespace Sarobservation {
@@ -1832,8 +1835,8 @@ export declare namespace Sarobservation {
     type SarobservationListParams as SarobservationListParams,
     type SarobservationCountParams as SarobservationCountParams,
     type SarobservationCreateBulkParams as SarobservationCreateBulkParams,
-    type SarobservationCreateBulkV2Params as SarobservationCreateBulkV2Params,
     type SarobservationTupleParams as SarobservationTupleParams,
+    type SarobservationUnvalidatedPublishParams as SarobservationUnvalidatedPublishParams,
   };
 
   export {

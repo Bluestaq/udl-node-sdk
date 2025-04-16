@@ -167,45 +167,6 @@ describe('resource sortieppr', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.sortieppr.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
-        source: 'Bluestaq',
-      },
-    ]);
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.sortieppr.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
-        source: 'Bluestaq',
-        id: 'SORTIEPPR-ID',
-        endTime: '2024-01-01T01:01:01.123Z',
-        externalId: 'aa714f4d52a37ab1a00b21af9566e379',
-        grantor: 'SMITH',
-        number: '07-21-07W',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        remarks: 'PPR remark',
-        requestor: 'jsmith1',
-        startTime: '2024-01-01T01:01:01.123Z',
-        type: 'M',
-      },
-    ]);
-  });
-
   test('get', async () => {
     const responsePromise = client.sortieppr.get('id');
     const rawResponse = await responsePromise.asResponse();
@@ -255,5 +216,44 @@ describe('resource sortieppr', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.sortieppr.tuple({ columns: 'columns', idSortie: 'idSortie' });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.sortieppr.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+        source: 'Bluestaq',
+      },
+    ]);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.sortieppr.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+        source: 'Bluestaq',
+        id: 'SORTIEPPR-ID',
+        endTime: '2024-01-01T01:01:01.123Z',
+        externalId: 'aa714f4d52a37ab1a00b21af9566e379',
+        grantor: 'SMITH',
+        number: '07-21-07W',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        remarks: 'PPR remark',
+        requestor: 'jsmith1',
+        startTime: '2024-01-01T01:01:01.123Z',
+        type: 'M',
+      },
+    ]);
   });
 });

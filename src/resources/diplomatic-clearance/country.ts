@@ -90,20 +90,6 @@ export class Country extends APIResource {
   }
 
   /**
-   * Service operation to take multiple diplomaticclearancecountry records as a POST
-   * body and ingest into the database. This operation is intended to be used for
-   * automated feeds into UDL. A specific role is required to perform this service
-   * operation. Please contact the UDL team for assistance.
-   */
-  createBulkV2(body: CountryCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-diplomaticclearancecountry', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -126,6 +112,23 @@ export class Country extends APIResource {
    */
   tuple(query: CountryTupleParams, options?: Core.RequestOptions): Core.APIPromise<CountryTupleResponse> {
     return this._client.get('/udl/diplomaticclearancecountry/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple diplomaticclearancecountry records as a POST
+   * body and ingest into the database. This operation is intended to be used for
+   * automated feeds into UDL. A specific role is required to perform this service
+   * operation. Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: CountryUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-diplomaticclearancecountry', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -3934,9 +3937,19 @@ export namespace CountryCreateBulkParams {
   }
 }
 
-export type CountryCreateBulkV2Params = Array<CountryCreateBulkV2Params.Body>;
+export interface CountryTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
 
-export namespace CountryCreateBulkV2Params {
+export type CountryUnvalidatedPublishParams = Array<CountryUnvalidatedPublishParams.Body>;
+
+export namespace CountryUnvalidatedPublishParams {
   /**
    * Diplomatic Clearance Country provides information such as entry/exit points,
    * requirements, and points of contact for countries diplomatic clearances are
@@ -4554,16 +4567,6 @@ export namespace CountryCreateBulkV2Params {
   }
 }
 
-export interface CountryTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-}
-
 export declare namespace Country {
   export {
     type CountryRetrieveResponse as CountryRetrieveResponse,
@@ -4573,7 +4576,7 @@ export declare namespace Country {
     type CountryCreateParams as CountryCreateParams,
     type CountryUpdateParams as CountryUpdateParams,
     type CountryCreateBulkParams as CountryCreateBulkParams,
-    type CountryCreateBulkV2Params as CountryCreateBulkV2Params,
     type CountryTupleParams as CountryTupleParams,
+    type CountryUnvalidatedPublishParams as CountryUnvalidatedPublishParams,
   };
 }

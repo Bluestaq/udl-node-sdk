@@ -106,19 +106,6 @@ export class Elsets extends APIResource {
   }
 
   /**
-   * Service operation to take elsets as a POST body and ingest into the database
-   * with or without dupe detection. Default is no dupe checking. This operation is
-   * intended to be used for automated feeds into UDL.
-   */
-  createBulkV2(body: ElsetCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-elset', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -152,6 +139,22 @@ export class Elsets extends APIResource {
    */
   tuple(query: ElsetTupleParams, options?: Core.RequestOptions): Core.APIPromise<ElsetTupleResponse> {
     return this._client.get('/udl/elset/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take elsets as a POST body and ingest into the database
+   * with or without dupe detection. Default is no dupe checking. This operation is
+   * intended to be used for automated feeds into UDL.
+   */
+  unvalidatedPublish(
+    body: ElsetUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-elset', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1417,8 +1420,6 @@ export interface ElsetCreateBulkFromTleParams {
   tags?: string;
 }
 
-export type ElsetCreateBulkV2Params = Array<ElsetIngest>;
-
 export interface ElsetTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1434,6 +1435,8 @@ export interface ElsetTupleParams {
    */
   epoch: string;
 }
+
+export type ElsetUnvalidatedPublishParams = Array<ElsetIngest>;
 
 Elsets.Current = Current;
 Elsets.History = History;
@@ -1451,8 +1454,8 @@ export declare namespace Elsets {
     type ElsetCountParams as ElsetCountParams,
     type ElsetCreateBulkParams as ElsetCreateBulkParams,
     type ElsetCreateBulkFromTleParams as ElsetCreateBulkFromTleParams,
-    type ElsetCreateBulkV2Params as ElsetCreateBulkV2Params,
     type ElsetTupleParams as ElsetTupleParams,
+    type ElsetUnvalidatedPublishParams as ElsetUnvalidatedPublishParams,
   };
 
   export {

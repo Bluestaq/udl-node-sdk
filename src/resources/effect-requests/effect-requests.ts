@@ -82,20 +82,6 @@ export class EffectRequests extends APIResource {
   }
 
   /**
-   * Service operation to take multiple EffectRequests as a POST body and ingest into
-   * the database. This operation is intended to be used for automated feeds into
-   * UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: EffectRequestCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-effectrequest', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -121,6 +107,23 @@ export class EffectRequests extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<EffectRequestTupleResponse> {
     return this._client.get('/udl/effectrequest/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple EffectRequests as a POST body and ingest into
+   * the database. This operation is intended to be used for automated feeds into
+   * UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: EffectRequestUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-effectrequest', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -847,9 +850,25 @@ export namespace EffectRequestCreateBulkParams {
   }
 }
 
-export type EffectRequestCreateBulkV2Params = Array<EffectRequestCreateBulkV2Params.Body>;
+export interface EffectRequestTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace EffectRequestCreateBulkV2Params {
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  createdAt: string;
+}
+
+export type EffectRequestUnvalidatedPublishParams = Array<EffectRequestUnvalidatedPublishParams.Body>;
+
+export namespace EffectRequestUnvalidatedPublishParams {
   /**
    * A request for various effects on a target.
    */
@@ -980,22 +999,6 @@ export namespace EffectRequestCreateBulkV2Params {
   }
 }
 
-export interface EffectRequestTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Time the row was created in the database, auto-populated by the system.
-   * (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  createdAt: string;
-}
-
 EffectRequests.History = History;
 
 export declare namespace EffectRequests {
@@ -1008,8 +1011,8 @@ export declare namespace EffectRequests {
     type EffectRequestListParams as EffectRequestListParams,
     type EffectRequestCountParams as EffectRequestCountParams,
     type EffectRequestCreateBulkParams as EffectRequestCreateBulkParams,
-    type EffectRequestCreateBulkV2Params as EffectRequestCreateBulkV2Params,
     type EffectRequestTupleParams as EffectRequestTupleParams,
+    type EffectRequestUnvalidatedPublishParams as EffectRequestUnvalidatedPublishParams,
   };
 
   export {

@@ -7,9 +7,9 @@ export {
   type GlobalatmosphericmodelQueryResponse,
   type GlobalatmosphericmodelTupleResponse,
   type GlobalatmosphericmodelCountParams,
-  type GlobalatmosphericmodelCreateBulkV2Params,
   type GlobalatmosphericmodelQueryParams,
   type GlobalatmosphericmodelTupleParams,
+  type GlobalatmosphericmodelUnvalidatedPublishParams,
 } from './globalatmosphericmodel';
 export {
   History,

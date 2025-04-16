@@ -10,8 +10,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource udlH3geo', () => {
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.reportAndActivity.udlH3geo.createBulkV2({
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.reportAndActivity.udlH3geo.unvalidatedPublish({
       cells: [
         { cellId: '830b90fffffffff', classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' },
       ],
@@ -30,8 +30,8 @@ describe('resource udlH3geo', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.reportAndActivity.udlH3geo.createBulkV2({
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.reportAndActivity.udlH3geo.unvalidatedPublish({
       cells: [
         {
           cellId: '830b90fffffffff',

@@ -10,8 +10,8 @@ export {
   type EffectResponseListParams,
   type EffectResponseCountParams,
   type EffectResponseCreateBulkParams,
-  type EffectResponseCreateBulkV2Params,
   type EffectResponseTupleParams,
+  type EffectResponseUnvalidatedPublishParams,
 } from './effect-responses';
 export {
   History,

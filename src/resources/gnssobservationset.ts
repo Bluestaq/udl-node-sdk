@@ -49,23 +49,6 @@ export class Gnssobservationset extends APIResource {
   }
 
   /**
-   * Service operation to accept one or more GNSSObservationSet(s) and associated
-   * GNSS Observation(s) as a POST body and ingest into the database. This operation
-   * is intended to be used for automated feeds into UDL. A specific role is required
-   * to perform this service operation. Please contact the UDL team for assistance.
-   */
-  createBulkV2(
-    body: GnssobservationsetCreateBulkV2Params,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-gnssobset', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -91,6 +74,23 @@ export class Gnssobservationset extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<GnssobservationsetTupleResponse> {
     return this._client.get('/udl/gnssobservationset/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to accept one or more GNSSObservationSet(s) and associated
+   * GNSS Observation(s) as a POST body and ingest into the database. This operation
+   * is intended to be used for automated feeds into UDL. A specific role is required
+   * to perform this service operation. Please contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: GnssobservationsetUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-gnssobset', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -745,9 +745,27 @@ export namespace GnssobservationsetCreateBulkParams {
   }
 }
 
-export type GnssobservationsetCreateBulkV2Params = Array<GnssobservationsetCreateBulkV2Params.Body>;
+export interface GnssobservationsetTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace GnssobservationsetCreateBulkV2Params {
+  /**
+   * Observation Time, in ISO8601 UTC format with microsecond precision. This
+   * timestamp applies to all observations within the set.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  ts: string;
+}
+
+export type GnssobservationsetUnvalidatedPublishParams =
+  Array<GnssobservationsetUnvalidatedPublishParams.Body>;
+
+export namespace GnssobservationsetUnvalidatedPublishParams {
   /**
    * Set of GNSSObservation data.
    */
@@ -1048,23 +1066,6 @@ export namespace GnssobservationsetCreateBulkV2Params {
   }
 }
 
-export interface GnssobservationsetTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * Observation Time, in ISO8601 UTC format with microsecond precision. This
-   * timestamp applies to all observations within the set.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  ts: string;
-}
-
 export declare namespace Gnssobservationset {
   export {
     type GnssobservationsetListResponse as GnssobservationsetListResponse,
@@ -1073,7 +1074,7 @@ export declare namespace Gnssobservationset {
     type GnssobservationsetListParams as GnssobservationsetListParams,
     type GnssobservationsetCountParams as GnssobservationsetCountParams,
     type GnssobservationsetCreateBulkParams as GnssobservationsetCreateBulkParams,
-    type GnssobservationsetCreateBulkV2Params as GnssobservationsetCreateBulkV2Params,
     type GnssobservationsetTupleParams as GnssobservationsetTupleParams,
+    type GnssobservationsetUnvalidatedPublishParams as GnssobservationsetUnvalidatedPublishParams,
   };
 }

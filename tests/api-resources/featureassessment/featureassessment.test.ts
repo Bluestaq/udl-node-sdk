@@ -175,74 +175,6 @@ describe('resource featureassessment', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.featureassessment.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        featureTs: '2024-06-22T17:53:06.123Z',
-        featureUoM: 'MHz',
-        idAnalyticImagery: 'fa1509ae-c19d-432e-9542-e5d1e0f47bc3',
-        source: 'Bluestaq',
-      },
-    ]);
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.featureassessment.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        featureTs: '2024-06-22T17:53:06.123Z',
-        featureUoM: 'MHz',
-        idAnalyticImagery: 'fa1509ae-c19d-432e-9542-e5d1e0f47bc3',
-        source: 'Bluestaq',
-        id: '026dd511-8ba5-47d3-9909-836149f87686',
-        agjson: '{"type":"Point","coordinates":[52.23486096929749 16.191937138595005]}',
-        andims: 1,
-        annLims: [
-          [1, 1],
-          [1, 2],
-          [1, 3],
-          [1, 4],
-        ],
-        annText: ['rec1', 'rec2'],
-        area: 'POINT(52.23486096929749 16.191937138595005)',
-        asrid: 4326,
-        assessment: 'Vessel bigger than other small fishing boats commonly found along the coastline',
-        atext: 'POINT(52.23486096929749 16.191937138595005)',
-        atype: 'POINT',
-        confidence: 0.85,
-        externalId: '2024-06-22-17-53-05_UMBRA-05_GEC',
-        featureArray: [1227.6, 1575.42],
-        featureBool: true,
-        featureString: 'TRANSMITTING FREQUENCIES',
-        featureStringArray: ['String1', 'String2'],
-        featureValue: 1227.6,
-        heading: 97.1,
-        height: 7.25,
-        length: 10.54,
-        name: 'HEADING',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        speed: 0.1,
-        srcIds: ['b008c63b-ad89-4493-80e0-77bc982bef77', '3565a6dd-654e-4969-89e0-ee7c51ab1e1b'],
-        srcTs: ['2025-02-24T16:27:18.471Z', '2025-02-24T16:29:31.000000Z'],
-        srcTyps: ['SAR', 'AIS'],
-        tags: ['TAG1', 'TAG2'],
-        transactionId: 'c3bdef1f-5a4f-4716-bee4-7a1e0ec7d37d',
-        type: 'VESSEL',
-        width: 3.74,
-      },
-    ]);
-  });
-
   test('query: only required params', async () => {
     const responsePromise = client.featureassessment.query({ idAnalyticImagery: 'idAnalyticImagery' });
     const rawResponse = await responsePromise.asResponse();
@@ -295,5 +227,73 @@ describe('resource featureassessment', () => {
       columns: 'columns',
       idAnalyticImagery: 'idAnalyticImagery',
     });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.featureassessment.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        featureTs: '2024-06-22T17:53:06.123Z',
+        featureUoM: 'MHz',
+        idAnalyticImagery: 'fa1509ae-c19d-432e-9542-e5d1e0f47bc3',
+        source: 'Bluestaq',
+      },
+    ]);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.featureassessment.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        featureTs: '2024-06-22T17:53:06.123Z',
+        featureUoM: 'MHz',
+        idAnalyticImagery: 'fa1509ae-c19d-432e-9542-e5d1e0f47bc3',
+        source: 'Bluestaq',
+        id: '026dd511-8ba5-47d3-9909-836149f87686',
+        agjson: '{"type":"Point","coordinates":[52.23486096929749 16.191937138595005]}',
+        andims: 1,
+        annLims: [
+          [1, 1],
+          [1, 2],
+          [1, 3],
+          [1, 4],
+        ],
+        annText: ['rec1', 'rec2'],
+        area: 'POINT(52.23486096929749 16.191937138595005)',
+        asrid: 4326,
+        assessment: 'Vessel bigger than other small fishing boats commonly found along the coastline',
+        atext: 'POINT(52.23486096929749 16.191937138595005)',
+        atype: 'POINT',
+        confidence: 0.85,
+        externalId: '2024-06-22-17-53-05_UMBRA-05_GEC',
+        featureArray: [1227.6, 1575.42],
+        featureBool: true,
+        featureString: 'TRANSMITTING FREQUENCIES',
+        featureStringArray: ['String1', 'String2'],
+        featureValue: 1227.6,
+        heading: 97.1,
+        height: 7.25,
+        length: 10.54,
+        name: 'HEADING',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        speed: 0.1,
+        srcIds: ['b008c63b-ad89-4493-80e0-77bc982bef77', '3565a6dd-654e-4969-89e0-ee7c51ab1e1b'],
+        srcTs: ['2025-02-24T16:27:18.471Z', '2025-02-24T16:29:31.000000Z'],
+        srcTyps: ['SAR', 'AIS'],
+        tags: ['TAG1', 'TAG2'],
+        transactionId: 'c3bdef1f-5a4f-4716-bee4-7a1e0ec7d37d',
+        type: 'VESSEL',
+        width: 3.74,
+      },
+    ]);
   });
 });

@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../resource';
 import * as AirTaskingOrdersAPI from './air-tasking-orders';
-import { AirTaskingOrderCreateBulkV2Params, AirTaskingOrders } from './air-tasking-orders';
+import { AirTaskingOrderUnvalidatedPublishParams, AirTaskingOrders } from './air-tasking-orders';
 import * as AircraftSortieAPI from './aircraft-sortie';
 import {
   AircraftSortie,
@@ -21,15 +21,18 @@ import {
   AircraftsortieFull,
 } from './aircraft-sortie';
 import * as AircraftSortiesAPI from './aircraft-sorties';
-import { AircraftSorties, AircraftSortyCreateBulkV2Params } from './aircraft-sorties';
+import { AircraftSorties, AircraftSortyUnvalidatedPublishParams } from './aircraft-sorties';
 import * as AirspaceControlOrdersAPI from './airspace-control-orders';
-import { AirspaceControlOrderCreateBulkV2Params, AirspaceControlOrders } from './airspace-control-orders';
+import {
+  AirspaceControlOrderUnvalidatedPublishParams,
+  AirspaceControlOrders,
+} from './airspace-control-orders';
 import * as CrewpapersAPI from './crewpapers';
 import { CrewpaperUnpublishParams, CrewpaperUploadPdfParams, Crewpapers } from './crewpapers';
 import * as DiplomaticClearanceAPI from './diplomatic-clearance';
 import {
   DiplomaticClearance,
-  DiplomaticClearanceCreateBulkV2Params,
+  DiplomaticClearanceUnvalidatedPublishParams,
   DiplomaticclearanceAbridged,
   DiplomaticclearanceFull,
 } from './diplomatic-clearance';
@@ -57,7 +60,7 @@ AirOperations.DiplomaticClearance = DiplomaticClearance;
 export declare namespace AirOperations {
   export {
     AirTaskingOrders as AirTaskingOrders,
-    type AirTaskingOrderCreateBulkV2Params as AirTaskingOrderCreateBulkV2Params,
+    type AirTaskingOrderUnvalidatedPublishParams as AirTaskingOrderUnvalidatedPublishParams,
   };
 
   export {
@@ -79,12 +82,12 @@ export declare namespace AirOperations {
 
   export {
     AircraftSorties as AircraftSorties,
-    type AircraftSortyCreateBulkV2Params as AircraftSortyCreateBulkV2Params,
+    type AircraftSortyUnvalidatedPublishParams as AircraftSortyUnvalidatedPublishParams,
   };
 
   export {
     AirspaceControlOrders as AirspaceControlOrders,
-    type AirspaceControlOrderCreateBulkV2Params as AirspaceControlOrderCreateBulkV2Params,
+    type AirspaceControlOrderUnvalidatedPublishParams as AirspaceControlOrderUnvalidatedPublishParams,
   };
 
   export {
@@ -97,6 +100,6 @@ export declare namespace AirOperations {
     DiplomaticClearance as DiplomaticClearance,
     type DiplomaticclearanceAbridged as DiplomaticclearanceAbridged,
     type DiplomaticclearanceFull as DiplomaticclearanceFull,
-    type DiplomaticClearanceCreateBulkV2Params as DiplomaticClearanceCreateBulkV2Params,
+    type DiplomaticClearanceUnvalidatedPublishParams as DiplomaticClearanceUnvalidatedPublishParams,
   };
 }

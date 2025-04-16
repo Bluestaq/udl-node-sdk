@@ -111,20 +111,6 @@ export class Sgi extends APIResource {
   }
 
   /**
-   * Service operation to take multiple SGI as a POST body and ingest into the
-   * database. This operation is intended to be used for automated feeds into UDL. A
-   * specific role is required to perform this service operation. Please contact the
-   * UDL team for assistance.
-   */
-  createBulkV2(body: SgiCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-sgi', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to get a single SGI record by its unique ID passed as a path
    * parameter.
    */
@@ -173,6 +159,23 @@ export class Sgi extends APIResource {
    */
   tuple(query: SgiTupleParams, options?: Core.RequestOptions): Core.APIPromise<SgiTupleResponse> {
     return this._client.get('/udl/sgi/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple SGI as a POST body and ingest into the
+   * database. This operation is intended to be used for automated feeds into UDL. A
+   * specific role is required to perform this service operation. Please contact the
+   * UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: SgiUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-sgi', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1701,9 +1704,53 @@ export namespace SgiCreateBulkParams {
   }
 }
 
-export type SgiCreateBulkV2Params = Array<SgiCreateBulkV2Params.Body>;
+export interface SgiGetDataByEffectiveAsOfDateParams {
+  /**
+   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
+   * the data was received and processed from the source. Typically a source provides
+   * solar data for a date window with each transmission including past, present, and
+   * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  effectiveDate?: string;
 
-export namespace SgiCreateBulkV2Params {
+  /**
+   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
+   * of the index value. This could be a past, current, or future predicted value.
+   * Note: sgiDate defines the start time of the time window for this data record.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  sgiDate?: string;
+}
+
+export interface SgiTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+
+  /**
+   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
+   * the data was received and processed from the source. Typically a source provides
+   * solar data for a date window with each transmission including past, present, and
+   * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  effectiveDate?: string;
+
+  /**
+   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
+   * of the index value. This could be a past, current, or future predicted value.
+   * Note: sgiDate defines the start time of the time window for this data record.
+   * (YYYY-MM-DDTHH:MM:SS.sssZ)
+   */
+  sgiDate?: string;
+}
+
+export type SgiUnvalidatedPublishParams = Array<SgiUnvalidatedPublishParams.Body>;
+
+export namespace SgiUnvalidatedPublishParams {
   /**
    * Model representation of space weather/solar, geomagnetic, and radiation belt
    * indices.
@@ -2079,50 +2126,6 @@ export namespace SgiCreateBulkV2Params {
   }
 }
 
-export interface SgiGetDataByEffectiveAsOfDateParams {
-  /**
-   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
-   * the data was received and processed from the source. Typically a source provides
-   * solar data for a date window with each transmission including past, present, and
-   * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  effectiveDate?: string;
-
-  /**
-   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
-   * of the index value. This could be a past, current, or future predicted value.
-   * Note: sgiDate defines the start time of the time window for this data record.
-   * (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  sgiDate?: string;
-}
-
-export interface SgiTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
-   * the data was received and processed from the source. Typically a source provides
-   * solar data for a date window with each transmission including past, present, and
-   * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  effectiveDate?: string;
-
-  /**
-   * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
-   * of the index value. This could be a past, current, or future predicted value.
-   * Note: sgiDate defines the start time of the time window for this data record.
-   * (YYYY-MM-DDTHH:MM:SS.sssZ)
-   */
-  sgiDate?: string;
-}
-
 Sgi.History = History;
 
 export declare namespace Sgi {
@@ -2135,9 +2138,9 @@ export declare namespace Sgi {
     type SgiListParams as SgiListParams,
     type SgiCountParams as SgiCountParams,
     type SgiCreateBulkParams as SgiCreateBulkParams,
-    type SgiCreateBulkV2Params as SgiCreateBulkV2Params,
     type SgiGetDataByEffectiveAsOfDateParams as SgiGetDataByEffectiveAsOfDateParams,
     type SgiTupleParams as SgiTupleParams,
+    type SgiUnvalidatedPublishParams as SgiUnvalidatedPublishParams,
   };
 
   export {

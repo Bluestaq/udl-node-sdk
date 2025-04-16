@@ -135,44 +135,6 @@ describe('resource effectRequests', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.effectRequests.createBulkV2([
-      { classificationMarking: 'U', dataMode: 'TEST', effectList: ['COVER', 'DECEIVE'], source: 'Bluestaq' },
-    ]);
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.effectRequests.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        effectList: ['COVER', 'DECEIVE'],
-        source: 'Bluestaq',
-        id: 'EFFECTREQUEST-ID',
-        context: 'Example Notes',
-        deadlineType: 'NoLaterThan',
-        endTime: '2018-01-01T16:00:00.123456Z',
-        externalRequestId: 'EXTERNALREQUEST-ID',
-        metricTypes: ['COST', 'RISK'],
-        metricWeights: [0.5, 0.6],
-        modelClass: 'Preference model',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        priority: 'LOW',
-        startTime: '2018-01-01T16:00:00.123456Z',
-        state: 'CREATED',
-        targetSrcId: 'TARGETSRC-ID',
-        targetSrcType: 'POI',
-      },
-    ]);
-  });
-
   test('queryHelp', async () => {
     const responsePromise = client.effectRequests.queryHelp();
     const rawResponse = await responsePromise.asResponse();
@@ -204,5 +166,43 @@ describe('resource effectRequests', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.effectRequests.tuple({ columns: 'columns', createdAt: '2019-12-27' });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.effectRequests.unvalidatedPublish([
+      { classificationMarking: 'U', dataMode: 'TEST', effectList: ['COVER', 'DECEIVE'], source: 'Bluestaq' },
+    ]);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.effectRequests.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        effectList: ['COVER', 'DECEIVE'],
+        source: 'Bluestaq',
+        id: 'EFFECTREQUEST-ID',
+        context: 'Example Notes',
+        deadlineType: 'NoLaterThan',
+        endTime: '2018-01-01T16:00:00.123456Z',
+        externalRequestId: 'EXTERNALREQUEST-ID',
+        metricTypes: ['COST', 'RISK'],
+        metricWeights: [0.5, 0.6],
+        modelClass: 'Preference model',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        priority: 'LOW',
+        startTime: '2018-01-01T16:00:00.123456Z',
+        state: 'CREATED',
+        targetSrcId: 'TARGETSRC-ID',
+        targetSrcType: 'POI',
+      },
+    ]);
   });
 });

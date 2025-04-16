@@ -228,8 +228,65 @@ describe('resource sarobservation', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.sarobservation.createBulkV2([
+  test('get', async () => {
+    const responsePromise = client.sarobservation.get('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.sarobservation.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('queryhelp', async () => {
+    const responsePromise = client.sarobservation.queryhelp();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('queryhelp: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.sarobservation.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Unifieddatalibrary.NotFoundError,
+    );
+  });
+
+  test('tuple: only required params', async () => {
+    const responsePromise = client.sarobservation.tuple({
+      collectionStart: '2019-12-27T18:11:19.117Z',
+      columns: 'columns',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('tuple: required and optional params', async () => {
+    const response = await client.sarobservation.tuple({
+      collectionStart: '2019-12-27T18:11:19.117Z',
+      columns: 'columns',
+    });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.sarobservation.unvalidatedPublish([
       {
         classificationMarking: 'U',
         collectionEnd: '2023-04-22T17:38:10.201770Z',
@@ -248,8 +305,8 @@ describe('resource sarobservation', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.sarobservation.createBulkV2([
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.sarobservation.unvalidatedPublish([
       {
         classificationMarking: 'U',
         collectionEnd: '2023-04-22T17:38:10.201770Z',
@@ -322,62 +379,5 @@ describe('resource sarobservation', () => {
         txPolarization: 'H',
       },
     ]);
-  });
-
-  test('get', async () => {
-    const responsePromise = client.sarobservation.get('id');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sarobservation.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
-  test('queryhelp', async () => {
-    const responsePromise = client.sarobservation.queryhelp();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sarobservation.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
-  test('tuple: only required params', async () => {
-    const responsePromise = client.sarobservation.tuple({
-      collectionStart: '2019-12-27T18:11:19.117Z',
-      columns: 'columns',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('tuple: required and optional params', async () => {
-    const response = await client.sarobservation.tuple({
-      collectionStart: '2019-12-27T18:11:19.117Z',
-      columns: 'columns',
-    });
   });
 });

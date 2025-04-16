@@ -16,6 +16,6 @@ export {
   type OrbittrackListParams,
   type OrbittrackCountParams,
   type OrbittrackCreateBulkParams,
-  type OrbittrackCreateBulkV2Params,
   type OrbittrackTupleParams,
+  type OrbittrackUnvalidatedPublishParams,
 } from './orbittrack';

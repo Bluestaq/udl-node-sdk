@@ -14,13 +14,13 @@ import {
   CalibrationCountParams,
   CalibrationCountResponse,
   CalibrationCreateBulkParams,
-  CalibrationCreateBulkV2Params,
   CalibrationCreateParams,
   CalibrationQueryParams,
   CalibrationQueryResponse,
   CalibrationRetrieveResponse,
   CalibrationTupleParams,
   CalibrationTupleResponse,
+  CalibrationUnvalidatedPublishParams,
 } from './calibration/calibration';
 
 export class Sensor extends APIResource {
@@ -9615,8 +9615,8 @@ export declare namespace Sensor {
     type CalibrationCreateParams as CalibrationCreateParams,
     type CalibrationCountParams as CalibrationCountParams,
     type CalibrationCreateBulkParams as CalibrationCreateBulkParams,
-    type CalibrationCreateBulkV2Params as CalibrationCreateBulkV2Params,
     type CalibrationQueryParams as CalibrationQueryParams,
     type CalibrationTupleParams as CalibrationTupleParams,
+    type CalibrationUnvalidatedPublishParams as CalibrationUnvalidatedPublishParams,
   };
 }

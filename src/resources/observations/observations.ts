@@ -20,9 +20,9 @@ import { Eo } from './eo';
 import * as GnssobservationsAPI from './gnssobservations';
 import { Gnssobservations } from './gnssobservations';
 import * as SwirAPI from './swir';
-import { Swir, SwirCreateBulkV2Params } from './swir';
+import { Swir, SwirUnvalidatedPublishParams } from './swir';
 import * as MonoradarAPI from './monoradar/monoradar';
-import { Monoradar, MonoradarCreateBulkV2Params } from './monoradar/monoradar';
+import { Monoradar, MonoradarUnvalidatedPublishParams } from './monoradar/monoradar';
 import * as RadarobservationAPI from './radarobservation/radarobservation';
 import { Radarobservation } from './radarobservation/radarobservation';
 import * as RfobservationAPI from './rfobservation/rfobservation';
@@ -69,9 +69,12 @@ export declare namespace Observations {
 
   export { Gnssobservations as Gnssobservations };
 
-  export { Monoradar as Monoradar, type MonoradarCreateBulkV2Params as MonoradarCreateBulkV2Params };
+  export {
+    Monoradar as Monoradar,
+    type MonoradarUnvalidatedPublishParams as MonoradarUnvalidatedPublishParams,
+  };
 
-  export { Swir as Swir, type SwirCreateBulkV2Params as SwirCreateBulkV2Params };
+  export { Swir as Swir, type SwirUnvalidatedPublishParams as SwirUnvalidatedPublishParams };
 
   export { Radarobservation as Radarobservation };
 

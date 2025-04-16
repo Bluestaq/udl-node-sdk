@@ -3,7 +3,7 @@
 export {
   Diffofarrival,
   type DiffofarrivalTupleResponse,
-  type DiffofarrivalCreateBulkV2Params,
   type DiffofarrivalTupleParams,
+  type DiffofarrivalUnvalidatedPublishParams,
 } from './diffofarrival';
 export { History, type HistoryCountResponse, type HistoryCountParams } from './history';

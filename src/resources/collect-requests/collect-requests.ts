@@ -81,20 +81,6 @@ export class CollectRequests extends APIResource {
   }
 
   /**
-   * Service operation to take a list of CollectRequest as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: CollectRequestCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-collectrequest', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
@@ -120,6 +106,23 @@ export class CollectRequests extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<CollectRequestTupleResponse> {
     return this._client.get('/udl/collectrequest/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take a list of CollectRequest as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: CollectRequestUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-collectrequest', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -4718,9 +4721,25 @@ export namespace CollectRequestCreateBulkParams {
   }
 }
 
-export type CollectRequestCreateBulkV2Params = Array<CollectRequestCreateBulkV2Params.Body>;
+export interface CollectRequestTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
 
-export namespace CollectRequestCreateBulkV2Params {
+  /**
+   * The start time or earliest time of the collect or contact request window, in ISO
+   * 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  startTime: string;
+}
+
+export type CollectRequestUnvalidatedPublishParams = Array<CollectRequestUnvalidatedPublishParams.Body>;
+
+export namespace CollectRequestUnvalidatedPublishParams {
   /**
    * Collect Requests support several types of individual requests, or
    * planned/scheduled tasks on sensors and/or orbital objects. Options are provided
@@ -6240,22 +6259,6 @@ export namespace CollectRequestCreateBulkV2Params {
   }
 }
 
-export interface CollectRequestTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-
-  /**
-   * The start time or earliest time of the collect or contact request window, in ISO
-   * 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  startTime: string;
-}
-
 CollectRequests.History = History;
 
 export declare namespace CollectRequests {
@@ -6268,8 +6271,8 @@ export declare namespace CollectRequests {
     type CollectRequestListParams as CollectRequestListParams,
     type CollectRequestCountParams as CollectRequestCountParams,
     type CollectRequestCreateBulkParams as CollectRequestCreateBulkParams,
-    type CollectRequestCreateBulkV2Params as CollectRequestCreateBulkV2Params,
     type CollectRequestTupleParams as CollectRequestTupleParams,
+    type CollectRequestUnvalidatedPublishParams as CollectRequestUnvalidatedPublishParams,
   };
 
   export {

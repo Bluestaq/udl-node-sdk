@@ -84,50 +84,6 @@ describe('resource onboardnavigation', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.onboardnavigation.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        source: 'Bluestaq',
-        startTime: '2021-07-20T01:02:03.123456Z',
-      },
-    ]);
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.onboardnavigation.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        source: 'Bluestaq',
-        startTime: '2021-07-20T01:02:03.123456Z',
-        id: 'ONBOARD-NAVIGATION-ID',
-        deltaPos: [[1.1, 2.2, 3.3]],
-        endTime: '2021-07-20T01:02:03.123456Z',
-        esId: 'EPHEMERISSET-ID',
-        idStateVector: 'STATE-VECTOR-ID',
-        mag: [[1.1, 2.2, 3.3]],
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origObjectId: 'ORIGOBJECT-ID',
-        referenceFrame: 'J2000',
-        satNo: 101,
-        starCatLoadTime: '2021-07-21T01:02:03.123Z',
-        starCatName: 'STAR-CAT-NAME',
-        starTracker: [[1.1, 2.2, 3.3]],
-        sunSensor: [[1.1, 2.2, 3.3]],
-        ts: ['2021-07-21T01:02:03.120003Z'],
-      },
-    ]);
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.onboardnavigation.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -165,5 +121,49 @@ describe('resource onboardnavigation', () => {
       columns: 'columns',
       startTime: '2019-12-27T18:11:19.117Z',
     });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.onboardnavigation.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        source: 'Bluestaq',
+        startTime: '2021-07-20T01:02:03.123456Z',
+      },
+    ]);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.onboardnavigation.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        source: 'Bluestaq',
+        startTime: '2021-07-20T01:02:03.123456Z',
+        id: 'ONBOARD-NAVIGATION-ID',
+        deltaPos: [[1.1, 2.2, 3.3]],
+        endTime: '2021-07-20T01:02:03.123456Z',
+        esId: 'EPHEMERISSET-ID',
+        idStateVector: 'STATE-VECTOR-ID',
+        mag: [[1.1, 2.2, 3.3]],
+        origin: 'THIRD_PARTY_DATASOURCE',
+        origObjectId: 'ORIGOBJECT-ID',
+        referenceFrame: 'J2000',
+        satNo: 101,
+        starCatLoadTime: '2021-07-21T01:02:03.123Z',
+        starCatName: 'STAR-CAT-NAME',
+        starTracker: [[1.1, 2.2, 3.3]],
+        sunSensor: [[1.1, 2.2, 3.3]],
+        ts: ['2021-07-21T01:02:03.120003Z'],
+      },
+    ]);
   });
 });

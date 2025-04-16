@@ -221,61 +221,6 @@ describe('resource routestats', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.routestats.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        locationEnd: 'KCOS',
-        locationStart: 'KDEN',
-        source: 'Bluestaq',
-      },
-    ]);
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.routestats.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        locationEnd: 'KCOS',
-        locationStart: 'KDEN',
-        source: 'Bluestaq',
-        id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
-        avgDuration: 47.1,
-        avgSpeed: 450.1,
-        dataPtsUsed: 6,
-        distance: 63.1,
-        distUnit: 'Nautical miles',
-        firstPt: '2024-01-01T16:00:00.123Z',
-        idealDesc: 'Block speed using great circle path',
-        idealDuration: 45.1,
-        idSiteEnd: '77b5550c-c0f4-47bd-94ce-d71cdaa52f62',
-        idSiteStart: '23370387-5e8e-4a74-89db-ad81145aa4df',
-        lastPt: '2024-03-31T16:00:00.123Z',
-        locationType: 'ICAO',
-        maxDuration: 52.1,
-        maxSpeed: 470.1,
-        minDuration: 42.1,
-        minSpeed: 420.1,
-        origin: 'THIRD_PARTY_DATASOURCE',
-        partialDesc: 'Performance speed using great circle path',
-        partialDuration: 38.1,
-        speedUnit: 'knots',
-        timePeriod: 'Q1',
-        vehicleCategory: 'AIRCRAFT',
-        vehicleType: 'C-17',
-      },
-    ]);
-  });
-
   test('query', async () => {
     const responsePromise = client.routestats.query();
     const rawResponse = await responsePromise.asResponse();
@@ -325,5 +270,60 @@ describe('resource routestats', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.routestats.tuple({ columns: 'columns' });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.routestats.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        locationEnd: 'KCOS',
+        locationStart: 'KDEN',
+        source: 'Bluestaq',
+      },
+    ]);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.routestats.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        locationEnd: 'KCOS',
+        locationStart: 'KDEN',
+        source: 'Bluestaq',
+        id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+        avgDuration: 47.1,
+        avgSpeed: 450.1,
+        dataPtsUsed: 6,
+        distance: 63.1,
+        distUnit: 'Nautical miles',
+        firstPt: '2024-01-01T16:00:00.123Z',
+        idealDesc: 'Block speed using great circle path',
+        idealDuration: 45.1,
+        idSiteEnd: '77b5550c-c0f4-47bd-94ce-d71cdaa52f62',
+        idSiteStart: '23370387-5e8e-4a74-89db-ad81145aa4df',
+        lastPt: '2024-03-31T16:00:00.123Z',
+        locationType: 'ICAO',
+        maxDuration: 52.1,
+        maxSpeed: 470.1,
+        minDuration: 42.1,
+        minSpeed: 420.1,
+        origin: 'THIRD_PARTY_DATASOURCE',
+        partialDesc: 'Performance speed using great circle path',
+        partialDuration: 38.1,
+        speedUnit: 'knots',
+        timePeriod: 'Q1',
+        vehicleCategory: 'AIRCRAFT',
+        vehicleType: 'C-17',
+      },
+    ]);
   });
 });

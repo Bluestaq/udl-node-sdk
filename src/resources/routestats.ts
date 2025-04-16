@@ -79,20 +79,6 @@ export class Routestats extends APIResource {
   }
 
   /**
-   * Service operation to take multiple routestats records as a POST body and ingest
-   * into the database. This operation is intended to be used for automated feeds
-   * into UDL. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
-   */
-  createBulkV2(body: RoutestatCreateBulkV2Params, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/filedrop/udl-routestats', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Service operation to dynamically query data by a variety of query parameters not
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
@@ -125,6 +111,23 @@ export class Routestats extends APIResource {
    */
   tuple(query: RoutestatTupleParams, options?: Core.RequestOptions): Core.APIPromise<RoutestatTupleResponse> {
     return this._client.get('/udl/routestats/tuple', { query, ...options });
+  }
+
+  /**
+   * Service operation to take multiple routestats records as a POST body and ingest
+   * into the database. This operation is intended to be used for automated feeds
+   * into UDL. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
+   */
+  unvalidatedPublish(
+    body: RoutestatUnvalidatedPublishParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/filedrop/udl-routestats', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -1332,9 +1335,19 @@ export namespace RoutestatCreateBulkParams {
   }
 }
 
-export type RoutestatCreateBulkV2Params = Array<RoutestatCreateBulkV2Params.Body>;
+export interface RoutestatTupleParams {
+  /**
+   * Comma-separated list of valid field names for this data type to be returned in
+   * the response. Only the fields specified will be returned as well as the
+   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
+   * for a complete list of possible fields.
+   */
+  columns: string;
+}
 
-export namespace RoutestatCreateBulkV2Params {
+export type RoutestatUnvalidatedPublishParams = Array<RoutestatUnvalidatedPublishParams.Body>;
+
+export namespace RoutestatUnvalidatedPublishParams {
   /**
    * General statistics applying to navigation routes utilized by vessels, aircraft,
    * ground vehicles, etc.
@@ -1520,16 +1533,6 @@ export namespace RoutestatCreateBulkV2Params {
   }
 }
 
-export interface RoutestatTupleParams {
-  /**
-   * Comma-separated list of valid field names for this data type to be returned in
-   * the response. Only the fields specified will be returned as well as the
-   * classification marking of the data, if applicable. See the ‘queryhelp’ operation
-   * for a complete list of possible fields.
-   */
-  columns: string;
-}
-
 export declare namespace Routestats {
   export {
     type RoutestatRetrieveResponse as RoutestatRetrieveResponse,
@@ -1539,7 +1542,7 @@ export declare namespace Routestats {
     type RoutestatCreateParams as RoutestatCreateParams,
     type RoutestatUpdateParams as RoutestatUpdateParams,
     type RoutestatCreateBulkParams as RoutestatCreateBulkParams,
-    type RoutestatCreateBulkV2Params as RoutestatCreateBulkV2Params,
     type RoutestatTupleParams as RoutestatTupleParams,
+    type RoutestatUnvalidatedPublishParams as RoutestatUnvalidatedPublishParams,
   };
 }

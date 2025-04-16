@@ -192,62 +192,6 @@ describe('resource eventEvolution', () => {
     ]);
   });
 
-  test('createBulkV2: only required params', async () => {
-    const responsePromise = client.eventEvolution.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        eventId: 'EVENT_ID',
-        source: 'Bluestaq',
-        startTime: '2021-12-02T16:00:00.123Z',
-        summary: 'Example summary of the event.',
-      },
-    ]);
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createBulkV2: required and optional params', async () => {
-    const response = await client.eventEvolution.createBulkV2([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        eventId: 'EVENT_ID',
-        source: 'Bluestaq',
-        startTime: '2021-12-02T16:00:00.123Z',
-        summary: 'Example summary of the event.',
-        id: 'EVENT_EVOL_ID',
-        agjson:
-          '{"type":"Polygon","coordinates":[ [ [ 67.3291113966927, 26.156175339112 ], [ 67.2580009640721, 26.091022064271 ], [ 67.1795862381682, 26.6637992964562 ], [ 67.2501237475598, 26.730115808233 ], [ 67.3291113966927, 26.156175339112 ] ] ] }',
-        andims: 2,
-        area: 'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
-        asrid: 4326,
-        atext:
-          'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
-        atype: 'POLYGON',
-        category: 'PROTEST',
-        countryCode: 'US',
-        dataDescription: 'Description of relationship between srcTyps and srcIds',
-        endTime: '2021-12-03T16:00:00.123Z',
-        geoAdminLevel1: 'Colorado',
-        geoAdminLevel2: 'El Paso County',
-        geoAdminLevel3: 'Colorado Springs',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        redact: false,
-        srcIds: ['SRC_ID_1', 'SRC_ID_2'],
-        srcTyps: ['AIS', 'CONJUNCTION'],
-        status: 'UNKNOWN',
-        tags: ['TAG1', 'TAG2'],
-        url: ['URL1', 'URL2'],
-      },
-    ]);
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.eventEvolution.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -283,5 +227,61 @@ describe('resource eventEvolution', () => {
       eventId: 'eventId',
       startTime: '2019-12-27T18:11:19.117Z',
     });
+  });
+
+  test('unvalidatedPublish: only required params', async () => {
+    const responsePromise = client.eventEvolution.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        eventId: 'EVENT_ID',
+        source: 'Bluestaq',
+        startTime: '2021-12-02T16:00:00.123Z',
+        summary: 'Example summary of the event.',
+      },
+    ]);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('unvalidatedPublish: required and optional params', async () => {
+    const response = await client.eventEvolution.unvalidatedPublish([
+      {
+        classificationMarking: 'U',
+        dataMode: 'TEST',
+        eventId: 'EVENT_ID',
+        source: 'Bluestaq',
+        startTime: '2021-12-02T16:00:00.123Z',
+        summary: 'Example summary of the event.',
+        id: 'EVENT_EVOL_ID',
+        agjson:
+          '{"type":"Polygon","coordinates":[ [ [ 67.3291113966927, 26.156175339112 ], [ 67.2580009640721, 26.091022064271 ], [ 67.1795862381682, 26.6637992964562 ], [ 67.2501237475598, 26.730115808233 ], [ 67.3291113966927, 26.156175339112 ] ] ] }',
+        andims: 2,
+        area: 'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
+        asrid: 4326,
+        atext:
+          'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
+        atype: 'POLYGON',
+        category: 'PROTEST',
+        countryCode: 'US',
+        dataDescription: 'Description of relationship between srcTyps and srcIds',
+        endTime: '2021-12-03T16:00:00.123Z',
+        geoAdminLevel1: 'Colorado',
+        geoAdminLevel2: 'El Paso County',
+        geoAdminLevel3: 'Colorado Springs',
+        origin: 'THIRD_PARTY_DATASOURCE',
+        redact: false,
+        srcIds: ['SRC_ID_1', 'SRC_ID_2'],
+        srcTyps: ['AIS', 'CONJUNCTION'],
+        status: 'UNKNOWN',
+        tags: ['TAG1', 'TAG2'],
+        url: ['URL1', 'URL2'],
+      },
+    ]);
   });
 });

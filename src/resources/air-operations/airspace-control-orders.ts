@@ -10,8 +10,8 @@ export class AirspaceControlOrders extends APIResource {
    * automated feeds into UDL. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  createBulkV2(
-    body: AirspaceControlOrderCreateBulkV2Params,
+  unvalidatedPublish(
+    body: AirspaceControlOrderUnvalidatedPublishParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
     return this._client.post('/filedrop/udl-airspacecontrolorder', {
@@ -22,9 +22,10 @@ export class AirspaceControlOrders extends APIResource {
   }
 }
 
-export type AirspaceControlOrderCreateBulkV2Params = Array<AirspaceControlOrderCreateBulkV2Params.Body>;
+export type AirspaceControlOrderUnvalidatedPublishParams =
+  Array<AirspaceControlOrderUnvalidatedPublishParams.Body>;
 
-export namespace AirspaceControlOrderCreateBulkV2Params {
+export namespace AirspaceControlOrderUnvalidatedPublishParams {
   /**
    * Beta Version Airspace Control Order: Contains airspace coordination information
    * and instructions that have been issued by an airspace control authority.
@@ -544,5 +545,5 @@ export namespace AirspaceControlOrderCreateBulkV2Params {
 }
 
 export declare namespace AirspaceControlOrders {
-  export { type AirspaceControlOrderCreateBulkV2Params as AirspaceControlOrderCreateBulkV2Params };
+  export { type AirspaceControlOrderUnvalidatedPublishParams as AirspaceControlOrderUnvalidatedPublishParams };
 }
