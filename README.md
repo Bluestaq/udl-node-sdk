@@ -31,9 +31,7 @@ const client = new Unifieddatalibrary({
 });
 
 async function main() {
-  const conjunctionFull = await client.conjunctions.retrieve('id');
-
-  console.log(conjunctionFull.id);
+  const elsetAbridgeds = await client.elsets.current.list();
 }
 
 main();
@@ -53,7 +51,7 @@ const client = new Unifieddatalibrary({
 });
 
 async function main() {
-  const conjunctionFull: Unifieddatalibrary.ConjunctionFull = await client.conjunctions.retrieve('id');
+  const elsetAbridgeds: Unifieddatalibrary.Elsets.CurrentListResponse = await client.elsets.current.list();
 }
 
 main();
@@ -100,7 +98,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const conjunctionFull = await client.conjunctions.retrieve('id').catch(async (err) => {
+  const elsetAbridgeds = await client.elsets.current.list().catch(async (err) => {
     if (err instanceof Unifieddatalibrary.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -143,7 +141,7 @@ const client = new Unifieddatalibrary({
 });
 
 // Or, configure per-request:
-await client.conjunctions.retrieve('id', {
+await client.elsets.current.list({
   maxRetries: 5,
 });
 ```
@@ -160,7 +158,7 @@ const client = new Unifieddatalibrary({
 });
 
 // Override per-request:
-await client.conjunctions.retrieve('id', {
+await client.elsets.current.list({
   timeout: 5 * 1000,
 });
 ```
@@ -181,13 +179,13 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const client = new Unifieddatalibrary();
 
-const response = await client.conjunctions.retrieve('id').asResponse();
+const response = await client.elsets.current.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: conjunctionFull, response: raw } = await client.conjunctions.retrieve('id').withResponse();
+const { data: elsetAbridgeds, response: raw } = await client.elsets.current.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(conjunctionFull.id);
+console.log(elsetAbridgeds);
 ```
 
 ### Making custom/undocumented requests
@@ -291,7 +289,7 @@ const client = new Unifieddatalibrary({
 });
 
 // Override per-request:
-await client.conjunctions.retrieve('id', {
+await client.elsets.current.list({
   httpAgent: new http.Agent({ keepAlive: false }),
 });
 ```
