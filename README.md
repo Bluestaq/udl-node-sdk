@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Unifieddatalibrary REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found on [docs.unifieddatalibrary.com](https://docs.unifieddatalibrary.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [unifieddatalibrary.com](https://unifieddatalibrary.com/storefront/#/api-docs). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainless.com/).
 
