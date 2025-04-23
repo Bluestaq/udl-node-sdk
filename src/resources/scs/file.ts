@@ -2,9 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
-import { FileDataOffsetPage } from '../shared';
 import { APIPromise } from '../../core/api-promise';
-import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -34,10 +32,12 @@ export class File extends APIResource {
    * subdirectories in the passed-in path directory that are visible to the calling
    * user.
    */
-  list(query: FileListParams, options?: RequestOptions): PagePromise<FileDataOffsetPage, Shared.FileData> {
-    return this._client.getAPIList('/scs/list', OffsetPage<Shared.FileData>, { query, ...options });
+  list(query: FileListParams, options?: RequestOptions): APIPromise<FileListResponse> {
+    return this._client.get('/scs/list', { query, ...options });
   }
 }
+
+export type FileListResponse = Array<Shared.FileData>;
 
 export interface FileRetrieveParams {
   /**
@@ -50,19 +50,28 @@ export interface FileUpdateParams {
   fileDataList?: Array<Shared.FileData>;
 }
 
-export interface FileListParams extends OffsetPageParams {
+export interface FileListParams {
   /**
    * The base path to list
    */
   path: string;
+
+  /**
+   * Number of items per page
+   */
+  count?: number;
+
+  /**
+   * First result to return
+   */
+  offset?: number;
 }
 
 export declare namespace File {
   export {
+    type FileListResponse as FileListResponse,
     type FileRetrieveParams as FileRetrieveParams,
     type FileUpdateParams as FileUpdateParams,
     type FileListParams as FileListParams,
   };
 }
-
-export { type FileDataOffsetPage };

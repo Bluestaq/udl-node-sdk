@@ -1,7 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export { ClassificationMarkings, type ClassificationMarkingListResponse } from './classification-markings';
-export { File, type FileRetrieveParams, type FileUpdateParams, type FileListParams } from './file';
+export {
+  File,
+  type FileListResponse,
+  type FileRetrieveParams,
+  type FileUpdateParams,
+  type FileListParams,
+} from './file';
 export { FileMetadata, type FileMetadataListResponse } from './file-metadata';
 export {
   Folders,
