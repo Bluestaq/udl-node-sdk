@@ -5,7 +5,7 @@ import * as Shared from '../shared';
 import * as ClassificationMarkingsAPI from './classification-markings';
 import { ClassificationMarkingListResponse, ClassificationMarkings } from './classification-markings';
 import * as FileAPI from './file';
-import { File, FileListParams, FileRetrieveParams, FileUpdateParams } from './file';
+import { File, FileListParams, FileListResponse, FileRetrieveParams, FileUpdateParams } from './file';
 import * as FileMetadataAPI from './file-metadata';
 import { FileMetadata, FileMetadataListResponse } from './file-metadata';
 import * as FoldersAPI from './folders';
@@ -410,6 +410,7 @@ export declare namespace Scs {
 
   export {
     File as File,
+    type FileListResponse as FileListResponse,
     type FileRetrieveParams as FileRetrieveParams,
     type FileUpdateParams as FileUpdateParams,
     type FileListParams as FileListParams,

@@ -4697,11 +4697,15 @@ Methods:
 
 ## File
 
+Types:
+
+- <code><a href="./src/resources/scs/file.ts">FileListResponse</a></code>
+
 Methods:
 
 - <code title="get /scs/file">client.scs.file.<a href="./src/resources/scs/file.ts">retrieve</a>({ ...params }) -> FileData</code>
 - <code title="patch /scs/file">client.scs.file.<a href="./src/resources/scs/file.ts">update</a>({ ...params }) -> void</code>
-- <code title="get /scs/list">client.scs.file.<a href="./src/resources/scs/file.ts">list</a>({ ...params }) -> FileDataOffsetPage</code>
+- <code title="get /scs/list">client.scs.file.<a href="./src/resources/scs/file.ts">list</a>({ ...params }) -> FileListResponse</code>
 
 # ScsViews
 
