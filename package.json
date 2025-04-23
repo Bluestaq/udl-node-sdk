@@ -1,5 +1,5 @@
 {
-  "name": "unifieddatalibrary",
+  "name": "unified-data-library",
   "version": "0.0.1-alpha.0",
   "description": "The official TypeScript library for the Unifieddatalibrary API",
   "author": "Unifieddatalibrary <unifieddatalibrary@bluestaq.com>",
@@ -54,8 +54,8 @@
     "./internal/shims/getBuiltinModule.js": "./internal/shims/nullGetBuiltinModule.js"
   },
   "imports": {
-    "unifieddatalibrary": ".",
-    "unifieddatalibrary/*": "./src/*"
+    "unified-data-library": ".",
+    "unified-data-library/*": "./src/*"
   },
   "exports": {
     ".": {

@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^unifieddatalibrary(/.*)?',
+              regex: '^unified-data-library(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],

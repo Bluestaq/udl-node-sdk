@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIPromise } from 'unifieddatalibrary/core/api-promise';
+import { APIPromise } from 'unified-data-library/core/api-promise';
 
 import util from 'node:util';
-import Unifieddatalibrary from 'unifieddatalibrary';
-import { APIUserAbortError } from 'unifieddatalibrary';
+import Unifieddatalibrary from 'unified-data-library';
+import { APIUserAbortError } from 'unified-data-library';
 const defaultFetch = fetch;
 
 describe('instantiate client', () => {

@@ -13,7 +13,7 @@ export class DriftHistory extends APIResource {
    * a path parameter. DriftHistory represents historical drift rates for GEO Onorbit
    * objects resulting from updates to OnorbitDetails driftRate values.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.DriftHistory> {
+  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.DriftHistoryFull> {
     return this._client.get(path`/udl/drifthistory/${id}`, options);
   }
 
@@ -67,11 +67,11 @@ export class DriftHistory extends APIResource {
   }
 }
 
-export type DriftHistoryListResponse = Array<Shared.DrifthistoryAbridged>;
+export type DriftHistoryListResponse = Array<Shared.DriftHistoryAbridged>;
 
 export type DriftHistoryCountResponse = string;
 
-export type DriftHistoryTupleResponse = Array<Shared.DriftHistory>;
+export type DriftHistoryTupleResponse = Array<Shared.DriftHistoryFull>;
 
 export interface DriftHistoryTupleParams {
   /**

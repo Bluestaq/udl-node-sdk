@@ -3300,7 +3300,7 @@ export interface CollectResponseFull {
  * Historical drift rates for GEO Onorbit objects resulting from updates to
  * OnorbitDetails driftRate values.
  */
-export interface DriftHistory {
+export interface DriftHistoryAbridged {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -3369,7 +3369,7 @@ export interface DriftHistory {
  * Historical drift rates for GEO Onorbit objects resulting from updates to
  * OnorbitDetails driftRate values.
  */
-export interface DrifthistoryAbridged {
+export interface DriftHistoryFull {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */

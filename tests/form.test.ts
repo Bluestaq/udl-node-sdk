@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from 'unifieddatalibrary/internal/uploads';
-import { toFile } from 'unifieddatalibrary/core/uploads';
+import { multipartFormRequestOptions, createForm } from 'unified-data-library/internal/uploads';
+import { toFile } from 'unified-data-library/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

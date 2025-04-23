@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Unifieddatalibrary, { toFile } from 'unifieddatalibrary';
+import Unifieddatalibrary, { toFile } from 'unified-data-library';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
