@@ -4748,5 +4748,5 @@ export declare namespace Unifieddatalibrary {
   export type EventEvolutionFull = API.EventEvolutionFull;
   export type FileData = API.FileData;
   export type FlightPlanFull = API.FlightPlanFull;
-  export type Onorbit = API.Onorbit;
+  export type OnorbitFull = API.OnorbitFull;
 }

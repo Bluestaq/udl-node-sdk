@@ -16,7 +16,7 @@ Types:
 - <code><a href="./src/resources/shared.ts">EventEvolutionFull</a></code>
 - <code><a href="./src/resources/shared.ts">FileData</a></code>
 - <code><a href="./src/resources/shared.ts">FlightPlanFull</a></code>
-- <code><a href="./src/resources/shared.ts">Onorbit</a></code>
+- <code><a href="./src/resources/shared.ts">OnorbitFull</a></code>
 
 # AirEvents
 
@@ -2441,7 +2441,7 @@ Methods:
 - <code title="get /udl/onorbit">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">list</a>() -> OnorbitListResponse</code>
 - <code title="delete /udl/onorbit/{id}">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/onorbit/count">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">count</a>() -> string</code>
-- <code title="get /udl/onorbit/{id}">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">get</a>(id) -> Onorbit</code>
+- <code title="get /udl/onorbit/{id}">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">get</a>(id) -> OnorbitFull</code>
 - <code title="get /udl/onorbit/getSignature">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">getSignature</a>({ ...params }) -> OnorbitGetSignatureResponse</code>
 - <code title="get /udl/onorbit/queryhelp">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/onorbit/tuple">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">tuple</a>({ ...params }) -> OnorbitTupleResponse</code>

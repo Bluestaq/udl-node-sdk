@@ -148,7 +148,7 @@ export namespace HistoryListResponse {
     /**
      * Model object representing on-orbit objects or satellites in the system.
      */
-    onOrbit?: Shared.Onorbit;
+    onOrbit?: Shared.OnorbitFull;
 
     /**
      * Originating system or organization which produced the data, if different from

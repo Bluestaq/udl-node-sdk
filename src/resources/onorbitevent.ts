@@ -625,7 +625,7 @@ export interface OnorbiteventGetResponse {
   /**
    * Model object representing on-orbit objects or satellites in the system.
    */
-  onOrbit?: Shared.Onorbit;
+  onOrbit?: Shared.OnorbitFull;
 
   /**
    * Unique identifier of the organization on whose behalf the on-orbit spacecraft is
@@ -942,7 +942,7 @@ export namespace OnorbiteventTupleResponse {
     /**
      * Model object representing on-orbit objects or satellites in the system.
      */
-    onOrbit?: Shared.Onorbit;
+    onOrbit?: Shared.OnorbitFull;
 
     /**
      * Unique identifier of the organization on whose behalf the on-orbit spacecraft is

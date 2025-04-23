@@ -2185,12 +2185,12 @@ export interface ConjunctionFull {
   /**
    * Model object representing on-orbit objects or satellites in the system.
    */
-  onOrbit1?: Shared.Onorbit;
+  onOrbit1?: Shared.OnorbitFull;
 
   /**
    * Model object representing on-orbit objects or satellites in the system.
    */
-  onOrbit2?: Shared.Onorbit;
+  onOrbit2?: Shared.OnorbitFull;
 
   /**
    * Optional place holder for an OnOrbit ID that does not exist in UDL.

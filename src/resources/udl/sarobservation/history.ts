@@ -229,7 +229,7 @@ export interface SarobservationFull {
   /**
    * Model object representing on-orbit objects or satellites in the system.
    */
-  onOrbit?: Shared.Onorbit;
+  onOrbit?: Shared.OnorbitFull;
 
   /**
    * Name of the band containing operating frequency for the collection (e.g. C, E,
