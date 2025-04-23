@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -49,13 +48,6 @@ describe('resource beam', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.beam.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('update: only required params', async () => {
     const responsePromise = client.beam.update('id', {
       beamName: 'BEAMNAME-ID',
@@ -95,13 +87,6 @@ describe('resource beam', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.beam.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('delete', async () => {
     const responsePromise = client.beam.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -111,13 +96,6 @@ describe('resource beam', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.beam.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('count', async () => {
@@ -131,13 +109,6 @@ describe('resource beam', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('count: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.beam.count({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryHelp', async () => {
     const responsePromise = client.beam.queryHelp();
     const rawResponse = await responsePromise.asResponse();
@@ -147,13 +118,6 @@ describe('resource beam', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryHelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.beam.queryHelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {

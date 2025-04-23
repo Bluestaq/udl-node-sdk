@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as BatterydetailsAPI from './batterydetails';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Batteries extends APIResource {
   /**
@@ -10,11 +13,11 @@ export class Batteries extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: BatteryCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: BatteryCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/battery', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -22,19 +25,19 @@ export class Batteries extends APIResource {
    * Service operation to get a single Battery record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<BatteryFull> {
-    return this._client.get(`/udl/battery/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<BatteryFull> {
+    return this._client.get(path`/udl/battery/${id}`, options);
   }
 
   /**
    * Service operation to update a single Battery. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(pathId: string, body: BatteryUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/battery/${pathId}`, {
+  update(pathID: string, body: BatteryUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/battery/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -44,7 +47,7 @@ export class Batteries extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<BatteryListResponse> {
+  list(options?: RequestOptions): APIPromise<BatteryListResponse> {
     return this._client.get('/udl/battery', options);
   }
 
@@ -53,10 +56,10 @@ export class Batteries extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/battery/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/battery/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -67,10 +70,10 @@ export class Batteries extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/battery/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -78,10 +81,10 @@ export class Batteries extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/battery/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -95,7 +98,7 @@ export class Batteries extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: BatteryTupleParams, options?: Core.RequestOptions): Core.APIPromise<BatteryTupleResponse> {
+  tuple(query: BatteryTupleParams, options?: RequestOptions): APIPromise<BatteryTupleResponse> {
     return this._client.get('/udl/battery/tuple', { query, ...options });
   }
 }

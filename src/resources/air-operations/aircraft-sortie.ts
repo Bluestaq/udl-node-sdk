@@ -1,9 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as CrewAPI from '../crew';
 import * as HistoryAPI from '../sortieppr/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class AircraftSortie extends APIResource {
   /**
@@ -11,11 +13,11 @@ export class AircraftSortie extends APIResource {
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  create(body: AircraftSortieCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: AircraftSortieCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/aircraftsortie', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -25,10 +27,7 @@ export class AircraftSortie extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: AircraftSortieListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AircraftSortieListResponse> {
+  list(query: AircraftSortieListParams, options?: RequestOptions): APIPromise<AircraftSortieListResponse> {
     return this._client.get('/udl/aircraftsortie', { query, ...options });
   }
 
@@ -39,11 +38,11 @@ export class AircraftSortie extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: AircraftSortieCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: AircraftSortieCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/aircraftsortie/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -54,11 +53,12 @@ export class AircraftSortie extends APIResource {
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: AircraftSortieCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: AircraftSortieCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/aircraftsortie/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -69,11 +69,11 @@ export class AircraftSortie extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  historyAodr(query: AircraftSortieHistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  historyAodr(query: AircraftSortieHistoryAodrParams, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/aircraftsortie/history/aodr', {
       query,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -84,14 +84,11 @@ export class AircraftSortie extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  historyCount(
-    query: AircraftSortieHistoryCountParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
+  historyCount(query: AircraftSortieHistoryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/aircraftsortie/history/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -103,8 +100,8 @@ export class AircraftSortie extends APIResource {
    */
   historyQuery(
     query: AircraftSortieHistoryQueryParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AircraftSortieHistoryQueryResponse> {
+    options?: RequestOptions,
+  ): APIPromise<AircraftSortieHistoryQueryResponse> {
     return this._client.get('/udl/aircraftsortie/history', { query, ...options });
   }
 }
@@ -1454,7 +1451,9 @@ export interface AircraftSortieCountParams {
   plannedDepTime: string;
 }
 
-export type AircraftSortieCreateBulkParams = Array<AircraftSortieCreateBulkParams.Body>;
+export interface AircraftSortieCreateBulkParams {
+  body: Array<AircraftSortieCreateBulkParams.Body>;
+}
 
 export namespace AircraftSortieCreateBulkParams {
   /**

@@ -1,7 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
 
 export class Cots extends APIResource {
   /**
@@ -9,11 +11,11 @@ export class Cots extends APIResource {
    * be persisted in the UDL POI schema as well as federated to connected TAK
    * servers.
    */
-  create(body: CotCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: CotCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/cot', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }

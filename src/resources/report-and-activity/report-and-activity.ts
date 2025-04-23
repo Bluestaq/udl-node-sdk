@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
+import { APIResource } from '../../core/resource';
 import * as UdlH3geoAPI from './udl-h3geo';
 import { UdlH3geo, UdlH3geoUnvalidatedPublishParams } from './udl-h3geo';
 import * as UdlSigactAPI from './udl-sigact';

@@ -1,11 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as DataownerAPI from './dataowner';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class ProviderMetadata extends APIResource {
-  retrieve(options?: Core.RequestOptions): Core.APIPromise<ProviderMetadataRetrieveResponse> {
+  retrieve(options?: RequestOptions): APIPromise<ProviderMetadataRetrieveResponse> {
     return this._client.get('/udl/dataowner/providerMetadata', options);
   }
 }

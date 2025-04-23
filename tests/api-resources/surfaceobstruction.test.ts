@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -93,13 +92,6 @@ describe('resource surfaceobstruction', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.surfaceobstruction.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('delete', async () => {
     const responsePromise = client.surfaceobstruction.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -109,13 +101,6 @@ describe('resource surfaceobstruction', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.surfaceobstruction.delete('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('count', async () => {
@@ -129,13 +114,6 @@ describe('resource surfaceobstruction', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('count: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.surfaceobstruction.count({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('get', async () => {
     const responsePromise = client.surfaceobstruction.get('id');
     const rawResponse = await responsePromise.asResponse();
@@ -147,13 +125,6 @@ describe('resource surfaceobstruction', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.surfaceobstruction.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.surfaceobstruction.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -163,13 +134,6 @@ describe('resource surfaceobstruction', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.surfaceobstruction.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {
@@ -188,14 +152,16 @@ describe('resource surfaceobstruction', () => {
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.surfaceobstruction.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idSurface: 'be831d39-1822-da9f-7ace-6cc5643397dc',
-        source: 'Bluestaq',
-      },
-    ]);
+    const responsePromise = client.surfaceobstruction.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idSurface: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -206,24 +172,26 @@ describe('resource surfaceobstruction', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.surfaceobstruction.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idSurface: 'be831d39-1822-da9f-7ace-6cc5643397dc',
-        source: 'Bluestaq',
-        id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
-        advisoryRequired: ['C20', 'C17'],
-        approvalRequired: ['C20', 'C17'],
-        distanceFromCenterLine: 17.8,
-        distanceFromEdge: 15.8,
-        distanceFromThreshold: 19.5,
-        idNavigationalObstruction: 'a2831d39-1822-da9f-7ace-6cc5643397da',
-        obstructionDesc: 'PYLON',
-        obstructionHeight: 35.25,
-        obstructionSideCode: 'F',
-        origin: 'THIRD_PARTY_DATASOURCE',
-      },
-    ]);
+    const response = await client.surfaceobstruction.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idSurface: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+          source: 'Bluestaq',
+          id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+          advisoryRequired: ['C20', 'C17'],
+          approvalRequired: ['C20', 'C17'],
+          distanceFromCenterLine: 17.8,
+          distanceFromEdge: 15.8,
+          distanceFromThreshold: 19.5,
+          idNavigationalObstruction: 'a2831d39-1822-da9f-7ace-6cc5643397da',
+          obstructionDesc: 'PYLON',
+          obstructionHeight: 35.25,
+          obstructionSideCode: 'F',
+          origin: 'THIRD_PARTY_DATASOURCE',
+        },
+      ],
+    });
   });
 });

@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as OrganizationAPI from './organization';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Batterydetails extends APIResource {
   /**
@@ -11,11 +14,11 @@ export class Batterydetails extends APIResource {
    * sources. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: BatterydetailCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: BatterydetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/batterydetails', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -24,8 +27,8 @@ export class Batterydetails extends APIResource {
    * as a path parameter. A Battery record may have multiple details records from
    * several sources.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<BatterydetailsFull> {
-    return this._client.get(`/udl/batterydetails/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<BatterydetailsFull> {
+    return this._client.get(path`/udl/batterydetails/${id}`, options);
   }
 
   /**
@@ -33,15 +36,11 @@ export class Batterydetails extends APIResource {
    * multiple details records from several sources. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(
-    pathId: string,
-    body: BatterydetailUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/batterydetails/${pathId}`, {
+  update(pathID: string, body: BatterydetailUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/batterydetails/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -51,7 +50,7 @@ export class Batterydetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<BatterydetailListResponse> {
+  list(options?: RequestOptions): APIPromise<BatterydetailListResponse> {
     return this._client.get('/udl/batterydetails', options);
   }
 
@@ -61,10 +60,10 @@ export class Batterydetails extends APIResource {
    * sources. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/batterydetails/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/batterydetails/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }

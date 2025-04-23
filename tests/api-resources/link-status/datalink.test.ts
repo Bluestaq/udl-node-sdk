@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -191,13 +190,6 @@ describe('resource datalink', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.linkStatus.datalink.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('tuple: only required params', async () => {
     const responsePromise = client.linkStatus.datalink.tuple({
       columns: 'columns',
@@ -220,16 +212,18 @@ describe('resource datalink', () => {
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.linkStatus.datalink.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        opExName: 'DESERT WIND',
-        originator: 'USCENTCOM',
-        source: 'Bluestaq',
-        startTime: '2024-01-07T13:55:43.123Z',
-      },
-    ]);
+    const responsePromise = client.linkStatus.datalink.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          opExName: 'DESERT WIND',
+          originator: 'USCENTCOM',
+          source: 'Bluestaq',
+          startTime: '2024-01-07T13:55:43.123Z',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -240,126 +234,128 @@ describe('resource datalink', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.linkStatus.datalink.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        opExName: 'DESERT WIND',
-        originator: 'USCENTCOM',
-        source: 'Bluestaq',
-        startTime: '2024-01-07T13:55:43.123Z',
-        id: '026dd511-8ba5-47d3-9909-836149f87686',
-        ackInstUnits: ['AOC EXT 2345', '317 AW'],
-        ackReq: true,
-        altDiff: 20,
-        canxId: 'ABSTAT',
-        canxOriginator: '505 AOC',
-        canxSerialNum: 'ABC1234567',
-        canxSICs: ['RDU', 'X234BS'],
-        canxSpecialNotation: 'PASEP',
-        canxTs: '2024-01-07T13:55:43.123Z',
-        classReasons: ['15C', '15D'],
-        classSource: 'USJFCOM EXORD SOLID WASTE 98',
-        consecDecorr: 3,
-        courseDiff: 60,
-        decExemptCodes: ['X1', 'X2'],
-        decInstDates: ['AT EXERCISE ENDEX', 'DATE:25NOV1997'],
-        decorrWinMult: 1.7,
-        geoDatum: 'EUR-T',
-        jreCallSign: 'CHARLIE ONE',
-        jreDetails: 'JRE details',
-        jrePriAdd: 71777,
-        jreSecAdd: 77771,
-        jreUnitDes: 'CVN-72',
-        maxGeoPosQual: 12,
-        maxTrackQual: 12,
-        mgmtCode: 'VICTOR',
-        mgmtCodeMeaning: 'ORBIT AT POINT BRAVO',
-        minGeoPosQual: 3,
-        minTrackQual: 6,
-        month: 'OCT',
-        multiDuty: [
-          {
-            duty: 'SICO',
-            dutyTeleFreqNums: ['TEL:804-555-4142', 'TEL:804-867-5309'],
-            multiDutyVoiceCoord: [
-              {
-                multiCommPri: 'P',
-                multiFreqDes: 'ST300A',
-                multiTeleFreqNums: ['TEL:804-555-4142', 'TEL:804-867-5309'],
-                multiVoiceNetDes: 'VPN',
-              },
-            ],
-            name: 'POPOVICH',
-            rank: 'LCDR',
-            unitDes: 'SHIP:STENNIS',
-          },
-        ],
-        nonLinkUnitDes: ['CS:GRAY GHOST', 'CS:WHITE WHALE'],
-        opExInfo: 'CONTROL',
-        opExInfoAlt: 'ORANGE',
-        ops: [
-          {
-            linkDetails: 'Link details',
-            linkName: 'Link-16',
-            linkStartTime: '2024-01-07T13:55:43.123Z',
-            linkStopTime: '2024-01-08T13:55:43.123Z',
-            linkStopTimeMod: 'AFTER',
-          },
-        ],
-        origin: 'THIRD_PARTY_DATASOURCE',
-        planOrigNum: 'SACEUR 106',
-        pocCallSign: '4077 MASH',
-        pocLat: 45.23,
-        pocLocName: 'CAMP SWAMPY',
-        pocLon: 179.1,
-        pocName: 'F. BURNS',
-        pocNums: ['TEL:804-555-4142', 'TEL:804-867-5309'],
-        pocRank: 'MAJ',
-        qualifier: 'CHG',
-        qualSN: 1,
-        references: [
-          {
-            refOriginator: 'CENTCOM',
-            refSerialId: 'A',
-            refSerialNum: '1402001',
-            refSICs: ['RDU', 'C-123-92'],
-            refSpecialNotation: 'NOTAL',
-            refTs: '2024-01-07T13:55:43.123Z',
-            refType: 'ABSTAT',
-          },
-        ],
-        refPoints: [
-          {
-            effEventTime: '2024-01-08T13:55:43.123Z',
-            refDes: 'L5',
-            refLat: 45.23,
-            refLocName: 'FORT BRAGG',
-            refLon: 179.1,
-            refPointType: 'DLRP',
-          },
-        ],
-        remarks: [{ text: 'Example data link remarks', type: 'CONTINGENCY PROCEDURES' }],
-        resTrackQual: 3,
-        serialNum: '1201003',
-        specTracks: [{ specTrackNum: '12345', specTrackNumDesc: 'SAM SITE CHARLIE' }],
-        speedDiff: 50,
-        stopTime: '2024-01-08T13:55:43.123Z',
-        stopTimeMod: 'AFTER',
-        sysDefaultCode: 'MAN',
-        trackNumBlockLLs: [1234, 2345],
-        trackNumBlocks: ['0200-0300', '0400-4412'],
-        voiceCoord: [
-          {
-            commPri: 'P',
-            freqDes: 'ST300A',
-            teleFreqNums: ['TEL:804-555-4142', 'TEL:804-867-5309'],
-            voiceNetDes: 'VPN',
-          },
-        ],
-        winSizeMin: 1.25,
-        winSizeMult: 2.1,
-      },
-    ]);
+    const response = await client.linkStatus.datalink.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          opExName: 'DESERT WIND',
+          originator: 'USCENTCOM',
+          source: 'Bluestaq',
+          startTime: '2024-01-07T13:55:43.123Z',
+          id: '026dd511-8ba5-47d3-9909-836149f87686',
+          ackInstUnits: ['AOC EXT 2345', '317 AW'],
+          ackReq: true,
+          altDiff: 20,
+          canxId: 'ABSTAT',
+          canxOriginator: '505 AOC',
+          canxSerialNum: 'ABC1234567',
+          canxSICs: ['RDU', 'X234BS'],
+          canxSpecialNotation: 'PASEP',
+          canxTs: '2024-01-07T13:55:43.123Z',
+          classReasons: ['15C', '15D'],
+          classSource: 'USJFCOM EXORD SOLID WASTE 98',
+          consecDecorr: 3,
+          courseDiff: 60,
+          decExemptCodes: ['X1', 'X2'],
+          decInstDates: ['AT EXERCISE ENDEX', 'DATE:25NOV1997'],
+          decorrWinMult: 1.7,
+          geoDatum: 'EUR-T',
+          jreCallSign: 'CHARLIE ONE',
+          jreDetails: 'JRE details',
+          jrePriAdd: 71777,
+          jreSecAdd: 77771,
+          jreUnitDes: 'CVN-72',
+          maxGeoPosQual: 12,
+          maxTrackQual: 12,
+          mgmtCode: 'VICTOR',
+          mgmtCodeMeaning: 'ORBIT AT POINT BRAVO',
+          minGeoPosQual: 3,
+          minTrackQual: 6,
+          month: 'OCT',
+          multiDuty: [
+            {
+              duty: 'SICO',
+              dutyTeleFreqNums: ['TEL:804-555-4142', 'TEL:804-867-5309'],
+              multiDutyVoiceCoord: [
+                {
+                  multiCommPri: 'P',
+                  multiFreqDes: 'ST300A',
+                  multiTeleFreqNums: ['TEL:804-555-4142', 'TEL:804-867-5309'],
+                  multiVoiceNetDes: 'VPN',
+                },
+              ],
+              name: 'POPOVICH',
+              rank: 'LCDR',
+              unitDes: 'SHIP:STENNIS',
+            },
+          ],
+          nonLinkUnitDes: ['CS:GRAY GHOST', 'CS:WHITE WHALE'],
+          opExInfo: 'CONTROL',
+          opExInfoAlt: 'ORANGE',
+          ops: [
+            {
+              linkDetails: 'Link details',
+              linkName: 'Link-16',
+              linkStartTime: '2024-01-07T13:55:43.123Z',
+              linkStopTime: '2024-01-08T13:55:43.123Z',
+              linkStopTimeMod: 'AFTER',
+            },
+          ],
+          origin: 'THIRD_PARTY_DATASOURCE',
+          planOrigNum: 'SACEUR 106',
+          pocCallSign: '4077 MASH',
+          pocLat: 45.23,
+          pocLocName: 'CAMP SWAMPY',
+          pocLon: 179.1,
+          pocName: 'F. BURNS',
+          pocNums: ['TEL:804-555-4142', 'TEL:804-867-5309'],
+          pocRank: 'MAJ',
+          qualifier: 'CHG',
+          qualSN: 1,
+          references: [
+            {
+              refOriginator: 'CENTCOM',
+              refSerialId: 'A',
+              refSerialNum: '1402001',
+              refSICs: ['RDU', 'C-123-92'],
+              refSpecialNotation: 'NOTAL',
+              refTs: '2024-01-07T13:55:43.123Z',
+              refType: 'ABSTAT',
+            },
+          ],
+          refPoints: [
+            {
+              effEventTime: '2024-01-08T13:55:43.123Z',
+              refDes: 'L5',
+              refLat: 45.23,
+              refLocName: 'FORT BRAGG',
+              refLon: 179.1,
+              refPointType: 'DLRP',
+            },
+          ],
+          remarks: [{ text: 'Example data link remarks', type: 'CONTINGENCY PROCEDURES' }],
+          resTrackQual: 3,
+          serialNum: '1201003',
+          specTracks: [{ specTrackNum: '12345', specTrackNumDesc: 'SAM SITE CHARLIE' }],
+          speedDiff: 50,
+          stopTime: '2024-01-08T13:55:43.123Z',
+          stopTimeMod: 'AFTER',
+          sysDefaultCode: 'MAN',
+          trackNumBlockLLs: [1234, 2345],
+          trackNumBlocks: ['0200-0300', '0400-4412'],
+          voiceCoord: [
+            {
+              commPri: 'P',
+              freqDes: 'ST300A',
+              teleFreqNums: ['TEL:804-555-4142', 'TEL:804-867-5309'],
+              voiceNetDes: 'VPN',
+            },
+          ],
+          winSizeMin: 1.25,
+          winSizeMult: 2.1,
+        },
+      ],
+    });
   });
 });

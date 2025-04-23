@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -11,14 +10,16 @@ const client = new Unifieddatalibrary({
 
 describe('resource launchEvent', () => {
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.launchEvent.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        msgCreateDate: '2020-01-01T00:00:00.123Z',
-        source: 'Bluestaq',
-      },
-    ]);
+    const responsePromise = client.launchEvent.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          msgCreateDate: '2020-01-01T00:00:00.123Z',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -29,25 +30,27 @@ describe('resource launchEvent', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.launchEvent.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        msgCreateDate: '2020-01-01T00:00:00.123Z',
-        source: 'Bluestaq',
-        id: 'LAUNCHEVENT-ID',
-        beNumber: 'ENC-123',
-        declassificationDate: '2021-01-01T01:02:02.123Z',
-        declassificationString: 'Example Declassification',
-        derivedFrom: 'Example source',
-        launchDate: '2020-01-01T00:00:00.123Z',
-        launchFacilityName: 'Example launch facility name',
-        launchFailureCode: 'Example failure code',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origObjectId: 'ORIGOBJECT-ID',
-        oSuffix: 'oSuffix',
-        satNo: 12,
-      },
-    ]);
+    const response = await client.launchEvent.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          msgCreateDate: '2020-01-01T00:00:00.123Z',
+          source: 'Bluestaq',
+          id: 'LAUNCHEVENT-ID',
+          beNumber: 'ENC-123',
+          declassificationDate: '2021-01-01T01:02:02.123Z',
+          declassificationString: 'Example Declassification',
+          derivedFrom: 'Example source',
+          launchDate: '2020-01-01T00:00:00.123Z',
+          launchFacilityName: 'Example launch facility name',
+          launchFailureCode: 'Example failure code',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origObjectId: 'ORIGOBJECT-ID',
+          oSuffix: 'oSuffix',
+          satNo: 12,
+        },
+      ],
+    });
   });
 });

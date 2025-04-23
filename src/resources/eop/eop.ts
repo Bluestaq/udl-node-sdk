@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import {
@@ -12,6 +11,10 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Eop extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -21,11 +24,11 @@ export class Eop extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: EopCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: EopCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/eop', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -33,19 +36,19 @@ export class Eop extends APIResource {
    * Service operation to get a single EOP record by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Shared.EopFull> {
-    return this._client.get(`/udl/eop/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.EopFull> {
+    return this._client.get(path`/udl/eop/${id}`, options);
   }
 
   /**
    * Service operation to update a single EOP Record. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(pathId: string, body: EopUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/eop/${pathId}`, {
+  update(pathID: string, body: EopUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/eop/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -55,7 +58,7 @@ export class Eop extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: EopListParams, options?: Core.RequestOptions): Core.APIPromise<EopListResponse> {
+  list(query: EopListParams, options?: RequestOptions): APIPromise<EopListResponse> {
     return this._client.get('/udl/eop', { query, ...options });
   }
 
@@ -65,10 +68,10 @@ export class Eop extends APIResource {
    * publish/subscribe stores. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/eop/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/eop/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -79,11 +82,11 @@ export class Eop extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: EopCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: EopCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/eop/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -97,7 +100,7 @@ export class Eop extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  listTuple(query: EopListTupleParams, options?: Core.RequestOptions): Core.APIPromise<EopListTupleResponse> {
+  listTuple(query: EopListTupleParams, options?: RequestOptions): APIPromise<EopListTupleResponse> {
     return this._client.get('/udl/eop/tuple', { query, ...options });
   }
 
@@ -105,10 +108,10 @@ export class Eop extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/eop/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }

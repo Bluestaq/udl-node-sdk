@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -106,13 +105,6 @@ describe('resource sortieppr', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sortieppr.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('count: only required params', async () => {
     const responsePromise = client.sortieppr.count({ idSortie: 'idSortie' });
     const rawResponse = await responsePromise.asResponse();
@@ -129,14 +121,16 @@ describe('resource sortieppr', () => {
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.sortieppr.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
-        source: 'Bluestaq',
-      },
-    ]);
+    const responsePromise = client.sortieppr.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -147,24 +141,26 @@ describe('resource sortieppr', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.sortieppr.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
-        source: 'Bluestaq',
-        id: 'SORTIEPPR-ID',
-        endTime: '2024-01-01T01:01:01.123Z',
-        externalId: 'aa714f4d52a37ab1a00b21af9566e379',
-        grantor: 'SMITH',
-        number: '07-21-07W',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        remarks: 'PPR remark',
-        requestor: 'jsmith1',
-        startTime: '2024-01-01T01:01:01.123Z',
-        type: 'M',
-      },
-    ]);
+    const response = await client.sortieppr.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+          source: 'Bluestaq',
+          id: 'SORTIEPPR-ID',
+          endTime: '2024-01-01T01:01:01.123Z',
+          externalId: 'aa714f4d52a37ab1a00b21af9566e379',
+          grantor: 'SMITH',
+          number: '07-21-07W',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          remarks: 'PPR remark',
+          requestor: 'jsmith1',
+          startTime: '2024-01-01T01:01:01.123Z',
+          type: 'M',
+        },
+      ],
+    });
   });
 
   test('get', async () => {
@@ -178,13 +174,6 @@ describe('resource sortieppr', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sortieppr.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.sortieppr.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -194,13 +183,6 @@ describe('resource sortieppr', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sortieppr.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {
@@ -219,14 +201,16 @@ describe('resource sortieppr', () => {
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.sortieppr.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
-        source: 'Bluestaq',
-      },
-    ]);
+    const responsePromise = client.sortieppr.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -237,23 +221,25 @@ describe('resource sortieppr', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.sortieppr.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
-        source: 'Bluestaq',
-        id: 'SORTIEPPR-ID',
-        endTime: '2024-01-01T01:01:01.123Z',
-        externalId: 'aa714f4d52a37ab1a00b21af9566e379',
-        grantor: 'SMITH',
-        number: '07-21-07W',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        remarks: 'PPR remark',
-        requestor: 'jsmith1',
-        startTime: '2024-01-01T01:01:01.123Z',
-        type: 'M',
-      },
-    ]);
+    const response = await client.sortieppr.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+          source: 'Bluestaq',
+          id: 'SORTIEPPR-ID',
+          endTime: '2024-01-01T01:01:01.123Z',
+          externalId: 'aa714f4d52a37ab1a00b21af9566e379',
+          grantor: 'SMITH',
+          number: '07-21-07W',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          remarks: 'PPR remark',
+          requestor: 'jsmith1',
+          startTime: '2024-01-01T01:01:01.123Z',
+          type: 'M',
+        },
+      ],
+    });
   });
 });

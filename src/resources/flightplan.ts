@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Flightplan extends APIResource {
   /**
@@ -10,11 +13,11 @@ export class Flightplan extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: FlightplanCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: FlightplanCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/flightplan', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -22,8 +25,8 @@ export class Flightplan extends APIResource {
    * Service operation to get a single FlightPlan record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Shared.FlightPlanFull> {
-    return this._client.get(`/udl/flightplan/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.FlightPlanFull> {
+    return this._client.get(path`/udl/flightplan/${id}`, options);
   }
 
   /**
@@ -31,11 +34,11 @@ export class Flightplan extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(pathId: string, body: FlightplanUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/flightplan/${pathId}`, {
+  update(pathID: string, body: FlightplanUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/flightplan/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -45,7 +48,7 @@ export class Flightplan extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<FlightplanListResponse> {
+  list(options?: RequestOptions): APIPromise<FlightplanListResponse> {
     return this._client.get('/udl/flightplan', options);
   }
 
@@ -54,10 +57,10 @@ export class Flightplan extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/flightplan/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/flightplan/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -68,10 +71,10 @@ export class Flightplan extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/flightplan/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -79,10 +82,10 @@ export class Flightplan extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/flightplan/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -96,10 +99,7 @@ export class Flightplan extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: FlightplanTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<FlightplanTupleResponse> {
+  tuple(query: FlightplanTupleParams, options?: RequestOptions): APIPromise<FlightplanTupleResponse> {
     return this._client.get('/udl/flightplan/tuple', { query, ...options });
   }
 
@@ -109,14 +109,12 @@ export class Flightplan extends APIResource {
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  unvalidatedPublish(
-    body: FlightplanUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: FlightplanUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-flightplan', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -3440,7 +3438,9 @@ export interface FlightplanTupleParams {
   columns: string;
 }
 
-export type FlightplanUnvalidatedPublishParams = Array<FlightplanUnvalidatedPublishParams.Body>;
+export interface FlightplanUnvalidatedPublishParams {
+  body: Array<FlightplanUnvalidatedPublishParams.Body>;
+}
 
 export namespace FlightplanUnvalidatedPublishParams {
   /**

@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,6 +11,9 @@ import {
   HistoryListResponse,
 } from './history';
 import * as OrbittrackHistoryAPI from '../udl/orbittrack/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Orbittrack extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -22,7 +24,7 @@ export class Orbittrack extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: OrbittrackListParams, options?: Core.RequestOptions): Core.APIPromise<OrbittrackListResponse> {
+  list(query: OrbittrackListParams, options?: RequestOptions): APIPromise<OrbittrackListResponse> {
     return this._client.get('/udl/orbittrack', { query, ...options });
   }
 
@@ -33,11 +35,11 @@ export class Orbittrack extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: OrbittrackCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: OrbittrackCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/orbittrack/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -48,11 +50,12 @@ export class Orbittrack extends APIResource {
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
    */
-  createBulk(body: OrbittrackCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: OrbittrackCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/orbittrack/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -60,10 +63,10 @@ export class Orbittrack extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/orbittrack/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -77,10 +80,7 @@ export class Orbittrack extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: OrbittrackTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OrbittrackTupleResponse> {
+  tuple(query: OrbittrackTupleParams, options?: RequestOptions): APIPromise<OrbittrackTupleResponse> {
     return this._client.get('/udl/orbittrack/tuple', { query, ...options });
   }
 
@@ -90,14 +90,12 @@ export class Orbittrack extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  unvalidatedPublish(
-    body: OrbittrackUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: OrbittrackUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-orbittrack', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -513,7 +511,9 @@ export interface OrbittrackCountParams {
   ts: string;
 }
 
-export type OrbittrackCreateBulkParams = Array<OrbittrackCreateBulkParams.Body>;
+export interface OrbittrackCreateBulkParams {
+  body: Array<OrbittrackCreateBulkParams.Body>;
+}
 
 export namespace OrbittrackCreateBulkParams {
   /**
@@ -904,7 +904,9 @@ export interface OrbittrackTupleParams {
   ts: string;
 }
 
-export type OrbittrackUnvalidatedPublishParams = Array<OrbittrackUnvalidatedPublishParams.Body>;
+export interface OrbittrackUnvalidatedPublishParams {
+  body: Array<OrbittrackUnvalidatedPublishParams.Body>;
+}
 
 export namespace OrbittrackUnvalidatedPublishParams {
   /**

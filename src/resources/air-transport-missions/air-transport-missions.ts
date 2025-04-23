@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import {
@@ -12,6 +11,10 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class AirTransportMissions extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -21,11 +24,11 @@ export class AirTransportMissions extends APIResource {
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: AirTransportMissionCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: AirTransportMissionCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/airtransportmission', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -33,8 +36,8 @@ export class AirTransportMissions extends APIResource {
    * Service operation to get a single Air Transport Mission record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Shared.AirTransportMissionFull> {
-    return this._client.get(`/udl/airtransportmission/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.AirTransportMissionFull> {
+    return this._client.get(path`/udl/airtransportmission/${id}`, options);
   }
 
   /**
@@ -42,15 +45,11 @@ export class AirTransportMissions extends APIResource {
    * is required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(
-    pathId: string,
-    body: AirTransportMissionUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/airtransportmission/${pathId}`, {
+  update(pathID: string, body: AirTransportMissionUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/airtransportmission/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -62,8 +61,8 @@ export class AirTransportMissions extends APIResource {
    */
   list(
     query: AirTransportMissionListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AirTransportMissionListResponse> {
+    options?: RequestOptions,
+  ): APIPromise<AirTransportMissionListResponse> {
     return this._client.get('/udl/airtransportmission', { query, ...options });
   }
 
@@ -74,11 +73,11 @@ export class AirTransportMissions extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: AirTransportMissionCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: AirTransportMissionCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/airtransportmission/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -86,10 +85,10 @@ export class AirTransportMissions extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/airtransportmission/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -105,8 +104,8 @@ export class AirTransportMissions extends APIResource {
    */
   tuple(
     query: AirTransportMissionTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AirTransportMissionTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<AirTransportMissionTupleResponse> {
     return this._client.get('/udl/airtransportmission/tuple', { query, ...options });
   }
 }

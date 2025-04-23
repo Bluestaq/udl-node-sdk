@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Status extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class Status extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: StatusCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: StatusCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/status', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -21,11 +24,11 @@ export class Status extends APIResource {
    * Service operation to update a single Status. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(pathId: string, body: StatusUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/status/${pathId}`, {
+  update(pathID: string, body: StatusUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/status/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -35,7 +38,7 @@ export class Status extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<StatusListResponse> {
+  list(options?: RequestOptions): APIPromise<StatusListResponse> {
     return this._client.get('/udl/status', options);
   }
 
@@ -44,10 +47,10 @@ export class Status extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/status/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/status/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -58,10 +61,10 @@ export class Status extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/status/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -69,38 +72,32 @@ export class Status extends APIResource {
    * Service operation to get a single Status record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<StatusGetResponse> {
-    return this._client.get(`/udl/status/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<StatusGetResponse> {
+    return this._client.get(path`/udl/status/${id}`, options);
   }
 
   /**
    * Service operation to get all statuses related to a particular entity.
    */
-  getByEntityId(
-    idEntity: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<StatusGetByEntityIDResponse> {
-    return this._client.get(`/udl/status/byIdEntity/${idEntity}`, options);
+  getByEntityID(idEntity: string, options?: RequestOptions): APIPromise<StatusGetByEntityIDResponse> {
+    return this._client.get(path`/udl/status/byIdEntity/${idEntity}`, options);
   }
 
   /**
    * Service operation to get all statuses related to a particular entity type.
    */
-  getByEntityType(
-    entityType: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<StatusGetByEntityTypeResponse> {
-    return this._client.get(`/udl/status/byEntityType/${entityType}`, options);
+  getByEntityType(entityType: string, options?: RequestOptions): APIPromise<StatusGetByEntityTypeResponse> {
+    return this._client.get(path`/udl/status/byEntityType/${entityType}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/status/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -114,7 +111,7 @@ export class Status extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: StatusTupleParams, options?: Core.RequestOptions): Core.APIPromise<StatusTupleResponse> {
+  tuple(query: StatusTupleParams, options?: RequestOptions): APIPromise<StatusTupleResponse> {
     return this._client.get('/udl/status/tuple', { query, ...options });
   }
 }

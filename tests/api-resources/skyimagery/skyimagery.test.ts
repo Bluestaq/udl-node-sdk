@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary, { toFile } from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -40,13 +39,6 @@ describe('resource skyimagery', () => {
     const response = await client.skyimagery.count({ expStartTime: '2019-12-27T18:11:19.117Z' });
   });
 
-  test('fileGet: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.skyimagery.fileGet('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('get', async () => {
     const responsePromise = client.skyimagery.get('id');
     const rawResponse = await responsePromise.asResponse();
@@ -58,13 +50,6 @@ describe('resource skyimagery', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.skyimagery.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.skyimagery.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -74,13 +59,6 @@ describe('resource skyimagery', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.skyimagery.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {

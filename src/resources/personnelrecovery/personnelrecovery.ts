@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -10,6 +9,10 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Personnelrecovery extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -19,11 +22,11 @@ export class Personnelrecovery extends APIResource {
    * ingest into the database. Requires a specific role, please contact the UDL team
    * to gain access.
    */
-  create(body: PersonnelrecoveryCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: PersonnelrecoveryCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/personnelrecovery', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -35,8 +38,8 @@ export class Personnelrecovery extends APIResource {
    */
   list(
     query: PersonnelrecoveryListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PersonnelrecoveryListResponse> {
+    options?: RequestOptions,
+  ): APIPromise<PersonnelrecoveryListResponse> {
     return this._client.get('/udl/personnelrecovery', { query, ...options });
   }
 
@@ -47,11 +50,11 @@ export class Personnelrecovery extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: PersonnelrecoveryCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: PersonnelrecoveryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/personnelrecovery/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -63,11 +66,12 @@ export class Personnelrecovery extends APIResource {
    * contact the UDL team for instructions on setting up a permanent feed through an
    * alternate mechanism.
    */
-  createBulk(body: PersonnelrecoveryCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: PersonnelrecoveryCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/personnelrecovery/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -77,11 +81,12 @@ export class Personnelrecovery extends APIResource {
    * team to gain access. This operation is intended to be used for automated feeds
    * into UDL.
    */
-  fileCreate(body: PersonnelrecoveryFileCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  fileCreate(params: PersonnelrecoveryFileCreateParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-personnelrecovery', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -89,18 +94,18 @@ export class Personnelrecovery extends APIResource {
    * Service operation to get a single PersonnelRecovery by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<PersonnelRecoveryFullL> {
-    return this._client.get(`/udl/personnelrecovery/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<PersonnelRecoveryFullL> {
+    return this._client.get(path`/udl/personnelrecovery/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/personnelrecovery/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -116,8 +121,8 @@ export class Personnelrecovery extends APIResource {
    */
   tuple(
     query: PersonnelrecoveryTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PersonnelrecoveryTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<PersonnelrecoveryTupleResponse> {
     return this._client.get('/udl/personnelrecovery/tuple', { query, ...options });
   }
 }
@@ -1356,7 +1361,9 @@ export interface PersonnelrecoveryCountParams {
   msgTime: string;
 }
 
-export type PersonnelrecoveryCreateBulkParams = Array<PersonnelrecoveryCreateBulkParams.Body>;
+export interface PersonnelrecoveryCreateBulkParams {
+  body: Array<PersonnelrecoveryCreateBulkParams.Body>;
+}
 
 export namespace PersonnelrecoveryCreateBulkParams {
   /**
@@ -1753,7 +1760,9 @@ export namespace PersonnelrecoveryCreateBulkParams {
   }
 }
 
-export type PersonnelrecoveryFileCreateParams = Array<PersonnelrecoveryFileCreateParams.Body>;
+export interface PersonnelrecoveryFileCreateParams {
+  body: Array<PersonnelrecoveryFileCreateParams.Body>;
+}
 
 export namespace PersonnelrecoveryFileCreateParams {
   /**

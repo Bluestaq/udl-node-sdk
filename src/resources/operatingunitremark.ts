@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Operatingunitremark extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class Operatingunitremark extends APIResource {
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: OperatingunitremarkCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: OperatingunitremarkCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/operatingunitremark', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -23,7 +26,7 @@ export class Operatingunitremark extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<OperatingunitremarkListResponse> {
+  list(options?: RequestOptions): APIPromise<OperatingunitremarkListResponse> {
     return this._client.get('/udl/operatingunitremark', options);
   }
 
@@ -34,10 +37,10 @@ export class Operatingunitremark extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/operatingunitremark/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -48,14 +51,12 @@ export class Operatingunitremark extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(
-    body: OperatingunitremarkCreateBulkParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  createBulk(params: OperatingunitremarkCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/operatingunitremark/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -63,18 +64,18 @@ export class Operatingunitremark extends APIResource {
    * Service operation to get a single operatingunitremark record by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<OperatingunitremarkGetResponse> {
-    return this._client.get(`/udl/operatingunitremark/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<OperatingunitremarkGetResponse> {
+    return this._client.get(path`/udl/operatingunitremark/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/operatingunitremark/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -90,8 +91,8 @@ export class Operatingunitremark extends APIResource {
    */
   tuple(
     query: OperatingunitremarkTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OperatingunitremarkTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<OperatingunitremarkTupleResponse> {
     return this._client.get('/udl/operatingunitremark/tuple', { query, ...options });
   }
 }
@@ -471,7 +472,9 @@ export interface OperatingunitremarkCreateParams {
   type?: string;
 }
 
-export type OperatingunitremarkCreateBulkParams = Array<OperatingunitremarkCreateBulkParams.Body>;
+export interface OperatingunitremarkCreateBulkParams {
+  body: Array<OperatingunitremarkCreateBulkParams.Body>;
+}
 
 export namespace OperatingunitremarkCreateBulkParams {
   /**

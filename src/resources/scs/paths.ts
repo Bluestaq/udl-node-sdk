@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { type BlobLike } from '../../uploads';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Paths extends APIResource {
   /**
@@ -10,14 +11,13 @@ export class Paths extends APIResource {
    * create folders that are missing. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  create(params: PathCreateParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  create(params: PathCreateParams, options?: RequestOptions): APIPromise<string> {
     const { id, classificationMarking, body, description, overwrite, tags } = params;
     return this._client.post('/scs/path', {
       query: { id, classificationMarking, description, overwrite, tags },
       body: body,
       ...options,
-      headers: { 'Content-Type': 'application/octet-stream', ...options?.headers },
-      __binaryRequest: true,
+      headers: buildHeaders([{ 'Content-Type': 'application/octet-stream' }, options?.headers]),
     });
   }
 }
@@ -38,7 +38,7 @@ export interface PathCreateParams {
   /**
    * Body param:
    */
-  body: string | ArrayBufferView | ArrayBuffer | BlobLike;
+  body: string | ArrayBuffer | ArrayBufferView | Blob | DataView;
 
   /**
    * Query param: Description

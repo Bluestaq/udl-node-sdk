@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as EngineDetailsAPI from './engine-details';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Engines extends APIResource {
   /**
@@ -12,11 +15,11 @@ export class Engines extends APIResource {
    * per stage. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: EngineCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: EngineCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/engine', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -26,8 +29,8 @@ export class Engines extends APIResource {
    * include performance characteristics and limits. A launch vehicle has 1 to many
    * engines per stage.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Engine> {
-    return this._client.get(`/udl/engine/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Engine> {
+    return this._client.get(path`/udl/engine/${id}`, options);
   }
 
   /**
@@ -36,11 +39,11 @@ export class Engines extends APIResource {
    * launch vehicle has 1 to many engines per stage. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(pathId: string, body: EngineUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/engine/${pathId}`, {
+  update(pathID: string, body: EngineUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/engine/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -50,7 +53,7 @@ export class Engines extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<EngineListResponse> {
+  list(options?: RequestOptions): APIPromise<EngineListResponse> {
     return this._client.get('/udl/engine', options);
   }
 
@@ -61,10 +64,10 @@ export class Engines extends APIResource {
    * per stage. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/engine/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/engine/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -75,10 +78,10 @@ export class Engines extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/engine/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -86,10 +89,10 @@ export class Engines extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/engine/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -103,7 +106,7 @@ export class Engines extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: EngineTupleParams, options?: Core.RequestOptions): Core.APIPromise<EngineTupleResponse> {
+  tuple(query: EngineTupleParams, options?: RequestOptions): APIPromise<EngineTupleResponse> {
     return this._client.get('/udl/engine/tuple', { query, ...options });
   }
 }

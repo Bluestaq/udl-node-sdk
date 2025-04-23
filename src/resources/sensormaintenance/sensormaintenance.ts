@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -13,6 +11,10 @@ import {
   HistoryRetrieveResponse,
 } from './history';
 import * as SensormaintenanceHistoryAPI from '../udl/sensormaintenance/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Sensormaintenance extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -22,11 +24,11 @@ export class Sensormaintenance extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: SensormaintenanceCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: SensormaintenanceCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/sensormaintenance', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -35,15 +37,11 @@ export class Sensormaintenance extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(
-    pathId: string,
-    body: SensormaintenanceUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/sensormaintenance/${pathId}`, {
+  update(pathID: string, body: SensormaintenanceUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/sensormaintenance/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -54,17 +52,9 @@ export class Sensormaintenance extends APIResource {
    * parameter information.
    */
   list(
-    query?: SensormaintenanceListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SensormaintenanceListResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<SensormaintenanceListResponse>;
-  list(
-    query: SensormaintenanceListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SensormaintenanceListResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
+    query: SensormaintenanceListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SensormaintenanceListResponse> {
     return this._client.get('/udl/sensormaintenance', { query, ...options });
   }
 
@@ -73,10 +63,10 @@ export class Sensormaintenance extends APIResource {
    * ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/sensormaintenance/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/sensormaintenance/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -87,19 +77,14 @@ export class Sensormaintenance extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query?: SensormaintenanceCountParams, options?: Core.RequestOptions): Core.APIPromise<string>;
-  count(options?: Core.RequestOptions): Core.APIPromise<string>;
   count(
-    query: SensormaintenanceCountParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.count({}, query);
-    }
+    query: SensormaintenanceCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/sensormaintenance/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -108,16 +93,13 @@ export class Sensormaintenance extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  createBulk(
-    params: SensormaintenanceCreateBulkParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  createBulk(params: SensormaintenanceCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body, origin, source } = params;
     return this._client.post('/udl/sensormaintenance/createBulk', {
       query: { origin, source },
       body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -125,7 +107,7 @@ export class Sensormaintenance extends APIResource {
    * Service operation to get current Sensor Maintenance records using any number of
    * additional parameters.
    */
-  current(options?: Core.RequestOptions): Core.APIPromise<SensormaintenanceCurrentResponse> {
+  current(options?: RequestOptions): APIPromise<SensormaintenanceCurrentResponse> {
     return this._client.get('/udl/sensormaintenance/current', options);
   }
 
@@ -133,21 +115,18 @@ export class Sensormaintenance extends APIResource {
    * Service operation to get a single SensorMaintenance record by its unique ID
    * passed as a path parameter.
    */
-  get(
-    id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SensormaintenanceHistoryAPI.SensormaintenanceFull> {
-    return this._client.get(`/udl/sensormaintenance/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<SensormaintenanceHistoryAPI.SensormaintenanceFull> {
+    return this._client.get(path`/udl/sensormaintenance/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sensormaintenance/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -163,8 +142,8 @@ export class Sensormaintenance extends APIResource {
    */
   tuple(
     query: SensormaintenanceTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SensormaintenanceTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<SensormaintenanceTupleResponse> {
     return this._client.get('/udl/sensormaintenance/tuple', { query, ...options });
   }
 }

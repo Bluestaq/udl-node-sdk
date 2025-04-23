@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -60,13 +59,6 @@ describe('resource effectRequests', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.effectRequests.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('list: only required params', async () => {
     const responsePromise = client.effectRequests.list({ createdAt: '2019-12-27' });
     const rawResponse = await responsePromise.asResponse();
@@ -98,9 +90,16 @@ describe('resource effectRequests', () => {
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.effectRequests.createBulk([
-      { classificationMarking: 'U', dataMode: 'TEST', effectList: ['COVER', 'DECEIVE'], source: 'Bluestaq' },
-    ]);
+    const responsePromise = client.effectRequests.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          effectList: ['COVER', 'DECEIVE'],
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -111,28 +110,30 @@ describe('resource effectRequests', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.effectRequests.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        effectList: ['COVER', 'DECEIVE'],
-        source: 'Bluestaq',
-        id: 'EFFECTREQUEST-ID',
-        context: 'Example Notes',
-        deadlineType: 'NoLaterThan',
-        endTime: '2018-01-01T16:00:00.123456Z',
-        externalRequestId: 'EXTERNALREQUEST-ID',
-        metricTypes: ['COST', 'RISK'],
-        metricWeights: [0.5, 0.6],
-        modelClass: 'Preference model',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        priority: 'LOW',
-        startTime: '2018-01-01T16:00:00.123456Z',
-        state: 'CREATED',
-        targetSrcId: 'TARGETSRC-ID',
-        targetSrcType: 'POI',
-      },
-    ]);
+    const response = await client.effectRequests.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          effectList: ['COVER', 'DECEIVE'],
+          source: 'Bluestaq',
+          id: 'EFFECTREQUEST-ID',
+          context: 'Example Notes',
+          deadlineType: 'NoLaterThan',
+          endTime: '2018-01-01T16:00:00.123456Z',
+          externalRequestId: 'EXTERNALREQUEST-ID',
+          metricTypes: ['COST', 'RISK'],
+          metricWeights: [0.5, 0.6],
+          modelClass: 'Preference model',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          priority: 'LOW',
+          startTime: '2018-01-01T16:00:00.123456Z',
+          state: 'CREATED',
+          targetSrcId: 'TARGETSRC-ID',
+          targetSrcType: 'POI',
+        },
+      ],
+    });
   });
 
   test('queryHelp', async () => {
@@ -144,13 +145,6 @@ describe('resource effectRequests', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryHelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.effectRequests.queryHelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {
@@ -169,9 +163,16 @@ describe('resource effectRequests', () => {
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.effectRequests.unvalidatedPublish([
-      { classificationMarking: 'U', dataMode: 'TEST', effectList: ['COVER', 'DECEIVE'], source: 'Bluestaq' },
-    ]);
+    const responsePromise = client.effectRequests.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          effectList: ['COVER', 'DECEIVE'],
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -182,27 +183,29 @@ describe('resource effectRequests', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.effectRequests.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        effectList: ['COVER', 'DECEIVE'],
-        source: 'Bluestaq',
-        id: 'EFFECTREQUEST-ID',
-        context: 'Example Notes',
-        deadlineType: 'NoLaterThan',
-        endTime: '2018-01-01T16:00:00.123456Z',
-        externalRequestId: 'EXTERNALREQUEST-ID',
-        metricTypes: ['COST', 'RISK'],
-        metricWeights: [0.5, 0.6],
-        modelClass: 'Preference model',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        priority: 'LOW',
-        startTime: '2018-01-01T16:00:00.123456Z',
-        state: 'CREATED',
-        targetSrcId: 'TARGETSRC-ID',
-        targetSrcType: 'POI',
-      },
-    ]);
+    const response = await client.effectRequests.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          effectList: ['COVER', 'DECEIVE'],
+          source: 'Bluestaq',
+          id: 'EFFECTREQUEST-ID',
+          context: 'Example Notes',
+          deadlineType: 'NoLaterThan',
+          endTime: '2018-01-01T16:00:00.123456Z',
+          externalRequestId: 'EXTERNALREQUEST-ID',
+          metricTypes: ['COST', 'RISK'],
+          metricWeights: [0.5, 0.6],
+          modelClass: 'Preference model',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          priority: 'LOW',
+          startTime: '2018-01-01T16:00:00.123456Z',
+          state: 'CREATED',
+          targetSrcId: 'TARGETSRC-ID',
+          targetSrcType: 'POI',
+        },
+      ],
+    });
   });
 });

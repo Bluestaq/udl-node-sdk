@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as CurrentAPI from './current';
 import { Current, CurrentListResponse, CurrentTupleParams, CurrentTupleResponse } from './current';
@@ -14,6 +13,10 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Statevector extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -26,11 +29,11 @@ export class Statevector extends APIResource {
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
    */
-  create(body: StatevectorCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: StatevectorCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/statevector', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -40,10 +43,7 @@ export class Statevector extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: StatevectorListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<StatevectorListResponse> {
+  list(query: StatevectorListParams, options?: RequestOptions): APIPromise<StatevectorListResponse> {
     return this._client.get('/udl/statevector', { query, ...options });
   }
 
@@ -54,11 +54,11 @@ export class Statevector extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: StatevectorCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: StatevectorCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/statevector/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -69,11 +69,12 @@ export class Statevector extends APIResource {
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
    */
-  createBulk(body: StatevectorCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: StatevectorCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/statevector/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -81,18 +82,18 @@ export class Statevector extends APIResource {
    * Service operation to get a single state vector by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<StateVectorFull> {
-    return this._client.get(`/udl/statevector/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<StateVectorFull> {
+    return this._client.get(path`/udl/statevector/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/statevector/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -106,10 +107,7 @@ export class Statevector extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: StatevectorTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<StatevectorTupleResponse> {
+  tuple(query: StatevectorTupleParams, options?: RequestOptions): APIPromise<StatevectorTupleResponse> {
     return this._client.get('/udl/statevector/tuple', { query, ...options });
   }
 
@@ -120,13 +118,14 @@ export class Statevector extends APIResource {
    * contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: StatevectorUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: StatevectorUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-sv', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -3017,7 +3016,9 @@ export interface StatevectorCountParams {
   epoch: string;
 }
 
-export type StatevectorCreateBulkParams = Array<StateVectorIngest>;
+export interface StatevectorCreateBulkParams {
+  body: Array<StateVectorIngest>;
+}
 
 export interface StatevectorTupleParams {
   /**
@@ -3035,7 +3036,9 @@ export interface StatevectorTupleParams {
   epoch: string;
 }
 
-export type StatevectorUnvalidatedPublishParams = Array<StateVectorIngest>;
+export interface StatevectorUnvalidatedPublishParams {
+  body: Array<StateVectorIngest>;
+}
 
 Statevector.History = History;
 Statevector.Current = Current;

@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -121,13 +120,6 @@ describe('resource airTaskingOrders', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.airTaskingOrders.retrieve('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
-  });
-
   test('count', async () => {
     const responsePromise = client.airTaskingOrders.count();
     const rawResponse = await responsePromise.asResponse();
@@ -139,13 +131,6 @@ describe('resource airTaskingOrders', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('count: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.airTaskingOrders.count({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryHelp', async () => {
     const responsePromise = client.airTaskingOrders.queryHelp();
     const rawResponse = await responsePromise.asResponse();
@@ -155,13 +140,6 @@ describe('resource airTaskingOrders', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryHelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.airTaskingOrders.queryHelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {

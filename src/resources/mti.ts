@@ -1,8 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as HistoryAPI from './udl/mti/history';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
 
 export class Mti extends APIResource {
   /**
@@ -11,7 +13,7 @@ export class Mti extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: MtiListParams, options?: Core.RequestOptions): Core.APIPromise<MtiListResponse> {
+  list(query: MtiListParams, options?: RequestOptions): APIPromise<MtiListResponse> {
     return this._client.get('/udl/mti', { query, ...options });
   }
 
@@ -22,11 +24,11 @@ export class Mti extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: MtiCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: MtiCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/mti/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -38,11 +40,12 @@ export class Mti extends APIResource {
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
    */
-  createBulk(body: MtiCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: MtiCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/mti/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -50,10 +53,10 @@ export class Mti extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/mti/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -67,7 +70,7 @@ export class Mti extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: MtiTupleParams, options?: Core.RequestOptions): Core.APIPromise<MtiTupleResponse> {
+  tuple(query: MtiTupleParams, options?: RequestOptions): APIPromise<MtiTupleResponse> {
     return this._client.get('/udl/mti/tuple', { query, ...options });
   }
 
@@ -77,14 +80,12 @@ export class Mti extends APIResource {
    * used for automated feeds into UDL. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  unvalidatedPublish(
-    body: MtiUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: MtiUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-mti', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -1153,7 +1154,9 @@ export interface MtiCountParams {
   createdAt: string;
 }
 
-export type MtiCreateBulkParams = Array<MtiCreateBulkParams.Body>;
+export interface MtiCreateBulkParams {
+  body: Array<MtiCreateBulkParams.Body>;
+}
 
 export namespace MtiCreateBulkParams {
   /**
@@ -2203,7 +2206,9 @@ export interface MtiTupleParams {
   createdAt: string;
 }
 
-export type MtiUnvalidatedPublishParams = Array<MtiUnvalidatedPublishParams.Body>;
+export interface MtiUnvalidatedPublishParams {
+  body: Array<MtiUnvalidatedPublishParams.Body>;
+}
 
 export namespace MtiUnvalidatedPublishParams {
   /**

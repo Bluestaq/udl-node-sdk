@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -55,13 +54,6 @@ describe('resource aircraftStatusRemarks', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.aircraftStatusRemarks.retrieve('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
-  });
-
   test('list', async () => {
     const responsePromise = client.aircraftStatusRemarks.list();
     const rawResponse = await responsePromise.asResponse();
@@ -71,13 +63,6 @@ describe('resource aircraftStatusRemarks', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.aircraftStatusRemarks.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('count', async () => {
@@ -91,13 +76,6 @@ describe('resource aircraftStatusRemarks', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('count: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.aircraftStatusRemarks.count({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.aircraftStatusRemarks.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -107,13 +85,6 @@ describe('resource aircraftStatusRemarks', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.aircraftStatusRemarks.queryhelp({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('tuple: only required params', async () => {

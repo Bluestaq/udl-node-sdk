@@ -1,11 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import { History, HistoryCountParams, HistoryCountResponse } from './history';
 import * as RfobservationHistoryAPI from '../udl/rfobservation/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Rfobservation extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -17,11 +20,11 @@ export class Rfobservation extends APIResource {
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
    */
-  create(body: RfobservationCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: RfobservationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/rfobservation', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -31,10 +34,7 @@ export class Rfobservation extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: RfobservationListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RfobservationListResponse> {
+  list(query: RfobservationListParams, options?: RequestOptions): APIPromise<RfobservationListResponse> {
     return this._client.get('/udl/rfobservation', { query, ...options });
   }
 
@@ -45,11 +45,11 @@ export class Rfobservation extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: RfobservationCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: RfobservationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/rfobservation/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -60,11 +60,12 @@ export class Rfobservation extends APIResource {
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
    */
-  createBulk(body: RfobservationCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: RfobservationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/rfobservation/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -72,21 +73,18 @@ export class Rfobservation extends APIResource {
    * Service operation to get a single RF observation by its unique ID passed as a
    * path parameter.
    */
-  get(
-    id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RfobservationHistoryAPI.RfobservationdetailsFull> {
-    return this._client.get(`/udl/rfobservation/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<RfobservationHistoryAPI.RfobservationdetailsFull> {
+    return this._client.get(path`/udl/rfobservation/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/rfobservation/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -100,10 +98,7 @@ export class Rfobservation extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: RfobservationTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RfobservationTupleResponse> {
+  tuple(query: RfobservationTupleParams, options?: RequestOptions): APIPromise<RfobservationTupleResponse> {
     return this._client.get('/udl/rfobservation/tuple', { query, ...options });
   }
 
@@ -114,13 +109,14 @@ export class Rfobservation extends APIResource {
    * contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: RfobservationUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: RfobservationUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-rf', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -1702,7 +1698,9 @@ export interface RfobservationCountParams {
   obTime: string;
 }
 
-export type RfobservationCreateBulkParams = Array<RfobservationCreateBulkParams.Body>;
+export interface RfobservationCreateBulkParams {
+  body: Array<RfobservationCreateBulkParams.Body>;
+}
 
 export namespace RfobservationCreateBulkParams {
   /**
@@ -2279,7 +2277,9 @@ export interface RfobservationTupleParams {
   obTime: string;
 }
 
-export type RfobservationUnvalidatedPublishParams = Array<RfobservationUnvalidatedPublishParams.Body>;
+export interface RfobservationUnvalidatedPublishParams {
+  body: Array<RfobservationUnvalidatedPublishParams.Body>;
+}
 
 export namespace RfobservationUnvalidatedPublishParams {
   /**

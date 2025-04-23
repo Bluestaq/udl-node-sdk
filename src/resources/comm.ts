@@ -1,9 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as ChannelsAPI from './channels';
 import * as EntitiesAPI from './entities';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Comm extends APIResource {
   /**
@@ -12,11 +15,11 @@ export class Comm extends APIResource {
    * data such as transponders and channels, etc. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  create(body: CommCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: CommCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/comm', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -25,8 +28,8 @@ export class Comm extends APIResource {
    * parameter. A Comm is an on-orbit communications payload, including supporting
    * data such as transponders and channels, etc.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<CommFull> {
-    return this._client.get(`/udl/comm/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<CommFull> {
+    return this._client.get(path`/udl/comm/${id}`, options);
   }
 
   /**
@@ -35,11 +38,11 @@ export class Comm extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  update(pathId: string, body: CommUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/comm/${pathId}`, {
+  update(pathID: string, body: CommUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/comm/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -49,7 +52,7 @@ export class Comm extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<CommListResponse> {
+  list(options?: RequestOptions): APIPromise<CommListResponse> {
     return this._client.get('/udl/comm', options);
   }
 
@@ -59,10 +62,10 @@ export class Comm extends APIResource {
    * data such as transponders and channels, etc. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/comm/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/comm/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -73,10 +76,10 @@ export class Comm extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/comm/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -84,10 +87,10 @@ export class Comm extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/comm/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -101,7 +104,7 @@ export class Comm extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: CommTupleParams, options?: Core.RequestOptions): Core.APIPromise<CommTupleResponse> {
+  tuple(query: CommTupleParams, options?: RequestOptions): APIPromise<CommTupleResponse> {
     return this._client.get('/udl/comm/tuple', { query, ...options });
   }
 }

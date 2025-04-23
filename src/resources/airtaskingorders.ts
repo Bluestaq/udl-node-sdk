@@ -1,7 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class Airtaskingorders extends APIResource {
   /**
@@ -10,7 +11,7 @@ export class Airtaskingorders extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<AirtaskingorderListResponse> {
+  list(options?: RequestOptions): APIPromise<AirtaskingorderListResponse> {
     return this._client.get('/udl/airtaskingorder', options);
   }
 }

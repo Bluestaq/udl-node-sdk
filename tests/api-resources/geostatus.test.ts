@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -81,9 +80,9 @@ describe('resource geostatus', () => {
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.geostatus.createBulk([
-      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' },
-    ]);
+    const responsePromise = client.geostatus.createBulk({
+      body: [{ classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' }],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -94,30 +93,32 @@ describe('resource geostatus', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.geostatus.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        source: 'Bluestaq',
-        id: 'GEOSTATUS-ID',
-        confidenceLevel: 'Low',
-        longitudeMax: 1.01,
-        longitudeMin: 180.1,
-        longitudeRate: 1.1,
-        lostFlag: false,
-        objectStatus: 'Active',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origObjectId: 'ORIGOBJECT-ID',
-        planeChangeStatus: 'Current',
-        rawFileURI: 'Example URI',
-        relativeEnergy: 1.1,
-        satNo: 21,
-        sc: 1.1,
-        semiAnnualCorrFlag: false,
-        ss: 1.1,
-        troughType: 'West',
-      },
-    ]);
+    const response = await client.geostatus.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          id: 'GEOSTATUS-ID',
+          confidenceLevel: 'Low',
+          longitudeMax: 1.01,
+          longitudeMin: 180.1,
+          longitudeRate: 1.1,
+          lostFlag: false,
+          objectStatus: 'Active',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origObjectId: 'ORIGOBJECT-ID',
+          planeChangeStatus: 'Current',
+          rawFileURI: 'Example URI',
+          relativeEnergy: 1.1,
+          satNo: 21,
+          sc: 1.1,
+          semiAnnualCorrFlag: false,
+          ss: 1.1,
+          troughType: 'West',
+        },
+      ],
+    });
   });
 
   test('get', async () => {
@@ -131,13 +132,6 @@ describe('resource geostatus', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.geostatus.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.geostatus.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -147,13 +141,6 @@ describe('resource geostatus', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.geostatus.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {

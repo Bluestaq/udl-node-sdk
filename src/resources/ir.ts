@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as EntitiesAPI from './entities';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Ir extends APIResource {
   /**
@@ -10,11 +13,11 @@ export class Ir extends APIResource {
    * database. An IR is an on-orbit infrared payload. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  create(body: IrCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: IrCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/ir', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -23,11 +26,11 @@ export class Ir extends APIResource {
    * A specific role is required to perform this service operation. Please contact
    * the UDL team for assistance.
    */
-  update(pathId: string, body: IrUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/ir/${pathId}`, {
+  update(pathID: string, body: IrUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/ir/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -37,7 +40,7 @@ export class Ir extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<IrListResponse> {
+  list(options?: RequestOptions): APIPromise<IrListResponse> {
     return this._client.get('/udl/ir', options);
   }
 
@@ -46,10 +49,10 @@ export class Ir extends APIResource {
    * parameter. An IR is an on-orbit infrared payload. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/ir/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/ir/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -60,10 +63,10 @@ export class Ir extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/ir/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -71,18 +74,18 @@ export class Ir extends APIResource {
    * Service operation to get a single IR record by its unique ID passed as a path
    * parameter. An IR is an on-orbit infrared payload.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<IrGetResponse> {
-    return this._client.get(`/udl/ir/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<IrGetResponse> {
+    return this._client.get(path`/udl/ir/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/ir/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -96,7 +99,7 @@ export class Ir extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: IrTupleParams, options?: Core.RequestOptions): Core.APIPromise<IrTupleResponse> {
+  tuple(query: IrTupleParams, options?: RequestOptions): APIPromise<IrTupleResponse> {
     return this._client.get('/udl/ir/tuple', { query, ...options });
   }
 }

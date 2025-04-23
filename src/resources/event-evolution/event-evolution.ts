@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import {
@@ -13,6 +11,10 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class EventEvolution extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -22,11 +24,11 @@ export class EventEvolution extends APIResource {
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: EventEvolutionCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: EventEvolutionCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/eventevolution', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -34,8 +36,8 @@ export class EventEvolution extends APIResource {
    * Service operation to get a single EventEvolution by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Shared.EventEvolutionFull> {
-    return this._client.get(`/udl/eventevolution/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.EventEvolutionFull> {
+    return this._client.get(path`/udl/eventevolution/${id}`, options);
   }
 
   /**
@@ -45,17 +47,9 @@ export class EventEvolution extends APIResource {
    * parameter information.
    */
   list(
-    query?: EventEvolutionListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EventEvolutionListResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<EventEvolutionListResponse>;
-  list(
-    query: EventEvolutionListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EventEvolutionListResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
+    query: EventEvolutionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EventEvolutionListResponse> {
     return this._client.get('/udl/eventevolution', { query, ...options });
   }
 
@@ -66,19 +60,14 @@ export class EventEvolution extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query?: EventEvolutionCountParams, options?: Core.RequestOptions): Core.APIPromise<string>;
-  count(options?: Core.RequestOptions): Core.APIPromise<string>;
   count(
-    query: EventEvolutionCountParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.count({}, query);
-    }
+    query: EventEvolutionCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/eventevolution/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -90,11 +79,12 @@ export class EventEvolution extends APIResource {
    * contact the UDL team for instructions on setting up a permanent feed through an
    * alternate mechanism.
    */
-  createBulk(body: EventEvolutionCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: EventEvolutionCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/eventevolution/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -102,10 +92,10 @@ export class EventEvolution extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/eventevolution/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -119,10 +109,7 @@ export class EventEvolution extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: EventEvolutionTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EventEvolutionTupleResponse> {
+  tuple(query: EventEvolutionTupleParams, options?: RequestOptions): APIPromise<EventEvolutionTupleResponse> {
     return this._client.get('/udl/eventevolution/tuple', { query, ...options });
   }
 
@@ -133,13 +120,14 @@ export class EventEvolution extends APIResource {
    * UDL.
    */
   unvalidatedPublish(
-    body: EventEvolutionUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: EventEvolutionUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-eventevolution', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -603,7 +591,9 @@ export interface EventEvolutionCountParams {
   startTime?: string;
 }
 
-export type EventEvolutionCreateBulkParams = Array<EventEvolutionCreateBulkParams.Body>;
+export interface EventEvolutionCreateBulkParams {
+  body: Array<EventEvolutionCreateBulkParams.Body>;
+}
 
 export namespace EventEvolutionCreateBulkParams {
   /**
@@ -838,7 +828,9 @@ export interface EventEvolutionTupleParams {
   startTime?: string;
 }
 
-export type EventEvolutionUnvalidatedPublishParams = Array<EventEvolutionUnvalidatedPublishParams.Body>;
+export interface EventEvolutionUnvalidatedPublishParams {
+  body: Array<EventEvolutionUnvalidatedPublishParams.Body>;
+}
 
 export namespace EventEvolutionUnvalidatedPublishParams {
   /**

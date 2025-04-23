@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as DiplomaticClearanceAPI from '../air-operations/diplomatic-clearance';
 import * as CountryAPI from './country';
 import {
@@ -25,6 +24,10 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class DiplomaticClearance extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -35,11 +38,11 @@ export class DiplomaticClearance extends APIResource {
    * and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  create(body: DiplomaticClearanceCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: DiplomaticClearanceCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/diplomaticclearance', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -47,11 +50,8 @@ export class DiplomaticClearance extends APIResource {
    * Service operation to get a single diplomatic clearance record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(
-    id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DiplomaticClearanceAPI.DiplomaticclearanceFull> {
-    return this._client.get(`/udl/diplomaticclearance/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<DiplomaticClearanceAPI.DiplomaticclearanceFull> {
+    return this._client.get(path`/udl/diplomaticclearance/${id}`, options);
   }
 
   /**
@@ -59,15 +59,11 @@ export class DiplomaticClearance extends APIResource {
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
    */
-  update(
-    pathId: string,
-    body: DiplomaticClearanceUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/diplomaticclearance/${pathId}`, {
+  update(pathID: string, body: DiplomaticClearanceUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/diplomaticclearance/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -79,8 +75,8 @@ export class DiplomaticClearance extends APIResource {
    */
   list(
     query: DiplomaticClearanceListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DiplomaticClearanceListResponse> {
+    options?: RequestOptions,
+  ): APIPromise<DiplomaticClearanceListResponse> {
     return this._client.get('/udl/diplomaticclearance', { query, ...options });
   }
 
@@ -89,10 +85,10 @@ export class DiplomaticClearance extends APIResource {
    * passed ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/diplomaticclearance/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/diplomaticclearance/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -103,11 +99,11 @@ export class DiplomaticClearance extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: DiplomaticClearanceCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: DiplomaticClearanceCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/diplomaticclearance/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -118,14 +114,12 @@ export class DiplomaticClearance extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(
-    body: DiplomaticClearanceCreateBulkParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  createBulk(params: DiplomaticClearanceCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/diplomaticclearance/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -133,10 +127,10 @@ export class DiplomaticClearance extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/diplomaticclearance/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -152,8 +146,8 @@ export class DiplomaticClearance extends APIResource {
    */
   tuple(
     query: DiplomaticClearanceTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DiplomaticClearanceTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<DiplomaticClearanceTupleResponse> {
     return this._client.get('/udl/diplomaticclearance/tuple', { query, ...options });
   }
 }
@@ -704,7 +698,9 @@ export interface DiplomaticClearanceCountParams {
   firstDepDate: string;
 }
 
-export type DiplomaticClearanceCreateBulkParams = Array<DiplomaticClearanceCreateBulkParams.Body>;
+export interface DiplomaticClearanceCreateBulkParams {
+  body: Array<DiplomaticClearanceCreateBulkParams.Body>;
+}
 
 export namespace DiplomaticClearanceCreateBulkParams {
   /**

@@ -1,7 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Swir extends APIResource {
   /**
@@ -10,19 +12,19 @@ export class Swir extends APIResource {
    * UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  unvalidatedPublish(
-    body: SwirUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: SwirUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/swir', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
-export type SwirUnvalidatedPublishParams = Array<SwirUnvalidatedPublishParams.Body>;
+export interface SwirUnvalidatedPublishParams {
+  body: Array<SwirUnvalidatedPublishParams.Body>;
+}
 
 export namespace SwirUnvalidatedPublishParams {
   /**

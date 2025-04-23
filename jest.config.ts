@@ -8,7 +8,6 @@ const config: JestConfigWithTsJest = {
   },
   moduleNameMapper: {
     '^unifieddatalibrary$': '<rootDir>/src/index.ts',
-    '^unifieddatalibrary/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
     '^unifieddatalibrary/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [

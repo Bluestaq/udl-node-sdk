@@ -1,18 +1,20 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { type Response } from '../../_shims/index';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class UdlSigact extends APIResource {
   /**
    * Service operation to get a single SigAct text file by its unique ID passed as a
    * path parameter. The text file is returned as an attachment Content-Disposition.
    */
-  fileGet(id: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.get(`/udl/sigact/getFile/${id}`, {
+  fileGet(id: string, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/udl/sigact/getFile/${id}`, {
       ...options,
-      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -23,19 +25,19 @@ export class UdlSigact extends APIResource {
    * specific role, please contact the UDL team to gain access. This operation is
    * intended to be used for automated feeds into UDL.
    */
-  unvalidatedPublish(
-    body: UdlSigactUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: UdlSigactUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-sigact', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
-export type UdlSigactUnvalidatedPublishParams = Array<UdlSigactUnvalidatedPublishParams.Body>;
+export interface UdlSigactUnvalidatedPublishParams {
+  body: Array<UdlSigactUnvalidatedPublishParams.Body>;
+}
 
 export namespace UdlSigactUnvalidatedPublishParams {
   /**

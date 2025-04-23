@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class EngineDetails extends APIResource {
   /**
@@ -12,11 +15,11 @@ export class EngineDetails extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  create(body: EngineDetailCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: EngineDetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/enginedetails', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -26,8 +29,8 @@ export class EngineDetails extends APIResource {
    * performance characteristics/limits compiled by a particular source. A launch
    * vehicle engine may have several details records from multiple sources.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EngineDetailsFull> {
-    return this._client.get(`/udl/enginedetails/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<EngineDetailsFull> {
+    return this._client.get(path`/udl/enginedetails/${id}`, options);
   }
 
   /**
@@ -37,15 +40,11 @@ export class EngineDetails extends APIResource {
    * multiple sources. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  update(
-    pathId: string,
-    body: EngineDetailUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/enginedetails/${pathId}`, {
+  update(pathID: string, body: EngineDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/enginedetails/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -57,10 +56,10 @@ export class EngineDetails extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/enginedetails/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/enginedetails/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }

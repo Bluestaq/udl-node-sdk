@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../resource';
-import * as Core from '../../../core';
+import { APIResource } from '../../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -11,6 +10,10 @@ import {
   HistoryQueryResponse,
   HistoryWriteAodrParams,
 } from './history';
+import { APIPromise } from '../../../core/api-promise';
+import { buildHeaders } from '../../../internal/headers';
+import { RequestOptions } from '../../../internal/request-options';
+import { path } from '../../../internal/utils/path';
 
 export class Calibration extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -22,11 +25,11 @@ export class Calibration extends APIResource {
    * assignments and for instructions on setting up a permanent feed through an
    * alternate mechanism.
    */
-  create(body: CalibrationCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: CalibrationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/sensorcalibration', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -34,8 +37,8 @@ export class Calibration extends APIResource {
    * Service operation to get a single SensorCalibration by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<CalibrationRetrieveResponse> {
-    return this._client.get(`/udl/sensorcalibration/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<CalibrationRetrieveResponse> {
+    return this._client.get(path`/udl/sensorcalibration/${id}`, options);
   }
 
   /**
@@ -45,11 +48,11 @@ export class Calibration extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: CalibrationCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: CalibrationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sensorcalibration/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -60,11 +63,12 @@ export class Calibration extends APIResource {
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: CalibrationCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: CalibrationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/sensorcalibration/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -74,10 +78,7 @@ export class Calibration extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  query(
-    query: CalibrationQueryParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CalibrationQueryResponse> {
+  query(query: CalibrationQueryParams, options?: RequestOptions): APIPromise<CalibrationQueryResponse> {
     return this._client.get('/udl/sensorcalibration', { query, ...options });
   }
 
@@ -85,10 +86,10 @@ export class Calibration extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sensorcalibration/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -102,10 +103,7 @@ export class Calibration extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: CalibrationTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CalibrationTupleResponse> {
+  tuple(query: CalibrationTupleParams, options?: RequestOptions): APIPromise<CalibrationTupleResponse> {
     return this._client.get('/udl/sensorcalibration/tuple', { query, ...options });
   }
 
@@ -116,13 +114,14 @@ export class Calibration extends APIResource {
    * Please contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: CalibrationUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: CalibrationUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-sensorcalibration', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -1503,7 +1502,9 @@ export interface CalibrationCountParams {
   startTime: string;
 }
 
-export type CalibrationCreateBulkParams = Array<CalibrationCreateBulkParams.Body>;
+export interface CalibrationCreateBulkParams {
+  body: Array<CalibrationCreateBulkParams.Body>;
+}
 
 export namespace CalibrationCreateBulkParams {
   /**
@@ -1854,7 +1855,9 @@ export interface CalibrationTupleParams {
   startTime: string;
 }
 
-export type CalibrationUnvalidatedPublishParams = Array<CalibrationUnvalidatedPublishParams.Body>;
+export interface CalibrationUnvalidatedPublishParams {
+  body: Array<CalibrationUnvalidatedPublishParams.Body>;
+}
 
 export namespace CalibrationUnvalidatedPublishParams {
   /**

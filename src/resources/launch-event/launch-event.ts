@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -11,6 +10,9 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class LaunchEvent extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -22,18 +24,21 @@ export class LaunchEvent extends APIResource {
    * UDL team for assistance.
    */
   unvalidatedPublish(
-    body: LaunchEventUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: LaunchEventUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-launchevent', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
-export type LaunchEventUnvalidatedPublishParams = Array<LaunchEventUnvalidatedPublishParams.Body>;
+export interface LaunchEventUnvalidatedPublishParams {
+  body: Array<LaunchEventUnvalidatedPublishParams.Body>;
+}
 
 export namespace LaunchEventUnvalidatedPublishParams {
   /**

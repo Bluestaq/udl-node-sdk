@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -10,6 +9,10 @@ import {
   HistoryListResponse,
   VideoStreamsFull,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Video extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -19,11 +22,11 @@ export class Video extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: VideoCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: VideoCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/video', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -33,7 +36,7 @@ export class Video extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<VideoListResponse> {
+  list(options?: RequestOptions): APIPromise<VideoListResponse> {
     return this._client.get('/udl/video', options);
   }
 
@@ -44,10 +47,10 @@ export class Video extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/video/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -55,8 +58,8 @@ export class Video extends APIResource {
    * Service operation to get a single Video Stream record by its unique ID passed as
    * a path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<HistoryAPI.VideoStreamsFull> {
-    return this._client.get(`/udl/video/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.VideoStreamsFull> {
+    return this._client.get(path`/udl/video/${id}`, options);
   }
 
   /**
@@ -65,8 +68,8 @@ export class Video extends APIResource {
    */
   getPlayerStreamingInfo(
     query: VideoGetPlayerStreamingInfoParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<VideoGetPlayerStreamingInfoResponse> {
+    options?: RequestOptions,
+  ): APIPromise<VideoGetPlayerStreamingInfoResponse> {
     return this._client.get('/udl/video/getPlayerStreamingInfo', { query, ...options });
   }
 
@@ -76,8 +79,8 @@ export class Video extends APIResource {
    */
   getPublisherStreamingInfo(
     query: VideoGetPublisherStreamingInfoParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<VideoGetPublisherStreamingInfoResponse> {
+    options?: RequestOptions,
+  ): APIPromise<VideoGetPublisherStreamingInfoResponse> {
     return this._client.get('/udl/video/getPublisherStreamingInfo', { query, ...options });
   }
 
@@ -87,8 +90,8 @@ export class Video extends APIResource {
    */
   getStreamFile(
     query: VideoGetStreamFileParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<VideoGetStreamFileResponse> {
+    options?: RequestOptions,
+  ): APIPromise<VideoGetStreamFileResponse> {
     return this._client.get('/udl/video/getStreamFile', { query, ...options });
   }
 
@@ -96,10 +99,10 @@ export class Video extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/video/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -113,7 +116,7 @@ export class Video extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: VideoTupleParams, options?: Core.RequestOptions): Core.APIPromise<VideoTupleResponse> {
+  tuple(query: VideoTupleParams, options?: RequestOptions): APIPromise<VideoTupleResponse> {
     return this._client.get('/udl/video/tuple', { query, ...options });
   }
 }

@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as OrganizationAPI from './organization';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Launchvehicledetails extends APIResource {
   /**
@@ -12,11 +15,11 @@ export class Launchvehicledetails extends APIResource {
    * multiple details records from various sources. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  create(body: LaunchvehicledetailCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: LaunchvehicledetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/launchvehicledetails', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -27,15 +30,11 @@ export class Launchvehicledetails extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  update(
-    pathId: string,
-    body: LaunchvehicledetailUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/launchvehicledetails/${pathId}`, {
+  update(pathID: string, body: LaunchvehicledetailUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/launchvehicledetails/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -45,7 +44,7 @@ export class Launchvehicledetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<LaunchvehicledetailListResponse> {
+  list(options?: RequestOptions): APIPromise<LaunchvehicledetailListResponse> {
     return this._client.get('/udl/launchvehicledetails', options);
   }
 
@@ -56,10 +55,10 @@ export class Launchvehicledetails extends APIResource {
    * multiple details records from various sources. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/launchvehicledetails/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/launchvehicledetails/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -69,8 +68,8 @@ export class Launchvehicledetails extends APIResource {
    * details and characteristics, compiled by a particular source. A vehicle may have
    * multiple details records from various sources.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<LaunchvehicledetailGetResponse> {
-    return this._client.get(`/udl/launchvehicledetails/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<LaunchvehicledetailGetResponse> {
+    return this._client.get(path`/udl/launchvehicledetails/${id}`, options);
   }
 }
 

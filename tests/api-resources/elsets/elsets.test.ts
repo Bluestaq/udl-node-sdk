@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -74,13 +73,6 @@ describe('resource elsets', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.elsets.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('list: only required params', async () => {
@@ -217,13 +209,6 @@ describe('resource elsets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('queryCurrentElsetHelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.elsets.queryCurrentElsetHelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.elsets.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -233,13 +218,6 @@ describe('resource elsets', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.elsets.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {
@@ -258,14 +236,16 @@ describe('resource elsets', () => {
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.elsets.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        epoch: '2018-01-01T16:00:00.123456Z',
-        source: 'Bluestaq',
-      },
-    ]);
+    const responsePromise = client.elsets.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          epoch: '2018-01-01T16:00:00.123456Z',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -276,43 +256,45 @@ describe('resource elsets', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.elsets.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        epoch: '2018-01-01T16:00:00.123456Z',
-        source: 'Bluestaq',
-        agom: 0.0126,
-        algorithm: 'Example algorithm',
-        apogee: 1.1,
-        argOfPerigee: 1.1,
-        ballisticCoeff: 0.00815,
-        bStar: 1.1,
-        descriptor: 'Example description',
-        eccentricity: 0.333,
-        ephemType: 1,
-        idElset: 'ELSET-ID',
-        idOrbitDetermination: '026dd511-8ba5-47d3-9909-836149f87686',
-        inclination: 45.1,
-        meanAnomaly: 179.1,
-        meanMotion: 1.1,
-        meanMotionDDot: 1.1,
-        meanMotionDot: 1.1,
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origObjectId: 'ORIGOBJECT-ID',
-        perigee: 1.1,
-        period: 1.1,
-        raan: 1.1,
-        rawFileURI: 'Example URI',
-        revNo: 111,
-        satNo: 12,
-        semiMajorAxis: 1.1,
-        sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
-        sourcedDataTypes: ['RADAR', 'RF'],
-        tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-        transactionId: 'TRANSACTION-ID',
-        uct: false,
-      },
-    ]);
+    const response = await client.elsets.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          epoch: '2018-01-01T16:00:00.123456Z',
+          source: 'Bluestaq',
+          agom: 0.0126,
+          algorithm: 'Example algorithm',
+          apogee: 1.1,
+          argOfPerigee: 1.1,
+          ballisticCoeff: 0.00815,
+          bStar: 1.1,
+          descriptor: 'Example description',
+          eccentricity: 0.333,
+          ephemType: 1,
+          idElset: 'ELSET-ID',
+          idOrbitDetermination: '026dd511-8ba5-47d3-9909-836149f87686',
+          inclination: 45.1,
+          meanAnomaly: 179.1,
+          meanMotion: 1.1,
+          meanMotionDDot: 1.1,
+          meanMotionDot: 1.1,
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origObjectId: 'ORIGOBJECT-ID',
+          perigee: 1.1,
+          period: 1.1,
+          raan: 1.1,
+          rawFileURI: 'Example URI',
+          revNo: 111,
+          satNo: 12,
+          semiMajorAxis: 1.1,
+          sourcedData: ['OBSERVATION_UUID1', 'OBSERVATION_UUID2'],
+          sourcedDataTypes: ['RADAR', 'RF'],
+          tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+          transactionId: 'TRANSACTION-ID',
+          uct: false,
+        },
+      ],
+    });
   });
 });

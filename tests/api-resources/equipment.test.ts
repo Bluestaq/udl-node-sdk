@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -95,13 +94,6 @@ describe('resource equipment', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.equipment.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('update: only required params', async () => {
     const responsePromise = client.equipment.update('id', {
       classificationMarking: 'U',
@@ -187,13 +179,6 @@ describe('resource equipment', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.equipment.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('delete', async () => {
     const responsePromise = client.equipment.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -203,13 +188,6 @@ describe('resource equipment', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.equipment.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('count', async () => {
@@ -223,24 +201,19 @@ describe('resource equipment', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('count: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.equipment.count({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('createBulk: only required params', async () => {
-    const responsePromise = client.equipment.createBulk([
-      {
-        classificationMarking: 'U',
-        countryCode: 'IQ',
-        dataMode: 'TEST',
-        lat: 39.019242,
-        lon: -104.251659,
-        source: 'Bluestaq',
-      },
-    ]);
+    const responsePromise = client.equipment.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          countryCode: 'IQ',
+          dataMode: 'TEST',
+          lat: 39.019242,
+          lon: -104.251659,
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -251,61 +224,63 @@ describe('resource equipment', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.equipment.createBulk([
-      {
-        classificationMarking: 'U',
-        countryCode: 'IQ',
-        dataMode: 'TEST',
-        lat: 39.019242,
-        lon: -104.251659,
-        source: 'Bluestaq',
-        id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
-        airDefArea: 'AL006',
-        allegiance: 'OTHR',
-        altAllegiance: 'HL',
-        altCountryCode: 'IZ',
-        altEqpId: 'ORIG-EQP-ID',
-        classRating: '1',
-        condition: 'RDY',
-        conditionAvail: 'A',
-        coord: '340000000N0430000000E',
-        coordDatum: 'WGS',
-        coordDerivAcc: 12.345,
-        elevMsl: 123.45,
-        elevMslConfLvl: 50,
-        elevMslDerivAcc: 12.34,
-        eqpCode: 'X12345',
-        eqpIdNum: '001',
-        eval: 7,
-        fpa: 'NOB',
-        function: 'OCC',
-        functPrimary: 'JG',
-        geoidalMslSep: 12.34,
-        ident: 'FRIEND',
-        idOperatingUnit: 'UNIT-ID',
-        idParentEquipment: 'PARENT-EQUIPMENT-ID',
-        idSite: 'SITE-ID',
-        locReason: 'GR',
-        milGrid: '4QFJ12345678',
-        milGridSys: 'UTM',
-        nomen: 'AMPHIBIOUS WARFARE SHIP',
-        operAreaPrimary: 'Territorial Sea',
-        operStatus: 'OPR',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        polSubdiv: 'IZ07',
-        qtyOH: 7,
-        recStatus: 'A',
-        referenceDoc: 'Provider Reference Documentation',
-        resProd: 'RT',
-        reviewDate: '2008-06-10',
-        seqNum: 5,
-        srcIds: ['SRC_ID_1'],
-        srcTyps: ['AIRCRAFT'],
-        symCode: 'SOGPU----------',
-        utm: '19P4390691376966',
-        wac: '0427',
-      },
-    ]);
+    const response = await client.equipment.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          countryCode: 'IQ',
+          dataMode: 'TEST',
+          lat: 39.019242,
+          lon: -104.251659,
+          source: 'Bluestaq',
+          id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+          airDefArea: 'AL006',
+          allegiance: 'OTHR',
+          altAllegiance: 'HL',
+          altCountryCode: 'IZ',
+          altEqpId: 'ORIG-EQP-ID',
+          classRating: '1',
+          condition: 'RDY',
+          conditionAvail: 'A',
+          coord: '340000000N0430000000E',
+          coordDatum: 'WGS',
+          coordDerivAcc: 12.345,
+          elevMsl: 123.45,
+          elevMslConfLvl: 50,
+          elevMslDerivAcc: 12.34,
+          eqpCode: 'X12345',
+          eqpIdNum: '001',
+          eval: 7,
+          fpa: 'NOB',
+          function: 'OCC',
+          functPrimary: 'JG',
+          geoidalMslSep: 12.34,
+          ident: 'FRIEND',
+          idOperatingUnit: 'UNIT-ID',
+          idParentEquipment: 'PARENT-EQUIPMENT-ID',
+          idSite: 'SITE-ID',
+          locReason: 'GR',
+          milGrid: '4QFJ12345678',
+          milGridSys: 'UTM',
+          nomen: 'AMPHIBIOUS WARFARE SHIP',
+          operAreaPrimary: 'Territorial Sea',
+          operStatus: 'OPR',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          polSubdiv: 'IZ07',
+          qtyOH: 7,
+          recStatus: 'A',
+          referenceDoc: 'Provider Reference Documentation',
+          resProd: 'RT',
+          reviewDate: '2008-06-10',
+          seqNum: 5,
+          srcIds: ['SRC_ID_1'],
+          srcTyps: ['AIRCRAFT'],
+          symCode: 'SOGPU----------',
+          utm: '19P4390691376966',
+          wac: '0427',
+        },
+      ],
+    });
   });
 
   test('queryHelp', async () => {
@@ -317,13 +292,6 @@ describe('resource equipment', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryHelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.equipment.queryHelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {

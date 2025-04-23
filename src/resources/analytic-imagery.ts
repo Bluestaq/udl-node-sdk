@@ -1,8 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
-import { type Response } from '../_shims/index';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { type Uploadable } from '../core/uploads';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { multipartFormRequestOptions } from '../internal/uploads';
+import { path } from '../internal/utils/path';
 
 export class AnalyticImagery extends APIResource {
   /**
@@ -10,8 +14,8 @@ export class AnalyticImagery extends APIResource {
    * as a path parameter. AnalyticImagery represents metadata about an image, as well
    * as the actual binary image data.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AnalyticImageryFull> {
-    return this._client.get(`/udl/analyticimagery/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<AnalyticImageryFull> {
+    return this._client.get(path`/udl/analyticimagery/${id}`, options);
   }
 
   /**
@@ -20,10 +24,7 @@ export class AnalyticImagery extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: AnalyticImageryListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AnalyticImageryListResponse> {
+  list(query: AnalyticImageryListParams, options?: RequestOptions): APIPromise<AnalyticImageryListResponse> {
     return this._client.get('/udl/analyticimagery', { query, ...options });
   }
 
@@ -34,11 +35,11 @@ export class AnalyticImagery extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: AnalyticImageryCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: AnalyticImageryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/analyticimagery/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -47,10 +48,10 @@ export class AnalyticImagery extends APIResource {
    * passed as a path parameter. The image is returned as an attachment
    * Content-Disposition.
    */
-  fileGet(id: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.get(`/udl/analyticimagery/getFile/${id}`, {
+  fileGet(id: string, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/udl/analyticimagery/getFile/${id}`, {
       ...options,
-      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -63,8 +64,8 @@ export class AnalyticImagery extends APIResource {
    */
   history(
     query: AnalyticImageryHistoryParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AnalyticImageryHistoryResponse> {
+    options?: RequestOptions,
+  ): APIPromise<AnalyticImageryHistoryResponse> {
     return this._client.get('/udl/analyticimagery/history', { query, ...options });
   }
 
@@ -75,11 +76,11 @@ export class AnalyticImagery extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  historyAodr(query: AnalyticImageryHistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  historyAodr(query: AnalyticImageryHistoryAodrParams, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/analyticimagery/history/aodr', {
       query,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -90,14 +91,11 @@ export class AnalyticImagery extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  historyCount(
-    query: AnalyticImageryHistoryCountParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
+  historyCount(query: AnalyticImageryHistoryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/analyticimagery/history/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -105,10 +103,10 @@ export class AnalyticImagery extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/analyticimagery/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -124,8 +122,8 @@ export class AnalyticImagery extends APIResource {
    */
   tuple(
     query: AnalyticImageryTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AnalyticImageryTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<AnalyticImageryTupleResponse> {
     return this._client.get('/udl/analyticimagery/tuple', { query, ...options });
   }
 
@@ -150,11 +148,14 @@ export class AnalyticImagery extends APIResource {
    */
   unvalidatedPublish(
     body: AnalyticImageryUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    options?: RequestOptions,
+  ): APIPromise<void> {
     return this._client.post(
       '/filedrop/udl-analyticimagery',
-      Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
+      multipartFormRequestOptions(
+        { body, ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
+        this._client,
+      ),
     );
   }
 }
@@ -803,7 +804,7 @@ export interface AnalyticImageryUnvalidatedPublishParams {
   /**
    * Zip file containing files described in the specification
    */
-  file: Core.Uploadable;
+  file: Uploadable;
 }
 
 export declare namespace AnalyticImagery {

@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,6 +11,10 @@ import {
   HistoryListResponse,
   TaiutcFull,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Taiutc extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -21,11 +24,11 @@ export class Taiutc extends APIResource {
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  create(body: TaiutcCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: TaiutcCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/taiutc', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -33,11 +36,11 @@ export class Taiutc extends APIResource {
    * Service operation to update a single TAIUTC object. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
    */
-  update(pathId: string, body: TaiutcUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/taiutc/${pathId}`, {
+  update(pathID: string, body: TaiutcUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/taiutc/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -47,7 +50,7 @@ export class Taiutc extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: TaiutcListParams, options?: Core.RequestOptions): Core.APIPromise<TaiutcListResponse> {
+  list(query: TaiutcListParams, options?: RequestOptions): APIPromise<TaiutcListResponse> {
     return this._client.get('/udl/taiutc', { query, ...options });
   }
 
@@ -57,10 +60,10 @@ export class Taiutc extends APIResource {
    * contact the UDL team for assistance. Note, delete operations do not remove data
    * from historical or publish/subscribe stores.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/taiutc/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/taiutc/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -71,11 +74,11 @@ export class Taiutc extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: TaiutcCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: TaiutcCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/taiutc/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -83,18 +86,18 @@ export class Taiutc extends APIResource {
    * Service operation to get a single TAIUTC record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<HistoryAPI.TaiutcFull> {
-    return this._client.get(`/udl/taiutc/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.TaiutcFull> {
+    return this._client.get(path`/udl/taiutc/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/taiutc/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -108,7 +111,7 @@ export class Taiutc extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: TaiutcTupleParams, options?: Core.RequestOptions): Core.APIPromise<TaiutcTupleResponse> {
+  tuple(query: TaiutcTupleParams, options?: RequestOptions): APIPromise<TaiutcTupleResponse> {
     return this._client.get('/udl/taiutc/tuple', { query, ...options });
   }
 }

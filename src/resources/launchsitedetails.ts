@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as LocationAPI from './location';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Launchsitedetails extends APIResource {
   /**
@@ -12,11 +15,11 @@ export class Launchsitedetails extends APIResource {
    * records. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: LaunchsitedetailCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: LaunchsitedetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/launchsitedetails', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -26,15 +29,11 @@ export class Launchsitedetails extends APIResource {
    * site may have several details records. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
    */
-  update(
-    pathId: string,
-    body: LaunchsitedetailUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/launchsitedetails/${pathId}`, {
+  update(pathID: string, body: LaunchsitedetailUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/launchsitedetails/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -44,7 +43,7 @@ export class Launchsitedetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<LaunchsitedetailListResponse> {
+  list(options?: RequestOptions): APIPromise<LaunchsitedetailListResponse> {
     return this._client.get('/udl/launchsitedetails', options);
   }
 
@@ -55,10 +54,10 @@ export class Launchsitedetails extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/launchsitedetails/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/launchsitedetails/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -70,8 +69,8 @@ export class Launchsitedetails extends APIResource {
    */
   findBySource(
     query: LaunchsitedetailFindBySourceParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LaunchsitedetailFindBySourceResponse> {
+    options?: RequestOptions,
+  ): APIPromise<LaunchsitedetailFindBySourceResponse> {
     return this._client.get('/udl/launchsitedetails/findBySource', { query, ...options });
   }
 
@@ -81,8 +80,8 @@ export class Launchsitedetails extends APIResource {
    * launch site by a particular source. A launch site may have several details
    * records.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<LaunchsitedetailGetResponse> {
-    return this._client.get(`/udl/launchsitedetails/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<LaunchsitedetailGetResponse> {
+    return this._client.get(path`/udl/launchsitedetails/${id}`, options);
   }
 }
 

@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as ChannelsAPI from './channels';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Transponder extends APIResource {
   /**
@@ -11,11 +14,11 @@ export class Transponder extends APIResource {
    * Please contact the UDL team for assistance. A Comm payload may have multiple
    * transponders and a transponder may have many channels.
    */
-  create(body: TransponderCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: TransponderCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/transponder', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -25,15 +28,11 @@ export class Transponder extends APIResource {
    * Comm payload may have multiple transponders and a transponder may have many
    * channels.
    */
-  update(
-    pathId: string,
-    body: TransponderUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/transponder/${pathId}`, {
+  update(pathID: string, body: TransponderUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/transponder/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -43,7 +42,7 @@ export class Transponder extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<TransponderListResponse> {
+  list(options?: RequestOptions): APIPromise<TransponderListResponse> {
     return this._client.get('/udl/transponder', options);
   }
 
@@ -53,10 +52,10 @@ export class Transponder extends APIResource {
    * contact the UDL team for assistance. A Comm payload may have multiple
    * transponders and a transponder may have many channels.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/transponder/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/transponder/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -67,10 +66,10 @@ export class Transponder extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/transponder/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -79,18 +78,18 @@ export class Transponder extends APIResource {
    * a path parameter. A Comm payload may have multiple transponders and a
    * transponder may have many channels.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<TransponderGetResponse> {
-    return this._client.get(`/udl/transponder/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<TransponderGetResponse> {
+    return this._client.get(path`/udl/transponder/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/transponder/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -104,10 +103,7 @@ export class Transponder extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: TransponderTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TransponderTupleResponse> {
+  tuple(query: TransponderTupleParams, options?: RequestOptions): APIPromise<TransponderTupleResponse> {
     return this._client.get('/udl/transponder/tuple', { query, ...options });
   }
 }

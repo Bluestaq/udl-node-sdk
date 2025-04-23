@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Launchevent extends APIResource {
   /**
@@ -10,11 +13,11 @@ export class Launchevent extends APIResource {
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  create(body: LauncheventCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: LauncheventCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/launchevent', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -24,10 +27,7 @@ export class Launchevent extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: LauncheventListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LauncheventListResponse> {
+  list(query: LauncheventListParams, options?: RequestOptions): APIPromise<LauncheventListResponse> {
     return this._client.get('/udl/launchevent', { query, ...options });
   }
 
@@ -38,11 +38,11 @@ export class Launchevent extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: LauncheventCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: LauncheventCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/launchevent/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -53,11 +53,12 @@ export class Launchevent extends APIResource {
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
    */
-  createBulk(body: LauncheventCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: LauncheventCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/launchevent/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -65,18 +66,18 @@ export class Launchevent extends APIResource {
    * Service operation to get a single LaunchEvent record by its unique ID passed as
    * a path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<LauncheventGetResponse> {
-    return this._client.get(`/udl/launchevent/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<LauncheventGetResponse> {
+    return this._client.get(path`/udl/launchevent/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/launchevent/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -90,10 +91,7 @@ export class Launchevent extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: LauncheventTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LauncheventTupleResponse> {
+  tuple(query: LauncheventTupleParams, options?: RequestOptions): APIPromise<LauncheventTupleResponse> {
     return this._client.get('/udl/launchevent/tuple', { query, ...options });
   }
 
@@ -104,13 +102,14 @@ export class Launchevent extends APIResource {
    * UDL team for assistance.
    */
   unvalidatedPublish(
-    body: LauncheventUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: LauncheventUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-launchevent', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -622,7 +621,9 @@ export interface LauncheventCountParams {
   msgCreateDate: string;
 }
 
-export type LauncheventCreateBulkParams = Array<LauncheventCreateBulkParams.Body>;
+export interface LauncheventCreateBulkParams {
+  body: Array<LauncheventCreateBulkParams.Body>;
+}
 
 export namespace LauncheventCreateBulkParams {
   /**
@@ -744,7 +745,9 @@ export interface LauncheventTupleParams {
   msgCreateDate: string;
 }
 
-export type LauncheventUnvalidatedPublishParams = Array<LauncheventUnvalidatedPublishParams.Body>;
+export interface LauncheventUnvalidatedPublishParams {
+  body: Array<LauncheventUnvalidatedPublishParams.Body>;
+}
 
 export namespace LauncheventUnvalidatedPublishParams {
   /**

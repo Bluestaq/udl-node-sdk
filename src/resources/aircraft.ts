@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as EntitiesAPI from './entities';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Aircraft extends APIResource {
   /**
@@ -10,11 +13,11 @@ export class Aircraft extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: AircraftCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: AircraftCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/aircraft', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -22,19 +25,19 @@ export class Aircraft extends APIResource {
    * Service operation to get a single Aircraft record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AircraftFull> {
-    return this._client.get(`/udl/aircraft/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<AircraftFull> {
+    return this._client.get(path`/udl/aircraft/${id}`, options);
   }
 
   /**
    * Service operation to update a single Aircraft. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(pathId: string, body: AircraftUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/aircraft/${pathId}`, {
+  update(pathID: string, body: AircraftUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/aircraft/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -44,7 +47,7 @@ export class Aircraft extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<AircraftListResponse> {
+  list(options?: RequestOptions): APIPromise<AircraftListResponse> {
     return this._client.get('/udl/aircraft', options);
   }
 
@@ -55,10 +58,10 @@ export class Aircraft extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/aircraft/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -66,10 +69,10 @@ export class Aircraft extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/aircraft/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -85,8 +88,8 @@ export class Aircraft extends APIResource {
    */
   tupleQuery(
     query: AircraftTupleQueryParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AircraftTupleQueryResponse> {
+    options?: RequestOptions,
+  ): APIPromise<AircraftTupleQueryResponse> {
     return this._client.get('/udl/aircraft/tuple', { query, ...options });
   }
 }

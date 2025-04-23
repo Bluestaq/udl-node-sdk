@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as SolararraydetailsAPI from './solararraydetails';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Onorbitsolararray extends APIResource {
   /**
@@ -13,11 +16,11 @@ export class Onorbitsolararray extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  create(body: OnorbitsolararrayCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: OnorbitsolararrayCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitsolararray', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -28,15 +31,11 @@ export class Onorbitsolararray extends APIResource {
    * on-orbit spacecraft. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  update(
-    pathId: string,
-    body: OnorbitsolararrayUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/onorbitsolararray/${pathId}`, {
+  update(pathID: string, body: OnorbitsolararrayUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/onorbitsolararray/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -46,7 +45,7 @@ export class Onorbitsolararray extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<OnorbitsolararrayListResponse> {
+  list(options?: RequestOptions): APIPromise<OnorbitsolararrayListResponse> {
     return this._client.get('/udl/onorbitsolararray', options);
   }
 
@@ -58,10 +57,10 @@ export class Onorbitsolararray extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/onorbitsolararray/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/onorbitsolararray/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -71,8 +70,8 @@ export class Onorbitsolararray extends APIResource {
    * on-orbit spacecraft SolarArrays and a particular on-orbit spacecraft. A
    * SolarArray type may be associated with many different on-orbit spacecraft.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<OnorbitsolararrayGetResponse> {
-    return this._client.get(`/udl/onorbitsolararray/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<OnorbitsolararrayGetResponse> {
+    return this._client.get(path`/udl/onorbitsolararray/${id}`, options);
   }
 }
 

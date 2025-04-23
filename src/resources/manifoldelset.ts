@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Manifoldelset extends APIResource {
   /**
@@ -12,11 +15,11 @@ export class Manifoldelset extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  create(body: ManifoldelsetCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: ManifoldelsetCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/manifoldelset', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -27,15 +30,11 @@ export class Manifoldelset extends APIResource {
    * tasking purposes. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  update(
-    pathId: string,
-    body: ManifoldelsetUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/manifoldelset/${pathId}`, {
+  update(pathID: string, body: ManifoldelsetUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/manifoldelset/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -45,10 +44,7 @@ export class Manifoldelset extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: ManifoldelsetListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ManifoldelsetListResponse> {
+  list(query: ManifoldelsetListParams, options?: RequestOptions): APIPromise<ManifoldelsetListResponse> {
     return this._client.get('/udl/manifoldelset', { query, ...options });
   }
 
@@ -60,10 +56,10 @@ export class Manifoldelset extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/manifoldelset/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/manifoldelset/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -74,11 +70,11 @@ export class Manifoldelset extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: ManifoldelsetCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: ManifoldelsetCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/manifoldelset/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -87,11 +83,12 @@ export class Manifoldelset extends APIResource {
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  createBulk(body: ManifoldelsetCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: ManifoldelsetCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/manifoldelset/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -101,18 +98,18 @@ export class Manifoldelset extends APIResource {
    * elements belonging to an object of interest's manifold describing a
    * possible/theoretical orbit for an object of interest for tasking purposes.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<ManifoldelsetGetResponse> {
-    return this._client.get(`/udl/manifoldelset/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<ManifoldelsetGetResponse> {
+    return this._client.get(path`/udl/manifoldelset/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/manifoldelset/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -126,10 +123,7 @@ export class Manifoldelset extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: ManifoldelsetTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ManifoldelsetTupleResponse> {
+  tuple(query: ManifoldelsetTupleParams, options?: RequestOptions): APIPromise<ManifoldelsetTupleResponse> {
     return this._client.get('/udl/manifoldelset/tuple', { query, ...options });
   }
 }
@@ -1031,7 +1025,9 @@ export interface ManifoldelsetCountParams {
   epoch: string;
 }
 
-export type ManifoldelsetCreateBulkParams = Array<ManifoldelsetCreateBulkParams.Body>;
+export interface ManifoldelsetCreateBulkParams {
+  body: Array<ManifoldelsetCreateBulkParams.Body>;
+}
 
 export namespace ManifoldelsetCreateBulkParams {
   /**

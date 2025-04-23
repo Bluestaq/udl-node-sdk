@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as EnginesAPI from './engines';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Stage extends APIResource {
   /**
@@ -12,11 +15,11 @@ export class Stage extends APIResource {
    * particular launch vehicle, compiled by a particular source. A vehicle may have
    * multiple stage records.
    */
-  create(body: StageCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: StageCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/stage', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -26,11 +29,11 @@ export class Stage extends APIResource {
    * Stage represents various stages of a particular launch vehicle, compiled by a
    * particular source. A vehicle may have multiple stage records.
    */
-  update(pathId: string, body: StageUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/stage/${pathId}`, {
+  update(pathID: string, body: StageUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/stage/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -40,7 +43,7 @@ export class Stage extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<StageListResponse> {
+  list(options?: RequestOptions): APIPromise<StageListResponse> {
     return this._client.get('/udl/stage', options);
   }
 
@@ -51,10 +54,10 @@ export class Stage extends APIResource {
    * particular launch vehicle, compiled by a particular source. A vehicle may have
    * multiple stage records.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/stage/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/stage/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -65,10 +68,10 @@ export class Stage extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/stage/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -77,18 +80,18 @@ export class Stage extends APIResource {
    * parameter. A Stage represents various stages of a particular launch vehicle,
    * compiled by a particular source. A vehicle may have multiple stage records.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<StageGetResponse> {
-    return this._client.get(`/udl/stage/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<StageGetResponse> {
+    return this._client.get(path`/udl/stage/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/stage/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -102,7 +105,7 @@ export class Stage extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: StageTupleParams, options?: Core.RequestOptions): Core.APIPromise<StageTupleResponse> {
+  tuple(query: StageTupleParams, options?: RequestOptions): APIPromise<StageTupleResponse> {
     return this._client.get('/udl/stage/tuple', { query, ...options });
   }
 }

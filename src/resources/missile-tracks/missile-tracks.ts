@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,6 +11,9 @@ import {
   HistoryQueryResponse,
 } from './history';
 import * as MissiletrackHistoryAPI from '../udl/missiletrack/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class MissileTracks extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -22,10 +24,7 @@ export class MissileTracks extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: MissileTrackListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MissileTrackListResponse> {
+  list(query: MissileTrackListParams, options?: RequestOptions): APIPromise<MissileTrackListResponse> {
     return this._client.get('/udl/missiletrack', { query, ...options });
   }
 
@@ -36,11 +35,11 @@ export class MissileTracks extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: MissileTrackCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: MissileTrackCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/missiletrack/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -51,11 +50,12 @@ export class MissileTracks extends APIResource {
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: MissileTrackCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: MissileTrackCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/missiletrack/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -63,10 +63,10 @@ export class MissileTracks extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/missiletrack/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -80,10 +80,7 @@ export class MissileTracks extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: MissileTrackTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MissileTrackTupleResponse> {
+  tuple(query: MissileTrackTupleParams, options?: RequestOptions): APIPromise<MissileTrackTupleResponse> {
     return this._client.get('/udl/missiletrack/tuple', { query, ...options });
   }
 
@@ -94,13 +91,14 @@ export class MissileTracks extends APIResource {
    * Please contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: MissileTrackUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: MissileTrackUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-missiletrack', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -794,7 +792,9 @@ export interface MissileTrackCountParams {
   ts: string;
 }
 
-export type MissileTrackCreateBulkParams = Array<MissileTrackCreateBulkParams.Body>;
+export interface MissileTrackCreateBulkParams {
+  body: Array<MissileTrackCreateBulkParams.Body>;
+}
 
 export namespace MissileTrackCreateBulkParams {
   /**
@@ -1463,7 +1463,9 @@ export interface MissileTrackTupleParams {
   ts: string;
 }
 
-export type MissileTrackUnvalidatedPublishParams = Array<MissileTrackUnvalidatedPublishParams.Body>;
+export interface MissileTrackUnvalidatedPublishParams {
+  body: Array<MissileTrackUnvalidatedPublishParams.Body>;
+}
 
 export namespace MissileTrackUnvalidatedPublishParams {
   /**

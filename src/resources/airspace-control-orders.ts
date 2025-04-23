@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class AirspaceControlOrders extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class AirspaceControlOrders extends APIResource {
    * and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  create(body: AirspaceControlOrderCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: AirspaceControlOrderCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/airspacecontrolorder', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -21,8 +24,8 @@ export class AirspaceControlOrders extends APIResource {
    * Service operation to get a single AirspaceControlOrder record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AirspacecontrolorderFull> {
-    return this._client.get(`/udl/airspacecontrolorder/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<AirspacecontrolorderFull> {
+    return this._client.get(path`/udl/airspacecontrolorder/${id}`, options);
   }
 
   /**
@@ -31,7 +34,7 @@ export class AirspaceControlOrders extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<AirspaceControlOrderListResponse> {
+  list(options?: RequestOptions): APIPromise<AirspaceControlOrderListResponse> {
     return this._client.get('/udl/airspacecontrolorder', options);
   }
 
@@ -42,10 +45,10 @@ export class AirspaceControlOrders extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/airspacecontrolorder/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -56,14 +59,12 @@ export class AirspaceControlOrders extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(
-    body: AirspaceControlOrderCreateBulkParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  createBulk(params: AirspaceControlOrderCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/airspacecontrolorder/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -71,10 +72,10 @@ export class AirspaceControlOrders extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/airspacecontrolorder/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -90,8 +91,8 @@ export class AirspaceControlOrders extends APIResource {
    */
   tuple(
     query: AirspaceControlOrderTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AirspaceControlOrderTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<AirspaceControlOrderTupleResponse> {
     return this._client.get('/udl/airspacecontrolorder/tuple', { query, ...options });
   }
 }
@@ -1711,7 +1712,9 @@ export namespace AirspaceControlOrderCreateParams {
   }
 }
 
-export type AirspaceControlOrderCreateBulkParams = Array<AirspaceControlOrderCreateBulkParams.Body>;
+export interface AirspaceControlOrderCreateBulkParams {
+  body: Array<AirspaceControlOrderCreateBulkParams.Body>;
+}
 
 export namespace AirspaceControlOrderCreateBulkParams {
   /**

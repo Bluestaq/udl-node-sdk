@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import {
@@ -14,7 +12,10 @@ import {
   HistoryListResponse,
 } from './history';
 import * as StatevectorAPI from '../statevector/statevector';
-import { type Response } from '../../_shims/index';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class EphemerisSets extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -39,11 +40,11 @@ export class EphemerisSets extends APIResource {
    *    + If only origObjectId is provided then origObjectId will be populated with the posted value.  In this case, no checks are made against existing UDL sat numbers.
    * </h3>
    */
-  create(body: EphemerisSetCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: EphemerisSetCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/ephemerisset', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -51,8 +52,8 @@ export class EphemerisSets extends APIResource {
    * Service operation to get a single Ephemeris Set by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EphemerisSet> {
-    return this._client.get(`/udl/ephemerisset/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<EphemerisSet> {
+    return this._client.get(path`/udl/ephemerisset/${id}`, options);
   }
 
   /**
@@ -62,17 +63,9 @@ export class EphemerisSets extends APIResource {
    * parameter information.
    */
   list(
-    query?: EphemerisSetListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EphemerisSetListResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<EphemerisSetListResponse>;
-  list(
-    query: EphemerisSetListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EphemerisSetListResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
+    query: EphemerisSetListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EphemerisSetListResponse> {
     return this._client.get('/udl/ephemerisset', { query, ...options });
   }
 
@@ -83,19 +76,14 @@ export class EphemerisSets extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query?: EphemerisSetCountParams, options?: Core.RequestOptions): Core.APIPromise<string>;
-  count(options?: Core.RequestOptions): Core.APIPromise<string>;
   count(
-    query: EphemerisSetCountParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.count({}, query);
-    }
+    query: EphemerisSetCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/ephemerisset/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -103,10 +91,10 @@ export class EphemerisSets extends APIResource {
    * Service operation to get the original raw flat file, if any, associated with the
    * EphemerisSet. The file is returned as an attachment Content-Disposition.
    */
-  fileRetrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.get(`/udl/ephemerisset/getFile/${id}`, {
+  fileRetrieve(id: string, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/udl/ephemerisset/getFile/${id}`, {
       ...options,
-      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -115,10 +103,10 @@ export class EphemerisSets extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/ephemerisset/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -132,10 +120,7 @@ export class EphemerisSets extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: EphemerisSetTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EphemerisSetTupleResponse> {
+  tuple(query: EphemerisSetTupleParams, options?: RequestOptions): APIPromise<EphemerisSetTupleResponse> {
     return this._client.get('/udl/ephemerisset/tuple', { query, ...options });
   }
 }

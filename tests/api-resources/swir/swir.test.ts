@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -79,9 +78,16 @@ describe('resource swir', () => {
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.swir.createBulk([
-      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-01-01T01:01:01.123456Z' },
-    ]);
+    const responsePromise = client.swir.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          ts: '2021-01-01T01:01:01.123456Z',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -92,27 +98,29 @@ describe('resource swir', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.swir.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        source: 'Bluestaq',
-        ts: '2021-01-01T01:01:01.123456Z',
-        id: 'SWIR-ID',
-        absFluxes: [1.23, 4.56],
-        badWave: 'Example Comments',
-        fluxRatios: [1.23, 4.56],
-        lat: 70.55208,
-        locationName: 'AeroTel',
-        lon: 81.18191,
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origObjectId: 'WildBlue-1',
-        ratioWavelengths: [1.23, 4.56],
-        satNo: 25544,
-        solarPhaseAngle: 1.23,
-        wavelengths: [1.23, 4.56],
-      },
-    ]);
+    const response = await client.swir.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          ts: '2021-01-01T01:01:01.123456Z',
+          id: 'SWIR-ID',
+          absFluxes: [1.23, 4.56],
+          badWave: 'Example Comments',
+          fluxRatios: [1.23, 4.56],
+          lat: 70.55208,
+          locationName: 'AeroTel',
+          lon: 81.18191,
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origObjectId: 'WildBlue-1',
+          ratioWavelengths: [1.23, 4.56],
+          satNo: 25544,
+          solarPhaseAngle: 1.23,
+          wavelengths: [1.23, 4.56],
+        },
+      ],
+    });
   });
 
   test('get', async () => {
@@ -126,13 +134,6 @@ describe('resource swir', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.swir.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.swir.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -142,13 +143,6 @@ describe('resource swir', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.swir.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {

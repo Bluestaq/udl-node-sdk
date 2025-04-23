@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -83,13 +82,6 @@ describe('resource manifold', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.manifold.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('delete', async () => {
     const responsePromise = client.manifold.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -99,13 +91,6 @@ describe('resource manifold', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.manifold.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('count', async () => {
@@ -119,22 +104,17 @@ describe('resource manifold', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('count: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.manifold.count({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('createBulk: only required params', async () => {
-    const responsePromise = client.manifold.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idObjectOfInterest: 'OBJECTOFINTEREST-ID',
-        source: 'Bluestaq',
-      },
-    ]);
+    const responsePromise = client.manifold.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idObjectOfInterest: 'OBJECTOFINTEREST-ID',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -145,20 +125,22 @@ describe('resource manifold', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.manifold.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idObjectOfInterest: 'OBJECTOFINTEREST-ID',
-        source: 'Bluestaq',
-        id: 'MANIFOLD-ID',
-        deltaT: 10.23,
-        deltaV: 10.23,
-        origin: 'THIRD_PARTY_DATASOURCE',
-        status: 'PENDING',
-        weight: 0.3,
-      },
-    ]);
+    const response = await client.manifold.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idObjectOfInterest: 'OBJECTOFINTEREST-ID',
+          source: 'Bluestaq',
+          id: 'MANIFOLD-ID',
+          deltaT: 10.23,
+          deltaV: 10.23,
+          origin: 'THIRD_PARTY_DATASOURCE',
+          status: 'PENDING',
+          weight: 0.3,
+        },
+      ],
+    });
   });
 
   test('get', async () => {
@@ -172,13 +154,6 @@ describe('resource manifold', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.manifold.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.manifold.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -188,13 +163,6 @@ describe('resource manifold', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.manifold.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {

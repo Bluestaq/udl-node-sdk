@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,6 +11,10 @@ import {
   HistoryRetrieveResponse,
 } from './history';
 import * as SarobservationHistoryAPI from '../udl/sarobservation/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Sarobservation extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -23,11 +26,11 @@ export class Sarobservation extends APIResource {
    * assignments and for instructions on setting up a permanent feed through an
    * alternate mechanism.
    */
-  create(body: SarobservationCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: SarobservationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/sarobservation', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -37,10 +40,7 @@ export class Sarobservation extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: SarobservationListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SarobservationListResponse> {
+  list(query: SarobservationListParams, options?: RequestOptions): APIPromise<SarobservationListResponse> {
     return this._client.get('/udl/sarobservation', { query, ...options });
   }
 
@@ -51,11 +51,11 @@ export class Sarobservation extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: SarobservationCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: SarobservationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sarobservation/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -66,11 +66,12 @@ export class Sarobservation extends APIResource {
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
    */
-  createBulk(body: SarobservationCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: SarobservationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/sarobservation/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -78,21 +79,18 @@ export class Sarobservation extends APIResource {
    * Service operation to get a single SAR observations by its unique ID passed as a
    * path parameter.
    */
-  get(
-    id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SarobservationHistoryAPI.SarobservationFull> {
-    return this._client.get(`/udl/sarobservation/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<SarobservationHistoryAPI.SarobservationFull> {
+    return this._client.get(path`/udl/sarobservation/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sarobservation/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -106,10 +104,7 @@ export class Sarobservation extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: SarobservationTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SarobservationTupleResponse> {
+  tuple(query: SarobservationTupleParams, options?: RequestOptions): APIPromise<SarobservationTupleResponse> {
     return this._client.get('/udl/sarobservation/tuple', { query, ...options });
   }
 
@@ -120,13 +115,14 @@ export class Sarobservation extends APIResource {
    * UDL team for assistance.
    */
   unvalidatedPublish(
-    body: SarobservationUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: SarobservationUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-sar', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -982,7 +978,9 @@ export interface SarobservationCountParams {
   collectionStart: string;
 }
 
-export type SarobservationCreateBulkParams = Array<SarobservationCreateBulkParams.Body>;
+export interface SarobservationCreateBulkParams {
+  body: Array<SarobservationCreateBulkParams.Body>;
+}
 
 export namespace SarobservationCreateBulkParams {
   /**
@@ -1411,7 +1409,9 @@ export interface SarobservationTupleParams {
   columns: string;
 }
 
-export type SarobservationUnvalidatedPublishParams = Array<SarobservationUnvalidatedPublishParams.Body>;
+export interface SarobservationUnvalidatedPublishParams {
+  body: Array<SarobservationUnvalidatedPublishParams.Body>;
+}
 
 export namespace SarobservationUnvalidatedPublishParams {
   /**

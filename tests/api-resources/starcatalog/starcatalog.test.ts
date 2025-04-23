@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -157,13 +156,6 @@ describe('resource starcatalog', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.starcatalog.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -182,13 +174,6 @@ describe('resource starcatalog', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.starcatalog.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('count', async () => {
     const responsePromise = client.starcatalog.count();
     const rawResponse = await responsePromise.asResponse();
@@ -200,13 +185,6 @@ describe('resource starcatalog', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('count: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.starcatalog.count({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -215,18 +193,20 @@ describe('resource starcatalog', () => {
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.starcatalog.createBulk([
-      {
-        astrometryOrigin: 'GAIADR3',
-        classificationMarking: 'U',
-        csId: 12345,
-        dataMode: 'TEST',
-        dec: 21.8,
-        ra: 14.43,
-        source: 'Bluestaq',
-        starEpoch: 2016,
-      },
-    ]);
+    const responsePromise = client.starcatalog.createBulk({
+      body: [
+        {
+          astrometryOrigin: 'GAIADR3',
+          classificationMarking: 'U',
+          csId: 12345,
+          dataMode: 'TEST',
+          dec: 21.8,
+          ra: 14.43,
+          source: 'Bluestaq',
+          starEpoch: 2016,
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -237,53 +217,55 @@ describe('resource starcatalog', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.starcatalog.createBulk([
-      {
-        astrometryOrigin: 'GAIADR3',
-        classificationMarking: 'U',
-        csId: 12345,
-        dataMode: 'TEST',
-        dec: 21.8,
-        ra: 14.43,
-        source: 'Bluestaq',
-        starEpoch: 2016,
-        id: 'STAR-CAT-DATASET-ID',
-        bpmag: 0.04559,
-        bpmagUnc: 0.2227,
-        catVersion: '1.23',
-        decUnc: 40.996,
-        gaiadr3CatId: 89012345678901,
-        gmag: 0.0046,
-        gmagUnc: 0.00292,
-        gncCatId: 12345,
-        hipCatId: 12345,
-        hmag: 12.126,
-        hmagUnc: 5.722,
-        jmag: 9.515,
-        jmagUnc: 7.559,
-        kmag: 13.545,
-        kmagUnc: 0.052,
-        multFlag: true,
-        neighborDistance: 201.406,
-        neighborFlag: false,
-        neighborId: 2456,
-        origin: 'THIRD_PARTY_DATASOURCE',
-        parallax: -6.8,
-        parallaxUnc: 82.35,
-        pmdec: -970.1003,
-        pmdecUnc: 1.22,
-        pmra: 1000.45,
-        pmraUnc: 5.6,
-        pmUncFlag: false,
-        posUncFlag: false,
-        raUnc: 509.466,
-        rpmag: 8.0047,
-        rpmagUnc: 1.233,
-        shift: 4.548,
-        shiftFlag: false,
-        varFlag: true,
-      },
-    ]);
+    const response = await client.starcatalog.createBulk({
+      body: [
+        {
+          astrometryOrigin: 'GAIADR3',
+          classificationMarking: 'U',
+          csId: 12345,
+          dataMode: 'TEST',
+          dec: 21.8,
+          ra: 14.43,
+          source: 'Bluestaq',
+          starEpoch: 2016,
+          id: 'STAR-CAT-DATASET-ID',
+          bpmag: 0.04559,
+          bpmagUnc: 0.2227,
+          catVersion: '1.23',
+          decUnc: 40.996,
+          gaiadr3CatId: 89012345678901,
+          gmag: 0.0046,
+          gmagUnc: 0.00292,
+          gncCatId: 12345,
+          hipCatId: 12345,
+          hmag: 12.126,
+          hmagUnc: 5.722,
+          jmag: 9.515,
+          jmagUnc: 7.559,
+          kmag: 13.545,
+          kmagUnc: 0.052,
+          multFlag: true,
+          neighborDistance: 201.406,
+          neighborFlag: false,
+          neighborId: 2456,
+          origin: 'THIRD_PARTY_DATASOURCE',
+          parallax: -6.8,
+          parallaxUnc: 82.35,
+          pmdec: -970.1003,
+          pmdecUnc: 1.22,
+          pmra: 1000.45,
+          pmraUnc: 5.6,
+          pmUncFlag: false,
+          posUncFlag: false,
+          raUnc: 509.466,
+          rpmag: 8.0047,
+          rpmagUnc: 1.233,
+          shift: 4.548,
+          shiftFlag: false,
+          varFlag: true,
+        },
+      ],
+    });
   });
 
   test('get', async () => {
@@ -297,13 +279,6 @@ describe('resource starcatalog', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.starcatalog.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.starcatalog.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -313,13 +288,6 @@ describe('resource starcatalog', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.starcatalog.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {
@@ -338,18 +306,20 @@ describe('resource starcatalog', () => {
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.starcatalog.unvalidatedPublish([
-      {
-        astrometryOrigin: 'GAIADR3',
-        classificationMarking: 'U',
-        csId: 12345,
-        dataMode: 'TEST',
-        dec: 21.8,
-        ra: 14.43,
-        source: 'Bluestaq',
-        starEpoch: 2016,
-      },
-    ]);
+    const responsePromise = client.starcatalog.unvalidatedPublish({
+      body: [
+        {
+          astrometryOrigin: 'GAIADR3',
+          classificationMarking: 'U',
+          csId: 12345,
+          dataMode: 'TEST',
+          dec: 21.8,
+          ra: 14.43,
+          source: 'Bluestaq',
+          starEpoch: 2016,
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -360,52 +330,54 @@ describe('resource starcatalog', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.starcatalog.unvalidatedPublish([
-      {
-        astrometryOrigin: 'GAIADR3',
-        classificationMarking: 'U',
-        csId: 12345,
-        dataMode: 'TEST',
-        dec: 21.8,
-        ra: 14.43,
-        source: 'Bluestaq',
-        starEpoch: 2016,
-        id: 'STAR-CAT-DATASET-ID',
-        bpmag: 0.04559,
-        bpmagUnc: 0.2227,
-        catVersion: '1.23',
-        decUnc: 40.996,
-        gaiadr3CatId: 89012345678901,
-        gmag: 0.0046,
-        gmagUnc: 0.00292,
-        gncCatId: 12345,
-        hipCatId: 12345,
-        hmag: 12.126,
-        hmagUnc: 5.722,
-        jmag: 9.515,
-        jmagUnc: 7.559,
-        kmag: 13.545,
-        kmagUnc: 0.052,
-        multFlag: true,
-        neighborDistance: 201.406,
-        neighborFlag: false,
-        neighborId: 2456,
-        origin: 'THIRD_PARTY_DATASOURCE',
-        parallax: -6.8,
-        parallaxUnc: 82.35,
-        pmdec: -970.1003,
-        pmdecUnc: 1.22,
-        pmra: 1000.45,
-        pmraUnc: 5.6,
-        pmUncFlag: false,
-        posUncFlag: false,
-        raUnc: 509.466,
-        rpmag: 8.0047,
-        rpmagUnc: 1.233,
-        shift: 4.548,
-        shiftFlag: false,
-        varFlag: true,
-      },
-    ]);
+    const response = await client.starcatalog.unvalidatedPublish({
+      body: [
+        {
+          astrometryOrigin: 'GAIADR3',
+          classificationMarking: 'U',
+          csId: 12345,
+          dataMode: 'TEST',
+          dec: 21.8,
+          ra: 14.43,
+          source: 'Bluestaq',
+          starEpoch: 2016,
+          id: 'STAR-CAT-DATASET-ID',
+          bpmag: 0.04559,
+          bpmagUnc: 0.2227,
+          catVersion: '1.23',
+          decUnc: 40.996,
+          gaiadr3CatId: 89012345678901,
+          gmag: 0.0046,
+          gmagUnc: 0.00292,
+          gncCatId: 12345,
+          hipCatId: 12345,
+          hmag: 12.126,
+          hmagUnc: 5.722,
+          jmag: 9.515,
+          jmagUnc: 7.559,
+          kmag: 13.545,
+          kmagUnc: 0.052,
+          multFlag: true,
+          neighborDistance: 201.406,
+          neighborFlag: false,
+          neighborId: 2456,
+          origin: 'THIRD_PARTY_DATASOURCE',
+          parallax: -6.8,
+          parallaxUnc: 82.35,
+          pmdec: -970.1003,
+          pmdecUnc: 1.22,
+          pmra: 1000.45,
+          pmraUnc: 5.6,
+          pmUncFlag: false,
+          posUncFlag: false,
+          raUnc: 509.466,
+          rpmag: 8.0047,
+          rpmagUnc: 1.233,
+          shift: 4.548,
+          shiftFlag: false,
+          varFlag: true,
+        },
+      ],
+    });
   });
 });

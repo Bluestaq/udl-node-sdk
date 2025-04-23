@@ -1,9 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as HistoryAPI from './udl/gnssrawif/history';
-import { type Response } from '../_shims/index';
+import { APIPromise } from '../core/api-promise';
+import { type Uploadable } from '../core/uploads';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { multipartFormRequestOptions } from '../internal/uploads';
+import { path } from '../internal/utils/path';
 
 export class Gnssrawif extends APIResource {
   /**
@@ -12,7 +16,7 @@ export class Gnssrawif extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: GnssrawifListParams, options?: Core.RequestOptions): Core.APIPromise<GnssrawifListResponse> {
+  list(query: GnssrawifListParams, options?: RequestOptions): APIPromise<GnssrawifListResponse> {
     return this._client.get('/udl/gnssrawif', { query, ...options });
   }
 
@@ -23,11 +27,11 @@ export class Gnssrawif extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: GnssrawifCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: GnssrawifCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/gnssrawif/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -35,10 +39,10 @@ export class Gnssrawif extends APIResource {
    * Service operation to get a single GNSSRAWIF hdf5 file by its unique ID passed as
    * a path parameter. The file is returned as an attachment Content-Disposition.
    */
-  fileGet(id: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.get(`/udl/gnssrawif/getFile/${id}`, {
+  fileGet(id: string, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/udl/gnssrawif/getFile/${id}`, {
       ...options,
-      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -47,18 +51,18 @@ export class Gnssrawif extends APIResource {
    * Service operation to get a single GNSSRawIF by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<HistoryAPI.GnssRawIfFull> {
-    return this._client.get(`/udl/gnssrawif/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.GnssRawIfFull> {
+    return this._client.get(path`/udl/gnssrawif/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/gnssrawif/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -72,7 +76,7 @@ export class Gnssrawif extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: GnssrawifTupleParams, options?: Core.RequestOptions): Core.APIPromise<GnssrawifTupleResponse> {
+  tuple(query: GnssrawifTupleParams, options?: RequestOptions): APIPromise<GnssrawifTupleResponse> {
     return this._client.get('/udl/gnssrawif/tuple', { query, ...options });
   }
 
@@ -95,10 +99,13 @@ export class Gnssrawif extends APIResource {
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
    */
-  uploadZip(body: GnssrawifUploadZipParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  uploadZip(body: GnssrawifUploadZipParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post(
       '/filedrop/udl-gnssrawif',
-      Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
+      multipartFormRequestOptions(
+        { body, ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
+        this._client,
+      ),
     );
   }
 }
@@ -438,7 +445,7 @@ export interface GnssrawifUploadZipParams {
   /**
    * Zip file containing files described in the specification
    */
-  file: Core.Uploadable;
+  file: Uploadable;
 }
 
 export declare namespace Gnssrawif {

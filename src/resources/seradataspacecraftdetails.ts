@@ -1,12 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as AntennasAPI from './antennas';
 import * as BatteriesAPI from './batteries';
 import * as EnginesAPI from './engines';
 import * as EntitiesAPI from './entities';
 import * as SolararraydetailsAPI from './solararraydetails';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Seradataspacecraftdetails extends APIResource {
   /**
@@ -14,11 +17,11 @@ export class Seradataspacecraftdetails extends APIResource {
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: SeradataspacecraftdetailCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: SeradataspacecraftdetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/seradataspacecraftdetails', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -28,14 +31,14 @@ export class Seradataspacecraftdetails extends APIResource {
    * assistance.
    */
   update(
-    pathId: string,
+    pathID: string,
     body: SeradataspacecraftdetailUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/seradataspacecraftdetails/${pathId}`, {
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    return this._client.put(path`/udl/seradataspacecraftdetails/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -45,7 +48,7 @@ export class Seradataspacecraftdetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<SeradataspacecraftdetailListResponse> {
+  list(options?: RequestOptions): APIPromise<SeradataspacecraftdetailListResponse> {
     return this._client.get('/udl/seradataspacecraftdetails', options);
   }
 
@@ -54,10 +57,10 @@ export class Seradataspacecraftdetails extends APIResource {
    * ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/seradataspacecraftdetails/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/seradataspacecraftdetails/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -68,10 +71,10 @@ export class Seradataspacecraftdetails extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/seradataspacecraftdetails/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -79,18 +82,18 @@ export class Seradataspacecraftdetails extends APIResource {
    * Service operation to get a single SeradataSpacecraftDetails by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<SeradataspacecraftdetailGetResponse> {
-    return this._client.get(`/udl/seradataspacecraftdetails/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<SeradataspacecraftdetailGetResponse> {
+    return this._client.get(path`/udl/seradataspacecraftdetails/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/seradataspacecraftdetails/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -106,8 +109,8 @@ export class Seradataspacecraftdetails extends APIResource {
    */
   tuple(
     query: SeradataspacecraftdetailTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SeradataspacecraftdetailTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<SeradataspacecraftdetailTupleResponse> {
     return this._client.get('/udl/seradataspacecraftdetails/tuple', { query, ...options });
   }
 }

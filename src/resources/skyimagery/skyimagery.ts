@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,7 +11,12 @@ import {
   HistoryListResponse,
 } from './history';
 import * as SkyimageryHistoryAPI from '../udl/skyimagery/history';
-import { type Response } from '../../_shims/index';
+import { APIPromise } from '../../core/api-promise';
+import { type Uploadable } from '../../core/uploads';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { multipartFormRequestOptions } from '../../internal/uploads';
+import { path } from '../../internal/utils/path';
 
 export class Skyimagery extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -23,7 +27,7 @@ export class Skyimagery extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: SkyimageryListParams, options?: Core.RequestOptions): Core.APIPromise<SkyimageryListResponse> {
+  list(query: SkyimageryListParams, options?: RequestOptions): APIPromise<SkyimageryListResponse> {
     return this._client.get('/udl/skyimagery', { query, ...options });
   }
 
@@ -34,11 +38,11 @@ export class Skyimagery extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: SkyimageryCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: SkyimageryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/skyimagery/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -47,10 +51,10 @@ export class Skyimagery extends APIResource {
    * passed as a path parameter. The image is returned as an attachment
    * Content-Disposition.
    */
-  fileGet(id: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.get(`/udl/skyimagery/getFile/${id}`, {
+  fileGet(id: string, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/udl/skyimagery/getFile/${id}`, {
       ...options,
-      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -60,18 +64,18 @@ export class Skyimagery extends APIResource {
    * path parameter. SkyImagery represents metadata about a sky image, as well as the
    * actual binary image data.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<SkyimageryHistoryAPI.SkyimageryFull> {
-    return this._client.get(`/udl/skyimagery/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<SkyimageryHistoryAPI.SkyimageryFull> {
+    return this._client.get(path`/udl/skyimagery/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/skyimagery/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -85,10 +89,7 @@ export class Skyimagery extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: SkyimageryTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SkyimageryTupleResponse> {
+  tuple(query: SkyimageryTupleParams, options?: RequestOptions): APIPromise<SkyimageryTupleResponse> {
     return this._client.get('/udl/skyimagery/tuple', { query, ...options });
   }
 
@@ -111,10 +112,13 @@ export class Skyimagery extends APIResource {
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
    */
-  uploadZip(body: SkyimageryUploadZipParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  uploadZip(body: SkyimageryUploadZipParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post(
       '/filedrop/udl-skyimagery',
-      Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
+      multipartFormRequestOptions(
+        { body, ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
+        this._client,
+      ),
     );
   }
 }
@@ -469,7 +473,7 @@ export interface SkyimageryUploadZipParams {
   /**
    * Zip file containing files described in the specification
    */
-  file: Core.Uploadable;
+  file: Uploadable;
 }
 
 Skyimagery.History = History;

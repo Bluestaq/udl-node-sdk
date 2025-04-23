@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Routestats extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class Routestats extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: RoutestatCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: RoutestatCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/routestats', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -21,19 +24,19 @@ export class Routestats extends APIResource {
    * Service operation to get a single routeStats record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<RoutestatRetrieveResponse> {
-    return this._client.get(`/udl/routestats/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<RoutestatRetrieveResponse> {
+    return this._client.get(path`/udl/routestats/${id}`, options);
   }
 
   /**
    * Service operation to update a single RouteStats. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(pathId: string, body: RoutestatUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/routestats/${pathId}`, {
+  update(pathID: string, body: RoutestatUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/routestats/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -42,10 +45,10 @@ export class Routestats extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/routestats/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/routestats/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -56,10 +59,10 @@ export class Routestats extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/routestats/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -70,11 +73,12 @@ export class Routestats extends APIResource {
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
    */
-  createBulk(body: RoutestatCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: RoutestatCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/routestats/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -84,7 +88,7 @@ export class Routestats extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  query(options?: Core.RequestOptions): Core.APIPromise<RoutestatQueryResponse> {
+  query(options?: RequestOptions): APIPromise<RoutestatQueryResponse> {
     return this._client.get('/udl/routestats', options);
   }
 
@@ -92,10 +96,10 @@ export class Routestats extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/routestats/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -109,7 +113,7 @@ export class Routestats extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: RoutestatTupleParams, options?: Core.RequestOptions): Core.APIPromise<RoutestatTupleResponse> {
+  tuple(query: RoutestatTupleParams, options?: RequestOptions): APIPromise<RoutestatTupleResponse> {
     return this._client.get('/udl/routestats/tuple', { query, ...options });
   }
 
@@ -119,14 +123,12 @@ export class Routestats extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  unvalidatedPublish(
-    body: RoutestatUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: RoutestatUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-routestats', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -1147,7 +1149,9 @@ export interface RoutestatUpdateParams {
   vehicleType?: string;
 }
 
-export type RoutestatCreateBulkParams = Array<RoutestatCreateBulkParams.Body>;
+export interface RoutestatCreateBulkParams {
+  body: Array<RoutestatCreateBulkParams.Body>;
+}
 
 export namespace RoutestatCreateBulkParams {
   /**
@@ -1345,7 +1349,9 @@ export interface RoutestatTupleParams {
   columns: string;
 }
 
-export type RoutestatUnvalidatedPublishParams = Array<RoutestatUnvalidatedPublishParams.Body>;
+export interface RoutestatUnvalidatedPublishParams {
+  body: Array<RoutestatUnvalidatedPublishParams.Body>;
+}
 
 export namespace RoutestatUnvalidatedPublishParams {
   /**

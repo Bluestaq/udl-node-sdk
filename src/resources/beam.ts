@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as BeamContoursAPI from './beam-contours';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Beam extends APIResource {
   /**
@@ -10,11 +13,11 @@ export class Beam extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: BeamCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: BeamCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/beam', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -22,19 +25,19 @@ export class Beam extends APIResource {
    * Service operation to get a single Beam record by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<BeamFull> {
-    return this._client.get(`/udl/beam/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<BeamFull> {
+    return this._client.get(path`/udl/beam/${id}`, options);
   }
 
   /**
    * Service operation to update a single Beam. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(pathId: string, body: BeamUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/beam/${pathId}`, {
+  update(pathID: string, body: BeamUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/beam/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -44,7 +47,7 @@ export class Beam extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<BeamListResponse> {
+  list(options?: RequestOptions): APIPromise<BeamListResponse> {
     return this._client.get('/udl/beam', options);
   }
 
@@ -53,10 +56,10 @@ export class Beam extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/beam/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/beam/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -67,10 +70,10 @@ export class Beam extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/beam/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -78,10 +81,10 @@ export class Beam extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/beam/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -95,7 +98,7 @@ export class Beam extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: BeamTupleParams, options?: Core.RequestOptions): Core.APIPromise<BeamTupleResponse> {
+  tuple(query: BeamTupleParams, options?: RequestOptions): APIPromise<BeamTupleResponse> {
     return this._client.get('/udl/beam/tuple', { query, ...options });
   }
 }

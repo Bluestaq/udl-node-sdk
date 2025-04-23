@@ -1,11 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import { History, HistoryCountParams, HistoryCountResponse } from './history';
 import * as OnorbitthrusterstatusHistoryAPI from '../udl/onorbitthrusterstatus/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Onorbitthrusterstatus extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -15,11 +17,11 @@ export class Onorbitthrusterstatus extends APIResource {
    * and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  create(body: OnorbitthrusterstatusCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: OnorbitthrusterstatusCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitthrusterstatus', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -30,17 +32,9 @@ export class Onorbitthrusterstatus extends APIResource {
    * parameter information.
    */
   list(
-    query?: OnorbitthrusterstatusListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OnorbitthrusterstatusListResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<OnorbitthrusterstatusListResponse>;
-  list(
-    query: OnorbitthrusterstatusListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OnorbitthrusterstatusListResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
+    query: OnorbitthrusterstatusListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitthrusterstatusListResponse> {
     return this._client.get('/udl/onorbitthrusterstatus', { query, ...options });
   }
 
@@ -49,10 +43,10 @@ export class Onorbitthrusterstatus extends APIResource {
    * passed ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/onorbitthrusterstatus/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/onorbitthrusterstatus/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -63,19 +57,14 @@ export class Onorbitthrusterstatus extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query?: OnorbitthrusterstatusCountParams, options?: Core.RequestOptions): Core.APIPromise<string>;
-  count(options?: Core.RequestOptions): Core.APIPromise<string>;
   count(
-    query: OnorbitthrusterstatusCountParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.count({}, query);
-    }
+    query: OnorbitthrusterstatusCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/onorbitthrusterstatus/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -86,14 +75,12 @@ export class Onorbitthrusterstatus extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(
-    body: OnorbitthrusterstatusCreateBulkParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  createBulk(params: OnorbitthrusterstatusCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/onorbitthrusterstatus/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -104,19 +91,19 @@ export class Onorbitthrusterstatus extends APIResource {
    */
   get(
     id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OnorbitthrusterstatusHistoryAPI.OnorbitthrusterstatusFull> {
-    return this._client.get(`/udl/onorbitthrusterstatus/${id}`, options);
+    options?: RequestOptions,
+  ): APIPromise<OnorbitthrusterstatusHistoryAPI.OnorbitthrusterstatusFull> {
+    return this._client.get(path`/udl/onorbitthrusterstatus/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/onorbitthrusterstatus/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -132,8 +119,8 @@ export class Onorbitthrusterstatus extends APIResource {
    */
   tuple(
     query: OnorbitthrusterstatusTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OnorbitthrusterstatusTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<OnorbitthrusterstatusTupleResponse> {
     return this._client.get('/udl/onorbitthrusterstatus/tuple', { query, ...options });
   }
 }
@@ -462,7 +449,9 @@ export interface OnorbitthrusterstatusCountParams {
   statusTime?: string;
 }
 
-export type OnorbitthrusterstatusCreateBulkParams = Array<OnorbitthrusterstatusCreateBulkParams.Body>;
+export interface OnorbitthrusterstatusCreateBulkParams {
+  body: Array<OnorbitthrusterstatusCreateBulkParams.Body>;
+}
 
 export namespace OnorbitthrusterstatusCreateBulkParams {
   /**

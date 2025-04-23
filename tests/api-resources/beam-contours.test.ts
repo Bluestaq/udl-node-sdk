@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -60,13 +59,6 @@ describe('resource beamContours', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.beamContours.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('update: only required params', async () => {
@@ -136,13 +128,6 @@ describe('resource beamContours', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.beamContours.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('count: only required params', async () => {
     const responsePromise = client.beamContours.count({ idBeam: 'idBeam' });
     const rawResponse = await responsePromise.asResponse();
@@ -159,15 +144,17 @@ describe('resource beamContours', () => {
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.beamContours.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idBeam: 'REF-BEAM-ID',
-        source: 'Bluestaq',
-        type: 'BORESIGHT',
-      },
-    ]);
+    const responsePromise = client.beamContours.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idBeam: 'REF-BEAM-ID',
+          source: 'Bluestaq',
+          type: 'BORESIGHT',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -178,29 +165,31 @@ describe('resource beamContours', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.beamContours.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idBeam: 'REF-BEAM-ID',
-        source: 'Bluestaq',
-        type: 'BORESIGHT',
-        id: 'BEAMCONTOUR-ID',
-        contourIdx: 1,
-        gain: 17.1,
-        geography:
-          'POLYGON((26.156175339112 67.3291113966927,26.0910220642717 67.2580009640721,26.6637992964562 67.1795862381682,26.730115808233 67.2501237475598,26.156175339112 67.3291113966927))',
-        geographyJson:
-          '{"type":"Polygon","coordinates":[ [ [ 67.3291113966927, 26.156175339112 ], [ 67.2580009640721, 26.091022064271 ], [ 67.1795862381682, 26.6637992964562 ], [ 67.2501237475598, 26.730115808233 ], [ 67.3291113966927, 26.156175339112 ] ] ] }',
-        geographyNdims: 2,
-        geographySrid: 4326,
-        geographyText:
-          'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
-        geographyType: 'ST_Polygon',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        regionName: 'Example region name',
-      },
-    ]);
+    const response = await client.beamContours.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idBeam: 'REF-BEAM-ID',
+          source: 'Bluestaq',
+          type: 'BORESIGHT',
+          id: 'BEAMCONTOUR-ID',
+          contourIdx: 1,
+          gain: 17.1,
+          geography:
+            'POLYGON((26.156175339112 67.3291113966927,26.0910220642717 67.2580009640721,26.6637992964562 67.1795862381682,26.730115808233 67.2501237475598,26.156175339112 67.3291113966927))',
+          geographyJson:
+            '{"type":"Polygon","coordinates":[ [ [ 67.3291113966927, 26.156175339112 ], [ 67.2580009640721, 26.091022064271 ], [ 67.1795862381682, 26.6637992964562 ], [ 67.2501237475598, 26.730115808233 ], [ 67.3291113966927, 26.156175339112 ] ] ] }',
+          geographyNdims: 2,
+          geographySrid: 4326,
+          geographyText:
+            'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
+          geographyType: 'ST_Polygon',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          regionName: 'Example region name',
+        },
+      ],
+    });
   });
 
   test('queryHelp', async () => {
@@ -212,13 +201,6 @@ describe('resource beamContours', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryHelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.beamContours.queryHelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {

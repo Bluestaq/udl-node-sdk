@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as SensormaintenanceHistoryAPI from '../udl/sensormaintenance/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class History extends APIResource {
   /**
@@ -13,17 +14,9 @@ export class History extends APIResource {
    * parameter information.
    */
   retrieve(
-    query?: HistoryRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<HistoryRetrieveResponse>;
-  retrieve(options?: Core.RequestOptions): Core.APIPromise<HistoryRetrieveResponse>;
-  retrieve(
-    query: HistoryRetrieveParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<HistoryRetrieveResponse> {
-    if (isRequestOptions(query)) {
-      return this.retrieve({}, query);
-    }
+    query: HistoryRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryRetrieveResponse> {
     return this._client.get('/udl/sensormaintenance/history', { query, ...options });
   }
 
@@ -34,19 +27,11 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  aodr(query?: HistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void>;
-  aodr(options?: Core.RequestOptions): Core.APIPromise<void>;
-  aodr(
-    query: HistoryAodrParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    if (isRequestOptions(query)) {
-      return this.aodr({}, query);
-    }
+  aodr(query: HistoryAodrParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sensormaintenance/history/aodr', {
       query,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -57,19 +42,11 @@ export class History extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query?: HistoryCountParams, options?: Core.RequestOptions): Core.APIPromise<string>;
-  count(options?: Core.RequestOptions): Core.APIPromise<string>;
-  count(
-    query: HistoryCountParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.count({}, query);
-    }
+  count(query: HistoryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sensormaintenance/history/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 }

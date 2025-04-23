@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as AntennasAPI from './antennas';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Onorbitantenna extends APIResource {
   /**
@@ -12,11 +15,11 @@ export class Onorbitantenna extends APIResource {
    * with many different on-orbit spacecraft. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
    */
-  create(body: OnorbitantennaCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: OnorbitantennaCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitantenna', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -27,15 +30,11 @@ export class Onorbitantenna extends APIResource {
    * spacecraft. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  update(
-    pathId: string,
-    body: OnorbitantennaUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/onorbitantenna/${pathId}`, {
+  update(pathID: string, body: OnorbitantennaUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/onorbitantenna/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -45,7 +44,7 @@ export class Onorbitantenna extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<OnorbitantennaListResponse> {
+  list(options?: RequestOptions): APIPromise<OnorbitantennaListResponse> {
     return this._client.get('/udl/onorbitantenna', options);
   }
 
@@ -56,10 +55,10 @@ export class Onorbitantenna extends APIResource {
    * with many different on-orbit spacecraft. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/onorbitantenna/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/onorbitantenna/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -69,8 +68,8 @@ export class Onorbitantenna extends APIResource {
    * spacecraft antennas and a particular on-orbit spacecraft. An antenna type may be
    * associated with many different on-orbit spacecraft.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<OnorbitantennaGetResponse> {
-    return this._client.get(`/udl/onorbitantenna/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<OnorbitantennaGetResponse> {
+    return this._client.get(path`/udl/onorbitantenna/${id}`, options);
   }
 }
 

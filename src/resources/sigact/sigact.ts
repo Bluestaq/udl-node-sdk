@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -11,6 +10,11 @@ import {
   HistoryListResponse,
 } from './history';
 import * as SigactHistoryAPI from '../udl/sigact/history';
+import { APIPromise } from '../../core/api-promise';
+import { type Uploadable } from '../../core/uploads';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { multipartFormRequestOptions } from '../../internal/uploads';
 
 export class Sigact extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -21,7 +25,7 @@ export class Sigact extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: SigactListParams, options?: Core.RequestOptions): Core.APIPromise<SigactListResponse> {
+  list(query: SigactListParams, options?: RequestOptions): APIPromise<SigactListResponse> {
     return this._client.get('/udl/sigact', { query, ...options });
   }
 
@@ -32,11 +36,11 @@ export class Sigact extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: SigactCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: SigactCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sigact/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -48,11 +52,12 @@ export class Sigact extends APIResource {
    * the UDL team for instructions on setting up a permanent feed through an
    * alternate mechanism.
    */
-  createBulk(body: SigactCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: SigactCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/sigact/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -60,10 +65,10 @@ export class Sigact extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sigact/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -77,7 +82,7 @@ export class Sigact extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: SigactTupleParams, options?: Core.RequestOptions): Core.APIPromise<SigactTupleResponse> {
+  tuple(query: SigactTupleParams, options?: RequestOptions): APIPromise<SigactTupleResponse> {
     return this._client.get('/udl/sigact/tuple', { query, ...options });
   }
 
@@ -101,10 +106,13 @@ export class Sigact extends APIResource {
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
    */
-  uploadZip(body: SigactUploadZipParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  uploadZip(body: SigactUploadZipParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post(
       '/filedrop/udl-sigact-text',
-      Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
+      multipartFormRequestOptions(
+        { body, ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
+        this._client,
+      ),
     );
   }
 }
@@ -688,7 +696,9 @@ export interface SigactCountParams {
   reportDate: string;
 }
 
-export type SigactCreateBulkParams = Array<SigactCreateBulkParams.Body>;
+export interface SigactCreateBulkParams {
+  body: Array<SigactCreateBulkParams.Body>;
+}
 
 export namespace SigactCreateBulkParams {
   /**
@@ -1256,7 +1266,7 @@ export interface SigactUploadZipParams {
   /**
    * Zip file containing files described in the specification
    */
-  file: Core.Uploadable;
+  file: Uploadable;
 }
 
 Sigact.History = History;

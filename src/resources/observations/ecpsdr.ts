@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class EcpsdrResource extends APIResource {
   /**
@@ -10,11 +13,11 @@ export class EcpsdrResource extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: EcpsdrCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: EcpsdrCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/ecpsdr', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -22,8 +25,8 @@ export class EcpsdrResource extends APIResource {
    * Service operation to get a single ECPSDR by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Ecpsdr> {
-    return this._client.get(`/udl/ecpsdr/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Ecpsdr> {
+    return this._client.get(path`/udl/ecpsdr/${id}`, options);
   }
 
   /**
@@ -32,7 +35,7 @@ export class EcpsdrResource extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: EcpsdrListParams, options?: Core.RequestOptions): Core.APIPromise<EcpsdrListResponse> {
+  list(query: EcpsdrListParams, options?: RequestOptions): APIPromise<EcpsdrListResponse> {
     return this._client.get('/udl/ecpsdr', { query, ...options });
   }
 
@@ -43,11 +46,11 @@ export class EcpsdrResource extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: EcpsdrCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: EcpsdrCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/ecpsdr/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -58,11 +61,12 @@ export class EcpsdrResource extends APIResource {
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
    */
-  createBulk(body: EcpsdrCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: EcpsdrCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/ecpsdr/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -70,10 +74,10 @@ export class EcpsdrResource extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/ecpsdr/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -87,7 +91,7 @@ export class EcpsdrResource extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: EcpsdrTupleParams, options?: Core.RequestOptions): Core.APIPromise<EcpsdrTupleResponse> {
+  tuple(query: EcpsdrTupleParams, options?: RequestOptions): APIPromise<EcpsdrTupleResponse> {
     return this._client.get('/udl/ecpsdr/tuple', { query, ...options });
   }
 }
@@ -1036,7 +1040,9 @@ export interface EcpsdrCountParams {
   msgTime: string;
 }
 
-export type EcpsdrCreateBulkParams = Array<EcpsdrCreateBulkParams.Body>;
+export interface EcpsdrCreateBulkParams {
+  body: Array<EcpsdrCreateBulkParams.Body>;
+}
 
 export namespace EcpsdrCreateBulkParams {
   /**

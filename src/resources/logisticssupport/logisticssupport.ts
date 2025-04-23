@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as LogisticssupportAPI from './logisticssupport';
 import * as HistoryAPI from './history';
 import {
@@ -11,6 +10,10 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Logisticssupport extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -20,11 +23,11 @@ export class Logisticssupport extends APIResource {
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: LogisticssupportCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: LogisticssupportCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/logisticssupport', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -33,15 +36,11 @@ export class Logisticssupport extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(
-    pathId: string,
-    body: LogisticssupportUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/logisticssupport/${pathId}`, {
+  update(pathID: string, body: LogisticssupportUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/logisticssupport/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -51,7 +50,7 @@ export class Logisticssupport extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<LogisticssupportListResponse> {
+  list(options?: RequestOptions): APIPromise<LogisticssupportListResponse> {
     return this._client.get('/udl/logisticssupport', options);
   }
 
@@ -62,10 +61,10 @@ export class Logisticssupport extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/logisticssupport/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -76,11 +75,12 @@ export class Logisticssupport extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: LogisticssupportCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: LogisticssupportCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/logisticssupport/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -88,18 +88,18 @@ export class Logisticssupport extends APIResource {
    * Service operation to get a single LogisticsSupport record by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<LogisticssupportGetResponse> {
-    return this._client.get(`/udl/logisticssupport/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<LogisticssupportGetResponse> {
+    return this._client.get(path`/udl/logisticssupport/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/logisticssupport/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -115,8 +115,8 @@ export class Logisticssupport extends APIResource {
    */
   tuple(
     query: LogisticssupportTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LogisticssupportTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<LogisticssupportTupleResponse> {
     return this._client.get('/udl/logisticssupport/tuple', { query, ...options });
   }
 
@@ -127,13 +127,14 @@ export class Logisticssupport extends APIResource {
    * Please contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: LogisticssupportUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: LogisticssupportUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-logisticssupport', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -3906,7 +3907,9 @@ export namespace LogisticssupportUpdateParams {
   }
 }
 
-export type LogisticssupportCreateBulkParams = Array<LogisticssupportCreateBulkParams.Body>;
+export interface LogisticssupportCreateBulkParams {
+  body: Array<LogisticssupportCreateBulkParams.Body>;
+}
 
 export namespace LogisticssupportCreateBulkParams {
   /**
@@ -4678,7 +4681,9 @@ export interface LogisticssupportTupleParams {
   columns: string;
 }
 
-export type LogisticssupportUnvalidatedPublishParams = Array<LogisticssupportUnvalidatedPublishParams.Body>;
+export interface LogisticssupportUnvalidatedPublishParams {
+  body: Array<LogisticssupportUnvalidatedPublishParams.Body>;
+}
 
 export namespace LogisticssupportUnvalidatedPublishParams {
   /**

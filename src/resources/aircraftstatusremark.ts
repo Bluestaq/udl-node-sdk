@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Aircraftstatusremark extends APIResource {
   /**
@@ -9,15 +12,11 @@ export class Aircraftstatusremark extends APIResource {
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
    */
-  update(
-    pathId: string,
-    body: AircraftstatusremarkUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/aircraftstatusremark/${pathId}`, {
+  update(pathID: string, body: AircraftstatusremarkUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/aircraftstatusremark/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -26,10 +25,10 @@ export class Aircraftstatusremark extends APIResource {
    * the passed ID path parameter. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/aircraftstatusremark/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/aircraftstatusremark/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }

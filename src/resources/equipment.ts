@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as EquipmentremarksAPI from './equipmentremarks';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Equipment extends APIResource {
   /**
@@ -10,11 +13,11 @@ export class Equipment extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: EquipmentCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: EquipmentCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/equipment', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -22,8 +25,8 @@ export class Equipment extends APIResource {
    * Service operation to get a single equipment record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EquipmentFull> {
-    return this._client.get(`/udl/equipment/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<EquipmentFull> {
+    return this._client.get(path`/udl/equipment/${id}`, options);
   }
 
   /**
@@ -31,11 +34,11 @@ export class Equipment extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(pathId: string, body: EquipmentUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/equipment/${pathId}`, {
+  update(pathID: string, body: EquipmentUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/equipment/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -45,7 +48,7 @@ export class Equipment extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<EquipmentListResponse> {
+  list(options?: RequestOptions): APIPromise<EquipmentListResponse> {
     return this._client.get('/udl/equipment', options);
   }
 
@@ -54,10 +57,10 @@ export class Equipment extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/equipment/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/equipment/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -68,10 +71,10 @@ export class Equipment extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/equipment/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -82,11 +85,12 @@ export class Equipment extends APIResource {
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: EquipmentCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: EquipmentCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/equipment/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -94,10 +98,10 @@ export class Equipment extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/equipment/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -111,7 +115,7 @@ export class Equipment extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: EquipmentTupleParams, options?: Core.RequestOptions): Core.APIPromise<EquipmentTupleResponse> {
+  tuple(query: EquipmentTupleParams, options?: RequestOptions): APIPromise<EquipmentTupleResponse> {
     return this._client.get('/udl/equipment/tuple', { query, ...options });
   }
 }
@@ -2013,7 +2017,9 @@ export interface EquipmentUpdateParams {
   wac?: string;
 }
 
-export type EquipmentCreateBulkParams = Array<EquipmentCreateBulkParams.Body>;
+export interface EquipmentCreateBulkParams {
+  body: Array<EquipmentCreateBulkParams.Body>;
+}
 
 export namespace EquipmentCreateBulkParams {
   /**

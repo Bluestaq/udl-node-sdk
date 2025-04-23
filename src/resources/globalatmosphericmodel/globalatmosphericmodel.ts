@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -11,7 +10,10 @@ import {
   HistoryQueryResponse,
   HistoryWriteAodrParams,
 } from './history';
-import { type Response } from '../../_shims/index';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Globalatmosphericmodel extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -20,11 +22,8 @@ export class Globalatmosphericmodel extends APIResource {
    * Service operation to get a single GlobalAtmosphericModel record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(
-    id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<GlobalatmosphericmodelRetrieveResponse> {
-    return this._client.get(`/udl/globalatmosphericmodel/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<GlobalatmosphericmodelRetrieveResponse> {
+    return this._client.get(path`/udl/globalatmosphericmodel/${id}`, options);
   }
 
   /**
@@ -34,11 +33,11 @@ export class Globalatmosphericmodel extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: GlobalatmosphericmodelCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: GlobalatmosphericmodelCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/globalatmosphericmodel/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -47,10 +46,10 @@ export class Globalatmosphericmodel extends APIResource {
    * its unique ID passed as a path parameter. The compressed data file is returned
    * as an attachment Content-Disposition.
    */
-  getFile(id: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.get(`/udl/globalatmosphericmodel/getFile/${id}`, {
+  getFile(id: string, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/udl/globalatmosphericmodel/getFile/${id}`, {
       ...options,
-      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -63,8 +62,8 @@ export class Globalatmosphericmodel extends APIResource {
    */
   query(
     query: GlobalatmosphericmodelQueryParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<GlobalatmosphericmodelQueryResponse> {
+    options?: RequestOptions,
+  ): APIPromise<GlobalatmosphericmodelQueryResponse> {
     return this._client.get('/udl/globalatmosphericmodel', { query, ...options });
   }
 
@@ -72,10 +71,10 @@ export class Globalatmosphericmodel extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/globalatmosphericmodel/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -91,8 +90,8 @@ export class Globalatmosphericmodel extends APIResource {
    */
   tuple(
     query: GlobalatmosphericmodelTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<GlobalatmosphericmodelTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<GlobalatmosphericmodelTupleResponse> {
     return this._client.get('/udl/globalatmosphericmodel/tuple', { query, ...options });
   }
 
@@ -118,13 +117,12 @@ export class Globalatmosphericmodel extends APIResource {
    */
   unvalidatedPublish(
     body: GlobalatmosphericmodelUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    options?: RequestOptions,
+  ): APIPromise<void> {
     return this._client.post('/filedrop/udl-globalatmosphericmodel', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-      __binaryRequest: true,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }

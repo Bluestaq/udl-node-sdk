@@ -1,10 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { type Uploadable } from '../../core/uploads';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Conjunctions extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -13,8 +17,8 @@ export class Conjunctions extends APIResource {
    * Service operation to get a single conjunction by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<ConjunctionFull> {
-    return this._client.get(`/udl/conjunction/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<ConjunctionFull> {
+    return this._client.get(path`/udl/conjunction/${id}`, options);
   }
 
   /**
@@ -23,10 +27,7 @@ export class Conjunctions extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: ConjunctionListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConjunctionListResponse> {
+  list(query: ConjunctionListParams, options?: RequestOptions): APIPromise<ConjunctionListResponse> {
     return this._client.get('/udl/conjunction', { query, ...options });
   }
 
@@ -37,11 +38,11 @@ export class Conjunctions extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: ConjunctionCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: ConjunctionCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/conjunction/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -52,13 +53,13 @@ export class Conjunctions extends APIResource {
    * is required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  createUdl(params: ConjunctionCreateUdlParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createUdl(params: ConjunctionCreateUdlParams, options?: RequestOptions): APIPromise<void> {
     const { convertPosVel, ...body } = params;
     return this._client.post('/udl/conjunction', {
       query: { convertPosVel },
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -71,11 +72,12 @@ export class Conjunctions extends APIResource {
    * specific role assignments and for instructions on setting up a permanent feed
    * through an alternate mechanism.
    */
-  createBulk(body: ConjunctionCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: ConjunctionCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/conjunction/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -87,8 +89,8 @@ export class Conjunctions extends APIResource {
    */
   getHistory(
     query: ConjunctionGetHistoryParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConjunctionGetHistoryResponse> {
+    options?: RequestOptions,
+  ): APIPromise<ConjunctionGetHistoryResponse> {
     return this._client.get('/udl/conjunction/history', { query, ...options });
   }
 
@@ -96,10 +98,10 @@ export class Conjunctions extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/conjunction/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -113,10 +115,7 @@ export class Conjunctions extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: ConjunctionTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConjunctionTupleResponse> {
+  tuple(query: ConjunctionTupleParams, options?: RequestOptions): APIPromise<ConjunctionTupleResponse> {
     return this._client.get('/udl/conjunction/tuple', { query, ...options });
   }
 
@@ -128,13 +127,14 @@ export class Conjunctions extends APIResource {
    * to perform this service operation. Please contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: ConjunctionUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: ConjunctionUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-conjunction', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -150,15 +150,14 @@ export class Conjunctions extends APIResource {
    */
   uploadConjunctionDataMessage(
     params: ConjunctionUploadConjunctionDataMessageParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    options?: RequestOptions,
+  ): APIPromise<void> {
     const { classification, dataMode, filename, source, body, tags } = params;
     return this._client.post('/filedrop/cdms', {
       query: { classification, dataMode, filename, source, tags },
       body: body,
       ...options,
-      headers: { 'Content-Type': 'application/zip', Accept: '*/*', ...options?.headers },
-      __binaryRequest: true,
+      headers: buildHeaders([{ 'Content-Type': 'application/zip', Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -5731,7 +5730,9 @@ export namespace ConjunctionCreateUdlParams {
   }
 }
 
-export type ConjunctionCreateBulkParams = Array<ConjunctionCreateBulkParams.Body>;
+export interface ConjunctionCreateBulkParams {
+  body: Array<ConjunctionCreateBulkParams.Body>;
+}
 
 export namespace ConjunctionCreateBulkParams {
   /**
@@ -7563,7 +7564,9 @@ export interface ConjunctionTupleParams {
   tca: string;
 }
 
-export type ConjunctionUnvalidatedPublishParams = Array<ConjunctionUnvalidatedPublishParams.Body>;
+export interface ConjunctionUnvalidatedPublishParams {
+  body: Array<ConjunctionUnvalidatedPublishParams.Body>;
+}
 
 export namespace ConjunctionUnvalidatedPublishParams {
   /**
@@ -9392,7 +9395,7 @@ export interface ConjunctionUploadConjunctionDataMessageParams {
   /**
    * Body param:
    */
-  body: Core.Uploadable;
+  body: Uploadable;
 
   /**
    * Query param: Optional array of provider/source specific tags for this data,

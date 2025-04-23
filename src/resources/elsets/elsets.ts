@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as CurrentAPI from './current';
 import { Current, CurrentListResponse, CurrentTupleParams, CurrentTupleResponse } from './current';
@@ -14,6 +13,10 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Elsets extends APIResource {
   current: CurrentAPI.Current = new CurrentAPI.Current(this._client);
@@ -26,11 +29,11 @@ export class Elsets extends APIResource {
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
    */
-  create(body: ElsetCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: ElsetCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/elset', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -38,8 +41,8 @@ export class Elsets extends APIResource {
    * Service operation to get a single elset by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Elset> {
-    return this._client.get(`/udl/elset/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Elset> {
+    return this._client.get(path`/udl/elset/${id}`, options);
   }
 
   /**
@@ -48,7 +51,7 @@ export class Elsets extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: ElsetListParams, options?: Core.RequestOptions): Core.APIPromise<ElsetListResponse> {
+  list(query: ElsetListParams, options?: RequestOptions): APIPromise<ElsetListResponse> {
     return this._client.get('/udl/elset', { query, ...options });
   }
 
@@ -59,11 +62,11 @@ export class Elsets extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: ElsetCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: ElsetCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/elset/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -75,13 +78,13 @@ export class Elsets extends APIResource {
    * for specific role assignments and for instructions on setting up a permanent
    * feed through an alternate mechanism.
    */
-  createBulk(params: ElsetCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: ElsetCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body, dupeCheck } = params;
     return this._client.post('/udl/elset/createBulk', {
       query: { dupeCheck },
       body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -92,16 +95,13 @@ export class Elsets extends APIResource {
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
    */
-  createBulkFromTle(
-    params: ElsetCreateBulkFromTleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  createBulkFromTle(params: ElsetCreateBulkFromTleParams, options?: RequestOptions): APIPromise<void> {
     const { dataMode, makeCurrent, source, body, autoCreateSats, control, origin, tags } = params;
     return this._client.post('/udl/elset/createBulkFromTLE', {
       query: { dataMode, makeCurrent, source, autoCreateSats, control, origin, tags },
       body: body,
       ...options,
-      headers: { 'Content-Type': 'text/plain', Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ 'Content-Type': 'text/plain', Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -109,10 +109,10 @@ export class Elsets extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryCurrentElsetHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryCurrentElsetHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/currentelset/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -120,10 +120,10 @@ export class Elsets extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/elset/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -137,7 +137,7 @@ export class Elsets extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: ElsetTupleParams, options?: Core.RequestOptions): Core.APIPromise<ElsetTupleResponse> {
+  tuple(query: ElsetTupleParams, options?: RequestOptions): APIPromise<ElsetTupleResponse> {
     return this._client.get('/udl/elset/tuple', { query, ...options });
   }
 
@@ -146,14 +146,12 @@ export class Elsets extends APIResource {
    * with or without dupe detection. Default is no dupe checking. This operation is
    * intended to be used for automated feeds into UDL.
    */
-  unvalidatedPublish(
-    body: ElsetUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: ElsetUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-elset', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -1436,7 +1434,9 @@ export interface ElsetTupleParams {
   epoch: string;
 }
 
-export type ElsetUnvalidatedPublishParams = Array<ElsetIngest>;
+export interface ElsetUnvalidatedPublishParams {
+  body: Array<ElsetIngest>;
+}
 
 Elsets.Current = Current;
 Elsets.History = History;

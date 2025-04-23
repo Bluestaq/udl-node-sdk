@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -41,9 +40,16 @@ describe('resource gnssobservationset', () => {
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.gnssobservationset.createBulk([
-      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2022-01-01T00:00:00.123456Z' },
-    ]);
+    const responsePromise = client.gnssobservationset.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          ts: '2022-01-01T00:00:00.123456Z',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -54,52 +60,54 @@ describe('resource gnssobservationset', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.gnssobservationset.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        source: 'Bluestaq',
-        ts: '2022-01-01T00:00:00.123456Z',
-        id: 'GNSSObSet-ID',
-        agcState: 20,
-        alt: 200,
-        boresight: [1.23, 3.23],
-        esId: 'ES-ID',
-        eventId: '2f2205c9-7bc2-4e1a-8416-2f80cc71f64b',
-        gDop: 0.33,
-        gnssObservationList: [
-          {
-            agcState: 20,
-            gnssSatId: 'GEJ',
-            ob: [42.1, 1000, 0.9],
-            obsCodeSet: ['S1C', 'C1C', 'C1D'],
-            trackingStatus: 0,
-          },
-        ],
-        hDop: 0.03,
-        lat: 32.021,
-        lon: 125.123,
-        markerType: 'SPACEBORNE',
-        navigationStatus: 'degraded',
-        obsCodes: ['ACL'],
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origObjectId: 'ORIGOBJECT-ID',
-        outage: 200,
-        pDop: 0.002,
-        quat: [0.03, 0.02, 0.01, 0.012],
-        receiver: 'RECEIVER-ID',
-        satNo: 2,
-        satPosition: [1625.71954, 6782.15396, -1721.34267],
-        satVelocity: [2.03, 0.003, 0.12],
-        srcIds: ['SV_ID', 'SV_ID'],
-        srcTyps: ['SV', 'SV'],
-        tags: ['TAG1', 'TAG2'],
-        tDop: 0.05,
-        trackingStatus: 0,
-        transactionId: 'TRANSACTION-ID',
-        vDop: 0.03,
-      },
-    ]);
+    const response = await client.gnssobservationset.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          ts: '2022-01-01T00:00:00.123456Z',
+          id: 'GNSSObSet-ID',
+          agcState: 20,
+          alt: 200,
+          boresight: [1.23, 3.23],
+          esId: 'ES-ID',
+          eventId: '2f2205c9-7bc2-4e1a-8416-2f80cc71f64b',
+          gDop: 0.33,
+          gnssObservationList: [
+            {
+              agcState: 20,
+              gnssSatId: 'GEJ',
+              ob: [42.1, 1000, 0.9],
+              obsCodeSet: ['S1C', 'C1C', 'C1D'],
+              trackingStatus: 0,
+            },
+          ],
+          hDop: 0.03,
+          lat: 32.021,
+          lon: 125.123,
+          markerType: 'SPACEBORNE',
+          navigationStatus: 'degraded',
+          obsCodes: ['ACL'],
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origObjectId: 'ORIGOBJECT-ID',
+          outage: 200,
+          pDop: 0.002,
+          quat: [0.03, 0.02, 0.01, 0.012],
+          receiver: 'RECEIVER-ID',
+          satNo: 2,
+          satPosition: [1625.71954, 6782.15396, -1721.34267],
+          satVelocity: [2.03, 0.003, 0.12],
+          srcIds: ['SV_ID', 'SV_ID'],
+          srcTyps: ['SV', 'SV'],
+          tags: ['TAG1', 'TAG2'],
+          tDop: 0.05,
+          trackingStatus: 0,
+          transactionId: 'TRANSACTION-ID',
+          vDop: 0.03,
+        },
+      ],
+    });
   });
 
   test('queryhelp', async () => {
@@ -111,13 +119,6 @@ describe('resource gnssobservationset', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.gnssobservationset.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {
@@ -142,9 +143,16 @@ describe('resource gnssobservationset', () => {
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.gnssobservationset.unvalidatedPublish([
-      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2022-01-01T00:00:00.123456Z' },
-    ]);
+    const responsePromise = client.gnssobservationset.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          ts: '2022-01-01T00:00:00.123456Z',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -155,51 +163,53 @@ describe('resource gnssobservationset', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.gnssobservationset.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        source: 'Bluestaq',
-        ts: '2022-01-01T00:00:00.123456Z',
-        id: 'GNSSObSet-ID',
-        agcState: 20,
-        alt: 200,
-        boresight: [1.23, 3.23],
-        esId: 'ES-ID',
-        eventId: '2f2205c9-7bc2-4e1a-8416-2f80cc71f64b',
-        gDop: 0.33,
-        gnssObservationList: [
-          {
-            agcState: 20,
-            gnssSatId: 'GEJ',
-            ob: [42.1, 1000, 0.9],
-            obsCodeSet: ['S1C', 'C1C', 'C1D'],
-            trackingStatus: 0,
-          },
-        ],
-        hDop: 0.03,
-        lat: 32.021,
-        lon: 125.123,
-        markerType: 'SPACEBORNE',
-        navigationStatus: 'degraded',
-        obsCodes: ['ACL'],
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origObjectId: 'ORIGOBJECT-ID',
-        outage: 200,
-        pDop: 0.002,
-        quat: [0.03, 0.02, 0.01, 0.012],
-        receiver: 'RECEIVER-ID',
-        satNo: 2,
-        satPosition: [1625.71954, 6782.15396, -1721.34267],
-        satVelocity: [2.03, 0.003, 0.12],
-        srcIds: ['SV_ID', 'SV_ID'],
-        srcTyps: ['SV', 'SV'],
-        tags: ['TAG1', 'TAG2'],
-        tDop: 0.05,
-        trackingStatus: 0,
-        transactionId: 'TRANSACTION-ID',
-        vDop: 0.03,
-      },
-    ]);
+    const response = await client.gnssobservationset.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          ts: '2022-01-01T00:00:00.123456Z',
+          id: 'GNSSObSet-ID',
+          agcState: 20,
+          alt: 200,
+          boresight: [1.23, 3.23],
+          esId: 'ES-ID',
+          eventId: '2f2205c9-7bc2-4e1a-8416-2f80cc71f64b',
+          gDop: 0.33,
+          gnssObservationList: [
+            {
+              agcState: 20,
+              gnssSatId: 'GEJ',
+              ob: [42.1, 1000, 0.9],
+              obsCodeSet: ['S1C', 'C1C', 'C1D'],
+              trackingStatus: 0,
+            },
+          ],
+          hDop: 0.03,
+          lat: 32.021,
+          lon: 125.123,
+          markerType: 'SPACEBORNE',
+          navigationStatus: 'degraded',
+          obsCodes: ['ACL'],
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origObjectId: 'ORIGOBJECT-ID',
+          outage: 200,
+          pDop: 0.002,
+          quat: [0.03, 0.02, 0.01, 0.012],
+          receiver: 'RECEIVER-ID',
+          satNo: 2,
+          satPosition: [1625.71954, 6782.15396, -1721.34267],
+          satVelocity: [2.03, 0.003, 0.12],
+          srcIds: ['SV_ID', 'SV_ID'],
+          srcTyps: ['SV', 'SV'],
+          tags: ['TAG1', 'TAG2'],
+          tDop: 0.05,
+          trackingStatus: 0,
+          transactionId: 'TRANSACTION-ID',
+          vDop: 0.03,
+        },
+      ],
+    });
   });
 });

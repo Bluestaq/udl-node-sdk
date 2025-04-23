@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Tuple extends APIResource {
   /**
@@ -15,7 +16,7 @@ export class Tuple extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  list(query: TupleListParams, options?: Core.RequestOptions): Core.APIPromise<TupleListResponse> {
+  list(query: TupleListParams, options?: RequestOptions): APIPromise<TupleListResponse> {
     return this._client.get('/udl/collectresponse/tuple', { query, ...options });
   }
 }

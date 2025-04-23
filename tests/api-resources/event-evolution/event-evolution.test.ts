@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -73,13 +72,6 @@ describe('resource eventEvolution', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.eventEvolution.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('list', async () => {
     const responsePromise = client.eventEvolution.list();
     const rawResponse = await responsePromise.asResponse();
@@ -89,13 +81,6 @@ describe('resource eventEvolution', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.eventEvolution.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('list: request options and params are passed correctly', async () => {
@@ -119,13 +104,6 @@ describe('resource eventEvolution', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('count: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.eventEvolution.count({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -137,16 +115,18 @@ describe('resource eventEvolution', () => {
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.eventEvolution.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        eventId: 'EVENT_ID',
-        source: 'Bluestaq',
-        startTime: '2021-12-02T16:00:00.123Z',
-        summary: 'Example summary of the event.',
-      },
-    ]);
+    const responsePromise = client.eventEvolution.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          eventId: 'EVENT_ID',
+          source: 'Bluestaq',
+          startTime: '2021-12-02T16:00:00.123Z',
+          summary: 'Example summary of the event.',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -157,39 +137,41 @@ describe('resource eventEvolution', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.eventEvolution.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        eventId: 'EVENT_ID',
-        source: 'Bluestaq',
-        startTime: '2021-12-02T16:00:00.123Z',
-        summary: 'Example summary of the event.',
-        id: 'EVENT_EVOL_ID',
-        agjson:
-          '{"type":"Polygon","coordinates":[ [ [ 67.3291113966927, 26.156175339112 ], [ 67.2580009640721, 26.091022064271 ], [ 67.1795862381682, 26.6637992964562 ], [ 67.2501237475598, 26.730115808233 ], [ 67.3291113966927, 26.156175339112 ] ] ] }',
-        andims: 2,
-        area: 'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
-        asrid: 4326,
-        atext:
-          'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
-        atype: 'POLYGON',
-        category: 'PROTEST',
-        countryCode: 'US',
-        dataDescription: 'Description of relationship between srcTyps and srcIds',
-        endTime: '2021-12-03T16:00:00.123Z',
-        geoAdminLevel1: 'Colorado',
-        geoAdminLevel2: 'El Paso County',
-        geoAdminLevel3: 'Colorado Springs',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        redact: false,
-        srcIds: ['SRC_ID_1', 'SRC_ID_2'],
-        srcTyps: ['AIS', 'CONJUNCTION'],
-        status: 'UNKNOWN',
-        tags: ['TAG1', 'TAG2'],
-        url: ['URL1', 'URL2'],
-      },
-    ]);
+    const response = await client.eventEvolution.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          eventId: 'EVENT_ID',
+          source: 'Bluestaq',
+          startTime: '2021-12-02T16:00:00.123Z',
+          summary: 'Example summary of the event.',
+          id: 'EVENT_EVOL_ID',
+          agjson:
+            '{"type":"Polygon","coordinates":[ [ [ 67.3291113966927, 26.156175339112 ], [ 67.2580009640721, 26.091022064271 ], [ 67.1795862381682, 26.6637992964562 ], [ 67.2501237475598, 26.730115808233 ], [ 67.3291113966927, 26.156175339112 ] ] ] }',
+          andims: 2,
+          area: 'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
+          asrid: 4326,
+          atext:
+            'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
+          atype: 'POLYGON',
+          category: 'PROTEST',
+          countryCode: 'US',
+          dataDescription: 'Description of relationship between srcTyps and srcIds',
+          endTime: '2021-12-03T16:00:00.123Z',
+          geoAdminLevel1: 'Colorado',
+          geoAdminLevel2: 'El Paso County',
+          geoAdminLevel3: 'Colorado Springs',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          redact: false,
+          srcIds: ['SRC_ID_1', 'SRC_ID_2'],
+          srcTyps: ['AIS', 'CONJUNCTION'],
+          status: 'UNKNOWN',
+          tags: ['TAG1', 'TAG2'],
+          url: ['URL1', 'URL2'],
+        },
+      ],
+    });
   });
 
   test('queryhelp', async () => {
@@ -201,13 +183,6 @@ describe('resource eventEvolution', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.eventEvolution.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {
@@ -230,16 +205,18 @@ describe('resource eventEvolution', () => {
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.eventEvolution.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        eventId: 'EVENT_ID',
-        source: 'Bluestaq',
-        startTime: '2021-12-02T16:00:00.123Z',
-        summary: 'Example summary of the event.',
-      },
-    ]);
+    const responsePromise = client.eventEvolution.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          eventId: 'EVENT_ID',
+          source: 'Bluestaq',
+          startTime: '2021-12-02T16:00:00.123Z',
+          summary: 'Example summary of the event.',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -250,38 +227,40 @@ describe('resource eventEvolution', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.eventEvolution.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        eventId: 'EVENT_ID',
-        source: 'Bluestaq',
-        startTime: '2021-12-02T16:00:00.123Z',
-        summary: 'Example summary of the event.',
-        id: 'EVENT_EVOL_ID',
-        agjson:
-          '{"type":"Polygon","coordinates":[ [ [ 67.3291113966927, 26.156175339112 ], [ 67.2580009640721, 26.091022064271 ], [ 67.1795862381682, 26.6637992964562 ], [ 67.2501237475598, 26.730115808233 ], [ 67.3291113966927, 26.156175339112 ] ] ] }',
-        andims: 2,
-        area: 'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
-        asrid: 4326,
-        atext:
-          'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
-        atype: 'POLYGON',
-        category: 'PROTEST',
-        countryCode: 'US',
-        dataDescription: 'Description of relationship between srcTyps and srcIds',
-        endTime: '2021-12-03T16:00:00.123Z',
-        geoAdminLevel1: 'Colorado',
-        geoAdminLevel2: 'El Paso County',
-        geoAdminLevel3: 'Colorado Springs',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        redact: false,
-        srcIds: ['SRC_ID_1', 'SRC_ID_2'],
-        srcTyps: ['AIS', 'CONJUNCTION'],
-        status: 'UNKNOWN',
-        tags: ['TAG1', 'TAG2'],
-        url: ['URL1', 'URL2'],
-      },
-    ]);
+    const response = await client.eventEvolution.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          eventId: 'EVENT_ID',
+          source: 'Bluestaq',
+          startTime: '2021-12-02T16:00:00.123Z',
+          summary: 'Example summary of the event.',
+          id: 'EVENT_EVOL_ID',
+          agjson:
+            '{"type":"Polygon","coordinates":[ [ [ 67.3291113966927, 26.156175339112 ], [ 67.2580009640721, 26.091022064271 ], [ 67.1795862381682, 26.6637992964562 ], [ 67.2501237475598, 26.730115808233 ], [ 67.3291113966927, 26.156175339112 ] ] ] }',
+          andims: 2,
+          area: 'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
+          asrid: 4326,
+          atext:
+            'POLYGON((67.3291113966927 26.156175339112,67.2580009640721 26.091022064271,67.1795862381682 26.6637992964562,67.2501237475598 26.730115808233,67.3291113966927 26.156175339112))',
+          atype: 'POLYGON',
+          category: 'PROTEST',
+          countryCode: 'US',
+          dataDescription: 'Description of relationship between srcTyps and srcIds',
+          endTime: '2021-12-03T16:00:00.123Z',
+          geoAdminLevel1: 'Colorado',
+          geoAdminLevel2: 'El Paso County',
+          geoAdminLevel3: 'Colorado Springs',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          redact: false,
+          srcIds: ['SRC_ID_1', 'SRC_ID_2'],
+          srcTyps: ['AIS', 'CONJUNCTION'],
+          status: 'UNKNOWN',
+          tags: ['TAG1', 'TAG2'],
+          url: ['URL1', 'URL2'],
+        },
+      ],
+    });
   });
 });

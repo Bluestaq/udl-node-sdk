@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class AircraftStatusRemarks extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class AircraftStatusRemarks extends APIResource {
    * and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  create(body: AircraftStatusRemarkCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: AircraftStatusRemarkCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/aircraftstatusremark', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -21,8 +24,8 @@ export class AircraftStatusRemarks extends APIResource {
    * Service operation to get a single Aircraft Status Remark record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AircraftstatusremarkFull> {
-    return this._client.get(`/udl/aircraftstatusremark/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<AircraftstatusremarkFull> {
+    return this._client.get(path`/udl/aircraftstatusremark/${id}`, options);
   }
 
   /**
@@ -31,7 +34,7 @@ export class AircraftStatusRemarks extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<AircraftStatusRemarkListResponse> {
+  list(options?: RequestOptions): APIPromise<AircraftStatusRemarkListResponse> {
     return this._client.get('/udl/aircraftstatusremark', options);
   }
 
@@ -42,10 +45,10 @@ export class AircraftStatusRemarks extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/aircraftstatusremark/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -53,10 +56,10 @@ export class AircraftStatusRemarks extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/aircraftstatusremark/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -72,8 +75,8 @@ export class AircraftStatusRemarks extends APIResource {
    */
   tuple(
     query: AircraftStatusRemarkTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AircraftStatusRemarkTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<AircraftStatusRemarkTupleResponse> {
     return this._client.get('/udl/aircraftstatusremark/tuple', { query, ...options });
   }
 }

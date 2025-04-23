@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Aviationriskmanagement extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class Aviationriskmanagement extends APIResource {
    * body and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  create(body: AviationriskmanagementCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: AviationriskmanagementCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/aviationriskmanagement', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -21,11 +24,8 @@ export class Aviationriskmanagement extends APIResource {
    * Service operation to get a single Aviation Risk Management record by its unique
    * ID passed as a path parameter.
    */
-  retrieve(
-    id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AviationriskmanagementRetrieveResponse> {
-    return this._client.get(`/udl/aviationriskmanagement/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<AviationriskmanagementRetrieveResponse> {
+    return this._client.get(path`/udl/aviationriskmanagement/${id}`, options);
   }
 
   /**
@@ -34,14 +34,14 @@ export class Aviationriskmanagement extends APIResource {
    * for assistance.
    */
   update(
-    pathId: string,
+    pathID: string,
     body: AviationriskmanagementUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/aviationriskmanagement/${pathId}`, {
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    return this._client.put(path`/udl/aviationriskmanagement/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -50,10 +50,10 @@ export class Aviationriskmanagement extends APIResource {
    * passed ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/aviationriskmanagement/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/aviationriskmanagement/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -64,11 +64,11 @@ export class Aviationriskmanagement extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: AviationriskmanagementCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: AviationriskmanagementCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/aviationriskmanagement/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -79,14 +79,12 @@ export class Aviationriskmanagement extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(
-    body: AviationriskmanagementCreateBulkParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  createBulk(params: AviationriskmanagementCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/aviationriskmanagement/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -98,8 +96,8 @@ export class Aviationriskmanagement extends APIResource {
    */
   query(
     query: AviationriskmanagementQueryParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AviationriskmanagementQueryResponse> {
+    options?: RequestOptions,
+  ): APIPromise<AviationriskmanagementQueryResponse> {
     return this._client.get('/udl/aviationriskmanagement', { query, ...options });
   }
 
@@ -107,10 +105,10 @@ export class Aviationriskmanagement extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/aviationriskmanagement/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -126,8 +124,8 @@ export class Aviationriskmanagement extends APIResource {
    */
   tuple(
     query: AviationriskmanagementTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AviationriskmanagementTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<AviationriskmanagementTupleResponse> {
     return this._client.get('/udl/aviationriskmanagement/tuple', { query, ...options });
   }
 
@@ -138,13 +136,14 @@ export class Aviationriskmanagement extends APIResource {
    * operation. Please contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: AviationriskmanagementUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: AviationriskmanagementUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-aviationriskmanagement', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -1659,7 +1658,9 @@ export interface AviationriskmanagementCountParams {
   idMission: string;
 }
 
-export type AviationriskmanagementCreateBulkParams = Array<AviationriskmanagementCreateBulkParams.Body>;
+export interface AviationriskmanagementCreateBulkParams {
+  body: Array<AviationriskmanagementCreateBulkParams.Body>;
+}
 
 export namespace AviationriskmanagementCreateBulkParams {
   /**
@@ -1966,8 +1967,9 @@ export interface AviationriskmanagementTupleParams {
   idMission: string;
 }
 
-export type AviationriskmanagementUnvalidatedPublishParams =
-  Array<AviationriskmanagementUnvalidatedPublishParams.Body>;
+export interface AviationriskmanagementUnvalidatedPublishParams {
+  body: Array<AviationriskmanagementUnvalidatedPublishParams.Body>;
+}
 
 export namespace AviationriskmanagementUnvalidatedPublishParams {
   /**

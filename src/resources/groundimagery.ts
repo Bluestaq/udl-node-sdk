@@ -1,9 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as HistoryAPI from './udl/groundimagery/history';
-import { type Response } from '../_shims/index';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Groundimagery extends APIResource {
   /**
@@ -11,11 +13,11 @@ export class Groundimagery extends APIResource {
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: GroundimageryCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: GroundimageryCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/groundimagery', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -25,10 +27,7 @@ export class Groundimagery extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: GroundimageryListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<GroundimageryListResponse> {
+  list(query: GroundimageryListParams, options?: RequestOptions): APIPromise<GroundimageryListResponse> {
     return this._client.get('/udl/groundimagery', { query, ...options });
   }
 
@@ -39,11 +38,11 @@ export class Groundimagery extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: GroundimageryCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: GroundimageryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/groundimagery/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -52,8 +51,8 @@ export class Groundimagery extends APIResource {
    * as a path parameter. GroundImagery represents metadata about a ground image, as
    * well as the actual binary image data.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<HistoryAPI.GroundImageryFull> {
-    return this._client.get(`/udl/groundimagery/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.GroundImageryFull> {
+    return this._client.get(path`/udl/groundimagery/${id}`, options);
   }
 
   /**
@@ -61,10 +60,10 @@ export class Groundimagery extends APIResource {
    * passed as a path parameter. The image is returned as an attachment
    * Content-Disposition.
    */
-  getFile(id: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.get(`/udl/groundimagery/getFile/${id}`, {
+  getFile(id: string, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/udl/groundimagery/getFile/${id}`, {
       ...options,
-      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -73,10 +72,10 @@ export class Groundimagery extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/groundimagery/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -90,10 +89,7 @@ export class Groundimagery extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: GroundimageryTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<GroundimageryTupleResponse> {
+  tuple(query: GroundimageryTupleParams, options?: RequestOptions): APIPromise<GroundimageryTupleResponse> {
     return this._client.get('/udl/groundimagery/tuple', { query, ...options });
   }
 }

@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as EntitiesAPI from './entities';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Scientific extends APIResource {
   /**
@@ -10,11 +13,11 @@ export class Scientific extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: ScientificCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: ScientificCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/scientific', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -22,11 +25,11 @@ export class Scientific extends APIResource {
    * Service operation to update a single Scientific. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(pathId: string, body: ScientificUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/scientific/${pathId}`, {
+  update(pathID: string, body: ScientificUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/scientific/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -36,7 +39,7 @@ export class Scientific extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<ScientificListResponse> {
+  list(options?: RequestOptions): APIPromise<ScientificListResponse> {
     return this._client.get('/udl/scientific', options);
   }
 
@@ -45,10 +48,10 @@ export class Scientific extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/scientific/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/scientific/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -59,10 +62,10 @@ export class Scientific extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/scientific/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -70,18 +73,18 @@ export class Scientific extends APIResource {
    * Service operation to get a single Scientific record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<ScientificGetResponse> {
-    return this._client.get(`/udl/scientific/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<ScientificGetResponse> {
+    return this._client.get(path`/udl/scientific/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/scientific/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -95,10 +98,7 @@ export class Scientific extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: ScientificTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ScientificTupleResponse> {
+  tuple(query: ScientificTupleParams, options?: RequestOptions): APIPromise<ScientificTupleResponse> {
     return this._client.get('/udl/scientific/tuple', { query, ...options });
   }
 }

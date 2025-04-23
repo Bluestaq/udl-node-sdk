@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Operations extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class Operations extends APIResource {
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: OperationCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: OperationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/siteoperations', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -21,8 +24,8 @@ export class Operations extends APIResource {
    * Service operation to get a single siteoperations record by its unique ID passed
    * as a path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<OperationRetrieveResponse> {
-    return this._client.get(`/udl/siteoperations/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<OperationRetrieveResponse> {
+    return this._client.get(path`/udl/siteoperations/${id}`, options);
   }
 
   /**
@@ -30,11 +33,11 @@ export class Operations extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(pathId: string, body: OperationUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/siteoperations/${pathId}`, {
+  update(pathID: string, body: OperationUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/siteoperations/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -44,7 +47,7 @@ export class Operations extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: OperationListParams, options?: Core.RequestOptions): Core.APIPromise<OperationListResponse> {
+  list(query: OperationListParams, options?: RequestOptions): APIPromise<OperationListResponse> {
     return this._client.get('/udl/siteoperations', { query, ...options });
   }
 
@@ -53,10 +56,10 @@ export class Operations extends APIResource {
    * path parameter. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/siteoperations/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/siteoperations/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -67,11 +70,11 @@ export class Operations extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: OperationCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: OperationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/siteoperations/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -82,11 +85,12 @@ export class Operations extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: OperationCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: OperationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/siteoperations/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -94,10 +98,10 @@ export class Operations extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/siteoperations/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -111,7 +115,7 @@ export class Operations extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: OperationTupleParams, options?: Core.RequestOptions): Core.APIPromise<OperationTupleResponse> {
+  tuple(query: OperationTupleParams, options?: RequestOptions): APIPromise<OperationTupleResponse> {
     return this._client.get('/udl/siteoperations/tuple', { query, ...options });
   }
 
@@ -121,14 +125,12 @@ export class Operations extends APIResource {
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  unvalidatedPublish(
-    body: OperationUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: OperationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-siteoperations', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -2289,7 +2291,9 @@ export interface OperationCountParams {
   idSite: string;
 }
 
-export type OperationCreateBulkParams = Array<OperationCreateBulkParams.Body>;
+export interface OperationCreateBulkParams {
+  body: Array<OperationCreateBulkParams.Body>;
+}
 
 export namespace OperationCreateBulkParams {
   /**
@@ -2715,7 +2719,9 @@ export interface OperationTupleParams {
   idSite: string;
 }
 
-export type OperationUnvalidatedPublishParams = Array<OperationUnvalidatedPublishParams.Body>;
+export interface OperationUnvalidatedPublishParams {
+  body: Array<OperationUnvalidatedPublishParams.Body>;
+}
 
 export namespace OperationUnvalidatedPublishParams {
   /**

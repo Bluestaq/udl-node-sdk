@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary, { toFile } from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -36,13 +35,6 @@ describe('resource scs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('aggregateDocType: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.scs.aggregateDocType({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('allowableFileExtensions', async () => {
     const responsePromise = client.scs.allowableFileExtensions();
     const rawResponse = await responsePromise.asResponse();
@@ -54,13 +46,6 @@ describe('resource scs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('allowableFileExtensions: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.scs.allowableFileExtensions({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('allowableFileMimes', async () => {
     const responsePromise = client.scs.allowableFileMimes();
     const rawResponse = await responsePromise.asResponse();
@@ -70,13 +55,6 @@ describe('resource scs', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('allowableFileMimes: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.scs.allowableFileMimes({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('copy: only required params', async () => {
@@ -95,10 +73,12 @@ describe('resource scs', () => {
   });
 
   test('download: required and optional params', async () => {
-    const response = await client.scs.download([
-      '/processPalantirXml/media/PT_MEDIA6831731772984708680',
-      '/processPalantirXml/media/PT_MEDIA7297147303810886654',
-    ]);
+    const response = await client.scs.download({
+      body: [
+        '/processPalantirXml/media/PT_MEDIA6831731772984708680',
+        '/processPalantirXml/media/PT_MEDIA7297147303810886654',
+      ],
+    });
   });
 
   test('fileDownload: required and optional params', async () => {

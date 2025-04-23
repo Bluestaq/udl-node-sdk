@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Onorbitdetails extends APIResource {
   /**
@@ -10,11 +13,11 @@ export class Onorbitdetails extends APIResource {
    * an on-orbit object. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: OnorbitdetailCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: OnorbitdetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitdetails', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -24,15 +27,11 @@ export class Onorbitdetails extends APIResource {
    * is required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(
-    pathId: string,
-    body: OnorbitdetailUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/onorbitdetails/${pathId}`, {
+  update(pathID: string, body: OnorbitdetailUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/onorbitdetails/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -42,7 +41,7 @@ export class Onorbitdetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<OnorbitdetailListResponse> {
+  list(options?: RequestOptions): APIPromise<OnorbitdetailListResponse> {
     return this._client.get('/udl/onorbitdetails', options);
   }
 
@@ -52,10 +51,10 @@ export class Onorbitdetails extends APIResource {
    * on an on-orbit object. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/onorbitdetails/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/onorbitdetails/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -64,8 +63,8 @@ export class Onorbitdetails extends APIResource {
    * as a path parameter. An OnorbitDetails is a collection of additional
    * characteristics on an on-orbit object.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<OnorbitdetailGetResponse> {
-    return this._client.get(`/udl/onorbitdetails/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<OnorbitdetailGetResponse> {
+    return this._client.get(path`/udl/onorbitdetails/${id}`, options);
   }
 }
 

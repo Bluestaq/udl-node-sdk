@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,6 +11,9 @@ import {
   HistoryListResponse,
   SpaceEnvObservationFull,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Spaceenvobservation extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -24,8 +26,8 @@ export class Spaceenvobservation extends APIResource {
    */
   list(
     query: SpaceenvobservationListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SpaceenvobservationListResponse> {
+    options?: RequestOptions,
+  ): APIPromise<SpaceenvobservationListResponse> {
     return this._client.get('/udl/spaceenvobservation', { query, ...options });
   }
 
@@ -36,11 +38,11 @@ export class Spaceenvobservation extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: SpaceenvobservationCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: SpaceenvobservationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/spaceenvobservation/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -51,14 +53,12 @@ export class Spaceenvobservation extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(
-    body: SpaceenvobservationCreateBulkParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  createBulk(params: SpaceenvobservationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/spaceenvobservation/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -66,10 +66,10 @@ export class Spaceenvobservation extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/spaceenvobservation/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -85,8 +85,8 @@ export class Spaceenvobservation extends APIResource {
    */
   tuple(
     query: SpaceenvobservationTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SpaceenvobservationTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<SpaceenvobservationTupleResponse> {
     return this._client.get('/udl/spaceenvobservation/tuple', { query, ...options });
   }
 
@@ -97,13 +97,14 @@ export class Spaceenvobservation extends APIResource {
    * operation. Please contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: SpaceenvobservationUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: SpaceenvobservationUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-spaceenvobs', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -464,7 +465,9 @@ export interface SpaceenvobservationCountParams {
   obTime: string;
 }
 
-export type SpaceenvobservationCreateBulkParams = Array<SpaceenvobservationCreateBulkParams.Body>;
+export interface SpaceenvobservationCreateBulkParams {
+  body: Array<SpaceenvobservationCreateBulkParams.Body>;
+}
 
 export namespace SpaceenvobservationCreateBulkParams {
   /**
@@ -792,8 +795,9 @@ export interface SpaceenvobservationTupleParams {
   obTime: string;
 }
 
-export type SpaceenvobservationUnvalidatedPublishParams =
-  Array<SpaceenvobservationUnvalidatedPublishParams.Body>;
+export interface SpaceenvobservationUnvalidatedPublishParams {
+  body: Array<SpaceenvobservationUnvalidatedPublishParams.Body>;
+}
 
 export namespace SpaceenvobservationUnvalidatedPublishParams {
   /**

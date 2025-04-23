@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { type BlobLike } from '../../uploads';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Crewpapers extends APIResource {
   /**
@@ -10,12 +11,12 @@ export class Crewpapers extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  unpublish(params: CrewpaperUnpublishParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  unpublish(params: CrewpaperUnpublishParams, options?: RequestOptions): APIPromise<void> {
     const { ids } = params;
     return this._client.post('/udl/crewpapers/unpublish', {
       query: { ids },
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -24,14 +25,13 @@ export class Crewpapers extends APIResource {
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
    */
-  uploadPdf(params: CrewpaperUploadPdfParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  uploadPdf(params: CrewpaperUploadPdfParams, options?: RequestOptions): APIPromise<void> {
     const { aircraftSortieIds, classificationMarking, paperStatus, papersVersion, body } = params;
     return this._client.post('/filedrop/crewpapers', {
       query: { aircraftSortieIds, classificationMarking, paperStatus, papersVersion },
       body: body,
       ...options,
-      headers: { 'Content-Type': 'application/pdf', Accept: '*/*', ...options?.headers },
-      __binaryRequest: true,
+      headers: buildHeaders([{ 'Content-Type': 'application/pdf', Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -68,7 +68,7 @@ export interface CrewpaperUploadPdfParams {
   /**
    * Body param:
    */
-  body: string | ArrayBufferView | ArrayBuffer | BlobLike;
+  body: string | ArrayBuffer | ArrayBufferView | Blob | DataView;
 }
 
 export declare namespace Crewpapers {
