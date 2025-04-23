@@ -344,7 +344,7 @@ export interface EmittergeolocationRetrieveResponse {
   /**
    * Model object representing on-orbit objects or satellites in the system.
    */
-  onOrbit?: Shared.Onorbit;
+  onOrbit?: Shared.OnorbitFull;
 
   /**
    * The order identifier for this Emitter Geo Location data set.
@@ -930,7 +930,7 @@ export namespace EmittergeolocationTupleResponse {
     /**
      * Model object representing on-orbit objects or satellites in the system.
      */
-    onOrbit?: Shared.Onorbit;
+    onOrbit?: Shared.OnorbitFull;
 
     /**
      * The order identifier for this Emitter Geo Location data set.

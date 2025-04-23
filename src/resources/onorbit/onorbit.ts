@@ -85,7 +85,7 @@ export class Onorbit extends APIResource {
    * Service operation to get a single OnOrbit object by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<Shared.Onorbit> {
+  get(id: string, options?: RequestOptions): APIPromise<Shared.OnorbitFull> {
     return this._client.get(path`/udl/onorbit/${id}`, options);
   }
 
@@ -1386,7 +1386,7 @@ export namespace OnorbitGetSignatureResponse {
   }
 }
 
-export type OnorbitTupleResponse = Array<Shared.Onorbit>;
+export type OnorbitTupleResponse = Array<Shared.OnorbitFull>;
 
 export interface OnorbitCreateParams {
   /**

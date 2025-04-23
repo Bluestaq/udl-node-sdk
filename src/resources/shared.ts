@@ -1355,7 +1355,7 @@ export interface AttitudesetFull {
   /**
    * Model object representing on-orbit objects or satellites in the system.
    */
-  onOrbit?: Onorbit;
+  onOrbit?: OnorbitFull;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -1733,7 +1733,7 @@ export interface CollectRequestFull {
   /**
    * Model object representing on-orbit objects or satellites in the system.
    */
-  onOrbit?: Onorbit;
+  onOrbit?: OnorbitFull;
 
   /**
    * The orbit regime of the target (GEO, HEO, LAUNCH, LEO, MEO, OTHER).
@@ -3185,7 +3185,7 @@ export interface CollectResponseFull {
   /**
    * Model object representing on-orbit objects or satellites in the system.
    */
-  onOrbit?: Onorbit;
+  onOrbit?: OnorbitFull;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -6079,7 +6079,7 @@ export namespace FlightPlanFull {
 /**
  * Model object representing on-orbit objects or satellites in the system.
  */
-export interface Onorbit {
+export interface OnorbitFull {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -6121,12 +6121,12 @@ export interface Onorbit {
   /**
    * Read-only collection of antennas on this on-orbit object.
    */
-  antennas?: Array<Onorbit.Antenna>;
+  antennas?: Array<OnorbitFull.Antenna>;
 
   /**
    * Read-only collection of batteries on this on-orbit object.
    */
-  batteries?: Array<Onorbit.Battery>;
+  batteries?: Array<OnorbitFull.Battery>;
 
   /**
    * Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
@@ -6187,7 +6187,7 @@ export interface Onorbit {
   /**
    * Read-only entity details (only returned/used on detail queries).
    */
-  entityCollection?: Array<Onorbit.EntityCollection>;
+  entityCollection?: Array<OnorbitFull.EntityCollection>;
 
   /**
    * For the public catalog, the idOnOrbit is typically the satellite number as a
@@ -6232,7 +6232,7 @@ export interface Onorbit {
   /**
    * Read-only collection of details for this on-orbit object.
    */
-  onorbitDetails?: Array<Onorbit.OnorbitDetail>;
+  onorbitDetails?: Array<OnorbitFull.OnorbitDetail>;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -6251,12 +6251,12 @@ export interface Onorbit {
   /**
    * Read-only collection of solar arrays on this on-orbit object.
    */
-  solarArrays?: Array<Onorbit.SolarArray>;
+  solarArrays?: Array<OnorbitFull.SolarArray>;
 
   /**
    * Read-only collection of thrusters (engines) on this on-orbit object.
    */
-  thrusters?: Array<Onorbit.Thruster>;
+  thrusters?: Array<OnorbitFull.Thruster>;
 
   /**
    * Time the row was last updated in the database, auto-populated by the system.
@@ -6270,7 +6270,7 @@ export interface Onorbit {
   updatedBy?: string;
 }
 
-export namespace Onorbit {
+export namespace OnorbitFull {
   export interface Antenna {
     /**
      * Classification marking of the data in IC/CAPCO Portion-marked format.
