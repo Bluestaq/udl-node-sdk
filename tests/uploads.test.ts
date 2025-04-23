@@ -1,6 +1,6 @@
 import fs from 'fs';
-import type { ResponseLike } from 'unifieddatalibrary/internal/to-file';
-import { toFile } from 'unifieddatalibrary/core/uploads';
+import type { ResponseLike } from 'unified-data-library/internal/to-file';
+import { toFile } from 'unified-data-library/core/uploads';
 import { File } from 'node:buffer';
 
 class MyClass {
@@ -97,7 +97,7 @@ describe('missing File error message', () => {
   });
 
   test('is thrown', async () => {
-    const uploads = await import('unifieddatalibrary/core/uploads');
+    const uploads = await import('unified-data-library/core/uploads');
     await expect(
       uploads.toFile(mockResponse({ url: 'https://example.com/my/audio.mp3' })),
     ).rejects.toMatchInlineSnapshot(

@@ -1,6 +1,6 @@
 # Unifieddatalibrary TypeScript API Library
 
-[![NPM version](https://img.shields.io/npm/v/unifieddatalibrary.svg)](https://npmjs.org/package/unifieddatalibrary) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/unifieddatalibrary)
+[![NPM version](https://img.shields.io/npm/v/unified-data-library.svg)](https://npmjs.org/package/unified-data-library) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/unified-data-library)
 
 This library provides convenient access to the Unifieddatalibrary REST API from server-side TypeScript or JavaScript.
 
@@ -15,7 +15,7 @@ npm install git+ssh://git@github.com:stainless-sdks/unifieddatalibrary-typescrip
 ```
 
 > [!NOTE]
-> Once this package is [published to npm](https://app.stainless.com/docs/guides/publish), this will become: `npm install unifieddatalibrary`
+> Once this package is [published to npm](https://app.stainless.com/docs/guides/publish), this will become: `npm install unified-data-library`
 
 ## Usage
 
@@ -23,7 +23,7 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import Unifieddatalibrary from 'unifieddatalibrary';
+import Unifieddatalibrary from 'unified-data-library';
 
 const client = new Unifieddatalibrary({
   username: process.env['UDL_AUTH_USERNAME'], // This is the default and can be omitted
@@ -43,7 +43,7 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import Unifieddatalibrary from 'unifieddatalibrary';
+import Unifieddatalibrary from 'unified-data-library';
 
 const client = new Unifieddatalibrary({
   username: process.env['UDL_AUTH_USERNAME'], // This is the default and can be omitted
@@ -70,7 +70,7 @@ Request parameters that correspond to file uploads can be passed in many differe
 
 ```ts
 import fs from 'fs';
-import Unifieddatalibrary, { toFile } from 'unifieddatalibrary';
+import Unifieddatalibrary, { toFile } from 'unified-data-library';
 
 const client = new Unifieddatalibrary();
 
@@ -203,7 +203,7 @@ The log level can be configured in two ways:
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import Unifieddatalibrary from 'unifieddatalibrary';
+import Unifieddatalibrary from 'unified-data-library';
 
 const client = new Unifieddatalibrary({
   logLevel: 'debug', // Show all log messages
@@ -231,7 +231,7 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import Unifieddatalibrary from 'unifieddatalibrary';
+import Unifieddatalibrary from 'unified-data-library';
 import pino from 'pino';
 
 const logger = pino();
@@ -301,7 +301,7 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import Unifieddatalibrary from 'unifieddatalibrary';
+import Unifieddatalibrary from 'unified-data-library';
 import fetch from 'my-fetch';
 
 const client = new Unifieddatalibrary({ fetch });
@@ -312,7 +312,7 @@ const client = new Unifieddatalibrary({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import Unifieddatalibrary from 'unifieddatalibrary';
+import Unifieddatalibrary from 'unified-data-library';
 
 const client = new Unifieddatalibrary({
   fetchOptions: {
@@ -329,7 +329,7 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import Unifieddatalibrary from 'unifieddatalibrary';
+import Unifieddatalibrary from 'unified-data-library';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
@@ -343,7 +343,7 @@ const client = new Unifieddatalibrary({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import Unifieddatalibrary from 'unifieddatalibrary';
+import Unifieddatalibrary from 'unified-data-library';
 
 const client = new Unifieddatalibrary({
   fetchOptions: {
@@ -355,7 +355,7 @@ const client = new Unifieddatalibrary({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import Unifieddatalibrary from 'npm:unifieddatalibrary';
+import Unifieddatalibrary from 'npm:unified-data-library';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
 const client = new Unifieddatalibrary({

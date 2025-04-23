@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^unifieddatalibrary$': '<rootDir>/src/index.ts',
-    '^unifieddatalibrary/(.*)$': '<rootDir>/src/$1',
+    '^unified-data-library$': '<rootDir>/src/index.ts',
+    '^unified-data-library/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',

@@ -8,8 +8,8 @@ Types:
 - <code><a href="./src/resources/shared.ts">AttitudesetFull</a></code>
 - <code><a href="./src/resources/shared.ts">CollectRequestFull</a></code>
 - <code><a href="./src/resources/shared.ts">CollectResponseFull</a></code>
-- <code><a href="./src/resources/shared.ts">DriftHistory</a></code>
-- <code><a href="./src/resources/shared.ts">DrifthistoryAbridged</a></code>
+- <code><a href="./src/resources/shared.ts">DriftHistoryAbridged</a></code>
+- <code><a href="./src/resources/shared.ts">DriftHistoryFull</a></code>
 - <code><a href="./src/resources/shared.ts">EopFull</a></code>
 - <code><a href="./src/resources/shared.ts">EphemerisFull</a></code>
 - <code><a href="./src/resources/shared.ts">EvacFull</a></code>
@@ -1082,7 +1082,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/drifthistory/{id}">client.driftHistory.<a href="./src/resources/drift-history.ts">retrieve</a>(id) -> DriftHistory</code>
+- <code title="get /udl/drifthistory/{id}">client.driftHistory.<a href="./src/resources/drift-history.ts">retrieve</a>(id) -> DriftHistoryFull</code>
 - <code title="get /udl/drifthistory">client.driftHistory.<a href="./src/resources/drift-history.ts">list</a>() -> DriftHistoryListResponse</code>
 - <code title="get /udl/drifthistory/count">client.driftHistory.<a href="./src/resources/drift-history.ts">count</a>() -> string</code>
 - <code title="get /udl/drifthistory/queryhelp">client.driftHistory.<a href="./src/resources/drift-history.ts">queryhelp</a>() -> void</code>

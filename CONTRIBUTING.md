@@ -55,12 +55,12 @@ $ cd unifieddatalibrary-typescript
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link unifieddatalibrary
+$ yarn link unified-data-library
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global unifieddatalibrary
+$ pnpm link -—global unified-data-library
 ```
 
 ## Running tests

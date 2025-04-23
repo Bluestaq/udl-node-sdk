@@ -4740,8 +4740,8 @@ export declare namespace Unifieddatalibrary {
   export type AttitudesetFull = API.AttitudesetFull;
   export type CollectRequestFull = API.CollectRequestFull;
   export type CollectResponseFull = API.CollectResponseFull;
-  export type DriftHistory = API.DriftHistory;
-  export type DrifthistoryAbridged = API.DrifthistoryAbridged;
+  export type DriftHistoryAbridged = API.DriftHistoryAbridged;
+  export type DriftHistoryFull = API.DriftHistoryFull;
   export type EopFull = API.EopFull;
   export type EphemerisFull = API.EphemerisFull;
   export type EvacFull = API.EvacFull;
