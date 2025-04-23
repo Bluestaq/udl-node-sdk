@@ -1,13 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as AntennasAPI from './antennas';
 import * as BatteriesAPI from './batteries';
 import * as EnginesAPI from './engines';
 import * as LocationAPI from './location';
 import * as OrganizationAPI from './organization';
 import * as SolararraydetailsAPI from './solararraydetails';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Entities extends APIResource {
   /**
@@ -15,11 +18,11 @@ export class Entities extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: EntityCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: EntityCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/entity', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -27,19 +30,19 @@ export class Entities extends APIResource {
    * Service operation to get a single Entity record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EntityFull> {
-    return this._client.get(`/udl/entity/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<EntityFull> {
+    return this._client.get(path`/udl/entity/${id}`, options);
   }
 
   /**
    * Service operation to update a single Entity. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(id: string, body: EntityUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/entity/${id}`, {
+  update(id: string, body: EntityUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/entity/${id}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -49,7 +52,7 @@ export class Entities extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<EntityListResponse> {
+  list(options?: RequestOptions): APIPromise<EntityListResponse> {
     return this._client.get('/udl/entity', options);
   }
 
@@ -58,10 +61,10 @@ export class Entities extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/entity/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/entity/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -72,17 +75,17 @@ export class Entities extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/entity/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
   /**
    * Retrieves all distinct entity types.
    */
-  getAllTypes(options?: Core.RequestOptions): Core.APIPromise<EntityGetAllTypesResponse> {
+  getAllTypes(options?: RequestOptions): APIPromise<EntityGetAllTypesResponse> {
     return this._client.get('/udl/entity/getAllTypes', options);
   }
 
@@ -90,10 +93,10 @@ export class Entities extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/entity/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -107,7 +110,7 @@ export class Entities extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: EntityTupleParams, options?: Core.RequestOptions): Core.APIPromise<EntityTupleResponse> {
+  tuple(query: EntityTupleParams, options?: RequestOptions): APIPromise<EntityTupleResponse> {
     return this._client.get('/udl/entity/tuple', { query, ...options });
   }
 }

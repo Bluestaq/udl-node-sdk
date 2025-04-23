@@ -1,16 +1,19 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as AirfieldstatusAPI from './airfieldstatus/airfieldstatus';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class AirfieldStatus extends APIResource {
   /**
    * Service operation to get a single airfield status record by its unique ID passed
    * as a path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AirfieldstatusAPI.AirfieldstatusFull> {
-    return this._client.get(`/udl/airfieldstatus/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<AirfieldstatusAPI.AirfieldstatusFull> {
+    return this._client.get(path`/udl/airfieldstatus/${id}`, options);
   }
 
   /**
@@ -18,15 +21,11 @@ export class AirfieldStatus extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(
-    pathId: string,
-    body: AirfieldStatusUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/airfieldstatus/${pathId}`, {
+  update(pathID: string, body: AirfieldStatusUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/airfieldstatus/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -35,10 +34,10 @@ export class AirfieldStatus extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/airfieldstatus/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/airfieldstatus/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -52,10 +51,7 @@ export class AirfieldStatus extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: AirfieldStatusTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AirfieldStatusTupleResponse> {
+  tuple(query: AirfieldStatusTupleParams, options?: RequestOptions): APIPromise<AirfieldStatusTupleResponse> {
     return this._client.get('/udl/airfieldstatus/tuple', { query, ...options });
   }
 }

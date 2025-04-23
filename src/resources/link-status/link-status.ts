@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as DatalinkAPI from './datalink';
 import {
   Datalink,
@@ -26,6 +24,10 @@ import {
   HistoryListResponse,
 } from './history';
 import * as LinkstatusHistoryAPI from '../udl/linkstatus/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class LinkStatus extends APIResource {
   datalink: DatalinkAPI.Datalink = new DatalinkAPI.Datalink(this._client);
@@ -36,11 +38,11 @@ export class LinkStatus extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: LinkStatusCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: LinkStatusCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/linkstatus', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -50,15 +52,10 @@ export class LinkStatus extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query?: LinkStatusListParams, options?: Core.RequestOptions): Core.APIPromise<LinkStatusListResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<LinkStatusListResponse>;
   list(
-    query: LinkStatusListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LinkStatusListResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
+    query: LinkStatusListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LinkStatusListResponse> {
     return this._client.get('/udl/linkstatus', { query, ...options });
   }
 
@@ -69,19 +66,11 @@ export class LinkStatus extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query?: LinkStatusCountParams, options?: Core.RequestOptions): Core.APIPromise<string>;
-  count(options?: Core.RequestOptions): Core.APIPromise<string>;
-  count(
-    query: LinkStatusCountParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.count({}, query);
-    }
+  count(query: LinkStatusCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/linkstatus/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -89,18 +78,18 @@ export class LinkStatus extends APIResource {
    * Service operation to get a single LinkStatus record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<LinkstatusHistoryAPI.LinkStatusFull> {
-    return this._client.get(`/udl/linkstatus/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<LinkstatusHistoryAPI.LinkStatusFull> {
+    return this._client.get(path`/udl/linkstatus/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/linkstatus/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -114,10 +103,7 @@ export class LinkStatus extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: LinkStatusTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LinkStatusTupleResponse> {
+  tuple(query: LinkStatusTupleParams, options?: RequestOptions): APIPromise<LinkStatusTupleResponse> {
     return this._client.get('/udl/linkstatus/tuple', { query, ...options });
   }
 }

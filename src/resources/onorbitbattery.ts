@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as BatteriesAPI from './batteries';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Onorbitbattery extends APIResource {
   /**
@@ -12,11 +15,11 @@ export class Onorbitbattery extends APIResource {
    * many different on-orbit spacecraft. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  create(body: OnorbitbatteryCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: OnorbitbatteryCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitbattery', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -27,15 +30,11 @@ export class Onorbitbattery extends APIResource {
    * A specific role is required to perform this service operation. Please contact
    * the UDL team for assistance.
    */
-  update(
-    pathId: string,
-    body: OnorbitbatteryUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/onorbitbattery/${pathId}`, {
+  update(pathID: string, body: OnorbitbatteryUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/onorbitbattery/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -45,7 +44,7 @@ export class Onorbitbattery extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<OnorbitbatteryListResponse> {
+  list(options?: RequestOptions): APIPromise<OnorbitbatteryListResponse> {
     return this._client.get('/udl/onorbitbattery', options);
   }
 
@@ -56,10 +55,10 @@ export class Onorbitbattery extends APIResource {
    * many different on-orbit spacecraft. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/onorbitbattery/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/onorbitbattery/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -69,8 +68,8 @@ export class Onorbitbattery extends APIResource {
    * spacecraft batteries and a particular on-orbit spacecraft. A Battery may be
    * associated with many different on-orbit spacecraft.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<OnorbitbatteryGetResponse> {
-    return this._client.get(`/udl/onorbitbattery/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<OnorbitbatteryGetResponse> {
+    return this._client.get(path`/udl/onorbitbattery/${id}`, options);
   }
 }
 

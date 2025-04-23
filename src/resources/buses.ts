@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as EntitiesAPI from './entities';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Buses extends APIResource {
   /**
@@ -10,11 +13,11 @@ export class Buses extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: BusCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: BusCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/bus', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -22,19 +25,19 @@ export class Buses extends APIResource {
    * Service operation to get a single Bus record by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<BusFull> {
-    return this._client.get(`/udl/bus/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<BusFull> {
+    return this._client.get(path`/udl/bus/${id}`, options);
   }
 
   /**
    * Service operation to update a single Bus. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
    */
-  update(pathId: string, body: BusUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/bus/${pathId}`, {
+  update(pathID: string, body: BusUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/bus/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -44,7 +47,7 @@ export class Buses extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<BusListResponse> {
+  list(options?: RequestOptions): APIPromise<BusListResponse> {
     return this._client.get('/udl/bus', options);
   }
 
@@ -53,10 +56,10 @@ export class Buses extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/bus/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/bus/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -67,10 +70,10 @@ export class Buses extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/bus/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -78,10 +81,10 @@ export class Buses extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/bus/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -95,7 +98,7 @@ export class Buses extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: BusTupleParams, options?: Core.RequestOptions): Core.APIPromise<BusTupleResponse> {
+  tuple(query: BusTupleParams, options?: RequestOptions): APIPromise<BusTupleResponse> {
     return this._client.get('/udl/bus/tuple', { query, ...options });
   }
 }

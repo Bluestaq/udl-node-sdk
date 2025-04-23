@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -11,6 +10,10 @@ import {
   HistoryQueryResponse,
   HistoryWriteAodrParams,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Featureassessment extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -20,11 +23,11 @@ export class Featureassessment extends APIResource {
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: FeatureassessmentCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: FeatureassessmentCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/featureassessment', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -32,8 +35,8 @@ export class Featureassessment extends APIResource {
    * Service operation to get a single FeatureAssessment record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<FeatureassessmentRetrieveResponse> {
-    return this._client.get(`/udl/featureassessment/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<FeatureassessmentRetrieveResponse> {
+    return this._client.get(path`/udl/featureassessment/${id}`, options);
   }
 
   /**
@@ -43,11 +46,11 @@ export class Featureassessment extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: FeatureassessmentCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: FeatureassessmentCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/featureassessment/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -58,11 +61,12 @@ export class Featureassessment extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: FeatureassessmentCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: FeatureassessmentCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/featureassessment/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -74,8 +78,8 @@ export class Featureassessment extends APIResource {
    */
   query(
     query: FeatureassessmentQueryParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<FeatureassessmentQueryResponse> {
+    options?: RequestOptions,
+  ): APIPromise<FeatureassessmentQueryResponse> {
     return this._client.get('/udl/featureassessment', { query, ...options });
   }
 
@@ -83,10 +87,10 @@ export class Featureassessment extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/featureassessment/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -102,8 +106,8 @@ export class Featureassessment extends APIResource {
    */
   tuple(
     query: FeatureassessmentTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<FeatureassessmentTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<FeatureassessmentTupleResponse> {
     return this._client.get('/udl/featureassessment/tuple', { query, ...options });
   }
 
@@ -114,13 +118,14 @@ export class Featureassessment extends APIResource {
    * Please contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: FeatureassessmentUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: FeatureassessmentUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-featureassessment', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -1291,7 +1296,9 @@ export interface FeatureassessmentCountParams {
   idAnalyticImagery: string;
 }
 
-export type FeatureassessmentCreateBulkParams = Array<FeatureassessmentCreateBulkParams.Body>;
+export interface FeatureassessmentCreateBulkParams {
+  body: Array<FeatureassessmentCreateBulkParams.Body>;
+}
 
 export namespace FeatureassessmentCreateBulkParams {
   /**
@@ -1593,7 +1600,9 @@ export interface FeatureassessmentTupleParams {
   idAnalyticImagery: string;
 }
 
-export type FeatureassessmentUnvalidatedPublishParams = Array<FeatureassessmentUnvalidatedPublishParams.Body>;
+export interface FeatureassessmentUnvalidatedPublishParams {
+  body: Array<FeatureassessmentUnvalidatedPublishParams.Body>;
+}
 
 export namespace FeatureassessmentUnvalidatedPublishParams {
   /**

@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class AirTaskingOrders extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class AirTaskingOrders extends APIResource {
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: AirTaskingOrderCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: AirTaskingOrderCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/airtaskingorder', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -21,8 +24,8 @@ export class AirTaskingOrders extends APIResource {
    * Service operation to get a single airtaskingorder record by its unique ID passed
    * as a path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AirTaskingOrderFull> {
-    return this._client.get(`/udl/airtaskingorder/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<AirTaskingOrderFull> {
+    return this._client.get(path`/udl/airtaskingorder/${id}`, options);
   }
 
   /**
@@ -32,10 +35,10 @@ export class AirTaskingOrders extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/airtaskingorder/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -43,10 +46,10 @@ export class AirTaskingOrders extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/airtaskingorder/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -62,8 +65,8 @@ export class AirTaskingOrders extends APIResource {
    */
   tuple(
     query: AirTaskingOrderTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AirTaskingOrderTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<AirTaskingOrderTupleResponse> {
     return this._client.get('/udl/airtaskingorder/tuple', { query, ...options });
   }
 }

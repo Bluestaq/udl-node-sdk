@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -78,14 +77,16 @@ describe('resource launchevent', () => {
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.launchevent.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        msgCreateDate: '2020-01-01T00:00:00.123Z',
-        source: 'Bluestaq',
-      },
-    ]);
+    const responsePromise = client.launchevent.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          msgCreateDate: '2020-01-01T00:00:00.123Z',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -96,26 +97,28 @@ describe('resource launchevent', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.launchevent.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        msgCreateDate: '2020-01-01T00:00:00.123Z',
-        source: 'Bluestaq',
-        id: 'LAUNCHEVENT-ID',
-        beNumber: 'ENC-123',
-        declassificationDate: '2021-01-01T01:02:02.123Z',
-        declassificationString: 'Example Declassification',
-        derivedFrom: 'Example source',
-        launchDate: '2020-01-01T00:00:00.123Z',
-        launchFacilityName: 'Example launch facility name',
-        launchFailureCode: 'Example failure code',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origObjectId: 'ORIGOBJECT-ID',
-        oSuffix: 'oSuffix',
-        satNo: 12,
-      },
-    ]);
+    const response = await client.launchevent.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          msgCreateDate: '2020-01-01T00:00:00.123Z',
+          source: 'Bluestaq',
+          id: 'LAUNCHEVENT-ID',
+          beNumber: 'ENC-123',
+          declassificationDate: '2021-01-01T01:02:02.123Z',
+          declassificationString: 'Example Declassification',
+          derivedFrom: 'Example source',
+          launchDate: '2020-01-01T00:00:00.123Z',
+          launchFacilityName: 'Example launch facility name',
+          launchFailureCode: 'Example failure code',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origObjectId: 'ORIGOBJECT-ID',
+          oSuffix: 'oSuffix',
+          satNo: 12,
+        },
+      ],
+    });
   });
 
   test('get', async () => {
@@ -129,13 +132,6 @@ describe('resource launchevent', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.launchevent.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.launchevent.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -145,13 +141,6 @@ describe('resource launchevent', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.launchevent.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {
@@ -176,14 +165,16 @@ describe('resource launchevent', () => {
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.launchevent.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        msgCreateDate: '2020-01-01T00:00:00.123Z',
-        source: 'Bluestaq',
-      },
-    ]);
+    const responsePromise = client.launchevent.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          msgCreateDate: '2020-01-01T00:00:00.123Z',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -194,25 +185,27 @@ describe('resource launchevent', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.launchevent.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        msgCreateDate: '2020-01-01T00:00:00.123Z',
-        source: 'Bluestaq',
-        id: 'LAUNCHEVENT-ID',
-        beNumber: 'ENC-123',
-        declassificationDate: '2021-01-01T01:02:02.123Z',
-        declassificationString: 'Example Declassification',
-        derivedFrom: 'Example source',
-        launchDate: '2020-01-01T00:00:00.123Z',
-        launchFacilityName: 'Example launch facility name',
-        launchFailureCode: 'Example failure code',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origObjectId: 'ORIGOBJECT-ID',
-        oSuffix: 'oSuffix',
-        satNo: 12,
-      },
-    ]);
+    const response = await client.launchevent.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          msgCreateDate: '2020-01-01T00:00:00.123Z',
+          source: 'Bluestaq',
+          id: 'LAUNCHEVENT-ID',
+          beNumber: 'ENC-123',
+          declassificationDate: '2021-01-01T01:02:02.123Z',
+          declassificationString: 'Example Declassification',
+          derivedFrom: 'Example source',
+          launchDate: '2020-01-01T00:00:00.123Z',
+          launchFacilityName: 'Example launch facility name',
+          launchFailureCode: 'Example failure code',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origObjectId: 'ORIGOBJECT-ID',
+          oSuffix: 'oSuffix',
+          satNo: 12,
+        },
+      ],
+    });
   });
 });

@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,6 +11,10 @@ import {
   HistoryListResponse,
 } from './history';
 import * as PassiveradarobservationHistoryAPI from '../udl/passiveradarobservation/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Passiveradarobservation extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -21,11 +24,11 @@ export class Passiveradarobservation extends APIResource {
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: PassiveradarobservationCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: PassiveradarobservationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/passiveradarobservation', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -37,8 +40,8 @@ export class Passiveradarobservation extends APIResource {
    */
   list(
     query: PassiveradarobservationListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PassiveradarobservationListResponse> {
+    options?: RequestOptions,
+  ): APIPromise<PassiveradarobservationListResponse> {
     return this._client.get('/udl/passiveradarobservation', { query, ...options });
   }
 
@@ -49,11 +52,11 @@ export class Passiveradarobservation extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: PassiveradarobservationCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: PassiveradarobservationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/passiveradarobservation/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -64,14 +67,12 @@ export class Passiveradarobservation extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(
-    body: PassiveradarobservationCreateBulkParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  createBulk(params: PassiveradarobservationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/passiveradarobservation/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -81,14 +82,12 @@ export class Passiveradarobservation extends APIResource {
    * automated feeds into UDL. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  fileCreate(
-    body: PassiveradarobservationFileCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  fileCreate(params: PassiveradarobservationFileCreateParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-passiveradar', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -98,19 +97,19 @@ export class Passiveradarobservation extends APIResource {
    */
   get(
     id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PassiveradarobservationHistoryAPI.PassiveradarobservationFull> {
-    return this._client.get(`/udl/passiveradarobservation/${id}`, options);
+    options?: RequestOptions,
+  ): APIPromise<PassiveradarobservationHistoryAPI.PassiveradarobservationFull> {
+    return this._client.get(path`/udl/passiveradarobservation/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/passiveradarobservation/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -126,8 +125,8 @@ export class Passiveradarobservation extends APIResource {
    */
   tuple(
     query: PassiveradarobservationTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PassiveradarobservationTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<PassiveradarobservationTupleResponse> {
     return this._client.get('/udl/passiveradarobservation/tuple', { query, ...options });
   }
 }
@@ -924,7 +923,9 @@ export interface PassiveradarobservationCountParams {
   obTime: string;
 }
 
-export type PassiveradarobservationCreateBulkParams = Array<PassiveradarobservationCreateBulkParams.Body>;
+export interface PassiveradarobservationCreateBulkParams {
+  body: Array<PassiveradarobservationCreateBulkParams.Body>;
+}
 
 export namespace PassiveradarobservationCreateBulkParams {
   /**
@@ -1304,7 +1305,9 @@ export namespace PassiveradarobservationCreateBulkParams {
   }
 }
 
-export type PassiveradarobservationFileCreateParams = Array<PassiveradarobservationFileCreateParams.Body>;
+export interface PassiveradarobservationFileCreateParams {
+  body: Array<PassiveradarobservationFileCreateParams.Body>;
+}
 
 export namespace PassiveradarobservationFileCreateParams {
   /**

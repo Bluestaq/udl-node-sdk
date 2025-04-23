@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -11,6 +10,10 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class EffectResponses extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -22,11 +25,11 @@ export class EffectResponses extends APIResource {
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
    */
-  create(body: EffectResponseCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: EffectResponseCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/effectresponse', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -34,8 +37,8 @@ export class EffectResponses extends APIResource {
    * Service operation to get a single EffectResponse by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EffectResponseRetrieveResponse> {
-    return this._client.get(`/udl/effectresponse/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<EffectResponseRetrieveResponse> {
+    return this._client.get(path`/udl/effectresponse/${id}`, options);
   }
 
   /**
@@ -44,10 +47,7 @@ export class EffectResponses extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: EffectResponseListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EffectResponseListResponse> {
+  list(query: EffectResponseListParams, options?: RequestOptions): APIPromise<EffectResponseListResponse> {
     return this._client.get('/udl/effectresponse', { query, ...options });
   }
 
@@ -58,11 +58,11 @@ export class EffectResponses extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: EffectResponseCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: EffectResponseCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/effectresponse/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -73,11 +73,12 @@ export class EffectResponses extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: EffectResponseCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: EffectResponseCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/effectresponse/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -85,10 +86,10 @@ export class EffectResponses extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/effectresponse/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -102,10 +103,7 @@ export class EffectResponses extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: EffectResponseTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EffectResponseTupleResponse> {
+  tuple(query: EffectResponseTupleParams, options?: RequestOptions): APIPromise<EffectResponseTupleResponse> {
     return this._client.get('/udl/effectresponse/tuple', { query, ...options });
   }
 
@@ -116,13 +114,14 @@ export class EffectResponses extends APIResource {
    * contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: EffectResponseUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: EffectResponseUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-effectresponse', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -1353,7 +1352,9 @@ export interface EffectResponseCountParams {
   createdAt: string;
 }
 
-export type EffectResponseCreateBulkParams = Array<EffectResponseCreateBulkParams.Body>;
+export interface EffectResponseCreateBulkParams {
+  body: Array<EffectResponseCreateBulkParams.Body>;
+}
 
 export namespace EffectResponseCreateBulkParams {
   /**
@@ -1661,7 +1662,9 @@ export interface EffectResponseTupleParams {
   createdAt: string;
 }
 
-export type EffectResponseUnvalidatedPublishParams = Array<EffectResponseUnvalidatedPublishParams.Body>;
+export interface EffectResponseUnvalidatedPublishParams {
+  body: Array<EffectResponseUnvalidatedPublishParams.Body>;
+}
 
 export namespace EffectResponseUnvalidatedPublishParams {
   /**

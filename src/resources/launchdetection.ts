@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Launchdetection extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class Launchdetection extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: LaunchdetectionCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: LaunchdetectionCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/launchdetection', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -22,15 +25,11 @@ export class Launchdetection extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(
-    pathId: string,
-    body: LaunchdetectionUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/launchdetection/${pathId}`, {
+  update(pathID: string, body: LaunchdetectionUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/launchdetection/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -40,7 +39,7 @@ export class Launchdetection extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<LaunchdetectionListResponse> {
+  list(options?: RequestOptions): APIPromise<LaunchdetectionListResponse> {
     return this._client.get('/udl/launchdetection', options);
   }
 
@@ -49,10 +48,10 @@ export class Launchdetection extends APIResource {
    * path parameter. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/launchdetection/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/launchdetection/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -63,10 +62,10 @@ export class Launchdetection extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/launchdetection/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -74,18 +73,18 @@ export class Launchdetection extends APIResource {
    * Service operation to get a single launch detection record by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<LaunchdetectionGetResponse> {
-    return this._client.get(`/udl/launchdetection/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<LaunchdetectionGetResponse> {
+    return this._client.get(path`/udl/launchdetection/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/launchdetection/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -101,8 +100,8 @@ export class Launchdetection extends APIResource {
    */
   tuple(
     query: LaunchdetectionTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LaunchdetectionTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<LaunchdetectionTupleResponse> {
     return this._client.get('/udl/launchdetection/tuple', { query, ...options });
   }
 }

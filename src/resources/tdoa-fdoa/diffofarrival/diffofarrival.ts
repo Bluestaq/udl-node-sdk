@@ -1,10 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../resource';
-import * as Core from '../../../core';
+import { APIResource } from '../../../core/resource';
 import * as Shared from '../../shared';
 import * as HistoryAPI from './history';
 import { History, HistoryAodrParams, HistoryListParams, HistoryListResponse } from './history';
+import { APIPromise } from '../../../core/api-promise';
+import { buildHeaders } from '../../../internal/headers';
+import { RequestOptions } from '../../../internal/request-options';
 
 export class Diffofarrival extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -16,11 +18,11 @@ export class Diffofarrival extends APIResource {
    * assignments and for instructions on setting up a permanent feed through an
    * alternate mechanism.
    */
-  create(body: DiffofarrivalCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: DiffofarrivalCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/diffofarrival', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -30,10 +32,7 @@ export class Diffofarrival extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: DiffofarrivalListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DiffofarrivalListResponse> {
+  list(query: DiffofarrivalListParams, options?: RequestOptions): APIPromise<DiffofarrivalListResponse> {
     return this._client.get('/udl/diffofarrival', { query, ...options });
   }
 
@@ -44,11 +43,11 @@ export class Diffofarrival extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: DiffofarrivalCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: DiffofarrivalCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/diffofarrival/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -59,11 +58,12 @@ export class Diffofarrival extends APIResource {
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: DiffofarrivalCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: DiffofarrivalCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/diffofarrival/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -862,7 +862,9 @@ export interface DiffofarrivalCountParams {
   obTime: string;
 }
 
-export type DiffofarrivalCreateBulkParams = Array<DiffofarrivalCreateBulkParams.Body>;
+export interface DiffofarrivalCreateBulkParams {
+  body: Array<DiffofarrivalCreateBulkParams.Body>;
+}
 
 export namespace DiffofarrivalCreateBulkParams {
   /**

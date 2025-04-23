@@ -1,16 +1,19 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as AirfieldSlotsAPI from './airfield-slots';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Airfieldslots extends APIResource {
   /**
    * Service operation to get a single airfieldslot record by its unique ID passed as
    * a path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AirfieldSlotsAPI.AirfieldslotFull> {
-    return this._client.get(`/udl/airfieldslot/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<AirfieldSlotsAPI.AirfieldslotFull> {
+    return this._client.get(path`/udl/airfieldslot/${id}`, options);
   }
 
   /**
@@ -18,15 +21,11 @@ export class Airfieldslots extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(
-    pathId: string,
-    body: AirfieldslotUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/airfieldslot/${pathId}`, {
+  update(pathID: string, body: AirfieldslotUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/airfieldslot/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -35,10 +34,10 @@ export class Airfieldslots extends APIResource {
    * path parameter. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/airfieldslot/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/airfieldslot/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -49,10 +48,10 @@ export class Airfieldslots extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/airfieldslot/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -60,10 +59,10 @@ export class Airfieldslots extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/airfieldslot/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -77,10 +76,7 @@ export class Airfieldslots extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: AirfieldslotTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AirfieldslotTupleResponse> {
+  tuple(query: AirfieldslotTupleParams, options?: RequestOptions): APIPromise<AirfieldslotTupleResponse> {
     return this._client.get('/udl/airfieldslot/tuple', { query, ...options });
   }
 }

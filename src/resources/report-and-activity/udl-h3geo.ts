@@ -1,7 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class UdlH3geo extends APIResource {
   /**
@@ -10,14 +12,11 @@ export class UdlH3geo extends APIResource {
    * intended to be used for automated feeds into UDL. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  unvalidatedPublish(
-    body: UdlH3geoUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(body: UdlH3geoUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/filedrop/udl-h3geo', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }

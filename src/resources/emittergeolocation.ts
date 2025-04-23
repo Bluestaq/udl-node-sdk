@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Emittergeolocation extends APIResource {
   /**
@@ -12,11 +15,11 @@ export class Emittergeolocation extends APIResource {
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
    */
-  create(body: EmittergeolocationCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: EmittergeolocationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/emittergeolocation', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -24,8 +27,8 @@ export class Emittergeolocation extends APIResource {
    * Service operation to get a single RF geolocation by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<EmittergeolocationRetrieveResponse> {
-    return this._client.get(`/udl/emittergeolocation/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<EmittergeolocationRetrieveResponse> {
+    return this._client.get(path`/udl/emittergeolocation/${id}`, options);
   }
 
   /**
@@ -34,10 +37,10 @@ export class Emittergeolocation extends APIResource {
    * contact the UDL team for assistance. Note, delete operations do not remove data
    * from historical or publish/subscribe stores.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/emittergeolocation/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/emittergeolocation/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -48,11 +51,11 @@ export class Emittergeolocation extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: EmittergeolocationCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: EmittergeolocationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/emittergeolocation/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -63,11 +66,12 @@ export class Emittergeolocation extends APIResource {
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
    */
-  createBulk(body: EmittergeolocationCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: EmittergeolocationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/emittergeolocation/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -79,8 +83,8 @@ export class Emittergeolocation extends APIResource {
    */
   query(
     query: EmittergeolocationQueryParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EmittergeolocationQueryResponse> {
+    options?: RequestOptions,
+  ): APIPromise<EmittergeolocationQueryResponse> {
     return this._client.get('/udl/emittergeolocation', { query, ...options });
   }
 
@@ -88,10 +92,10 @@ export class Emittergeolocation extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/emittergeolocation/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -107,8 +111,8 @@ export class Emittergeolocation extends APIResource {
    */
   tuple(
     query: EmittergeolocationTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EmittergeolocationTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<EmittergeolocationTupleResponse> {
     return this._client.get('/udl/emittergeolocation/tuple', { query, ...options });
   }
 
@@ -119,13 +123,14 @@ export class Emittergeolocation extends APIResource {
    * Please contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: EmittergeolocationUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: EmittergeolocationUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-emittergeolocation', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -1270,7 +1275,9 @@ export interface EmittergeolocationCountParams {
   startTime: string;
 }
 
-export type EmittergeolocationCreateBulkParams = Array<EmittergeolocationCreateBulkParams.Body>;
+export interface EmittergeolocationCreateBulkParams {
+  body: Array<EmittergeolocationCreateBulkParams.Body>;
+}
 
 export namespace EmittergeolocationCreateBulkParams {
   /**
@@ -1553,8 +1560,9 @@ export interface EmittergeolocationTupleParams {
   startTime: string;
 }
 
-export type EmittergeolocationUnvalidatedPublishParams =
-  Array<EmittergeolocationUnvalidatedPublishParams.Body>;
+export interface EmittergeolocationUnvalidatedPublishParams {
+  body: Array<EmittergeolocationUnvalidatedPublishParams.Body>;
+}
 
 export namespace EmittergeolocationUnvalidatedPublishParams {
   /**

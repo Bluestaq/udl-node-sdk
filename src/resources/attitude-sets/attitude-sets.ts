@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import {
@@ -12,6 +11,9 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class AttitudeSets extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -36,11 +38,11 @@ export class AttitudeSets extends APIResource {
    *    + If only origObjectId is provided then origObjectId will be populated with the posted value.  In this case, no checks are made against existing UDL sat numbers.
    * </h3>
    */
-  create(body: AttitudeSetCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: AttitudeSetCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/attitudeset', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -50,10 +52,7 @@ export class AttitudeSets extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: AttitudeSetListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AttitudeSetListResponse> {
+  list(query: AttitudeSetListParams, options?: RequestOptions): APIPromise<AttitudeSetListResponse> {
     return this._client.get('/udl/attitudeset', { query, ...options });
   }
 
@@ -64,11 +63,11 @@ export class AttitudeSets extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: AttitudeSetCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: AttitudeSetCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/attitudeset/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -76,10 +75,10 @@ export class AttitudeSets extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/attitudeset/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -93,10 +92,7 @@ export class AttitudeSets extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: AttitudeSetTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AttitudeSetTupleResponse> {
+  tuple(query: AttitudeSetTupleParams, options?: RequestOptions): APIPromise<AttitudeSetTupleResponse> {
     return this._client.get('/udl/attitudeset/tuple', { query, ...options });
   }
 
@@ -118,14 +114,11 @@ export class AttitudeSets extends APIResource {
    *     + If only origObjectId is provided then origObjectId will be populated with the posted value.  In this case, no checks are made against existing UDL sat numbers.
    * </h3>
    */
-  unvalidatedPublish(
-    body: AttitudeSetUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(body: AttitudeSetUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/filedrop/udl-attitudeset', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }

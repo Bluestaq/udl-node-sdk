@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -64,13 +63,6 @@ describe('resource onorbitthrusterstatus', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.onorbitthrusterstatus.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -92,13 +84,6 @@ describe('resource onorbitthrusterstatus', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.onorbitthrusterstatus.delete('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
-  });
-
   test('count', async () => {
     const responsePromise = client.onorbitthrusterstatus.count();
     const rawResponse = await responsePromise.asResponse();
@@ -108,13 +93,6 @@ describe('resource onorbitthrusterstatus', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('count: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.onorbitthrusterstatus.count({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('count: request options and params are passed correctly', async () => {
@@ -128,15 +106,17 @@ describe('resource onorbitthrusterstatus', () => {
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.onorbitthrusterstatus.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idOnorbitThruster: 'ff7dc909-e8b4-4a54-8529-1963d4e9b353',
-        source: 'Bluestaq',
-        statusTime: '2024-01-01T16:00:00.123Z',
-      },
-    ]);
+    const responsePromise = client.onorbitthrusterstatus.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idOnorbitThruster: 'ff7dc909-e8b4-4a54-8529-1963d4e9b353',
+          source: 'Bluestaq',
+          statusTime: '2024-01-01T16:00:00.123Z',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -147,31 +127,33 @@ describe('resource onorbitthrusterstatus', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.onorbitthrusterstatus.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        idOnorbitThruster: 'ff7dc909-e8b4-4a54-8529-1963d4e9b353',
-        source: 'Bluestaq',
-        statusTime: '2024-01-01T16:00:00.123Z',
-        id: 'af103c-1f917dc-002c1bd',
-        estDeltaV: 10.1,
-        fuelMass: 100.1,
-        fuelMassUnc: 10.1,
-        isp: 300.1,
-        maxDeltaV: 100.1,
-        minDeltaV: 0.1,
-        name: 'REA1',
-        operational: true,
-        origin: 'THIRD_PARTY_DATASOURCE',
-        propMassAvg: 907.6,
-        propMassMax: 2333.3,
-        propMassMedian: 200.1,
-        propMassMin: 0.1,
-        thrustMax: 22.1,
-        totalDeltaV: 100.1,
-      },
-    ]);
+    const response = await client.onorbitthrusterstatus.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idOnorbitThruster: 'ff7dc909-e8b4-4a54-8529-1963d4e9b353',
+          source: 'Bluestaq',
+          statusTime: '2024-01-01T16:00:00.123Z',
+          id: 'af103c-1f917dc-002c1bd',
+          estDeltaV: 10.1,
+          fuelMass: 100.1,
+          fuelMassUnc: 10.1,
+          isp: 300.1,
+          maxDeltaV: 100.1,
+          minDeltaV: 0.1,
+          name: 'REA1',
+          operational: true,
+          origin: 'THIRD_PARTY_DATASOURCE',
+          propMassAvg: 907.6,
+          propMassMax: 2333.3,
+          propMassMedian: 200.1,
+          propMassMin: 0.1,
+          thrustMax: 22.1,
+          totalDeltaV: 100.1,
+        },
+      ],
+    });
   });
 
   test('get', async () => {
@@ -185,13 +167,6 @@ describe('resource onorbitthrusterstatus', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.onorbitthrusterstatus.get('id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.onorbitthrusterstatus.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -201,13 +176,6 @@ describe('resource onorbitthrusterstatus', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.onorbitthrusterstatus.queryhelp({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('tuple: only required params', async () => {

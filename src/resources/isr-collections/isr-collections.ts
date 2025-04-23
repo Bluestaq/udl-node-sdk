@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,6 +11,9 @@ import {
   HistoryListResponse,
 } from './history';
 import * as IsrcollectionHistoryAPI from '../udl/isrcollection/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class IsrCollections extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -22,10 +24,7 @@ export class IsrCollections extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: IsrCollectionListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<IsrCollectionListResponse> {
+  list(query: IsrCollectionListParams, options?: RequestOptions): APIPromise<IsrCollectionListResponse> {
     return this._client.get('/udl/isrcollection', { query, ...options });
   }
 
@@ -36,11 +35,11 @@ export class IsrCollections extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: IsrCollectionCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: IsrCollectionCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/isrcollection/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -51,11 +50,12 @@ export class IsrCollections extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: IsrCollectionCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: IsrCollectionCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/isrcollection/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -63,10 +63,10 @@ export class IsrCollections extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/isrcollection/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -80,10 +80,7 @@ export class IsrCollections extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: IsrCollectionTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<IsrCollectionTupleResponse> {
+  tuple(query: IsrCollectionTupleParams, options?: RequestOptions): APIPromise<IsrCollectionTupleResponse> {
     return this._client.get('/udl/isrcollection/tuple', { query, ...options });
   }
 
@@ -94,13 +91,14 @@ export class IsrCollections extends APIResource {
    * contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: IsrCollectionUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: IsrCollectionUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-isrcollection', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -964,7 +962,9 @@ export interface IsrCollectionCountParams {
   createdAt: string;
 }
 
-export type IsrCollectionCreateBulkParams = Array<IsrCollectionCreateBulkParams.Body>;
+export interface IsrCollectionCreateBulkParams {
+  body: Array<IsrCollectionCreateBulkParams.Body>;
+}
 
 export namespace IsrCollectionCreateBulkParams {
   /**
@@ -1790,7 +1790,9 @@ export interface IsrCollectionTupleParams {
   createdAt: string;
 }
 
-export type IsrCollectionUnvalidatedPublishParams = Array<IsrCollectionUnvalidatedPublishParams.Body>;
+export interface IsrCollectionUnvalidatedPublishParams {
+  body: Array<IsrCollectionUnvalidatedPublishParams.Body>;
+}
 
 export namespace IsrCollectionUnvalidatedPublishParams {
   /**

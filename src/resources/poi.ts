@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as HistoryAPI from './udl/poi/history';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Poi extends APIResource {
   /**
@@ -10,11 +13,11 @@ export class Poi extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: PoiCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: PoiCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/poi', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -24,7 +27,7 @@ export class Poi extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: PoiListParams, options?: Core.RequestOptions): Core.APIPromise<PoiListResponse> {
+  list(query: PoiListParams, options?: RequestOptions): APIPromise<PoiListResponse> {
     return this._client.get('/udl/poi', { query, ...options });
   }
 
@@ -35,11 +38,11 @@ export class Poi extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: PoiCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: PoiCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/poi/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -50,11 +53,12 @@ export class Poi extends APIResource {
    * for specific role assignments and for instructions on setting up a permanent
    * feed through an alternate mechanism.
    */
-  createBulk(body: PoiCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: PoiCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/poi/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -62,18 +66,18 @@ export class Poi extends APIResource {
    * Service operation to get a single POI by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<HistoryAPI.PoiFull> {
-    return this._client.get(`/udl/poi/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.PoiFull> {
+    return this._client.get(path`/udl/poi/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/poi/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -87,7 +91,7 @@ export class Poi extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: PoiTupleParams, options?: Core.RequestOptions): Core.APIPromise<PoiTupleResponse> {
+  tuple(query: PoiTupleParams, options?: RequestOptions): APIPromise<PoiTupleResponse> {
     return this._client.get('/udl/poi/tuple', { query, ...options });
   }
 
@@ -97,14 +101,12 @@ export class Poi extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  unvalidatedPublish(
-    body: PoiUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: PoiUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-poi', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -727,7 +729,9 @@ export interface PoiCountParams {
   ts: string;
 }
 
-export type PoiCreateBulkParams = Array<PoiCreateBulkParams.Body>;
+export interface PoiCreateBulkParams {
+  body: Array<PoiCreateBulkParams.Body>;
+}
 
 export namespace PoiCreateBulkParams {
   /**
@@ -1052,7 +1056,9 @@ export interface PoiTupleParams {
   ts: string;
 }
 
-export type PoiUnvalidatedPublishParams = Array<PoiUnvalidatedPublishParams.Body>;
+export interface PoiUnvalidatedPublishParams {
+  body: Array<PoiUnvalidatedPublishParams.Body>;
+}
 
 export namespace PoiUnvalidatedPublishParams {
   /**

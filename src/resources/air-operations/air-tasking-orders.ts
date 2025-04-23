@@ -1,7 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class AirTaskingOrders extends APIResource {
   /**
@@ -11,18 +13,21 @@ export class AirTaskingOrders extends APIResource {
    * Please contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: AirTaskingOrderUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: AirTaskingOrderUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-airtaskingorder', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
-export type AirTaskingOrderUnvalidatedPublishParams = Array<AirTaskingOrderUnvalidatedPublishParams.Body>;
+export interface AirTaskingOrderUnvalidatedPublishParams {
+  body: Array<AirTaskingOrderUnvalidatedPublishParams.Body>;
+}
 
 export namespace AirTaskingOrderUnvalidatedPublishParams {
   /**

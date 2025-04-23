@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,6 +11,10 @@ import {
   HistoryRetrieveResponse,
 } from './history';
 import * as SensorplanHistoryAPI from '../udl/sensorplan/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Sensorplan extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -21,11 +24,11 @@ export class Sensorplan extends APIResource {
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  create(body: SensorplanCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: SensorplanCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/sensorplan', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -33,11 +36,11 @@ export class Sensorplan extends APIResource {
    * Service operation to update a single SensorPlan. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(pathId: string, body: SensorplanUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/sensorplan/${pathId}`, {
+  update(pathID: string, body: SensorplanUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/sensorplan/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -47,7 +50,7 @@ export class Sensorplan extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: SensorplanListParams, options?: Core.RequestOptions): Core.APIPromise<SensorplanListResponse> {
+  list(query: SensorplanListParams, options?: RequestOptions): APIPromise<SensorplanListResponse> {
     return this._client.get('/udl/sensorplan', { query, ...options });
   }
 
@@ -58,11 +61,11 @@ export class Sensorplan extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: SensorplanCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: SensorplanCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sensorplan/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -70,18 +73,18 @@ export class Sensorplan extends APIResource {
    * Service operation to get a single SensorPlan by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<SensorplanHistoryAPI.SensorplanFull> {
-    return this._client.get(`/udl/sensorplan/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<SensorplanHistoryAPI.SensorplanFull> {
+    return this._client.get(path`/udl/sensorplan/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sensorplan/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -95,10 +98,7 @@ export class Sensorplan extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: SensorplanTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SensorplanTupleResponse> {
+  tuple(query: SensorplanTupleParams, options?: RequestOptions): APIPromise<SensorplanTupleResponse> {
     return this._client.get('/udl/sensorplan/tuple', { query, ...options });
   }
 
@@ -108,14 +108,12 @@ export class Sensorplan extends APIResource {
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  unvalidatedPublish(
-    body: SensorplanUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: SensorplanUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-sensorplan', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -3581,7 +3579,9 @@ export interface SensorplanTupleParams {
   startTime: string;
 }
 
-export type SensorplanUnvalidatedPublishParams = Array<SensorplanUnvalidatedPublishParams.Body>;
+export interface SensorplanUnvalidatedPublishParams {
+  body: Array<SensorplanUnvalidatedPublishParams.Body>;
+}
 
 export namespace SensorplanUnvalidatedPublishParams {
   /**

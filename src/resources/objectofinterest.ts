@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Objectofinterest extends APIResource {
   /**
@@ -10,11 +13,11 @@ export class Objectofinterest extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: ObjectofinterestCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: ObjectofinterestCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/objectofinterest', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -23,15 +26,11 @@ export class Objectofinterest extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(
-    pathId: string,
-    body: ObjectofinterestUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/objectofinterest/${pathId}`, {
+  update(pathID: string, body: ObjectofinterestUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/objectofinterest/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -41,7 +40,7 @@ export class Objectofinterest extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<ObjectofinterestListResponse> {
+  list(options?: RequestOptions): APIPromise<ObjectofinterestListResponse> {
     return this._client.get('/udl/objectofinterest', options);
   }
 
@@ -52,10 +51,10 @@ export class Objectofinterest extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/objectofinterest/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/objectofinterest/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -66,10 +65,10 @@ export class Objectofinterest extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/objectofinterest/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -77,18 +76,18 @@ export class Objectofinterest extends APIResource {
    * Service operation to get a single ObjectOfInterest record by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<ObjectofinterestGetResponse> {
-    return this._client.get(`/udl/objectofinterest/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<ObjectofinterestGetResponse> {
+    return this._client.get(path`/udl/objectofinterest/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/objectofinterest/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -104,8 +103,8 @@ export class Objectofinterest extends APIResource {
    */
   tuple(
     query: ObjectofinterestTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ObjectofinterestTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<ObjectofinterestTupleResponse> {
     return this._client.get('/udl/objectofinterest/tuple', { query, ...options });
   }
 }

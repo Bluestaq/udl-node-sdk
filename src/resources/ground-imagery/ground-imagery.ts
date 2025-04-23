@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -10,6 +9,11 @@ import {
   HistoryQueryParams,
   HistoryQueryResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { type Uploadable } from '../../core/uploads';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { multipartFormRequestOptions } from '../../internal/uploads';
 
 export class GroundImagery extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -21,11 +25,11 @@ export class GroundImagery extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  historyAodr(query: GroundImageryHistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  historyAodr(query: GroundImageryHistoryAodrParams, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/groundimagery/history/aodr', {
       query,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -47,10 +51,13 @@ export class GroundImagery extends APIResource {
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
    */
-  uploadZip(body: GroundImageryUploadZipParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  uploadZip(body: GroundImageryUploadZipParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post(
       '/filedrop/udl-groundimagery',
-      Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
+      multipartFormRequestOptions(
+        { body, ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
+        this._client,
+      ),
     );
   }
 }
@@ -93,7 +100,7 @@ export interface GroundImageryUploadZipParams {
   /**
    * Zip file containing files described in the specification
    */
-  file: Core.Uploadable;
+  file: Uploadable;
 }
 
 GroundImagery.History = History;

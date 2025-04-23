@@ -1,17 +1,19 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
 
 export class AttitudeData extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/attitudedata/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -25,10 +27,7 @@ export class AttitudeData extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: AttitudeDataTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AttitudeDataTupleResponse> {
+  tuple(query: AttitudeDataTupleParams, options?: RequestOptions): APIPromise<AttitudeDataTupleResponse> {
     return this._client.get('/udl/attitudedata/tuple', { query, ...options });
   }
 }

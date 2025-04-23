@@ -1,8 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as HistoryAPI from './udl/onboardnavigation/history';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
 
 export class Onboardnavigation extends APIResource {
   /**
@@ -13,8 +15,8 @@ export class Onboardnavigation extends APIResource {
    */
   list(
     query: OnboardnavigationListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OnboardnavigationListResponse> {
+    options?: RequestOptions,
+  ): APIPromise<OnboardnavigationListResponse> {
     return this._client.get('/udl/onboardnavigation', { query, ...options });
   }
 
@@ -25,11 +27,11 @@ export class Onboardnavigation extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: OnboardnavigationCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: OnboardnavigationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/onboardnavigation/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -40,11 +42,12 @@ export class Onboardnavigation extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: OnboardnavigationCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: OnboardnavigationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/onboardnavigation/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -52,10 +55,10 @@ export class Onboardnavigation extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/onboardnavigation/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -71,8 +74,8 @@ export class Onboardnavigation extends APIResource {
    */
   tuple(
     query: OnboardnavigationTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OnboardnavigationTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<OnboardnavigationTupleResponse> {
     return this._client.get('/udl/onboardnavigation/tuple', { query, ...options });
   }
 
@@ -83,13 +86,14 @@ export class Onboardnavigation extends APIResource {
    * operation. Please contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: OnboardnavigationUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: OnboardnavigationUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-onboardnavigation', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -273,7 +277,9 @@ export interface OnboardnavigationCountParams {
   startTime: string;
 }
 
-export type OnboardnavigationCreateBulkParams = Array<OnboardnavigationCreateBulkParams.Body>;
+export interface OnboardnavigationCreateBulkParams {
+  body: Array<OnboardnavigationCreateBulkParams.Body>;
+}
 
 export namespace OnboardnavigationCreateBulkParams {
   /**
@@ -425,7 +431,9 @@ export interface OnboardnavigationTupleParams {
   startTime: string;
 }
 
-export type OnboardnavigationUnvalidatedPublishParams = Array<OnboardnavigationUnvalidatedPublishParams.Body>;
+export interface OnboardnavigationUnvalidatedPublishParams {
+  body: Array<OnboardnavigationUnvalidatedPublishParams.Body>;
+}
 
 export namespace OnboardnavigationUnvalidatedPublishParams {
   /**

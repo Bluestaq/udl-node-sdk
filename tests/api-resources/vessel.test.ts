@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -219,13 +218,6 @@ describe('resource vessel', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.vessel.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('count', async () => {
     const responsePromise = client.vessel.count();
     const rawResponse = await responsePromise.asResponse();
@@ -237,17 +229,10 @@ describe('resource vessel', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('count: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.vessel.count({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('createBulk: only required params', async () => {
-    const responsePromise = client.vessel.createBulk([
-      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' },
-    ]);
+    const responsePromise = client.vessel.createBulk({
+      body: [{ classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' }],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -258,89 +243,91 @@ describe('resource vessel', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.vessel.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        source: 'Bluestaq',
-        id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
-        altVesselId: '590b5194fc32e75dd00682ba',
-        callsign: 'V2OZ',
-        entity: {
+    const response = await client.vessel.createBulk({
+      body: [
+        {
           classificationMarking: 'U',
           dataMode: 'TEST',
-          name: 'Example name',
           source: 'Bluestaq',
-          type: 'ONORBIT',
-          countryCode: 'US',
-          idEntity: 'ENTITY-ID',
-          idLocation: 'LOCATION-ID',
-          idOnOrbit: 'ONORBIT-ID',
-          idOperatingUnit: 'OPERATINGUNIT-ID',
-          location: {
+          id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+          altVesselId: '590b5194fc32e75dd00682ba',
+          callsign: 'V2OZ',
+          entity: {
             classificationMarking: 'U',
             dataMode: 'TEST',
-            name: 'Example location',
+            name: 'Example name',
             source: 'Bluestaq',
-            altitude: 10.23,
+            type: 'ONORBIT',
             countryCode: 'US',
+            idEntity: 'ENTITY-ID',
             idLocation: 'LOCATION-ID',
-            lat: 45.23,
-            lon: 179.1,
-            origin: 'THIRD_PARTY_DATASOURCE',
-          },
-          onOrbit: {
-            classificationMarking: 'U',
-            dataMode: 'TEST',
-            satNo: 1,
-            source: 'Bluestaq',
-            altName: 'Alternate Name',
-            category: 'Lunar',
-            commonName: 'Example common name',
-            constellation: 'Big Dipper',
-            countryCode: 'US',
-            decayDate: '2018-01-01T16:00:00.123Z',
             idOnOrbit: 'ONORBIT-ID',
-            intlDes: '2021123ABC',
-            launchDate: '2018-01-01',
-            launchSiteId: 'LAUNCHSITE-ID',
-            lifetimeYears: 10,
-            missionNumber: 'Expedition 1',
-            objectType: 'PAYLOAD',
+            idOperatingUnit: 'OPERATINGUNIT-ID',
+            location: {
+              classificationMarking: 'U',
+              dataMode: 'TEST',
+              name: 'Example location',
+              source: 'Bluestaq',
+              altitude: 10.23,
+              countryCode: 'US',
+              idLocation: 'LOCATION-ID',
+              lat: 45.23,
+              lon: 179.1,
+              origin: 'THIRD_PARTY_DATASOURCE',
+            },
+            onOrbit: {
+              classificationMarking: 'U',
+              dataMode: 'TEST',
+              satNo: 1,
+              source: 'Bluestaq',
+              altName: 'Alternate Name',
+              category: 'Lunar',
+              commonName: 'Example common name',
+              constellation: 'Big Dipper',
+              countryCode: 'US',
+              decayDate: '2018-01-01T16:00:00.123Z',
+              idOnOrbit: 'ONORBIT-ID',
+              intlDes: '2021123ABC',
+              launchDate: '2018-01-01',
+              launchSiteId: 'LAUNCHSITE-ID',
+              lifetimeYears: 10,
+              missionNumber: 'Expedition 1',
+              objectType: 'PAYLOAD',
+              origin: 'THIRD_PARTY_DATASOURCE',
+            },
             origin: 'THIRD_PARTY_DATASOURCE',
+            ownerType: 'Commercial',
+            taskable: false,
+            urls: ['URL1', 'URL2'],
           },
+          firstSeen: '2018-01-01T16:00:00.123Z',
+          hullNum: 'A30081',
+          idEntity: 'ENTITY-ID',
+          idOrganization: '0147f777-w09a-835f-85aa-0a07a730fgg0',
+          imon: 9566356,
+          length: 511.1,
+          maxDraught: 21.1,
+          maxSpeed: 32.5,
+          mmsi: '416450000',
+          numBlades: 4,
+          numShafts: 3,
           origin: 'THIRD_PARTY_DATASOURCE',
-          ownerType: 'Commercial',
-          taskable: false,
-          urls: ['URL1', 'URL2'],
+          propType: 'Diesel',
+          sconum: 'B45524',
+          status: 'In Service/Commission',
+          sternType: 'Cruiser',
+          vesselBuilder: 'Samsung Heavy Inds - Geoje',
+          vesselClass: 'Nimitz',
+          vesselDescription: 'Search and Rescue Vessel',
+          vesselFlag: 'United States',
+          vesselName: 'DORNUM',
+          vesselType: 'Passenger',
+          vslWt: 3423.76,
+          width: 24.1,
+          yearBuilt: '2014',
         },
-        firstSeen: '2018-01-01T16:00:00.123Z',
-        hullNum: 'A30081',
-        idEntity: 'ENTITY-ID',
-        idOrganization: '0147f777-w09a-835f-85aa-0a07a730fgg0',
-        imon: 9566356,
-        length: 511.1,
-        maxDraught: 21.1,
-        maxSpeed: 32.5,
-        mmsi: '416450000',
-        numBlades: 4,
-        numShafts: 3,
-        origin: 'THIRD_PARTY_DATASOURCE',
-        propType: 'Diesel',
-        sconum: 'B45524',
-        status: 'In Service/Commission',
-        sternType: 'Cruiser',
-        vesselBuilder: 'Samsung Heavy Inds - Geoje',
-        vesselClass: 'Nimitz',
-        vesselDescription: 'Search and Rescue Vessel',
-        vesselFlag: 'United States',
-        vesselName: 'DORNUM',
-        vesselType: 'Passenger',
-        vslWt: 3423.76,
-        width: 24.1,
-        yearBuilt: '2014',
-      },
-    ]);
+      ],
+    });
   });
 
   test('get', async () => {
@@ -354,13 +341,6 @@ describe('resource vessel', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.vessel.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.vessel.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -370,13 +350,6 @@ describe('resource vessel', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.vessel.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {

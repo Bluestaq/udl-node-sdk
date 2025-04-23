@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,6 +11,10 @@ import {
   HistoryListResponse,
   SortiePprFull,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Sortieppr extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -21,11 +24,11 @@ export class Sortieppr extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: SortiepprCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: SortiepprCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/sortieppr', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -34,11 +37,11 @@ export class Sortieppr extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(pathId: string, body: SortiepprUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/sortieppr/${pathId}`, {
+  update(pathID: string, body: SortiepprUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/sortieppr/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -48,7 +51,7 @@ export class Sortieppr extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: SortiepprListParams, options?: Core.RequestOptions): Core.APIPromise<SortiepprListResponse> {
+  list(query: SortiepprListParams, options?: RequestOptions): APIPromise<SortiepprListResponse> {
     return this._client.get('/udl/sortieppr', { query, ...options });
   }
 
@@ -57,10 +60,10 @@ export class Sortieppr extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/sortieppr/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/sortieppr/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -71,11 +74,11 @@ export class Sortieppr extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: SortiepprCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: SortiepprCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sortieppr/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -86,11 +89,12 @@ export class Sortieppr extends APIResource {
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: SortiepprCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: SortiepprCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/sortieppr/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -98,18 +102,18 @@ export class Sortieppr extends APIResource {
    * Service operation to get a single sortieppr record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<HistoryAPI.SortiePprFull> {
-    return this._client.get(`/udl/sortieppr/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.SortiePprFull> {
+    return this._client.get(path`/udl/sortieppr/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sortieppr/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -123,7 +127,7 @@ export class Sortieppr extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: SortiepprTupleParams, options?: Core.RequestOptions): Core.APIPromise<SortiepprTupleResponse> {
+  tuple(query: SortiepprTupleParams, options?: RequestOptions): APIPromise<SortiepprTupleResponse> {
     return this._client.get('/udl/sortieppr/tuple', { query, ...options });
   }
 
@@ -133,14 +137,12 @@ export class Sortieppr extends APIResource {
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
    */
-  unvalidatedPublish(
-    body: SortiepprUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: SortiepprUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-sortieppr', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -479,7 +481,9 @@ export interface SortiepprCountParams {
   idSortie: string;
 }
 
-export type SortiepprCreateBulkParams = Array<SortiepprCreateBulkParams.Body>;
+export interface SortiepprCreateBulkParams {
+  body: Array<SortiepprCreateBulkParams.Body>;
+}
 
 export namespace SortiepprCreateBulkParams {
   /**
@@ -597,7 +601,9 @@ export interface SortiepprTupleParams {
   idSortie: string;
 }
 
-export type SortiepprUnvalidatedPublishParams = Array<SortiepprUnvalidatedPublishParams.Body>;
+export interface SortiepprUnvalidatedPublishParams {
+  body: Array<SortiepprUnvalidatedPublishParams.Body>;
+}
 
 export namespace SortiepprUnvalidatedPublishParams {
   /**

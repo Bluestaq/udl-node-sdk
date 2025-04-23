@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -102,17 +101,19 @@ describe('resource hazard', () => {
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.hazard.createBulk([
-      {
-        alarms: ['Alarm1', 'Alarm2'],
-        alarmValues: [2.7, 2.9],
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        detectTime: '2022-03-07T14:51:39.653Z',
-        detectType: 'Chemical',
-        source: 'Bluestaq',
-      },
-    ]);
+    const responsePromise = client.hazard.createBulk({
+      body: [
+        {
+          alarms: ['Alarm1', 'Alarm2'],
+          alarmValues: [2.7, 2.9],
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          detectTime: '2022-03-07T14:51:39.653Z',
+          detectType: 'Chemical',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -123,47 +124,49 @@ describe('resource hazard', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.hazard.createBulk([
-      {
-        alarms: ['Alarm1', 'Alarm2'],
-        alarmValues: [2.7, 2.9],
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        detectTime: '2022-03-07T14:51:39.653Z',
-        detectType: 'Chemical',
-        source: 'Bluestaq',
-        id: 'HAZARD-ID',
-        a: 238,
-        activity: 120.1,
-        bottleId: '6264',
-        casRN: '64-17-5',
-        channel: 'Skin',
-        ctrnTime: 1.077,
-        density: 18900.2,
-        dep: 1.084,
-        depCtrn: 86.1,
-        dose: 1.12,
-        doseRate: 1.0000001865,
-        duration: 14400,
-        gBar: 2.5,
-        harmful: false,
-        hBar: 3.1,
-        idPOI: 'POI-ID',
-        idTrack: 'TRACK-ID',
-        massFrac: 0.029,
-        matCat: 3,
-        matClass: 'Nerve Agent',
-        matName: 'VX',
-        matType: '21',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        ppm: 27129,
-        radCtrn: 1.31,
-        readings: ['Rad1', 'Rad2'],
-        readingUnits: ['Gray', 'Gray'],
-        readingValues: [107.2, 124.1],
-        z: 92,
-      },
-    ]);
+    const response = await client.hazard.createBulk({
+      body: [
+        {
+          alarms: ['Alarm1', 'Alarm2'],
+          alarmValues: [2.7, 2.9],
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          detectTime: '2022-03-07T14:51:39.653Z',
+          detectType: 'Chemical',
+          source: 'Bluestaq',
+          id: 'HAZARD-ID',
+          a: 238,
+          activity: 120.1,
+          bottleId: '6264',
+          casRN: '64-17-5',
+          channel: 'Skin',
+          ctrnTime: 1.077,
+          density: 18900.2,
+          dep: 1.084,
+          depCtrn: 86.1,
+          dose: 1.12,
+          doseRate: 1.0000001865,
+          duration: 14400,
+          gBar: 2.5,
+          harmful: false,
+          hBar: 3.1,
+          idPOI: 'POI-ID',
+          idTrack: 'TRACK-ID',
+          massFrac: 0.029,
+          matCat: 3,
+          matClass: 'Nerve Agent',
+          matName: 'VX',
+          matType: '21',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          ppm: 27129,
+          radCtrn: 1.31,
+          readings: ['Rad1', 'Rad2'],
+          readingUnits: ['Gray', 'Gray'],
+          readingValues: [107.2, 124.1],
+          z: 92,
+        },
+      ],
+    });
   });
 
   test('get', async () => {
@@ -177,13 +180,6 @@ describe('resource hazard', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.hazard.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.hazard.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -193,13 +189,6 @@ describe('resource hazard', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.hazard.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {

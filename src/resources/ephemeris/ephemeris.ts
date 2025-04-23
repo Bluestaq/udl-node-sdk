@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import {
@@ -21,6 +20,9 @@ import {
   AttitudeDataListParams,
   AttitudeDataListResponse,
 } from './attitude-data/attitude-data';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Ephemeris extends APIResource {
   attitudeData: AttitudeDataAPI.AttitudeData = new AttitudeDataAPI.AttitudeData(this._client);
@@ -32,7 +34,7 @@ export class Ephemeris extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: EphemerisListParams, options?: Core.RequestOptions): Core.APIPromise<EphemerisListResponse> {
+  list(query: EphemerisListParams, options?: RequestOptions): APIPromise<EphemerisListResponse> {
     return this._client.get('/udl/ephemeris', { query, ...options });
   }
 
@@ -43,11 +45,11 @@ export class Ephemeris extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: EphemerisCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: EphemerisCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/ephemeris/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -61,7 +63,7 @@ export class Ephemeris extends APIResource {
    * **Example:**
    * /filedrop/ephem?classification=U&dataMode=TEST&source=Bluestaq&satNo=25544&ephemFormatType=NASA&hasMnvr=false&type=ROUTINE&category=EXTERNAL&origin=NASA&tags=tag1,tag2
    */
-  fileUpload(params: EphemerisFileUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  fileUpload(params: EphemerisFileUploadParams, options?: RequestOptions): APIPromise<void> {
     const {
       category,
       classification,
@@ -90,7 +92,7 @@ export class Ephemeris extends APIResource {
       },
       body: body,
       ...options,
-      headers: { 'Content-Type': 'text/plain', Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ 'Content-Type': 'text/plain', Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -98,10 +100,10 @@ export class Ephemeris extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/ephemeris/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -115,7 +117,7 @@ export class Ephemeris extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: EphemerisTupleParams, options?: Core.RequestOptions): Core.APIPromise<EphemerisTupleResponse> {
+  tuple(query: EphemerisTupleParams, options?: RequestOptions): APIPromise<EphemerisTupleResponse> {
     return this._client.get('/udl/ephemeris/tuple', { query, ...options });
   }
 
@@ -136,14 +138,11 @@ export class Ephemeris extends APIResource {
    *     + If only origObjectId is provided then origObjectId will be populated with the posted value.  In this case, no checks are made against existing UDL sat numbers.
    * </h3>
    */
-  unvalidatedPublish(
-    body: EphemerisUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(body: EphemerisUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/filedrop/udl-ephset', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }

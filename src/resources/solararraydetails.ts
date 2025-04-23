@@ -1,9 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as OrganizationAPI from './organization';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Solararraydetails extends APIResource {
   /**
@@ -12,11 +14,11 @@ export class Solararraydetails extends APIResource {
    * operation. Please contact the UDL team for assistance. A SolarArray may have
    * multiple details records compiled by various sources.
    */
-  create(body: SolararraydetailCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: SolararraydetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/solararraydetails', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -26,15 +28,11 @@ export class Solararraydetails extends APIResource {
    * assistance. A SolarArray may have multiple details records compiled by various
    * sources.
    */
-  update(
-    pathId: string,
-    body: SolararraydetailUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/solararraydetails/${pathId}`, {
+  update(pathID: string, body: SolararraydetailUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/solararraydetails/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -45,17 +43,9 @@ export class Solararraydetails extends APIResource {
    * parameter information.
    */
   list(
-    query?: SolararraydetailListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SolararraydetailListResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<SolararraydetailListResponse>;
-  list(
-    query: SolararraydetailListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SolararraydetailListResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
+    query: SolararraydetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SolararraydetailListResponse> {
     return this._client.get('/udl/solararraydetails', { query, ...options });
   }
 
@@ -65,10 +55,10 @@ export class Solararraydetails extends APIResource {
    * operation. Please contact the UDL team for assistance. A SolarArray may have
    * multiple details records compiled by various sources.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/solararraydetails/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/solararraydetails/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -77,8 +67,8 @@ export class Solararraydetails extends APIResource {
    * passed as a path parameter. A SolarArray may have multiple details records
    * compiled by various sources.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<SolarArrayDetailsFull> {
-    return this._client.get(`/udl/solararraydetails/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<SolarArrayDetailsFull> {
+    return this._client.get(path`/udl/solararraydetails/${id}`, options);
   }
 }
 

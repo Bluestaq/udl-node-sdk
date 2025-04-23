@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import {
@@ -13,6 +12,10 @@ import {
 } from './history';
 import * as TupleAPI from './tuple';
 import { Tuple, TupleListParams, TupleListResponse } from './tuple';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Evac extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -23,11 +26,11 @@ export class Evac extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: EvacCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: EvacCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/evac', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -35,8 +38,8 @@ export class Evac extends APIResource {
    * Service operation to get a single Evac by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Shared.EvacFull> {
-    return this._client.get(`/udl/evac/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.EvacFull> {
+    return this._client.get(path`/udl/evac/${id}`, options);
   }
 
   /**
@@ -45,7 +48,7 @@ export class Evac extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: EvacListParams, options?: Core.RequestOptions): Core.APIPromise<EvacListResponse> {
+  list(query: EvacListParams, options?: RequestOptions): APIPromise<EvacListResponse> {
     return this._client.get('/udl/evac', { query, ...options });
   }
 
@@ -56,11 +59,11 @@ export class Evac extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: EvacCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: EvacCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/evac/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -71,11 +74,12 @@ export class Evac extends APIResource {
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
    */
-  createBulk(body: EvacCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: EvacCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/evac/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -83,10 +87,10 @@ export class Evac extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/evac/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -95,14 +99,12 @@ export class Evac extends APIResource {
    * the database. Requires a specific role, please contact the UDL team to gain
    * access. This operation is intended to be used for automated feeds into UDL.
    */
-  unvalidatedPublish(
-    body: EvacUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: EvacUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-evac', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -1496,7 +1498,9 @@ export interface EvacCountParams {
   reqTime: string;
 }
 
-export type EvacCreateBulkParams = Array<EvacCreateBulkParams.Body>;
+export interface EvacCreateBulkParams {
+  body: Array<EvacCreateBulkParams.Body>;
+}
 
 export namespace EvacCreateBulkParams {
   /**
@@ -2179,7 +2183,9 @@ export namespace EvacCreateBulkParams {
   }
 }
 
-export type EvacUnvalidatedPublishParams = Array<EvacUnvalidatedPublishParams.Body>;
+export interface EvacUnvalidatedPublishParams {
+  body: Array<EvacUnvalidatedPublishParams.Body>;
+}
 
 export namespace EvacUnvalidatedPublishParams {
   /**

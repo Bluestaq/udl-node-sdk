@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   EoObservationFull,
@@ -12,6 +11,9 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class EoObservations extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -23,11 +25,11 @@ export class EoObservations extends APIResource {
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
    */
-  create(body: EoObservationCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: EoObservationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/eoobservation', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -37,10 +39,7 @@ export class EoObservations extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: EoObservationListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EoObservationListResponse> {
+  list(query: EoObservationListParams, options?: RequestOptions): APIPromise<EoObservationListResponse> {
     return this._client.get('/udl/eoobservation', { query, ...options });
   }
 
@@ -51,11 +50,11 @@ export class EoObservations extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: EoObservationCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: EoObservationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/eoobservation/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -66,13 +65,13 @@ export class EoObservations extends APIResource {
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
    */
-  createBulk(params: EoObservationCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: EoObservationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body, convertToJ2K } = params;
     return this._client.post('/udl/eoobservation/createBulk', {
       query: { convertToJ2K },
       body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -83,13 +82,14 @@ export class EoObservations extends APIResource {
    * contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: EoObservationUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: EoObservationUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-eo', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -2967,7 +2967,9 @@ export namespace EoObservationCreateBulkParams {
   }
 }
 
-export type EoObservationUnvalidatedPublishParams = Array<EoObservationUnvalidatedPublishParams.Body>;
+export interface EoObservationUnvalidatedPublishParams {
+  body: Array<EoObservationUnvalidatedPublishParams.Body>;
+}
 
 export namespace EoObservationUnvalidatedPublishParams {
   /**

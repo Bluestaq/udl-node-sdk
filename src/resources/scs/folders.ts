@@ -1,8 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Folders extends APIResource {
   /**
@@ -10,7 +12,7 @@ export class Folders extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  create(params: FolderCreateParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  create(params: FolderCreateParams, options?: RequestOptions): APIPromise<string> {
     const { id, classificationMarking, description, read, tags, write } = params;
     return this._client.post('/scs/folder', {
       query: { id, classificationMarking, description, read, tags, write },
@@ -22,7 +24,7 @@ export class Folders extends APIResource {
    * Returns a FileData object representing the folder ID that is visible to the
    * calling user.
    */
-  retrieve(query: FolderRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Shared.FileData> {
+  retrieve(query: FolderRetrieveParams, options?: RequestOptions): APIPromise<Shared.FileData> {
     return this._client.get('/scs/folder', { query, ...options });
   }
 
@@ -30,11 +32,11 @@ export class Folders extends APIResource {
    * operation to update folders metadata. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
    */
-  update(body: FolderUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  update(body: FolderUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.patch('/scs/folder', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }

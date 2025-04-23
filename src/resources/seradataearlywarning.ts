@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Seradataearlywarning extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class Seradataearlywarning extends APIResource {
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: SeradataearlywarningCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: SeradataearlywarningCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/seradataearlywarning', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -21,15 +24,11 @@ export class Seradataearlywarning extends APIResource {
    * Service operation to update an SeradataEarlyWarning. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
    */
-  update(
-    pathId: string,
-    body: SeradataearlywarningUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/seradataearlywarning/${pathId}`, {
+  update(pathID: string, body: SeradataearlywarningUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/seradataearlywarning/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -39,7 +38,7 @@ export class Seradataearlywarning extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<SeradataearlywarningListResponse> {
+  list(options?: RequestOptions): APIPromise<SeradataearlywarningListResponse> {
     return this._client.get('/udl/seradataearlywarning', options);
   }
 
@@ -48,10 +47,10 @@ export class Seradataearlywarning extends APIResource {
    * path parameter. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/seradataearlywarning/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/seradataearlywarning/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -62,10 +61,10 @@ export class Seradataearlywarning extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/seradataearlywarning/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -73,18 +72,18 @@ export class Seradataearlywarning extends APIResource {
    * Service operation to get a single SeradataEarlyWarning by its unique ID passed
    * as a path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<SeradataearlywarningGetResponse> {
-    return this._client.get(`/udl/seradataearlywarning/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<SeradataearlywarningGetResponse> {
+    return this._client.get(path`/udl/seradataearlywarning/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/seradataearlywarning/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -100,8 +99,8 @@ export class Seradataearlywarning extends APIResource {
    */
   tuple(
     query: SeradataearlywarningTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SeradataearlywarningTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<SeradataearlywarningTupleResponse> {
     return this._client.get('/udl/seradataearlywarning/tuple', { query, ...options });
   }
 }

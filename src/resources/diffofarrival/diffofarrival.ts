@@ -1,10 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import { History, HistoryCountParams, HistoryCountResponse } from './history';
 import * as DiffofarrivalDiffofarrivalAPI from '../tdoa-fdoa/diffofarrival/diffofarrival';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Diffofarrival extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -15,19 +18,19 @@ export class Diffofarrival extends APIResource {
    */
   retrieve(
     id: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DiffofarrivalDiffofarrivalAPI.DiffofarrivalFull> {
-    return this._client.get(`/udl/diffofarrival/${id}`, options);
+    options?: RequestOptions,
+  ): APIPromise<DiffofarrivalDiffofarrivalAPI.DiffofarrivalFull> {
+    return this._client.get(path`/udl/diffofarrival/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/diffofarrival/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -41,10 +44,7 @@ export class Diffofarrival extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: DiffofarrivalTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DiffofarrivalTupleResponse> {
+  tuple(query: DiffofarrivalTupleParams, options?: RequestOptions): APIPromise<DiffofarrivalTupleResponse> {
     return this._client.get('/udl/diffofarrival/tuple', { query, ...options });
   }
 
@@ -55,13 +55,14 @@ export class Diffofarrival extends APIResource {
    * contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: DiffofarrivalUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: DiffofarrivalUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-diffofarrival', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -84,7 +85,9 @@ export interface DiffofarrivalTupleParams {
   obTime: string;
 }
 
-export type DiffofarrivalUnvalidatedPublishParams = Array<DiffofarrivalUnvalidatedPublishParams.Body>;
+export interface DiffofarrivalUnvalidatedPublishParams {
+  body: Array<DiffofarrivalUnvalidatedPublishParams.Body>;
+}
 
 export namespace DiffofarrivalUnvalidatedPublishParams {
   /**

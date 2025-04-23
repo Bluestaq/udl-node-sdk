@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as EnginesAPI from './engines';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Onorbitthruster extends APIResource {
   /**
@@ -12,11 +15,11 @@ export class Onorbitthruster extends APIResource {
    * associated with many different on-orbit spacecraft. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
    */
-  create(body: OnorbitthrusterCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: OnorbitthrusterCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitthruster', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -27,15 +30,11 @@ export class Onorbitthruster extends APIResource {
    * spacecraft. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  update(
-    pathId: string,
-    body: OnorbitthrusterUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/onorbitthruster/${pathId}`, {
+  update(pathID: string, body: OnorbitthrusterUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/onorbitthruster/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -45,7 +44,7 @@ export class Onorbitthruster extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<OnorbitthrusterListResponse> {
+  list(options?: RequestOptions): APIPromise<OnorbitthrusterListResponse> {
     return this._client.get('/udl/onorbitthruster', options);
   }
 
@@ -56,10 +55,10 @@ export class Onorbitthruster extends APIResource {
    * associated with many different on-orbit spacecraft. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/onorbitthruster/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/onorbitthruster/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -69,8 +68,8 @@ export class Onorbitthruster extends APIResource {
    * spacecraft's engine and a particular on-orbit spacecraft. An Engine type may be
    * associated with many different on-orbit spacecraft.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<OnorbitthrusterGetResponse> {
-    return this._client.get(`/udl/onorbitthruster/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<OnorbitthrusterGetResponse> {
+    return this._client.get(path`/udl/onorbitthruster/${id}`, options);
   }
 }
 

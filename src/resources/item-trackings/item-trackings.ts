@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -11,6 +10,10 @@ import {
   HistoryListResponse,
 } from './history';
 import * as ItemtrackingHistoryAPI from '../udl/itemtracking/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class ItemTrackings extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -20,11 +23,11 @@ export class ItemTrackings extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: ItemTrackingCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: ItemTrackingCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/itemtracking', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -34,10 +37,7 @@ export class ItemTrackings extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: ItemTrackingListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ItemTrackingListResponse> {
+  list(query: ItemTrackingListParams, options?: RequestOptions): APIPromise<ItemTrackingListResponse> {
     return this._client.get('/udl/itemtracking', { query, ...options });
   }
 
@@ -46,10 +46,10 @@ export class ItemTrackings extends APIResource {
    * path parameter. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/itemtracking/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/itemtracking/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -60,11 +60,11 @@ export class ItemTrackings extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: ItemTrackingCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: ItemTrackingCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/itemtracking/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -72,18 +72,18 @@ export class ItemTrackings extends APIResource {
    * Service operation to get a single item tracking record by its unique ID passed
    * as a path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<ItemtrackingHistoryAPI.ItemTrackingFull> {
-    return this._client.get(`/udl/itemtracking/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<ItemtrackingHistoryAPI.ItemTrackingFull> {
+    return this._client.get(path`/udl/itemtracking/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/itemtracking/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -97,10 +97,7 @@ export class ItemTrackings extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: ItemTrackingTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ItemTrackingTupleResponse> {
+  tuple(query: ItemTrackingTupleParams, options?: RequestOptions): APIPromise<ItemTrackingTupleResponse> {
     return this._client.get('/udl/itemtracking/tuple', { query, ...options });
   }
 
@@ -111,13 +108,14 @@ export class ItemTrackings extends APIResource {
    * Please contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: ItemTrackingUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: ItemTrackingUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-itemtracking', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -420,7 +418,9 @@ export interface ItemTrackingTupleParams {
   ts: string;
 }
 
-export type ItemTrackingUnvalidatedPublishParams = Array<ItemTrackingUnvalidatedPublishParams.Body>;
+export interface ItemTrackingUnvalidatedPublishParams {
+  body: Array<ItemTrackingUnvalidatedPublishParams.Body>;
+}
 
 export namespace ItemTrackingUnvalidatedPublishParams {
   export interface Body {

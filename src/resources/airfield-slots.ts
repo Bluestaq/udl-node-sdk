@@ -1,7 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
 
 export class AirfieldSlots extends APIResource {
   /**
@@ -9,11 +11,11 @@ export class AirfieldSlots extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: AirfieldSlotCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: AirfieldSlotCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/airfieldslot', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -23,7 +25,7 @@ export class AirfieldSlots extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<AirfieldSlotListResponse> {
+  list(options?: RequestOptions): APIPromise<AirfieldSlotListResponse> {
     return this._client.get('/udl/airfieldslot', options);
   }
 }

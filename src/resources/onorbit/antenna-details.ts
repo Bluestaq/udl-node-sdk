@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as OrganizationAPI from '../organization';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class AntennaDetails extends APIResource {
   /**
@@ -11,11 +14,11 @@ export class AntennaDetails extends APIResource {
    * sources. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: AntennaDetailCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: AntennaDetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/antennadetails', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -24,8 +27,8 @@ export class AntennaDetails extends APIResource {
    * as a path parameter. An antenna may have multiple details records compiled by
    * various sources.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AntennaDetailsFull> {
-    return this._client.get(`/udl/antennadetails/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<AntennaDetailsFull> {
+    return this._client.get(path`/udl/antennadetails/${id}`, options);
   }
 
   /**
@@ -34,15 +37,11 @@ export class AntennaDetails extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(
-    pathId: string,
-    body: AntennaDetailUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/antennadetails/${pathId}`, {
+  update(pathID: string, body: AntennaDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/antennadetails/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -52,7 +51,7 @@ export class AntennaDetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<AntennaDetailListResponse> {
+  list(options?: RequestOptions): APIPromise<AntennaDetailListResponse> {
     return this._client.get('/udl/antennadetails', options);
   }
 
@@ -62,10 +61,10 @@ export class AntennaDetails extends APIResource {
    * sources. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/antennadetails/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/antennadetails/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }

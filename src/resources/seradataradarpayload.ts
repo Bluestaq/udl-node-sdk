@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Seradataradarpayload extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class Seradataradarpayload extends APIResource {
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: SeradataradarpayloadCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: SeradataradarpayloadCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/seradataradarpayload', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -21,15 +24,11 @@ export class Seradataradarpayload extends APIResource {
    * Service operation to update an SeradataRadarPayload. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
    */
-  update(
-    pathId: string,
-    body: SeradataradarpayloadUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/seradataradarpayload/${pathId}`, {
+  update(pathID: string, body: SeradataradarpayloadUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/seradataradarpayload/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -39,7 +38,7 @@ export class Seradataradarpayload extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<SeradataradarpayloadListResponse> {
+  list(options?: RequestOptions): APIPromise<SeradataradarpayloadListResponse> {
     return this._client.get('/udl/seradataradarpayload', options);
   }
 
@@ -48,10 +47,10 @@ export class Seradataradarpayload extends APIResource {
    * path parameter. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/seradataradarpayload/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/seradataradarpayload/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -62,10 +61,10 @@ export class Seradataradarpayload extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/seradataradarpayload/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -73,18 +72,18 @@ export class Seradataradarpayload extends APIResource {
    * Service operation to get a single SeradataRadarPayload by its unique ID passed
    * as a path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<SeradataradarpayloadGetResponse> {
-    return this._client.get(`/udl/seradataradarpayload/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<SeradataradarpayloadGetResponse> {
+    return this._client.get(path`/udl/seradataradarpayload/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/seradataradarpayload/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -100,8 +99,8 @@ export class Seradataradarpayload extends APIResource {
    */
   tuple(
     query: SeradataradarpayloadTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SeradataradarpayloadTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<SeradataradarpayloadTupleResponse> {
     return this._client.get('/udl/seradataradarpayload/tuple', { query, ...options });
   }
 }

@@ -1,13 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class ClassificationMarkings extends APIResource {
   /**
    * Returns a list of all classification markings appropriate to the current user.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<ClassificationMarkingListResponse> {
+  list(options?: RequestOptions): APIPromise<ClassificationMarkingListResponse> {
     return this._client.get('/scs/getClassificationMarkings', options);
   }
 }

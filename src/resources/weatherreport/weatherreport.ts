@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,6 +11,10 @@ import {
   HistoryListResponse,
   WeatherReportFull,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Weatherreport extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -21,11 +24,11 @@ export class Weatherreport extends APIResource {
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  create(body: WeatherreportCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: WeatherreportCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/weatherreport', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -35,10 +38,7 @@ export class Weatherreport extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: WeatherreportListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<WeatherreportListResponse> {
+  list(query: WeatherreportListParams, options?: RequestOptions): APIPromise<WeatherreportListResponse> {
     return this._client.get('/udl/weatherreport', { query, ...options });
   }
 
@@ -49,11 +49,11 @@ export class Weatherreport extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: WeatherreportCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: WeatherreportCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/weatherreport/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -61,18 +61,18 @@ export class Weatherreport extends APIResource {
    * Service operation to get a single WeatherReport by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<HistoryAPI.WeatherReportFull> {
-    return this._client.get(`/udl/weatherreport/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.WeatherReportFull> {
+    return this._client.get(path`/udl/weatherreport/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/weatherreport/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -86,10 +86,7 @@ export class Weatherreport extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: WeatherreportTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<WeatherreportTupleResponse> {
+  tuple(query: WeatherreportTupleParams, options?: RequestOptions): APIPromise<WeatherreportTupleResponse> {
     return this._client.get('/udl/weatherreport/tuple', { query, ...options });
   }
 
@@ -100,13 +97,14 @@ export class Weatherreport extends APIResource {
    * contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: WeatherreportUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: WeatherreportUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-weatherreport', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -1255,7 +1253,9 @@ export interface WeatherreportTupleParams {
   obTime: string;
 }
 
-export type WeatherreportUnvalidatedPublishParams = Array<WeatherreportUnvalidatedPublishParams.Body>;
+export interface WeatherreportUnvalidatedPublishParams {
+  body: Array<WeatherreportUnvalidatedPublishParams.Body>;
+}
 
 export namespace WeatherreportUnvalidatedPublishParams {
   /**

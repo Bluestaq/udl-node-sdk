@@ -1,8 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as HistoryAPI from './udl/gnssobservationset/history';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
 
 export class Gnssobservationset extends APIResource {
   /**
@@ -13,8 +15,8 @@ export class Gnssobservationset extends APIResource {
    */
   list(
     query: GnssobservationsetListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<GnssobservationsetListResponse> {
+    options?: RequestOptions,
+  ): APIPromise<GnssobservationsetListResponse> {
     return this._client.get('/udl/gnssobservationset', { query, ...options });
   }
 
@@ -25,11 +27,11 @@ export class Gnssobservationset extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: GnssobservationsetCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: GnssobservationsetCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/gnssobservationset/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -40,11 +42,12 @@ export class Gnssobservationset extends APIResource {
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: GnssobservationsetCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: GnssobservationsetCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/gnssobservationset/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -52,10 +55,10 @@ export class Gnssobservationset extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/gnssobservationset/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -71,8 +74,8 @@ export class Gnssobservationset extends APIResource {
    */
   tuple(
     query: GnssobservationsetTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<GnssobservationsetTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<GnssobservationsetTupleResponse> {
     return this._client.get('/udl/gnssobservationset/tuple', { query, ...options });
   }
 
@@ -83,13 +86,14 @@ export class Gnssobservationset extends APIResource {
    * to perform this service operation. Please contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: GnssobservationsetUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: GnssobservationsetUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-gnssobset', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -442,7 +446,9 @@ export interface GnssobservationsetCountParams {
   ts: string;
 }
 
-export type GnssobservationsetCreateBulkParams = Array<GnssobservationsetCreateBulkParams.Body>;
+export interface GnssobservationsetCreateBulkParams {
+  body: Array<GnssobservationsetCreateBulkParams.Body>;
+}
 
 export namespace GnssobservationsetCreateBulkParams {
   /**
@@ -762,8 +768,9 @@ export interface GnssobservationsetTupleParams {
   ts: string;
 }
 
-export type GnssobservationsetUnvalidatedPublishParams =
-  Array<GnssobservationsetUnvalidatedPublishParams.Body>;
+export interface GnssobservationsetUnvalidatedPublishParams {
+  body: Array<GnssobservationsetUnvalidatedPublishParams.Body>;
+}
 
 export namespace GnssobservationsetUnvalidatedPublishParams {
   /**

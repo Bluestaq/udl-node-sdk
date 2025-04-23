@@ -1,17 +1,19 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import { FileDataOffsetPage } from '../shared';
-import { type OffsetPageParams } from '../../pagination';
+import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class File extends APIResource {
   /**
    * Returns a FileData object representing the file with the given ID that is
    * visible to the calling user.
    */
-  retrieve(query: FileRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Shared.FileData> {
+  retrieve(query: FileRetrieveParams, options?: RequestOptions): APIPromise<Shared.FileData> {
     return this._client.get('/scs/file', { query, ...options });
   }
 
@@ -19,11 +21,11 @@ export class File extends APIResource {
    * operation to update files metadata. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  update(body: FileUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  update(body: FileUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.patch('/scs/file', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -32,11 +34,8 @@ export class File extends APIResource {
    * subdirectories in the passed-in path directory that are visible to the calling
    * user.
    */
-  list(
-    query: FileListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<FileDataOffsetPage, Shared.FileData> {
-    return this._client.getAPIList('/scs/list', FileDataOffsetPage, { query, ...options });
+  list(query: FileListParams, options?: RequestOptions): PagePromise<FileDataOffsetPage, Shared.FileData> {
+    return this._client.getAPIList('/scs/list', OffsetPage<Shared.FileData>, { query, ...options });
   }
 }
 
@@ -66,4 +65,4 @@ export declare namespace File {
   };
 }
 
-export { FileDataOffsetPage };
+export { type FileDataOffsetPage };

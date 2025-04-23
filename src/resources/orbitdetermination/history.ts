@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as OrbitdeterminationHistoryAPI from '../udl/orbitdetermination/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class History extends APIResource {
   /**
@@ -12,15 +13,10 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query?: HistoryListParams, options?: Core.RequestOptions): Core.APIPromise<HistoryListResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<HistoryListResponse>;
   list(
-    query: HistoryListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<HistoryListResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
+    query: HistoryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryListResponse> {
     return this._client.get('/udl/orbitdetermination/history', { query, ...options });
   }
 
@@ -31,19 +27,11 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  aodr(query?: HistoryAodrParams, options?: Core.RequestOptions): Core.APIPromise<void>;
-  aodr(options?: Core.RequestOptions): Core.APIPromise<void>;
-  aodr(
-    query: HistoryAodrParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    if (isRequestOptions(query)) {
-      return this.aodr({}, query);
-    }
+  aodr(query: HistoryAodrParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/orbitdetermination/history/aodr', {
       query,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -54,19 +42,11 @@ export class History extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query?: HistoryCountParams, options?: Core.RequestOptions): Core.APIPromise<string>;
-  count(options?: Core.RequestOptions): Core.APIPromise<string>;
-  count(
-    query: HistoryCountParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.count({}, query);
-    }
+  count(query: HistoryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/orbitdetermination/history/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 }

@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as HistoryAPI from './udl/notification/history';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Notification extends APIResource {
   /**
@@ -14,11 +17,11 @@ export class Notification extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  create(body: NotificationCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: NotificationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/notification', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -28,10 +31,7 @@ export class Notification extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: NotificationListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<NotificationListResponse> {
+  list(query: NotificationListParams, options?: RequestOptions): APIPromise<NotificationListResponse> {
     return this._client.get('/udl/notification', { query, ...options });
   }
 
@@ -42,11 +42,11 @@ export class Notification extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: NotificationCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: NotificationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/notification/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -64,13 +64,13 @@ export class Notification extends APIResource {
    * services. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  createRaw(params: NotificationCreateRawParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createRaw(params: NotificationCreateRawParams, options?: RequestOptions): APIPromise<void> {
     const { classificationMarking, dataMode, msgType, origin, source, body, msgId, tags } = params;
     return this._client.post('/udl/notification/createRaw', {
       query: { classificationMarking, dataMode, msgType, origin, source, msgId, tags },
       body: body,
       ...options,
-      headers: { 'Content-Type': 'text/plain', Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ 'Content-Type': 'text/plain', Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -78,18 +78,18 @@ export class Notification extends APIResource {
    * Service operation to get a single notification by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<HistoryAPI.NotificationFull> {
-    return this._client.get(`/udl/notification/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.NotificationFull> {
+    return this._client.get(path`/udl/notification/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/notification/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -103,10 +103,7 @@ export class Notification extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: NotificationTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<NotificationTupleResponse> {
+  tuple(query: NotificationTupleParams, options?: RequestOptions): APIPromise<NotificationTupleResponse> {
     return this._client.get('/udl/notification/tuple', { query, ...options });
   }
 }

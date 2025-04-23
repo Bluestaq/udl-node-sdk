@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Dropzone extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class Dropzone extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: DropzoneCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: DropzoneCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/dropzone', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -21,8 +24,8 @@ export class Dropzone extends APIResource {
    * Service operation to get a single dropzone record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<DropzoneRetrieveResponse> {
-    return this._client.get(`/udl/dropzone/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<DropzoneRetrieveResponse> {
+    return this._client.get(path`/udl/dropzone/${id}`, options);
   }
 
   /**
@@ -30,11 +33,11 @@ export class Dropzone extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(pathId: string, body: DropzoneUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/dropzone/${pathId}`, {
+  update(pathID: string, body: DropzoneUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/dropzone/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -43,10 +46,10 @@ export class Dropzone extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/dropzone/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/dropzone/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -57,10 +60,10 @@ export class Dropzone extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/dropzone/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -71,11 +74,12 @@ export class Dropzone extends APIResource {
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: DropzoneCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: DropzoneCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/dropzone/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -85,7 +89,7 @@ export class Dropzone extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  query(options?: Core.RequestOptions): Core.APIPromise<DropzoneQueryResponse> {
+  query(options?: RequestOptions): APIPromise<DropzoneQueryResponse> {
     return this._client.get('/udl/dropzone', options);
   }
 
@@ -93,10 +97,10 @@ export class Dropzone extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/dropzone/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -110,7 +114,7 @@ export class Dropzone extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: DropzoneTupleParams, options?: Core.RequestOptions): Core.APIPromise<DropzoneTupleResponse> {
+  tuple(query: DropzoneTupleParams, options?: RequestOptions): APIPromise<DropzoneTupleResponse> {
     return this._client.get('/udl/dropzone/tuple', { query, ...options });
   }
 
@@ -120,14 +124,12 @@ export class Dropzone extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  unvalidatedPublish(
-    body: DropzoneUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: DropzoneUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-dropzone', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -1198,7 +1200,9 @@ export interface DropzoneUpdateParams {
   zarId?: string;
 }
 
-export type DropzoneCreateBulkParams = Array<DropzoneCreateBulkParams.Body>;
+export interface DropzoneCreateBulkParams {
+  body: Array<DropzoneCreateBulkParams.Body>;
+}
 
 export namespace DropzoneCreateBulkParams {
   /**
@@ -1406,7 +1410,9 @@ export interface DropzoneTupleParams {
   columns: string;
 }
 
-export type DropzoneUnvalidatedPublishParams = Array<DropzoneUnvalidatedPublishParams.Body>;
+export interface DropzoneUnvalidatedPublishParams {
+  body: Array<DropzoneUnvalidatedPublishParams.Body>;
+}
 
 export namespace DropzoneUnvalidatedPublishParams {
   /**

@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -41,9 +40,16 @@ describe('resource track', () => {
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.track.createBulk([
-      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-06-07T14:17:39.653043Z' },
-    ]);
+    const responsePromise = client.track.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          ts: '2021-06-07T14:17:39.653043Z',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -54,74 +60,76 @@ describe('resource track', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.track.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        source: 'Bluestaq',
-        ts: '2021-06-07T14:17:39.653043Z',
-        id: 'TRACK-ID',
-        alt: 1.23,
-        asset: 'asset',
-        assetNat: 'US',
-        callSign: 'callSign',
-        cntct: 'Contact Info',
-        course: 88.37,
-        cov: [1.1, 2.2, 3.3],
-        ecefAcc: [1.23, 2.34, 3.45],
-        ecefPos: [1.23, 2.34, 3.45],
-        ecefVel: [1.23, 2.34, 3.45],
-        eNUPos: [1.23, 2.34, 3.45],
-        eNUVel: [1.23, 2.34, 3.45],
-        env: 'LAND',
-        envConf: 1.23,
-        errEllp: [1.23, 2.34, 3.45],
-        hdng: 19.7,
-        identAmp: 'ZOMBIE',
-        identCred: 0,
-        identRel: 0,
-        jSeries: 'J12.5',
-        lat: 1.23,
-        lcAcc: [1.23, 2.34, 3.45],
-        lco: [1.23, 2.34, 3.45],
-        lcPos: [1.23, 2.34, 3.45],
-        lcs: [1.23, 2.34, 3.45],
-        lcVel: [1.23, 2.34, 3.45],
-        lon: 1.23,
-        m1: 1234,
-        m1v: 1,
-        m2: 1234,
-        m2v: 1,
-        m3a: 2636,
-        m3av: 1,
-        modType: 'MASINT',
-        msgTs: '2021-01-01T01:01:01.123456Z',
-        msnId: 'msnId',
-        multiSource: true,
-        objAct: 'HOLDING',
-        objId: 'objId',
-        objIdent: 'FRIEND',
-        objNat: 'NATO',
-        objPlat: 'COMBAT_VEHICLE',
-        objSpec: 'LIGHT_TANK',
-        objType: 'WATERCRAFT',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        sen: 'sen',
-        senQual: 'senQual',
-        spd: 1.23,
-        srcIds: ['f7c70cc8-f9b7-4467-b4ad-3904e360e842', '1da3fab000014e3133709830937387405'],
-        srcTyps: ['MTI', 'POI'],
-        strength: 14,
-        tags: ['TAG1', 'TAG2'],
-        trkConf: 1.23,
-        trkId: 'trkId',
-        trkItmId: 'trkItmId',
-        trkNum: 'trkNum',
-        trkPtType: 'MEASURED',
-        trkQual: 0,
-        trkStat: 'INITIATING',
-      },
-    ]);
+    const response = await client.track.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          ts: '2021-06-07T14:17:39.653043Z',
+          id: 'TRACK-ID',
+          alt: 1.23,
+          asset: 'asset',
+          assetNat: 'US',
+          callSign: 'callSign',
+          cntct: 'Contact Info',
+          course: 88.37,
+          cov: [1.1, 2.2, 3.3],
+          ecefAcc: [1.23, 2.34, 3.45],
+          ecefPos: [1.23, 2.34, 3.45],
+          ecefVel: [1.23, 2.34, 3.45],
+          eNUPos: [1.23, 2.34, 3.45],
+          eNUVel: [1.23, 2.34, 3.45],
+          env: 'LAND',
+          envConf: 1.23,
+          errEllp: [1.23, 2.34, 3.45],
+          hdng: 19.7,
+          identAmp: 'ZOMBIE',
+          identCred: 0,
+          identRel: 0,
+          jSeries: 'J12.5',
+          lat: 1.23,
+          lcAcc: [1.23, 2.34, 3.45],
+          lco: [1.23, 2.34, 3.45],
+          lcPos: [1.23, 2.34, 3.45],
+          lcs: [1.23, 2.34, 3.45],
+          lcVel: [1.23, 2.34, 3.45],
+          lon: 1.23,
+          m1: 1234,
+          m1v: 1,
+          m2: 1234,
+          m2v: 1,
+          m3a: 2636,
+          m3av: 1,
+          modType: 'MASINT',
+          msgTs: '2021-01-01T01:01:01.123456Z',
+          msnId: 'msnId',
+          multiSource: true,
+          objAct: 'HOLDING',
+          objId: 'objId',
+          objIdent: 'FRIEND',
+          objNat: 'NATO',
+          objPlat: 'COMBAT_VEHICLE',
+          objSpec: 'LIGHT_TANK',
+          objType: 'WATERCRAFT',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          sen: 'sen',
+          senQual: 'senQual',
+          spd: 1.23,
+          srcIds: ['f7c70cc8-f9b7-4467-b4ad-3904e360e842', '1da3fab000014e3133709830937387405'],
+          srcTyps: ['MTI', 'POI'],
+          strength: 14,
+          tags: ['TAG1', 'TAG2'],
+          trkConf: 1.23,
+          trkId: 'trkId',
+          trkItmId: 'trkItmId',
+          trkNum: 'trkNum',
+          trkPtType: 'MEASURED',
+          trkQual: 0,
+          trkStat: 'INITIATING',
+        },
+      ],
+    });
   });
 
   test('queryhelp', async () => {
@@ -133,13 +141,6 @@ describe('resource track', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.track.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {
@@ -158,9 +159,16 @@ describe('resource track', () => {
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.track.unvalidatedPublish([
-      { classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', ts: '2021-06-07T14:17:39.653043Z' },
-    ]);
+    const responsePromise = client.track.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          ts: '2021-06-07T14:17:39.653043Z',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -171,73 +179,75 @@ describe('resource track', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.track.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        source: 'Bluestaq',
-        ts: '2021-06-07T14:17:39.653043Z',
-        id: 'TRACK-ID',
-        alt: 1.23,
-        asset: 'asset',
-        assetNat: 'US',
-        callSign: 'callSign',
-        cntct: 'Contact Info',
-        course: 88.37,
-        cov: [1.1, 2.2, 3.3],
-        ecefAcc: [1.23, 2.34, 3.45],
-        ecefPos: [1.23, 2.34, 3.45],
-        ecefVel: [1.23, 2.34, 3.45],
-        eNUPos: [1.23, 2.34, 3.45],
-        eNUVel: [1.23, 2.34, 3.45],
-        env: 'LAND',
-        envConf: 1.23,
-        errEllp: [1.23, 2.34, 3.45],
-        hdng: 19.7,
-        identAmp: 'ZOMBIE',
-        identCred: 0,
-        identRel: 0,
-        jSeries: 'J12.5',
-        lat: 1.23,
-        lcAcc: [1.23, 2.34, 3.45],
-        lco: [1.23, 2.34, 3.45],
-        lcPos: [1.23, 2.34, 3.45],
-        lcs: [1.23, 2.34, 3.45],
-        lcVel: [1.23, 2.34, 3.45],
-        lon: 1.23,
-        m1: 1234,
-        m1v: 1,
-        m2: 1234,
-        m2v: 1,
-        m3a: 2636,
-        m3av: 1,
-        modType: 'MASINT',
-        msgTs: '2021-01-01T01:01:01.123456Z',
-        msnId: 'msnId',
-        multiSource: true,
-        objAct: 'HOLDING',
-        objId: 'objId',
-        objIdent: 'FRIEND',
-        objNat: 'NATO',
-        objPlat: 'COMBAT_VEHICLE',
-        objSpec: 'LIGHT_TANK',
-        objType: 'WATERCRAFT',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        sen: 'sen',
-        senQual: 'senQual',
-        spd: 1.23,
-        srcIds: ['f7c70cc8-f9b7-4467-b4ad-3904e360e842', '1da3fab000014e3133709830937387405'],
-        srcTyps: ['MTI', 'POI'],
-        strength: 14,
-        tags: ['TAG1', 'TAG2'],
-        trkConf: 1.23,
-        trkId: 'trkId',
-        trkItmId: 'trkItmId',
-        trkNum: 'trkNum',
-        trkPtType: 'MEASURED',
-        trkQual: 0,
-        trkStat: 'INITIATING',
-      },
-    ]);
+    const response = await client.track.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          ts: '2021-06-07T14:17:39.653043Z',
+          id: 'TRACK-ID',
+          alt: 1.23,
+          asset: 'asset',
+          assetNat: 'US',
+          callSign: 'callSign',
+          cntct: 'Contact Info',
+          course: 88.37,
+          cov: [1.1, 2.2, 3.3],
+          ecefAcc: [1.23, 2.34, 3.45],
+          ecefPos: [1.23, 2.34, 3.45],
+          ecefVel: [1.23, 2.34, 3.45],
+          eNUPos: [1.23, 2.34, 3.45],
+          eNUVel: [1.23, 2.34, 3.45],
+          env: 'LAND',
+          envConf: 1.23,
+          errEllp: [1.23, 2.34, 3.45],
+          hdng: 19.7,
+          identAmp: 'ZOMBIE',
+          identCred: 0,
+          identRel: 0,
+          jSeries: 'J12.5',
+          lat: 1.23,
+          lcAcc: [1.23, 2.34, 3.45],
+          lco: [1.23, 2.34, 3.45],
+          lcPos: [1.23, 2.34, 3.45],
+          lcs: [1.23, 2.34, 3.45],
+          lcVel: [1.23, 2.34, 3.45],
+          lon: 1.23,
+          m1: 1234,
+          m1v: 1,
+          m2: 1234,
+          m2v: 1,
+          m3a: 2636,
+          m3av: 1,
+          modType: 'MASINT',
+          msgTs: '2021-01-01T01:01:01.123456Z',
+          msnId: 'msnId',
+          multiSource: true,
+          objAct: 'HOLDING',
+          objId: 'objId',
+          objIdent: 'FRIEND',
+          objNat: 'NATO',
+          objPlat: 'COMBAT_VEHICLE',
+          objSpec: 'LIGHT_TANK',
+          objType: 'WATERCRAFT',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          sen: 'sen',
+          senQual: 'senQual',
+          spd: 1.23,
+          srcIds: ['f7c70cc8-f9b7-4467-b4ad-3904e360e842', '1da3fab000014e3133709830937387405'],
+          srcTyps: ['MTI', 'POI'],
+          strength: 14,
+          tags: ['TAG1', 'TAG2'],
+          trkConf: 1.23,
+          trkId: 'trkId',
+          trkItmId: 'trkItmId',
+          trkNum: 'trkNum',
+          trkPtType: 'MEASURED',
+          trkQual: 0,
+          trkStat: 'INITIATING',
+        },
+      ],
+    });
   });
 });

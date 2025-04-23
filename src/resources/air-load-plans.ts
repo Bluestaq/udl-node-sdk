@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class AirLoadPlans extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class AirLoadPlans extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: AirLoadPlanCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: AirLoadPlanCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/airloadplan', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -21,8 +24,8 @@ export class AirLoadPlans extends APIResource {
    * Service operation to get a single airloadplan record by its unique ID passed as
    * a path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<AirloadplanFull> {
-    return this._client.get(`/udl/airloadplan/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<AirloadplanFull> {
+    return this._client.get(path`/udl/airloadplan/${id}`, options);
   }
 
   /**
@@ -31,10 +34,7 @@ export class AirLoadPlans extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: AirLoadPlanListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AirLoadPlanListResponse> {
+  list(query: AirLoadPlanListParams, options?: RequestOptions): APIPromise<AirLoadPlanListResponse> {
     return this._client.get('/udl/airloadplan', { query, ...options });
   }
 
@@ -45,11 +45,11 @@ export class AirLoadPlans extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: AirLoadPlanCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: AirLoadPlanCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/airloadplan/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -57,10 +57,10 @@ export class AirLoadPlans extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/airloadplan/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -74,10 +74,7 @@ export class AirLoadPlans extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: AirLoadPlanTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AirLoadPlanTupleResponse> {
+  tuple(query: AirLoadPlanTupleParams, options?: RequestOptions): APIPromise<AirLoadPlanTupleResponse> {
     return this._client.get('/udl/airloadplan/tuple', { query, ...options });
   }
 }

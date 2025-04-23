@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import {
@@ -12,6 +11,10 @@ import {
   HistoryListParams,
   HistoryListResponse,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class CollectRequests extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -21,11 +24,11 @@ export class CollectRequests extends APIResource {
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  create(body: CollectRequestCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: CollectRequestCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/collectrequest', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -33,8 +36,8 @@ export class CollectRequests extends APIResource {
    * Service operation to get a single CollectRequest by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Shared.CollectRequestFull> {
-    return this._client.get(`/udl/collectrequest/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.CollectRequestFull> {
+    return this._client.get(path`/udl/collectrequest/${id}`, options);
   }
 
   /**
@@ -43,10 +46,7 @@ export class CollectRequests extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: CollectRequestListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CollectRequestListResponse> {
+  list(query: CollectRequestListParams, options?: RequestOptions): APIPromise<CollectRequestListResponse> {
     return this._client.get('/udl/collectrequest', { query, ...options });
   }
 
@@ -57,11 +57,11 @@ export class CollectRequests extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: CollectRequestCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: CollectRequestCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/collectrequest/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -72,11 +72,12 @@ export class CollectRequests extends APIResource {
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: CollectRequestCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: CollectRequestCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/collectrequest/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -84,10 +85,10 @@ export class CollectRequests extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/collectrequest/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -101,10 +102,7 @@ export class CollectRequests extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: CollectRequestTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CollectRequestTupleResponse> {
+  tuple(query: CollectRequestTupleParams, options?: RequestOptions): APIPromise<CollectRequestTupleResponse> {
     return this._client.get('/udl/collectrequest/tuple', { query, ...options });
   }
 
@@ -115,13 +113,14 @@ export class CollectRequests extends APIResource {
    * contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: CollectRequestUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: CollectRequestUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-collectrequest', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -3199,7 +3198,9 @@ export interface CollectRequestCountParams {
   startTime: string;
 }
 
-export type CollectRequestCreateBulkParams = Array<CollectRequestCreateBulkParams.Body>;
+export interface CollectRequestCreateBulkParams {
+  body: Array<CollectRequestCreateBulkParams.Body>;
+}
 
 export namespace CollectRequestCreateBulkParams {
   /**
@@ -4737,7 +4738,9 @@ export interface CollectRequestTupleParams {
   startTime: string;
 }
 
-export type CollectRequestUnvalidatedPublishParams = Array<CollectRequestUnvalidatedPublishParams.Body>;
+export interface CollectRequestUnvalidatedPublishParams {
+  body: Array<CollectRequestUnvalidatedPublishParams.Body>;
+}
 
 export namespace CollectRequestUnvalidatedPublishParams {
   /**

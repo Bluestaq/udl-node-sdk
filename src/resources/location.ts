@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Location extends APIResource {
   /**
@@ -11,11 +14,11 @@ export class Location extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  create(body: LocationCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: LocationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/location', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -25,11 +28,11 @@ export class Location extends APIResource {
    * operating units, etc. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  update(id: string, body: LocationUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/location/${id}`, {
+  update(id: string, body: LocationUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/location/${id}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -39,7 +42,7 @@ export class Location extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<LocationListResponse> {
+  list(options?: RequestOptions): APIPromise<LocationListResponse> {
     return this._client.get('/udl/location', options);
   }
 
@@ -50,10 +53,10 @@ export class Location extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/location/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/location/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -64,10 +67,10 @@ export class Location extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/location/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -76,18 +79,18 @@ export class Location extends APIResource {
    * path parameter. Locations are specific fixed points on the earth and are used to
    * denote the locations of fixed sensors, operating units, etc.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<LocationFull> {
-    return this._client.get(`/udl/location/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<LocationFull> {
+    return this._client.get(path`/udl/location/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/location/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -101,7 +104,7 @@ export class Location extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: LocationTupleParams, options?: Core.RequestOptions): Core.APIPromise<LocationTupleResponse> {
+  tuple(query: LocationTupleParams, options?: RequestOptions): APIPromise<LocationTupleResponse> {
     return this._client.get('/udl/location/tuple', { query, ...options });
   }
 }

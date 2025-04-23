@@ -1,9 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as EnginesAPI from './engines';
 import * as OrganizationAPI from './organization';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Launchvehicle extends APIResource {
   /**
@@ -11,11 +14,11 @@ export class Launchvehicle extends APIResource {
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  create(body: LaunchvehicleCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: LaunchvehicleCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/launchvehicle', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -23,15 +26,11 @@ export class Launchvehicle extends APIResource {
    * Service operation to update a single LaunchVehicle. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
    */
-  update(
-    pathId: string,
-    body: LaunchvehicleUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/launchvehicle/${pathId}`, {
+  update(pathID: string, body: LaunchvehicleUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/launchvehicle/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -41,7 +40,7 @@ export class Launchvehicle extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<LaunchvehicleListResponse> {
+  list(options?: RequestOptions): APIPromise<LaunchvehicleListResponse> {
     return this._client.get('/udl/launchvehicle', options);
   }
 
@@ -50,10 +49,10 @@ export class Launchvehicle extends APIResource {
    * path parameter. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/launchvehicle/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/launchvehicle/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -64,10 +63,10 @@ export class Launchvehicle extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/launchvehicle/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -75,18 +74,18 @@ export class Launchvehicle extends APIResource {
    * Service operation to get a single LaunchVehicle record by its unique ID passed
    * as a path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<LaunchvehicleGetResponse> {
-    return this._client.get(`/udl/launchvehicle/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<LaunchvehicleGetResponse> {
+    return this._client.get(path`/udl/launchvehicle/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/launchvehicle/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -100,10 +99,7 @@ export class Launchvehicle extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: LaunchvehicleTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LaunchvehicleTupleResponse> {
+  tuple(query: LaunchvehicleTupleParams, options?: RequestOptions): APIPromise<LaunchvehicleTupleResponse> {
     return this._client.get('/udl/launchvehicle/tuple', { query, ...options });
   }
 }

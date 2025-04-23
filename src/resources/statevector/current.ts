@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as StatevectorAPI from './statevector';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Current extends APIResource {
   /**
@@ -17,7 +18,7 @@ export class Current extends APIResource {
    * operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required
    * query parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<CurrentListResponse> {
+  list(options?: RequestOptions): APIPromise<CurrentListResponse> {
     return this._client.get('/udl/statevector/current', options);
   }
 
@@ -33,7 +34,7 @@ export class Current extends APIResource {
    * operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required
    * query parameter information.
    */
-  tuple(query: CurrentTupleParams, options?: Core.RequestOptions): Core.APIPromise<CurrentTupleResponse> {
+  tuple(query: CurrentTupleParams, options?: RequestOptions): APIPromise<CurrentTupleResponse> {
     return this._client.get('/udl/statevector/current/tuple', { query, ...options });
   }
 }

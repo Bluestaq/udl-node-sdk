@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,6 +11,10 @@ import {
   HistoryQueryResponse,
 } from './history';
 import * as HazardHistoryAPI from '../udl/hazard/history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Hazard extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -23,11 +26,11 @@ export class Hazard extends APIResource {
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
    */
-  create(body: HazardCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: HazardCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/hazard', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -37,7 +40,7 @@ export class Hazard extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: HazardListParams, options?: Core.RequestOptions): Core.APIPromise<HazardListResponse> {
+  list(query: HazardListParams, options?: RequestOptions): APIPromise<HazardListResponse> {
     return this._client.get('/udl/hazard', { query, ...options });
   }
 
@@ -48,11 +51,11 @@ export class Hazard extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: HazardCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: HazardCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/hazard/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -63,11 +66,12 @@ export class Hazard extends APIResource {
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
    */
-  createBulk(body: HazardCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: HazardCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/hazard/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -75,18 +79,18 @@ export class Hazard extends APIResource {
    * Service operation to get a single Hazard by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<HazardHistoryAPI.HazardFull> {
-    return this._client.get(`/udl/hazard/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<HazardHistoryAPI.HazardFull> {
+    return this._client.get(path`/udl/hazard/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/hazard/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -100,7 +104,7 @@ export class Hazard extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: HazardTupleParams, options?: Core.RequestOptions): Core.APIPromise<HazardTupleResponse> {
+  tuple(query: HazardTupleParams, options?: RequestOptions): APIPromise<HazardTupleResponse> {
     return this._client.get('/udl/hazard/tuple', { query, ...options });
   }
 }
@@ -673,7 +677,9 @@ export interface HazardCountParams {
   detectTime: string;
 }
 
-export type HazardCreateBulkParams = Array<HazardCreateBulkParams.Body>;
+export interface HazardCreateBulkParams {
+  body: Array<HazardCreateBulkParams.Body>;
+}
 
 export namespace HazardCreateBulkParams {
   /**

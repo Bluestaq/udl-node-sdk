@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as ClassificationMarkingsAPI from './classification-markings';
 import { ClassificationMarkingListResponse, ClassificationMarkings } from './classification-markings';
@@ -37,8 +36,9 @@ import {
   V2MoveParams,
   V2UpdateParams,
 } from './v2';
-import { type BlobLike } from '../../uploads';
-import { type Response } from '../../_shims/index';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Scs extends APIResource {
   folders: FoldersAPI.Folders = new FoldersAPI.Folders(this._client);
@@ -56,33 +56,33 @@ export class Scs extends APIResource {
    * visible to the calling user. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  delete(params: ScDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  delete(params: ScDeleteParams, options?: RequestOptions): APIPromise<void> {
     const { id } = params;
     return this._client.delete('/scs/delete', {
       query: { id },
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
   /**
    * Returns a map of document types and counts in root folder.
    */
-  aggregateDocType(options?: Core.RequestOptions): Core.APIPromise<ScAggregateDocTypeResponse> {
+  aggregateDocType(options?: RequestOptions): APIPromise<ScAggregateDocTypeResponse> {
     return this._client.get('/scs/aggregateDocType', options);
   }
 
   /**
    * Returns a list of allowable file extensions for upload.
    */
-  allowableFileExtensions(options?: Core.RequestOptions): Core.APIPromise<ScAllowableFileExtensionsResponse> {
+  allowableFileExtensions(options?: RequestOptions): APIPromise<ScAllowableFileExtensionsResponse> {
     return this._client.get('/scs/allowableFileExtensions', options);
   }
 
   /**
    * Returns a list of allowable file mime types for upload.
    */
-  allowableFileMimes(options?: Core.RequestOptions): Core.APIPromise<ScAllowableFileMimesResponse> {
+  allowableFileMimes(options?: RequestOptions): APIPromise<ScAllowableFileMimesResponse> {
     return this._client.get('/scs/allowableFileMimes', options);
   }
 
@@ -90,7 +90,7 @@ export class Scs extends APIResource {
    * operation to copy folders or files. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  copy(params: ScCopyParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  copy(params: ScCopyParams, options?: RequestOptions): APIPromise<string> {
     const { id, targetPath } = params;
     return this._client.post('/scs/copy', { query: { id, targetPath }, ...options });
   }
@@ -98,11 +98,12 @@ export class Scs extends APIResource {
   /**
    * Downloads a zip of one or more files and/or folders.
    */
-  download(body: ScDownloadParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
+  download(params: ScDownloadParams, options?: RequestOptions): APIPromise<Response> {
+    const { body } = params;
     return this._client.post('/scs/download', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -110,11 +111,11 @@ export class Scs extends APIResource {
   /**
    * Download a single file from SCS.
    */
-  fileDownload(query: ScFileDownloadParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
+  fileDownload(query: ScFileDownloadParams, options?: RequestOptions): APIPromise<Response> {
     return this._client.get('/scs/download', {
       query,
       ...options,
-      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -123,14 +124,13 @@ export class Scs extends APIResource {
    * Operation to upload a file. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  fileUpload(params: ScFileUploadParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  fileUpload(params: ScFileUploadParams, options?: RequestOptions): APIPromise<string> {
     const { classificationMarking, fileName, path, body, description, overwrite, tags } = params;
     return this._client.post('/scs/file', {
       query: { classificationMarking, fileName, path, description, overwrite, tags },
       body: body,
       ...options,
-      headers: { 'Content-Type': 'application/octet-stream', ...options?.headers },
-      __binaryRequest: true,
+      headers: buildHeaders([{ 'Content-Type': 'application/octet-stream' }, options?.headers]),
     });
   }
 
@@ -138,7 +138,7 @@ export class Scs extends APIResource {
    * operation to move folders or files. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  move(params: ScMoveParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  move(params: ScMoveParams, options?: RequestOptions): APIPromise<string> {
     const { id, targetPath } = params;
     return this._client.put('/scs/move', { query: { id, targetPath }, ...options });
   }
@@ -147,19 +147,19 @@ export class Scs extends APIResource {
    * Operation to rename folders or files. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
    */
-  rename(params: ScRenameParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  rename(params: ScRenameParams, options?: RequestOptions): APIPromise<void> {
     const { id, newName } = params;
     return this._client.put('/scs/rename', {
       query: { id, newName },
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
   /**
    * Search for files by metadata and/or text in file content.
    */
-  search(params: ScSearchParams, options?: Core.RequestOptions): Core.APIPromise<ScSearchResponse> {
+  search(params: ScSearchParams, options?: RequestOptions): APIPromise<ScSearchResponse> {
     const { path, count, offset, ...body } = params;
     return this._client.post('/scs/search', { query: { path, count, offset }, body, ...options });
   }
@@ -167,12 +167,12 @@ export class Scs extends APIResource {
   /**
    * Updates tags for given folder.
    */
-  updateTags(params: ScUpdateTagsParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  updateTags(params: ScUpdateTagsParams, options?: RequestOptions): APIPromise<void> {
     const { folder, tags } = params;
     return this._client.put('/scs/updateTagsForFilesInFolder', {
       query: { folder, tags },
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -210,7 +210,9 @@ export interface ScCopyParams {
   targetPath: string;
 }
 
-export type ScDownloadParams = Array<string>;
+export interface ScDownloadParams {
+  body: Array<string>;
+}
 
 export interface ScFileDownloadParams {
   /**
@@ -238,7 +240,7 @@ export interface ScFileUploadParams {
   /**
    * Body param:
    */
-  body: string | ArrayBufferView | ArrayBuffer | BlobLike;
+  body: string | ArrayBuffer | ArrayBufferView | Blob | DataView;
 
   /**
    * Query param: Description

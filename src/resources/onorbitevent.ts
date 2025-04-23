@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Onorbitevent extends APIResource {
   /**
@@ -12,11 +15,11 @@ export class Onorbitevent extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  create(body: OnorbiteventCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: OnorbiteventCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitevent', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -26,15 +29,11 @@ export class Onorbitevent extends APIResource {
    * losses, anomalies and incidents. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  update(
-    pathId: string,
-    body: OnorbiteventUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/onorbitevent/${pathId}`, {
+  update(pathID: string, body: OnorbiteventUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/onorbitevent/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -44,7 +43,7 @@ export class Onorbitevent extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<OnorbiteventListResponse> {
+  list(options?: RequestOptions): APIPromise<OnorbiteventListResponse> {
     return this._client.get('/udl/onorbitevent', options);
   }
 
@@ -55,10 +54,10 @@ export class Onorbitevent extends APIResource {
    * A specific role is required to perform this service operation. Please contact
    * the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/onorbitevent/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/onorbitevent/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -69,10 +68,10 @@ export class Onorbitevent extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/onorbitevent/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -81,18 +80,18 @@ export class Onorbitevent extends APIResource {
    * a path parameter. An OnorbitEvent is an event associated with a particular
    * on-orbit spacecraft including insurance related losses, anomalies and incidents.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<OnorbiteventGetResponse> {
-    return this._client.get(`/udl/onorbitevent/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<OnorbiteventGetResponse> {
+    return this._client.get(path`/udl/onorbitevent/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/onorbitevent/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -106,10 +105,7 @@ export class Onorbitevent extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: OnorbiteventTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OnorbiteventTupleResponse> {
+  tuple(query: OnorbiteventTupleParams, options?: RequestOptions): APIPromise<OnorbiteventTupleResponse> {
     return this._client.get('/udl/onorbitevent/tuple', { query, ...options });
   }
 }

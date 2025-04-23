@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,6 +11,10 @@ import {
   HistoryListResponse,
   SwirFull,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Swir extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -21,11 +24,11 @@ export class Swir extends APIResource {
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  create(body: SwirCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: SwirCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/swir', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -35,7 +38,7 @@ export class Swir extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: SwirListParams, options?: Core.RequestOptions): Core.APIPromise<SwirListResponse> {
+  list(query: SwirListParams, options?: RequestOptions): APIPromise<SwirListResponse> {
     return this._client.get('/udl/swir', { query, ...options });
   }
 
@@ -46,11 +49,11 @@ export class Swir extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: SwirCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: SwirCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/swir/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -61,11 +64,12 @@ export class Swir extends APIResource {
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
    */
-  createBulk(body: SwirCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: SwirCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/swir/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -73,18 +77,18 @@ export class Swir extends APIResource {
    * Service operation to get a single SWIR record by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<HistoryAPI.SwirFull> {
-    return this._client.get(`/udl/swir/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.SwirFull> {
+    return this._client.get(path`/udl/swir/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/swir/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -98,7 +102,7 @@ export class Swir extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: SwirTupleParams, options?: Core.RequestOptions): Core.APIPromise<SwirTupleResponse> {
+  tuple(query: SwirTupleParams, options?: RequestOptions): APIPromise<SwirTupleResponse> {
     return this._client.get('/udl/swir/tuple', { query, ...options });
   }
 }
@@ -346,7 +350,9 @@ export interface SwirCountParams {
   ts: string;
 }
 
-export type SwirCreateBulkParams = Array<SwirCreateBulkParams.Body>;
+export interface SwirCreateBulkParams {
+  body: Array<SwirCreateBulkParams.Body>;
+}
 
 export namespace SwirCreateBulkParams {
   /**

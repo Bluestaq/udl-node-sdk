@@ -1,8 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Navigationalobstruction extends APIResource {
   /**
@@ -10,11 +12,11 @@ export class Navigationalobstruction extends APIResource {
    * body and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  create(body: NavigationalobstructionCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: NavigationalobstructionCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/navigationalobstruction', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -24,14 +26,14 @@ export class Navigationalobstruction extends APIResource {
    * for assistance.
    */
   update(
-    pathId: string,
+    pathID: string,
     body: NavigationalobstructionUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/navigationalobstruction/${pathId}`, {
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    return this._client.put(path`/udl/navigationalobstruction/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -42,17 +44,9 @@ export class Navigationalobstruction extends APIResource {
    * parameter information.
    */
   list(
-    query?: NavigationalobstructionListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<NavigationalobstructionListResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<NavigationalobstructionListResponse>;
-  list(
-    query: NavigationalobstructionListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<NavigationalobstructionListResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
+    query: NavigationalobstructionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<NavigationalobstructionListResponse> {
     return this._client.get('/udl/navigationalobstruction', { query, ...options });
   }
 
@@ -63,19 +57,14 @@ export class Navigationalobstruction extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query?: NavigationalobstructionCountParams, options?: Core.RequestOptions): Core.APIPromise<string>;
-  count(options?: Core.RequestOptions): Core.APIPromise<string>;
   count(
-    query: NavigationalobstructionCountParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.count({}, query);
-    }
+    query: NavigationalobstructionCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/navigationalobstruction/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -86,14 +75,12 @@ export class Navigationalobstruction extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(
-    body: NavigationalobstructionCreateBulkParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  createBulk(params: NavigationalobstructionCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/navigationalobstruction/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -101,18 +88,18 @@ export class Navigationalobstruction extends APIResource {
    * Service operation to get a single navigational obstruction record by its unique
    * ID passed as a path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<NavigationalobstructionGetResponse> {
-    return this._client.get(`/udl/navigationalobstruction/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<NavigationalobstructionGetResponse> {
+    return this._client.get(path`/udl/navigationalobstruction/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/navigationalobstruction/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -128,8 +115,8 @@ export class Navigationalobstruction extends APIResource {
    */
   tuple(
     query: NavigationalobstructionTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<NavigationalobstructionTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<NavigationalobstructionTupleResponse> {
     return this._client.get('/udl/navigationalobstruction/tuple', { query, ...options });
   }
 }
@@ -2484,7 +2471,9 @@ export interface NavigationalobstructionCountParams {
   obstacleId?: string;
 }
 
-export type NavigationalobstructionCreateBulkParams = Array<NavigationalobstructionCreateBulkParams.Body>;
+export interface NavigationalobstructionCreateBulkParams {
+  body: Array<NavigationalobstructionCreateBulkParams.Body>;
+}
 
 export namespace NavigationalobstructionCreateBulkParams {
   /**

@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Countries extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class Countries extends APIResource {
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  create(body: CountryCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: CountryCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/country', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -21,19 +24,19 @@ export class Countries extends APIResource {
    * Service operation to get a single Country record by its unique code passed as a
    * path parameter.
    */
-  retrieve(code: string, options?: Core.RequestOptions): Core.APIPromise<CountryFull> {
-    return this._client.get(`/udl/country/${code}`, options);
+  retrieve(code: string, options?: RequestOptions): APIPromise<CountryFull> {
+    return this._client.get(path`/udl/country/${code}`, options);
   }
 
   /**
    * Service operation to update a single Country. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(pathCode: string, body: CountryUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/country/${pathCode}`, {
+  update(pathCode: string, body: CountryUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/country/${pathCode}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -43,7 +46,7 @@ export class Countries extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<CountryListResponse> {
+  list(options?: RequestOptions): APIPromise<CountryListResponse> {
     return this._client.get('/udl/country', options);
   }
 
@@ -52,10 +55,10 @@ export class Countries extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  delete(code: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/country/${code}`, {
+  delete(code: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/country/${code}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -66,10 +69,10 @@ export class Countries extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/country/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -77,10 +80,10 @@ export class Countries extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/country/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -94,7 +97,7 @@ export class Countries extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: CountryTupleParams, options?: Core.RequestOptions): Core.APIPromise<CountryTupleResponse> {
+  tuple(query: CountryTupleParams, options?: RequestOptions): APIPromise<CountryTupleResponse> {
     return this._client.get('/udl/country/tuple', { query, ...options });
   }
 }

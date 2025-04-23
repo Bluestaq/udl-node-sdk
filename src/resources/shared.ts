@@ -8,7 +8,7 @@ import * as LocationAPI from './location';
 import * as OrganizationAPI from './organization';
 import * as SolararraydetailsAPI from './solararraydetails';
 import * as AircraftSortieAPI from './air-operations/aircraft-sortie';
-import { OffsetPage } from '../pagination';
+import { OffsetPage } from '../core/pagination';
 
 /**
  * The information in an Air Transport Mission contains unique identification,
@@ -8210,4 +8210,4 @@ export namespace Onorbit {
   }
 }
 
-export class FileDataOffsetPage extends OffsetPage<FileData> {}
+export type FileDataOffsetPage = OffsetPage<FileData>;

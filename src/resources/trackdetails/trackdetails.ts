@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -12,6 +11,9 @@ import {
   HistoryListResponse,
   TrackDetailsFull,
 } from './history';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Trackdetails extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -22,10 +24,7 @@ export class Trackdetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(
-    query: TrackdetailListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TrackdetailListResponse> {
+  list(query: TrackdetailListParams, options?: RequestOptions): APIPromise<TrackdetailListResponse> {
     return this._client.get('/udl/trackdetails', { query, ...options });
   }
 
@@ -36,11 +35,11 @@ export class Trackdetails extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(query: TrackdetailCountParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(query: TrackdetailCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/trackdetails/count', {
       query,
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -51,11 +50,12 @@ export class Trackdetails extends APIResource {
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: TrackdetailCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: TrackdetailCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/trackdetails/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -63,10 +63,10 @@ export class Trackdetails extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/trackdetails/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -80,10 +80,7 @@ export class Trackdetails extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: TrackdetailTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TrackdetailTupleResponse> {
+  tuple(query: TrackdetailTupleParams, options?: RequestOptions): APIPromise<TrackdetailTupleResponse> {
     return this._client.get('/udl/trackdetails/tuple', { query, ...options });
   }
 }
@@ -1329,7 +1326,9 @@ export interface TrackdetailCountParams {
   ts: string;
 }
 
-export type TrackdetailCreateBulkParams = Array<TrackdetailCreateBulkParams.Body>;
+export interface TrackdetailCreateBulkParams {
+  body: Array<TrackdetailCreateBulkParams.Body>;
+}
 
 export namespace TrackdetailCreateBulkParams {
   /**

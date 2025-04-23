@@ -1306,6 +1306,7 @@ export {
   SecureMessaging,
   type TopicDetails,
   type SecureMessagingListTopicsResponse,
+  type SecureMessagingGetMessagesParams,
 } from './secure-messaging';
 export {
   Sensor,

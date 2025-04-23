@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -21,13 +20,6 @@ describe('resource diffofarrival', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.diffofarrival.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.diffofarrival.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -37,13 +29,6 @@ describe('resource diffofarrival', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.diffofarrival.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {
@@ -68,14 +53,16 @@ describe('resource diffofarrival', () => {
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.diffofarrival.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        obTime: '2018-01-01T16:00:00.123456Z',
-        source: 'Bluestaq',
-      },
-    ]);
+    const responsePromise = client.diffofarrival.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          obTime: '2018-01-01T16:00:00.123456Z',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -86,47 +73,49 @@ describe('resource diffofarrival', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.diffofarrival.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        obTime: '2018-01-01T16:00:00.123456Z',
-        source: 'Bluestaq',
-        id: 'DIFFOFARRIVAL-ID',
-        bandwidth: 1.1,
-        collectionMode: 'SURVEY',
-        deltaRange: 1.1,
-        deltaRangeRate: 1.1,
-        deltaRangeRateUnc: 1.1,
-        deltaRangeUnc: 1.1,
-        descriptor: 'Example descriptor',
-        fdoa: 1.1,
-        fdoaUnc: 1.1,
-        frequency: 1.1,
-        idSensor1: 'SENSOR1-ID',
-        idSensor2: 'SENSOR2-ID',
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origObjectId: 'ORIGOBJECT-ID',
-        origSensorId1: 'ORIGSENSOR1-ID',
-        origSensorId2: 'ORIGSENSOR2-ID',
-        rawFileURI: 'rawFileURI',
-        satNo: 25544,
-        sen2alt: 1.1,
-        sen2lat: 1.1,
-        sen2lon: 1.1,
-        senalt: 1.1,
-        senlat: 45.1,
-        senlon: 120.1,
-        sensor1Delay: 1.1,
-        sensor2Delay: 1.1,
-        snr: 1.1,
-        tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-        taskId: 'TASK-ID',
-        tdoa: 1.1,
-        tdoaUnc: 1.1,
-        transactionId: 'TRANSACTION-ID',
-        uct: false,
-      },
-    ]);
+    const response = await client.diffofarrival.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          obTime: '2018-01-01T16:00:00.123456Z',
+          source: 'Bluestaq',
+          id: 'DIFFOFARRIVAL-ID',
+          bandwidth: 1.1,
+          collectionMode: 'SURVEY',
+          deltaRange: 1.1,
+          deltaRangeRate: 1.1,
+          deltaRangeRateUnc: 1.1,
+          deltaRangeUnc: 1.1,
+          descriptor: 'Example descriptor',
+          fdoa: 1.1,
+          fdoaUnc: 1.1,
+          frequency: 1.1,
+          idSensor1: 'SENSOR1-ID',
+          idSensor2: 'SENSOR2-ID',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origObjectId: 'ORIGOBJECT-ID',
+          origSensorId1: 'ORIGSENSOR1-ID',
+          origSensorId2: 'ORIGSENSOR2-ID',
+          rawFileURI: 'rawFileURI',
+          satNo: 25544,
+          sen2alt: 1.1,
+          sen2lat: 1.1,
+          sen2lon: 1.1,
+          senalt: 1.1,
+          senlat: 45.1,
+          senlon: 120.1,
+          sensor1Delay: 1.1,
+          sensor2Delay: 1.1,
+          snr: 1.1,
+          tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+          taskId: 'TASK-ID',
+          tdoa: 1.1,
+          tdoaUnc: 1.1,
+          transactionId: 'TRANSACTION-ID',
+          uct: false,
+        },
+      ],
+    });
   });
 });

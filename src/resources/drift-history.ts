@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class DriftHistory extends APIResource {
   /**
@@ -10,8 +13,8 @@ export class DriftHistory extends APIResource {
    * a path parameter. DriftHistory represents historical drift rates for GEO Onorbit
    * objects resulting from updates to OnorbitDetails driftRate values.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<Shared.DriftHistory> {
-    return this._client.get(`/udl/drifthistory/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.DriftHistory> {
+    return this._client.get(path`/udl/drifthistory/${id}`, options);
   }
 
   /**
@@ -20,7 +23,7 @@ export class DriftHistory extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<DriftHistoryListResponse> {
+  list(options?: RequestOptions): APIPromise<DriftHistoryListResponse> {
     return this._client.get('/udl/drifthistory', options);
   }
 
@@ -31,10 +34,10 @@ export class DriftHistory extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/drifthistory/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -42,10 +45,10 @@ export class DriftHistory extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/drifthistory/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -59,10 +62,7 @@ export class DriftHistory extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: DriftHistoryTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DriftHistoryTupleResponse> {
+  tuple(query: DriftHistoryTupleParams, options?: RequestOptions): APIPromise<DriftHistoryTupleResponse> {
     return this._client.get('/udl/drifthistory/tuple', { query, ...options });
   }
 }

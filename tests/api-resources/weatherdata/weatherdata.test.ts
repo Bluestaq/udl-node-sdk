@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Unifieddatalibrary from 'unifieddatalibrary';
-import { Response } from 'node-fetch';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
@@ -98,14 +97,16 @@ describe('resource weatherdata', () => {
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.weatherdata.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        obTime: '2018-01-01T16:00:00.123456Z',
-        source: 'Bluestaq',
-      },
-    ]);
+    const responsePromise = client.weatherdata.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          obTime: '2018-01-01T16:00:00.123456Z',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -116,46 +117,48 @@ describe('resource weatherdata', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.weatherdata.createBulk([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        obTime: '2018-01-01T16:00:00.123456Z',
-        source: 'Bluestaq',
-        id: 'WEATHER-DATA-ID',
-        angleOrientation: 75.7,
-        avgRefPwr: 714.9,
-        avgTxPwr: 20.23,
-        checksum: 133,
-        coIntegs: [4, 3],
-        consRecs: [5, 2],
-        doppVels: [44.4, 467.3],
-        fileCreation: '2018-01-01T16:00:00.123456Z',
-        firstGuessAvgs: [16, 1],
-        idSensor: '0129f577-e04c-441e-65ca-0a04a750bed9',
-        interpulsePeriods: [1000.3, 1000.2],
-        lightDetSensors: [11, 28, 190],
-        lightEventNum: 9,
-        noiseLvls: [58.2, 58.3],
-        numElements: 640,
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origSensorId: 'ORIGSENSOR-ID',
-        posConfidence: 0.1,
-        qcValue: 4,
-        sectorNum: 20,
-        semiMajorAxis: 3.4,
-        semiMinorAxis: 0.3,
-        sigPwrs: [116.5, 121.6],
-        sigStrength: 163.7,
-        snrs: [14.5, -16.2],
-        specAvgs: [4, 3],
-        specWidths: [0.3, 0.6],
-        srcIds: ['1b23ba93-0957-4654-b5ca-8c3703f3ec57', '32944ee4-0437-4d94-95ce-2f2823ffa001'],
-        srcTyps: ['SENSOR', 'WEATHERREPORT'],
-        tdAvgSampleNums: [32, 30],
-        termAlt: 19505.1,
-      },
-    ]);
+    const response = await client.weatherdata.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          obTime: '2018-01-01T16:00:00.123456Z',
+          source: 'Bluestaq',
+          id: 'WEATHER-DATA-ID',
+          angleOrientation: 75.7,
+          avgRefPwr: 714.9,
+          avgTxPwr: 20.23,
+          checksum: 133,
+          coIntegs: [4, 3],
+          consRecs: [5, 2],
+          doppVels: [44.4, 467.3],
+          fileCreation: '2018-01-01T16:00:00.123456Z',
+          firstGuessAvgs: [16, 1],
+          idSensor: '0129f577-e04c-441e-65ca-0a04a750bed9',
+          interpulsePeriods: [1000.3, 1000.2],
+          lightDetSensors: [11, 28, 190],
+          lightEventNum: 9,
+          noiseLvls: [58.2, 58.3],
+          numElements: 640,
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origSensorId: 'ORIGSENSOR-ID',
+          posConfidence: 0.1,
+          qcValue: 4,
+          sectorNum: 20,
+          semiMajorAxis: 3.4,
+          semiMinorAxis: 0.3,
+          sigPwrs: [116.5, 121.6],
+          sigStrength: 163.7,
+          snrs: [14.5, -16.2],
+          specAvgs: [4, 3],
+          specWidths: [0.3, 0.6],
+          srcIds: ['1b23ba93-0957-4654-b5ca-8c3703f3ec57', '32944ee4-0437-4d94-95ce-2f2823ffa001'],
+          srcTyps: ['SENSOR', 'WEATHERREPORT'],
+          tdAvgSampleNums: [32, 30],
+          termAlt: 19505.1,
+        },
+      ],
+    });
   });
 
   test('get', async () => {
@@ -169,13 +172,6 @@ describe('resource weatherdata', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.weatherdata.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
-  });
-
   test('queryhelp', async () => {
     const responsePromise = client.weatherdata.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -185,13 +181,6 @@ describe('resource weatherdata', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('queryhelp: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.weatherdata.queryhelp({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Unifieddatalibrary.NotFoundError,
-    );
   });
 
   test('tuple: only required params', async () => {
@@ -216,14 +205,16 @@ describe('resource weatherdata', () => {
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.weatherdata.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        obTime: '2018-01-01T16:00:00.123456Z',
-        source: 'Bluestaq',
-      },
-    ]);
+    const responsePromise = client.weatherdata.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          obTime: '2018-01-01T16:00:00.123456Z',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -234,45 +225,47 @@ describe('resource weatherdata', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.weatherdata.unvalidatedPublish([
-      {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        obTime: '2018-01-01T16:00:00.123456Z',
-        source: 'Bluestaq',
-        id: 'WEATHER-DATA-ID',
-        angleOrientation: 75.7,
-        avgRefPwr: 714.9,
-        avgTxPwr: 20.23,
-        checksum: 133,
-        coIntegs: [4, 3],
-        consRecs: [5, 2],
-        doppVels: [44.4, 467.3],
-        fileCreation: '2018-01-01T16:00:00.123456Z',
-        firstGuessAvgs: [16, 1],
-        idSensor: '0129f577-e04c-441e-65ca-0a04a750bed9',
-        interpulsePeriods: [1000.3, 1000.2],
-        lightDetSensors: [11, 28, 190],
-        lightEventNum: 9,
-        noiseLvls: [58.2, 58.3],
-        numElements: 640,
-        origin: 'THIRD_PARTY_DATASOURCE',
-        origSensorId: 'ORIGSENSOR-ID',
-        posConfidence: 0.1,
-        qcValue: 4,
-        sectorNum: 20,
-        semiMajorAxis: 3.4,
-        semiMinorAxis: 0.3,
-        sigPwrs: [116.5, 121.6],
-        sigStrength: 163.7,
-        snrs: [14.5, -16.2],
-        specAvgs: [4, 3],
-        specWidths: [0.3, 0.6],
-        srcIds: ['1b23ba93-0957-4654-b5ca-8c3703f3ec57', '32944ee4-0437-4d94-95ce-2f2823ffa001'],
-        srcTyps: ['SENSOR', 'WEATHERREPORT'],
-        tdAvgSampleNums: [32, 30],
-        termAlt: 19505.1,
-      },
-    ]);
+    const response = await client.weatherdata.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          obTime: '2018-01-01T16:00:00.123456Z',
+          source: 'Bluestaq',
+          id: 'WEATHER-DATA-ID',
+          angleOrientation: 75.7,
+          avgRefPwr: 714.9,
+          avgTxPwr: 20.23,
+          checksum: 133,
+          coIntegs: [4, 3],
+          consRecs: [5, 2],
+          doppVels: [44.4, 467.3],
+          fileCreation: '2018-01-01T16:00:00.123456Z',
+          firstGuessAvgs: [16, 1],
+          idSensor: '0129f577-e04c-441e-65ca-0a04a750bed9',
+          interpulsePeriods: [1000.3, 1000.2],
+          lightDetSensors: [11, 28, 190],
+          lightEventNum: 9,
+          noiseLvls: [58.2, 58.3],
+          numElements: 640,
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origSensorId: 'ORIGSENSOR-ID',
+          posConfidence: 0.1,
+          qcValue: 4,
+          sectorNum: 20,
+          semiMajorAxis: 3.4,
+          semiMinorAxis: 0.3,
+          sigPwrs: [116.5, 121.6],
+          sigStrength: 163.7,
+          snrs: [14.5, -16.2],
+          specAvgs: [4, 3],
+          specWidths: [0.3, 0.6],
+          srcIds: ['1b23ba93-0957-4654-b5ca-8c3703f3ec57', '32944ee4-0437-4d94-95ce-2f2823ffa001'],
+          srcTyps: ['SENSOR', 'WEATHERREPORT'],
+          tdAvgSampleNums: [32, 30],
+          termAlt: 19505.1,
+        },
+      ],
+    });
   });
 });

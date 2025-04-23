@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Surfaceobstruction extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class Surfaceobstruction extends APIResource {
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  create(body: SurfaceobstructionCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: SurfaceobstructionCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/surfaceobstruction', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -22,15 +25,11 @@ export class Surfaceobstruction extends APIResource {
    * is required to perform this service operation. Please contact the UDL team for
    * assistance.
    */
-  update(
-    pathId: string,
-    body: SurfaceobstructionUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/udl/surfaceobstruction/${pathId}`, {
+  update(pathID: string, body: SurfaceobstructionUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/surfaceobstruction/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -40,7 +39,7 @@ export class Surfaceobstruction extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<SurfaceobstructionListResponse> {
+  list(options?: RequestOptions): APIPromise<SurfaceobstructionListResponse> {
     return this._client.get('/udl/surfaceobstruction', options);
   }
 
@@ -49,10 +48,10 @@ export class Surfaceobstruction extends APIResource {
    * ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/surfaceobstruction/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/surfaceobstruction/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -63,10 +62,10 @@ export class Surfaceobstruction extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/surfaceobstruction/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -74,18 +73,18 @@ export class Surfaceobstruction extends APIResource {
    * Service operation to get a single surfaceobstruction record by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<SurfaceobstructionGetResponse> {
-    return this._client.get(`/udl/surfaceobstruction/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<SurfaceobstructionGetResponse> {
+    return this._client.get(path`/udl/surfaceobstruction/${id}`, options);
   }
 
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/surfaceobstruction/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -101,8 +100,8 @@ export class Surfaceobstruction extends APIResource {
    */
   tuple(
     query: SurfaceobstructionTupleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SurfaceobstructionTupleResponse> {
+    options?: RequestOptions,
+  ): APIPromise<SurfaceobstructionTupleResponse> {
     return this._client.get('/udl/surfaceobstruction/tuple', { query, ...options });
   }
 
@@ -113,13 +112,14 @@ export class Surfaceobstruction extends APIResource {
    * Please contact the UDL team for assistance.
    */
   unvalidatedPublish(
-    body: SurfaceobstructionUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+    params: SurfaceobstructionUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-surfaceobstruction', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -660,8 +660,9 @@ export interface SurfaceobstructionTupleParams {
   columns: string;
 }
 
-export type SurfaceobstructionUnvalidatedPublishParams =
-  Array<SurfaceobstructionUnvalidatedPublishParams.Body>;
+export interface SurfaceobstructionUnvalidatedPublishParams {
+  body: Array<SurfaceobstructionUnvalidatedPublishParams.Body>;
+}
 
 export namespace SurfaceobstructionUnvalidatedPublishParams {
   export interface Body {

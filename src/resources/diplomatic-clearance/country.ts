@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Country extends APIResource {
   /**
@@ -9,11 +12,11 @@ export class Country extends APIResource {
    * body and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  create(body: CountryCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  create(body: CountryCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/diplomaticclearancecountry', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -21,8 +24,8 @@ export class Country extends APIResource {
    * Service operation to get a single diplomaticclearancecountry record by its
    * unique ID passed as a path parameter.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<CountryRetrieveResponse> {
-    return this._client.get(`/udl/diplomaticclearancecountry/${id}`, options);
+  retrieve(id: string, options?: RequestOptions): APIPromise<CountryRetrieveResponse> {
+    return this._client.get(path`/udl/diplomaticclearancecountry/${id}`, options);
   }
 
   /**
@@ -30,11 +33,11 @@ export class Country extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  update(pathId: string, body: CountryUpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.put(`/udl/diplomaticclearancecountry/${pathId}`, {
+  update(pathID: string, body: CountryUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/diplomaticclearancecountry/${pathID}`, {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -44,7 +47,7 @@ export class Country extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<CountryListResponse> {
+  list(options?: RequestOptions): APIPromise<CountryListResponse> {
     return this._client.get('/udl/diplomaticclearancecountry', options);
   }
 
@@ -53,10 +56,10 @@ export class Country extends APIResource {
    * passed ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/udl/diplomaticclearancecountry/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/udl/diplomaticclearancecountry/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -67,10 +70,10 @@ export class Country extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: Core.RequestOptions): Core.APIPromise<string> {
+  count(options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/diplomaticclearancecountry/count', {
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -81,11 +84,12 @@ export class Country extends APIResource {
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
-  createBulk(body: CountryCreateBulkParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  createBulk(params: CountryCreateBulkParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/udl/diplomaticclearancecountry/createBulk', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -93,10 +97,10 @@ export class Country extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: Core.RequestOptions): Core.APIPromise<void> {
+  queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/diplomaticclearancecountry/queryhelp', {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -110,7 +114,7 @@ export class Country extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: CountryTupleParams, options?: Core.RequestOptions): Core.APIPromise<CountryTupleResponse> {
+  tuple(query: CountryTupleParams, options?: RequestOptions): APIPromise<CountryTupleResponse> {
     return this._client.get('/udl/diplomaticclearancecountry/tuple', { query, ...options });
   }
 
@@ -120,14 +124,12 @@ export class Country extends APIResource {
    * automated feeds into UDL. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  unvalidatedPublish(
-    body: CountryUnvalidatedPublishParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
+  unvalidatedPublish(params: CountryUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params;
     return this._client.post('/filedrop/udl-diplomaticclearancecountry', {
-      body,
+      body: body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -3317,7 +3319,9 @@ export namespace CountryUpdateParams {
   }
 }
 
-export type CountryCreateBulkParams = Array<CountryCreateBulkParams.Body>;
+export interface CountryCreateBulkParams {
+  body: Array<CountryCreateBulkParams.Body>;
+}
 
 export namespace CountryCreateBulkParams {
   /**
@@ -3947,7 +3951,9 @@ export interface CountryTupleParams {
   columns: string;
 }
 
-export type CountryUnvalidatedPublishParams = Array<CountryUnvalidatedPublishParams.Body>;
+export interface CountryUnvalidatedPublishParams {
+  body: Array<CountryUnvalidatedPublishParams.Body>;
+}
 
 export namespace CountryUnvalidatedPublishParams {
   /**

@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import { type BlobLike } from '../../uploads';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class V2 extends APIResource {
   /**
@@ -11,13 +12,13 @@ export class V2 extends APIResource {
    * description, classificationMarking, and tags. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  update(params: V2UpdateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  update(params: V2UpdateParams, options?: RequestOptions): APIPromise<void> {
     const { path, ...body } = params;
     return this._client.patch('/scs/v2/update', {
       query: { path },
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -25,7 +26,7 @@ export class V2 extends APIResource {
    * Returns a list of ScsEntity objects, each directly nested under the provided
    * path.
    */
-  list(query: V2ListParams, options?: Core.RequestOptions): Core.APIPromise<V2ListResponse> {
+  list(query: V2ListParams, options?: RequestOptions): APIPromise<V2ListResponse> {
     return this._client.get('/scs/v2/list', { query, ...options });
   }
 
@@ -33,12 +34,12 @@ export class V2 extends APIResource {
    * Operation to delete a folder or file. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
    */
-  delete(params: V2DeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  delete(params: V2DeleteParams, options?: RequestOptions): APIPromise<void> {
     const { path } = params;
     return this._client.delete('/scs/v2/delete', {
       query: { path },
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -46,12 +47,12 @@ export class V2 extends APIResource {
    * Operation to copy a folder or file. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    */
-  copy(params: V2CopyParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  copy(params: V2CopyParams, options?: RequestOptions): APIPromise<void> {
     const { fromPath, toPath } = params;
     return this._client.post('/scs/v2/copy', {
       query: { fromPath, toPath },
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -59,14 +60,16 @@ export class V2 extends APIResource {
    * Operation to upload a file. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  fileUpload(params: V2FileUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  fileUpload(params: V2FileUploadParams, options?: RequestOptions): APIPromise<void> {
     const { classificationMarking, path, body, description, overwrite, tags } = params;
     return this._client.post('/scs/v2/file', {
       query: { classificationMarking, path, description, overwrite, tags },
       body: body,
       ...options,
-      headers: { 'Content-Type': 'application/octet-stream', Accept: '*/*', ...options?.headers },
-      __binaryRequest: true,
+      headers: buildHeaders([
+        { 'Content-Type': 'application/octet-stream', Accept: '*/*' },
+        options?.headers,
+      ]),
     });
   }
 
@@ -79,13 +82,13 @@ export class V2 extends APIResource {
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
    */
-  folderCreate(params: V2FolderCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  folderCreate(params: V2FolderCreateParams, options?: RequestOptions): APIPromise<void> {
     const { path, ...body } = params;
     return this._client.post('/scs/v2/folder', {
       query: { path },
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -93,12 +96,12 @@ export class V2 extends APIResource {
    * Operation to move or rename a folder or file. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
    */
-  move(params: V2MoveParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  move(params: V2MoveParams, options?: RequestOptions): APIPromise<void> {
     const { fromPath, toPath } = params;
     return this._client.put('/scs/v2/move', {
       query: { fromPath, toPath },
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
@@ -261,7 +264,7 @@ export interface V2FileUploadParams {
   /**
    * Body param:
    */
-  body: string | ArrayBufferView | ArrayBuffer | BlobLike;
+  body: string | ArrayBuffer | ArrayBufferView | Blob | DataView;
 
   /**
    * Query param: Optional description of uploaded document.
