@@ -25,7 +25,7 @@ describe('resource secureMessaging', () => {
     await expect(
       client.secureMessaging.describeTopic(
         'topic',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -47,7 +47,7 @@ describe('resource secureMessaging', () => {
     await expect(
       client.secureMessaging.getLatestOffset(
         'topic',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -68,7 +68,7 @@ describe('resource secureMessaging', () => {
     const response = await client.secureMessaging.getMessages(0, {
       topic: 'topic',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

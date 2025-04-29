@@ -89,7 +89,7 @@ describe('resource featureassessment', () => {
     await expect(
       client.featureassessment.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -110,7 +110,7 @@ describe('resource featureassessment', () => {
     const response = await client.featureassessment.count({
       idAnalyticImagery: 'idAnalyticImagery',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -201,7 +201,7 @@ describe('resource featureassessment', () => {
     const response = await client.featureassessment.query({
       idAnalyticImagery: 'idAnalyticImagery',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -235,7 +235,7 @@ describe('resource featureassessment', () => {
       columns: 'columns',
       idAnalyticImagery: 'idAnalyticImagery',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

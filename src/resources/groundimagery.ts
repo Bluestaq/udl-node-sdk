@@ -439,7 +439,7 @@ export interface GroundimageryListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GroundimageryCountParams {
@@ -450,19 +450,19 @@ export interface GroundimageryCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GroundimageryGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GroundimageryGetFileParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GroundimageryTupleParams {
@@ -481,7 +481,7 @@ export interface GroundimageryTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Groundimagery {

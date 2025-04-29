@@ -1163,19 +1163,19 @@ export interface SeradatacommdetailUpdateParams {
 export interface SeradatacommdetailListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradatacommdetailCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradatacommdetailGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradatacommdetailTupleParams {
@@ -1189,7 +1189,7 @@ export interface SeradatacommdetailTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Seradatacommdetails {

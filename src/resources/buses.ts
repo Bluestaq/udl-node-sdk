@@ -1063,7 +1063,7 @@ export interface BusCreateParams {
 export interface BusRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface BusUpdateParams {
@@ -1371,13 +1371,13 @@ export interface BusUpdateParams {
 export interface BusListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface BusCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface BusTupleParams {
@@ -1391,7 +1391,7 @@ export interface BusTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Buses {

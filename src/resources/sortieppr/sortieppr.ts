@@ -478,7 +478,7 @@ export interface SortiepprListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SortiepprCountParams {
@@ -490,7 +490,7 @@ export interface SortiepprCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SortiepprCreateBulkParams {
@@ -600,7 +600,7 @@ export namespace SortiepprCreateBulkParams {
 export interface SortiepprGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SortiepprTupleParams {
@@ -620,7 +620,7 @@ export interface SortiepprTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SortiepprUnvalidatedPublishParams {

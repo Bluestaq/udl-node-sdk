@@ -71,7 +71,7 @@ export interface HistoryRetrieveParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'endTime, startTime' are required.) The planned outage
@@ -96,7 +96,7 @@ export interface HistoryAodrParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -134,7 +134,7 @@ export interface HistoryCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'endTime, startTime' are required.) The planned outage

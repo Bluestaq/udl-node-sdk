@@ -91,7 +91,7 @@ describe('resource entities', () => {
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.entities.retrieve('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.entities.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -177,7 +177,7 @@ describe('resource entities', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.entities.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.entities.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -206,7 +206,7 @@ describe('resource entities', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.entities.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.entities.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -224,7 +224,7 @@ describe('resource entities', () => {
   test('getAllTypes: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.entities.getAllTypes({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.entities.getAllTypes({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -251,6 +251,6 @@ describe('resource entities', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.entities.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.entities.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 });

@@ -336,7 +336,7 @@ export interface EphemerisListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EphemerisCountParams {
@@ -349,7 +349,7 @@ export interface EphemerisCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EphemerisFileUploadParams {
@@ -434,7 +434,7 @@ export interface EphemerisTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EphemerisUnvalidatedPublishParams {

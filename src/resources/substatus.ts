@@ -521,19 +521,19 @@ export interface SubstatusUpdateParams {
 export interface SubstatusListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SubstatusCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SubstatusGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SubstatusTupleParams {
@@ -547,7 +547,7 @@ export interface SubstatusTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Substatus {

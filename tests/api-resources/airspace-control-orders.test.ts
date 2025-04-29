@@ -139,7 +139,7 @@ describe('resource airspaceControlOrders', () => {
     await expect(
       client.airspaceControlOrders.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -160,7 +160,7 @@ describe('resource airspaceControlOrders', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.airspaceControlOrders.list(
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -181,7 +181,7 @@ describe('resource airspaceControlOrders', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.airspaceControlOrders.count(
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -335,7 +335,7 @@ describe('resource airspaceControlOrders', () => {
     const response = await client.airspaceControlOrders.tuple({
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

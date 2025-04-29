@@ -85,7 +85,7 @@ describe('resource location', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.location.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.location.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -114,7 +114,7 @@ describe('resource location', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.location.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.location.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -132,7 +132,7 @@ describe('resource location', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.location.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.location.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -159,6 +159,6 @@ describe('resource location', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.location.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.location.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 });

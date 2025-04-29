@@ -1726,19 +1726,19 @@ export namespace AirspaceControlOrderCreateParams {
 export interface AirspaceControlOrderRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirspaceControlOrderListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirspaceControlOrderCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirspaceControlOrderCreateBulkParams {
@@ -2275,7 +2275,7 @@ export interface AirspaceControlOrderTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace AirspaceControlOrders {

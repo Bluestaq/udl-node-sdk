@@ -527,19 +527,19 @@ export interface NavigationUpdateParams {
 export interface NavigationListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface NavigationCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface NavigationGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface NavigationTupleParams {
@@ -553,7 +553,7 @@ export interface NavigationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Navigation {

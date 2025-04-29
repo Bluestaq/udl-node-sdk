@@ -83,7 +83,7 @@ describe('resource rfbandtype', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.rfbandtype.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.rfbandtype.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -112,7 +112,7 @@ describe('resource rfbandtype', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.rfbandtype.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.rfbandtype.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -130,7 +130,7 @@ describe('resource rfbandtype', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.rfbandtype.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.rfbandtype.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -157,6 +157,6 @@ describe('resource rfbandtype', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.rfbandtype.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.rfbandtype.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 });

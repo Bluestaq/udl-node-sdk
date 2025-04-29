@@ -250,7 +250,7 @@ describe('resource seradataspacecraftdetails', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.seradataspacecraftdetails.list(
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -282,7 +282,7 @@ describe('resource seradataspacecraftdetails', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.seradataspacecraftdetails.count(
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -304,7 +304,7 @@ describe('resource seradataspacecraftdetails', () => {
     await expect(
       client.seradataspacecraftdetails.get(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -336,7 +336,7 @@ describe('resource seradataspacecraftdetails', () => {
     const response = await client.seradataspacecraftdetails.tuple({
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

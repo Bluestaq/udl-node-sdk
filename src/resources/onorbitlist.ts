@@ -483,19 +483,19 @@ export interface OnorbitlistUpdateParams {
 export interface OnorbitlistListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbitlistCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbitlistGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbitlistTupleParams {
@@ -509,7 +509,7 @@ export interface OnorbitlistTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Onorbitlist {

@@ -975,7 +975,7 @@ export interface SarobservationListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SarobservationCountParams {
@@ -987,7 +987,7 @@ export interface SarobservationCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SarobservationCreateBulkParams {
@@ -1408,7 +1408,7 @@ export namespace SarobservationCreateBulkParams {
 export interface SarobservationGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SarobservationTupleParams {
@@ -1428,7 +1428,7 @@ export interface SarobservationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SarobservationUnvalidatedPublishParams {

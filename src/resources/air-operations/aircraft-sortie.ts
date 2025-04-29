@@ -1444,7 +1444,7 @@ export interface AircraftSortieListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AircraftSortieCountParams {
@@ -1456,7 +1456,7 @@ export interface AircraftSortieCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AircraftSortieCreateBulkParams {
@@ -1882,7 +1882,7 @@ export interface AircraftSortieHistoryAodrParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -1914,7 +1914,7 @@ export interface AircraftSortieHistoryCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AircraftSortieHistoryQueryParams {
@@ -1933,7 +1933,7 @@ export interface AircraftSortieHistoryQueryParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace AircraftSortie {

@@ -427,7 +427,7 @@ export interface GnssrawifListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GnssrawifCountParams {
@@ -439,19 +439,19 @@ export interface GnssrawifCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GnssrawifFileGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GnssrawifGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GnssrawifTupleParams {
@@ -471,7 +471,7 @@ export interface GnssrawifTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GnssrawifUploadZipParams {

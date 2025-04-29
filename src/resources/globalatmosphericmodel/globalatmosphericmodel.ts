@@ -679,7 +679,7 @@ export namespace GlobalatmosphericmodelTupleResponse {
 export interface GlobalatmosphericmodelRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GlobalatmosphericmodelCountParams {
@@ -691,13 +691,13 @@ export interface GlobalatmosphericmodelCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GlobalatmosphericmodelGetFileParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GlobalatmosphericmodelQueryParams {
@@ -709,7 +709,7 @@ export interface GlobalatmosphericmodelQueryParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GlobalatmosphericmodelTupleParams {
@@ -729,7 +729,7 @@ export interface GlobalatmosphericmodelTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GlobalatmosphericmodelUnvalidatedPublishParams {

@@ -4147,19 +4147,19 @@ export interface SiteUpdateParams {
 export interface SiteListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SiteCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SiteGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SiteTupleParams {
@@ -4173,7 +4173,7 @@ export interface SiteTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Site.Operations = Operations;

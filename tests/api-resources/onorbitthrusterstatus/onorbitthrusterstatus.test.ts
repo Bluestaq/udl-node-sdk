@@ -70,7 +70,7 @@ describe('resource onorbitthrusterstatus', () => {
         {
           firstResult: 0,
           idOnorbitThruster: 'idOnorbitThruster',
-          maxResult: 0,
+          maxResults: 0,
           statusTime: '2019-12-27T18:11:19.117Z',
         },
         { path: '/_stainless_unknown_path' },
@@ -107,7 +107,7 @@ describe('resource onorbitthrusterstatus', () => {
         {
           firstResult: 0,
           idOnorbitThruster: 'idOnorbitThruster',
-          maxResult: 0,
+          maxResults: 0,
           statusTime: '2019-12-27T18:11:19.117Z',
         },
         { path: '/_stainless_unknown_path' },
@@ -182,7 +182,7 @@ describe('resource onorbitthrusterstatus', () => {
     await expect(
       client.onorbitthrusterstatus.get(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -215,7 +215,7 @@ describe('resource onorbitthrusterstatus', () => {
       columns: 'columns',
       firstResult: 0,
       idOnorbitThruster: 'idOnorbitThruster',
-      maxResult: 0,
+      maxResults: 0,
       statusTime: '2019-12-27T18:11:19.117Z',
     });
   });

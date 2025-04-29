@@ -855,7 +855,7 @@ export interface DiffofarrivalListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DiffofarrivalCountParams {
@@ -867,7 +867,7 @@ export interface DiffofarrivalCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DiffofarrivalCreateBulkParams {

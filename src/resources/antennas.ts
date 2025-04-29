@@ -311,7 +311,7 @@ export interface AntennaCreateParams {
 export interface AntennaRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AntennaUpdateParams {
@@ -360,13 +360,13 @@ export interface AntennaUpdateParams {
 export interface AntennaListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AntennaCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AntennaTupleParams {
@@ -380,7 +380,7 @@ export interface AntennaTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Antennas {

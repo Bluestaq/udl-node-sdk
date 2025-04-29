@@ -83,7 +83,7 @@ export interface FolderRetrieveParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface FolderUpdateParams {

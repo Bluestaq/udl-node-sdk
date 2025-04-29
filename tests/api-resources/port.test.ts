@@ -101,7 +101,7 @@ describe('resource port', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.port.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.port.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -119,7 +119,7 @@ describe('resource port', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.port.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.port.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -178,7 +178,7 @@ describe('resource port', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.port.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.port.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -205,6 +205,6 @@ describe('resource port', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.port.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.port.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 });

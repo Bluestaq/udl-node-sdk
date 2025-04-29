@@ -537,7 +537,7 @@ export interface AntennaDetailCreateParams {
 export interface AntennaDetailRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AntennaDetailUpdateParams {
@@ -678,7 +678,7 @@ export interface AntennaDetailUpdateParams {
 export interface AntennaDetailListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace AntennaDetails {

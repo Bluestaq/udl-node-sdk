@@ -3922,13 +3922,13 @@ export namespace LogisticssupportUpdateParams {
 export interface LogisticssupportListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LogisticssupportCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LogisticssupportCreateBulkParams {
@@ -4698,7 +4698,7 @@ export namespace LogisticssupportCreateBulkParams {
 export interface LogisticssupportGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LogisticssupportTupleParams {
@@ -4712,7 +4712,7 @@ export interface LogisticssupportTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LogisticssupportUnvalidatedPublishParams {

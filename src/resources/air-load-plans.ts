@@ -2447,7 +2447,7 @@ export namespace AirLoadPlanCreateParams {
 export interface AirLoadPlanRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirLoadPlanListParams {
@@ -2459,7 +2459,7 @@ export interface AirLoadPlanListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirLoadPlanCountParams {
@@ -2471,7 +2471,7 @@ export interface AirLoadPlanCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirLoadPlanTupleParams {
@@ -2491,7 +2491,7 @@ export interface AirLoadPlanTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace AirLoadPlans {

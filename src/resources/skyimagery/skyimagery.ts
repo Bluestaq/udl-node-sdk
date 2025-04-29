@@ -455,7 +455,7 @@ export interface SkyimageryListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SkyimageryCountParams {
@@ -467,19 +467,19 @@ export interface SkyimageryCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SkyimageryFileGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SkyimageryGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SkyimageryTupleParams {
@@ -499,7 +499,7 @@ export interface SkyimageryTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SkyimageryUploadZipParams {

@@ -1274,7 +1274,7 @@ export interface EmittergeolocationCreateParams {
 export interface EmittergeolocationRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EmittergeolocationCountParams {
@@ -1286,7 +1286,7 @@ export interface EmittergeolocationCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EmittergeolocationCreateBulkParams {
@@ -1559,7 +1559,7 @@ export interface EmittergeolocationQueryParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EmittergeolocationTupleParams {
@@ -1579,7 +1579,7 @@ export interface EmittergeolocationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EmittergeolocationUnvalidatedPublishParams {

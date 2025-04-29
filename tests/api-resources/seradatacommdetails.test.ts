@@ -131,7 +131,10 @@ describe('resource seradatacommdetails', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.seradatacommdetails.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.seradatacommdetails.list(
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -161,7 +164,7 @@ describe('resource seradatacommdetails', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.seradatacommdetails.count(
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -183,7 +186,7 @@ describe('resource seradatacommdetails', () => {
     await expect(
       client.seradatacommdetails.get(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -215,7 +218,7 @@ describe('resource seradatacommdetails', () => {
     const response = await client.seradatacommdetails.tuple({
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

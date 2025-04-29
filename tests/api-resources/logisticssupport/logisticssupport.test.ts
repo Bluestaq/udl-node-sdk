@@ -341,7 +341,7 @@ describe('resource logisticssupport', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.logisticssupport.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.logisticssupport.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -359,7 +359,7 @@ describe('resource logisticssupport', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.logisticssupport.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.logisticssupport.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -546,7 +546,7 @@ describe('resource logisticssupport', () => {
     await expect(
       client.logisticssupport.get(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -578,7 +578,7 @@ describe('resource logisticssupport', () => {
     const response = await client.logisticssupport.tuple({
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

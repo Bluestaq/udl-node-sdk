@@ -524,13 +524,13 @@ export namespace OnorbitthrusterUpdateParams {
 export interface OnorbitthrusterListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbitthrusterGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Onorbitthruster {

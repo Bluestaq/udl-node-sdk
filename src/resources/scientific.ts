@@ -649,19 +649,19 @@ export interface ScientificUpdateParams {
 export interface ScientificListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ScientificCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ScientificGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ScientificTupleParams {
@@ -675,7 +675,7 @@ export interface ScientificTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Scientific {

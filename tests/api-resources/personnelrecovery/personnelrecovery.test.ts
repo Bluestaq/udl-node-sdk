@@ -104,7 +104,7 @@ describe('resource personnelrecovery', () => {
     const response = await client.personnelrecovery.list({
       msgTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -123,7 +123,7 @@ describe('resource personnelrecovery', () => {
     const response = await client.personnelrecovery.count({
       msgTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -319,7 +319,7 @@ describe('resource personnelrecovery', () => {
     await expect(
       client.personnelrecovery.get(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -355,7 +355,7 @@ describe('resource personnelrecovery', () => {
       columns: 'columns',
       msgTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

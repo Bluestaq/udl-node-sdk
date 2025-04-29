@@ -442,7 +442,7 @@ export interface AIListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AICountParams {
@@ -454,7 +454,7 @@ export interface AICountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AICreateBulkParams {
@@ -780,7 +780,7 @@ export interface AIHistoryCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AITupleParams {
@@ -800,7 +800,7 @@ export interface AITupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 AIs.History = History;

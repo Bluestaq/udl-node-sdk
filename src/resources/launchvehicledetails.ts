@@ -1269,13 +1269,13 @@ export interface LaunchvehicledetailUpdateParams {
 export interface LaunchvehicledetailListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LaunchvehicledetailGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Launchvehicledetails {

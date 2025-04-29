@@ -1496,7 +1496,7 @@ export interface IonoobservationListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface IonoobservationCountParams {
@@ -1507,7 +1507,7 @@ export interface IonoobservationCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface IonoobservationCreateBulkParams {
@@ -2887,7 +2887,7 @@ export interface IonoobservationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface IonoobservationUnvalidatedPublishParams {

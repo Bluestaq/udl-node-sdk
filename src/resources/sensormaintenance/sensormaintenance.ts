@@ -671,7 +671,7 @@ export interface SensormaintenanceListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'endTime, startTime' are required.) The planned outage
@@ -689,7 +689,7 @@ export interface SensormaintenanceCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'endTime, startTime' are required.) The planned outage
@@ -880,13 +880,13 @@ export namespace SensormaintenanceCreateBulkParams {
 export interface SensormaintenanceCurrentParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SensormaintenanceGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SensormaintenanceTupleParams {
@@ -906,7 +906,7 @@ export interface SensormaintenanceTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'endTime, startTime' are required.) The planned outage

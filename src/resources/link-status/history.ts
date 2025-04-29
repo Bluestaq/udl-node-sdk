@@ -86,7 +86,7 @@ export interface HistoryListParams {
    */
   linkStopTime?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface HistoryAodrParams {
@@ -120,7 +120,7 @@ export interface HistoryAodrParams {
    */
   linkStopTime?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -167,7 +167,7 @@ export interface HistoryCountParams {
    */
   linkStopTime?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace History {

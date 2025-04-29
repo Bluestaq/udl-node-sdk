@@ -240,7 +240,7 @@ describe('resource flightplan', () => {
     await expect(
       client.flightplan.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -475,7 +475,7 @@ describe('resource flightplan', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.flightplan.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.flightplan.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -504,7 +504,7 @@ describe('resource flightplan', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.flightplan.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.flightplan.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -531,7 +531,7 @@ describe('resource flightplan', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.flightplan.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.flightplan.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 
   test('unvalidatedPublish: only required params', async () => {

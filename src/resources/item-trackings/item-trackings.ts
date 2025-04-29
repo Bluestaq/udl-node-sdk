@@ -399,7 +399,7 @@ export interface ItemTrackingListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ItemTrackingCountParams {
@@ -411,13 +411,13 @@ export interface ItemTrackingCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ItemTrackingGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ItemTrackingTupleParams {
@@ -437,7 +437,7 @@ export interface ItemTrackingTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ItemTrackingUnvalidatedPublishParams {

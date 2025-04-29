@@ -1828,7 +1828,7 @@ export interface EoObservationListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EoObservationCountParams {
@@ -1841,7 +1841,7 @@ export interface EoObservationCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EoObservationCreateBulkParams {

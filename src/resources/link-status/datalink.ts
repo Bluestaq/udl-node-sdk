@@ -2954,7 +2954,7 @@ export interface DatalinkListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DatalinkCountParams {
@@ -2966,7 +2966,7 @@ export interface DatalinkCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DatalinkTupleParams {
@@ -2986,7 +2986,7 @@ export interface DatalinkTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DatalinkUnvalidatedPublishParams {

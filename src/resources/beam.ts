@@ -339,7 +339,7 @@ export interface BeamCreateParams {
 export interface BeamRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface BeamUpdateParams {
@@ -399,13 +399,13 @@ export interface BeamUpdateParams {
 export interface BeamListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface BeamCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface BeamTupleParams {
@@ -419,7 +419,7 @@ export interface BeamTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Beam {

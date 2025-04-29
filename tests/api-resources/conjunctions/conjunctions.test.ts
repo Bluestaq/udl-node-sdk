@@ -25,7 +25,7 @@ describe('resource conjunctions', () => {
     await expect(
       client.conjunctions.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -46,7 +46,7 @@ describe('resource conjunctions', () => {
     const response = await client.conjunctions.list({
       tca: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -65,7 +65,7 @@ describe('resource conjunctions', () => {
     const response = await client.conjunctions.count({
       tca: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -644,7 +644,7 @@ describe('resource conjunctions', () => {
       tca: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -678,7 +678,7 @@ describe('resource conjunctions', () => {
       columns: 'columns',
       tca: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

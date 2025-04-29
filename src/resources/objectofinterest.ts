@@ -1716,19 +1716,19 @@ export interface ObjectofinterestUpdateParams {
 export interface ObjectofinterestListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ObjectofinterestCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ObjectofinterestGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ObjectofinterestTupleParams {
@@ -1742,7 +1742,7 @@ export interface ObjectofinterestTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Objectofinterest {

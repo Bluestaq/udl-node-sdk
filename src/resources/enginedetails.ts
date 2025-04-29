@@ -167,7 +167,7 @@ export type EnginedetailListResponse = Array<EngineDetailsAbridged>;
 export interface EnginedetailListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Enginedetails {

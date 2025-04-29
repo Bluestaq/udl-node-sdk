@@ -124,7 +124,7 @@ describe('resource operations', () => {
     await expect(
       client.site.operations.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -241,7 +241,7 @@ describe('resource operations', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.site.operations.list({ idSite: 'idSite', firstResult: 0, maxResult: 0 });
+    const response = await client.site.operations.list({ idSite: 'idSite', firstResult: 0, maxResults: 0 });
   });
 
   test('delete', async () => {
@@ -267,7 +267,7 @@ describe('resource operations', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.site.operations.count({ idSite: 'idSite', firstResult: 0, maxResult: 0 });
+    const response = await client.site.operations.count({ idSite: 'idSite', firstResult: 0, maxResults: 0 });
   });
 
   test('createBulk: only required params', async () => {
@@ -404,7 +404,7 @@ describe('resource operations', () => {
       columns: 'columns',
       idSite: 'idSite',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

@@ -804,19 +804,19 @@ export interface LaunchsiteUpdateParams {
 export interface LaunchsiteListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LaunchsiteCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LaunchsiteGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LaunchsiteTupleParams {
@@ -830,7 +830,7 @@ export interface LaunchsiteTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Launchsite {

@@ -81,7 +81,7 @@ describe('resource weatherdata', () => {
     const response = await client.weatherdata.list({
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -100,7 +100,7 @@ describe('resource weatherdata', () => {
     const response = await client.weatherdata.count({
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -183,7 +183,7 @@ describe('resource weatherdata', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.weatherdata.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.weatherdata.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -217,7 +217,7 @@ describe('resource weatherdata', () => {
       columns: 'columns',
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

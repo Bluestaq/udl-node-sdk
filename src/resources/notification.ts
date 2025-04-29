@@ -279,7 +279,7 @@ export interface NotificationListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface NotificationCountParams {
@@ -290,7 +290,7 @@ export interface NotificationCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface NotificationCreateRawParams {
@@ -353,7 +353,7 @@ export interface NotificationCreateRawParams {
 export interface NotificationGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface NotificationTupleParams {
@@ -372,7 +372,7 @@ export interface NotificationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Notification {

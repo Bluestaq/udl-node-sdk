@@ -1282,7 +1282,7 @@ export interface SgiListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
@@ -1304,7 +1304,7 @@ export interface SgiCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
@@ -1698,7 +1698,7 @@ export namespace SgiCreateBulkParams {
 export interface SgiGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SgiGetDataByEffectiveAsOfDateParams {
@@ -1712,7 +1712,7 @@ export interface SgiGetDataByEffectiveAsOfDateParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
@@ -1742,7 +1742,7 @@ export interface SgiTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time

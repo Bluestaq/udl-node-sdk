@@ -28,7 +28,7 @@ describe('resource history', () => {
           columns: 'columns',
           firstResult: 0,
           idOnorbitThruster: 'idOnorbitThruster',
-          maxResult: 0,
+          maxResults: 0,
           statusTime: '2019-12-27T18:11:19.117Z',
         },
         { path: '/_stainless_unknown_path' },

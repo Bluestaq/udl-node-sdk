@@ -1881,7 +1881,7 @@ export namespace OperationCreateParams {
 export interface OperationRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OperationUpdateParams {
@@ -2295,7 +2295,7 @@ export interface OperationListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OperationCountParams {
@@ -2306,7 +2306,7 @@ export interface OperationCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OperationCreateBulkParams {
@@ -2738,7 +2738,7 @@ export interface OperationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OperationUnvalidatedPublishParams {

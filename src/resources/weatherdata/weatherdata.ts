@@ -645,7 +645,7 @@ export interface WeatherdataListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface WeatherdataCountParams {
@@ -657,7 +657,7 @@ export interface WeatherdataCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface WeatherdataCreateBulkParams {
@@ -914,7 +914,7 @@ export namespace WeatherdataCreateBulkParams {
 export interface WeatherdataGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface WeatherdataTupleParams {
@@ -934,7 +934,7 @@ export interface WeatherdataTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface WeatherdataUnvalidatedPublishParams {

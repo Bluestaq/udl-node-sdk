@@ -370,7 +370,7 @@ export interface TaiutcListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TaiutcCountParams {
@@ -382,13 +382,13 @@ export interface TaiutcCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TaiutcGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TaiutcTupleParams {
@@ -408,7 +408,7 @@ export interface TaiutcTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Taiutc.History = History;

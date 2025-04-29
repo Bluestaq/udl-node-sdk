@@ -192,7 +192,7 @@ describe('resource airLoadPlans', () => {
     await expect(
       client.airLoadPlans.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -213,7 +213,7 @@ describe('resource airLoadPlans', () => {
     const response = await client.airLoadPlans.list({
       estDepTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -232,7 +232,7 @@ describe('resource airLoadPlans', () => {
     const response = await client.airLoadPlans.count({
       estDepTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -266,7 +266,7 @@ describe('resource airLoadPlans', () => {
       columns: 'columns',
       estDepTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

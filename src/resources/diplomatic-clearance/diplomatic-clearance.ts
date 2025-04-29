@@ -430,7 +430,7 @@ export namespace DiplomaticClearanceCreateParams {
 export interface DiplomaticClearanceRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DiplomaticClearanceUpdateParams {
@@ -704,7 +704,7 @@ export interface DiplomaticClearanceListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DiplomaticClearanceCountParams {
@@ -716,7 +716,7 @@ export interface DiplomaticClearanceCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DiplomaticClearanceCreateBulkParams {
@@ -1008,7 +1008,7 @@ export interface DiplomaticClearanceTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 DiplomaticClearance.History = History;

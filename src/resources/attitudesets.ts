@@ -23,7 +23,7 @@ export class Attitudesets extends APIResource {
 export interface AttitudesetRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Attitudesets {

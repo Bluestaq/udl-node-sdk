@@ -270,7 +270,7 @@ export interface OnboardnavigationListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnboardnavigationCountParams {
@@ -282,7 +282,7 @@ export interface OnboardnavigationCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnboardnavigationCreateBulkParams {
@@ -440,7 +440,7 @@ export interface OnboardnavigationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnboardnavigationUnvalidatedPublishParams {

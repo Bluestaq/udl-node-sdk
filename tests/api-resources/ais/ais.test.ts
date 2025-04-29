@@ -21,7 +21,7 @@ describe('resource ais', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.ais.list({ ts: '2019-12-27T18:11:19.117Z', firstResult: 0, maxResult: 0 });
+    const response = await client.ais.list({ ts: '2019-12-27T18:11:19.117Z', firstResult: 0, maxResults: 0 });
   });
 
   test('count: only required params', async () => {
@@ -36,7 +36,11 @@ describe('resource ais', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.ais.count({ ts: '2019-12-27T18:11:19.117Z', firstResult: 0, maxResult: 0 });
+    const response = await client.ais.count({
+      ts: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -130,7 +134,7 @@ describe('resource ais', () => {
     const response = await client.ais.historyCount({
       ts: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -161,7 +165,7 @@ describe('resource ais', () => {
       columns: 'columns',
       ts: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

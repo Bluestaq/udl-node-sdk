@@ -21,7 +21,7 @@ export type DataTypeListResponse = Array<string>;
 export interface DataTypeListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace DataTypes {

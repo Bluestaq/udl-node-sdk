@@ -2351,7 +2351,7 @@ export namespace FlightplanCreateParams {
 export interface FlightplanRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface FlightplanUpdateParams {
@@ -3445,13 +3445,13 @@ export namespace FlightplanUpdateParams {
 export interface FlightplanListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface FlightplanCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface FlightplanTupleParams {
@@ -3465,7 +3465,7 @@ export interface FlightplanTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface FlightplanUnvalidatedPublishParams {

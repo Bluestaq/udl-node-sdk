@@ -348,7 +348,7 @@ export interface SwirListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SwirCountParams {
@@ -359,7 +359,7 @@ export interface SwirCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SwirCreateBulkParams {
@@ -484,7 +484,7 @@ export namespace SwirCreateBulkParams {
 export interface SwirGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SwirTupleParams {
@@ -503,7 +503,7 @@ export interface SwirTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Swir.History = History;

@@ -603,7 +603,7 @@ export interface HistoryListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface HistoryAodrParams {
@@ -622,7 +622,7 @@ export interface HistoryAodrParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -654,7 +654,7 @@ export interface HistoryCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace History {

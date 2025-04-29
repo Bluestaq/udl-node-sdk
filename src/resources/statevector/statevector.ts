@@ -3019,7 +3019,7 @@ export interface StatevectorListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface StatevectorCountParams {
@@ -3031,7 +3031,7 @@ export interface StatevectorCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface StatevectorCreateBulkParams {
@@ -3041,7 +3041,7 @@ export interface StatevectorCreateBulkParams {
 export interface StatevectorGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface StatevectorTupleParams {
@@ -3061,7 +3061,7 @@ export interface StatevectorTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface StatevectorUnvalidatedPublishParams {

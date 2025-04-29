@@ -88,7 +88,7 @@ describe('resource emittergeolocation', () => {
     await expect(
       client.emittergeolocation.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -120,7 +120,7 @@ describe('resource emittergeolocation', () => {
     const response = await client.emittergeolocation.count({
       startTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -210,7 +210,7 @@ describe('resource emittergeolocation', () => {
     const response = await client.emittergeolocation.query({
       startTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -244,7 +244,7 @@ describe('resource emittergeolocation', () => {
       columns: 'columns',
       startTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

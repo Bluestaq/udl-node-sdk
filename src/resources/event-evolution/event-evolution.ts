@@ -564,7 +564,7 @@ export interface EventEvolutionCreateParams {
 export interface EventEvolutionRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EventEvolutionListParams {
@@ -578,7 +578,7 @@ export interface EventEvolutionListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'eventId, startTime' are required.) The actual or
@@ -599,7 +599,7 @@ export interface EventEvolutionCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'eventId, startTime' are required.) The actual or
@@ -840,7 +840,7 @@ export interface EventEvolutionTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'eventId, startTime' are required.) The actual or

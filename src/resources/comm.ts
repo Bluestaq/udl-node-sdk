@@ -512,7 +512,7 @@ export interface CommCreateParams {
 export interface CommRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CommUpdateParams {
@@ -576,13 +576,13 @@ export interface CommUpdateParams {
 export interface CommListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CommCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CommTupleParams {
@@ -596,7 +596,7 @@ export interface CommTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Comm {

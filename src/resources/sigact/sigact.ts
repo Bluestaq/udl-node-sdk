@@ -690,7 +690,7 @@ export interface SigactListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SigactCountParams {
@@ -701,7 +701,7 @@ export interface SigactCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SigactCreateBulkParams {
@@ -1271,7 +1271,7 @@ export interface SigactTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SigactUploadZipParams {

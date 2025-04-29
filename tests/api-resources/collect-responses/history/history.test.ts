@@ -25,7 +25,7 @@ describe('resource history', () => {
       createdAt: '2019-12-27',
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -44,7 +44,7 @@ describe('resource history', () => {
     const response = await client.collectResponses.history.count({
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

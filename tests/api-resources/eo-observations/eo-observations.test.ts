@@ -221,7 +221,7 @@ describe('resource eoObservations', () => {
     const response = await client.eoObservations.list({
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -240,7 +240,7 @@ describe('resource eoObservations', () => {
     const response = await client.eoObservations.count({
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

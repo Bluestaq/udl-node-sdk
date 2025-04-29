@@ -160,7 +160,7 @@ describe('resource starcatalog', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.starcatalog.list(
-        { dec: 0, firstResult: 0, maxResult: 0, ra: 0 },
+        { dec: 0, firstResult: 0, maxResults: 0, ra: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -192,7 +192,7 @@ describe('resource starcatalog', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.starcatalog.count(
-        { dec: 0, firstResult: 0, maxResult: 0, ra: 0 },
+        { dec: 0, firstResult: 0, maxResults: 0, ra: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -288,7 +288,7 @@ describe('resource starcatalog', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.starcatalog.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.starcatalog.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -319,7 +319,7 @@ describe('resource starcatalog', () => {
       columns: 'columns',
       dec: 0,
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
       ra: 0,
     });
   });

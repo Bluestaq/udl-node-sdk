@@ -65,7 +65,7 @@ export type AirfieldStatusTupleResponse = Array<AirfieldstatusAPI.Airfieldstatus
 export interface AirfieldStatusRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirfieldStatusUpdateParams {
@@ -316,7 +316,7 @@ export interface AirfieldStatusTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace AirfieldStatus {

@@ -28,7 +28,7 @@ describe('resource history', () => {
           columns: 'columns',
           eventId: 'eventId',
           firstResult: 0,
-          maxResult: 0,
+          maxResults: 0,
           startTime: '2019-12-27T18:11:19.117Z',
         },
         { path: '/_stainless_unknown_path' },
@@ -55,7 +55,7 @@ describe('resource history', () => {
           columns: 'columns',
           eventId: 'eventId',
           firstResult: 0,
-          maxResult: 0,
+          maxResults: 0,
           notification: 'notification',
           outputDelimiter: 'outputDelimiter',
           outputFormat: 'outputFormat',
@@ -81,7 +81,7 @@ describe('resource history', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.eventEvolution.history.count(
-        { eventId: 'eventId', firstResult: 0, maxResult: 0, startTime: '2019-12-27T18:11:19.117Z' },
+        { eventId: 'eventId', firstResult: 0, maxResults: 0, startTime: '2019-12-27T18:11:19.117Z' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);

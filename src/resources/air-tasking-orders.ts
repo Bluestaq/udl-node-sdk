@@ -978,13 +978,13 @@ export namespace AirTaskingOrderCreateParams {
 export interface AirTaskingOrderRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirTaskingOrderCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirTaskingOrderTupleParams {
@@ -998,7 +998,7 @@ export interface AirTaskingOrderTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace AirTaskingOrders {

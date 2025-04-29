@@ -114,7 +114,7 @@ describe('resource manifoldelset', () => {
     const response = await client.manifoldelset.list({
       epoch: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -144,7 +144,7 @@ describe('resource manifoldelset', () => {
     const response = await client.manifoldelset.count({
       epoch: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -215,7 +215,7 @@ describe('resource manifoldelset', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.manifoldelset.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.manifoldelset.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -249,7 +249,7 @@ describe('resource manifoldelset', () => {
       columns: 'columns',
       epoch: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

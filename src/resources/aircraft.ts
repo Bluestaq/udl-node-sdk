@@ -557,7 +557,7 @@ export interface AircraftCreateParams {
 export interface AircraftRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AircraftUpdateParams {
@@ -691,13 +691,13 @@ export interface AircraftUpdateParams {
 export interface AircraftListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AircraftCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AircraftTupleQueryParams {
@@ -711,7 +711,7 @@ export interface AircraftTupleQueryParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Aircraft {

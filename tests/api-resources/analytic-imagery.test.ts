@@ -25,7 +25,7 @@ describe('resource analyticImagery', () => {
     await expect(
       client.analyticImagery.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -46,7 +46,7 @@ describe('resource analyticImagery', () => {
     const response = await client.analyticImagery.list({
       msgTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -65,7 +65,7 @@ describe('resource analyticImagery', () => {
     const response = await client.analyticImagery.count({
       msgTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -74,7 +74,7 @@ describe('resource analyticImagery', () => {
     await expect(
       client.analyticImagery.fileGet(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -96,7 +96,7 @@ describe('resource analyticImagery', () => {
       msgTime: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -116,7 +116,7 @@ describe('resource analyticImagery', () => {
       msgTime: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',
@@ -138,7 +138,7 @@ describe('resource analyticImagery', () => {
     const response = await client.analyticImagery.historyCount({
       msgTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -172,7 +172,7 @@ describe('resource analyticImagery', () => {
       columns: 'columns',
       msgTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

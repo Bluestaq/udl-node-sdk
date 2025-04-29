@@ -167,7 +167,7 @@ describe('resource onorbitevent', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.onorbitevent.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.onorbitevent.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -196,7 +196,7 @@ describe('resource onorbitevent', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.onorbitevent.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.onorbitevent.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -214,7 +214,7 @@ describe('resource onorbitevent', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.onorbitevent.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.onorbitevent.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -241,6 +241,6 @@ describe('resource onorbitevent', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.onorbitevent.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.onorbitevent.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 });

@@ -46,7 +46,7 @@ describe('resource folders', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.scs.folders.retrieve({ id: 'id', firstResult: 0, maxResult: 0 });
+    const response = await client.scs.folders.retrieve({ id: 'id', firstResult: 0, maxResults: 0 });
   });
 
   test('update', async () => {

@@ -955,7 +955,7 @@ export interface IsrCollectionListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface IsrCollectionCountParams {
@@ -967,7 +967,7 @@ export interface IsrCollectionCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface IsrCollectionCreateBulkParams {
@@ -1799,7 +1799,7 @@ export interface IsrCollectionTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface IsrCollectionUnvalidatedPublishParams {

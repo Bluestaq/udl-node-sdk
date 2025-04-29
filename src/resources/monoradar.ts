@@ -499,7 +499,7 @@ export interface MonoradarListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface MonoradarCountParams {
@@ -511,7 +511,7 @@ export interface MonoradarCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface MonoradarCreateBulkParams {
@@ -929,7 +929,7 @@ export interface MonoradarTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Monoradar {

@@ -73,7 +73,7 @@ describe('resource groundimagery', () => {
     const response = await client.groundimagery.list({
       imageTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -92,7 +92,7 @@ describe('resource groundimagery', () => {
     const response = await client.groundimagery.count({
       imageTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -110,7 +110,7 @@ describe('resource groundimagery', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.groundimagery.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.groundimagery.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -119,7 +119,7 @@ describe('resource groundimagery', () => {
     await expect(
       client.groundimagery.getFile(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -155,7 +155,7 @@ describe('resource groundimagery', () => {
       columns: 'columns',
       imageTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

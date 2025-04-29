@@ -2719,7 +2719,7 @@ export namespace CountryCreateParams {
 export interface CountryRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CountryUpdateParams {
@@ -3336,13 +3336,13 @@ export namespace CountryUpdateParams {
 export interface CountryListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CountryCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CountryCreateBulkParams {
@@ -3978,7 +3978,7 @@ export interface CountryTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CountryUnvalidatedPublishParams {

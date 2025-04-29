@@ -28,7 +28,7 @@ describe('resource history', () => {
           columns: 'columns',
           dec: 0,
           firstResult: 0,
-          maxResult: 0,
+          maxResults: 0,
           notification: 'notification',
           outputDelimiter: 'outputDelimiter',
           outputFormat: 'outputFormat',

@@ -707,7 +707,7 @@ export interface EffectRequestCreateParams {
 export interface EffectRequestRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EffectRequestListParams {
@@ -719,7 +719,7 @@ export interface EffectRequestListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EffectRequestCountParams {
@@ -731,7 +731,7 @@ export interface EffectRequestCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EffectRequestCreateBulkParams {
@@ -886,7 +886,7 @@ export interface EffectRequestTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EffectRequestUnvalidatedPublishParams {

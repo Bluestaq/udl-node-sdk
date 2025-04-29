@@ -91,7 +91,7 @@ describe('resource sortieppr', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.sortieppr.list({ idSortie: 'idSortie', firstResult: 0, maxResult: 0 });
+    const response = await client.sortieppr.list({ idSortie: 'idSortie', firstResult: 0, maxResults: 0 });
   });
 
   test('delete', async () => {
@@ -117,7 +117,7 @@ describe('resource sortieppr', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.sortieppr.count({ idSortie: 'idSortie', firstResult: 0, maxResult: 0 });
+    const response = await client.sortieppr.count({ idSortie: 'idSortie', firstResult: 0, maxResults: 0 });
   });
 
   test('createBulk: only required params', async () => {
@@ -177,7 +177,7 @@ describe('resource sortieppr', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.sortieppr.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.sortieppr.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -208,7 +208,7 @@ describe('resource sortieppr', () => {
       columns: 'columns',
       idSortie: 'idSortie',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

@@ -504,7 +504,7 @@ export interface OrbittrackListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OrbittrackCountParams {
@@ -516,7 +516,7 @@ export interface OrbittrackCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OrbittrackCreateBulkParams {
@@ -913,7 +913,7 @@ export interface OrbittrackTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OrbittrackUnvalidatedPublishParams {

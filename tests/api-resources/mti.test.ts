@@ -21,7 +21,7 @@ describe('resource mti', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.mti.list({ createdAt: '2019-12-27', firstResult: 0, maxResult: 0 });
+    const response = await client.mti.list({ createdAt: '2019-12-27', firstResult: 0, maxResults: 0 });
   });
 
   test('count: only required params', async () => {
@@ -36,7 +36,7 @@ describe('resource mti', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.mti.count({ createdAt: '2019-12-27', firstResult: 0, maxResult: 0 });
+    const response = await client.mti.count({ createdAt: '2019-12-27', firstResult: 0, maxResults: 0 });
   });
 
   test('createBulk: only required params', async () => {
@@ -260,7 +260,7 @@ describe('resource mti', () => {
       columns: 'columns',
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

@@ -1507,7 +1507,7 @@ export interface StarcatalogListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'dec, ra' are required.) Barycentric right ascension of
@@ -1527,7 +1527,7 @@ export interface StarcatalogCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'dec, ra' are required.) Barycentric right ascension of
@@ -1799,7 +1799,7 @@ export namespace StarcatalogCreateBulkParams {
 export interface StarcatalogGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface StarcatalogTupleParams {
@@ -1820,7 +1820,7 @@ export interface StarcatalogTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'dec, ra' are required.) Barycentric right ascension of

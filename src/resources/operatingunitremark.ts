@@ -486,13 +486,13 @@ export interface OperatingunitremarkCreateParams {
 export interface OperatingunitremarkListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OperatingunitremarkCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OperatingunitremarkCreateBulkParams {
@@ -582,7 +582,7 @@ export namespace OperatingunitremarkCreateBulkParams {
 export interface OperatingunitremarkGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OperatingunitremarkTupleParams {
@@ -596,7 +596,7 @@ export interface OperatingunitremarkTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Operatingunitremark {

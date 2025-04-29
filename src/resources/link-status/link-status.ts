@@ -491,7 +491,7 @@ export interface LinkStatusListParams {
    */
   linkStopTime?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LinkStatusCountParams {
@@ -518,13 +518,13 @@ export interface LinkStatusCountParams {
    */
   linkStopTime?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LinkStatusGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LinkStatusTupleParams {
@@ -559,7 +559,7 @@ export interface LinkStatusTupleParams {
    */
   linkStopTime?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 LinkStatus.Datalink = Datalink;

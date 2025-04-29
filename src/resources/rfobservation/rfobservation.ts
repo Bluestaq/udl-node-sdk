@@ -1695,7 +1695,7 @@ export interface RfobservationListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RfobservationCountParams {
@@ -1707,7 +1707,7 @@ export interface RfobservationCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RfobservationCreateBulkParams {
@@ -2276,7 +2276,7 @@ export namespace RfobservationCreateBulkParams {
 export interface RfobservationGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RfobservationTupleParams {
@@ -2296,7 +2296,7 @@ export interface RfobservationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RfobservationUnvalidatedPublishParams {

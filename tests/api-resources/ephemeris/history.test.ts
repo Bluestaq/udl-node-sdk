@@ -25,7 +25,7 @@ describe('resource history', () => {
       esId: 'esId',
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -45,7 +45,7 @@ describe('resource history', () => {
       esId: 'esId',
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',
@@ -64,6 +64,6 @@ describe('resource history', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.ephemeris.history.count({ esId: 'esId', firstResult: 0, maxResult: 0 });
+    const response = await client.ephemeris.history.count({ esId: 'esId', firstResult: 0, maxResults: 0 });
   });
 });

@@ -1181,13 +1181,13 @@ export interface OnorbitdetailUpdateParams {
 export interface OnorbitdetailListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbitdetailGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Onorbitdetails {

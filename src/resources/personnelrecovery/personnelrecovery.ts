@@ -1358,7 +1358,7 @@ export interface PersonnelrecoveryListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface PersonnelrecoveryCountParams {
@@ -1370,7 +1370,7 @@ export interface PersonnelrecoveryCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface PersonnelrecoveryCreateBulkParams {
@@ -2174,7 +2174,7 @@ export namespace PersonnelrecoveryFileCreateParams {
 export interface PersonnelrecoveryGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface PersonnelrecoveryTupleParams {
@@ -2194,7 +2194,7 @@ export interface PersonnelrecoveryTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Personnelrecovery.History = History;

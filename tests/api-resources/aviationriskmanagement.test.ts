@@ -96,7 +96,7 @@ describe('resource aviationriskmanagement', () => {
     await expect(
       client.aviationriskmanagement.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -199,7 +199,7 @@ describe('resource aviationriskmanagement', () => {
     const response = await client.aviationriskmanagement.count({
       idMission: 'idMission',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -297,7 +297,7 @@ describe('resource aviationriskmanagement', () => {
     const response = await client.aviationriskmanagement.query({
       idMission: 'idMission',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -331,7 +331,7 @@ describe('resource aviationriskmanagement', () => {
       columns: 'columns',
       idMission: 'idMission',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

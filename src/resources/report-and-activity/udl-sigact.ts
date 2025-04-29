@@ -43,7 +43,7 @@ export class UdlSigact extends APIResource {
 export interface UdlSigactFileGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface UdlSigactUnvalidatedPublishParams {

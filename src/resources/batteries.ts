@@ -307,7 +307,7 @@ export interface BatteryCreateParams {
 export interface BatteryRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface BatteryUpdateParams {
@@ -356,13 +356,13 @@ export interface BatteryUpdateParams {
 export interface BatteryListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface BatteryCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface BatteryTupleParams {
@@ -376,7 +376,7 @@ export interface BatteryTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Batteries {

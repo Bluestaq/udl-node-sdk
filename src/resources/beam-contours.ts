@@ -534,7 +534,7 @@ export interface BeamContourCreateParams {
 export interface BeamContourRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface BeamContourUpdateParams {
@@ -664,7 +664,7 @@ export interface BeamContourListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface BeamContourCountParams {
@@ -675,7 +675,7 @@ export interface BeamContourCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface BeamContourCreateBulkParams {
@@ -824,7 +824,7 @@ export interface BeamContourTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace BeamContours {

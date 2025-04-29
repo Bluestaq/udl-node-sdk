@@ -116,7 +116,7 @@ describe('resource sarobservation', () => {
     const response = await client.sarobservation.list({
       collectionStart: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -135,7 +135,7 @@ describe('resource sarobservation', () => {
     const response = await client.sarobservation.count({
       collectionStart: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -253,7 +253,11 @@ describe('resource sarobservation', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.sarobservation.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.sarobservation.get(
+        'id',
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -287,7 +291,7 @@ describe('resource sarobservation', () => {
       collectionStart: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

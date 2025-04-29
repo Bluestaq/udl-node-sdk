@@ -54,7 +54,7 @@ describe('resource video', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.video.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.video.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -72,7 +72,7 @@ describe('resource video', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.video.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.video.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -90,7 +90,7 @@ describe('resource video', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.video.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.video.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -113,7 +113,7 @@ describe('resource video', () => {
       sourceName: 'sourceName',
       streamName: 'streamName',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -136,7 +136,7 @@ describe('resource video', () => {
       sourceName: 'sourceName',
       streamName: 'streamName',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -159,7 +159,7 @@ describe('resource video', () => {
       sourceName: 'sourceName',
       streamName: 'streamName',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -186,6 +186,6 @@ describe('resource video', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.video.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.video.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 });

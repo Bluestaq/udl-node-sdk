@@ -94,7 +94,7 @@ describe('resource diplomaticClearance', () => {
     await expect(
       client.diplomaticClearance.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -184,7 +184,7 @@ describe('resource diplomaticClearance', () => {
     const response = await client.diplomaticClearance.list({
       firstDepDate: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -214,7 +214,7 @@ describe('resource diplomaticClearance', () => {
     const response = await client.diplomaticClearance.count({
       firstDepDate: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -325,7 +325,7 @@ describe('resource diplomaticClearance', () => {
       columns: 'columns',
       firstDepDate: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

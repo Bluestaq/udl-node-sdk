@@ -516,7 +516,7 @@ export interface SolararraydetailListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'classificationMarking, dataMode, source' are required.)
@@ -528,7 +528,7 @@ export interface SolararraydetailListParams {
 export interface SolararraydetailGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Solararraydetails {

@@ -651,13 +651,13 @@ export namespace OnorbitsolararrayUpdateParams {
 export interface OnorbitsolararrayListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbitsolararrayGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Onorbitsolararray {

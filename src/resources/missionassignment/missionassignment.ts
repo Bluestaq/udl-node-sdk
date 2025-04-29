@@ -1183,7 +1183,7 @@ export interface MissionassignmentListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface MissionassignmentCountParams {
@@ -1195,7 +1195,7 @@ export interface MissionassignmentCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface MissionassignmentCreateBulkParams {
@@ -1545,7 +1545,7 @@ export namespace MissionassignmentCreateBulkParams {
 export interface MissionassignmentGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface MissionassignmentTupleParams {
@@ -1565,7 +1565,7 @@ export interface MissionassignmentTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Missionassignment.History = History;

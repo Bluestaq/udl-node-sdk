@@ -458,7 +458,7 @@ export interface SpaceenvobservationListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SpaceenvobservationCountParams {
@@ -470,7 +470,7 @@ export interface SpaceenvobservationCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SpaceenvobservationCreateBulkParams {
@@ -804,7 +804,7 @@ export interface SpaceenvobservationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SpaceenvobservationUnvalidatedPublishParams {

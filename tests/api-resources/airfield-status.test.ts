@@ -25,7 +25,7 @@ describe('resource airfieldStatus', () => {
     await expect(
       client.airfieldStatus.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -112,6 +112,6 @@ describe('resource airfieldStatus', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.airfieldStatus.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.airfieldStatus.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 });

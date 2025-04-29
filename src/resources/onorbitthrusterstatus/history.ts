@@ -36,7 +36,7 @@ export interface HistoryCountParams {
    */
   idOnorbitThruster?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) Datetime

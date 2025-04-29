@@ -25,7 +25,7 @@ describe('resource airfieldslots', () => {
     await expect(
       client.airfieldslots.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -95,7 +95,7 @@ describe('resource airfieldslots', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.airfieldslots.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.airfieldslots.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -122,6 +122,6 @@ describe('resource airfieldslots', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.airfieldslots.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.airfieldslots.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 });

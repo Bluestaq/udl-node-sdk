@@ -56,7 +56,10 @@ describe('resource operatingunitremark', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.operatingunitremark.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.operatingunitremark.list(
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -75,7 +78,7 @@ describe('resource operatingunitremark', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.operatingunitremark.count(
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -138,7 +141,7 @@ describe('resource operatingunitremark', () => {
     await expect(
       client.operatingunitremark.get(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -170,7 +173,7 @@ describe('resource operatingunitremark', () => {
     const response = await client.operatingunitremark.tuple({
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

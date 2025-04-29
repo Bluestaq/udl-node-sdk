@@ -108,13 +108,13 @@ export type DataownerCountResponse = string;
 export interface DataownerRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DataownerCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Dataowner {

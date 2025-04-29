@@ -458,19 +458,19 @@ export interface SiteremarkCreateParams {
 export interface SiteremarkListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SiteremarkCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SiteremarkGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SiteremarkTupleParams {
@@ -484,7 +484,7 @@ export interface SiteremarkTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Siteremark {

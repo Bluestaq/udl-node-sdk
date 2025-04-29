@@ -24,7 +24,7 @@ describe('resource skyimagery', () => {
     const response = await client.skyimagery.list({
       expStartTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -43,14 +43,18 @@ describe('resource skyimagery', () => {
     const response = await client.skyimagery.count({
       expStartTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
   test('fileGet: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.skyimagery.fileGet('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.skyimagery.fileGet(
+        'id',
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -68,7 +72,7 @@ describe('resource skyimagery', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.skyimagery.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.skyimagery.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -102,7 +106,7 @@ describe('resource skyimagery', () => {
       columns: 'columns',
       expStartTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

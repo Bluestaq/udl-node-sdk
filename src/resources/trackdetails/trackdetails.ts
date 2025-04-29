@@ -1319,7 +1319,7 @@ export interface TrackdetailListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TrackdetailCountParams {
@@ -1331,7 +1331,7 @@ export interface TrackdetailCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TrackdetailCreateBulkParams {
@@ -2558,7 +2558,7 @@ export interface TrackdetailTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Trackdetails.History = History;

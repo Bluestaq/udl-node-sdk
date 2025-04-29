@@ -106,7 +106,7 @@ describe('resource passiveradarobservation', () => {
     const response = await client.passiveradarobservation.list({
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -125,7 +125,7 @@ describe('resource passiveradarobservation', () => {
     const response = await client.passiveradarobservation.count({
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -325,7 +325,7 @@ describe('resource passiveradarobservation', () => {
     await expect(
       client.passiveradarobservation.get(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -361,7 +361,7 @@ describe('resource passiveradarobservation', () => {
       columns: 'columns',
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

@@ -84,7 +84,7 @@ describe('resource linkStatus', () => {
           firstResult: 0,
           linkStartTime: '2019-12-27T18:11:19.117Z',
           linkStopTime: '2019-12-27T18:11:19.117Z',
-          maxResult: 0,
+          maxResults: 0,
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -111,7 +111,7 @@ describe('resource linkStatus', () => {
           firstResult: 0,
           linkStartTime: '2019-12-27T18:11:19.117Z',
           linkStopTime: '2019-12-27T18:11:19.117Z',
-          maxResult: 0,
+          maxResults: 0,
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -132,7 +132,7 @@ describe('resource linkStatus', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.linkStatus.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.linkStatus.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -165,7 +165,7 @@ describe('resource linkStatus', () => {
       firstResult: 0,
       linkStartTime: '2019-12-27T18:11:19.117Z',
       linkStopTime: '2019-12-27T18:11:19.117Z',
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

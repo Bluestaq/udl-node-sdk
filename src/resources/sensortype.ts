@@ -143,13 +143,13 @@ export interface SensortypeGetResponse {
 export interface SensortypeListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SensortypeGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Sensortype {

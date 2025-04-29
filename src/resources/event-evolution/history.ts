@@ -73,7 +73,7 @@ export interface HistoryListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'eventId, startTime' are required.) The actual or
@@ -101,7 +101,7 @@ export interface HistoryAodrParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -142,7 +142,7 @@ export interface HistoryCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'eventId, startTime' are required.) The actual or

@@ -9598,19 +9598,19 @@ export namespace SensorUpdateParams {
 export interface SensorListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SensorCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SensorGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SensorTupleParams {
@@ -9624,7 +9624,7 @@ export interface SensorTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Sensor.Calibration = Calibration;

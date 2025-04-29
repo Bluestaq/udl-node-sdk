@@ -95,7 +95,7 @@ describe('resource surfaceobstruction', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.surfaceobstruction.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.surfaceobstruction.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -124,7 +124,10 @@ describe('resource surfaceobstruction', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.surfaceobstruction.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.surfaceobstruction.count(
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -144,7 +147,7 @@ describe('resource surfaceobstruction', () => {
     await expect(
       client.surfaceobstruction.get(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -176,7 +179,7 @@ describe('resource surfaceobstruction', () => {
     const response = await client.surfaceobstruction.tuple({
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

@@ -40,7 +40,7 @@ export interface TupleListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Tuple {

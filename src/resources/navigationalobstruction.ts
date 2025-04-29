@@ -2456,7 +2456,7 @@ export interface NavigationalobstructionListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'cycleDate, obstacleId' are required.) The ID of this
@@ -2474,7 +2474,7 @@ export interface NavigationalobstructionCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'cycleDate, obstacleId' are required.) The ID of this
@@ -2933,7 +2933,7 @@ export namespace NavigationalobstructionCreateBulkParams {
 export interface NavigationalobstructionGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface NavigationalobstructionTupleParams {
@@ -2953,7 +2953,7 @@ export interface NavigationalobstructionTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'cycleDate, obstacleId' are required.) The ID of this

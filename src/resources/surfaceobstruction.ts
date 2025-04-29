@@ -664,19 +664,19 @@ export interface SurfaceobstructionUpdateParams {
 export interface SurfaceobstructionListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SurfaceobstructionCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SurfaceobstructionGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SurfaceobstructionTupleParams {
@@ -690,7 +690,7 @@ export interface SurfaceobstructionTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SurfaceobstructionUnvalidatedPublishParams {

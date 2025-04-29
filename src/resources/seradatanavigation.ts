@@ -753,19 +753,19 @@ export interface SeradatanavigationUpdateParams {
 export interface SeradatanavigationListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradatanavigationCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradatanavigationGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradatanavigationTupleParams {
@@ -779,7 +779,7 @@ export interface SeradatanavigationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Seradatanavigation {

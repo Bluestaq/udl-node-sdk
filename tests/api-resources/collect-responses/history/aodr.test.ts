@@ -25,7 +25,7 @@ describe('resource aodr', () => {
       createdAt: '2019-12-27',
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',

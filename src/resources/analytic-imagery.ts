@@ -722,7 +722,7 @@ export type AnalyticImageryTupleResponse = Array<AnalyticImageryFull>;
 export interface AnalyticImageryRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AnalyticImageryListParams {
@@ -734,7 +734,7 @@ export interface AnalyticImageryListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AnalyticImageryCountParams {
@@ -746,13 +746,13 @@ export interface AnalyticImageryCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AnalyticImageryFileGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AnalyticImageryHistoryParams {
@@ -771,7 +771,7 @@ export interface AnalyticImageryHistoryParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AnalyticImageryHistoryAodrParams {
@@ -790,7 +790,7 @@ export interface AnalyticImageryHistoryAodrParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -822,7 +822,7 @@ export interface AnalyticImageryHistoryCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AnalyticImageryTupleParams {
@@ -842,7 +842,7 @@ export interface AnalyticImageryTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AnalyticImageryUnvalidatedPublishParams {

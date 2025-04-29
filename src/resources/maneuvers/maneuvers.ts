@@ -5219,7 +5219,7 @@ export interface ManeuverListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ManeuverCountParams {
@@ -5232,7 +5232,7 @@ export interface ManeuverCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ManeuverCreateBulkParams {
@@ -7773,7 +7773,7 @@ export namespace ManeuverCreateBulkParams {
 export interface ManeuverGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ManeuverTupleParams {
@@ -7794,7 +7794,7 @@ export interface ManeuverTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ManeuverUnvalidatedPublishParams {

@@ -2850,19 +2850,19 @@ export interface OperatingunitUpdateParams {
 export interface OperatingunitListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OperatingunitCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OperatingunitGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OperatingunitTupleParams {
@@ -2876,7 +2876,7 @@ export interface OperatingunitTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Operatingunit {

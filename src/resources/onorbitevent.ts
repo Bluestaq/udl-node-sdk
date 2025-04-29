@@ -1622,19 +1622,19 @@ export interface OnorbiteventUpdateParams {
 export interface OnorbiteventListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbiteventCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbiteventGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbiteventTupleParams {
@@ -1648,7 +1648,7 @@ export interface OnorbiteventTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Onorbitevent {

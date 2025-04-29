@@ -1295,7 +1295,7 @@ export interface FeatureassessmentCreateParams {
 export interface FeatureassessmentRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface FeatureassessmentCountParams {
@@ -1307,7 +1307,7 @@ export interface FeatureassessmentCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface FeatureassessmentCreateBulkParams {
@@ -1599,7 +1599,7 @@ export interface FeatureassessmentQueryParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface FeatureassessmentTupleParams {
@@ -1619,7 +1619,7 @@ export interface FeatureassessmentTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface FeatureassessmentUnvalidatedPublishParams {

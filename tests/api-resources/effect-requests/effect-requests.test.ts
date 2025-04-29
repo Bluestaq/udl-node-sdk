@@ -64,7 +64,7 @@ describe('resource effectRequests', () => {
     await expect(
       client.effectRequests.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -85,7 +85,7 @@ describe('resource effectRequests', () => {
     const response = await client.effectRequests.list({
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -104,7 +104,7 @@ describe('resource effectRequests', () => {
     const response = await client.effectRequests.count({
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -182,7 +182,7 @@ describe('resource effectRequests', () => {
       columns: 'columns',
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
