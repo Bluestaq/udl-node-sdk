@@ -1167,7 +1167,6 @@ Types:
 - <code><a href="./src/resources/elsets/elsets.ts">Elset</a></code>
 - <code><a href="./src/resources/elsets/elsets.ts">ElsetIngest</a></code>
 - <code><a href="./src/resources/elsets/elsets.ts">ElsetAbridged</a></code>
-- <code><a href="./src/resources/elsets/elsets.ts">ElsetListResponse</a></code>
 - <code><a href="./src/resources/elsets/elsets.ts">ElsetCountResponse</a></code>
 - <code><a href="./src/resources/elsets/elsets.ts">ElsetTupleResponse</a></code>
 
@@ -1175,7 +1174,7 @@ Methods:
 
 - <code title="post /udl/elset">client.elsets.<a href="./src/resources/elsets/elsets.ts">create</a>({ ...params }) -> void</code>
 - <code title="get /udl/elset/{id}">client.elsets.<a href="./src/resources/elsets/elsets.ts">retrieve</a>(id, { ...params }) -> Elset</code>
-- <code title="get /udl/elset">client.elsets.<a href="./src/resources/elsets/elsets.ts">list</a>({ ...params }) -> ElsetListResponse</code>
+- <code title="get /udl/elset">client.elsets.<a href="./src/resources/elsets/elsets.ts">list</a>({ ...params }) -> ElsetAbridgedsOffsetPage</code>
 - <code title="get /udl/elset/count">client.elsets.<a href="./src/resources/elsets/elsets.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/elset/createBulk">client.elsets.<a href="./src/resources/elsets/elsets.ts">createBulk</a>([ ...body ]) -> void</code>
 - <code title="post /udl/elset/createBulkFromTLE">client.elsets.<a href="./src/resources/elsets/elsets.ts">createBulkFromTle</a>({ ...params }) -> void</code>

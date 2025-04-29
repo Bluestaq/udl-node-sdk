@@ -513,7 +513,6 @@ export {
   type Elset,
   type ElsetIngest,
   type ElsetAbridged,
-  type ElsetListResponse,
   type ElsetCountResponse,
   type ElsetTupleResponse,
   type ElsetCreateParams,
@@ -524,6 +523,7 @@ export {
   type ElsetCreateBulkFromTleParams,
   type ElsetTupleParams,
   type ElsetUnvalidatedPublishParams,
+  type ElsetAbridgedsOffsetPage,
 } from './elsets/elsets';
 export {
   Emittergeolocation,
