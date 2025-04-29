@@ -107,16 +107,23 @@ export class Sensormaintenance extends APIResource {
    * Service operation to get current Sensor Maintenance records using any number of
    * additional parameters.
    */
-  current(options?: RequestOptions): APIPromise<SensormaintenanceCurrentResponse> {
-    return this._client.get('/udl/sensormaintenance/current', options);
+  current(
+    query: SensormaintenanceCurrentParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SensormaintenanceCurrentResponse> {
+    return this._client.get('/udl/sensormaintenance/current', { query, ...options });
   }
 
   /**
    * Service operation to get a single SensorMaintenance record by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SensormaintenanceHistoryAPI.SensormaintenanceFull> {
-    return this._client.get(path`/udl/sensormaintenance/${id}`, options);
+  get(
+    id: string,
+    query: SensormaintenanceGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SensormaintenanceHistoryAPI.SensormaintenanceFull> {
+    return this._client.get(path`/udl/sensormaintenance/${id}`, { query, ...options });
   }
 
   /**
@@ -662,6 +669,10 @@ export interface SensormaintenanceListParams {
    */
   endTime?: string;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * (One or more of fields 'endTime, startTime' are required.) The planned outage
    * start time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
@@ -675,6 +686,10 @@ export interface SensormaintenanceCountParams {
    * end time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   endTime?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'endTime, startTime' are required.) The planned outage
@@ -862,6 +877,18 @@ export namespace SensormaintenanceCreateBulkParams {
   }
 }
 
+export interface SensormaintenanceCurrentParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SensormaintenanceGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SensormaintenanceTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -876,6 +903,10 @@ export interface SensormaintenanceTupleParams {
    * end time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   endTime?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'endTime, startTime' are required.) The planned outage
@@ -897,6 +928,8 @@ export declare namespace Sensormaintenance {
     type SensormaintenanceListParams as SensormaintenanceListParams,
     type SensormaintenanceCountParams as SensormaintenanceCountParams,
     type SensormaintenanceCreateBulkParams as SensormaintenanceCreateBulkParams,
+    type SensormaintenanceCurrentParams as SensormaintenanceCurrentParams,
+    type SensormaintenanceGetParams as SensormaintenanceGetParams,
     type SensormaintenanceTupleParams as SensormaintenanceTupleParams,
   };
 

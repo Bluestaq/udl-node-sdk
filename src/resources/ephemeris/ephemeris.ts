@@ -333,6 +333,10 @@ export interface EphemerisListParams {
    * associated with a parent ephemerisSet. (uuid)
    */
   esId: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EphemerisCountParams {
@@ -342,6 +346,10 @@ export interface EphemerisCountParams {
    * associated with a parent ephemerisSet. (uuid)
    */
   esId: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EphemerisFileUploadParams {
@@ -423,6 +431,10 @@ export interface EphemerisTupleParams {
    * associated with a parent ephemerisSet. (uuid)
    */
   esId: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EphemerisUnvalidatedPublishParams {

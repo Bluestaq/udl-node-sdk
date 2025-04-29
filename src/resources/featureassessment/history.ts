@@ -357,6 +357,10 @@ export interface HistoryCountParams {
    * Assessment record.
    */
   idAnalyticImagery: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface HistoryQueryParams {
@@ -372,6 +376,10 @@ export interface HistoryQueryParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface HistoryWriteAodrParams {
@@ -387,6 +395,10 @@ export interface HistoryWriteAodrParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is

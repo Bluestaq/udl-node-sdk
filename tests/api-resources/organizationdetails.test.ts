@@ -133,7 +133,7 @@ describe('resource organizationdetails', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.organizationdetails.list({ name: 'name' });
+    const response = await client.organizationdetails.list({ name: 'name', firstResult: 0, maxResult: 0 });
   });
 
   test('delete', async () => {
@@ -159,7 +159,12 @@ describe('resource organizationdetails', () => {
   });
 
   test('findBySource: required and optional params', async () => {
-    const response = await client.organizationdetails.findBySource({ name: 'name', source: 'source' });
+    const response = await client.organizationdetails.findBySource({
+      name: 'name',
+      source: 'source',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('get', async () => {
@@ -171,5 +176,16 @@ describe('resource organizationdetails', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.organizationdetails.get(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 });

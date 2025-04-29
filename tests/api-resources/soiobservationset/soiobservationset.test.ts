@@ -193,7 +193,11 @@ describe('resource soiobservationset', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.soiobservationset.list({ startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.soiobservationset.list({
+      startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -208,7 +212,11 @@ describe('resource soiobservationset', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.soiobservationset.count({ startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.soiobservationset.count({
+      startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -406,6 +414,17 @@ describe('resource soiobservationset', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.soiobservationset.get(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.soiobservationset.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -435,6 +454,8 @@ describe('resource soiobservationset', () => {
     const response = await client.soiobservationset.tuple({
       columns: 'columns',
       startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 

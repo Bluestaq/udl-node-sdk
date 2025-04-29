@@ -74,6 +74,13 @@ describe('resource dropzone', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.dropzone.retrieve('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('update: only required params', async () => {
     const responsePromise = client.dropzone.update('id', {
       classificationMarking: 'U',
@@ -150,6 +157,13 @@ describe('resource dropzone', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('count: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.dropzone.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('createBulk: only required params', async () => {
     const responsePromise = client.dropzone.createBulk({
       body: [
@@ -223,6 +237,13 @@ describe('resource dropzone', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('query: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.dropzone.query({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryHelp', async () => {
     const responsePromise = client.dropzone.queryHelp();
     const rawResponse = await responsePromise.asResponse();
@@ -246,7 +267,7 @@ describe('resource dropzone', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.dropzone.tuple({ columns: 'columns' });
+    const response = await client.dropzone.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
   });
 
   test('unvalidatedPublish: only required params', async () => {

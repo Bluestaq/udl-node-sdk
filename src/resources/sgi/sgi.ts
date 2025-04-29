@@ -101,8 +101,12 @@ export class Sgi extends APIResource {
    * Service operation to get a single SGI record by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SgiHistoryAPI.SgiFull> {
-    return this._client.get(path`/udl/sgi/${id}`, options);
+  get(
+    id: string,
+    query: SgiGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SgiHistoryAPI.SgiFull> {
+    return this._client.get(path`/udl/sgi/${id}`, { query, ...options });
   }
 
   /**
@@ -1276,6 +1280,10 @@ export interface SgiListParams {
    */
   effectiveDate?: string;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
    * of the index value. This could be a past, current, or future predicted value.
@@ -1293,6 +1301,10 @@ export interface SgiCountParams {
    * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   effectiveDate?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
@@ -1683,6 +1695,12 @@ export namespace SgiCreateBulkParams {
   }
 }
 
+export interface SgiGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SgiGetDataByEffectiveAsOfDateParams {
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
@@ -1691,6 +1709,10 @@ export interface SgiGetDataByEffectiveAsOfDateParams {
    * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   effectiveDate?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
@@ -1717,6 +1739,10 @@ export interface SgiTupleParams {
    * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   effectiveDate?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
@@ -2119,6 +2145,7 @@ export declare namespace Sgi {
     type SgiListParams as SgiListParams,
     type SgiCountParams as SgiCountParams,
     type SgiCreateBulkParams as SgiCreateBulkParams,
+    type SgiGetParams as SgiGetParams,
     type SgiGetDataByEffectiveAsOfDateParams as SgiGetDataByEffectiveAsOfDateParams,
     type SgiTupleParams as SgiTupleParams,
     type SgiUnvalidatedPublishParams as SgiUnvalidatedPublishParams,

@@ -37,8 +37,12 @@ export class EffectRequests extends APIResource {
    * Service operation to get a single EffectRequest by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<EffectRequestRetrieveResponse> {
-    return this._client.get(path`/udl/effectrequest/${id}`, options);
+  retrieve(
+    id: string,
+    query: EffectRequestRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EffectRequestRetrieveResponse> {
+    return this._client.get(path`/udl/effectrequest/${id}`, { query, ...options });
   }
 
   /**
@@ -700,12 +704,22 @@ export interface EffectRequestCreateParams {
   targetSrcType?: string;
 }
 
+export interface EffectRequestRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EffectRequestListParams {
   /**
    * Time the row was created in the database, auto-populated by the system.
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EffectRequestCountParams {
@@ -714,6 +728,10 @@ export interface EffectRequestCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EffectRequestCreateBulkParams {
@@ -865,6 +883,10 @@ export interface EffectRequestTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EffectRequestUnvalidatedPublishParams {
@@ -1011,6 +1033,7 @@ export declare namespace EffectRequests {
     type EffectRequestCountResponse as EffectRequestCountResponse,
     type EffectRequestTupleResponse as EffectRequestTupleResponse,
     type EffectRequestCreateParams as EffectRequestCreateParams,
+    type EffectRequestRetrieveParams as EffectRequestRetrieveParams,
     type EffectRequestListParams as EffectRequestListParams,
     type EffectRequestCountParams as EffectRequestCountParams,
     type EffectRequestCreateBulkParams as EffectRequestCreateBulkParams,

@@ -20,6 +20,17 @@ describe('resource airfieldStatus', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.airfieldStatus.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('update: only required params', async () => {
     const responsePromise = client.airfieldStatus.update('id', {
       classificationMarking: 'U',
@@ -101,6 +112,6 @@ describe('resource airfieldStatus', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.airfieldStatus.tuple({ columns: 'columns' });
+    const response = await client.airfieldStatus.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
   });
 });

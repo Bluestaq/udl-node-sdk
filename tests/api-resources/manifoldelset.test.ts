@@ -111,7 +111,11 @@ describe('resource manifoldelset', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.manifoldelset.list({ epoch: '2019-12-27T18:11:19.117Z' });
+    const response = await client.manifoldelset.list({
+      epoch: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('delete', async () => {
@@ -137,7 +141,11 @@ describe('resource manifoldelset', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.manifoldelset.count({ epoch: '2019-12-27T18:11:19.117Z' });
+    const response = await client.manifoldelset.count({
+      epoch: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -204,6 +212,13 @@ describe('resource manifoldelset', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.manifoldelset.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.manifoldelset.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -233,6 +248,8 @@ describe('resource manifoldelset', () => {
     const response = await client.manifoldelset.tuple({
       columns: 'columns',
       epoch: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 });

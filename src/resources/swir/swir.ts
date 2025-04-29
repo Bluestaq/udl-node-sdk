@@ -77,8 +77,12 @@ export class Swir extends APIResource {
    * Service operation to get a single SWIR record by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.SwirFull> {
-    return this._client.get(path`/udl/swir/${id}`, options);
+  get(
+    id: string,
+    query: SwirGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.SwirFull> {
+    return this._client.get(path`/udl/swir/${id}`, { query, ...options });
   }
 
   /**
@@ -341,6 +345,10 @@ export interface SwirListParams {
    * Data timestamp in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SwirCountParams {
@@ -348,6 +356,10 @@ export interface SwirCountParams {
    * Data timestamp in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SwirCreateBulkParams {
@@ -469,6 +481,12 @@ export namespace SwirCreateBulkParams {
   }
 }
 
+export interface SwirGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SwirTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -482,6 +500,10 @@ export interface SwirTupleParams {
    * Data timestamp in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 Swir.History = History;
@@ -495,6 +517,7 @@ export declare namespace Swir {
     type SwirListParams as SwirListParams,
     type SwirCountParams as SwirCountParams,
     type SwirCreateBulkParams as SwirCreateBulkParams,
+    type SwirGetParams as SwirGetParams,
     type SwirTupleParams as SwirTupleParams,
   };
 

@@ -41,8 +41,11 @@ export class Navigation extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<NavigationListResponse> {
-    return this._client.get('/udl/navigation', options);
+  list(
+    query: NavigationListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<NavigationListResponse> {
+    return this._client.get('/udl/navigation', { query, ...options });
   }
 
   /**
@@ -65,8 +68,9 @@ export class Navigation extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: NavigationCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/navigation/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -76,8 +80,12 @@ export class Navigation extends APIResource {
    * Service operation to get a single Navigation record by its unique ID passed as a
    * path parameter. An Navigation is an on-orbit navigation payload.
    */
-  get(id: string, options?: RequestOptions): APIPromise<NavigationGetResponse> {
-    return this._client.get(path`/udl/navigation/${id}`, options);
+  get(
+    id: string,
+    query: NavigationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<NavigationGetResponse> {
+    return this._client.get(path`/udl/navigation/${id}`, { query, ...options });
   }
 
   /**
@@ -516,6 +524,24 @@ export interface NavigationUpdateParams {
   origin?: string;
 }
 
+export interface NavigationListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface NavigationCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface NavigationGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface NavigationTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -524,6 +550,10 @@ export interface NavigationTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Navigation {
@@ -534,6 +564,9 @@ export declare namespace Navigation {
     type NavigationTupleResponse as NavigationTupleResponse,
     type NavigationCreateParams as NavigationCreateParams,
     type NavigationUpdateParams as NavigationUpdateParams,
+    type NavigationListParams as NavigationListParams,
+    type NavigationCountParams as NavigationCountParams,
+    type NavigationGetParams as NavigationGetParams,
     type NavigationTupleParams as NavigationTupleParams,
   };
 }

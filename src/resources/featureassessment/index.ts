@@ -7,6 +7,7 @@ export {
   type FeatureassessmentQueryResponse,
   type FeatureassessmentTupleResponse,
   type FeatureassessmentCreateParams,
+  type FeatureassessmentRetrieveParams,
   type FeatureassessmentCountParams,
   type FeatureassessmentCreateBulkParams,
   type FeatureassessmentQueryParams,

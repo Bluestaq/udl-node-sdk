@@ -501,6 +501,10 @@ export interface OrbittrackListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface OrbittrackCountParams {
@@ -509,6 +513,10 @@ export interface OrbittrackCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface OrbittrackCreateBulkParams {
@@ -902,6 +910,10 @@ export interface OrbittrackTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface OrbittrackUnvalidatedPublishParams {

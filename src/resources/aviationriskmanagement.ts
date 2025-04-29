@@ -24,8 +24,12 @@ export class Aviationriskmanagement extends APIResource {
    * Service operation to get a single Aviation Risk Management record by its unique
    * ID passed as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AviationriskmanagementRetrieveResponse> {
-    return this._client.get(path`/udl/aviationriskmanagement/${id}`, options);
+  retrieve(
+    id: string,
+    query: AviationriskmanagementRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AviationriskmanagementRetrieveResponse> {
+    return this._client.get(path`/udl/aviationriskmanagement/${id}`, { query, ...options });
   }
 
   /**
@@ -1376,6 +1380,12 @@ export namespace AviationriskmanagementCreateParams {
   }
 }
 
+export interface AviationriskmanagementRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AviationriskmanagementUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -1656,6 +1666,10 @@ export interface AviationriskmanagementCountParams {
    * assigned.
    */
   idMission: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AviationriskmanagementCreateBulkParams {
@@ -1949,6 +1963,10 @@ export interface AviationriskmanagementQueryParams {
    * assigned.
    */
   idMission: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AviationriskmanagementTupleParams {
@@ -1965,6 +1983,10 @@ export interface AviationriskmanagementTupleParams {
    * assigned.
    */
   idMission: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AviationriskmanagementUnvalidatedPublishParams {
@@ -2259,6 +2281,7 @@ export declare namespace Aviationriskmanagement {
     type AviationriskmanagementQueryResponse as AviationriskmanagementQueryResponse,
     type AviationriskmanagementTupleResponse as AviationriskmanagementTupleResponse,
     type AviationriskmanagementCreateParams as AviationriskmanagementCreateParams,
+    type AviationriskmanagementRetrieveParams as AviationriskmanagementRetrieveParams,
     type AviationriskmanagementUpdateParams as AviationriskmanagementUpdateParams,
     type AviationriskmanagementCountParams as AviationriskmanagementCountParams,
     type AviationriskmanagementCreateBulkParams as AviationriskmanagementCreateBulkParams,

@@ -25,8 +25,11 @@ export class AirfieldSlots extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<AirfieldSlotListResponse> {
-    return this._client.get('/udl/airfieldslot', options);
+  list(
+    query: AirfieldSlotListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirfieldSlotListResponse> {
+    return this._client.get('/udl/airfieldslot', { query, ...options });
   }
 }
 
@@ -431,11 +434,18 @@ export interface AirfieldSlotCreateParams {
   type?: 'WORKING' | 'PARKING' | 'TAKEOFF' | 'LANDING' | 'OTHER';
 }
 
+export interface AirfieldSlotListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace AirfieldSlots {
   export {
     type AirfieldslotAbridged as AirfieldslotAbridged,
     type AirfieldslotFull as AirfieldslotFull,
     type AirfieldSlotListResponse as AirfieldSlotListResponse,
     type AirfieldSlotCreateParams as AirfieldSlotCreateParams,
+    type AirfieldSlotListParams as AirfieldSlotListParams,
   };
 }

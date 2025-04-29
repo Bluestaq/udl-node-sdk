@@ -6,8 +6,11 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
 export class Dataowner extends APIResource {
-  retrieve(options?: RequestOptions): APIPromise<DataownerRetrieveResponse> {
-    return this._client.get('/udl/dataowner', options);
+  retrieve(
+    query: DataownerRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<DataownerRetrieveResponse> {
+    return this._client.get('/udl/dataowner', { query, ...options });
   }
 
   /**
@@ -17,8 +20,9 @@ export class Dataowner extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: DataownerCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/dataowner/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -101,10 +105,24 @@ export type DataownerRetrieveResponse = Array<DataownerAbridged>;
 
 export type DataownerCountResponse = string;
 
+export interface DataownerRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface DataownerCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace Dataowner {
   export {
     type DataownerAbridged as DataownerAbridged,
     type DataownerRetrieveResponse as DataownerRetrieveResponse,
     type DataownerCountResponse as DataownerCountResponse,
+    type DataownerRetrieveParams as DataownerRetrieveParams,
+    type DataownerCountParams as DataownerCountParams,
   };
 }

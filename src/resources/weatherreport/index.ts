@@ -17,6 +17,7 @@ export {
   type WeatherreportCreateParams,
   type WeatherreportListParams,
   type WeatherreportCountParams,
+  type WeatherreportGetParams,
   type WeatherreportTupleParams,
   type WeatherreportUnvalidatedPublishParams,
 } from './weatherreport';

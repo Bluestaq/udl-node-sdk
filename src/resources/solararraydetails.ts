@@ -67,8 +67,12 @@ export class Solararraydetails extends APIResource {
    * passed as a path parameter. A SolarArray may have multiple details records
    * compiled by various sources.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SolarArrayDetailsFull> {
-    return this._client.get(path`/udl/solararraydetails/${id}`, options);
+  get(
+    id: string,
+    query: SolararraydetailGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SolarArrayDetailsFull> {
+    return this._client.get(path`/udl/solararraydetails/${id}`, { query, ...options });
   }
 }
 
@@ -510,11 +514,21 @@ export interface SolararraydetailListParams {
    */
   dataMode?: string;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * (One or more of fields 'classificationMarking, dataMode, source' are required.)
    * Source of the data.
    */
   source?: string;
+}
+
+export interface SolararraydetailGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Solararraydetails {
@@ -524,5 +538,6 @@ export declare namespace Solararraydetails {
     type SolararraydetailCreateParams as SolararraydetailCreateParams,
     type SolararraydetailUpdateParams as SolararraydetailUpdateParams,
     type SolararraydetailListParams as SolararraydetailListParams,
+    type SolararraydetailGetParams as SolararraydetailGetParams,
   };
 }

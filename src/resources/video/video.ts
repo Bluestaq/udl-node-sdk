@@ -4,6 +4,7 @@ import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   History,
+  HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
   HistoryListResponse,
@@ -36,8 +37,11 @@ export class Video extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<VideoListResponse> {
-    return this._client.get('/udl/video', options);
+  list(
+    query: VideoListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<VideoListResponse> {
+    return this._client.get('/udl/video', { query, ...options });
   }
 
   /**
@@ -47,8 +51,9 @@ export class Video extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: VideoCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/video/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -58,8 +63,12 @@ export class Video extends APIResource {
    * Service operation to get a single Video Stream record by its unique ID passed as
    * a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.VideoStreamsFull> {
-    return this._client.get(path`/udl/video/${id}`, options);
+  get(
+    id: string,
+    query: VideoGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.VideoStreamsFull> {
+    return this._client.get(path`/udl/video/${id}`, { query, ...options });
   }
 
   /**
@@ -534,6 +543,24 @@ export interface VideoCreateParams {
   stopTime?: string;
 }
 
+export interface VideoListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface VideoCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface VideoGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface VideoGetPlayerStreamingInfoParams {
   /**
    * The video source name.
@@ -544,6 +571,10 @@ export interface VideoGetPlayerStreamingInfoParams {
    * The video stream name.
    */
   streamName: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface VideoGetPublisherStreamingInfoParams {
@@ -556,6 +587,10 @@ export interface VideoGetPublisherStreamingInfoParams {
    * The video stream name.
    */
   streamName: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface VideoGetStreamFileParams {
@@ -568,6 +603,10 @@ export interface VideoGetStreamFileParams {
    * The video stream name.
    */
   streamName: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface VideoTupleParams {
@@ -578,6 +617,10 @@ export interface VideoTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 Video.History = History;
@@ -591,6 +634,9 @@ export declare namespace Video {
     type VideoGetStreamFileResponse as VideoGetStreamFileResponse,
     type VideoTupleResponse as VideoTupleResponse,
     type VideoCreateParams as VideoCreateParams,
+    type VideoListParams as VideoListParams,
+    type VideoCountParams as VideoCountParams,
+    type VideoGetParams as VideoGetParams,
     type VideoGetPlayerStreamingInfoParams as VideoGetPlayerStreamingInfoParams,
     type VideoGetPublisherStreamingInfoParams as VideoGetPublisherStreamingInfoParams,
     type VideoGetStreamFileParams as VideoGetStreamFileParams,
@@ -603,5 +649,6 @@ export declare namespace Video {
     type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
+    type HistoryCountParams as HistoryCountParams,
   };
 }

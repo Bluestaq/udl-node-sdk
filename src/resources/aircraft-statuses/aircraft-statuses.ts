@@ -3,7 +3,13 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryCountResponse, HistoryListParams, HistoryListResponse } from './history';
+import {
+  History,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
@@ -29,8 +35,12 @@ export class AircraftStatuses extends APIResource {
    * Service operation to get a single AircraftStatus record by its unique ID passed
    * as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.AircraftstatusFull> {
-    return this._client.get(path`/udl/aircraftstatus/${id}`, options);
+  retrieve(
+    id: string,
+    query: AircraftStatusRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.AircraftstatusFull> {
+    return this._client.get(path`/udl/aircraftstatus/${id}`, { query, ...options });
   }
 
   /**
@@ -51,8 +61,11 @@ export class AircraftStatuses extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<AircraftStatusListResponse> {
-    return this._client.get('/udl/aircraftstatus', options);
+  list(
+    query: AircraftStatusListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AircraftStatusListResponse> {
+    return this._client.get('/udl/aircraftstatus', { query, ...options });
   }
 
   /**
@@ -74,8 +87,12 @@ export class AircraftStatuses extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: AircraftStatusCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/aircraftstatus/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -722,6 +739,12 @@ export interface AircraftStatusCreateParams {
   unavailableSys?: Array<string>;
 }
 
+export interface AircraftStatusRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AircraftStatusUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -1012,6 +1035,18 @@ export interface AircraftStatusUpdateParams {
   unavailableSys?: Array<string>;
 }
 
+export interface AircraftStatusListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface AircraftStatusCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AircraftStatusTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1020,6 +1055,10 @@ export interface AircraftStatusTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 AircraftStatuses.History = History;
@@ -1031,7 +1070,10 @@ export declare namespace AircraftStatuses {
     type AircraftStatusCountResponse as AircraftStatusCountResponse,
     type AircraftStatusTupleResponse as AircraftStatusTupleResponse,
     type AircraftStatusCreateParams as AircraftStatusCreateParams,
+    type AircraftStatusRetrieveParams as AircraftStatusRetrieveParams,
     type AircraftStatusUpdateParams as AircraftStatusUpdateParams,
+    type AircraftStatusListParams as AircraftStatusListParams,
+    type AircraftStatusCountParams as AircraftStatusCountParams,
     type AircraftStatusTupleParams as AircraftStatusTupleParams,
   };
 
@@ -1040,5 +1082,6 @@ export declare namespace AircraftStatuses {
     type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
+    type HistoryCountParams as HistoryCountParams,
   };
 }

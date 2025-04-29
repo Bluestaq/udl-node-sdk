@@ -30,8 +30,12 @@ export class Entities extends APIResource {
    * Service operation to get a single Entity record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<EntityFull> {
-    return this._client.get(path`/udl/entity/${id}`, options);
+  retrieve(
+    id: string,
+    query: EntityRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EntityFull> {
+    return this._client.get(path`/udl/entity/${id}`, { query, ...options });
   }
 
   /**
@@ -52,8 +56,11 @@ export class Entities extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<EntityListResponse> {
-    return this._client.get('/udl/entity', options);
+  list(
+    query: EntityListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EntityListResponse> {
+    return this._client.get('/udl/entity', { query, ...options });
   }
 
   /**
@@ -75,8 +82,9 @@ export class Entities extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: EntityCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/entity/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -85,8 +93,11 @@ export class Entities extends APIResource {
   /**
    * Retrieves all distinct entity types.
    */
-  getAllTypes(options?: RequestOptions): APIPromise<EntityGetAllTypesResponse> {
-    return this._client.get('/udl/entity/getAllTypes', options);
+  getAllTypes(
+    query: EntityGetAllTypesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EntityGetAllTypesResponse> {
+    return this._client.get('/udl/entity/getAllTypes', { query, ...options });
   }
 
   /**
@@ -7894,6 +7905,12 @@ export namespace EntityCreateParams {
   }
 }
 
+export interface EntityRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EntityUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -8151,6 +8168,24 @@ export namespace EntityUpdateParams {
   }
 }
 
+export interface EntityListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface EntityCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface EntityGetAllTypesParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EntityTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -8159,6 +8194,10 @@ export interface EntityTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Entities {
@@ -8171,7 +8210,11 @@ export declare namespace Entities {
     type EntityGetAllTypesResponse as EntityGetAllTypesResponse,
     type EntityTupleResponse as EntityTupleResponse,
     type EntityCreateParams as EntityCreateParams,
+    type EntityRetrieveParams as EntityRetrieveParams,
     type EntityUpdateParams as EntityUpdateParams,
+    type EntityListParams as EntityListParams,
+    type EntityCountParams as EntityCountParams,
+    type EntityGetAllTypesParams as EntityGetAllTypesParams,
     type EntityTupleParams as EntityTupleParams,
   };
 }

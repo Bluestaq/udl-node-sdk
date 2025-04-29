@@ -70,6 +70,8 @@ export interface HistoryListParams {
    */
   createdAt?: string;
 
+  firstResult?: number;
+
   /**
    * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
    * The link establishment time, or the time that the link becomes available for
@@ -83,6 +85,8 @@ export interface HistoryListParams {
    * use, in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   linkStopTime?: string;
+
+  maxResult?: number;
 }
 
 export interface HistoryAodrParams {
@@ -100,6 +104,8 @@ export interface HistoryAodrParams {
    */
   createdAt?: string;
 
+  firstResult?: number;
+
   /**
    * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
    * The link establishment time, or the time that the link becomes available for
@@ -113,6 +119,8 @@ export interface HistoryAodrParams {
    * use, in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   linkStopTime?: string;
+
+  maxResult?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -143,6 +151,8 @@ export interface HistoryCountParams {
    */
   createdAt?: string;
 
+  firstResult?: number;
+
   /**
    * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
    * The link establishment time, or the time that the link becomes available for
@@ -156,6 +166,8 @@ export interface HistoryCountParams {
    * use, in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   linkStopTime?: string;
+
+  maxResult?: number;
 }
 
 export declare namespace History {

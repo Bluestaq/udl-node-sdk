@@ -69,6 +69,10 @@ export interface HistoryRetrieveParams {
    */
   endTime?: string;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * (One or more of fields 'endTime, startTime' are required.) The planned outage
    * start time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
@@ -89,6 +93,10 @@ export interface HistoryAodrParams {
    * end time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   endTime?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -123,6 +131,10 @@ export interface HistoryCountParams {
    * end time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   endTime?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'endTime, startTime' are required.) The planned outage

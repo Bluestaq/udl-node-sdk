@@ -39,8 +39,11 @@ export class Item extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<ItemListResponse> {
-    return this._client.get('/udl/item', options);
+  list(
+    query: ItemListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ItemListResponse> {
+    return this._client.get('/udl/item', { query, ...options });
   }
 
   /**
@@ -62,8 +65,9 @@ export class Item extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: ItemCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/item/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -73,8 +77,12 @@ export class Item extends APIResource {
    * Service operation to get a single item record by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<ItemGetResponse> {
-    return this._client.get(path`/udl/item/${id}`, options);
+  get(
+    id: string,
+    query: ItemGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ItemGetResponse> {
+    return this._client.get(path`/udl/item/${id}`, { query, ...options });
   }
 
   /**
@@ -1632,6 +1640,24 @@ export interface ItemUpdateParams {
   width?: number;
 }
 
+export interface ItemListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface ItemCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface ItemGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface ItemTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1640,6 +1666,10 @@ export interface ItemTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ItemUnvalidatedPublishParams {
@@ -1938,6 +1968,9 @@ export declare namespace Item {
     type ItemTupleResponse as ItemTupleResponse,
     type ItemCreateParams as ItemCreateParams,
     type ItemUpdateParams as ItemUpdateParams,
+    type ItemListParams as ItemListParams,
+    type ItemCountParams as ItemCountParams,
+    type ItemGetParams as ItemGetParams,
     type ItemTupleParams as ItemTupleParams,
     type ItemUnvalidatedPublishParams as ItemUnvalidatedPublishParams,
   };

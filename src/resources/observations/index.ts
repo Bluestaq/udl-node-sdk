@@ -8,6 +8,7 @@ export {
   type EcpsdrCountResponse,
   type EcpsdrTupleResponse,
   type EcpsdrCreateParams,
+  type EcpsdrRetrieveParams,
   type EcpsdrListParams,
   type EcpsdrCountParams,
   type EcpsdrCreateBulkParams,

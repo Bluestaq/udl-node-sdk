@@ -20,6 +20,17 @@ describe('resource secureMessaging', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('describeTopic: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.secureMessaging.describeTopic(
+        'topic',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('getLatestOffset', async () => {
     const responsePromise = client.secureMessaging.getLatestOffset('topic');
     const rawResponse = await responsePromise.asResponse();
@@ -29,6 +40,17 @@ describe('resource secureMessaging', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getLatestOffset: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.secureMessaging.getLatestOffset(
+        'topic',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('getMessages: only required params', async () => {
@@ -43,7 +65,11 @@ describe('resource secureMessaging', () => {
   });
 
   test('getMessages: required and optional params', async () => {
-    const response = await client.secureMessaging.getMessages(0, { topic: 'topic' });
+    const response = await client.secureMessaging.getMessages(0, {
+      topic: 'topic',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('listTopics', async () => {

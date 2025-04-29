@@ -38,8 +38,11 @@ export class Port extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<PortListResponse> {
-    return this._client.get('/udl/port', options);
+  list(
+    query: PortListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<PortListResponse> {
+    return this._client.get('/udl/port', { query, ...options });
   }
 
   /**
@@ -49,8 +52,9 @@ export class Port extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: PortCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/port/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -76,8 +80,12 @@ export class Port extends APIResource {
    * Service operation to get a single port record by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<PortGetResponse> {
-    return this._client.get(path`/udl/port/${id}`, options);
+  get(
+    id: string,
+    query: PortGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<PortGetResponse> {
+    return this._client.get(path`/udl/port/${id}`, { query, ...options });
   }
 
   /**
@@ -950,6 +958,18 @@ export interface PortUpdateParams {
   tideRange?: number;
 }
 
+export interface PortListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface PortCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface PortCreateBulkParams {
   body: Array<PortCreateBulkParams.Body>;
 }
@@ -1107,6 +1127,12 @@ export namespace PortCreateBulkParams {
   }
 }
 
+export interface PortGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface PortTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1115,6 +1141,10 @@ export interface PortTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Port {
@@ -1125,7 +1155,10 @@ export declare namespace Port {
     type PortTupleResponse as PortTupleResponse,
     type PortCreateParams as PortCreateParams,
     type PortUpdateParams as PortUpdateParams,
+    type PortListParams as PortListParams,
+    type PortCountParams as PortCountParams,
     type PortCreateBulkParams as PortCreateBulkParams,
+    type PortGetParams as PortGetParams,
     type PortTupleParams as PortTupleParams,
   };
 }

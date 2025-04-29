@@ -39,8 +39,11 @@ export class Substatus extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SubstatusListResponse> {
-    return this._client.get('/udl/substatus', options);
+  list(
+    query: SubstatusListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SubstatusListResponse> {
+    return this._client.get('/udl/substatus', { query, ...options });
   }
 
   /**
@@ -62,8 +65,9 @@ export class Substatus extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: SubstatusCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/substatus/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -73,8 +77,12 @@ export class Substatus extends APIResource {
    * Service operation to get a single Sub Status record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SubstatusGetResponse> {
-    return this._client.get(path`/udl/substatus/${id}`, options);
+  get(
+    id: string,
+    query: SubstatusGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SubstatusGetResponse> {
+    return this._client.get(path`/udl/substatus/${id}`, { query, ...options });
   }
 
   /**
@@ -510,6 +518,24 @@ export interface SubstatusUpdateParams {
   origin?: string;
 }
 
+export interface SubstatusListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SubstatusCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SubstatusGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SubstatusTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -518,6 +544,10 @@ export interface SubstatusTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Substatus {
@@ -528,6 +558,9 @@ export declare namespace Substatus {
     type SubstatusTupleResponse as SubstatusTupleResponse,
     type SubstatusCreateParams as SubstatusCreateParams,
     type SubstatusUpdateParams as SubstatusUpdateParams,
+    type SubstatusListParams as SubstatusListParams,
+    type SubstatusCountParams as SubstatusCountParams,
+    type SubstatusGetParams as SubstatusGetParams,
     type SubstatusTupleParams as SubstatusTupleParams,
   };
 }

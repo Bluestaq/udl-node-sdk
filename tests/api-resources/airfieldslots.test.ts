@@ -20,6 +20,17 @@ describe('resource airfieldslots', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.airfieldslots.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('update: only required params', async () => {
     const responsePromise = client.airfieldslots.update('id', {
       airfieldName: 'USAF Academy AFLD',
@@ -81,6 +92,13 @@ describe('resource airfieldslots', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('count: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.airfieldslots.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.airfieldslots.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -104,6 +122,6 @@ describe('resource airfieldslots', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.airfieldslots.tuple({ columns: 'columns' });
+    const response = await client.airfieldslots.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
   });
 });

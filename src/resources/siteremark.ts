@@ -26,8 +26,11 @@ export class Siteremark extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SiteremarkListResponse> {
-    return this._client.get('/udl/siteremark', options);
+  list(
+    query: SiteremarkListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SiteremarkListResponse> {
+    return this._client.get('/udl/siteremark', { query, ...options });
   }
 
   /**
@@ -37,8 +40,9 @@ export class Siteremark extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: SiteremarkCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/siteremark/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -48,8 +52,12 @@ export class Siteremark extends APIResource {
    * Service operation to get a single remark record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SiteremarkGetResponse> {
-    return this._client.get(path`/udl/siteremark/${id}`, options);
+  get(
+    id: string,
+    query: SiteremarkGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SiteremarkGetResponse> {
+    return this._client.get(path`/udl/siteremark/${id}`, { query, ...options });
   }
 
   /**
@@ -447,6 +455,24 @@ export interface SiteremarkCreateParams {
   type?: string;
 }
 
+export interface SiteremarkListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SiteremarkCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SiteremarkGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SiteremarkTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -455,6 +481,10 @@ export interface SiteremarkTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Siteremark {
@@ -464,6 +494,9 @@ export declare namespace Siteremark {
     type SiteremarkGetResponse as SiteremarkGetResponse,
     type SiteremarkTupleResponse as SiteremarkTupleResponse,
     type SiteremarkCreateParams as SiteremarkCreateParams,
+    type SiteremarkListParams as SiteremarkListParams,
+    type SiteremarkCountParams as SiteremarkCountParams,
+    type SiteremarkGetParams as SiteremarkGetParams,
     type SiteremarkTupleParams as SiteremarkTupleParams,
   };
 }

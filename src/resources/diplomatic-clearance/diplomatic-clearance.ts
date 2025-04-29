@@ -5,10 +5,13 @@ import * as DiplomaticClearanceAPI from '../air-operations/diplomatic-clearance'
 import * as CountryAPI from './country';
 import {
   Country,
+  CountryCountParams,
   CountryCountResponse,
   CountryCreateBulkParams,
   CountryCreateParams,
+  CountryListParams,
   CountryListResponse,
+  CountryRetrieveParams,
   CountryRetrieveResponse,
   CountryTupleParams,
   CountryTupleResponse,
@@ -50,8 +53,12 @@ export class DiplomaticClearance extends APIResource {
    * Service operation to get a single diplomatic clearance record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<DiplomaticClearanceAPI.DiplomaticclearanceFull> {
-    return this._client.get(path`/udl/diplomaticclearance/${id}`, options);
+  retrieve(
+    id: string,
+    query: DiplomaticClearanceRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<DiplomaticClearanceAPI.DiplomaticclearanceFull> {
+    return this._client.get(path`/udl/diplomaticclearance/${id}`, { query, ...options });
   }
 
   /**
@@ -420,6 +427,12 @@ export namespace DiplomaticClearanceCreateParams {
   }
 }
 
+export interface DiplomaticClearanceRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface DiplomaticClearanceUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -688,6 +701,10 @@ export interface DiplomaticClearanceListParams {
    * 8601 UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   firstDepDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface DiplomaticClearanceCountParams {
@@ -696,6 +713,10 @@ export interface DiplomaticClearanceCountParams {
    * 8601 UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   firstDepDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface DiplomaticClearanceCreateBulkParams {
@@ -984,6 +1005,10 @@ export interface DiplomaticClearanceTupleParams {
    * 8601 UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   firstDepDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 DiplomaticClearance.History = History;
@@ -995,6 +1020,7 @@ export declare namespace DiplomaticClearance {
     type DiplomaticClearanceCountResponse as DiplomaticClearanceCountResponse,
     type DiplomaticClearanceTupleResponse as DiplomaticClearanceTupleResponse,
     type DiplomaticClearanceCreateParams as DiplomaticClearanceCreateParams,
+    type DiplomaticClearanceRetrieveParams as DiplomaticClearanceRetrieveParams,
     type DiplomaticClearanceUpdateParams as DiplomaticClearanceUpdateParams,
     type DiplomaticClearanceListParams as DiplomaticClearanceListParams,
     type DiplomaticClearanceCountParams as DiplomaticClearanceCountParams,
@@ -1018,7 +1044,10 @@ export declare namespace DiplomaticClearance {
     type CountryCountResponse as CountryCountResponse,
     type CountryTupleResponse as CountryTupleResponse,
     type CountryCreateParams as CountryCreateParams,
+    type CountryRetrieveParams as CountryRetrieveParams,
     type CountryUpdateParams as CountryUpdateParams,
+    type CountryListParams as CountryListParams,
+    type CountryCountParams as CountryCountParams,
     type CountryCreateBulkParams as CountryCreateBulkParams,
     type CountryTupleParams as CountryTupleParams,
     type CountryUnvalidatedPublishParams as CountryUnvalidatedPublishParams,

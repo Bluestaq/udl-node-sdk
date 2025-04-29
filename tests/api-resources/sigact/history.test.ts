@@ -24,6 +24,8 @@ describe('resource history', () => {
     const response = await client.sigact.history.list({
       reportDate: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 
@@ -39,6 +41,10 @@ describe('resource history', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.sigact.history.count({ reportDate: '2019-12-27T18:11:19.117Z' });
+    const response = await client.sigact.history.count({
+      reportDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 });

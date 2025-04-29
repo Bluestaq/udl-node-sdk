@@ -25,6 +25,8 @@ export class History extends APIResource {
 export type HistoryCountResponse = string;
 
 export interface HistoryCountParams {
+  firstResult?: number;
+
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) ID of the
    * associated OnorbitThruster record. This ID can be used to obtain additional
@@ -33,6 +35,8 @@ export interface HistoryCountParams {
    * idOnorbitThruster = abc would be queried as /udl/onorbitthruster/abc.
    */
   idOnorbitThruster?: string;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) Datetime

@@ -25,8 +25,12 @@ export class Antennas extends APIResource {
    * Service operation to get a single Antenna record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AntennaFull> {
-    return this._client.get(path`/udl/antenna/${id}`, options);
+  retrieve(
+    id: string,
+    query: AntennaRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AntennaFull> {
+    return this._client.get(path`/udl/antenna/${id}`, { query, ...options });
   }
 
   /**
@@ -47,8 +51,11 @@ export class Antennas extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<AntennaListResponse> {
-    return this._client.get('/udl/antenna', options);
+  list(
+    query: AntennaListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AntennaListResponse> {
+    return this._client.get('/udl/antenna', { query, ...options });
   }
 
   /**
@@ -70,8 +77,9 @@ export class Antennas extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: AntennaCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/antenna/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -300,6 +308,12 @@ export interface AntennaCreateParams {
   origin?: string;
 }
 
+export interface AntennaRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AntennaUpdateParams {
   /**
    * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -343,6 +357,18 @@ export interface AntennaUpdateParams {
   origin?: string;
 }
 
+export interface AntennaListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface AntennaCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AntennaTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -351,6 +377,10 @@ export interface AntennaTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Antennas {
@@ -361,7 +391,10 @@ export declare namespace Antennas {
     type AntennaCountResponse as AntennaCountResponse,
     type AntennaTupleResponse as AntennaTupleResponse,
     type AntennaCreateParams as AntennaCreateParams,
+    type AntennaRetrieveParams as AntennaRetrieveParams,
     type AntennaUpdateParams as AntennaUpdateParams,
+    type AntennaListParams as AntennaListParams,
+    type AntennaCountParams as AntennaCountParams,
     type AntennaTupleParams as AntennaTupleParams,
   };
 }

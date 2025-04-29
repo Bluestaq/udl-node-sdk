@@ -28,8 +28,12 @@ export class Comm extends APIResource {
    * parameter. A Comm is an on-orbit communications payload, including supporting
    * data such as transponders and channels, etc.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<CommFull> {
-    return this._client.get(path`/udl/comm/${id}`, options);
+  retrieve(
+    id: string,
+    query: CommRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CommFull> {
+    return this._client.get(path`/udl/comm/${id}`, { query, ...options });
   }
 
   /**
@@ -52,8 +56,11 @@ export class Comm extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<CommListResponse> {
-    return this._client.get('/udl/comm', options);
+  list(
+    query: CommListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CommListResponse> {
+    return this._client.get('/udl/comm', { query, ...options });
   }
 
   /**
@@ -76,8 +83,9 @@ export class Comm extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: CommCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/comm/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -501,6 +509,12 @@ export interface CommCreateParams {
   origin?: string;
 }
 
+export interface CommRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface CommUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -559,6 +573,18 @@ export interface CommUpdateParams {
   origin?: string;
 }
 
+export interface CommListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface CommCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface CommTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -567,6 +593,10 @@ export interface CommTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Comm {
@@ -577,7 +607,10 @@ export declare namespace Comm {
     type CommCountResponse as CommCountResponse,
     type CommTupleResponse as CommTupleResponse,
     type CommCreateParams as CommCreateParams,
+    type CommRetrieveParams as CommRetrieveParams,
     type CommUpdateParams as CommUpdateParams,
+    type CommListParams as CommListParams,
+    type CommCountParams as CommCountParams,
     type CommTupleParams as CommTupleParams,
   };
 }

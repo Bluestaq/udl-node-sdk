@@ -42,8 +42,11 @@ export class Transponder extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<TransponderListResponse> {
-    return this._client.get('/udl/transponder', options);
+  list(
+    query: TransponderListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<TransponderListResponse> {
+    return this._client.get('/udl/transponder', { query, ...options });
   }
 
   /**
@@ -66,8 +69,9 @@ export class Transponder extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: TransponderCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/transponder/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -78,8 +82,12 @@ export class Transponder extends APIResource {
    * a path parameter. A Comm payload may have multiple transponders and a
    * transponder may have many channels.
    */
-  get(id: string, options?: RequestOptions): APIPromise<TransponderGetResponse> {
-    return this._client.get(path`/udl/transponder/${id}`, options);
+  get(
+    id: string,
+    query: TransponderGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<TransponderGetResponse> {
+    return this._client.get(path`/udl/transponder/${id}`, { query, ...options });
   }
 
   /**
@@ -712,6 +720,24 @@ export interface TransponderUpdateParams {
   ttf?: number;
 }
 
+export interface TransponderListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface TransponderCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface TransponderGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface TransponderTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -720,6 +746,10 @@ export interface TransponderTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Transponder {
@@ -730,6 +760,9 @@ export declare namespace Transponder {
     type TransponderTupleResponse as TransponderTupleResponse,
     type TransponderCreateParams as TransponderCreateParams,
     type TransponderUpdateParams as TransponderUpdateParams,
+    type TransponderListParams as TransponderListParams,
+    type TransponderCountParams as TransponderCountParams,
+    type TransponderGetParams as TransponderGetParams,
     type TransponderTupleParams as TransponderTupleParams,
   };
 }

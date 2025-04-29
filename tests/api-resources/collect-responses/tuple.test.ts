@@ -27,6 +27,8 @@ describe('resource tuple', () => {
     const response = await client.collectResponses.tuple.list({
       columns: 'columns',
       createdAt: '2019-12-27',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 });

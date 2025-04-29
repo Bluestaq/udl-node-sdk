@@ -435,6 +435,10 @@ export interface GnssobservationsetListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface GnssobservationsetCountParams {
@@ -444,6 +448,10 @@ export interface GnssobservationsetCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface GnssobservationsetCreateBulkParams {
@@ -766,6 +774,10 @@ export interface GnssobservationsetTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface GnssobservationsetUnvalidatedPublishParams {

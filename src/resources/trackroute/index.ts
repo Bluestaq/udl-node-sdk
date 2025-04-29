@@ -19,6 +19,7 @@ export {
   type TrackrouteListParams,
   type TrackrouteCountParams,
   type TrackrouteCreateBulkParams,
+  type TrackrouteGetParams,
   type TrackrouteTupleParams,
   type TrackrouteUnvalidatedPublishParams,
 } from './trackroute';

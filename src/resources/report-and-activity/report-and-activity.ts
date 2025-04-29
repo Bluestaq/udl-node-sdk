@@ -4,7 +4,7 @@ import { APIResource } from '../../core/resource';
 import * as UdlH3geoAPI from './udl-h3geo';
 import { UdlH3geo, UdlH3geoUnvalidatedPublishParams } from './udl-h3geo';
 import * as UdlSigactAPI from './udl-sigact';
-import { UdlSigact, UdlSigactUnvalidatedPublishParams } from './udl-sigact';
+import { UdlSigact, UdlSigactFileGetParams, UdlSigactUnvalidatedPublishParams } from './udl-sigact';
 import * as PoiAPI from './poi/poi';
 import { Poi } from './poi/poi';
 
@@ -25,6 +25,7 @@ export declare namespace ReportAndActivity {
 
   export {
     UdlSigact as UdlSigact,
+    type UdlSigactFileGetParams as UdlSigactFileGetParams,
     type UdlSigactUnvalidatedPublishParams as UdlSigactUnvalidatedPublishParams,
   };
 }

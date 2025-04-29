@@ -29,8 +29,12 @@ export class EngineDetails extends APIResource {
    * performance characteristics/limits compiled by a particular source. A launch
    * vehicle engine may have several details records from multiple sources.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<EngineDetailsFull> {
-    return this._client.get(path`/udl/enginedetails/${id}`, options);
+  retrieve(
+    id: string,
+    query: EngineDetailRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EngineDetailsFull> {
+    return this._client.get(path`/udl/enginedetails/${id}`, { query, ...options });
   }
 
   /**
@@ -357,6 +361,12 @@ export interface EngineDetailCreateParams {
   vacuumThrust?: number;
 }
 
+export interface EngineDetailRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EngineDetailUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -491,6 +501,7 @@ export declare namespace EngineDetails {
   export {
     type EngineDetailsFull as EngineDetailsFull,
     type EngineDetailCreateParams as EngineDetailCreateParams,
+    type EngineDetailRetrieveParams as EngineDetailRetrieveParams,
     type EngineDetailUpdateParams as EngineDetailUpdateParams,
   };
 }

@@ -19,5 +19,7 @@ export {
   type SensormaintenanceListParams,
   type SensormaintenanceCountParams,
   type SensormaintenanceCreateBulkParams,
+  type SensormaintenanceCurrentParams,
+  type SensormaintenanceGetParams,
   type SensormaintenanceTupleParams,
 } from './sensormaintenance';

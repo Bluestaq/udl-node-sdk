@@ -64,6 +64,17 @@ describe('resource collectResponses', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.collectResponses.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('list: only required params', async () => {
     const responsePromise = client.collectResponses.list({ createdAt: '2019-12-27' });
     const rawResponse = await responsePromise.asResponse();
@@ -76,7 +87,11 @@ describe('resource collectResponses', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.collectResponses.list({ createdAt: '2019-12-27' });
+    const response = await client.collectResponses.list({
+      createdAt: '2019-12-27',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -91,7 +106,11 @@ describe('resource collectResponses', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.collectResponses.count({ createdAt: '2019-12-27' });
+    const response = await client.collectResponses.count({
+      createdAt: '2019-12-27',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {

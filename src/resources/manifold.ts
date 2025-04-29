@@ -41,8 +41,11 @@ export class Manifold extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<ManifoldListResponse> {
-    return this._client.get('/udl/manifold', options);
+  list(
+    query: ManifoldListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ManifoldListResponse> {
+    return this._client.get('/udl/manifold', { query, ...options });
   }
 
   /**
@@ -65,8 +68,9 @@ export class Manifold extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: ManifoldCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/manifold/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -91,8 +95,12 @@ export class Manifold extends APIResource {
    * path parameter. A manifold represents a set of possible/theoretical orbits for
    * an object of interest based on a delta V and delta T.
    */
-  get(id: string, options?: RequestOptions): APIPromise<ManifoldGetResponse> {
-    return this._client.get(path`/udl/manifold/${id}`, options);
+  get(
+    id: string,
+    query: ManifoldGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ManifoldGetResponse> {
+    return this._client.get(path`/udl/manifold/${id}`, { query, ...options });
   }
 
   /**
@@ -573,6 +581,18 @@ export interface ManifoldUpdateParams {
   weight?: number;
 }
 
+export interface ManifoldListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface ManifoldCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface ManifoldCreateBulkParams {
   body: Array<ManifoldCreateBulkParams.Body>;
 }
@@ -654,6 +674,12 @@ export namespace ManifoldCreateBulkParams {
   }
 }
 
+export interface ManifoldGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface ManifoldTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -662,6 +688,10 @@ export interface ManifoldTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Manifold {
@@ -672,7 +702,10 @@ export declare namespace Manifold {
     type ManifoldTupleResponse as ManifoldTupleResponse,
     type ManifoldCreateParams as ManifoldCreateParams,
     type ManifoldUpdateParams as ManifoldUpdateParams,
+    type ManifoldListParams as ManifoldListParams,
+    type ManifoldCountParams as ManifoldCountParams,
     type ManifoldCreateBulkParams as ManifoldCreateBulkParams,
+    type ManifoldGetParams as ManifoldGetParams,
     type ManifoldTupleParams as ManifoldTupleParams,
   };
 }

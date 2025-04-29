@@ -75,8 +75,12 @@ export class Weatherdata extends APIResource {
    * Service operation to get a single WeatherData by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.WeatherDataFull> {
-    return this._client.get(path`/udl/weatherdata/${id}`, options);
+  get(
+    id: string,
+    query: WeatherdataGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.WeatherDataFull> {
+    return this._client.get(path`/udl/weatherdata/${id}`, { query, ...options });
   }
 
   /**
@@ -638,6 +642,10 @@ export interface WeatherdataListParams {
    * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface WeatherdataCountParams {
@@ -646,6 +654,10 @@ export interface WeatherdataCountParams {
    * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface WeatherdataCreateBulkParams {
@@ -899,6 +911,12 @@ export namespace WeatherdataCreateBulkParams {
   }
 }
 
+export interface WeatherdataGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface WeatherdataTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -913,6 +931,10 @@ export interface WeatherdataTupleParams {
    * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface WeatherdataUnvalidatedPublishParams {
@@ -1177,6 +1199,7 @@ export declare namespace Weatherdata {
     type WeatherdataListParams as WeatherdataListParams,
     type WeatherdataCountParams as WeatherdataCountParams,
     type WeatherdataCreateBulkParams as WeatherdataCreateBulkParams,
+    type WeatherdataGetParams as WeatherdataGetParams,
     type WeatherdataTupleParams as WeatherdataTupleParams,
     type WeatherdataUnvalidatedPublishParams as WeatherdataUnvalidatedPublishParams,
   };

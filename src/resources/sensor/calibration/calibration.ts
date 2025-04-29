@@ -37,8 +37,12 @@ export class Calibration extends APIResource {
    * Service operation to get a single SensorCalibration by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<CalibrationRetrieveResponse> {
-    return this._client.get(path`/udl/sensorcalibration/${id}`, options);
+  retrieve(
+    id: string,
+    query: CalibrationRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CalibrationRetrieveResponse> {
+    return this._client.get(path`/udl/sensorcalibration/${id}`, { query, ...options });
   }
 
   /**
@@ -1494,12 +1498,22 @@ export interface CalibrationCreateParams {
   timeBiasSigma?: number;
 }
 
+export interface CalibrationRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface CalibrationCountParams {
   /**
    * Calibration data span start time in ISO 8601 UTC format with millisecond
    * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface CalibrationCreateBulkParams {
@@ -1837,6 +1851,10 @@ export interface CalibrationQueryParams {
    * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface CalibrationTupleParams {
@@ -1853,6 +1871,10 @@ export interface CalibrationTupleParams {
    * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface CalibrationUnvalidatedPublishParams {
@@ -2193,6 +2215,7 @@ export declare namespace Calibration {
     type CalibrationQueryResponse as CalibrationQueryResponse,
     type CalibrationTupleResponse as CalibrationTupleResponse,
     type CalibrationCreateParams as CalibrationCreateParams,
+    type CalibrationRetrieveParams as CalibrationRetrieveParams,
     type CalibrationCountParams as CalibrationCountParams,
     type CalibrationCreateBulkParams as CalibrationCreateBulkParams,
     type CalibrationQueryParams as CalibrationQueryParams,

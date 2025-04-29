@@ -24,8 +24,12 @@ export class AirTaskingOrders extends APIResource {
    * Service operation to get a single airtaskingorder record by its unique ID passed
    * as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AirTaskingOrderFull> {
-    return this._client.get(path`/udl/airtaskingorder/${id}`, options);
+  retrieve(
+    id: string,
+    query: AirTaskingOrderRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirTaskingOrderFull> {
+    return this._client.get(path`/udl/airtaskingorder/${id}`, { query, ...options });
   }
 
   /**
@@ -35,8 +39,12 @@ export class AirTaskingOrders extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: AirTaskingOrderCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/airtaskingorder/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -967,6 +975,18 @@ export namespace AirTaskingOrderCreateParams {
   }
 }
 
+export interface AirTaskingOrderRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface AirTaskingOrderCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AirTaskingOrderTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -975,6 +995,10 @@ export interface AirTaskingOrderTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace AirTaskingOrders {
@@ -983,6 +1007,8 @@ export declare namespace AirTaskingOrders {
     type AirTaskingOrderCountResponse as AirTaskingOrderCountResponse,
     type AirTaskingOrderTupleResponse as AirTaskingOrderTupleResponse,
     type AirTaskingOrderCreateParams as AirTaskingOrderCreateParams,
+    type AirTaskingOrderRetrieveParams as AirTaskingOrderRetrieveParams,
+    type AirTaskingOrderCountParams as AirTaskingOrderCountParams,
     type AirTaskingOrderTupleParams as AirTaskingOrderTupleParams,
   };
 }

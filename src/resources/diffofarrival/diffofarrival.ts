@@ -18,9 +18,10 @@ export class Diffofarrival extends APIResource {
    */
   retrieve(
     id: string,
+    query: DiffofarrivalRetrieveParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<DiffofarrivalDiffofarrivalAPI.DiffofarrivalFull> {
-    return this._client.get(path`/udl/diffofarrival/${id}`, options);
+    return this._client.get(path`/udl/diffofarrival/${id}`, { query, ...options });
   }
 
   /**
@@ -69,6 +70,12 @@ export class Diffofarrival extends APIResource {
 
 export type DiffofarrivalTupleResponse = Array<DiffofarrivalDiffofarrivalAPI.DiffofarrivalFull>;
 
+export interface DiffofarrivalRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface DiffofarrivalTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -83,6 +90,10 @@ export interface DiffofarrivalTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface DiffofarrivalUnvalidatedPublishParams {
@@ -340,6 +351,7 @@ Diffofarrival.History = History;
 export declare namespace Diffofarrival {
   export {
     type DiffofarrivalTupleResponse as DiffofarrivalTupleResponse,
+    type DiffofarrivalRetrieveParams as DiffofarrivalRetrieveParams,
     type DiffofarrivalTupleParams as DiffofarrivalTupleParams,
     type DiffofarrivalUnvalidatedPublishParams as DiffofarrivalUnvalidatedPublishParams,
   };

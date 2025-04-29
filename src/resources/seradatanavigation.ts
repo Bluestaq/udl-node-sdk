@@ -38,8 +38,11 @@ export class Seradatanavigation extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SeradatanavigationListResponse> {
-    return this._client.get('/udl/seradatanavigation', options);
+  list(
+    query: SeradatanavigationListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradatanavigationListResponse> {
+    return this._client.get('/udl/seradatanavigation', { query, ...options });
   }
 
   /**
@@ -61,8 +64,12 @@ export class Seradatanavigation extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: SeradatanavigationCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/seradatanavigation/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -72,8 +79,12 @@ export class Seradatanavigation extends APIResource {
    * Service operation to get a single SeradataNavigation by its unique ID passed as
    * a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SeradatanavigationGetResponse> {
-    return this._client.get(path`/udl/seradatanavigation/${id}`, options);
+  get(
+    id: string,
+    query: SeradatanavigationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradatanavigationGetResponse> {
+    return this._client.get(path`/udl/seradatanavigation/${id}`, { query, ...options });
   }
 
   /**
@@ -739,6 +750,24 @@ export interface SeradatanavigationUpdateParams {
   payloadType?: string;
 }
 
+export interface SeradatanavigationListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SeradatanavigationCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SeradatanavigationGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SeradatanavigationTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -747,6 +776,10 @@ export interface SeradatanavigationTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Seradatanavigation {
@@ -757,6 +790,9 @@ export declare namespace Seradatanavigation {
     type SeradatanavigationTupleResponse as SeradatanavigationTupleResponse,
     type SeradatanavigationCreateParams as SeradatanavigationCreateParams,
     type SeradatanavigationUpdateParams as SeradatanavigationUpdateParams,
+    type SeradatanavigationListParams as SeradatanavigationListParams,
+    type SeradatanavigationCountParams as SeradatanavigationCountParams,
+    type SeradatanavigationGetParams as SeradatanavigationGetParams,
     type SeradatanavigationTupleParams as SeradatanavigationTupleParams,
   };
 }

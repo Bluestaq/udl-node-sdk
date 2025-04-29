@@ -27,8 +27,9 @@ export class History extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: HistoryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/aircraftstatus/history/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -46,6 +47,16 @@ export interface HistoryListParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface HistoryCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace History {
@@ -53,5 +64,6 @@ export declare namespace History {
     type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
+    type HistoryCountParams as HistoryCountParams,
   };
 }

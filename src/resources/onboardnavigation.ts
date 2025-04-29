@@ -267,6 +267,10 @@ export interface OnboardnavigationListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface OnboardnavigationCountParams {
@@ -275,6 +279,10 @@ export interface OnboardnavigationCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface OnboardnavigationCreateBulkParams {
@@ -429,6 +437,10 @@ export interface OnboardnavigationTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface OnboardnavigationUnvalidatedPublishParams {

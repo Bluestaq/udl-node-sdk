@@ -102,8 +102,12 @@ export class Sortieppr extends APIResource {
    * Service operation to get a single sortieppr record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.SortiePprFull> {
-    return this._client.get(path`/udl/sortieppr/${id}`, options);
+  get(
+    id: string,
+    query: SortiepprGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.SortiePprFull> {
+    return this._client.get(path`/udl/sortieppr/${id}`, { query, ...options });
   }
 
   /**
@@ -471,6 +475,10 @@ export interface SortiepprListParams {
    * required (PPR) record.
    */
   idSortie: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SortiepprCountParams {
@@ -479,6 +487,10 @@ export interface SortiepprCountParams {
    * required (PPR) record.
    */
   idSortie: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SortiepprCreateBulkParams {
@@ -585,6 +597,12 @@ export namespace SortiepprCreateBulkParams {
   }
 }
 
+export interface SortiepprGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SortiepprTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -599,6 +617,10 @@ export interface SortiepprTupleParams {
    * required (PPR) record.
    */
   idSortie: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SortiepprUnvalidatedPublishParams {
@@ -717,6 +739,7 @@ export declare namespace Sortieppr {
     type SortiepprListParams as SortiepprListParams,
     type SortiepprCountParams as SortiepprCountParams,
     type SortiepprCreateBulkParams as SortiepprCreateBulkParams,
+    type SortiepprGetParams as SortiepprGetParams,
     type SortiepprTupleParams as SortiepprTupleParams,
     type SortiepprUnvalidatedPublishParams as SortiepprUnvalidatedPublishParams,
   };

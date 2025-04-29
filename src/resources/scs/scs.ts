@@ -219,6 +219,10 @@ export interface ScFileDownloadParams {
    * The complete path and filename of the file to download.
    */
   id: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ScFileUploadParams {

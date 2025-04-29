@@ -178,6 +178,8 @@ export interface HistoryListParams {
    */
   columns?: string;
 
+  firstResult?: number;
+
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) ID of the
    * associated OnorbitThruster record. This ID can be used to obtain additional
@@ -186,6 +188,8 @@ export interface HistoryListParams {
    * idOnorbitThruster = abc would be queried as /udl/onorbitthruster/abc.
    */
   idOnorbitThruster?: string;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) Datetime

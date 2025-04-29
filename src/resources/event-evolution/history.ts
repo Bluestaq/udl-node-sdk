@@ -71,6 +71,10 @@ export interface HistoryListParams {
    */
   eventId?: string;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * (One or more of fields 'eventId, startTime' are required.) The actual or
    * estimated start time of the activity or event, in ISO 8601 UTC format.
@@ -94,6 +98,10 @@ export interface HistoryAodrParams {
    * or event.
    */
   eventId?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -131,6 +139,10 @@ export interface HistoryCountParams {
    * or event.
    */
   eventId?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'eventId, startTime' are required.) The actual or

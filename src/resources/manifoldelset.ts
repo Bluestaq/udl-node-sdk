@@ -98,8 +98,12 @@ export class Manifoldelset extends APIResource {
    * elements belonging to an object of interest's manifold describing a
    * possible/theoretical orbit for an object of interest for tasking purposes.
    */
-  get(id: string, options?: RequestOptions): APIPromise<ManifoldelsetGetResponse> {
-    return this._client.get(path`/udl/manifoldelset/${id}`, options);
+  get(
+    id: string,
+    query: ManifoldelsetGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ManifoldelsetGetResponse> {
+    return this._client.get(path`/udl/manifoldelset/${id}`, { query, ...options });
   }
 
   /**
@@ -1015,6 +1019,10 @@ export interface ManifoldelsetListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   epoch: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ManifoldelsetCountParams {
@@ -1023,6 +1031,10 @@ export interface ManifoldelsetCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   epoch: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ManifoldelsetCreateBulkParams {
@@ -1185,6 +1197,12 @@ export namespace ManifoldelsetCreateBulkParams {
   }
 }
 
+export interface ManifoldelsetGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface ManifoldelsetTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1199,6 +1217,10 @@ export interface ManifoldelsetTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   epoch: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Manifoldelset {
@@ -1212,6 +1234,7 @@ export declare namespace Manifoldelset {
     type ManifoldelsetListParams as ManifoldelsetListParams,
     type ManifoldelsetCountParams as ManifoldelsetCountParams,
     type ManifoldelsetCreateBulkParams as ManifoldelsetCreateBulkParams,
+    type ManifoldelsetGetParams as ManifoldelsetGetParams,
     type ManifoldelsetTupleParams as ManifoldelsetTupleParams,
   };
 }

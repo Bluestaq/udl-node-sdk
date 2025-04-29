@@ -36,8 +36,12 @@ export class AirTransportMissions extends APIResource {
    * Service operation to get a single Air Transport Mission record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.AirTransportMissionFull> {
-    return this._client.get(path`/udl/airtransportmission/${id}`, options);
+  retrieve(
+    id: string,
+    query: AirTransportMissionRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.AirTransportMissionFull> {
+    return this._client.get(path`/udl/airtransportmission/${id}`, { query, ...options });
   }
 
   /**
@@ -1091,6 +1095,12 @@ export namespace AirTransportMissionCreateParams {
   }
 }
 
+export interface AirTransportMissionRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AirTransportMissionUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -1564,6 +1574,10 @@ export interface AirTransportMissionListParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AirTransportMissionCountParams {
@@ -1572,6 +1586,10 @@ export interface AirTransportMissionCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AirTransportMissionTupleParams {
@@ -1588,6 +1606,10 @@ export interface AirTransportMissionTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 AirTransportMissions.History = History;
@@ -1599,6 +1621,7 @@ export declare namespace AirTransportMissions {
     type AirTransportMissionCountResponse as AirTransportMissionCountResponse,
     type AirTransportMissionTupleResponse as AirTransportMissionTupleResponse,
     type AirTransportMissionCreateParams as AirTransportMissionCreateParams,
+    type AirTransportMissionRetrieveParams as AirTransportMissionRetrieveParams,
     type AirTransportMissionUpdateParams as AirTransportMissionUpdateParams,
     type AirTransportMissionListParams as AirTransportMissionListParams,
     type AirTransportMissionCountParams as AirTransportMissionCountParams,

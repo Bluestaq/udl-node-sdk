@@ -79,8 +79,12 @@ export class Hazard extends APIResource {
    * Service operation to get a single Hazard by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HazardHistoryAPI.HazardFull> {
-    return this._client.get(path`/udl/hazard/${id}`, options);
+  get(
+    id: string,
+    query: HazardGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HazardHistoryAPI.HazardFull> {
+    return this._client.get(path`/udl/hazard/${id}`, { query, ...options });
   }
 
   /**
@@ -667,6 +671,10 @@ export interface HazardListParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   detectTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface HazardCountParams {
@@ -675,6 +683,10 @@ export interface HazardCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   detectTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface HazardCreateBulkParams {
@@ -950,6 +962,12 @@ export namespace HazardCreateBulkParams {
   }
 }
 
+export interface HazardGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface HazardTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -964,6 +982,10 @@ export interface HazardTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   detectTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 Hazard.History = History;
@@ -977,6 +999,7 @@ export declare namespace Hazard {
     type HazardListParams as HazardListParams,
     type HazardCountParams as HazardCountParams,
     type HazardCreateBulkParams as HazardCreateBulkParams,
+    type HazardGetParams as HazardGetParams,
     type HazardTupleParams as HazardTupleParams,
   };
 

@@ -1825,6 +1825,10 @@ export interface EoObservationListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EoObservationCountParams {
@@ -1834,6 +1838,10 @@ export interface EoObservationCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EoObservationCreateBulkParams {

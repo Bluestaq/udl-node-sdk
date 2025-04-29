@@ -25,8 +25,12 @@ export class Equipment extends APIResource {
    * Service operation to get a single equipment record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<EquipmentFull> {
-    return this._client.get(path`/udl/equipment/${id}`, options);
+  retrieve(
+    id: string,
+    query: EquipmentRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EquipmentFull> {
+    return this._client.get(path`/udl/equipment/${id}`, { query, ...options });
   }
 
   /**
@@ -48,8 +52,11 @@ export class Equipment extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<EquipmentListResponse> {
-    return this._client.get('/udl/equipment', options);
+  list(
+    query: EquipmentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EquipmentListResponse> {
+    return this._client.get('/udl/equipment', { query, ...options });
   }
 
   /**
@@ -71,8 +78,9 @@ export class Equipment extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: EquipmentCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/equipment/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -1556,6 +1564,12 @@ export interface EquipmentCreateParams {
   wac?: string;
 }
 
+export interface EquipmentRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EquipmentUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -2015,6 +2029,18 @@ export interface EquipmentUpdateParams {
    * located.
    */
   wac?: string;
+}
+
+export interface EquipmentListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface EquipmentCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EquipmentCreateBulkParams {
@@ -2496,6 +2522,10 @@ export interface EquipmentTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Equipment {
@@ -2506,7 +2536,10 @@ export declare namespace Equipment {
     type EquipmentCountResponse as EquipmentCountResponse,
     type EquipmentTupleResponse as EquipmentTupleResponse,
     type EquipmentCreateParams as EquipmentCreateParams,
+    type EquipmentRetrieveParams as EquipmentRetrieveParams,
     type EquipmentUpdateParams as EquipmentUpdateParams,
+    type EquipmentListParams as EquipmentListParams,
+    type EquipmentCountParams as EquipmentCountParams,
     type EquipmentCreateBulkParams as EquipmentCreateBulkParams,
     type EquipmentTupleParams as EquipmentTupleParams,
   };

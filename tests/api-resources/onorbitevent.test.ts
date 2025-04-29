@@ -164,6 +164,13 @@ describe('resource onorbitevent', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.onorbitevent.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('delete', async () => {
     const responsePromise = client.onorbitevent.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -186,6 +193,13 @@ describe('resource onorbitevent', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('count: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.onorbitevent.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('get', async () => {
     const responsePromise = client.onorbitevent.get('id');
     const rawResponse = await responsePromise.asResponse();
@@ -195,6 +209,13 @@ describe('resource onorbitevent', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.onorbitevent.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -220,6 +241,6 @@ describe('resource onorbitevent', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.onorbitevent.tuple({ columns: 'columns' });
+    const response = await client.onorbitevent.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
   });
 });

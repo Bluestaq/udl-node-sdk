@@ -187,6 +187,17 @@ describe('resource airLoadPlans', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.airLoadPlans.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('list: only required params', async () => {
     const responsePromise = client.airLoadPlans.list({ estDepTime: '2019-12-27T18:11:19.117Z' });
     const rawResponse = await responsePromise.asResponse();
@@ -199,7 +210,11 @@ describe('resource airLoadPlans', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.airLoadPlans.list({ estDepTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.airLoadPlans.list({
+      estDepTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -214,7 +229,11 @@ describe('resource airLoadPlans', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.airLoadPlans.count({ estDepTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.airLoadPlans.count({
+      estDepTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('queryhelp', async () => {
@@ -246,6 +265,8 @@ describe('resource airLoadPlans', () => {
     const response = await client.airLoadPlans.tuple({
       columns: 'columns',
       estDepTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 });

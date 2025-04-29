@@ -119,6 +119,17 @@ describe('resource operations', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.site.operations.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('update: only required params', async () => {
     const responsePromise = client.site.operations.update('id', {
       classificationMarking: 'U',
@@ -230,7 +241,7 @@ describe('resource operations', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.site.operations.list({ idSite: 'idSite' });
+    const response = await client.site.operations.list({ idSite: 'idSite', firstResult: 0, maxResult: 0 });
   });
 
   test('delete', async () => {
@@ -256,7 +267,7 @@ describe('resource operations', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.site.operations.count({ idSite: 'idSite' });
+    const response = await client.site.operations.count({ idSite: 'idSite', firstResult: 0, maxResult: 0 });
   });
 
   test('createBulk: only required params', async () => {
@@ -389,7 +400,12 @@ describe('resource operations', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.site.operations.tuple({ columns: 'columns', idSite: 'idSite' });
+    const response = await client.site.operations.tuple({
+      columns: 'columns',
+      idSite: 'idSite',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('unvalidatedPublish: only required params', async () => {

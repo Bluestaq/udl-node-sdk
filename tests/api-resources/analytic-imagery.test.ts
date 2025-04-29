@@ -20,6 +20,17 @@ describe('resource analyticImagery', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.analyticImagery.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('list: only required params', async () => {
     const responsePromise = client.analyticImagery.list({ msgTime: '2019-12-27T18:11:19.117Z' });
     const rawResponse = await responsePromise.asResponse();
@@ -32,7 +43,11 @@ describe('resource analyticImagery', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.analyticImagery.list({ msgTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.analyticImagery.list({
+      msgTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -47,7 +62,22 @@ describe('resource analyticImagery', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.analyticImagery.count({ msgTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.analyticImagery.count({
+      msgTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
+  });
+
+  test('fileGet: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.analyticImagery.fileGet(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('history: only required params', async () => {
@@ -65,6 +95,8 @@ describe('resource analyticImagery', () => {
     const response = await client.analyticImagery.history({
       msgTime: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 
@@ -83,6 +115,8 @@ describe('resource analyticImagery', () => {
     const response = await client.analyticImagery.historyAodr({
       msgTime: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',
@@ -101,7 +135,11 @@ describe('resource analyticImagery', () => {
   });
 
   test('historyCount: required and optional params', async () => {
-    const response = await client.analyticImagery.historyCount({ msgTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.analyticImagery.historyCount({
+      msgTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('queryhelp', async () => {
@@ -133,6 +171,8 @@ describe('resource analyticImagery', () => {
     const response = await client.analyticImagery.tuple({
       columns: 'columns',
       msgTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 

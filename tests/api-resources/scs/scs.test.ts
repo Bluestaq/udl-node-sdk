@@ -82,7 +82,7 @@ describe('resource scs', () => {
   });
 
   test('fileDownload: required and optional params', async () => {
-    const response = await client.scs.fileDownload({ id: 'id' });
+    const response = await client.scs.fileDownload({ id: 'id', firstResult: 0, maxResult: 0 });
   });
 
   test('fileUpload: only required params', async () => {

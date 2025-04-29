@@ -71,8 +71,12 @@ export class Radarobservation extends APIResource {
    * Service operation to get a single radar observations by its unique ID passed as
    * a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.RadarobservationFull> {
-    return this._client.get(path`/udl/radarobservation/${id}`, options);
+  get(
+    id: string,
+    query: RadarobservationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.RadarobservationFull> {
+    return this._client.get(path`/udl/radarobservation/${id}`, { query, ...options });
   }
 
   /**
@@ -935,6 +939,10 @@ export interface RadarobservationListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface RadarobservationCountParams {
@@ -943,6 +951,10 @@ export interface RadarobservationCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface RadarobservationCreateBulkParams {
@@ -1340,6 +1352,12 @@ export namespace RadarobservationCreateBulkParams {
   }
 }
 
+export interface RadarobservationGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface RadarobservationTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1354,6 +1372,10 @@ export interface RadarobservationTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface RadarobservationUnvalidatedPublishParams {
@@ -1760,6 +1782,7 @@ export declare namespace Radarobservation {
     type RadarobservationListParams as RadarobservationListParams,
     type RadarobservationCountParams as RadarobservationCountParams,
     type RadarobservationCreateBulkParams as RadarobservationCreateBulkParams,
+    type RadarobservationGetParams as RadarobservationGetParams,
     type RadarobservationTupleParams as RadarobservationTupleParams,
     type RadarobservationUnvalidatedPublishParams as RadarobservationUnvalidatedPublishParams,
   };

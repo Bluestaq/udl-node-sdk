@@ -26,8 +26,12 @@ export class Channels extends APIResource {
    * path parameter. A Comm payload may have multiple transponders and a transponder
    * may have many channels.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<ChannelFull> {
-    return this._client.get(path`/udl/channel/${id}`, options);
+  retrieve(
+    id: string,
+    query: ChannelRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ChannelFull> {
+    return this._client.get(path`/udl/channel/${id}`, { query, ...options });
   }
 
   /**
@@ -50,8 +54,11 @@ export class Channels extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<ChannelListResponse> {
-    return this._client.get('/udl/channel', options);
+  list(
+    query: ChannelListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ChannelListResponse> {
+    return this._client.get('/udl/channel', { query, ...options });
   }
 
   /**
@@ -74,8 +81,9 @@ export class Channels extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: ChannelCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/channel/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -506,6 +514,12 @@ export interface ChannelCreateParams {
   vpid?: string;
 }
 
+export interface ChannelRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface ChannelUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -620,6 +634,18 @@ export interface ChannelUpdateParams {
   vpid?: string;
 }
 
+export interface ChannelListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface ChannelCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface ChannelTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -628,6 +654,10 @@ export interface ChannelTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Channels {
@@ -638,7 +668,10 @@ export declare namespace Channels {
     type ChannelCountResponse as ChannelCountResponse,
     type ChannelTupleResponse as ChannelTupleResponse,
     type ChannelCreateParams as ChannelCreateParams,
+    type ChannelRetrieveParams as ChannelRetrieveParams,
     type ChannelUpdateParams as ChannelUpdateParams,
+    type ChannelListParams as ChannelListParams,
+    type ChannelCountParams as ChannelCountParams,
     type ChannelTupleParams as ChannelTupleParams,
   };
 }

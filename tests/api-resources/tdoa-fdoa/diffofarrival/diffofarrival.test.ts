@@ -80,7 +80,11 @@ describe('resource diffofarrival', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.tdoaFdoa.diffofarrival.list({ obTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.tdoaFdoa.diffofarrival.list({
+      obTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -95,7 +99,11 @@ describe('resource diffofarrival', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.tdoaFdoa.diffofarrival.count({ obTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.tdoaFdoa.diffofarrival.count({
+      obTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {

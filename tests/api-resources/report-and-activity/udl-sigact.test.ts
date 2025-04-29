@@ -9,6 +9,17 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource udlSigact', () => {
+  test('fileGet: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.reportAndActivity.udlSigact.fileGet(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('unvalidatedPublish: only required params', async () => {
     const responsePromise = client.reportAndActivity.udlSigact.unvalidatedPublish({
       body: [

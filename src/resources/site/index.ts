@@ -7,6 +7,7 @@ export {
   type OperationCountResponse,
   type OperationTupleResponse,
   type OperationCreateParams,
+  type OperationRetrieveParams,
   type OperationUpdateParams,
   type OperationListParams,
   type OperationCountParams,
@@ -22,5 +23,8 @@ export {
   type SiteTupleResponse,
   type SiteCreateParams,
   type SiteUpdateParams,
+  type SiteListParams,
+  type SiteCountParams,
+  type SiteGetParams,
   type SiteTupleParams,
 } from './site';

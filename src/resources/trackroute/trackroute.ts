@@ -102,8 +102,12 @@ export class Trackroute extends APIResource {
    * Service operation to get a single trackroute record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.TrackRouteFull> {
-    return this._client.get(path`/udl/trackroute/${id}`, options);
+  get(
+    id: string,
+    query: TrackrouteGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.TrackRouteFull> {
+    return this._client.get(path`/udl/trackroute/${id}`, { query, ...options });
   }
 
   /**
@@ -1237,6 +1241,10 @@ export interface TrackrouteListParams {
    * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   lastUpdateDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface TrackrouteCountParams {
@@ -1245,6 +1253,10 @@ export interface TrackrouteCountParams {
    * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   lastUpdateDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface TrackrouteCreateBulkParams {
@@ -1603,6 +1615,12 @@ export namespace TrackrouteCreateBulkParams {
   }
 }
 
+export interface TrackrouteGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface TrackrouteTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1617,6 +1635,10 @@ export interface TrackrouteTupleParams {
    * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   lastUpdateDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface TrackrouteUnvalidatedPublishParams {
@@ -1977,6 +1999,7 @@ export declare namespace Trackroute {
     type TrackrouteListParams as TrackrouteListParams,
     type TrackrouteCountParams as TrackrouteCountParams,
     type TrackrouteCreateBulkParams as TrackrouteCreateBulkParams,
+    type TrackrouteGetParams as TrackrouteGetParams,
     type TrackrouteTupleParams as TrackrouteTupleParams,
     type TrackrouteUnvalidatedPublishParams as TrackrouteUnvalidatedPublishParams,
   };

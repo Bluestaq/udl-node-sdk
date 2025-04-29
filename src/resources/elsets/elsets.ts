@@ -3,7 +3,13 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as CurrentAPI from './current';
-import { Current, CurrentListResponse, CurrentTupleParams, CurrentTupleResponse } from './current';
+import {
+  Current,
+  CurrentListParams,
+  CurrentListResponse,
+  CurrentTupleParams,
+  CurrentTupleResponse,
+} from './current';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -41,8 +47,12 @@ export class Elsets extends APIResource {
    * Service operation to get a single elset by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Elset> {
-    return this._client.get(path`/udl/elset/${id}`, options);
+  retrieve(
+    id: string,
+    query: ElsetRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Elset> {
+    return this._client.get(path`/udl/elset/${id}`, { query, ...options });
   }
 
   /**
@@ -1340,12 +1350,22 @@ export interface ElsetCreateParams {
   uct?: boolean;
 }
 
+export interface ElsetRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface ElsetListParams {
   /**
    * Elset epoch time in ISO 8601 UTC format, with microsecond precision.
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   epoch: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ElsetCountParams {
@@ -1354,6 +1374,10 @@ export interface ElsetCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   epoch: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ElsetCreateBulkParams {
@@ -1432,6 +1456,10 @@ export interface ElsetTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   epoch: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ElsetUnvalidatedPublishParams {
@@ -1450,6 +1478,7 @@ export declare namespace Elsets {
     type ElsetCountResponse as ElsetCountResponse,
     type ElsetTupleResponse as ElsetTupleResponse,
     type ElsetCreateParams as ElsetCreateParams,
+    type ElsetRetrieveParams as ElsetRetrieveParams,
     type ElsetListParams as ElsetListParams,
     type ElsetCountParams as ElsetCountParams,
     type ElsetCreateBulkParams as ElsetCreateBulkParams,
@@ -1462,6 +1491,7 @@ export declare namespace Elsets {
     Current as Current,
     type CurrentListResponse as CurrentListResponse,
     type CurrentTupleResponse as CurrentTupleResponse,
+    type CurrentListParams as CurrentListParams,
     type CurrentTupleParams as CurrentTupleParams,
   };
 

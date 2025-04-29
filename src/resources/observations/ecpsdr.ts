@@ -25,8 +25,12 @@ export class EcpsdrResource extends APIResource {
    * Service operation to get a single ECPSDR by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Ecpsdr> {
-    return this._client.get(path`/udl/ecpsdr/${id}`, options);
+  retrieve(
+    id: string,
+    query: EcpsdrRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Ecpsdr> {
+    return this._client.get(path`/udl/ecpsdr/${id}`, { query, ...options });
   }
 
   /**
@@ -1024,12 +1028,22 @@ export interface EcpsdrCreateParams {
   vRef?: number;
 }
 
+export interface EcpsdrRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EcpsdrListParams {
   /**
    * Time stamp of time packet receipt on ground, in ISO 8601 UTC format with
    * millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EcpsdrCountParams {
@@ -1038,6 +1052,10 @@ export interface EcpsdrCountParams {
    * millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EcpsdrCreateBulkParams {
@@ -1349,6 +1367,10 @@ export interface EcpsdrTupleParams {
    * millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace EcpsdrResource {
@@ -1359,6 +1381,7 @@ export declare namespace EcpsdrResource {
     type EcpsdrCountResponse as EcpsdrCountResponse,
     type EcpsdrTupleResponse as EcpsdrTupleResponse,
     type EcpsdrCreateParams as EcpsdrCreateParams,
+    type EcpsdrRetrieveParams as EcpsdrRetrieveParams,
     type EcpsdrListParams as EcpsdrListParams,
     type EcpsdrCountParams as EcpsdrCountParams,
     type EcpsdrCreateBulkParams as EcpsdrCreateBulkParams,

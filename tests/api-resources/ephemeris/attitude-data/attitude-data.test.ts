@@ -21,7 +21,7 @@ describe('resource attitudeData', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.ephemeris.attitudeData.list({ asId: 'asId' });
+    const response = await client.ephemeris.attitudeData.list({ asId: 'asId', firstResult: 0, maxResult: 0 });
   });
 
   test('count: only required params', async () => {
@@ -36,6 +36,10 @@ describe('resource attitudeData', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.ephemeris.attitudeData.count({ asId: 'asId' });
+    const response = await client.ephemeris.attitudeData.count({
+      asId: 'asId',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 });

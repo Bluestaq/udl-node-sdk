@@ -10,11 +10,26 @@ export class ScsViews extends APIResource {
   /**
    * Return a single file to view in browser.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Response> {
+  retrieve(
+    id: string,
+    query: ScsViewRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
     return this._client.get(path`/scs/view/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
     });
   }
+}
+
+export interface ScsViewRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export declare namespace ScsViews {
+  export { type ScsViewRetrieveParams as ScsViewRetrieveParams };
 }

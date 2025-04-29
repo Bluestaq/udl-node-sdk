@@ -24,8 +24,12 @@ export class AirLoadPlans extends APIResource {
    * Service operation to get a single airloadplan record by its unique ID passed as
    * a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AirloadplanFull> {
-    return this._client.get(path`/udl/airloadplan/${id}`, options);
+  retrieve(
+    id: string,
+    query: AirLoadPlanRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirloadplanFull> {
+    return this._client.get(path`/udl/airloadplan/${id}`, { query, ...options });
   }
 
   /**
@@ -2440,12 +2444,22 @@ export namespace AirLoadPlanCreateParams {
   }
 }
 
+export interface AirLoadPlanRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AirLoadPlanListParams {
   /**
    * The current estimated time that the aircraft is planned to depart, in ISO 8601
    * UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   estDepTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AirLoadPlanCountParams {
@@ -2454,6 +2468,10 @@ export interface AirLoadPlanCountParams {
    * UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   estDepTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AirLoadPlanTupleParams {
@@ -2470,6 +2488,10 @@ export interface AirLoadPlanTupleParams {
    * UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   estDepTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace AirLoadPlans {
@@ -2480,6 +2502,7 @@ export declare namespace AirLoadPlans {
     type AirLoadPlanCountResponse as AirLoadPlanCountResponse,
     type AirLoadPlanTupleResponse as AirLoadPlanTupleResponse,
     type AirLoadPlanCreateParams as AirLoadPlanCreateParams,
+    type AirLoadPlanRetrieveParams as AirLoadPlanRetrieveParams,
     type AirLoadPlanListParams as AirLoadPlanListParams,
     type AirLoadPlanCountParams as AirLoadPlanCountParams,
     type AirLoadPlanTupleParams as AirLoadPlanTupleParams,

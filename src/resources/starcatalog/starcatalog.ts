@@ -97,8 +97,12 @@ export class Starcatalog extends APIResource {
    * Service operation to get a single StarCatalog record by its unique ID passed as
    * a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<StarcatalogGetResponse> {
-    return this._client.get(path`/udl/starcatalog/${id}`, options);
+  get(
+    id: string,
+    query: StarcatalogGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<StarcatalogGetResponse> {
+    return this._client.get(path`/udl/starcatalog/${id}`, { query, ...options });
   }
 
   /**
@@ -1501,6 +1505,10 @@ export interface StarcatalogListParams {
    */
   dec?: number;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * (One or more of fields 'dec, ra' are required.) Barycentric right ascension of
    * the source in the International Celestial Reference System (ICRS) frame at the
@@ -1516,6 +1524,10 @@ export interface StarcatalogCountParams {
    * epoch, in degrees.
    */
   dec?: number;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'dec, ra' are required.) Barycentric right ascension of
@@ -1784,6 +1796,12 @@ export namespace StarcatalogCreateBulkParams {
   }
 }
 
+export interface StarcatalogGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface StarcatalogTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1799,6 +1817,10 @@ export interface StarcatalogTupleParams {
    * epoch, in degrees.
    */
   dec?: number;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'dec, ra' are required.) Barycentric right ascension of
@@ -2080,6 +2102,7 @@ export declare namespace Starcatalog {
     type StarcatalogListParams as StarcatalogListParams,
     type StarcatalogCountParams as StarcatalogCountParams,
     type StarcatalogCreateBulkParams as StarcatalogCreateBulkParams,
+    type StarcatalogGetParams as StarcatalogGetParams,
     type StarcatalogTupleParams as StarcatalogTupleParams,
     type StarcatalogUnvalidatedPublishParams as StarcatalogUnvalidatedPublishParams,
   };

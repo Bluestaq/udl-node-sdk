@@ -106,6 +106,13 @@ describe('resource launchsitedetails', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.launchsitedetails.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('delete', async () => {
     const responsePromise = client.launchsitedetails.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -129,7 +136,11 @@ describe('resource launchsitedetails', () => {
   });
 
   test('findBySource: required and optional params', async () => {
-    const response = await client.launchsitedetails.findBySource({ source: 'source' });
+    const response = await client.launchsitedetails.findBySource({
+      source: 'source',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('get', async () => {
@@ -141,5 +152,16 @@ describe('resource launchsitedetails', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.launchsitedetails.get(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 });

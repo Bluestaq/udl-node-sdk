@@ -21,7 +21,11 @@ describe('resource gnssobservationset', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.gnssobservationset.list({ ts: '2019-12-27T18:11:19.117Z' });
+    const response = await client.gnssobservationset.list({
+      ts: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -36,7 +40,11 @@ describe('resource gnssobservationset', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.gnssobservationset.count({ ts: '2019-12-27T18:11:19.117Z' });
+    const response = await client.gnssobservationset.count({
+      ts: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -139,6 +147,8 @@ describe('resource gnssobservationset', () => {
     const response = await client.gnssobservationset.tuple({
       columns: 'columns',
       ts: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 

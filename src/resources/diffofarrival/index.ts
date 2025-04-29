@@ -3,6 +3,7 @@
 export {
   Diffofarrival,
   type DiffofarrivalTupleResponse,
+  type DiffofarrivalRetrieveParams,
   type DiffofarrivalTupleParams,
   type DiffofarrivalUnvalidatedPublishParams,
 } from './diffofarrival';

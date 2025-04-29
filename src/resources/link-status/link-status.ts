@@ -78,8 +78,12 @@ export class LinkStatus extends APIResource {
    * Service operation to get a single LinkStatus record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<LinkstatusHistoryAPI.LinkStatusFull> {
-    return this._client.get(path`/udl/linkstatus/${id}`, options);
+  get(
+    id: string,
+    query: LinkStatusGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LinkstatusHistoryAPI.LinkStatusFull> {
+    return this._client.get(path`/udl/linkstatus/${id}`, { query, ...options });
   }
 
   /**
@@ -471,6 +475,8 @@ export interface LinkStatusListParams {
    */
   createdAt?: string;
 
+  firstResult?: number;
+
   /**
    * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
    * The link establishment time, or the time that the link becomes available for
@@ -484,6 +490,8 @@ export interface LinkStatusListParams {
    * use, in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   linkStopTime?: string;
+
+  maxResult?: number;
 }
 
 export interface LinkStatusCountParams {
@@ -494,6 +502,8 @@ export interface LinkStatusCountParams {
    */
   createdAt?: string;
 
+  firstResult?: number;
+
   /**
    * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
    * The link establishment time, or the time that the link becomes available for
@@ -507,6 +517,14 @@ export interface LinkStatusCountParams {
    * use, in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   linkStopTime?: string;
+
+  maxResult?: number;
+}
+
+export interface LinkStatusGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface LinkStatusTupleParams {
@@ -525,6 +543,8 @@ export interface LinkStatusTupleParams {
    */
   createdAt?: string;
 
+  firstResult?: number;
+
   /**
    * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
    * The link establishment time, or the time that the link becomes available for
@@ -538,6 +558,8 @@ export interface LinkStatusTupleParams {
    * use, in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   linkStopTime?: string;
+
+  maxResult?: number;
 }
 
 LinkStatus.Datalink = Datalink;
@@ -551,6 +573,7 @@ export declare namespace LinkStatus {
     type LinkStatusCreateParams as LinkStatusCreateParams,
     type LinkStatusListParams as LinkStatusListParams,
     type LinkStatusCountParams as LinkStatusCountParams,
+    type LinkStatusGetParams as LinkStatusGetParams,
     type LinkStatusTupleParams as LinkStatusTupleParams,
   };
 

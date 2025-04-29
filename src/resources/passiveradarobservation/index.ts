@@ -18,5 +18,6 @@ export {
   type PassiveradarobservationCountParams,
   type PassiveradarobservationCreateBulkParams,
   type PassiveradarobservationFileCreateParams,
+  type PassiveradarobservationGetParams,
   type PassiveradarobservationTupleParams,
 } from './passiveradarobservation';

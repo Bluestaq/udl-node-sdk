@@ -40,8 +40,11 @@ export class Objectofinterest extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<ObjectofinterestListResponse> {
-    return this._client.get('/udl/objectofinterest', options);
+  list(
+    query: ObjectofinterestListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ObjectofinterestListResponse> {
+    return this._client.get('/udl/objectofinterest', { query, ...options });
   }
 
   /**
@@ -65,8 +68,12 @@ export class Objectofinterest extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: ObjectofinterestCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/objectofinterest/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -76,8 +83,12 @@ export class Objectofinterest extends APIResource {
    * Service operation to get a single ObjectOfInterest record by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<ObjectofinterestGetResponse> {
-    return this._client.get(path`/udl/objectofinterest/${id}`, options);
+  get(
+    id: string,
+    query: ObjectofinterestGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ObjectofinterestGetResponse> {
+    return this._client.get(path`/udl/objectofinterest/${id}`, { query, ...options });
   }
 
   /**
@@ -1702,6 +1713,24 @@ export interface ObjectofinterestUpdateParams {
   zvel?: number;
 }
 
+export interface ObjectofinterestListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface ObjectofinterestCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface ObjectofinterestGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface ObjectofinterestTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1710,6 +1739,10 @@ export interface ObjectofinterestTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Objectofinterest {
@@ -1720,6 +1753,9 @@ export declare namespace Objectofinterest {
     type ObjectofinterestTupleResponse as ObjectofinterestTupleResponse,
     type ObjectofinterestCreateParams as ObjectofinterestCreateParams,
     type ObjectofinterestUpdateParams as ObjectofinterestUpdateParams,
+    type ObjectofinterestListParams as ObjectofinterestListParams,
+    type ObjectofinterestCountParams as ObjectofinterestCountParams,
+    type ObjectofinterestGetParams as ObjectofinterestGetParams,
     type ObjectofinterestTupleParams as ObjectofinterestTupleParams,
   };
 }

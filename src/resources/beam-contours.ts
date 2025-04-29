@@ -24,8 +24,12 @@ export class BeamContours extends APIResource {
    * Service operation to get a single BeamContour by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<BeamcontourFull> {
-    return this._client.get(path`/udl/beamcontour/${id}`, options);
+  retrieve(
+    id: string,
+    query: BeamContourRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<BeamcontourFull> {
+    return this._client.get(path`/udl/beamcontour/${id}`, { query, ...options });
   }
 
   /**
@@ -527,6 +531,12 @@ export interface BeamContourCreateParams {
   regionName?: string;
 }
 
+export interface BeamContourRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface BeamContourUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -651,6 +661,10 @@ export interface BeamContourListParams {
    * ID of the beam.
    */
   idBeam: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface BeamContourCountParams {
@@ -658,6 +672,10 @@ export interface BeamContourCountParams {
    * ID of the beam.
    */
   idBeam: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface BeamContourCreateBulkParams {
@@ -803,6 +821,10 @@ export interface BeamContourTupleParams {
    * ID of the beam.
    */
   idBeam: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace BeamContours {
@@ -813,6 +835,7 @@ export declare namespace BeamContours {
     type BeamContourCountResponse as BeamContourCountResponse,
     type BeamContourTupleResponse as BeamContourTupleResponse,
     type BeamContourCreateParams as BeamContourCreateParams,
+    type BeamContourRetrieveParams as BeamContourRetrieveParams,
     type BeamContourUpdateParams as BeamContourUpdateParams,
     type BeamContourListParams as BeamContourListParams,
     type BeamContourCountParams as BeamContourCountParams,

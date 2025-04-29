@@ -90,6 +90,13 @@ describe('resource organization', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.organization.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('delete', async () => {
     const responsePromise = client.organization.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -112,6 +119,13 @@ describe('resource organization', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('count: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.organization.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('get', async () => {
     const responsePromise = client.organization.get('id');
     const rawResponse = await responsePromise.asResponse();
@@ -121,6 +135,13 @@ describe('resource organization', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.organization.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('getOrganizationCategories', async () => {
@@ -134,6 +155,16 @@ describe('resource organization', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('getOrganizationCategories: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.organization.getOrganizationCategories(
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('getOrganizationTypes', async () => {
     const responsePromise = client.organization.getOrganizationTypes();
     const rawResponse = await responsePromise.asResponse();
@@ -143,6 +174,16 @@ describe('resource organization', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getOrganizationTypes: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.organization.getOrganizationTypes(
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -168,6 +209,6 @@ describe('resource organization', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.organization.tuple({ columns: 'columns' });
+    const response = await client.organization.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
   });
 });

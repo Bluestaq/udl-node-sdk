@@ -42,6 +42,10 @@ export interface HistoryCountParams {
    * Timestamp the image was captured/produced. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   imageTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface HistoryQueryParams {
@@ -56,6 +60,10 @@ export interface HistoryQueryParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace History {

@@ -45,8 +45,11 @@ export class Onorbitsolararray extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<OnorbitsolararrayListResponse> {
-    return this._client.get('/udl/onorbitsolararray', options);
+  list(
+    query: OnorbitsolararrayListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitsolararrayListResponse> {
+    return this._client.get('/udl/onorbitsolararray', { query, ...options });
   }
 
   /**
@@ -70,8 +73,12 @@ export class Onorbitsolararray extends APIResource {
    * on-orbit spacecraft SolarArrays and a particular on-orbit spacecraft. A
    * SolarArray type may be associated with many different on-orbit spacecraft.
    */
-  get(id: string, options?: RequestOptions): APIPromise<OnorbitsolararrayGetResponse> {
-    return this._client.get(path`/udl/onorbitsolararray/${id}`, options);
+  get(
+    id: string,
+    query: OnorbitsolararrayGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitsolararrayGetResponse> {
+    return this._client.get(path`/udl/onorbitsolararray/${id}`, { query, ...options });
   }
 }
 
@@ -641,11 +648,25 @@ export namespace OnorbitsolararrayUpdateParams {
   }
 }
 
+export interface OnorbitsolararrayListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OnorbitsolararrayGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace Onorbitsolararray {
   export {
     type OnorbitsolararrayListResponse as OnorbitsolararrayListResponse,
     type OnorbitsolararrayGetResponse as OnorbitsolararrayGetResponse,
     type OnorbitsolararrayCreateParams as OnorbitsolararrayCreateParams,
     type OnorbitsolararrayUpdateParams as OnorbitsolararrayUpdateParams,
+    type OnorbitsolararrayListParams as OnorbitsolararrayListParams,
+    type OnorbitsolararrayGetParams as OnorbitsolararrayGetParams,
   };
 }

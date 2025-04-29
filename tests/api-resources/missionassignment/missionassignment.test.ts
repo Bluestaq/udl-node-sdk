@@ -191,7 +191,11 @@ describe('resource missionassignment', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.missionassignment.list({ ts: '2019-12-27T18:11:19.117Z' });
+    const response = await client.missionassignment.list({
+      ts: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('delete', async () => {
@@ -217,7 +221,11 @@ describe('resource missionassignment', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.missionassignment.count({ ts: '2019-12-27T18:11:19.117Z' });
+    const response = await client.missionassignment.count({
+      ts: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -324,6 +332,17 @@ describe('resource missionassignment', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.missionassignment.get(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.missionassignment.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -353,6 +372,8 @@ describe('resource missionassignment', () => {
     const response = await client.missionassignment.tuple({
       columns: 'columns',
       ts: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 });

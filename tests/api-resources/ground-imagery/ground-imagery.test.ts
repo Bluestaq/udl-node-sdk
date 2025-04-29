@@ -24,6 +24,8 @@ describe('resource groundImagery', () => {
     const response = await client.groundImagery.historyAodr({
       imageTime: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',

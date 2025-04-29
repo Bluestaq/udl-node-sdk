@@ -50,6 +50,10 @@ export interface HistoryListParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface HistoryCountParams {
@@ -58,6 +62,10 @@ export interface HistoryCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace History {

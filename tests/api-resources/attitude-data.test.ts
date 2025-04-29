@@ -32,6 +32,11 @@ describe('resource attitudeData', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.attitudeData.tuple({ asId: 'asId', columns: 'columns' });
+    const response = await client.attitudeData.tuple({
+      asId: 'asId',
+      columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 });

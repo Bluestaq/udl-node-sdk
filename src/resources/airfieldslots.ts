@@ -12,8 +12,12 @@ export class Airfieldslots extends APIResource {
    * Service operation to get a single airfieldslot record by its unique ID passed as
    * a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AirfieldSlotsAPI.AirfieldslotFull> {
-    return this._client.get(path`/udl/airfieldslot/${id}`, options);
+  retrieve(
+    id: string,
+    query: AirfieldslotRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirfieldSlotsAPI.AirfieldslotFull> {
+    return this._client.get(path`/udl/airfieldslot/${id}`, { query, ...options });
   }
 
   /**
@@ -48,8 +52,12 @@ export class Airfieldslots extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: AirfieldslotCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/airfieldslot/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -84,6 +92,12 @@ export class Airfieldslots extends APIResource {
 export type AirfieldslotCountResponse = string;
 
 export type AirfieldslotTupleResponse = Array<AirfieldSlotsAPI.AirfieldslotFull>;
+
+export interface AirfieldslotRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
 
 export interface AirfieldslotUpdateParams {
   /**
@@ -195,6 +209,12 @@ export interface AirfieldslotUpdateParams {
   type?: 'WORKING' | 'PARKING' | 'TAKEOFF' | 'LANDING' | 'OTHER';
 }
 
+export interface AirfieldslotCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AirfieldslotTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -203,13 +223,19 @@ export interface AirfieldslotTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Airfieldslots {
   export {
     type AirfieldslotCountResponse as AirfieldslotCountResponse,
     type AirfieldslotTupleResponse as AirfieldslotTupleResponse,
+    type AirfieldslotRetrieveParams as AirfieldslotRetrieveParams,
     type AirfieldslotUpdateParams as AirfieldslotUpdateParams,
+    type AirfieldslotCountParams as AirfieldslotCountParams,
     type AirfieldslotTupleParams as AirfieldslotTupleParams,
   };
 }

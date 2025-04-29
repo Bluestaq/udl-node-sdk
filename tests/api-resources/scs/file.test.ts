@@ -21,7 +21,7 @@ describe('resource file', () => {
   });
 
   test('retrieve: required and optional params', async () => {
-    const response = await client.scs.file.retrieve({ id: 'id' });
+    const response = await client.scs.file.retrieve({ id: 'id', firstResult: 0, maxResult: 0 });
   });
 
   test('update', async () => {
@@ -47,6 +47,12 @@ describe('resource file', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.scs.file.list({ path: 'path', count: 0, offset: 0 });
+    const response = await client.scs.file.list({
+      path: 'path',
+      count: 0,
+      firstResult: 0,
+      maxResult: 0,
+      offset: 0,
+    });
   });
 });

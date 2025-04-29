@@ -38,8 +38,11 @@ export class Seradataearlywarning extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SeradataearlywarningListResponse> {
-    return this._client.get('/udl/seradataearlywarning', options);
+  list(
+    query: SeradataearlywarningListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradataearlywarningListResponse> {
+    return this._client.get('/udl/seradataearlywarning', { query, ...options });
   }
 
   /**
@@ -61,8 +64,12 @@ export class Seradataearlywarning extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: SeradataearlywarningCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/seradataearlywarning/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -72,8 +79,12 @@ export class Seradataearlywarning extends APIResource {
    * Service operation to get a single SeradataEarlyWarning by its unique ID passed
    * as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SeradataearlywarningGetResponse> {
-    return this._client.get(path`/udl/seradataearlywarning/${id}`, options);
+  get(
+    id: string,
+    query: SeradataearlywarningGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradataearlywarningGetResponse> {
+    return this._client.get(path`/udl/seradataearlywarning/${id}`, { query, ...options });
   }
 
   /**
@@ -764,6 +775,24 @@ export interface SeradataearlywarningUpdateParams {
   spectralBands?: string;
 }
 
+export interface SeradataearlywarningListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SeradataearlywarningCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SeradataearlywarningGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SeradataearlywarningTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -772,6 +801,10 @@ export interface SeradataearlywarningTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Seradataearlywarning {
@@ -782,6 +815,9 @@ export declare namespace Seradataearlywarning {
     type SeradataearlywarningTupleResponse as SeradataearlywarningTupleResponse,
     type SeradataearlywarningCreateParams as SeradataearlywarningCreateParams,
     type SeradataearlywarningUpdateParams as SeradataearlywarningUpdateParams,
+    type SeradataearlywarningListParams as SeradataearlywarningListParams,
+    type SeradataearlywarningCountParams as SeradataearlywarningCountParams,
+    type SeradataearlywarningGetParams as SeradataearlywarningGetParams,
     type SeradataearlywarningTupleParams as SeradataearlywarningTupleParams,
   };
 }

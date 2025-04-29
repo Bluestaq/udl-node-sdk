@@ -39,8 +39,11 @@ export class Surfaceobstruction extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SurfaceobstructionListResponse> {
-    return this._client.get('/udl/surfaceobstruction', options);
+  list(
+    query: SurfaceobstructionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SurfaceobstructionListResponse> {
+    return this._client.get('/udl/surfaceobstruction', { query, ...options });
   }
 
   /**
@@ -62,8 +65,12 @@ export class Surfaceobstruction extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: SurfaceobstructionCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/surfaceobstruction/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -73,8 +80,12 @@ export class Surfaceobstruction extends APIResource {
    * Service operation to get a single surfaceobstruction record by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SurfaceobstructionGetResponse> {
-    return this._client.get(path`/udl/surfaceobstruction/${id}`, options);
+  get(
+    id: string,
+    query: SurfaceobstructionGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SurfaceobstructionGetResponse> {
+    return this._client.get(path`/udl/surfaceobstruction/${id}`, { query, ...options });
   }
 
   /**
@@ -650,6 +661,24 @@ export interface SurfaceobstructionUpdateParams {
   origin?: string;
 }
 
+export interface SurfaceobstructionListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SurfaceobstructionCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SurfaceobstructionGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SurfaceobstructionTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -658,6 +687,10 @@ export interface SurfaceobstructionTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SurfaceobstructionUnvalidatedPublishParams {
@@ -758,6 +791,9 @@ export declare namespace Surfaceobstruction {
     type SurfaceobstructionTupleResponse as SurfaceobstructionTupleResponse,
     type SurfaceobstructionCreateParams as SurfaceobstructionCreateParams,
     type SurfaceobstructionUpdateParams as SurfaceobstructionUpdateParams,
+    type SurfaceobstructionListParams as SurfaceobstructionListParams,
+    type SurfaceobstructionCountParams as SurfaceobstructionCountParams,
+    type SurfaceobstructionGetParams as SurfaceobstructionGetParams,
     type SurfaceobstructionTupleParams as SurfaceobstructionTupleParams,
     type SurfaceobstructionUnvalidatedPublishParams as SurfaceobstructionUnvalidatedPublishParams,
   };

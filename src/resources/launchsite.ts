@@ -39,8 +39,11 @@ export class Launchsite extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<LaunchsiteListResponse> {
-    return this._client.get('/udl/launchsite', options);
+  list(
+    query: LaunchsiteListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaunchsiteListResponse> {
+    return this._client.get('/udl/launchsite', { query, ...options });
   }
 
   /**
@@ -62,8 +65,9 @@ export class Launchsite extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: LaunchsiteCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/launchsite/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -73,8 +77,12 @@ export class Launchsite extends APIResource {
    * Service operation to get a single launch site by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<LaunchsiteGetResponse> {
-    return this._client.get(path`/udl/launchsite/${id}`, options);
+  get(
+    id: string,
+    query: LaunchsiteGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaunchsiteGetResponse> {
+    return this._client.get(path`/udl/launchsite/${id}`, { query, ...options });
   }
 
   /**
@@ -793,6 +801,24 @@ export interface LaunchsiteUpdateParams {
   shortCode?: string;
 }
 
+export interface LaunchsiteListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface LaunchsiteCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface LaunchsiteGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface LaunchsiteTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -801,6 +827,10 @@ export interface LaunchsiteTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Launchsite {
@@ -811,6 +841,9 @@ export declare namespace Launchsite {
     type LaunchsiteTupleResponse as LaunchsiteTupleResponse,
     type LaunchsiteCreateParams as LaunchsiteCreateParams,
     type LaunchsiteUpdateParams as LaunchsiteUpdateParams,
+    type LaunchsiteListParams as LaunchsiteListParams,
+    type LaunchsiteCountParams as LaunchsiteCountParams,
+    type LaunchsiteGetParams as LaunchsiteGetParams,
     type LaunchsiteTupleParams as LaunchsiteTupleParams,
   };
 }

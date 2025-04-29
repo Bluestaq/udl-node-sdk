@@ -27,6 +27,8 @@ describe('resource tuple', () => {
     const response = await client.evac.tuple.list({
       columns: 'columns',
       reqTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 });

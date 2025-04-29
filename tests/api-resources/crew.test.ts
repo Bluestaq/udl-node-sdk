@@ -167,6 +167,13 @@ describe('resource crew', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.crew.retrieve('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('update: only required params', async () => {
     const responsePromise = client.crew.update('id', {
       classificationMarking: 'U',
@@ -325,6 +332,13 @@ describe('resource crew', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.crew.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('count', async () => {
     const responsePromise = client.crew.count();
     const rawResponse = await responsePromise.asResponse();
@@ -334,6 +348,13 @@ describe('resource crew', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('count: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.crew.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -359,7 +380,7 @@ describe('resource crew', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.crew.tuple({ columns: 'columns' });
+    const response = await client.crew.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
   });
 
   test('unvalidatedPublish: only required params', async () => {

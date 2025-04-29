@@ -23,7 +23,11 @@ describe('resource history', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.featureassessment.history.count({ idAnalyticImagery: 'idAnalyticImagery' });
+    const response = await client.featureassessment.history.count({
+      idAnalyticImagery: 'idAnalyticImagery',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('query: only required params', async () => {
@@ -43,6 +47,8 @@ describe('resource history', () => {
     const response = await client.featureassessment.history.query({
       idAnalyticImagery: 'idAnalyticImagery',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 
@@ -63,6 +69,8 @@ describe('resource history', () => {
     const response = await client.featureassessment.history.writeAodr({
       idAnalyticImagery: 'idAnalyticImagery',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',

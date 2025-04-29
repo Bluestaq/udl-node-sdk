@@ -227,6 +227,10 @@ export interface V2ListParams {
    * The base path to list
    */
   path: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface V2DeleteParams {

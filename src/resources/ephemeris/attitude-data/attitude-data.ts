@@ -263,6 +263,10 @@ export interface AttitudeDataListParams {
    * Unique identifier of the parent AttitudeSet associated with this record. (uuid)
    */
   asId: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AttitudeDataCountParams {
@@ -270,6 +274,10 @@ export interface AttitudeDataCountParams {
    * Unique identifier of the parent AttitudeSet associated with this record. (uuid)
    */
   asId: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 AttitudeData.History = History;

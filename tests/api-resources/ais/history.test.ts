@@ -21,7 +21,12 @@ describe('resource history', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.ais.history.list({ ts: '2019-12-27T18:11:19.117Z', columns: 'columns' });
+    const response = await client.ais.history.list({
+      ts: '2019-12-27T18:11:19.117Z',
+      columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('aodr: only required params', async () => {
@@ -39,6 +44,8 @@ describe('resource history', () => {
     const response = await client.ais.history.aodr({
       ts: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',

@@ -44,6 +44,10 @@ export interface FileRetrieveParams {
    * The file ID to view
    */
   id: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface FileUpdateParams {
@@ -60,6 +64,10 @@ export interface FileListParams {
    * Number of items per page
    */
   count?: number;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * First result to return

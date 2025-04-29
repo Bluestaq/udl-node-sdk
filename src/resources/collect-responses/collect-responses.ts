@@ -38,8 +38,12 @@ export class CollectResponses extends APIResource {
    * Service operation to get a single Collect Response record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.CollectResponseFull> {
-    return this._client.get(path`/udl/collectresponse/${id}`, options);
+  retrieve(
+    id: string,
+    query: CollectResponseRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.CollectResponseFull> {
+    return this._client.get(path`/udl/collectresponse/${id}`, { query, ...options });
   }
 
   /**
@@ -518,12 +522,22 @@ export interface CollectResponseCreateParams {
   taskId?: string;
 }
 
+export interface CollectResponseRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface CollectResponseListParams {
   /**
    * Time the row was created in the database, auto-populated by the system.
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface CollectResponseCountParams {
@@ -532,6 +546,10 @@ export interface CollectResponseCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface CollectResponseCreateBulkParams {
@@ -951,6 +969,7 @@ export declare namespace CollectResponses {
     type CollectResponseListResponse as CollectResponseListResponse,
     type CollectResponseCountResponse as CollectResponseCountResponse,
     type CollectResponseCreateParams as CollectResponseCreateParams,
+    type CollectResponseRetrieveParams as CollectResponseRetrieveParams,
     type CollectResponseListParams as CollectResponseListParams,
     type CollectResponseCountParams as CollectResponseCountParams,
     type CollectResponseCreateBulkParams as CollectResponseCreateBulkParams,

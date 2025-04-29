@@ -25,8 +25,12 @@ export class Batteries extends APIResource {
    * Service operation to get a single Battery record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<BatteryFull> {
-    return this._client.get(path`/udl/battery/${id}`, options);
+  retrieve(
+    id: string,
+    query: BatteryRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<BatteryFull> {
+    return this._client.get(path`/udl/battery/${id}`, { query, ...options });
   }
 
   /**
@@ -47,8 +51,11 @@ export class Batteries extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<BatteryListResponse> {
-    return this._client.get('/udl/battery', options);
+  list(
+    query: BatteryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<BatteryListResponse> {
+    return this._client.get('/udl/battery', { query, ...options });
   }
 
   /**
@@ -70,8 +77,9 @@ export class Batteries extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: BatteryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/battery/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -296,6 +304,12 @@ export interface BatteryCreateParams {
   origin?: string;
 }
 
+export interface BatteryRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface BatteryUpdateParams {
   /**
    * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -339,6 +353,18 @@ export interface BatteryUpdateParams {
   origin?: string;
 }
 
+export interface BatteryListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface BatteryCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface BatteryTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -347,6 +373,10 @@ export interface BatteryTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Batteries {
@@ -357,7 +387,10 @@ export declare namespace Batteries {
     type BatteryCountResponse as BatteryCountResponse,
     type BatteryTupleResponse as BatteryTupleResponse,
     type BatteryCreateParams as BatteryCreateParams,
+    type BatteryRetrieveParams as BatteryRetrieveParams,
     type BatteryUpdateParams as BatteryUpdateParams,
+    type BatteryListParams as BatteryListParams,
+    type BatteryCountParams as BatteryCountParams,
     type BatteryTupleParams as BatteryTupleParams,
   };
 }

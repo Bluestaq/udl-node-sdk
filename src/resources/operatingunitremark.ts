@@ -26,8 +26,11 @@ export class Operatingunitremark extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<OperatingunitremarkListResponse> {
-    return this._client.get('/udl/operatingunitremark', options);
+  list(
+    query: OperatingunitremarkListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OperatingunitremarkListResponse> {
+    return this._client.get('/udl/operatingunitremark', { query, ...options });
   }
 
   /**
@@ -37,8 +40,12 @@ export class Operatingunitremark extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: OperatingunitremarkCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/operatingunitremark/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -64,8 +71,12 @@ export class Operatingunitremark extends APIResource {
    * Service operation to get a single operatingunitremark record by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<OperatingunitremarkGetResponse> {
-    return this._client.get(path`/udl/operatingunitremark/${id}`, options);
+  get(
+    id: string,
+    query: OperatingunitremarkGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OperatingunitremarkGetResponse> {
+    return this._client.get(path`/udl/operatingunitremark/${id}`, { query, ...options });
   }
 
   /**
@@ -472,6 +483,18 @@ export interface OperatingunitremarkCreateParams {
   type?: string;
 }
 
+export interface OperatingunitremarkListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OperatingunitremarkCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface OperatingunitremarkCreateBulkParams {
   body: Array<OperatingunitremarkCreateBulkParams.Body>;
 }
@@ -556,6 +579,12 @@ export namespace OperatingunitremarkCreateBulkParams {
   }
 }
 
+export interface OperatingunitremarkGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface OperatingunitremarkTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -564,6 +593,10 @@ export interface OperatingunitremarkTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Operatingunitremark {
@@ -573,7 +606,10 @@ export declare namespace Operatingunitremark {
     type OperatingunitremarkGetResponse as OperatingunitremarkGetResponse,
     type OperatingunitremarkTupleResponse as OperatingunitremarkTupleResponse,
     type OperatingunitremarkCreateParams as OperatingunitremarkCreateParams,
+    type OperatingunitremarkListParams as OperatingunitremarkListParams,
+    type OperatingunitremarkCountParams as OperatingunitremarkCountParams,
     type OperatingunitremarkCreateBulkParams as OperatingunitremarkCreateBulkParams,
+    type OperatingunitremarkGetParams as OperatingunitremarkGetParams,
     type OperatingunitremarkTupleParams as OperatingunitremarkTupleParams,
   };
 }

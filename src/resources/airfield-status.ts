@@ -12,8 +12,12 @@ export class AirfieldStatus extends APIResource {
    * Service operation to get a single airfield status record by its unique ID passed
    * as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AirfieldstatusAPI.AirfieldstatusFull> {
-    return this._client.get(path`/udl/airfieldstatus/${id}`, options);
+  retrieve(
+    id: string,
+    query: AirfieldStatusRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirfieldstatusAPI.AirfieldstatusFull> {
+    return this._client.get(path`/udl/airfieldstatus/${id}`, { query, ...options });
   }
 
   /**
@@ -57,6 +61,12 @@ export class AirfieldStatus extends APIResource {
 }
 
 export type AirfieldStatusTupleResponse = Array<AirfieldstatusAPI.AirfieldstatusFull>;
+
+export interface AirfieldStatusRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
 
 export interface AirfieldStatusUpdateParams {
   /**
@@ -303,11 +313,16 @@ export interface AirfieldStatusTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace AirfieldStatus {
   export {
     type AirfieldStatusTupleResponse as AirfieldStatusTupleResponse,
+    type AirfieldStatusRetrieveParams as AirfieldStatusRetrieveParams,
     type AirfieldStatusUpdateParams as AirfieldStatusUpdateParams,
     type AirfieldStatusTupleParams as AirfieldStatusTupleParams,
   };

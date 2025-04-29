@@ -26,6 +26,8 @@ describe('resource history', () => {
     const response = await client.diplomaticClearance.history.list({
       firstDepDate: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 
@@ -46,6 +48,8 @@ describe('resource history', () => {
     const response = await client.diplomaticClearance.history.aodr({
       firstDepDate: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',
@@ -68,6 +72,8 @@ describe('resource history', () => {
   test('count: required and optional params', async () => {
     const response = await client.diplomaticClearance.history.count({
       firstDepDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 });

@@ -12,8 +12,12 @@ export class Eoobservations extends APIResource {
    * Service operation to get a single EO observation by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<HistoryAPI.EoObservationFull> {
-    return this._client.get(path`/udl/eoobservation/${id}`, options);
+  retrieve(
+    id: string,
+    query: EoobservationRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.EoObservationFull> {
+    return this._client.get(path`/udl/eoobservation/${id}`, { query, ...options });
   }
 
   /**
@@ -44,6 +48,12 @@ export class Eoobservations extends APIResource {
 
 export type EoobservationTupleResponse = Array<HistoryAPI.EoObservationFull>;
 
+export interface EoobservationRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EoobservationTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -59,11 +69,16 @@ export interface EoobservationTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Eoobservations {
   export {
     type EoobservationTupleResponse as EoobservationTupleResponse,
+    type EoobservationRetrieveParams as EoobservationRetrieveParams,
     type EoobservationTupleParams as EoobservationTupleParams,
   };
 }

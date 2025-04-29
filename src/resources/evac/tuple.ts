@@ -36,6 +36,10 @@ export interface TupleListParams {
    * The request time, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   reqTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Tuple {

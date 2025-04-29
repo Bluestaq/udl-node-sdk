@@ -39,8 +39,13 @@ export class Gnssrawif extends APIResource {
    * Service operation to get a single GNSSRAWIF hdf5 file by its unique ID passed as
    * a path parameter. The file is returned as an attachment Content-Disposition.
    */
-  fileGet(id: string, options?: RequestOptions): APIPromise<Response> {
+  fileGet(
+    id: string,
+    query: GnssrawifFileGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
     return this._client.get(path`/udl/gnssrawif/getFile/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
@@ -51,8 +56,12 @@ export class Gnssrawif extends APIResource {
    * Service operation to get a single GNSSRawIF by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.GnssRawIfFull> {
-    return this._client.get(path`/udl/gnssrawif/${id}`, options);
+  get(
+    id: string,
+    query: GnssrawifGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.GnssRawIfFull> {
+    return this._client.get(path`/udl/gnssrawif/${id}`, { query, ...options });
   }
 
   /**
@@ -415,6 +424,10 @@ export interface GnssrawifListParams {
    * format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface GnssrawifCountParams {
@@ -423,6 +436,22 @@ export interface GnssrawifCountParams {
    * format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface GnssrawifFileGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface GnssrawifGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface GnssrawifTupleParams {
@@ -439,6 +468,10 @@ export interface GnssrawifTupleParams {
    * format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface GnssrawifUploadZipParams {
@@ -455,6 +488,8 @@ export declare namespace Gnssrawif {
     type GnssrawifTupleResponse as GnssrawifTupleResponse,
     type GnssrawifListParams as GnssrawifListParams,
     type GnssrawifCountParams as GnssrawifCountParams,
+    type GnssrawifFileGetParams as GnssrawifFileGetParams,
+    type GnssrawifGetParams as GnssrawifGetParams,
     type GnssrawifTupleParams as GnssrawifTupleParams,
     type GnssrawifUploadZipParams as GnssrawifUploadZipParams,
   };

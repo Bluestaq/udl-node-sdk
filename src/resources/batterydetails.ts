@@ -27,8 +27,12 @@ export class Batterydetails extends APIResource {
    * as a path parameter. A Battery record may have multiple details records from
    * several sources.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<BatterydetailsFull> {
-    return this._client.get(path`/udl/batterydetails/${id}`, options);
+  retrieve(
+    id: string,
+    query: BatterydetailRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<BatterydetailsFull> {
+    return this._client.get(path`/udl/batterydetails/${id}`, { query, ...options });
   }
 
   /**
@@ -50,8 +54,11 @@ export class Batterydetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<BatterydetailListResponse> {
-    return this._client.get('/udl/batterydetails', options);
+  list(
+    query: BatterydetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<BatterydetailListResponse> {
+    return this._client.get('/udl/batterydetails', { query, ...options });
   }
 
   /**
@@ -382,6 +389,12 @@ export interface BatterydetailCreateParams {
   technology?: string;
 }
 
+export interface BatterydetailRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface BatterydetailUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -469,12 +482,20 @@ export interface BatterydetailUpdateParams {
   technology?: string;
 }
 
+export interface BatterydetailListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace Batterydetails {
   export {
     type BatterydetailsAbridged as BatterydetailsAbridged,
     type BatterydetailsFull as BatterydetailsFull,
     type BatterydetailListResponse as BatterydetailListResponse,
     type BatterydetailCreateParams as BatterydetailCreateParams,
+    type BatterydetailRetrieveParams as BatterydetailRetrieveParams,
     type BatterydetailUpdateParams as BatterydetailUpdateParams,
+    type BatterydetailListParams as BatterydetailListParams,
   };
 }

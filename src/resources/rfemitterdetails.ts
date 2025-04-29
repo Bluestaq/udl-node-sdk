@@ -40,8 +40,11 @@ export class Rfemitterdetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<RfemitterdetailListResponse> {
-    return this._client.get('/udl/rfemitterdetails', options);
+  list(
+    query: RfemitterdetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RfemitterdetailListResponse> {
+    return this._client.get('/udl/rfemitterdetails', { query, ...options });
   }
 
   /**
@@ -63,8 +66,12 @@ export class Rfemitterdetails extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: RfemitterdetailCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/rfemitterdetails/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -74,8 +81,12 @@ export class Rfemitterdetails extends APIResource {
    * Service operation to get a single RFEmitterDetails by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<RfemitterdetailGetResponse> {
-    return this._client.get(path`/udl/rfemitterdetails/${id}`, options);
+  get(
+    id: string,
+    query: RfemitterdetailGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RfemitterdetailGetResponse> {
+    return this._client.get(path`/udl/rfemitterdetails/${id}`, { query, ...options });
   }
 
   /**
@@ -1149,6 +1160,24 @@ export interface RfemitterdetailUpdateParams {
   urls?: Array<string>;
 }
 
+export interface RfemitterdetailListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface RfemitterdetailCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface RfemitterdetailGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface RfemitterdetailTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1157,6 +1186,10 @@ export interface RfemitterdetailTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Rfemitterdetails {
@@ -1167,6 +1200,9 @@ export declare namespace Rfemitterdetails {
     type RfemitterdetailTupleResponse as RfemitterdetailTupleResponse,
     type RfemitterdetailCreateParams as RfemitterdetailCreateParams,
     type RfemitterdetailUpdateParams as RfemitterdetailUpdateParams,
+    type RfemitterdetailListParams as RfemitterdetailListParams,
+    type RfemitterdetailCountParams as RfemitterdetailCountParams,
+    type RfemitterdetailGetParams as RfemitterdetailGetParams,
     type RfemitterdetailTupleParams as RfemitterdetailTupleParams,
   };
 }

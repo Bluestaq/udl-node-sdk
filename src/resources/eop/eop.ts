@@ -36,8 +36,12 @@ export class Eop extends APIResource {
    * Service operation to get a single EOP record by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.EopFull> {
-    return this._client.get(path`/udl/eop/${id}`, options);
+  retrieve(
+    id: string,
+    query: EopRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.EopFull> {
+    return this._client.get(path`/udl/eop/${id}`, { query, ...options });
   }
 
   /**
@@ -646,6 +650,12 @@ export interface EopCreateParams {
   ut1UTCUnc?: number;
 }
 
+export interface EopRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EopUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -888,6 +898,10 @@ export interface EopListParams {
    * be current or predicted. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   eopDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EopCountParams {
@@ -896,6 +910,10 @@ export interface EopCountParams {
    * be current or predicted. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   eopDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EopListTupleParams {
@@ -912,6 +930,10 @@ export interface EopListTupleParams {
    * be current or predicted. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   eopDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 Eop.History = History;
@@ -923,6 +945,7 @@ export declare namespace Eop {
     type EopCountResponse as EopCountResponse,
     type EopListTupleResponse as EopListTupleResponse,
     type EopCreateParams as EopCreateParams,
+    type EopRetrieveParams as EopRetrieveParams,
     type EopUpdateParams as EopUpdateParams,
     type EopListParams as EopListParams,
     type EopCountParams as EopCountParams,

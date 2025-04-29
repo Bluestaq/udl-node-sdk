@@ -22,8 +22,12 @@ export class Globalatmosphericmodel extends APIResource {
    * Service operation to get a single GlobalAtmosphericModel record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<GlobalatmosphericmodelRetrieveResponse> {
-    return this._client.get(path`/udl/globalatmosphericmodel/${id}`, options);
+  retrieve(
+    id: string,
+    query: GlobalatmosphericmodelRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<GlobalatmosphericmodelRetrieveResponse> {
+    return this._client.get(path`/udl/globalatmosphericmodel/${id}`, { query, ...options });
   }
 
   /**
@@ -46,8 +50,13 @@ export class Globalatmosphericmodel extends APIResource {
    * its unique ID passed as a path parameter. The compressed data file is returned
    * as an attachment Content-Disposition.
    */
-  getFile(id: string, options?: RequestOptions): APIPromise<Response> {
+  getFile(
+    id: string,
+    query: GlobalatmosphericmodelGetFileParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
     return this._client.get(path`/udl/globalatmosphericmodel/getFile/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
@@ -667,12 +676,28 @@ export namespace GlobalatmosphericmodelTupleResponse {
   }
 }
 
+export interface GlobalatmosphericmodelRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface GlobalatmosphericmodelCountParams {
   /**
    * Target time of the model in ISO 8601 UTC format with millisecond precision.
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface GlobalatmosphericmodelGetFileParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface GlobalatmosphericmodelQueryParams {
@@ -681,6 +706,10 @@ export interface GlobalatmosphericmodelQueryParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface GlobalatmosphericmodelTupleParams {
@@ -697,6 +726,10 @@ export interface GlobalatmosphericmodelTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface GlobalatmosphericmodelUnvalidatedPublishParams {
@@ -848,7 +881,9 @@ export declare namespace Globalatmosphericmodel {
     type GlobalatmosphericmodelCountResponse as GlobalatmosphericmodelCountResponse,
     type GlobalatmosphericmodelQueryResponse as GlobalatmosphericmodelQueryResponse,
     type GlobalatmosphericmodelTupleResponse as GlobalatmosphericmodelTupleResponse,
+    type GlobalatmosphericmodelRetrieveParams as GlobalatmosphericmodelRetrieveParams,
     type GlobalatmosphericmodelCountParams as GlobalatmosphericmodelCountParams,
+    type GlobalatmosphericmodelGetFileParams as GlobalatmosphericmodelGetFileParams,
     type GlobalatmosphericmodelQueryParams as GlobalatmosphericmodelQueryParams,
     type GlobalatmosphericmodelTupleParams as GlobalatmosphericmodelTupleParams,
     type GlobalatmosphericmodelUnvalidatedPublishParams as GlobalatmosphericmodelUnvalidatedPublishParams,

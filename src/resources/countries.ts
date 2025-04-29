@@ -24,8 +24,12 @@ export class Countries extends APIResource {
    * Service operation to get a single Country record by its unique code passed as a
    * path parameter.
    */
-  retrieve(code: string, options?: RequestOptions): APIPromise<CountryFull> {
-    return this._client.get(path`/udl/country/${code}`, options);
+  retrieve(
+    code: string,
+    query: CountryRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CountryFull> {
+    return this._client.get(path`/udl/country/${code}`, { query, ...options });
   }
 
   /**
@@ -46,8 +50,11 @@ export class Countries extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<CountryListResponse> {
-    return this._client.get('/udl/country', options);
+  list(
+    query: CountryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CountryListResponse> {
+    return this._client.get('/udl/country', { query, ...options });
   }
 
   /**
@@ -69,8 +76,9 @@ export class Countries extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: CountryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/country/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -332,6 +340,12 @@ export interface CountryCreateParams {
   name?: string;
 }
 
+export interface CountryRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface CountryUpdateParams {
   /**
    * The country code. Optimally, this value is the ISO 3166 Alpha-2-two-character
@@ -389,6 +403,18 @@ export interface CountryUpdateParams {
   name?: string;
 }
 
+export interface CountryListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface CountryCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface CountryTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -397,6 +423,10 @@ export interface CountryTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Countries {
@@ -407,7 +437,10 @@ export declare namespace Countries {
     type CountryCountResponse as CountryCountResponse,
     type CountryTupleResponse as CountryTupleResponse,
     type CountryCreateParams as CountryCreateParams,
+    type CountryRetrieveParams as CountryRetrieveParams,
     type CountryUpdateParams as CountryUpdateParams,
+    type CountryListParams as CountryListParams,
+    type CountryCountParams as CountryCountParams,
     type CountryTupleParams as CountryTupleParams,
   };
 }

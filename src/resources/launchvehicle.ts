@@ -40,8 +40,11 @@ export class Launchvehicle extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<LaunchvehicleListResponse> {
-    return this._client.get('/udl/launchvehicle', options);
+  list(
+    query: LaunchvehicleListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaunchvehicleListResponse> {
+    return this._client.get('/udl/launchvehicle', { query, ...options });
   }
 
   /**
@@ -63,8 +66,12 @@ export class Launchvehicle extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: LaunchvehicleCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/launchvehicle/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -74,8 +81,12 @@ export class Launchvehicle extends APIResource {
    * Service operation to get a single LaunchVehicle record by its unique ID passed
    * as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<LaunchvehicleGetResponse> {
-    return this._client.get(path`/udl/launchvehicle/${id}`, options);
+  get(
+    id: string,
+    query: LaunchvehicleGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaunchvehicleGetResponse> {
+    return this._client.get(path`/udl/launchvehicle/${id}`, { query, ...options });
   }
 
   /**
@@ -1633,6 +1644,24 @@ export interface LaunchvehicleUpdateParams {
   type?: string;
 }
 
+export interface LaunchvehicleListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface LaunchvehicleCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface LaunchvehicleGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface LaunchvehicleTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1641,6 +1670,10 @@ export interface LaunchvehicleTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Launchvehicle {
@@ -1651,6 +1684,9 @@ export declare namespace Launchvehicle {
     type LaunchvehicleTupleResponse as LaunchvehicleTupleResponse,
     type LaunchvehicleCreateParams as LaunchvehicleCreateParams,
     type LaunchvehicleUpdateParams as LaunchvehicleUpdateParams,
+    type LaunchvehicleListParams as LaunchvehicleListParams,
+    type LaunchvehicleCountParams as LaunchvehicleCountParams,
+    type LaunchvehicleGetParams as LaunchvehicleGetParams,
     type LaunchvehicleTupleParams as LaunchvehicleTupleParams,
   };
 }

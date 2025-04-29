@@ -79,8 +79,12 @@ export class Maneuvers extends APIResource {
    * Service operation to get a single maneuver by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<ManeuverHistoryAPI.ManeuverFull> {
-    return this._client.get(path`/udl/maneuver/${id}`, options);
+  get(
+    id: string,
+    query: ManeuverGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ManeuverHistoryAPI.ManeuverFull> {
+    return this._client.get(path`/udl/maneuver/${id}`, { query, ...options });
   }
 
   /**
@@ -5212,6 +5216,10 @@ export interface ManeuverListParams {
    * maneuver event time. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   eventStartTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ManeuverCountParams {
@@ -5221,6 +5229,10 @@ export interface ManeuverCountParams {
    * maneuver event time. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   eventStartTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ManeuverCreateBulkParams {
@@ -7758,6 +7770,12 @@ export namespace ManeuverCreateBulkParams {
   }
 }
 
+export interface ManeuverGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface ManeuverTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -7773,6 +7791,10 @@ export interface ManeuverTupleParams {
    * maneuver event time. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   eventStartTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ManeuverUnvalidatedPublishParams {
@@ -10321,6 +10343,7 @@ export declare namespace Maneuvers {
     type ManeuverListParams as ManeuverListParams,
     type ManeuverCountParams as ManeuverCountParams,
     type ManeuverCreateBulkParams as ManeuverCreateBulkParams,
+    type ManeuverGetParams as ManeuverGetParams,
     type ManeuverTupleParams as ManeuverTupleParams,
     type ManeuverUnvalidatedPublishParams as ManeuverUnvalidatedPublishParams,
   };

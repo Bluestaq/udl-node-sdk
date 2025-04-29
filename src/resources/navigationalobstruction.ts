@@ -88,8 +88,12 @@ export class Navigationalobstruction extends APIResource {
    * Service operation to get a single navigational obstruction record by its unique
    * ID passed as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<NavigationalobstructionGetResponse> {
-    return this._client.get(path`/udl/navigationalobstruction/${id}`, options);
+  get(
+    id: string,
+    query: NavigationalobstructionGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<NavigationalobstructionGetResponse> {
+    return this._client.get(path`/udl/navigationalobstruction/${id}`, { query, ...options });
   }
 
   /**
@@ -2450,6 +2454,10 @@ export interface NavigationalobstructionListParams {
    */
   cycleDate?: string;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * (One or more of fields 'cycleDate, obstacleId' are required.) The ID of this
    * obstacle.
@@ -2463,6 +2471,10 @@ export interface NavigationalobstructionCountParams {
    * obstruction data set's currency, in ISO 8601 date-only format. (YYYY-MM-DD)
    */
   cycleDate?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'cycleDate, obstacleId' are required.) The ID of this
@@ -2918,6 +2930,12 @@ export namespace NavigationalobstructionCreateBulkParams {
   }
 }
 
+export interface NavigationalobstructionGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface NavigationalobstructionTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -2932,6 +2950,10 @@ export interface NavigationalobstructionTupleParams {
    * obstruction data set's currency, in ISO 8601 date-only format. (YYYY-MM-DD)
    */
   cycleDate?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'cycleDate, obstacleId' are required.) The ID of this
@@ -2951,6 +2973,7 @@ export declare namespace Navigationalobstruction {
     type NavigationalobstructionListParams as NavigationalobstructionListParams,
     type NavigationalobstructionCountParams as NavigationalobstructionCountParams,
     type NavigationalobstructionCreateBulkParams as NavigationalobstructionCreateBulkParams,
+    type NavigationalobstructionGetParams as NavigationalobstructionGetParams,
     type NavigationalobstructionTupleParams as NavigationalobstructionTupleParams,
   };
 }

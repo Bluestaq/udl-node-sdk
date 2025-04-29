@@ -852,6 +852,10 @@ export interface DiffofarrivalListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface DiffofarrivalCountParams {
@@ -860,6 +864,10 @@ export interface DiffofarrivalCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface DiffofarrivalCreateBulkParams {

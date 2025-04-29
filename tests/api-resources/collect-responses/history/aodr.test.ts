@@ -24,6 +24,8 @@ describe('resource aodr', () => {
     const response = await client.collectResponses.history.aodr.list({
       createdAt: '2019-12-27',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',

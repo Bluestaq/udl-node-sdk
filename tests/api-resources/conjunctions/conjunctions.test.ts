@@ -20,6 +20,17 @@ describe('resource conjunctions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.conjunctions.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('list: only required params', async () => {
     const responsePromise = client.conjunctions.list({ tca: '2019-12-27T18:11:19.117Z' });
     const rawResponse = await responsePromise.asResponse();
@@ -32,7 +43,11 @@ describe('resource conjunctions', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.conjunctions.list({ tca: '2019-12-27T18:11:19.117Z' });
+    const response = await client.conjunctions.list({
+      tca: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -47,7 +62,11 @@ describe('resource conjunctions', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.conjunctions.count({ tca: '2019-12-27T18:11:19.117Z' });
+    const response = await client.conjunctions.count({
+      tca: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createUdl: only required params', async () => {
@@ -624,6 +643,8 @@ describe('resource conjunctions', () => {
     const response = await client.conjunctions.getHistory({
       tca: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 
@@ -653,7 +674,12 @@ describe('resource conjunctions', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.conjunctions.tuple({ columns: 'columns', tca: '2019-12-27T18:11:19.117Z' });
+    const response = await client.conjunctions.tuple({
+      columns: 'columns',
+      tca: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('unvalidatedPublish: only required params', async () => {

@@ -11,8 +11,11 @@ export class Enginedetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<EnginedetailListResponse> {
-    return this._client.get('/udl/enginedetails', options);
+  list(
+    query: EnginedetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EnginedetailListResponse> {
+    return this._client.get('/udl/enginedetails', { query, ...options });
   }
 }
 
@@ -161,9 +164,16 @@ export interface EngineDetailsAbridged {
 
 export type EnginedetailListResponse = Array<EngineDetailsAbridged>;
 
+export interface EnginedetailListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace Enginedetails {
   export {
     type EngineDetailsAbridged as EngineDetailsAbridged,
     type EnginedetailListResponse as EnginedetailListResponse,
+    type EnginedetailListParams as EnginedetailListParams,
   };
 }

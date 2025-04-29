@@ -80,6 +80,10 @@ export interface FolderRetrieveParams {
    * The folder ID
    */
   id: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface FolderUpdateParams {

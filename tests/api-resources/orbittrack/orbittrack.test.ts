@@ -21,7 +21,11 @@ describe('resource orbittrack', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.orbittrack.list({ ts: '2019-12-27T18:11:19.117Z' });
+    const response = await client.orbittrack.list({
+      ts: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -36,7 +40,11 @@ describe('resource orbittrack', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.orbittrack.count({ ts: '2019-12-27T18:11:19.117Z' });
+    const response = await client.orbittrack.count({
+      ts: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -145,7 +153,12 @@ describe('resource orbittrack', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.orbittrack.tuple({ columns: 'columns', ts: '2019-12-27T18:11:19.117Z' });
+    const response = await client.orbittrack.tuple({
+      columns: 'columns',
+      ts: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('unvalidatedPublish: only required params', async () => {

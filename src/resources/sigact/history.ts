@@ -49,6 +49,10 @@ export interface HistoryListParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface HistoryCountParams {
@@ -56,6 +60,10 @@ export interface HistoryCountParams {
    * Date of the report or filing. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   reportDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace History {

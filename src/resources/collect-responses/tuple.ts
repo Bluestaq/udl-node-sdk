@@ -37,6 +37,10 @@ export interface TupleListParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Tuple {

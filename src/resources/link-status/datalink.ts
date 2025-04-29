@@ -2951,6 +2951,10 @@ export interface DatalinkListParams {
    * UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface DatalinkCountParams {
@@ -2959,6 +2963,10 @@ export interface DatalinkCountParams {
    * UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface DatalinkTupleParams {
@@ -2975,6 +2983,10 @@ export interface DatalinkTupleParams {
    * UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface DatalinkUnvalidatedPublishParams {

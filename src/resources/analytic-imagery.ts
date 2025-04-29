@@ -14,8 +14,12 @@ export class AnalyticImagery extends APIResource {
    * as a path parameter. AnalyticImagery represents metadata about an image, as well
    * as the actual binary image data.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AnalyticImageryFull> {
-    return this._client.get(path`/udl/analyticimagery/${id}`, options);
+  retrieve(
+    id: string,
+    query: AnalyticImageryRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AnalyticImageryFull> {
+    return this._client.get(path`/udl/analyticimagery/${id}`, { query, ...options });
   }
 
   /**
@@ -48,8 +52,13 @@ export class AnalyticImagery extends APIResource {
    * passed as a path parameter. The image is returned as an attachment
    * Content-Disposition.
    */
-  fileGet(id: string, options?: RequestOptions): APIPromise<Response> {
+  fileGet(
+    id: string,
+    query: AnalyticImageryFileGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
     return this._client.get(path`/udl/analyticimagery/getFile/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
@@ -710,12 +719,22 @@ export type AnalyticImageryHistoryCountResponse = string;
 
 export type AnalyticImageryTupleResponse = Array<AnalyticImageryFull>;
 
+export interface AnalyticImageryRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AnalyticImageryListParams {
   /**
    * The message time of this image record, in ISO8601 UTC format with millisecond
    * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AnalyticImageryCountParams {
@@ -724,6 +743,16 @@ export interface AnalyticImageryCountParams {
    * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface AnalyticImageryFileGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AnalyticImageryHistoryParams {
@@ -739,6 +768,10 @@ export interface AnalyticImageryHistoryParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AnalyticImageryHistoryAodrParams {
@@ -754,6 +787,10 @@ export interface AnalyticImageryHistoryAodrParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -782,6 +819,10 @@ export interface AnalyticImageryHistoryCountParams {
    * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AnalyticImageryTupleParams {
@@ -798,6 +839,10 @@ export interface AnalyticImageryTupleParams {
    * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AnalyticImageryUnvalidatedPublishParams {
@@ -816,8 +861,10 @@ export declare namespace AnalyticImagery {
     type AnalyticImageryHistoryResponse as AnalyticImageryHistoryResponse,
     type AnalyticImageryHistoryCountResponse as AnalyticImageryHistoryCountResponse,
     type AnalyticImageryTupleResponse as AnalyticImageryTupleResponse,
+    type AnalyticImageryRetrieveParams as AnalyticImageryRetrieveParams,
     type AnalyticImageryListParams as AnalyticImageryListParams,
     type AnalyticImageryCountParams as AnalyticImageryCountParams,
+    type AnalyticImageryFileGetParams as AnalyticImageryFileGetParams,
     type AnalyticImageryHistoryParams as AnalyticImageryHistoryParams,
     type AnalyticImageryHistoryAodrParams as AnalyticImageryHistoryAodrParams,
     type AnalyticImageryHistoryCountParams as AnalyticImageryHistoryCountParams,

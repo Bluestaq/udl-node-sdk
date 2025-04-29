@@ -61,6 +61,17 @@ describe('resource beamContours', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.beamContours.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('update: only required params', async () => {
     const responsePromise = client.beamContours.update('id', {
       classificationMarking: 'U',
@@ -114,7 +125,7 @@ describe('resource beamContours', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.beamContours.list({ idBeam: 'idBeam' });
+    const response = await client.beamContours.list({ idBeam: 'idBeam', firstResult: 0, maxResult: 0 });
   });
 
   test('delete', async () => {
@@ -140,7 +151,7 @@ describe('resource beamContours', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.beamContours.count({ idBeam: 'idBeam' });
+    const response = await client.beamContours.count({ idBeam: 'idBeam', firstResult: 0, maxResult: 0 });
   });
 
   test('createBulk: only required params', async () => {
@@ -215,6 +226,11 @@ describe('resource beamContours', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.beamContours.tuple({ columns: 'columns', idBeam: 'idBeam' });
+    const response = await client.beamContours.tuple({
+      columns: 'columns',
+      idBeam: 'idBeam',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 });

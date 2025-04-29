@@ -63,6 +63,10 @@ export interface HistoryListParams {
    */
   columns?: string;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * (One or more of fields 'pointEndTime, pointStartTime' are required.) End
    * time/last time point of the ephemeris, in ISO 8601 UTC format.
@@ -85,6 +89,10 @@ export interface HistoryAodrParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -122,6 +130,10 @@ export interface HistoryAodrParams {
 }
 
 export interface HistoryCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * (One or more of fields 'pointEndTime, pointStartTime' are required.) End
    * time/last time point of the ephemeris, in ISO 8601 UTC format.

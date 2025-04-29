@@ -38,8 +38,11 @@ export class Rfband extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<RfbandListResponse> {
-    return this._client.get('/udl/rfband', options);
+  list(
+    query: RfbandListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RfbandListResponse> {
+    return this._client.get('/udl/rfband', { query, ...options });
   }
 
   /**
@@ -61,8 +64,9 @@ export class Rfband extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: RfbandCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/rfband/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -72,8 +76,12 @@ export class Rfband extends APIResource {
    * Service operation to get a single RFBand by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<RfbandGetResponse> {
-    return this._client.get(path`/udl/rfband/${id}`, options);
+  get(
+    id: string,
+    query: RfbandGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RfbandGetResponse> {
+    return this._client.get(path`/udl/rfband/${id}`, { query, ...options });
   }
 
   /**
@@ -897,6 +905,24 @@ export interface RfbandUpdateParams {
   purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
 }
 
+export interface RfbandListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface RfbandCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface RfbandGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface RfbandTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -905,6 +931,10 @@ export interface RfbandTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Rfband {
@@ -915,6 +945,9 @@ export declare namespace Rfband {
     type RfbandTupleResponse as RfbandTupleResponse,
     type RfbandCreateParams as RfbandCreateParams,
     type RfbandUpdateParams as RfbandUpdateParams,
+    type RfbandListParams as RfbandListParams,
+    type RfbandCountParams as RfbandCountParams,
+    type RfbandGetParams as RfbandGetParams,
     type RfbandTupleParams as RfbandTupleParams,
   };
 }

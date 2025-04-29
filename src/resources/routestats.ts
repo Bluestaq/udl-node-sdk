@@ -24,8 +24,12 @@ export class Routestats extends APIResource {
    * Service operation to get a single routeStats record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<RoutestatRetrieveResponse> {
-    return this._client.get(path`/udl/routestats/${id}`, options);
+  retrieve(
+    id: string,
+    query: RoutestatRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RoutestatRetrieveResponse> {
+    return this._client.get(path`/udl/routestats/${id}`, { query, ...options });
   }
 
   /**
@@ -59,8 +63,9 @@ export class Routestats extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: RoutestatCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/routestats/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -88,8 +93,11 @@ export class Routestats extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  query(options?: RequestOptions): APIPromise<RoutestatQueryResponse> {
-    return this._client.get('/udl/routestats', options);
+  query(
+    query: RoutestatQueryParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RoutestatQueryResponse> {
+    return this._client.get('/udl/routestats', { query, ...options });
   }
 
   /**
@@ -969,6 +977,12 @@ export interface RoutestatCreateParams {
   vehicleType?: string;
 }
 
+export interface RoutestatRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface RoutestatUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -1147,6 +1161,12 @@ export interface RoutestatUpdateParams {
    * etc.).
    */
   vehicleType?: string;
+}
+
+export interface RoutestatCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface RoutestatCreateBulkParams {
@@ -1339,6 +1359,12 @@ export namespace RoutestatCreateBulkParams {
   }
 }
 
+export interface RoutestatQueryParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface RoutestatTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1347,6 +1373,10 @@ export interface RoutestatTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface RoutestatUnvalidatedPublishParams {
@@ -1546,8 +1576,11 @@ export declare namespace Routestats {
     type RoutestatQueryResponse as RoutestatQueryResponse,
     type RoutestatTupleResponse as RoutestatTupleResponse,
     type RoutestatCreateParams as RoutestatCreateParams,
+    type RoutestatRetrieveParams as RoutestatRetrieveParams,
     type RoutestatUpdateParams as RoutestatUpdateParams,
+    type RoutestatCountParams as RoutestatCountParams,
     type RoutestatCreateBulkParams as RoutestatCreateBulkParams,
+    type RoutestatQueryParams as RoutestatQueryParams,
     type RoutestatTupleParams as RoutestatTupleParams,
     type RoutestatUnvalidatedPublishParams as RoutestatUnvalidatedPublishParams,
   };

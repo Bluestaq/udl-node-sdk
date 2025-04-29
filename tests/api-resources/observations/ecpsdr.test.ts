@@ -90,6 +90,17 @@ describe('resource ecpsdr', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.observations.ecpsdr.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('list: only required params', async () => {
     const responsePromise = client.observations.ecpsdr.list({ msgTime: '2019-12-27T18:11:19.117Z' });
     const rawResponse = await responsePromise.asResponse();
@@ -102,7 +113,11 @@ describe('resource ecpsdr', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.observations.ecpsdr.list({ msgTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.observations.ecpsdr.list({
+      msgTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -117,7 +132,11 @@ describe('resource ecpsdr', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.observations.ecpsdr.count({ msgTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.observations.ecpsdr.count({
+      msgTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -227,6 +246,8 @@ describe('resource ecpsdr', () => {
     const response = await client.observations.ecpsdr.tuple({
       columns: 'columns',
       msgTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 });

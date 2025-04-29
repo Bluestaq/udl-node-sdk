@@ -20,6 +20,17 @@ describe('resource aircraftSorties', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.aircraftSorties.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('update: only required params', async () => {
     const responsePromise = client.aircraftSorties.update('id', {
       classificationMarking: 'U',
@@ -141,6 +152,8 @@ describe('resource aircraftSorties', () => {
     const response = await client.aircraftSorties.tuple({
       columns: 'columns',
       plannedDepTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 });

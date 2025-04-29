@@ -24,8 +24,12 @@ export class Country extends APIResource {
    * Service operation to get a single diplomaticclearancecountry record by its
    * unique ID passed as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<CountryRetrieveResponse> {
-    return this._client.get(path`/udl/diplomaticclearancecountry/${id}`, options);
+  retrieve(
+    id: string,
+    query: CountryRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CountryRetrieveResponse> {
+    return this._client.get(path`/udl/diplomaticclearancecountry/${id}`, { query, ...options });
   }
 
   /**
@@ -47,8 +51,11 @@ export class Country extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<CountryListResponse> {
-    return this._client.get('/udl/diplomaticclearancecountry', options);
+  list(
+    query: CountryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CountryListResponse> {
+    return this._client.get('/udl/diplomaticclearancecountry', { query, ...options });
   }
 
   /**
@@ -70,8 +77,9 @@ export class Country extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: CountryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/diplomaticclearancecountry/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -2708,6 +2716,12 @@ export namespace CountryCreateParams {
   }
 }
 
+export interface CountryRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface CountryUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -3317,6 +3331,18 @@ export namespace CountryUpdateParams {
      */
     undefinedCrewReporting?: boolean;
   }
+}
+
+export interface CountryListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface CountryCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface CountryCreateBulkParams {
@@ -3949,6 +3975,10 @@ export interface CountryTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface CountryUnvalidatedPublishParams {
@@ -4580,7 +4610,10 @@ export declare namespace Country {
     type CountryCountResponse as CountryCountResponse,
     type CountryTupleResponse as CountryTupleResponse,
     type CountryCreateParams as CountryCreateParams,
+    type CountryRetrieveParams as CountryRetrieveParams,
     type CountryUpdateParams as CountryUpdateParams,
+    type CountryListParams as CountryListParams,
+    type CountryCountParams as CountryCountParams,
     type CountryCreateBulkParams as CountryCreateBulkParams,
     type CountryTupleParams as CountryTupleParams,
     type CountryUnvalidatedPublishParams as CountryUnvalidatedPublishParams,

@@ -83,8 +83,12 @@ export class Organizationdetails extends APIResource {
    * a corporation, manufacturer, consortium, government, etc. An organization can
    * have detail records from several sources.
    */
-  get(id: string, options?: RequestOptions): APIPromise<OrganizationDetailsFull> {
-    return this._client.get(path`/udl/organizationdetails/${id}`, options);
+  get(
+    id: string,
+    query: OrganizationdetailGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OrganizationDetailsFull> {
+    return this._client.get(path`/udl/organizationdetails/${id}`, { query, ...options });
   }
 }
 
@@ -1184,6 +1188,10 @@ export interface OrganizationdetailListParams {
    * Organization details name.
    */
   name: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface OrganizationdetailFindBySourceParams {
@@ -1196,6 +1204,16 @@ export interface OrganizationdetailFindBySourceParams {
    * The source of the OrganizationDetails records to find.
    */
   source: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OrganizationdetailGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Organizationdetails {
@@ -1207,5 +1225,6 @@ export declare namespace Organizationdetails {
     type OrganizationdetailUpdateParams as OrganizationdetailUpdateParams,
     type OrganizationdetailListParams as OrganizationdetailListParams,
     type OrganizationdetailFindBySourceParams as OrganizationdetailFindBySourceParams,
+    type OrganizationdetailGetParams as OrganizationdetailGetParams,
   };
 }

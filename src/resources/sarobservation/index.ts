@@ -17,6 +17,7 @@ export {
   type SarobservationListParams,
   type SarobservationCountParams,
   type SarobservationCreateBulkParams,
+  type SarobservationGetParams,
   type SarobservationTupleParams,
   type SarobservationUnvalidatedPublishParams,
 } from './sarobservation';

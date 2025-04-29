@@ -7,6 +7,7 @@ export {
   type EopCountResponse,
   type EopListTupleResponse,
   type EopCreateParams,
+  type EopRetrieveParams,
   type EopUpdateParams,
   type EopListParams,
   type EopCountParams,

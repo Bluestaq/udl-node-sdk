@@ -86,8 +86,12 @@ export class Taiutc extends APIResource {
    * Service operation to get a single TAIUTC record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.TaiutcFull> {
-    return this._client.get(path`/udl/taiutc/${id}`, options);
+  get(
+    id: string,
+    query: TaiutcGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.TaiutcFull> {
+    return this._client.get(path`/udl/taiutc/${id}`, { query, ...options });
   }
 
   /**
@@ -363,6 +367,10 @@ export interface TaiutcListParams {
    * across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   adjustmentDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface TaiutcCountParams {
@@ -371,6 +379,16 @@ export interface TaiutcCountParams {
    * across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   adjustmentDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface TaiutcGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface TaiutcTupleParams {
@@ -387,6 +405,10 @@ export interface TaiutcTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 Taiutc.History = History;
@@ -400,6 +422,7 @@ export declare namespace Taiutc {
     type TaiutcUpdateParams as TaiutcUpdateParams,
     type TaiutcListParams as TaiutcListParams,
     type TaiutcCountParams as TaiutcCountParams,
+    type TaiutcGetParams as TaiutcGetParams,
     type TaiutcTupleParams as TaiutcTupleParams,
   };
 

@@ -12,6 +12,7 @@ import {
   EcpsdrListParams,
   EcpsdrListResponse,
   EcpsdrResource,
+  EcpsdrRetrieveParams,
   EcpsdrTupleParams,
   EcpsdrTupleResponse,
 } from './ecpsdr';
@@ -59,6 +60,7 @@ export declare namespace Observations {
     type EcpsdrCountResponse as EcpsdrCountResponse,
     type EcpsdrTupleResponse as EcpsdrTupleResponse,
     type EcpsdrCreateParams as EcpsdrCreateParams,
+    type EcpsdrRetrieveParams as EcpsdrRetrieveParams,
     type EcpsdrListParams as EcpsdrListParams,
     type EcpsdrCountParams as EcpsdrCountParams,
     type EcpsdrCreateBulkParams as EcpsdrCreateBulkParams,

@@ -101,7 +101,11 @@ describe('resource personnelrecovery', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.personnelrecovery.list({ msgTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.personnelrecovery.list({
+      msgTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -116,7 +120,11 @@ describe('resource personnelrecovery', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.personnelrecovery.count({ msgTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.personnelrecovery.count({
+      msgTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -306,6 +314,17 @@ describe('resource personnelrecovery', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.personnelrecovery.get(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.personnelrecovery.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -335,6 +354,8 @@ describe('resource personnelrecovery', () => {
     const response = await client.personnelrecovery.tuple({
       columns: 'columns',
       msgTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 });

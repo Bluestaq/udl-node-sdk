@@ -81,8 +81,10 @@ describe('resource linkStatus', () => {
       client.linkStatus.list(
         {
           createdAt: '2019-12-27',
+          firstResult: 0,
           linkStartTime: '2019-12-27T18:11:19.117Z',
           linkStopTime: '2019-12-27T18:11:19.117Z',
+          maxResult: 0,
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -106,8 +108,10 @@ describe('resource linkStatus', () => {
       client.linkStatus.count(
         {
           createdAt: '2019-12-27',
+          firstResult: 0,
           linkStartTime: '2019-12-27T18:11:19.117Z',
           linkStopTime: '2019-12-27T18:11:19.117Z',
+          maxResult: 0,
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -123,6 +127,13 @@ describe('resource linkStatus', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.linkStatus.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -151,8 +162,10 @@ describe('resource linkStatus', () => {
     const response = await client.linkStatus.tuple({
       columns: 'columns',
       createdAt: '2019-12-27',
+      firstResult: 0,
       linkStartTime: '2019-12-27T18:11:19.117Z',
       linkStopTime: '2019-12-27T18:11:19.117Z',
+      maxResult: 0,
     });
   });
 });

@@ -38,8 +38,11 @@ export class Surface extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SurfaceListResponse> {
-    return this._client.get('/udl/surface', options);
+  list(
+    query: SurfaceListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SurfaceListResponse> {
+    return this._client.get('/udl/surface', { query, ...options });
   }
 
   /**
@@ -61,8 +64,9 @@ export class Surface extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: SurfaceCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/surface/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -72,8 +76,12 @@ export class Surface extends APIResource {
    * Service operation to get a single Surface record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SurfaceGetResponse> {
-    return this._client.get(path`/udl/surface/${id}`, options);
+  get(
+    id: string,
+    query: SurfaceGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SurfaceGetResponse> {
+    return this._client.get(path`/udl/surface/${id}`, { query, ...options });
   }
 
   /**
@@ -2893,6 +2901,24 @@ export interface SurfaceUpdateParams {
   widthM?: number;
 }
 
+export interface SurfaceListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SurfaceCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SurfaceGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SurfaceTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -2901,6 +2927,10 @@ export interface SurfaceTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Surface {
@@ -2911,6 +2941,9 @@ export declare namespace Surface {
     type SurfaceTupleResponse as SurfaceTupleResponse,
     type SurfaceCreateParams as SurfaceCreateParams,
     type SurfaceUpdateParams as SurfaceUpdateParams,
+    type SurfaceListParams as SurfaceListParams,
+    type SurfaceCountParams as SurfaceCountParams,
+    type SurfaceGetParams as SurfaceGetParams,
     type SurfaceTupleParams as SurfaceTupleParams,
   };
 }

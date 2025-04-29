@@ -43,8 +43,11 @@ export class Seradataopticalpayload extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SeradataopticalpayloadListResponse> {
-    return this._client.get('/udl/seradataopticalpayload', options);
+  list(
+    query: SeradataopticalpayloadListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradataopticalpayloadListResponse> {
+    return this._client.get('/udl/seradataopticalpayload', { query, ...options });
   }
 
   /**
@@ -66,8 +69,12 @@ export class Seradataopticalpayload extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: SeradataopticalpayloadCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/seradataopticalpayload/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -77,8 +84,12 @@ export class Seradataopticalpayload extends APIResource {
    * Service operation to get a single SeradataOpticalPayload by its unique ID passed
    * as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SeradataopticalpayloadGetResponse> {
-    return this._client.get(path`/udl/seradataopticalpayload/${id}`, options);
+  get(
+    id: string,
+    query: SeradataopticalpayloadGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradataopticalpayloadGetResponse> {
+    return this._client.get(path`/udl/seradataopticalpayload/${id}`, { query, ...options });
   }
 
   /**
@@ -879,6 +890,24 @@ export interface SeradataopticalpayloadUpdateParams {
   swathWidth?: number;
 }
 
+export interface SeradataopticalpayloadListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SeradataopticalpayloadCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SeradataopticalpayloadGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SeradataopticalpayloadTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -887,6 +916,10 @@ export interface SeradataopticalpayloadTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Seradataopticalpayload {
@@ -897,6 +930,9 @@ export declare namespace Seradataopticalpayload {
     type SeradataopticalpayloadTupleResponse as SeradataopticalpayloadTupleResponse,
     type SeradataopticalpayloadCreateParams as SeradataopticalpayloadCreateParams,
     type SeradataopticalpayloadUpdateParams as SeradataopticalpayloadUpdateParams,
+    type SeradataopticalpayloadListParams as SeradataopticalpayloadListParams,
+    type SeradataopticalpayloadCountParams as SeradataopticalpayloadCountParams,
+    type SeradataopticalpayloadGetParams as SeradataopticalpayloadGetParams,
     type SeradataopticalpayloadTupleParams as SeradataopticalpayloadTupleParams,
   };
 }

@@ -1441,6 +1441,10 @@ export interface AircraftSortieListParams {
    * UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   plannedDepTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AircraftSortieCountParams {
@@ -1449,6 +1453,10 @@ export interface AircraftSortieCountParams {
    * UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   plannedDepTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AircraftSortieCreateBulkParams {
@@ -1872,6 +1880,10 @@ export interface AircraftSortieHistoryAodrParams {
    */
   columns?: string;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
    * assumed. Current valid values are: EMAIL, SMS.
@@ -1899,6 +1911,10 @@ export interface AircraftSortieHistoryCountParams {
    * UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   plannedDepTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AircraftSortieHistoryQueryParams {
@@ -1914,6 +1930,10 @@ export interface AircraftSortieHistoryQueryParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace AircraftSortie {

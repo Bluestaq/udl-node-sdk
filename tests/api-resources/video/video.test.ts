@@ -51,6 +51,13 @@ describe('resource video', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.video.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('count', async () => {
     const responsePromise = client.video.count();
     const rawResponse = await responsePromise.asResponse();
@@ -62,6 +69,13 @@ describe('resource video', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('count: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.video.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('get', async () => {
     const responsePromise = client.video.get('id');
     const rawResponse = await responsePromise.asResponse();
@@ -71,6 +85,13 @@ describe('resource video', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.video.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('getPlayerStreamingInfo: only required params', async () => {
@@ -91,6 +112,8 @@ describe('resource video', () => {
     const response = await client.video.getPlayerStreamingInfo({
       sourceName: 'sourceName',
       streamName: 'streamName',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 
@@ -112,6 +135,8 @@ describe('resource video', () => {
     const response = await client.video.getPublisherStreamingInfo({
       sourceName: 'sourceName',
       streamName: 'streamName',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 
@@ -130,7 +155,12 @@ describe('resource video', () => {
   });
 
   test('getStreamFile: required and optional params', async () => {
-    const response = await client.video.getStreamFile({ sourceName: 'sourceName', streamName: 'streamName' });
+    const response = await client.video.getStreamFile({
+      sourceName: 'sourceName',
+      streamName: 'streamName',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('queryhelp', async () => {
@@ -156,6 +186,6 @@ describe('resource video', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.video.tuple({ columns: 'columns' });
+    const response = await client.video.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
   });
 });

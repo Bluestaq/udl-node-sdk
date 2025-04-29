@@ -29,8 +29,12 @@ export class Engines extends APIResource {
    * include performance characteristics and limits. A launch vehicle has 1 to many
    * engines per stage.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Engine> {
-    return this._client.get(path`/udl/engine/${id}`, options);
+  retrieve(
+    id: string,
+    query: EngineRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Engine> {
+    return this._client.get(path`/udl/engine/${id}`, { query, ...options });
   }
 
   /**
@@ -53,8 +57,11 @@ export class Engines extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<EngineListResponse> {
-    return this._client.get('/udl/engine', options);
+  list(
+    query: EngineListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EngineListResponse> {
+    return this._client.get('/udl/engine', { query, ...options });
   }
 
   /**
@@ -78,8 +85,9 @@ export class Engines extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: EngineCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/engine/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -321,6 +329,12 @@ export interface EngineCreateParams {
   origin?: string;
 }
 
+export interface EngineRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EngineUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -369,6 +383,18 @@ export interface EngineUpdateParams {
   origin?: string;
 }
 
+export interface EngineListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface EngineCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EngineTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -377,6 +403,10 @@ export interface EngineTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Engines {
@@ -387,7 +417,10 @@ export declare namespace Engines {
     type EngineCountResponse as EngineCountResponse,
     type EngineTupleResponse as EngineTupleResponse,
     type EngineCreateParams as EngineCreateParams,
+    type EngineRetrieveParams as EngineRetrieveParams,
     type EngineUpdateParams as EngineUpdateParams,
+    type EngineListParams as EngineListParams,
+    type EngineCountParams as EngineCountParams,
     type EngineTupleParams as EngineTupleParams,
   };
 }

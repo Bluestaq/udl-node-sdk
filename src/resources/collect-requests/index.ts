@@ -7,6 +7,7 @@ export {
   type CollectRequestCountResponse,
   type CollectRequestTupleResponse,
   type CollectRequestCreateParams,
+  type CollectRequestRetrieveParams,
   type CollectRequestListParams,
   type CollectRequestCountParams,
   type CollectRequestCreateBulkParams,

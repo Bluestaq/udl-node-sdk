@@ -18,5 +18,6 @@ export {
   type TaiutcUpdateParams,
   type TaiutcListParams,
   type TaiutcCountParams,
+  type TaiutcGetParams,
   type TaiutcTupleParams,
 } from './taiutc';

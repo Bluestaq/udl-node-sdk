@@ -7,6 +7,7 @@ export {
   type CalibrationQueryResponse,
   type CalibrationTupleResponse,
   type CalibrationCreateParams,
+  type CalibrationRetrieveParams,
   type CalibrationCountParams,
   type CalibrationCreateBulkParams,
   type CalibrationQueryParams,

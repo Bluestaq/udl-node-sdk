@@ -687,6 +687,10 @@ export interface SigactListParams {
    * Date of the report or filing. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   reportDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SigactCountParams {
@@ -694,6 +698,10 @@ export interface SigactCountParams {
    * Date of the report or filing. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   reportDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SigactCreateBulkParams {
@@ -1260,6 +1268,10 @@ export interface SigactTupleParams {
    * Date of the report or filing. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   reportDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SigactUploadZipParams {

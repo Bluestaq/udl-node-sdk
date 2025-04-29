@@ -108,6 +108,17 @@ describe('resource ephemerisSets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.ephemerisSets.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('list', async () => {
     const responsePromise = client.ephemerisSets.list();
     const rawResponse = await responsePromise.asResponse();
@@ -123,7 +134,12 @@ describe('resource ephemerisSets', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.ephemerisSets.list(
-        { pointEndTime: '2019-12-27T18:11:19.117Z', pointStartTime: '2019-12-27T18:11:19.117Z' },
+        {
+          firstResult: 0,
+          maxResult: 0,
+          pointEndTime: '2019-12-27T18:11:19.117Z',
+          pointStartTime: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -144,7 +160,23 @@ describe('resource ephemerisSets', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.ephemerisSets.count(
-        { pointEndTime: '2019-12-27T18:11:19.117Z', pointStartTime: '2019-12-27T18:11:19.117Z' },
+        {
+          firstResult: 0,
+          maxResult: 0,
+          pointEndTime: '2019-12-27T18:11:19.117Z',
+          pointStartTime: '2019-12-27T18:11:19.117Z',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
+  test('fileRetrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.ephemerisSets.fileRetrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -175,6 +207,8 @@ describe('resource ephemerisSets', () => {
   test('tuple: required and optional params', async () => {
     const response = await client.ephemerisSets.tuple({
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
       pointEndTime: '2019-12-27T18:11:19.117Z',
       pointStartTime: '2019-12-27T18:11:19.117Z',
     });

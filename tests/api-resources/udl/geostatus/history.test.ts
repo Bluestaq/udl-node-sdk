@@ -21,7 +21,12 @@ describe('resource history', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.udl.geostatus.history.list({ createdAt: '2019-12-27', columns: 'columns' });
+    const response = await client.udl.geostatus.history.list({
+      createdAt: '2019-12-27',
+      columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('aodr: only required params', async () => {
@@ -39,6 +44,8 @@ describe('resource history', () => {
     const response = await client.udl.geostatus.history.aodr({
       createdAt: '2019-12-27',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',
@@ -57,6 +64,10 @@ describe('resource history', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.udl.geostatus.history.count({ createdAt: '2019-12-27' });
+    const response = await client.udl.geostatus.history.count({
+      createdAt: '2019-12-27',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 });

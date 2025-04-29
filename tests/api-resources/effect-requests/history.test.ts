@@ -24,6 +24,8 @@ describe('resource history', () => {
     const response = await client.effectRequests.history.list({
       createdAt: '2019-12-27',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 
@@ -42,6 +44,8 @@ describe('resource history', () => {
     const response = await client.effectRequests.history.aodr({
       createdAt: '2019-12-27',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',
@@ -60,6 +64,10 @@ describe('resource history', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.effectRequests.history.count({ createdAt: '2019-12-27' });
+    const response = await client.effectRequests.history.count({
+      createdAt: '2019-12-27',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 });

@@ -4,6 +4,7 @@ export {
   Current,
   type CurrentListResponse,
   type CurrentTupleResponse,
+  type CurrentListParams,
   type CurrentTupleParams,
 } from './current';
 export {
@@ -15,6 +16,7 @@ export {
   type ElsetCountResponse,
   type ElsetTupleResponse,
   type ElsetCreateParams,
+  type ElsetRetrieveParams,
   type ElsetListParams,
   type ElsetCountParams,
   type ElsetCreateBulkParams,

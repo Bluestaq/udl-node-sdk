@@ -31,11 +31,11 @@ Methods:
 
 - <code title="post /udl/airevent">client.airEvents.<a href="./src/resources/air-events.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/airevent/{id}">client.airEvents.<a href="./src/resources/air-events.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/airevent">client.airEvents.<a href="./src/resources/air-events.ts">list</a>() -> AirEventListResponse</code>
+- <code title="get /udl/airevent">client.airEvents.<a href="./src/resources/air-events.ts">list</a>({ ...params }) -> AirEventListResponse</code>
 - <code title="delete /udl/airevent/{id}">client.airEvents.<a href="./src/resources/air-events.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/airevent/count">client.airEvents.<a href="./src/resources/air-events.ts">count</a>() -> string</code>
+- <code title="get /udl/airevent/count">client.airEvents.<a href="./src/resources/air-events.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/airevent/createBulk">client.airEvents.<a href="./src/resources/air-events.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/airevent/{id}">client.airEvents.<a href="./src/resources/air-events.ts">get</a>(id) -> AirEventGetResponse</code>
+- <code title="get /udl/airevent/{id}">client.airEvents.<a href="./src/resources/air-events.ts">get</a>(id, { ...params }) -> AirEventGetResponse</code>
 - <code title="get /udl/airevent/queryhelp">client.airEvents.<a href="./src/resources/air-events.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/airevent/tuple">client.airEvents.<a href="./src/resources/air-events.ts">tuple</a>({ ...params }) -> AirEventTupleResponse</code>
 - <code title="post /filedrop/udl-airevent">client.airEvents.<a href="./src/resources/air-events.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -53,7 +53,7 @@ Types:
 Methods:
 
 - <code title="post /udl/airloadplan">client.airLoadPlans.<a href="./src/resources/air-load-plans.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/airloadplan/{id}">client.airLoadPlans.<a href="./src/resources/air-load-plans.ts">retrieve</a>(id) -> AirloadplanFull</code>
+- <code title="get /udl/airloadplan/{id}">client.airLoadPlans.<a href="./src/resources/air-load-plans.ts">retrieve</a>(id, { ...params }) -> AirloadplanFull</code>
 - <code title="get /udl/airloadplan">client.airLoadPlans.<a href="./src/resources/air-load-plans.ts">list</a>({ ...params }) -> AirLoadPlanListResponse</code>
 - <code title="get /udl/airloadplan/count">client.airLoadPlans.<a href="./src/resources/air-load-plans.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/airloadplan/queryhelp">client.airLoadPlans.<a href="./src/resources/air-load-plans.ts">queryhelp</a>() -> void</code>
@@ -129,8 +129,8 @@ Types:
 Methods:
 
 - <code title="post /udl/airtaskingorder">client.airTaskingOrders.<a href="./src/resources/air-tasking-orders.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/airtaskingorder/{id}">client.airTaskingOrders.<a href="./src/resources/air-tasking-orders.ts">retrieve</a>(id) -> AirTaskingOrderFull</code>
-- <code title="get /udl/airtaskingorder/count">client.airTaskingOrders.<a href="./src/resources/air-tasking-orders.ts">count</a>() -> string</code>
+- <code title="get /udl/airtaskingorder/{id}">client.airTaskingOrders.<a href="./src/resources/air-tasking-orders.ts">retrieve</a>(id, { ...params }) -> AirTaskingOrderFull</code>
+- <code title="get /udl/airtaskingorder/count">client.airTaskingOrders.<a href="./src/resources/air-tasking-orders.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/airtaskingorder/queryhelp">client.airTaskingOrders.<a href="./src/resources/air-tasking-orders.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/airtaskingorder/tuple">client.airTaskingOrders.<a href="./src/resources/air-tasking-orders.ts">tuple</a>({ ...params }) -> AirTaskingOrderTupleResponse</code>
 
@@ -146,7 +146,7 @@ Types:
 Methods:
 
 - <code title="post /udl/airtransportmission">client.airTransportMissions.<a href="./src/resources/air-transport-missions/air-transport-missions.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/airtransportmission/{id}">client.airTransportMissions.<a href="./src/resources/air-transport-missions/air-transport-missions.ts">retrieve</a>(id) -> AirTransportMissionFull</code>
+- <code title="get /udl/airtransportmission/{id}">client.airTransportMissions.<a href="./src/resources/air-transport-missions/air-transport-missions.ts">retrieve</a>(id, { ...params }) -> AirTransportMissionFull</code>
 - <code title="put /udl/airtransportmission/{id}">client.airTransportMissions.<a href="./src/resources/air-transport-missions/air-transport-missions.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/airtransportmission">client.airTransportMissions.<a href="./src/resources/air-transport-missions/air-transport-missions.ts">list</a>({ ...params }) -> AirTransportMissionListResponse</code>
 - <code title="get /udl/airtransportmission/count">client.airTransportMissions.<a href="./src/resources/air-transport-missions/air-transport-missions.ts">count</a>({ ...params }) -> string</code>
@@ -179,10 +179,10 @@ Types:
 Methods:
 
 - <code title="post /udl/aircraft">client.aircraft.<a href="./src/resources/aircraft.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/aircraft/{id}">client.aircraft.<a href="./src/resources/aircraft.ts">retrieve</a>(id) -> AircraftFull</code>
+- <code title="get /udl/aircraft/{id}">client.aircraft.<a href="./src/resources/aircraft.ts">retrieve</a>(id, { ...params }) -> AircraftFull</code>
 - <code title="put /udl/aircraft/{id}">client.aircraft.<a href="./src/resources/aircraft.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/aircraft">client.aircraft.<a href="./src/resources/aircraft.ts">list</a>() -> AircraftListResponse</code>
-- <code title="get /udl/aircraft/count">client.aircraft.<a href="./src/resources/aircraft.ts">count</a>() -> string</code>
+- <code title="get /udl/aircraft">client.aircraft.<a href="./src/resources/aircraft.ts">list</a>({ ...params }) -> AircraftListResponse</code>
+- <code title="get /udl/aircraft/count">client.aircraft.<a href="./src/resources/aircraft.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/aircraft/queryhelp">client.aircraft.<a href="./src/resources/aircraft.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/aircraft/tuple">client.aircraft.<a href="./src/resources/aircraft.ts">tupleQuery</a>({ ...params }) -> AircraftTupleQueryResponse</code>
 
@@ -194,7 +194,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/aircraftsortie/{id}">client.aircraftSorties.<a href="./src/resources/aircraft-sorties.ts">retrieve</a>(id) -> AircraftsortieFull</code>
+- <code title="get /udl/aircraftsortie/{id}">client.aircraftSorties.<a href="./src/resources/aircraft-sorties.ts">retrieve</a>(id, { ...params }) -> AircraftsortieFull</code>
 - <code title="put /udl/aircraftsortie/{id}">client.aircraftSorties.<a href="./src/resources/aircraft-sorties.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/aircraftsortie/queryhelp">client.aircraftSorties.<a href="./src/resources/aircraft-sorties.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/aircraftsortie/tuple">client.aircraftSorties.<a href="./src/resources/aircraft-sorties.ts">tuple</a>({ ...params }) -> AircraftSortyTupleResponse</code>
@@ -212,9 +212,9 @@ Types:
 Methods:
 
 - <code title="post /udl/aircraftstatusremark">client.aircraftStatusRemarks.<a href="./src/resources/aircraft-status-remarks.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/aircraftstatusremark/{id}">client.aircraftStatusRemarks.<a href="./src/resources/aircraft-status-remarks.ts">retrieve</a>(id) -> AircraftstatusremarkFull</code>
-- <code title="get /udl/aircraftstatusremark">client.aircraftStatusRemarks.<a href="./src/resources/aircraft-status-remarks.ts">list</a>() -> AircraftStatusRemarkListResponse</code>
-- <code title="get /udl/aircraftstatusremark/count">client.aircraftStatusRemarks.<a href="./src/resources/aircraft-status-remarks.ts">count</a>() -> string</code>
+- <code title="get /udl/aircraftstatusremark/{id}">client.aircraftStatusRemarks.<a href="./src/resources/aircraft-status-remarks.ts">retrieve</a>(id, { ...params }) -> AircraftstatusremarkFull</code>
+- <code title="get /udl/aircraftstatusremark">client.aircraftStatusRemarks.<a href="./src/resources/aircraft-status-remarks.ts">list</a>({ ...params }) -> AircraftStatusRemarkListResponse</code>
+- <code title="get /udl/aircraftstatusremark/count">client.aircraftStatusRemarks.<a href="./src/resources/aircraft-status-remarks.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/aircraftstatusremark/queryhelp">client.aircraftStatusRemarks.<a href="./src/resources/aircraft-status-remarks.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/aircraftstatusremark/tuple">client.aircraftStatusRemarks.<a href="./src/resources/aircraft-status-remarks.ts">tuple</a>({ ...params }) -> AircraftStatusRemarkTupleResponse</code>
 
@@ -230,11 +230,11 @@ Types:
 Methods:
 
 - <code title="post /udl/aircraftstatus">client.aircraftStatuses.<a href="./src/resources/aircraft-statuses/aircraft-statuses.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/aircraftstatus/{id}">client.aircraftStatuses.<a href="./src/resources/aircraft-statuses/aircraft-statuses.ts">retrieve</a>(id) -> AircraftstatusFull</code>
+- <code title="get /udl/aircraftstatus/{id}">client.aircraftStatuses.<a href="./src/resources/aircraft-statuses/aircraft-statuses.ts">retrieve</a>(id, { ...params }) -> AircraftstatusFull</code>
 - <code title="put /udl/aircraftstatus/{id}">client.aircraftStatuses.<a href="./src/resources/aircraft-statuses/aircraft-statuses.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/aircraftstatus">client.aircraftStatuses.<a href="./src/resources/aircraft-statuses/aircraft-statuses.ts">list</a>() -> AircraftStatusListResponse</code>
+- <code title="get /udl/aircraftstatus">client.aircraftStatuses.<a href="./src/resources/aircraft-statuses/aircraft-statuses.ts">list</a>({ ...params }) -> AircraftStatusListResponse</code>
 - <code title="delete /udl/aircraftstatus/{id}">client.aircraftStatuses.<a href="./src/resources/aircraft-statuses/aircraft-statuses.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/aircraftstatus/count">client.aircraftStatuses.<a href="./src/resources/aircraft-statuses/aircraft-statuses.ts">count</a>() -> string</code>
+- <code title="get /udl/aircraftstatus/count">client.aircraftStatuses.<a href="./src/resources/aircraft-statuses/aircraft-statuses.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/aircraftstatus/queryhelp">client.aircraftStatuses.<a href="./src/resources/aircraft-statuses/aircraft-statuses.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/aircraftstatus/tuple">client.aircraftStatuses.<a href="./src/resources/aircraft-statuses/aircraft-statuses.ts">tuple</a>({ ...params }) -> AircraftStatusTupleResponse</code>
 
@@ -248,7 +248,7 @@ Types:
 Methods:
 
 - <code title="get /udl/aircraftstatus/history">client.aircraftStatuses.history.<a href="./src/resources/aircraft-statuses/history.ts">list</a>({ ...params }) -> HistoryListResponse</code>
-- <code title="get /udl/aircraftstatus/history/count">client.aircraftStatuses.history.<a href="./src/resources/aircraft-statuses/history.ts">count</a>() -> string</code>
+- <code title="get /udl/aircraftstatus/history/count">client.aircraftStatuses.history.<a href="./src/resources/aircraft-statuses/history.ts">count</a>({ ...params }) -> string</code>
 
 # Aircraftstatusremark
 
@@ -268,7 +268,7 @@ Types:
 Methods:
 
 - <code title="post /udl/airfieldslot">client.airfieldSlots.<a href="./src/resources/airfield-slots.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/airfieldslot">client.airfieldSlots.<a href="./src/resources/airfield-slots.ts">list</a>() -> AirfieldSlotListResponse</code>
+- <code title="get /udl/airfieldslot">client.airfieldSlots.<a href="./src/resources/airfield-slots.ts">list</a>({ ...params }) -> AirfieldSlotListResponse</code>
 
 # AirfieldStatus
 
@@ -278,7 +278,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/airfieldstatus/{id}">client.airfieldStatus.<a href="./src/resources/airfield-status.ts">retrieve</a>(id) -> AirfieldstatusFull</code>
+- <code title="get /udl/airfieldstatus/{id}">client.airfieldStatus.<a href="./src/resources/airfield-status.ts">retrieve</a>(id, { ...params }) -> AirfieldstatusFull</code>
 - <code title="put /udl/airfieldstatus/{id}">client.airfieldStatus.<a href="./src/resources/airfield-status.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="delete /udl/airfieldstatus/{id}">client.airfieldStatus.<a href="./src/resources/airfield-status.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/airfieldstatus/tuple">client.airfieldStatus.<a href="./src/resources/airfield-status.ts">tuple</a>({ ...params }) -> AirfieldStatusTupleResponse</code>
@@ -296,10 +296,10 @@ Types:
 Methods:
 
 - <code title="post /udl/airfield">client.airfields.<a href="./src/resources/airfields.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/airfield/{id}">client.airfields.<a href="./src/resources/airfields.ts">retrieve</a>(id) -> AirfieldFull</code>
+- <code title="get /udl/airfield/{id}">client.airfields.<a href="./src/resources/airfields.ts">retrieve</a>(id, { ...params }) -> AirfieldFull</code>
 - <code title="put /udl/airfield/{id}">client.airfields.<a href="./src/resources/airfields.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/airfield">client.airfields.<a href="./src/resources/airfields.ts">list</a>() -> AirfieldListResponse</code>
-- <code title="get /udl/airfield/count">client.airfields.<a href="./src/resources/airfields.ts">count</a>() -> string</code>
+- <code title="get /udl/airfield">client.airfields.<a href="./src/resources/airfields.ts">list</a>({ ...params }) -> AirfieldListResponse</code>
+- <code title="get /udl/airfield/count">client.airfields.<a href="./src/resources/airfields.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/airfield/queryhelp">client.airfields.<a href="./src/resources/airfields.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/airfield/tuple">client.airfields.<a href="./src/resources/airfields.ts">tuple</a>({ ...params }) -> AirfieldTupleResponse</code>
 
@@ -316,7 +316,7 @@ Types:
 Methods:
 
 - <code title="post /udl/airfieldslotconsumption">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/airfieldslotconsumption/{id}">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">retrieve</a>(id) -> AirfieldslotconsumptionFull</code>
+- <code title="get /udl/airfieldslotconsumption/{id}">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">retrieve</a>(id, { ...params }) -> AirfieldslotconsumptionFull</code>
 - <code title="put /udl/airfieldslotconsumption/{id}">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/airfieldslotconsumption">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">list</a>({ ...params }) -> AirfieldslotconsumptionListResponse</code>
 - <code title="delete /udl/airfieldslotconsumption/{id}">client.airfieldslotconsumptions.<a href="./src/resources/airfieldslotconsumptions.ts">delete</a>(id) -> void</code>
@@ -333,10 +333,10 @@ Types:
 
 Methods:
 
-- <code title="get /udl/airfieldslot/{id}">client.airfieldslots.<a href="./src/resources/airfieldslots.ts">retrieve</a>(id) -> AirfieldslotFull</code>
+- <code title="get /udl/airfieldslot/{id}">client.airfieldslots.<a href="./src/resources/airfieldslots.ts">retrieve</a>(id, { ...params }) -> AirfieldslotFull</code>
 - <code title="put /udl/airfieldslot/{id}">client.airfieldslots.<a href="./src/resources/airfieldslots.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="delete /udl/airfieldslot/{id}">client.airfieldslots.<a href="./src/resources/airfieldslots.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/airfieldslot/count">client.airfieldslots.<a href="./src/resources/airfieldslots.ts">count</a>() -> string</code>
+- <code title="get /udl/airfieldslot/count">client.airfieldslots.<a href="./src/resources/airfieldslots.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/airfieldslot/queryhelp">client.airfieldslots.<a href="./src/resources/airfieldslots.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/airfieldslot/tuple">client.airfieldslots.<a href="./src/resources/airfieldslots.ts">tuple</a>({ ...params }) -> AirfieldslotTupleResponse</code>
 
@@ -352,8 +352,8 @@ Types:
 Methods:
 
 - <code title="post /udl/airfieldstatus">client.airfieldstatus.<a href="./src/resources/airfieldstatus/airfieldstatus.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/airfieldstatus">client.airfieldstatus.<a href="./src/resources/airfieldstatus/airfieldstatus.ts">list</a>() -> AirfieldstatusListResponse</code>
-- <code title="get /udl/airfieldstatus/count">client.airfieldstatus.<a href="./src/resources/airfieldstatus/airfieldstatus.ts">count</a>() -> string</code>
+- <code title="get /udl/airfieldstatus">client.airfieldstatus.<a href="./src/resources/airfieldstatus/airfieldstatus.ts">list</a>({ ...params }) -> AirfieldstatusListResponse</code>
+- <code title="get /udl/airfieldstatus/count">client.airfieldstatus.<a href="./src/resources/airfieldstatus/airfieldstatus.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/airfieldstatus/queryhelp">client.airfieldstatus.<a href="./src/resources/airfieldstatus/airfieldstatus.ts">queryhelp</a>() -> void</code>
 
 ## History
@@ -366,7 +366,7 @@ Types:
 Methods:
 
 - <code title="get /udl/airfieldstatus/history">client.airfieldstatus.history.<a href="./src/resources/airfieldstatus/history.ts">list</a>({ ...params }) -> HistoryListResponse</code>
-- <code title="get /udl/airfieldstatus/history/count">client.airfieldstatus.history.<a href="./src/resources/airfieldstatus/history.ts">count</a>() -> string</code>
+- <code title="get /udl/airfieldstatus/history/count">client.airfieldstatus.history.<a href="./src/resources/airfieldstatus/history.ts">count</a>({ ...params }) -> string</code>
 
 # Airloadplans
 
@@ -388,9 +388,9 @@ Types:
 Methods:
 
 - <code title="post /udl/airspacecontrolorder">client.airspaceControlOrders.<a href="./src/resources/airspace-control-orders.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/airspacecontrolorder/{id}">client.airspaceControlOrders.<a href="./src/resources/airspace-control-orders.ts">retrieve</a>(id) -> AirspacecontrolorderFull</code>
-- <code title="get /udl/airspacecontrolorder">client.airspaceControlOrders.<a href="./src/resources/airspace-control-orders.ts">list</a>() -> AirspaceControlOrderListResponse</code>
-- <code title="get /udl/airspacecontrolorder/count">client.airspaceControlOrders.<a href="./src/resources/airspace-control-orders.ts">count</a>() -> string</code>
+- <code title="get /udl/airspacecontrolorder/{id}">client.airspaceControlOrders.<a href="./src/resources/airspace-control-orders.ts">retrieve</a>(id, { ...params }) -> AirspacecontrolorderFull</code>
+- <code title="get /udl/airspacecontrolorder">client.airspaceControlOrders.<a href="./src/resources/airspace-control-orders.ts">list</a>({ ...params }) -> AirspaceControlOrderListResponse</code>
+- <code title="get /udl/airspacecontrolorder/count">client.airspaceControlOrders.<a href="./src/resources/airspace-control-orders.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/airspacecontrolorder/createBulk">client.airspaceControlOrders.<a href="./src/resources/airspace-control-orders.ts">createBulk</a>([ ...body ]) -> void</code>
 - <code title="get /udl/airspacecontrolorder/queryhelp">client.airspaceControlOrders.<a href="./src/resources/airspace-control-orders.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/airspacecontrolorder/tuple">client.airspaceControlOrders.<a href="./src/resources/airspace-control-orders.ts">tuple</a>({ ...params }) -> AirspaceControlOrderTupleResponse</code>
@@ -404,7 +404,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/airtaskingorder">client.airtaskingorders.<a href="./src/resources/airtaskingorders.ts">list</a>() -> AirtaskingorderListResponse</code>
+- <code title="get /udl/airtaskingorder">client.airtaskingorders.<a href="./src/resources/airtaskingorders.ts">list</a>({ ...params }) -> AirtaskingorderListResponse</code>
 
 # AIs
 
@@ -456,10 +456,10 @@ Types:
 
 Methods:
 
-- <code title="get /udl/analyticimagery/{id}">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">retrieve</a>(id) -> AnalyticImageryFull</code>
+- <code title="get /udl/analyticimagery/{id}">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">retrieve</a>(id, { ...params }) -> AnalyticImageryFull</code>
 - <code title="get /udl/analyticimagery">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">list</a>({ ...params }) -> AnalyticImageryListResponse</code>
 - <code title="get /udl/analyticimagery/count">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/analyticimagery/getFile/{id}">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">fileGet</a>(id) -> Response</code>
+- <code title="get /udl/analyticimagery/getFile/{id}">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">fileGet</a>(id, { ...params }) -> Response</code>
 - <code title="get /udl/analyticimagery/history">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">history</a>({ ...params }) -> AnalyticImageryHistoryResponse</code>
 - <code title="get /udl/analyticimagery/history/aodr">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">historyAodr</a>({ ...params }) -> void</code>
 - <code title="get /udl/analyticimagery/history/count">client.analyticImagery.<a href="./src/resources/analytic-imagery.ts">historyCount</a>({ ...params }) -> string</code>
@@ -480,11 +480,11 @@ Types:
 Methods:
 
 - <code title="post /udl/antenna">client.antennas.<a href="./src/resources/antennas.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/antenna/{id}">client.antennas.<a href="./src/resources/antennas.ts">retrieve</a>(id) -> AntennaFull</code>
+- <code title="get /udl/antenna/{id}">client.antennas.<a href="./src/resources/antennas.ts">retrieve</a>(id, { ...params }) -> AntennaFull</code>
 - <code title="put /udl/antenna/{id}">client.antennas.<a href="./src/resources/antennas.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/antenna">client.antennas.<a href="./src/resources/antennas.ts">list</a>() -> AntennaListResponse</code>
+- <code title="get /udl/antenna">client.antennas.<a href="./src/resources/antennas.ts">list</a>({ ...params }) -> AntennaListResponse</code>
 - <code title="delete /udl/antenna/{id}">client.antennas.<a href="./src/resources/antennas.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/antenna/count">client.antennas.<a href="./src/resources/antennas.ts">count</a>() -> string</code>
+- <code title="get /udl/antenna/count">client.antennas.<a href="./src/resources/antennas.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/antenna/queryhelp">client.antennas.<a href="./src/resources/antennas.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/antenna/tuple">client.antennas.<a href="./src/resources/antennas.ts">tuple</a>({ ...params }) -> AntennaTupleResponse</code>
 
@@ -535,7 +535,7 @@ Methods:
 
 Methods:
 
-- <code title="get /udl/attitudeset/{id}">client.attitudesets.<a href="./src/resources/attitudesets.ts">retrieve</a>(id) -> AttitudesetFull</code>
+- <code title="get /udl/attitudeset/{id}">client.attitudesets.<a href="./src/resources/attitudesets.ts">retrieve</a>(id, { ...params }) -> AttitudesetFull</code>
 
 # Batteries
 
@@ -550,11 +550,11 @@ Types:
 Methods:
 
 - <code title="post /udl/battery">client.batteries.<a href="./src/resources/batteries.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/battery/{id}">client.batteries.<a href="./src/resources/batteries.ts">retrieve</a>(id) -> BatteryFull</code>
+- <code title="get /udl/battery/{id}">client.batteries.<a href="./src/resources/batteries.ts">retrieve</a>(id, { ...params }) -> BatteryFull</code>
 - <code title="put /udl/battery/{id}">client.batteries.<a href="./src/resources/batteries.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/battery">client.batteries.<a href="./src/resources/batteries.ts">list</a>() -> BatteryListResponse</code>
+- <code title="get /udl/battery">client.batteries.<a href="./src/resources/batteries.ts">list</a>({ ...params }) -> BatteryListResponse</code>
 - <code title="delete /udl/battery/{id}">client.batteries.<a href="./src/resources/batteries.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/battery/count">client.batteries.<a href="./src/resources/batteries.ts">count</a>() -> string</code>
+- <code title="get /udl/battery/count">client.batteries.<a href="./src/resources/batteries.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/battery/queryhelp">client.batteries.<a href="./src/resources/batteries.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/battery/tuple">client.batteries.<a href="./src/resources/batteries.ts">tuple</a>({ ...params }) -> BatteryTupleResponse</code>
 
@@ -569,9 +569,9 @@ Types:
 Methods:
 
 - <code title="post /udl/batterydetails">client.batterydetails.<a href="./src/resources/batterydetails.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/batterydetails/{id}">client.batterydetails.<a href="./src/resources/batterydetails.ts">retrieve</a>(id) -> BatterydetailsFull</code>
+- <code title="get /udl/batterydetails/{id}">client.batterydetails.<a href="./src/resources/batterydetails.ts">retrieve</a>(id, { ...params }) -> BatterydetailsFull</code>
 - <code title="put /udl/batterydetails/{id}">client.batterydetails.<a href="./src/resources/batterydetails.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/batterydetails">client.batterydetails.<a href="./src/resources/batterydetails.ts">list</a>() -> BatterydetailListResponse</code>
+- <code title="get /udl/batterydetails">client.batterydetails.<a href="./src/resources/batterydetails.ts">list</a>({ ...params }) -> BatterydetailListResponse</code>
 - <code title="delete /udl/batterydetails/{id}">client.batterydetails.<a href="./src/resources/batterydetails.ts">delete</a>(id) -> void</code>
 
 # Beam
@@ -587,11 +587,11 @@ Types:
 Methods:
 
 - <code title="post /udl/beam">client.beam.<a href="./src/resources/beam.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/beam/{id}">client.beam.<a href="./src/resources/beam.ts">retrieve</a>(id) -> BeamFull</code>
+- <code title="get /udl/beam/{id}">client.beam.<a href="./src/resources/beam.ts">retrieve</a>(id, { ...params }) -> BeamFull</code>
 - <code title="put /udl/beam/{id}">client.beam.<a href="./src/resources/beam.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/beam">client.beam.<a href="./src/resources/beam.ts">list</a>() -> BeamListResponse</code>
+- <code title="get /udl/beam">client.beam.<a href="./src/resources/beam.ts">list</a>({ ...params }) -> BeamListResponse</code>
 - <code title="delete /udl/beam/{id}">client.beam.<a href="./src/resources/beam.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/beam/count">client.beam.<a href="./src/resources/beam.ts">count</a>() -> string</code>
+- <code title="get /udl/beam/count">client.beam.<a href="./src/resources/beam.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/beam/queryhelp">client.beam.<a href="./src/resources/beam.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/beam/tuple">client.beam.<a href="./src/resources/beam.ts">tuple</a>({ ...params }) -> BeamTupleResponse</code>
 
@@ -608,7 +608,7 @@ Types:
 Methods:
 
 - <code title="post /udl/beamcontour">client.beamContours.<a href="./src/resources/beam-contours.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/beamcontour/{id}">client.beamContours.<a href="./src/resources/beam-contours.ts">retrieve</a>(id) -> BeamcontourFull</code>
+- <code title="get /udl/beamcontour/{id}">client.beamContours.<a href="./src/resources/beam-contours.ts">retrieve</a>(id, { ...params }) -> BeamcontourFull</code>
 - <code title="put /udl/beamcontour/{id}">client.beamContours.<a href="./src/resources/beam-contours.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/beamcontour">client.beamContours.<a href="./src/resources/beam-contours.ts">list</a>({ ...params }) -> BeamContourListResponse</code>
 - <code title="delete /udl/beamcontour/{id}">client.beamContours.<a href="./src/resources/beam-contours.ts">delete</a>(id) -> void</code>
@@ -630,11 +630,11 @@ Types:
 Methods:
 
 - <code title="post /udl/bus">client.buses.<a href="./src/resources/buses.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/bus/{id}">client.buses.<a href="./src/resources/buses.ts">retrieve</a>(id) -> BusFull</code>
+- <code title="get /udl/bus/{id}">client.buses.<a href="./src/resources/buses.ts">retrieve</a>(id, { ...params }) -> BusFull</code>
 - <code title="put /udl/bus/{id}">client.buses.<a href="./src/resources/buses.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/bus">client.buses.<a href="./src/resources/buses.ts">list</a>() -> BusListResponse</code>
+- <code title="get /udl/bus">client.buses.<a href="./src/resources/buses.ts">list</a>({ ...params }) -> BusListResponse</code>
 - <code title="delete /udl/bus/{id}">client.buses.<a href="./src/resources/buses.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/bus/count">client.buses.<a href="./src/resources/buses.ts">count</a>() -> string</code>
+- <code title="get /udl/bus/count">client.buses.<a href="./src/resources/buses.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/bus/queryhelp">client.buses.<a href="./src/resources/buses.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/bus/tuple">client.buses.<a href="./src/resources/buses.ts">tuple</a>({ ...params }) -> BusTupleResponse</code>
 
@@ -651,11 +651,11 @@ Types:
 Methods:
 
 - <code title="post /udl/channel">client.channels.<a href="./src/resources/channels.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/channel/{id}">client.channels.<a href="./src/resources/channels.ts">retrieve</a>(id) -> ChannelFull</code>
+- <code title="get /udl/channel/{id}">client.channels.<a href="./src/resources/channels.ts">retrieve</a>(id, { ...params }) -> ChannelFull</code>
 - <code title="put /udl/channel/{id}">client.channels.<a href="./src/resources/channels.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/channel">client.channels.<a href="./src/resources/channels.ts">list</a>() -> ChannelListResponse</code>
+- <code title="get /udl/channel">client.channels.<a href="./src/resources/channels.ts">list</a>({ ...params }) -> ChannelListResponse</code>
 - <code title="delete /udl/channel/{id}">client.channels.<a href="./src/resources/channels.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/channel/count">client.channels.<a href="./src/resources/channels.ts">count</a>() -> string</code>
+- <code title="get /udl/channel/count">client.channels.<a href="./src/resources/channels.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/channel/queryhelp">client.channels.<a href="./src/resources/channels.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/channel/tuple">client.channels.<a href="./src/resources/channels.ts">tuple</a>({ ...params }) -> ChannelTupleResponse</code>
 
@@ -671,7 +671,7 @@ Types:
 Methods:
 
 - <code title="post /udl/collectrequest">client.collectRequests.<a href="./src/resources/collect-requests/collect-requests.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/collectrequest/{id}">client.collectRequests.<a href="./src/resources/collect-requests/collect-requests.ts">retrieve</a>(id) -> CollectRequestFull</code>
+- <code title="get /udl/collectrequest/{id}">client.collectRequests.<a href="./src/resources/collect-requests/collect-requests.ts">retrieve</a>(id, { ...params }) -> CollectRequestFull</code>
 - <code title="get /udl/collectrequest">client.collectRequests.<a href="./src/resources/collect-requests/collect-requests.ts">list</a>({ ...params }) -> CollectRequestListResponse</code>
 - <code title="get /udl/collectrequest/count">client.collectRequests.<a href="./src/resources/collect-requests/collect-requests.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/collectrequest/createBulk">client.collectRequests.<a href="./src/resources/collect-requests/collect-requests.ts">createBulk</a>([ ...body ]) -> void</code>
@@ -703,7 +703,7 @@ Types:
 Methods:
 
 - <code title="post /udl/collectresponse">client.collectResponses.<a href="./src/resources/collect-responses/collect-responses.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/collectresponse/{id}">client.collectResponses.<a href="./src/resources/collect-responses/collect-responses.ts">retrieve</a>(id) -> CollectResponseFull</code>
+- <code title="get /udl/collectresponse/{id}">client.collectResponses.<a href="./src/resources/collect-responses/collect-responses.ts">retrieve</a>(id, { ...params }) -> CollectResponseFull</code>
 - <code title="get /udl/collectresponse">client.collectResponses.<a href="./src/resources/collect-responses/collect-responses.ts">list</a>({ ...params }) -> CollectResponseListResponse</code>
 - <code title="get /udl/collectresponse/count">client.collectResponses.<a href="./src/resources/collect-responses/collect-responses.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/collectresponse/createBulk">client.collectResponses.<a href="./src/resources/collect-responses/collect-responses.ts">createBulk</a>([ ...body ]) -> void</code>
@@ -751,11 +751,11 @@ Types:
 Methods:
 
 - <code title="post /udl/comm">client.comm.<a href="./src/resources/comm.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/comm/{id}">client.comm.<a href="./src/resources/comm.ts">retrieve</a>(id) -> CommFull</code>
+- <code title="get /udl/comm/{id}">client.comm.<a href="./src/resources/comm.ts">retrieve</a>(id, { ...params }) -> CommFull</code>
 - <code title="put /udl/comm/{id}">client.comm.<a href="./src/resources/comm.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/comm">client.comm.<a href="./src/resources/comm.ts">list</a>() -> CommListResponse</code>
+- <code title="get /udl/comm">client.comm.<a href="./src/resources/comm.ts">list</a>({ ...params }) -> CommListResponse</code>
 - <code title="delete /udl/comm/{id}">client.comm.<a href="./src/resources/comm.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/comm/count">client.comm.<a href="./src/resources/comm.ts">count</a>() -> string</code>
+- <code title="get /udl/comm/count">client.comm.<a href="./src/resources/comm.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/comm/queryhelp">client.comm.<a href="./src/resources/comm.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/comm/tuple">client.comm.<a href="./src/resources/comm.ts">tuple</a>({ ...params }) -> CommTupleResponse</code>
 
@@ -772,7 +772,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/conjunction/{id}">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">retrieve</a>(id) -> ConjunctionFull</code>
+- <code title="get /udl/conjunction/{id}">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">retrieve</a>(id, { ...params }) -> ConjunctionFull</code>
 - <code title="get /udl/conjunction">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">list</a>({ ...params }) -> ConjunctionListResponse</code>
 - <code title="get /udl/conjunction/count">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/conjunction">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">createUdl</a>({ ...params }) -> void</code>
@@ -812,7 +812,7 @@ Types:
 Methods:
 
 - <code title="post /udl/aviationriskmanagement">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/aviationriskmanagement/{id}">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">retrieve</a>(id) -> AviationriskmanagementRetrieveResponse</code>
+- <code title="get /udl/aviationriskmanagement/{id}">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">retrieve</a>(id, { ...params }) -> AviationriskmanagementRetrieveResponse</code>
 - <code title="put /udl/aviationriskmanagement/{id}">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="delete /udl/aviationriskmanagement/{id}">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/aviationriskmanagement/count">client.aviationriskmanagement.<a href="./src/resources/aviationriskmanagement.ts">count</a>({ ...params }) -> string</code>
@@ -834,12 +834,12 @@ Types:
 Methods:
 
 - <code title="post /udl/dropzone">client.dropzone.<a href="./src/resources/dropzone.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/dropzone/{id}">client.dropzone.<a href="./src/resources/dropzone.ts">retrieve</a>(id) -> DropzoneRetrieveResponse</code>
+- <code title="get /udl/dropzone/{id}">client.dropzone.<a href="./src/resources/dropzone.ts">retrieve</a>(id, { ...params }) -> DropzoneRetrieveResponse</code>
 - <code title="put /udl/dropzone/{id}">client.dropzone.<a href="./src/resources/dropzone.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="delete /udl/dropzone/{id}">client.dropzone.<a href="./src/resources/dropzone.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/dropzone/count">client.dropzone.<a href="./src/resources/dropzone.ts">count</a>() -> string</code>
+- <code title="get /udl/dropzone/count">client.dropzone.<a href="./src/resources/dropzone.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/dropzone/createBulk">client.dropzone.<a href="./src/resources/dropzone.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/dropzone">client.dropzone.<a href="./src/resources/dropzone.ts">query</a>() -> DropzoneQueryResponse</code>
+- <code title="get /udl/dropzone">client.dropzone.<a href="./src/resources/dropzone.ts">query</a>({ ...params }) -> DropzoneQueryResponse</code>
 - <code title="get /udl/dropzone/queryhelp">client.dropzone.<a href="./src/resources/dropzone.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/dropzone/tuple">client.dropzone.<a href="./src/resources/dropzone.ts">tuple</a>({ ...params }) -> DropzoneTupleResponse</code>
 - <code title="post /filedrop/udl-dropzone">client.dropzone.<a href="./src/resources/dropzone.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -856,7 +856,7 @@ Types:
 Methods:
 
 - <code title="post /udl/emittergeolocation">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/emittergeolocation/{id}">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">retrieve</a>(id) -> EmittergeolocationRetrieveResponse</code>
+- <code title="get /udl/emittergeolocation/{id}">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">retrieve</a>(id, { ...params }) -> EmittergeolocationRetrieveResponse</code>
 - <code title="delete /udl/emittergeolocation/{id}">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/emittergeolocation/count">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/emittergeolocation/createBulk">client.emittergeolocation.<a href="./src/resources/emittergeolocation.ts">createBulk</a>([ ...body ]) -> void</code>
@@ -877,7 +877,7 @@ Types:
 Methods:
 
 - <code title="post /udl/featureassessment">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/featureassessment/{id}">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">retrieve</a>(id) -> FeatureassessmentRetrieveResponse</code>
+- <code title="get /udl/featureassessment/{id}">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">retrieve</a>(id, { ...params }) -> FeatureassessmentRetrieveResponse</code>
 - <code title="get /udl/featureassessment/count">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/featureassessment/createBulk">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">createBulk</a>([ ...body ]) -> void</code>
 - <code title="get /udl/featureassessment">client.featureassessment.<a href="./src/resources/featureassessment/featureassessment.ts">query</a>({ ...params }) -> FeatureassessmentQueryResponse</code>
@@ -909,9 +909,9 @@ Types:
 
 Methods:
 
-- <code title="get /udl/globalatmosphericmodel/{id}">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">retrieve</a>(id) -> GlobalatmosphericmodelRetrieveResponse</code>
+- <code title="get /udl/globalatmosphericmodel/{id}">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">retrieve</a>(id, { ...params }) -> GlobalatmosphericmodelRetrieveResponse</code>
 - <code title="get /udl/globalatmosphericmodel/count">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/globalatmosphericmodel/getFile/{id}">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">getFile</a>(id) -> Response</code>
+- <code title="get /udl/globalatmosphericmodel/getFile/{id}">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">getFile</a>(id, { ...params }) -> Response</code>
 - <code title="get /udl/globalatmosphericmodel">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">query</a>({ ...params }) -> GlobalatmosphericmodelQueryResponse</code>
 - <code title="get /udl/globalatmosphericmodel/queryhelp">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/globalatmosphericmodel/tuple">client.globalatmosphericmodel.<a href="./src/resources/globalatmosphericmodel/globalatmosphericmodel.ts">tuple</a>({ ...params }) -> GlobalatmosphericmodelTupleResponse</code>
@@ -942,12 +942,12 @@ Types:
 Methods:
 
 - <code title="post /udl/routestats">client.routestats.<a href="./src/resources/routestats.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/routestats/{id}">client.routestats.<a href="./src/resources/routestats.ts">retrieve</a>(id) -> RoutestatRetrieveResponse</code>
+- <code title="get /udl/routestats/{id}">client.routestats.<a href="./src/resources/routestats.ts">retrieve</a>(id, { ...params }) -> RoutestatRetrieveResponse</code>
 - <code title="put /udl/routestats/{id}">client.routestats.<a href="./src/resources/routestats.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="delete /udl/routestats/{id}">client.routestats.<a href="./src/resources/routestats.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/routestats/count">client.routestats.<a href="./src/resources/routestats.ts">count</a>() -> string</code>
+- <code title="get /udl/routestats/count">client.routestats.<a href="./src/resources/routestats.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/routestats/createBulk">client.routestats.<a href="./src/resources/routestats.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/routestats">client.routestats.<a href="./src/resources/routestats.ts">query</a>() -> RoutestatQueryResponse</code>
+- <code title="get /udl/routestats">client.routestats.<a href="./src/resources/routestats.ts">query</a>({ ...params }) -> RoutestatQueryResponse</code>
 - <code title="get /udl/routestats/queryhelp">client.routestats.<a href="./src/resources/routestats.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/routestats/tuple">client.routestats.<a href="./src/resources/routestats.ts">tuple</a>({ ...params }) -> RoutestatTupleResponse</code>
 - <code title="post /filedrop/udl-routestats">client.routestats.<a href="./src/resources/routestats.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -965,11 +965,11 @@ Types:
 Methods:
 
 - <code title="post /udl/country">client.countries.<a href="./src/resources/countries.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/country/{code}">client.countries.<a href="./src/resources/countries.ts">retrieve</a>(code) -> CountryFull</code>
+- <code title="get /udl/country/{code}">client.countries.<a href="./src/resources/countries.ts">retrieve</a>(code, { ...params }) -> CountryFull</code>
 - <code title="put /udl/country/{code}">client.countries.<a href="./src/resources/countries.ts">update</a>(pathCode, { ...params }) -> void</code>
-- <code title="get /udl/country">client.countries.<a href="./src/resources/countries.ts">list</a>() -> CountryListResponse</code>
+- <code title="get /udl/country">client.countries.<a href="./src/resources/countries.ts">list</a>({ ...params }) -> CountryListResponse</code>
 - <code title="delete /udl/country/{code}">client.countries.<a href="./src/resources/countries.ts">delete</a>(code) -> void</code>
-- <code title="get /udl/country/count">client.countries.<a href="./src/resources/countries.ts">count</a>() -> string</code>
+- <code title="get /udl/country/count">client.countries.<a href="./src/resources/countries.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/country/queryhelp">client.countries.<a href="./src/resources/countries.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/country/tuple">client.countries.<a href="./src/resources/countries.ts">tuple</a>({ ...params }) -> CountryTupleResponse</code>
 
@@ -986,10 +986,10 @@ Types:
 Methods:
 
 - <code title="post /udl/crew">client.crew.<a href="./src/resources/crew.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/crew/{id}">client.crew.<a href="./src/resources/crew.ts">retrieve</a>(id) -> CrewFull</code>
+- <code title="get /udl/crew/{id}">client.crew.<a href="./src/resources/crew.ts">retrieve</a>(id, { ...params }) -> CrewFull</code>
 - <code title="put /udl/crew/{id}">client.crew.<a href="./src/resources/crew.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/crew">client.crew.<a href="./src/resources/crew.ts">list</a>() -> CrewListResponse</code>
-- <code title="get /udl/crew/count">client.crew.<a href="./src/resources/crew.ts">count</a>() -> string</code>
+- <code title="get /udl/crew">client.crew.<a href="./src/resources/crew.ts">list</a>({ ...params }) -> CrewListResponse</code>
+- <code title="get /udl/crew/count">client.crew.<a href="./src/resources/crew.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/crew/queryhelp">client.crew.<a href="./src/resources/crew.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/crew/tuple">client.crew.<a href="./src/resources/crew.ts">tuple</a>({ ...params }) -> CrewTupleResponse</code>
 - <code title="post /filedrop/udl-crew">client.crew.<a href="./src/resources/crew.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -1002,7 +1002,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/diffofarrival/{id}">client.diffofarrival.<a href="./src/resources/diffofarrival/diffofarrival.ts">retrieve</a>(id) -> DiffofarrivalFull</code>
+- <code title="get /udl/diffofarrival/{id}">client.diffofarrival.<a href="./src/resources/diffofarrival/diffofarrival.ts">retrieve</a>(id, { ...params }) -> DiffofarrivalFull</code>
 - <code title="get /udl/diffofarrival/queryhelp">client.diffofarrival.<a href="./src/resources/diffofarrival/diffofarrival.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/diffofarrival/tuple">client.diffofarrival.<a href="./src/resources/diffofarrival/diffofarrival.ts">tuple</a>({ ...params }) -> DiffofarrivalTupleResponse</code>
 - <code title="post /filedrop/udl-diffofarrival">client.diffofarrival.<a href="./src/resources/diffofarrival/diffofarrival.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -1028,7 +1028,7 @@ Types:
 Methods:
 
 - <code title="post /udl/diplomaticclearance">client.diplomaticClearance.<a href="./src/resources/diplomatic-clearance/diplomatic-clearance.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/diplomaticclearance/{id}">client.diplomaticClearance.<a href="./src/resources/diplomatic-clearance/diplomatic-clearance.ts">retrieve</a>(id) -> DiplomaticclearanceFull</code>
+- <code title="get /udl/diplomaticclearance/{id}">client.diplomaticClearance.<a href="./src/resources/diplomatic-clearance/diplomatic-clearance.ts">retrieve</a>(id, { ...params }) -> DiplomaticclearanceFull</code>
 - <code title="put /udl/diplomaticclearance/{id}">client.diplomaticClearance.<a href="./src/resources/diplomatic-clearance/diplomatic-clearance.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/diplomaticclearance">client.diplomaticClearance.<a href="./src/resources/diplomatic-clearance/diplomatic-clearance.ts">list</a>({ ...params }) -> DiplomaticClearanceListResponse</code>
 - <code title="delete /udl/diplomaticclearance/{id}">client.diplomaticClearance.<a href="./src/resources/diplomatic-clearance/diplomatic-clearance.ts">delete</a>(id) -> void</code>
@@ -1062,11 +1062,11 @@ Types:
 Methods:
 
 - <code title="post /udl/diplomaticclearancecountry">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/diplomaticclearancecountry/{id}">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">retrieve</a>(id) -> CountryRetrieveResponse</code>
+- <code title="get /udl/diplomaticclearancecountry/{id}">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">retrieve</a>(id, { ...params }) -> CountryRetrieveResponse</code>
 - <code title="put /udl/diplomaticclearancecountry/{id}">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/diplomaticclearancecountry">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">list</a>() -> CountryListResponse</code>
+- <code title="get /udl/diplomaticclearancecountry">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">list</a>({ ...params }) -> CountryListResponse</code>
 - <code title="delete /udl/diplomaticclearancecountry/{id}">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/diplomaticclearancecountry/count">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">count</a>() -> string</code>
+- <code title="get /udl/diplomaticclearancecountry/count">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/diplomaticclearancecountry/createBulk">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">createBulk</a>([ ...body ]) -> void</code>
 - <code title="get /udl/diplomaticclearancecountry/queryhelp">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/diplomaticclearancecountry/tuple">client.diplomaticClearance.country.<a href="./src/resources/diplomatic-clearance/country.ts">tuple</a>({ ...params }) -> CountryTupleResponse</code>
@@ -1082,9 +1082,9 @@ Types:
 
 Methods:
 
-- <code title="get /udl/drifthistory/{id}">client.driftHistory.<a href="./src/resources/drift-history.ts">retrieve</a>(id) -> DriftHistoryFull</code>
-- <code title="get /udl/drifthistory">client.driftHistory.<a href="./src/resources/drift-history.ts">list</a>() -> DriftHistoryListResponse</code>
-- <code title="get /udl/drifthistory/count">client.driftHistory.<a href="./src/resources/drift-history.ts">count</a>() -> string</code>
+- <code title="get /udl/drifthistory/{id}">client.driftHistory.<a href="./src/resources/drift-history.ts">retrieve</a>(id, { ...params }) -> DriftHistoryFull</code>
+- <code title="get /udl/drifthistory">client.driftHistory.<a href="./src/resources/drift-history.ts">list</a>({ ...params }) -> DriftHistoryListResponse</code>
+- <code title="get /udl/drifthistory/count">client.driftHistory.<a href="./src/resources/drift-history.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/drifthistory/queryhelp">client.driftHistory.<a href="./src/resources/drift-history.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/drifthistory/tuple">client.driftHistory.<a href="./src/resources/drift-history.ts">tuple</a>({ ...params }) -> DriftHistoryTupleResponse</code>
 
@@ -1106,7 +1106,7 @@ Types:
 Methods:
 
 - <code title="post /udl/effectrequest">client.effectRequests.<a href="./src/resources/effect-requests/effect-requests.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/effectrequest/{id}">client.effectRequests.<a href="./src/resources/effect-requests/effect-requests.ts">retrieve</a>(id) -> EffectRequestRetrieveResponse</code>
+- <code title="get /udl/effectrequest/{id}">client.effectRequests.<a href="./src/resources/effect-requests/effect-requests.ts">retrieve</a>(id, { ...params }) -> EffectRequestRetrieveResponse</code>
 - <code title="get /udl/effectrequest">client.effectRequests.<a href="./src/resources/effect-requests/effect-requests.ts">list</a>({ ...params }) -> EffectRequestListResponse</code>
 - <code title="get /udl/effectrequest/count">client.effectRequests.<a href="./src/resources/effect-requests/effect-requests.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/effectrequest/createBulk">client.effectRequests.<a href="./src/resources/effect-requests/effect-requests.ts">createBulk</a>([ ...body ]) -> void</code>
@@ -1139,7 +1139,7 @@ Types:
 Methods:
 
 - <code title="post /udl/effectresponse">client.effectResponses.<a href="./src/resources/effect-responses/effect-responses.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/effectresponse/{id}">client.effectResponses.<a href="./src/resources/effect-responses/effect-responses.ts">retrieve</a>(id) -> EffectResponseRetrieveResponse</code>
+- <code title="get /udl/effectresponse/{id}">client.effectResponses.<a href="./src/resources/effect-responses/effect-responses.ts">retrieve</a>(id, { ...params }) -> EffectResponseRetrieveResponse</code>
 - <code title="get /udl/effectresponse">client.effectResponses.<a href="./src/resources/effect-responses/effect-responses.ts">list</a>({ ...params }) -> EffectResponseListResponse</code>
 - <code title="get /udl/effectresponse/count">client.effectResponses.<a href="./src/resources/effect-responses/effect-responses.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/effectresponse/createBulk">client.effectResponses.<a href="./src/resources/effect-responses/effect-responses.ts">createBulk</a>([ ...body ]) -> void</code>
@@ -1174,7 +1174,7 @@ Types:
 Methods:
 
 - <code title="post /udl/elset">client.elsets.<a href="./src/resources/elsets/elsets.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/elset/{id}">client.elsets.<a href="./src/resources/elsets/elsets.ts">retrieve</a>(id) -> Elset</code>
+- <code title="get /udl/elset/{id}">client.elsets.<a href="./src/resources/elsets/elsets.ts">retrieve</a>(id, { ...params }) -> Elset</code>
 - <code title="get /udl/elset">client.elsets.<a href="./src/resources/elsets/elsets.ts">list</a>({ ...params }) -> ElsetListResponse</code>
 - <code title="get /udl/elset/count">client.elsets.<a href="./src/resources/elsets/elsets.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/elset/createBulk">client.elsets.<a href="./src/resources/elsets/elsets.ts">createBulk</a>([ ...body ]) -> void</code>
@@ -1193,7 +1193,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/elset/current">client.elsets.current.<a href="./src/resources/elsets/current.ts">list</a>() -> CurrentListResponse</code>
+- <code title="get /udl/elset/current">client.elsets.current.<a href="./src/resources/elsets/current.ts">list</a>({ ...params }) -> CurrentListResponse</code>
 - <code title="get /udl/elset/current/tuple">client.elsets.current.<a href="./src/resources/elsets/current.ts">tuple</a>({ ...params }) -> CurrentTupleResponse</code>
 
 ## History
@@ -1218,7 +1218,7 @@ Types:
 Methods:
 
 - <code title="post /udl/enginedetails">client.engineDetails.<a href="./src/resources/engine-details.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/enginedetails/{id}">client.engineDetails.<a href="./src/resources/engine-details.ts">retrieve</a>(id) -> EngineDetailsFull</code>
+- <code title="get /udl/enginedetails/{id}">client.engineDetails.<a href="./src/resources/engine-details.ts">retrieve</a>(id, { ...params }) -> EngineDetailsFull</code>
 - <code title="put /udl/enginedetails/{id}">client.engineDetails.<a href="./src/resources/engine-details.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="delete /udl/enginedetails/{id}">client.engineDetails.<a href="./src/resources/engine-details.ts">delete</a>(id) -> void</code>
 
@@ -1231,7 +1231,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/enginedetails">client.enginedetails.<a href="./src/resources/enginedetails.ts">list</a>() -> EnginedetailListResponse</code>
+- <code title="get /udl/enginedetails">client.enginedetails.<a href="./src/resources/enginedetails.ts">list</a>({ ...params }) -> EnginedetailListResponse</code>
 
 # Engines
 
@@ -1246,11 +1246,11 @@ Types:
 Methods:
 
 - <code title="post /udl/engine">client.engines.<a href="./src/resources/engines.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/engine/{id}">client.engines.<a href="./src/resources/engines.ts">retrieve</a>(id) -> Engine</code>
+- <code title="get /udl/engine/{id}">client.engines.<a href="./src/resources/engines.ts">retrieve</a>(id, { ...params }) -> Engine</code>
 - <code title="put /udl/engine/{id}">client.engines.<a href="./src/resources/engines.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/engine">client.engines.<a href="./src/resources/engines.ts">list</a>() -> EngineListResponse</code>
+- <code title="get /udl/engine">client.engines.<a href="./src/resources/engines.ts">list</a>({ ...params }) -> EngineListResponse</code>
 - <code title="delete /udl/engine/{id}">client.engines.<a href="./src/resources/engines.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/engine/count">client.engines.<a href="./src/resources/engines.ts">count</a>() -> string</code>
+- <code title="get /udl/engine/count">client.engines.<a href="./src/resources/engines.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/engine/queryhelp">client.engines.<a href="./src/resources/engines.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/engine/tuple">client.engines.<a href="./src/resources/engines.ts">tuple</a>({ ...params }) -> EngineTupleResponse</code>
 
@@ -1269,12 +1269,12 @@ Types:
 Methods:
 
 - <code title="post /udl/entity">client.entities.<a href="./src/resources/entities.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/entity/{id}">client.entities.<a href="./src/resources/entities.ts">retrieve</a>(id) -> EntityFull</code>
+- <code title="get /udl/entity/{id}">client.entities.<a href="./src/resources/entities.ts">retrieve</a>(id, { ...params }) -> EntityFull</code>
 - <code title="put /udl/entity/{id}">client.entities.<a href="./src/resources/entities.ts">update</a>(id, { ...params }) -> void</code>
-- <code title="get /udl/entity">client.entities.<a href="./src/resources/entities.ts">list</a>() -> EntityListResponse</code>
+- <code title="get /udl/entity">client.entities.<a href="./src/resources/entities.ts">list</a>({ ...params }) -> EntityListResponse</code>
 - <code title="delete /udl/entity/{id}">client.entities.<a href="./src/resources/entities.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/entity/count">client.entities.<a href="./src/resources/entities.ts">count</a>() -> string</code>
-- <code title="get /udl/entity/getAllTypes">client.entities.<a href="./src/resources/entities.ts">getAllTypes</a>() -> EntityGetAllTypesResponse</code>
+- <code title="get /udl/entity/count">client.entities.<a href="./src/resources/entities.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/entity/getAllTypes">client.entities.<a href="./src/resources/entities.ts">getAllTypes</a>({ ...params }) -> EntityGetAllTypesResponse</code>
 - <code title="get /udl/entity/queryhelp">client.entities.<a href="./src/resources/entities.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/entity/tuple">client.entities.<a href="./src/resources/entities.ts">tuple</a>({ ...params }) -> EntityTupleResponse</code>
 
@@ -1316,7 +1316,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/eoobservation/{id}">client.eoobservations.<a href="./src/resources/eoobservations.ts">retrieve</a>(id) -> EoObservationFull</code>
+- <code title="get /udl/eoobservation/{id}">client.eoobservations.<a href="./src/resources/eoobservations.ts">retrieve</a>(id, { ...params }) -> EoObservationFull</code>
 - <code title="get /udl/eoobservation/queryhelp">client.eoobservations.<a href="./src/resources/eoobservations.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/eoobservation/tuple">client.eoobservations.<a href="./src/resources/eoobservations.ts">tuple</a>({ ...params }) -> EoobservationTupleResponse</code>
 
@@ -1332,7 +1332,7 @@ Types:
 Methods:
 
 - <code title="post /udl/eop">client.eop.<a href="./src/resources/eop/eop.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/eop/{id}">client.eop.<a href="./src/resources/eop/eop.ts">retrieve</a>(id) -> EopFull</code>
+- <code title="get /udl/eop/{id}">client.eop.<a href="./src/resources/eop/eop.ts">retrieve</a>(id, { ...params }) -> EopFull</code>
 - <code title="put /udl/eop/{id}">client.eop.<a href="./src/resources/eop/eop.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/eop">client.eop.<a href="./src/resources/eop/eop.ts">list</a>({ ...params }) -> EopListResponse</code>
 - <code title="delete /udl/eop/{id}">client.eop.<a href="./src/resources/eop/eop.ts">delete</a>(id) -> void</code>
@@ -1423,10 +1423,10 @@ Types:
 Methods:
 
 - <code title="post /udl/ephemerisset">client.ephemerisSets.<a href="./src/resources/ephemeris-sets/ephemeris-sets.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/ephemerisset/{id}">client.ephemerisSets.<a href="./src/resources/ephemeris-sets/ephemeris-sets.ts">retrieve</a>(id) -> EphemerisSet</code>
+- <code title="get /udl/ephemerisset/{id}">client.ephemerisSets.<a href="./src/resources/ephemeris-sets/ephemeris-sets.ts">retrieve</a>(id, { ...params }) -> EphemerisSet</code>
 - <code title="get /udl/ephemerisset">client.ephemerisSets.<a href="./src/resources/ephemeris-sets/ephemeris-sets.ts">list</a>({ ...params }) -> EphemerisSetListResponse</code>
 - <code title="get /udl/ephemerisset/count">client.ephemerisSets.<a href="./src/resources/ephemeris-sets/ephemeris-sets.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/ephemerisset/getFile/{id}">client.ephemerisSets.<a href="./src/resources/ephemeris-sets/ephemeris-sets.ts">fileRetrieve</a>(id) -> Response</code>
+- <code title="get /udl/ephemerisset/getFile/{id}">client.ephemerisSets.<a href="./src/resources/ephemeris-sets/ephemeris-sets.ts">fileRetrieve</a>(id, { ...params }) -> Response</code>
 - <code title="get /udl/ephemerisset/queryhelp">client.ephemerisSets.<a href="./src/resources/ephemeris-sets/ephemeris-sets.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/ephemerisset/tuple">client.ephemerisSets.<a href="./src/resources/ephemeris-sets/ephemeris-sets.ts">tuple</a>({ ...params }) -> EphemerisSetTupleResponse</code>
 
@@ -1456,11 +1456,11 @@ Types:
 Methods:
 
 - <code title="post /udl/equipment">client.equipment.<a href="./src/resources/equipment.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/equipment/{id}">client.equipment.<a href="./src/resources/equipment.ts">retrieve</a>(id) -> EquipmentFull</code>
+- <code title="get /udl/equipment/{id}">client.equipment.<a href="./src/resources/equipment.ts">retrieve</a>(id, { ...params }) -> EquipmentFull</code>
 - <code title="put /udl/equipment/{id}">client.equipment.<a href="./src/resources/equipment.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/equipment">client.equipment.<a href="./src/resources/equipment.ts">list</a>() -> EquipmentListResponse</code>
+- <code title="get /udl/equipment">client.equipment.<a href="./src/resources/equipment.ts">list</a>({ ...params }) -> EquipmentListResponse</code>
 - <code title="delete /udl/equipment/{id}">client.equipment.<a href="./src/resources/equipment.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/equipment/count">client.equipment.<a href="./src/resources/equipment.ts">count</a>() -> string</code>
+- <code title="get /udl/equipment/count">client.equipment.<a href="./src/resources/equipment.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/equipment/createBulk">client.equipment.<a href="./src/resources/equipment.ts">createBulk</a>([ ...body ]) -> void</code>
 - <code title="get /udl/equipment/queryhelp">client.equipment.<a href="./src/resources/equipment.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/equipment/tuple">client.equipment.<a href="./src/resources/equipment.ts">tuple</a>({ ...params }) -> EquipmentTupleResponse</code>
@@ -1478,9 +1478,9 @@ Types:
 Methods:
 
 - <code title="post /udl/equipmentremark">client.equipmentremarks.<a href="./src/resources/equipmentremarks.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/equipmentremark/{id}">client.equipmentremarks.<a href="./src/resources/equipmentremarks.ts">retrieve</a>(id) -> EquipmentRemarkFull</code>
-- <code title="get /udl/equipmentremark">client.equipmentremarks.<a href="./src/resources/equipmentremarks.ts">list</a>() -> EquipmentremarkListResponse</code>
-- <code title="get /udl/equipmentremark/count">client.equipmentremarks.<a href="./src/resources/equipmentremarks.ts">count</a>() -> string</code>
+- <code title="get /udl/equipmentremark/{id}">client.equipmentremarks.<a href="./src/resources/equipmentremarks.ts">retrieve</a>(id, { ...params }) -> EquipmentRemarkFull</code>
+- <code title="get /udl/equipmentremark">client.equipmentremarks.<a href="./src/resources/equipmentremarks.ts">list</a>({ ...params }) -> EquipmentremarkListResponse</code>
+- <code title="get /udl/equipmentremark/count">client.equipmentremarks.<a href="./src/resources/equipmentremarks.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/equipmentremark/createBulk">client.equipmentremarks.<a href="./src/resources/equipmentremarks.ts">createBulk</a>([ ...body ]) -> void</code>
 - <code title="get /udl/equipmentremark/queryhelp">client.equipmentremarks.<a href="./src/resources/equipmentremarks.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/equipmentremark/tuple">client.equipmentremarks.<a href="./src/resources/equipmentremarks.ts">tuple</a>({ ...params }) -> EquipmentremarkTupleResponse</code>
@@ -1496,7 +1496,7 @@ Types:
 Methods:
 
 - <code title="post /udl/evac">client.evac.<a href="./src/resources/evac/evac.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/evac/{id}">client.evac.<a href="./src/resources/evac/evac.ts">retrieve</a>(id) -> EvacFull</code>
+- <code title="get /udl/evac/{id}">client.evac.<a href="./src/resources/evac/evac.ts">retrieve</a>(id, { ...params }) -> EvacFull</code>
 - <code title="get /udl/evac">client.evac.<a href="./src/resources/evac/evac.ts">list</a>({ ...params }) -> EvacListResponse</code>
 - <code title="get /udl/evac/count">client.evac.<a href="./src/resources/evac/evac.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/evac/createBulk">client.evac.<a href="./src/resources/evac/evac.ts">createBulk</a>([ ...body ]) -> void</code>
@@ -1536,7 +1536,7 @@ Types:
 Methods:
 
 - <code title="post /udl/eventevolution">client.eventEvolution.<a href="./src/resources/event-evolution/event-evolution.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/eventevolution/{id}">client.eventEvolution.<a href="./src/resources/event-evolution/event-evolution.ts">retrieve</a>(id) -> EventEvolutionFull</code>
+- <code title="get /udl/eventevolution/{id}">client.eventEvolution.<a href="./src/resources/event-evolution/event-evolution.ts">retrieve</a>(id, { ...params }) -> EventEvolutionFull</code>
 - <code title="get /udl/eventevolution">client.eventEvolution.<a href="./src/resources/event-evolution/event-evolution.ts">list</a>({ ...params }) -> EventEvolutionListResponse</code>
 - <code title="get /udl/eventevolution/count">client.eventEvolution.<a href="./src/resources/event-evolution/event-evolution.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/eventevolution/createBulk">client.eventEvolution.<a href="./src/resources/event-evolution/event-evolution.ts">createBulk</a>([ ...body ]) -> void</code>
@@ -1569,11 +1569,11 @@ Types:
 Methods:
 
 - <code title="post /udl/flightplan">client.flightplan.<a href="./src/resources/flightplan.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/flightplan/{id}">client.flightplan.<a href="./src/resources/flightplan.ts">retrieve</a>(id) -> FlightPlanFull</code>
+- <code title="get /udl/flightplan/{id}">client.flightplan.<a href="./src/resources/flightplan.ts">retrieve</a>(id, { ...params }) -> FlightPlanFull</code>
 - <code title="put /udl/flightplan/{id}">client.flightplan.<a href="./src/resources/flightplan.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/flightplan">client.flightplan.<a href="./src/resources/flightplan.ts">list</a>() -> FlightplanListResponse</code>
+- <code title="get /udl/flightplan">client.flightplan.<a href="./src/resources/flightplan.ts">list</a>({ ...params }) -> FlightplanListResponse</code>
 - <code title="delete /udl/flightplan/{id}">client.flightplan.<a href="./src/resources/flightplan.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/flightplan/count">client.flightplan.<a href="./src/resources/flightplan.ts">count</a>() -> string</code>
+- <code title="get /udl/flightplan/count">client.flightplan.<a href="./src/resources/flightplan.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/flightplan/queryhelp">client.flightplan.<a href="./src/resources/flightplan.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/flightplan/tuple">client.flightplan.<a href="./src/resources/flightplan.ts">tuple</a>({ ...params }) -> FlightplanTupleResponse</code>
 - <code title="post /filedrop/udl-flightplan">client.flightplan.<a href="./src/resources/flightplan.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -1592,7 +1592,7 @@ Methods:
 - <code title="get /udl/geostatus">client.geostatus.<a href="./src/resources/geostatus.ts">list</a>({ ...params }) -> GeostatusListResponse</code>
 - <code title="get /udl/geostatus/count">client.geostatus.<a href="./src/resources/geostatus.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/geostatus/createBulk">client.geostatus.<a href="./src/resources/geostatus.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/geostatus/{id}">client.geostatus.<a href="./src/resources/geostatus.ts">get</a>(id) -> GeoStatusFull</code>
+- <code title="get /udl/geostatus/{id}">client.geostatus.<a href="./src/resources/geostatus.ts">get</a>(id, { ...params }) -> GeoStatusFull</code>
 - <code title="get /udl/geostatus/queryhelp">client.geostatus.<a href="./src/resources/geostatus.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/geostatus/tuple">client.geostatus.<a href="./src/resources/geostatus.ts">tuple</a>({ ...params }) -> GeostatusTupleResponse</code>
 
@@ -1625,8 +1625,8 @@ Methods:
 
 - <code title="get /udl/gnssrawif">client.gnssrawif.<a href="./src/resources/gnssrawif.ts">list</a>({ ...params }) -> GnssrawifListResponse</code>
 - <code title="get /udl/gnssrawif/count">client.gnssrawif.<a href="./src/resources/gnssrawif.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/gnssrawif/getFile/{id}">client.gnssrawif.<a href="./src/resources/gnssrawif.ts">fileGet</a>(id) -> Response</code>
-- <code title="get /udl/gnssrawif/{id}">client.gnssrawif.<a href="./src/resources/gnssrawif.ts">get</a>(id) -> GnssRawIfFull</code>
+- <code title="get /udl/gnssrawif/getFile/{id}">client.gnssrawif.<a href="./src/resources/gnssrawif.ts">fileGet</a>(id, { ...params }) -> Response</code>
+- <code title="get /udl/gnssrawif/{id}">client.gnssrawif.<a href="./src/resources/gnssrawif.ts">get</a>(id, { ...params }) -> GnssRawIfFull</code>
 - <code title="get /udl/gnssrawif/queryhelp">client.gnssrawif.<a href="./src/resources/gnssrawif.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/gnssrawif/tuple">client.gnssrawif.<a href="./src/resources/gnssrawif.ts">tuple</a>({ ...params }) -> GnssrawifTupleResponse</code>
 - <code title="post /filedrop/udl-gnssrawif">client.gnssrawif.<a href="./src/resources/gnssrawif.ts">uploadZip</a>({ ...params }) -> void</code>
@@ -1663,8 +1663,8 @@ Methods:
 - <code title="post /udl/groundimagery">client.groundimagery.<a href="./src/resources/groundimagery.ts">create</a>({ ...params }) -> void</code>
 - <code title="get /udl/groundimagery">client.groundimagery.<a href="./src/resources/groundimagery.ts">list</a>({ ...params }) -> GroundimageryListResponse</code>
 - <code title="get /udl/groundimagery/count">client.groundimagery.<a href="./src/resources/groundimagery.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/groundimagery/{id}">client.groundimagery.<a href="./src/resources/groundimagery.ts">get</a>(id) -> GroundImageryFull</code>
-- <code title="get /udl/groundimagery/getFile/{id}">client.groundimagery.<a href="./src/resources/groundimagery.ts">getFile</a>(id) -> Response</code>
+- <code title="get /udl/groundimagery/{id}">client.groundimagery.<a href="./src/resources/groundimagery.ts">get</a>(id, { ...params }) -> GroundImageryFull</code>
+- <code title="get /udl/groundimagery/getFile/{id}">client.groundimagery.<a href="./src/resources/groundimagery.ts">getFile</a>(id, { ...params }) -> Response</code>
 - <code title="get /udl/groundimagery/queryhelp">client.groundimagery.<a href="./src/resources/groundimagery.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/groundimagery/tuple">client.groundimagery.<a href="./src/resources/groundimagery.ts">tuple</a>({ ...params }) -> GroundimageryTupleResponse</code>
 
@@ -1682,7 +1682,7 @@ Methods:
 - <code title="post /udl/h3geo">client.h3geo.<a href="./src/resources/h3geo/h3geo.ts">create</a>({ ...params }) -> void</code>
 - <code title="get /udl/h3geo">client.h3geo.<a href="./src/resources/h3geo/h3geo.ts">list</a>({ ...params }) -> H3geoListResponse</code>
 - <code title="get /udl/h3geo/count">client.h3geo.<a href="./src/resources/h3geo/h3geo.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/h3geo/{id}">client.h3geo.<a href="./src/resources/h3geo/h3geo.ts">get</a>(id) -> H3geoGetResponse</code>
+- <code title="get /udl/h3geo/{id}">client.h3geo.<a href="./src/resources/h3geo/h3geo.ts">get</a>(id, { ...params }) -> H3geoGetResponse</code>
 - <code title="get /udl/h3geo/queryhelp">client.h3geo.<a href="./src/resources/h3geo/h3geo.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/h3geo/tuple">client.h3geo.<a href="./src/resources/h3geo/h3geo.ts">tuple</a>({ ...params }) -> H3geoTupleResponse</code>
 
@@ -1728,7 +1728,7 @@ Methods:
 - <code title="get /udl/hazard">client.hazard.<a href="./src/resources/hazard/hazard.ts">list</a>({ ...params }) -> HazardListResponse</code>
 - <code title="get /udl/hazard/count">client.hazard.<a href="./src/resources/hazard/hazard.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/hazard/createBulk">client.hazard.<a href="./src/resources/hazard/hazard.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/hazard/{id}">client.hazard.<a href="./src/resources/hazard/hazard.ts">get</a>(id) -> HazardFull</code>
+- <code title="get /udl/hazard/{id}">client.hazard.<a href="./src/resources/hazard/hazard.ts">get</a>(id, { ...params }) -> HazardFull</code>
 - <code title="get /udl/hazard/queryhelp">client.hazard.<a href="./src/resources/hazard/hazard.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/hazard/tuple">client.hazard.<a href="./src/resources/hazard/hazard.ts">tuple</a>({ ...params }) -> HazardTupleResponse</code>
 
@@ -1775,10 +1775,10 @@ Methods:
 
 - <code title="post /udl/ir">client.ir.<a href="./src/resources/ir.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/ir/{id}">client.ir.<a href="./src/resources/ir.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/ir">client.ir.<a href="./src/resources/ir.ts">list</a>() -> IrListResponse</code>
+- <code title="get /udl/ir">client.ir.<a href="./src/resources/ir.ts">list</a>({ ...params }) -> IrListResponse</code>
 - <code title="delete /udl/ir/{id}">client.ir.<a href="./src/resources/ir.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/ir/count">client.ir.<a href="./src/resources/ir.ts">count</a>() -> string</code>
-- <code title="get /udl/ir/{id}">client.ir.<a href="./src/resources/ir.ts">get</a>(id) -> IrGetResponse</code>
+- <code title="get /udl/ir/count">client.ir.<a href="./src/resources/ir.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/ir/{id}">client.ir.<a href="./src/resources/ir.ts">get</a>(id, { ...params }) -> IrGetResponse</code>
 - <code title="get /udl/ir/queryhelp">client.ir.<a href="./src/resources/ir.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/ir/tuple">client.ir.<a href="./src/resources/ir.ts">tuple</a>({ ...params }) -> IrTupleResponse</code>
 
@@ -1825,10 +1825,10 @@ Methods:
 
 - <code title="post /udl/item">client.item.<a href="./src/resources/item.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/item/{id}">client.item.<a href="./src/resources/item.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/item">client.item.<a href="./src/resources/item.ts">list</a>() -> ItemListResponse</code>
+- <code title="get /udl/item">client.item.<a href="./src/resources/item.ts">list</a>({ ...params }) -> ItemListResponse</code>
 - <code title="delete /udl/item/{id}">client.item.<a href="./src/resources/item.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/item/count">client.item.<a href="./src/resources/item.ts">count</a>() -> string</code>
-- <code title="get /udl/item/{id}">client.item.<a href="./src/resources/item.ts">get</a>(id) -> ItemGetResponse</code>
+- <code title="get /udl/item/count">client.item.<a href="./src/resources/item.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/item/{id}">client.item.<a href="./src/resources/item.ts">get</a>(id, { ...params }) -> ItemGetResponse</code>
 - <code title="get /udl/item/queryhelp">client.item.<a href="./src/resources/item.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/item/tuple">client.item.<a href="./src/resources/item.ts">tuple</a>({ ...params }) -> ItemTupleResponse</code>
 - <code title="post /filedrop/udl-item">client.item.<a href="./src/resources/item.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -1847,7 +1847,7 @@ Methods:
 - <code title="get /udl/itemtracking">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">list</a>({ ...params }) -> ItemTrackingListResponse</code>
 - <code title="delete /udl/itemtracking/{id}">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/itemtracking/count">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/itemtracking/{id}">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">get</a>(id) -> ItemTrackingFull</code>
+- <code title="get /udl/itemtracking/{id}">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">get</a>(id, { ...params }) -> ItemTrackingFull</code>
 - <code title="get /udl/itemtracking/queryhelp">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/itemtracking/tuple">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">tuple</a>({ ...params }) -> ItemTrackingTupleResponse</code>
 - <code title="post /filedrop/udl-itemtracking">client.itemTrackings.<a href="./src/resources/item-trackings/item-trackings.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -1877,10 +1877,10 @@ Methods:
 
 - <code title="post /udl/launchdetection">client.launchdetection.<a href="./src/resources/launchdetection.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/launchdetection/{id}">client.launchdetection.<a href="./src/resources/launchdetection.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/launchdetection">client.launchdetection.<a href="./src/resources/launchdetection.ts">list</a>() -> LaunchdetectionListResponse</code>
+- <code title="get /udl/launchdetection">client.launchdetection.<a href="./src/resources/launchdetection.ts">list</a>({ ...params }) -> LaunchdetectionListResponse</code>
 - <code title="delete /udl/launchdetection/{id}">client.launchdetection.<a href="./src/resources/launchdetection.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/launchdetection/count">client.launchdetection.<a href="./src/resources/launchdetection.ts">count</a>() -> string</code>
-- <code title="get /udl/launchdetection/{id}">client.launchdetection.<a href="./src/resources/launchdetection.ts">get</a>(id) -> LaunchdetectionGetResponse</code>
+- <code title="get /udl/launchdetection/count">client.launchdetection.<a href="./src/resources/launchdetection.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/launchdetection/{id}">client.launchdetection.<a href="./src/resources/launchdetection.ts">get</a>(id, { ...params }) -> LaunchdetectionGetResponse</code>
 - <code title="get /udl/launchdetection/queryhelp">client.launchdetection.<a href="./src/resources/launchdetection.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/launchdetection/tuple">client.launchdetection.<a href="./src/resources/launchdetection.ts">tuple</a>({ ...params }) -> LaunchdetectionTupleResponse</code>
 
@@ -1899,7 +1899,7 @@ Methods:
 - <code title="get /udl/launchevent">client.launchevent.<a href="./src/resources/launchevent.ts">list</a>({ ...params }) -> LauncheventListResponse</code>
 - <code title="get /udl/launchevent/count">client.launchevent.<a href="./src/resources/launchevent.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/launchevent/createBulk">client.launchevent.<a href="./src/resources/launchevent.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/launchevent/{id}">client.launchevent.<a href="./src/resources/launchevent.ts">get</a>(id) -> LauncheventGetResponse</code>
+- <code title="get /udl/launchevent/{id}">client.launchevent.<a href="./src/resources/launchevent.ts">get</a>(id, { ...params }) -> LauncheventGetResponse</code>
 - <code title="get /udl/launchevent/queryhelp">client.launchevent.<a href="./src/resources/launchevent.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/launchevent/tuple">client.launchevent.<a href="./src/resources/launchevent.ts">tuple</a>({ ...params }) -> LauncheventTupleResponse</code>
 - <code title="post /filedrop/udl-launchevent">client.launchevent.<a href="./src/resources/launchevent.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -1917,10 +1917,10 @@ Methods:
 
 - <code title="post /udl/launchsite">client.launchsite.<a href="./src/resources/launchsite.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/launchsite/{id}">client.launchsite.<a href="./src/resources/launchsite.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/launchsite">client.launchsite.<a href="./src/resources/launchsite.ts">list</a>() -> LaunchsiteListResponse</code>
+- <code title="get /udl/launchsite">client.launchsite.<a href="./src/resources/launchsite.ts">list</a>({ ...params }) -> LaunchsiteListResponse</code>
 - <code title="delete /udl/launchsite/{id}">client.launchsite.<a href="./src/resources/launchsite.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/launchsite/count">client.launchsite.<a href="./src/resources/launchsite.ts">count</a>() -> string</code>
-- <code title="get /udl/launchsite/{id}">client.launchsite.<a href="./src/resources/launchsite.ts">get</a>(id) -> LaunchsiteGetResponse</code>
+- <code title="get /udl/launchsite/count">client.launchsite.<a href="./src/resources/launchsite.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/launchsite/{id}">client.launchsite.<a href="./src/resources/launchsite.ts">get</a>(id, { ...params }) -> LaunchsiteGetResponse</code>
 - <code title="get /udl/launchsite/queryhelp">client.launchsite.<a href="./src/resources/launchsite.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/launchsite/tuple">client.launchsite.<a href="./src/resources/launchsite.ts">tuple</a>({ ...params }) -> LaunchsiteTupleResponse</code>
 
@@ -1936,10 +1936,10 @@ Methods:
 
 - <code title="post /udl/launchsitedetails">client.launchsitedetails.<a href="./src/resources/launchsitedetails.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/launchsitedetails/{id}">client.launchsitedetails.<a href="./src/resources/launchsitedetails.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/launchsitedetails">client.launchsitedetails.<a href="./src/resources/launchsitedetails.ts">list</a>() -> LaunchsitedetailListResponse</code>
+- <code title="get /udl/launchsitedetails">client.launchsitedetails.<a href="./src/resources/launchsitedetails.ts">list</a>({ ...params }) -> LaunchsitedetailListResponse</code>
 - <code title="delete /udl/launchsitedetails/{id}">client.launchsitedetails.<a href="./src/resources/launchsitedetails.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/launchsitedetails/findBySource">client.launchsitedetails.<a href="./src/resources/launchsitedetails.ts">findBySource</a>({ ...params }) -> LaunchsitedetailFindBySourceResponse</code>
-- <code title="get /udl/launchsitedetails/{id}">client.launchsitedetails.<a href="./src/resources/launchsitedetails.ts">get</a>(id) -> LaunchsitedetailGetResponse</code>
+- <code title="get /udl/launchsitedetails/{id}">client.launchsitedetails.<a href="./src/resources/launchsitedetails.ts">get</a>(id, { ...params }) -> LaunchsitedetailGetResponse</code>
 
 # Launchvehicle
 
@@ -1954,10 +1954,10 @@ Methods:
 
 - <code title="post /udl/launchvehicle">client.launchvehicle.<a href="./src/resources/launchvehicle.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/launchvehicle/{id}">client.launchvehicle.<a href="./src/resources/launchvehicle.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/launchvehicle">client.launchvehicle.<a href="./src/resources/launchvehicle.ts">list</a>() -> LaunchvehicleListResponse</code>
+- <code title="get /udl/launchvehicle">client.launchvehicle.<a href="./src/resources/launchvehicle.ts">list</a>({ ...params }) -> LaunchvehicleListResponse</code>
 - <code title="delete /udl/launchvehicle/{id}">client.launchvehicle.<a href="./src/resources/launchvehicle.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/launchvehicle/count">client.launchvehicle.<a href="./src/resources/launchvehicle.ts">count</a>() -> string</code>
-- <code title="get /udl/launchvehicle/{id}">client.launchvehicle.<a href="./src/resources/launchvehicle.ts">get</a>(id) -> LaunchvehicleGetResponse</code>
+- <code title="get /udl/launchvehicle/count">client.launchvehicle.<a href="./src/resources/launchvehicle.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/launchvehicle/{id}">client.launchvehicle.<a href="./src/resources/launchvehicle.ts">get</a>(id, { ...params }) -> LaunchvehicleGetResponse</code>
 - <code title="get /udl/launchvehicle/queryhelp">client.launchvehicle.<a href="./src/resources/launchvehicle.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/launchvehicle/tuple">client.launchvehicle.<a href="./src/resources/launchvehicle.ts">tuple</a>({ ...params }) -> LaunchvehicleTupleResponse</code>
 
@@ -1972,9 +1972,9 @@ Methods:
 
 - <code title="post /udl/launchvehicledetails">client.launchvehicledetails.<a href="./src/resources/launchvehicledetails.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/launchvehicledetails/{id}">client.launchvehicledetails.<a href="./src/resources/launchvehicledetails.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/launchvehicledetails">client.launchvehicledetails.<a href="./src/resources/launchvehicledetails.ts">list</a>() -> LaunchvehicledetailListResponse</code>
+- <code title="get /udl/launchvehicledetails">client.launchvehicledetails.<a href="./src/resources/launchvehicledetails.ts">list</a>({ ...params }) -> LaunchvehicledetailListResponse</code>
 - <code title="delete /udl/launchvehicledetails/{id}">client.launchvehicledetails.<a href="./src/resources/launchvehicledetails.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/launchvehicledetails/{id}">client.launchvehicledetails.<a href="./src/resources/launchvehicledetails.ts">get</a>(id) -> LaunchvehicledetailGetResponse</code>
+- <code title="get /udl/launchvehicledetails/{id}">client.launchvehicledetails.<a href="./src/resources/launchvehicledetails.ts">get</a>(id, { ...params }) -> LaunchvehicledetailGetResponse</code>
 
 # LinkStatus
 
@@ -1989,7 +1989,7 @@ Methods:
 - <code title="post /udl/linkstatus">client.linkStatus.<a href="./src/resources/link-status/link-status.ts">create</a>({ ...params }) -> void</code>
 - <code title="get /udl/linkstatus">client.linkStatus.<a href="./src/resources/link-status/link-status.ts">list</a>({ ...params }) -> LinkStatusListResponse</code>
 - <code title="get /udl/linkstatus/count">client.linkStatus.<a href="./src/resources/link-status/link-status.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/linkstatus/{id}">client.linkStatus.<a href="./src/resources/link-status/link-status.ts">get</a>(id) -> LinkStatusFull</code>
+- <code title="get /udl/linkstatus/{id}">client.linkStatus.<a href="./src/resources/link-status/link-status.ts">get</a>(id, { ...params }) -> LinkStatusFull</code>
 - <code title="get /udl/linkstatus/queryhelp">client.linkStatus.<a href="./src/resources/link-status/link-status.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/linkstatus/tuple">client.linkStatus.<a href="./src/resources/link-status/link-status.ts">tuple</a>({ ...params }) -> LinkStatusTupleResponse</code>
 
@@ -2038,10 +2038,10 @@ Methods:
 
 - <code title="post /udl/location">client.location.<a href="./src/resources/location.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/location/{id}">client.location.<a href="./src/resources/location.ts">update</a>(id, { ...params }) -> void</code>
-- <code title="get /udl/location">client.location.<a href="./src/resources/location.ts">list</a>() -> LocationListResponse</code>
+- <code title="get /udl/location">client.location.<a href="./src/resources/location.ts">list</a>({ ...params }) -> LocationListResponse</code>
 - <code title="delete /udl/location/{id}">client.location.<a href="./src/resources/location.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/location/count">client.location.<a href="./src/resources/location.ts">count</a>() -> string</code>
-- <code title="get /udl/location/{id}">client.location.<a href="./src/resources/location.ts">get</a>(id) -> LocationFull</code>
+- <code title="get /udl/location/count">client.location.<a href="./src/resources/location.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/location/{id}">client.location.<a href="./src/resources/location.ts">get</a>(id, { ...params }) -> LocationFull</code>
 - <code title="get /udl/location/queryhelp">client.location.<a href="./src/resources/location.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/location/tuple">client.location.<a href="./src/resources/location.ts">tuple</a>({ ...params }) -> LocationTupleResponse</code>
 
@@ -2059,10 +2059,10 @@ Methods:
 
 - <code title="post /udl/logisticssupport">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/logisticssupport/{id}">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/logisticssupport">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">list</a>() -> LogisticssupportListResponse</code>
-- <code title="get /udl/logisticssupport/count">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">count</a>() -> string</code>
+- <code title="get /udl/logisticssupport">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">list</a>({ ...params }) -> LogisticssupportListResponse</code>
+- <code title="get /udl/logisticssupport/count">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/logisticssupport/createBulk">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/logisticssupport/{id}">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">get</a>(id) -> LogisticssupportGetResponse</code>
+- <code title="get /udl/logisticssupport/{id}">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">get</a>(id, { ...params }) -> LogisticssupportGetResponse</code>
 - <code title="get /udl/logisticssupport/queryhelp">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/logisticssupport/tuple">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">tuple</a>({ ...params }) -> LogisticssupportTupleResponse</code>
 - <code title="post /filedrop/udl-logisticssupport">client.logisticssupport.<a href="./src/resources/logisticssupport/logisticssupport.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -2078,7 +2078,7 @@ Methods:
 
 - <code title="get /udl/logisticssupport/history">client.logisticssupport.history.<a href="./src/resources/logisticssupport/history.ts">list</a>({ ...params }) -> HistoryListResponse</code>
 - <code title="get /udl/logisticssupport/history/aodr">client.logisticssupport.history.<a href="./src/resources/logisticssupport/history.ts">aodr</a>({ ...params }) -> void</code>
-- <code title="get /udl/logisticssupport/history/count">client.logisticssupport.history.<a href="./src/resources/logisticssupport/history.ts">count</a>() -> string</code>
+- <code title="get /udl/logisticssupport/history/count">client.logisticssupport.history.<a href="./src/resources/logisticssupport/history.ts">count</a>({ ...params }) -> string</code>
 
 # Maneuvers
 
@@ -2094,7 +2094,7 @@ Methods:
 - <code title="get /udl/maneuver">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">list</a>({ ...params }) -> ManeuverListResponse</code>
 - <code title="get /udl/maneuver/count">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/maneuver/createBulk">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/maneuver/{id}">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">get</a>(id) -> ManeuverFull</code>
+- <code title="get /udl/maneuver/{id}">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">get</a>(id, { ...params }) -> ManeuverFull</code>
 - <code title="get /udl/maneuver/queryhelp">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/maneuver/tuple">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">tuple</a>({ ...params }) -> ManeuverTupleResponse</code>
 - <code title="post /filedrop/udl-maneuver">client.maneuvers.<a href="./src/resources/maneuvers/maneuvers.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -2125,11 +2125,11 @@ Methods:
 
 - <code title="post /udl/manifold">client.manifold.<a href="./src/resources/manifold.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/manifold/{id}">client.manifold.<a href="./src/resources/manifold.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/manifold">client.manifold.<a href="./src/resources/manifold.ts">list</a>() -> ManifoldListResponse</code>
+- <code title="get /udl/manifold">client.manifold.<a href="./src/resources/manifold.ts">list</a>({ ...params }) -> ManifoldListResponse</code>
 - <code title="delete /udl/manifold/{id}">client.manifold.<a href="./src/resources/manifold.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/manifold/count">client.manifold.<a href="./src/resources/manifold.ts">count</a>() -> string</code>
+- <code title="get /udl/manifold/count">client.manifold.<a href="./src/resources/manifold.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/manifold/createBulk">client.manifold.<a href="./src/resources/manifold.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/manifold/{id}">client.manifold.<a href="./src/resources/manifold.ts">get</a>(id) -> ManifoldGetResponse</code>
+- <code title="get /udl/manifold/{id}">client.manifold.<a href="./src/resources/manifold.ts">get</a>(id, { ...params }) -> ManifoldGetResponse</code>
 - <code title="get /udl/manifold/queryhelp">client.manifold.<a href="./src/resources/manifold.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/manifold/tuple">client.manifold.<a href="./src/resources/manifold.ts">tuple</a>({ ...params }) -> ManifoldTupleResponse</code>
 
@@ -2150,7 +2150,7 @@ Methods:
 - <code title="delete /udl/manifoldelset/{id}">client.manifoldelset.<a href="./src/resources/manifoldelset.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/manifoldelset/count">client.manifoldelset.<a href="./src/resources/manifoldelset.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/manifoldelset/createBulk">client.manifoldelset.<a href="./src/resources/manifoldelset.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/manifoldelset/{id}">client.manifoldelset.<a href="./src/resources/manifoldelset.ts">get</a>(id) -> ManifoldelsetGetResponse</code>
+- <code title="get /udl/manifoldelset/{id}">client.manifoldelset.<a href="./src/resources/manifoldelset.ts">get</a>(id, { ...params }) -> ManifoldelsetGetResponse</code>
 - <code title="get /udl/manifoldelset/queryhelp">client.manifoldelset.<a href="./src/resources/manifoldelset.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/manifoldelset/tuple">client.manifoldelset.<a href="./src/resources/manifoldelset.ts">tuple</a>({ ...params }) -> ManifoldelsetTupleResponse</code>
 
@@ -2200,7 +2200,7 @@ Methods:
 - <code title="delete /udl/missionassignment/{id}">client.missionassignment.<a href="./src/resources/missionassignment/missionassignment.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/missionassignment/count">client.missionassignment.<a href="./src/resources/missionassignment/missionassignment.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/missionassignment/createBulk">client.missionassignment.<a href="./src/resources/missionassignment/missionassignment.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/missionassignment/{id}">client.missionassignment.<a href="./src/resources/missionassignment/missionassignment.ts">get</a>(id) -> MissionAssignmentFull</code>
+- <code title="get /udl/missionassignment/{id}">client.missionassignment.<a href="./src/resources/missionassignment/missionassignment.ts">get</a>(id, { ...params }) -> MissionAssignmentFull</code>
 - <code title="get /udl/missionassignment/queryhelp">client.missionassignment.<a href="./src/resources/missionassignment/missionassignment.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/missionassignment/tuple">client.missionassignment.<a href="./src/resources/missionassignment/missionassignment.ts">tuple</a>({ ...params }) -> MissionassignmentTupleResponse</code>
 
@@ -2263,10 +2263,10 @@ Methods:
 
 - <code title="post /udl/navigation">client.navigation.<a href="./src/resources/navigation.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/navigation/{id}">client.navigation.<a href="./src/resources/navigation.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/navigation">client.navigation.<a href="./src/resources/navigation.ts">list</a>() -> NavigationListResponse</code>
+- <code title="get /udl/navigation">client.navigation.<a href="./src/resources/navigation.ts">list</a>({ ...params }) -> NavigationListResponse</code>
 - <code title="delete /udl/navigation/{id}">client.navigation.<a href="./src/resources/navigation.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/navigation/count">client.navigation.<a href="./src/resources/navigation.ts">count</a>() -> string</code>
-- <code title="get /udl/navigation/{id}">client.navigation.<a href="./src/resources/navigation.ts">get</a>(id) -> NavigationGetResponse</code>
+- <code title="get /udl/navigation/count">client.navigation.<a href="./src/resources/navigation.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/navigation/{id}">client.navigation.<a href="./src/resources/navigation.ts">get</a>(id, { ...params }) -> NavigationGetResponse</code>
 - <code title="get /udl/navigation/queryhelp">client.navigation.<a href="./src/resources/navigation.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/navigation/tuple">client.navigation.<a href="./src/resources/navigation.ts">tuple</a>({ ...params }) -> NavigationTupleResponse</code>
 
@@ -2286,7 +2286,7 @@ Methods:
 - <code title="get /udl/navigationalobstruction">client.navigationalobstruction.<a href="./src/resources/navigationalobstruction.ts">list</a>({ ...params }) -> NavigationalobstructionListResponse</code>
 - <code title="get /udl/navigationalobstruction/count">client.navigationalobstruction.<a href="./src/resources/navigationalobstruction.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/navigationalobstruction/createBulk">client.navigationalobstruction.<a href="./src/resources/navigationalobstruction.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/navigationalobstruction/{id}">client.navigationalobstruction.<a href="./src/resources/navigationalobstruction.ts">get</a>(id) -> NavigationalobstructionGetResponse</code>
+- <code title="get /udl/navigationalobstruction/{id}">client.navigationalobstruction.<a href="./src/resources/navigationalobstruction.ts">get</a>(id, { ...params }) -> NavigationalobstructionGetResponse</code>
 - <code title="get /udl/navigationalobstruction/queryhelp">client.navigationalobstruction.<a href="./src/resources/navigationalobstruction.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/navigationalobstruction/tuple">client.navigationalobstruction.<a href="./src/resources/navigationalobstruction.ts">tuple</a>({ ...params }) -> NavigationalobstructionTupleResponse</code>
 
@@ -2304,7 +2304,7 @@ Methods:
 - <code title="get /udl/notification">client.notification.<a href="./src/resources/notification.ts">list</a>({ ...params }) -> NotificationListResponse</code>
 - <code title="get /udl/notification/count">client.notification.<a href="./src/resources/notification.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/notification/createRaw">client.notification.<a href="./src/resources/notification.ts">createRaw</a>({ ...params }) -> void</code>
-- <code title="get /udl/notification/{id}">client.notification.<a href="./src/resources/notification.ts">get</a>(id) -> NotificationFull</code>
+- <code title="get /udl/notification/{id}">client.notification.<a href="./src/resources/notification.ts">get</a>(id, { ...params }) -> NotificationFull</code>
 - <code title="get /udl/notification/queryhelp">client.notification.<a href="./src/resources/notification.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/notification/tuple">client.notification.<a href="./src/resources/notification.ts">tuple</a>({ ...params }) -> NotificationTupleResponse</code>
 
@@ -2321,10 +2321,10 @@ Methods:
 
 - <code title="post /udl/objectofinterest">client.objectofinterest.<a href="./src/resources/objectofinterest.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/objectofinterest/{id}">client.objectofinterest.<a href="./src/resources/objectofinterest.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/objectofinterest">client.objectofinterest.<a href="./src/resources/objectofinterest.ts">list</a>() -> ObjectofinterestListResponse</code>
+- <code title="get /udl/objectofinterest">client.objectofinterest.<a href="./src/resources/objectofinterest.ts">list</a>({ ...params }) -> ObjectofinterestListResponse</code>
 - <code title="delete /udl/objectofinterest/{id}">client.objectofinterest.<a href="./src/resources/objectofinterest.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/objectofinterest/count">client.objectofinterest.<a href="./src/resources/objectofinterest.ts">count</a>() -> string</code>
-- <code title="get /udl/objectofinterest/{id}">client.objectofinterest.<a href="./src/resources/objectofinterest.ts">get</a>(id) -> ObjectofinterestGetResponse</code>
+- <code title="get /udl/objectofinterest/count">client.objectofinterest.<a href="./src/resources/objectofinterest.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/objectofinterest/{id}">client.objectofinterest.<a href="./src/resources/objectofinterest.ts">get</a>(id, { ...params }) -> ObjectofinterestGetResponse</code>
 - <code title="get /udl/objectofinterest/queryhelp">client.objectofinterest.<a href="./src/resources/objectofinterest.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/objectofinterest/tuple">client.objectofinterest.<a href="./src/resources/objectofinterest.ts">tuple</a>({ ...params }) -> ObjectofinterestTupleResponse</code>
 
@@ -2343,7 +2343,7 @@ Types:
 Methods:
 
 - <code title="post /udl/ecpsdr">client.observations.ecpsdr.<a href="./src/resources/observations/ecpsdr.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/ecpsdr/{id}">client.observations.ecpsdr.<a href="./src/resources/observations/ecpsdr.ts">retrieve</a>(id) -> Ecpsdr</code>
+- <code title="get /udl/ecpsdr/{id}">client.observations.ecpsdr.<a href="./src/resources/observations/ecpsdr.ts">retrieve</a>(id, { ...params }) -> Ecpsdr</code>
 - <code title="get /udl/ecpsdr">client.observations.ecpsdr.<a href="./src/resources/observations/ecpsdr.ts">list</a>({ ...params }) -> EcpsdrListResponse</code>
 - <code title="get /udl/ecpsdr/count">client.observations.ecpsdr.<a href="./src/resources/observations/ecpsdr.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/ecpsdr/createBulk">client.observations.ecpsdr.<a href="./src/resources/observations/ecpsdr.ts">createBulk</a>([ ...body ]) -> void</code>
@@ -2438,10 +2438,10 @@ Methods:
 
 - <code title="post /udl/onorbit">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/onorbit/{id}">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">update</a>(id, { ...params }) -> void</code>
-- <code title="get /udl/onorbit">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">list</a>() -> OnorbitListResponse</code>
+- <code title="get /udl/onorbit">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">list</a>({ ...params }) -> OnorbitListResponse</code>
 - <code title="delete /udl/onorbit/{id}">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/onorbit/count">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">count</a>() -> string</code>
-- <code title="get /udl/onorbit/{id}">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">get</a>(id) -> OnorbitFull</code>
+- <code title="get /udl/onorbit/count">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/onorbit/{id}">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">get</a>(id, { ...params }) -> OnorbitFull</code>
 - <code title="get /udl/onorbit/getSignature">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">getSignature</a>({ ...params }) -> OnorbitGetSignatureResponse</code>
 - <code title="get /udl/onorbit/queryhelp">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/onorbit/tuple">client.onorbit.<a href="./src/resources/onorbit/onorbit.ts">tuple</a>({ ...params }) -> OnorbitTupleResponse</code>
@@ -2457,9 +2457,9 @@ Types:
 Methods:
 
 - <code title="post /udl/antennadetails">client.onorbit.antennaDetails.<a href="./src/resources/onorbit/antenna-details.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/antennadetails/{id}">client.onorbit.antennaDetails.<a href="./src/resources/onorbit/antenna-details.ts">retrieve</a>(id) -> AntennaDetailsFull</code>
+- <code title="get /udl/antennadetails/{id}">client.onorbit.antennaDetails.<a href="./src/resources/onorbit/antenna-details.ts">retrieve</a>(id, { ...params }) -> AntennaDetailsFull</code>
 - <code title="put /udl/antennadetails/{id}">client.onorbit.antennaDetails.<a href="./src/resources/onorbit/antenna-details.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/antennadetails">client.onorbit.antennaDetails.<a href="./src/resources/onorbit/antenna-details.ts">list</a>() -> AntennaDetailListResponse</code>
+- <code title="get /udl/antennadetails">client.onorbit.antennaDetails.<a href="./src/resources/onorbit/antenna-details.ts">list</a>({ ...params }) -> AntennaDetailListResponse</code>
 - <code title="delete /udl/antennadetails/{id}">client.onorbit.antennaDetails.<a href="./src/resources/onorbit/antenna-details.ts">delete</a>(id) -> void</code>
 
 # Onorbitantenna
@@ -2473,9 +2473,9 @@ Methods:
 
 - <code title="post /udl/onorbitantenna">client.onorbitantenna.<a href="./src/resources/onorbitantenna.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/onorbitantenna/{id}">client.onorbitantenna.<a href="./src/resources/onorbitantenna.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/onorbitantenna">client.onorbitantenna.<a href="./src/resources/onorbitantenna.ts">list</a>() -> OnorbitantennaListResponse</code>
+- <code title="get /udl/onorbitantenna">client.onorbitantenna.<a href="./src/resources/onorbitantenna.ts">list</a>({ ...params }) -> OnorbitantennaListResponse</code>
 - <code title="delete /udl/onorbitantenna/{id}">client.onorbitantenna.<a href="./src/resources/onorbitantenna.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/onorbitantenna/{id}">client.onorbitantenna.<a href="./src/resources/onorbitantenna.ts">get</a>(id) -> OnorbitantennaGetResponse</code>
+- <code title="get /udl/onorbitantenna/{id}">client.onorbitantenna.<a href="./src/resources/onorbitantenna.ts">get</a>(id, { ...params }) -> OnorbitantennaGetResponse</code>
 
 # Onorbitbattery
 
@@ -2488,9 +2488,9 @@ Methods:
 
 - <code title="post /udl/onorbitbattery">client.onorbitbattery.<a href="./src/resources/onorbitbattery.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/onorbitbattery/{id}">client.onorbitbattery.<a href="./src/resources/onorbitbattery.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/onorbitbattery">client.onorbitbattery.<a href="./src/resources/onorbitbattery.ts">list</a>() -> OnorbitbatteryListResponse</code>
+- <code title="get /udl/onorbitbattery">client.onorbitbattery.<a href="./src/resources/onorbitbattery.ts">list</a>({ ...params }) -> OnorbitbatteryListResponse</code>
 - <code title="delete /udl/onorbitbattery/{id}">client.onorbitbattery.<a href="./src/resources/onorbitbattery.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/onorbitbattery/{id}">client.onorbitbattery.<a href="./src/resources/onorbitbattery.ts">get</a>(id) -> OnorbitbatteryGetResponse</code>
+- <code title="get /udl/onorbitbattery/{id}">client.onorbitbattery.<a href="./src/resources/onorbitbattery.ts">get</a>(id, { ...params }) -> OnorbitbatteryGetResponse</code>
 
 # Onorbitdetails
 
@@ -2503,9 +2503,9 @@ Methods:
 
 - <code title="post /udl/onorbitdetails">client.onorbitdetails.<a href="./src/resources/onorbitdetails.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/onorbitdetails/{id}">client.onorbitdetails.<a href="./src/resources/onorbitdetails.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/onorbitdetails">client.onorbitdetails.<a href="./src/resources/onorbitdetails.ts">list</a>() -> OnorbitdetailListResponse</code>
+- <code title="get /udl/onorbitdetails">client.onorbitdetails.<a href="./src/resources/onorbitdetails.ts">list</a>({ ...params }) -> OnorbitdetailListResponse</code>
 - <code title="delete /udl/onorbitdetails/{id}">client.onorbitdetails.<a href="./src/resources/onorbitdetails.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/onorbitdetails/{id}">client.onorbitdetails.<a href="./src/resources/onorbitdetails.ts">get</a>(id) -> OnorbitdetailGetResponse</code>
+- <code title="get /udl/onorbitdetails/{id}">client.onorbitdetails.<a href="./src/resources/onorbitdetails.ts">get</a>(id, { ...params }) -> OnorbitdetailGetResponse</code>
 
 # Onorbitevent
 
@@ -2520,10 +2520,10 @@ Methods:
 
 - <code title="post /udl/onorbitevent">client.onorbitevent.<a href="./src/resources/onorbitevent.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/onorbitevent/{id}">client.onorbitevent.<a href="./src/resources/onorbitevent.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/onorbitevent">client.onorbitevent.<a href="./src/resources/onorbitevent.ts">list</a>() -> OnorbiteventListResponse</code>
+- <code title="get /udl/onorbitevent">client.onorbitevent.<a href="./src/resources/onorbitevent.ts">list</a>({ ...params }) -> OnorbiteventListResponse</code>
 - <code title="delete /udl/onorbitevent/{id}">client.onorbitevent.<a href="./src/resources/onorbitevent.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/onorbitevent/count">client.onorbitevent.<a href="./src/resources/onorbitevent.ts">count</a>() -> string</code>
-- <code title="get /udl/onorbitevent/{id}">client.onorbitevent.<a href="./src/resources/onorbitevent.ts">get</a>(id) -> OnorbiteventGetResponse</code>
+- <code title="get /udl/onorbitevent/count">client.onorbitevent.<a href="./src/resources/onorbitevent.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/onorbitevent/{id}">client.onorbitevent.<a href="./src/resources/onorbitevent.ts">get</a>(id, { ...params }) -> OnorbiteventGetResponse</code>
 - <code title="get /udl/onorbitevent/queryhelp">client.onorbitevent.<a href="./src/resources/onorbitevent.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/onorbitevent/tuple">client.onorbitevent.<a href="./src/resources/onorbitevent.ts">tuple</a>({ ...params }) -> OnorbiteventTupleResponse</code>
 
@@ -2540,10 +2540,10 @@ Methods:
 
 - <code title="post /udl/onorbitlist">client.onorbitlist.<a href="./src/resources/onorbitlist.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/onorbitlist/{id}">client.onorbitlist.<a href="./src/resources/onorbitlist.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/onorbitlist">client.onorbitlist.<a href="./src/resources/onorbitlist.ts">list</a>() -> OnorbitlistListResponse</code>
+- <code title="get /udl/onorbitlist">client.onorbitlist.<a href="./src/resources/onorbitlist.ts">list</a>({ ...params }) -> OnorbitlistListResponse</code>
 - <code title="delete /udl/onorbitlist/{id}">client.onorbitlist.<a href="./src/resources/onorbitlist.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/onorbitlist/count">client.onorbitlist.<a href="./src/resources/onorbitlist.ts">count</a>() -> string</code>
-- <code title="get /udl/onorbitlist/{id}">client.onorbitlist.<a href="./src/resources/onorbitlist.ts">get</a>(id) -> OnorbitlistGetResponse</code>
+- <code title="get /udl/onorbitlist/count">client.onorbitlist.<a href="./src/resources/onorbitlist.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/onorbitlist/{id}">client.onorbitlist.<a href="./src/resources/onorbitlist.ts">get</a>(id, { ...params }) -> OnorbitlistGetResponse</code>
 - <code title="get /udl/onorbitlist/queryhelp">client.onorbitlist.<a href="./src/resources/onorbitlist.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/onorbitlist/tuple">client.onorbitlist.<a href="./src/resources/onorbitlist.ts">tuple</a>({ ...params }) -> OnorbitlistTupleResponse</code>
 
@@ -2558,9 +2558,9 @@ Methods:
 
 - <code title="post /udl/onorbitsolararray">client.onorbitsolararray.<a href="./src/resources/onorbitsolararray.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/onorbitsolararray/{id}">client.onorbitsolararray.<a href="./src/resources/onorbitsolararray.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/onorbitsolararray">client.onorbitsolararray.<a href="./src/resources/onorbitsolararray.ts">list</a>() -> OnorbitsolararrayListResponse</code>
+- <code title="get /udl/onorbitsolararray">client.onorbitsolararray.<a href="./src/resources/onorbitsolararray.ts">list</a>({ ...params }) -> OnorbitsolararrayListResponse</code>
 - <code title="delete /udl/onorbitsolararray/{id}">client.onorbitsolararray.<a href="./src/resources/onorbitsolararray.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/onorbitsolararray/{id}">client.onorbitsolararray.<a href="./src/resources/onorbitsolararray.ts">get</a>(id) -> OnorbitsolararrayGetResponse</code>
+- <code title="get /udl/onorbitsolararray/{id}">client.onorbitsolararray.<a href="./src/resources/onorbitsolararray.ts">get</a>(id, { ...params }) -> OnorbitsolararrayGetResponse</code>
 
 # Onorbitthruster
 
@@ -2573,9 +2573,9 @@ Methods:
 
 - <code title="post /udl/onorbitthruster">client.onorbitthruster.<a href="./src/resources/onorbitthruster.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/onorbitthruster/{id}">client.onorbitthruster.<a href="./src/resources/onorbitthruster.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/onorbitthruster">client.onorbitthruster.<a href="./src/resources/onorbitthruster.ts">list</a>() -> OnorbitthrusterListResponse</code>
+- <code title="get /udl/onorbitthruster">client.onorbitthruster.<a href="./src/resources/onorbitthruster.ts">list</a>({ ...params }) -> OnorbitthrusterListResponse</code>
 - <code title="delete /udl/onorbitthruster/{id}">client.onorbitthruster.<a href="./src/resources/onorbitthruster.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/onorbitthruster/{id}">client.onorbitthruster.<a href="./src/resources/onorbitthruster.ts">get</a>(id) -> OnorbitthrusterGetResponse</code>
+- <code title="get /udl/onorbitthruster/{id}">client.onorbitthruster.<a href="./src/resources/onorbitthruster.ts">get</a>(id, { ...params }) -> OnorbitthrusterGetResponse</code>
 
 # Onorbitthrusterstatus
 
@@ -2592,7 +2592,7 @@ Methods:
 - <code title="delete /udl/onorbitthrusterstatus/{id}">client.onorbitthrusterstatus.<a href="./src/resources/onorbitthrusterstatus/onorbitthrusterstatus.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/onorbitthrusterstatus/count">client.onorbitthrusterstatus.<a href="./src/resources/onorbitthrusterstatus/onorbitthrusterstatus.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/onorbitthrusterstatus/createBulk">client.onorbitthrusterstatus.<a href="./src/resources/onorbitthrusterstatus/onorbitthrusterstatus.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/onorbitthrusterstatus/{id}">client.onorbitthrusterstatus.<a href="./src/resources/onorbitthrusterstatus/onorbitthrusterstatus.ts">get</a>(id) -> OnorbitthrusterstatusFull</code>
+- <code title="get /udl/onorbitthrusterstatus/{id}">client.onorbitthrusterstatus.<a href="./src/resources/onorbitthrusterstatus/onorbitthrusterstatus.ts">get</a>(id, { ...params }) -> OnorbitthrusterstatusFull</code>
 - <code title="get /udl/onorbitthrusterstatus/queryhelp">client.onorbitthrusterstatus.<a href="./src/resources/onorbitthrusterstatus/onorbitthrusterstatus.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/onorbitthrusterstatus/tuple">client.onorbitthrusterstatus.<a href="./src/resources/onorbitthrusterstatus/onorbitthrusterstatus.ts">tuple</a>({ ...params }) -> OnorbitthrusterstatusTupleResponse</code>
 
@@ -2619,10 +2619,10 @@ Methods:
 
 - <code title="post /udl/operatingunit">client.operatingunit.<a href="./src/resources/operatingunit.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/operatingunit/{id}">client.operatingunit.<a href="./src/resources/operatingunit.ts">update</a>(id, { ...params }) -> void</code>
-- <code title="get /udl/operatingunit">client.operatingunit.<a href="./src/resources/operatingunit.ts">list</a>() -> OperatingunitListResponse</code>
+- <code title="get /udl/operatingunit">client.operatingunit.<a href="./src/resources/operatingunit.ts">list</a>({ ...params }) -> OperatingunitListResponse</code>
 - <code title="delete /udl/operatingunit/{id}">client.operatingunit.<a href="./src/resources/operatingunit.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/operatingunit/count">client.operatingunit.<a href="./src/resources/operatingunit.ts">count</a>() -> string</code>
-- <code title="get /udl/operatingunit/{id}">client.operatingunit.<a href="./src/resources/operatingunit.ts">get</a>(id) -> OperatingunitGetResponse</code>
+- <code title="get /udl/operatingunit/count">client.operatingunit.<a href="./src/resources/operatingunit.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/operatingunit/{id}">client.operatingunit.<a href="./src/resources/operatingunit.ts">get</a>(id, { ...params }) -> OperatingunitGetResponse</code>
 - <code title="get /udl/operatingunit/queryhelp">client.operatingunit.<a href="./src/resources/operatingunit.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/operatingunit/tuple">client.operatingunit.<a href="./src/resources/operatingunit.ts">tuple</a>({ ...params }) -> OperatingunitTupleResponse</code>
 
@@ -2638,10 +2638,10 @@ Types:
 Methods:
 
 - <code title="post /udl/operatingunitremark">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/operatingunitremark">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">list</a>() -> OperatingunitremarkListResponse</code>
-- <code title="get /udl/operatingunitremark/count">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">count</a>() -> string</code>
+- <code title="get /udl/operatingunitremark">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">list</a>({ ...params }) -> OperatingunitremarkListResponse</code>
+- <code title="get /udl/operatingunitremark/count">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/operatingunitremark/createBulk">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/operatingunitremark/{id}">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">get</a>(id) -> OperatingunitremarkGetResponse</code>
+- <code title="get /udl/operatingunitremark/{id}">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">get</a>(id, { ...params }) -> OperatingunitremarkGetResponse</code>
 - <code title="get /udl/operatingunitremark/queryhelp">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/operatingunitremark/tuple">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">tuple</a>({ ...params }) -> OperatingunitremarkTupleResponse</code>
 
@@ -2659,7 +2659,7 @@ Methods:
 - <code title="get /udl/orbitdetermination">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">list</a>({ ...params }) -> OrbitdeterminationListResponse</code>
 - <code title="get /udl/orbitdetermination/count">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/orbitdetermination/createBulk">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/orbitdetermination/{id}">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">get</a>(id) -> OrbitdeterminationFull</code>
+- <code title="get /udl/orbitdetermination/{id}">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">get</a>(id, { ...params }) -> OrbitdeterminationFull</code>
 - <code title="get /udl/orbitdetermination/queryhelp">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/orbitdetermination/tuple">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">tuple</a>({ ...params }) -> OrbitdeterminationTupleResponse</code>
 - <code title="post /filedrop/udl-orbitdetermination">client.orbitdetermination.<a href="./src/resources/orbitdetermination/orbitdetermination.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -2722,12 +2722,12 @@ Methods:
 
 - <code title="post /udl/organization">client.organization.<a href="./src/resources/organization.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/organization/{id}">client.organization.<a href="./src/resources/organization.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/organization">client.organization.<a href="./src/resources/organization.ts">list</a>() -> OrganizationListResponse</code>
+- <code title="get /udl/organization">client.organization.<a href="./src/resources/organization.ts">list</a>({ ...params }) -> OrganizationListResponse</code>
 - <code title="delete /udl/organization/{id}">client.organization.<a href="./src/resources/organization.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/organization/count">client.organization.<a href="./src/resources/organization.ts">count</a>() -> string</code>
-- <code title="get /udl/organization/{id}">client.organization.<a href="./src/resources/organization.ts">get</a>(id) -> OrganizationFull</code>
-- <code title="get /udl/organization/getOrganizationCategories">client.organization.<a href="./src/resources/organization.ts">getOrganizationCategories</a>() -> OrganizationGetOrganizationCategoriesResponse</code>
-- <code title="get /udl/organization/getOrganizationTypes">client.organization.<a href="./src/resources/organization.ts">getOrganizationTypes</a>() -> OrganizationGetOrganizationTypesResponse</code>
+- <code title="get /udl/organization/count">client.organization.<a href="./src/resources/organization.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/organization/{id}">client.organization.<a href="./src/resources/organization.ts">get</a>(id, { ...params }) -> OrganizationFull</code>
+- <code title="get /udl/organization/getOrganizationCategories">client.organization.<a href="./src/resources/organization.ts">getOrganizationCategories</a>({ ...params }) -> OrganizationGetOrganizationCategoriesResponse</code>
+- <code title="get /udl/organization/getOrganizationTypes">client.organization.<a href="./src/resources/organization.ts">getOrganizationTypes</a>({ ...params }) -> OrganizationGetOrganizationTypesResponse</code>
 - <code title="get /udl/organization/queryhelp">client.organization.<a href="./src/resources/organization.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/organization/tuple">client.organization.<a href="./src/resources/organization.ts">tuple</a>({ ...params }) -> OrganizationTupleResponse</code>
 
@@ -2746,7 +2746,7 @@ Methods:
 - <code title="get /udl/organizationdetails">client.organizationdetails.<a href="./src/resources/organizationdetails.ts">list</a>({ ...params }) -> OrganizationdetailListResponse</code>
 - <code title="delete /udl/organizationdetails/{id}">client.organizationdetails.<a href="./src/resources/organizationdetails.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/organizationdetails/findBySource">client.organizationdetails.<a href="./src/resources/organizationdetails.ts">findBySource</a>({ ...params }) -> OrganizationdetailFindBySourceResponse</code>
-- <code title="get /udl/organizationdetails/{id}">client.organizationdetails.<a href="./src/resources/organizationdetails.ts">get</a>(id) -> OrganizationDetailsFull</code>
+- <code title="get /udl/organizationdetails/{id}">client.organizationdetails.<a href="./src/resources/organizationdetails.ts">get</a>(id, { ...params }) -> OrganizationDetailsFull</code>
 
 # Passiveradarobservation
 
@@ -2763,7 +2763,7 @@ Methods:
 - <code title="get /udl/passiveradarobservation/count">client.passiveradarobservation.<a href="./src/resources/passiveradarobservation/passiveradarobservation.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/passiveradarobservation/createBulk">client.passiveradarobservation.<a href="./src/resources/passiveradarobservation/passiveradarobservation.ts">createBulk</a>([ ...body ]) -> void</code>
 - <code title="post /filedrop/udl-passiveradar">client.passiveradarobservation.<a href="./src/resources/passiveradarobservation/passiveradarobservation.ts">fileCreate</a>([ ...body ]) -> void</code>
-- <code title="get /udl/passiveradarobservation/{id}">client.passiveradarobservation.<a href="./src/resources/passiveradarobservation/passiveradarobservation.ts">get</a>(id) -> PassiveradarobservationFull</code>
+- <code title="get /udl/passiveradarobservation/{id}">client.passiveradarobservation.<a href="./src/resources/passiveradarobservation/passiveradarobservation.ts">get</a>(id, { ...params }) -> PassiveradarobservationFull</code>
 - <code title="get /udl/passiveradarobservation/queryhelp">client.passiveradarobservation.<a href="./src/resources/passiveradarobservation/passiveradarobservation.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/passiveradarobservation/tuple">client.passiveradarobservation.<a href="./src/resources/passiveradarobservation/passiveradarobservation.ts">tuple</a>({ ...params }) -> PassiveradarobservationTupleResponse</code>
 
@@ -2796,7 +2796,7 @@ Methods:
 - <code title="get /udl/personnelrecovery/count">client.personnelrecovery.<a href="./src/resources/personnelrecovery/personnelrecovery.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/personnelrecovery/createBulk">client.personnelrecovery.<a href="./src/resources/personnelrecovery/personnelrecovery.ts">createBulk</a>([ ...body ]) -> void</code>
 - <code title="post /filedrop/udl-personnelrecovery">client.personnelrecovery.<a href="./src/resources/personnelrecovery/personnelrecovery.ts">fileCreate</a>([ ...body ]) -> void</code>
-- <code title="get /udl/personnelrecovery/{id}">client.personnelrecovery.<a href="./src/resources/personnelrecovery/personnelrecovery.ts">get</a>(id) -> PersonnelRecoveryFullL</code>
+- <code title="get /udl/personnelrecovery/{id}">client.personnelrecovery.<a href="./src/resources/personnelrecovery/personnelrecovery.ts">get</a>(id, { ...params }) -> PersonnelRecoveryFullL</code>
 - <code title="get /udl/personnelrecovery/queryhelp">client.personnelrecovery.<a href="./src/resources/personnelrecovery/personnelrecovery.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/personnelrecovery/tuple">client.personnelrecovery.<a href="./src/resources/personnelrecovery/personnelrecovery.ts">tuple</a>({ ...params }) -> PersonnelrecoveryTupleResponse</code>
 
@@ -2826,7 +2826,7 @@ Methods:
 - <code title="get /udl/poi">client.poi.<a href="./src/resources/poi.ts">list</a>({ ...params }) -> PoiListResponse</code>
 - <code title="get /udl/poi/count">client.poi.<a href="./src/resources/poi.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/poi/createBulk">client.poi.<a href="./src/resources/poi.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/poi/{id}">client.poi.<a href="./src/resources/poi.ts">get</a>(id) -> PoiFull</code>
+- <code title="get /udl/poi/{id}">client.poi.<a href="./src/resources/poi.ts">get</a>(id, { ...params }) -> PoiFull</code>
 - <code title="get /udl/poi/queryhelp">client.poi.<a href="./src/resources/poi.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/poi/tuple">client.poi.<a href="./src/resources/poi.ts">tuple</a>({ ...params }) -> PoiTupleResponse</code>
 - <code title="post /filedrop/udl-poi">client.poi.<a href="./src/resources/poi.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -2844,10 +2844,10 @@ Methods:
 
 - <code title="post /udl/port">client.port.<a href="./src/resources/port.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/port/{id}">client.port.<a href="./src/resources/port.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/port">client.port.<a href="./src/resources/port.ts">list</a>() -> PortListResponse</code>
-- <code title="get /udl/port/count">client.port.<a href="./src/resources/port.ts">count</a>() -> string</code>
+- <code title="get /udl/port">client.port.<a href="./src/resources/port.ts">list</a>({ ...params }) -> PortListResponse</code>
+- <code title="get /udl/port/count">client.port.<a href="./src/resources/port.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/port/createBulk">client.port.<a href="./src/resources/port.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/port/{id}">client.port.<a href="./src/resources/port.ts">get</a>(id) -> PortGetResponse</code>
+- <code title="get /udl/port/{id}">client.port.<a href="./src/resources/port.ts">get</a>(id, { ...params }) -> PortGetResponse</code>
 - <code title="get /udl/port/queryhelp">client.port.<a href="./src/resources/port.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/port/tuple">client.port.<a href="./src/resources/port.ts">tuple</a>({ ...params }) -> PortTupleResponse</code>
 
@@ -2865,7 +2865,7 @@ Methods:
 - <code title="get /udl/radarobservation">client.radarobservation.<a href="./src/resources/radarobservation.ts">list</a>({ ...params }) -> RadarobservationListResponse</code>
 - <code title="get /udl/radarobservation/count">client.radarobservation.<a href="./src/resources/radarobservation.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/radarobservation/createBulk">client.radarobservation.<a href="./src/resources/radarobservation.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/radarobservation/{id}">client.radarobservation.<a href="./src/resources/radarobservation.ts">get</a>(id) -> RadarobservationFull</code>
+- <code title="get /udl/radarobservation/{id}">client.radarobservation.<a href="./src/resources/radarobservation.ts">get</a>(id, { ...params }) -> RadarobservationFull</code>
 - <code title="get /udl/radarobservation/queryhelp">client.radarobservation.<a href="./src/resources/radarobservation.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/radarobservation/tuple">client.radarobservation.<a href="./src/resources/radarobservation.ts">tuple</a>({ ...params }) -> RadarobservationTupleResponse</code>
 - <code title="post /filedrop/udl-radar">client.radarobservation.<a href="./src/resources/radarobservation.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -2883,10 +2883,10 @@ Methods:
 
 - <code title="post /udl/rfband">client.rfband.<a href="./src/resources/rfband.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/rfband/{id}">client.rfband.<a href="./src/resources/rfband.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/rfband">client.rfband.<a href="./src/resources/rfband.ts">list</a>() -> RfbandListResponse</code>
+- <code title="get /udl/rfband">client.rfband.<a href="./src/resources/rfband.ts">list</a>({ ...params }) -> RfbandListResponse</code>
 - <code title="delete /udl/rfband/{id}">client.rfband.<a href="./src/resources/rfband.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/rfband/count">client.rfband.<a href="./src/resources/rfband.ts">count</a>() -> string</code>
-- <code title="get /udl/rfband/{id}">client.rfband.<a href="./src/resources/rfband.ts">get</a>(id) -> RfbandGetResponse</code>
+- <code title="get /udl/rfband/count">client.rfband.<a href="./src/resources/rfband.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/rfband/{id}">client.rfband.<a href="./src/resources/rfband.ts">get</a>(id, { ...params }) -> RfbandGetResponse</code>
 - <code title="get /udl/rfband/queryhelp">client.rfband.<a href="./src/resources/rfband.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/rfband/tuple">client.rfband.<a href="./src/resources/rfband.ts">tuple</a>({ ...params }) -> RfbandTupleResponse</code>
 
@@ -2903,10 +2903,10 @@ Methods:
 
 - <code title="post /udl/rfbandtype">client.rfbandtype.<a href="./src/resources/rfbandtype.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/rfbandtype/{id}">client.rfbandtype.<a href="./src/resources/rfbandtype.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/rfbandtype">client.rfbandtype.<a href="./src/resources/rfbandtype.ts">list</a>() -> RfbandtypeListResponse</code>
+- <code title="get /udl/rfbandtype">client.rfbandtype.<a href="./src/resources/rfbandtype.ts">list</a>({ ...params }) -> RfbandtypeListResponse</code>
 - <code title="delete /udl/rfbandtype/{id}">client.rfbandtype.<a href="./src/resources/rfbandtype.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/rfbandtype/count">client.rfbandtype.<a href="./src/resources/rfbandtype.ts">count</a>() -> string</code>
-- <code title="get /udl/rfbandtype/{id}">client.rfbandtype.<a href="./src/resources/rfbandtype.ts">get</a>(id) -> RfbandtypeGetResponse</code>
+- <code title="get /udl/rfbandtype/count">client.rfbandtype.<a href="./src/resources/rfbandtype.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/rfbandtype/{id}">client.rfbandtype.<a href="./src/resources/rfbandtype.ts">get</a>(id, { ...params }) -> RfbandtypeGetResponse</code>
 - <code title="get /udl/rfbandtype/queryhelp">client.rfbandtype.<a href="./src/resources/rfbandtype.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/rfbandtype/tuple">client.rfbandtype.<a href="./src/resources/rfbandtype.ts">tuple</a>({ ...params }) -> RfbandtypeTupleResponse</code>
 
@@ -2923,10 +2923,10 @@ Methods:
 
 - <code title="post /udl/rfemitter">client.rfemitter.<a href="./src/resources/rfemitter.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/rfemitter/{id}">client.rfemitter.<a href="./src/resources/rfemitter.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/rfemitter">client.rfemitter.<a href="./src/resources/rfemitter.ts">list</a>() -> RfemitterListResponse</code>
+- <code title="get /udl/rfemitter">client.rfemitter.<a href="./src/resources/rfemitter.ts">list</a>({ ...params }) -> RfemitterListResponse</code>
 - <code title="delete /udl/rfemitter/{id}">client.rfemitter.<a href="./src/resources/rfemitter.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/rfemitter/count">client.rfemitter.<a href="./src/resources/rfemitter.ts">count</a>() -> string</code>
-- <code title="get /udl/rfemitter/{id}">client.rfemitter.<a href="./src/resources/rfemitter.ts">get</a>(id) -> RfemitterGetResponse</code>
+- <code title="get /udl/rfemitter/count">client.rfemitter.<a href="./src/resources/rfemitter.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/rfemitter/{id}">client.rfemitter.<a href="./src/resources/rfemitter.ts">get</a>(id, { ...params }) -> RfemitterGetResponse</code>
 - <code title="get /udl/rfemitter/queryhelp">client.rfemitter.<a href="./src/resources/rfemitter.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/rfemitter/tuple">client.rfemitter.<a href="./src/resources/rfemitter.ts">tuple</a>({ ...params }) -> RfemitterTupleResponse</code>
 
@@ -2943,10 +2943,10 @@ Methods:
 
 - <code title="post /udl/rfemitterdetails">client.rfemitterdetails.<a href="./src/resources/rfemitterdetails.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/rfemitterdetails/{id}">client.rfemitterdetails.<a href="./src/resources/rfemitterdetails.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/rfemitterdetails">client.rfemitterdetails.<a href="./src/resources/rfemitterdetails.ts">list</a>() -> RfemitterdetailListResponse</code>
+- <code title="get /udl/rfemitterdetails">client.rfemitterdetails.<a href="./src/resources/rfemitterdetails.ts">list</a>({ ...params }) -> RfemitterdetailListResponse</code>
 - <code title="delete /udl/rfemitterdetails/{id}">client.rfemitterdetails.<a href="./src/resources/rfemitterdetails.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/rfemitterdetails/count">client.rfemitterdetails.<a href="./src/resources/rfemitterdetails.ts">count</a>() -> string</code>
-- <code title="get /udl/rfemitterdetails/{id}">client.rfemitterdetails.<a href="./src/resources/rfemitterdetails.ts">get</a>(id) -> RfemitterdetailGetResponse</code>
+- <code title="get /udl/rfemitterdetails/count">client.rfemitterdetails.<a href="./src/resources/rfemitterdetails.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/rfemitterdetails/{id}">client.rfemitterdetails.<a href="./src/resources/rfemitterdetails.ts">get</a>(id, { ...params }) -> RfemitterdetailGetResponse</code>
 - <code title="get /udl/rfemitterdetails/queryhelp">client.rfemitterdetails.<a href="./src/resources/rfemitterdetails.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/rfemitterdetails/tuple">client.rfemitterdetails.<a href="./src/resources/rfemitterdetails.ts">tuple</a>({ ...params }) -> RfemitterdetailTupleResponse</code>
 
@@ -2964,7 +2964,7 @@ Methods:
 - <code title="get /udl/rfobservation">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">list</a>({ ...params }) -> RfobservationListResponse</code>
 - <code title="get /udl/rfobservation/count">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/rfobservation/createBulk">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/rfobservation/{id}">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">get</a>(id) -> RfobservationdetailsFull</code>
+- <code title="get /udl/rfobservation/{id}">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">get</a>(id, { ...params }) -> RfobservationdetailsFull</code>
 - <code title="get /udl/rfobservation/queryhelp">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/rfobservation/tuple">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">tuple</a>({ ...params }) -> RfobservationTupleResponse</code>
 - <code title="post /filedrop/udl-rf">client.rfobservation.<a href="./src/resources/rfobservation/rfobservation.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -2993,7 +2993,7 @@ Methods:
 - <code title="get /udl/sarobservation">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">list</a>({ ...params }) -> SarobservationListResponse</code>
 - <code title="get /udl/sarobservation/count">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/sarobservation/createBulk">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/sarobservation/{id}">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">get</a>(id) -> SarobservationFull</code>
+- <code title="get /udl/sarobservation/{id}">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">get</a>(id, { ...params }) -> SarobservationFull</code>
 - <code title="get /udl/sarobservation/queryhelp">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/sarobservation/tuple">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">tuple</a>({ ...params }) -> SarobservationTupleResponse</code>
 - <code title="post /filedrop/udl-sar">client.sarobservation.<a href="./src/resources/sarobservation/sarobservation.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -3024,10 +3024,10 @@ Methods:
 
 - <code title="post /udl/scientific">client.scientific.<a href="./src/resources/scientific.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/scientific/{id}">client.scientific.<a href="./src/resources/scientific.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/scientific">client.scientific.<a href="./src/resources/scientific.ts">list</a>() -> ScientificListResponse</code>
+- <code title="get /udl/scientific">client.scientific.<a href="./src/resources/scientific.ts">list</a>({ ...params }) -> ScientificListResponse</code>
 - <code title="delete /udl/scientific/{id}">client.scientific.<a href="./src/resources/scientific.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/scientific/count">client.scientific.<a href="./src/resources/scientific.ts">count</a>() -> string</code>
-- <code title="get /udl/scientific/{id}">client.scientific.<a href="./src/resources/scientific.ts">get</a>(id) -> ScientificGetResponse</code>
+- <code title="get /udl/scientific/count">client.scientific.<a href="./src/resources/scientific.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/scientific/{id}">client.scientific.<a href="./src/resources/scientific.ts">get</a>(id, { ...params }) -> ScientificGetResponse</code>
 - <code title="get /udl/scientific/queryhelp">client.scientific.<a href="./src/resources/scientific.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/scientific/tuple">client.scientific.<a href="./src/resources/scientific.ts">tuple</a>({ ...params }) -> ScientificTupleResponse</code>
 
@@ -3044,10 +3044,10 @@ Methods:
 
 - <code title="post /udl/sensor">client.sensor.<a href="./src/resources/sensor/sensor.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/sensor/{id}">client.sensor.<a href="./src/resources/sensor/sensor.ts">update</a>(id, { ...params }) -> void</code>
-- <code title="get /udl/sensor">client.sensor.<a href="./src/resources/sensor/sensor.ts">list</a>() -> SensorListResponse</code>
+- <code title="get /udl/sensor">client.sensor.<a href="./src/resources/sensor/sensor.ts">list</a>({ ...params }) -> SensorListResponse</code>
 - <code title="delete /udl/sensor/{id}">client.sensor.<a href="./src/resources/sensor/sensor.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/sensor/count">client.sensor.<a href="./src/resources/sensor/sensor.ts">count</a>() -> string</code>
-- <code title="get /udl/sensor/{id}">client.sensor.<a href="./src/resources/sensor/sensor.ts">get</a>(id) -> SensorGetResponse</code>
+- <code title="get /udl/sensor/count">client.sensor.<a href="./src/resources/sensor/sensor.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/sensor/{id}">client.sensor.<a href="./src/resources/sensor/sensor.ts">get</a>(id, { ...params }) -> SensorGetResponse</code>
 - <code title="get /udl/sensor/queryhelp">client.sensor.<a href="./src/resources/sensor/sensor.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/sensor/tuple">client.sensor.<a href="./src/resources/sensor/sensor.ts">tuple</a>({ ...params }) -> SensorTupleResponse</code>
 
@@ -3063,7 +3063,7 @@ Types:
 Methods:
 
 - <code title="post /udl/sensorcalibration">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/sensorcalibration/{id}">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">retrieve</a>(id) -> CalibrationRetrieveResponse</code>
+- <code title="get /udl/sensorcalibration/{id}">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">retrieve</a>(id, { ...params }) -> CalibrationRetrieveResponse</code>
 - <code title="get /udl/sensorcalibration/count">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/sensorcalibration/createBulk">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">createBulk</a>([ ...body ]) -> void</code>
 - <code title="get /udl/sensorcalibration">client.sensor.calibration.<a href="./src/resources/sensor/calibration/calibration.ts">query</a>({ ...params }) -> CalibrationQueryResponse</code>
@@ -3101,8 +3101,8 @@ Methods:
 - <code title="delete /udl/sensormaintenance/{id}">client.sensormaintenance.<a href="./src/resources/sensormaintenance/sensormaintenance.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/sensormaintenance/count">client.sensormaintenance.<a href="./src/resources/sensormaintenance/sensormaintenance.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/sensormaintenance/createBulk">client.sensormaintenance.<a href="./src/resources/sensormaintenance/sensormaintenance.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/sensormaintenance/current">client.sensormaintenance.<a href="./src/resources/sensormaintenance/sensormaintenance.ts">current</a>() -> SensormaintenanceCurrentResponse</code>
-- <code title="get /udl/sensormaintenance/{id}">client.sensormaintenance.<a href="./src/resources/sensormaintenance/sensormaintenance.ts">get</a>(id) -> SensormaintenanceFull</code>
+- <code title="get /udl/sensormaintenance/current">client.sensormaintenance.<a href="./src/resources/sensormaintenance/sensormaintenance.ts">current</a>({ ...params }) -> SensormaintenanceCurrentResponse</code>
+- <code title="get /udl/sensormaintenance/{id}">client.sensormaintenance.<a href="./src/resources/sensormaintenance/sensormaintenance.ts">get</a>(id, { ...params }) -> SensormaintenanceFull</code>
 - <code title="get /udl/sensormaintenance/queryhelp">client.sensormaintenance.<a href="./src/resources/sensormaintenance/sensormaintenance.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/sensormaintenance/tuple">client.sensormaintenance.<a href="./src/resources/sensormaintenance/sensormaintenance.ts">tuple</a>({ ...params }) -> SensormaintenanceTupleResponse</code>
 
@@ -3128,8 +3128,8 @@ Types:
 
 Methods:
 
-- <code title="get /udl/sensorobservationtype">client.sensorobservationtype.<a href="./src/resources/sensorobservationtype.ts">list</a>() -> SensorobservationtypeListResponse</code>
-- <code title="get /udl/sensorobservationtype/{id}">client.sensorobservationtype.<a href="./src/resources/sensorobservationtype.ts">get</a>(id) -> SensorobservationtypeGetResponse</code>
+- <code title="get /udl/sensorobservationtype">client.sensorobservationtype.<a href="./src/resources/sensorobservationtype.ts">list</a>({ ...params }) -> SensorobservationtypeListResponse</code>
+- <code title="get /udl/sensorobservationtype/{id}">client.sensorobservationtype.<a href="./src/resources/sensorobservationtype.ts">get</a>(id, { ...params }) -> SensorobservationtypeGetResponse</code>
 - <code title="get /udl/sensorobservationtype/queryhelp">client.sensorobservationtype.<a href="./src/resources/sensorobservationtype.ts">queryhelp</a>() -> void</code>
 
 # Sensorplan
@@ -3146,7 +3146,7 @@ Methods:
 - <code title="put /udl/sensorplan/{id}">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/sensorplan">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">list</a>({ ...params }) -> SensorplanListResponse</code>
 - <code title="get /udl/sensorplan/count">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/sensorplan/{id}">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">get</a>(id) -> SensorplanFull</code>
+- <code title="get /udl/sensorplan/{id}">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">get</a>(id, { ...params }) -> SensorplanFull</code>
 - <code title="get /udl/sensorplan/queryhelp">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/sensorplan/tuple">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">tuple</a>({ ...params }) -> SensorplanTupleResponse</code>
 - <code title="post /filedrop/udl-sensorplan">client.sensorplan.<a href="./src/resources/sensorplan/sensorplan.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -3173,8 +3173,8 @@ Types:
 
 Methods:
 
-- <code title="get /udl/sensortype">client.sensortype.<a href="./src/resources/sensortype.ts">list</a>() -> SensortypeListResponse</code>
-- <code title="get /udl/sensortype/{id}">client.sensortype.<a href="./src/resources/sensortype.ts">get</a>(id) -> SensortypeGetResponse</code>
+- <code title="get /udl/sensortype">client.sensortype.<a href="./src/resources/sensortype.ts">list</a>({ ...params }) -> SensortypeListResponse</code>
+- <code title="get /udl/sensortype/{id}">client.sensortype.<a href="./src/resources/sensortype.ts">get</a>(id, { ...params }) -> SensortypeGetResponse</code>
 - <code title="get /udl/sensortype/queryhelp">client.sensortype.<a href="./src/resources/sensortype.ts">queryhelp</a>() -> void</code>
 
 # Seradatacommdetails
@@ -3190,10 +3190,10 @@ Methods:
 
 - <code title="post /udl/seradatacommdetails">client.seradatacommdetails.<a href="./src/resources/seradatacommdetails.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/seradatacommdetails/{id}">client.seradatacommdetails.<a href="./src/resources/seradatacommdetails.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/seradatacommdetails">client.seradatacommdetails.<a href="./src/resources/seradatacommdetails.ts">list</a>() -> SeradatacommdetailListResponse</code>
+- <code title="get /udl/seradatacommdetails">client.seradatacommdetails.<a href="./src/resources/seradatacommdetails.ts">list</a>({ ...params }) -> SeradatacommdetailListResponse</code>
 - <code title="delete /udl/seradatacommdetails/{id}">client.seradatacommdetails.<a href="./src/resources/seradatacommdetails.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/seradatacommdetails/count">client.seradatacommdetails.<a href="./src/resources/seradatacommdetails.ts">count</a>() -> string</code>
-- <code title="get /udl/seradatacommdetails/{id}">client.seradatacommdetails.<a href="./src/resources/seradatacommdetails.ts">get</a>(id) -> SeradatacommdetailGetResponse</code>
+- <code title="get /udl/seradatacommdetails/count">client.seradatacommdetails.<a href="./src/resources/seradatacommdetails.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/seradatacommdetails/{id}">client.seradatacommdetails.<a href="./src/resources/seradatacommdetails.ts">get</a>(id, { ...params }) -> SeradatacommdetailGetResponse</code>
 - <code title="get /udl/seradatacommdetails/queryhelp">client.seradatacommdetails.<a href="./src/resources/seradatacommdetails.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/seradatacommdetails/tuple">client.seradatacommdetails.<a href="./src/resources/seradatacommdetails.ts">tuple</a>({ ...params }) -> SeradatacommdetailTupleResponse</code>
 
@@ -3210,10 +3210,10 @@ Methods:
 
 - <code title="post /udl/seradataearlywarning">client.seradataearlywarning.<a href="./src/resources/seradataearlywarning.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/seradataearlywarning/{id}">client.seradataearlywarning.<a href="./src/resources/seradataearlywarning.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/seradataearlywarning">client.seradataearlywarning.<a href="./src/resources/seradataearlywarning.ts">list</a>() -> SeradataearlywarningListResponse</code>
+- <code title="get /udl/seradataearlywarning">client.seradataearlywarning.<a href="./src/resources/seradataearlywarning.ts">list</a>({ ...params }) -> SeradataearlywarningListResponse</code>
 - <code title="delete /udl/seradataearlywarning/{id}">client.seradataearlywarning.<a href="./src/resources/seradataearlywarning.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/seradataearlywarning/count">client.seradataearlywarning.<a href="./src/resources/seradataearlywarning.ts">count</a>() -> string</code>
-- <code title="get /udl/seradataearlywarning/{id}">client.seradataearlywarning.<a href="./src/resources/seradataearlywarning.ts">get</a>(id) -> SeradataearlywarningGetResponse</code>
+- <code title="get /udl/seradataearlywarning/count">client.seradataearlywarning.<a href="./src/resources/seradataearlywarning.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/seradataearlywarning/{id}">client.seradataearlywarning.<a href="./src/resources/seradataearlywarning.ts">get</a>(id, { ...params }) -> SeradataearlywarningGetResponse</code>
 - <code title="get /udl/seradataearlywarning/queryhelp">client.seradataearlywarning.<a href="./src/resources/seradataearlywarning.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/seradataearlywarning/tuple">client.seradataearlywarning.<a href="./src/resources/seradataearlywarning.ts">tuple</a>({ ...params }) -> SeradataearlywarningTupleResponse</code>
 
@@ -3230,10 +3230,10 @@ Methods:
 
 - <code title="post /udl/seradatanavigation">client.seradatanavigation.<a href="./src/resources/seradatanavigation.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/seradatanavigation/{id}">client.seradatanavigation.<a href="./src/resources/seradatanavigation.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/seradatanavigation">client.seradatanavigation.<a href="./src/resources/seradatanavigation.ts">list</a>() -> SeradatanavigationListResponse</code>
+- <code title="get /udl/seradatanavigation">client.seradatanavigation.<a href="./src/resources/seradatanavigation.ts">list</a>({ ...params }) -> SeradatanavigationListResponse</code>
 - <code title="delete /udl/seradatanavigation/{id}">client.seradatanavigation.<a href="./src/resources/seradatanavigation.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/seradatanavigation/count">client.seradatanavigation.<a href="./src/resources/seradatanavigation.ts">count</a>() -> string</code>
-- <code title="get /udl/seradatanavigation/{id}">client.seradatanavigation.<a href="./src/resources/seradatanavigation.ts">get</a>(id) -> SeradatanavigationGetResponse</code>
+- <code title="get /udl/seradatanavigation/count">client.seradatanavigation.<a href="./src/resources/seradatanavigation.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/seradatanavigation/{id}">client.seradatanavigation.<a href="./src/resources/seradatanavigation.ts">get</a>(id, { ...params }) -> SeradatanavigationGetResponse</code>
 - <code title="get /udl/seradatanavigation/queryhelp">client.seradatanavigation.<a href="./src/resources/seradatanavigation.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/seradatanavigation/tuple">client.seradatanavigation.<a href="./src/resources/seradatanavigation.ts">tuple</a>({ ...params }) -> SeradatanavigationTupleResponse</code>
 
@@ -3250,10 +3250,10 @@ Methods:
 
 - <code title="post /udl/seradataopticalpayload">client.seradataopticalpayload.<a href="./src/resources/seradataopticalpayload.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/seradataopticalpayload/{id}">client.seradataopticalpayload.<a href="./src/resources/seradataopticalpayload.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/seradataopticalpayload">client.seradataopticalpayload.<a href="./src/resources/seradataopticalpayload.ts">list</a>() -> SeradataopticalpayloadListResponse</code>
+- <code title="get /udl/seradataopticalpayload">client.seradataopticalpayload.<a href="./src/resources/seradataopticalpayload.ts">list</a>({ ...params }) -> SeradataopticalpayloadListResponse</code>
 - <code title="delete /udl/seradataopticalpayload/{id}">client.seradataopticalpayload.<a href="./src/resources/seradataopticalpayload.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/seradataopticalpayload/count">client.seradataopticalpayload.<a href="./src/resources/seradataopticalpayload.ts">count</a>() -> string</code>
-- <code title="get /udl/seradataopticalpayload/{id}">client.seradataopticalpayload.<a href="./src/resources/seradataopticalpayload.ts">get</a>(id) -> SeradataopticalpayloadGetResponse</code>
+- <code title="get /udl/seradataopticalpayload/count">client.seradataopticalpayload.<a href="./src/resources/seradataopticalpayload.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/seradataopticalpayload/{id}">client.seradataopticalpayload.<a href="./src/resources/seradataopticalpayload.ts">get</a>(id, { ...params }) -> SeradataopticalpayloadGetResponse</code>
 - <code title="get /udl/seradataopticalpayload/queryhelp">client.seradataopticalpayload.<a href="./src/resources/seradataopticalpayload.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/seradataopticalpayload/tuple">client.seradataopticalpayload.<a href="./src/resources/seradataopticalpayload.ts">tuple</a>({ ...params }) -> SeradataopticalpayloadTupleResponse</code>
 
@@ -3270,10 +3270,10 @@ Methods:
 
 - <code title="post /udl/seradataradarpayload">client.seradataradarpayload.<a href="./src/resources/seradataradarpayload.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/seradataradarpayload/{id}">client.seradataradarpayload.<a href="./src/resources/seradataradarpayload.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/seradataradarpayload">client.seradataradarpayload.<a href="./src/resources/seradataradarpayload.ts">list</a>() -> SeradataradarpayloadListResponse</code>
+- <code title="get /udl/seradataradarpayload">client.seradataradarpayload.<a href="./src/resources/seradataradarpayload.ts">list</a>({ ...params }) -> SeradataradarpayloadListResponse</code>
 - <code title="delete /udl/seradataradarpayload/{id}">client.seradataradarpayload.<a href="./src/resources/seradataradarpayload.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/seradataradarpayload/count">client.seradataradarpayload.<a href="./src/resources/seradataradarpayload.ts">count</a>() -> string</code>
-- <code title="get /udl/seradataradarpayload/{id}">client.seradataradarpayload.<a href="./src/resources/seradataradarpayload.ts">get</a>(id) -> SeradataradarpayloadGetResponse</code>
+- <code title="get /udl/seradataradarpayload/count">client.seradataradarpayload.<a href="./src/resources/seradataradarpayload.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/seradataradarpayload/{id}">client.seradataradarpayload.<a href="./src/resources/seradataradarpayload.ts">get</a>(id, { ...params }) -> SeradataradarpayloadGetResponse</code>
 - <code title="get /udl/seradataradarpayload/queryhelp">client.seradataradarpayload.<a href="./src/resources/seradataradarpayload.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/seradataradarpayload/tuple">client.seradataradarpayload.<a href="./src/resources/seradataradarpayload.ts">tuple</a>({ ...params }) -> SeradataradarpayloadTupleResponse</code>
 
@@ -3290,10 +3290,10 @@ Methods:
 
 - <code title="post /udl/seradatasigintpayload">client.seradatasigintpayload.<a href="./src/resources/seradatasigintpayload.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/seradatasigintpayload/{id}">client.seradatasigintpayload.<a href="./src/resources/seradatasigintpayload.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/seradatasigintpayload">client.seradatasigintpayload.<a href="./src/resources/seradatasigintpayload.ts">list</a>() -> SeradatasigintpayloadListResponse</code>
+- <code title="get /udl/seradatasigintpayload">client.seradatasigintpayload.<a href="./src/resources/seradatasigintpayload.ts">list</a>({ ...params }) -> SeradatasigintpayloadListResponse</code>
 - <code title="delete /udl/seradatasigintpayload/{id}">client.seradatasigintpayload.<a href="./src/resources/seradatasigintpayload.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/seradatasigintpayload/count">client.seradatasigintpayload.<a href="./src/resources/seradatasigintpayload.ts">count</a>() -> string</code>
-- <code title="get /udl/seradatasigintpayload/{id}">client.seradatasigintpayload.<a href="./src/resources/seradatasigintpayload.ts">get</a>(id) -> SeradatasigintpayloadGetResponse</code>
+- <code title="get /udl/seradatasigintpayload/count">client.seradatasigintpayload.<a href="./src/resources/seradatasigintpayload.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/seradatasigintpayload/{id}">client.seradatasigintpayload.<a href="./src/resources/seradatasigintpayload.ts">get</a>(id, { ...params }) -> SeradatasigintpayloadGetResponse</code>
 - <code title="get /udl/seradatasigintpayload/queryhelp">client.seradatasigintpayload.<a href="./src/resources/seradatasigintpayload.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/seradatasigintpayload/tuple">client.seradatasigintpayload.<a href="./src/resources/seradatasigintpayload.ts">tuple</a>({ ...params }) -> SeradatasigintpayloadTupleResponse</code>
 
@@ -3310,10 +3310,10 @@ Methods:
 
 - <code title="post /udl/seradataspacecraftdetails">client.seradataspacecraftdetails.<a href="./src/resources/seradataspacecraftdetails.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/seradataspacecraftdetails/{id}">client.seradataspacecraftdetails.<a href="./src/resources/seradataspacecraftdetails.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/seradataspacecraftdetails">client.seradataspacecraftdetails.<a href="./src/resources/seradataspacecraftdetails.ts">list</a>() -> SeradataspacecraftdetailListResponse</code>
+- <code title="get /udl/seradataspacecraftdetails">client.seradataspacecraftdetails.<a href="./src/resources/seradataspacecraftdetails.ts">list</a>({ ...params }) -> SeradataspacecraftdetailListResponse</code>
 - <code title="delete /udl/seradataspacecraftdetails/{id}">client.seradataspacecraftdetails.<a href="./src/resources/seradataspacecraftdetails.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/seradataspacecraftdetails/count">client.seradataspacecraftdetails.<a href="./src/resources/seradataspacecraftdetails.ts">count</a>() -> string</code>
-- <code title="get /udl/seradataspacecraftdetails/{id}">client.seradataspacecraftdetails.<a href="./src/resources/seradataspacecraftdetails.ts">get</a>(id) -> SeradataspacecraftdetailGetResponse</code>
+- <code title="get /udl/seradataspacecraftdetails/count">client.seradataspacecraftdetails.<a href="./src/resources/seradataspacecraftdetails.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/seradataspacecraftdetails/{id}">client.seradataspacecraftdetails.<a href="./src/resources/seradataspacecraftdetails.ts">get</a>(id, { ...params }) -> SeradataspacecraftdetailGetResponse</code>
 - <code title="get /udl/seradataspacecraftdetails/queryhelp">client.seradataspacecraftdetails.<a href="./src/resources/seradataspacecraftdetails.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/seradataspacecraftdetails/tuple">client.seradataspacecraftdetails.<a href="./src/resources/seradataspacecraftdetails.ts">tuple</a>({ ...params }) -> SeradataspacecraftdetailTupleResponse</code>
 
@@ -3333,7 +3333,7 @@ Methods:
 - <code title="delete /udl/sgi/{id}">client.sgi.<a href="./src/resources/sgi/sgi.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/sgi/count">client.sgi.<a href="./src/resources/sgi/sgi.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/sgi/createBulk">client.sgi.<a href="./src/resources/sgi/sgi.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/sgi/{id}">client.sgi.<a href="./src/resources/sgi/sgi.ts">get</a>(id) -> SgiFull</code>
+- <code title="get /udl/sgi/{id}">client.sgi.<a href="./src/resources/sgi/sgi.ts">get</a>(id, { ...params }) -> SgiFull</code>
 - <code title="get /udl/sgi/getSGIDataByEffectiveAsOfDate">client.sgi.<a href="./src/resources/sgi/sgi.ts">getDataByEffectiveAsOfDate</a>({ ...params }) -> SgiFull</code>
 - <code title="get /udl/sgi/queryhelp">client.sgi.<a href="./src/resources/sgi/sgi.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/sgi/tuple">client.sgi.<a href="./src/resources/sgi/sgi.ts">tuple</a>({ ...params }) -> SgiTupleResponse</code>
@@ -3394,9 +3394,9 @@ Methods:
 
 - <code title="post /udl/site">client.site.<a href="./src/resources/site/site.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/site/{id}">client.site.<a href="./src/resources/site/site.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/site">client.site.<a href="./src/resources/site/site.ts">list</a>() -> SiteListResponse</code>
-- <code title="get /udl/site/count">client.site.<a href="./src/resources/site/site.ts">count</a>() -> string</code>
-- <code title="get /udl/site/{id}">client.site.<a href="./src/resources/site/site.ts">get</a>(id) -> SiteGetResponse</code>
+- <code title="get /udl/site">client.site.<a href="./src/resources/site/site.ts">list</a>({ ...params }) -> SiteListResponse</code>
+- <code title="get /udl/site/count">client.site.<a href="./src/resources/site/site.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/site/{id}">client.site.<a href="./src/resources/site/site.ts">get</a>(id, { ...params }) -> SiteGetResponse</code>
 - <code title="get /udl/site/queryhelp">client.site.<a href="./src/resources/site/site.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/site/tuple">client.site.<a href="./src/resources/site/site.ts">tuple</a>({ ...params }) -> SiteTupleResponse</code>
 
@@ -3412,7 +3412,7 @@ Types:
 Methods:
 
 - <code title="post /udl/siteoperations">client.site.operations.<a href="./src/resources/site/operations.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/siteoperations/{id}">client.site.operations.<a href="./src/resources/site/operations.ts">retrieve</a>(id) -> OperationRetrieveResponse</code>
+- <code title="get /udl/siteoperations/{id}">client.site.operations.<a href="./src/resources/site/operations.ts">retrieve</a>(id, { ...params }) -> OperationRetrieveResponse</code>
 - <code title="put /udl/siteoperations/{id}">client.site.operations.<a href="./src/resources/site/operations.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/siteoperations">client.site.operations.<a href="./src/resources/site/operations.ts">list</a>({ ...params }) -> OperationListResponse</code>
 - <code title="delete /udl/siteoperations/{id}">client.site.operations.<a href="./src/resources/site/operations.ts">delete</a>(id) -> void</code>
@@ -3434,9 +3434,9 @@ Types:
 Methods:
 
 - <code title="post /udl/siteremark">client.siteremark.<a href="./src/resources/siteremark.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/siteremark">client.siteremark.<a href="./src/resources/siteremark.ts">list</a>() -> SiteremarkListResponse</code>
-- <code title="get /udl/siteremark/count">client.siteremark.<a href="./src/resources/siteremark.ts">count</a>() -> string</code>
-- <code title="get /udl/siteremark/{id}">client.siteremark.<a href="./src/resources/siteremark.ts">get</a>(id) -> SiteremarkGetResponse</code>
+- <code title="get /udl/siteremark">client.siteremark.<a href="./src/resources/siteremark.ts">list</a>({ ...params }) -> SiteremarkListResponse</code>
+- <code title="get /udl/siteremark/count">client.siteremark.<a href="./src/resources/siteremark.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/siteremark/{id}">client.siteremark.<a href="./src/resources/siteremark.ts">get</a>(id, { ...params }) -> SiteremarkGetResponse</code>
 - <code title="get /udl/siteremark/queryhelp">client.siteremark.<a href="./src/resources/siteremark.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/siteremark/tuple">client.siteremark.<a href="./src/resources/siteremark.ts">tuple</a>({ ...params }) -> SiteremarkTupleResponse</code>
 
@@ -3452,10 +3452,10 @@ Methods:
 
 - <code title="post /udl/sitestatus">client.sitestatus.<a href="./src/resources/sitestatus/sitestatus.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/sitestatus/{id}">client.sitestatus.<a href="./src/resources/sitestatus/sitestatus.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/sitestatus">client.sitestatus.<a href="./src/resources/sitestatus/sitestatus.ts">list</a>() -> SitestatusListResponse</code>
+- <code title="get /udl/sitestatus">client.sitestatus.<a href="./src/resources/sitestatus/sitestatus.ts">list</a>({ ...params }) -> SitestatusListResponse</code>
 - <code title="delete /udl/sitestatus/{id}">client.sitestatus.<a href="./src/resources/sitestatus/sitestatus.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/sitestatus/count">client.sitestatus.<a href="./src/resources/sitestatus/sitestatus.ts">count</a>() -> string</code>
-- <code title="get /udl/sitestatus/{id}">client.sitestatus.<a href="./src/resources/sitestatus/sitestatus.ts">get</a>(id) -> SitestatusFull</code>
+- <code title="get /udl/sitestatus/count">client.sitestatus.<a href="./src/resources/sitestatus/sitestatus.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/sitestatus/{id}">client.sitestatus.<a href="./src/resources/sitestatus/sitestatus.ts">get</a>(id, { ...params }) -> SitestatusFull</code>
 - <code title="get /udl/sitestatus/queryhelp">client.sitestatus.<a href="./src/resources/sitestatus/sitestatus.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/sitestatus/tuple">client.sitestatus.<a href="./src/resources/sitestatus/sitestatus.ts">tuple</a>({ ...params }) -> SitestatusTupleResponse</code>
 
@@ -3469,7 +3469,7 @@ Types:
 Methods:
 
 - <code title="get /udl/sitestatus/history">client.sitestatus.history.<a href="./src/resources/sitestatus/history.ts">list</a>({ ...params }) -> HistoryListResponse</code>
-- <code title="get /udl/sitestatus/history/count">client.sitestatus.history.<a href="./src/resources/sitestatus/history.ts">count</a>() -> string</code>
+- <code title="get /udl/sitestatus/history/count">client.sitestatus.history.<a href="./src/resources/sitestatus/history.ts">count</a>({ ...params }) -> string</code>
 
 # Skyimagery
 
@@ -3483,8 +3483,8 @@ Methods:
 
 - <code title="get /udl/skyimagery">client.skyimagery.<a href="./src/resources/skyimagery/skyimagery.ts">list</a>({ ...params }) -> SkyimageryListResponse</code>
 - <code title="get /udl/skyimagery/count">client.skyimagery.<a href="./src/resources/skyimagery/skyimagery.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/skyimagery/getFile/{id}">client.skyimagery.<a href="./src/resources/skyimagery/skyimagery.ts">fileGet</a>(id) -> Response</code>
-- <code title="get /udl/skyimagery/{id}">client.skyimagery.<a href="./src/resources/skyimagery/skyimagery.ts">get</a>(id) -> SkyimageryFull</code>
+- <code title="get /udl/skyimagery/getFile/{id}">client.skyimagery.<a href="./src/resources/skyimagery/skyimagery.ts">fileGet</a>(id, { ...params }) -> Response</code>
+- <code title="get /udl/skyimagery/{id}">client.skyimagery.<a href="./src/resources/skyimagery/skyimagery.ts">get</a>(id, { ...params }) -> SkyimageryFull</code>
 - <code title="get /udl/skyimagery/queryhelp">client.skyimagery.<a href="./src/resources/skyimagery/skyimagery.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/skyimagery/tuple">client.skyimagery.<a href="./src/resources/skyimagery/skyimagery.ts">tuple</a>({ ...params }) -> SkyimageryTupleResponse</code>
 - <code title="post /filedrop/udl-skyimagery">client.skyimagery.<a href="./src/resources/skyimagery/skyimagery.ts">uploadZip</a>({ ...params }) -> void</code>
@@ -3516,7 +3516,7 @@ Methods:
 - <code title="get /udl/soiobservationset">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">list</a>({ ...params }) -> SoiobservationsetListResponse</code>
 - <code title="get /udl/soiobservationset/count">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/soiobservationset/createBulk">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/soiobservationset/{id}">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">get</a>(id) -> SoiObservationSetFull</code>
+- <code title="get /udl/soiobservationset/{id}">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">get</a>(id, { ...params }) -> SoiObservationSetFull</code>
 - <code title="get /udl/soiobservationset/queryhelp">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/soiobservationset/tuple">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">tuple</a>({ ...params }) -> SoiobservationsetTupleResponse</code>
 - <code title="post /filedrop/udl-soiobservationset">client.soiobservationset.<a href="./src/resources/soiobservationset/soiobservationset.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -3548,10 +3548,10 @@ Methods:
 
 - <code title="post /udl/solararray">client.solararray.<a href="./src/resources/solararray.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/solararray/{id}">client.solararray.<a href="./src/resources/solararray.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/solararray">client.solararray.<a href="./src/resources/solararray.ts">list</a>() -> SolararrayListResponse</code>
+- <code title="get /udl/solararray">client.solararray.<a href="./src/resources/solararray.ts">list</a>({ ...params }) -> SolararrayListResponse</code>
 - <code title="delete /udl/solararray/{id}">client.solararray.<a href="./src/resources/solararray.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/solararray/count">client.solararray.<a href="./src/resources/solararray.ts">count</a>() -> string</code>
-- <code title="get /udl/solararray/{id}">client.solararray.<a href="./src/resources/solararray.ts">get</a>(id) -> SolararrayGetResponse</code>
+- <code title="get /udl/solararray/count">client.solararray.<a href="./src/resources/solararray.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/solararray/{id}">client.solararray.<a href="./src/resources/solararray.ts">get</a>(id, { ...params }) -> SolararrayGetResponse</code>
 - <code title="get /udl/solararray/queryhelp">client.solararray.<a href="./src/resources/solararray.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/solararray/tuple">client.solararray.<a href="./src/resources/solararray.ts">tuple</a>({ ...params }) -> SolararrayTupleResponse</code>
 
@@ -3568,7 +3568,7 @@ Methods:
 - <code title="put /udl/solararraydetails/{id}">client.solararraydetails.<a href="./src/resources/solararraydetails.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/solararraydetails">client.solararraydetails.<a href="./src/resources/solararraydetails.ts">list</a>({ ...params }) -> SolararraydetailListResponse</code>
 - <code title="delete /udl/solararraydetails/{id}">client.solararraydetails.<a href="./src/resources/solararraydetails.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/solararraydetails/{id}">client.solararraydetails.<a href="./src/resources/solararraydetails.ts">get</a>(id) -> SolarArrayDetailsFull</code>
+- <code title="get /udl/solararraydetails/{id}">client.solararraydetails.<a href="./src/resources/solararraydetails.ts">get</a>(id, { ...params }) -> SolarArrayDetailsFull</code>
 
 # Sortieppr
 
@@ -3586,7 +3586,7 @@ Methods:
 - <code title="delete /udl/sortieppr/{id}">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/sortieppr/count">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/sortieppr/createBulk">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/sortieppr/{id}">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">get</a>(id) -> SortiePprFull</code>
+- <code title="get /udl/sortieppr/{id}">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">get</a>(id, { ...params }) -> SortiePprFull</code>
 - <code title="get /udl/sortieppr/queryhelp">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/sortieppr/tuple">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">tuple</a>({ ...params }) -> SortiepprTupleResponse</code>
 - <code title="post /filedrop/udl-sortieppr">client.sortieppr.<a href="./src/resources/sortieppr/sortieppr.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -3649,10 +3649,10 @@ Methods:
 
 - <code title="post /udl/stage">client.stage.<a href="./src/resources/stage.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/stage/{id}">client.stage.<a href="./src/resources/stage.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/stage">client.stage.<a href="./src/resources/stage.ts">list</a>() -> StageListResponse</code>
+- <code title="get /udl/stage">client.stage.<a href="./src/resources/stage.ts">list</a>({ ...params }) -> StageListResponse</code>
 - <code title="delete /udl/stage/{id}">client.stage.<a href="./src/resources/stage.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/stage/count">client.stage.<a href="./src/resources/stage.ts">count</a>() -> string</code>
-- <code title="get /udl/stage/{id}">client.stage.<a href="./src/resources/stage.ts">get</a>(id) -> StageGetResponse</code>
+- <code title="get /udl/stage/count">client.stage.<a href="./src/resources/stage.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/stage/{id}">client.stage.<a href="./src/resources/stage.ts">get</a>(id, { ...params }) -> StageGetResponse</code>
 - <code title="get /udl/stage/queryhelp">client.stage.<a href="./src/resources/stage.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/stage/tuple">client.stage.<a href="./src/resources/stage.ts">tuple</a>({ ...params }) -> StageTupleResponse</code>
 
@@ -3673,7 +3673,7 @@ Methods:
 - <code title="delete /udl/starcatalog/{id}">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/starcatalog/count">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/starcatalog/createBulk">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/starcatalog/{id}">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">get</a>(id) -> StarcatalogGetResponse</code>
+- <code title="get /udl/starcatalog/{id}">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">get</a>(id, { ...params }) -> StarcatalogGetResponse</code>
 - <code title="get /udl/starcatalog/queryhelp">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/starcatalog/tuple">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">tuple</a>({ ...params }) -> StarcatalogTupleResponse</code>
 - <code title="post /filedrop/udl-starcatalog">client.starcatalog.<a href="./src/resources/starcatalog/starcatalog.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -3701,7 +3701,7 @@ Methods:
 - <code title="get /udl/statevector">client.statevector.<a href="./src/resources/statevector/statevector.ts">list</a>({ ...params }) -> StatevectorListResponse</code>
 - <code title="get /udl/statevector/count">client.statevector.<a href="./src/resources/statevector/statevector.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/statevector/createBulk">client.statevector.<a href="./src/resources/statevector/statevector.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/statevector/{id}">client.statevector.<a href="./src/resources/statevector/statevector.ts">get</a>(id) -> StateVectorFull</code>
+- <code title="get /udl/statevector/{id}">client.statevector.<a href="./src/resources/statevector/statevector.ts">get</a>(id, { ...params }) -> StateVectorFull</code>
 - <code title="get /udl/statevector/queryhelp">client.statevector.<a href="./src/resources/statevector/statevector.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/statevector/tuple">client.statevector.<a href="./src/resources/statevector/statevector.ts">tuple</a>({ ...params }) -> StatevectorTupleResponse</code>
 - <code title="post /filedrop/udl-sv">client.statevector.<a href="./src/resources/statevector/statevector.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -3728,7 +3728,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/statevector/current">client.statevector.current.<a href="./src/resources/statevector/current.ts">list</a>() -> CurrentListResponse</code>
+- <code title="get /udl/statevector/current">client.statevector.current.<a href="./src/resources/statevector/current.ts">list</a>({ ...params }) -> CurrentListResponse</code>
 - <code title="get /udl/statevector/current/tuple">client.statevector.current.<a href="./src/resources/statevector/current.ts">tuple</a>({ ...params }) -> CurrentTupleResponse</code>
 
 # Status
@@ -3746,12 +3746,12 @@ Methods:
 
 - <code title="post /udl/status">client.status.<a href="./src/resources/status.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/status/{id}">client.status.<a href="./src/resources/status.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/status">client.status.<a href="./src/resources/status.ts">list</a>() -> StatusListResponse</code>
+- <code title="get /udl/status">client.status.<a href="./src/resources/status.ts">list</a>({ ...params }) -> StatusListResponse</code>
 - <code title="delete /udl/status/{id}">client.status.<a href="./src/resources/status.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/status/count">client.status.<a href="./src/resources/status.ts">count</a>() -> string</code>
-- <code title="get /udl/status/{id}">client.status.<a href="./src/resources/status.ts">get</a>(id) -> StatusGetResponse</code>
-- <code title="get /udl/status/byIdEntity/{idEntity}">client.status.<a href="./src/resources/status.ts">getByEntityID</a>(idEntity) -> StatusGetByEntityIDResponse</code>
-- <code title="get /udl/status/byEntityType/{entityType}">client.status.<a href="./src/resources/status.ts">getByEntityType</a>(entityType) -> StatusGetByEntityTypeResponse</code>
+- <code title="get /udl/status/count">client.status.<a href="./src/resources/status.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/status/{id}">client.status.<a href="./src/resources/status.ts">get</a>(id, { ...params }) -> StatusGetResponse</code>
+- <code title="get /udl/status/byIdEntity/{idEntity}">client.status.<a href="./src/resources/status.ts">getByEntityID</a>(idEntity, { ...params }) -> StatusGetByEntityIDResponse</code>
+- <code title="get /udl/status/byEntityType/{entityType}">client.status.<a href="./src/resources/status.ts">getByEntityType</a>(entityType, { ...params }) -> StatusGetByEntityTypeResponse</code>
 - <code title="get /udl/status/queryhelp">client.status.<a href="./src/resources/status.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/status/tuple">client.status.<a href="./src/resources/status.ts">tuple</a>({ ...params }) -> StatusTupleResponse</code>
 
@@ -3768,10 +3768,10 @@ Methods:
 
 - <code title="post /udl/substatus">client.substatus.<a href="./src/resources/substatus.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/substatus/{id}">client.substatus.<a href="./src/resources/substatus.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/substatus">client.substatus.<a href="./src/resources/substatus.ts">list</a>() -> SubstatusListResponse</code>
+- <code title="get /udl/substatus">client.substatus.<a href="./src/resources/substatus.ts">list</a>({ ...params }) -> SubstatusListResponse</code>
 - <code title="delete /udl/substatus/{id}">client.substatus.<a href="./src/resources/substatus.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/substatus/count">client.substatus.<a href="./src/resources/substatus.ts">count</a>() -> string</code>
-- <code title="get /udl/substatus/{id}">client.substatus.<a href="./src/resources/substatus.ts">get</a>(id) -> SubstatusGetResponse</code>
+- <code title="get /udl/substatus/count">client.substatus.<a href="./src/resources/substatus.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/substatus/{id}">client.substatus.<a href="./src/resources/substatus.ts">get</a>(id, { ...params }) -> SubstatusGetResponse</code>
 - <code title="get /udl/substatus/queryhelp">client.substatus.<a href="./src/resources/substatus.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/substatus/tuple">client.substatus.<a href="./src/resources/substatus.ts">tuple</a>({ ...params }) -> SubstatusTupleResponse</code>
 
@@ -3785,7 +3785,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/dataowner/getDataTypes">client.supportingData.dataTypes.<a href="./src/resources/supporting-data/data-types.ts">list</a>() -> DataTypeListResponse</code>
+- <code title="get /udl/dataowner/getDataTypes">client.supportingData.dataTypes.<a href="./src/resources/supporting-data/data-types.ts">list</a>({ ...params }) -> DataTypeListResponse</code>
 
 ## Dataowner
 
@@ -3797,8 +3797,8 @@ Types:
 
 Methods:
 
-- <code title="get /udl/dataowner">client.supportingData.dataowner.<a href="./src/resources/supporting-data/dataowner.ts">retrieve</a>() -> DataownerRetrieveResponse</code>
-- <code title="get /udl/dataowner/count">client.supportingData.dataowner.<a href="./src/resources/supporting-data/dataowner.ts">count</a>() -> string</code>
+- <code title="get /udl/dataowner">client.supportingData.dataowner.<a href="./src/resources/supporting-data/dataowner.ts">retrieve</a>({ ...params }) -> DataownerRetrieveResponse</code>
+- <code title="get /udl/dataowner/count">client.supportingData.dataowner.<a href="./src/resources/supporting-data/dataowner.ts">count</a>({ ...params }) -> string</code>
 
 ## DataownerTypes
 
@@ -3808,7 +3808,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/dataowner/getDataOwnerTypes">client.supportingData.dataownerTypes.<a href="./src/resources/supporting-data/dataowner-types.ts">list</a>() -> DataownerTypeListResponse</code>
+- <code title="get /udl/dataowner/getDataOwnerTypes">client.supportingData.dataownerTypes.<a href="./src/resources/supporting-data/dataowner-types.ts">list</a>({ ...params }) -> DataownerTypeListResponse</code>
 
 ## ProviderMetadata
 
@@ -3818,7 +3818,7 @@ Types:
 
 Methods:
 
-- <code title="get /udl/dataowner/providerMetadata">client.supportingData.providerMetadata.<a href="./src/resources/supporting-data/provider-metadata.ts">retrieve</a>() -> ProviderMetadataRetrieveResponse</code>
+- <code title="get /udl/dataowner/providerMetadata">client.supportingData.providerMetadata.<a href="./src/resources/supporting-data/provider-metadata.ts">retrieve</a>({ ...params }) -> ProviderMetadataRetrieveResponse</code>
 
 ## QueryHelp
 
@@ -3839,10 +3839,10 @@ Methods:
 
 - <code title="post /udl/surface">client.surface.<a href="./src/resources/surface.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/surface/{id}">client.surface.<a href="./src/resources/surface.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/surface">client.surface.<a href="./src/resources/surface.ts">list</a>() -> SurfaceListResponse</code>
+- <code title="get /udl/surface">client.surface.<a href="./src/resources/surface.ts">list</a>({ ...params }) -> SurfaceListResponse</code>
 - <code title="delete /udl/surface/{id}">client.surface.<a href="./src/resources/surface.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/surface/count">client.surface.<a href="./src/resources/surface.ts">count</a>() -> string</code>
-- <code title="get /udl/surface/{id}">client.surface.<a href="./src/resources/surface.ts">get</a>(id) -> SurfaceGetResponse</code>
+- <code title="get /udl/surface/count">client.surface.<a href="./src/resources/surface.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/surface/{id}">client.surface.<a href="./src/resources/surface.ts">get</a>(id, { ...params }) -> SurfaceGetResponse</code>
 - <code title="get /udl/surface/queryhelp">client.surface.<a href="./src/resources/surface.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/surface/tuple">client.surface.<a href="./src/resources/surface.ts">tuple</a>({ ...params }) -> SurfaceTupleResponse</code>
 
@@ -3859,10 +3859,10 @@ Methods:
 
 - <code title="post /udl/surfaceobstruction">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/surfaceobstruction/{id}">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/surfaceobstruction">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">list</a>() -> SurfaceobstructionListResponse</code>
+- <code title="get /udl/surfaceobstruction">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">list</a>({ ...params }) -> SurfaceobstructionListResponse</code>
 - <code title="delete /udl/surfaceobstruction/{id}">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/surfaceobstruction/count">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">count</a>() -> string</code>
-- <code title="get /udl/surfaceobstruction/{id}">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">get</a>(id) -> SurfaceobstructionGetResponse</code>
+- <code title="get /udl/surfaceobstruction/count">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/surfaceobstruction/{id}">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">get</a>(id, { ...params }) -> SurfaceobstructionGetResponse</code>
 - <code title="get /udl/surfaceobstruction/queryhelp">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/surfaceobstruction/tuple">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">tuple</a>({ ...params }) -> SurfaceobstructionTupleResponse</code>
 - <code title="post /filedrop/udl-surfaceobstruction">client.surfaceobstruction.<a href="./src/resources/surfaceobstruction.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -3881,7 +3881,7 @@ Methods:
 - <code title="get /udl/swir">client.swir.<a href="./src/resources/swir/swir.ts">list</a>({ ...params }) -> SwirListResponse</code>
 - <code title="get /udl/swir/count">client.swir.<a href="./src/resources/swir/swir.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/swir/createBulk">client.swir.<a href="./src/resources/swir/swir.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/swir/{id}">client.swir.<a href="./src/resources/swir/swir.ts">get</a>(id) -> SwirFull</code>
+- <code title="get /udl/swir/{id}">client.swir.<a href="./src/resources/swir/swir.ts">get</a>(id, { ...params }) -> SwirFull</code>
 - <code title="get /udl/swir/queryhelp">client.swir.<a href="./src/resources/swir/swir.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/swir/tuple">client.swir.<a href="./src/resources/swir/swir.ts">tuple</a>({ ...params }) -> SwirTupleResponse</code>
 
@@ -3914,7 +3914,7 @@ Methods:
 - <code title="get /udl/taiutc">client.taiutc.<a href="./src/resources/taiutc/taiutc.ts">list</a>({ ...params }) -> TaiutcListResponse</code>
 - <code title="delete /udl/taiutc/{id}">client.taiutc.<a href="./src/resources/taiutc/taiutc.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/taiutc/count">client.taiutc.<a href="./src/resources/taiutc/taiutc.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/taiutc/{id}">client.taiutc.<a href="./src/resources/taiutc/taiutc.ts">get</a>(id) -> TaiutcFull</code>
+- <code title="get /udl/taiutc/{id}">client.taiutc.<a href="./src/resources/taiutc/taiutc.ts">get</a>(id, { ...params }) -> TaiutcFull</code>
 - <code title="get /udl/taiutc/queryhelp">client.taiutc.<a href="./src/resources/taiutc/taiutc.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/taiutc/tuple">client.taiutc.<a href="./src/resources/taiutc/taiutc.ts">tuple</a>({ ...params }) -> TaiutcTupleResponse</code>
 
@@ -4038,7 +4038,7 @@ Methods:
 - <code title="delete /udl/trackroute/{id}">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/trackroute/count">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/trackroute/createBulk">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/trackroute/{id}">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">get</a>(id) -> TrackRouteFull</code>
+- <code title="get /udl/trackroute/{id}">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">get</a>(id, { ...params }) -> TrackRouteFull</code>
 - <code title="get /udl/trackroute/queryhelp">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/trackroute/tuple">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">tuple</a>({ ...params }) -> TrackrouteTupleResponse</code>
 - <code title="post /filedrop/udl-trackroute">client.trackroute.<a href="./src/resources/trackroute/trackroute.ts">unvalidatedPublish</a>({ ...params }) -> void</code>
@@ -4070,10 +4070,10 @@ Methods:
 
 - <code title="post /udl/transponder">client.transponder.<a href="./src/resources/transponder.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/transponder/{id}">client.transponder.<a href="./src/resources/transponder.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/transponder">client.transponder.<a href="./src/resources/transponder.ts">list</a>() -> TransponderListResponse</code>
+- <code title="get /udl/transponder">client.transponder.<a href="./src/resources/transponder.ts">list</a>({ ...params }) -> TransponderListResponse</code>
 - <code title="delete /udl/transponder/{id}">client.transponder.<a href="./src/resources/transponder.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/transponder/count">client.transponder.<a href="./src/resources/transponder.ts">count</a>() -> string</code>
-- <code title="get /udl/transponder/{id}">client.transponder.<a href="./src/resources/transponder.ts">get</a>(id) -> TransponderGetResponse</code>
+- <code title="get /udl/transponder/count">client.transponder.<a href="./src/resources/transponder.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/transponder/{id}">client.transponder.<a href="./src/resources/transponder.ts">get</a>(id, { ...params }) -> TransponderGetResponse</code>
 - <code title="get /udl/transponder/queryhelp">client.transponder.<a href="./src/resources/transponder.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/transponder/tuple">client.transponder.<a href="./src/resources/transponder.ts">tuple</a>({ ...params }) -> TransponderTupleResponse</code>
 
@@ -4090,10 +4090,10 @@ Methods:
 
 - <code title="post /udl/vessel">client.vessel.<a href="./src/resources/vessel.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/vessel/{id}">client.vessel.<a href="./src/resources/vessel.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/vessel">client.vessel.<a href="./src/resources/vessel.ts">list</a>() -> VesselListResponse</code>
-- <code title="get /udl/vessel/count">client.vessel.<a href="./src/resources/vessel.ts">count</a>() -> string</code>
+- <code title="get /udl/vessel">client.vessel.<a href="./src/resources/vessel.ts">list</a>({ ...params }) -> VesselListResponse</code>
+- <code title="get /udl/vessel/count">client.vessel.<a href="./src/resources/vessel.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/vessel/createBulk">client.vessel.<a href="./src/resources/vessel.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/vessel/{id}">client.vessel.<a href="./src/resources/vessel.ts">get</a>(id) -> VesselGetResponse</code>
+- <code title="get /udl/vessel/{id}">client.vessel.<a href="./src/resources/vessel.ts">get</a>(id, { ...params }) -> VesselGetResponse</code>
 - <code title="get /udl/vessel/queryhelp">client.vessel.<a href="./src/resources/vessel.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/vessel/tuple">client.vessel.<a href="./src/resources/vessel.ts">tuple</a>({ ...params }) -> VesselTupleResponse</code>
 
@@ -4111,9 +4111,9 @@ Types:
 Methods:
 
 - <code title="post /udl/video">client.video.<a href="./src/resources/video/video.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/video">client.video.<a href="./src/resources/video/video.ts">list</a>() -> VideoListResponse</code>
-- <code title="get /udl/video/count">client.video.<a href="./src/resources/video/video.ts">count</a>() -> string</code>
-- <code title="get /udl/video/{id}">client.video.<a href="./src/resources/video/video.ts">get</a>(id) -> VideoStreamsFull</code>
+- <code title="get /udl/video">client.video.<a href="./src/resources/video/video.ts">list</a>({ ...params }) -> VideoListResponse</code>
+- <code title="get /udl/video/count">client.video.<a href="./src/resources/video/video.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/video/{id}">client.video.<a href="./src/resources/video/video.ts">get</a>(id, { ...params }) -> VideoStreamsFull</code>
 - <code title="get /udl/video/getPlayerStreamingInfo">client.video.<a href="./src/resources/video/video.ts">getPlayerStreamingInfo</a>({ ...params }) -> VideoGetPlayerStreamingInfoResponse</code>
 - <code title="get /udl/video/getPublisherStreamingInfo">client.video.<a href="./src/resources/video/video.ts">getPublisherStreamingInfo</a>({ ...params }) -> VideoGetPublisherStreamingInfoResponse</code>
 - <code title="get /udl/video/getStreamFile">client.video.<a href="./src/resources/video/video.ts">getStreamFile</a>({ ...params }) -> VideoGetStreamFileResponse</code>
@@ -4131,7 +4131,7 @@ Types:
 Methods:
 
 - <code title="get /udl/video/history">client.video.history.<a href="./src/resources/video/history.ts">list</a>({ ...params }) -> HistoryListResponse</code>
-- <code title="get /udl/video/history/count">client.video.history.<a href="./src/resources/video/history.ts">count</a>() -> string</code>
+- <code title="get /udl/video/history/count">client.video.history.<a href="./src/resources/video/history.ts">count</a>({ ...params }) -> string</code>
 
 # Weatherdata
 
@@ -4147,7 +4147,7 @@ Methods:
 - <code title="get /udl/weatherdata">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">list</a>({ ...params }) -> WeatherdataListResponse</code>
 - <code title="get /udl/weatherdata/count">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/weatherdata/createBulk">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/weatherdata/{id}">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">get</a>(id) -> WeatherDataFull</code>
+- <code title="get /udl/weatherdata/{id}">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">get</a>(id, { ...params }) -> WeatherDataFull</code>
 - <code title="get /udl/weatherdata/queryhelp">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/weatherdata/tuple">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">tuple</a>({ ...params }) -> WeatherdataTupleResponse</code>
 - <code title="post /filedrop/udl-weatherdata">client.weatherdata.<a href="./src/resources/weatherdata/weatherdata.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -4179,7 +4179,7 @@ Methods:
 - <code title="post /udl/weatherreport">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">create</a>({ ...params }) -> void</code>
 - <code title="get /udl/weatherreport">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">list</a>({ ...params }) -> WeatherreportListResponse</code>
 - <code title="get /udl/weatherreport/count">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/weatherreport/{id}">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">get</a>(id) -> WeatherReportFull</code>
+- <code title="get /udl/weatherreport/{id}">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">get</a>(id, { ...params }) -> WeatherReportFull</code>
 - <code title="get /udl/weatherreport/queryhelp">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">queryhelp</a>() -> void</code>
 - <code title="get /udl/weatherreport/tuple">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">tuple</a>({ ...params }) -> WeatherreportTupleResponse</code>
 - <code title="post /filedrop/udl-weatherreport">client.weatherreport.<a href="./src/resources/weatherreport/weatherreport.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
@@ -4571,7 +4571,7 @@ Methods:
 
 Methods:
 
-- <code title="get /udl/sigact/getFile/{id}">client.reportAndActivity.udlSigact.<a href="./src/resources/report-and-activity/udl-sigact.ts">fileGet</a>(id) -> Response</code>
+- <code title="get /udl/sigact/getFile/{id}">client.reportAndActivity.udlSigact.<a href="./src/resources/report-and-activity/udl-sigact.ts">fileGet</a>(id, { ...params }) -> Response</code>
 - <code title="post /filedrop/udl-sigact">client.reportAndActivity.udlSigact.<a href="./src/resources/report-and-activity/udl-sigact.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
 
 # SecureMessaging
@@ -4583,8 +4583,8 @@ Types:
 
 Methods:
 
-- <code title="get /sm/describeTopic/{topic}">client.secureMessaging.<a href="./src/resources/secure-messaging.ts">describeTopic</a>(topic) -> TopicDetails</code>
-- <code title="get /sm/getLatestOffset/{topic}">client.secureMessaging.<a href="./src/resources/secure-messaging.ts">getLatestOffset</a>(topic) -> void</code>
+- <code title="get /sm/describeTopic/{topic}">client.secureMessaging.<a href="./src/resources/secure-messaging.ts">describeTopic</a>(topic, { ...params }) -> TopicDetails</code>
+- <code title="get /sm/getLatestOffset/{topic}">client.secureMessaging.<a href="./src/resources/secure-messaging.ts">getLatestOffset</a>(topic, { ...params }) -> void</code>
 - <code title="get /sm/getMessages/{topic}/{offset}">client.secureMessaging.<a href="./src/resources/secure-messaging.ts">getMessages</a>(offset, { ...params }) -> void</code>
 - <code title="get /sm/listTopics">client.secureMessaging.<a href="./src/resources/secure-messaging.ts">listTopics</a>() -> SecureMessagingListTopicsResponse</code>
 
@@ -4711,4 +4711,4 @@ Methods:
 
 Methods:
 
-- <code title="get /scs/view/{id}">client.scsViews.<a href="./src/resources/scs-views.ts">retrieve</a>(id) -> Response</code>
+- <code title="get /scs/view/{id}">client.scsViews.<a href="./src/resources/scs-views.ts">retrieve</a>(id, { ...params }) -> Response</code>

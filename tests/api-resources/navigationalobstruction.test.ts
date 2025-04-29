@@ -214,7 +214,7 @@ describe('resource navigationalobstruction', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.navigationalobstruction.list(
-        { cycleDate: '2019-12-27', obstacleId: 'obstacleId' },
+        { cycleDate: '2019-12-27', firstResult: 0, maxResult: 0, obstacleId: 'obstacleId' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -235,7 +235,7 @@ describe('resource navigationalobstruction', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.navigationalobstruction.count(
-        { cycleDate: '2019-12-27', obstacleId: 'obstacleId' },
+        { cycleDate: '2019-12-27', firstResult: 0, maxResult: 0, obstacleId: 'obstacleId' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -355,6 +355,17 @@ describe('resource navigationalobstruction', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.navigationalobstruction.get(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.navigationalobstruction.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -381,6 +392,8 @@ describe('resource navigationalobstruction', () => {
     const response = await client.navigationalobstruction.tuple({
       columns: 'columns',
       cycleDate: '2019-12-27',
+      firstResult: 0,
+      maxResult: 0,
       obstacleId: 'obstacleId',
     });
   });

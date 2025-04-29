@@ -7,10 +7,13 @@ export {
   type AirfieldstatusListResponse,
   type AirfieldstatusCountResponse,
   type AirfieldstatusCreateParams,
+  type AirfieldstatusListParams,
+  type AirfieldstatusCountParams,
 } from './airfieldstatus';
 export {
   History,
   type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
+  type HistoryCountParams,
 } from './history';

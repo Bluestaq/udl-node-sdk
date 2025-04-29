@@ -63,6 +63,8 @@ export interface HistoryListParams {
    */
   columns?: string;
 
+  firstResult?: number;
+
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Unique identifier
    * of the target satellite on-orbit object. This ID can be used to obtain
@@ -71,6 +73,8 @@ export interface HistoryListParams {
    * be queried as /udl/onorbit/25544.
    */
   idOnOrbit?: string;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Start time for OD
@@ -88,6 +92,8 @@ export interface HistoryAodrParams {
    */
   columns?: string;
 
+  firstResult?: number;
+
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Unique identifier
    * of the target satellite on-orbit object. This ID can be used to obtain
@@ -96,6 +102,8 @@ export interface HistoryAodrParams {
    * be queried as /udl/onorbit/25544.
    */
   idOnOrbit?: string;
+
+  maxResult?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -126,6 +134,8 @@ export interface HistoryAodrParams {
 }
 
 export interface HistoryCountParams {
+  firstResult?: number;
+
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Unique identifier
    * of the target satellite on-orbit object. This ID can be used to obtain
@@ -134,6 +144,8 @@ export interface HistoryCountParams {
    * be queried as /udl/onorbit/25544.
    */
   idOnOrbit?: string;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Start time for OD

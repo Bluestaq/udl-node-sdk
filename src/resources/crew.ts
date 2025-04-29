@@ -24,8 +24,12 @@ export class Crew extends APIResource {
    * Service operation to get a single Crew record by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<CrewFull> {
-    return this._client.get(path`/udl/crew/${id}`, options);
+  retrieve(
+    id: string,
+    query: CrewRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CrewFull> {
+    return this._client.get(path`/udl/crew/${id}`, { query, ...options });
   }
 
   /**
@@ -46,8 +50,11 @@ export class Crew extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<CrewListResponse> {
-    return this._client.get('/udl/crew', options);
+  list(
+    query: CrewListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CrewListResponse> {
+    return this._client.get('/udl/crew', { query, ...options });
   }
 
   /**
@@ -57,8 +64,9 @@ export class Crew extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: CrewCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/crew/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -2317,6 +2325,12 @@ export namespace CrewCreateParams {
   }
 }
 
+export interface CrewRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface CrewUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -3027,6 +3041,18 @@ export namespace CrewUpdateParams {
   }
 }
 
+export interface CrewListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface CrewCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface CrewTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -3035,6 +3061,10 @@ export interface CrewTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface CrewUnvalidatedPublishParams {
@@ -3764,7 +3794,10 @@ export declare namespace Crew {
     type CrewCountResponse as CrewCountResponse,
     type CrewTupleResponse as CrewTupleResponse,
     type CrewCreateParams as CrewCreateParams,
+    type CrewRetrieveParams as CrewRetrieveParams,
     type CrewUpdateParams as CrewUpdateParams,
+    type CrewListParams as CrewListParams,
+    type CrewCountParams as CrewCountParams,
     type CrewTupleParams as CrewTupleParams,
     type CrewUnvalidatedPublishParams as CrewUnvalidatedPublishParams,
   };

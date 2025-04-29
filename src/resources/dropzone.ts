@@ -24,8 +24,12 @@ export class Dropzone extends APIResource {
    * Service operation to get a single dropzone record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<DropzoneRetrieveResponse> {
-    return this._client.get(path`/udl/dropzone/${id}`, options);
+  retrieve(
+    id: string,
+    query: DropzoneRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<DropzoneRetrieveResponse> {
+    return this._client.get(path`/udl/dropzone/${id}`, { query, ...options });
   }
 
   /**
@@ -60,8 +64,9 @@ export class Dropzone extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: DropzoneCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/dropzone/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -89,8 +94,11 @@ export class Dropzone extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  query(options?: RequestOptions): APIPromise<DropzoneQueryResponse> {
-    return this._client.get('/udl/dropzone', options);
+  query(
+    query: DropzoneQueryParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<DropzoneQueryResponse> {
+    return this._client.get('/udl/dropzone', { query, ...options });
   }
 
   /**
@@ -1010,6 +1018,12 @@ export interface DropzoneCreateParams {
   zarId?: string;
 }
 
+export interface DropzoneRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface DropzoneUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -1198,6 +1212,12 @@ export interface DropzoneUpdateParams {
    * The identifier of the Zone Availability Report (ZAR) for the drop zone.
    */
   zarId?: string;
+}
+
+export interface DropzoneCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface DropzoneCreateBulkParams {
@@ -1400,6 +1420,12 @@ export namespace DropzoneCreateBulkParams {
   }
 }
 
+export interface DropzoneQueryParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface DropzoneTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1408,6 +1434,10 @@ export interface DropzoneTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface DropzoneUnvalidatedPublishParams {
@@ -1617,8 +1647,11 @@ export declare namespace Dropzone {
     type DropzoneQueryResponse as DropzoneQueryResponse,
     type DropzoneTupleResponse as DropzoneTupleResponse,
     type DropzoneCreateParams as DropzoneCreateParams,
+    type DropzoneRetrieveParams as DropzoneRetrieveParams,
     type DropzoneUpdateParams as DropzoneUpdateParams,
+    type DropzoneCountParams as DropzoneCountParams,
     type DropzoneCreateBulkParams as DropzoneCreateBulkParams,
+    type DropzoneQueryParams as DropzoneQueryParams,
     type DropzoneTupleParams as DropzoneTupleParams,
     type DropzoneUnvalidatedPublishParams as DropzoneUnvalidatedPublishParams,
   };
