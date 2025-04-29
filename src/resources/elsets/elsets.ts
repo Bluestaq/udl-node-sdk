@@ -20,6 +20,7 @@ import {
   HistoryListResponse,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -61,8 +62,11 @@ export class Elsets extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: ElsetListParams, options?: RequestOptions): APIPromise<ElsetListResponse> {
-    return this._client.get('/udl/elset', { query, ...options });
+  list(
+    query: ElsetListParams,
+    options?: RequestOptions,
+  ): PagePromise<ElsetAbridgedsOffsetPage, ElsetAbridged> {
+    return this._client.getAPIList('/udl/elset', OffsetPage<ElsetAbridged>, { query, ...options });
   }
 
   /**
@@ -165,6 +169,8 @@ export class Elsets extends APIResource {
     });
   }
 }
+
+export type ElsetAbridgedsOffsetPage = OffsetPage<ElsetAbridged>;
 
 /**
  * An element set is a collection of Keplerian orbital elements describing an orbit
@@ -1083,8 +1089,6 @@ export interface ElsetAbridged {
   uct?: boolean;
 }
 
-export type ElsetListResponse = Array<ElsetAbridged>;
-
 export type ElsetCountResponse = string;
 
 export type ElsetTupleResponse = Array<Elset>;
@@ -1356,16 +1360,12 @@ export interface ElsetRetrieveParams {
   maxResults?: number;
 }
 
-export interface ElsetListParams {
+export interface ElsetListParams extends OffsetPageParams {
   /**
    * Elset epoch time in ISO 8601 UTC format, with microsecond precision.
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   epoch: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface ElsetCountParams {
@@ -1474,9 +1474,9 @@ export declare namespace Elsets {
     type Elset as Elset,
     type ElsetIngest as ElsetIngest,
     type ElsetAbridged as ElsetAbridged,
-    type ElsetListResponse as ElsetListResponse,
     type ElsetCountResponse as ElsetCountResponse,
     type ElsetTupleResponse as ElsetTupleResponse,
+    type ElsetAbridgedsOffsetPage as ElsetAbridgedsOffsetPage,
     type ElsetCreateParams as ElsetCreateParams,
     type ElsetRetrieveParams as ElsetRetrieveParams,
     type ElsetListParams as ElsetListParams,
