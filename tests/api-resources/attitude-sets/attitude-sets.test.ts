@@ -107,7 +107,7 @@ describe('resource attitudeSets', () => {
     const response = await client.attitudeSets.list({
       startTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -126,7 +126,7 @@ describe('resource attitudeSets', () => {
     const response = await client.attitudeSets.count({
       startTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -160,7 +160,7 @@ describe('resource attitudeSets', () => {
       columns: 'columns',
       startTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

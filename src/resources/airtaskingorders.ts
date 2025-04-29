@@ -487,7 +487,7 @@ export type AirtaskingorderListResponse = Array<AirtaskingorderAbridged>;
 export interface AirtaskingorderListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Airtaskingorders {

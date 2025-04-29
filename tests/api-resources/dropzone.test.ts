@@ -77,7 +77,7 @@ describe('resource dropzone', () => {
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.dropzone.retrieve('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.dropzone.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -160,7 +160,7 @@ describe('resource dropzone', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.dropzone.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.dropzone.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -240,7 +240,7 @@ describe('resource dropzone', () => {
   test('query: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.dropzone.query({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.dropzone.query({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -267,7 +267,7 @@ describe('resource dropzone', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.dropzone.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.dropzone.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 
   test('unvalidatedPublish: only required params', async () => {

@@ -194,7 +194,7 @@ describe('resource missionassignment', () => {
     const response = await client.missionassignment.list({
       ts: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -224,7 +224,7 @@ describe('resource missionassignment', () => {
     const response = await client.missionassignment.count({
       ts: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -337,7 +337,7 @@ describe('resource missionassignment', () => {
     await expect(
       client.missionassignment.get(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -373,7 +373,7 @@ describe('resource missionassignment', () => {
       columns: 'columns',
       ts: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

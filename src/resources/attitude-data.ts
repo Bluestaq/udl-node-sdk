@@ -261,7 +261,7 @@ export interface AttitudeDataTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace AttitudeData {

@@ -51,7 +51,7 @@ export type EoobservationTupleResponse = Array<HistoryAPI.EoObservationFull>;
 export interface EoobservationRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EoobservationTupleParams {
@@ -72,7 +72,7 @@ export interface EoobservationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Eoobservations {

@@ -36,7 +36,7 @@ describe('resource attitudeData', () => {
       asId: 'asId',
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

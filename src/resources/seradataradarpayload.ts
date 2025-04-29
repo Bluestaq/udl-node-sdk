@@ -1043,19 +1043,19 @@ export interface SeradataradarpayloadUpdateParams {
 export interface SeradataradarpayloadListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradataradarpayloadCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradataradarpayloadGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradataradarpayloadTupleParams {
@@ -1069,7 +1069,7 @@ export interface SeradataradarpayloadTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Seradataradarpayload {

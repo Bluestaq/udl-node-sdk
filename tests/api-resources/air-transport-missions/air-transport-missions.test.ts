@@ -132,7 +132,7 @@ describe('resource airTransportMissions', () => {
     await expect(
       client.airTransportMissions.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -260,7 +260,7 @@ describe('resource airTransportMissions', () => {
     const response = await client.airTransportMissions.list({
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -279,7 +279,7 @@ describe('resource airTransportMissions', () => {
     const response = await client.airTransportMissions.count({
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -313,7 +313,7 @@ describe('resource airTransportMissions', () => {
       columns: 'columns',
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

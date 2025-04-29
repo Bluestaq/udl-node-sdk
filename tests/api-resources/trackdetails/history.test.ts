@@ -25,7 +25,7 @@ describe('resource history', () => {
       ts: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -45,7 +45,7 @@ describe('resource history', () => {
       ts: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',
@@ -67,7 +67,7 @@ describe('resource history', () => {
     const response = await client.trackdetails.history.count({
       ts: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

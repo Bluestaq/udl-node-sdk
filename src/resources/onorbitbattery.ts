@@ -480,13 +480,13 @@ export namespace OnorbitbatteryUpdateParams {
 export interface OnorbitbatteryListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbitbatteryGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Onorbitbattery {

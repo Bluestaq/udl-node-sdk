@@ -1353,7 +1353,7 @@ export interface ElsetCreateParams {
 export interface ElsetRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ElsetListParams {
@@ -1365,7 +1365,7 @@ export interface ElsetListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ElsetCountParams {
@@ -1377,7 +1377,7 @@ export interface ElsetCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ElsetCreateBulkParams {
@@ -1459,7 +1459,7 @@ export interface ElsetTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ElsetUnvalidatedPublishParams {

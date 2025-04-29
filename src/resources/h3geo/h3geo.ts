@@ -975,7 +975,7 @@ export interface H3geoListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface H3geoCountParams {
@@ -987,13 +987,13 @@ export interface H3geoCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface H3geoGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface H3geoTupleParams {
@@ -1013,7 +1013,7 @@ export interface H3geoTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 H3geo.History = History;

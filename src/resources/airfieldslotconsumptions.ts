@@ -782,7 +782,7 @@ export interface AirfieldslotconsumptionCreateParams {
 export interface AirfieldslotconsumptionRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirfieldslotconsumptionUpdateParams {
@@ -989,7 +989,7 @@ export interface AirfieldslotconsumptionListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirfieldslotconsumptionCountParams {
@@ -1000,7 +1000,7 @@ export interface AirfieldslotconsumptionCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirfieldslotconsumptionTupleParams {
@@ -1019,7 +1019,7 @@ export interface AirfieldslotconsumptionTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Airfieldslotconsumptions {

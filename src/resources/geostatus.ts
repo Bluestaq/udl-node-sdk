@@ -415,7 +415,7 @@ export interface GeostatusListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GeostatusCountParams {
@@ -427,7 +427,7 @@ export interface GeostatusCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GeostatusCreateBulkParams {
@@ -578,7 +578,7 @@ export namespace GeostatusCreateBulkParams {
 export interface GeostatusGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GeostatusTupleParams {
@@ -598,7 +598,7 @@ export interface GeostatusTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Geostatus {

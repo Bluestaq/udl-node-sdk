@@ -1647,19 +1647,19 @@ export interface LaunchvehicleUpdateParams {
 export interface LaunchvehicleListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LaunchvehicleCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LaunchvehicleGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LaunchvehicleTupleParams {
@@ -1673,7 +1673,7 @@ export interface LaunchvehicleTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Launchvehicle {

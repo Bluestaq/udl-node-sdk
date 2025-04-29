@@ -942,7 +942,7 @@ export interface RadarobservationListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RadarobservationCountParams {
@@ -954,7 +954,7 @@ export interface RadarobservationCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RadarobservationCreateBulkParams {
@@ -1355,7 +1355,7 @@ export namespace RadarobservationCreateBulkParams {
 export interface RadarobservationGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RadarobservationTupleParams {
@@ -1375,7 +1375,7 @@ export interface RadarobservationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RadarobservationUnvalidatedPublishParams {

@@ -517,7 +517,7 @@ export interface ChannelCreateParams {
 export interface ChannelRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ChannelUpdateParams {
@@ -637,13 +637,13 @@ export interface ChannelUpdateParams {
 export interface ChannelListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ChannelCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ChannelTupleParams {
@@ -657,7 +657,7 @@ export interface ChannelTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Channels {

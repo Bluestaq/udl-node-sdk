@@ -477,19 +477,19 @@ export interface RfbandtypeUpdateParams {
 export interface RfbandtypeListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RfbandtypeCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RfbandtypeGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RfbandtypeTupleParams {
@@ -503,7 +503,7 @@ export interface RfbandtypeTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Rfbandtype {

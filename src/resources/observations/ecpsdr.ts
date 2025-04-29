@@ -1031,7 +1031,7 @@ export interface EcpsdrCreateParams {
 export interface EcpsdrRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EcpsdrListParams {
@@ -1043,7 +1043,7 @@ export interface EcpsdrListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EcpsdrCountParams {
@@ -1055,7 +1055,7 @@ export interface EcpsdrCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EcpsdrCreateBulkParams {
@@ -1370,7 +1370,7 @@ export interface EcpsdrTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace EcpsdrResource {

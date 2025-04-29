@@ -81,7 +81,7 @@ describe('resource airfieldslotconsumptions', () => {
     await expect(
       client.airfieldslotconsumptions.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -158,7 +158,7 @@ describe('resource airfieldslotconsumptions', () => {
     const response = await client.airfieldslotconsumptions.list({
       startTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -188,7 +188,7 @@ describe('resource airfieldslotconsumptions', () => {
     const response = await client.airfieldslotconsumptions.count({
       startTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -222,7 +222,7 @@ describe('resource airfieldslotconsumptions', () => {
       columns: 'columns',
       startTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

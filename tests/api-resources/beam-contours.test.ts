@@ -66,7 +66,7 @@ describe('resource beamContours', () => {
     await expect(
       client.beamContours.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -125,7 +125,7 @@ describe('resource beamContours', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.beamContours.list({ idBeam: 'idBeam', firstResult: 0, maxResult: 0 });
+    const response = await client.beamContours.list({ idBeam: 'idBeam', firstResult: 0, maxResults: 0 });
   });
 
   test('delete', async () => {
@@ -151,7 +151,7 @@ describe('resource beamContours', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.beamContours.count({ idBeam: 'idBeam', firstResult: 0, maxResult: 0 });
+    const response = await client.beamContours.count({ idBeam: 'idBeam', firstResult: 0, maxResults: 0 });
   });
 
   test('createBulk: only required params', async () => {
@@ -230,7 +230,7 @@ describe('resource beamContours', () => {
       columns: 'columns',
       idBeam: 'idBeam',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

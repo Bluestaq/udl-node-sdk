@@ -618,7 +618,7 @@ export interface LauncheventListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LauncheventCountParams {
@@ -630,7 +630,7 @@ export interface LauncheventCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LauncheventCreateBulkParams {
@@ -744,7 +744,7 @@ export namespace LauncheventCreateBulkParams {
 export interface LauncheventGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LauncheventTupleParams {
@@ -764,7 +764,7 @@ export interface LauncheventTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LauncheventUnvalidatedPublishParams {

@@ -27,7 +27,7 @@ export class ScsViews extends APIResource {
 export interface ScsViewRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace ScsViews {

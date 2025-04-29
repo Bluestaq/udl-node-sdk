@@ -917,7 +917,7 @@ export interface PassiveradarobservationListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface PassiveradarobservationCountParams {
@@ -929,7 +929,7 @@ export interface PassiveradarobservationCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface PassiveradarobservationCreateBulkParams {
@@ -1699,7 +1699,7 @@ export namespace PassiveradarobservationFileCreateParams {
 export interface PassiveradarobservationGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface PassiveradarobservationTupleParams {
@@ -1719,7 +1719,7 @@ export interface PassiveradarobservationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Passiveradarobservation.History = History;

@@ -26,7 +26,7 @@ describe('resource history', () => {
     const response = await client.featureassessment.history.count({
       idAnalyticImagery: 'idAnalyticImagery',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -48,7 +48,7 @@ describe('resource history', () => {
       idAnalyticImagery: 'idAnalyticImagery',
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -70,7 +70,7 @@ describe('resource history', () => {
       idAnalyticImagery: 'idAnalyticImagery',
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',

@@ -723,19 +723,19 @@ export interface TransponderUpdateParams {
 export interface TransponderListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TransponderCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TransponderGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TransponderTupleParams {
@@ -749,7 +749,7 @@ export interface TransponderTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Transponder {

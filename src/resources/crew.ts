@@ -2328,7 +2328,7 @@ export namespace CrewCreateParams {
 export interface CrewRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CrewUpdateParams {
@@ -3044,13 +3044,13 @@ export namespace CrewUpdateParams {
 export interface CrewListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CrewCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CrewTupleParams {
@@ -3064,7 +3064,7 @@ export interface CrewTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CrewUnvalidatedPublishParams {

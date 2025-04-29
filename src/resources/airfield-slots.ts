@@ -437,7 +437,7 @@ export interface AirfieldSlotCreateParams {
 export interface AirfieldSlotListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace AirfieldSlots {

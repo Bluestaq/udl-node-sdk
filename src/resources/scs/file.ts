@@ -47,7 +47,7 @@ export interface FileRetrieveParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface FileUpdateParams {
@@ -67,7 +67,7 @@ export interface FileListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * First result to return

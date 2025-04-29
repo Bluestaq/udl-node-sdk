@@ -893,19 +893,19 @@ export interface SeradataopticalpayloadUpdateParams {
 export interface SeradataopticalpayloadListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradataopticalpayloadCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradataopticalpayloadGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradataopticalpayloadTupleParams {
@@ -919,7 +919,7 @@ export interface SeradataopticalpayloadTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Seradataopticalpayload {

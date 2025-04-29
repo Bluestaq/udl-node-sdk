@@ -1501,7 +1501,7 @@ export interface CalibrationCreateParams {
 export interface CalibrationRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CalibrationCountParams {
@@ -1513,7 +1513,7 @@ export interface CalibrationCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CalibrationCreateBulkParams {
@@ -1854,7 +1854,7 @@ export interface CalibrationQueryParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CalibrationTupleParams {
@@ -1874,7 +1874,7 @@ export interface CalibrationTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CalibrationUnvalidatedPublishParams {

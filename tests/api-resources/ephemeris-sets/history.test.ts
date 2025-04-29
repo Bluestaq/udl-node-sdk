@@ -27,7 +27,7 @@ describe('resource history', () => {
         {
           columns: 'columns',
           firstResult: 0,
-          maxResult: 0,
+          maxResults: 0,
           pointEndTime: '2019-12-27T18:11:19.117Z',
           pointStartTime: '2019-12-27T18:11:19.117Z',
         },
@@ -54,7 +54,7 @@ describe('resource history', () => {
         {
           columns: 'columns',
           firstResult: 0,
-          maxResult: 0,
+          maxResults: 0,
           notification: 'notification',
           outputDelimiter: 'outputDelimiter',
           outputFormat: 'outputFormat',
@@ -83,7 +83,7 @@ describe('resource history', () => {
       client.ephemerisSets.history.count(
         {
           firstResult: 0,
-          maxResult: 0,
+          maxResults: 0,
           pointEndTime: '2019-12-27T18:11:19.117Z',
           pointStartTime: '2019-12-27T18:11:19.117Z',
         },

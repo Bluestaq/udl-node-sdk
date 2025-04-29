@@ -778,19 +778,19 @@ export interface SeradataearlywarningUpdateParams {
 export interface SeradataearlywarningListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradataearlywarningCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradataearlywarningGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradataearlywarningTupleParams {
@@ -804,7 +804,7 @@ export interface SeradataearlywarningTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Seradataearlywarning {

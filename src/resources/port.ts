@@ -961,13 +961,13 @@ export interface PortUpdateParams {
 export interface PortListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface PortCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface PortCreateBulkParams {
@@ -1130,7 +1130,7 @@ export namespace PortCreateBulkParams {
 export interface PortGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface PortTupleParams {
@@ -1144,7 +1144,7 @@ export interface PortTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Port {

@@ -1491,7 +1491,7 @@ export namespace EvacCreateParams {
 export interface EvacRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EvacListParams {
@@ -1502,7 +1502,7 @@ export interface EvacListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EvacCountParams {
@@ -1513,7 +1513,7 @@ export interface EvacCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EvacCreateBulkParams {

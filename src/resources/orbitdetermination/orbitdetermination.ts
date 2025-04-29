@@ -2671,7 +2671,7 @@ export interface OrbitdeterminationListParams {
    */
   idOnOrbit?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Start time for OD
@@ -2693,7 +2693,7 @@ export interface OrbitdeterminationCountParams {
    */
   idOnOrbit?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Start time for OD
@@ -3949,7 +3949,7 @@ export namespace OrbitdeterminationCreateBulkParams {
 export interface OrbitdeterminationGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OrbitdeterminationTupleParams {
@@ -3972,7 +3972,7 @@ export interface OrbitdeterminationTupleParams {
    */
   idOnOrbit?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Start time for OD

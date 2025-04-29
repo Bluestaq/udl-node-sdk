@@ -1667,19 +1667,19 @@ export interface OnorbitUpdateParams {
 export interface OnorbitListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbitCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbitGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbitGetSignatureParams {
@@ -1690,7 +1690,7 @@ export interface OnorbitGetSignatureParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbitTupleParams {
@@ -1704,7 +1704,7 @@ export interface OnorbitTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Onorbit.AntennaDetails = AntennaDetails;

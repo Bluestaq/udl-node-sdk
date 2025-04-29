@@ -90,13 +90,13 @@ export type SecureMessagingListTopicsResponse = Array<TopicDetails>;
 export interface SecureMessagingDescribeTopicParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SecureMessagingGetLatestOffsetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SecureMessagingGetMessagesParams {
@@ -113,7 +113,7 @@ export interface SecureMessagingGetMessagesParams {
   /**
    * Query param:
    */
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace SecureMessaging {

@@ -525,7 +525,7 @@ export interface CollectResponseCreateParams {
 export interface CollectResponseRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CollectResponseListParams {
@@ -537,7 +537,7 @@ export interface CollectResponseListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CollectResponseCountParams {
@@ -549,7 +549,7 @@ export interface CollectResponseCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CollectResponseCreateBulkParams {

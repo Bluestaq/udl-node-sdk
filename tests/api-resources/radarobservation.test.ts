@@ -106,7 +106,7 @@ describe('resource radarobservation', () => {
     const response = await client.radarobservation.list({
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -125,7 +125,7 @@ describe('resource radarobservation', () => {
     const response = await client.radarobservation.count({
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -235,7 +235,7 @@ describe('resource radarobservation', () => {
     await expect(
       client.radarobservation.get(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -271,7 +271,7 @@ describe('resource radarobservation', () => {
       columns: 'columns',
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

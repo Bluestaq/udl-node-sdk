@@ -87,19 +87,19 @@ export type DriftHistoryTupleResponse = Array<Shared.DriftHistoryFull>;
 export interface DriftHistoryRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DriftHistoryListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DriftHistoryCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DriftHistoryTupleParams {
@@ -113,7 +113,7 @@ export interface DriftHistoryTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace DriftHistory {

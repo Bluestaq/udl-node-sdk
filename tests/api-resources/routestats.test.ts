@@ -76,7 +76,7 @@ describe('resource routestats', () => {
     await expect(
       client.routestats.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -158,7 +158,7 @@ describe('resource routestats', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.routestats.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.routestats.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -235,7 +235,7 @@ describe('resource routestats', () => {
   test('query: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.routestats.query({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.routestats.query({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -262,7 +262,7 @@ describe('resource routestats', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.routestats.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.routestats.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 
   test('unvalidatedPublish: only required params', async () => {

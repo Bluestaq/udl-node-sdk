@@ -955,19 +955,19 @@ export interface SitestatusUpdateParams {
 export interface SitestatusListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SitestatusCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SitestatusGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SitestatusTupleParams {
@@ -981,7 +981,7 @@ export interface SitestatusTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Sitestatus.History = History;

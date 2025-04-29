@@ -785,7 +785,7 @@ export interface MissileTrackListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface MissileTrackCountParams {
@@ -797,7 +797,7 @@ export interface MissileTrackCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface MissileTrackCreateBulkParams {
@@ -1472,7 +1472,7 @@ export interface MissileTrackTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface MissileTrackUnvalidatedPublishParams {

@@ -61,7 +61,7 @@ describe('resource geostatus', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.geostatus.list({ createdAt: '2019-12-27', firstResult: 0, maxResult: 0 });
+    const response = await client.geostatus.list({ createdAt: '2019-12-27', firstResult: 0, maxResults: 0 });
   });
 
   test('count: only required params', async () => {
@@ -76,7 +76,7 @@ describe('resource geostatus', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.geostatus.count({ createdAt: '2019-12-27', firstResult: 0, maxResult: 0 });
+    const response = await client.geostatus.count({ createdAt: '2019-12-27', firstResult: 0, maxResults: 0 });
   });
 
   test('createBulk: only required params', async () => {
@@ -135,7 +135,7 @@ describe('resource geostatus', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.geostatus.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.geostatus.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -166,7 +166,7 @@ describe('resource geostatus', () => {
       columns: 'columns',
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

@@ -25,7 +25,7 @@ describe('resource driftHistory', () => {
     await expect(
       client.driftHistory.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -45,7 +45,7 @@ describe('resource driftHistory', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.driftHistory.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.driftHistory.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -63,7 +63,7 @@ describe('resource driftHistory', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.driftHistory.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.driftHistory.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -90,6 +90,6 @@ describe('resource driftHistory', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.driftHistory.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.driftHistory.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 });

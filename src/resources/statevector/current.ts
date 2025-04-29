@@ -49,7 +49,7 @@ export type CurrentTupleResponse = Array<StatevectorAPI.StateVectorFull>;
 export interface CurrentListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CurrentTupleParams {
@@ -63,7 +63,7 @@ export interface CurrentTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Current {

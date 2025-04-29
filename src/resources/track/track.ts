@@ -653,7 +653,7 @@ export interface TrackListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TrackCountParams {
@@ -665,7 +665,7 @@ export interface TrackCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TrackCreateBulkParams {
@@ -1203,7 +1203,7 @@ export interface TrackTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TrackUnvalidatedPublishParams {

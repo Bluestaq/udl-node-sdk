@@ -2904,19 +2904,19 @@ export interface SurfaceUpdateParams {
 export interface SurfaceListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SurfaceCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SurfaceGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SurfaceTupleParams {
@@ -2930,7 +2930,7 @@ export interface SurfaceTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Surface {

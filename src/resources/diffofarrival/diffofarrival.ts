@@ -73,7 +73,7 @@ export type DiffofarrivalTupleResponse = Array<DiffofarrivalDiffofarrivalAPI.Dif
 export interface DiffofarrivalRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DiffofarrivalTupleParams {
@@ -93,7 +93,7 @@ export interface DiffofarrivalTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DiffofarrivalUnvalidatedPublishParams {

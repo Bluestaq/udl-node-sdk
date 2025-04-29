@@ -96,7 +96,7 @@ export type AirfieldslotTupleResponse = Array<AirfieldSlotsAPI.AirfieldslotFull>
 export interface AirfieldslotRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirfieldslotUpdateParams {
@@ -212,7 +212,7 @@ export interface AirfieldslotUpdateParams {
 export interface AirfieldslotCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirfieldslotTupleParams {
@@ -226,7 +226,7 @@ export interface AirfieldslotTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Airfieldslots {

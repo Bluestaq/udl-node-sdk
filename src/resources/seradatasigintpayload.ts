@@ -758,19 +758,19 @@ export interface SeradatasigintpayloadUpdateParams {
 export interface SeradatasigintpayloadListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradatasigintpayloadCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradatasigintpayloadGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradatasigintpayloadTupleParams {
@@ -784,7 +784,7 @@ export interface SeradatasigintpayloadTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Seradatasigintpayload {

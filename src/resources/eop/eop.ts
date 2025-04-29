@@ -653,7 +653,7 @@ export interface EopCreateParams {
 export interface EopRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EopUpdateParams {
@@ -901,7 +901,7 @@ export interface EopListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EopCountParams {
@@ -913,7 +913,7 @@ export interface EopCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EopListTupleParams {
@@ -933,7 +933,7 @@ export interface EopListTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Eop.History = History;

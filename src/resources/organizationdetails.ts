@@ -1191,7 +1191,7 @@ export interface OrganizationdetailListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OrganizationdetailFindBySourceParams {
@@ -1207,13 +1207,13 @@ export interface OrganizationdetailFindBySourceParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OrganizationdetailGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Organizationdetails {

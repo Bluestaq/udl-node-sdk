@@ -1098,7 +1098,7 @@ export namespace AirTransportMissionCreateParams {
 export interface AirTransportMissionRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirTransportMissionUpdateParams {
@@ -1577,7 +1577,7 @@ export interface AirTransportMissionListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirTransportMissionCountParams {
@@ -1589,7 +1589,7 @@ export interface AirTransportMissionCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirTransportMissionTupleParams {
@@ -1609,7 +1609,7 @@ export interface AirTransportMissionTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 AirTransportMissions.History = History;

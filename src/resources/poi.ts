@@ -727,7 +727,7 @@ export interface PoiListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface PoiCountParams {
@@ -738,7 +738,7 @@ export interface PoiCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface PoiCreateBulkParams {
@@ -1056,7 +1056,7 @@ export namespace PoiCreateBulkParams {
 export interface PoiGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface PoiTupleParams {
@@ -1075,7 +1075,7 @@ export interface PoiTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface PoiUnvalidatedPublishParams {

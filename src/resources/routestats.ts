@@ -980,7 +980,7 @@ export interface RoutestatCreateParams {
 export interface RoutestatRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RoutestatUpdateParams {
@@ -1166,7 +1166,7 @@ export interface RoutestatUpdateParams {
 export interface RoutestatCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RoutestatCreateBulkParams {
@@ -1362,7 +1362,7 @@ export namespace RoutestatCreateBulkParams {
 export interface RoutestatQueryParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RoutestatTupleParams {
@@ -1376,7 +1376,7 @@ export interface RoutestatTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RoutestatUnvalidatedPublishParams {

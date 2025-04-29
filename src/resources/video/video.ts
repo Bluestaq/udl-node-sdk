@@ -546,19 +546,19 @@ export interface VideoCreateParams {
 export interface VideoListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface VideoCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface VideoGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface VideoGetPlayerStreamingInfoParams {
@@ -574,7 +574,7 @@ export interface VideoGetPlayerStreamingInfoParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface VideoGetPublisherStreamingInfoParams {
@@ -590,7 +590,7 @@ export interface VideoGetPublisherStreamingInfoParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface VideoGetStreamFileParams {
@@ -606,7 +606,7 @@ export interface VideoGetStreamFileParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface VideoTupleParams {
@@ -620,7 +620,7 @@ export interface VideoTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Video.History = History;

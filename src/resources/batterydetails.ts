@@ -392,7 +392,7 @@ export interface BatterydetailCreateParams {
 export interface BatterydetailRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface BatterydetailUpdateParams {
@@ -485,7 +485,7 @@ export interface BatterydetailUpdateParams {
 export interface BatterydetailListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Batterydetails {

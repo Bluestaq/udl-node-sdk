@@ -1244,7 +1244,7 @@ export interface TrackrouteListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TrackrouteCountParams {
@@ -1256,7 +1256,7 @@ export interface TrackrouteCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TrackrouteCreateBulkParams {
@@ -1618,7 +1618,7 @@ export namespace TrackrouteCreateBulkParams {
 export interface TrackrouteGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TrackrouteTupleParams {
@@ -1638,7 +1638,7 @@ export interface TrackrouteTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface TrackrouteUnvalidatedPublishParams {

@@ -74,7 +74,7 @@ export interface HistoryListParams {
    */
   idOnOrbit?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Start time for OD
@@ -103,7 +103,7 @@ export interface HistoryAodrParams {
    */
   idOnOrbit?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -145,7 +145,7 @@ export interface HistoryCountParams {
    */
   idOnOrbit?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Start time for OD

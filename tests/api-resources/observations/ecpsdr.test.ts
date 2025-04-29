@@ -95,7 +95,7 @@ describe('resource ecpsdr', () => {
     await expect(
       client.observations.ecpsdr.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -116,7 +116,7 @@ describe('resource ecpsdr', () => {
     const response = await client.observations.ecpsdr.list({
       msgTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -135,7 +135,7 @@ describe('resource ecpsdr', () => {
     const response = await client.observations.ecpsdr.count({
       msgTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -247,7 +247,7 @@ describe('resource ecpsdr', () => {
       columns: 'columns',
       msgTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });

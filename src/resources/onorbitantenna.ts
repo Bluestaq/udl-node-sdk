@@ -472,13 +472,13 @@ export namespace OnorbitantennaUpdateParams {
 export interface OnorbitantennaListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbitantennaGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Onorbitantenna {

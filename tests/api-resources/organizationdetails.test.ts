@@ -133,7 +133,7 @@ describe('resource organizationdetails', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.organizationdetails.list({ name: 'name', firstResult: 0, maxResult: 0 });
+    const response = await client.organizationdetails.list({ name: 'name', firstResult: 0, maxResults: 0 });
   });
 
   test('delete', async () => {
@@ -163,7 +163,7 @@ describe('resource organizationdetails', () => {
       name: 'name',
       source: 'source',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -183,7 +183,7 @@ describe('resource organizationdetails', () => {
     await expect(
       client.organizationdetails.get(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);

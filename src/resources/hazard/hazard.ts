@@ -674,7 +674,7 @@ export interface HazardListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface HazardCountParams {
@@ -686,7 +686,7 @@ export interface HazardCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface HazardCreateBulkParams {
@@ -965,7 +965,7 @@ export namespace HazardCreateBulkParams {
 export interface HazardGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface HazardTupleParams {
@@ -985,7 +985,7 @@ export interface HazardTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Hazard.History = History;

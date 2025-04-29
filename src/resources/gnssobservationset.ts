@@ -438,7 +438,7 @@ export interface GnssobservationsetListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GnssobservationsetCountParams {
@@ -451,7 +451,7 @@ export interface GnssobservationsetCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GnssobservationsetCreateBulkParams {
@@ -777,7 +777,7 @@ export interface GnssobservationsetTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface GnssobservationsetUnvalidatedPublishParams {

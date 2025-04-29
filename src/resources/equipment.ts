@@ -1567,7 +1567,7 @@ export interface EquipmentCreateParams {
 export interface EquipmentRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EquipmentUpdateParams {
@@ -2034,13 +2034,13 @@ export interface EquipmentUpdateParams {
 export interface EquipmentListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EquipmentCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EquipmentCreateBulkParams {
@@ -2525,7 +2525,7 @@ export interface EquipmentTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Equipment {

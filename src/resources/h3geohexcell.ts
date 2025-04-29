@@ -369,7 +369,7 @@ export interface H3geohexcellListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface H3geohexcellCountParams {
@@ -380,7 +380,7 @@ export interface H3geohexcellCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface H3geohexcellTupleParams {
@@ -399,7 +399,7 @@ export interface H3geohexcellTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace H3geohexcell {

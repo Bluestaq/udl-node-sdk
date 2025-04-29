@@ -24,7 +24,7 @@ describe('resource missileTracks', () => {
     const response = await client.missileTracks.list({
       ts: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -43,7 +43,7 @@ describe('resource missileTracks', () => {
     const response = await client.missileTracks.count({
       ts: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -184,7 +184,7 @@ describe('resource missileTracks', () => {
       columns: 'columns',
       ts: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

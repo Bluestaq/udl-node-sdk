@@ -1193,13 +1193,13 @@ export interface VesselUpdateParams {
 export interface VesselListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface VesselCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface VesselCreateBulkParams {
@@ -1410,7 +1410,7 @@ export namespace VesselCreateBulkParams {
 export interface VesselGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface VesselTupleParams {
@@ -1424,7 +1424,7 @@ export interface VesselTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Vessel {

@@ -1022,7 +1022,7 @@ export interface ManifoldelsetListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ManifoldelsetCountParams {
@@ -1034,7 +1034,7 @@ export interface ManifoldelsetCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ManifoldelsetCreateBulkParams {
@@ -1200,7 +1200,7 @@ export namespace ManifoldelsetCreateBulkParams {
 export interface ManifoldelsetGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ManifoldelsetTupleParams {
@@ -1220,7 +1220,7 @@ export interface ManifoldelsetTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Manifoldelset {

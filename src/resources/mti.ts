@@ -1148,7 +1148,7 @@ export interface MtiListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface MtiCountParams {
@@ -1159,7 +1159,7 @@ export interface MtiCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface MtiCreateBulkParams {
@@ -2215,7 +2215,7 @@ export interface MtiTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface MtiUnvalidatedPublishParams {

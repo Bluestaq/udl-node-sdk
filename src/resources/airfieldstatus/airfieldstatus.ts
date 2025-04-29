@@ -857,13 +857,13 @@ export interface AirfieldstatusCreateParams {
 export interface AirfieldstatusListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirfieldstatusCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 Airfieldstatus.History = History;

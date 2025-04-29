@@ -1084,13 +1084,13 @@ export namespace EphemerisSetCreateParams {
 export interface EphemerisSetRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EphemerisSetListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'pointEndTime, pointStartTime' are required.) End
@@ -1110,7 +1110,7 @@ export interface EphemerisSetListParams {
 export interface EphemerisSetCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'pointEndTime, pointStartTime' are required.) End
@@ -1130,7 +1130,7 @@ export interface EphemerisSetCountParams {
 export interface EphemerisSetFileRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EphemerisSetTupleParams {
@@ -1144,7 +1144,7 @@ export interface EphemerisSetTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'pointEndTime, pointStartTime' are required.) End

@@ -417,19 +417,19 @@ export interface AircraftStatusRemarkCreateParams {
 export interface AircraftStatusRemarkRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AircraftStatusRemarkListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AircraftStatusRemarkCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AircraftStatusRemarkTupleParams {
@@ -443,7 +443,7 @@ export interface AircraftStatusRemarkTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace AircraftStatusRemarks {

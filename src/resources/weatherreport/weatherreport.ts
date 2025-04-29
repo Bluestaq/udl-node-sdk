@@ -1234,7 +1234,7 @@ export interface WeatherreportListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface WeatherreportCountParams {
@@ -1246,13 +1246,13 @@ export interface WeatherreportCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface WeatherreportGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface WeatherreportTupleParams {
@@ -1272,7 +1272,7 @@ export interface WeatherreportTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface WeatherreportUnvalidatedPublishParams {

@@ -721,7 +721,7 @@ export interface AttitudeSetListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AttitudeSetCountParams {
@@ -735,7 +735,7 @@ export interface AttitudeSetCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AttitudeSetTupleParams {
@@ -757,7 +757,7 @@ export interface AttitudeSetTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AttitudeSetUnvalidatedPublishParams {

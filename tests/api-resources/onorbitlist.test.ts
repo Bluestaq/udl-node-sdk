@@ -81,7 +81,7 @@ describe('resource onorbitlist', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.onorbitlist.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.onorbitlist.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -110,7 +110,7 @@ describe('resource onorbitlist', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.onorbitlist.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.onorbitlist.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -128,7 +128,7 @@ describe('resource onorbitlist', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.onorbitlist.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.onorbitlist.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -155,6 +155,6 @@ describe('resource onorbitlist', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.onorbitlist.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.onorbitlist.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 });

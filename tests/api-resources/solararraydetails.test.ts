@@ -98,7 +98,7 @@ describe('resource solararraydetails', () => {
           classificationMarking: 'classificationMarking',
           dataMode: 'dataMode',
           firstResult: 0,
-          maxResult: 0,
+          maxResults: 0,
           source: 'source',
         },
         { path: '/_stainless_unknown_path' },
@@ -133,7 +133,7 @@ describe('resource solararraydetails', () => {
     await expect(
       client.solararraydetails.get(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);

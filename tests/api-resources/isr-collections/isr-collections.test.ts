@@ -24,7 +24,7 @@ describe('resource isrCollections', () => {
     const response = await client.isrCollections.list({
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -43,7 +43,7 @@ describe('resource isrCollections', () => {
     const response = await client.isrCollections.count({
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -266,7 +266,7 @@ describe('resource isrCollections', () => {
       columns: 'columns',
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

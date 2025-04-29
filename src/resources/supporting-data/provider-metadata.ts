@@ -19,7 +19,7 @@ export type ProviderMetadataRetrieveResponse = Array<DataownerAPI.DataownerAbrid
 export interface ProviderMetadataRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace ProviderMetadata {

@@ -230,7 +230,7 @@ export interface V2ListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface V2DeleteParams {

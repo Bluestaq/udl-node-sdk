@@ -364,7 +364,7 @@ export interface EngineDetailCreateParams {
 export interface EngineDetailRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EngineDetailUpdateParams {

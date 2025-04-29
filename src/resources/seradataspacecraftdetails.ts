@@ -6862,19 +6862,19 @@ export interface SeradataspacecraftdetailUpdateParams {
 export interface SeradataspacecraftdetailListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradataspacecraftdetailCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradataspacecraftdetailGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SeradataspacecraftdetailTupleParams {
@@ -6888,7 +6888,7 @@ export interface SeradataspacecraftdetailTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Seradataspacecraftdetails {

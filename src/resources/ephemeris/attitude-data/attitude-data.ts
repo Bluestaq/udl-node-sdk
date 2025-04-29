@@ -266,7 +266,7 @@ export interface AttitudeDataListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AttitudeDataCountParams {
@@ -277,7 +277,7 @@ export interface AttitudeDataCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 AttitudeData.History = History;

@@ -48,7 +48,7 @@ describe('resource countries', () => {
     await expect(
       client.countries.retrieve(
         'code',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -95,7 +95,7 @@ describe('resource countries', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.countries.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.countries.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -124,7 +124,7 @@ describe('resource countries', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.countries.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+      client.countries.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -151,6 +151,6 @@ describe('resource countries', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.countries.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
+    const response = await client.countries.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 });

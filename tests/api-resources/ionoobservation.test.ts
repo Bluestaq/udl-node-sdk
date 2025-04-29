@@ -24,7 +24,7 @@ describe('resource ionoobservation', () => {
     const response = await client.ionoobservation.list({
       startTimeUTC: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -43,7 +43,7 @@ describe('resource ionoobservation', () => {
     const response = await client.ionoobservation.count({
       startTimeUTC: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -381,7 +381,7 @@ describe('resource ionoobservation', () => {
       columns: 'columns',
       startTimeUTC: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

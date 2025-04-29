@@ -1343,7 +1343,7 @@ export namespace EffectResponseCreateParams {
 export interface EffectResponseRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EffectResponseListParams {
@@ -1355,7 +1355,7 @@ export interface EffectResponseListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EffectResponseCountParams {
@@ -1367,7 +1367,7 @@ export interface EffectResponseCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EffectResponseCreateBulkParams {
@@ -1681,7 +1681,7 @@ export interface EffectResponseTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EffectResponseUnvalidatedPublishParams {

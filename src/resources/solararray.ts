@@ -441,19 +441,19 @@ export interface SolararrayUpdateParams {
 export interface SolararrayListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SolararrayCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SolararrayGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SolararrayTupleParams {
@@ -467,7 +467,7 @@ export interface SolararrayTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Solararray {

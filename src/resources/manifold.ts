@@ -584,13 +584,13 @@ export interface ManifoldUpdateParams {
 export interface ManifoldListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ManifoldCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ManifoldCreateBulkParams {
@@ -677,7 +677,7 @@ export namespace ManifoldCreateBulkParams {
 export interface ManifoldGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ManifoldTupleParams {
@@ -691,7 +691,7 @@ export interface ManifoldTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Manifold {

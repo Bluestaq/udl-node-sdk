@@ -380,19 +380,19 @@ export interface EquipmentremarkCreateParams {
 export interface EquipmentremarkRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EquipmentremarkListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EquipmentremarkCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EquipmentremarkCreateBulkParams {
@@ -490,7 +490,7 @@ export interface EquipmentremarkTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Equipmentremarks {

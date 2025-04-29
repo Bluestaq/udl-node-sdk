@@ -24,7 +24,7 @@ describe('resource sigact', () => {
     const response = await client.sigact.list({
       reportDate: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -43,7 +43,7 @@ describe('resource sigact', () => {
     const response = await client.sigact.count({
       reportDate: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -201,7 +201,7 @@ describe('resource sigact', () => {
       columns: 'columns',
       reportDate: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

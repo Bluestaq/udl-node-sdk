@@ -1551,7 +1551,7 @@ export interface SoiobservationsetListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SoiobservationsetCountParams {
@@ -1563,7 +1563,7 @@ export interface SoiobservationsetCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SoiobservationsetCreateBulkParams {
@@ -2459,7 +2459,7 @@ export namespace SoiobservationsetCreateBulkParams {
 export interface SoiobservationsetGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SoiobservationsetTupleParams {
@@ -2479,7 +2479,7 @@ export interface SoiobservationsetTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SoiobservationsetUnvalidatedPublishParams {

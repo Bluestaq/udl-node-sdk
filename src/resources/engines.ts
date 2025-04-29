@@ -332,7 +332,7 @@ export interface EngineCreateParams {
 export interface EngineRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EngineUpdateParams {
@@ -386,13 +386,13 @@ export interface EngineUpdateParams {
 export interface EngineListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EngineCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EngineTupleParams {
@@ -406,7 +406,7 @@ export interface EngineTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Engines {

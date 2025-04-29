@@ -113,12 +113,12 @@ export interface OffsetPageParams {
   /**
    * The number of elements to skip.
    */
-  offset?: number;
+  firstResult?: number;
 
   /**
    * The maximum number of elements to fetch.
    */
-  count?: number;
+  maxResults?: number;
 }
 
 export class OffsetPage<Item> extends AbstractPage<Item> {
@@ -140,7 +140,7 @@ export class OffsetPage<Item> extends AbstractPage<Item> {
   }
 
   nextPageRequestOptions(): PageRequestOptions | null {
-    const offset = (this.options.query as OffsetPageParams).offset ?? 0;
+    const offset = (this.options.query as OffsetPageParams).firstResult ?? 0;
     if (!offset) {
       return null;
     }
@@ -152,7 +152,7 @@ export class OffsetPage<Item> extends AbstractPage<Item> {
       ...this.options,
       query: {
         ...maybeObj(this.options.query),
-        offset: currentCount,
+        firstResult: currentCount,
       },
     };
   }

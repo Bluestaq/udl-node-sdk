@@ -14,7 +14,7 @@ describe('resource scsViews', () => {
     await expect(
       client.scsViews.retrieve(
         '/Documentation/project.pdf',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);

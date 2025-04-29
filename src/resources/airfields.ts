@@ -875,7 +875,7 @@ export interface AirfieldCreateParams {
 export interface AirfieldRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirfieldUpdateParams {
@@ -1114,13 +1114,13 @@ export interface AirfieldUpdateParams {
 export interface AirfieldListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirfieldCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirfieldTupleParams {
@@ -1134,7 +1134,7 @@ export interface AirfieldTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Airfields {

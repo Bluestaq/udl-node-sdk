@@ -1383,7 +1383,7 @@ export namespace AviationriskmanagementCreateParams {
 export interface AviationriskmanagementRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AviationriskmanagementUpdateParams {
@@ -1669,7 +1669,7 @@ export interface AviationriskmanagementCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AviationriskmanagementCreateBulkParams {
@@ -1966,7 +1966,7 @@ export interface AviationriskmanagementQueryParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AviationriskmanagementTupleParams {
@@ -1986,7 +1986,7 @@ export interface AviationriskmanagementTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AviationriskmanagementUnvalidatedPublishParams {

@@ -73,7 +73,7 @@ export interface HistoryListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
@@ -102,7 +102,7 @@ export interface HistoryAodrParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -144,7 +144,7 @@ export interface HistoryCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time

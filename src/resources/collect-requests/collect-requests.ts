@@ -3189,7 +3189,7 @@ export namespace CollectRequestCreateParams {
 export interface CollectRequestRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CollectRequestListParams {
@@ -3201,7 +3201,7 @@ export interface CollectRequestListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CollectRequestCountParams {
@@ -3213,7 +3213,7 @@ export interface CollectRequestCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CollectRequestCreateBulkParams {
@@ -4757,7 +4757,7 @@ export interface CollectRequestTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface CollectRequestUnvalidatedPublishParams {

@@ -69,7 +69,7 @@ describe('resource collectResponses', () => {
     await expect(
       client.collectResponses.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -90,7 +90,7 @@ describe('resource collectResponses', () => {
     const response = await client.collectResponses.list({
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -109,7 +109,7 @@ describe('resource collectResponses', () => {
     const response = await client.collectResponses.count({
       createdAt: '2019-12-27',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

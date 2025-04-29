@@ -63,7 +63,7 @@ export type AircraftSortyTupleResponse = Array<AircraftSortieAPI.AircraftsortieF
 export interface AircraftSortyRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AircraftSortyUpdateParams {
@@ -480,7 +480,7 @@ export interface AircraftSortyTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace AircraftSorties {

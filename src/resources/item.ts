@@ -1643,19 +1643,19 @@ export interface ItemUpdateParams {
 export interface ItemListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ItemCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ItemGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ItemTupleParams {
@@ -1669,7 +1669,7 @@ export interface ItemTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ItemUnvalidatedPublishParams {

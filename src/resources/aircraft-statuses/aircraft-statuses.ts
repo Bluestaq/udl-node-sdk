@@ -742,7 +742,7 @@ export interface AircraftStatusCreateParams {
 export interface AircraftStatusRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AircraftStatusUpdateParams {
@@ -1038,13 +1038,13 @@ export interface AircraftStatusUpdateParams {
 export interface AircraftStatusListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AircraftStatusCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AircraftStatusTupleParams {
@@ -1058,7 +1058,7 @@ export interface AircraftStatusTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 AircraftStatuses.History = History;

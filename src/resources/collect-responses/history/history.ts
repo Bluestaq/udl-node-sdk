@@ -57,7 +57,7 @@ export interface HistoryListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface HistoryCountParams {
@@ -69,7 +69,7 @@ export interface HistoryCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 History.Aodr = Aodr;

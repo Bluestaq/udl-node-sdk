@@ -7908,7 +7908,7 @@ export namespace EntityCreateParams {
 export interface EntityRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EntityUpdateParams {
@@ -8171,19 +8171,19 @@ export namespace EntityUpdateParams {
 export interface EntityListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EntityCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EntityGetAllTypesParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface EntityTupleParams {
@@ -8197,7 +8197,7 @@ export interface EntityTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Entities {

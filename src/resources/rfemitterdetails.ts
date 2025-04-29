@@ -1163,19 +1163,19 @@ export interface RfemitterdetailUpdateParams {
 export interface RfemitterdetailListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RfemitterdetailCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RfemitterdetailGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface RfemitterdetailTupleParams {
@@ -1189,7 +1189,7 @@ export interface RfemitterdetailTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Rfemitterdetails {

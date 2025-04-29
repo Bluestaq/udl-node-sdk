@@ -426,7 +426,7 @@ export interface OnorbitthrusterstatusListParams {
    */
   idOnorbitThruster?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) Datetime
@@ -448,7 +448,7 @@ export interface OnorbitthrusterstatusCountParams {
    */
   idOnorbitThruster?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) Datetime
@@ -599,7 +599,7 @@ export namespace OnorbitthrusterstatusCreateBulkParams {
 export interface OnorbitthrusterstatusGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface OnorbitthrusterstatusTupleParams {
@@ -622,7 +622,7 @@ export interface OnorbitthrusterstatusTupleParams {
    */
   idOnorbitThruster?: string;
 
-  maxResult?: number;
+  maxResults?: number;
 
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) Datetime

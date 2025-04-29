@@ -779,7 +779,7 @@ export interface LaunchsitedetailUpdateParams {
 export interface LaunchsitedetailListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LaunchsitedetailFindBySourceParams {
@@ -790,13 +790,13 @@ export interface LaunchsitedetailFindBySourceParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LaunchsitedetailGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Launchsitedetails {

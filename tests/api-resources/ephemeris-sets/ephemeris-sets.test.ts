@@ -113,7 +113,7 @@ describe('resource ephemerisSets', () => {
     await expect(
       client.ephemerisSets.retrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -136,7 +136,7 @@ describe('resource ephemerisSets', () => {
       client.ephemerisSets.list(
         {
           firstResult: 0,
-          maxResult: 0,
+          maxResults: 0,
           pointEndTime: '2019-12-27T18:11:19.117Z',
           pointStartTime: '2019-12-27T18:11:19.117Z',
         },
@@ -162,7 +162,7 @@ describe('resource ephemerisSets', () => {
       client.ephemerisSets.count(
         {
           firstResult: 0,
-          maxResult: 0,
+          maxResults: 0,
           pointEndTime: '2019-12-27T18:11:19.117Z',
           pointStartTime: '2019-12-27T18:11:19.117Z',
         },
@@ -176,7 +176,7 @@ describe('resource ephemerisSets', () => {
     await expect(
       client.ephemerisSets.fileRetrieve(
         'id',
-        { firstResult: 0, maxResult: 0 },
+        { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -208,7 +208,7 @@ describe('resource ephemerisSets', () => {
     const response = await client.ephemerisSets.tuple({
       columns: 'columns',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
       pointEndTime: '2019-12-27T18:11:19.117Z',
       pointStartTime: '2019-12-27T18:11:19.117Z',
     });

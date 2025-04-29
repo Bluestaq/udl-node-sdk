@@ -24,7 +24,7 @@ describe('resource spaceenvobservation', () => {
     const response = await client.spaceenvobservation.list({
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -43,7 +43,7 @@ describe('resource spaceenvobservation', () => {
     const response = await client.spaceenvobservation.count({
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -154,7 +154,7 @@ describe('resource spaceenvobservation', () => {
       columns: 'columns',
       obTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

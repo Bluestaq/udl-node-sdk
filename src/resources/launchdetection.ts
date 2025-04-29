@@ -895,19 +895,19 @@ export interface LaunchdetectionUpdateParams {
 export interface LaunchdetectionListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LaunchdetectionCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LaunchdetectionGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface LaunchdetectionTupleParams {
@@ -921,7 +921,7 @@ export interface LaunchdetectionTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace Launchdetection {

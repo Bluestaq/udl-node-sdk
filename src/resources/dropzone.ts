@@ -1021,7 +1021,7 @@ export interface DropzoneCreateParams {
 export interface DropzoneRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DropzoneUpdateParams {
@@ -1217,7 +1217,7 @@ export interface DropzoneUpdateParams {
 export interface DropzoneCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DropzoneCreateBulkParams {
@@ -1423,7 +1423,7 @@ export namespace DropzoneCreateBulkParams {
 export interface DropzoneQueryParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DropzoneTupleParams {
@@ -1437,7 +1437,7 @@ export interface DropzoneTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface DropzoneUnvalidatedPublishParams {

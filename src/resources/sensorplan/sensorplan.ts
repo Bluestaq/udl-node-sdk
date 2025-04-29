@@ -3560,7 +3560,7 @@ export interface SensorplanListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SensorplanCountParams {
@@ -3572,13 +3572,13 @@ export interface SensorplanCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SensorplanGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SensorplanTupleParams {
@@ -3598,7 +3598,7 @@ export interface SensorplanTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface SensorplanUnvalidatedPublishParams {

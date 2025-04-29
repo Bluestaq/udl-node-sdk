@@ -21,7 +21,7 @@ export type DataownerTypeListResponse = Array<string>;
 export interface DataownerTypeListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export declare namespace DataownerTypes {

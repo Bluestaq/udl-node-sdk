@@ -2753,13 +2753,13 @@ export namespace AirEventUpdateParams {
 export interface AirEventListParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirEventCountParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirEventCreateBulkParams {
@@ -3271,7 +3271,7 @@ export namespace AirEventCreateBulkParams {
 export interface AirEventGetParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirEventTupleParams {
@@ -3285,7 +3285,7 @@ export interface AirEventTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface AirEventUnvalidatedPublishParams {

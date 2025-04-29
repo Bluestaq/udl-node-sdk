@@ -164,7 +164,7 @@ describe('resource datalink', () => {
     const response = await client.linkStatus.datalink.list({
       startTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -183,7 +183,7 @@ describe('resource datalink', () => {
     const response = await client.linkStatus.datalink.count({
       startTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -217,7 +217,7 @@ describe('resource datalink', () => {
       columns: 'columns',
       startTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 

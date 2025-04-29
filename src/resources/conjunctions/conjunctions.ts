@@ -3912,7 +3912,7 @@ export type ConjunctionTupleResponse = Array<ConjunctionFull>;
 export interface ConjunctionRetrieveParams {
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ConjunctionListParams {
@@ -3923,7 +3923,7 @@ export interface ConjunctionListParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ConjunctionCountParams {
@@ -3934,7 +3934,7 @@ export interface ConjunctionCountParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ConjunctionCreateUdlParams {
@@ -7568,7 +7568,7 @@ export interface ConjunctionGetHistoryParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ConjunctionTupleParams {
@@ -7587,7 +7587,7 @@ export interface ConjunctionTupleParams {
 
   firstResult?: number;
 
-  maxResult?: number;
+  maxResults?: number;
 }
 
 export interface ConjunctionUnvalidatedPublishParams {

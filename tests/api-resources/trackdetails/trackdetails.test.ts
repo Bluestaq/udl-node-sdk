@@ -24,7 +24,7 @@ describe('resource trackdetails', () => {
     const response = await client.trackdetails.list({
       ts: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -43,7 +43,7 @@ describe('resource trackdetails', () => {
     const response = await client.trackdetails.count({
       ts: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 
@@ -260,7 +260,7 @@ describe('resource trackdetails', () => {
       columns: 'columns',
       ts: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
-      maxResult: 0,
+      maxResults: 0,
     });
   });
 });
