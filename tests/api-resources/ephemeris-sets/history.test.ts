@@ -26,6 +26,8 @@ describe('resource history', () => {
       client.ephemerisSets.history.list(
         {
           columns: 'columns',
+          firstResult: 0,
+          maxResult: 0,
           pointEndTime: '2019-12-27T18:11:19.117Z',
           pointStartTime: '2019-12-27T18:11:19.117Z',
         },
@@ -51,6 +53,8 @@ describe('resource history', () => {
       client.ephemerisSets.history.aodr(
         {
           columns: 'columns',
+          firstResult: 0,
+          maxResult: 0,
           notification: 'notification',
           outputDelimiter: 'outputDelimiter',
           outputFormat: 'outputFormat',
@@ -77,7 +81,12 @@ describe('resource history', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.ephemerisSets.history.count(
-        { pointEndTime: '2019-12-27T18:11:19.117Z', pointStartTime: '2019-12-27T18:11:19.117Z' },
+        {
+          firstResult: 0,
+          maxResult: 0,
+          pointEndTime: '2019-12-27T18:11:19.117Z',
+          pointStartTime: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);

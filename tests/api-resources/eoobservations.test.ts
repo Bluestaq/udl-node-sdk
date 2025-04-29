@@ -20,6 +20,17 @@ describe('resource eoobservations', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.eoobservations.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.eoobservations.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -49,6 +60,8 @@ describe('resource eoobservations', () => {
     const response = await client.eoobservations.tuple({
       columns: 'columns',
       obTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 });

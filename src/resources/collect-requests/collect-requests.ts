@@ -36,8 +36,12 @@ export class CollectRequests extends APIResource {
    * Service operation to get a single CollectRequest by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.CollectRequestFull> {
-    return this._client.get(path`/udl/collectrequest/${id}`, options);
+  retrieve(
+    id: string,
+    query: CollectRequestRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.CollectRequestFull> {
+    return this._client.get(path`/udl/collectrequest/${id}`, { query, ...options });
   }
 
   /**
@@ -3182,12 +3186,22 @@ export namespace CollectRequestCreateParams {
   }
 }
 
+export interface CollectRequestRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface CollectRequestListParams {
   /**
    * The start time or earliest time of the collect or contact request window, in ISO
    * 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface CollectRequestCountParams {
@@ -3196,6 +3210,10 @@ export interface CollectRequestCountParams {
    * 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface CollectRequestCreateBulkParams {
@@ -4736,6 +4754,10 @@ export interface CollectRequestTupleParams {
    * 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface CollectRequestUnvalidatedPublishParams {
@@ -6271,6 +6293,7 @@ export declare namespace CollectRequests {
     type CollectRequestCountResponse as CollectRequestCountResponse,
     type CollectRequestTupleResponse as CollectRequestTupleResponse,
     type CollectRequestCreateParams as CollectRequestCreateParams,
+    type CollectRequestRetrieveParams as CollectRequestRetrieveParams,
     type CollectRequestListParams as CollectRequestListParams,
     type CollectRequestCountParams as CollectRequestCountParams,
     type CollectRequestCreateBulkParams as CollectRequestCreateBulkParams,

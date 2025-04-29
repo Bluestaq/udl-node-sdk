@@ -39,8 +39,11 @@ export class Scientific extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<ScientificListResponse> {
-    return this._client.get('/udl/scientific', options);
+  list(
+    query: ScientificListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ScientificListResponse> {
+    return this._client.get('/udl/scientific', { query, ...options });
   }
 
   /**
@@ -62,8 +65,9 @@ export class Scientific extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: ScientificCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/scientific/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -73,8 +77,12 @@ export class Scientific extends APIResource {
    * Service operation to get a single Scientific record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<ScientificGetResponse> {
-    return this._client.get(path`/udl/scientific/${id}`, options);
+  get(
+    id: string,
+    query: ScientificGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ScientificGetResponse> {
+    return this._client.get(path`/udl/scientific/${id}`, { query, ...options });
   }
 
   /**
@@ -638,6 +646,24 @@ export interface ScientificUpdateParams {
   payloadCategory?: string;
 }
 
+export interface ScientificListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface ScientificCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface ScientificGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface ScientificTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -646,6 +672,10 @@ export interface ScientificTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Scientific {
@@ -656,6 +686,9 @@ export declare namespace Scientific {
     type ScientificTupleResponse as ScientificTupleResponse,
     type ScientificCreateParams as ScientificCreateParams,
     type ScientificUpdateParams as ScientificUpdateParams,
+    type ScientificListParams as ScientificListParams,
+    type ScientificCountParams as ScientificCountParams,
+    type ScientificGetParams as ScientificGetParams,
     type ScientificTupleParams as ScientificTupleParams,
   };
 }

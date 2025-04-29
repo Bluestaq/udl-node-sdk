@@ -952,6 +952,10 @@ export interface IsrCollectionListParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface IsrCollectionCountParams {
@@ -960,6 +964,10 @@ export interface IsrCollectionCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface IsrCollectionCreateBulkParams {
@@ -1788,6 +1796,10 @@ export interface IsrCollectionTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface IsrCollectionUnvalidatedPublishParams {

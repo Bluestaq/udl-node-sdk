@@ -11,8 +11,13 @@ export class UdlSigact extends APIResource {
    * Service operation to get a single SigAct text file by its unique ID passed as a
    * path parameter. The text file is returned as an attachment Content-Disposition.
    */
-  fileGet(id: string, options?: RequestOptions): APIPromise<Response> {
+  fileGet(
+    id: string,
+    query: UdlSigactFileGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
     return this._client.get(path`/udl/sigact/getFile/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
@@ -33,6 +38,12 @@ export class UdlSigact extends APIResource {
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
+}
+
+export interface UdlSigactFileGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface UdlSigactUnvalidatedPublishParams {
@@ -587,5 +598,8 @@ export namespace UdlSigactUnvalidatedPublishParams {
 }
 
 export declare namespace UdlSigact {
-  export { type UdlSigactUnvalidatedPublishParams as UdlSigactUnvalidatedPublishParams };
+  export {
+    type UdlSigactFileGetParams as UdlSigactFileGetParams,
+    type UdlSigactUnvalidatedPublishParams as UdlSigactUnvalidatedPublishParams,
+  };
 }

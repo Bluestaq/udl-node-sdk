@@ -21,7 +21,12 @@ describe('resource history', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.sortieppr.history.list({ idSortie: 'idSortie', columns: 'columns' });
+    const response = await client.sortieppr.history.list({
+      idSortie: 'idSortie',
+      columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('aodr: only required params', async () => {
@@ -39,6 +44,8 @@ describe('resource history', () => {
     const response = await client.sortieppr.history.aodr({
       idSortie: 'idSortie',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',
@@ -57,6 +64,10 @@ describe('resource history', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.sortieppr.history.count({ idSortie: 'idSortie' });
+    const response = await client.sortieppr.history.count({
+      idSortie: 'idSortie',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 });

@@ -718,6 +718,10 @@ export interface AttitudeSetListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AttitudeSetCountParams {
@@ -728,6 +732,10 @@ export interface AttitudeSetCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AttitudeSetTupleParams {
@@ -746,6 +754,10 @@ export interface AttitudeSetTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AttitudeSetUnvalidatedPublishParams {

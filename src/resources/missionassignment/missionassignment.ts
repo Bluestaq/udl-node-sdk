@@ -103,8 +103,12 @@ export class Missionassignment extends APIResource {
    * Service operation to get a single MissionAssignment record by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<MissionassignmentHistoryAPI.MissionAssignmentFull> {
-    return this._client.get(path`/udl/missionassignment/${id}`, options);
+  get(
+    id: string,
+    query: MissionassignmentGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<MissionassignmentHistoryAPI.MissionAssignmentFull> {
+    return this._client.get(path`/udl/missionassignment/${id}`, { query, ...options });
   }
 
   /**
@@ -1176,6 +1180,10 @@ export interface MissionassignmentListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface MissionassignmentCountParams {
@@ -1184,6 +1192,10 @@ export interface MissionassignmentCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface MissionassignmentCreateBulkParams {
@@ -1530,6 +1542,12 @@ export namespace MissionassignmentCreateBulkParams {
   }
 }
 
+export interface MissionassignmentGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface MissionassignmentTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1544,6 +1562,10 @@ export interface MissionassignmentTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 Missionassignment.History = History;
@@ -1558,6 +1580,7 @@ export declare namespace Missionassignment {
     type MissionassignmentListParams as MissionassignmentListParams,
     type MissionassignmentCountParams as MissionassignmentCountParams,
     type MissionassignmentCreateBulkParams as MissionassignmentCreateBulkParams,
+    type MissionassignmentGetParams as MissionassignmentGetParams,
     type MissionassignmentTupleParams as MissionassignmentTupleParams,
   };
 

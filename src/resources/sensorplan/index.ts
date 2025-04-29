@@ -17,6 +17,7 @@ export {
   type SensorplanUpdateParams,
   type SensorplanListParams,
   type SensorplanCountParams,
+  type SensorplanGetParams,
   type SensorplanTupleParams,
   type SensorplanUnvalidatedPublishParams,
 } from './sensorplan';

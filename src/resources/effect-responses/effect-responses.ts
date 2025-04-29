@@ -37,8 +37,12 @@ export class EffectResponses extends APIResource {
    * Service operation to get a single EffectResponse by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<EffectResponseRetrieveResponse> {
-    return this._client.get(path`/udl/effectresponse/${id}`, options);
+  retrieve(
+    id: string,
+    query: EffectResponseRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EffectResponseRetrieveResponse> {
+    return this._client.get(path`/udl/effectresponse/${id}`, { query, ...options });
   }
 
   /**
@@ -1336,12 +1340,22 @@ export namespace EffectResponseCreateParams {
   }
 }
 
+export interface EffectResponseRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EffectResponseListParams {
   /**
    * Time the row was created in the database, auto-populated by the system.
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EffectResponseCountParams {
@@ -1350,6 +1364,10 @@ export interface EffectResponseCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EffectResponseCreateBulkParams {
@@ -1660,6 +1678,10 @@ export interface EffectResponseTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EffectResponseUnvalidatedPublishParams {
@@ -1965,6 +1987,7 @@ export declare namespace EffectResponses {
     type EffectResponseCountResponse as EffectResponseCountResponse,
     type EffectResponseTupleResponse as EffectResponseTupleResponse,
     type EffectResponseCreateParams as EffectResponseCreateParams,
+    type EffectResponseRetrieveParams as EffectResponseRetrieveParams,
     type EffectResponseListParams as EffectResponseListParams,
     type EffectResponseCountParams as EffectResponseCountParams,
     type EffectResponseCreateBulkParams as EffectResponseCreateBulkParams,

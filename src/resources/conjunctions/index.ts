@@ -8,6 +8,7 @@ export {
   type ConjunctionCountResponse,
   type ConjunctionGetHistoryResponse,
   type ConjunctionTupleResponse,
+  type ConjunctionRetrieveParams,
   type ConjunctionListParams,
   type ConjunctionCountParams,
   type ConjunctionCreateUdlParams,

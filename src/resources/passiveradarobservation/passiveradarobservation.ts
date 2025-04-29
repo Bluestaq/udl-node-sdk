@@ -97,9 +97,10 @@ export class Passiveradarobservation extends APIResource {
    */
   get(
     id: string,
+    query: PassiveradarobservationGetParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<PassiveradarobservationHistoryAPI.PassiveradarobservationFull> {
-    return this._client.get(path`/udl/passiveradarobservation/${id}`, options);
+    return this._client.get(path`/udl/passiveradarobservation/${id}`, { query, ...options });
   }
 
   /**
@@ -913,6 +914,10 @@ export interface PassiveradarobservationListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface PassiveradarobservationCountParams {
@@ -921,6 +926,10 @@ export interface PassiveradarobservationCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface PassiveradarobservationCreateBulkParams {
@@ -1687,6 +1696,12 @@ export namespace PassiveradarobservationFileCreateParams {
   }
 }
 
+export interface PassiveradarobservationGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface PassiveradarobservationTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1701,6 +1716,10 @@ export interface PassiveradarobservationTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 Passiveradarobservation.History = History;
@@ -1715,6 +1734,7 @@ export declare namespace Passiveradarobservation {
     type PassiveradarobservationCountParams as PassiveradarobservationCountParams,
     type PassiveradarobservationCreateBulkParams as PassiveradarobservationCreateBulkParams,
     type PassiveradarobservationFileCreateParams as PassiveradarobservationFileCreateParams,
+    type PassiveradarobservationGetParams as PassiveradarobservationGetParams,
     type PassiveradarobservationTupleParams as PassiveradarobservationTupleParams,
   };
 

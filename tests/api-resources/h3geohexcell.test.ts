@@ -21,7 +21,7 @@ describe('resource h3geohexcell', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.h3geohexcell.list({ idH3Geo: 'idH3Geo' });
+    const response = await client.h3geohexcell.list({ idH3Geo: 'idH3Geo', firstResult: 0, maxResult: 0 });
   });
 
   test('count: only required params', async () => {
@@ -36,7 +36,7 @@ describe('resource h3geohexcell', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.h3geohexcell.count({ idH3Geo: 'idH3Geo' });
+    const response = await client.h3geohexcell.count({ idH3Geo: 'idH3Geo', firstResult: 0, maxResult: 0 });
   });
 
   test('queryhelp', async () => {
@@ -62,6 +62,11 @@ describe('resource h3geohexcell', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.h3geohexcell.tuple({ columns: 'columns', idH3Geo: 'idH3Geo' });
+    const response = await client.h3geohexcell.tuple({
+      columns: 'columns',
+      idH3Geo: 'idH3Geo',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 });

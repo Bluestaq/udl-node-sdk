@@ -40,8 +40,8 @@ export class Ir extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<IrListResponse> {
-    return this._client.get('/udl/ir', options);
+  list(query: IrListParams | null | undefined = {}, options?: RequestOptions): APIPromise<IrListResponse> {
+    return this._client.get('/udl/ir', { query, ...options });
   }
 
   /**
@@ -63,8 +63,9 @@ export class Ir extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: IrCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/ir/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -74,8 +75,12 @@ export class Ir extends APIResource {
    * Service operation to get a single IR record by its unique ID passed as a path
    * parameter. An IR is an on-orbit infrared payload.
    */
-  get(id: string, options?: RequestOptions): APIPromise<IrGetResponse> {
-    return this._client.get(path`/udl/ir/${id}`, options);
+  get(
+    id: string,
+    query: IrGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<IrGetResponse> {
+    return this._client.get(path`/udl/ir/${id}`, { query, ...options });
   }
 
   /**
@@ -514,6 +519,24 @@ export interface IrUpdateParams {
   origin?: string;
 }
 
+export interface IrListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface IrCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface IrGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface IrTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -522,6 +545,10 @@ export interface IrTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Ir {
@@ -532,6 +559,9 @@ export declare namespace Ir {
     type IrTupleResponse as IrTupleResponse,
     type IrCreateParams as IrCreateParams,
     type IrUpdateParams as IrUpdateParams,
+    type IrListParams as IrListParams,
+    type IrCountParams as IrCountParams,
+    type IrGetParams as IrGetParams,
     type IrTupleParams as IrTupleParams,
   };
 }

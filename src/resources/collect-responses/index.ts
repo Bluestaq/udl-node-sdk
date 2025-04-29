@@ -6,6 +6,7 @@ export {
   type CollectResponseListResponse,
   type CollectResponseCountResponse,
   type CollectResponseCreateParams,
+  type CollectResponseRetrieveParams,
   type CollectResponseListParams,
   type CollectResponseCountParams,
   type CollectResponseCreateBulkParams,

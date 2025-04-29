@@ -73,8 +73,12 @@ export class Sensorplan extends APIResource {
    * Service operation to get a single SensorPlan by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SensorplanHistoryAPI.SensorplanFull> {
-    return this._client.get(path`/udl/sensorplan/${id}`, options);
+  get(
+    id: string,
+    query: SensorplanGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SensorplanHistoryAPI.SensorplanFull> {
+    return this._client.get(path`/udl/sensorplan/${id}`, { query, ...options });
   }
 
   /**
@@ -3553,6 +3557,10 @@ export interface SensorplanListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SensorplanCountParams {
@@ -3561,6 +3569,16 @@ export interface SensorplanCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SensorplanGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SensorplanTupleParams {
@@ -3577,6 +3595,10 @@ export interface SensorplanTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SensorplanUnvalidatedPublishParams {
@@ -5246,6 +5268,7 @@ export declare namespace Sensorplan {
     type SensorplanUpdateParams as SensorplanUpdateParams,
     type SensorplanListParams as SensorplanListParams,
     type SensorplanCountParams as SensorplanCountParams,
+    type SensorplanGetParams as SensorplanGetParams,
     type SensorplanTupleParams as SensorplanTupleParams,
     type SensorplanUnvalidatedPublishParams as SensorplanUnvalidatedPublishParams,
   };

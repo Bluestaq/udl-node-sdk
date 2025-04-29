@@ -64,6 +64,10 @@ export interface HistoryRetrieveParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface HistoryAodrParams {
@@ -78,6 +82,10 @@ export interface HistoryAodrParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -105,6 +113,10 @@ export interface HistoryCountParams {
    * Unique identifier of the parent AttitudeSet associated with this record. (uuid)
    */
   asId: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace History {

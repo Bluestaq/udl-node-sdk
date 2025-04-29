@@ -6,6 +6,7 @@ export {
   type EventEvolutionCountResponse,
   type EventEvolutionTupleResponse,
   type EventEvolutionCreateParams,
+  type EventEvolutionRetrieveParams,
   type EventEvolutionListParams,
   type EventEvolutionCountParams,
   type EventEvolutionCreateBulkParams,

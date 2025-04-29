@@ -24,8 +24,12 @@ export class Airfieldslotconsumptions extends APIResource {
    * Service operation to get a single airfieldslotconsumption record by its unique
    * ID passed as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AirfieldslotconsumptionFull> {
-    return this._client.get(path`/udl/airfieldslotconsumption/${id}`, options);
+  retrieve(
+    id: string,
+    query: AirfieldslotconsumptionRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirfieldslotconsumptionFull> {
+    return this._client.get(path`/udl/airfieldslotconsumption/${id}`, { query, ...options });
   }
 
   /**
@@ -775,6 +779,12 @@ export interface AirfieldslotconsumptionCreateParams {
   targetTime?: string;
 }
 
+export interface AirfieldslotconsumptionRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AirfieldslotconsumptionUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -976,6 +986,10 @@ export interface AirfieldslotconsumptionListParams {
    * The start of the slot window, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AirfieldslotconsumptionCountParams {
@@ -983,6 +997,10 @@ export interface AirfieldslotconsumptionCountParams {
    * The start of the slot window, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AirfieldslotconsumptionTupleParams {
@@ -998,6 +1016,10 @@ export interface AirfieldslotconsumptionTupleParams {
    * The start of the slot window, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Airfieldslotconsumptions {
@@ -1008,6 +1030,7 @@ export declare namespace Airfieldslotconsumptions {
     type AirfieldslotconsumptionCountResponse as AirfieldslotconsumptionCountResponse,
     type AirfieldslotconsumptionTupleResponse as AirfieldslotconsumptionTupleResponse,
     type AirfieldslotconsumptionCreateParams as AirfieldslotconsumptionCreateParams,
+    type AirfieldslotconsumptionRetrieveParams as AirfieldslotconsumptionRetrieveParams,
     type AirfieldslotconsumptionUpdateParams as AirfieldslotconsumptionUpdateParams,
     type AirfieldslotconsumptionListParams as AirfieldslotconsumptionListParams,
     type AirfieldslotconsumptionCountParams as AirfieldslotconsumptionCountParams,

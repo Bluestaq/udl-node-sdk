@@ -72,8 +72,12 @@ export class ItemTrackings extends APIResource {
    * Service operation to get a single item tracking record by its unique ID passed
    * as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<ItemtrackingHistoryAPI.ItemTrackingFull> {
-    return this._client.get(path`/udl/itemtracking/${id}`, options);
+  get(
+    id: string,
+    query: ItemTrackingGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ItemtrackingHistoryAPI.ItemTrackingFull> {
+    return this._client.get(path`/udl/itemtracking/${id}`, { query, ...options });
   }
 
   /**
@@ -392,6 +396,10 @@ export interface ItemTrackingListParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ItemTrackingCountParams {
@@ -400,6 +408,16 @@ export interface ItemTrackingCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface ItemTrackingGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ItemTrackingTupleParams {
@@ -416,6 +434,10 @@ export interface ItemTrackingTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ItemTrackingUnvalidatedPublishParams {
@@ -551,6 +573,7 @@ export declare namespace ItemTrackings {
     type ItemTrackingCreateParams as ItemTrackingCreateParams,
     type ItemTrackingListParams as ItemTrackingListParams,
     type ItemTrackingCountParams as ItemTrackingCountParams,
+    type ItemTrackingGetParams as ItemTrackingGetParams,
     type ItemTrackingTupleParams as ItemTrackingTupleParams,
     type ItemTrackingUnvalidatedPublishParams as ItemTrackingUnvalidatedPublishParams,
   };

@@ -27,8 +27,10 @@ describe('resource history', () => {
         {
           columns: 'columns',
           createdAt: '2019-12-27',
+          firstResult: 0,
           linkStartTime: '2019-12-27T18:11:19.117Z',
           linkStopTime: '2019-12-27T18:11:19.117Z',
+          maxResult: 0,
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -53,8 +55,10 @@ describe('resource history', () => {
         {
           columns: 'columns',
           createdAt: '2019-12-27',
+          firstResult: 0,
           linkStartTime: '2019-12-27T18:11:19.117Z',
           linkStopTime: '2019-12-27T18:11:19.117Z',
+          maxResult: 0,
           notification: 'notification',
           outputDelimiter: 'outputDelimiter',
           outputFormat: 'outputFormat',
@@ -81,8 +85,10 @@ describe('resource history', () => {
       client.linkStatus.history.count(
         {
           createdAt: '2019-12-27',
+          firstResult: 0,
           linkStartTime: '2019-12-27T18:11:19.117Z',
           linkStopTime: '2019-12-27T18:11:19.117Z',
+          maxResult: 0,
         },
         { path: '/_stainless_unknown_path' },
       ),

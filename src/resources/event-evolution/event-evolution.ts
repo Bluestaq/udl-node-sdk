@@ -36,8 +36,12 @@ export class EventEvolution extends APIResource {
    * Service operation to get a single EventEvolution by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.EventEvolutionFull> {
-    return this._client.get(path`/udl/eventevolution/${id}`, options);
+  retrieve(
+    id: string,
+    query: EventEvolutionRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.EventEvolutionFull> {
+    return this._client.get(path`/udl/eventevolution/${id}`, { query, ...options });
   }
 
   /**
@@ -557,6 +561,12 @@ export interface EventEvolutionCreateParams {
   url?: Array<string>;
 }
 
+export interface EventEvolutionRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EventEvolutionListParams {
   /**
    * (One or more of fields 'eventId, startTime' are required.) User-provided unique
@@ -565,6 +575,10 @@ export interface EventEvolutionListParams {
    * or event.
    */
   eventId?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'eventId, startTime' are required.) The actual or
@@ -582,6 +596,10 @@ export interface EventEvolutionCountParams {
    * or event.
    */
   eventId?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'eventId, startTime' are required.) The actual or
@@ -820,6 +838,10 @@ export interface EventEvolutionTupleParams {
    */
   eventId?: string;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * (One or more of fields 'eventId, startTime' are required.) The actual or
    * estimated start time of the activity or event, in ISO 8601 UTC format.
@@ -1048,6 +1070,7 @@ export declare namespace EventEvolution {
     type EventEvolutionCountResponse as EventEvolutionCountResponse,
     type EventEvolutionTupleResponse as EventEvolutionTupleResponse,
     type EventEvolutionCreateParams as EventEvolutionCreateParams,
+    type EventEvolutionRetrieveParams as EventEvolutionRetrieveParams,
     type EventEvolutionListParams as EventEvolutionListParams,
     type EventEvolutionCountParams as EventEvolutionCountParams,
     type EventEvolutionCreateBulkParams as EventEvolutionCreateBulkParams,

@@ -24,8 +24,12 @@ export class AircraftStatusRemarks extends APIResource {
    * Service operation to get a single Aircraft Status Remark record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AircraftstatusremarkFull> {
-    return this._client.get(path`/udl/aircraftstatusremark/${id}`, options);
+  retrieve(
+    id: string,
+    query: AircraftStatusRemarkRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AircraftstatusremarkFull> {
+    return this._client.get(path`/udl/aircraftstatusremark/${id}`, { query, ...options });
   }
 
   /**
@@ -34,8 +38,11 @@ export class AircraftStatusRemarks extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<AircraftStatusRemarkListResponse> {
-    return this._client.get('/udl/aircraftstatusremark', options);
+  list(
+    query: AircraftStatusRemarkListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AircraftStatusRemarkListResponse> {
+    return this._client.get('/udl/aircraftstatusremark', { query, ...options });
   }
 
   /**
@@ -45,8 +52,12 @@ export class AircraftStatusRemarks extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: AircraftStatusRemarkCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/aircraftstatusremark/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -403,6 +414,24 @@ export interface AircraftStatusRemarkCreateParams {
   timestamp?: string;
 }
 
+export interface AircraftStatusRemarkRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface AircraftStatusRemarkListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface AircraftStatusRemarkCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AircraftStatusRemarkTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -411,6 +440,10 @@ export interface AircraftStatusRemarkTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace AircraftStatusRemarks {
@@ -421,6 +454,9 @@ export declare namespace AircraftStatusRemarks {
     type AircraftStatusRemarkCountResponse as AircraftStatusRemarkCountResponse,
     type AircraftStatusRemarkTupleResponse as AircraftStatusRemarkTupleResponse,
     type AircraftStatusRemarkCreateParams as AircraftStatusRemarkCreateParams,
+    type AircraftStatusRemarkRetrieveParams as AircraftStatusRemarkRetrieveParams,
+    type AircraftStatusRemarkListParams as AircraftStatusRemarkListParams,
+    type AircraftStatusRemarkCountParams as AircraftStatusRemarkCountParams,
     type AircraftStatusRemarkTupleParams as AircraftStatusRemarkTupleParams,
   };
 }

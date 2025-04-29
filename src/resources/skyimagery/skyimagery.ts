@@ -51,8 +51,13 @@ export class Skyimagery extends APIResource {
    * passed as a path parameter. The image is returned as an attachment
    * Content-Disposition.
    */
-  fileGet(id: string, options?: RequestOptions): APIPromise<Response> {
+  fileGet(
+    id: string,
+    query: SkyimageryFileGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
     return this._client.get(path`/udl/skyimagery/getFile/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
@@ -64,8 +69,12 @@ export class Skyimagery extends APIResource {
    * path parameter. SkyImagery represents metadata about a sky image, as well as the
    * actual binary image data.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SkyimageryHistoryAPI.SkyimageryFull> {
-    return this._client.get(path`/udl/skyimagery/${id}`, options);
+  get(
+    id: string,
+    query: SkyimageryGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SkyimageryHistoryAPI.SkyimageryFull> {
+    return this._client.get(path`/udl/skyimagery/${id}`, { query, ...options });
   }
 
   /**
@@ -443,6 +452,10 @@ export interface SkyimageryListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   expStartTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SkyimageryCountParams {
@@ -451,6 +464,22 @@ export interface SkyimageryCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   expStartTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SkyimageryFileGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SkyimageryGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SkyimageryTupleParams {
@@ -467,6 +496,10 @@ export interface SkyimageryTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   expStartTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SkyimageryUploadZipParams {
@@ -485,6 +518,8 @@ export declare namespace Skyimagery {
     type SkyimageryTupleResponse as SkyimageryTupleResponse,
     type SkyimageryListParams as SkyimageryListParams,
     type SkyimageryCountParams as SkyimageryCountParams,
+    type SkyimageryFileGetParams as SkyimageryFileGetParams,
+    type SkyimageryGetParams as SkyimageryGetParams,
     type SkyimageryTupleParams as SkyimageryTupleParams,
     type SkyimageryUploadZipParams as SkyimageryUploadZipParams,
   };

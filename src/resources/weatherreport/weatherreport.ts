@@ -61,8 +61,12 @@ export class Weatherreport extends APIResource {
    * Service operation to get a single WeatherReport by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.WeatherReportFull> {
-    return this._client.get(path`/udl/weatherreport/${id}`, options);
+  get(
+    id: string,
+    query: WeatherreportGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.WeatherReportFull> {
+    return this._client.get(path`/udl/weatherreport/${id}`, { query, ...options });
   }
 
   /**
@@ -1227,6 +1231,10 @@ export interface WeatherreportListParams {
    * UTC datetime format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface WeatherreportCountParams {
@@ -1235,6 +1243,16 @@ export interface WeatherreportCountParams {
    * UTC datetime format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface WeatherreportGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface WeatherreportTupleParams {
@@ -1251,6 +1269,10 @@ export interface WeatherreportTupleParams {
    * UTC datetime format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface WeatherreportUnvalidatedPublishParams {
@@ -1819,6 +1841,7 @@ export declare namespace Weatherreport {
     type WeatherreportCreateParams as WeatherreportCreateParams,
     type WeatherreportListParams as WeatherreportListParams,
     type WeatherreportCountParams as WeatherreportCountParams,
+    type WeatherreportGetParams as WeatherreportGetParams,
     type WeatherreportTupleParams as WeatherreportTupleParams,
     type WeatherreportUnvalidatedPublishParams as WeatherreportUnvalidatedPublishParams,
   };

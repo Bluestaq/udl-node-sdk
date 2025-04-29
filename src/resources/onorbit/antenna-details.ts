@@ -27,8 +27,12 @@ export class AntennaDetails extends APIResource {
    * as a path parameter. An antenna may have multiple details records compiled by
    * various sources.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AntennaDetailsFull> {
-    return this._client.get(path`/udl/antennadetails/${id}`, options);
+  retrieve(
+    id: string,
+    query: AntennaDetailRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AntennaDetailsFull> {
+    return this._client.get(path`/udl/antennadetails/${id}`, { query, ...options });
   }
 
   /**
@@ -51,8 +55,11 @@ export class AntennaDetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<AntennaDetailListResponse> {
-    return this._client.get('/udl/antennadetails', options);
+  list(
+    query: AntennaDetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AntennaDetailListResponse> {
+    return this._client.get('/udl/antennadetails', { query, ...options });
   }
 
   /**
@@ -527,6 +534,12 @@ export interface AntennaDetailCreateParams {
   type?: string;
 }
 
+export interface AntennaDetailRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AntennaDetailUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -662,12 +675,20 @@ export interface AntennaDetailUpdateParams {
   type?: string;
 }
 
+export interface AntennaDetailListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace AntennaDetails {
   export {
     type AntennaDetailsAbridged as AntennaDetailsAbridged,
     type AntennaDetailsFull as AntennaDetailsFull,
     type AntennaDetailListResponse as AntennaDetailListResponse,
     type AntennaDetailCreateParams as AntennaDetailCreateParams,
+    type AntennaDetailRetrieveParams as AntennaDetailRetrieveParams,
     type AntennaDetailUpdateParams as AntennaDetailUpdateParams,
+    type AntennaDetailListParams as AntennaDetailListParams,
   };
 }

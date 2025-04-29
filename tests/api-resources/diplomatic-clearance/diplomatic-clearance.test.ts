@@ -89,6 +89,17 @@ describe('resource diplomaticClearance', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.diplomaticClearance.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('update: only required params', async () => {
     const responsePromise = client.diplomaticClearance.update('id', {
       classificationMarking: 'U',
@@ -170,7 +181,11 @@ describe('resource diplomaticClearance', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.diplomaticClearance.list({ firstDepDate: '2019-12-27T18:11:19.117Z' });
+    const response = await client.diplomaticClearance.list({
+      firstDepDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('delete', async () => {
@@ -196,7 +211,11 @@ describe('resource diplomaticClearance', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.diplomaticClearance.count({ firstDepDate: '2019-12-27T18:11:19.117Z' });
+    const response = await client.diplomaticClearance.count({
+      firstDepDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -305,6 +324,8 @@ describe('resource diplomaticClearance', () => {
     const response = await client.diplomaticClearance.tuple({
       columns: 'columns',
       firstDepDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 });

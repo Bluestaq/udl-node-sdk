@@ -24,8 +24,12 @@ export class Operations extends APIResource {
    * Service operation to get a single siteoperations record by its unique ID passed
    * as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<OperationRetrieveResponse> {
-    return this._client.get(path`/udl/siteoperations/${id}`, options);
+  retrieve(
+    id: string,
+    query: OperationRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OperationRetrieveResponse> {
+    return this._client.get(path`/udl/siteoperations/${id}`, { query, ...options });
   }
 
   /**
@@ -1874,6 +1878,12 @@ export namespace OperationCreateParams {
   }
 }
 
+export interface OperationRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface OperationUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -2282,6 +2292,10 @@ export interface OperationListParams {
    * The ID of the parent site.
    */
   idSite: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface OperationCountParams {
@@ -2289,6 +2303,10 @@ export interface OperationCountParams {
    * The ID of the parent site.
    */
   idSite: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface OperationCreateBulkParams {
@@ -2717,6 +2735,10 @@ export interface OperationTupleParams {
    * The ID of the parent site.
    */
   idSite: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface OperationUnvalidatedPublishParams {
@@ -3139,6 +3161,7 @@ export declare namespace Operations {
     type OperationCountResponse as OperationCountResponse,
     type OperationTupleResponse as OperationTupleResponse,
     type OperationCreateParams as OperationCreateParams,
+    type OperationRetrieveParams as OperationRetrieveParams,
     type OperationUpdateParams as OperationUpdateParams,
     type OperationListParams as OperationListParams,
     type OperationCountParams as OperationCountParams,

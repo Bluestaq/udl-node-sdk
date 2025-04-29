@@ -13,16 +13,23 @@ export class Sensortype extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SensortypeListResponse> {
-    return this._client.get('/udl/sensortype', options);
+  list(
+    query: SensortypeListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SensortypeListResponse> {
+    return this._client.get('/udl/sensortype', { query, ...options });
   }
 
   /**
    * Service operation to get a single Sensortype record by its unique ID passed as a
    * path parameter.
    */
-  get(id: number, options?: RequestOptions): APIPromise<SensortypeGetResponse> {
-    return this._client.get(path`/udl/sensortype/${id}`, options);
+  get(
+    id: number,
+    query: SensortypeGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SensortypeGetResponse> {
+    return this._client.get(path`/udl/sensortype/${id}`, { query, ...options });
   }
 
   /**
@@ -133,9 +140,23 @@ export interface SensortypeGetResponse {
   updatedBy?: string;
 }
 
+export interface SensortypeListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SensortypeGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace Sensortype {
   export {
     type SensortypeListResponse as SensortypeListResponse,
     type SensortypeGetResponse as SensortypeGetResponse,
+    type SensortypeListParams as SensortypeListParams,
+    type SensortypeGetParams as SensortypeGetParams,
   };
 }

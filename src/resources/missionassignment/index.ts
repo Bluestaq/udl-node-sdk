@@ -18,5 +18,6 @@ export {
   type MissionassignmentListParams,
   type MissionassignmentCountParams,
   type MissionassignmentCreateBulkParams,
+  type MissionassignmentGetParams,
   type MissionassignmentTupleParams,
 } from './missionassignment';

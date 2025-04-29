@@ -25,8 +25,12 @@ export class Aircraft extends APIResource {
    * Service operation to get a single Aircraft record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AircraftFull> {
-    return this._client.get(path`/udl/aircraft/${id}`, options);
+  retrieve(
+    id: string,
+    query: AircraftRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AircraftFull> {
+    return this._client.get(path`/udl/aircraft/${id}`, { query, ...options });
   }
 
   /**
@@ -47,8 +51,11 @@ export class Aircraft extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<AircraftListResponse> {
-    return this._client.get('/udl/aircraft', options);
+  list(
+    query: AircraftListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AircraftListResponse> {
+    return this._client.get('/udl/aircraft', { query, ...options });
   }
 
   /**
@@ -58,8 +65,9 @@ export class Aircraft extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: AircraftCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/aircraft/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -546,6 +554,12 @@ export interface AircraftCreateParams {
   tailNumber?: string;
 }
 
+export interface AircraftRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AircraftUpdateParams {
   /**
    * The aircraft Model Design Series (MDS) designation (e.g. E-2C HAWKEYE, F-15
@@ -674,6 +688,18 @@ export interface AircraftUpdateParams {
   tailNumber?: string;
 }
 
+export interface AircraftListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface AircraftCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AircraftTupleQueryParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -682,6 +708,10 @@ export interface AircraftTupleQueryParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Aircraft {
@@ -692,7 +722,10 @@ export declare namespace Aircraft {
     type AircraftCountResponse as AircraftCountResponse,
     type AircraftTupleQueryResponse as AircraftTupleQueryResponse,
     type AircraftCreateParams as AircraftCreateParams,
+    type AircraftRetrieveParams as AircraftRetrieveParams,
     type AircraftUpdateParams as AircraftUpdateParams,
+    type AircraftListParams as AircraftListParams,
+    type AircraftCountParams as AircraftCountParams,
     type AircraftTupleQueryParams as AircraftTupleQueryParams,
   };
 }

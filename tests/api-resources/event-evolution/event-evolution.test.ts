@@ -72,6 +72,17 @@ describe('resource eventEvolution', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.eventEvolution.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('list', async () => {
     const responsePromise = client.eventEvolution.list();
     const rawResponse = await responsePromise.asResponse();
@@ -87,7 +98,7 @@ describe('resource eventEvolution', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.eventEvolution.list(
-        { eventId: 'eventId', startTime: '2019-12-27T18:11:19.117Z' },
+        { eventId: 'eventId', firstResult: 0, maxResult: 0, startTime: '2019-12-27T18:11:19.117Z' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -108,7 +119,7 @@ describe('resource eventEvolution', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.eventEvolution.count(
-        { eventId: 'eventId', startTime: '2019-12-27T18:11:19.117Z' },
+        { eventId: 'eventId', firstResult: 0, maxResult: 0, startTime: '2019-12-27T18:11:19.117Z' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -200,6 +211,8 @@ describe('resource eventEvolution', () => {
     const response = await client.eventEvolution.tuple({
       columns: 'columns',
       eventId: 'eventId',
+      firstResult: 0,
+      maxResult: 0,
       startTime: '2019-12-27T18:11:19.117Z',
     });
   });

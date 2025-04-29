@@ -1145,6 +1145,10 @@ export interface MtiListParams {
    * Time the row was created in the database. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface MtiCountParams {
@@ -1152,6 +1156,10 @@ export interface MtiCountParams {
    * Time the row was created in the database. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface MtiCreateBulkParams {
@@ -2204,6 +2212,10 @@ export interface MtiTupleParams {
    * Time the row was created in the database. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface MtiUnvalidatedPublishParams {

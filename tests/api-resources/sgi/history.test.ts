@@ -27,6 +27,8 @@ describe('resource history', () => {
         {
           columns: 'columns',
           effectiveDate: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResult: 0,
           sgiDate: '2019-12-27T18:11:19.117Z',
         },
         { path: '/_stainless_unknown_path' },
@@ -52,6 +54,8 @@ describe('resource history', () => {
         {
           columns: 'columns',
           effectiveDate: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResult: 0,
           notification: 'notification',
           outputDelimiter: 'outputDelimiter',
           outputFormat: 'outputFormat',
@@ -77,7 +81,12 @@ describe('resource history', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.sgi.history.count(
-        { effectiveDate: '2019-12-27T18:11:19.117Z', sgiDate: '2019-12-27T18:11:19.117Z' },
+        {
+          effectiveDate: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResult: 0,
+          sgiDate: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);

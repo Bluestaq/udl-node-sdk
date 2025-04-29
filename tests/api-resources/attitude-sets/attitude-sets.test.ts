@@ -104,7 +104,11 @@ describe('resource attitudeSets', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.attitudeSets.list({ startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.attitudeSets.list({
+      startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -119,7 +123,11 @@ describe('resource attitudeSets', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.attitudeSets.count({ startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.attitudeSets.count({
+      startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('queryHelp', async () => {
@@ -151,6 +159,8 @@ describe('resource attitudeSets', () => {
     const response = await client.attitudeSets.tuple({
       columns: 'columns',
       startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 

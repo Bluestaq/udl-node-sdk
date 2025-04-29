@@ -44,8 +44,11 @@ export class Onorbitbattery extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<OnorbitbatteryListResponse> {
-    return this._client.get('/udl/onorbitbattery', options);
+  list(
+    query: OnorbitbatteryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitbatteryListResponse> {
+    return this._client.get('/udl/onorbitbattery', { query, ...options });
   }
 
   /**
@@ -68,8 +71,12 @@ export class Onorbitbattery extends APIResource {
    * spacecraft batteries and a particular on-orbit spacecraft. A Battery may be
    * associated with many different on-orbit spacecraft.
    */
-  get(id: string, options?: RequestOptions): APIPromise<OnorbitbatteryGetResponse> {
-    return this._client.get(path`/udl/onorbitbattery/${id}`, options);
+  get(
+    id: string,
+    query: OnorbitbatteryGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitbatteryGetResponse> {
+    return this._client.get(path`/udl/onorbitbattery/${id}`, { query, ...options });
   }
 }
 
@@ -470,11 +477,25 @@ export namespace OnorbitbatteryUpdateParams {
   }
 }
 
+export interface OnorbitbatteryListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OnorbitbatteryGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace Onorbitbattery {
   export {
     type OnorbitbatteryListResponse as OnorbitbatteryListResponse,
     type OnorbitbatteryGetResponse as OnorbitbatteryGetResponse,
     type OnorbitbatteryCreateParams as OnorbitbatteryCreateParams,
     type OnorbitbatteryUpdateParams as OnorbitbatteryUpdateParams,
+    type OnorbitbatteryListParams as OnorbitbatteryListParams,
+    type OnorbitbatteryGetParams as OnorbitbatteryGetParams,
   };
 }

@@ -6,6 +6,7 @@ export {
   type EvacListResponse,
   type EvacCountResponse,
   type EvacCreateParams,
+  type EvacRetrieveParams,
   type EvacListParams,
   type EvacCountParams,
   type EvacCreateBulkParams,

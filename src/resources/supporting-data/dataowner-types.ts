@@ -8,13 +8,25 @@ export class DataownerTypes extends APIResource {
   /**
    * Retrieves all distinct data owner types.
    */
-  list(options?: RequestOptions): APIPromise<DataownerTypeListResponse> {
-    return this._client.get('/udl/dataowner/getDataOwnerTypes', options);
+  list(
+    query: DataownerTypeListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<DataownerTypeListResponse> {
+    return this._client.get('/udl/dataowner/getDataOwnerTypes', { query, ...options });
   }
 }
 
 export type DataownerTypeListResponse = Array<string>;
 
+export interface DataownerTypeListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace DataownerTypes {
-  export { type DataownerTypeListResponse as DataownerTypeListResponse };
+  export {
+    type DataownerTypeListResponse as DataownerTypeListResponse,
+    type DataownerTypeListParams as DataownerTypeListParams,
+  };
 }

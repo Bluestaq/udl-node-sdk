@@ -9,6 +9,7 @@ export {
   type H3geoCreateParams,
   type H3geoListParams,
   type H3geoCountParams,
+  type H3geoGetParams,
   type H3geoTupleParams,
 } from './h3geo';
 export {

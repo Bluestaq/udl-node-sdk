@@ -54,6 +54,17 @@ describe('resource aircraftStatusRemarks', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.aircraftStatusRemarks.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('list', async () => {
     const responsePromise = client.aircraftStatusRemarks.list();
     const rawResponse = await responsePromise.asResponse();
@@ -65,6 +76,16 @@ describe('resource aircraftStatusRemarks', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.aircraftStatusRemarks.list(
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('count', async () => {
     const responsePromise = client.aircraftStatusRemarks.count();
     const rawResponse = await responsePromise.asResponse();
@@ -74,6 +95,16 @@ describe('resource aircraftStatusRemarks', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('count: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.aircraftStatusRemarks.count(
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -99,6 +130,10 @@ describe('resource aircraftStatusRemarks', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.aircraftStatusRemarks.tuple({ columns: 'columns' });
+    const response = await client.aircraftStatusRemarks.tuple({
+      columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 });

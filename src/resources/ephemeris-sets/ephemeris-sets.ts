@@ -52,8 +52,12 @@ export class EphemerisSets extends APIResource {
    * Service operation to get a single Ephemeris Set by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<EphemerisSet> {
-    return this._client.get(path`/udl/ephemerisset/${id}`, options);
+  retrieve(
+    id: string,
+    query: EphemerisSetRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EphemerisSet> {
+    return this._client.get(path`/udl/ephemerisset/${id}`, { query, ...options });
   }
 
   /**
@@ -91,8 +95,13 @@ export class EphemerisSets extends APIResource {
    * Service operation to get the original raw flat file, if any, associated with the
    * EphemerisSet. The file is returned as an attachment Content-Disposition.
    */
-  fileRetrieve(id: string, options?: RequestOptions): APIPromise<Response> {
+  fileRetrieve(
+    id: string,
+    query: EphemerisSetFileRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
     return this._client.get(path`/udl/ephemerisset/getFile/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
@@ -1072,7 +1081,17 @@ export namespace EphemerisSetCreateParams {
   }
 }
 
+export interface EphemerisSetRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EphemerisSetListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * (One or more of fields 'pointEndTime, pointStartTime' are required.) End
    * time/last time point of the ephemeris, in ISO 8601 UTC format.
@@ -1089,6 +1108,10 @@ export interface EphemerisSetListParams {
 }
 
 export interface EphemerisSetCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * (One or more of fields 'pointEndTime, pointStartTime' are required.) End
    * time/last time point of the ephemeris, in ISO 8601 UTC format.
@@ -1104,6 +1127,12 @@ export interface EphemerisSetCountParams {
   pointStartTime?: string;
 }
 
+export interface EphemerisSetFileRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EphemerisSetTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1112,6 +1141,10 @@ export interface EphemerisSetTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'pointEndTime, pointStartTime' are required.) End
@@ -1138,8 +1171,10 @@ export declare namespace EphemerisSets {
     type EphemerisSetCountResponse as EphemerisSetCountResponse,
     type EphemerisSetTupleResponse as EphemerisSetTupleResponse,
     type EphemerisSetCreateParams as EphemerisSetCreateParams,
+    type EphemerisSetRetrieveParams as EphemerisSetRetrieveParams,
     type EphemerisSetListParams as EphemerisSetListParams,
     type EphemerisSetCountParams as EphemerisSetCountParams,
+    type EphemerisSetFileRetrieveParams as EphemerisSetFileRetrieveParams,
     type EphemerisSetTupleParams as EphemerisSetTupleParams,
   };
 

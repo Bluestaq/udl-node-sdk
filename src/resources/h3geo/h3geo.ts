@@ -63,8 +63,12 @@ export class H3geo extends APIResource {
    * Service operation to get a single RF geolocation by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<H3geoGetResponse> {
-    return this._client.get(path`/udl/h3geo/${id}`, options);
+  get(
+    id: string,
+    query: H3geoGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<H3geoGetResponse> {
+    return this._client.get(path`/udl/h3geo/${id}`, { query, ...options });
   }
 
   /**
@@ -968,6 +972,10 @@ export interface H3geoListParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface H3geoCountParams {
@@ -976,6 +984,16 @@ export interface H3geoCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface H3geoGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface H3geoTupleParams {
@@ -992,6 +1010,10 @@ export interface H3geoTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 H3geo.History = History;
@@ -1005,6 +1027,7 @@ export declare namespace H3geo {
     type H3geoCreateParams as H3geoCreateParams,
     type H3geoListParams as H3geoListParams,
     type H3geoCountParams as H3geoCountParams,
+    type H3geoGetParams as H3geoGetParams,
     type H3geoTupleParams as H3geoTupleParams,
   };
 

@@ -139,7 +139,11 @@ describe('resource rfobservation', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.rfobservation.list({ obTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.rfobservation.list({
+      obTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -154,7 +158,11 @@ describe('resource rfobservation', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.rfobservation.count({ obTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.rfobservation.count({
+      obTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -294,6 +302,13 @@ describe('resource rfobservation', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.rfobservation.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.rfobservation.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -323,6 +338,8 @@ describe('resource rfobservation', () => {
     const response = await client.rfobservation.tuple({
       columns: 'columns',
       obTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 

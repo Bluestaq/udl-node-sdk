@@ -2,7 +2,13 @@
 
 import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
-import { History, HistoryCountResponse, HistoryListParams, HistoryListResponse } from './history';
+import {
+  History,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+} from './history';
 import * as SitestatusHistoryAPI from '../udl/sitestatus/history';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
@@ -44,8 +50,11 @@ export class Sitestatus extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SitestatusListResponse> {
-    return this._client.get('/udl/sitestatus', options);
+  list(
+    query: SitestatusListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SitestatusListResponse> {
+    return this._client.get('/udl/sitestatus', { query, ...options });
   }
 
   /**
@@ -68,8 +77,9 @@ export class Sitestatus extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: SitestatusCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sitestatus/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -79,8 +89,12 @@ export class Sitestatus extends APIResource {
    * Service operation to get a single SiteStatus record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SitestatusHistoryAPI.SitestatusFull> {
-    return this._client.get(path`/udl/sitestatus/${id}`, options);
+  get(
+    id: string,
+    query: SitestatusGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SitestatusHistoryAPI.SitestatusFull> {
+    return this._client.get(path`/udl/sitestatus/${id}`, { query, ...options });
   }
 
   /**
@@ -938,6 +952,24 @@ export interface SitestatusUpdateParams {
   weatherMessage?: string;
 }
 
+export interface SitestatusListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SitestatusCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SitestatusGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SitestatusTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -946,6 +978,10 @@ export interface SitestatusTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 Sitestatus.History = History;
@@ -957,6 +993,9 @@ export declare namespace Sitestatus {
     type SitestatusTupleResponse as SitestatusTupleResponse,
     type SitestatusCreateParams as SitestatusCreateParams,
     type SitestatusUpdateParams as SitestatusUpdateParams,
+    type SitestatusListParams as SitestatusListParams,
+    type SitestatusCountParams as SitestatusCountParams,
+    type SitestatusGetParams as SitestatusGetParams,
     type SitestatusTupleParams as SitestatusTupleParams,
   };
 
@@ -965,5 +1004,6 @@ export declare namespace Sitestatus {
     type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
+    type HistoryCountParams as HistoryCountParams,
   };
 }

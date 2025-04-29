@@ -41,8 +41,11 @@ export class Onorbitdetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<OnorbitdetailListResponse> {
-    return this._client.get('/udl/onorbitdetails', options);
+  list(
+    query: OnorbitdetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitdetailListResponse> {
+    return this._client.get('/udl/onorbitdetails', { query, ...options });
   }
 
   /**
@@ -63,8 +66,12 @@ export class Onorbitdetails extends APIResource {
    * as a path parameter. An OnorbitDetails is a collection of additional
    * characteristics on an on-orbit object.
    */
-  get(id: string, options?: RequestOptions): APIPromise<OnorbitdetailGetResponse> {
-    return this._client.get(path`/udl/onorbitdetails/${id}`, options);
+  get(
+    id: string,
+    query: OnorbitdetailGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitdetailGetResponse> {
+    return this._client.get(path`/udl/onorbitdetails/${id}`, { query, ...options });
   }
 }
 
@@ -1171,11 +1178,25 @@ export interface OnorbitdetailUpdateParams {
   vismagMin?: number;
 }
 
+export interface OnorbitdetailListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OnorbitdetailGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace Onorbitdetails {
   export {
     type OnorbitdetailListResponse as OnorbitdetailListResponse,
     type OnorbitdetailGetResponse as OnorbitdetailGetResponse,
     type OnorbitdetailCreateParams as OnorbitdetailCreateParams,
     type OnorbitdetailUpdateParams as OnorbitdetailUpdateParams,
+    type OnorbitdetailListParams as OnorbitdetailListParams,
+    type OnorbitdetailGetParams as OnorbitdetailGetParams,
   };
 }

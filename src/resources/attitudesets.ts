@@ -11,7 +11,21 @@ export class Attitudesets extends APIResource {
    * Service operation to get a single AttitudeSet record by its unique ID passed as
    * a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.AttitudesetFull> {
-    return this._client.get(path`/udl/attitudeset/${id}`, options);
+  retrieve(
+    id: string,
+    query: AttitudesetRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.AttitudesetFull> {
+    return this._client.get(path`/udl/attitudeset/${id}`, { query, ...options });
   }
+}
+
+export interface AttitudesetRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export declare namespace Attitudesets {
+  export { type AttitudesetRetrieveParams as AttitudesetRetrieveParams };
 }

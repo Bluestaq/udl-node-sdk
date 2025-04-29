@@ -18,5 +18,6 @@ export {
   type PersonnelrecoveryCountParams,
   type PersonnelrecoveryCreateBulkParams,
   type PersonnelrecoveryFileCreateParams,
+  type PersonnelrecoveryGetParams,
   type PersonnelrecoveryTupleParams,
 } from './personnelrecovery';

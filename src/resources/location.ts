@@ -42,8 +42,11 @@ export class Location extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<LocationListResponse> {
-    return this._client.get('/udl/location', options);
+  list(
+    query: LocationListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LocationListResponse> {
+    return this._client.get('/udl/location', { query, ...options });
   }
 
   /**
@@ -67,8 +70,9 @@ export class Location extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: LocationCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/location/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -79,8 +83,12 @@ export class Location extends APIResource {
    * path parameter. Locations are specific fixed points on the earth and are used to
    * denote the locations of fixed sensors, operating units, etc.
    */
-  get(id: string, options?: RequestOptions): APIPromise<LocationFull> {
-    return this._client.get(path`/udl/location/${id}`, options);
+  get(
+    id: string,
+    query: LocationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LocationFull> {
+    return this._client.get(path`/udl/location/${id}`, { query, ...options });
   }
 
   /**
@@ -566,6 +574,24 @@ export interface LocationUpdateParams {
   origin?: string;
 }
 
+export interface LocationListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface LocationCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface LocationGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface LocationTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -574,6 +600,10 @@ export interface LocationTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Location {
@@ -585,6 +615,9 @@ export declare namespace Location {
     type LocationTupleResponse as LocationTupleResponse,
     type LocationCreateParams as LocationCreateParams,
     type LocationUpdateParams as LocationUpdateParams,
+    type LocationListParams as LocationListParams,
+    type LocationCountParams as LocationCountParams,
+    type LocationGetParams as LocationGetParams,
     type LocationTupleParams as LocationTupleParams,
   };
 }

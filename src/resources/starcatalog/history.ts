@@ -37,6 +37,10 @@ export interface HistoryAodrParams {
    */
   dec?: number;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
    * assumed. Current valid values are: EMAIL, SMS.

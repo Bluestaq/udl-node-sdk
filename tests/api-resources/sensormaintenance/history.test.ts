@@ -24,7 +24,13 @@ describe('resource history', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.sensormaintenance.history.retrieve(
-        { columns: 'columns', endTime: '2019-12-27T18:11:19.117Z', startTime: '2019-12-27T18:11:19.117Z' },
+        {
+          columns: 'columns',
+          endTime: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResult: 0,
+          startTime: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -48,6 +54,8 @@ describe('resource history', () => {
         {
           columns: 'columns',
           endTime: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResult: 0,
           notification: 'notification',
           outputDelimiter: 'outputDelimiter',
           outputFormat: 'outputFormat',
@@ -73,7 +81,12 @@ describe('resource history', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.sensormaintenance.history.count(
-        { endTime: '2019-12-27T18:11:19.117Z', startTime: '2019-12-27T18:11:19.117Z' },
+        {
+          endTime: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResult: 0,
+          startTime: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);

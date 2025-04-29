@@ -68,8 +68,12 @@ export class Geostatus extends APIResource {
    * Service operation to get a single GEOStatus record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.GeoStatusFull> {
-    return this._client.get(path`/udl/geostatus/${id}`, options);
+  get(
+    id: string,
+    query: GeostatusGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.GeoStatusFull> {
+    return this._client.get(path`/udl/geostatus/${id}`, { query, ...options });
   }
 
   /**
@@ -408,6 +412,10 @@ export interface GeostatusListParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface GeostatusCountParams {
@@ -416,6 +424,10 @@ export interface GeostatusCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface GeostatusCreateBulkParams {
@@ -563,6 +575,12 @@ export namespace GeostatusCreateBulkParams {
   }
 }
 
+export interface GeostatusGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface GeostatusTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -577,6 +595,10 @@ export interface GeostatusTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Geostatus {
@@ -588,6 +610,7 @@ export declare namespace Geostatus {
     type GeostatusListParams as GeostatusListParams,
     type GeostatusCountParams as GeostatusCountParams,
     type GeostatusCreateBulkParams as GeostatusCreateBulkParams,
+    type GeostatusGetParams as GeostatusGetParams,
     type GeostatusTupleParams as GeostatusTupleParams,
   };
 }

@@ -18,5 +18,6 @@ export {
   type SwirListParams,
   type SwirCountParams,
   type SwirCreateBulkParams,
+  type SwirGetParams,
   type SwirTupleParams,
 } from './swir';

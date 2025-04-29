@@ -66,8 +66,12 @@ export class Poi extends APIResource {
    * Service operation to get a single POI by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.PoiFull> {
-    return this._client.get(path`/udl/poi/${id}`, options);
+  get(
+    id: string,
+    query: PoiGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.PoiFull> {
+    return this._client.get(path`/udl/poi/${id}`, { query, ...options });
   }
 
   /**
@@ -720,6 +724,10 @@ export interface PoiListParams {
    * Activity/POI timestamp in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface PoiCountParams {
@@ -727,6 +735,10 @@ export interface PoiCountParams {
    * Activity/POI timestamp in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface PoiCreateBulkParams {
@@ -1041,6 +1053,12 @@ export namespace PoiCreateBulkParams {
   }
 }
 
+export interface PoiGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface PoiTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1054,6 +1072,10 @@ export interface PoiTupleParams {
    * Activity/POI timestamp in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface PoiUnvalidatedPublishParams {
@@ -1377,6 +1399,7 @@ export declare namespace Poi {
     type PoiListParams as PoiListParams,
     type PoiCountParams as PoiCountParams,
     type PoiCreateBulkParams as PoiCreateBulkParams,
+    type PoiGetParams as PoiGetParams,
     type PoiTupleParams as PoiTupleParams,
     type PoiUnvalidatedPublishParams as PoiUnvalidatedPublishParams,
   };

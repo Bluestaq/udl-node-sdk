@@ -21,7 +21,11 @@ describe('resource history', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.groundImagery.history.count({ imageTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.groundImagery.history.count({
+      imageTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('query: only required params', async () => {
@@ -39,6 +43,8 @@ describe('resource history', () => {
     const response = await client.groundImagery.history.query({
       imageTime: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 });

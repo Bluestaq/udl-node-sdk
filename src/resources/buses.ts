@@ -25,8 +25,12 @@ export class Buses extends APIResource {
    * Service operation to get a single Bus record by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<BusFull> {
-    return this._client.get(path`/udl/bus/${id}`, options);
+  retrieve(
+    id: string,
+    query: BusRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<BusFull> {
+    return this._client.get(path`/udl/bus/${id}`, { query, ...options });
   }
 
   /**
@@ -47,8 +51,8 @@ export class Buses extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<BusListResponse> {
-    return this._client.get('/udl/bus', options);
+  list(query: BusListParams | null | undefined = {}, options?: RequestOptions): APIPromise<BusListResponse> {
+    return this._client.get('/udl/bus', { query, ...options });
   }
 
   /**
@@ -70,8 +74,9 @@ export class Buses extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: BusCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/bus/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -1055,6 +1060,12 @@ export interface BusCreateParams {
   type?: string;
 }
 
+export interface BusRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface BusUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -1357,6 +1368,18 @@ export interface BusUpdateParams {
   type?: string;
 }
 
+export interface BusListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface BusCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface BusTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1365,6 +1388,10 @@ export interface BusTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Buses {
@@ -1375,7 +1402,10 @@ export declare namespace Buses {
     type BusCountResponse as BusCountResponse,
     type BusTupleResponse as BusTupleResponse,
     type BusCreateParams as BusCreateParams,
+    type BusRetrieveParams as BusRetrieveParams,
     type BusUpdateParams as BusUpdateParams,
+    type BusListParams as BusListParams,
+    type BusCountParams as BusCountParams,
     type BusTupleParams as BusTupleParams,
   };
 }

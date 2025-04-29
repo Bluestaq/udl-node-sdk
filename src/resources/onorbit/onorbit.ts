@@ -6,7 +6,9 @@ import * as EoObservationsAPI from '../eo-observations/eo-observations';
 import * as AntennaDetailsAPI from './antenna-details';
 import {
   AntennaDetailCreateParams,
+  AntennaDetailListParams,
   AntennaDetailListResponse,
+  AntennaDetailRetrieveParams,
   AntennaDetailUpdateParams,
   AntennaDetails,
   AntennaDetailsAbridged,
@@ -51,8 +53,11 @@ export class Onorbit extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<OnorbitListResponse> {
-    return this._client.get('/udl/onorbit', options);
+  list(
+    query: OnorbitListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitListResponse> {
+    return this._client.get('/udl/onorbit', { query, ...options });
   }
 
   /**
@@ -74,8 +79,9 @@ export class Onorbit extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: OnorbitCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/onorbit/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -85,8 +91,12 @@ export class Onorbit extends APIResource {
    * Service operation to get a single OnOrbit object by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<Shared.OnorbitFull> {
-    return this._client.get(path`/udl/onorbit/${id}`, options);
+  get(
+    id: string,
+    query: OnorbitGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.OnorbitFull> {
+    return this._client.get(path`/udl/onorbit/${id}`, { query, ...options });
   }
 
   /**
@@ -1654,11 +1664,33 @@ export interface OnorbitUpdateParams {
   origin?: string;
 }
 
+export interface OnorbitListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OnorbitCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OnorbitGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface OnorbitGetSignatureParams {
   /**
    * ID of the Onorbit object.
    */
   idOnOrbit: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface OnorbitTupleParams {
@@ -1669,6 +1701,10 @@ export interface OnorbitTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 Onorbit.AntennaDetails = AntennaDetails;
@@ -1682,6 +1718,9 @@ export declare namespace Onorbit {
     type OnorbitTupleResponse as OnorbitTupleResponse,
     type OnorbitCreateParams as OnorbitCreateParams,
     type OnorbitUpdateParams as OnorbitUpdateParams,
+    type OnorbitListParams as OnorbitListParams,
+    type OnorbitCountParams as OnorbitCountParams,
+    type OnorbitGetParams as OnorbitGetParams,
     type OnorbitGetSignatureParams as OnorbitGetSignatureParams,
     type OnorbitTupleParams as OnorbitTupleParams,
   };
@@ -1692,6 +1731,8 @@ export declare namespace Onorbit {
     type AntennaDetailsFull as AntennaDetailsFull,
     type AntennaDetailListResponse as AntennaDetailListResponse,
     type AntennaDetailCreateParams as AntennaDetailCreateParams,
+    type AntennaDetailRetrieveParams as AntennaDetailRetrieveParams,
     type AntennaDetailUpdateParams as AntennaDetailUpdateParams,
+    type AntennaDetailListParams as AntennaDetailListParams,
   };
 }

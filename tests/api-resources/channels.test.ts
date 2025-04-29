@@ -61,6 +61,13 @@ describe('resource channels', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.channels.retrieve('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('update: only required params', async () => {
     const responsePromise = client.channels.update('id', {
       classificationMarking: 'U',
@@ -113,6 +120,13 @@ describe('resource channels', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.channels.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('delete', async () => {
     const responsePromise = client.channels.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -133,6 +147,13 @@ describe('resource channels', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('count: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.channels.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -158,6 +179,6 @@ describe('resource channels', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.channels.tuple({ columns: 'columns' });
+    const response = await client.channels.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
   });
 });

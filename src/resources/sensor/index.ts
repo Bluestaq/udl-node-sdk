@@ -7,6 +7,7 @@ export {
   type CalibrationQueryResponse,
   type CalibrationTupleResponse,
   type CalibrationCreateParams,
+  type CalibrationRetrieveParams,
   type CalibrationCountParams,
   type CalibrationCreateBulkParams,
   type CalibrationQueryParams,
@@ -21,5 +22,8 @@ export {
   type SensorTupleResponse,
   type SensorCreateParams,
   type SensorUpdateParams,
+  type SensorListParams,
+  type SensorCountParams,
+  type SensorGetParams,
   type SensorTupleParams,
 } from './sensor';

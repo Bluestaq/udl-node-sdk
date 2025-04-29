@@ -4,6 +4,7 @@ export {
   Current,
   type CurrentListResponse,
   type CurrentTupleResponse,
+  type CurrentListParams,
   type CurrentTupleParams,
 } from './current';
 export {
@@ -26,6 +27,7 @@ export {
   type StatevectorListParams,
   type StatevectorCountParams,
   type StatevectorCreateBulkParams,
+  type StatevectorGetParams,
   type StatevectorTupleParams,
   type StatevectorUnvalidatedPublishParams,
 } from './statevector';

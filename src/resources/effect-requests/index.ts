@@ -7,6 +7,7 @@ export {
   type EffectRequestCountResponse,
   type EffectRequestTupleResponse,
   type EffectRequestCreateParams,
+  type EffectRequestRetrieveParams,
   type EffectRequestListParams,
   type EffectRequestCountParams,
   type EffectRequestCreateBulkParams,

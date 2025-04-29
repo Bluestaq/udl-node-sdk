@@ -28,5 +28,6 @@ export {
   type LinkStatusCreateParams,
   type LinkStatusListParams,
   type LinkStatusCountParams,
+  type LinkStatusGetParams,
   type LinkStatusTupleParams,
 } from './link-status';

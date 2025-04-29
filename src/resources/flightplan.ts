@@ -25,8 +25,12 @@ export class Flightplan extends APIResource {
    * Service operation to get a single FlightPlan record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.FlightPlanFull> {
-    return this._client.get(path`/udl/flightplan/${id}`, options);
+  retrieve(
+    id: string,
+    query: FlightplanRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.FlightPlanFull> {
+    return this._client.get(path`/udl/flightplan/${id}`, { query, ...options });
   }
 
   /**
@@ -48,8 +52,11 @@ export class Flightplan extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<FlightplanListResponse> {
-    return this._client.get('/udl/flightplan', options);
+  list(
+    query: FlightplanListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<FlightplanListResponse> {
+    return this._client.get('/udl/flightplan', { query, ...options });
   }
 
   /**
@@ -71,8 +78,9 @@ export class Flightplan extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: FlightplanCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/flightplan/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -2340,6 +2348,12 @@ export namespace FlightplanCreateParams {
   }
 }
 
+export interface FlightplanRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface FlightplanUpdateParams {
   /**
    * The airfield identifier of the arrival location, International Civil Aviation
@@ -3428,6 +3442,18 @@ export namespace FlightplanUpdateParams {
   }
 }
 
+export interface FlightplanListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface FlightplanCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface FlightplanTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -3436,6 +3462,10 @@ export interface FlightplanTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface FlightplanUnvalidatedPublishParams {
@@ -4543,7 +4573,10 @@ export declare namespace Flightplan {
     type FlightplanCountResponse as FlightplanCountResponse,
     type FlightplanTupleResponse as FlightplanTupleResponse,
     type FlightplanCreateParams as FlightplanCreateParams,
+    type FlightplanRetrieveParams as FlightplanRetrieveParams,
     type FlightplanUpdateParams as FlightplanUpdateParams,
+    type FlightplanListParams as FlightplanListParams,
+    type FlightplanCountParams as FlightplanCountParams,
     type FlightplanTupleParams as FlightplanTupleParams,
     type FlightplanUnvalidatedPublishParams as FlightplanUnvalidatedPublishParams,
   };

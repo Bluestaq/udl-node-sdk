@@ -11,8 +11,11 @@ export class Airtaskingorders extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<AirtaskingorderListResponse> {
-    return this._client.get('/udl/airtaskingorder', options);
+  list(
+    query: AirtaskingorderListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirtaskingorderListResponse> {
+    return this._client.get('/udl/airtaskingorder', { query, ...options });
   }
 }
 
@@ -481,9 +484,16 @@ export namespace AirtaskingorderAbridged {
 
 export type AirtaskingorderListResponse = Array<AirtaskingorderAbridged>;
 
+export interface AirtaskingorderListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace Airtaskingorders {
   export {
     type AirtaskingorderAbridged as AirtaskingorderAbridged,
     type AirtaskingorderListResponse as AirtaskingorderListResponse,
+    type AirtaskingorderListParams as AirtaskingorderListParams,
   };
 }

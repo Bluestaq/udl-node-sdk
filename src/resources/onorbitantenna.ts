@@ -44,8 +44,11 @@ export class Onorbitantenna extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<OnorbitantennaListResponse> {
-    return this._client.get('/udl/onorbitantenna', options);
+  list(
+    query: OnorbitantennaListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitantennaListResponse> {
+    return this._client.get('/udl/onorbitantenna', { query, ...options });
   }
 
   /**
@@ -68,8 +71,12 @@ export class Onorbitantenna extends APIResource {
    * spacecraft antennas and a particular on-orbit spacecraft. An antenna type may be
    * associated with many different on-orbit spacecraft.
    */
-  get(id: string, options?: RequestOptions): APIPromise<OnorbitantennaGetResponse> {
-    return this._client.get(path`/udl/onorbitantenna/${id}`, options);
+  get(
+    id: string,
+    query: OnorbitantennaGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitantennaGetResponse> {
+    return this._client.get(path`/udl/onorbitantenna/${id}`, { query, ...options });
   }
 }
 
@@ -462,11 +469,25 @@ export namespace OnorbitantennaUpdateParams {
   }
 }
 
+export interface OnorbitantennaListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OnorbitantennaGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace Onorbitantenna {
   export {
     type OnorbitantennaListResponse as OnorbitantennaListResponse,
     type OnorbitantennaGetResponse as OnorbitantennaGetResponse,
     type OnorbitantennaCreateParams as OnorbitantennaCreateParams,
     type OnorbitantennaUpdateParams as OnorbitantennaUpdateParams,
+    type OnorbitantennaListParams as OnorbitantennaListParams,
+    type OnorbitantennaGetParams as OnorbitantennaGetParams,
   };
 }

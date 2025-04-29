@@ -38,8 +38,11 @@ export class Status extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<StatusListResponse> {
-    return this._client.get('/udl/status', options);
+  list(
+    query: StatusListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<StatusListResponse> {
+    return this._client.get('/udl/status', { query, ...options });
   }
 
   /**
@@ -61,8 +64,9 @@ export class Status extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: StatusCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/status/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -72,22 +76,34 @@ export class Status extends APIResource {
    * Service operation to get a single Status record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<StatusGetResponse> {
-    return this._client.get(path`/udl/status/${id}`, options);
+  get(
+    id: string,
+    query: StatusGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<StatusGetResponse> {
+    return this._client.get(path`/udl/status/${id}`, { query, ...options });
   }
 
   /**
    * Service operation to get all statuses related to a particular entity.
    */
-  getByEntityID(idEntity: string, options?: RequestOptions): APIPromise<StatusGetByEntityIDResponse> {
-    return this._client.get(path`/udl/status/byIdEntity/${idEntity}`, options);
+  getByEntityID(
+    idEntity: string,
+    query: StatusGetByEntityIDParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<StatusGetByEntityIDResponse> {
+    return this._client.get(path`/udl/status/byIdEntity/${idEntity}`, { query, ...options });
   }
 
   /**
    * Service operation to get all statuses related to a particular entity type.
    */
-  getByEntityType(entityType: string, options?: RequestOptions): APIPromise<StatusGetByEntityTypeResponse> {
-    return this._client.get(path`/udl/status/byEntityType/${entityType}`, options);
+  getByEntityType(
+    entityType: string,
+    query: StatusGetByEntityTypeParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<StatusGetByEntityTypeResponse> {
+    return this._client.get(path`/udl/status/byEntityType/${entityType}`, { query, ...options });
   }
 
   /**
@@ -1498,6 +1514,36 @@ export namespace StatusUpdateParams {
   }
 }
 
+export interface StatusListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface StatusCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface StatusGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface StatusGetByEntityIDParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface StatusGetByEntityTypeParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface StatusTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1506,6 +1552,10 @@ export interface StatusTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Status {
@@ -1518,6 +1568,11 @@ export declare namespace Status {
     type StatusTupleResponse as StatusTupleResponse,
     type StatusCreateParams as StatusCreateParams,
     type StatusUpdateParams as StatusUpdateParams,
+    type StatusListParams as StatusListParams,
+    type StatusCountParams as StatusCountParams,
+    type StatusGetParams as StatusGetParams,
+    type StatusGetByEntityIDParams as StatusGetByEntityIDParams,
+    type StatusGetByEntityTypeParams as StatusGetByEntityTypeParams,
     type StatusTupleParams as StatusTupleParams,
   };
 }

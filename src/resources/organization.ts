@@ -39,8 +39,11 @@ export class Organization extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<OrganizationListResponse> {
-    return this._client.get('/udl/organization', options);
+  list(
+    query: OrganizationListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OrganizationListResponse> {
+    return this._client.get('/udl/organization', { query, ...options });
   }
 
   /**
@@ -62,8 +65,12 @@ export class Organization extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: OrganizationCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/organization/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -73,24 +80,32 @@ export class Organization extends APIResource {
    * Service operation to get a single Organization by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<OrganizationFull> {
-    return this._client.get(path`/udl/organization/${id}`, options);
+  get(
+    id: string,
+    query: OrganizationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OrganizationFull> {
+    return this._client.get(path`/udl/organization/${id}`, { query, ...options });
   }
 
   /**
    * Retrieves all distinct organization categories.
    */
   getOrganizationCategories(
+    query: OrganizationGetOrganizationCategoriesParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<OrganizationGetOrganizationCategoriesResponse> {
-    return this._client.get('/udl/organization/getOrganizationCategories', options);
+    return this._client.get('/udl/organization/getOrganizationCategories', { query, ...options });
   }
 
   /**
    * Retrieves all distinct organization types.
    */
-  getOrganizationTypes(options?: RequestOptions): APIPromise<OrganizationGetOrganizationTypesResponse> {
-    return this._client.get('/udl/organization/getOrganizationTypes', options);
+  getOrganizationTypes(
+    query: OrganizationGetOrganizationTypesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OrganizationGetOrganizationTypesResponse> {
+    return this._client.get('/udl/organization/getOrganizationTypes', { query, ...options });
   }
 
   /**
@@ -569,6 +584,36 @@ export interface OrganizationUpdateParams {
   origin?: string;
 }
 
+export interface OrganizationListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OrganizationCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OrganizationGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OrganizationGetOrganizationCategoriesParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OrganizationGetOrganizationTypesParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface OrganizationTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -577,6 +622,10 @@ export interface OrganizationTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Organization {
@@ -589,6 +638,11 @@ export declare namespace Organization {
     type OrganizationTupleResponse as OrganizationTupleResponse,
     type OrganizationCreateParams as OrganizationCreateParams,
     type OrganizationUpdateParams as OrganizationUpdateParams,
+    type OrganizationListParams as OrganizationListParams,
+    type OrganizationCountParams as OrganizationCountParams,
+    type OrganizationGetParams as OrganizationGetParams,
+    type OrganizationGetOrganizationCategoriesParams as OrganizationGetOrganizationCategoriesParams,
+    type OrganizationGetOrganizationTypesParams as OrganizationGetOrganizationTypesParams,
     type OrganizationTupleParams as OrganizationTupleParams,
   };
 }

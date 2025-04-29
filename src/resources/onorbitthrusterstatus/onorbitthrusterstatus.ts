@@ -91,9 +91,10 @@ export class Onorbitthrusterstatus extends APIResource {
    */
   get(
     id: string,
+    query: OnorbitthrusterstatusGetParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<OnorbitthrusterstatusHistoryAPI.OnorbitthrusterstatusFull> {
-    return this._client.get(path`/udl/onorbitthrusterstatus/${id}`, options);
+    return this._client.get(path`/udl/onorbitthrusterstatus/${id}`, { query, ...options });
   }
 
   /**
@@ -414,6 +415,8 @@ export interface OnorbitthrusterstatusCreateParams {
 }
 
 export interface OnorbitthrusterstatusListParams {
+  firstResult?: number;
+
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) ID of the
    * associated OnorbitThruster record. This ID can be used to obtain additional
@@ -422,6 +425,8 @@ export interface OnorbitthrusterstatusListParams {
    * idOnorbitThruster = abc would be queried as /udl/onorbitthruster/abc.
    */
   idOnorbitThruster?: string;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) Datetime
@@ -432,6 +437,8 @@ export interface OnorbitthrusterstatusListParams {
 }
 
 export interface OnorbitthrusterstatusCountParams {
+  firstResult?: number;
+
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) ID of the
    * associated OnorbitThruster record. This ID can be used to obtain additional
@@ -440,6 +447,8 @@ export interface OnorbitthrusterstatusCountParams {
    * idOnorbitThruster = abc would be queried as /udl/onorbitthruster/abc.
    */
   idOnorbitThruster?: string;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) Datetime
@@ -587,6 +596,12 @@ export namespace OnorbitthrusterstatusCreateBulkParams {
   }
 }
 
+export interface OnorbitthrusterstatusGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface OnorbitthrusterstatusTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -596,6 +611,8 @@ export interface OnorbitthrusterstatusTupleParams {
    */
   columns: string;
 
+  firstResult?: number;
+
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) ID of the
    * associated OnorbitThruster record. This ID can be used to obtain additional
@@ -604,6 +621,8 @@ export interface OnorbitthrusterstatusTupleParams {
    * idOnorbitThruster = abc would be queried as /udl/onorbitthruster/abc.
    */
   idOnorbitThruster?: string;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) Datetime
@@ -624,6 +643,7 @@ export declare namespace Onorbitthrusterstatus {
     type OnorbitthrusterstatusListParams as OnorbitthrusterstatusListParams,
     type OnorbitthrusterstatusCountParams as OnorbitthrusterstatusCountParams,
     type OnorbitthrusterstatusCreateBulkParams as OnorbitthrusterstatusCreateBulkParams,
+    type OnorbitthrusterstatusGetParams as OnorbitthrusterstatusGetParams,
     type OnorbitthrusterstatusTupleParams as OnorbitthrusterstatusTupleParams,
   };
 

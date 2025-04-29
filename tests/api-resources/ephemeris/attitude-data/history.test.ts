@@ -24,6 +24,8 @@ describe('resource history', () => {
     const response = await client.ephemeris.attitudeData.history.retrieve({
       asId: 'asId',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 
@@ -42,6 +44,8 @@ describe('resource history', () => {
     const response = await client.ephemeris.attitudeData.history.aodr({
       asId: 'asId',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',
@@ -60,6 +64,10 @@ describe('resource history', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.ephemeris.attitudeData.history.count({ asId: 'asId' });
+    const response = await client.ephemeris.attitudeData.history.count({
+      asId: 'asId',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 });

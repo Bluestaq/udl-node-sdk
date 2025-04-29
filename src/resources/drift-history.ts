@@ -13,8 +13,12 @@ export class DriftHistory extends APIResource {
    * a path parameter. DriftHistory represents historical drift rates for GEO Onorbit
    * objects resulting from updates to OnorbitDetails driftRate values.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.DriftHistoryFull> {
-    return this._client.get(path`/udl/drifthistory/${id}`, options);
+  retrieve(
+    id: string,
+    query: DriftHistoryRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.DriftHistoryFull> {
+    return this._client.get(path`/udl/drifthistory/${id}`, { query, ...options });
   }
 
   /**
@@ -23,8 +27,11 @@ export class DriftHistory extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<DriftHistoryListResponse> {
-    return this._client.get('/udl/drifthistory', options);
+  list(
+    query: DriftHistoryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<DriftHistoryListResponse> {
+    return this._client.get('/udl/drifthistory', { query, ...options });
   }
 
   /**
@@ -34,8 +41,12 @@ export class DriftHistory extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: DriftHistoryCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/drifthistory/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -73,6 +84,24 @@ export type DriftHistoryCountResponse = string;
 
 export type DriftHistoryTupleResponse = Array<Shared.DriftHistoryFull>;
 
+export interface DriftHistoryRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface DriftHistoryListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface DriftHistoryCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface DriftHistoryTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -81,6 +110,10 @@ export interface DriftHistoryTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace DriftHistory {
@@ -88,6 +121,9 @@ export declare namespace DriftHistory {
     type DriftHistoryListResponse as DriftHistoryListResponse,
     type DriftHistoryCountResponse as DriftHistoryCountResponse,
     type DriftHistoryTupleResponse as DriftHistoryTupleResponse,
+    type DriftHistoryRetrieveParams as DriftHistoryRetrieveParams,
+    type DriftHistoryListParams as DriftHistoryListParams,
+    type DriftHistoryCountParams as DriftHistoryCountParams,
     type DriftHistoryTupleParams as DriftHistoryTupleParams,
   };
 }

@@ -78,8 +78,12 @@ export class Notification extends APIResource {
    * Service operation to get a single notification by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.NotificationFull> {
-    return this._client.get(path`/udl/notification/${id}`, options);
+  get(
+    id: string,
+    query: NotificationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.NotificationFull> {
+    return this._client.get(path`/udl/notification/${id}`, { query, ...options });
   }
 
   /**
@@ -272,6 +276,10 @@ export interface NotificationListParams {
    * Time the row was created in the database. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface NotificationCountParams {
@@ -279,6 +287,10 @@ export interface NotificationCountParams {
    * Time the row was created in the database. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface NotificationCreateRawParams {
@@ -338,6 +350,12 @@ export interface NotificationCreateRawParams {
   tags?: Array<string>;
 }
 
+export interface NotificationGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface NotificationTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -351,6 +369,10 @@ export interface NotificationTupleParams {
    * Time the row was created in the database. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Notification {
@@ -362,6 +384,7 @@ export declare namespace Notification {
     type NotificationListParams as NotificationListParams,
     type NotificationCountParams as NotificationCountParams,
     type NotificationCreateRawParams as NotificationCreateRawParams,
+    type NotificationGetParams as NotificationGetParams,
     type NotificationTupleParams as NotificationTupleParams,
   };
 }

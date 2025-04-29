@@ -455,6 +455,10 @@ export interface SpaceenvobservationListParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SpaceenvobservationCountParams {
@@ -463,6 +467,10 @@ export interface SpaceenvobservationCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SpaceenvobservationCreateBulkParams {
@@ -793,6 +801,10 @@ export interface SpaceenvobservationTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SpaceenvobservationUnvalidatedPublishParams {

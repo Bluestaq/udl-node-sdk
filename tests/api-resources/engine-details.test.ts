@@ -62,6 +62,17 @@ describe('resource engineDetails', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.engineDetails.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('update: only required params', async () => {
     const responsePromise = client.engineDetails.update('id', {
       classificationMarking: 'U',

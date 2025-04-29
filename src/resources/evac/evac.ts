@@ -38,8 +38,12 @@ export class Evac extends APIResource {
    * Service operation to get a single Evac by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<Shared.EvacFull> {
-    return this._client.get(path`/udl/evac/${id}`, options);
+  retrieve(
+    id: string,
+    query: EvacRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.EvacFull> {
+    return this._client.get(path`/udl/evac/${id}`, { query, ...options });
   }
 
   /**
@@ -1484,11 +1488,21 @@ export namespace EvacCreateParams {
   }
 }
 
+export interface EvacRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EvacListParams {
   /**
    * The request time, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   reqTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EvacCountParams {
@@ -1496,6 +1510,10 @@ export interface EvacCountParams {
    * The request time, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   reqTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EvacCreateBulkParams {
@@ -2877,6 +2895,7 @@ export declare namespace Evac {
     type EvacListResponse as EvacListResponse,
     type EvacCountResponse as EvacCountResponse,
     type EvacCreateParams as EvacCreateParams,
+    type EvacRetrieveParams as EvacRetrieveParams,
     type EvacListParams as EvacListParams,
     type EvacCountParams as EvacCountParams,
     type EvacCreateBulkParams as EvacCreateBulkParams,

@@ -43,7 +43,7 @@ describe('resource v2', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.scs.v2.list({ path: 'path' });
+    const response = await client.scs.v2.list({ path: 'path', firstResult: 0, maxResult: 0 });
   });
 
   test('delete: only required params', async () => {

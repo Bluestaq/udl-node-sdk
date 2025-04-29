@@ -7,7 +7,10 @@ export {
   type AircraftStatusCountResponse,
   type AircraftStatusTupleResponse,
   type AircraftStatusCreateParams,
+  type AircraftStatusRetrieveParams,
   type AircraftStatusUpdateParams,
+  type AircraftStatusListParams,
+  type AircraftStatusCountParams,
   type AircraftStatusTupleParams,
 } from './aircraft-statuses';
 export {
@@ -15,4 +18,5 @@ export {
   type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
+  type HistoryCountParams,
 } from './history';

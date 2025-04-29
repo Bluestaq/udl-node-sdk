@@ -45,6 +45,13 @@ describe('resource batteries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.batteries.retrieve('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('update: only required params', async () => {
     const responsePromise = client.batteries.update('id', {
       dataMode: 'TEST',
@@ -81,6 +88,13 @@ describe('resource batteries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.batteries.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('delete', async () => {
     const responsePromise = client.batteries.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -101,6 +115,13 @@ describe('resource batteries', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('count: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.batteries.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -126,6 +147,6 @@ describe('resource batteries', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.batteries.tuple({ columns: 'columns' });
+    const response = await client.batteries.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
   });
 });

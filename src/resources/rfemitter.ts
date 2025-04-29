@@ -41,8 +41,11 @@ export class Rfemitter extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<RfemitterListResponse> {
-    return this._client.get('/udl/rfemitter', options);
+  list(
+    query: RfemitterListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RfemitterListResponse> {
+    return this._client.get('/udl/rfemitter', { query, ...options });
   }
 
   /**
@@ -64,8 +67,9 @@ export class Rfemitter extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: RfemitterCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/rfemitter/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -75,8 +79,12 @@ export class Rfemitter extends APIResource {
    * Service operation to get a single RFEmitter by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<RfemitterGetResponse> {
-    return this._client.get(path`/udl/rfemitter/${id}`, options);
+  get(
+    id: string,
+    query: RfemitterGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RfemitterGetResponse> {
+    return this._client.get(path`/udl/rfemitter/${id}`, { query, ...options });
   }
 
   /**
@@ -990,6 +998,24 @@ export interface RfemitterUpdateParams {
   type?: string;
 }
 
+export interface RfemitterListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface RfemitterCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface RfemitterGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface RfemitterTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -998,6 +1024,10 @@ export interface RfemitterTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Rfemitter {
@@ -1008,6 +1038,9 @@ export declare namespace Rfemitter {
     type RfemitterTupleResponse as RfemitterTupleResponse,
     type RfemitterCreateParams as RfemitterCreateParams,
     type RfemitterUpdateParams as RfemitterUpdateParams,
+    type RfemitterListParams as RfemitterListParams,
+    type RfemitterCountParams as RfemitterCountParams,
+    type RfemitterGetParams as RfemitterGetParams,
     type RfemitterTupleParams as RfemitterTupleParams,
   };
 }

@@ -6,6 +6,7 @@ export {
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
+  type HistoryCountParams,
 } from './history';
 export {
   Logisticssupport,
@@ -16,7 +17,10 @@ export {
   type LogisticssupportTupleResponse,
   type LogisticssupportCreateParams,
   type LogisticssupportUpdateParams,
+  type LogisticssupportListParams,
+  type LogisticssupportCountParams,
   type LogisticssupportCreateBulkParams,
+  type LogisticssupportGetParams,
   type LogisticssupportTupleParams,
   type LogisticssupportUnvalidatedPublishParams,
 } from './logisticssupport';

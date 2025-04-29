@@ -17,8 +17,12 @@ export class Conjunctions extends APIResource {
    * Service operation to get a single conjunction by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<ConjunctionFull> {
-    return this._client.get(path`/udl/conjunction/${id}`, options);
+  retrieve(
+    id: string,
+    query: ConjunctionRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ConjunctionFull> {
+    return this._client.get(path`/udl/conjunction/${id}`, { query, ...options });
   }
 
   /**
@@ -3905,11 +3909,21 @@ export type ConjunctionGetHistoryResponse = Array<ConjunctionFull>;
 
 export type ConjunctionTupleResponse = Array<ConjunctionFull>;
 
+export interface ConjunctionRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface ConjunctionListParams {
   /**
    * Time of closest approach (TCA) in UTC. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   tca: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ConjunctionCountParams {
@@ -3917,6 +3931,10 @@ export interface ConjunctionCountParams {
    * Time of closest approach (TCA) in UTC. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   tca: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ConjunctionCreateUdlParams {
@@ -7547,6 +7565,10 @@ export interface ConjunctionGetHistoryParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ConjunctionTupleParams {
@@ -7562,6 +7584,10 @@ export interface ConjunctionTupleParams {
    * Time of closest approach (TCA) in UTC. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   tca: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface ConjunctionUnvalidatedPublishParams {
@@ -9417,6 +9443,7 @@ export declare namespace Conjunctions {
     type ConjunctionCountResponse as ConjunctionCountResponse,
     type ConjunctionGetHistoryResponse as ConjunctionGetHistoryResponse,
     type ConjunctionTupleResponse as ConjunctionTupleResponse,
+    type ConjunctionRetrieveParams as ConjunctionRetrieveParams,
     type ConjunctionListParams as ConjunctionListParams,
     type ConjunctionCountParams as ConjunctionCountParams,
     type ConjunctionCreateUdlParams as ConjunctionCreateUdlParams,

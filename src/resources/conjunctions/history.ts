@@ -52,6 +52,10 @@ export interface HistoryAodrParams {
    */
   columns?: string;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
    * assumed. Current valid values are: EMAIL, SMS.
@@ -78,6 +82,10 @@ export interface HistoryCountParams {
    * Time of closest approach (TCA) in UTC. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   tca: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace History {

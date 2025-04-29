@@ -242,6 +242,10 @@ export interface HistoryListParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface HistoryAodrParams {
@@ -257,6 +261,10 @@ export interface HistoryAodrParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -285,6 +293,10 @@ export interface HistoryCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace History {

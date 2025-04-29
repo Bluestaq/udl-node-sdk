@@ -94,8 +94,12 @@ export class Personnelrecovery extends APIResource {
    * Service operation to get a single PersonnelRecovery by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<PersonnelRecoveryFullL> {
-    return this._client.get(path`/udl/personnelrecovery/${id}`, options);
+  get(
+    id: string,
+    query: PersonnelrecoveryGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<PersonnelRecoveryFullL> {
+    return this._client.get(path`/udl/personnelrecovery/${id}`, { query, ...options });
   }
 
   /**
@@ -1351,6 +1355,10 @@ export interface PersonnelrecoveryListParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface PersonnelrecoveryCountParams {
@@ -1359,6 +1367,10 @@ export interface PersonnelrecoveryCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface PersonnelrecoveryCreateBulkParams {
@@ -2159,6 +2171,12 @@ export namespace PersonnelrecoveryFileCreateParams {
   }
 }
 
+export interface PersonnelrecoveryGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface PersonnelrecoveryTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -2173,6 +2191,10 @@ export interface PersonnelrecoveryTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 Personnelrecovery.History = History;
@@ -2188,6 +2210,7 @@ export declare namespace Personnelrecovery {
     type PersonnelrecoveryCountParams as PersonnelrecoveryCountParams,
     type PersonnelrecoveryCreateBulkParams as PersonnelrecoveryCreateBulkParams,
     type PersonnelrecoveryFileCreateParams as PersonnelrecoveryFileCreateParams,
+    type PersonnelrecoveryGetParams as PersonnelrecoveryGetParams,
     type PersonnelrecoveryTupleParams as PersonnelrecoveryTupleParams,
   };
 

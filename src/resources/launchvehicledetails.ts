@@ -44,8 +44,11 @@ export class Launchvehicledetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<LaunchvehicledetailListResponse> {
-    return this._client.get('/udl/launchvehicledetails', options);
+  list(
+    query: LaunchvehicledetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaunchvehicledetailListResponse> {
+    return this._client.get('/udl/launchvehicledetails', { query, ...options });
   }
 
   /**
@@ -68,8 +71,12 @@ export class Launchvehicledetails extends APIResource {
    * details and characteristics, compiled by a particular source. A vehicle may have
    * multiple details records from various sources.
    */
-  get(id: string, options?: RequestOptions): APIPromise<LaunchvehicledetailGetResponse> {
-    return this._client.get(path`/udl/launchvehicledetails/${id}`, options);
+  get(
+    id: string,
+    query: LaunchvehicledetailGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaunchvehicledetailGetResponse> {
+    return this._client.get(path`/udl/launchvehicledetails/${id}`, { query, ...options });
   }
 }
 
@@ -1259,11 +1266,25 @@ export interface LaunchvehicledetailUpdateParams {
   variant?: string;
 }
 
+export interface LaunchvehicledetailListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface LaunchvehicledetailGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace Launchvehicledetails {
   export {
     type LaunchvehicledetailListResponse as LaunchvehicledetailListResponse,
     type LaunchvehicledetailGetResponse as LaunchvehicledetailGetResponse,
     type LaunchvehicledetailCreateParams as LaunchvehicledetailCreateParams,
     type LaunchvehicledetailUpdateParams as LaunchvehicledetailUpdateParams,
+    type LaunchvehicledetailListParams as LaunchvehicledetailListParams,
+    type LaunchvehicledetailGetParams as LaunchvehicledetailGetParams,
   };
 }

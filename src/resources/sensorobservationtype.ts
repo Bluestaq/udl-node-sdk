@@ -7,12 +7,19 @@ import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
 export class Sensorobservationtype extends APIResource {
-  list(options?: RequestOptions): APIPromise<SensorobservationtypeListResponse> {
-    return this._client.get('/udl/sensorobservationtype', options);
+  list(
+    query: SensorobservationtypeListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SensorobservationtypeListResponse> {
+    return this._client.get('/udl/sensorobservationtype', { query, ...options });
   }
 
-  get(id: string, options?: RequestOptions): APIPromise<SensorobservationtypeGetResponse> {
-    return this._client.get(path`/udl/sensorobservationtype/${id}`, options);
+  get(
+    id: string,
+    query: SensorobservationtypeGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SensorobservationtypeGetResponse> {
+    return this._client.get(path`/udl/sensorobservationtype/${id}`, { query, ...options });
   }
 
   /**
@@ -124,9 +131,23 @@ export interface SensorobservationtypeGetResponse {
   updatedBy?: string;
 }
 
+export interface SensorobservationtypeListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SensorobservationtypeGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace Sensorobservationtype {
   export {
     type SensorobservationtypeListResponse as SensorobservationtypeListResponse,
     type SensorobservationtypeGetResponse as SensorobservationtypeGetResponse,
+    type SensorobservationtypeListParams as SensorobservationtypeListParams,
+    type SensorobservationtypeGetParams as SensorobservationtypeGetParams,
   };
 }

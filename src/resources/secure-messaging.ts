@@ -10,15 +10,24 @@ export class SecureMessaging extends APIResource {
   /**
    * Retrieve the details of the specified topic or data type.
    */
-  describeTopic(topic: string, options?: RequestOptions): APIPromise<TopicDetails> {
-    return this._client.get(path`/sm/describeTopic/${topic}`, options);
+  describeTopic(
+    topic: string,
+    query: SecureMessagingDescribeTopicParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<TopicDetails> {
+    return this._client.get(path`/sm/describeTopic/${topic}`, { query, ...options });
   }
 
   /**
    * Returns the current/latest offset for the passed topic name.
    */
-  getLatestOffset(topic: string, options?: RequestOptions): APIPromise<void> {
+  getLatestOffset(
+    topic: string,
+    query: SecureMessagingGetLatestOffsetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<void> {
     return this._client.get(path`/sm/getLatestOffset/${topic}`, {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
@@ -33,8 +42,9 @@ export class SecureMessaging extends APIResource {
     params: SecureMessagingGetMessagesParams,
     options?: RequestOptions,
   ): APIPromise<void> {
-    const { topic } = params;
+    const { topic, ...query } = params;
     return this._client.get(path`/sm/getMessages/${topic}/${offset}`, {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
@@ -77,17 +87,41 @@ export interface TopicDetails {
 
 export type SecureMessagingListTopicsResponse = Array<TopicDetails>;
 
+export interface SecureMessagingDescribeTopicParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SecureMessagingGetLatestOffsetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SecureMessagingGetMessagesParams {
   /**
-   * The topic from which messages are to be retrieved.
+   * Path param: The topic from which messages are to be retrieved.
    */
   topic: string;
+
+  /**
+   * Query param:
+   */
+  firstResult?: number;
+
+  /**
+   * Query param:
+   */
+  maxResult?: number;
 }
 
 export declare namespace SecureMessaging {
   export {
     type TopicDetails as TopicDetails,
     type SecureMessagingListTopicsResponse as SecureMessagingListTopicsResponse,
+    type SecureMessagingDescribeTopicParams as SecureMessagingDescribeTopicParams,
+    type SecureMessagingGetLatestOffsetParams as SecureMessagingGetLatestOffsetParams,
     type SecureMessagingGetMessagesParams as SecureMessagingGetMessagesParams,
   };
 }

@@ -79,8 +79,12 @@ export class Sarobservation extends APIResource {
    * Service operation to get a single SAR observations by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SarobservationHistoryAPI.SarobservationFull> {
-    return this._client.get(path`/udl/sarobservation/${id}`, options);
+  get(
+    id: string,
+    query: SarobservationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SarobservationHistoryAPI.SarobservationFull> {
+    return this._client.get(path`/udl/sarobservation/${id}`, { query, ...options });
   }
 
   /**
@@ -968,6 +972,10 @@ export interface SarobservationListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   collectionStart: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SarobservationCountParams {
@@ -976,6 +984,10 @@ export interface SarobservationCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   collectionStart: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SarobservationCreateBulkParams {
@@ -1393,6 +1405,12 @@ export namespace SarobservationCreateBulkParams {
   }
 }
 
+export interface SarobservationGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SarobservationTupleParams {
   /**
    * Collection start time in ISO 8601 UTC format with microsecond precision.
@@ -1407,6 +1425,10 @@ export interface SarobservationTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SarobservationUnvalidatedPublishParams {
@@ -1835,6 +1857,7 @@ export declare namespace Sarobservation {
     type SarobservationListParams as SarobservationListParams,
     type SarobservationCountParams as SarobservationCountParams,
     type SarobservationCreateBulkParams as SarobservationCreateBulkParams,
+    type SarobservationGetParams as SarobservationGetParams,
     type SarobservationTupleParams as SarobservationTupleParams,
     type SarobservationUnvalidatedPublishParams as SarobservationUnvalidatedPublishParams,
   };

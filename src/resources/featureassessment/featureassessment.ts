@@ -35,8 +35,12 @@ export class Featureassessment extends APIResource {
    * Service operation to get a single FeatureAssessment record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<FeatureassessmentRetrieveResponse> {
-    return this._client.get(path`/udl/featureassessment/${id}`, options);
+  retrieve(
+    id: string,
+    query: FeatureassessmentRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<FeatureassessmentRetrieveResponse> {
+    return this._client.get(path`/udl/featureassessment/${id}`, { query, ...options });
   }
 
   /**
@@ -1288,12 +1292,22 @@ export interface FeatureassessmentCreateParams {
   width?: number;
 }
 
+export interface FeatureassessmentRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface FeatureassessmentCountParams {
   /**
    * Unique identifier of the Analytic Imagery associated with this Feature
    * Assessment record.
    */
   idAnalyticImagery: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface FeatureassessmentCreateBulkParams {
@@ -1582,6 +1596,10 @@ export interface FeatureassessmentQueryParams {
    * Assessment record.
    */
   idAnalyticImagery: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface FeatureassessmentTupleParams {
@@ -1598,6 +1616,10 @@ export interface FeatureassessmentTupleParams {
    * Assessment record.
    */
   idAnalyticImagery: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface FeatureassessmentUnvalidatedPublishParams {
@@ -1889,6 +1911,7 @@ export declare namespace Featureassessment {
     type FeatureassessmentQueryResponse as FeatureassessmentQueryResponse,
     type FeatureassessmentTupleResponse as FeatureassessmentTupleResponse,
     type FeatureassessmentCreateParams as FeatureassessmentCreateParams,
+    type FeatureassessmentRetrieveParams as FeatureassessmentRetrieveParams,
     type FeatureassessmentCountParams as FeatureassessmentCountParams,
     type FeatureassessmentCreateBulkParams as FeatureassessmentCreateBulkParams,
     type FeatureassessmentQueryParams as FeatureassessmentQueryParams,

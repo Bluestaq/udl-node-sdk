@@ -148,6 +148,13 @@ describe('resource objectofinterest', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.objectofinterest.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('delete', async () => {
     const responsePromise = client.objectofinterest.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -170,6 +177,13 @@ describe('resource objectofinterest', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('count: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.objectofinterest.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('get', async () => {
     const responsePromise = client.objectofinterest.get('id');
     const rawResponse = await responsePromise.asResponse();
@@ -179,6 +193,17 @@ describe('resource objectofinterest', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.objectofinterest.get(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -204,6 +229,10 @@ describe('resource objectofinterest', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.objectofinterest.tuple({ columns: 'columns' });
+    const response = await client.objectofinterest.tuple({
+      columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 });

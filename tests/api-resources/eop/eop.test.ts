@@ -75,6 +75,13 @@ describe('resource eop', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.eop.retrieve('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('update: only required params', async () => {
     const responsePromise = client.eop.update('id', {
       classificationMarking: 'U',
@@ -142,7 +149,11 @@ describe('resource eop', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.eop.list({ eopDate: '2019-12-27T18:11:19.117Z' });
+    const response = await client.eop.list({
+      eopDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('delete', async () => {
@@ -168,7 +179,11 @@ describe('resource eop', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.eop.count({ eopDate: '2019-12-27T18:11:19.117Z' });
+    const response = await client.eop.count({
+      eopDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('listTuple: only required params', async () => {
@@ -183,7 +198,12 @@ describe('resource eop', () => {
   });
 
   test('listTuple: required and optional params', async () => {
-    const response = await client.eop.listTuple({ columns: 'columns', eopDate: '2019-12-27T18:11:19.117Z' });
+    const response = await client.eop.listTuple({
+      columns: 'columns',
+      eopDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('queryhelp', async () => {

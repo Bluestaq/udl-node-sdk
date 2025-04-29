@@ -43,8 +43,11 @@ export class Stage extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<StageListResponse> {
-    return this._client.get('/udl/stage', options);
+  list(
+    query: StageListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<StageListResponse> {
+    return this._client.get('/udl/stage', { query, ...options });
   }
 
   /**
@@ -68,8 +71,9 @@ export class Stage extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: StageCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/stage/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -80,8 +84,12 @@ export class Stage extends APIResource {
    * parameter. A Stage represents various stages of a particular launch vehicle,
    * compiled by a particular source. A vehicle may have multiple stage records.
    */
-  get(id: string, options?: RequestOptions): APIPromise<StageGetResponse> {
-    return this._client.get(path`/udl/stage/${id}`, options);
+  get(
+    id: string,
+    query: StageGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<StageGetResponse> {
+    return this._client.get(path`/udl/stage/${id}`, { query, ...options });
   }
 
   /**
@@ -1248,6 +1256,24 @@ export interface StageUpdateParams {
   vernierThrustVacuum?: number;
 }
 
+export interface StageListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface StageCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface StageGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface StageTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1256,6 +1282,10 @@ export interface StageTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Stage {
@@ -1266,6 +1296,9 @@ export declare namespace Stage {
     type StageTupleResponse as StageTupleResponse,
     type StageCreateParams as StageCreateParams,
     type StageUpdateParams as StageUpdateParams,
+    type StageListParams as StageListParams,
+    type StageCountParams as StageCountParams,
+    type StageGetParams as StageGetParams,
     type StageTupleParams as StageTupleParams,
   };
 }

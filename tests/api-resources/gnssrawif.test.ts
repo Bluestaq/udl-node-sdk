@@ -21,7 +21,11 @@ describe('resource gnssrawif', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.gnssrawif.list({ startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.gnssrawif.list({
+      startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -36,7 +40,18 @@ describe('resource gnssrawif', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.gnssrawif.count({ startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.gnssrawif.count({
+      startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
+  });
+
+  test('fileGet: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.gnssrawif.fileGet('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('get', async () => {
@@ -48,6 +63,13 @@ describe('resource gnssrawif', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.gnssrawif.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -79,6 +101,8 @@ describe('resource gnssrawif', () => {
     const response = await client.gnssrawif.tuple({
       columns: 'columns',
       startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 

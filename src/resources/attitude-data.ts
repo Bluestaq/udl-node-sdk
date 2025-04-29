@@ -258,6 +258,10 @@ export interface AttitudeDataTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace AttitudeData {

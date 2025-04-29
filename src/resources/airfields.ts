@@ -26,8 +26,12 @@ export class Airfields extends APIResource {
    * Service operation to get a single Airfield by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AirfieldFull> {
-    return this._client.get(path`/udl/airfield/${id}`, options);
+  retrieve(
+    id: string,
+    query: AirfieldRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirfieldFull> {
+    return this._client.get(path`/udl/airfield/${id}`, { query, ...options });
   }
 
   /**
@@ -48,8 +52,11 @@ export class Airfields extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<AirfieldListResponse> {
-    return this._client.get('/udl/airfield', options);
+  list(
+    query: AirfieldListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirfieldListResponse> {
+    return this._client.get('/udl/airfield', { query, ...options });
   }
 
   /**
@@ -59,8 +66,9 @@ export class Airfields extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: AirfieldCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/airfield/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -864,6 +872,12 @@ export interface AirfieldCreateParams {
   zarId?: string;
 }
 
+export interface AirfieldRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AirfieldUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -1097,6 +1111,18 @@ export interface AirfieldUpdateParams {
   zarId?: string;
 }
 
+export interface AirfieldListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface AirfieldCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AirfieldTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1105,6 +1131,10 @@ export interface AirfieldTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Airfields {
@@ -1115,7 +1145,10 @@ export declare namespace Airfields {
     type AirfieldCountResponse as AirfieldCountResponse,
     type AirfieldTupleResponse as AirfieldTupleResponse,
     type AirfieldCreateParams as AirfieldCreateParams,
+    type AirfieldRetrieveParams as AirfieldRetrieveParams,
     type AirfieldUpdateParams as AirfieldUpdateParams,
+    type AirfieldListParams as AirfieldListParams,
+    type AirfieldCountParams as AirfieldCountParams,
     type AirfieldTupleParams as AirfieldTupleParams,
   };
 }

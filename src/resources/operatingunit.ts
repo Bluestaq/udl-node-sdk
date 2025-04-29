@@ -43,8 +43,11 @@ export class Operatingunit extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<OperatingunitListResponse> {
-    return this._client.get('/udl/operatingunit', options);
+  list(
+    query: OperatingunitListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OperatingunitListResponse> {
+    return this._client.get('/udl/operatingunit', { query, ...options });
   }
 
   /**
@@ -67,8 +70,12 @@ export class Operatingunit extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: OperatingunitCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/operatingunit/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -79,8 +86,12 @@ export class Operatingunit extends APIResource {
    * as a path parameter. Operatingunit defines a unit or organization which operates
    * or controls a space-related Entity.
    */
-  get(id: string, options?: RequestOptions): APIPromise<OperatingunitGetResponse> {
-    return this._client.get(path`/udl/operatingunit/${id}`, options);
+  get(
+    id: string,
+    query: OperatingunitGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OperatingunitGetResponse> {
+    return this._client.get(path`/udl/operatingunit/${id}`, { query, ...options });
   }
 
   /**
@@ -2836,6 +2847,24 @@ export interface OperatingunitUpdateParams {
   wac?: string;
 }
 
+export interface OperatingunitListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OperatingunitCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OperatingunitGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface OperatingunitTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -2844,6 +2873,10 @@ export interface OperatingunitTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Operatingunit {
@@ -2854,6 +2887,9 @@ export declare namespace Operatingunit {
     type OperatingunitTupleResponse as OperatingunitTupleResponse,
     type OperatingunitCreateParams as OperatingunitCreateParams,
     type OperatingunitUpdateParams as OperatingunitUpdateParams,
+    type OperatingunitListParams as OperatingunitListParams,
+    type OperatingunitCountParams as OperatingunitCountParams,
+    type OperatingunitGetParams as OperatingunitGetParams,
     type OperatingunitTupleParams as OperatingunitTupleParams,
   };
 }

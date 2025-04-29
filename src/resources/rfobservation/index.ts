@@ -10,6 +10,7 @@ export {
   type RfobservationListParams,
   type RfobservationCountParams,
   type RfobservationCreateBulkParams,
+  type RfobservationGetParams,
   type RfobservationTupleParams,
   type RfobservationUnvalidatedPublishParams,
 } from './rfobservation';

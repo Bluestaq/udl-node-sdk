@@ -6,6 +6,7 @@ import * as HistoryAPI from './history';
 import {
   History,
   HistoryAodrParams,
+  HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
   HistoryListResponse,
@@ -50,8 +51,11 @@ export class Logisticssupport extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<LogisticssupportListResponse> {
-    return this._client.get('/udl/logisticssupport', options);
+  list(
+    query: LogisticssupportListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LogisticssupportListResponse> {
+    return this._client.get('/udl/logisticssupport', { query, ...options });
   }
 
   /**
@@ -61,8 +65,12 @@ export class Logisticssupport extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: LogisticssupportCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/logisticssupport/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -88,8 +96,12 @@ export class Logisticssupport extends APIResource {
    * Service operation to get a single LogisticsSupport record by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<LogisticssupportGetResponse> {
-    return this._client.get(path`/udl/logisticssupport/${id}`, options);
+  get(
+    id: string,
+    query: LogisticssupportGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LogisticssupportGetResponse> {
+    return this._client.get(path`/udl/logisticssupport/${id}`, { query, ...options });
   }
 
   /**
@@ -3907,6 +3919,18 @@ export namespace LogisticssupportUpdateParams {
   }
 }
 
+export interface LogisticssupportListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface LogisticssupportCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface LogisticssupportCreateBulkParams {
   body: Array<LogisticssupportCreateBulkParams.Body>;
 }
@@ -4671,6 +4695,12 @@ export namespace LogisticssupportCreateBulkParams {
   }
 }
 
+export interface LogisticssupportGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface LogisticssupportTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -4679,6 +4709,10 @@ export interface LogisticssupportTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface LogisticssupportUnvalidatedPublishParams {
@@ -5456,7 +5490,10 @@ export declare namespace Logisticssupport {
     type LogisticssupportTupleResponse as LogisticssupportTupleResponse,
     type LogisticssupportCreateParams as LogisticssupportCreateParams,
     type LogisticssupportUpdateParams as LogisticssupportUpdateParams,
+    type LogisticssupportListParams as LogisticssupportListParams,
+    type LogisticssupportCountParams as LogisticssupportCountParams,
     type LogisticssupportCreateBulkParams as LogisticssupportCreateBulkParams,
+    type LogisticssupportGetParams as LogisticssupportGetParams,
     type LogisticssupportTupleParams as LogisticssupportTupleParams,
     type LogisticssupportUnvalidatedPublishParams as LogisticssupportUnvalidatedPublishParams,
   };
@@ -5467,5 +5504,6 @@ export declare namespace Logisticssupport {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
+    type HistoryCountParams as HistoryCountParams,
   };
 }

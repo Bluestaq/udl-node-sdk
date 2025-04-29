@@ -66,8 +66,12 @@ export class Launchevent extends APIResource {
    * Service operation to get a single LaunchEvent record by its unique ID passed as
    * a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<LauncheventGetResponse> {
-    return this._client.get(path`/udl/launchevent/${id}`, options);
+  get(
+    id: string,
+    query: LauncheventGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LauncheventGetResponse> {
+    return this._client.get(path`/udl/launchevent/${id}`, { query, ...options });
   }
 
   /**
@@ -611,6 +615,10 @@ export interface LauncheventListParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgCreateDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface LauncheventCountParams {
@@ -619,6 +627,10 @@ export interface LauncheventCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgCreateDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface LauncheventCreateBulkParams {
@@ -729,6 +741,12 @@ export namespace LauncheventCreateBulkParams {
   }
 }
 
+export interface LauncheventGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface LauncheventTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -743,6 +761,10 @@ export interface LauncheventTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgCreateDate: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface LauncheventUnvalidatedPublishParams {
@@ -863,6 +885,7 @@ export declare namespace Launchevent {
     type LauncheventListParams as LauncheventListParams,
     type LauncheventCountParams as LauncheventCountParams,
     type LauncheventCreateBulkParams as LauncheventCreateBulkParams,
+    type LauncheventGetParams as LauncheventGetParams,
     type LauncheventTupleParams as LauncheventTupleParams,
     type LauncheventUnvalidatedPublishParams as LauncheventUnvalidatedPublishParams,
   };

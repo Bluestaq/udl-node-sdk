@@ -782,6 +782,10 @@ export interface MissileTrackListParams {
    * with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface MissileTrackCountParams {
@@ -790,6 +794,10 @@ export interface MissileTrackCountParams {
    * with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface MissileTrackCreateBulkParams {
@@ -1461,6 +1469,10 @@ export interface MissileTrackTupleParams {
    * with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface MissileTrackUnvalidatedPublishParams {

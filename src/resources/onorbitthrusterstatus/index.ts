@@ -10,5 +10,6 @@ export {
   type OnorbitthrusterstatusListParams,
   type OnorbitthrusterstatusCountParams,
   type OnorbitthrusterstatusCreateBulkParams,
+  type OnorbitthrusterstatusGetParams,
   type OnorbitthrusterstatusTupleParams,
 } from './onorbitthrusterstatus';

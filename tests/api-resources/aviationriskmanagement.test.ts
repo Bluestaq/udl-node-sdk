@@ -91,6 +91,17 @@ describe('resource aviationriskmanagement', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.aviationriskmanagement.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('update: only required params', async () => {
     const responsePromise = client.aviationriskmanagement.update('id', {
       classificationMarking: 'U',
@@ -185,7 +196,11 @@ describe('resource aviationriskmanagement', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.aviationriskmanagement.count({ idMission: 'idMission' });
+    const response = await client.aviationriskmanagement.count({
+      idMission: 'idMission',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -279,7 +294,11 @@ describe('resource aviationriskmanagement', () => {
   });
 
   test('query: required and optional params', async () => {
-    const response = await client.aviationriskmanagement.query({ idMission: 'idMission' });
+    const response = await client.aviationriskmanagement.query({
+      idMission: 'idMission',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('queryHelp', async () => {
@@ -311,6 +330,8 @@ describe('resource aviationriskmanagement', () => {
     const response = await client.aviationriskmanagement.tuple({
       columns: 'columns',
       idMission: 'idMission',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 

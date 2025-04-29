@@ -439,6 +439,10 @@ export interface AIListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AICountParams {
@@ -447,6 +451,10 @@ export interface AICountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AICreateBulkParams {
@@ -769,6 +777,10 @@ export interface AIHistoryCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AITupleParams {
@@ -785,6 +797,10 @@ export interface AITupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 AIs.History = History;

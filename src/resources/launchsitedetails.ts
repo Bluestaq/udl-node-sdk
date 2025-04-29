@@ -43,8 +43,11 @@ export class Launchsitedetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<LaunchsitedetailListResponse> {
-    return this._client.get('/udl/launchsitedetails', options);
+  list(
+    query: LaunchsitedetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaunchsitedetailListResponse> {
+    return this._client.get('/udl/launchsitedetails', { query, ...options });
   }
 
   /**
@@ -80,8 +83,12 @@ export class Launchsitedetails extends APIResource {
    * launch site by a particular source. A launch site may have several details
    * records.
    */
-  get(id: string, options?: RequestOptions): APIPromise<LaunchsitedetailGetResponse> {
-    return this._client.get(path`/udl/launchsitedetails/${id}`, options);
+  get(
+    id: string,
+    query: LaunchsitedetailGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaunchsitedetailGetResponse> {
+    return this._client.get(path`/udl/launchsitedetails/${id}`, { query, ...options });
   }
 }
 
@@ -769,11 +776,27 @@ export interface LaunchsitedetailUpdateParams {
   origin?: string;
 }
 
+export interface LaunchsitedetailListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface LaunchsitedetailFindBySourceParams {
   /**
    * The source of the LaunchSiteDetails records to find.
    */
   source: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface LaunchsitedetailGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Launchsitedetails {
@@ -783,6 +806,8 @@ export declare namespace Launchsitedetails {
     type LaunchsitedetailGetResponse as LaunchsitedetailGetResponse,
     type LaunchsitedetailCreateParams as LaunchsitedetailCreateParams,
     type LaunchsitedetailUpdateParams as LaunchsitedetailUpdateParams,
+    type LaunchsitedetailListParams as LaunchsitedetailListParams,
     type LaunchsitedetailFindBySourceParams as LaunchsitedetailFindBySourceParams,
+    type LaunchsitedetailGetParams as LaunchsitedetailGetParams,
   };
 }

@@ -94,7 +94,7 @@ describe('resource poi', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.poi.list({ ts: '2019-12-27T18:11:19.117Z' });
+    const response = await client.poi.list({ ts: '2019-12-27T18:11:19.117Z', firstResult: 0, maxResult: 0 });
   });
 
   test('count: only required params', async () => {
@@ -109,7 +109,7 @@ describe('resource poi', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.poi.count({ ts: '2019-12-27T18:11:19.117Z' });
+    const response = await client.poi.count({ ts: '2019-12-27T18:11:19.117Z', firstResult: 0, maxResult: 0 });
   });
 
   test('createBulk: only required params', async () => {
@@ -204,6 +204,13 @@ describe('resource poi', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.poi.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.poi.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -227,7 +234,12 @@ describe('resource poi', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.poi.tuple({ columns: 'columns', ts: '2019-12-27T18:11:19.117Z' });
+    const response = await client.poi.tuple({
+      columns: 'columns',
+      ts: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('unvalidatedPublish: only required params', async () => {

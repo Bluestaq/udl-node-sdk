@@ -130,6 +130,13 @@ describe('resource sitestatus', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.sitestatus.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('delete', async () => {
     const responsePromise = client.sitestatus.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -152,6 +159,13 @@ describe('resource sitestatus', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('count: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.sitestatus.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('get', async () => {
     const responsePromise = client.sitestatus.get('id');
     const rawResponse = await responsePromise.asResponse();
@@ -161,6 +175,13 @@ describe('resource sitestatus', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.sitestatus.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -186,6 +207,6 @@ describe('resource sitestatus', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.sitestatus.tuple({ columns: 'columns' });
+    const response = await client.sitestatus.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
   });
 });

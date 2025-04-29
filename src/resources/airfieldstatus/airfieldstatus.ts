@@ -2,7 +2,13 @@
 
 import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
-import { History, HistoryCountResponse, HistoryListParams, HistoryListResponse } from './history';
+import {
+  History,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
@@ -31,8 +37,11 @@ export class Airfieldstatus extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<AirfieldstatusListResponse> {
-    return this._client.get('/udl/airfieldstatus', options);
+  list(
+    query: AirfieldstatusListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirfieldstatusListResponse> {
+    return this._client.get('/udl/airfieldstatus', { query, ...options });
   }
 
   /**
@@ -42,8 +51,12 @@ export class Airfieldstatus extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: AirfieldstatusCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/airfieldstatus/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -841,6 +854,18 @@ export interface AirfieldstatusCreateParams {
   wideWorkingMOG?: number;
 }
 
+export interface AirfieldstatusListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface AirfieldstatusCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 Airfieldstatus.History = History;
 
 export declare namespace Airfieldstatus {
@@ -850,6 +875,8 @@ export declare namespace Airfieldstatus {
     type AirfieldstatusListResponse as AirfieldstatusListResponse,
     type AirfieldstatusCountResponse as AirfieldstatusCountResponse,
     type AirfieldstatusCreateParams as AirfieldstatusCreateParams,
+    type AirfieldstatusListParams as AirfieldstatusListParams,
+    type AirfieldstatusCountParams as AirfieldstatusCountParams,
   };
 
   export {
@@ -857,5 +884,6 @@ export declare namespace Airfieldstatus {
     type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
+    type HistoryCountParams as HistoryCountParams,
   };
 }

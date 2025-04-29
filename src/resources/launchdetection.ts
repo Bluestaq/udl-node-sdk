@@ -39,8 +39,11 @@ export class Launchdetection extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<LaunchdetectionListResponse> {
-    return this._client.get('/udl/launchdetection', options);
+  list(
+    query: LaunchdetectionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaunchdetectionListResponse> {
+    return this._client.get('/udl/launchdetection', { query, ...options });
   }
 
   /**
@@ -62,8 +65,12 @@ export class Launchdetection extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: LaunchdetectionCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/launchdetection/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -73,8 +80,12 @@ export class Launchdetection extends APIResource {
    * Service operation to get a single launch detection record by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<LaunchdetectionGetResponse> {
-    return this._client.get(path`/udl/launchdetection/${id}`, options);
+  get(
+    id: string,
+    query: LaunchdetectionGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaunchdetectionGetResponse> {
+    return this._client.get(path`/udl/launchdetection/${id}`, { query, ...options });
   }
 
   /**
@@ -881,6 +892,24 @@ export interface LaunchdetectionUpdateParams {
   tags?: Array<string>;
 }
 
+export interface LaunchdetectionListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface LaunchdetectionCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface LaunchdetectionGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface LaunchdetectionTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -889,6 +918,10 @@ export interface LaunchdetectionTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Launchdetection {
@@ -899,6 +932,9 @@ export declare namespace Launchdetection {
     type LaunchdetectionTupleResponse as LaunchdetectionTupleResponse,
     type LaunchdetectionCreateParams as LaunchdetectionCreateParams,
     type LaunchdetectionUpdateParams as LaunchdetectionUpdateParams,
+    type LaunchdetectionListParams as LaunchdetectionListParams,
+    type LaunchdetectionCountParams as LaunchdetectionCountParams,
+    type LaunchdetectionGetParams as LaunchdetectionGetParams,
     type LaunchdetectionTupleParams as LaunchdetectionTupleParams,
   };
 }

@@ -44,8 +44,11 @@ export class Onorbitthruster extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<OnorbitthrusterListResponse> {
-    return this._client.get('/udl/onorbitthruster', options);
+  list(
+    query: OnorbitthrusterListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitthrusterListResponse> {
+    return this._client.get('/udl/onorbitthruster', { query, ...options });
   }
 
   /**
@@ -68,8 +71,12 @@ export class Onorbitthruster extends APIResource {
    * spacecraft's engine and a particular on-orbit spacecraft. An Engine type may be
    * associated with many different on-orbit spacecraft.
    */
-  get(id: string, options?: RequestOptions): APIPromise<OnorbitthrusterGetResponse> {
-    return this._client.get(path`/udl/onorbitthruster/${id}`, options);
+  get(
+    id: string,
+    query: OnorbitthrusterGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitthrusterGetResponse> {
+    return this._client.get(path`/udl/onorbitthruster/${id}`, { query, ...options });
   }
 }
 
@@ -514,11 +521,25 @@ export namespace OnorbitthrusterUpdateParams {
   }
 }
 
+export interface OnorbitthrusterListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OnorbitthrusterGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export declare namespace Onorbitthruster {
   export {
     type OnorbitthrusterListResponse as OnorbitthrusterListResponse,
     type OnorbitthrusterGetResponse as OnorbitthrusterGetResponse,
     type OnorbitthrusterCreateParams as OnorbitthrusterCreateParams,
     type OnorbitthrusterUpdateParams as OnorbitthrusterUpdateParams,
+    type OnorbitthrusterListParams as OnorbitthrusterListParams,
+    type OnorbitthrusterGetParams as OnorbitthrusterGetParams,
   };
 }

@@ -172,6 +172,10 @@ export interface HistoryAdorParams {
    */
   columns?: string;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
    * assumed. Current valid values are: EMAIL, SMS.
@@ -199,6 +203,10 @@ export interface HistoryCountParams {
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface HistoryQueryParams {
@@ -214,6 +222,10 @@ export interface HistoryQueryParams {
    * query fields that can be selected.
    */
   columns?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace History {

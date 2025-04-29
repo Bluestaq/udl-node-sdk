@@ -43,8 +43,11 @@ export class Onorbitevent extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<OnorbiteventListResponse> {
-    return this._client.get('/udl/onorbitevent', options);
+  list(
+    query: OnorbiteventListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbiteventListResponse> {
+    return this._client.get('/udl/onorbitevent', { query, ...options });
   }
 
   /**
@@ -68,8 +71,12 @@ export class Onorbitevent extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: OnorbiteventCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/onorbitevent/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -80,8 +87,12 @@ export class Onorbitevent extends APIResource {
    * a path parameter. An OnorbitEvent is an event associated with a particular
    * on-orbit spacecraft including insurance related losses, anomalies and incidents.
    */
-  get(id: string, options?: RequestOptions): APIPromise<OnorbiteventGetResponse> {
-    return this._client.get(path`/udl/onorbitevent/${id}`, options);
+  get(
+    id: string,
+    query: OnorbiteventGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbiteventGetResponse> {
+    return this._client.get(path`/udl/onorbitevent/${id}`, { query, ...options });
   }
 
   /**
@@ -1608,6 +1619,24 @@ export interface OnorbiteventUpdateParams {
   untilTime?: string;
 }
 
+export interface OnorbiteventListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OnorbiteventCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OnorbiteventGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface OnorbiteventTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1616,6 +1645,10 @@ export interface OnorbiteventTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Onorbitevent {
@@ -1626,6 +1659,9 @@ export declare namespace Onorbitevent {
     type OnorbiteventTupleResponse as OnorbiteventTupleResponse,
     type OnorbiteventCreateParams as OnorbiteventCreateParams,
     type OnorbiteventUpdateParams as OnorbiteventUpdateParams,
+    type OnorbiteventListParams as OnorbiteventListParams,
+    type OnorbiteventCountParams as OnorbiteventCountParams,
+    type OnorbiteventGetParams as OnorbiteventGetParams,
     type OnorbiteventTupleParams as OnorbiteventTupleParams,
   };
 }

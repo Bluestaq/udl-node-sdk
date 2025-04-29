@@ -80,7 +80,11 @@ describe('resource h3geo', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.h3geo.list({ startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.h3geo.list({
+      startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -95,7 +99,11 @@ describe('resource h3geo', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.h3geo.count({ startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.h3geo.count({
+      startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('get', async () => {
@@ -107,6 +115,13 @@ describe('resource h3geo', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.h3geo.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -132,6 +147,11 @@ describe('resource h3geo', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.h3geo.tuple({ columns: 'columns', startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.h3geo.tuple({
+      columns: 'columns',
+      startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 });

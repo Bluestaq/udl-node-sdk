@@ -38,8 +38,11 @@ export class Seradatacommdetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SeradatacommdetailListResponse> {
-    return this._client.get('/udl/seradatacommdetails', options);
+  list(
+    query: SeradatacommdetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradatacommdetailListResponse> {
+    return this._client.get('/udl/seradatacommdetails', { query, ...options });
   }
 
   /**
@@ -61,8 +64,12 @@ export class Seradatacommdetails extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: SeradatacommdetailCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/seradatacommdetails/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -72,8 +79,12 @@ export class Seradatacommdetails extends APIResource {
    * Service operation to get a single SeradataCommDetails by its unique ID passed as
    * a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SeradatacommdetailGetResponse> {
-    return this._client.get(path`/udl/seradatacommdetails/${id}`, options);
+  get(
+    id: string,
+    query: SeradatacommdetailGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradatacommdetailGetResponse> {
+    return this._client.get(path`/udl/seradatacommdetails/${id}`, { query, ...options });
   }
 
   /**
@@ -1149,6 +1160,24 @@ export interface SeradatacommdetailUpdateParams {
   userUplinkTo?: number;
 }
 
+export interface SeradatacommdetailListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SeradatacommdetailCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SeradatacommdetailGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SeradatacommdetailTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1157,6 +1186,10 @@ export interface SeradatacommdetailTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Seradatacommdetails {
@@ -1167,6 +1200,9 @@ export declare namespace Seradatacommdetails {
     type SeradatacommdetailTupleResponse as SeradatacommdetailTupleResponse,
     type SeradatacommdetailCreateParams as SeradatacommdetailCreateParams,
     type SeradatacommdetailUpdateParams as SeradatacommdetailUpdateParams,
+    type SeradatacommdetailListParams as SeradatacommdetailListParams,
+    type SeradatacommdetailCountParams as SeradatacommdetailCountParams,
+    type SeradatacommdetailGetParams as SeradatacommdetailGetParams,
     type SeradatacommdetailTupleParams as SeradatacommdetailTupleParams,
   };
 }

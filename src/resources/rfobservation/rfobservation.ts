@@ -73,8 +73,12 @@ export class Rfobservation extends APIResource {
    * Service operation to get a single RF observation by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<RfobservationHistoryAPI.RfobservationdetailsFull> {
-    return this._client.get(path`/udl/rfobservation/${id}`, options);
+  get(
+    id: string,
+    query: RfobservationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RfobservationHistoryAPI.RfobservationdetailsFull> {
+    return this._client.get(path`/udl/rfobservation/${id}`, { query, ...options });
   }
 
   /**
@@ -1688,6 +1692,10 @@ export interface RfobservationListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface RfobservationCountParams {
@@ -1696,6 +1704,10 @@ export interface RfobservationCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface RfobservationCreateBulkParams {
@@ -2261,6 +2273,12 @@ export namespace RfobservationCreateBulkParams {
   }
 }
 
+export interface RfobservationGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface RfobservationTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -2275,6 +2293,10 @@ export interface RfobservationTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface RfobservationUnvalidatedPublishParams {
@@ -2851,6 +2873,7 @@ export declare namespace Rfobservation {
     type RfobservationListParams as RfobservationListParams,
     type RfobservationCountParams as RfobservationCountParams,
     type RfobservationCreateBulkParams as RfobservationCreateBulkParams,
+    type RfobservationGetParams as RfobservationGetParams,
     type RfobservationTupleParams as RfobservationTupleParams,
     type RfobservationUnvalidatedPublishParams as RfobservationUnvalidatedPublishParams,
   };

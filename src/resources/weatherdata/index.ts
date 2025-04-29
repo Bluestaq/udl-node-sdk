@@ -18,6 +18,7 @@ export {
   type WeatherdataListParams,
   type WeatherdataCountParams,
   type WeatherdataCreateBulkParams,
+  type WeatherdataGetParams,
   type WeatherdataTupleParams,
   type WeatherdataUnvalidatedPublishParams,
 } from './weatherdata';

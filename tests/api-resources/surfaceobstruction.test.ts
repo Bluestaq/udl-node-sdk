@@ -92,6 +92,13 @@ describe('resource surfaceobstruction', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.surfaceobstruction.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('delete', async () => {
     const responsePromise = client.surfaceobstruction.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -114,6 +121,13 @@ describe('resource surfaceobstruction', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('count: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.surfaceobstruction.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('get', async () => {
     const responsePromise = client.surfaceobstruction.get('id');
     const rawResponse = await responsePromise.asResponse();
@@ -123,6 +137,17 @@ describe('resource surfaceobstruction', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.surfaceobstruction.get(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -148,7 +173,11 @@ describe('resource surfaceobstruction', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.surfaceobstruction.tuple({ columns: 'columns' });
+    const response = await client.surfaceobstruction.tuple({
+      columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('unvalidatedPublish: only required params', async () => {

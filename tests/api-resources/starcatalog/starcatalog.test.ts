@@ -159,7 +159,10 @@ describe('resource starcatalog', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.starcatalog.list({ dec: 0, ra: 0 }, { path: '/_stainless_unknown_path' }),
+      client.starcatalog.list(
+        { dec: 0, firstResult: 0, maxResult: 0, ra: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -188,7 +191,10 @@ describe('resource starcatalog', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.starcatalog.count({ dec: 0, ra: 0 }, { path: '/_stainless_unknown_path' }),
+      client.starcatalog.count(
+        { dec: 0, firstResult: 0, maxResult: 0, ra: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
@@ -279,6 +285,13 @@ describe('resource starcatalog', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.starcatalog.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.starcatalog.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -302,7 +315,13 @@ describe('resource starcatalog', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.starcatalog.tuple({ columns: 'columns', dec: 0, ra: 0 });
+    const response = await client.starcatalog.tuple({
+      columns: 'columns',
+      dec: 0,
+      firstResult: 0,
+      maxResult: 0,
+      ra: 0,
+    });
   });
 
   test('unvalidatedPublish: only required params', async () => {

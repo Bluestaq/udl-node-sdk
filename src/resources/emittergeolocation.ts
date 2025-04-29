@@ -27,8 +27,12 @@ export class Emittergeolocation extends APIResource {
    * Service operation to get a single RF geolocation by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<EmittergeolocationRetrieveResponse> {
-    return this._client.get(path`/udl/emittergeolocation/${id}`, options);
+  retrieve(
+    id: string,
+    query: EmittergeolocationRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EmittergeolocationRetrieveResponse> {
+    return this._client.get(path`/udl/emittergeolocation/${id}`, { query, ...options });
   }
 
   /**
@@ -1267,12 +1271,22 @@ export interface EmittergeolocationCreateParams {
   tags?: Array<string>;
 }
 
+export interface EmittergeolocationRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EmittergeolocationCountParams {
   /**
    * The start time for this Emitter Geo Location data set in ISO 8601 UTC with
    * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EmittergeolocationCreateBulkParams {
@@ -1542,6 +1556,10 @@ export interface EmittergeolocationQueryParams {
    * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EmittergeolocationTupleParams {
@@ -1558,6 +1576,10 @@ export interface EmittergeolocationTupleParams {
    * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface EmittergeolocationUnvalidatedPublishParams {
@@ -1828,6 +1850,7 @@ export declare namespace Emittergeolocation {
     type EmittergeolocationQueryResponse as EmittergeolocationQueryResponse,
     type EmittergeolocationTupleResponse as EmittergeolocationTupleResponse,
     type EmittergeolocationCreateParams as EmittergeolocationCreateParams,
+    type EmittergeolocationRetrieveParams as EmittergeolocationRetrieveParams,
     type EmittergeolocationCountParams as EmittergeolocationCountParams,
     type EmittergeolocationCreateBulkParams as EmittergeolocationCreateBulkParams,
     type EmittergeolocationQueryParams as EmittergeolocationQueryParams,

@@ -25,8 +25,12 @@ export class Beam extends APIResource {
    * Service operation to get a single Beam record by its unique ID passed as a path
    * parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<BeamFull> {
-    return this._client.get(path`/udl/beam/${id}`, options);
+  retrieve(
+    id: string,
+    query: BeamRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<BeamFull> {
+    return this._client.get(path`/udl/beam/${id}`, { query, ...options });
   }
 
   /**
@@ -47,8 +51,11 @@ export class Beam extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<BeamListResponse> {
-    return this._client.get('/udl/beam', options);
+  list(
+    query: BeamListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<BeamListResponse> {
+    return this._client.get('/udl/beam', { query, ...options });
   }
 
   /**
@@ -70,8 +77,9 @@ export class Beam extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: BeamCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/beam/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -328,6 +336,12 @@ export interface BeamCreateParams {
   origin?: string;
 }
 
+export interface BeamRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface BeamUpdateParams {
   /**
    * The antenna beam ID of the particular beam for this channel. beamName is not
@@ -382,6 +396,18 @@ export interface BeamUpdateParams {
   origin?: string;
 }
 
+export interface BeamListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface BeamCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface BeamTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -390,6 +416,10 @@ export interface BeamTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Beam {
@@ -400,7 +430,10 @@ export declare namespace Beam {
     type BeamCountResponse as BeamCountResponse,
     type BeamTupleResponse as BeamTupleResponse,
     type BeamCreateParams as BeamCreateParams,
+    type BeamRetrieveParams as BeamRetrieveParams,
     type BeamUpdateParams as BeamUpdateParams,
+    type BeamListParams as BeamListParams,
+    type BeamCountParams as BeamCountParams,
     type BeamTupleParams as BeamTupleParams,
   };
 }

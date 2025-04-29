@@ -12,8 +12,12 @@ export class AircraftSorties extends APIResource {
    * Service operation to get a single AircraftSortie record by its unique ID passed
    * as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AircraftSortieAPI.AircraftsortieFull> {
-    return this._client.get(path`/udl/aircraftsortie/${id}`, options);
+  retrieve(
+    id: string,
+    query: AircraftSortyRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AircraftSortieAPI.AircraftsortieFull> {
+    return this._client.get(path`/udl/aircraftsortie/${id}`, { query, ...options });
   }
 
   /**
@@ -55,6 +59,12 @@ export class AircraftSorties extends APIResource {
 }
 
 export type AircraftSortyTupleResponse = Array<AircraftSortieAPI.AircraftsortieFull>;
+
+export interface AircraftSortyRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
 
 export interface AircraftSortyUpdateParams {
   /**
@@ -467,11 +477,16 @@ export interface AircraftSortyTupleParams {
    * UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   plannedDepTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace AircraftSorties {
   export {
     type AircraftSortyTupleResponse as AircraftSortyTupleResponse,
+    type AircraftSortyRetrieveParams as AircraftSortyRetrieveParams,
     type AircraftSortyUpdateParams as AircraftSortyUpdateParams,
     type AircraftSortyTupleParams as AircraftSortyTupleParams,
   };

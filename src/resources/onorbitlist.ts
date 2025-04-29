@@ -40,8 +40,11 @@ export class Onorbitlist extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<OnorbitlistListResponse> {
-    return this._client.get('/udl/onorbitlist', options);
+  list(
+    query: OnorbitlistListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitlistListResponse> {
+    return this._client.get('/udl/onorbitlist', { query, ...options });
   }
 
   /**
@@ -64,8 +67,9 @@ export class Onorbitlist extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: OnorbitlistCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/onorbitlist/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -75,8 +79,12 @@ export class Onorbitlist extends APIResource {
    * Service operation to get a single OnorbitList record by its unique ID passed as
    * a path parameter. An OnorbitList is just a generic named list of on-orbit IDs.
    */
-  get(id: string, options?: RequestOptions): APIPromise<OnorbitlistGetResponse> {
-    return this._client.get(path`/udl/onorbitlist/${id}`, options);
+  get(
+    id: string,
+    query: OnorbitlistGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OnorbitlistGetResponse> {
+    return this._client.get(path`/udl/onorbitlist/${id}`, { query, ...options });
   }
 
   /**
@@ -472,6 +480,24 @@ export interface OnorbitlistUpdateParams {
   origin?: string;
 }
 
+export interface OnorbitlistListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OnorbitlistCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface OnorbitlistGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface OnorbitlistTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -480,6 +506,10 @@ export interface OnorbitlistTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Onorbitlist {
@@ -490,6 +520,9 @@ export declare namespace Onorbitlist {
     type OnorbitlistTupleResponse as OnorbitlistTupleResponse,
     type OnorbitlistCreateParams as OnorbitlistCreateParams,
     type OnorbitlistUpdateParams as OnorbitlistUpdateParams,
+    type OnorbitlistListParams as OnorbitlistListParams,
+    type OnorbitlistCountParams as OnorbitlistCountParams,
+    type OnorbitlistGetParams as OnorbitlistGetParams,
     type OnorbitlistTupleParams as OnorbitlistTupleParams,
   };
 }

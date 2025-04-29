@@ -1316,6 +1316,10 @@ export interface TrackdetailListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface TrackdetailCountParams {
@@ -1324,6 +1328,10 @@ export interface TrackdetailCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface TrackdetailCreateBulkParams {
@@ -2547,6 +2555,10 @@ export interface TrackdetailTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 Trackdetails.History = History;

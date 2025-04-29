@@ -48,8 +48,11 @@ export class Seradataspacecraftdetails extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SeradataspacecraftdetailListResponse> {
-    return this._client.get('/udl/seradataspacecraftdetails', options);
+  list(
+    query: SeradataspacecraftdetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradataspacecraftdetailListResponse> {
+    return this._client.get('/udl/seradataspacecraftdetails', { query, ...options });
   }
 
   /**
@@ -71,8 +74,12 @@ export class Seradataspacecraftdetails extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: SeradataspacecraftdetailCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/seradataspacecraftdetails/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -82,8 +89,12 @@ export class Seradataspacecraftdetails extends APIResource {
    * Service operation to get a single SeradataSpacecraftDetails by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SeradataspacecraftdetailGetResponse> {
-    return this._client.get(path`/udl/seradataspacecraftdetails/${id}`, options);
+  get(
+    id: string,
+    query: SeradataspacecraftdetailGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradataspacecraftdetailGetResponse> {
+    return this._client.get(path`/udl/seradataspacecraftdetails/${id}`, { query, ...options });
   }
 
   /**
@@ -6848,6 +6859,24 @@ export interface SeradataspacecraftdetailUpdateParams {
   youtubeLaunchLink?: string;
 }
 
+export interface SeradataspacecraftdetailListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SeradataspacecraftdetailCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SeradataspacecraftdetailGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SeradataspacecraftdetailTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -6856,6 +6885,10 @@ export interface SeradataspacecraftdetailTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Seradataspacecraftdetails {
@@ -6866,6 +6899,9 @@ export declare namespace Seradataspacecraftdetails {
     type SeradataspacecraftdetailTupleResponse as SeradataspacecraftdetailTupleResponse,
     type SeradataspacecraftdetailCreateParams as SeradataspacecraftdetailCreateParams,
     type SeradataspacecraftdetailUpdateParams as SeradataspacecraftdetailUpdateParams,
+    type SeradataspacecraftdetailListParams as SeradataspacecraftdetailListParams,
+    type SeradataspacecraftdetailCountParams as SeradataspacecraftdetailCountParams,
+    type SeradataspacecraftdetailGetParams as SeradataspacecraftdetailGetParams,
     type SeradataspacecraftdetailTupleParams as SeradataspacecraftdetailTupleParams,
   };
 }

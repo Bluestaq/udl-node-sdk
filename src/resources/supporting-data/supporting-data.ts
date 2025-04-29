@@ -2,13 +2,24 @@
 
 import { APIResource } from '../../core/resource';
 import * as DataTypesAPI from './data-types';
-import { DataTypeListResponse, DataTypes } from './data-types';
+import { DataTypeListParams, DataTypeListResponse, DataTypes } from './data-types';
 import * as DataownerAPI from './dataowner';
-import { Dataowner, DataownerAbridged, DataownerCountResponse, DataownerRetrieveResponse } from './dataowner';
+import {
+  Dataowner,
+  DataownerAbridged,
+  DataownerCountParams,
+  DataownerCountResponse,
+  DataownerRetrieveParams,
+  DataownerRetrieveResponse,
+} from './dataowner';
 import * as DataownerTypesAPI from './dataowner-types';
-import { DataownerTypeListResponse, DataownerTypes } from './dataowner-types';
+import { DataownerTypeListParams, DataownerTypeListResponse, DataownerTypes } from './dataowner-types';
 import * as ProviderMetadataAPI from './provider-metadata';
-import { ProviderMetadata, ProviderMetadataRetrieveResponse } from './provider-metadata';
+import {
+  ProviderMetadata,
+  ProviderMetadataRetrieveParams,
+  ProviderMetadataRetrieveResponse,
+} from './provider-metadata';
 import * as QueryHelpAPI from './query-help';
 import { QueryHelp } from './query-help';
 
@@ -29,20 +40,31 @@ SupportingData.ProviderMetadata = ProviderMetadata;
 SupportingData.QueryHelp = QueryHelp;
 
 export declare namespace SupportingData {
-  export { DataTypes as DataTypes, type DataTypeListResponse as DataTypeListResponse };
+  export {
+    DataTypes as DataTypes,
+    type DataTypeListResponse as DataTypeListResponse,
+    type DataTypeListParams as DataTypeListParams,
+  };
 
   export {
     Dataowner as Dataowner,
     type DataownerAbridged as DataownerAbridged,
     type DataownerRetrieveResponse as DataownerRetrieveResponse,
     type DataownerCountResponse as DataownerCountResponse,
+    type DataownerRetrieveParams as DataownerRetrieveParams,
+    type DataownerCountParams as DataownerCountParams,
   };
 
-  export { DataownerTypes as DataownerTypes, type DataownerTypeListResponse as DataownerTypeListResponse };
+  export {
+    DataownerTypes as DataownerTypes,
+    type DataownerTypeListResponse as DataownerTypeListResponse,
+    type DataownerTypeListParams as DataownerTypeListParams,
+  };
 
   export {
     ProviderMetadata as ProviderMetadata,
     type ProviderMetadataRetrieveResponse as ProviderMetadataRetrieveResponse,
+    type ProviderMetadataRetrieveParams as ProviderMetadataRetrieveParams,
   };
 
   export { QueryHelp as QueryHelp };

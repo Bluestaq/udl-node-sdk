@@ -58,7 +58,11 @@ describe('resource launchevent', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.launchevent.list({ msgCreateDate: '2019-12-27T18:11:19.117Z' });
+    const response = await client.launchevent.list({
+      msgCreateDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -73,7 +77,11 @@ describe('resource launchevent', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.launchevent.count({ msgCreateDate: '2019-12-27T18:11:19.117Z' });
+    const response = await client.launchevent.count({
+      msgCreateDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -132,6 +140,13 @@ describe('resource launchevent', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.launchevent.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.launchevent.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -161,6 +176,8 @@ describe('resource launchevent', () => {
     const response = await client.launchevent.tuple({
       columns: 'columns',
       msgCreateDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 

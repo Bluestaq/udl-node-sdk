@@ -124,7 +124,12 @@ describe('resource sensormaintenance', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.sensormaintenance.list(
-        { endTime: '2019-12-27T18:11:19.117Z', startTime: '2019-12-27T18:11:19.117Z' },
+        {
+          endTime: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResult: 0,
+          startTime: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -156,7 +161,12 @@ describe('resource sensormaintenance', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.sensormaintenance.count(
-        { endTime: '2019-12-27T18:11:19.117Z', startTime: '2019-12-27T18:11:19.117Z' },
+        {
+          endTime: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResult: 0,
+          startTime: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -233,6 +243,16 @@ describe('resource sensormaintenance', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('current: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.sensormaintenance.current(
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('get', async () => {
     const responsePromise = client.sensormaintenance.get('id');
     const rawResponse = await responsePromise.asResponse();
@@ -242,6 +262,17 @@ describe('resource sensormaintenance', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.sensormaintenance.get(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -270,6 +301,8 @@ describe('resource sensormaintenance', () => {
     const response = await client.sensormaintenance.tuple({
       columns: 'columns',
       endTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
       startTime: '2019-12-27T18:11:19.117Z',
     });
   });

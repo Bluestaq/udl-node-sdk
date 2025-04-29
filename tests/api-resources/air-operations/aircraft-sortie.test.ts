@@ -117,6 +117,8 @@ describe('resource aircraftSortie', () => {
   test('list: required and optional params', async () => {
     const response = await client.airOperations.aircraftSortie.list({
       plannedDepTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 
@@ -136,6 +138,8 @@ describe('resource aircraftSortie', () => {
   test('count: required and optional params', async () => {
     const response = await client.airOperations.aircraftSortie.count({
       plannedDepTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 
@@ -256,6 +260,8 @@ describe('resource aircraftSortie', () => {
     const response = await client.airOperations.aircraftSortie.historyAodr({
       plannedDepTime: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',
@@ -278,6 +284,8 @@ describe('resource aircraftSortie', () => {
   test('historyCount: required and optional params', async () => {
     const response = await client.airOperations.aircraftSortie.historyCount({
       plannedDepTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 
@@ -298,6 +306,8 @@ describe('resource aircraftSortie', () => {
     const response = await client.airOperations.aircraftSortie.historyQuery({
       plannedDepTime: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 });

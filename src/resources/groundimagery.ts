@@ -51,8 +51,12 @@ export class Groundimagery extends APIResource {
    * as a path parameter. GroundImagery represents metadata about a ground image, as
    * well as the actual binary image data.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.GroundImageryFull> {
-    return this._client.get(path`/udl/groundimagery/${id}`, options);
+  get(
+    id: string,
+    query: GroundimageryGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.GroundImageryFull> {
+    return this._client.get(path`/udl/groundimagery/${id}`, { query, ...options });
   }
 
   /**
@@ -60,8 +64,13 @@ export class Groundimagery extends APIResource {
    * passed as a path parameter. The image is returned as an attachment
    * Content-Disposition.
    */
-  getFile(id: string, options?: RequestOptions): APIPromise<Response> {
+  getFile(
+    id: string,
+    query: GroundimageryGetFileParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
     return this._client.get(path`/udl/groundimagery/getFile/${id}`, {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
@@ -427,6 +436,10 @@ export interface GroundimageryListParams {
    * Timestamp the image was captured/produced. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   imageTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface GroundimageryCountParams {
@@ -434,6 +447,22 @@ export interface GroundimageryCountParams {
    * Timestamp the image was captured/produced. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   imageTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface GroundimageryGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface GroundimageryGetFileParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface GroundimageryTupleParams {
@@ -449,6 +478,10 @@ export interface GroundimageryTupleParams {
    * Timestamp the image was captured/produced. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   imageTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Groundimagery {
@@ -459,6 +492,8 @@ export declare namespace Groundimagery {
     type GroundimageryCreateParams as GroundimageryCreateParams,
     type GroundimageryListParams as GroundimageryListParams,
     type GroundimageryCountParams as GroundimageryCountParams,
+    type GroundimageryGetParams as GroundimageryGetParams,
+    type GroundimageryGetFileParams as GroundimageryGetFileParams,
     type GroundimageryTupleParams as GroundimageryTupleParams,
   };
 }

@@ -86,6 +86,13 @@ describe('resource substatus', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.substatus.list({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('delete', async () => {
     const responsePromise = client.substatus.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -108,6 +115,13 @@ describe('resource substatus', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('count: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.substatus.count({ firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('get', async () => {
     const responsePromise = client.substatus.get('id');
     const rawResponse = await responsePromise.asResponse();
@@ -117,6 +131,13 @@ describe('resource substatus', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.substatus.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -142,6 +163,6 @@ describe('resource substatus', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.substatus.tuple({ columns: 'columns' });
+    const response = await client.substatus.tuple({ columns: 'columns', firstResult: 0, maxResult: 0 });
   });
 });

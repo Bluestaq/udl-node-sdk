@@ -18,6 +18,7 @@ export {
   type SgiListParams,
   type SgiCountParams,
   type SgiCreateBulkParams,
+  type SgiGetParams,
   type SgiGetDataByEffectiveAsOfDateParams,
   type SgiTupleParams,
   type SgiUnvalidatedPublishParams,

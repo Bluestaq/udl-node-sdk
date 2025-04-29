@@ -10,6 +10,7 @@ import {
   OperationCreateParams,
   OperationListParams,
   OperationListResponse,
+  OperationRetrieveParams,
   OperationRetrieveResponse,
   OperationTupleParams,
   OperationTupleResponse,
@@ -56,8 +57,11 @@ export class Site extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SiteListResponse> {
-    return this._client.get('/udl/site', options);
+  list(
+    query: SiteListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SiteListResponse> {
+    return this._client.get('/udl/site', { query, ...options });
   }
 
   /**
@@ -67,8 +71,9 @@ export class Site extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: SiteCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/site/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -78,8 +83,12 @@ export class Site extends APIResource {
    * Service operation to get a single Site record by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SiteGetResponse> {
-    return this._client.get(path`/udl/site/${id}`, options);
+  get(
+    id: string,
+    query: SiteGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SiteGetResponse> {
+    return this._client.get(path`/udl/site/${id}`, { query, ...options });
   }
 
   /**
@@ -4135,6 +4144,24 @@ export interface SiteUpdateParams {
   wac?: string;
 }
 
+export interface SiteListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SiteCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SiteGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SiteTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -4143,6 +4170,10 @@ export interface SiteTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 Site.Operations = Operations;
@@ -4155,6 +4186,9 @@ export declare namespace Site {
     type SiteTupleResponse as SiteTupleResponse,
     type SiteCreateParams as SiteCreateParams,
     type SiteUpdateParams as SiteUpdateParams,
+    type SiteListParams as SiteListParams,
+    type SiteCountParams as SiteCountParams,
+    type SiteGetParams as SiteGetParams,
     type SiteTupleParams as SiteTupleParams,
   };
 
@@ -4165,6 +4199,7 @@ export declare namespace Site {
     type OperationCountResponse as OperationCountResponse,
     type OperationTupleResponse as OperationTupleResponse,
     type OperationCreateParams as OperationCreateParams,
+    type OperationRetrieveParams as OperationRetrieveParams,
     type OperationUpdateParams as OperationUpdateParams,
     type OperationListParams as OperationListParams,
     type OperationCountParams as OperationCountParams,

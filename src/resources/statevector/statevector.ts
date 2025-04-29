@@ -3,7 +3,13 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as CurrentAPI from './current';
-import { Current, CurrentListResponse, CurrentTupleParams, CurrentTupleResponse } from './current';
+import {
+  Current,
+  CurrentListParams,
+  CurrentListResponse,
+  CurrentTupleParams,
+  CurrentTupleResponse,
+} from './current';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -82,8 +88,12 @@ export class Statevector extends APIResource {
    * Service operation to get a single state vector by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<StateVectorFull> {
-    return this._client.get(path`/udl/statevector/${id}`, options);
+  get(
+    id: string,
+    query: StatevectorGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<StateVectorFull> {
+    return this._client.get(path`/udl/statevector/${id}`, { query, ...options });
   }
 
   /**
@@ -3006,6 +3016,10 @@ export interface StatevectorListParams {
    * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   epoch: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface StatevectorCountParams {
@@ -3014,10 +3028,20 @@ export interface StatevectorCountParams {
    * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   epoch: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface StatevectorCreateBulkParams {
   body: Array<StateVectorIngest>;
+}
+
+export interface StatevectorGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface StatevectorTupleParams {
@@ -3034,6 +3058,10 @@ export interface StatevectorTupleParams {
    * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   epoch: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface StatevectorUnvalidatedPublishParams {
@@ -3055,6 +3083,7 @@ export declare namespace Statevector {
     type StatevectorListParams as StatevectorListParams,
     type StatevectorCountParams as StatevectorCountParams,
     type StatevectorCreateBulkParams as StatevectorCreateBulkParams,
+    type StatevectorGetParams as StatevectorGetParams,
     type StatevectorTupleParams as StatevectorTupleParams,
     type StatevectorUnvalidatedPublishParams as StatevectorUnvalidatedPublishParams,
   };
@@ -3072,6 +3101,7 @@ export declare namespace Statevector {
     Current as Current,
     type CurrentListResponse as CurrentListResponse,
     type CurrentTupleResponse as CurrentTupleResponse,
+    type CurrentListParams as CurrentListParams,
     type CurrentTupleParams as CurrentTupleParams,
   };
 }

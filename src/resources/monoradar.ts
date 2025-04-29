@@ -496,6 +496,10 @@ export interface MonoradarListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface MonoradarCountParams {
@@ -504,6 +508,10 @@ export interface MonoradarCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface MonoradarCreateBulkParams {
@@ -918,6 +926,10 @@ export interface MonoradarTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Monoradar {

@@ -16,8 +16,11 @@ export class Current extends APIResource {
    * SPCS'. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more
    * details on additional query parameter information.
    */
-  list(options?: RequestOptions): APIPromise<CurrentListResponse> {
-    return this._client.get('/udl/elset/current', options);
+  list(
+    query: CurrentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CurrentListResponse> {
+    return this._client.get('/udl/elset/current', { query, ...options });
   }
 
   /**
@@ -39,6 +42,12 @@ export type CurrentListResponse = Array<ElsetsAPI.ElsetAbridged>;
 
 export type CurrentTupleResponse = Array<ElsetsAPI.Elset>;
 
+export interface CurrentListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface CurrentTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -47,12 +56,17 @@ export interface CurrentTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Current {
   export {
     type CurrentListResponse as CurrentListResponse,
     type CurrentTupleResponse as CurrentTupleResponse,
+    type CurrentListParams as CurrentListParams,
     type CurrentTupleParams as CurrentTupleParams,
   };
 }

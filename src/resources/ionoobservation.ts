@@ -1493,6 +1493,10 @@ export interface IonoobservationListParams {
    * Sounding Start time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTimeUTC: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface IonoobservationCountParams {
@@ -1500,6 +1504,10 @@ export interface IonoobservationCountParams {
    * Sounding Start time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTimeUTC: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface IonoobservationCreateBulkParams {
@@ -2876,6 +2884,10 @@ export interface IonoobservationTupleParams {
    * Sounding Start time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTimeUTC: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface IonoobservationUnvalidatedPublishParams {

@@ -39,8 +39,11 @@ export class Solararray extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SolararrayListResponse> {
-    return this._client.get('/udl/solararray', options);
+  list(
+    query: SolararrayListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SolararrayListResponse> {
+    return this._client.get('/udl/solararray', { query, ...options });
   }
 
   /**
@@ -62,8 +65,9 @@ export class Solararray extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: SolararrayCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/solararray/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -73,8 +77,12 @@ export class Solararray extends APIResource {
    * Service operation to get a single SolarArray record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SolararrayGetResponse> {
-    return this._client.get(path`/udl/solararray/${id}`, options);
+  get(
+    id: string,
+    query: SolararrayGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SolararrayGetResponse> {
+    return this._client.get(path`/udl/solararray/${id}`, { query, ...options });
   }
 
   /**
@@ -430,6 +438,24 @@ export interface SolararrayUpdateParams {
   origin?: string;
 }
 
+export interface SolararrayListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SolararrayCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SolararrayGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SolararrayTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -438,6 +464,10 @@ export interface SolararrayTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Solararray {
@@ -448,6 +478,9 @@ export declare namespace Solararray {
     type SolararrayTupleResponse as SolararrayTupleResponse,
     type SolararrayCreateParams as SolararrayCreateParams,
     type SolararrayUpdateParams as SolararrayUpdateParams,
+    type SolararrayListParams as SolararrayListParams,
+    type SolararrayCountParams as SolararrayCountParams,
+    type SolararrayGetParams as SolararrayGetParams,
     type SolararrayTupleParams as SolararrayTupleParams,
   };
 }

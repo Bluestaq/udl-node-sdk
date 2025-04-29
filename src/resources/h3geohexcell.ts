@@ -366,6 +366,10 @@ export interface H3geohexcellListParams {
    * Unique identifier of the parent H3 Geo record containing this hex cell. (uuid)
    */
   idH3Geo: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface H3geohexcellCountParams {
@@ -373,6 +377,10 @@ export interface H3geohexcellCountParams {
    * Unique identifier of the parent H3 Geo record containing this hex cell. (uuid)
    */
   idH3Geo: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface H3geohexcellTupleParams {
@@ -388,6 +396,10 @@ export interface H3geohexcellTupleParams {
    * Unique identifier of the parent H3 Geo record containing this hex cell. (uuid)
    */
   idH3Geo: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace H3geohexcell {

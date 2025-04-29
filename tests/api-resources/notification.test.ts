@@ -51,7 +51,11 @@ describe('resource notification', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.notification.list({ createdAt: '2019-12-27' });
+    const response = await client.notification.list({
+      createdAt: '2019-12-27',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -66,7 +70,11 @@ describe('resource notification', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.notification.count({ createdAt: '2019-12-27' });
+    const response = await client.notification.count({
+      createdAt: '2019-12-27',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createRaw: only required params', async () => {
@@ -111,6 +119,13 @@ describe('resource notification', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.notification.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.notification.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -134,6 +149,11 @@ describe('resource notification', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.notification.tuple({ columns: 'columns', createdAt: '2019-12-27' });
+    const response = await client.notification.tuple({
+      columns: 'columns',
+      createdAt: '2019-12-27',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 });

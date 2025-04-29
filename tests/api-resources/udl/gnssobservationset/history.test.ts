@@ -24,6 +24,8 @@ describe('resource history', () => {
     const response = await client.udl.gnssobservationset.history.list({
       ts: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 
@@ -42,6 +44,8 @@ describe('resource history', () => {
     const response = await client.udl.gnssobservationset.history.aodr({
       ts: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
+      firstResult: 0,
+      maxResult: 0,
       notification: 'notification',
       outputDelimiter: 'outputDelimiter',
       outputFormat: 'outputFormat',

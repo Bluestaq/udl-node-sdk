@@ -39,8 +39,11 @@ export class AirEvents extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<AirEventListResponse> {
-    return this._client.get('/udl/airevent', options);
+  list(
+    query: AirEventListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirEventListResponse> {
+    return this._client.get('/udl/airevent', { query, ...options });
   }
 
   /**
@@ -62,8 +65,9 @@ export class AirEvents extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: AirEventCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/airevent/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -90,8 +94,12 @@ export class AirEvents extends APIResource {
    * Service operation to get a single airevent record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<AirEventGetResponse> {
-    return this._client.get(path`/udl/airevent/${id}`, options);
+  get(
+    id: string,
+    query: AirEventGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirEventGetResponse> {
+    return this._client.get(path`/udl/airevent/${id}`, { query, ...options });
   }
 
   /**
@@ -2742,6 +2750,18 @@ export namespace AirEventUpdateParams {
   }
 }
 
+export interface AirEventListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface AirEventCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AirEventCreateBulkParams {
   body: Array<AirEventCreateBulkParams.Body>;
 }
@@ -3248,6 +3268,12 @@ export namespace AirEventCreateBulkParams {
   }
 }
 
+export interface AirEventGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AirEventTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -3256,6 +3282,10 @@ export interface AirEventTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface AirEventUnvalidatedPublishParams {
@@ -3772,7 +3802,10 @@ export declare namespace AirEvents {
     type AirEventTupleResponse as AirEventTupleResponse,
     type AirEventCreateParams as AirEventCreateParams,
     type AirEventUpdateParams as AirEventUpdateParams,
+    type AirEventListParams as AirEventListParams,
+    type AirEventCountParams as AirEventCountParams,
     type AirEventCreateBulkParams as AirEventCreateBulkParams,
+    type AirEventGetParams as AirEventGetParams,
     type AirEventTupleParams as AirEventTupleParams,
     type AirEventUnvalidatedPublishParams as AirEventUnvalidatedPublishParams,
   };

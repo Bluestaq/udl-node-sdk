@@ -16,6 +16,7 @@ import {
   CalibrationCreateParams,
   CalibrationQueryParams,
   CalibrationQueryResponse,
+  CalibrationRetrieveParams,
   CalibrationRetrieveResponse,
   CalibrationTupleParams,
   CalibrationTupleResponse,
@@ -60,8 +61,11 @@ export class Sensor extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SensorListResponse> {
-    return this._client.get('/udl/sensor', options);
+  list(
+    query: SensorListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SensorListResponse> {
+    return this._client.get('/udl/sensor', { query, ...options });
   }
 
   /**
@@ -83,8 +87,9 @@ export class Sensor extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: SensorCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sensor/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -94,8 +99,12 @@ export class Sensor extends APIResource {
    * Service operation to get a single Sensor by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SensorGetResponse> {
-    return this._client.get(path`/udl/sensor/${id}`, options);
+  get(
+    id: string,
+    query: SensorGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SensorGetResponse> {
+    return this._client.get(path`/udl/sensor/${id}`, { query, ...options });
   }
 
   /**
@@ -9586,6 +9595,24 @@ export namespace SensorUpdateParams {
   }
 }
 
+export interface SensorListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SensorCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SensorGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SensorTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -9594,6 +9621,10 @@ export interface SensorTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 Sensor.Calibration = Calibration;
@@ -9606,6 +9637,9 @@ export declare namespace Sensor {
     type SensorTupleResponse as SensorTupleResponse,
     type SensorCreateParams as SensorCreateParams,
     type SensorUpdateParams as SensorUpdateParams,
+    type SensorListParams as SensorListParams,
+    type SensorCountParams as SensorCountParams,
+    type SensorGetParams as SensorGetParams,
     type SensorTupleParams as SensorTupleParams,
   };
 
@@ -9616,6 +9650,7 @@ export declare namespace Sensor {
     type CalibrationQueryResponse as CalibrationQueryResponse,
     type CalibrationTupleResponse as CalibrationTupleResponse,
     type CalibrationCreateParams as CalibrationCreateParams,
+    type CalibrationRetrieveParams as CalibrationRetrieveParams,
     type CalibrationCountParams as CalibrationCountParams,
     type CalibrationCreateBulkParams as CalibrationCreateBulkParams,
     type CalibrationQueryParams as CalibrationQueryParams,

@@ -38,8 +38,11 @@ export class Seradataradarpayload extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<SeradataradarpayloadListResponse> {
-    return this._client.get('/udl/seradataradarpayload', options);
+  list(
+    query: SeradataradarpayloadListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradataradarpayloadListResponse> {
+    return this._client.get('/udl/seradataradarpayload', { query, ...options });
   }
 
   /**
@@ -61,8 +64,12 @@ export class Seradataradarpayload extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: SeradataradarpayloadCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/seradataradarpayload/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -72,8 +79,12 @@ export class Seradataradarpayload extends APIResource {
    * Service operation to get a single SeradataRadarPayload by its unique ID passed
    * as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<SeradataradarpayloadGetResponse> {
-    return this._client.get(path`/udl/seradataradarpayload/${id}`, options);
+  get(
+    id: string,
+    query: SeradataradarpayloadGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradataradarpayloadGetResponse> {
+    return this._client.get(path`/udl/seradataradarpayload/${id}`, { query, ...options });
   }
 
   /**
@@ -1029,6 +1040,24 @@ export interface SeradataradarpayloadUpdateParams {
   waveLength?: number;
 }
 
+export interface SeradataradarpayloadListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SeradataradarpayloadCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface SeradataradarpayloadGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SeradataradarpayloadTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1037,6 +1066,10 @@ export interface SeradataradarpayloadTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Seradataradarpayload {
@@ -1047,6 +1080,9 @@ export declare namespace Seradataradarpayload {
     type SeradataradarpayloadTupleResponse as SeradataradarpayloadTupleResponse,
     type SeradataradarpayloadCreateParams as SeradataradarpayloadCreateParams,
     type SeradataradarpayloadUpdateParams as SeradataradarpayloadUpdateParams,
+    type SeradataradarpayloadListParams as SeradataradarpayloadListParams,
+    type SeradataradarpayloadCountParams as SeradataradarpayloadCountParams,
+    type SeradataradarpayloadGetParams as SeradataradarpayloadGetParams,
     type SeradataradarpayloadTupleParams as SeradataradarpayloadTupleParams,
   };
 }

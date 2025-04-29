@@ -39,8 +39,11 @@ export class Vessel extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<VesselListResponse> {
-    return this._client.get('/udl/vessel', options);
+  list(
+    query: VesselListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<VesselListResponse> {
+    return this._client.get('/udl/vessel', { query, ...options });
   }
 
   /**
@@ -50,8 +53,9 @@ export class Vessel extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(query: VesselCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/vessel/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -77,8 +81,12 @@ export class Vessel extends APIResource {
    * Service operation to get a single vessel record by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<VesselGetResponse> {
-    return this._client.get(path`/udl/vessel/${id}`, options);
+  get(
+    id: string,
+    query: VesselGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<VesselGetResponse> {
+    return this._client.get(path`/udl/vessel/${id}`, { query, ...options });
   }
 
   /**
@@ -1182,6 +1190,18 @@ export interface VesselUpdateParams {
   yearBuilt?: string;
 }
 
+export interface VesselListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface VesselCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface VesselCreateBulkParams {
   body: Array<VesselCreateBulkParams.Body>;
 }
@@ -1387,6 +1407,12 @@ export namespace VesselCreateBulkParams {
   }
 }
 
+export interface VesselGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface VesselTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -1395,6 +1421,10 @@ export interface VesselTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Vessel {
@@ -1405,7 +1435,10 @@ export declare namespace Vessel {
     type VesselTupleResponse as VesselTupleResponse,
     type VesselCreateParams as VesselCreateParams,
     type VesselUpdateParams as VesselUpdateParams,
+    type VesselListParams as VesselListParams,
+    type VesselCountParams as VesselCountParams,
     type VesselCreateBulkParams as VesselCreateBulkParams,
+    type VesselGetParams as VesselGetParams,
     type VesselTupleParams as VesselTupleParams,
   };
 }

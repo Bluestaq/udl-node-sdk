@@ -24,8 +24,12 @@ export class AirspaceControlOrders extends APIResource {
    * Service operation to get a single AirspaceControlOrder record by its unique ID
    * passed as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AirspacecontrolorderFull> {
-    return this._client.get(path`/udl/airspacecontrolorder/${id}`, options);
+  retrieve(
+    id: string,
+    query: AirspaceControlOrderRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirspacecontrolorderFull> {
+    return this._client.get(path`/udl/airspacecontrolorder/${id}`, { query, ...options });
   }
 
   /**
@@ -34,8 +38,11 @@ export class AirspaceControlOrders extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<AirspaceControlOrderListResponse> {
-    return this._client.get('/udl/airspacecontrolorder', options);
+  list(
+    query: AirspaceControlOrderListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AirspaceControlOrderListResponse> {
+    return this._client.get('/udl/airspacecontrolorder', { query, ...options });
   }
 
   /**
@@ -45,8 +52,12 @@ export class AirspaceControlOrders extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: AirspaceControlOrderCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/airspacecontrolorder/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -1712,6 +1723,24 @@ export namespace AirspaceControlOrderCreateParams {
   }
 }
 
+export interface AirspaceControlOrderRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface AirspaceControlOrderListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface AirspaceControlOrderCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface AirspaceControlOrderCreateBulkParams {
   body: Array<AirspaceControlOrderCreateBulkParams.Body>;
 }
@@ -2243,6 +2272,10 @@ export interface AirspaceControlOrderTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace AirspaceControlOrders {
@@ -2253,6 +2286,9 @@ export declare namespace AirspaceControlOrders {
     type AirspaceControlOrderCountResponse as AirspaceControlOrderCountResponse,
     type AirspaceControlOrderTupleResponse as AirspaceControlOrderTupleResponse,
     type AirspaceControlOrderCreateParams as AirspaceControlOrderCreateParams,
+    type AirspaceControlOrderRetrieveParams as AirspaceControlOrderRetrieveParams,
+    type AirspaceControlOrderListParams as AirspaceControlOrderListParams,
+    type AirspaceControlOrderCountParams as AirspaceControlOrderCountParams,
     type AirspaceControlOrderCreateBulkParams as AirspaceControlOrderCreateBulkParams,
     type AirspaceControlOrderTupleParams as AirspaceControlOrderTupleParams,
   };

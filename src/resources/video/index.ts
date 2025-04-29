@@ -6,6 +6,7 @@ export {
   type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
+  type HistoryCountParams,
 } from './history';
 export {
   Video,
@@ -16,6 +17,9 @@ export {
   type VideoGetStreamFileResponse,
   type VideoTupleResponse,
   type VideoCreateParams,
+  type VideoListParams,
+  type VideoCountParams,
+  type VideoGetParams,
   type VideoGetPlayerStreamingInfoParams,
   type VideoGetPublisherStreamingInfoParams,
   type VideoGetStreamFileParams,

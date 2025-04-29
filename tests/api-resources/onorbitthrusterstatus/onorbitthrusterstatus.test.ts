@@ -67,7 +67,12 @@ describe('resource onorbitthrusterstatus', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.onorbitthrusterstatus.list(
-        { idOnorbitThruster: 'idOnorbitThruster', statusTime: '2019-12-27T18:11:19.117Z' },
+        {
+          firstResult: 0,
+          idOnorbitThruster: 'idOnorbitThruster',
+          maxResult: 0,
+          statusTime: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -99,7 +104,12 @@ describe('resource onorbitthrusterstatus', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.onorbitthrusterstatus.count(
-        { idOnorbitThruster: 'idOnorbitThruster', statusTime: '2019-12-27T18:11:19.117Z' },
+        {
+          firstResult: 0,
+          idOnorbitThruster: 'idOnorbitThruster',
+          maxResult: 0,
+          statusTime: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -167,6 +177,17 @@ describe('resource onorbitthrusterstatus', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.onorbitthrusterstatus.get(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.onorbitthrusterstatus.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -192,7 +213,9 @@ describe('resource onorbitthrusterstatus', () => {
   test('tuple: required and optional params', async () => {
     const response = await client.onorbitthrusterstatus.tuple({
       columns: 'columns',
+      firstResult: 0,
       idOnorbitThruster: 'idOnorbitThruster',
+      maxResult: 0,
       statusTime: '2019-12-27T18:11:19.117Z',
     });
   });

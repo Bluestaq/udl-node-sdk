@@ -161,7 +161,11 @@ describe('resource datalink', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.linkStatus.datalink.list({ startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.linkStatus.datalink.list({
+      startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -176,7 +180,11 @@ describe('resource datalink', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.linkStatus.datalink.count({ startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.linkStatus.datalink.count({
+      startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('queryhelp', async () => {
@@ -208,6 +216,8 @@ describe('resource datalink', () => {
     const response = await client.linkStatus.datalink.tuple({
       columns: 'columns',
       startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 

@@ -9,6 +9,7 @@ export {
   type HazardListParams,
   type HazardCountParams,
   type HazardCreateBulkParams,
+  type HazardGetParams,
   type HazardTupleParams,
 } from './hazard';
 export {

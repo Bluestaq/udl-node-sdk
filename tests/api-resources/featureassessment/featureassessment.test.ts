@@ -84,6 +84,17 @@ describe('resource featureassessment', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.featureassessment.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('count: only required params', async () => {
     const responsePromise = client.featureassessment.count({ idAnalyticImagery: 'idAnalyticImagery' });
     const rawResponse = await responsePromise.asResponse();
@@ -96,7 +107,11 @@ describe('resource featureassessment', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.featureassessment.count({ idAnalyticImagery: 'idAnalyticImagery' });
+    const response = await client.featureassessment.count({
+      idAnalyticImagery: 'idAnalyticImagery',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -183,7 +198,11 @@ describe('resource featureassessment', () => {
   });
 
   test('query: required and optional params', async () => {
-    const response = await client.featureassessment.query({ idAnalyticImagery: 'idAnalyticImagery' });
+    const response = await client.featureassessment.query({
+      idAnalyticImagery: 'idAnalyticImagery',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('queryHelp', async () => {
@@ -215,6 +234,8 @@ describe('resource featureassessment', () => {
     const response = await client.featureassessment.tuple({
       columns: 'columns',
       idAnalyticImagery: 'idAnalyticImagery',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 

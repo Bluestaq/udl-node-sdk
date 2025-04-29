@@ -83,6 +83,17 @@ describe('resource emittergeolocation', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.emittergeolocation.retrieve(
+        'id',
+        { firstResult: 0, maxResult: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('delete', async () => {
     const responsePromise = client.emittergeolocation.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -106,7 +117,11 @@ describe('resource emittergeolocation', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.emittergeolocation.count({ startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.emittergeolocation.count({
+      startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -192,7 +207,11 @@ describe('resource emittergeolocation', () => {
   });
 
   test('query: required and optional params', async () => {
-    const response = await client.emittergeolocation.query({ startTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.emittergeolocation.query({
+      startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('queryHelp', async () => {
@@ -224,6 +243,8 @@ describe('resource emittergeolocation', () => {
     const response = await client.emittergeolocation.tuple({
       columns: 'columns',
       startTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 

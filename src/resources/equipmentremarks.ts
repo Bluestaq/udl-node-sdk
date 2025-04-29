@@ -24,8 +24,12 @@ export class Equipmentremarks extends APIResource {
    * Service operation to get a single equipmentremark record by its unique ID passed
    * as a path parameter.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<EquipmentRemarkFull> {
-    return this._client.get(path`/udl/equipmentremark/${id}`, options);
+  retrieve(
+    id: string,
+    query: EquipmentremarkRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EquipmentRemarkFull> {
+    return this._client.get(path`/udl/equipmentremark/${id}`, { query, ...options });
   }
 
   /**
@@ -34,8 +38,11 @@ export class Equipmentremarks extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(options?: RequestOptions): APIPromise<EquipmentremarkListResponse> {
-    return this._client.get('/udl/equipmentremark', options);
+  list(
+    query: EquipmentremarkListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EquipmentremarkListResponse> {
+    return this._client.get('/udl/equipmentremark', { query, ...options });
   }
 
   /**
@@ -45,8 +52,12 @@ export class Equipmentremarks extends APIResource {
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
    */
-  count(options?: RequestOptions): APIPromise<string> {
+  count(
+    query: EquipmentremarkCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
     return this._client.get('/udl/equipmentremark/count', {
+      query,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
@@ -366,6 +377,24 @@ export interface EquipmentremarkCreateParams {
   type?: string;
 }
 
+export interface EquipmentremarkRetrieveParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface EquipmentremarkListParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
+export interface EquipmentremarkCountParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface EquipmentremarkCreateBulkParams {
   body: Array<EquipmentremarkCreateBulkParams.Body>;
 }
@@ -458,6 +487,10 @@ export interface EquipmentremarkTupleParams {
    * for a complete list of possible fields.
    */
   columns: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export declare namespace Equipmentremarks {
@@ -468,6 +501,9 @@ export declare namespace Equipmentremarks {
     type EquipmentremarkCountResponse as EquipmentremarkCountResponse,
     type EquipmentremarkTupleResponse as EquipmentremarkTupleResponse,
     type EquipmentremarkCreateParams as EquipmentremarkCreateParams,
+    type EquipmentremarkRetrieveParams as EquipmentremarkRetrieveParams,
+    type EquipmentremarkListParams as EquipmentremarkListParams,
+    type EquipmentremarkCountParams as EquipmentremarkCountParams,
     type EquipmentremarkCreateBulkParams as EquipmentremarkCreateBulkParams,
     type EquipmentremarkTupleParams as EquipmentremarkTupleParams,
   };

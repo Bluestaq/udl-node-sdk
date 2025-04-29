@@ -650,6 +650,10 @@ export interface TrackListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface TrackCountParams {
@@ -658,6 +662,10 @@ export interface TrackCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface TrackCreateBulkParams {
@@ -1192,6 +1200,10 @@ export interface TrackTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface TrackUnvalidatedPublishParams {

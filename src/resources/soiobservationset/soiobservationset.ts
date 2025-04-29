@@ -80,8 +80,12 @@ export class Soiobservationset extends APIResource {
    * Service operation to get a single SOIObservationSet by its unique ID passed as a
    * path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<HistoryAPI.SoiObservationSetFull> {
-    return this._client.get(path`/udl/soiobservationset/${id}`, options);
+  get(
+    id: string,
+    query: SoiobservationsetGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.SoiObservationSetFull> {
+    return this._client.get(path`/udl/soiobservationset/${id}`, { query, ...options });
   }
 
   /**
@@ -1544,6 +1548,10 @@ export interface SoiobservationsetListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SoiobservationsetCountParams {
@@ -1552,6 +1560,10 @@ export interface SoiobservationsetCountParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SoiobservationsetCreateBulkParams {
@@ -2444,6 +2456,12 @@ export namespace SoiobservationsetCreateBulkParams {
   }
 }
 
+export interface SoiobservationsetGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface SoiobservationsetTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -2458,6 +2476,10 @@ export interface SoiobservationsetTupleParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 }
 
 export interface SoiobservationsetUnvalidatedPublishParams {
@@ -3361,6 +3383,7 @@ export declare namespace Soiobservationset {
     type SoiobservationsetListParams as SoiobservationsetListParams,
     type SoiobservationsetCountParams as SoiobservationsetCountParams,
     type SoiobservationsetCreateBulkParams as SoiobservationsetCreateBulkParams,
+    type SoiobservationsetGetParams as SoiobservationsetGetParams,
     type SoiobservationsetTupleParams as SoiobservationsetTupleParams,
     type SoiobservationsetUnvalidatedPublishParams as SoiobservationsetUnvalidatedPublishParams,
   };

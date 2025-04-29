@@ -396,7 +396,11 @@ describe('resource maneuvers', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.maneuvers.list({ eventStartTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.maneuvers.list({
+      eventStartTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -411,7 +415,11 @@ describe('resource maneuvers', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.maneuvers.count({ eventStartTime: '2019-12-27T18:11:19.117Z' });
+    const response = await client.maneuvers.count({
+      eventStartTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
@@ -808,6 +816,13 @@ describe('resource maneuvers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.maneuvers.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('queryhelp', async () => {
     const responsePromise = client.maneuvers.queryhelp();
     const rawResponse = await responsePromise.asResponse();
@@ -837,6 +852,8 @@ describe('resource maneuvers', () => {
     const response = await client.maneuvers.tuple({
       columns: 'columns',
       eventStartTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
     });
   });
 

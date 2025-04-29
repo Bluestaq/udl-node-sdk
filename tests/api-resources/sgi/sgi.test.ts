@@ -178,7 +178,12 @@ describe('resource sgi', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.sgi.list(
-        { effectiveDate: '2019-12-27T18:11:19.117Z', sgiDate: '2019-12-27T18:11:19.117Z' },
+        {
+          effectiveDate: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResult: 0,
+          sgiDate: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -210,7 +215,12 @@ describe('resource sgi', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.sgi.count(
-        { effectiveDate: '2019-12-27T18:11:19.117Z', sgiDate: '2019-12-27T18:11:19.117Z' },
+        {
+          effectiveDate: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResult: 0,
+          sgiDate: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -312,6 +322,13 @@ describe('resource sgi', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.sgi.get('id', { firstResult: 0, maxResult: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
   test('getDataByEffectiveAsOfDate', async () => {
     const responsePromise = client.sgi.getDataByEffectiveAsOfDate();
     const rawResponse = await responsePromise.asResponse();
@@ -327,7 +344,12 @@ describe('resource sgi', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.sgi.getDataByEffectiveAsOfDate(
-        { effectiveDate: '2019-12-27T18:11:19.117Z', sgiDate: '2019-12-27T18:11:19.117Z' },
+        {
+          effectiveDate: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResult: 0,
+          sgiDate: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -359,6 +381,8 @@ describe('resource sgi', () => {
     const response = await client.sgi.tuple({
       columns: 'columns',
       effectiveDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResult: 0,
       sgiDate: '2019-12-27T18:11:19.117Z',
     });
   });

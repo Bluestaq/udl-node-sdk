@@ -71,6 +71,10 @@ export interface HistoryListParams {
    */
   effectiveDate?: string;
 
+  firstResult?: number;
+
+  maxResult?: number;
+
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
    * of the index value. This could be a past, current, or future predicted value.
@@ -95,6 +99,10 @@ export interface HistoryAodrParams {
    * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   effectiveDate?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * optional, notification method for the created file link. When omitted, EMAIL is
@@ -133,6 +141,10 @@ export interface HistoryCountParams {
    * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   effectiveDate?: string;
+
+  firstResult?: number;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time

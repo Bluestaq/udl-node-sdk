@@ -83,8 +83,12 @@ export class Orbitdetermination extends APIResource {
    * Service operation to get a single OrbitDetermination record by its unique ID
    * passed as a path parameter.
    */
-  get(id: string, options?: RequestOptions): APIPromise<OrbitdeterminationHistoryAPI.OrbitdeterminationFull> {
-    return this._client.get(path`/udl/orbitdetermination/${id}`, options);
+  get(
+    id: string,
+    query: OrbitdeterminationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OrbitdeterminationHistoryAPI.OrbitdeterminationFull> {
+    return this._client.get(path`/udl/orbitdetermination/${id}`, { query, ...options });
   }
 
   /**
@@ -2656,6 +2660,8 @@ export namespace OrbitdeterminationCreateParams {
 }
 
 export interface OrbitdeterminationListParams {
+  firstResult?: number;
+
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Unique identifier
    * of the target satellite on-orbit object. This ID can be used to obtain
@@ -2664,6 +2670,8 @@ export interface OrbitdeterminationListParams {
    * be queried as /udl/onorbit/25544.
    */
   idOnOrbit?: string;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Start time for OD
@@ -2674,6 +2682,8 @@ export interface OrbitdeterminationListParams {
 }
 
 export interface OrbitdeterminationCountParams {
+  firstResult?: number;
+
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Unique identifier
    * of the target satellite on-orbit object. This ID can be used to obtain
@@ -2682,6 +2692,8 @@ export interface OrbitdeterminationCountParams {
    * be queried as /udl/onorbit/25544.
    */
   idOnOrbit?: string;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Start time for OD
@@ -3934,6 +3946,12 @@ export namespace OrbitdeterminationCreateBulkParams {
   }
 }
 
+export interface OrbitdeterminationGetParams {
+  firstResult?: number;
+
+  maxResult?: number;
+}
+
 export interface OrbitdeterminationTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -3943,6 +3961,8 @@ export interface OrbitdeterminationTupleParams {
    */
   columns: string;
 
+  firstResult?: number;
+
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Unique identifier
    * of the target satellite on-orbit object. This ID can be used to obtain
@@ -3951,6 +3971,8 @@ export interface OrbitdeterminationTupleParams {
    * be queried as /udl/onorbit/25544.
    */
   idOnOrbit?: string;
+
+  maxResult?: number;
 
   /**
    * (One or more of fields 'idOnOrbit, startTime' are required.) Start time for OD
@@ -5214,6 +5236,7 @@ export declare namespace Orbitdetermination {
     type OrbitdeterminationListParams as OrbitdeterminationListParams,
     type OrbitdeterminationCountParams as OrbitdeterminationCountParams,
     type OrbitdeterminationCreateBulkParams as OrbitdeterminationCreateBulkParams,
+    type OrbitdeterminationGetParams as OrbitdeterminationGetParams,
     type OrbitdeterminationTupleParams as OrbitdeterminationTupleParams,
     type OrbitdeterminationUnvalidatedPublishParams as OrbitdeterminationUnvalidatedPublishParams,
   };
