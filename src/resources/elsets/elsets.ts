@@ -3,13 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as CurrentAPI from './current';
-import {
-  Current,
-  CurrentListParams,
-  CurrentListResponse,
-  CurrentTupleParams,
-  CurrentTupleResponse,
-} from './current';
+import { Current, CurrentListParams, CurrentTupleParams, CurrentTupleResponse } from './current';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -1489,7 +1483,6 @@ export declare namespace Elsets {
 
   export {
     Current as Current,
-    type CurrentListResponse as CurrentListResponse,
     type CurrentTupleResponse as CurrentTupleResponse,
     type CurrentListParams as CurrentListParams,
     type CurrentTupleParams as CurrentTupleParams,

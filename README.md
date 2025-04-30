@@ -31,7 +31,10 @@ const client = new Unifieddatalibrary({
 });
 
 async function main() {
-  const elsetAbridgeds = await client.elsets.current.list();
+  const page = await client.elsets.current.list();
+  const elsetAbridged = page.items[0];
+
+  console.log(elsetAbridged.idElset);
 }
 
 main();
@@ -51,7 +54,7 @@ const client = new Unifieddatalibrary({
 });
 
 async function main() {
-  const elsetAbridgeds: Unifieddatalibrary.Elsets.CurrentListResponse = await client.elsets.current.list();
+  const [elsetAbridged]: [Unifieddatalibrary.ElsetAbridged] = await client.elsets.current.list();
 }
 
 main();
@@ -97,7 +100,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const elsetAbridgeds = await client.elsets.current.list().catch(async (err) => {
+  const page = await client.elsets.current.list().catch(async (err) => {
     if (err instanceof Unifieddatalibrary.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -184,9 +187,11 @@ const response = await client.elsets.current.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: elsetAbridgeds, response: raw } = await client.elsets.current.list().withResponse();
+const { data: page, response: raw } = await client.elsets.current.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(elsetAbridgeds);
+for await (const elsetAbridged of page) {
+  console.log(elsetAbridged.idElset);
+}
 ```
 
 ### Logging

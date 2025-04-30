@@ -1187,12 +1187,11 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/elsets/current.ts">CurrentListResponse</a></code>
 - <code><a href="./src/resources/elsets/current.ts">CurrentTupleResponse</a></code>
 
 Methods:
 
-- <code title="get /udl/elset/current">client.elsets.current.<a href="./src/resources/elsets/current.ts">list</a>({ ...params }) -> CurrentListResponse</code>
+- <code title="get /udl/elset/current">client.elsets.current.<a href="./src/resources/elsets/current.ts">list</a>({ ...params }) -> ElsetAbridgedsOffsetPage</code>
 - <code title="get /udl/elset/current/tuple">client.elsets.current.<a href="./src/resources/elsets/current.ts">tuple</a>({ ...params }) -> CurrentTupleResponse</code>
 
 ## History
