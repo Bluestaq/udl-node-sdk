@@ -169,6 +169,37 @@ On timeout, an `APIConnectionTimeoutError` is thrown.
 
 Note that requests which time out will be [retried twice by default](#retries).
 
+## Auto-pagination
+
+List methods in the Unifieddatalibrary API are paginated.
+You can use the `for await … of` syntax to iterate through items across all pages:
+
+```ts
+async function fetchAllElsetsCurrents(params) {
+  const allElsetsCurrents = [];
+  // Automatically fetches more pages as needed.
+  for await (const elsetAbridged of client.elsets.current.list()) {
+    allElsetsCurrents.push(elsetAbridged);
+  }
+  return allElsetsCurrents;
+}
+```
+
+Alternatively, you can request a single page at a time:
+
+```ts
+let page = await client.elsets.current.list();
+for (const elsetAbridged of page.items) {
+  console.log(elsetAbridged);
+}
+
+// Convenience methods are provided for manually paginating:
+while (page.hasNextPage()) {
+  page = await page.getNextPage();
+  // ...
+}
+```
+
 ## Advanced Usage
 
 ### Accessing raw Response data (e.g., headers)
