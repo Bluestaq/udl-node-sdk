@@ -2,7 +2,6 @@
 
 export {
   Current,
-  type CurrentListResponse,
   type CurrentTupleResponse,
   type CurrentListParams,
   type CurrentTupleParams,
