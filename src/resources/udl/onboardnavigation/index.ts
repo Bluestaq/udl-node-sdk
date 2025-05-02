@@ -3,10 +3,10 @@
 export {
   History,
   type OnboardnavigationFull,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type OnboardnavigationFullsOffsetPage,
 } from './history';
 export { Onboardnavigation } from './onboardnavigation';

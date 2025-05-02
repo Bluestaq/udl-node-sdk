@@ -2,7 +2,6 @@
 
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
@@ -19,4 +18,5 @@ export {
   type SkyimageryGetParams,
   type SkyimageryTupleParams,
   type SkyimageryUploadZipParams,
+  type SkyimageryListResponsesOffsetPage,
 } from './skyimagery';

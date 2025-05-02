@@ -3,11 +3,11 @@
 export {
   History,
   type SpaceEnvObservationFull,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type SpaceEnvObservationFullsOffsetPage,
 } from './history';
 export {
   Spaceenvobservation,
@@ -19,4 +19,5 @@ export {
   type SpaceenvobservationCreateBulkParams,
   type SpaceenvobservationTupleParams,
   type SpaceenvobservationUnvalidatedPublishParams,
+  type SpaceenvobservationListResponsesOffsetPage,
 } from './spaceenvobservation';

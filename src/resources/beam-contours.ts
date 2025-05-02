@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -50,8 +51,14 @@ export class BeamContours extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: BeamContourListParams, options?: RequestOptions): APIPromise<BeamContourListResponse> {
-    return this._client.get('/udl/beamcontour', { query, ...options });
+  list(
+    query: BeamContourListParams,
+    options?: RequestOptions,
+  ): PagePromise<BeamcontourAbridgedsOffsetPage, BeamcontourAbridged> {
+    return this._client.getAPIList('/udl/beamcontour', OffsetPage<BeamcontourAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -122,6 +129,8 @@ export class BeamContours extends APIResource {
     return this._client.get('/udl/beamcontour/tuple', { query, ...options });
   }
 }
+
+export type BeamcontourAbridgedsOffsetPage = OffsetPage<BeamcontourAbridged>;
 
 /**
  * Describes the beam contour associated with a beam entity. Beam contours are the
@@ -406,8 +415,6 @@ export interface BeamcontourFull {
   updatedBy?: string;
 }
 
-export type BeamContourListResponse = Array<BeamcontourAbridged>;
-
 export type BeamContourCountResponse = string;
 
 export type BeamContourTupleResponse = Array<BeamcontourFull>;
@@ -656,15 +663,11 @@ export interface BeamContourUpdateParams {
   regionName?: string;
 }
 
-export interface BeamContourListParams {
+export interface BeamContourListParams extends OffsetPageParams {
   /**
    * ID of the beam.
    */
   idBeam: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface BeamContourCountParams {
@@ -831,9 +834,9 @@ export declare namespace BeamContours {
   export {
     type BeamcontourAbridged as BeamcontourAbridged,
     type BeamcontourFull as BeamcontourFull,
-    type BeamContourListResponse as BeamContourListResponse,
     type BeamContourCountResponse as BeamContourCountResponse,
     type BeamContourTupleResponse as BeamContourTupleResponse,
+    type BeamcontourAbridgedsOffsetPage as BeamcontourAbridgedsOffsetPage,
     type BeamContourCreateParams as BeamContourCreateParams,
     type BeamContourRetrieveParams as BeamContourRetrieveParams,
     type BeamContourUpdateParams as BeamContourUpdateParams,

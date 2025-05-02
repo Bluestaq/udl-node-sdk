@@ -22,10 +22,10 @@ export {
   type ElsetTupleParams,
   type ElsetUnvalidatedPublishParams,
   type ElsetAbridgedsOffsetPage,
+  type ElsetsOffsetPage,
 } from './elsets';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,

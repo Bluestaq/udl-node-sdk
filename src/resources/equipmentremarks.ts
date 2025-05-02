@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -41,8 +42,11 @@ export class Equipmentremarks extends APIResource {
   list(
     query: EquipmentremarkListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<EquipmentremarkListResponse> {
-    return this._client.get('/udl/equipmentremark', { query, ...options });
+  ): PagePromise<EquipmentRemarkAbridgedsOffsetPage, EquipmentRemarkAbridged> {
+    return this._client.getAPIList('/udl/equipmentremark', OffsetPage<EquipmentRemarkAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -107,6 +111,8 @@ export class Equipmentremarks extends APIResource {
     return this._client.get('/udl/equipmentremark/tuple', { query, ...options });
   }
 }
+
+export type EquipmentRemarkAbridgedsOffsetPage = OffsetPage<EquipmentRemarkAbridged>;
 
 /**
  * Remarks contain amplifying information for a specific service. The information
@@ -297,8 +303,6 @@ export interface EquipmentRemarkFull {
   updatedBy?: string;
 }
 
-export type EquipmentremarkListResponse = Array<EquipmentRemarkAbridged>;
-
 export type EquipmentremarkCountResponse = string;
 
 export type EquipmentremarkTupleResponse = Array<EquipmentRemarkFull>;
@@ -383,11 +387,7 @@ export interface EquipmentremarkRetrieveParams {
   maxResults?: number;
 }
 
-export interface EquipmentremarkListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface EquipmentremarkListParams extends OffsetPageParams {}
 
 export interface EquipmentremarkCountParams {
   firstResult?: number;
@@ -497,9 +497,9 @@ export declare namespace Equipmentremarks {
   export {
     type EquipmentRemarkAbridged as EquipmentRemarkAbridged,
     type EquipmentRemarkFull as EquipmentRemarkFull,
-    type EquipmentremarkListResponse as EquipmentremarkListResponse,
     type EquipmentremarkCountResponse as EquipmentremarkCountResponse,
     type EquipmentremarkTupleResponse as EquipmentremarkTupleResponse,
+    type EquipmentRemarkAbridgedsOffsetPage as EquipmentRemarkAbridgedsOffsetPage,
     type EquipmentremarkCreateParams as EquipmentremarkCreateParams,
     type EquipmentremarkRetrieveParams as EquipmentremarkRetrieveParams,
     type EquipmentremarkListParams as EquipmentremarkListParams,

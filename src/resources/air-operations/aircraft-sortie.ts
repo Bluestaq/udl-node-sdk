@@ -4,6 +4,7 @@ import { APIResource } from '../../core/resource';
 import * as CrewAPI from '../crew';
 import * as HistoryAPI from '../sortieppr/history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -27,8 +28,14 @@ export class AircraftSortie extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: AircraftSortieListParams, options?: RequestOptions): APIPromise<AircraftSortieListResponse> {
-    return this._client.get('/udl/aircraftsortie', { query, ...options });
+  list(
+    query: AircraftSortieListParams,
+    options?: RequestOptions,
+  ): PagePromise<AircraftsortieAbridgedsOffsetPage, AircraftsortieAbridged> {
+    return this._client.getAPIList('/udl/aircraftsortie', OffsetPage<AircraftsortieAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -105,6 +112,8 @@ export class AircraftSortie extends APIResource {
     return this._client.get('/udl/aircraftsortie/history', { query, ...options });
   }
 }
+
+export type AircraftsortieAbridgedsOffsetPage = OffsetPage<AircraftsortieAbridged>;
 
 /**
  * Information related to the planning, load, status, and deployment or dispatch of
@@ -1030,8 +1039,6 @@ export interface AircraftsortieFull {
   updatedBy?: string;
 }
 
-export type AircraftSortieListResponse = Array<AircraftsortieAbridged>;
-
 export type AircraftSortieCountResponse = string;
 
 export type AircraftSortieHistoryCountResponse = string;
@@ -1435,16 +1442,12 @@ export interface AircraftSortieCreateParams {
   tailNumber?: string;
 }
 
-export interface AircraftSortieListParams {
+export interface AircraftSortieListParams extends OffsetPageParams {
   /**
    * The scheduled time that the Aircraft sortie is planned to depart, in ISO 8601
    * UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   plannedDepTime: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface AircraftSortieCountParams {
@@ -1940,10 +1943,10 @@ export declare namespace AircraftSortie {
   export {
     type AircraftsortieAbridged as AircraftsortieAbridged,
     type AircraftsortieFull as AircraftsortieFull,
-    type AircraftSortieListResponse as AircraftSortieListResponse,
     type AircraftSortieCountResponse as AircraftSortieCountResponse,
     type AircraftSortieHistoryCountResponse as AircraftSortieHistoryCountResponse,
     type AircraftSortieHistoryQueryResponse as AircraftSortieHistoryQueryResponse,
+    type AircraftsortieAbridgedsOffsetPage as AircraftsortieAbridgedsOffsetPage,
     type AircraftSortieCreateParams as AircraftSortieCreateParams,
     type AircraftSortieListParams as AircraftSortieListParams,
     type AircraftSortieCountParams as AircraftSortieCountParams,

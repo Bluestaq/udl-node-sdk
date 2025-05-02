@@ -3,15 +3,14 @@
 export {
   AttitudeData,
   type AttitudeDataAbridged,
-  type AttitudeDataListResponse,
   type AttitudeDataCountResponse,
   type AttitudeDataListParams,
   type AttitudeDataCountParams,
+  type AttitudeDataAbridgedsOffsetPage,
 } from './attitude-data/index';
 export {
   Ephemeris,
   type EphemerisAbridged,
-  type EphemerisListResponse,
   type EphemerisCountResponse,
   type EphemerisTupleResponse,
   type EphemerisListParams,
@@ -19,10 +18,10 @@ export {
   type EphemerisFileUploadParams,
   type EphemerisTupleParams,
   type EphemerisUnvalidatedPublishParams,
+  type EphemerisAbridgedsOffsetPage,
 } from './ephemeris';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,

@@ -2,7 +2,9 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
+import { AIsFullsOffsetPage } from '../shared';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -13,8 +15,8 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: HistoryListParams, options?: RequestOptions): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/ais/history', { query, ...options });
+  list(query: HistoryListParams, options?: RequestOptions): PagePromise<AIsFullsOffsetPage, Shared.AIsFull> {
+    return this._client.getAPIList('/udl/ais/history', OffsetPage<Shared.AIsFull>, { query, ...options });
   }
 
   /**
@@ -33,9 +35,7 @@ export class History extends APIResource {
   }
 }
 
-export type HistoryListResponse = Array<Shared.AIsFull>;
-
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * The timestamp that the vessel position was recorded, in ISO 8601 UTC format.
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
@@ -48,10 +48,6 @@ export interface HistoryListParams {
    * query fields that can be selected.
    */
   columns?: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface HistoryAodrParams {
@@ -94,9 +90,7 @@ export interface HistoryAodrParams {
 }
 
 export declare namespace History {
-  export {
-    type HistoryListResponse as HistoryListResponse,
-    type HistoryListParams as HistoryListParams,
-    type HistoryAodrParams as HistoryAodrParams,
-  };
+  export { type HistoryListParams as HistoryListParams, type HistoryAodrParams as HistoryAodrParams };
 }
+
+export { type AIsFullsOffsetPage };

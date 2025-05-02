@@ -3,16 +3,11 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-} from './history';
+import { History, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
 import * as TupleAPI from './tuple';
-import { Tuple, TupleListParams, TupleListResponse } from './tuple';
+import { Tuple, TupleListParams } from './tuple';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -52,8 +47,8 @@ export class Evac extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: EvacListParams, options?: RequestOptions): APIPromise<EvacListResponse> {
-    return this._client.get('/udl/evac', { query, ...options });
+  list(query: EvacListParams, options?: RequestOptions): PagePromise<EvacAbridgedsOffsetPage, EvacAbridged> {
+    return this._client.getAPIList('/udl/evac', OffsetPage<EvacAbridged>, { query, ...options });
   }
 
   /**
@@ -112,6 +107,8 @@ export class Evac extends APIResource {
     });
   }
 }
+
+export type EvacAbridgedsOffsetPage = OffsetPage<EvacAbridged>;
 
 /**
  * Casualty report and evacuation request. Used to report and request support to
@@ -809,8 +806,6 @@ export namespace EvacAbridged {
   }
 }
 
-export type EvacListResponse = Array<EvacAbridged>;
-
 export type EvacCountResponse = string;
 
 export interface EvacCreateParams {
@@ -1494,15 +1489,11 @@ export interface EvacRetrieveParams {
   maxResults?: number;
 }
 
-export interface EvacListParams {
+export interface EvacListParams extends OffsetPageParams {
   /**
    * The request time, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   reqTime: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface EvacCountParams {
@@ -2892,8 +2883,8 @@ Evac.Tuple = Tuple;
 export declare namespace Evac {
   export {
     type EvacAbridged as EvacAbridged,
-    type EvacListResponse as EvacListResponse,
     type EvacCountResponse as EvacCountResponse,
+    type EvacAbridgedsOffsetPage as EvacAbridgedsOffsetPage,
     type EvacCreateParams as EvacCreateParams,
     type EvacRetrieveParams as EvacRetrieveParams,
     type EvacListParams as EvacListParams,
@@ -2904,15 +2895,10 @@ export declare namespace Evac {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryCountParams as HistoryCountParams,
   };
 
-  export {
-    Tuple as Tuple,
-    type TupleListResponse as TupleListResponse,
-    type TupleListParams as TupleListParams,
-  };
+  export { Tuple as Tuple, type TupleListParams as TupleListParams };
 }

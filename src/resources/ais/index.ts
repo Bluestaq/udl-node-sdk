@@ -3,7 +3,6 @@
 export {
   AIs,
   type AIsAbridged,
-  type AIListResponse,
   type AICountResponse,
   type AIHistoryCountResponse,
   type AITupleResponse,
@@ -12,5 +11,6 @@ export {
   type AICreateBulkParams,
   type AIHistoryCountParams,
   type AITupleParams,
+  type AIsAbridgedsOffsetPage,
 } from './ais';
-export { History, type HistoryListResponse, type HistoryListParams, type HistoryAodrParams } from './history';
+export { History, type HistoryListParams, type HistoryAodrParams } from './history';

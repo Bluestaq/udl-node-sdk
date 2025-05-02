@@ -6,7 +6,6 @@ export {
   AircraftSortie,
   type AircraftsortieAbridged,
   type AircraftsortieFull,
-  type AircraftSortieListResponse,
   type AircraftSortieCountResponse,
   type AircraftSortieHistoryCountResponse,
   type AircraftSortieHistoryQueryResponse,
@@ -17,6 +16,7 @@ export {
   type AircraftSortieHistoryAodrParams,
   type AircraftSortieHistoryCountParams,
   type AircraftSortieHistoryQueryParams,
+  type AircraftsortieAbridgedsOffsetPage,
 } from './aircraft-sortie';
 export { AircraftSorties, type AircraftSortyUnvalidatedPublishParams } from './aircraft-sorties';
 export {
@@ -29,4 +29,6 @@ export {
   type DiplomaticclearanceAbridged,
   type DiplomaticclearanceFull,
   type DiplomaticClearanceUnvalidatedPublishParams,
+  type DiplomaticclearanceAbridgedsOffsetPage,
+  type DiplomaticclearanceFullsOffsetPage,
 } from './diplomatic-clearance';

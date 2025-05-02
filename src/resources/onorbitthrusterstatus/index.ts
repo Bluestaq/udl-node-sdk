@@ -12,4 +12,5 @@ export {
   type OnorbitthrusterstatusCreateBulkParams,
   type OnorbitthrusterstatusGetParams,
   type OnorbitthrusterstatusTupleParams,
+  type OnorbitthrusterstatusListResponsesOffsetPage,
 } from './onorbitthrusterstatus';

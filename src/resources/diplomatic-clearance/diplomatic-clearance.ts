@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as DiplomaticClearanceAPI from '../air-operations/diplomatic-clearance';
+import { DiplomaticclearanceAbridgedsOffsetPage } from '../air-operations/diplomatic-clearance';
 import * as CountryAPI from './country';
 import {
   Country,
@@ -11,6 +12,7 @@ import {
   CountryCreateParams,
   CountryListParams,
   CountryListResponse,
+  CountryListResponsesOffsetPage,
   CountryRetrieveParams,
   CountryRetrieveResponse,
   CountryTupleParams,
@@ -25,9 +27,9 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -83,8 +85,12 @@ export class DiplomaticClearance extends APIResource {
   list(
     query: DiplomaticClearanceListParams,
     options?: RequestOptions,
-  ): APIPromise<DiplomaticClearanceListResponse> {
-    return this._client.get('/udl/diplomaticclearance', { query, ...options });
+  ): PagePromise<DiplomaticclearanceAbridgedsOffsetPage, DiplomaticClearanceAPI.DiplomaticclearanceAbridged> {
+    return this._client.getAPIList(
+      '/udl/diplomaticclearance',
+      OffsetPage<DiplomaticClearanceAPI.DiplomaticclearanceAbridged>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -158,8 +164,6 @@ export class DiplomaticClearance extends APIResource {
     return this._client.get('/udl/diplomaticclearance/tuple', { query, ...options });
   }
 }
-
-export type DiplomaticClearanceListResponse = Array<DiplomaticClearanceAPI.DiplomaticclearanceAbridged>;
 
 export type DiplomaticClearanceCountResponse = string;
 
@@ -695,16 +699,12 @@ export namespace DiplomaticClearanceUpdateParams {
   }
 }
 
-export interface DiplomaticClearanceListParams {
+export interface DiplomaticClearanceListParams extends OffsetPageParams {
   /**
    * The First Departure Date (FDD) the mission is scheduled for departure, in ISO
    * 8601 UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   firstDepDate: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface DiplomaticClearanceCountParams {
@@ -1016,7 +1016,6 @@ DiplomaticClearance.Country = Country;
 
 export declare namespace DiplomaticClearance {
   export {
-    type DiplomaticClearanceListResponse as DiplomaticClearanceListResponse,
     type DiplomaticClearanceCountResponse as DiplomaticClearanceCountResponse,
     type DiplomaticClearanceTupleResponse as DiplomaticClearanceTupleResponse,
     type DiplomaticClearanceCreateParams as DiplomaticClearanceCreateParams,
@@ -1030,7 +1029,6 @@ export declare namespace DiplomaticClearance {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
@@ -1043,6 +1041,7 @@ export declare namespace DiplomaticClearance {
     type CountryListResponse as CountryListResponse,
     type CountryCountResponse as CountryCountResponse,
     type CountryTupleResponse as CountryTupleResponse,
+    type CountryListResponsesOffsetPage as CountryListResponsesOffsetPage,
     type CountryCreateParams as CountryCreateParams,
     type CountryRetrieveParams as CountryRetrieveParams,
     type CountryUpdateParams as CountryUpdateParams,
@@ -1053,3 +1052,5 @@ export declare namespace DiplomaticClearance {
     type CountryUnvalidatedPublishParams as CountryUnvalidatedPublishParams,
   };
 }
+
+export { type DiplomaticclearanceAbridgedsOffsetPage };

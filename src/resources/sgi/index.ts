@@ -2,7 +2,6 @@
 
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
@@ -22,4 +21,5 @@ export {
   type SgiGetDataByEffectiveAsOfDateParams,
   type SgiTupleParams,
   type SgiUnvalidatedPublishParams,
+  type SgiListResponsesOffsetPage,
 } from './sgi';

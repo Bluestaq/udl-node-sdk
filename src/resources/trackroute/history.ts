@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -12,8 +13,14 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: HistoryListParams, options?: RequestOptions): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/trackroute/history', { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<TrackRouteFullsOffsetPage, TrackRouteFull> {
+    return this._client.getAPIList('/udl/trackroute/history', OffsetPage<TrackRouteFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -46,6 +53,8 @@ export class History extends APIResource {
     });
   }
 }
+
+export type TrackRouteFullsOffsetPage = OffsetPage<TrackRouteFull>;
 
 /**
  * A track route is a prescribed route for performing training events or operations
@@ -432,11 +441,9 @@ export namespace TrackRouteFull {
   }
 }
 
-export type HistoryListResponse = Array<TrackRouteFull>;
-
 export type HistoryCountResponse = string;
 
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * The last updated date of the track route in ISO 8601 UTC format with millisecond
    * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
@@ -449,10 +456,6 @@ export interface HistoryListParams {
    * query fields that can be selected.
    */
   columns?: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface HistoryAodrParams {
@@ -509,8 +512,8 @@ export interface HistoryCountParams {
 export declare namespace History {
   export {
     type TrackRouteFull as TrackRouteFull,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
+    type TrackRouteFullsOffsetPage as TrackRouteFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

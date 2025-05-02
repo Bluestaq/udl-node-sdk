@@ -8,7 +8,6 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 
 export class Poi extends APIResource {
@@ -20,7 +19,6 @@ Poi.History = History;
 export declare namespace Poi {
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,

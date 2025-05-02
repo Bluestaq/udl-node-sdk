@@ -3,13 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as CurrentAPI from './current';
-import {
-  Current,
-  CurrentListParams,
-  CurrentListResponse,
-  CurrentTupleParams,
-  CurrentTupleResponse,
-} from './current';
+import { Current, CurrentListParams, CurrentTupleParams, CurrentTupleResponse } from './current';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -17,9 +11,9 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -49,8 +43,14 @@ export class Statevector extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: StatevectorListParams, options?: RequestOptions): APIPromise<StatevectorListResponse> {
-    return this._client.get('/udl/statevector', { query, ...options });
+  list(
+    query: StatevectorListParams,
+    options?: RequestOptions,
+  ): PagePromise<StateVectorAbridgedsOffsetPage, StateVectorAbridged> {
+    return this._client.getAPIList('/udl/statevector', OffsetPage<StateVectorAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -139,6 +139,10 @@ export class Statevector extends APIResource {
     });
   }
 }
+
+export type StateVectorAbridgedsOffsetPage = OffsetPage<StateVectorAbridged>;
+
+export type StateVectorFullsOffsetPage = OffsetPage<StateVectorFull>;
 
 /**
  * This service provides operations for querying and manipulation of state vectors
@@ -2315,8 +2319,6 @@ export interface StateVectorIngest {
   zvelAlt2?: number;
 }
 
-export type StatevectorListResponse = Array<StateVectorAbridged>;
-
 export type StatevectorCountResponse = string;
 
 export type StatevectorTupleResponse = Array<StateVectorFull>;
@@ -3010,16 +3012,12 @@ export interface StatevectorCreateParams {
   zvelAlt2?: number;
 }
 
-export interface StatevectorListParams {
+export interface StatevectorListParams extends OffsetPageParams {
   /**
    * Time of validity for state vector in ISO 8601 UTC datetime format, with
    * microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   epoch: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface StatevectorCountParams {
@@ -3076,9 +3074,9 @@ export declare namespace Statevector {
     type StateVectorAbridged as StateVectorAbridged,
     type StateVectorFull as StateVectorFull,
     type StateVectorIngest as StateVectorIngest,
-    type StatevectorListResponse as StatevectorListResponse,
     type StatevectorCountResponse as StatevectorCountResponse,
     type StatevectorTupleResponse as StatevectorTupleResponse,
+    type StateVectorAbridgedsOffsetPage as StateVectorAbridgedsOffsetPage,
     type StatevectorCreateParams as StatevectorCreateParams,
     type StatevectorListParams as StatevectorListParams,
     type StatevectorCountParams as StatevectorCountParams,
@@ -3090,7 +3088,6 @@ export declare namespace Statevector {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
@@ -3099,7 +3096,6 @@ export declare namespace Statevector {
 
   export {
     Current as Current,
-    type CurrentListResponse as CurrentListResponse,
     type CurrentTupleResponse as CurrentTupleResponse,
     type CurrentListParams as CurrentListParams,
     type CurrentTupleParams as CurrentTupleParams,

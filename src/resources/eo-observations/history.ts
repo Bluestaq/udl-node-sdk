@@ -3,6 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -13,8 +14,14 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: HistoryListParams, options?: RequestOptions): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/eoobservation/history', { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<EoObservationFullsOffsetPage, EoObservationFull> {
+    return this._client.getAPIList('/udl/eoobservation/history', OffsetPage<EoObservationFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -47,6 +54,8 @@ export class History extends APIResource {
     });
   }
 }
+
+export type EoObservationFullsOffsetPage = OffsetPage<EoObservationFull>;
 
 /**
  * Model representation of observation data for electro-optical based sensor
@@ -1216,11 +1225,9 @@ export namespace EoObservationFull {
   }
 }
 
-export type HistoryListResponse = Array<EoObservationFull>;
-
 export type HistoryCountResponse = string;
 
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * Ob detection time in ISO 8601 UTC, up to microsecond precision. Consumers should
    * contact the provider for details on their obTime specifications.
@@ -1234,10 +1241,6 @@ export interface HistoryListParams {
    * query fields that can be selected.
    */
   columns?: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface HistoryAodrParams {
@@ -1296,8 +1299,8 @@ export interface HistoryCountParams {
 export declare namespace History {
   export {
     type EoObservationFull as EoObservationFull,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
+    type EoObservationFullsOffsetPage as EoObservationFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

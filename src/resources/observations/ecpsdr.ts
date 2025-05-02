@@ -3,6 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -39,8 +40,11 @@ export class EcpsdrResource extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: EcpsdrListParams, options?: RequestOptions): APIPromise<EcpsdrListResponse> {
-    return this._client.get('/udl/ecpsdr', { query, ...options });
+  list(
+    query: EcpsdrListParams,
+    options?: RequestOptions,
+  ): PagePromise<EcpsdrAbridgedsOffsetPage, EcpsdrAbridged> {
+    return this._client.getAPIList('/udl/ecpsdr', OffsetPage<EcpsdrAbridged>, { query, ...options });
   }
 
   /**
@@ -99,6 +103,8 @@ export class EcpsdrResource extends APIResource {
     return this._client.get('/udl/ecpsdr/tuple', { query, ...options });
   }
 }
+
+export type EcpsdrAbridgedsOffsetPage = OffsetPage<EcpsdrAbridged>;
 
 /**
  * Supports Sensor Data Records (SDR) from space-borne Energetic Charged Particle
@@ -738,8 +744,6 @@ export interface EcpsdrAbridged {
   vRef?: number;
 }
 
-export type EcpsdrListResponse = Array<EcpsdrAbridged>;
-
 export type EcpsdrCountResponse = string;
 
 export type EcpsdrTupleResponse = Array<Ecpsdr>;
@@ -1034,16 +1038,12 @@ export interface EcpsdrRetrieveParams {
   maxResults?: number;
 }
 
-export interface EcpsdrListParams {
+export interface EcpsdrListParams extends OffsetPageParams {
   /**
    * Time stamp of time packet receipt on ground, in ISO 8601 UTC format with
    * millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgTime: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface EcpsdrCountParams {
@@ -1377,9 +1377,9 @@ export declare namespace EcpsdrResource {
   export {
     type Ecpsdr as Ecpsdr,
     type EcpsdrAbridged as EcpsdrAbridged,
-    type EcpsdrListResponse as EcpsdrListResponse,
     type EcpsdrCountResponse as EcpsdrCountResponse,
     type EcpsdrTupleResponse as EcpsdrTupleResponse,
+    type EcpsdrAbridgedsOffsetPage as EcpsdrAbridgedsOffsetPage,
     type EcpsdrCreateParams as EcpsdrCreateParams,
     type EcpsdrRetrieveParams as EcpsdrRetrieveParams,
     type EcpsdrListParams as EcpsdrListParams,

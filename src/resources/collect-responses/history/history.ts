@@ -2,9 +2,11 @@
 
 import { APIResource } from '../../../core/resource';
 import * as Shared from '../../shared';
+import { CollectResponseFullsOffsetPage } from '../../shared';
 import * as AodrAPI from './aodr';
 import { Aodr, AodrListParams } from './aodr';
 import { APIPromise } from '../../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
 import { RequestOptions } from '../../../internal/request-options';
 
@@ -17,8 +19,14 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: HistoryListParams, options?: RequestOptions): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/collectresponse/history', { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<CollectResponseFullsOffsetPage, Shared.CollectResponseFull> {
+    return this._client.getAPIList('/udl/collectresponse/history', OffsetPage<Shared.CollectResponseFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -37,11 +45,9 @@ export class History extends APIResource {
   }
 }
 
-export type HistoryListResponse = Array<Shared.CollectResponseFull>;
-
 export type HistoryCountResponse = string;
 
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * Time the row was created in the database, auto-populated by the system.
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
@@ -54,10 +60,6 @@ export interface HistoryListParams {
    * query fields that can be selected.
    */
   columns?: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface HistoryCountParams {
@@ -76,7 +78,6 @@ History.Aodr = Aodr;
 
 export declare namespace History {
   export {
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryCountParams as HistoryCountParams,
@@ -84,3 +85,5 @@ export declare namespace History {
 
   export { Aodr as Aodr, type AodrListParams as AodrListParams };
 }
+
+export { type CollectResponseFullsOffsetPage };

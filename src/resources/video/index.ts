@@ -3,10 +3,10 @@
 export {
   History,
   type VideoStreamsFull,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryCountParams,
+  type VideoStreamsFullsOffsetPage,
 } from './history';
 export {
   Video,
@@ -24,4 +24,5 @@ export {
   type VideoGetPublisherStreamingInfoParams,
   type VideoGetStreamFileParams,
   type VideoTupleParams,
+  type VideoListResponsesOffsetPage,
 } from './video';

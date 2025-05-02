@@ -4,12 +4,12 @@ import { APIResource } from '../../../core/resource';
 import * as HistoryAPI from './history';
 import {
   GeoStatusFull,
+  GeoStatusFullsOffsetPage,
   History,
   HistoryAodrParams,
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 
 export class Geostatus extends APIResource {
@@ -22,8 +22,8 @@ export declare namespace Geostatus {
   export {
     History as History,
     type GeoStatusFull as GeoStatusFull,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
+    type GeoStatusFullsOffsetPage as GeoStatusFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

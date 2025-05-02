@@ -2,8 +2,11 @@
 
 import { APIResource } from '../../../core/resource';
 import * as Shared from '../../shared';
+import { OffsetPage } from '../../../core/pagination';
 
 export class History extends APIResource {}
+
+export type ManeuverFullsOffsetPage = OffsetPage<ManeuverFull>;
 
 /**
  * Model representation of on-orbit object maneuver information for detected,

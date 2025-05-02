@@ -2,7 +2,9 @@
 
 import { APIResource } from '../../core/resource';
 import * as ItemtrackingHistoryAPI from '../udl/itemtracking/history';
+import { ItemTrackingFullsOffsetPage } from '../udl/itemtracking/history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -13,8 +15,15 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: HistoryListParams, options?: RequestOptions): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/itemtracking/history', { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<ItemTrackingFullsOffsetPage, ItemtrackingHistoryAPI.ItemTrackingFull> {
+    return this._client.getAPIList(
+      '/udl/itemtracking/history',
+      OffsetPage<ItemtrackingHistoryAPI.ItemTrackingFull>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -33,11 +42,9 @@ export class History extends APIResource {
   }
 }
 
-export type HistoryListResponse = Array<ItemtrackingHistoryAPI.ItemTrackingFull>;
-
 export type HistoryCountResponse = string;
 
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * The timestamp of the scan, in ISO 8601 UTC format with millisecond precision.
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
@@ -50,10 +57,6 @@ export interface HistoryListParams {
    * query fields that can be selected.
    */
   columns?: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface HistoryCountParams {
@@ -70,9 +73,10 @@ export interface HistoryCountParams {
 
 export declare namespace History {
   export {
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryCountParams as HistoryCountParams,
   };
 }
+
+export { type ItemTrackingFullsOffsetPage };

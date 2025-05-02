@@ -3,6 +3,7 @@
 import { APIResource } from '../core/resource';
 import * as EntitiesAPI from './entities';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -51,8 +52,11 @@ export class Buses extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: BusListParams | null | undefined = {}, options?: RequestOptions): APIPromise<BusListResponse> {
-    return this._client.get('/udl/bus', { query, ...options });
+  list(
+    query: BusListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BusAbridgedsOffsetPage, BusAbridged> {
+    return this._client.getAPIList('/udl/bus', OffsetPage<BusAbridged>, { query, ...options });
   }
 
   /**
@@ -107,6 +111,8 @@ export class Buses extends APIResource {
     return this._client.get('/udl/bus/tuple', { query, ...options });
   }
 }
+
+export type BusAbridgedsOffsetPage = OffsetPage<BusAbridged>;
 
 /**
  * A bus is the physical and software infrastructure backbone to which on-orbit
@@ -752,8 +758,6 @@ export interface BusFull {
   updatedBy?: string;
 }
 
-export type BusListResponse = Array<BusAbridged>;
-
 export type BusCountResponse = string;
 
 export type BusTupleResponse = Array<BusFull>;
@@ -1368,11 +1372,7 @@ export interface BusUpdateParams {
   type?: string;
 }
 
-export interface BusListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface BusListParams extends OffsetPageParams {}
 
 export interface BusCountParams {
   firstResult?: number;
@@ -1398,9 +1398,9 @@ export declare namespace Buses {
   export {
     type BusAbridged as BusAbridged,
     type BusFull as BusFull,
-    type BusListResponse as BusListResponse,
     type BusCountResponse as BusCountResponse,
     type BusTupleResponse as BusTupleResponse,
+    type BusAbridgedsOffsetPage as BusAbridgedsOffsetPage,
     type BusCreateParams as BusCreateParams,
     type BusRetrieveParams as BusRetrieveParams,
     type BusUpdateParams as BusUpdateParams,

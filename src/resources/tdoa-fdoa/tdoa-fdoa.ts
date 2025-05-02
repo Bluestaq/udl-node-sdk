@@ -5,13 +5,13 @@ import * as DiffofarrivalAPI from './diffofarrival/diffofarrival';
 import {
   Diffofarrival,
   DiffofarrivalAbridged,
+  DiffofarrivalAbridgedsOffsetPage,
   DiffofarrivalCountParams,
   DiffofarrivalCountResponse,
   DiffofarrivalCreateBulkParams,
   DiffofarrivalCreateParams,
   DiffofarrivalFull,
   DiffofarrivalListParams,
-  DiffofarrivalListResponse,
 } from './diffofarrival/diffofarrival';
 
 export class TdoaFdoa extends APIResource {
@@ -25,8 +25,8 @@ export declare namespace TdoaFdoa {
     Diffofarrival as Diffofarrival,
     type DiffofarrivalAbridged as DiffofarrivalAbridged,
     type DiffofarrivalFull as DiffofarrivalFull,
-    type DiffofarrivalListResponse as DiffofarrivalListResponse,
     type DiffofarrivalCountResponse as DiffofarrivalCountResponse,
+    type DiffofarrivalAbridgedsOffsetPage as DiffofarrivalAbridgedsOffsetPage,
     type DiffofarrivalCreateParams as DiffofarrivalCreateParams,
     type DiffofarrivalListParams as DiffofarrivalListParams,
     type DiffofarrivalCountParams as DiffofarrivalCountParams,

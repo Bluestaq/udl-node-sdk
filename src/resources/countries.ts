@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -53,8 +54,8 @@ export class Countries extends APIResource {
   list(
     query: CountryListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<CountryListResponse> {
-    return this._client.get('/udl/country', { query, ...options });
+  ): PagePromise<CountryAbridgedsOffsetPage, CountryAbridged> {
+    return this._client.getAPIList('/udl/country', OffsetPage<CountryAbridged>, { query, ...options });
   }
 
   /**
@@ -109,6 +110,8 @@ export class Countries extends APIResource {
     return this._client.get('/udl/country/tuple', { query, ...options });
   }
 }
+
+export type CountryAbridgedsOffsetPage = OffsetPage<CountryAbridged>;
 
 /**
  * A Country may represent countries, multi-national consortiums, and international
@@ -277,8 +280,6 @@ export interface CountryFull {
   updatedBy?: string;
 }
 
-export type CountryListResponse = Array<CountryAbridged>;
-
 export type CountryCountResponse = string;
 
 export type CountryTupleResponse = Array<CountryFull>;
@@ -403,11 +404,7 @@ export interface CountryUpdateParams {
   name?: string;
 }
 
-export interface CountryListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface CountryListParams extends OffsetPageParams {}
 
 export interface CountryCountParams {
   firstResult?: number;
@@ -433,9 +430,9 @@ export declare namespace Countries {
   export {
     type CountryAbridged as CountryAbridged,
     type CountryFull as CountryFull,
-    type CountryListResponse as CountryListResponse,
     type CountryCountResponse as CountryCountResponse,
     type CountryTupleResponse as CountryTupleResponse,
+    type CountryAbridgedsOffsetPage as CountryAbridgedsOffsetPage,
     type CountryCreateParams as CountryCreateParams,
     type CountryRetrieveParams as CountryRetrieveParams,
     type CountryUpdateParams as CountryUpdateParams,

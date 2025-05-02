@@ -8,8 +8,8 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
   NotificationFull,
+  NotificationFullsOffsetPage,
 } from './history';
 
 export class Notification extends APIResource {
@@ -22,8 +22,8 @@ export declare namespace Notification {
   export {
     History as History,
     type NotificationFull as NotificationFull,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
+    type NotificationFullsOffsetPage as NotificationFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

@@ -3,7 +3,7 @@
 export {
   History,
   type OnorbitthrusterstatusFull,
-  type HistoryListResponse,
   type HistoryListParams,
+  type OnorbitthrusterstatusFullsOffsetPage,
 } from './history';
 export { Onorbitthrusterstatus } from './onorbitthrusterstatus';

@@ -2,14 +2,12 @@
 
 export {
   Current,
-  type CurrentListResponse,
   type CurrentTupleResponse,
   type CurrentListParams,
   type CurrentTupleParams,
 } from './current';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
@@ -20,7 +18,6 @@ export {
   type StateVectorAbridged,
   type StateVectorFull,
   type StateVectorIngest,
-  type StatevectorListResponse,
   type StatevectorCountResponse,
   type StatevectorTupleResponse,
   type StatevectorCreateParams,
@@ -30,4 +27,6 @@ export {
   type StatevectorGetParams,
   type StatevectorTupleParams,
   type StatevectorUnvalidatedPublishParams,
+  type StateVectorFullsOffsetPage,
+  type StateVectorAbridgedsOffsetPage,
 } from './statevector';

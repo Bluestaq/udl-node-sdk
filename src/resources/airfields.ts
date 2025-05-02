@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -55,8 +56,8 @@ export class Airfields extends APIResource {
   list(
     query: AirfieldListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AirfieldListResponse> {
-    return this._client.get('/udl/airfield', { query, ...options });
+  ): PagePromise<AirfieldAbridgedsOffsetPage, AirfieldAbridged> {
+    return this._client.getAPIList('/udl/airfield', OffsetPage<AirfieldAbridged>, { query, ...options });
   }
 
   /**
@@ -99,6 +100,8 @@ export class Airfields extends APIResource {
     return this._client.get('/udl/airfield/tuple', { query, ...options });
   }
 }
+
+export type AirfieldAbridgedsOffsetPage = OffsetPage<AirfieldAbridged>;
 
 /**
  * Properties and characteristics of an airfield, which includes location, airfield
@@ -633,8 +636,6 @@ export interface AirfieldFull {
   zarId?: string;
 }
 
-export type AirfieldListResponse = Array<AirfieldAbridged>;
-
 export type AirfieldCountResponse = string;
 
 export type AirfieldTupleResponse = Array<AirfieldFull>;
@@ -1111,11 +1112,7 @@ export interface AirfieldUpdateParams {
   zarId?: string;
 }
 
-export interface AirfieldListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface AirfieldListParams extends OffsetPageParams {}
 
 export interface AirfieldCountParams {
   firstResult?: number;
@@ -1141,9 +1138,9 @@ export declare namespace Airfields {
   export {
     type AirfieldAbridged as AirfieldAbridged,
     type AirfieldFull as AirfieldFull,
-    type AirfieldListResponse as AirfieldListResponse,
     type AirfieldCountResponse as AirfieldCountResponse,
     type AirfieldTupleResponse as AirfieldTupleResponse,
+    type AirfieldAbridgedsOffsetPage as AirfieldAbridgedsOffsetPage,
     type AirfieldCreateParams as AirfieldCreateParams,
     type AirfieldRetrieveParams as AirfieldRetrieveParams,
     type AirfieldUpdateParams as AirfieldUpdateParams,

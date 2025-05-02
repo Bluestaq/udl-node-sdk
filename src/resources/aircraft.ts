@@ -3,6 +3,7 @@
 import { APIResource } from '../core/resource';
 import * as EntitiesAPI from './entities';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -54,8 +55,8 @@ export class Aircraft extends APIResource {
   list(
     query: AircraftListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AircraftListResponse> {
-    return this._client.get('/udl/aircraft', { query, ...options });
+  ): PagePromise<AircraftAbridgedsOffsetPage, AircraftAbridged> {
+    return this._client.getAPIList('/udl/aircraft', OffsetPage<AircraftAbridged>, { query, ...options });
   }
 
   /**
@@ -101,6 +102,8 @@ export class Aircraft extends APIResource {
     return this._client.get('/udl/aircraft/tuple', { query, ...options });
   }
 }
+
+export type AircraftAbridgedsOffsetPage = OffsetPage<AircraftAbridged>;
 
 /**
  * General aircraft designation, characteristics, and capabilities. The aircraft
@@ -420,8 +423,6 @@ export interface AircraftFull {
   updatedBy?: string;
 }
 
-export type AircraftListResponse = Array<AircraftAbridged>;
-
 export type AircraftCountResponse = string;
 
 export type AircraftTupleQueryResponse = Array<AircraftFull>;
@@ -688,11 +689,7 @@ export interface AircraftUpdateParams {
   tailNumber?: string;
 }
 
-export interface AircraftListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface AircraftListParams extends OffsetPageParams {}
 
 export interface AircraftCountParams {
   firstResult?: number;
@@ -718,9 +715,9 @@ export declare namespace Aircraft {
   export {
     type AircraftAbridged as AircraftAbridged,
     type AircraftFull as AircraftFull,
-    type AircraftListResponse as AircraftListResponse,
     type AircraftCountResponse as AircraftCountResponse,
     type AircraftTupleQueryResponse as AircraftTupleQueryResponse,
+    type AircraftAbridgedsOffsetPage as AircraftAbridgedsOffsetPage,
     type AircraftCreateParams as AircraftCreateParams,
     type AircraftRetrieveParams as AircraftRetrieveParams,
     type AircraftUpdateParams as AircraftUpdateParams,

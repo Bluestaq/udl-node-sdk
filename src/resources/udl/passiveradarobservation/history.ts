@@ -2,8 +2,11 @@
 
 import { APIResource } from '../../../core/resource';
 import * as Shared from '../../shared';
+import { OffsetPage } from '../../../core/pagination';
 
 export class History extends APIResource {}
+
+export type PassiveradarobservationFullsOffsetPage = OffsetPage<PassiveradarobservationFull>;
 
 /**
  * Model representation of observation data for passive radar based sensor

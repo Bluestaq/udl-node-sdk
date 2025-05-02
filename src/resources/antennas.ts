@@ -3,6 +3,7 @@
 import { APIResource } from '../core/resource';
 import * as AntennaDetailsAPI from './onorbit/antenna-details';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -54,8 +55,8 @@ export class Antennas extends APIResource {
   list(
     query: AntennaListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AntennaListResponse> {
-    return this._client.get('/udl/antenna', { query, ...options });
+  ): PagePromise<AntennaAbridgedsOffsetPage, AntennaAbridged> {
+    return this._client.getAPIList('/udl/antenna', OffsetPage<AntennaAbridged>, { query, ...options });
   }
 
   /**
@@ -110,6 +111,8 @@ export class Antennas extends APIResource {
     return this._client.get('/udl/antenna/tuple', { query, ...options });
   }
 }
+
+export type AntennaAbridgedsOffsetPage = OffsetPage<AntennaAbridged>;
 
 /**
  * Model representation of information on on-orbit/spacecraft communication
@@ -259,8 +262,6 @@ export interface AntennaFull {
   updatedBy?: string;
 }
 
-export type AntennaListResponse = Array<AntennaAbridged>;
-
 export type AntennaCountResponse = string;
 
 export type AntennaTupleResponse = Array<AntennaFull>;
@@ -357,11 +358,7 @@ export interface AntennaUpdateParams {
   origin?: string;
 }
 
-export interface AntennaListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface AntennaListParams extends OffsetPageParams {}
 
 export interface AntennaCountParams {
   firstResult?: number;
@@ -387,9 +384,9 @@ export declare namespace Antennas {
   export {
     type AntennaAbridged as AntennaAbridged,
     type AntennaFull as AntennaFull,
-    type AntennaListResponse as AntennaListResponse,
     type AntennaCountResponse as AntennaCountResponse,
     type AntennaTupleResponse as AntennaTupleResponse,
+    type AntennaAbridgedsOffsetPage as AntennaAbridgedsOffsetPage,
     type AntennaCreateParams as AntennaCreateParams,
     type AntennaRetrieveParams as AntennaRetrieveParams,
     type AntennaUpdateParams as AntennaUpdateParams,

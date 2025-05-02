@@ -3,6 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as OrganizationAPI from '../organization';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -58,8 +59,11 @@ export class AntennaDetails extends APIResource {
   list(
     query: AntennaDetailListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AntennaDetailListResponse> {
-    return this._client.get('/udl/antennadetails', { query, ...options });
+  ): PagePromise<AntennaDetailsAbridgedsOffsetPage, AntennaDetailsAbridged> {
+    return this._client.getAPIList('/udl/antennadetails', OffsetPage<AntennaDetailsAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -75,6 +79,8 @@ export class AntennaDetails extends APIResource {
     });
   }
 }
+
+export type AntennaDetailsAbridgedsOffsetPage = OffsetPage<AntennaDetailsAbridged>;
 
 /**
  * Detailed information for a spacecraft communication antenna. One antenna may
@@ -397,8 +403,6 @@ export interface AntennaDetailsFull {
   updatedBy?: string;
 }
 
-export type AntennaDetailListResponse = Array<AntennaDetailsAbridged>;
-
 export interface AntennaDetailCreateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -675,17 +679,13 @@ export interface AntennaDetailUpdateParams {
   type?: string;
 }
 
-export interface AntennaDetailListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface AntennaDetailListParams extends OffsetPageParams {}
 
 export declare namespace AntennaDetails {
   export {
     type AntennaDetailsAbridged as AntennaDetailsAbridged,
     type AntennaDetailsFull as AntennaDetailsFull,
-    type AntennaDetailListResponse as AntennaDetailListResponse,
+    type AntennaDetailsAbridgedsOffsetPage as AntennaDetailsAbridgedsOffsetPage,
     type AntennaDetailCreateParams as AntennaDetailCreateParams,
     type AntennaDetailRetrieveParams as AntennaDetailRetrieveParams,
     type AntennaDetailUpdateParams as AntennaDetailUpdateParams,

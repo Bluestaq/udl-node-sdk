@@ -3,6 +3,7 @@
 import { APIResource } from '../core/resource';
 import * as OrganizationAPI from './organization';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -57,8 +58,11 @@ export class Batterydetails extends APIResource {
   list(
     query: BatterydetailListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<BatterydetailListResponse> {
-    return this._client.get('/udl/batterydetails', { query, ...options });
+  ): PagePromise<BatterydetailsAbridgedsOffsetPage, BatterydetailsAbridged> {
+    return this._client.getAPIList('/udl/batterydetails', OffsetPage<BatterydetailsAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -74,6 +78,8 @@ export class Batterydetails extends APIResource {
     });
   }
 }
+
+export type BatterydetailsAbridgedsOffsetPage = OffsetPage<BatterydetailsAbridged>;
 
 /**
  * Detailed information on a spacecraft battery type compiled by a particular
@@ -300,8 +306,6 @@ export interface BatterydetailsFull {
   updatedBy?: string;
 }
 
-export type BatterydetailListResponse = Array<BatterydetailsAbridged>;
-
 export interface BatterydetailCreateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -482,17 +486,13 @@ export interface BatterydetailUpdateParams {
   technology?: string;
 }
 
-export interface BatterydetailListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface BatterydetailListParams extends OffsetPageParams {}
 
 export declare namespace Batterydetails {
   export {
     type BatterydetailsAbridged as BatterydetailsAbridged,
     type BatterydetailsFull as BatterydetailsFull,
-    type BatterydetailListResponse as BatterydetailListResponse,
+    type BatterydetailsAbridgedsOffsetPage as BatterydetailsAbridgedsOffsetPage,
     type BatterydetailCreateParams as BatterydetailCreateParams,
     type BatterydetailRetrieveParams as BatterydetailRetrieveParams,
     type BatterydetailUpdateParams as BatterydetailUpdateParams,

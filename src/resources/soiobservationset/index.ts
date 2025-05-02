@@ -3,11 +3,11 @@
 export {
   History,
   type SoiObservationSetFull,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type SoiObservationSetFullsOffsetPage,
 } from './history';
 export {
   Soiobservationset,
@@ -21,4 +21,5 @@ export {
   type SoiobservationsetGetParams,
   type SoiobservationsetTupleParams,
   type SoiobservationsetUnvalidatedPublishParams,
+  type SoiobservationsetListResponsesOffsetPage,
 } from './soiobservationset';

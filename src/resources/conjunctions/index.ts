@@ -4,7 +4,6 @@ export {
   Conjunctions,
   type ConjunctionAbridged,
   type ConjunctionFull,
-  type ConjunctionListResponse,
   type ConjunctionCountResponse,
   type ConjunctionGetHistoryResponse,
   type ConjunctionTupleResponse,
@@ -17,6 +16,7 @@ export {
   type ConjunctionTupleParams,
   type ConjunctionUnvalidatedPublishParams,
   type ConjunctionUploadConjunctionDataMessageParams,
+  type ConjunctionAbridgedsOffsetPage,
 } from './conjunctions';
 export {
   History,

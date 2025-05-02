@@ -8,7 +8,6 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 
 export class IonoObservation extends APIResource {
@@ -20,7 +19,6 @@ IonoObservation.History = History;
 export declare namespace IonoObservation {
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,

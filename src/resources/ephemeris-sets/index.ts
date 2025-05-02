@@ -4,7 +4,6 @@ export {
   EphemerisSets,
   type EphemerisSet,
   type EphemerisSetAbridged,
-  type EphemerisSetListResponse,
   type EphemerisSetCountResponse,
   type EphemerisSetTupleResponse,
   type EphemerisSetCreateParams,
@@ -13,10 +12,11 @@ export {
   type EphemerisSetCountParams,
   type EphemerisSetFileRetrieveParams,
   type EphemerisSetTupleParams,
+  type EphemerisSetsOffsetPage,
+  type EphemerisSetAbridgedsOffsetPage,
 } from './ephemeris-sets';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,

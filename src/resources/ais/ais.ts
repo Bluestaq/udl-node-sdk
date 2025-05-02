@@ -3,8 +3,9 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryListParams, HistoryListResponse } from './history';
+import { History, HistoryAodrParams, HistoryListParams } from './history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -17,8 +18,8 @@ export class AIs extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: AIListParams, options?: RequestOptions): APIPromise<AIListResponse> {
-    return this._client.get('/udl/ais', { query, ...options });
+  list(query: AIListParams, options?: RequestOptions): PagePromise<AIsAbridgedsOffsetPage, AIsAbridged> {
+    return this._client.getAPIList('/udl/ais', OffsetPage<AIsAbridged>, { query, ...options });
   }
 
   /**
@@ -92,6 +93,8 @@ export class AIs extends APIResource {
     return this._client.get('/udl/ais/tuple', { query, ...options });
   }
 }
+
+export type AIsAbridgedsOffsetPage = OffsetPage<AIsAbridged>;
 
 /**
  * Self-reported information obtained from Automatic Identification System (AIS)
@@ -425,24 +428,18 @@ export interface AIsAbridged {
   width?: number;
 }
 
-export type AIListResponse = Array<AIsAbridged>;
-
 export type AICountResponse = string;
 
 export type AIHistoryCountResponse = string;
 
 export type AITupleResponse = Array<Shared.AIsFull>;
 
-export interface AIListParams {
+export interface AIListParams extends OffsetPageParams {
   /**
    * The timestamp that the vessel position was recorded, in ISO 8601 UTC format.
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   ts: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface AICountParams {
@@ -808,10 +805,10 @@ AIs.History = History;
 export declare namespace AIs {
   export {
     type AIsAbridged as AIsAbridged,
-    type AIListResponse as AIListResponse,
     type AICountResponse as AICountResponse,
     type AIHistoryCountResponse as AIHistoryCountResponse,
     type AITupleResponse as AITupleResponse,
+    type AIsAbridgedsOffsetPage as AIsAbridgedsOffsetPage,
     type AIListParams as AIListParams,
     type AICountParams as AICountParams,
     type AICreateBulkParams as AICreateBulkParams,
@@ -821,7 +818,6 @@ export declare namespace AIs {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
   };

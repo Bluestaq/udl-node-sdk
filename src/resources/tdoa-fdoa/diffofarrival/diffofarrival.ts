@@ -3,8 +3,9 @@
 import { APIResource } from '../../../core/resource';
 import * as Shared from '../../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryListParams, HistoryListResponse } from './history';
+import { History, HistoryAodrParams, HistoryListParams } from './history';
 import { APIPromise } from '../../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
 import { RequestOptions } from '../../../internal/request-options';
 
@@ -32,8 +33,14 @@ export class Diffofarrival extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: DiffofarrivalListParams, options?: RequestOptions): APIPromise<DiffofarrivalListResponse> {
-    return this._client.get('/udl/diffofarrival', { query, ...options });
+  list(
+    query: DiffofarrivalListParams,
+    options?: RequestOptions,
+  ): PagePromise<DiffofarrivalAbridgedsOffsetPage, DiffofarrivalAbridged> {
+    return this._client.getAPIList('/udl/diffofarrival', OffsetPage<DiffofarrivalAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -67,6 +74,10 @@ export class Diffofarrival extends APIResource {
     });
   }
 }
+
+export type DiffofarrivalAbridgedsOffsetPage = OffsetPage<DiffofarrivalAbridged>;
+
+export type DiffofarrivalFullsOffsetPage = OffsetPage<DiffofarrivalFull>;
 
 /**
  * Model representation of Signal time and frequency difference of arrival
@@ -603,8 +614,6 @@ export interface DiffofarrivalFull {
   uct?: boolean;
 }
 
-export type DiffofarrivalListResponse = Array<DiffofarrivalAbridged>;
-
 export type DiffofarrivalCountResponse = string;
 
 export interface DiffofarrivalCreateParams {
@@ -846,16 +855,12 @@ export interface DiffofarrivalCreateParams {
   uct?: boolean;
 }
 
-export interface DiffofarrivalListParams {
+export interface DiffofarrivalListParams extends OffsetPageParams {
   /**
    * Ob detection time in ISO 8601 UTC with microsecond precision.
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface DiffofarrivalCountParams {
@@ -1126,8 +1131,8 @@ export declare namespace Diffofarrival {
   export {
     type DiffofarrivalAbridged as DiffofarrivalAbridged,
     type DiffofarrivalFull as DiffofarrivalFull,
-    type DiffofarrivalListResponse as DiffofarrivalListResponse,
     type DiffofarrivalCountResponse as DiffofarrivalCountResponse,
+    type DiffofarrivalAbridgedsOffsetPage as DiffofarrivalAbridgedsOffsetPage,
     type DiffofarrivalCreateParams as DiffofarrivalCreateParams,
     type DiffofarrivalListParams as DiffofarrivalListParams,
     type DiffofarrivalCountParams as DiffofarrivalCountParams,
@@ -1136,7 +1141,6 @@ export declare namespace Diffofarrival {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
   };

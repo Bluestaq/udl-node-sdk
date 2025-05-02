@@ -4,15 +4,15 @@ export {
   Airfieldstatus,
   type AirfieldstatusAbridged,
   type AirfieldstatusFull,
-  type AirfieldstatusListResponse,
   type AirfieldstatusCountResponse,
   type AirfieldstatusCreateParams,
   type AirfieldstatusListParams,
   type AirfieldstatusCountParams,
+  type AirfieldstatusFullsOffsetPage,
+  type AirfieldstatusAbridgedsOffsetPage,
 } from './airfieldstatus';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryCountParams,

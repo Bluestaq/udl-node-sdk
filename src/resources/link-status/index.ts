@@ -11,10 +11,10 @@ export {
   type DatalinkCountParams,
   type DatalinkTupleParams,
   type DatalinkUnvalidatedPublishParams,
+  type DatalinkListResponsesOffsetPage,
 } from './datalink';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
@@ -30,4 +30,5 @@ export {
   type LinkStatusCountParams,
   type LinkStatusGetParams,
   type LinkStatusTupleParams,
+  type LinkStatusListResponsesOffsetPage,
 } from './link-status';

@@ -20,4 +20,5 @@ export {
   type SensorplanGetParams,
   type SensorplanTupleParams,
   type SensorplanUnvalidatedPublishParams,
+  type SensorplanListResponsesOffsetPage,
 } from './sensorplan';

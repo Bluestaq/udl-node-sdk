@@ -16,8 +16,8 @@ import {
   AircraftSortieHistoryQueryParams,
   AircraftSortieHistoryQueryResponse,
   AircraftSortieListParams,
-  AircraftSortieListResponse,
   AircraftsortieAbridged,
+  AircraftsortieAbridgedsOffsetPage,
   AircraftsortieFull,
 } from './aircraft-sortie';
 import * as AircraftSortiesAPI from './aircraft-sorties';
@@ -67,10 +67,10 @@ export declare namespace AirOperations {
     AircraftSortie as AircraftSortie,
     type AircraftsortieAbridged as AircraftsortieAbridged,
     type AircraftsortieFull as AircraftsortieFull,
-    type AircraftSortieListResponse as AircraftSortieListResponse,
     type AircraftSortieCountResponse as AircraftSortieCountResponse,
     type AircraftSortieHistoryCountResponse as AircraftSortieHistoryCountResponse,
     type AircraftSortieHistoryQueryResponse as AircraftSortieHistoryQueryResponse,
+    type AircraftsortieAbridgedsOffsetPage as AircraftsortieAbridgedsOffsetPage,
     type AircraftSortieCreateParams as AircraftSortieCreateParams,
     type AircraftSortieListParams as AircraftSortieListParams,
     type AircraftSortieCountParams as AircraftSortieCountParams,

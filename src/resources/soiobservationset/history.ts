@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -12,8 +13,14 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: HistoryListParams, options?: RequestOptions): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/soiobservationset/history', { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<SoiObservationSetFullsOffsetPage, SoiObservationSetFull> {
+    return this._client.getAPIList('/udl/soiobservationset/history', OffsetPage<SoiObservationSetFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -46,6 +53,8 @@ export class History extends APIResource {
     });
   }
 }
+
+export type SoiObservationSetFullsOffsetPage = OffsetPage<SoiObservationSetFull>;
 
 /**
  * These services provide operations for posting space object idenfification
@@ -960,11 +969,9 @@ export namespace SoiObservationSetFull {
   }
 }
 
-export type HistoryListResponse = Array<SoiObservationSetFull>;
-
 export type HistoryCountResponse = string;
 
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * Observation set detection start time in ISO 8601 UTC with microsecond precision.
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
@@ -977,10 +984,6 @@ export interface HistoryListParams {
    * query fields that can be selected.
    */
   columns?: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface HistoryAodrParams {
@@ -1037,8 +1040,8 @@ export interface HistoryCountParams {
 export declare namespace History {
   export {
     type SoiObservationSetFull as SoiObservationSetFull,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
+    type SoiObservationSetFullsOffsetPage as SoiObservationSetFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

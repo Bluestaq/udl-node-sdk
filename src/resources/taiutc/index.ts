@@ -3,11 +3,11 @@
 export {
   History,
   type TaiutcFull,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type TaiutcFullsOffsetPage,
 } from './history';
 export {
   Taiutc,
@@ -20,4 +20,5 @@ export {
   type TaiutcCountParams,
   type TaiutcGetParams,
   type TaiutcTupleParams,
+  type TaiutcListResponsesOffsetPage,
 } from './taiutc';

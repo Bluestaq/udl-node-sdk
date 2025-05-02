@@ -8,8 +8,8 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
   MtiFull,
+  MtiFullsOffsetPage,
 } from './history';
 
 export class Mti extends APIResource {
@@ -22,8 +22,8 @@ export declare namespace Mti {
   export {
     History as History,
     type MtiFull as MtiFull,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
+    type MtiFullsOffsetPage as MtiFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

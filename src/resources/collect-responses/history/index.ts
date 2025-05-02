@@ -3,7 +3,6 @@
 export { Aodr, type AodrListParams } from './aodr';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryCountParams,

@@ -4,11 +4,11 @@ export {
   AntennaDetails,
   type AntennaDetailsAbridged,
   type AntennaDetailsFull,
-  type AntennaDetailListResponse,
   type AntennaDetailCreateParams,
   type AntennaDetailRetrieveParams,
   type AntennaDetailUpdateParams,
   type AntennaDetailListParams,
+  type AntennaDetailsAbridgedsOffsetPage,
 } from './antenna-details';
 export {
   Onorbit,
@@ -24,4 +24,5 @@ export {
   type OnorbitGetParams,
   type OnorbitGetSignatureParams,
   type OnorbitTupleParams,
+  type OnorbitListResponsesOffsetPage,
 } from './onorbit';

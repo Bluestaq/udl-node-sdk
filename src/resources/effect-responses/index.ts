@@ -13,6 +13,7 @@ export {
   type EffectResponseCreateBulkParams,
   type EffectResponseTupleParams,
   type EffectResponseUnvalidatedPublishParams,
+  type EffectResponseListResponsesOffsetPage,
 } from './effect-responses';
 export {
   History,
@@ -21,4 +22,5 @@ export {
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type HistoryListResponsesOffsetPage,
 } from './history';

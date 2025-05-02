@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -53,8 +54,8 @@ export class Crew extends APIResource {
   list(
     query: CrewListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<CrewListResponse> {
-    return this._client.get('/udl/crew', { query, ...options });
+  ): PagePromise<CrewAbridgedsOffsetPage, CrewAbridged> {
+    return this._client.getAPIList('/udl/crew', OffsetPage<CrewAbridged>, { query, ...options });
   }
 
   /**
@@ -112,6 +113,8 @@ export class Crew extends APIResource {
     });
   }
 }
+
+export type CrewAbridgedsOffsetPage = OffsetPage<CrewAbridged>;
 
 /**
  * Crew Services.
@@ -1609,8 +1612,6 @@ export namespace CrewFull {
   }
 }
 
-export type CrewListResponse = Array<CrewAbridged>;
-
 export type CrewCountResponse = string;
 
 export type CrewTupleResponse = Array<CrewFull>;
@@ -3041,11 +3042,7 @@ export namespace CrewUpdateParams {
   }
 }
 
-export interface CrewListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface CrewListParams extends OffsetPageParams {}
 
 export interface CrewCountParams {
   firstResult?: number;
@@ -3790,9 +3787,9 @@ export declare namespace Crew {
   export {
     type CrewAbridged as CrewAbridged,
     type CrewFull as CrewFull,
-    type CrewListResponse as CrewListResponse,
     type CrewCountResponse as CrewCountResponse,
     type CrewTupleResponse as CrewTupleResponse,
+    type CrewAbridgedsOffsetPage as CrewAbridgedsOffsetPage,
     type CrewCreateParams as CrewCreateParams,
     type CrewRetrieveParams as CrewRetrieveParams,
     type CrewUpdateParams as CrewUpdateParams,

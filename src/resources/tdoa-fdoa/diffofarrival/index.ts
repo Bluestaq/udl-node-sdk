@@ -4,11 +4,12 @@ export {
   Diffofarrival,
   type DiffofarrivalAbridged,
   type DiffofarrivalFull,
-  type DiffofarrivalListResponse,
   type DiffofarrivalCountResponse,
   type DiffofarrivalCreateParams,
   type DiffofarrivalListParams,
   type DiffofarrivalCountParams,
   type DiffofarrivalCreateBulkParams,
+  type DiffofarrivalFullsOffsetPage,
+  type DiffofarrivalAbridgedsOffsetPage,
 } from './diffofarrival';
-export { History, type HistoryListResponse, type HistoryListParams, type HistoryAodrParams } from './history';
+export { History, type HistoryListParams, type HistoryAodrParams } from './history';

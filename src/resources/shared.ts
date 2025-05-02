@@ -8,6 +8,7 @@ import * as LocationAPI from './location';
 import * as OrganizationAPI from './organization';
 import * as SolararraydetailsAPI from './solararraydetails';
 import * as AircraftSortieAPI from './air-operations/aircraft-sortie';
+import { OffsetPage } from '../core/pagination';
 
 /**
  * The information in an Air Transport Mission contains unique identification,
@@ -8208,3 +8209,27 @@ export namespace OnorbitFull {
     updatedBy?: string;
   }
 }
+
+export type AirTransportMissionFullsOffsetPage = OffsetPage<AirTransportMissionFull>;
+
+export type AircraftstatusFullsOffsetPage = OffsetPage<AircraftstatusFull>;
+
+export type AIsFullsOffsetPage = OffsetPage<AIsFull>;
+
+export type AttitudesetFullsOffsetPage = OffsetPage<AttitudesetFull>;
+
+export type CollectRequestFullsOffsetPage = OffsetPage<CollectRequestFull>;
+
+export type CollectResponseFullsOffsetPage = OffsetPage<CollectResponseFull>;
+
+export type DriftHistoryAbridgedsOffsetPage = OffsetPage<DriftHistoryAbridged>;
+
+export type EopFullsOffsetPage = OffsetPage<EopFull>;
+
+export type EphemerisFullsOffsetPage = OffsetPage<EphemerisFull>;
+
+export type EvacFullsOffsetPage = OffsetPage<EvacFull>;
+
+export type EventEvolutionFullsOffsetPage = OffsetPage<EventEvolutionFull>;
+
+export type FileDataOffsetPage = OffsetPage<FileData>;

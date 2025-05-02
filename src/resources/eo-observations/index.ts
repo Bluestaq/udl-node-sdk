@@ -3,20 +3,20 @@
 export {
   EoObservations,
   type EoObservationAbridged,
-  type EoObservationListResponse,
   type EoObservationCountResponse,
   type EoObservationCreateParams,
   type EoObservationListParams,
   type EoObservationCountParams,
   type EoObservationCreateBulkParams,
   type EoObservationUnvalidatedPublishParams,
+  type EoObservationAbridgedsOffsetPage,
 } from './eo-observations';
 export {
   History,
   type EoObservationFull,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type EoObservationFullsOffsetPage,
 } from './history';

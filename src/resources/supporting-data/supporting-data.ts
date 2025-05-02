@@ -2,7 +2,12 @@
 
 import { APIResource } from '../../core/resource';
 import * as DataTypesAPI from './data-types';
-import { DataTypeListParams, DataTypeListResponse, DataTypes } from './data-types';
+import {
+  DataTypeListParams,
+  DataTypeListResponse,
+  DataTypeListResponsesOffsetPage,
+  DataTypes,
+} from './data-types';
 import * as DataownerAPI from './dataowner';
 import {
   Dataowner,
@@ -13,7 +18,12 @@ import {
   DataownerRetrieveResponse,
 } from './dataowner';
 import * as DataownerTypesAPI from './dataowner-types';
-import { DataownerTypeListParams, DataownerTypeListResponse, DataownerTypes } from './dataowner-types';
+import {
+  DataownerTypeListParams,
+  DataownerTypeListResponse,
+  DataownerTypeListResponsesOffsetPage,
+  DataownerTypes,
+} from './dataowner-types';
 import * as ProviderMetadataAPI from './provider-metadata';
 import {
   ProviderMetadata,
@@ -43,6 +53,7 @@ export declare namespace SupportingData {
   export {
     DataTypes as DataTypes,
     type DataTypeListResponse as DataTypeListResponse,
+    type DataTypeListResponsesOffsetPage as DataTypeListResponsesOffsetPage,
     type DataTypeListParams as DataTypeListParams,
   };
 
@@ -58,6 +69,7 @@ export declare namespace SupportingData {
   export {
     DataownerTypes as DataownerTypes,
     type DataownerTypeListResponse as DataownerTypeListResponse,
+    type DataownerTypeListResponsesOffsetPage as DataownerTypeListResponsesOffsetPage,
     type DataownerTypeListParams as DataownerTypeListParams,
   };
 

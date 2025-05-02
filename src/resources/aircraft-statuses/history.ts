@@ -2,7 +2,9 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
+import { AircraftstatusFullsOffsetPage } from '../shared';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -16,8 +18,11 @@ export class History extends APIResource {
   list(
     query: HistoryListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/aircraftstatus/history', { query, ...options });
+  ): PagePromise<AircraftstatusFullsOffsetPage, Shared.AircraftstatusFull> {
+    return this._client.getAPIList('/udl/aircraftstatus/history', OffsetPage<Shared.AircraftstatusFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -36,21 +41,15 @@ export class History extends APIResource {
   }
 }
 
-export type HistoryListResponse = Array<Shared.AircraftstatusFull>;
-
 export type HistoryCountResponse = string;
 
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * optional, fields for retrieval. When omitted, ALL fields are assumed. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
    * query fields that can be selected.
    */
   columns?: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface HistoryCountParams {
@@ -61,9 +60,10 @@ export interface HistoryCountParams {
 
 export declare namespace History {
   export {
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryCountParams as HistoryCountParams,
   };
 }
+
+export { type AircraftstatusFullsOffsetPage };

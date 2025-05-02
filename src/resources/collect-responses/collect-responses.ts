@@ -3,16 +3,11 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as TupleAPI from './tuple';
-import { Tuple, TupleListParams, TupleListResponse } from './tuple';
+import { Tuple, TupleListParams } from './tuple';
 import * as HistoryAPI from './history/history';
-import {
-  History,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-} from './history/history';
+import { History, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history/history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -52,8 +47,14 @@ export class CollectResponses extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: CollectResponseListParams, options?: RequestOptions): APIPromise<CollectResponseListResponse> {
-    return this._client.get('/udl/collectresponse', { query, ...options });
+  list(
+    query: CollectResponseListParams,
+    options?: RequestOptions,
+  ): PagePromise<CollectResponseAbridgedsOffsetPage, CollectResponseAbridged> {
+    return this._client.getAPIList('/udl/collectresponse', OffsetPage<CollectResponseAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -116,6 +117,8 @@ export class CollectResponses extends APIResource {
     });
   }
 }
+
+export type CollectResponseAbridgedsOffsetPage = OffsetPage<CollectResponseAbridged>;
 
 /**
  * Collect response supports the response and status of individual collect
@@ -328,8 +331,6 @@ export interface CollectResponseAbridged {
   taskId?: string;
 }
 
-export type CollectResponseListResponse = Array<CollectResponseAbridged>;
-
 export type CollectResponseCountResponse = string;
 
 export interface CollectResponseCreateParams {
@@ -528,16 +529,12 @@ export interface CollectResponseRetrieveParams {
   maxResults?: number;
 }
 
-export interface CollectResponseListParams {
+export interface CollectResponseListParams extends OffsetPageParams {
   /**
    * Time the row was created in the database, auto-populated by the system.
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface CollectResponseCountParams {
@@ -966,8 +963,8 @@ CollectResponses.Tuple = Tuple;
 export declare namespace CollectResponses {
   export {
     type CollectResponseAbridged as CollectResponseAbridged,
-    type CollectResponseListResponse as CollectResponseListResponse,
     type CollectResponseCountResponse as CollectResponseCountResponse,
+    type CollectResponseAbridgedsOffsetPage as CollectResponseAbridgedsOffsetPage,
     type CollectResponseCreateParams as CollectResponseCreateParams,
     type CollectResponseRetrieveParams as CollectResponseRetrieveParams,
     type CollectResponseListParams as CollectResponseListParams,
@@ -978,15 +975,10 @@ export declare namespace CollectResponses {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryCountParams as HistoryCountParams,
   };
 
-  export {
-    Tuple as Tuple,
-    type TupleListResponse as TupleListResponse,
-    type TupleListParams as TupleListParams,
-  };
+  export { Tuple as Tuple, type TupleListParams as TupleListParams };
 }

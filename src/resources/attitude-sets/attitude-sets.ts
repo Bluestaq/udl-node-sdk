@@ -9,9 +9,9 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -52,8 +52,14 @@ export class AttitudeSets extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: AttitudeSetListParams, options?: RequestOptions): APIPromise<AttitudeSetListResponse> {
-    return this._client.get('/udl/attitudeset', { query, ...options });
+  list(
+    query: AttitudeSetListParams,
+    options?: RequestOptions,
+  ): PagePromise<AttitudesetAbridgedsOffsetPage, AttitudesetAbridged> {
+    return this._client.getAPIList('/udl/attitudeset', OffsetPage<AttitudesetAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -122,6 +128,8 @@ export class AttitudeSets extends APIResource {
     });
   }
 }
+
+export type AttitudesetAbridgedsOffsetPage = OffsetPage<AttitudesetAbridged>;
 
 /**
  * AttitudeSet represents a wrapper or collection of Onorbit Attitude 'points' and
@@ -325,8 +333,6 @@ export interface AttitudesetAbridged {
    */
   stepSize?: number;
 }
-
-export type AttitudeSetListResponse = Array<AttitudesetAbridged>;
 
 export type AttitudeSetCountResponse = string;
 
@@ -710,7 +716,7 @@ export namespace AttitudeSetCreateParams {
   }
 }
 
-export interface AttitudeSetListParams {
+export interface AttitudeSetListParams extends OffsetPageParams {
   /**
    * The epoch or start time of the attitude parameter or attitude ephemeris, in ISO
    * 8601 UTC format, with microsecond precision. If this set is constituted by a
@@ -718,10 +724,6 @@ export interface AttitudeSetListParams {
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface AttitudeSetCountParams {
@@ -1143,9 +1145,9 @@ AttitudeSets.History = History;
 export declare namespace AttitudeSets {
   export {
     type AttitudesetAbridged as AttitudesetAbridged,
-    type AttitudeSetListResponse as AttitudeSetListResponse,
     type AttitudeSetCountResponse as AttitudeSetCountResponse,
     type AttitudeSetTupleResponse as AttitudeSetTupleResponse,
+    type AttitudesetAbridgedsOffsetPage as AttitudesetAbridgedsOffsetPage,
     type AttitudeSetCreateParams as AttitudeSetCreateParams,
     type AttitudeSetListParams as AttitudeSetListParams,
     type AttitudeSetCountParams as AttitudeSetCountParams,
@@ -1155,7 +1157,6 @@ export declare namespace AttitudeSets {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,

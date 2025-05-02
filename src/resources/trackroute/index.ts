@@ -3,11 +3,11 @@
 export {
   History,
   type TrackRouteFull,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type TrackRouteFullsOffsetPage,
 } from './history';
 export {
   Trackroute,
@@ -22,4 +22,5 @@ export {
   type TrackrouteGetParams,
   type TrackrouteTupleParams,
   type TrackrouteUnvalidatedPublishParams,
+  type TrackrouteListResponsesOffsetPage,
 } from './trackroute';

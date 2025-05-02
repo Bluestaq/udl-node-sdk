@@ -2,7 +2,9 @@
 
 import { APIResource } from '../../core/resource';
 import * as StatevectorAPI from './statevector';
+import { StateVectorAbridgedsOffsetPage } from './statevector';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 
 export class Current extends APIResource {
@@ -21,8 +23,12 @@ export class Current extends APIResource {
   list(
     query: CurrentListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<CurrentListResponse> {
-    return this._client.get('/udl/statevector/current', { query, ...options });
+  ): PagePromise<StateVectorAbridgedsOffsetPage, StatevectorAPI.StateVectorAbridged> {
+    return this._client.getAPIList(
+      '/udl/statevector/current',
+      OffsetPage<StatevectorAPI.StateVectorAbridged>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -42,15 +48,9 @@ export class Current extends APIResource {
   }
 }
 
-export type CurrentListResponse = Array<StatevectorAPI.StateVectorAbridged>;
-
 export type CurrentTupleResponse = Array<StatevectorAPI.StateVectorFull>;
 
-export interface CurrentListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface CurrentListParams extends OffsetPageParams {}
 
 export interface CurrentTupleParams {
   /**
@@ -68,9 +68,10 @@ export interface CurrentTupleParams {
 
 export declare namespace Current {
   export {
-    type CurrentListResponse as CurrentListResponse,
     type CurrentTupleResponse as CurrentTupleResponse,
     type CurrentListParams as CurrentListParams,
     type CurrentTupleParams as CurrentTupleParams,
   };
 }
+
+export { type StateVectorAbridgedsOffsetPage };

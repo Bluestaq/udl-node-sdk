@@ -4,9 +4,9 @@ export { Geostatus } from './geostatus';
 export {
   History,
   type GeoStatusFull,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type GeoStatusFullsOffsetPage,
 } from './history';

@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 
@@ -28,10 +29,15 @@ export class AirfieldSlots extends APIResource {
   list(
     query: AirfieldSlotListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AirfieldSlotListResponse> {
-    return this._client.get('/udl/airfieldslot', { query, ...options });
+  ): PagePromise<AirfieldslotAbridgedsOffsetPage, AirfieldslotAbridged> {
+    return this._client.getAPIList('/udl/airfieldslot', OffsetPage<AirfieldslotAbridged>, {
+      query,
+      ...options,
+    });
   }
 }
+
+export type AirfieldslotAbridgedsOffsetPage = OffsetPage<AirfieldslotAbridged>;
 
 /**
  * Airfield capacity data. Contains data associated with the airfieldslots
@@ -322,8 +328,6 @@ export interface AirfieldslotFull {
   updatedBy?: string;
 }
 
-export type AirfieldSlotListResponse = Array<AirfieldslotAbridged>;
-
 export interface AirfieldSlotCreateParams {
   /**
    * The name of the airfield where this slot is located.
@@ -434,17 +438,13 @@ export interface AirfieldSlotCreateParams {
   type?: 'WORKING' | 'PARKING' | 'TAKEOFF' | 'LANDING' | 'OTHER';
 }
 
-export interface AirfieldSlotListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface AirfieldSlotListParams extends OffsetPageParams {}
 
 export declare namespace AirfieldSlots {
   export {
     type AirfieldslotAbridged as AirfieldslotAbridged,
     type AirfieldslotFull as AirfieldslotFull,
-    type AirfieldSlotListResponse as AirfieldSlotListResponse,
+    type AirfieldslotAbridgedsOffsetPage as AirfieldslotAbridgedsOffsetPage,
     type AirfieldSlotCreateParams as AirfieldSlotCreateParams,
     type AirfieldSlotListParams as AirfieldSlotListParams,
   };
