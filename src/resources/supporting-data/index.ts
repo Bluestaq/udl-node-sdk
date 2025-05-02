@@ -1,6 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { DataTypes, type DataTypeListResponse, type DataTypeListParams } from './data-types';
+export {
+  DataTypes,
+  type DataTypeListResponse,
+  type DataTypeListParams,
+  type DataTypeListResponsesOffsetPage,
+} from './data-types';
 export {
   Dataowner,
   type DataownerAbridged,
@@ -13,6 +18,7 @@ export {
   DataownerTypes,
   type DataownerTypeListResponse,
   type DataownerTypeListParams,
+  type DataownerTypeListResponsesOffsetPage,
 } from './dataowner-types';
 export {
   ProviderMetadata,

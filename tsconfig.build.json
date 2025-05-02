@@ -6,7 +6,7 @@
     "rootDir": "./dist/src",
     "paths": {
       "unified-data-library/*": ["dist/src/*"],
-      "unified-data-library": ["dist/src/index.ts"],
+      "unified-data-library": ["dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,

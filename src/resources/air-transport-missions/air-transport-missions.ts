@@ -9,9 +9,9 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -66,8 +66,11 @@ export class AirTransportMissions extends APIResource {
   list(
     query: AirTransportMissionListParams,
     options?: RequestOptions,
-  ): APIPromise<AirTransportMissionListResponse> {
-    return this._client.get('/udl/airtransportmission', { query, ...options });
+  ): PagePromise<AirTransportMissionAbridgedsOffsetPage, AirTransportMissionAbridged> {
+    return this._client.getAPIList('/udl/airtransportmission', OffsetPage<AirTransportMissionAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -113,6 +116,8 @@ export class AirTransportMissions extends APIResource {
     return this._client.get('/udl/airtransportmission/tuple', { query, ...options });
   }
 }
+
+export type AirTransportMissionAbridgedsOffsetPage = OffsetPage<AirTransportMissionAbridged>;
 
 /**
  * The information in an Air Transport Mission contains unique identification,
@@ -621,8 +626,6 @@ export namespace AirTransportMissionAbridged {
     uln?: string;
   }
 }
-
-export type AirTransportMissionListResponse = Array<AirTransportMissionAbridged>;
 
 export type AirTransportMissionCountResponse = string;
 
@@ -1568,16 +1571,12 @@ export namespace AirTransportMissionUpdateParams {
   }
 }
 
-export interface AirTransportMissionListParams {
+export interface AirTransportMissionListParams extends OffsetPageParams {
   /**
    * Time the row was created in the database, auto-populated by the system.
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   createdAt: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface AirTransportMissionCountParams {
@@ -1617,9 +1616,9 @@ AirTransportMissions.History = History;
 export declare namespace AirTransportMissions {
   export {
     type AirTransportMissionAbridged as AirTransportMissionAbridged,
-    type AirTransportMissionListResponse as AirTransportMissionListResponse,
     type AirTransportMissionCountResponse as AirTransportMissionCountResponse,
     type AirTransportMissionTupleResponse as AirTransportMissionTupleResponse,
+    type AirTransportMissionAbridgedsOffsetPage as AirTransportMissionAbridgedsOffsetPage,
     type AirTransportMissionCreateParams as AirTransportMissionCreateParams,
     type AirTransportMissionRetrieveParams as AirTransportMissionRetrieveParams,
     type AirTransportMissionUpdateParams as AirTransportMissionUpdateParams,
@@ -1630,7 +1629,6 @@ export declare namespace AirTransportMissions {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,

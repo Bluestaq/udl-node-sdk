@@ -3,14 +3,9 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-} from './history';
+import { History, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -64,8 +59,11 @@ export class AircraftStatuses extends APIResource {
   list(
     query: AircraftStatusListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AircraftStatusListResponse> {
-    return this._client.get('/udl/aircraftstatus', { query, ...options });
+  ): PagePromise<AircraftstatusAbridgedsOffsetPage, AircraftstatusAbridged> {
+    return this._client.getAPIList('/udl/aircraftstatus', OffsetPage<AircraftstatusAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -123,6 +121,8 @@ export class AircraftStatuses extends APIResource {
     return this._client.get('/udl/aircraftstatus/tuple', { query, ...options });
   }
 }
+
+export type AircraftstatusAbridgedsOffsetPage = OffsetPage<AircraftstatusAbridged>;
 
 /**
  * Aircraft readiness and status data. Contains the dynamic data associated with
@@ -442,8 +442,6 @@ export interface AircraftstatusAbridged {
    */
   unavailableSys?: Array<string>;
 }
-
-export type AircraftStatusListResponse = Array<AircraftstatusAbridged>;
 
 export type AircraftStatusCountResponse = string;
 
@@ -1035,11 +1033,7 @@ export interface AircraftStatusUpdateParams {
   unavailableSys?: Array<string>;
 }
 
-export interface AircraftStatusListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface AircraftStatusListParams extends OffsetPageParams {}
 
 export interface AircraftStatusCountParams {
   firstResult?: number;
@@ -1066,9 +1060,9 @@ AircraftStatuses.History = History;
 export declare namespace AircraftStatuses {
   export {
     type AircraftstatusAbridged as AircraftstatusAbridged,
-    type AircraftStatusListResponse as AircraftStatusListResponse,
     type AircraftStatusCountResponse as AircraftStatusCountResponse,
     type AircraftStatusTupleResponse as AircraftStatusTupleResponse,
+    type AircraftstatusAbridgedsOffsetPage as AircraftstatusAbridgedsOffsetPage,
     type AircraftStatusCreateParams as AircraftStatusCreateParams,
     type AircraftStatusRetrieveParams as AircraftStatusRetrieveParams,
     type AircraftStatusUpdateParams as AircraftStatusUpdateParams,
@@ -1079,7 +1073,6 @@ export declare namespace AircraftStatuses {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryCountParams as HistoryCountParams,

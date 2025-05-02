@@ -3,7 +3,6 @@
 export {
   Eop,
   type EopAbridged,
-  type EopListResponse,
   type EopCountResponse,
   type EopListTupleResponse,
   type EopCreateParams,
@@ -12,10 +11,10 @@ export {
   type EopListParams,
   type EopCountParams,
   type EopListTupleParams,
+  type EopAbridgedsOffsetPage,
 } from './eop';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,

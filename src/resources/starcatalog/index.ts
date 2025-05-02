@@ -15,4 +15,5 @@ export {
   type StarcatalogGetParams,
   type StarcatalogTupleParams,
   type StarcatalogUnvalidatedPublishParams,
+  type StarcatalogListResponsesOffsetPage,
 } from './starcatalog';

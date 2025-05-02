@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -26,8 +27,8 @@ export class V2 extends APIResource {
    * Returns a list of ScsEntity objects, each directly nested under the provided
    * path.
    */
-  list(query: V2ListParams, options?: RequestOptions): APIPromise<V2ListResponse> {
-    return this._client.get('/scs/v2/list', { query, ...options });
+  list(query: V2ListParams, options?: RequestOptions): PagePromise<ScsEntitiesOffsetPage, ScsEntity> {
+    return this._client.getAPIList('/scs/v2/list', OffsetPage<ScsEntity>, { query, ...options });
   }
 
   /**
@@ -106,6 +107,8 @@ export class V2 extends APIResource {
   }
 }
 
+export type ScsEntitiesOffsetPage = OffsetPage<ScsEntity>;
+
 export interface Attachment {
   author?: string;
 
@@ -183,8 +186,6 @@ export interface ScsEntity {
   writeAcl?: string;
 }
 
-export type V2ListResponse = Array<ScsEntity>;
-
 export interface V2UpdateParams {
   /**
    * Query param: The complete path for the object to be updated.
@@ -222,15 +223,11 @@ export interface V2UpdateParams {
   writeAcl?: string;
 }
 
-export interface V2ListParams {
+export interface V2ListParams extends OffsetPageParams {
   /**
    * The base path to list
    */
   path: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface V2DeleteParams {
@@ -344,7 +341,7 @@ export declare namespace V2 {
   export {
     type Attachment as Attachment,
     type ScsEntity as ScsEntity,
-    type V2ListResponse as V2ListResponse,
+    type ScsEntitiesOffsetPage as ScsEntitiesOffsetPage,
     type V2UpdateParams as V2UpdateParams,
     type V2ListParams as V2ListParams,
     type V2DeleteParams as V2DeleteParams,

@@ -13,4 +13,5 @@ export {
   type RfobservationGetParams,
   type RfobservationTupleParams,
   type RfobservationUnvalidatedPublishParams,
+  type RfobservationListResponsesOffsetPage,
 } from './rfobservation';

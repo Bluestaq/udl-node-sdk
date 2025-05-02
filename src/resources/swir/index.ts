@@ -3,11 +3,11 @@
 export {
   History,
   type SwirFull,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type SwirFullsOffsetPage,
 } from './history';
 export {
   Swir,
@@ -20,4 +20,5 @@ export {
   type SwirCreateBulkParams,
   type SwirGetParams,
   type SwirTupleParams,
+  type SwirListResponsesOffsetPage,
 } from './swir';

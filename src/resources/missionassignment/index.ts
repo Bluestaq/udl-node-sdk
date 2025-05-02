@@ -20,4 +20,5 @@ export {
   type MissionassignmentCreateBulkParams,
   type MissionassignmentGetParams,
   type MissionassignmentTupleParams,
+  type MissionassignmentListResponsesOffsetPage,
 } from './missionassignment';

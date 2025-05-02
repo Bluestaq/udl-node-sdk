@@ -3,6 +3,7 @@
 import { APIResource } from '../core/resource';
 import * as BeamContoursAPI from './beam-contours';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -54,8 +55,8 @@ export class Beam extends APIResource {
   list(
     query: BeamListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<BeamListResponse> {
-    return this._client.get('/udl/beam', { query, ...options });
+  ): PagePromise<BeamAbridgedsOffsetPage, BeamAbridged> {
+    return this._client.getAPIList('/udl/beam', OffsetPage<BeamAbridged>, { query, ...options });
   }
 
   /**
@@ -110,6 +111,8 @@ export class Beam extends APIResource {
     return this._client.get('/udl/beam/tuple', { query, ...options });
   }
 }
+
+export type BeamAbridgedsOffsetPage = OffsetPage<BeamAbridged>;
 
 /**
  * Describes a satellite antenna beam.
@@ -276,8 +279,6 @@ export interface BeamFull {
   updatedBy?: string;
 }
 
-export type BeamListResponse = Array<BeamAbridged>;
-
 export type BeamCountResponse = string;
 
 export type BeamTupleResponse = Array<BeamFull>;
@@ -396,11 +397,7 @@ export interface BeamUpdateParams {
   origin?: string;
 }
 
-export interface BeamListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface BeamListParams extends OffsetPageParams {}
 
 export interface BeamCountParams {
   firstResult?: number;
@@ -426,9 +423,9 @@ export declare namespace Beam {
   export {
     type BeamAbridged as BeamAbridged,
     type BeamFull as BeamFull,
-    type BeamListResponse as BeamListResponse,
     type BeamCountResponse as BeamCountResponse,
     type BeamTupleResponse as BeamTupleResponse,
+    type BeamAbridgedsOffsetPage as BeamAbridgedsOffsetPage,
     type BeamCreateParams as BeamCreateParams,
     type BeamRetrieveParams as BeamRetrieveParams,
     type BeamUpdateParams as BeamUpdateParams,

@@ -4,10 +4,10 @@ import { APIResource } from '../../../core/resource';
 import * as HistoryAPI from './history';
 import {
   GnssObservationSetFull,
+  GnssObservationSetFullsOffsetPage,
   History,
   HistoryAodrParams,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 
 export class Gnssobservationset extends APIResource {
@@ -20,7 +20,7 @@ export declare namespace Gnssobservationset {
   export {
     History as History,
     type GnssObservationSetFull as GnssObservationSetFull,
-    type HistoryListResponse as HistoryListResponse,
+    type GnssObservationSetFullsOffsetPage as GnssObservationSetFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
   };

@@ -9,10 +9,10 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 import * as StatevectorAPI from '../statevector/statevector';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -69,8 +69,11 @@ export class EphemerisSets extends APIResource {
   list(
     query: EphemerisSetListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<EphemerisSetListResponse> {
-    return this._client.get('/udl/ephemerisset', { query, ...options });
+  ): PagePromise<EphemerisSetAbridgedsOffsetPage, EphemerisSetAbridged> {
+    return this._client.getAPIList('/udl/ephemerisset', OffsetPage<EphemerisSetAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -133,6 +136,10 @@ export class EphemerisSets extends APIResource {
     return this._client.get('/udl/ephemerisset/tuple', { query, ...options });
   }
 }
+
+export type EphemerisSetAbridgedsOffsetPage = OffsetPage<EphemerisSetAbridged>;
+
+export type EphemerisSetsOffsetPage = OffsetPage<EphemerisSet>;
 
 /**
  * EphemerisSet represents a wrapper or collection of Ephemeris 'points' and meta
@@ -668,8 +675,6 @@ export interface EphemerisSetAbridged {
   usableStartTime?: string;
 }
 
-export type EphemerisSetListResponse = Array<EphemerisSetAbridged>;
-
 export type EphemerisSetCountResponse = string;
 
 export type EphemerisSetTupleResponse = Array<EphemerisSet>;
@@ -1087,11 +1092,7 @@ export interface EphemerisSetRetrieveParams {
   maxResults?: number;
 }
 
-export interface EphemerisSetListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-
+export interface EphemerisSetListParams extends OffsetPageParams {
   /**
    * (One or more of fields 'pointEndTime, pointStartTime' are required.) End
    * time/last time point of the ephemeris, in ISO 8601 UTC format.
@@ -1167,9 +1168,9 @@ export declare namespace EphemerisSets {
   export {
     type EphemerisSet as EphemerisSet,
     type EphemerisSetAbridged as EphemerisSetAbridged,
-    type EphemerisSetListResponse as EphemerisSetListResponse,
     type EphemerisSetCountResponse as EphemerisSetCountResponse,
     type EphemerisSetTupleResponse as EphemerisSetTupleResponse,
+    type EphemerisSetAbridgedsOffsetPage as EphemerisSetAbridgedsOffsetPage,
     type EphemerisSetCreateParams as EphemerisSetCreateParams,
     type EphemerisSetRetrieveParams as EphemerisSetRetrieveParams,
     type EphemerisSetListParams as EphemerisSetListParams,
@@ -1180,7 +1181,6 @@ export declare namespace EphemerisSets {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,

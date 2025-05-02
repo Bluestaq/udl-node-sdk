@@ -2,7 +2,9 @@
 
 import { APIResource } from '../../core/resource';
 import * as EphemerisSetsAPI from './ephemeris-sets';
+import { EphemerisSetsOffsetPage } from './ephemeris-sets';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -16,8 +18,11 @@ export class History extends APIResource {
   list(
     query: HistoryListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/ephemerisset/history', { query, ...options });
+  ): PagePromise<EphemerisSetsOffsetPage, EphemerisSetsAPI.EphemerisSet> {
+    return this._client.getAPIList('/udl/ephemerisset/history', OffsetPage<EphemerisSetsAPI.EphemerisSet>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -51,21 +56,15 @@ export class History extends APIResource {
   }
 }
 
-export type HistoryListResponse = Array<EphemerisSetsAPI.EphemerisSet>;
-
 export type HistoryCountResponse = string;
 
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * optional, fields for retrieval. When omitted, ALL fields are assumed. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
    * query fields that can be selected.
    */
   columns?: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 
   /**
    * (One or more of fields 'pointEndTime, pointStartTime' are required.) End
@@ -151,10 +150,11 @@ export interface HistoryCountParams {
 
 export declare namespace History {
   export {
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
   };
 }
+
+export { type EphemerisSetsOffsetPage };

@@ -8,7 +8,6 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 
 export class Radarobservation extends APIResource {
@@ -20,7 +19,6 @@ Radarobservation.History = History;
 export declare namespace Radarobservation {
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,

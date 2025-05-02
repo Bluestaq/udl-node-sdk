@@ -2,7 +2,9 @@
 
 import { APIResource } from '../../core/resource';
 import * as LinkstatusHistoryAPI from '../udl/linkstatus/history';
+import { LinkStatusFullsOffsetPage } from '../udl/linkstatus/history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -16,8 +18,12 @@ export class History extends APIResource {
   list(
     query: HistoryListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/linkstatus/history', { query, ...options });
+  ): PagePromise<LinkStatusFullsOffsetPage, LinkstatusHistoryAPI.LinkStatusFull> {
+    return this._client.getAPIList(
+      '/udl/linkstatus/history',
+      OffsetPage<LinkstatusHistoryAPI.LinkStatusFull>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -51,11 +57,9 @@ export class History extends APIResource {
   }
 }
 
-export type HistoryListResponse = Array<LinkstatusHistoryAPI.LinkStatusFull>;
-
 export type HistoryCountResponse = string;
 
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * optional, fields for retrieval. When omitted, ALL fields are assumed. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
@@ -70,8 +74,6 @@ export interface HistoryListParams {
    */
   createdAt?: string;
 
-  firstResult?: number;
-
   /**
    * (One or more of fields 'createdAt, linkStartTime, linkStopTime' are required.)
    * The link establishment time, or the time that the link becomes available for
@@ -85,8 +87,6 @@ export interface HistoryListParams {
    * use, in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   linkStopTime?: string;
-
-  maxResults?: number;
 }
 
 export interface HistoryAodrParams {
@@ -172,10 +172,11 @@ export interface HistoryCountParams {
 
 export declare namespace History {
   export {
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
   };
 }
+
+export { type LinkStatusFullsOffsetPage };

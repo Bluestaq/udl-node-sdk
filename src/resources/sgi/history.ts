@@ -2,7 +2,9 @@
 
 import { APIResource } from '../../core/resource';
 import * as SgiHistoryAPI from '../udl/sgi/history';
+import { SgiFullsOffsetPage } from '../udl/sgi/history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -16,8 +18,11 @@ export class History extends APIResource {
   list(
     query: HistoryListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/sgi/history', { query, ...options });
+  ): PagePromise<SgiFullsOffsetPage, SgiHistoryAPI.SgiFull> {
+    return this._client.getAPIList('/udl/sgi/history', OffsetPage<SgiHistoryAPI.SgiFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -51,11 +56,9 @@ export class History extends APIResource {
   }
 }
 
-export type HistoryListResponse = Array<SgiHistoryAPI.SgiFull>;
-
 export type HistoryCountResponse = string;
 
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * optional, fields for retrieval. When omitted, ALL fields are assumed. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
@@ -70,10 +73,6 @@ export interface HistoryListParams {
    * future predicted values. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   effectiveDate?: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 
   /**
    * (One or more of fields 'effectiveDate, sgiDate' are required.) ISO8601 UTC Time
@@ -157,10 +156,11 @@ export interface HistoryCountParams {
 
 export declare namespace History {
   export {
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
   };
 }
+
+export { type SgiFullsOffsetPage };

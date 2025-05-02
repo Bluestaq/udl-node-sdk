@@ -4,7 +4,7 @@ export { Gnssobservationset } from './gnssobservationset';
 export {
   History,
   type GnssObservationSetFull,
-  type HistoryListResponse,
   type HistoryListParams,
   type HistoryAodrParams,
+  type GnssObservationSetFullsOffsetPage,
 } from './history';

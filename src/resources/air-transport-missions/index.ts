@@ -3,7 +3,6 @@
 export {
   AirTransportMissions,
   type AirTransportMissionAbridged,
-  type AirTransportMissionListResponse,
   type AirTransportMissionCountResponse,
   type AirTransportMissionTupleResponse,
   type AirTransportMissionCreateParams,
@@ -12,10 +11,10 @@ export {
   type AirTransportMissionListParams,
   type AirTransportMissionCountParams,
   type AirTransportMissionTupleParams,
+  type AirTransportMissionAbridgedsOffsetPage,
 } from './air-transport-missions';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,

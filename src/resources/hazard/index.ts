@@ -11,6 +11,7 @@ export {
   type HazardCreateBulkParams,
   type HazardGetParams,
   type HazardTupleParams,
+  type HazardListResponsesOffsetPage,
 } from './hazard';
 export {
   History,

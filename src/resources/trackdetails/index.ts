@@ -3,11 +3,11 @@
 export {
   History,
   type TrackDetailsFull,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type TrackDetailsFullsOffsetPage,
 } from './history';
 export {
   Trackdetails,
@@ -18,4 +18,5 @@ export {
   type TrackdetailCountParams,
   type TrackdetailCreateBulkParams,
   type TrackdetailTupleParams,
+  type TrackdetailListResponsesOffsetPage,
 } from './trackdetails';

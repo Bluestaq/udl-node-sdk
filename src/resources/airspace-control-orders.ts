@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -41,8 +42,11 @@ export class AirspaceControlOrders extends APIResource {
   list(
     query: AirspaceControlOrderListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AirspaceControlOrderListResponse> {
-    return this._client.get('/udl/airspacecontrolorder', { query, ...options });
+  ): PagePromise<AirspacecontrolorderAbridgedsOffsetPage, AirspacecontrolorderAbridged> {
+    return this._client.getAPIList('/udl/airspacecontrolorder', OffsetPage<AirspacecontrolorderAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -107,6 +111,8 @@ export class AirspaceControlOrders extends APIResource {
     return this._client.get('/udl/airspacecontrolorder/tuple', { query, ...options });
   }
 }
+
+export type AirspacecontrolorderAbridgedsOffsetPage = OffsetPage<AirspacecontrolorderAbridged>;
 
 /**
  * Beta Version Airspace Control Order: Contains airspace coordination information
@@ -1204,8 +1210,6 @@ export namespace AirspacecontrolorderFull {
   }
 }
 
-export type AirspaceControlOrderListResponse = Array<AirspacecontrolorderAbridged>;
-
 export type AirspaceControlOrderCountResponse = string;
 
 export type AirspaceControlOrderTupleResponse = Array<AirspacecontrolorderFull>;
@@ -1729,11 +1733,7 @@ export interface AirspaceControlOrderRetrieveParams {
   maxResults?: number;
 }
 
-export interface AirspaceControlOrderListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface AirspaceControlOrderListParams extends OffsetPageParams {}
 
 export interface AirspaceControlOrderCountParams {
   firstResult?: number;
@@ -2282,9 +2282,9 @@ export declare namespace AirspaceControlOrders {
   export {
     type AirspacecontrolorderAbridged as AirspacecontrolorderAbridged,
     type AirspacecontrolorderFull as AirspacecontrolorderFull,
-    type AirspaceControlOrderListResponse as AirspaceControlOrderListResponse,
     type AirspaceControlOrderCountResponse as AirspaceControlOrderCountResponse,
     type AirspaceControlOrderTupleResponse as AirspaceControlOrderTupleResponse,
+    type AirspacecontrolorderAbridgedsOffsetPage as AirspacecontrolorderAbridgedsOffsetPage,
     type AirspaceControlOrderCreateParams as AirspaceControlOrderCreateParams,
     type AirspaceControlOrderRetrieveParams as AirspaceControlOrderRetrieveParams,
     type AirspaceControlOrderListParams as AirspaceControlOrderListParams,

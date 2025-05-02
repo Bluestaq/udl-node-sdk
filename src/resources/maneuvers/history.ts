@@ -2,7 +2,9 @@
 
 import { APIResource } from '../../core/resource';
 import * as ManeuverHistoryAPI from '../udl/maneuver/history';
+import { ManeuverFullsOffsetPage } from '../udl/maneuver/history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -13,8 +15,14 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: HistoryListParams, options?: RequestOptions): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/maneuver/history', { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<ManeuverFullsOffsetPage, ManeuverHistoryAPI.ManeuverFull> {
+    return this._client.getAPIList('/udl/maneuver/history', OffsetPage<ManeuverHistoryAPI.ManeuverFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -48,11 +56,9 @@ export class History extends APIResource {
   }
 }
 
-export type HistoryListResponse = Array<ManeuverHistoryAPI.ManeuverFull>;
-
 export type HistoryCountResponse = string;
 
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * Maneuver event start time in ISO 8601 UTC with microsecond precision. For
    * maneuvers without start and end times, the start time is considered to be the
@@ -66,10 +72,6 @@ export interface HistoryListParams {
    * query fields that can be selected.
    */
   columns?: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface HistoryAodrParams {
@@ -127,10 +129,11 @@ export interface HistoryCountParams {
 
 export declare namespace History {
   export {
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
   };
 }
+
+export { type ManeuverFullsOffsetPage };

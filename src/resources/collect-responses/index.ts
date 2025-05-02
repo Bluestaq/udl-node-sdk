@@ -3,7 +3,6 @@
 export {
   CollectResponses,
   type CollectResponseAbridged,
-  type CollectResponseListResponse,
   type CollectResponseCountResponse,
   type CollectResponseCreateParams,
   type CollectResponseRetrieveParams,
@@ -11,12 +10,12 @@ export {
   type CollectResponseCountParams,
   type CollectResponseCreateBulkParams,
   type CollectResponseUnvalidatedPublishParams,
+  type CollectResponseAbridgedsOffsetPage,
 } from './collect-responses';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryCountParams,
 } from './history/index';
-export { Tuple, type TupleListResponse, type TupleListParams } from './tuple';
+export { Tuple, type TupleListParams } from './tuple';

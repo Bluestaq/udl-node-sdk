@@ -3,8 +3,11 @@
 import { APIResource } from '../../../core/resource';
 import * as Shared from '../../shared';
 import * as HistoryAPI from '../../eo-observations/history';
+import { OffsetPage } from '../../../core/pagination';
 
 export class History extends APIResource {}
+
+export type SkyimageryFullsOffsetPage = OffsetPage<SkyimageryFull>;
 
 /**
  * Model representation of sky imagery data. Sky imagery is ground or space based

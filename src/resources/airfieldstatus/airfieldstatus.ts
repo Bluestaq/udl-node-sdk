@@ -2,14 +2,9 @@
 
 import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-} from './history';
+import { History, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -40,8 +35,11 @@ export class Airfieldstatus extends APIResource {
   list(
     query: AirfieldstatusListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AirfieldstatusListResponse> {
-    return this._client.get('/udl/airfieldstatus', { query, ...options });
+  ): PagePromise<AirfieldstatusAbridgedsOffsetPage, AirfieldstatusAbridged> {
+    return this._client.getAPIList('/udl/airfieldstatus', OffsetPage<AirfieldstatusAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -73,6 +71,10 @@ export class Airfieldstatus extends APIResource {
     });
   }
 }
+
+export type AirfieldstatusAbridgedsOffsetPage = OffsetPage<AirfieldstatusAbridged>;
+
+export type AirfieldstatusFullsOffsetPage = OffsetPage<AirfieldstatusFull>;
 
 /**
  * The airfield status contains dynamic data of an airfield's capabilities.
@@ -613,8 +615,6 @@ export interface AirfieldstatusFull {
   wideWorkingMOG?: number;
 }
 
-export type AirfieldstatusListResponse = Array<AirfieldstatusAbridged>;
-
 export type AirfieldstatusCountResponse = string;
 
 export interface AirfieldstatusCreateParams {
@@ -854,11 +854,7 @@ export interface AirfieldstatusCreateParams {
   wideWorkingMOG?: number;
 }
 
-export interface AirfieldstatusListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface AirfieldstatusListParams extends OffsetPageParams {}
 
 export interface AirfieldstatusCountParams {
   firstResult?: number;
@@ -872,8 +868,8 @@ export declare namespace Airfieldstatus {
   export {
     type AirfieldstatusAbridged as AirfieldstatusAbridged,
     type AirfieldstatusFull as AirfieldstatusFull,
-    type AirfieldstatusListResponse as AirfieldstatusListResponse,
     type AirfieldstatusCountResponse as AirfieldstatusCountResponse,
+    type AirfieldstatusAbridgedsOffsetPage as AirfieldstatusAbridgedsOffsetPage,
     type AirfieldstatusCreateParams as AirfieldstatusCreateParams,
     type AirfieldstatusListParams as AirfieldstatusListParams,
     type AirfieldstatusCountParams as AirfieldstatusCountParams,
@@ -881,7 +877,6 @@ export declare namespace Airfieldstatus {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryCountParams as HistoryCountParams,

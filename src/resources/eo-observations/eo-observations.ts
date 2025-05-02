@@ -4,14 +4,15 @@ import { APIResource } from '../../core/resource';
 import * as HistoryAPI from './history';
 import {
   EoObservationFull,
+  EoObservationFullsOffsetPage,
   History,
   HistoryAodrParams,
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -39,8 +40,14 @@ export class EoObservations extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: EoObservationListParams, options?: RequestOptions): APIPromise<EoObservationListResponse> {
-    return this._client.get('/udl/eoobservation', { query, ...options });
+  list(
+    query: EoObservationListParams,
+    options?: RequestOptions,
+  ): PagePromise<EoObservationAbridgedsOffsetPage, EoObservationAbridged> {
+    return this._client.getAPIList('/udl/eoobservation', OffsetPage<EoObservationAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -93,6 +100,8 @@ export class EoObservations extends APIResource {
     });
   }
 }
+
+export type EoObservationAbridgedsOffsetPage = OffsetPage<EoObservationAbridged>;
 
 /**
  * Model representation of observation data for electro-optical based sensor
@@ -703,8 +712,6 @@ export interface EoObservationAbridged {
    */
   zeroptd?: number;
 }
-
-export type EoObservationListResponse = Array<EoObservationAbridged>;
 
 export type EoObservationCountResponse = string;
 
@@ -1818,17 +1825,13 @@ export namespace EoObservationCreateParams {
   }
 }
 
-export interface EoObservationListParams {
+export interface EoObservationListParams extends OffsetPageParams {
   /**
    * Ob detection time in ISO 8601 UTC, up to microsecond precision. Consumers should
    * contact the provider for details on their obTime specifications.
    * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   obTime: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface EoObservationCountParams {
@@ -4103,8 +4106,8 @@ EoObservations.History = History;
 export declare namespace EoObservations {
   export {
     type EoObservationAbridged as EoObservationAbridged,
-    type EoObservationListResponse as EoObservationListResponse,
     type EoObservationCountResponse as EoObservationCountResponse,
+    type EoObservationAbridgedsOffsetPage as EoObservationAbridgedsOffsetPage,
     type EoObservationCreateParams as EoObservationCreateParams,
     type EoObservationListParams as EoObservationListParams,
     type EoObservationCountParams as EoObservationCountParams,
@@ -4115,8 +4118,8 @@ export declare namespace EoObservations {
   export {
     History as History,
     type EoObservationFull as EoObservationFull,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
+    type EoObservationFullsOffsetPage as EoObservationFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

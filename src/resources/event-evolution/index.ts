@@ -12,10 +12,10 @@ export {
   type EventEvolutionCreateBulkParams,
   type EventEvolutionTupleParams,
   type EventEvolutionUnvalidatedPublishParams,
+  type EventEvolutionListResponsesOffsetPage,
 } from './event-evolution';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,

@@ -7,5 +7,6 @@ export {
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type HistoryListResponsesOffsetPage,
 } from './history';
 export { LaunchEvent, type LaunchEventUnvalidatedPublishParams } from './launch-event';

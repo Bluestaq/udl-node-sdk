@@ -3,7 +3,6 @@
 export {
   AircraftStatuses,
   type AircraftstatusAbridged,
-  type AircraftStatusListResponse,
   type AircraftStatusCountResponse,
   type AircraftStatusTupleResponse,
   type AircraftStatusCreateParams,
@@ -12,10 +11,10 @@ export {
   type AircraftStatusListParams,
   type AircraftStatusCountParams,
   type AircraftStatusTupleParams,
+  type AircraftstatusAbridgedsOffsetPage,
 } from './aircraft-statuses';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryCountParams,

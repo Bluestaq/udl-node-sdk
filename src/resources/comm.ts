@@ -4,6 +4,7 @@ import { APIResource } from '../core/resource';
 import * as ChannelsAPI from './channels';
 import * as EntitiesAPI from './entities';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -59,8 +60,8 @@ export class Comm extends APIResource {
   list(
     query: CommListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<CommListResponse> {
-    return this._client.get('/udl/comm', { query, ...options });
+  ): PagePromise<CommAbridgedsOffsetPage, CommAbridged> {
+    return this._client.getAPIList('/udl/comm', OffsetPage<CommAbridged>, { query, ...options });
   }
 
   /**
@@ -116,6 +117,8 @@ export class Comm extends APIResource {
     return this._client.get('/udl/comm/tuple', { query, ...options });
   }
 }
+
+export type CommAbridgedsOffsetPage = OffsetPage<CommAbridged>;
 
 /**
  * Comm represents communications entities (e.g. on-orbit communications satellite
@@ -438,8 +441,6 @@ export namespace CommFull {
   }
 }
 
-export type CommListResponse = Array<CommAbridged>;
-
 export type CommCountResponse = string;
 
 export type CommTupleResponse = Array<CommFull>;
@@ -573,11 +574,7 @@ export interface CommUpdateParams {
   origin?: string;
 }
 
-export interface CommListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface CommListParams extends OffsetPageParams {}
 
 export interface CommCountParams {
   firstResult?: number;
@@ -603,9 +600,9 @@ export declare namespace Comm {
   export {
     type CommAbridged as CommAbridged,
     type CommFull as CommFull,
-    type CommListResponse as CommListResponse,
     type CommCountResponse as CommCountResponse,
     type CommTupleResponse as CommTupleResponse,
+    type CommAbridgedsOffsetPage as CommAbridgedsOffsetPage,
     type CommCreateParams as CommCreateParams,
     type CommRetrieveParams as CommRetrieveParams,
     type CommUpdateParams as CommUpdateParams,

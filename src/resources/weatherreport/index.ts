@@ -3,11 +3,11 @@
 export {
   History,
   type WeatherReportFull,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type WeatherReportFullsOffsetPage,
 } from './history';
 export {
   Weatherreport,
@@ -20,4 +20,5 @@ export {
   type WeatherreportGetParams,
   type WeatherreportTupleParams,
   type WeatherreportUnvalidatedPublishParams,
+  type WeatherreportListResponsesOffsetPage,
 } from './weatherreport';

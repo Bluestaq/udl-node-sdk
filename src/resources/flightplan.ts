@@ -3,6 +3,7 @@
 import { APIResource } from '../core/resource';
 import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -55,8 +56,8 @@ export class Flightplan extends APIResource {
   list(
     query: FlightplanListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<FlightplanListResponse> {
-    return this._client.get('/udl/flightplan', { query, ...options });
+  ): PagePromise<FlightPlanAbridgedsOffsetPage, FlightPlanAbridged> {
+    return this._client.getAPIList('/udl/flightplan', OffsetPage<FlightPlanAbridged>, { query, ...options });
   }
 
   /**
@@ -126,6 +127,8 @@ export class Flightplan extends APIResource {
     });
   }
 }
+
+export type FlightPlanAbridgedsOffsetPage = OffsetPage<FlightPlanAbridged>;
 
 /**
  * Flight Plan contains data specifying the details of an intended flight including
@@ -1253,8 +1256,6 @@ export namespace FlightPlanAbridged {
     zoneTime?: number;
   }
 }
-
-export type FlightplanListResponse = Array<FlightPlanAbridged>;
 
 export type FlightplanCountResponse = string;
 
@@ -3442,11 +3443,7 @@ export namespace FlightplanUpdateParams {
   }
 }
 
-export interface FlightplanListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface FlightplanListParams extends OffsetPageParams {}
 
 export interface FlightplanCountParams {
   firstResult?: number;
@@ -4569,9 +4566,9 @@ export namespace FlightplanUnvalidatedPublishParams {
 export declare namespace Flightplan {
   export {
     type FlightPlanAbridged as FlightPlanAbridged,
-    type FlightplanListResponse as FlightplanListResponse,
     type FlightplanCountResponse as FlightplanCountResponse,
     type FlightplanTupleResponse as FlightplanTupleResponse,
+    type FlightPlanAbridgedsOffsetPage as FlightPlanAbridgedsOffsetPage,
     type FlightplanCreateParams as FlightplanCreateParams,
     type FlightplanRetrieveParams as FlightplanRetrieveParams,
     type FlightplanUpdateParams as FlightplanUpdateParams,

@@ -2,7 +2,9 @@
 
 import { APIResource } from '../core/resource';
 import * as Shared from './shared';
+import { DriftHistoryAbridgedsOffsetPage } from './shared';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -30,8 +32,11 @@ export class DriftHistory extends APIResource {
   list(
     query: DriftHistoryListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<DriftHistoryListResponse> {
-    return this._client.get('/udl/drifthistory', { query, ...options });
+  ): PagePromise<DriftHistoryAbridgedsOffsetPage, Shared.DriftHistoryAbridged> {
+    return this._client.getAPIList('/udl/drifthistory', OffsetPage<Shared.DriftHistoryAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -78,8 +83,6 @@ export class DriftHistory extends APIResource {
   }
 }
 
-export type DriftHistoryListResponse = Array<Shared.DriftHistoryAbridged>;
-
 export type DriftHistoryCountResponse = string;
 
 export type DriftHistoryTupleResponse = Array<Shared.DriftHistoryFull>;
@@ -90,11 +93,7 @@ export interface DriftHistoryRetrieveParams {
   maxResults?: number;
 }
 
-export interface DriftHistoryListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface DriftHistoryListParams extends OffsetPageParams {}
 
 export interface DriftHistoryCountParams {
   firstResult?: number;
@@ -118,7 +117,6 @@ export interface DriftHistoryTupleParams {
 
 export declare namespace DriftHistory {
   export {
-    type DriftHistoryListResponse as DriftHistoryListResponse,
     type DriftHistoryCountResponse as DriftHistoryCountResponse,
     type DriftHistoryTupleResponse as DriftHistoryTupleResponse,
     type DriftHistoryRetrieveParams as DriftHistoryRetrieveParams,
@@ -127,3 +125,5 @@ export declare namespace DriftHistory {
     type DriftHistoryTupleParams as DriftHistoryTupleParams,
   };
 }
+
+export { type DriftHistoryAbridgedsOffsetPage };

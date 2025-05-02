@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -24,6 +25,10 @@ export class DiplomaticClearance extends APIResource {
     });
   }
 }
+
+export type DiplomaticclearanceAbridgedsOffsetPage = OffsetPage<DiplomaticclearanceAbridged>;
+
+export type DiplomaticclearanceFullsOffsetPage = OffsetPage<DiplomaticclearanceFull>;
 
 /**
  * A diplomatic clearance is an authorization for an aircraft to traverse or land

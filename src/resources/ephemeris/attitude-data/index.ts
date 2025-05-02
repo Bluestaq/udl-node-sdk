@@ -3,10 +3,10 @@
 export {
   AttitudeData,
   type AttitudeDataAbridged,
-  type AttitudeDataListResponse,
   type AttitudeDataCountResponse,
   type AttitudeDataListParams,
   type AttitudeDataCountParams,
+  type AttitudeDataAbridgedsOffsetPage,
 } from './attitude-data';
 export {
   History,

@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 
 export class DataownerTypes extends APIResource {
@@ -11,22 +11,25 @@ export class DataownerTypes extends APIResource {
   list(
     query: DataownerTypeListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<DataownerTypeListResponse> {
-    return this._client.get('/udl/dataowner/getDataOwnerTypes', { query, ...options });
+  ): PagePromise<DataownerTypeListResponsesOffsetPage, DataownerTypeListResponse> {
+    return this._client.getAPIList(
+      '/udl/dataowner/getDataOwnerTypes',
+      OffsetPage<DataownerTypeListResponse>,
+      { query, ...options },
+    );
   }
 }
 
-export type DataownerTypeListResponse = Array<string>;
+export type DataownerTypeListResponsesOffsetPage = OffsetPage<DataownerTypeListResponse>;
 
-export interface DataownerTypeListParams {
-  firstResult?: number;
+export type DataownerTypeListResponse = string;
 
-  maxResults?: number;
-}
+export interface DataownerTypeListParams extends OffsetPageParams {}
 
 export declare namespace DataownerTypes {
   export {
     type DataownerTypeListResponse as DataownerTypeListResponse,
+    type DataownerTypeListResponsesOffsetPage as DataownerTypeListResponsesOffsetPage,
     type DataownerTypeListParams as DataownerTypeListParams,
   };
 }

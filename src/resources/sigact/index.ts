@@ -2,7 +2,6 @@
 
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryCountParams,
@@ -17,4 +16,5 @@ export {
   type SigactCreateBulkParams,
   type SigactTupleParams,
   type SigactUploadZipParams,
+  type SigactListResponsesOffsetPage,
 } from './sigact';

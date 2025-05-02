@@ -2,7 +2,12 @@
 
 import { APIResource } from '../../../core/resource';
 import * as HistoryAPI from './history';
-import { History, HistoryListParams, HistoryListResponse, OnorbitthrusterstatusFull } from './history';
+import {
+  History,
+  HistoryListParams,
+  OnorbitthrusterstatusFull,
+  OnorbitthrusterstatusFullsOffsetPage,
+} from './history';
 
 export class Onorbitthrusterstatus extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -14,7 +19,7 @@ export declare namespace Onorbitthrusterstatus {
   export {
     History as History,
     type OnorbitthrusterstatusFull as OnorbitthrusterstatusFull,
-    type HistoryListResponse as HistoryListResponse,
+    type OnorbitthrusterstatusFullsOffsetPage as OnorbitthrusterstatusFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
   };
 }

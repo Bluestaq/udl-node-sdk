@@ -1,8 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
+import { OffsetPage } from '../../../core/pagination';
 
 export class History extends APIResource {}
+
+export type SigactFullsOffsetPage = OffsetPage<SigactFull>;
 
 /**
  * Provides information on the dates, actors, locations, fatalities, and types of

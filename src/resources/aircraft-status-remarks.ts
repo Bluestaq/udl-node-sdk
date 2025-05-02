@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -41,8 +42,11 @@ export class AircraftStatusRemarks extends APIResource {
   list(
     query: AircraftStatusRemarkListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AircraftStatusRemarkListResponse> {
-    return this._client.get('/udl/aircraftstatusremark', { query, ...options });
+  ): PagePromise<AircraftstatusremarkAbridgedsOffsetPage, AircraftstatusremarkAbridged> {
+    return this._client.getAPIList('/udl/aircraftstatusremark', OffsetPage<AircraftstatusremarkAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -91,6 +95,8 @@ export class AircraftStatusRemarks extends APIResource {
     return this._client.get('/udl/aircraftstatusremark/tuple', { query, ...options });
   }
 }
+
+export type AircraftstatusremarkAbridgedsOffsetPage = OffsetPage<AircraftstatusremarkAbridged>;
 
 /**
  * Properties and characteristics of a remark that is associated with an aircraft
@@ -325,8 +331,6 @@ export interface AircraftstatusremarkFull {
   updatedBy?: string;
 }
 
-export type AircraftStatusRemarkListResponse = Array<AircraftstatusremarkAbridged>;
-
 export type AircraftStatusRemarkCountResponse = string;
 
 export type AircraftStatusRemarkTupleResponse = Array<AircraftstatusremarkFull>;
@@ -420,11 +424,7 @@ export interface AircraftStatusRemarkRetrieveParams {
   maxResults?: number;
 }
 
-export interface AircraftStatusRemarkListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface AircraftStatusRemarkListParams extends OffsetPageParams {}
 
 export interface AircraftStatusRemarkCountParams {
   firstResult?: number;
@@ -450,9 +450,9 @@ export declare namespace AircraftStatusRemarks {
   export {
     type AircraftstatusremarkAbridged as AircraftstatusremarkAbridged,
     type AircraftstatusremarkFull as AircraftstatusremarkFull,
-    type AircraftStatusRemarkListResponse as AircraftStatusRemarkListResponse,
     type AircraftStatusRemarkCountResponse as AircraftStatusRemarkCountResponse,
     type AircraftStatusRemarkTupleResponse as AircraftStatusRemarkTupleResponse,
+    type AircraftstatusremarkAbridgedsOffsetPage as AircraftstatusremarkAbridgedsOffsetPage,
     type AircraftStatusRemarkCreateParams as AircraftStatusRemarkCreateParams,
     type AircraftStatusRemarkRetrieveParams as AircraftStatusRemarkRetrieveParams,
     type AircraftStatusRemarkListParams as AircraftStatusRemarkListParams,

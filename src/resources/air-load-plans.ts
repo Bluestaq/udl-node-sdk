@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -38,8 +39,14 @@ export class AirLoadPlans extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: AirLoadPlanListParams, options?: RequestOptions): APIPromise<AirLoadPlanListResponse> {
-    return this._client.get('/udl/airloadplan', { query, ...options });
+  list(
+    query: AirLoadPlanListParams,
+    options?: RequestOptions,
+  ): PagePromise<AirloadplanAbridgedsOffsetPage, AirloadplanAbridged> {
+    return this._client.getAPIList('/udl/airloadplan', OffsetPage<AirloadplanAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -82,6 +89,8 @@ export class AirLoadPlans extends APIResource {
     return this._client.get('/udl/airloadplan/tuple', { query, ...options });
   }
 }
+
+export type AirloadplanAbridgedsOffsetPage = OffsetPage<AirloadplanAbridged>;
 
 /**
  * Information related to how an aircraft is loaded with cargo, equipment, and
@@ -1679,8 +1688,6 @@ export namespace AirloadplanFull {
   }
 }
 
-export type AirLoadPlanListResponse = Array<AirloadplanAbridged>;
-
 export type AirLoadPlanCountResponse = string;
 
 export type AirLoadPlanTupleResponse = Array<AirloadplanFull>;
@@ -2450,16 +2457,12 @@ export interface AirLoadPlanRetrieveParams {
   maxResults?: number;
 }
 
-export interface AirLoadPlanListParams {
+export interface AirLoadPlanListParams extends OffsetPageParams {
   /**
    * The current estimated time that the aircraft is planned to depart, in ISO 8601
    * UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   estDepTime: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface AirLoadPlanCountParams {
@@ -2498,9 +2501,9 @@ export declare namespace AirLoadPlans {
   export {
     type AirloadplanAbridged as AirloadplanAbridged,
     type AirloadplanFull as AirloadplanFull,
-    type AirLoadPlanListResponse as AirLoadPlanListResponse,
     type AirLoadPlanCountResponse as AirLoadPlanCountResponse,
     type AirLoadPlanTupleResponse as AirLoadPlanTupleResponse,
+    type AirloadplanAbridgedsOffsetPage as AirloadplanAbridgedsOffsetPage,
     type AirLoadPlanCreateParams as AirLoadPlanCreateParams,
     type AirLoadPlanRetrieveParams as AirLoadPlanRetrieveParams,
     type AirLoadPlanListParams as AirLoadPlanListParams,

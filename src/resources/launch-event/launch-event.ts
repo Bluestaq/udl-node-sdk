@@ -9,6 +9,7 @@ import {
   HistoryCountResponse,
   HistoryListParams,
   HistoryListResponse,
+  HistoryListResponsesOffsetPage,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
@@ -153,6 +154,7 @@ export declare namespace LaunchEvent {
     History as History,
     type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
+    type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

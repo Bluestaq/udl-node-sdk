@@ -3,6 +3,7 @@
 import { APIResource } from '../core/resource';
 import * as BatterydetailsAPI from './batterydetails';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -54,8 +55,8 @@ export class Batteries extends APIResource {
   list(
     query: BatteryListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<BatteryListResponse> {
-    return this._client.get('/udl/battery', { query, ...options });
+  ): PagePromise<BatteryAbridgedsOffsetPage, BatteryAbridged> {
+    return this._client.getAPIList('/udl/battery', OffsetPage<BatteryAbridged>, { query, ...options });
   }
 
   /**
@@ -110,6 +111,8 @@ export class Batteries extends APIResource {
     return this._client.get('/udl/battery/tuple', { query, ...options });
   }
 }
+
+export type BatteryAbridgedsOffsetPage = OffsetPage<BatteryAbridged>;
 
 /**
  * Model representation of specific spacecraft battery types.
@@ -255,8 +258,6 @@ export interface BatteryFull {
   updatedBy?: string;
 }
 
-export type BatteryListResponse = Array<BatteryAbridged>;
-
 export type BatteryCountResponse = string;
 
 export type BatteryTupleResponse = Array<BatteryFull>;
@@ -353,11 +354,7 @@ export interface BatteryUpdateParams {
   origin?: string;
 }
 
-export interface BatteryListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface BatteryListParams extends OffsetPageParams {}
 
 export interface BatteryCountParams {
   firstResult?: number;
@@ -383,9 +380,9 @@ export declare namespace Batteries {
   export {
     type BatteryAbridged as BatteryAbridged,
     type BatteryFull as BatteryFull,
-    type BatteryListResponse as BatteryListResponse,
     type BatteryCountResponse as BatteryCountResponse,
     type BatteryTupleResponse as BatteryTupleResponse,
+    type BatteryAbridgedsOffsetPage as BatteryAbridgedsOffsetPage,
     type BatteryCreateParams as BatteryCreateParams,
     type BatteryRetrieveParams as BatteryRetrieveParams,
     type BatteryUpdateParams as BatteryUpdateParams,

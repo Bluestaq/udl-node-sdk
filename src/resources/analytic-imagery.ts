@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { type Uploadable } from '../core/uploads';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
@@ -28,8 +29,14 @@ export class AnalyticImagery extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: AnalyticImageryListParams, options?: RequestOptions): APIPromise<AnalyticImageryListResponse> {
-    return this._client.get('/udl/analyticimagery', { query, ...options });
+  list(
+    query: AnalyticImageryListParams,
+    options?: RequestOptions,
+  ): PagePromise<AnalyticImageryAbridgedsOffsetPage, AnalyticImageryAbridged> {
+    return this._client.getAPIList('/udl/analyticimagery', OffsetPage<AnalyticImageryAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -168,6 +175,8 @@ export class AnalyticImagery extends APIResource {
     );
   }
 }
+
+export type AnalyticImageryAbridgedsOffsetPage = OffsetPage<AnalyticImageryAbridged>;
 
 /**
  * The analytic imagery schema supports data plots and graphics of various types.
@@ -709,8 +718,6 @@ export interface AnalyticImageryFull {
   zUnits?: string;
 }
 
-export type AnalyticImageryListResponse = Array<AnalyticImageryAbridged>;
-
 export type AnalyticImageryCountResponse = string;
 
 export type AnalyticImageryHistoryResponse = Array<AnalyticImageryFull>;
@@ -725,16 +732,12 @@ export interface AnalyticImageryRetrieveParams {
   maxResults?: number;
 }
 
-export interface AnalyticImageryListParams {
+export interface AnalyticImageryListParams extends OffsetPageParams {
   /**
    * The message time of this image record, in ISO8601 UTC format with millisecond
    * precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   msgTime: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface AnalyticImageryCountParams {
@@ -856,11 +859,11 @@ export declare namespace AnalyticImagery {
   export {
     type AnalyticImageryAbridged as AnalyticImageryAbridged,
     type AnalyticImageryFull as AnalyticImageryFull,
-    type AnalyticImageryListResponse as AnalyticImageryListResponse,
     type AnalyticImageryCountResponse as AnalyticImageryCountResponse,
     type AnalyticImageryHistoryResponse as AnalyticImageryHistoryResponse,
     type AnalyticImageryHistoryCountResponse as AnalyticImageryHistoryCountResponse,
     type AnalyticImageryTupleResponse as AnalyticImageryTupleResponse,
+    type AnalyticImageryAbridgedsOffsetPage as AnalyticImageryAbridgedsOffsetPage,
     type AnalyticImageryRetrieveParams as AnalyticImageryRetrieveParams,
     type AnalyticImageryListParams as AnalyticImageryListParams,
     type AnalyticImageryCountParams as AnalyticImageryCountParams,

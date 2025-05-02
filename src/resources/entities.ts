@@ -8,6 +8,7 @@ import * as LocationAPI from './location';
 import * as OrganizationAPI from './organization';
 import * as SolararraydetailsAPI from './solararraydetails';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -59,8 +60,8 @@ export class Entities extends APIResource {
   list(
     query: EntityListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<EntityListResponse> {
-    return this._client.get('/udl/entity', { query, ...options });
+  ): PagePromise<EntityAbridgedsOffsetPage, EntityAbridged> {
+    return this._client.getAPIList('/udl/entity', OffsetPage<EntityAbridged>, { query, ...options });
   }
 
   /**
@@ -125,6 +126,8 @@ export class Entities extends APIResource {
     return this._client.get('/udl/entity/tuple', { query, ...options });
   }
 }
+
+export type EntityAbridgedsOffsetPage = OffsetPage<EntityAbridged>;
 
 /**
  * An entity is a generic representation of any object within a space/SSA system
@@ -2937,8 +2940,6 @@ export namespace EntityIngest {
     origNetwork?: string;
   }
 }
-
-export type EntityListResponse = Array<EntityAbridged>;
 
 export type EntityCountResponse = string;
 
@@ -8168,11 +8169,7 @@ export namespace EntityUpdateParams {
   }
 }
 
-export interface EntityListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface EntityListParams extends OffsetPageParams {}
 
 export interface EntityCountParams {
   firstResult?: number;
@@ -8205,10 +8202,10 @@ export declare namespace Entities {
     type EntityAbridged as EntityAbridged,
     type EntityFull as EntityFull,
     type EntityIngest as EntityIngest,
-    type EntityListResponse as EntityListResponse,
     type EntityCountResponse as EntityCountResponse,
     type EntityGetAllTypesResponse as EntityGetAllTypesResponse,
     type EntityTupleResponse as EntityTupleResponse,
+    type EntityAbridgedsOffsetPage as EntityAbridgedsOffsetPage,
     type EntityCreateParams as EntityCreateParams,
     type EntityRetrieveParams as EntityRetrieveParams,
     type EntityUpdateParams as EntityUpdateParams,

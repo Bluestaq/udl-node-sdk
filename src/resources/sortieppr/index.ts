@@ -3,11 +3,11 @@
 export {
   History,
   type SortiePprFull,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type SortiePprFullsOffsetPage,
 } from './history';
 export {
   Sortieppr,
@@ -22,4 +22,5 @@ export {
   type SortiepprGetParams,
   type SortiepprTupleParams,
   type SortiepprUnvalidatedPublishParams,
+  type SortiepprListResponsesOffsetPage,
 } from './sortieppr';

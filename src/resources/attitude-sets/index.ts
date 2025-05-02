@@ -3,7 +3,6 @@
 export {
   AttitudeSets,
   type AttitudesetAbridged,
-  type AttitudeSetListResponse,
   type AttitudeSetCountResponse,
   type AttitudeSetTupleResponse,
   type AttitudeSetCreateParams,
@@ -11,10 +10,10 @@ export {
   type AttitudeSetCountParams,
   type AttitudeSetTupleParams,
   type AttitudeSetUnvalidatedPublishParams,
+  type AttitudesetAbridgedsOffsetPage,
 } from './attitude-sets';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,

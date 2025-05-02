@@ -2,7 +2,6 @@
 
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
@@ -18,4 +17,5 @@ export {
   type OrbittrackCreateBulkParams,
   type OrbittrackTupleParams,
   type OrbittrackUnvalidatedPublishParams,
+  type OrbittrackListResponsesOffsetPage,
 } from './orbittrack';

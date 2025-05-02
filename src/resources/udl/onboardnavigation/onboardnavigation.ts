@@ -8,8 +8,8 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
   OnboardnavigationFull,
+  OnboardnavigationFullsOffsetPage,
 } from './history';
 
 export class Onboardnavigation extends APIResource {
@@ -22,8 +22,8 @@ export declare namespace Onboardnavigation {
   export {
     History as History,
     type OnboardnavigationFull as OnboardnavigationFull,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
+    type OnboardnavigationFullsOffsetPage as OnboardnavigationFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

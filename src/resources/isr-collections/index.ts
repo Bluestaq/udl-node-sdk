@@ -2,7 +2,6 @@
 
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
@@ -18,4 +17,5 @@ export {
   type IsrCollectionCreateBulkParams,
   type IsrCollectionTupleParams,
   type IsrCollectionUnvalidatedPublishParams,
+  type IsrCollectionListResponsesOffsetPage,
 } from './isr-collections';

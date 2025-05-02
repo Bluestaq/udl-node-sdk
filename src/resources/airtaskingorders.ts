@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { RequestOptions } from '../internal/request-options';
 
 export class Airtaskingorders extends APIResource {
@@ -14,10 +14,15 @@ export class Airtaskingorders extends APIResource {
   list(
     query: AirtaskingorderListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AirtaskingorderListResponse> {
-    return this._client.get('/udl/airtaskingorder', { query, ...options });
+  ): PagePromise<AirtaskingorderAbridgedsOffsetPage, AirtaskingorderAbridged> {
+    return this._client.getAPIList('/udl/airtaskingorder', OffsetPage<AirtaskingorderAbridged>, {
+      query,
+      ...options,
+    });
   }
 }
+
+export type AirtaskingorderAbridgedsOffsetPage = OffsetPage<AirtaskingorderAbridged>;
 
 /**
  * Beta Version Air Tasking Order: The ATO is used to task air missions, assign
@@ -482,18 +487,12 @@ export namespace AirtaskingorderAbridged {
   }
 }
 
-export type AirtaskingorderListResponse = Array<AirtaskingorderAbridged>;
-
-export interface AirtaskingorderListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface AirtaskingorderListParams extends OffsetPageParams {}
 
 export declare namespace Airtaskingorders {
   export {
     type AirtaskingorderAbridged as AirtaskingorderAbridged,
-    type AirtaskingorderListResponse as AirtaskingorderListResponse,
+    type AirtaskingorderAbridgedsOffsetPage as AirtaskingorderAbridgedsOffsetPage,
     type AirtaskingorderListParams as AirtaskingorderListParams,
   };
 }

@@ -11,6 +11,7 @@ import {
   HistoryRetrieveResponse,
 } from './history';
 import { APIPromise } from '../../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
 import { RequestOptions } from '../../../internal/request-options';
 
@@ -23,8 +24,14 @@ export class AttitudeData extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: AttitudeDataListParams, options?: RequestOptions): APIPromise<AttitudeDataListResponse> {
-    return this._client.get('/udl/attitudedata', { query, ...options });
+  list(
+    query: AttitudeDataListParams,
+    options?: RequestOptions,
+  ): PagePromise<AttitudeDataAbridgedsOffsetPage, AttitudeDataAbridged> {
+    return this._client.getAPIList('/udl/attitudedata', OffsetPage<AttitudeDataAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -42,6 +49,8 @@ export class AttitudeData extends APIResource {
     });
   }
 }
+
+export type AttitudeDataAbridgedsOffsetPage = OffsetPage<AttitudeDataAbridged>;
 
 /**
  * These services provide operations for posting and querying attitude of on-orbit
@@ -254,19 +263,13 @@ export interface AttitudeDataAbridged {
   zRate?: Array<number>;
 }
 
-export type AttitudeDataListResponse = Array<AttitudeDataAbridged>;
-
 export type AttitudeDataCountResponse = string;
 
-export interface AttitudeDataListParams {
+export interface AttitudeDataListParams extends OffsetPageParams {
   /**
    * Unique identifier of the parent AttitudeSet associated with this record. (uuid)
    */
   asId: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface AttitudeDataCountParams {
@@ -285,8 +288,8 @@ AttitudeData.History = History;
 export declare namespace AttitudeData {
   export {
     type AttitudeDataAbridged as AttitudeDataAbridged,
-    type AttitudeDataListResponse as AttitudeDataListResponse,
     type AttitudeDataCountResponse as AttitudeDataCountResponse,
+    type AttitudeDataAbridgedsOffsetPage as AttitudeDataAbridgedsOffsetPage,
     type AttitudeDataListParams as AttitudeDataListParams,
     type AttitudeDataCountParams as AttitudeDataCountParams,
   };

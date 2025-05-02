@@ -2,7 +2,6 @@
 
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryCountParams,
@@ -18,4 +17,5 @@ export {
   type SitestatusCountParams,
   type SitestatusGetParams,
   type SitestatusTupleParams,
+  type SitestatusListResponsesOffsetPage,
 } from './sitestatus';

@@ -3,6 +3,7 @@
 import { APIResource } from '../core/resource';
 import * as EngineDetailsAPI from './engine-details';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -60,8 +61,8 @@ export class Engines extends APIResource {
   list(
     query: EngineListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<EngineListResponse> {
-    return this._client.get('/udl/engine', { query, ...options });
+  ): PagePromise<EngineAbridgedsOffsetPage, EngineAbridged> {
+    return this._client.getAPIList('/udl/engine', OffsetPage<EngineAbridged>, { query, ...options });
   }
 
   /**
@@ -118,6 +119,8 @@ export class Engines extends APIResource {
     return this._client.get('/udl/engine/tuple', { query, ...options });
   }
 }
+
+export type EngineAbridgedsOffsetPage = OffsetPage<EngineAbridged>;
 
 /**
  * Known launch vehicle engines and their performance characteristics and limits. A
@@ -275,8 +278,6 @@ export interface EngineAbridged {
   origNetwork?: string;
 }
 
-export type EngineListResponse = Array<EngineAbridged>;
-
 export type EngineCountResponse = string;
 
 export type EngineTupleResponse = Array<Engine>;
@@ -383,11 +384,7 @@ export interface EngineUpdateParams {
   origin?: string;
 }
 
-export interface EngineListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface EngineListParams extends OffsetPageParams {}
 
 export interface EngineCountParams {
   firstResult?: number;
@@ -413,9 +410,9 @@ export declare namespace Engines {
   export {
     type Engine as Engine,
     type EngineAbridged as EngineAbridged,
-    type EngineListResponse as EngineListResponse,
     type EngineCountResponse as EngineCountResponse,
     type EngineTupleResponse as EngineTupleResponse,
+    type EngineAbridgedsOffsetPage as EngineAbridgedsOffsetPage,
     type EngineCreateParams as EngineCreateParams,
     type EngineRetrieveParams as EngineRetrieveParams,
     type EngineUpdateParams as EngineUpdateParams,

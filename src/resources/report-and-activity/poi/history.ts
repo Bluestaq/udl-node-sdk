@@ -2,7 +2,9 @@
 
 import { APIResource } from '../../../core/resource';
 import * as PoiHistoryAPI from '../../udl/poi/history';
+import { PoiFullsOffsetPage } from '../../udl/poi/history';
 import { APIPromise } from '../../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
 import { RequestOptions } from '../../../internal/request-options';
 
@@ -13,8 +15,14 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: HistoryListParams, options?: RequestOptions): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/poi/history', { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<PoiFullsOffsetPage, PoiHistoryAPI.PoiFull> {
+    return this._client.getAPIList('/udl/poi/history', OffsetPage<PoiHistoryAPI.PoiFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -48,11 +56,9 @@ export class History extends APIResource {
   }
 }
 
-export type HistoryListResponse = Array<PoiHistoryAPI.PoiFull>;
-
 export type HistoryCountResponse = string;
 
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * Activity/POI timestamp in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
@@ -64,10 +70,6 @@ export interface HistoryListParams {
    * query fields that can be selected.
    */
   columns?: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface HistoryAodrParams {
@@ -121,10 +123,11 @@ export interface HistoryCountParams {
 
 export declare namespace History {
   export {
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
   };
 }
+
+export { type PoiFullsOffsetPage };

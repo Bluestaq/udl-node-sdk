@@ -11,7 +11,6 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
@@ -165,6 +164,8 @@ export class Elsets extends APIResource {
 }
 
 export type ElsetAbridgedsOffsetPage = OffsetPage<ElsetAbridged>;
+
+export type ElsetsOffsetPage = OffsetPage<Elset>;
 
 /**
  * An element set is a collection of Keplerian orbital elements describing an orbit
@@ -1490,7 +1491,6 @@ export declare namespace Elsets {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,

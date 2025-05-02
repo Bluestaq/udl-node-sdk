@@ -2,7 +2,8 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
-import { APIPromise } from '../../core/api-promise';
+import { EvacFullsOffsetPage } from '../shared';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 
 export class Tuple extends APIResource {
@@ -16,14 +17,12 @@ export class Tuple extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  list(query: TupleListParams, options?: RequestOptions): APIPromise<TupleListResponse> {
-    return this._client.get('/udl/evac/tuple', { query, ...options });
+  list(query: TupleListParams, options?: RequestOptions): PagePromise<EvacFullsOffsetPage, Shared.EvacFull> {
+    return this._client.getAPIList('/udl/evac/tuple', OffsetPage<Shared.EvacFull>, { query, ...options });
   }
 }
 
-export type TupleListResponse = Array<Shared.EvacFull>;
-
-export interface TupleListParams {
+export interface TupleListParams extends OffsetPageParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
@@ -36,12 +35,10 @@ export interface TupleListParams {
    * The request time, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   reqTime: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export declare namespace Tuple {
-  export { type TupleListResponse as TupleListResponse, type TupleListParams as TupleListParams };
+  export { type TupleListParams as TupleListParams };
 }
+
+export { type EvacFullsOffsetPage };

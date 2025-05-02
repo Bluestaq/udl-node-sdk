@@ -22,4 +22,5 @@ export {
   type SensormaintenanceCurrentParams,
   type SensormaintenanceGetParams,
   type SensormaintenanceTupleParams,
+  type SensormaintenanceListResponsesOffsetPage,
 } from './sensormaintenance';

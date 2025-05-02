@@ -3,7 +3,6 @@
 export {
   CollectRequests,
   type CollectRequestAbridged,
-  type CollectRequestListResponse,
   type CollectRequestCountResponse,
   type CollectRequestTupleResponse,
   type CollectRequestCreateParams,
@@ -13,10 +12,10 @@ export {
   type CollectRequestCreateBulkParams,
   type CollectRequestTupleParams,
   type CollectRequestUnvalidatedPublishParams,
+  type CollectRequestAbridgedsOffsetPage,
 } from './collect-requests';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,

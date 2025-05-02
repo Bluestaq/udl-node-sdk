@@ -4,7 +4,6 @@ export {
   EcpsdrResource,
   type Ecpsdr,
   type EcpsdrAbridged,
-  type EcpsdrListResponse,
   type EcpsdrCountResponse,
   type EcpsdrTupleResponse,
   type EcpsdrCreateParams,
@@ -13,6 +12,7 @@ export {
   type EcpsdrCountParams,
   type EcpsdrCreateBulkParams,
   type EcpsdrTupleParams,
+  type EcpsdrAbridgedsOffsetPage,
 } from './ecpsdr';
 export { Eo } from './eo';
 export { Gnssobservations } from './gnssobservations';

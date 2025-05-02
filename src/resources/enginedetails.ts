@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { RequestOptions } from '../internal/request-options';
 
 export class Enginedetails extends APIResource {
@@ -14,10 +14,15 @@ export class Enginedetails extends APIResource {
   list(
     query: EnginedetailListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<EnginedetailListResponse> {
-    return this._client.get('/udl/enginedetails', { query, ...options });
+  ): PagePromise<EngineDetailsAbridgedsOffsetPage, EngineDetailsAbridged> {
+    return this._client.getAPIList('/udl/enginedetails', OffsetPage<EngineDetailsAbridged>, {
+      query,
+      ...options,
+    });
   }
 }
+
+export type EngineDetailsAbridgedsOffsetPage = OffsetPage<EngineDetailsAbridged>;
 
 /**
  * Known launch vehicle engine details and performance characteristics and limits
@@ -162,18 +167,12 @@ export interface EngineDetailsAbridged {
   vacuumThrust?: number;
 }
 
-export type EnginedetailListResponse = Array<EngineDetailsAbridged>;
-
-export interface EnginedetailListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface EnginedetailListParams extends OffsetPageParams {}
 
 export declare namespace Enginedetails {
   export {
     type EngineDetailsAbridged as EngineDetailsAbridged,
-    type EnginedetailListResponse as EnginedetailListResponse,
+    type EngineDetailsAbridgedsOffsetPage as EngineDetailsAbridgedsOffsetPage,
     type EnginedetailListParams as EnginedetailListParams,
   };
 }

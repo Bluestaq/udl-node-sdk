@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -57,8 +58,8 @@ export class Channels extends APIResource {
   list(
     query: ChannelListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<ChannelListResponse> {
-    return this._client.get('/udl/channel', { query, ...options });
+  ): PagePromise<ChannelAbridgedsOffsetPage, ChannelAbridged> {
+    return this._client.getAPIList('/udl/channel', OffsetPage<ChannelAbridged>, { query, ...options });
   }
 
   /**
@@ -114,6 +115,8 @@ export class Channels extends APIResource {
     return this._client.get('/udl/channel/tuple', { query, ...options });
   }
 }
+
+export type ChannelAbridgedsOffsetPage = OffsetPage<ChannelAbridged>;
 
 /**
  * Channel information on a particular transponder.
@@ -394,8 +397,6 @@ export interface ChannelFull {
   vpid?: string;
 }
 
-export type ChannelListResponse = Array<ChannelAbridged>;
-
 export type ChannelCountResponse = string;
 
 export type ChannelTupleResponse = Array<ChannelFull>;
@@ -634,11 +635,7 @@ export interface ChannelUpdateParams {
   vpid?: string;
 }
 
-export interface ChannelListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface ChannelListParams extends OffsetPageParams {}
 
 export interface ChannelCountParams {
   firstResult?: number;
@@ -664,9 +661,9 @@ export declare namespace Channels {
   export {
     type ChannelAbridged as ChannelAbridged,
     type ChannelFull as ChannelFull,
-    type ChannelListResponse as ChannelListResponse,
     type ChannelCountResponse as ChannelCountResponse,
     type ChannelTupleResponse as ChannelTupleResponse,
+    type ChannelAbridgedsOffsetPage as ChannelAbridgedsOffsetPage,
     type ChannelCreateParams as ChannelCreateParams,
     type ChannelRetrieveParams as ChannelRetrieveParams,
     type ChannelUpdateParams as ChannelUpdateParams,

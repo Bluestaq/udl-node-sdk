@@ -9,9 +9,9 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -62,8 +62,8 @@ export class Eop extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: EopListParams, options?: RequestOptions): APIPromise<EopListResponse> {
-    return this._client.get('/udl/eop', { query, ...options });
+  list(query: EopListParams, options?: RequestOptions): PagePromise<EopAbridgedsOffsetPage, EopAbridged> {
+    return this._client.getAPIList('/udl/eop', OffsetPage<EopAbridged>, { query, ...options });
   }
 
   /**
@@ -119,6 +119,8 @@ export class Eop extends APIResource {
     });
   }
 }
+
+export type EopAbridgedsOffsetPage = OffsetPage<EopAbridged>;
 
 /**
  * Model representation of Earth Orientation Parameters (EOP) produced by the IERS
@@ -407,8 +409,6 @@ export interface EopAbridged {
    */
   ut1UTCUnc?: number;
 }
-
-export type EopListResponse = Array<EopAbridged>;
 
 export type EopCountResponse = string;
 
@@ -892,16 +892,12 @@ export interface EopUpdateParams {
   ut1UTCUnc?: number;
 }
 
-export interface EopListParams {
+export interface EopListParams extends OffsetPageParams {
   /**
    * Effective date/time for the EOP values in ISO8601 UTC format. The values could
    * be current or predicted. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   eopDate: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface EopCountParams {
@@ -941,9 +937,9 @@ Eop.History = History;
 export declare namespace Eop {
   export {
     type EopAbridged as EopAbridged,
-    type EopListResponse as EopListResponse,
     type EopCountResponse as EopCountResponse,
     type EopListTupleResponse as EopListTupleResponse,
+    type EopAbridgedsOffsetPage as EopAbridgedsOffsetPage,
     type EopCreateParams as EopCreateParams,
     type EopRetrieveParams as EopRetrieveParams,
     type EopUpdateParams as EopUpdateParams,
@@ -954,7 +950,6 @@ export declare namespace Eop {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,

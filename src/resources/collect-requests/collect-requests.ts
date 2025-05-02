@@ -9,9 +9,9 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  HistoryListResponse,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -50,8 +50,14 @@ export class CollectRequests extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: CollectRequestListParams, options?: RequestOptions): APIPromise<CollectRequestListResponse> {
-    return this._client.get('/udl/collectrequest', { query, ...options });
+  list(
+    query: CollectRequestListParams,
+    options?: RequestOptions,
+  ): PagePromise<CollectRequestAbridgedsOffsetPage, CollectRequestAbridged> {
+    return this._client.getAPIList('/udl/collectrequest', OffsetPage<CollectRequestAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -128,6 +134,8 @@ export class CollectRequests extends APIResource {
     });
   }
 }
+
+export type CollectRequestAbridgedsOffsetPage = OffsetPage<CollectRequestAbridged>;
 
 /**
  * Collect Requests support several types of individual requests, or
@@ -1670,8 +1678,6 @@ export namespace CollectRequestAbridged {
   }
 }
 
-export type CollectRequestListResponse = Array<CollectRequestAbridged>;
-
 export type CollectRequestCountResponse = string;
 
 export type CollectRequestTupleResponse = Array<Shared.CollectRequestFull>;
@@ -3192,16 +3198,12 @@ export interface CollectRequestRetrieveParams {
   maxResults?: number;
 }
 
-export interface CollectRequestListParams {
+export interface CollectRequestListParams extends OffsetPageParams {
   /**
    * The start time or earliest time of the collect or contact request window, in ISO
    * 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   startTime: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface CollectRequestCountParams {
@@ -6289,9 +6291,9 @@ CollectRequests.History = History;
 export declare namespace CollectRequests {
   export {
     type CollectRequestAbridged as CollectRequestAbridged,
-    type CollectRequestListResponse as CollectRequestListResponse,
     type CollectRequestCountResponse as CollectRequestCountResponse,
     type CollectRequestTupleResponse as CollectRequestTupleResponse,
+    type CollectRequestAbridgedsOffsetPage as CollectRequestAbridgedsOffsetPage,
     type CollectRequestCreateParams as CollectRequestCreateParams,
     type CollectRequestRetrieveParams as CollectRequestRetrieveParams,
     type CollectRequestListParams as CollectRequestListParams,
@@ -6303,7 +6305,6 @@ export declare namespace CollectRequests {
 
   export {
     History as History,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,

@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
-import { APIPromise } from '../../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { RequestOptions } from '../../../internal/request-options';
 
 export class History extends APIResource {
@@ -14,10 +14,16 @@ export class History extends APIResource {
   list(
     query: HistoryListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/onorbitthrusterstatus/history', { query, ...options });
+  ): PagePromise<OnorbitthrusterstatusFullsOffsetPage, OnorbitthrusterstatusFull> {
+    return this._client.getAPIList(
+      '/udl/onorbitthrusterstatus/history',
+      OffsetPage<OnorbitthrusterstatusFull>,
+      { query, ...options },
+    );
   }
 }
+
+export type OnorbitthrusterstatusFullsOffsetPage = OffsetPage<OnorbitthrusterstatusFull>;
 
 /**
  * Status information for OnorbitThruster objects.
@@ -168,17 +174,13 @@ export interface OnorbitthrusterstatusFull {
   totalDeltaV?: number;
 }
 
-export type HistoryListResponse = Array<OnorbitthrusterstatusFull>;
-
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * optional, fields for retrieval. When omitted, ALL fields are assumed. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
    * query fields that can be selected.
    */
   columns?: string;
-
-  firstResult?: number;
 
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) ID of the
@@ -188,8 +190,6 @@ export interface HistoryListParams {
    * idOnorbitThruster = abc would be queried as /udl/onorbitthruster/abc.
    */
   idOnorbitThruster?: string;
-
-  maxResults?: number;
 
   /**
    * (One or more of fields 'idOnorbitThruster, statusTime' are required.) Datetime
@@ -202,7 +202,7 @@ export interface HistoryListParams {
 export declare namespace History {
   export {
     type OnorbitthrusterstatusFull as OnorbitthrusterstatusFull,
-    type HistoryListResponse as HistoryListResponse,
+    type OnorbitthrusterstatusFullsOffsetPage as OnorbitthrusterstatusFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
   };
 }

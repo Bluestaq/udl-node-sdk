@@ -5,7 +5,7 @@ import * as Shared from '../shared';
 import * as ClassificationMarkingsAPI from './classification-markings';
 import { ClassificationMarkingListResponse, ClassificationMarkings } from './classification-markings';
 import * as FileAPI from './file';
-import { File, FileListParams, FileListResponse, FileRetrieveParams, FileUpdateParams } from './file';
+import { File, FileListParams, FileRetrieveParams, FileUpdateParams } from './file';
 import * as FileMetadataAPI from './file-metadata';
 import { FileMetadata, FileMetadataListResponse } from './file-metadata';
 import * as FoldersAPI from './folders';
@@ -25,6 +25,7 @@ import { RangeParameterListResponse, RangeParameters } from './range-parameters'
 import * as V2API from './v2';
 import {
   Attachment,
+  ScsEntitiesOffsetPage,
   ScsEntity,
   V2,
   V2CopyParams,
@@ -32,7 +33,6 @@ import {
   V2FileUploadParams,
   V2FolderCreateParams,
   V2ListParams,
-  V2ListResponse,
   V2MoveParams,
   V2UpdateParams,
 } from './v2';
@@ -402,7 +402,7 @@ export declare namespace Scs {
     V2 as V2,
     type Attachment as Attachment,
     type ScsEntity as ScsEntity,
-    type V2ListResponse as V2ListResponse,
+    type ScsEntitiesOffsetPage as ScsEntitiesOffsetPage,
     type V2UpdateParams as V2UpdateParams,
     type V2ListParams as V2ListParams,
     type V2DeleteParams as V2DeleteParams,
@@ -414,7 +414,6 @@ export declare namespace Scs {
 
   export {
     File as File,
-    type FileListResponse as FileListResponse,
     type FileRetrieveParams as FileRetrieveParams,
     type FileUpdateParams as FileUpdateParams,
     type FileListParams as FileListParams,

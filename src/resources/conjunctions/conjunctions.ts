@@ -5,6 +5,7 @@ import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse } from './history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { type Uploadable } from '../../core/uploads';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
@@ -31,8 +32,14 @@ export class Conjunctions extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: ConjunctionListParams, options?: RequestOptions): APIPromise<ConjunctionListResponse> {
-    return this._client.get('/udl/conjunction', { query, ...options });
+  list(
+    query: ConjunctionListParams,
+    options?: RequestOptions,
+  ): PagePromise<ConjunctionAbridgedsOffsetPage, ConjunctionAbridged> {
+    return this._client.getAPIList('/udl/conjunction', OffsetPage<ConjunctionAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -165,6 +172,8 @@ export class Conjunctions extends APIResource {
     });
   }
 }
+
+export type ConjunctionAbridgedsOffsetPage = OffsetPage<ConjunctionAbridged>;
 
 /**
  * Stores the results of a particular Conjunction Assessment (CA) run.
@@ -3901,8 +3910,6 @@ export namespace ConjunctionFull {
   }
 }
 
-export type ConjunctionListResponse = Array<ConjunctionAbridged>;
-
 export type ConjunctionCountResponse = string;
 
 export type ConjunctionGetHistoryResponse = Array<ConjunctionFull>;
@@ -3915,15 +3922,11 @@ export interface ConjunctionRetrieveParams {
   maxResults?: number;
 }
 
-export interface ConjunctionListParams {
+export interface ConjunctionListParams extends OffsetPageParams {
   /**
    * Time of closest approach (TCA) in UTC. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
   tca: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface ConjunctionCountParams {
@@ -9439,10 +9442,10 @@ export declare namespace Conjunctions {
   export {
     type ConjunctionAbridged as ConjunctionAbridged,
     type ConjunctionFull as ConjunctionFull,
-    type ConjunctionListResponse as ConjunctionListResponse,
     type ConjunctionCountResponse as ConjunctionCountResponse,
     type ConjunctionGetHistoryResponse as ConjunctionGetHistoryResponse,
     type ConjunctionTupleResponse as ConjunctionTupleResponse,
+    type ConjunctionAbridgedsOffsetPage as ConjunctionAbridgedsOffsetPage,
     type ConjunctionRetrieveParams as ConjunctionRetrieveParams,
     type ConjunctionListParams as ConjunctionListParams,
     type ConjunctionCountParams as ConjunctionCountParams,

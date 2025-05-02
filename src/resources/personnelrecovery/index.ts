@@ -2,7 +2,6 @@
 
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryCountParams,
@@ -20,4 +19,6 @@ export {
   type PersonnelrecoveryFileCreateParams,
   type PersonnelrecoveryGetParams,
   type PersonnelrecoveryTupleParams,
+  type PersonnelRecoveryFullLsOffsetPage,
+  type PersonnelrecoveryListResponsesOffsetPage,
 } from './personnelrecovery';

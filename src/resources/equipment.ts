@@ -3,6 +3,7 @@
 import { APIResource } from '../core/resource';
 import * as EquipmentremarksAPI from './equipmentremarks';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -55,8 +56,8 @@ export class Equipment extends APIResource {
   list(
     query: EquipmentListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<EquipmentListResponse> {
-    return this._client.get('/udl/equipment', { query, ...options });
+  ): PagePromise<EquipmentAbridgedsOffsetPage, EquipmentAbridged> {
+    return this._client.getAPIList('/udl/equipment', OffsetPage<EquipmentAbridged>, { query, ...options });
   }
 
   /**
@@ -127,6 +128,8 @@ export class Equipment extends APIResource {
     return this._client.get('/udl/equipment/tuple', { query, ...options });
   }
 }
+
+export type EquipmentAbridgedsOffsetPage = OffsetPage<EquipmentAbridged>;
 
 /**
  * Properties and characteristics of equipment that can be associated with a site
@@ -1097,8 +1100,6 @@ export interface EquipmentFull {
   wac?: string;
 }
 
-export type EquipmentListResponse = Array<EquipmentAbridged>;
-
 export type EquipmentCountResponse = string;
 
 export type EquipmentTupleResponse = Array<EquipmentFull>;
@@ -2031,11 +2032,7 @@ export interface EquipmentUpdateParams {
   wac?: string;
 }
 
-export interface EquipmentListParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
+export interface EquipmentListParams extends OffsetPageParams {}
 
 export interface EquipmentCountParams {
   firstResult?: number;
@@ -2532,9 +2529,9 @@ export declare namespace Equipment {
   export {
     type EquipmentAbridged as EquipmentAbridged,
     type EquipmentFull as EquipmentFull,
-    type EquipmentListResponse as EquipmentListResponse,
     type EquipmentCountResponse as EquipmentCountResponse,
     type EquipmentTupleResponse as EquipmentTupleResponse,
+    type EquipmentAbridgedsOffsetPage as EquipmentAbridgedsOffsetPage,
     type EquipmentCreateParams as EquipmentCreateParams,
     type EquipmentRetrieveParams as EquipmentRetrieveParams,
     type EquipmentUpdateParams as EquipmentUpdateParams,

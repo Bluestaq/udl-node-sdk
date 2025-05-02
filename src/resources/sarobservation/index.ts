@@ -20,4 +20,5 @@ export {
   type SarobservationGetParams,
   type SarobservationTupleParams,
   type SarobservationUnvalidatedPublishParams,
+  type SarobservationListResponsesOffsetPage,
 } from './sarobservation';

@@ -14,10 +14,10 @@ export {
   type CountryCreateBulkParams,
   type CountryTupleParams,
   type CountryUnvalidatedPublishParams,
+  type CountryListResponsesOffsetPage,
 } from './country';
 export {
   DiplomaticClearance,
-  type DiplomaticClearanceListResponse,
   type DiplomaticClearanceCountResponse,
   type DiplomaticClearanceTupleResponse,
   type DiplomaticClearanceCreateParams,
@@ -30,7 +30,6 @@ export {
 } from './diplomatic-clearance';
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,

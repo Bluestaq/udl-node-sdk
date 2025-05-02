@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -58,8 +59,12 @@ export class Airfieldslotconsumptions extends APIResource {
   list(
     query: AirfieldslotconsumptionListParams,
     options?: RequestOptions,
-  ): APIPromise<AirfieldslotconsumptionListResponse> {
-    return this._client.get('/udl/airfieldslotconsumption', { query, ...options });
+  ): PagePromise<AirfieldslotconsumptionAbridgedsOffsetPage, AirfieldslotconsumptionAbridged> {
+    return this._client.getAPIList(
+      '/udl/airfieldslotconsumption',
+      OffsetPage<AirfieldslotconsumptionAbridged>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -117,6 +122,8 @@ export class Airfieldslotconsumptions extends APIResource {
     return this._client.get('/udl/airfieldslotconsumption/tuple', { query, ...options });
   }
 }
+
+export type AirfieldslotconsumptionAbridgedsOffsetPage = OffsetPage<AirfieldslotconsumptionAbridged>;
 
 /**
  * Airfield slot use data. Contains the dynamic data associated with the status and
@@ -577,8 +584,6 @@ export interface AirfieldslotconsumptionFull {
   updatedBy?: string;
 }
 
-export type AirfieldslotconsumptionListResponse = Array<AirfieldslotconsumptionAbridged>;
-
 export type AirfieldslotconsumptionCountResponse = string;
 
 export type AirfieldslotconsumptionTupleResponse = Array<AirfieldslotconsumptionFull>;
@@ -981,15 +986,11 @@ export interface AirfieldslotconsumptionUpdateParams {
   targetTime?: string;
 }
 
-export interface AirfieldslotconsumptionListParams {
+export interface AirfieldslotconsumptionListParams extends OffsetPageParams {
   /**
    * The start of the slot window, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
    */
   startTime: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface AirfieldslotconsumptionCountParams {
@@ -1026,9 +1027,9 @@ export declare namespace Airfieldslotconsumptions {
   export {
     type AirfieldslotconsumptionAbridged as AirfieldslotconsumptionAbridged,
     type AirfieldslotconsumptionFull as AirfieldslotconsumptionFull,
-    type AirfieldslotconsumptionListResponse as AirfieldslotconsumptionListResponse,
     type AirfieldslotconsumptionCountResponse as AirfieldslotconsumptionCountResponse,
     type AirfieldslotconsumptionTupleResponse as AirfieldslotconsumptionTupleResponse,
+    type AirfieldslotconsumptionAbridgedsOffsetPage as AirfieldslotconsumptionAbridgedsOffsetPage,
     type AirfieldslotconsumptionCreateParams as AirfieldslotconsumptionCreateParams,
     type AirfieldslotconsumptionRetrieveParams as AirfieldslotconsumptionRetrieveParams,
     type AirfieldslotconsumptionUpdateParams as AirfieldslotconsumptionUpdateParams,

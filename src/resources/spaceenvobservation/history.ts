@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -12,8 +13,14 @@ export class History extends APIResource {
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
    */
-  list(query: HistoryListParams, options?: RequestOptions): APIPromise<HistoryListResponse> {
-    return this._client.get('/udl/spaceenvobservation/history', { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<SpaceEnvObservationFullsOffsetPage, SpaceEnvObservationFull> {
+    return this._client.getAPIList('/udl/spaceenvobservation/history', OffsetPage<SpaceEnvObservationFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -46,6 +53,8 @@ export class History extends APIResource {
     });
   }
 }
+
+export type SpaceEnvObservationFullsOffsetPage = OffsetPage<SpaceEnvObservationFull>;
 
 /**
  * SpaceEnvObservation data.
@@ -378,11 +387,9 @@ export namespace SpaceEnvObservationFull {
   }
 }
 
-export type HistoryListResponse = Array<SpaceEnvObservationFull>;
-
 export type HistoryCountResponse = string;
 
-export interface HistoryListParams {
+export interface HistoryListParams extends OffsetPageParams {
   /**
    * Time of the observation, in ISO 8601 UTC format with millisecond precision.
    * (YYYY-MM-DDTHH:MM:SS.sssZ)
@@ -395,10 +402,6 @@ export interface HistoryListParams {
    * query fields that can be selected.
    */
   columns?: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface HistoryAodrParams {
@@ -455,8 +458,8 @@ export interface HistoryCountParams {
 export declare namespace History {
   export {
     type SpaceEnvObservationFull as SpaceEnvObservationFull,
-    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
+    type SpaceEnvObservationFullsOffsetPage as SpaceEnvObservationFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

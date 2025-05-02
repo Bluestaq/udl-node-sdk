@@ -11,6 +11,7 @@ export {
   type H3geoCountParams,
   type H3geoGetParams,
   type H3geoTupleParams,
+  type H3geoListResponsesOffsetPage,
 } from './h3geo';
 export {
   History,

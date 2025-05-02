@@ -2,7 +2,6 @@
 
 export {
   History,
-  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
@@ -20,4 +19,5 @@ export {
   type OrbitdeterminationGetParams,
   type OrbitdeterminationTupleParams,
   type OrbitdeterminationUnvalidatedPublishParams,
+  type OrbitdeterminationListResponsesOffsetPage,
 } from './orbitdetermination';

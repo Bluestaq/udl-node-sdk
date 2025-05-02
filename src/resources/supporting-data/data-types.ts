@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 
 export class DataTypes extends APIResource {
@@ -11,19 +11,24 @@ export class DataTypes extends APIResource {
   list(
     query: DataTypeListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<DataTypeListResponse> {
-    return this._client.get('/udl/dataowner/getDataTypes', { query, ...options });
+  ): PagePromise<DataTypeListResponsesOffsetPage, DataTypeListResponse> {
+    return this._client.getAPIList('/udl/dataowner/getDataTypes', OffsetPage<DataTypeListResponse>, {
+      query,
+      ...options,
+    });
   }
 }
 
-export type DataTypeListResponse = Array<string>;
+export type DataTypeListResponsesOffsetPage = OffsetPage<DataTypeListResponse>;
 
-export interface DataTypeListParams {
-  firstResult?: number;
+export type DataTypeListResponse = string;
 
-  maxResults?: number;
-}
+export interface DataTypeListParams extends OffsetPageParams {}
 
 export declare namespace DataTypes {
-  export { type DataTypeListResponse as DataTypeListResponse, type DataTypeListParams as DataTypeListParams };
+  export {
+    type DataTypeListResponse as DataTypeListResponse,
+    type DataTypeListResponsesOffsetPage as DataTypeListResponsesOffsetPage,
+    type DataTypeListParams as DataTypeListParams,
+  };
 }

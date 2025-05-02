@@ -26,4 +26,5 @@ export {
   type SensorCountParams,
   type SensorGetParams,
   type SensorTupleParams,
+  type SensorListResponsesOffsetPage,
 } from './sensor';
