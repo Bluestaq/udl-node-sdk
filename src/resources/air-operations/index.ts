@@ -1,7 +1,20 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export { AirOperations } from './air-operations';
-export { AirTaskingOrders, type AirTaskingOrderUnvalidatedPublishParams } from './air-tasking-orders';
+export {
+  AirTaskingOrders,
+  type AirTaskingOrderFull,
+  type AirTaskingOrderListResponse,
+  type AirTaskingOrderCountResponse,
+  type AirTaskingOrderTupleResponse,
+  type AirTaskingOrderCreateParams,
+  type AirTaskingOrderRetrieveParams,
+  type AirTaskingOrderListParams,
+  type AirTaskingOrderCountParams,
+  type AirTaskingOrderTupleParams,
+  type AirTaskingOrderUnvalidatedPublishParams,
+  type AirTaskingOrderListResponsesOffsetPage,
+} from './air-tasking-orders';
 export {
   AircraftSortie,
   type AircraftsortieAbridged,

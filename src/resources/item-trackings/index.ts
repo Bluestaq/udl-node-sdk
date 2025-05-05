@@ -2,14 +2,17 @@
 
 export {
   History,
+  type HistoryListResponse,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryCountParams,
+  type HistoryListResponsesOffsetPage,
 } from './history';
 export {
   ItemTrackings,
   type ItemTrackingListResponse,
   type ItemTrackingCountResponse,
+  type ItemTrackingGetResponse,
   type ItemTrackingTupleResponse,
   type ItemTrackingCreateParams,
   type ItemTrackingListParams,

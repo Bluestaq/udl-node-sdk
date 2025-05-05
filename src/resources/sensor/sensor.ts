@@ -6,7 +6,7 @@ import * as BatteriesAPI from '../batteries';
 import * as EnginesAPI from '../engines';
 import * as LocationAPI from '../location';
 import * as OrganizationAPI from '../organization';
-import * as SolararraydetailsAPI from '../solararraydetails';
+import * as SolarArrayDetailsAPI from '../solar-array-details';
 import * as CalibrationAPI from './calibration/calibration';
 import {
   Calibration,
@@ -2537,7 +2537,7 @@ export namespace SensorGetResponse {
            * organization, ignored on create/update. These details must be created separately
            * via the /udl/solararraydetails operations.
            */
-          solarArrayDetails?: Array<SolararraydetailsAPI.SolarArrayDetailsFull>;
+          solarArrayDetails?: Array<SolarArrayDetailsAPI.SolarArrayDetailsFull>;
 
           /**
            * Time the row was last updated in the database, auto-populated by the system.
@@ -5631,7 +5631,7 @@ export namespace SensorTupleResponse {
              * organization, ignored on create/update. These details must be created separately
              * via the /udl/solararraydetails operations.
              */
-            solarArrayDetails?: Array<SolararraydetailsAPI.SolarArrayDetailsFull>;
+            solarArrayDetails?: Array<SolarArrayDetailsAPI.SolarArrayDetailsFull>;
 
             /**
              * Time the row was last updated in the database, auto-populated by the system.

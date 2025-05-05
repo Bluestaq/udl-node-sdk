@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as EquipmentremarksAPI from './equipmentremarks';
+import * as EquipmentRemarksAPI from './equipment-remarks';
 import { APIPromise } from '../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
@@ -825,7 +825,7 @@ export interface EquipmentFull {
    * Remarks contain amplifying information for a specific service. The information
    * may contain context and interpretations for consumer use.
    */
-  equipmentRemarks?: Array<EquipmentremarksAPI.EquipmentRemarkFull>;
+  equipmentRemarks?: Array<EquipmentRemarksAPI.EquipmentRemarkFull>;
 
   /**
    * Eval represents the Intelligence Confidence Level or the Reliability/degree of

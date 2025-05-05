@@ -2,7 +2,20 @@
 
 import { APIResource } from '../../core/resource';
 import * as AirTaskingOrdersAPI from './air-tasking-orders';
-import { AirTaskingOrderUnvalidatedPublishParams, AirTaskingOrders } from './air-tasking-orders';
+import {
+  AirTaskingOrderCountParams,
+  AirTaskingOrderCountResponse,
+  AirTaskingOrderCreateParams,
+  AirTaskingOrderFull,
+  AirTaskingOrderListParams,
+  AirTaskingOrderListResponse,
+  AirTaskingOrderListResponsesOffsetPage,
+  AirTaskingOrderRetrieveParams,
+  AirTaskingOrderTupleParams,
+  AirTaskingOrderTupleResponse,
+  AirTaskingOrderUnvalidatedPublishParams,
+  AirTaskingOrders,
+} from './air-tasking-orders';
 import * as AircraftSortieAPI from './aircraft-sortie';
 import {
   AircraftSortie,
@@ -60,6 +73,16 @@ AirOperations.DiplomaticClearance = DiplomaticClearance;
 export declare namespace AirOperations {
   export {
     AirTaskingOrders as AirTaskingOrders,
+    type AirTaskingOrderFull as AirTaskingOrderFull,
+    type AirTaskingOrderListResponse as AirTaskingOrderListResponse,
+    type AirTaskingOrderCountResponse as AirTaskingOrderCountResponse,
+    type AirTaskingOrderTupleResponse as AirTaskingOrderTupleResponse,
+    type AirTaskingOrderListResponsesOffsetPage as AirTaskingOrderListResponsesOffsetPage,
+    type AirTaskingOrderCreateParams as AirTaskingOrderCreateParams,
+    type AirTaskingOrderRetrieveParams as AirTaskingOrderRetrieveParams,
+    type AirTaskingOrderListParams as AirTaskingOrderListParams,
+    type AirTaskingOrderCountParams as AirTaskingOrderCountParams,
+    type AirTaskingOrderTupleParams as AirTaskingOrderTupleParams,
     type AirTaskingOrderUnvalidatedPublishParams as AirTaskingOrderUnvalidatedPublishParams,
   };
 

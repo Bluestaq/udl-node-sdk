@@ -14,10 +14,76 @@ export {
   type EcpsdrTupleParams,
   type EcpsdrAbridgedsOffsetPage,
 } from './ecpsdr';
-export { Eo } from './eo';
-export { Gnssobservations } from './gnssobservations';
-export { Monoradar, type MonoradarUnvalidatedPublishParams } from './monoradar/index';
+export {
+  EoObservations,
+  type EoObservationAbridged,
+  type EoObservationCountResponse,
+  type EoObservationTupleResponse,
+  type EoObservationCreateParams,
+  type EoObservationRetrieveParams,
+  type EoObservationListParams,
+  type EoObservationCountParams,
+  type EoObservationCreateBulkParams,
+  type EoObservationTupleParams,
+  type EoObservationUnvalidatedPublishParams,
+  type EoObservationAbridgedsOffsetPage,
+} from './eo-observations/index';
+export {
+  Monoradar,
+  type MonoradarListResponse,
+  type MonoradarCountResponse,
+  type MonoradarTupleResponse,
+  type MonoradarListParams,
+  type MonoradarCountParams,
+  type MonoradarCreateBulkParams,
+  type MonoradarTupleParams,
+  type MonoradarUnvalidatedPublishParams,
+  type MonoradarListResponsesOffsetPage,
+} from './monoradar/index';
 export { Observations } from './observations';
-export { Radarobservation } from './radarobservation/index';
-export { Rfobservation } from './rfobservation/index';
+export {
+  PassiveRadarObservation,
+  type PassiveRadarObservationListResponse,
+  type PassiveRadarObservationCountResponse,
+  type PassiveRadarObservationGetResponse,
+  type PassiveRadarObservationTupleResponse,
+  type PassiveRadarObservationCreateParams,
+  type PassiveRadarObservationListParams,
+  type PassiveRadarObservationCountParams,
+  type PassiveRadarObservationCreateBulkParams,
+  type PassiveRadarObservationFileCreateParams,
+  type PassiveRadarObservationGetParams,
+  type PassiveRadarObservationTupleParams,
+  type PassiveRadarObservationListResponsesOffsetPage,
+} from './passive-radar-observation/index';
+export {
+  Radarobservation,
+  type RadarobservationListResponse,
+  type RadarobservationCountResponse,
+  type RadarobservationGetResponse,
+  type RadarobservationTupleResponse,
+  type RadarobservationCreateParams,
+  type RadarobservationListParams,
+  type RadarobservationCountParams,
+  type RadarobservationCreateBulkParams,
+  type RadarobservationGetParams,
+  type RadarobservationTupleParams,
+  type RadarobservationUnvalidatedPublishParams,
+  type RadarobservationListResponsesOffsetPage,
+} from './radarobservation/index';
+export {
+  RfObservation,
+  type RfObservationListResponse,
+  type RfObservationCountResponse,
+  type RfObservationGetResponse,
+  type RfObservationTupleResponse,
+  type RfObservationCreateParams,
+  type RfObservationListParams,
+  type RfObservationCountParams,
+  type RfObservationCreateBulkParams,
+  type RfObservationGetParams,
+  type RfObservationTupleParams,
+  type RfObservationUnvalidatedPublishParams,
+  type RfObservationListResponsesOffsetPage,
+} from './rf-observation/index';
 export { Swir, type SwirUnvalidatedPublishParams } from './swir';
