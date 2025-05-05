@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
-import * as EoObservationsAPI from '../eo-observations/eo-observations';
 import * as AntennaDetailsAPI from './antenna-details';
 import {
   AntennaDetailCreateParams,
@@ -14,6 +13,7 @@ import {
   AntennaDetailsAbridgedsOffsetPage,
   AntennaDetailsFull,
 } from './antenna-details';
+import * as EoObservationsAPI from '../observations/eo-observations/eo-observations';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';

@@ -1,6 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { History, type HistoryCountResponse, type HistoryCountParams } from './history';
+export {
+  History,
+  type OnorbitthrusterstatusFull,
+  type HistoryCountResponse,
+  type HistoryListParams,
+  type HistoryCountParams,
+  type OnorbitthrusterstatusFullsOffsetPage,
+} from './history';
 export {
   Onorbitthrusterstatus,
   type OnorbitthrusterstatusListResponse,

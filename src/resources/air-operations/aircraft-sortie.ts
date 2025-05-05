@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as CrewAPI from '../crew';
-import * as HistoryAPI from '../sortieppr/history';
+import * as HistoryAPI from '../sortie-ppr/history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';

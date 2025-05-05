@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as SolararraydetailsAPI from './solararraydetails';
+import * as SolarArrayDetailsAPI from './solar-array-details';
 import { APIPromise } from '../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
@@ -402,7 +402,7 @@ export namespace OnorbitsolararrayGetResponse {
      * organization, ignored on create/update. These details must be created separately
      * via the /udl/solararraydetails operations.
      */
-    solarArrayDetails?: Array<SolararraydetailsAPI.SolarArrayDetailsFull>;
+    solarArrayDetails?: Array<SolarArrayDetailsAPI.SolarArrayDetailsFull>;
 
     /**
      * Time the row was last updated in the database, auto-populated by the system.

@@ -6,7 +6,7 @@ import * as BatteriesAPI from './batteries';
 import * as EnginesAPI from './engines';
 import * as LocationAPI from './location';
 import * as OrganizationAPI from './organization';
-import * as SolararraydetailsAPI from './solararraydetails';
+import * as SolarArrayDetailsAPI from './solar-array-details';
 import { APIPromise } from '../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
@@ -1513,7 +1513,7 @@ export namespace EntityFull {
          * organization, ignored on create/update. These details must be created separately
          * via the /udl/solararraydetails operations.
          */
-        solarArrayDetails?: Array<SolararraydetailsAPI.SolarArrayDetailsFull>;
+        solarArrayDetails?: Array<SolarArrayDetailsAPI.SolarArrayDetailsFull>;
 
         /**
          * Time the row was last updated in the database, auto-populated by the system.
