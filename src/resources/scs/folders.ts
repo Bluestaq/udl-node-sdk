@@ -11,6 +11,14 @@ export class Folders extends APIResource {
    * Creates a new folder that is passed as part of the path. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * const folder = await client.scs.folders.create({
+   *   id: 'id',
+   *   classificationMarking: 'classificationMarking',
+   * });
+   * ```
    */
   create(params: FolderCreateParams, options?: RequestOptions): APIPromise<string> {
     const { id, classificationMarking, description, read, tags, write } = params;
@@ -23,6 +31,13 @@ export class Folders extends APIResource {
   /**
    * Returns a FileData object representing the folder ID that is visible to the
    * calling user.
+   *
+   * @example
+   * ```ts
+   * const fileData = await client.scs.folders.retrieve({
+   *   id: 'id',
+   * });
+   * ```
    */
   retrieve(query: FolderRetrieveParams, options?: RequestOptions): APIPromise<Shared.FileData> {
     return this._client.get('/scs/folder', { query, ...options });
@@ -31,6 +46,20 @@ export class Folders extends APIResource {
   /**
    * operation to update folders metadata. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.scs.folders.update({
+   *   id: '/example/folder/',
+   *   attributes: {
+   *     classification: 'U',
+   *     path: '/example/folder/',
+   *     description: 'A new Example Description',
+   *     tags: null,
+   *     metaInfo: 'A new Example Meta Info',
+   *   },
+   * });
+   * ```
    */
   update(body: FolderUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.patch('/scs/folder', {

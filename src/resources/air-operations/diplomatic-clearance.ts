@@ -12,6 +12,23 @@ export class DiplomaticClearance extends APIResource {
    * and ingest into the database. This operation is intended to be used for
    * automated feeds into UDL. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airOperations.diplomaticClearance.unvalidatedPublish(
+   *   {
+   *     body: [
+   *       {
+   *         classificationMarking: 'U',
+   *         dataMode: 'TEST',
+   *         firstDepDate: '2024-01-01T01:01:01.123Z',
+   *         idMission: '0dba1363-2d09-49fa-a784-4bb4cbb1674a',
+   *         source: 'Bluestaq',
+   *       },
+   *     ],
+   *   },
+   * );
+   * ```
    */
   unvalidatedPublish(
     params: DiplomaticClearanceUnvalidatedPublishParams,

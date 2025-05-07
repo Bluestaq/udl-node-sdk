@@ -15,6 +15,16 @@ export class LaunchSiteDetails extends APIResource {
    * a launch site by a particular source. A launch site may have several details
    * records. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.launchSiteDetails.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idLaunchSite: 'LAUNCHSITE-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: LaunchSiteDetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/launchsitedetails', {
@@ -29,6 +39,16 @@ export class LaunchSiteDetails extends APIResource {
    * details compiled/collected on a launch site by a particular source. A launch
    * site may have several details records. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.launchSiteDetails.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idLaunchSite: 'LAUNCHSITE-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: LaunchSiteDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/launchsitedetails/${pathID}`, {
@@ -43,6 +63,14 @@ export class LaunchSiteDetails extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const launchSiteDetailListResponse of client.launchSiteDetails.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: LaunchSiteDetailListParams | null | undefined = {},
@@ -60,6 +88,11 @@ export class LaunchSiteDetails extends APIResource {
    * site by a particular source. A launch site may have several details records. A
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.launchSiteDetails.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/launchsitedetails/${id}`, {
@@ -73,6 +106,14 @@ export class LaunchSiteDetails extends APIResource {
    * query parameter. A LaunchSiteDetails represents details compiled/collected on a
    * launch site by a particular source. A launch site may have several details
    * records.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.launchSiteDetails.findBySource({
+   *     source: 'source',
+   *   });
+   * ```
    */
   findBySource(
     query: LaunchSiteDetailFindBySourceParams,
@@ -86,6 +127,13 @@ export class LaunchSiteDetails extends APIResource {
    * path parameter. A LaunchSiteDetails represents details compiled/collected on a
    * launch site by a particular source. A launch site may have several details
    * records.
+   *
+   * @example
+   * ```ts
+   * const launchSiteDetail = await client.launchSiteDetails.get(
+   *   'id',
+   * );
+   * ```
    */
   get(
     id: string,

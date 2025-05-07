@@ -11,6 +11,18 @@ export class Dropzone extends APIResource {
    * Service operation to take a single dropzone record as a POST body and ingest
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.dropzone.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   lat: 33.54,
+   *   lon: -117.162,
+   *   name: 'Viper DZ',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: DropzoneCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/dropzone', {
@@ -23,6 +35,11 @@ export class Dropzone extends APIResource {
   /**
    * Service operation to get a single dropzone record by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const dropzone = await client.dropzone.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -36,6 +53,18 @@ export class Dropzone extends APIResource {
    * Service operation to update a single dropzone record. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.dropzone.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   lat: 33.54,
+   *   lon: -117.162,
+   *   name: 'Viper DZ',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: DropzoneUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/dropzone/${pathID}`, {
@@ -49,6 +78,11 @@ export class Dropzone extends APIResource {
    * Service operation to delete a dropzone record specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.dropzone.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/dropzone/${id}`, {
@@ -63,6 +97,11 @@ export class Dropzone extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.dropzone.count();
+   * ```
    */
   count(query: DropzoneCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/dropzone/count', {
@@ -78,6 +117,22 @@ export class Dropzone extends APIResource {
    * not intended to be used for automated feeds into UDL. Data providers should
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.dropzone.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       lat: 33.54,
+   *       lon: -117.162,
+   *       name: 'Viper DZ',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: DropzoneCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -93,6 +148,11 @@ export class Dropzone extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.dropzone.query();
+   * ```
    */
   query(
     query: DropzoneQueryParams | null | undefined = {},
@@ -104,6 +164,11 @@ export class Dropzone extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.dropzone.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/dropzone/queryhelp', {
@@ -121,6 +186,13 @@ export class Dropzone extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.dropzone.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: DropzoneTupleParams, options?: RequestOptions): APIPromise<DropzoneTupleResponse> {
     return this._client.get('/udl/dropzone/tuple', { query, ...options });
@@ -131,6 +203,22 @@ export class Dropzone extends APIResource {
    * into the database. This operation is intended to be used for automated feeds
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.dropzone.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       lat: 33.54,
+   *       lon: -117.162,
+   *       name: 'Viper DZ',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: DropzoneUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

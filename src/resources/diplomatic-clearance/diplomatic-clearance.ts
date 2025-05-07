@@ -42,6 +42,17 @@ export class DiplomaticClearance extends APIResource {
    * Service operation to take a single diplomatic clearance record as a POST body
    * and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.diplomaticClearance.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   firstDepDate: '2024-01-01T01:01:01.123Z',
+   *   idMission: '0dba1363-2d09-49fa-a784-4bb4cbb1674a',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: DiplomaticClearanceCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/diplomaticclearance', {
@@ -54,6 +65,12 @@ export class DiplomaticClearance extends APIResource {
   /**
    * Service operation to get a single diplomatic clearance record by its unique ID
    * passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const diplomaticclearanceFull =
+   *   await client.diplomaticClearance.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -67,6 +84,17 @@ export class DiplomaticClearance extends APIResource {
    * Service operation to update a single diplomatic clearance record. A specific
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.diplomaticClearance.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   firstDepDate: '2024-01-01T01:01:01.123Z',
+   *   idMission: '0dba1363-2d09-49fa-a784-4bb4cbb1674a',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: DiplomaticClearanceUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/diplomaticclearance/${pathID}`, {
@@ -81,6 +109,16 @@ export class DiplomaticClearance extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const diplomaticclearanceAbridged of client.diplomaticClearance.list(
+   *   { firstDepDate: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: DiplomaticClearanceListParams,
@@ -97,6 +135,11 @@ export class DiplomaticClearance extends APIResource {
    * Service operation to delete a diplomatic clearance record specified by the
    * passed ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.diplomaticClearance.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/diplomaticclearance/${id}`, {
@@ -111,6 +154,13 @@ export class DiplomaticClearance extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.diplomaticClearance.count({
+   *   firstDepDate: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: DiplomaticClearanceCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/diplomaticclearance/count', {
@@ -126,6 +176,21 @@ export class DiplomaticClearance extends APIResource {
    * operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.diplomaticClearance.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       firstDepDate: '2024-01-01T01:01:01.123Z',
+   *       idMission: '0dba1363-2d09-49fa-a784-4bb4cbb1674a',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: DiplomaticClearanceCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -139,6 +204,11 @@ export class DiplomaticClearance extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.diplomaticClearance.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/diplomaticclearance/queryhelp', {
@@ -156,6 +226,15 @@ export class DiplomaticClearance extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const diplomaticclearanceFulls =
+   *   await client.diplomaticClearance.tuple({
+   *     columns: 'columns',
+   *     firstDepDate: '2019-12-27T18:11:19.117Z',
+   *   });
+   * ```
    */
   tuple(
     query: DiplomaticClearanceTupleParams,

@@ -12,6 +12,16 @@ export class AirEvents extends APIResource {
    * Service operation to take a single airevent object as a POST body and ingest
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airEvents.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   *   type: 'FUEL TRANSFER',
+   * });
+   * ```
    */
   create(body: AirEventCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/airevent', {
@@ -25,6 +35,16 @@ export class AirEvents extends APIResource {
    * Service operation to update a single airevent record. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airEvents.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   *   type: 'FUEL TRANSFER',
+   * });
+   * ```
    */
   update(pathID: string, body: AirEventUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/airevent/${pathID}`, {
@@ -39,6 +59,14 @@ export class AirEvents extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const airEventListResponse of client.airEvents.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: AirEventListParams | null | undefined = {},
@@ -51,6 +79,11 @@ export class AirEvents extends APIResource {
    * Service operation to delete an airevent record specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airEvents.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/airevent/${id}`, {
@@ -65,6 +98,11 @@ export class AirEvents extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.airEvents.count();
+   * ```
    */
   count(query: AirEventCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/airevent/count', {
@@ -81,6 +119,20 @@ export class AirEvents extends APIResource {
    * not intended to be used for automated feeds into UDL. Data providers should
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.airEvents.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       source: 'Bluestaq',
+   *       type: 'FUEL TRANSFER',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: AirEventCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -94,6 +146,11 @@ export class AirEvents extends APIResource {
   /**
    * Service operation to get a single airevent record by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const airEvent = await client.airEvents.get('id');
+   * ```
    */
   get(
     id: string,
@@ -106,6 +163,11 @@ export class AirEvents extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.airEvents.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/airevent/queryhelp', {
@@ -123,6 +185,13 @@ export class AirEvents extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.airEvents.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: AirEventTupleParams, options?: RequestOptions): APIPromise<AirEventTupleResponse> {
     return this._client.get('/udl/airevent/tuple', { query, ...options });
@@ -133,6 +202,20 @@ export class AirEvents extends APIResource {
    * into the database. This operation is intended to be used for automated feeds
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airEvents.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       source: 'Bluestaq',
+   *       type: 'FUEL TRANSFER',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: AirEventUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

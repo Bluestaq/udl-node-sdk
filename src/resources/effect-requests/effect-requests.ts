@@ -26,6 +26,16 @@ export class EffectRequests extends APIResource {
    * UDL. Data providers should contact the UDL team for specific role assignments
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.effectRequests.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   effectList: ['COVER', 'DECEIVE'],
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: EffectRequestCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/effectrequest', {
@@ -38,6 +48,13 @@ export class EffectRequests extends APIResource {
   /**
    * Service operation to get a single EffectRequest by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const effectRequest = await client.effectRequests.retrieve(
+   *   'id',
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -52,6 +69,16 @@ export class EffectRequests extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const effectRequestListResponse of client.effectRequests.list(
+   *   { createdAt: '2019-12-27' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: EffectRequestListParams,
@@ -69,6 +96,13 @@ export class EffectRequests extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.effectRequests.count({
+   *   createdAt: '2019-12-27',
+   * });
+   * ```
    */
   count(query: EffectRequestCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/effectrequest/count', {
@@ -84,6 +118,20 @@ export class EffectRequests extends APIResource {
    * operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.effectRequests.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       effectList: ['COVER', 'DECEIVE'],
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: EffectRequestCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -97,6 +145,11 @@ export class EffectRequests extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.effectRequests.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/effectrequest/queryhelp', {
@@ -114,6 +167,14 @@ export class EffectRequests extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.effectRequests.tuple({
+   *   columns: 'columns',
+   *   createdAt: '2019-12-27',
+   * });
+   * ```
    */
   tuple(query: EffectRequestTupleParams, options?: RequestOptions): APIPromise<EffectRequestTupleResponse> {
     return this._client.get('/udl/effectrequest/tuple', { query, ...options });
@@ -124,6 +185,20 @@ export class EffectRequests extends APIResource {
    * the database. This operation is intended to be used for automated feeds into
    * UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.effectRequests.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       effectList: ['COVER', 'DECEIVE'],
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: EffectRequestUnvalidatedPublishParams,

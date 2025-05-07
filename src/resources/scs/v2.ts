@@ -12,6 +12,18 @@ export class V2 extends APIResource {
    * readAcl, classificationMarking, and tags. For a file, you may update
    * description, classificationMarking, and tags. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.scs.v2.update({
+   *   path: 'path',
+   *   classificationMarking: 'U',
+   *   description: 'A description of the updated folder.',
+   *   readAcl: 'user.id1,group.id1',
+   *   tags: ['TAG1', 'TAG2'],
+   *   writeAcl: 'user.id1,group.id1',
+   * });
+   * ```
    */
   update(params: V2UpdateParams, options?: RequestOptions): APIPromise<void> {
     const { path, ...body } = params;
@@ -26,6 +38,16 @@ export class V2 extends APIResource {
   /**
    * Returns a list of ScsEntity objects, each directly nested under the provided
    * path.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const scsEntity of client.scs.v2.list({
+   *   path: 'path',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(query: V2ListParams, options?: RequestOptions): PagePromise<ScsEntitiesOffsetPage, ScsEntity> {
     return this._client.getAPIList('/scs/v2/list', OffsetPage<ScsEntity>, { query, ...options });
@@ -34,6 +56,11 @@ export class V2 extends APIResource {
   /**
    * Operation to delete a folder or file. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.scs.v2.delete({ path: 'path' });
+   * ```
    */
   delete(params: V2DeleteParams, options?: RequestOptions): APIPromise<void> {
     const { path } = params;
@@ -47,6 +74,14 @@ export class V2 extends APIResource {
   /**
    * Operation to copy a folder or file. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.scs.v2.copy({
+   *   fromPath: 'fromPath',
+   *   toPath: 'toPath',
+   * });
+   * ```
    */
   copy(params: V2CopyParams, options?: RequestOptions): APIPromise<void> {
     const { fromPath, toPath } = params;
@@ -60,6 +95,15 @@ export class V2 extends APIResource {
   /**
    * Operation to upload a file. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.scs.v2.fileUpload({
+   *   classificationMarking: 'classificationMarking',
+   *   path: 'path',
+   *   body: fs.createReadStream('path/to/file'),
+   * });
+   * ```
    */
   fileUpload(params: V2FileUploadParams, options?: RequestOptions): APIPromise<void> {
     const { classificationMarking, path, body, description, overwrite, tags } = params;
@@ -82,6 +126,18 @@ export class V2 extends APIResource {
    * folder will be created with the same classificationMarking and tags. A specific
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.scs.v2.folderCreate({
+   *   path: 'path',
+   *   classificationMarking: 'U',
+   *   description: 'My first folder',
+   *   readAcl: 'user.id1,group.id1',
+   *   tags: ['TAG1', 'TAG2'],
+   *   writeAcl: 'user.id1,group.id1',
+   * });
+   * ```
    */
   folderCreate(params: V2FolderCreateParams, options?: RequestOptions): APIPromise<void> {
     const { path, ...body } = params;
@@ -96,6 +152,14 @@ export class V2 extends APIResource {
   /**
    * Operation to move or rename a folder or file. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.scs.v2.move({
+   *   fromPath: 'fromPath',
+   *   toPath: 'toPath',
+   * });
+   * ```
    */
   move(params: V2MoveParams, options?: RequestOptions): APIPromise<void> {
     const { fromPath, toPath } = params;

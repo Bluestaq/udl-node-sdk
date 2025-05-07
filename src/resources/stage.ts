@@ -15,6 +15,17 @@ export class Stage extends APIResource {
    * contact the UDL team for assistance. A Stage represents various stages of a
    * particular launch vehicle, compiled by a particular source. A vehicle may have
    * multiple stage records.
+   *
+   * @example
+   * ```ts
+   * await client.stage.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idEngine: 'ENGINE-ID',
+   *   idLaunchVehicle: 'LAUNCHVEHICLE-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: StageCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/stage', {
@@ -29,6 +40,17 @@ export class Stage extends APIResource {
    * perform this service operation. Please contact the UDL team for assistance. A
    * Stage represents various stages of a particular launch vehicle, compiled by a
    * particular source. A vehicle may have multiple stage records.
+   *
+   * @example
+   * ```ts
+   * await client.stage.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idEngine: 'ENGINE-ID',
+   *   idLaunchVehicle: 'LAUNCHVEHICLE-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: StageUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/stage/${pathID}`, {
@@ -43,6 +65,14 @@ export class Stage extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const stageListResponse of client.stage.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: StageListParams | null | undefined = {},
@@ -57,6 +87,11 @@ export class Stage extends APIResource {
    * contact the UDL team for assistance. A Stage represents various stages of a
    * particular launch vehicle, compiled by a particular source. A vehicle may have
    * multiple stage records.
+   *
+   * @example
+   * ```ts
+   * await client.stage.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/stage/${id}`, {
@@ -71,6 +106,11 @@ export class Stage extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.stage.count();
+   * ```
    */
   count(query: StageCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/stage/count', {
@@ -84,6 +124,11 @@ export class Stage extends APIResource {
    * Service operation to get a single Stage record by its unique ID passed as a path
    * parameter. A Stage represents various stages of a particular launch vehicle,
    * compiled by a particular source. A vehicle may have multiple stage records.
+   *
+   * @example
+   * ```ts
+   * const stage = await client.stage.get('id');
+   * ```
    */
   get(
     id: string,
@@ -96,6 +141,11 @@ export class Stage extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.stage.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/stage/queryhelp', {
@@ -113,6 +163,13 @@ export class Stage extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.stage.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: StageTupleParams, options?: RequestOptions): APIPromise<StageTupleResponse> {
     return this._client.get('/udl/stage/tuple', { query, ...options });

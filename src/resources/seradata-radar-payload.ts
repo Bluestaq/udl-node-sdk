@@ -12,6 +12,16 @@ export class SeradataRadarPayload extends APIResource {
    * Service operation to take a single SeradataRadarPayload as a POST body and
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.seradataRadarPayload.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   *   spacecraftId: '12345',
+   * });
+   * ```
    */
   create(body: SeradataRadarPayloadCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/seradataradarpayload', {
@@ -24,6 +34,16 @@ export class SeradataRadarPayload extends APIResource {
   /**
    * Service operation to update an SeradataRadarPayload. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.seradataRadarPayload.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   *   spacecraftId: '12345',
+   * });
+   * ```
    */
   update(pathID: string, body: SeradataRadarPayloadUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/seradataradarpayload/${pathID}`, {
@@ -38,6 +58,14 @@ export class SeradataRadarPayload extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const seradataRadarPayloadListResponse of client.seradataRadarPayload.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SeradataRadarPayloadListParams | null | undefined = {},
@@ -54,6 +82,11 @@ export class SeradataRadarPayload extends APIResource {
    * Service operation to delete an SeradataRadarPayload specified by the passed ID
    * path parameter. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.seradataRadarPayload.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/seradataradarpayload/${id}`, {
@@ -68,6 +101,11 @@ export class SeradataRadarPayload extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.seradataRadarPayload.count();
+   * ```
    */
   count(
     query: SeradataRadarPayloadCountParams | null | undefined = {},
@@ -83,6 +121,12 @@ export class SeradataRadarPayload extends APIResource {
   /**
    * Service operation to get a single SeradataRadarPayload by its unique ID passed
    * as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const seradataRadarPayload =
+   *   await client.seradataRadarPayload.get('id');
+   * ```
    */
   get(
     id: string,
@@ -95,6 +139,11 @@ export class SeradataRadarPayload extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.seradataRadarPayload.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/seradataradarpayload/queryhelp', {
@@ -112,6 +161,13 @@ export class SeradataRadarPayload extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.seradataRadarPayload.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(
     query: SeradataRadarPayloadTupleParams,

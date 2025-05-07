@@ -26,6 +26,25 @@ export class H3Geo extends APIResource {
    * for automated feeds into UDL. Data providers should contact the UDL team for
    * specific role assignments and for instructions on setting up a permanent feed
    * through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.h3Geo.create({
+   *   cells: [
+   *     {
+   *       cellId: '830b90fffffffff',
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   numCells: 1,
+   *   source: 'Bluestaq',
+   *   startTime: '2024-07-02T00:00:00.123Z',
+   * });
+   * ```
    */
   create(body: H3GeoCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/h3geo', {
@@ -40,6 +59,16 @@ export class H3Geo extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const h3GeoListResponse of client.h3Geo.list({
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: H3GeoListParams,
@@ -54,6 +83,13 @@ export class H3Geo extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.h3Geo.count({
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: H3GeoCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/h3geo/count', {
@@ -66,6 +102,11 @@ export class H3Geo extends APIResource {
   /**
    * Service operation to get a single RF geolocation by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const h3Geo = await client.h3Geo.get('id');
+   * ```
    */
   get(
     id: string,
@@ -78,6 +119,11 @@ export class H3Geo extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.h3Geo.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/h3geo/queryhelp', {
@@ -95,6 +141,14 @@ export class H3Geo extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.h3Geo.tuple({
+   *   columns: 'columns',
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   tuple(query: H3GeoTupleParams, options?: RequestOptions): APIPromise<H3GeoTupleResponse> {
     return this._client.get('/udl/h3geo/tuple', { query, ...options });

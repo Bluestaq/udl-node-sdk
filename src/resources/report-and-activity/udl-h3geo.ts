@@ -11,6 +11,25 @@ export class UdlH3geo extends APIResource {
    * cell records as a POST body and ingest into the database. This operation is
    * intended to be used for automated feeds into UDL. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.reportAndActivity.udlH3geo.unvalidatedPublish({
+   *   cells: [
+   *     {
+   *       cellId: '830b90fffffffff',
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   numCells: 1,
+   *   source: 'Bluestaq',
+   *   startTime: '2024-07-02T00:00:00.123Z',
+   * });
+   * ```
    */
   unvalidatedPublish(body: UdlH3geoUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/filedrop/udl-h3geo', {

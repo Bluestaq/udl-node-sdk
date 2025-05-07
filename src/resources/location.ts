@@ -14,6 +14,16 @@ export class Location extends APIResource {
    * denote the locations of fixed sensors, operating units, etc. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.location.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   name: 'Example location',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: LocationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/location', {
@@ -28,6 +38,16 @@ export class Location extends APIResource {
    * points on the earth and are used to denote the locations of fixed sensors,
    * operating units, etc. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.location.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   name: 'Example location',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(id: string, body: LocationUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/location/${id}`, {
@@ -42,6 +62,14 @@ export class Location extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const locationListResponse of client.location.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: LocationListParams | null | undefined = {},
@@ -56,6 +84,11 @@ export class Location extends APIResource {
    * denote the locations of fixed sensors, operating units, etc. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.location.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/location/${id}`, {
@@ -70,6 +103,11 @@ export class Location extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.location.count();
+   * ```
    */
   count(query: LocationCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/location/count', {
@@ -83,6 +121,11 @@ export class Location extends APIResource {
    * Service operation to get a single location record by its unique ID passed as a
    * path parameter. Locations are specific fixed points on the earth and are used to
    * denote the locations of fixed sensors, operating units, etc.
+   *
+   * @example
+   * ```ts
+   * const locationFull = await client.location.get('id');
+   * ```
    */
   get(
     id: string,
@@ -95,6 +138,11 @@ export class Location extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.location.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/location/queryhelp', {
@@ -112,6 +160,13 @@ export class Location extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const locationFulls = await client.location.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: LocationTupleParams, options?: RequestOptions): APIPromise<LocationTupleResponse> {
     return this._client.get('/udl/location/tuple', { query, ...options });

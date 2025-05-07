@@ -23,6 +23,18 @@ export class EventEvolution extends APIResource {
    * Service operation to take a single EventEvolution object as a POST body and
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.eventEvolution.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   eventId: 'EVENT_ID',
+   *   source: 'Bluestaq',
+   *   startTime: '2021-12-02T16:00:00.123Z',
+   *   summary: 'Example summary of the event.',
+   * });
+   * ```
    */
   create(body: EventEvolutionCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/eventevolution', {
@@ -35,6 +47,12 @@ export class EventEvolution extends APIResource {
   /**
    * Service operation to get a single EventEvolution by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const eventEvolutionFull =
+   *   await client.eventEvolution.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -49,6 +67,14 @@ export class EventEvolution extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const eventEvolutionListResponse of client.eventEvolution.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: EventEvolutionListParams | null | undefined = {},
@@ -66,6 +92,11 @@ export class EventEvolution extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.eventEvolution.count();
+   * ```
    */
   count(
     query: EventEvolutionCountParams | null | undefined = {},
@@ -85,6 +116,22 @@ export class EventEvolution extends APIResource {
    * not intended to be used for automated feeds into UDL...data providers should
    * contact the UDL team for instructions on setting up a permanent feed through an
    * alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.eventEvolution.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       eventId: 'EVENT_ID',
+   *       source: 'Bluestaq',
+   *       startTime: '2021-12-02T16:00:00.123Z',
+   *       summary: 'Example summary of the event.',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: EventEvolutionCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -98,6 +145,11 @@ export class EventEvolution extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.eventEvolution.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/eventevolution/queryhelp', {
@@ -115,6 +167,12 @@ export class EventEvolution extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const eventEvolutionFulls =
+   *   await client.eventEvolution.tuple({ columns: 'columns' });
+   * ```
    */
   tuple(query: EventEvolutionTupleParams, options?: RequestOptions): APIPromise<EventEvolutionTupleResponse> {
     return this._client.get('/udl/eventevolution/tuple', { query, ...options });
@@ -125,6 +183,22 @@ export class EventEvolution extends APIResource {
    * ingest into the database. Requires a specific role, please contact the UDL team
    * to gain access. This operation is intended to be used for automated feeds into
    * UDL.
+   *
+   * @example
+   * ```ts
+   * await client.eventEvolution.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       eventId: 'EVENT_ID',
+   *       source: 'Bluestaq',
+   *       startTime: '2021-12-02T16:00:00.123Z',
+   *       summary: 'Example summary of the event.',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: EventEvolutionUnvalidatedPublishParams,

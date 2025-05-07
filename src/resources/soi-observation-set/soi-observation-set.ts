@@ -24,6 +24,18 @@ export class SoiObservationSet extends APIResource {
    * Service operation to take a single SOIObservationSet record as a POST body and
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.soiObservationSet.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   numObs: 1,
+   *   source: 'Bluestaq',
+   *   startTime: '2018-01-01T16:00:00.123456Z',
+   *   type: 'OPTICAL',
+   * });
+   * ```
    */
   create(body: SoiObservationSetCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/soiobservationset', {
@@ -38,6 +50,16 @@ export class SoiObservationSet extends APIResource {
    * The query will return the SOI Observation Sets and not the associated SOI
    * Observations. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for
    * more details on valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const soiObservationSetListResponse of client.soiObservationSet.list(
+   *   { startTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SoiObservationSetListParams,
@@ -55,6 +77,13 @@ export class SoiObservationSet extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.soiObservationSet.count({
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: SoiObservationSetCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/soiobservationset/count', {
@@ -70,6 +99,22 @@ export class SoiObservationSet extends APIResource {
    * operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.soiObservationSet.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       numObs: 1,
+   *       source: 'Bluestaq',
+   *       startTime: '2018-01-01T16:00:00.123456Z',
+   *       type: 'OPTICAL',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: SoiObservationSetCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -83,6 +128,12 @@ export class SoiObservationSet extends APIResource {
   /**
    * Service operation to get a single SOIObservationSet by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const soiObservationSetFull =
+   *   await client.soiObservationSet.get('id');
+   * ```
    */
   get(
     id: string,
@@ -95,6 +146,11 @@ export class SoiObservationSet extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.soiObservationSet.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/soiobservationset/queryhelp', {
@@ -112,6 +168,15 @@ export class SoiObservationSet extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const soiObservationSetFulls =
+   *   await client.soiObservationSet.tuple({
+   *     columns: 'columns',
+   *     startTime: '2019-12-27T18:11:19.117Z',
+   *   });
+   * ```
    */
   tuple(
     query: SoiObservationSetTupleParams,
@@ -125,6 +190,22 @@ export class SoiObservationSet extends APIResource {
    * ingest into the database. This operation is intended to be used for automated
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.soiObservationSet.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       numObs: 1,
+   *       source: 'Bluestaq',
+   *       startTime: '2018-01-01T16:00:00.123456Z',
+   *       type: 'OPTICAL',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: SoiObservationSetUnvalidatedPublishParams,

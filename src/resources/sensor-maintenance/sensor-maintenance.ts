@@ -23,6 +23,18 @@ export class SensorMaintenance extends APIResource {
    * Service operation to take a single SensorMaintenance as a POST body and ingest
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sensorMaintenance.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   endTime: '2018-01-01T16:00:00.123456Z',
+   *   siteCode: 'site01',
+   *   source: 'Bluestaq',
+   *   startTime: '2018-01-01T16:00:00.123456Z',
+   * });
+   * ```
    */
   create(body: SensorMaintenanceCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/sensormaintenance', {
@@ -36,6 +48,18 @@ export class SensorMaintenance extends APIResource {
    * Service operation to update a single SensorMaintenance. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sensorMaintenance.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   endTime: '2018-01-01T16:00:00.123456Z',
+   *   siteCode: 'site01',
+   *   source: 'Bluestaq',
+   *   startTime: '2018-01-01T16:00:00.123456Z',
+   * });
+   * ```
    */
   update(pathID: string, body: SensorMaintenanceUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/sensormaintenance/${pathID}`, {
@@ -50,6 +74,14 @@ export class SensorMaintenance extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const sensorMaintenanceListResponse of client.sensorMaintenance.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SensorMaintenanceListParams | null | undefined = {},
@@ -65,6 +97,11 @@ export class SensorMaintenance extends APIResource {
    * Service operation to delete a SensorMaintenance object specified by the passed
    * ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sensorMaintenance.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/sensormaintenance/${id}`, {
@@ -79,6 +116,11 @@ export class SensorMaintenance extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.sensorMaintenance.count();
+   * ```
    */
   count(
     query: SensorMaintenanceCountParams | null | undefined = {},
@@ -95,6 +137,22 @@ export class SensorMaintenance extends APIResource {
    * Service operation to take multiple SensorMaintenance as a POST body and ingest
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sensorMaintenance.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       endTime: '2018-01-01T16:00:00.123456Z',
+   *       siteCode: 'site01',
+   *       source: 'Bluestaq',
+   *       startTime: '2018-01-01T16:00:00.123456Z',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: SensorMaintenanceCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body, origin, source } = params;
@@ -109,6 +167,11 @@ export class SensorMaintenance extends APIResource {
   /**
    * Service operation to get current Sensor Maintenance records using any number of
    * additional parameters.
+   *
+   * @example
+   * ```ts
+   * const response = await client.sensorMaintenance.current();
+   * ```
    */
   current(
     query: SensorMaintenanceCurrentParams | null | undefined = {},
@@ -120,6 +183,12 @@ export class SensorMaintenance extends APIResource {
   /**
    * Service operation to get a single SensorMaintenance record by its unique ID
    * passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const sensorMaintenance =
+   *   await client.sensorMaintenance.get('id');
+   * ```
    */
   get(
     id: string,
@@ -132,6 +201,11 @@ export class SensorMaintenance extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.sensorMaintenance.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sensormaintenance/queryhelp', {
@@ -149,6 +223,13 @@ export class SensorMaintenance extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.sensorMaintenance.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(
     query: SensorMaintenanceTupleParams,

@@ -15,6 +15,17 @@ export class Onorbitantenna extends APIResource {
    * antennas and a particular on-orbit spacecraft. An antenna type may be associated
    * with many different on-orbit spacecraft. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitantenna.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idAntenna: 'ANTENNA-ID',
+   *   idOnOrbit: 'ONORBIT-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: OnorbitantennaCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitantenna', {
@@ -30,6 +41,17 @@ export class Onorbitantenna extends APIResource {
    * spacecraft. An antenna type may be associated with many different on-orbit
    * spacecraft. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitantenna.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idAntenna: 'ANTENNA-ID',
+   *   idOnOrbit: 'ONORBIT-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: OnorbitantennaUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/onorbitantenna/${pathID}`, {
@@ -44,6 +66,14 @@ export class Onorbitantenna extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const onorbitantennaListResponse of client.onorbitantenna.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: OnorbitantennaListParams | null | undefined = {},
@@ -61,6 +91,11 @@ export class Onorbitantenna extends APIResource {
    * antennas and a particular on-orbit spacecraft. An antenna type may be associated
    * with many different on-orbit spacecraft. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitantenna.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/onorbitantenna/${id}`, {
@@ -74,6 +109,13 @@ export class Onorbitantenna extends APIResource {
    * as a path parameter. An OnorbitAntenna is the association between on-orbit
    * spacecraft antennas and a particular on-orbit spacecraft. An antenna type may be
    * associated with many different on-orbit spacecraft.
+   *
+   * @example
+   * ```ts
+   * const onorbitantenna = await client.onorbitantenna.get(
+   *   'id',
+   * );
+   * ```
    */
   get(
     id: string,

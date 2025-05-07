@@ -14,6 +14,16 @@ export class History extends APIResource {
    * parameters not specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const eopFull of client.eop.history.list({
+   *   eopDate: '2019-12-27T18:11:19.117Z',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(query: HistoryListParams, options?: RequestOptions): PagePromise<EopFullsOffsetPage, Shared.EopFull> {
     return this._client.getAPIList('/udl/eop/history', OffsetPage<Shared.EopFull>, { query, ...options });
@@ -25,6 +35,13 @@ export class History extends APIResource {
    * Secure Content Store. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * await client.eop.history.aodr({
+   *   eopDate: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/eop/history/aodr', {
@@ -40,6 +57,13 @@ export class History extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.eop.history.count({
+   *   eopDate: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/eop/history/count', {

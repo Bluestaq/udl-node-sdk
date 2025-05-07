@@ -24,6 +24,19 @@ export class WeatherReport extends APIResource {
    * Service operation to take a single WeatherReport as a POST body and ingest into
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.weatherReport.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   lat: 56.12,
+   *   lon: -156.6,
+   *   obTime: '2018-01-01T16:00:00.123456Z',
+   *   reportType: 'FORECAST',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: WeatherReportCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/weatherreport', {
@@ -38,6 +51,16 @@ export class WeatherReport extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const weatherReportListResponse of client.weatherReport.list(
+   *   { obTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: WeatherReportListParams,
@@ -55,6 +78,13 @@ export class WeatherReport extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.weatherReport.count({
+   *   obTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: WeatherReportCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/weatherreport/count', {
@@ -67,6 +97,13 @@ export class WeatherReport extends APIResource {
   /**
    * Service operation to get a single WeatherReport by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const weatherReportFull = await client.weatherReport.get(
+   *   'id',
+   * );
+   * ```
    */
   get(
     id: string,
@@ -79,6 +116,11 @@ export class WeatherReport extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.weatherReport.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/weatherreport/queryhelp', {
@@ -96,6 +138,16 @@ export class WeatherReport extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const weatherReportFulls = await client.weatherReport.tuple(
+   *   {
+   *     columns: 'columns',
+   *     obTime: '2019-12-27T18:11:19.117Z',
+   *   },
+   * );
+   * ```
    */
   tuple(query: WeatherReportTupleParams, options?: RequestOptions): APIPromise<WeatherReportTupleResponse> {
     return this._client.get('/udl/weatherreport/tuple', { query, ...options });
@@ -106,6 +158,23 @@ export class WeatherReport extends APIResource {
    * into the database. This operation is intended to be used for automated feeds
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.weatherReport.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       lat: 56.12,
+   *       lon: -156.6,
+   *       obTime: '2018-01-01T16:00:00.123456Z',
+   *       reportType: 'FORECAST',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: WeatherReportUnvalidatedPublishParams,

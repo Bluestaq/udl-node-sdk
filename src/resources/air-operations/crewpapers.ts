@@ -10,6 +10,13 @@ export class Crewpapers extends APIResource {
    * Service operation to remove supporting PDF from an aircraft sortie or sorties. A
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airOperations.crewpapers.unpublish({
+   *   ids: 'ids',
+   * });
+   * ```
    */
   unpublish(params: CrewpaperUnpublishParams, options?: RequestOptions): APIPromise<void> {
     const { ids } = params;
@@ -24,6 +31,17 @@ export class Crewpapers extends APIResource {
    * Service operation to upload a supporting PDF for the aircraft sortie. A specific
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airOperations.crewpapers.uploadPdf({
+   *   aircraftSortieIds: 'aircraftSortieIds',
+   *   classificationMarking: 'x',
+   *   paperStatus: 'PUBLISHED',
+   *   papersVersion: 'x',
+   *   body: fs.createReadStream('path/to/file'),
+   * });
+   * ```
    */
   uploadPdf(params: CrewpaperUploadPdfParams, options?: RequestOptions): APIPromise<void> {
     const { aircraftSortieIds, classificationMarking, paperStatus, papersVersion, body } = params;

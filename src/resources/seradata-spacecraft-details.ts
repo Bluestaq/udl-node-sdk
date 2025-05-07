@@ -17,6 +17,16 @@ export class SeradataSpacecraftDetails extends APIResource {
    * Service operation to take a single SeradataSpacecraftDetails as a POST body and
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.seradataSpacecraftDetails.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   name: 'name',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: SeradataSpacecraftDetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/seradataspacecraftdetails', {
@@ -30,6 +40,16 @@ export class SeradataSpacecraftDetails extends APIResource {
    * Service operation to update an SeradataSpacecraftDetails. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.seradataSpacecraftDetails.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   name: 'name',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(
     pathID: string,
@@ -48,6 +68,14 @@ export class SeradataSpacecraftDetails extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const seradataSpacecraftDetailListResponse of client.seradataSpacecraftDetails.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SeradataSpacecraftDetailListParams | null | undefined = {},
@@ -64,6 +92,11 @@ export class SeradataSpacecraftDetails extends APIResource {
    * Service operation to delete an SeradataSpacecraftDetails specified by the passed
    * ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.seradataSpacecraftDetails.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/seradataspacecraftdetails/${id}`, {
@@ -78,6 +111,12 @@ export class SeradataSpacecraftDetails extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.seradataSpacecraftDetails.count();
+   * ```
    */
   count(
     query: SeradataSpacecraftDetailCountParams | null | undefined = {},
@@ -93,6 +132,12 @@ export class SeradataSpacecraftDetails extends APIResource {
   /**
    * Service operation to get a single SeradataSpacecraftDetails by its unique ID
    * passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const seradataSpacecraftDetail =
+   *   await client.seradataSpacecraftDetails.get('id');
+   * ```
    */
   get(
     id: string,
@@ -105,6 +150,11 @@ export class SeradataSpacecraftDetails extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.seradataSpacecraftDetails.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/seradataspacecraftdetails/queryhelp', {
@@ -122,6 +172,14 @@ export class SeradataSpacecraftDetails extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.seradataSpacecraftDetails.tuple({
+   *     columns: 'columns',
+   *   });
+   * ```
    */
   tuple(
     query: SeradataSpacecraftDetailTupleParams,

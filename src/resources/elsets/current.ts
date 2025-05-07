@@ -17,6 +17,14 @@ export class Current extends APIResource {
    * particular provider. If source is not provided, it will be defaulted to '18th
    * SPCS'. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more
    * details on additional query parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const elsetAbridged of client.elsets.current.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: CurrentListParams | null | undefined = {},
@@ -37,6 +45,13 @@ export class Current extends APIResource {
    * particular provider. If source is not provided, it will be defaulted to '18th
    * SPCS'. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more
    * details on additional query parameter information.
+   *
+   * @example
+   * ```ts
+   * const elsets = await client.elsets.current.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: CurrentTupleParams, options?: RequestOptions): APIPromise<CurrentTupleResponse> {
     return this._client.get('/udl/elset/current/tuple', { query, ...options });

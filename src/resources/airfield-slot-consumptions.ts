@@ -12,6 +12,18 @@ export class AirfieldSlotConsumptions extends APIResource {
    * Service operation to take a single airfieldslotconsumption record as a POST body
    * and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airfieldSlotConsumptions.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idAirfieldSlot: '3136498f-2969-3535-1432-e984b2e2e686',
+   *   numAircraft: 1,
+   *   source: 'Bluestaq',
+   *   startTime: '2023-01-01T01:01:01.123Z',
+   * });
+   * ```
    */
   create(body: AirfieldSlotConsumptionCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/airfieldslotconsumption', {
@@ -24,6 +36,12 @@ export class AirfieldSlotConsumptions extends APIResource {
   /**
    * Service operation to get a single airfieldslotconsumption record by its unique
    * ID passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const airfieldslotconsumptionFull =
+   *   await client.airfieldSlotConsumptions.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -37,6 +55,18 @@ export class AirfieldSlotConsumptions extends APIResource {
    * Service operation to update a single AirfieldSlotConsumption. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airfieldSlotConsumptions.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idAirfieldSlot: '3136498f-2969-3535-1432-e984b2e2e686',
+   *   numAircraft: 1,
+   *   source: 'Bluestaq',
+   *   startTime: '2023-01-01T01:01:01.123Z',
+   * });
+   * ```
    */
   update(
     pathID: string,
@@ -55,6 +85,16 @@ export class AirfieldSlotConsumptions extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const airfieldslotconsumptionAbridged of client.airfieldSlotConsumptions.list(
+   *   { startTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: AirfieldSlotConsumptionListParams,
@@ -71,6 +111,11 @@ export class AirfieldSlotConsumptions extends APIResource {
    * Service operation to delete an airfieldslotconsumption record specified by the
    * passed ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airfieldSlotConsumptions.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/airfieldslotconsumption/${id}`, {
@@ -85,6 +130,14 @@ export class AirfieldSlotConsumptions extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.airfieldSlotConsumptions.count({
+   *     startTime: '2019-12-27T18:11:19.117Z',
+   *   });
+   * ```
    */
   count(query: AirfieldSlotConsumptionCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/airfieldslotconsumption/count', {
@@ -97,6 +150,11 @@ export class AirfieldSlotConsumptions extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.airfieldSlotConsumptions.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/airfieldslotconsumption/queryhelp', {
@@ -114,6 +172,15 @@ export class AirfieldSlotConsumptions extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const airfieldslotconsumptionFulls =
+   *   await client.airfieldSlotConsumptions.tuple({
+   *     columns: 'columns',
+   *     startTime: '2019-12-27T18:11:19.117Z',
+   *   });
+   * ```
    */
   tuple(
     query: AirfieldSlotConsumptionTupleParams,

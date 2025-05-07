@@ -25,6 +25,16 @@ export class LaunchEvent extends APIResource {
    * Service operation to take a single LaunchEvent as a POST body and ingest into
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.launchEvent.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   msgCreateDate: '2020-01-01T00:00:00.123Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: LaunchEventCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/launchevent', {
@@ -39,6 +49,16 @@ export class LaunchEvent extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const launchEventListResponse of client.launchEvent.list(
+   *   { msgCreateDate: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: LaunchEventListParams,
@@ -56,6 +76,13 @@ export class LaunchEvent extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.launchEvent.count({
+   *   msgCreateDate: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: LaunchEventCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/launchevent/count', {
@@ -71,6 +98,20 @@ export class LaunchEvent extends APIResource {
    * intended to be used for automated feeds into UDL. Data providers should contact
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.launchEvent.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       msgCreateDate: '2020-01-01T00:00:00.123Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: LaunchEventCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -84,6 +125,11 @@ export class LaunchEvent extends APIResource {
   /**
    * Service operation to get a single LaunchEvent record by its unique ID passed as
    * a path parameter.
+   *
+   * @example
+   * ```ts
+   * const launchEvent = await client.launchEvent.get('id');
+   * ```
    */
   get(
     id: string,
@@ -96,6 +142,11 @@ export class LaunchEvent extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.launchEvent.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/launchevent/queryhelp', {
@@ -113,6 +164,14 @@ export class LaunchEvent extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.launchEvent.tuple({
+   *   columns: 'columns',
+   *   msgCreateDate: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   tuple(query: LaunchEventTupleParams, options?: RequestOptions): APIPromise<LaunchEventTupleResponse> {
     return this._client.get('/udl/launchevent/tuple', { query, ...options });
@@ -123,6 +182,20 @@ export class LaunchEvent extends APIResource {
    * database. This operation is intended to be used for automated feeds into UDL. A
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.launchEvent.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       msgCreateDate: '2020-01-01T00:00:00.123Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: LaunchEventUnvalidatedPublishParams,

@@ -13,6 +13,18 @@ export class Flightplan extends APIResource {
    * Service operation to take a single FlightPlan object as a POST body and ingest
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.flightplan.create({
+   *   arrAirfield: 'KCHS',
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   depAirfield: 'KSLV',
+   *   genTS: '2023-05-01T01:01:01.123Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: FlightplanCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/flightplan', {
@@ -25,6 +37,13 @@ export class Flightplan extends APIResource {
   /**
    * Service operation to get a single FlightPlan record by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const flightPlanFull = await client.flightplan.retrieve(
+   *   'id',
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -38,6 +57,18 @@ export class Flightplan extends APIResource {
    * Service operation to update a single flightplan record. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.flightplan.update('id', {
+   *   arrAirfield: 'KCHS',
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   depAirfield: 'KSLV',
+   *   genTS: '2023-05-01T01:01:01.123Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: FlightplanUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/flightplan/${pathID}`, {
@@ -52,6 +83,14 @@ export class Flightplan extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const flightPlanAbridged of client.flightplan.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: FlightplanListParams | null | undefined = {},
@@ -64,6 +103,11 @@ export class Flightplan extends APIResource {
    * Service operation to delete a flight plan record specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.flightplan.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/flightplan/${id}`, {
@@ -78,6 +122,11 @@ export class Flightplan extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.flightplan.count();
+   * ```
    */
   count(query: FlightplanCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/flightplan/count', {
@@ -90,6 +139,11 @@ export class Flightplan extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.flightplan.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/flightplan/queryhelp', {
@@ -107,6 +161,13 @@ export class Flightplan extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const flightPlanFulls = await client.flightplan.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: FlightplanTupleParams, options?: RequestOptions): APIPromise<FlightplanTupleResponse> {
     return this._client.get('/udl/flightplan/tuple', { query, ...options });
@@ -117,6 +178,22 @@ export class Flightplan extends APIResource {
    * ingest into the database. This operation is intended to be used for automated
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.flightplan.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       arrAirfield: 'KCHS',
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       depAirfield: 'KSLV',
+   *       genTS: '2023-05-01T01:01:01.123Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: FlightplanUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

@@ -23,6 +23,16 @@ export class SiteStatus extends APIResource {
    * Service operation to take a single SiteStatus object as a POST body and ingest
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.siteStatus.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idSite: '41e3e554-9790-40b9-bd7b-f30d864dcad8',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: SiteStatusCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/sitestatus', {
@@ -36,6 +46,16 @@ export class SiteStatus extends APIResource {
    * Service operation to update a single SiteStatus object. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.siteStatus.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idSite: '41e3e554-9790-40b9-bd7b-f30d864dcad8',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: SiteStatusUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/sitestatus/${pathID}`, {
@@ -50,6 +70,14 @@ export class SiteStatus extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const siteStatusListResponse of client.siteStatus.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SiteStatusListParams | null | undefined = {},
@@ -66,6 +94,11 @@ export class SiteStatus extends APIResource {
    * parameter. Note, delete operations do not remove data from historical or
    * publish/subscribe stores. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.siteStatus.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/sitestatus/${id}`, {
@@ -80,6 +113,11 @@ export class SiteStatus extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.siteStatus.count();
+   * ```
    */
   count(query: SiteStatusCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sitestatus/count', {
@@ -92,6 +130,11 @@ export class SiteStatus extends APIResource {
   /**
    * Service operation to get a single SiteStatus record by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const siteStatus = await client.siteStatus.get('id');
+   * ```
    */
   get(
     id: string,
@@ -104,6 +147,11 @@ export class SiteStatus extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.siteStatus.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sitestatus/queryhelp', {
@@ -121,6 +169,13 @@ export class SiteStatus extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.siteStatus.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: SiteStatusTupleParams, options?: RequestOptions): APIPromise<SiteStatusTupleResponse> {
     return this._client.get('/udl/sitestatus/tuple', { query, ...options });

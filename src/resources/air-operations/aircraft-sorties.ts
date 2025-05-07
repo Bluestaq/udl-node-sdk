@@ -11,6 +11,22 @@ export class AircraftSorties extends APIResource {
    * ingest into the database. This operation is intended to be used for automated
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airOperations.aircraftSorties.unvalidatedPublish(
+   *   {
+   *     body: [
+   *       {
+   *         classificationMarking: 'U',
+   *         dataMode: 'TEST',
+   *         plannedDepTime: '2021-01-01T01:01:01.123Z',
+   *         source: 'Bluestaq',
+   *       },
+   *     ],
+   *   },
+   * );
+   * ```
    */
   unvalidatedPublish(
     params: AircraftSortyUnvalidatedPublishParams,

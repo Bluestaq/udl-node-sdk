@@ -13,6 +13,16 @@ export class Aircraft extends APIResource {
    * Service operation to take a single Aircraft as a POST body and ingest into the
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.aircraft.create({
+   *   aircraftMDS: 'E-2C HAWKEYE',
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: AircraftCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/aircraft', {
@@ -25,6 +35,11 @@ export class Aircraft extends APIResource {
   /**
    * Service operation to get a single Aircraft record by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const aircraftFull = await client.aircraft.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -37,6 +52,16 @@ export class Aircraft extends APIResource {
   /**
    * Service operation to update a single Aircraft. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.aircraft.update('id', {
+   *   aircraftMDS: 'E-2C HAWKEYE',
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: AircraftUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/aircraft/${pathID}`, {
@@ -51,6 +76,14 @@ export class Aircraft extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const aircraftAbridged of client.aircraft.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: AircraftListParams | null | undefined = {},
@@ -65,6 +98,11 @@ export class Aircraft extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.aircraft.count();
+   * ```
    */
   count(query: AircraftCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/aircraft/count', {
@@ -77,6 +115,11 @@ export class Aircraft extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.aircraft.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/aircraft/queryhelp', {
@@ -94,6 +137,13 @@ export class Aircraft extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const aircraftFulls = await client.aircraft.tupleQuery({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tupleQuery(
     query: AircraftTupleQueryParams,

@@ -11,6 +11,18 @@ export class Datalink extends APIResource {
    * Service operation to take a single DataLink record as a POST body and ingest
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.linkStatus.datalink.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   opExName: 'DESERT WIND',
+   *   originator: 'USCENTCOM',
+   *   source: 'Bluestaq',
+   *   startTime: '2024-01-07T13:55:43.123Z',
+   * });
+   * ```
    */
   create(body: DatalinkCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/datalink', {
@@ -25,6 +37,16 @@ export class Datalink extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const datalinkListResponse of client.linkStatus.datalink.list(
+   *   { startTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: DatalinkListParams,
@@ -39,6 +61,13 @@ export class Datalink extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.linkStatus.datalink.count({
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: DatalinkCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/datalink/count', {
@@ -51,6 +80,11 @@ export class Datalink extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.linkStatus.datalink.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/datalink/queryhelp', {
@@ -68,6 +102,14 @@ export class Datalink extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.linkStatus.datalink.tuple({
+   *   columns: 'columns',
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   tuple(query: DatalinkTupleParams, options?: RequestOptions): APIPromise<DatalinkTupleResponse> {
     return this._client.get('/udl/datalink/tuple', { query, ...options });
@@ -78,6 +120,22 @@ export class Datalink extends APIResource {
    * into the database. This operation is intended to be used for automated feeds
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.linkStatus.datalink.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       opExName: 'DESERT WIND',
+   *       originator: 'USCENTCOM',
+   *       source: 'Bluestaq',
+   *       startTime: '2024-01-07T13:55:43.123Z',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: DatalinkUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

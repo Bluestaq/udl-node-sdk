@@ -7,6 +7,12 @@ import { RequestOptions } from '../../internal/request-options';
 export class RangeParameters extends APIResource {
   /**
    * Returns a set of File Metadata that can be used for search endpoint.
+   *
+   * @example
+   * ```ts
+   * const rangeParameters =
+   *   await client.scs.rangeParameters.list();
+   * ```
    */
   list(options?: RequestOptions): APIPromise<RangeParameterListResponse> {
     return this._client.get('/scs/listRangeParameters', options);

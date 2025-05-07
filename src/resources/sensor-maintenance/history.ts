@@ -11,6 +11,12 @@ export class History extends APIResource {
    * parameters not specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * const histories =
+   *   await client.sensorMaintenance.history.retrieve();
+   * ```
    */
   retrieve(
     query: HistoryRetrieveParams | null | undefined = {},
@@ -25,6 +31,11 @@ export class History extends APIResource {
    * Secure Content Store. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * await client.sensorMaintenance.history.aodr();
+   * ```
    */
   aodr(query: HistoryAodrParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sensormaintenance/history/aodr', {
@@ -40,6 +51,12 @@ export class History extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.sensorMaintenance.history.count();
+   * ```
    */
   count(query: HistoryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sensormaintenance/history/count', {

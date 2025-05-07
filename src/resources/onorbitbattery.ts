@@ -15,6 +15,17 @@ export class Onorbitbattery extends APIResource {
    * batteries and a particular on-orbit spacecraft. A Battery may be associated with
    * many different on-orbit spacecraft. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitbattery.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idBattery: 'BATTERY-ID',
+   *   idOnOrbit: 'ONORBIT-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: OnorbitbatteryCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitbattery', {
@@ -30,6 +41,17 @@ export class Onorbitbattery extends APIResource {
    * spacecraft. A Battery may be associated with many different on-orbit spacecraft.
    * A specific role is required to perform this service operation. Please contact
    * the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitbattery.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idBattery: 'BATTERY-ID',
+   *   idOnOrbit: 'ONORBIT-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: OnorbitbatteryUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/onorbitbattery/${pathID}`, {
@@ -44,6 +66,14 @@ export class Onorbitbattery extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const onorbitbatteryListResponse of client.onorbitbattery.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: OnorbitbatteryListParams | null | undefined = {},
@@ -61,6 +91,11 @@ export class Onorbitbattery extends APIResource {
    * batteries and a particular on-orbit spacecraft. A Battery may be associated with
    * many different on-orbit spacecraft. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitbattery.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/onorbitbattery/${id}`, {
@@ -74,6 +109,13 @@ export class Onorbitbattery extends APIResource {
    * as a path parameter. OnorbitBattery is the association between on-orbit
    * spacecraft batteries and a particular on-orbit spacecraft. A Battery may be
    * associated with many different on-orbit spacecraft.
+   *
+   * @example
+   * ```ts
+   * const onorbitbattery = await client.onorbitbattery.get(
+   *   'id',
+   * );
+   * ```
    */
   get(
     id: string,

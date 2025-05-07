@@ -23,6 +23,17 @@ export class Onorbitthrusterstatus extends APIResource {
    * Service operation to take a single OnorbitThrusterStatus record as a POST body
    * and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitthrusterstatus.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idOnorbitThruster: 'ff7dc909-e8b4-4a54-8529-1963d4e9b353',
+   *   source: 'Bluestaq',
+   *   statusTime: '2024-01-01T16:00:00.123Z',
+   * });
+   * ```
    */
   create(body: OnorbitthrusterstatusCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitthrusterstatus', {
@@ -37,6 +48,14 @@ export class Onorbitthrusterstatus extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const onorbitthrusterstatusListResponse of client.onorbitthrusterstatus.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: OnorbitthrusterstatusListParams | null | undefined = {},
@@ -53,6 +72,11 @@ export class Onorbitthrusterstatus extends APIResource {
    * Service operation to delete a OnorbitThrusterStatus record specified by the
    * passed ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitthrusterstatus.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/onorbitthrusterstatus/${id}`, {
@@ -67,6 +91,11 @@ export class Onorbitthrusterstatus extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.onorbitthrusterstatus.count();
+   * ```
    */
   count(
     query: OnorbitthrusterstatusCountParams | null | undefined = {},
@@ -85,6 +114,22 @@ export class Onorbitthrusterstatus extends APIResource {
    * operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitthrusterstatus.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       idOnorbitThruster:
+   *         'ff7dc909-e8b4-4a54-8529-1963d4e9b353',
+   *       source: 'Bluestaq',
+   *       statusTime: '2024-01-01T16:00:00.123Z',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: OnorbitthrusterstatusCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -99,6 +144,12 @@ export class Onorbitthrusterstatus extends APIResource {
    * Service operation to get a single OnorbitThrusterStatus record by its unique ID
    * passed as a path parameter. OnorbitThrusterStatus records are information for
    * OnorbitThruster objects.
+   *
+   * @example
+   * ```ts
+   * const onorbitthrusterstatusFull =
+   *   await client.onorbitthrusterstatus.get('id');
+   * ```
    */
   get(
     id: string,
@@ -111,6 +162,11 @@ export class Onorbitthrusterstatus extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitthrusterstatus.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/onorbitthrusterstatus/queryhelp', {
@@ -128,6 +184,14 @@ export class Onorbitthrusterstatus extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const onorbitthrusterstatusFulls =
+   *   await client.onorbitthrusterstatus.tuple({
+   *     columns: 'columns',
+   *   });
+   * ```
    */
   tuple(
     query: OnorbitthrusterstatusTupleParams,

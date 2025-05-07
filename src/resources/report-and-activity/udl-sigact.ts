@@ -10,6 +10,15 @@ export class UdlSigact extends APIResource {
   /**
    * Service operation to get a single SigAct text file by its unique ID passed as a
    * path parameter. The text file is returned as an attachment Content-Disposition.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.reportAndActivity.udlSigact.fileGet('id');
+   *
+   * const content = await response.blob();
+   * console.log(content);
+   * ```
    */
   fileGet(
     id: string,
@@ -29,6 +38,22 @@ export class UdlSigact extends APIResource {
    * database. A SigAct provides data for Report and Activity information. Requires a
    * specific role, please contact the UDL team to gain access. This operation is
    * intended to be used for automated feeds into UDL.
+   *
+   * @example
+   * ```ts
+   * await client.reportAndActivity.udlSigact.unvalidatedPublish(
+   *   {
+   *     body: [
+   *       {
+   *         classificationMarking: 'U',
+   *         dataMode: 'TEST',
+   *         reportDate: '2018-01-01T16:00:00.123Z',
+   *         source: 'Bluestaq',
+   *       },
+   *     ],
+   *   },
+   * );
+   * ```
    */
   unvalidatedPublish(params: UdlSigactUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

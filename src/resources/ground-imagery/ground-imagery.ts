@@ -24,6 +24,17 @@ export class GroundImagery extends APIResource {
    * Service operation to take a single GroundImagery object as a POST body and
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.groundImagery.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   filename: 'Example file name',
+   *   imageTime: '2021-01-01T01:01:01.123456Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: GroundImageryCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/groundimagery', {
@@ -38,6 +49,16 @@ export class GroundImagery extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const groundImageryListResponse of client.groundImagery.list(
+   *   { imageTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: GroundImageryListParams,
@@ -55,6 +76,13 @@ export class GroundImagery extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.groundImagery.count({
+   *   imageTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: GroundImageryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/groundimagery/count', {
@@ -68,6 +96,11 @@ export class GroundImagery extends APIResource {
    * Service operation to get a single GroundImagery record by its unique ID passed
    * as a path parameter. GroundImagery represents metadata about a ground image, as
    * well as the actual binary image data.
+   *
+   * @example
+   * ```ts
+   * const groundImagery = await client.groundImagery.get('id');
+   * ```
    */
   get(
     id: string,
@@ -81,6 +114,14 @@ export class GroundImagery extends APIResource {
    * Service operation to get a single GroundImagery binary image by its unique ID
    * passed as a path parameter. The image is returned as an attachment
    * Content-Disposition.
+   *
+   * @example
+   * ```ts
+   * const response = await client.groundImagery.getFile('id');
+   *
+   * const content = await response.blob();
+   * console.log(content);
+   * ```
    */
   getFile(
     id: string,
@@ -101,6 +142,13 @@ export class GroundImagery extends APIResource {
    * Secure Content Store. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * await client.groundImagery.historyAodr({
+   *   imageTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   historyAodr(query: GroundImageryHistoryAodrParams, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/groundimagery/history/aodr', {
@@ -113,6 +161,11 @@ export class GroundImagery extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.groundImagery.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/groundimagery/queryhelp', {
@@ -130,6 +183,14 @@ export class GroundImagery extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.groundImagery.tuple({
+   *   columns: 'columns',
+   *   imageTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   tuple(query: GroundImageryTupleParams, options?: RequestOptions): APIPromise<GroundImageryTupleResponse> {
     return this._client.get('/udl/groundimagery/tuple', { query, ...options });
@@ -152,6 +213,13 @@ export class GroundImagery extends APIResource {
    * This operation is intended to be used for automated feeds into UDL. A specific
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.groundImagery.uploadZip({
+   *   file: fs.createReadStream('path/to/file'),
+   * });
+   * ```
    */
   uploadZip(body: GroundImageryUploadZipParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post(

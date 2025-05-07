@@ -55,6 +55,11 @@ export class Scs extends APIResource {
    * Deletes the requested file or folder in the passed path directory that is
    * visible to the calling user. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.scs.delete({ id: 'id' });
+   * ```
    */
   delete(params: ScDeleteParams, options?: RequestOptions): APIPromise<void> {
     const { id } = params;
@@ -67,6 +72,11 @@ export class Scs extends APIResource {
 
   /**
    * Returns a map of document types and counts in root folder.
+   *
+   * @example
+   * ```ts
+   * const response = await client.scs.aggregateDocType();
+   * ```
    */
   aggregateDocType(options?: RequestOptions): APIPromise<ScAggregateDocTypeResponse> {
     return this._client.get('/scs/aggregateDocType', options);
@@ -74,6 +84,11 @@ export class Scs extends APIResource {
 
   /**
    * Returns a list of allowable file extensions for upload.
+   *
+   * @example
+   * ```ts
+   * const response = await client.scs.allowableFileExtensions();
+   * ```
    */
   allowableFileExtensions(options?: RequestOptions): APIPromise<ScAllowableFileExtensionsResponse> {
     return this._client.get('/scs/allowableFileExtensions', options);
@@ -81,6 +96,11 @@ export class Scs extends APIResource {
 
   /**
    * Returns a list of allowable file mime types for upload.
+   *
+   * @example
+   * ```ts
+   * const response = await client.scs.allowableFileMimes();
+   * ```
    */
   allowableFileMimes(options?: RequestOptions): APIPromise<ScAllowableFileMimesResponse> {
     return this._client.get('/scs/allowableFileMimes', options);
@@ -89,6 +109,14 @@ export class Scs extends APIResource {
   /**
    * operation to copy folders or files. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * const response = await client.scs.copy({
+   *   id: 'id',
+   *   targetPath: 'targetPath',
+   * });
+   * ```
    */
   copy(params: ScCopyParams, options?: RequestOptions): APIPromise<string> {
     const { id, targetPath } = params;
@@ -97,6 +125,19 @@ export class Scs extends APIResource {
 
   /**
    * Downloads a zip of one or more files and/or folders.
+   *
+   * @example
+   * ```ts
+   * const response = await client.scs.download({
+   *   body: [
+   *     '/processPalantirXml/media/PT_MEDIA6831731772984708680',
+   *     '/processPalantirXml/media/PT_MEDIA7297147303810886654',
+   *   ],
+   * });
+   *
+   * const content = await response.blob();
+   * console.log(content);
+   * ```
    */
   download(params: ScDownloadParams, options?: RequestOptions): APIPromise<Response> {
     const { body } = params;
@@ -110,6 +151,16 @@ export class Scs extends APIResource {
 
   /**
    * Download a single file from SCS.
+   *
+   * @example
+   * ```ts
+   * const response = await client.scs.fileDownload({
+   *   id: 'id',
+   * });
+   *
+   * const content = await response.blob();
+   * console.log(content);
+   * ```
    */
   fileDownload(query: ScFileDownloadParams, options?: RequestOptions): APIPromise<Response> {
     return this._client.get('/scs/download', {
@@ -123,6 +174,16 @@ export class Scs extends APIResource {
   /**
    * Operation to upload a file. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * const response = await client.scs.fileUpload({
+   *   classificationMarking: 'classificationMarking',
+   *   fileName: 'fileName',
+   *   path: 'path',
+   *   body: fs.createReadStream('path/to/file'),
+   * });
+   * ```
    */
   fileUpload(params: ScFileUploadParams, options?: RequestOptions): APIPromise<string> {
     const { classificationMarking, fileName, path, body, description, overwrite, tags } = params;
@@ -137,6 +198,14 @@ export class Scs extends APIResource {
   /**
    * operation to move folders or files. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * const response = await client.scs.move({
+   *   id: 'id',
+   *   targetPath: 'targetPath',
+   * });
+   * ```
    */
   move(params: ScMoveParams, options?: RequestOptions): APIPromise<string> {
     const { id, targetPath } = params;
@@ -146,6 +215,11 @@ export class Scs extends APIResource {
   /**
    * Operation to rename folders or files. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.scs.rename({ id: 'id', newName: 'newName' });
+   * ```
    */
   rename(params: ScRenameParams, options?: RequestOptions): APIPromise<void> {
     const { id, newName } = params;
@@ -158,6 +232,16 @@ export class Scs extends APIResource {
 
   /**
    * Search for files by metadata and/or text in file content.
+   *
+   * @example
+   * ```ts
+   * const fileData = await client.scs.search({
+   *   path: 'path',
+   *   metaDataCriteria: {
+   *     CREATED_AT: ['< 2022-06-14T07:48:11.302Z'],
+   *   },
+   * });
+   * ```
    */
   search(params: ScSearchParams, options?: RequestOptions): APIPromise<ScSearchResponse> {
     const { path, count, offset, ...body } = params;
@@ -166,6 +250,14 @@ export class Scs extends APIResource {
 
   /**
    * Updates tags for given folder.
+   *
+   * @example
+   * ```ts
+   * await client.scs.updateTags({
+   *   folder: 'folder',
+   *   tags: 'tags',
+   * });
+   * ```
    */
   updateTags(params: ScUpdateTagsParams, options?: RequestOptions): APIPromise<void> {
     const { folder, tags } = params;

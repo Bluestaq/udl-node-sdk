@@ -14,6 +14,16 @@ export class Batterydetails extends APIResource {
    * the database. A Battery record may have multiple details records from several
    * sources. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.batterydetails.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idBattery: 'BATTERY-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: BatterydetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/batterydetails', {
@@ -27,6 +37,12 @@ export class Batterydetails extends APIResource {
    * Service operation to get a single BatteryDetails record by its unique ID passed
    * as a path parameter. A Battery record may have multiple details records from
    * several sources.
+   *
+   * @example
+   * ```ts
+   * const batterydetailsFull =
+   *   await client.batterydetails.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -40,6 +56,16 @@ export class Batterydetails extends APIResource {
    * Service operation to update a single BatteryDetails. A Battery record may have
    * multiple details records from several sources. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.batterydetails.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idBattery: 'BATTERY-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: BatterydetailUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/batterydetails/${pathID}`, {
@@ -54,6 +80,14 @@ export class Batterydetails extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const batterydetailsAbridged of client.batterydetails.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: BatterydetailListParams | null | undefined = {},
@@ -70,6 +104,11 @@ export class Batterydetails extends APIResource {
    * path parameter. A Battery record may have multiple details records from several
    * sources. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.batterydetails.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/batterydetails/${id}`, {

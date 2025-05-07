@@ -24,6 +24,17 @@ export class Sgi extends APIResource {
    * Service operation to take a single SGI record as a POST body and ingest into the
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sgi.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   effectiveDate: '2018-01-01T16:00:00.123Z',
+   *   sgiDate: '2018-01-01T16:00:00.123Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: SgiCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/sgi', {
@@ -36,6 +47,17 @@ export class Sgi extends APIResource {
   /**
    * Service operation to update a single SGI record. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sgi.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   effectiveDate: '2018-01-01T16:00:00.123Z',
+   *   sgiDate: '2018-01-01T16:00:00.123Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: SgiUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/sgi/${pathID}`, {
@@ -50,6 +72,14 @@ export class Sgi extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const sgiListResponse of client.sgi.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SgiListParams | null | undefined = {},
@@ -62,6 +92,11 @@ export class Sgi extends APIResource {
    * Service operation to delete a SGI record specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sgi.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/sgi/${id}`, {
@@ -76,6 +111,11 @@ export class Sgi extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.sgi.count();
+   * ```
    */
   count(query: SgiCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sgi/count', {
@@ -91,6 +131,21 @@ export class Sgi extends APIResource {
    * be used for automated feeds into UDL. Data providers should contact the UDL team
    * for specific role assignments and for instructions on setting up a permanent
    * feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.sgi.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       effectiveDate: '2018-01-01T16:00:00.123Z',
+   *       sgiDate: '2018-01-01T16:00:00.123Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: SgiCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -104,6 +159,11 @@ export class Sgi extends APIResource {
   /**
    * Service operation to get a single SGI record by its unique ID passed as a path
    * parameter.
+   *
+   * @example
+   * ```ts
+   * const sgi = await client.sgi.get('id');
+   * ```
    */
   get(
     id: string,
@@ -115,6 +175,12 @@ export class Sgi extends APIResource {
 
   /**
    * Service to return matching SGI records as of the effective date.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.sgi.getDataByEffectiveAsOfDate();
+   * ```
    */
   getDataByEffectiveAsOfDate(
     query: SgiGetDataByEffectiveAsOfDateParams | null | undefined = {},
@@ -126,6 +192,11 @@ export class Sgi extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.sgi.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sgi/queryhelp', {
@@ -143,6 +214,13 @@ export class Sgi extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.sgi.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: SgiTupleParams, options?: RequestOptions): APIPromise<SgiTupleResponse> {
     return this._client.get('/udl/sgi/tuple', { query, ...options });
@@ -153,6 +231,21 @@ export class Sgi extends APIResource {
    * database. This operation is intended to be used for automated feeds into UDL. A
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sgi.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       effectiveDate: '2018-01-01T16:00:00.123Z',
+   *       sgiDate: '2018-01-01T16:00:00.123Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: SgiUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

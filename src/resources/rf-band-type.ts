@@ -12,6 +12,17 @@ export class RfBandType extends APIResource {
    * Service operation to take a single RFBandType as a POST body and ingest into the
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.rfBandType.create({
+   *   id: 'Ku',
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   description: 'Example description',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: RfBandTypeCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/rfbandtype', {
@@ -24,6 +35,17 @@ export class RfBandType extends APIResource {
   /**
    * Service operation to update an RFBandType. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.rfBandType.update('id', {
+   *   body_id: 'Ku',
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   description: 'Example description',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: RfBandTypeUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/rfbandtype/${pathID}`, {
@@ -38,6 +60,14 @@ export class RfBandType extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const rfBandTypeListResponse of client.rfBandType.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: RfBandTypeListParams | null | undefined = {},
@@ -53,6 +83,11 @@ export class RfBandType extends APIResource {
    * Service operation to delete an RFBandType specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.rfBandType.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/rfbandtype/${id}`, {
@@ -67,6 +102,11 @@ export class RfBandType extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.rfBandType.count();
+   * ```
    */
   count(query: RfBandTypeCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/rfbandtype/count', {
@@ -79,6 +119,11 @@ export class RfBandType extends APIResource {
   /**
    * Service operation to get a single RFBandType by its unique ID passed as a path
    * parameter.
+   *
+   * @example
+   * ```ts
+   * const rfBandType = await client.rfBandType.get('id');
+   * ```
    */
   get(
     id: string,
@@ -91,6 +136,11 @@ export class RfBandType extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.rfBandType.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/rfbandtype/queryhelp', {
@@ -108,6 +158,13 @@ export class RfBandType extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.rfBandType.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: RfBandTypeTupleParams, options?: RequestOptions): APIPromise<RfBandTypeTupleResponse> {
     return this._client.get('/udl/rfbandtype/tuple', { query, ...options });

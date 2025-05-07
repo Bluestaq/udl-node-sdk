@@ -18,6 +18,16 @@ export class Diffofarrival extends APIResource {
    * into UDL. Data providers should contact the UDL team for specific role
    * assignments and for instructions on setting up a permanent feed through an
    * alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.tdoaFdoa.diffofarrival.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   obTime: '2018-01-01T16:00:00.123456Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: DiffofarrivalCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/diffofarrival', {
@@ -32,6 +42,16 @@ export class Diffofarrival extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const diffofarrivalAbridged of client.tdoaFdoa.diffofarrival.list(
+   *   { obTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: DiffofarrivalListParams,
@@ -49,6 +69,13 @@ export class Diffofarrival extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.tdoaFdoa.diffofarrival.count({
+   *   obTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: DiffofarrivalCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/diffofarrival/count', {
@@ -64,6 +91,20 @@ export class Diffofarrival extends APIResource {
    * not intended to be used for automated feeds into UDL. Data providers should
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.tdoaFdoa.diffofarrival.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       obTime: '2018-01-01T16:00:00.123456Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: DiffofarrivalCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

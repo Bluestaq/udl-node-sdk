@@ -13,6 +13,16 @@ export class AircraftSortie extends APIResource {
    * Service operation to take a single AircraftSortie as a POST body and ingest into
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airOperations.aircraftSortie.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   plannedDepTime: '2021-01-01T01:01:01.123Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: AircraftSortieCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/aircraftsortie', {
@@ -27,6 +37,16 @@ export class AircraftSortie extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const aircraftsortieAbridged of client.airOperations.aircraftSortie.list(
+   *   { plannedDepTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: AircraftSortieListParams,
@@ -44,6 +64,14 @@ export class AircraftSortie extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.airOperations.aircraftSortie.count({
+   *     plannedDepTime: '2019-12-27T18:11:19.117Z',
+   *   });
+   * ```
    */
   count(query: AircraftSortieCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/aircraftsortie/count', {
@@ -59,6 +87,20 @@ export class AircraftSortie extends APIResource {
    * not intended to be used for automated feeds into UDL. Data providers should
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.airOperations.aircraftSortie.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       plannedDepTime: '2021-01-01T01:01:01.123Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: AircraftSortieCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -75,6 +117,13 @@ export class AircraftSortie extends APIResource {
    * Secure Content Store. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * await client.airOperations.aircraftSortie.historyAodr({
+   *   plannedDepTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   historyAodr(query: AircraftSortieHistoryAodrParams, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/aircraftsortie/history/aodr', {
@@ -90,6 +139,14 @@ export class AircraftSortie extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.airOperations.aircraftSortie.historyCount({
+   *     plannedDepTime: '2019-12-27T18:11:19.117Z',
+   *   });
+   * ```
    */
   historyCount(query: AircraftSortieHistoryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/aircraftsortie/history/count', {
@@ -104,6 +161,14 @@ export class AircraftSortie extends APIResource {
    * parameters not specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * const aircraftsortieFulls =
+   *   await client.airOperations.aircraftSortie.historyQuery({
+   *     plannedDepTime: '2019-12-27T18:11:19.117Z',
+   *   });
+   * ```
    */
   historyQuery(
     query: AircraftSortieHistoryQueryParams,

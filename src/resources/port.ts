@@ -12,6 +12,15 @@ export class Port extends APIResource {
    * Service operation to take a single port record as a POST body and ingest into
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.port.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: PortCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/port', {
@@ -24,6 +33,15 @@ export class Port extends APIResource {
   /**
    * Service operation to update a single port record. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.port.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: PortUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/port/${pathID}`, {
@@ -38,6 +56,14 @@ export class Port extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const portListResponse of client.port.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: PortListParams | null | undefined = {},
@@ -52,6 +78,11 @@ export class Port extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.port.count();
+   * ```
    */
   count(query: PortCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/port/count', {
@@ -67,6 +98,19 @@ export class Port extends APIResource {
    * intended to be used for automated feeds into UDL. Data providers should contact
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.port.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: PortCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -80,6 +124,11 @@ export class Port extends APIResource {
   /**
    * Service operation to get a single port record by its unique ID passed as a path
    * parameter.
+   *
+   * @example
+   * ```ts
+   * const port = await client.port.get('id');
+   * ```
    */
   get(
     id: string,
@@ -92,6 +141,11 @@ export class Port extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.port.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/port/queryhelp', {
@@ -109,6 +163,13 @@ export class Port extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.port.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: PortTupleParams, options?: RequestOptions): APIPromise<PortTupleResponse> {
     return this._client.get('/udl/port/tuple', { query, ...options });

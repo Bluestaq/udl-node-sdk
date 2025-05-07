@@ -12,6 +12,16 @@ export class Operations extends APIResource {
    * Service operation to take a single siteoperations object as a POST body and
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.site.operations.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: OperationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/siteoperations', {
@@ -24,6 +34,13 @@ export class Operations extends APIResource {
   /**
    * Service operation to get a single siteoperations record by its unique ID passed
    * as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const operation = await client.site.operations.retrieve(
+   *   'id',
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -37,6 +54,16 @@ export class Operations extends APIResource {
    * Service operation to update a single siteoperations record. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.site.operations.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: OperationUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/siteoperations/${pathID}`, {
@@ -51,6 +78,16 @@ export class Operations extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const operationListResponse of client.site.operations.list(
+   *   { idSite: 'idSite' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: OperationListParams,
@@ -66,6 +103,11 @@ export class Operations extends APIResource {
    * Service operation to delete a siteoperations record specified by the passed ID
    * path parameter. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.site.operations.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/siteoperations/${id}`, {
@@ -80,6 +122,13 @@ export class Operations extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.site.operations.count({
+   *   idSite: 'idSite',
+   * });
+   * ```
    */
   count(query: OperationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/siteoperations/count', {
@@ -95,6 +144,20 @@ export class Operations extends APIResource {
    * operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.site.operations.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: OperationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -108,6 +171,11 @@ export class Operations extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.site.operations.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/siteoperations/queryhelp', {
@@ -125,6 +193,14 @@ export class Operations extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.site.operations.tuple({
+   *   columns: 'columns',
+   *   idSite: 'idSite',
+   * });
+   * ```
    */
   tuple(query: OperationTupleParams, options?: RequestOptions): APIPromise<OperationTupleResponse> {
     return this._client.get('/udl/siteoperations/tuple', { query, ...options });
@@ -135,6 +211,20 @@ export class Operations extends APIResource {
    * ingest into the database. This operation is intended to be used for automated
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.site.operations.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: OperationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

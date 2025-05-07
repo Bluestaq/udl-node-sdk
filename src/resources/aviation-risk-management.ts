@@ -11,6 +11,16 @@ export class AviationRiskManagement extends APIResource {
    * Service operation to take a single Aviation Risk Management record as a POST
    * body and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.aviationRiskManagement.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: AviationRiskManagementCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/aviationriskmanagement', {
@@ -23,6 +33,12 @@ export class AviationRiskManagement extends APIResource {
   /**
    * Service operation to get a single Aviation Risk Management record by its unique
    * ID passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const aviationRiskManagement =
+   *   await client.aviationRiskManagement.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -36,6 +52,16 @@ export class AviationRiskManagement extends APIResource {
    * Service operation to update a single Aviation Risk Management record. A specific
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.aviationRiskManagement.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(
     pathID: string,
@@ -53,6 +79,11 @@ export class AviationRiskManagement extends APIResource {
    * Service operation to delete an Aviation Risk Management record specified by the
    * passed ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.aviationRiskManagement.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/aviationriskmanagement/${id}`, {
@@ -67,6 +98,13 @@ export class AviationRiskManagement extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.aviationRiskManagement.count({
+   *   idMission: 'idMission',
+   * });
+   * ```
    */
   count(query: AviationRiskManagementCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/aviationriskmanagement/count', {
@@ -82,6 +120,20 @@ export class AviationRiskManagement extends APIResource {
    * This operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.aviationRiskManagement.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: AviationRiskManagementCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -97,6 +149,13 @@ export class AviationRiskManagement extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.aviationRiskManagement.query({
+   *   idMission: 'idMission',
+   * });
+   * ```
    */
   query(
     query: AviationRiskManagementQueryParams,
@@ -108,6 +167,11 @@ export class AviationRiskManagement extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.aviationRiskManagement.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/aviationriskmanagement/queryhelp', {
@@ -125,6 +189,14 @@ export class AviationRiskManagement extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.aviationRiskManagement.tuple({
+   *   columns: 'columns',
+   *   idMission: 'idMission',
+   * });
+   * ```
    */
   tuple(
     query: AviationRiskManagementTupleParams,
@@ -138,6 +210,20 @@ export class AviationRiskManagement extends APIResource {
    * body and ingest into the database. This operation is intended to be used for
    * automated feeds into UDL. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.aviationRiskManagement.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: AviationRiskManagementUnvalidatedPublishParams,

@@ -12,6 +12,16 @@ export class AirLoadPlans extends APIResource {
    * Service operation to take a single airloadplan record as a POST body and ingest
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airLoadPlans.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   estDepTime: '2024-01-01T01:00:00.123Z',
+   *   source: 'source',
+   * });
+   * ```
    */
   create(body: AirLoadPlanCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/airloadplan', {
@@ -24,6 +34,13 @@ export class AirLoadPlans extends APIResource {
   /**
    * Service operation to get a single airloadplan record by its unique ID passed as
    * a path parameter.
+   *
+   * @example
+   * ```ts
+   * const airloadplanFull = await client.airLoadPlans.retrieve(
+   *   'id',
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -38,6 +55,16 @@ export class AirLoadPlans extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const airloadplanAbridged of client.airLoadPlans.list(
+   *   { estDepTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: AirLoadPlanListParams,
@@ -55,6 +82,13 @@ export class AirLoadPlans extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.airLoadPlans.count({
+   *   estDepTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: AirLoadPlanCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/airloadplan/count', {
@@ -67,6 +101,11 @@ export class AirLoadPlans extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.airLoadPlans.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/airloadplan/queryhelp', {
@@ -84,6 +123,14 @@ export class AirLoadPlans extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const airloadplanFulls = await client.airLoadPlans.tuple({
+   *   columns: 'columns',
+   *   estDepTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   tuple(query: AirLoadPlanTupleParams, options?: RequestOptions): APIPromise<AirLoadPlanTupleResponse> {
     return this._client.get('/udl/airloadplan/tuple', { query, ...options });

@@ -26,6 +26,16 @@ export class EffectResponses extends APIResource {
    * UDL. Data providers should contact the UDL team for specific role assignments
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.effectResponses.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   *   type: 'COA',
+   * });
+   * ```
    */
   create(body: EffectResponseCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/effectresponse', {
@@ -38,6 +48,12 @@ export class EffectResponses extends APIResource {
   /**
    * Service operation to get a single EffectResponse by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const effectResponse =
+   *   await client.effectResponses.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -52,6 +68,16 @@ export class EffectResponses extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const effectResponseListResponse of client.effectResponses.list(
+   *   { createdAt: '2019-12-27' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: EffectResponseListParams,
@@ -69,6 +95,13 @@ export class EffectResponses extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.effectResponses.count({
+   *   createdAt: '2019-12-27',
+   * });
+   * ```
    */
   count(query: EffectResponseCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/effectresponse/count', {
@@ -84,6 +117,20 @@ export class EffectResponses extends APIResource {
    * operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.effectResponses.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       source: 'Bluestaq',
+   *       type: 'COA',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: EffectResponseCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -97,6 +144,11 @@ export class EffectResponses extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.effectResponses.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/effectresponse/queryhelp', {
@@ -114,6 +166,14 @@ export class EffectResponses extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.effectResponses.tuple({
+   *   columns: 'columns',
+   *   createdAt: '2019-12-27',
+   * });
+   * ```
    */
   tuple(query: EffectResponseTupleParams, options?: RequestOptions): APIPromise<EffectResponseTupleResponse> {
     return this._client.get('/udl/effectresponse/tuple', { query, ...options });
@@ -124,6 +184,20 @@ export class EffectResponses extends APIResource {
    * into the database. This operation is intended to be used for automated feeds
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.effectResponses.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       source: 'Bluestaq',
+   *       type: 'COA',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: EffectResponseUnvalidatedPublishParams,

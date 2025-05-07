@@ -23,6 +23,16 @@ export class Monoradar extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const monoradarListResponse of client.observations.monoradar.list(
+   *   { ts: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: MonoradarListParams,
@@ -40,6 +50,13 @@ export class Monoradar extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.observations.monoradar.count({
+   *   ts: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: MonoradarCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/monoradar/count', {
@@ -55,6 +72,23 @@ export class Monoradar extends APIResource {
    * not intended to be used for automated feeds into UDL. Data providers should
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.observations.monoradar.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       msgfmt: 'CAT48',
+   *       msgts: '2021-01-01T01:01:01.123456Z',
+   *       msgtyp: 'BCN',
+   *       source: 'Bluestaq',
+   *       ts: '2021-01-01T01:01:01.123456Z',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: MonoradarCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -68,6 +102,11 @@ export class Monoradar extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.observations.monoradar.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/monoradar/queryhelp', {
@@ -85,6 +124,14 @@ export class Monoradar extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.observations.monoradar.tuple({
+   *   columns: 'columns',
+   *   ts: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   tuple(query: MonoradarTupleParams, options?: RequestOptions): APIPromise<MonoradarTupleResponse> {
     return this._client.get('/udl/monoradar/tuple', { query, ...options });
@@ -95,6 +142,23 @@ export class Monoradar extends APIResource {
    * into the database. This operation is intended to be used for automated feeds
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.observations.monoradar.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       msgfmt: 'CAT48',
+   *       msgts: '2021-01-01T01:01:01.123456Z',
+   *       msgtyp: 'BCN',
+   *       source: 'Bluestaq',
+   *       ts: '2021-01-01T01:01:01.123456Z',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: MonoradarUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

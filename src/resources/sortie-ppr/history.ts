@@ -12,6 +12,16 @@ export class History extends APIResource {
    * parameters not specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const sortiePprFull of client.sortiePpr.history.list(
+   *   { idSortie: 'idSortie' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: HistoryListParams,
@@ -29,6 +39,13 @@ export class History extends APIResource {
    * Secure Content Store. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * await client.sortiePpr.history.aodr({
+   *   idSortie: 'idSortie',
+   * });
+   * ```
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sortieppr/history/aodr', {
@@ -44,6 +61,13 @@ export class History extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.sortiePpr.history.count({
+   *   idSortie: 'idSortie',
+   * });
+   * ```
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sortieppr/history/count', {

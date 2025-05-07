@@ -12,6 +12,17 @@ export class AirTaskingOrders extends APIResource {
    * Service operation to take a single airtaskingorder record as a POST body and
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airOperations.airTaskingOrders.create({
+   *   beginTs: '2023-10-25T12:00:00.123Z',
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   opExerName: 'DESERT WIND',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: AirTaskingOrderCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/airtaskingorder', {
@@ -24,6 +35,14 @@ export class AirTaskingOrders extends APIResource {
   /**
    * Service operation to get a single airtaskingorder record by its unique ID passed
    * as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const airTaskingOrderFull =
+   *   await client.airOperations.airTaskingOrders.retrieve(
+   *     'id',
+   *   );
+   * ```
    */
   retrieve(
     id: string,
@@ -38,6 +57,14 @@ export class AirTaskingOrders extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const airTaskingOrderListResponse of client.airOperations.airTaskingOrders.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: AirTaskingOrderListParams | null | undefined = {},
@@ -55,6 +82,12 @@ export class AirTaskingOrders extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.airOperations.airTaskingOrders.count();
+   * ```
    */
   count(
     query: AirTaskingOrderCountParams | null | undefined = {},
@@ -70,6 +103,11 @@ export class AirTaskingOrders extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.airOperations.airTaskingOrders.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/airtaskingorder/queryhelp', {
@@ -87,6 +125,14 @@ export class AirTaskingOrders extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const airTaskingOrderFulls =
+   *   await client.airOperations.airTaskingOrders.tuple({
+   *     columns: 'columns',
+   *   });
+   * ```
    */
   tuple(
     query: AirTaskingOrderTupleParams,
@@ -100,6 +146,23 @@ export class AirTaskingOrders extends APIResource {
    * ingest into the database. This operation is intended to be used for automated
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airOperations.airTaskingOrders.unvalidatedPublish(
+   *   {
+   *     body: [
+   *       {
+   *         beginTs: '2023-10-25T12:00:00.123Z',
+   *         classificationMarking: 'U',
+   *         dataMode: 'TEST',
+   *         opExerName: 'DESERT WIND',
+   *         source: 'Bluestaq',
+   *       },
+   *     ],
+   *   },
+   * );
+   * ```
    */
   unvalidatedPublish(
     params: AirTaskingOrderUnvalidatedPublishParams,

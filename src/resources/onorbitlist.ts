@@ -13,6 +13,16 @@ export class Onorbitlist extends APIResource {
    * the database. An OnorbitList is just a generic named list of on-orbit IDs. A
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitlist.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   name: 'People',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: OnorbitlistCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitlist', {
@@ -26,6 +36,16 @@ export class Onorbitlist extends APIResource {
    * Service operation to update a single OnorbitList. An OnorbitList is just a
    * generic named list of on-orbit IDs. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitlist.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   name: 'People',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: OnorbitlistUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/onorbitlist/${pathID}`, {
@@ -40,6 +60,14 @@ export class Onorbitlist extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const onorbitlistListResponse of client.onorbitlist.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: OnorbitlistListParams | null | undefined = {},
@@ -56,6 +84,11 @@ export class Onorbitlist extends APIResource {
    * parameter. An OnorbitList is just a generic named list of on-orbit IDs. A
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitlist.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/onorbitlist/${id}`, {
@@ -70,6 +103,11 @@ export class Onorbitlist extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.onorbitlist.count();
+   * ```
    */
   count(query: OnorbitlistCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/onorbitlist/count', {
@@ -82,6 +120,11 @@ export class Onorbitlist extends APIResource {
   /**
    * Service operation to get a single OnorbitList record by its unique ID passed as
    * a path parameter. An OnorbitList is just a generic named list of on-orbit IDs.
+   *
+   * @example
+   * ```ts
+   * const onorbitlist = await client.onorbitlist.get('id');
+   * ```
    */
   get(
     id: string,
@@ -94,6 +137,11 @@ export class Onorbitlist extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitlist.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/onorbitlist/queryhelp', {
@@ -111,6 +159,13 @@ export class Onorbitlist extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.onorbitlist.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: OnorbitlistTupleParams, options?: RequestOptions): APIPromise<OnorbitlistTupleResponse> {
     return this._client.get('/udl/onorbitlist/tuple', { query, ...options });

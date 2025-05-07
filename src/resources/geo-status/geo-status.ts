@@ -26,6 +26,15 @@ export class GeoStatus extends APIResource {
    * into UDL. Data providers should contact the UDL team for specific role
    * assignments and for instructions on setting up a permanent feed through an
    * alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.geoStatus.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: GeoStatusCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/geostatus', {
@@ -40,6 +49,16 @@ export class GeoStatus extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const geoStatusListResponse of client.geoStatus.list(
+   *   { createdAt: '2019-12-27' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: GeoStatusListParams,
@@ -57,6 +76,13 @@ export class GeoStatus extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.geoStatus.count({
+   *   createdAt: '2019-12-27',
+   * });
+   * ```
    */
   count(query: GeoStatusCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/geostatus/count', {
@@ -72,6 +98,19 @@ export class GeoStatus extends APIResource {
    * not intended to be used for automated feeds into UDL. Data providers should
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.geoStatus.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: GeoStatusCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -85,6 +124,11 @@ export class GeoStatus extends APIResource {
   /**
    * Service operation to get a single GEOStatus record by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const geoStatusFull = await client.geoStatus.get('id');
+   * ```
    */
   get(
     id: string,
@@ -97,6 +141,11 @@ export class GeoStatus extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.geoStatus.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/geostatus/queryhelp', {
@@ -114,6 +163,14 @@ export class GeoStatus extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const geoStatusFulls = await client.geoStatus.tuple({
+   *   columns: 'columns',
+   *   createdAt: '2019-12-27',
+   * });
+   * ```
    */
   tuple(query: GeoStatusTupleParams, options?: RequestOptions): APIPromise<GeoStatusTupleResponse> {
     return this._client.get('/udl/geostatus/tuple', { query, ...options });

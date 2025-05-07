@@ -24,6 +24,16 @@ export class SortiePpr extends APIResource {
    * Service operation to take a single sortieppr record as a POST body and ingest
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sortiePpr.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: SortiePprCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/sortieppr', {
@@ -37,6 +47,16 @@ export class SortiePpr extends APIResource {
    * Service operation to update a single sortieppr record. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sortiePpr.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: SortiePprUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/sortieppr/${pathID}`, {
@@ -51,6 +71,16 @@ export class SortiePpr extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const sortiePprListResponse of client.sortiePpr.list(
+   *   { idSortie: 'idSortie' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SortiePprListParams,
@@ -66,6 +96,11 @@ export class SortiePpr extends APIResource {
    * Service operation to delete a sortieppr record specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sortiePpr.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/sortieppr/${id}`, {
@@ -80,6 +115,13 @@ export class SortiePpr extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.sortiePpr.count({
+   *   idSortie: 'idSortie',
+   * });
+   * ```
    */
   count(query: SortiePprCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sortieppr/count', {
@@ -95,6 +137,20 @@ export class SortiePpr extends APIResource {
    * not intended to be used for automated feeds into UDL. Data providers should
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.sortiePpr.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: SortiePprCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -108,6 +164,11 @@ export class SortiePpr extends APIResource {
   /**
    * Service operation to get a single sortieppr record by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const sortiePprFull = await client.sortiePpr.get('id');
+   * ```
    */
   get(
     id: string,
@@ -120,6 +181,11 @@ export class SortiePpr extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.sortiePpr.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sortieppr/queryhelp', {
@@ -137,6 +203,14 @@ export class SortiePpr extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const sortiePprFulls = await client.sortiePpr.tuple({
+   *   columns: 'columns',
+   *   idSortie: 'idSortie',
+   * });
+   * ```
    */
   tuple(query: SortiePprTupleParams, options?: RequestOptions): APIPromise<SortiePprTupleResponse> {
     return this._client.get('/udl/sortieppr/tuple', { query, ...options });
@@ -147,6 +221,20 @@ export class SortiePpr extends APIResource {
    * This operation is intended to be used for automated feeds into UDL. A specific
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sortiePpr.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: SortiePprUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

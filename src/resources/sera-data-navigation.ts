@@ -12,6 +12,16 @@ export class SeraDataNavigation extends APIResource {
    * Service operation to take a single SeradataNavigation as a POST body and ingest
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.seraDataNavigation.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   *   spacecraftId: 'spacecraftId',
+   * });
+   * ```
    */
   create(body: SeraDataNavigationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/seradatanavigation', {
@@ -24,6 +34,16 @@ export class SeraDataNavigation extends APIResource {
   /**
    * Service operation to update an SeradataNavigation. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.seraDataNavigation.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   *   spacecraftId: 'spacecraftId',
+   * });
+   * ```
    */
   update(pathID: string, body: SeraDataNavigationUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/seradatanavigation/${pathID}`, {
@@ -38,6 +58,14 @@ export class SeraDataNavigation extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const seraDataNavigationListResponse of client.seraDataNavigation.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SeraDataNavigationListParams | null | undefined = {},
@@ -53,6 +81,11 @@ export class SeraDataNavigation extends APIResource {
    * Service operation to delete an SeradataNavigation specified by the passed ID
    * path parameter. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.seraDataNavigation.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/seradatanavigation/${id}`, {
@@ -67,6 +100,11 @@ export class SeraDataNavigation extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.seraDataNavigation.count();
+   * ```
    */
   count(
     query: SeraDataNavigationCountParams | null | undefined = {},
@@ -82,6 +120,12 @@ export class SeraDataNavigation extends APIResource {
   /**
    * Service operation to get a single SeradataNavigation by its unique ID passed as
    * a path parameter.
+   *
+   * @example
+   * ```ts
+   * const seraDataNavigation =
+   *   await client.seraDataNavigation.get('id');
+   * ```
    */
   get(
     id: string,
@@ -94,6 +138,11 @@ export class SeraDataNavigation extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.seraDataNavigation.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/seradatanavigation/queryhelp', {
@@ -111,6 +160,13 @@ export class SeraDataNavigation extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.seraDataNavigation.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(
     query: SeraDataNavigationTupleParams,

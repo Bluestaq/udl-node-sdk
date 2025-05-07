@@ -22,6 +22,18 @@ export class FeatureAssessment extends APIResource {
    * Service operation to take a single FeatureAssessment record as a POST body and
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.featureAssessment.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   featureTs: '2024-06-22T17:53:06.123Z',
+   *   featureUoM: 'MHz',
+   *   idAnalyticImagery: 'fa1509ae-c19d-432e-9542-e5d1e0f47bc3',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: FeatureAssessmentCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/featureassessment', {
@@ -34,6 +46,12 @@ export class FeatureAssessment extends APIResource {
   /**
    * Service operation to get a single FeatureAssessment record by its unique ID
    * passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const featureAssessment =
+   *   await client.featureAssessment.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -49,6 +67,13 @@ export class FeatureAssessment extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.featureAssessment.count({
+   *   idAnalyticImagery: 'idAnalyticImagery',
+   * });
+   * ```
    */
   count(query: FeatureAssessmentCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/featureassessment/count', {
@@ -64,6 +89,23 @@ export class FeatureAssessment extends APIResource {
    * operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.featureAssessment.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       featureTs: '2024-06-22T17:53:06.123Z',
+   *       featureUoM: 'MHz',
+   *       idAnalyticImagery:
+   *         'fa1509ae-c19d-432e-9542-e5d1e0f47bc3',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: FeatureAssessmentCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -79,6 +121,13 @@ export class FeatureAssessment extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.featureAssessment.query({
+   *   idAnalyticImagery: 'idAnalyticImagery',
+   * });
+   * ```
    */
   query(
     query: FeatureAssessmentQueryParams,
@@ -90,6 +139,11 @@ export class FeatureAssessment extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.featureAssessment.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/featureassessment/queryhelp', {
@@ -107,6 +161,14 @@ export class FeatureAssessment extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.featureAssessment.tuple({
+   *   columns: 'columns',
+   *   idAnalyticImagery: 'idAnalyticImagery',
+   * });
+   * ```
    */
   tuple(
     query: FeatureAssessmentTupleParams,
@@ -120,6 +182,23 @@ export class FeatureAssessment extends APIResource {
    * ingest into the database. This operation is intended to be used for automated
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.featureAssessment.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       featureTs: '2024-06-22T17:53:06.123Z',
+   *       featureUoM: 'MHz',
+   *       idAnalyticImagery:
+   *         'fa1509ae-c19d-432e-9542-e5d1e0f47bc3',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: FeatureAssessmentUnvalidatedPublishParams,

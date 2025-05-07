@@ -7,6 +7,11 @@ import { RequestOptions } from '../../internal/request-options';
 export class Groups extends APIResource {
   /**
    * Returns a list of all available groups for ACL UIs
+   *
+   * @example
+   * ```ts
+   * const groups = await client.scs.groups.list();
+   * ```
    */
   list(options?: RequestOptions): APIPromise<GroupListResponse> {
     return this._client.get('/scs/groups', options);

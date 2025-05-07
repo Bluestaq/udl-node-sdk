@@ -11,6 +11,17 @@ export class RouteStats extends APIResource {
    * Service operation to take a single routeStats record as a POST body and ingest
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.routeStats.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   locationEnd: 'KCOS',
+   *   locationStart: 'KDEN',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: RouteStatCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/routestats', {
@@ -23,6 +34,11 @@ export class RouteStats extends APIResource {
   /**
    * Service operation to get a single routeStats record by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const routeStat = await client.routeStats.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -35,6 +51,17 @@ export class RouteStats extends APIResource {
   /**
    * Service operation to update a single RouteStats. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.routeStats.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   locationEnd: 'KCOS',
+   *   locationStart: 'KDEN',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: RouteStatUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/routestats/${pathID}`, {
@@ -48,6 +75,11 @@ export class RouteStats extends APIResource {
    * Service operation to delete a routeStats record specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.routeStats.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/routestats/${id}`, {
@@ -62,6 +94,11 @@ export class RouteStats extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.routeStats.count();
+   * ```
    */
   count(query: RouteStatCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/routestats/count', {
@@ -77,6 +114,21 @@ export class RouteStats extends APIResource {
    * intended to be used for automated feeds into UDL. Data providers should contact
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.routeStats.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       locationEnd: 'KCOS',
+   *       locationStart: 'KDEN',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: RouteStatCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -92,6 +144,11 @@ export class RouteStats extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.routeStats.query();
+   * ```
    */
   query(
     query: RouteStatQueryParams | null | undefined = {},
@@ -103,6 +160,11 @@ export class RouteStats extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.routeStats.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/routestats/queryhelp', {
@@ -120,6 +182,13 @@ export class RouteStats extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.routeStats.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: RouteStatTupleParams, options?: RequestOptions): APIPromise<RouteStatTupleResponse> {
     return this._client.get('/udl/routestats/tuple', { query, ...options });
@@ -130,6 +199,21 @@ export class RouteStats extends APIResource {
    * into the database. This operation is intended to be used for automated feeds
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.routeStats.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       locationEnd: 'KCOS',
+   *       locationStart: 'KDEN',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: RouteStatUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

@@ -39,6 +39,20 @@ export class EphemerisSets extends APIResource {
    *    + If origObjectId and a valid satNo or idOnOrbit are provided then both the satNo/idOnOrbit and origObjectId will maintain the provided values.
    *    + If only origObjectId is provided then origObjectId will be populated with the posted value.  In this case, no checks are made against existing UDL sat numbers.
    * </h3>
+   *
+   * @example
+   * ```ts
+   * await client.ephemerisSets.create({
+   *   category: 'ANALYST',
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   numPoints: 1,
+   *   pointEndTime: '2018-01-01T16:00:00.123456Z',
+   *   pointStartTime: '2018-01-01T16:00:00.123456Z',
+   *   source: 'Bluestaq',
+   *   type: 'LAUNCH',
+   * });
+   * ```
    */
   create(body: EphemerisSetCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/ephemerisset', {
@@ -51,6 +65,13 @@ export class EphemerisSets extends APIResource {
   /**
    * Service operation to get a single Ephemeris Set by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const ephemerisSet = await client.ephemerisSets.retrieve(
+   *   'id',
+   * );
+   * ```
    */
   retrieve(
     id: string,
@@ -65,6 +86,14 @@ export class EphemerisSets extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const ephemerisSetAbridged of client.ephemerisSets.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: EphemerisSetListParams | null | undefined = {},
@@ -82,6 +111,11 @@ export class EphemerisSets extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.ephemerisSets.count();
+   * ```
    */
   count(
     query: EphemerisSetCountParams | null | undefined = {},
@@ -97,6 +131,16 @@ export class EphemerisSets extends APIResource {
   /**
    * Service operation to get the original raw flat file, if any, associated with the
    * EphemerisSet. The file is returned as an attachment Content-Disposition.
+   *
+   * @example
+   * ```ts
+   * const response = await client.ephemerisSets.fileRetrieve(
+   *   'id',
+   * );
+   *
+   * const content = await response.blob();
+   * console.log(content);
+   * ```
    */
   fileRetrieve(
     id: string,
@@ -114,6 +158,11 @@ export class EphemerisSets extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.ephemerisSets.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/ephemerisset/queryhelp', {
@@ -131,6 +180,13 @@ export class EphemerisSets extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const ephemerisSets = await client.ephemerisSets.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: EphemerisSetTupleParams, options?: RequestOptions): APIPromise<EphemerisSetTupleResponse> {
     return this._client.get('/udl/ephemerisset/tuple', { query, ...options });

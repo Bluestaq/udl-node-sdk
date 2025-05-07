@@ -12,6 +12,17 @@ export class Operatingunitremark extends APIResource {
    * Service operation to take a single operatingunitremark record as a POST body and
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.operatingunitremark.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idOperatingUnit: 'OperatingUnit-ID',
+   *   source: 'some.user',
+   *   text: 'This is a remark',
+   * });
+   * ```
    */
   create(body: OperatingunitremarkCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/operatingunitremark', {
@@ -26,6 +37,14 @@ export class Operatingunitremark extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const operatingunitremarkListResponse of client.operatingunitremark.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: OperatingunitremarkListParams | null | undefined = {},
@@ -43,6 +62,11 @@ export class Operatingunitremark extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.operatingunitremark.count();
+   * ```
    */
   count(
     query: OperatingunitremarkCountParams | null | undefined = {},
@@ -61,6 +85,21 @@ export class Operatingunitremark extends APIResource {
    * operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.operatingunitremark.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       idOperatingUnit: 'OperatingUnit-ID',
+   *       source: 'some.user',
+   *       text: 'This is a remark',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: OperatingunitremarkCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -74,6 +113,12 @@ export class Operatingunitremark extends APIResource {
   /**
    * Service operation to get a single operatingunitremark record by its unique ID
    * passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const operatingunitremark =
+   *   await client.operatingunitremark.get('id');
+   * ```
    */
   get(
     id: string,
@@ -86,6 +131,11 @@ export class Operatingunitremark extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.operatingunitremark.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/operatingunitremark/queryhelp', {
@@ -103,6 +153,13 @@ export class Operatingunitremark extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.operatingunitremark.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(
     query: OperatingunitremarkTupleParams,

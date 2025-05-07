@@ -12,6 +12,11 @@ export class History extends APIResource {
    * Secure Content Store. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * await client.starCatalog.history.aodr();
+   * ```
    */
   aodr(query: HistoryAodrParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/starcatalog/history/aodr', {

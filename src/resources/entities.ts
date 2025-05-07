@@ -18,6 +18,17 @@ export class Entities extends APIResource {
    * Service operation to take a single Entity as a POST body and ingest into the
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.entities.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   name: 'Example name',
+   *   source: 'Bluestaq',
+   *   type: 'ONORBIT',
+   * });
+   * ```
    */
   create(body: EntityCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/entity', {
@@ -30,6 +41,11 @@ export class Entities extends APIResource {
   /**
    * Service operation to get a single Entity record by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const entityFull = await client.entities.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -42,6 +58,17 @@ export class Entities extends APIResource {
   /**
    * Service operation to update a single Entity. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.entities.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   name: 'Example name',
+   *   source: 'Bluestaq',
+   *   type: 'ONORBIT',
+   * });
+   * ```
    */
   update(id: string, body: EntityUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/entity/${id}`, {
@@ -56,6 +83,14 @@ export class Entities extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const entityAbridged of client.entities.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: EntityListParams | null | undefined = {},
@@ -68,6 +103,11 @@ export class Entities extends APIResource {
    * Service operation to delete an Entity object specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.entities.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/entity/${id}`, {
@@ -82,6 +122,11 @@ export class Entities extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.entities.count();
+   * ```
    */
   count(query: EntityCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/entity/count', {
@@ -93,6 +138,11 @@ export class Entities extends APIResource {
 
   /**
    * Retrieves all distinct entity types.
+   *
+   * @example
+   * ```ts
+   * const response = await client.entities.getAllTypes();
+   * ```
    */
   getAllTypes(
     query: EntityGetAllTypesParams | null | undefined = {},
@@ -104,6 +154,11 @@ export class Entities extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.entities.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/entity/queryhelp', {
@@ -121,6 +176,13 @@ export class Entities extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const entityFulls = await client.entities.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: EntityTupleParams, options?: RequestOptions): APIPromise<EntityTupleResponse> {
     return this._client.get('/udl/entity/tuple', { query, ...options });

@@ -14,6 +14,16 @@ export class SolarArrayDetails extends APIResource {
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance. A SolarArray may have
    * multiple details records compiled by various sources.
+   *
+   * @example
+   * ```ts
+   * await client.solarArrayDetails.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idSolarArray: 'SOLARARRAY-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: SolarArrayDetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/solararraydetails', {
@@ -28,6 +38,16 @@ export class SolarArrayDetails extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance. A SolarArray may have multiple details records compiled by various
    * sources.
+   *
+   * @example
+   * ```ts
+   * await client.solarArrayDetails.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idSolarArray: 'SOLARARRAY-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: SolarArrayDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/solararraydetails/${pathID}`, {
@@ -42,6 +62,14 @@ export class SolarArrayDetails extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const solarArrayDetailListResponse of client.solarArrayDetails.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SolarArrayDetailListParams | null | undefined = {},
@@ -58,6 +86,11 @@ export class SolarArrayDetails extends APIResource {
    * ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance. A SolarArray may have
    * multiple details records compiled by various sources.
+   *
+   * @example
+   * ```ts
+   * await client.solarArrayDetails.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/solararraydetails/${id}`, {
@@ -70,6 +103,12 @@ export class SolarArrayDetails extends APIResource {
    * Service operation to get a single SolarArrayDetails record by its unique ID
    * passed as a path parameter. A SolarArray may have multiple details records
    * compiled by various sources.
+   *
+   * @example
+   * ```ts
+   * const solarArrayDetailsFull =
+   *   await client.solarArrayDetails.get('id');
+   * ```
    */
   get(
     id: string,
