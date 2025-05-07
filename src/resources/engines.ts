@@ -15,6 +15,16 @@ export class Engines extends APIResource {
    * performance characteristics and limits. A launch vehicle has 1 to many engines
    * per stage. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.engines.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   name: 'ENGINE_VARIANT1',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: EngineCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/engine', {
@@ -29,6 +39,11 @@ export class Engines extends APIResource {
    * path parameter. An Engine represents launch engine/booster information to
    * include performance characteristics and limits. A launch vehicle has 1 to many
    * engines per stage.
+   *
+   * @example
+   * ```ts
+   * const engine = await client.engines.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -43,6 +58,16 @@ export class Engines extends APIResource {
    * engine/booster information to include performance characteristics and limits. A
    * launch vehicle has 1 to many engines per stage. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.engines.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   name: 'ENGINE_VARIANT1',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: EngineUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/engine/${pathID}`, {
@@ -57,6 +82,14 @@ export class Engines extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const engineAbridged of client.engines.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: EngineListParams | null | undefined = {},
@@ -71,6 +104,11 @@ export class Engines extends APIResource {
    * performance characteristics and limits. A launch vehicle has 1 to many engines
    * per stage. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.engines.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/engine/${id}`, {
@@ -85,6 +123,11 @@ export class Engines extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.engines.count();
+   * ```
    */
   count(query: EngineCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/engine/count', {
@@ -97,6 +140,11 @@ export class Engines extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.engines.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/engine/queryhelp', {
@@ -114,6 +162,13 @@ export class Engines extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const engines = await client.engines.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: EngineTupleParams, options?: RequestOptions): APIPromise<EngineTupleResponse> {
     return this._client.get('/udl/engine/tuple', { query, ...options });

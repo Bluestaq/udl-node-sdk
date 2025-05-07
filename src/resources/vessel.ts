@@ -13,6 +13,15 @@ export class Vessel extends APIResource {
    * Service operation to take a single vessel record as a POST body and ingest into
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.vessel.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: VesselCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/vessel', {
@@ -25,6 +34,15 @@ export class Vessel extends APIResource {
   /**
    * Service operation to update a single vessel record. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.vessel.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: VesselUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/vessel/${pathID}`, {
@@ -39,6 +57,14 @@ export class Vessel extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const vesselListResponse of client.vessel.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: VesselListParams | null | undefined = {},
@@ -53,6 +79,11 @@ export class Vessel extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.vessel.count();
+   * ```
    */
   count(query: VesselCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/vessel/count', {
@@ -68,6 +99,19 @@ export class Vessel extends APIResource {
    * not intended to be used for automated feeds into UDL. Data providers should
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.vessel.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: VesselCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -81,6 +125,11 @@ export class Vessel extends APIResource {
   /**
    * Service operation to get a single vessel record by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const vessel = await client.vessel.get('id');
+   * ```
    */
   get(
     id: string,
@@ -93,6 +142,11 @@ export class Vessel extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.vessel.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/vessel/queryhelp', {
@@ -110,6 +164,13 @@ export class Vessel extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.vessel.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: VesselTupleParams, options?: RequestOptions): APIPromise<VesselTupleResponse> {
     return this._client.get('/udl/vessel/tuple', { query, ...options });

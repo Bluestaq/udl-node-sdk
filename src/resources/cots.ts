@@ -10,6 +10,11 @@ export class Cots extends APIResource {
    * This service enables posting CoT messages to the UDL TAK server. CoT data will
    * be persisted in the UDL POI schema as well as federated to connected TAK
    * servers.
+   *
+   * @example
+   * ```ts
+   * await client.cots.create({ lat: 45.23, lon: 45.23 });
+   * ```
    */
   create(body: CotCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/cot', {

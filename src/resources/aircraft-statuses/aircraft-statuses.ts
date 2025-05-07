@@ -17,6 +17,16 @@ export class AircraftStatuses extends APIResource {
    * Service operation to take a single AircraftStatus as a POST body and ingest into
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.aircraftStatuses.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idAircraft: '29232269-e4c2-45c9-aa21-039a33209340',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: AircraftStatusCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/aircraftstatus', {
@@ -29,6 +39,12 @@ export class AircraftStatuses extends APIResource {
   /**
    * Service operation to get a single AircraftStatus record by its unique ID passed
    * as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const aircraftstatusFull =
+   *   await client.aircraftStatuses.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -41,6 +57,16 @@ export class AircraftStatuses extends APIResource {
   /**
    * Service operation to update a single AircraftStatus. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.aircraftStatuses.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idAircraft: '29232269-e4c2-45c9-aa21-039a33209340',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: AircraftStatusUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/aircraftstatus/${pathID}`, {
@@ -55,6 +81,14 @@ export class AircraftStatuses extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const aircraftstatusAbridged of client.aircraftStatuses.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: AircraftStatusListParams | null | undefined = {},
@@ -70,6 +104,11 @@ export class AircraftStatuses extends APIResource {
    * Service operation to delete a Status object specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.aircraftStatuses.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/aircraftstatus/${id}`, {
@@ -84,6 +123,11 @@ export class AircraftStatuses extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.aircraftStatuses.count();
+   * ```
    */
   count(
     query: AircraftStatusCountParams | null | undefined = {},
@@ -99,6 +143,11 @@ export class AircraftStatuses extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.aircraftStatuses.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/aircraftstatus/queryhelp', {
@@ -116,6 +165,14 @@ export class AircraftStatuses extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const aircraftstatusFulls =
+   *   await client.aircraftStatuses.tuple({
+   *     columns: 'columns',
+   *   });
+   * ```
    */
   tuple(query: AircraftStatusTupleParams, options?: RequestOptions): APIPromise<AircraftStatusTupleResponse> {
     return this._client.get('/udl/aircraftstatus/tuple', { query, ...options });

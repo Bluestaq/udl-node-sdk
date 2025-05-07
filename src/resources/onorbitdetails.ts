@@ -13,6 +13,16 @@ export class Onorbitdetails extends APIResource {
    * the database. An OnorbitDetails is a collection of additional characteristics on
    * an on-orbit object. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitdetails.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idOnOrbit: 'REF-ONORBIT-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: OnorbitdetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitdetails', {
@@ -27,6 +37,16 @@ export class Onorbitdetails extends APIResource {
    * collection of additional characteristics on an on-orbit object. A specific role
    * is required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitdetails.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idOnOrbit: 'REF-ONORBIT-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: OnorbitdetailUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/onorbitdetails/${pathID}`, {
@@ -41,6 +61,14 @@ export class Onorbitdetails extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const onorbitdetailListResponse of client.onorbitdetails.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: OnorbitdetailListParams | null | undefined = {},
@@ -57,6 +85,11 @@ export class Onorbitdetails extends APIResource {
    * path parameter. An OnorbitDetails is a collection of additional characteristics
    * on an on-orbit object. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitdetails.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/onorbitdetails/${id}`, {
@@ -69,6 +102,11 @@ export class Onorbitdetails extends APIResource {
    * Service operation to get a single OnorbitDetails record by its unique ID passed
    * as a path parameter. An OnorbitDetails is a collection of additional
    * characteristics on an on-orbit object.
+   *
+   * @example
+   * ```ts
+   * const onorbitdetail = await client.onorbitdetails.get('id');
+   * ```
    */
   get(
     id: string,

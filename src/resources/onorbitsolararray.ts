@@ -16,6 +16,17 @@ export class Onorbitsolararray extends APIResource {
    * may be associated with many different on-orbit spacecraft. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitsolararray.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idOnOrbit: 'ONORBIT-ID',
+   *   idSolarArray: 'SOLARARRAY-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: OnorbitsolararrayCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitsolararray', {
@@ -31,6 +42,17 @@ export class Onorbitsolararray extends APIResource {
    * on-orbit spacecraft. A SolarArray type may be associated with many different
    * on-orbit spacecraft. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitsolararray.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idOnOrbit: 'ONORBIT-ID',
+   *   idSolarArray: 'SOLARARRAY-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: OnorbitsolararrayUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/onorbitsolararray/${pathID}`, {
@@ -45,6 +67,14 @@ export class Onorbitsolararray extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const onorbitsolararrayListResponse of client.onorbitsolararray.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: OnorbitsolararrayListParams | null | undefined = {},
@@ -63,6 +93,11 @@ export class Onorbitsolararray extends APIResource {
    * may be associated with many different on-orbit spacecraft. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitsolararray.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/onorbitsolararray/${id}`, {
@@ -76,6 +111,12 @@ export class Onorbitsolararray extends APIResource {
    * passed as a path parameter. An OnorbitSolarArray is the association between
    * on-orbit spacecraft SolarArrays and a particular on-orbit spacecraft. A
    * SolarArray type may be associated with many different on-orbit spacecraft.
+   *
+   * @example
+   * ```ts
+   * const onorbitsolararray =
+   *   await client.onorbitsolararray.get('id');
+   * ```
    */
   get(
     id: string,

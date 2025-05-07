@@ -23,6 +23,17 @@ export class CollectRequests extends APIResource {
    * Service operation to take a single CollectRequest as a POST body and ingest into
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.collectRequests.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   *   startTime: '2018-01-01T16:00:00.123456Z',
+   *   type: 'DWELL',
+   * });
+   * ```
    */
   create(body: CollectRequestCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/collectrequest', {
@@ -35,6 +46,12 @@ export class CollectRequests extends APIResource {
   /**
    * Service operation to get a single CollectRequest by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const collectRequestFull =
+   *   await client.collectRequests.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -49,6 +66,16 @@ export class CollectRequests extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const collectRequestAbridged of client.collectRequests.list(
+   *   { startTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: CollectRequestListParams,
@@ -66,6 +93,13 @@ export class CollectRequests extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.collectRequests.count({
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: CollectRequestCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/collectrequest/count', {
@@ -81,6 +115,21 @@ export class CollectRequests extends APIResource {
    * not intended to be used for automated feeds into UDL. Data providers should
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.collectRequests.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       source: 'Bluestaq',
+   *       startTime: '2018-01-01T16:00:00.123456Z',
+   *       type: 'DWELL',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: CollectRequestCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -94,6 +143,11 @@ export class CollectRequests extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.collectRequests.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/collectrequest/queryhelp', {
@@ -111,6 +165,15 @@ export class CollectRequests extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const collectRequestFulls =
+   *   await client.collectRequests.tuple({
+   *     columns: 'columns',
+   *     startTime: '2019-12-27T18:11:19.117Z',
+   *   });
+   * ```
    */
   tuple(query: CollectRequestTupleParams, options?: RequestOptions): APIPromise<CollectRequestTupleResponse> {
     return this._client.get('/udl/collectrequest/tuple', { query, ...options });
@@ -121,6 +184,21 @@ export class CollectRequests extends APIResource {
    * into the database. This operation is intended to be used for automated feeds
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.collectRequests.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       source: 'Bluestaq',
+   *       startTime: '2018-01-01T16:00:00.123456Z',
+   *       type: 'DWELL',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: CollectRequestUnvalidatedPublishParams,

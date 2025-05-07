@@ -24,6 +24,18 @@ export class SensorPlan extends APIResource {
    * Service operation to take a single sensor plan as a POST body and ingest into
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sensorPlan.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   recType: 'COLLECT',
+   *   source: 'Bluestaq',
+   *   startTime: '2018-01-01T16:00:00.123456Z',
+   *   type: 'PLAN',
+   * });
+   * ```
    */
   create(body: SensorPlanCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/sensorplan', {
@@ -36,6 +48,18 @@ export class SensorPlan extends APIResource {
   /**
    * Service operation to update a single SensorPlan. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sensorPlan.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   recType: 'COLLECT',
+   *   source: 'Bluestaq',
+   *   startTime: '2018-01-01T16:00:00.123456Z',
+   *   type: 'PLAN',
+   * });
+   * ```
    */
   update(pathID: string, body: SensorPlanUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/sensorplan/${pathID}`, {
@@ -50,6 +74,16 @@ export class SensorPlan extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const sensorPlanListResponse of client.sensorPlan.list(
+   *   { startTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SensorPlanListParams,
@@ -67,6 +101,13 @@ export class SensorPlan extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.sensorPlan.count({
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: SensorPlanCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sensorplan/count', {
@@ -79,6 +120,11 @@ export class SensorPlan extends APIResource {
   /**
    * Service operation to get a single SensorPlan by its unique ID passed as a path
    * parameter.
+   *
+   * @example
+   * ```ts
+   * const sensorPlan = await client.sensorPlan.get('id');
+   * ```
    */
   get(
     id: string,
@@ -91,6 +137,11 @@ export class SensorPlan extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.sensorPlan.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sensorplan/queryhelp', {
@@ -108,6 +159,14 @@ export class SensorPlan extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.sensorPlan.tuple({
+   *   columns: 'columns',
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   tuple(query: SensorPlanTupleParams, options?: RequestOptions): APIPromise<SensorPlanTupleResponse> {
     return this._client.get('/udl/sensorplan/tuple', { query, ...options });
@@ -118,6 +177,22 @@ export class SensorPlan extends APIResource {
    * ingest into the database. This operation is intended to be used for automated
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sensorPlan.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       recType: 'COLLECT',
+   *       source: 'Bluestaq',
+   *       startTime: '2018-01-01T16:00:00.123456Z',
+   *       type: 'PLAN',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: SensorPlanUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

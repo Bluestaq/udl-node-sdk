@@ -12,6 +12,13 @@ export class History extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.groundImagery.history.count({
+   *   imageTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/groundimagery/history/count', {
@@ -26,6 +33,13 @@ export class History extends APIResource {
    * parameters not specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.groundImagery.history.query({
+   *   imageTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   query(query: HistoryQueryParams, options?: RequestOptions): APIPromise<HistoryQueryResponse> {
     return this._client.get('/udl/groundimagery/history', { query, ...options });

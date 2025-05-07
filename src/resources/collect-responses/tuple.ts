@@ -16,6 +16,16 @@ export class Tuple extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const collectResponseFull of client.collectResponses.tuple.list(
+   *   { columns: 'columns', createdAt: '2019-12-27' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: TupleListParams,

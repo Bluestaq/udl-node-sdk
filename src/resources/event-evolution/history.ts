@@ -14,6 +14,14 @@ export class History extends APIResource {
    * parameters not specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const eventEvolutionFull of client.eventEvolution.history.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: HistoryListParams | null | undefined = {},
@@ -31,6 +39,11 @@ export class History extends APIResource {
    * Secure Content Store. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * await client.eventEvolution.history.aodr();
+   * ```
    */
   aodr(query: HistoryAodrParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/eventevolution/history/aodr', {
@@ -46,6 +59,12 @@ export class History extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.eventEvolution.history.count();
+   * ```
    */
   count(query: HistoryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/eventevolution/history/count', {

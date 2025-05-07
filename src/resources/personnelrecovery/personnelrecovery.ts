@@ -16,6 +16,19 @@ export class Personnelrecovery extends APIResource {
    * Service operation to take a single Personnel Recovery object as a POST body and
    * ingest into the database. Requires a specific role, please contact the UDL team
    * to gain access.
+   *
+   * @example
+   * ```ts
+   * await client.personnelrecovery.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   msgTime: '2021-10-15T16:00:00.123Z',
+   *   pickupLat: 75.1234,
+   *   pickupLon: 175.1234,
+   *   source: 'Bluestaq',
+   *   type: 'MEDICAL',
+   * });
+   * ```
    */
   create(body: PersonnelrecoveryCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/personnelrecovery', {
@@ -30,6 +43,16 @@ export class Personnelrecovery extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const personnelrecoveryListResponse of client.personnelrecovery.list(
+   *   { msgTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: PersonnelrecoveryListParams,
@@ -47,6 +70,13 @@ export class Personnelrecovery extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.personnelrecovery.count({
+   *   msgTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: PersonnelrecoveryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/personnelrecovery/count', {
@@ -63,6 +93,23 @@ export class Personnelrecovery extends APIResource {
    * not intended to be used for automated feeds into UDL...data providers should
    * contact the UDL team for instructions on setting up a permanent feed through an
    * alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.personnelrecovery.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       msgTime: '2021-10-15T16:00:00.123Z',
+   *       pickupLat: 75.1234,
+   *       pickupLon: 175.1234,
+   *       source: 'Bluestaq',
+   *       type: 'MEDICAL',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: PersonnelrecoveryCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -78,6 +125,23 @@ export class Personnelrecovery extends APIResource {
    * and ingest into the database. Requires a specific role, please contact the UDL
    * team to gain access. This operation is intended to be used for automated feeds
    * into UDL.
+   *
+   * @example
+   * ```ts
+   * await client.personnelrecovery.fileCreate({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       msgTime: '2021-10-15T16:00:00.123Z',
+   *       pickupLat: 75.1234,
+   *       pickupLon: 175.1234,
+   *       source: 'Bluestaq',
+   *       type: 'MEDICAL',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   fileCreate(params: PersonnelrecoveryFileCreateParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -91,6 +155,12 @@ export class Personnelrecovery extends APIResource {
   /**
    * Service operation to get a single PersonnelRecovery by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const personnelRecoveryFullL =
+   *   await client.personnelrecovery.get('id');
+   * ```
    */
   get(
     id: string,
@@ -103,6 +173,11 @@ export class Personnelrecovery extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.personnelrecovery.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/personnelrecovery/queryhelp', {
@@ -120,6 +195,15 @@ export class Personnelrecovery extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const personnelRecoveryFullLs =
+   *   await client.personnelrecovery.tuple({
+   *     columns: 'columns',
+   *     msgTime: '2019-12-27T18:11:19.117Z',
+   *   });
+   * ```
    */
   tuple(
     query: PersonnelrecoveryTupleParams,

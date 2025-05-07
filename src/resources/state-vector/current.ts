@@ -19,6 +19,14 @@ export class Current extends APIResource {
    * information, or explicitly specify the desired source. See the queryhelp
    * operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required
    * query parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const stateVectorAbridged of client.stateVector.current.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: CurrentListParams | null | undefined = {},
@@ -42,6 +50,14 @@ export class Current extends APIResource {
    * information, or explicitly specify the desired source. See the queryhelp
    * operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required
    * query parameter information.
+   *
+   * @example
+   * ```ts
+   * const stateVectorFulls =
+   *   await client.stateVector.current.tuple({
+   *     columns: 'columns',
+   *   });
+   * ```
    */
   tuple(query: CurrentTupleParams, options?: RequestOptions): APIPromise<CurrentTupleResponse> {
     return this._client.get('/udl/statevector/current/tuple', { query, ...options });

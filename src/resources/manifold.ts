@@ -13,6 +13,16 @@ export class Manifold extends APIResource {
    * database. A manifold represents a set of possible/theoretical orbits for an
    * object of interest based on a delta V and delta T. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.manifold.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idObjectOfInterest: 'OBJECTOFINTEREST-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: ManifoldCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/manifold', {
@@ -27,6 +37,16 @@ export class Manifold extends APIResource {
    * possible/theoretical orbits for an object of interest based on a delta V and
    * delta T. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.manifold.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idObjectOfInterest: 'OBJECTOFINTEREST-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: ManifoldUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/manifold/${pathID}`, {
@@ -41,6 +61,14 @@ export class Manifold extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const manifoldListResponse of client.manifold.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: ManifoldListParams | null | undefined = {},
@@ -54,6 +82,11 @@ export class Manifold extends APIResource {
    * parameter. A manifold represents a set of possible/theoretical orbits for an
    * object of interest based on a delta V and delta T. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.manifold.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/manifold/${id}`, {
@@ -68,6 +101,11 @@ export class Manifold extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.manifold.count();
+   * ```
    */
   count(query: ManifoldCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/manifold/count', {
@@ -81,6 +119,20 @@ export class Manifold extends APIResource {
    * Service operation to take multiple Manifolds as a POST body and ingest into the
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.manifold.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       idObjectOfInterest: 'OBJECTOFINTEREST-ID',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: ManifoldCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -95,6 +147,11 @@ export class Manifold extends APIResource {
    * Service operation to get a single Manifold record by its unique ID passed as a
    * path parameter. A manifold represents a set of possible/theoretical orbits for
    * an object of interest based on a delta V and delta T.
+   *
+   * @example
+   * ```ts
+   * const manifold = await client.manifold.get('id');
+   * ```
    */
   get(
     id: string,
@@ -107,6 +164,11 @@ export class Manifold extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.manifold.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/manifold/queryhelp', {
@@ -124,6 +186,13 @@ export class Manifold extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.manifold.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: ManifoldTupleParams, options?: RequestOptions): APIPromise<ManifoldTupleResponse> {
     return this._client.get('/udl/manifold/tuple', { query, ...options });

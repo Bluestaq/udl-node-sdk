@@ -12,6 +12,13 @@ export class Aodr extends APIResource {
    * Secure Content Store. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * await client.collectResponses.history.aodr.list({
+   *   createdAt: '2019-12-27',
+   * });
+   * ```
    */
   list(query: AodrListParams, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/collectresponse/history/aodr', {

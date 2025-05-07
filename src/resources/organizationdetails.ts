@@ -14,6 +14,17 @@ export class Organizationdetails extends APIResource {
    * as a corporation, manufacturer, consortium, government, etc. An organization can
    * have detail records from several sources. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.organizationdetails.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idOrganization: 'ORGANIZATION-ID',
+   *   name: 'some.user',
+   *   source: 'some.user',
+   * });
+   * ```
    */
   create(body: OrganizationdetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/organizationdetails', {
@@ -29,6 +40,17 @@ export class Organizationdetails extends APIResource {
    * consortium, government, etc. An organization can have detail records from
    * several sources. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.organizationdetails.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idOrganization: 'ORGANIZATION-ID',
+   *   name: 'some.user',
+   *   source: 'some.user',
+   * });
+   * ```
    */
   update(pathID: string, body: OrganizationdetailUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/organizationdetails/${pathID}`, {
@@ -43,6 +65,16 @@ export class Organizationdetails extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const organizationdetailListResponse of client.organizationdetails.list(
+   *   { name: 'name' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: OrganizationdetailListParams,
@@ -60,6 +92,11 @@ export class Organizationdetails extends APIResource {
    * corporation, manufacturer, consortium, government, etc. An organization can have
    * detail records from several sources. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.organizationdetails.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/organizationdetails/${id}`, {
@@ -73,6 +110,15 @@ export class Organizationdetails extends APIResource {
    * query parameter. OrganizationDetails represent details of organizations such as
    * a corporation, manufacturer, consortium, government, etc. An organization can
    * have detail records from several sources.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.organizationdetails.findBySource({
+   *     name: 'name',
+   *     source: 'source',
+   *   });
+   * ```
    */
   findBySource(
     query: OrganizationdetailFindBySourceParams,
@@ -86,6 +132,12 @@ export class Organizationdetails extends APIResource {
    * a path parameter. OrganizationDetails represent details of organizations such as
    * a corporation, manufacturer, consortium, government, etc. An organization can
    * have detail records from several sources.
+   *
+   * @example
+   * ```ts
+   * const organizationDetailsFull =
+   *   await client.organizationdetails.get('id');
+   * ```
    */
   get(
     id: string,

@@ -11,6 +11,16 @@ export class AirloadPlans extends APIResource {
    * Service operation to update a single airloadplan record. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airloadPlans.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   estDepTime: '2024-01-01T01:00:00.123Z',
+   *   source: 'source',
+   * });
+   * ```
    */
   update(pathID: string, body: AirloadPlanUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/airloadplan/${pathID}`, {
@@ -24,6 +34,11 @@ export class AirloadPlans extends APIResource {
    * Service operation to delete a airloadplan record specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airloadPlans.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/airloadplan/${id}`, {

@@ -37,6 +37,21 @@ export class AttitudeSets extends APIResource {
    *    + If origObjectId and a valid satNo or idOnOrbit are provided then both the satNo/idOnOrbit and origObjectId will maintain the provided values.
    *    + If only origObjectId is provided then origObjectId will be populated with the posted value.  In this case, no checks are made against existing UDL sat numbers.
    * </h3>
+   *
+   * @example
+   * ```ts
+   * await client.attitudeSets.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   endTime: '2022-07-07T18:00:00.654321Z',
+   *   frame1: 'SCBODY',
+   *   frame2: 'J2000',
+   *   numPoints: 120,
+   *   source: 'Bluestaq',
+   *   startTime: '2022-07-07T16:00:00.123456Z',
+   *   type: 'AEM',
+   * });
+   * ```
    */
   create(body: AttitudeSetCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/attitudeset', {
@@ -51,6 +66,16 @@ export class AttitudeSets extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const attitudesetAbridged of client.attitudeSets.list(
+   *   { startTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: AttitudeSetListParams,
@@ -68,6 +93,13 @@ export class AttitudeSets extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.attitudeSets.count({
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: AttitudeSetCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/attitudeset/count', {
@@ -80,6 +112,11 @@ export class AttitudeSets extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.attitudeSets.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/attitudeset/queryhelp', {
@@ -97,6 +134,14 @@ export class AttitudeSets extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const attitudesetFulls = await client.attitudeSets.tuple({
+   *   columns: 'columns',
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   tuple(query: AttitudeSetTupleParams, options?: RequestOptions): APIPromise<AttitudeSetTupleResponse> {
     return this._client.get('/udl/attitudeset/tuple', { query, ...options });
@@ -119,6 +164,21 @@ export class AttitudeSets extends APIResource {
    *     + If origObjectId and a valid satNo or idOnOrbit are provided then both the satNo/idOnOrbit and origObjectId will maintain the provided values.
    *     + If only origObjectId is provided then origObjectId will be populated with the posted value.  In this case, no checks are made against existing UDL sat numbers.
    * </h3>
+   *
+   * @example
+   * ```ts
+   * await client.attitudeSets.unvalidatedPublish({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   endTime: '2022-07-07T18:00:00.654321Z',
+   *   frame1: 'SCBODY',
+   *   frame2: 'J2000',
+   *   numPoints: 120,
+   *   source: 'Bluestaq',
+   *   startTime: '2022-07-07T16:00:00.123456Z',
+   *   type: 'AEM',
+   * });
+   * ```
    */
   unvalidatedPublish(body: AttitudeSetUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/filedrop/udl-attitudeset', {

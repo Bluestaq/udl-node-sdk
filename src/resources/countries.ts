@@ -12,6 +12,15 @@ export class Countries extends APIResource {
    * Service operation to take a single Country as a POST body and ingest into the
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.countries.create({
+   *   code: 'US',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: CountryCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/country', {
@@ -24,6 +33,11 @@ export class Countries extends APIResource {
   /**
    * Service operation to get a single Country record by its unique code passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const countryFull = await client.countries.retrieve('code');
+   * ```
    */
   retrieve(
     code: string,
@@ -36,6 +50,15 @@ export class Countries extends APIResource {
   /**
    * Service operation to update a single Country. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.countries.update('code', {
+   *   body_code: 'US',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathCode: string, body: CountryUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/country/${pathCode}`, {
@@ -50,6 +73,14 @@ export class Countries extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const countryAbridged of client.countries.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: CountryListParams | null | undefined = {},
@@ -62,6 +93,11 @@ export class Countries extends APIResource {
    * Service operation to delete a Country object specified by the passed code path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.countries.delete('code');
+   * ```
    */
   delete(code: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/country/${code}`, {
@@ -76,6 +112,11 @@ export class Countries extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.countries.count();
+   * ```
    */
   count(query: CountryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/country/count', {
@@ -88,6 +129,11 @@ export class Countries extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.countries.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/country/queryhelp', {
@@ -105,6 +151,13 @@ export class Countries extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const countryFulls = await client.countries.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: CountryTupleParams, options?: RequestOptions): APIPromise<CountryTupleResponse> {
     return this._client.get('/udl/country/tuple', { query, ...options });

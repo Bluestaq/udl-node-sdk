@@ -25,6 +25,19 @@ export class Orbitdetermination extends APIResource {
    * Service operation to take a single OrbitDetermination record as a POST body and
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.orbitdetermination.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   endTime: '2023-08-28T15:20:21.247192Z',
+   *   initialOD: false,
+   *   method: 'BLS',
+   *   source: 'Bluestaq',
+   *   startTime: '2023-08-28T11:20:21.247192Z',
+   * });
+   * ```
    */
   create(body: OrbitdeterminationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/orbitdetermination', {
@@ -39,6 +52,14 @@ export class Orbitdetermination extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const orbitdeterminationListResponse of client.orbitdetermination.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: OrbitdeterminationListParams | null | undefined = {},
@@ -56,6 +77,11 @@ export class Orbitdetermination extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.orbitdetermination.count();
+   * ```
    */
   count(
     query: OrbitdeterminationCountParams | null | undefined = {},
@@ -74,6 +100,23 @@ export class Orbitdetermination extends APIResource {
    * operation is not intended to be used for automated feeds into the UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.orbitdetermination.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       endTime: '2023-08-28T15:20:21.247192Z',
+   *       initialOD: false,
+   *       method: 'BLS',
+   *       source: 'Bluestaq',
+   *       startTime: '2023-08-28T11:20:21.247192Z',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: OrbitdeterminationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -87,6 +130,12 @@ export class Orbitdetermination extends APIResource {
   /**
    * Service operation to get a single OrbitDetermination record by its unique ID
    * passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const orbitdetermination =
+   *   await client.orbitdetermination.get('id');
+   * ```
    */
   get(
     id: string,
@@ -99,6 +148,11 @@ export class Orbitdetermination extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.orbitdetermination.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/orbitdetermination/queryhelp', {
@@ -116,6 +170,13 @@ export class Orbitdetermination extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.orbitdetermination.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(
     query: OrbitdeterminationTupleParams,
@@ -129,6 +190,23 @@ export class Orbitdetermination extends APIResource {
    * ingest into the database. This operation is intended to be used for automated
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.orbitdetermination.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       endTime: '2023-08-28T15:20:21.247192Z',
+   *       initialOD: false,
+   *       method: 'BLS',
+   *       source: 'Bluestaq',
+   *       startTime: '2023-08-28T11:20:21.247192Z',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: OrbitdeterminationUnvalidatedPublishParams,

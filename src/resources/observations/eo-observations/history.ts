@@ -13,6 +13,16 @@ export class History extends APIResource {
    * parameters not specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const eoObservationFull of client.observations.eoObservations.history.list(
+   *   { obTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: HistoryListParams,
@@ -30,6 +40,13 @@ export class History extends APIResource {
    * Secure Content Store. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * await client.observations.eoObservations.history.aodr({
+   *   obTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/eoobservation/history/aodr', {
@@ -45,6 +62,14 @@ export class History extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.observations.eoObservations.history.count({
+   *     obTime: '2019-12-27T18:11:19.117Z',
+   *   });
+   * ```
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/eoobservation/history/count', {

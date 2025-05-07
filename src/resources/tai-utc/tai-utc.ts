@@ -24,6 +24,16 @@ export class TaiUtc extends APIResource {
    * Service operation to take a single TAIUTC object as a POST body and ingest into
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.taiUtc.create({
+   *   adjustmentDate: '2017-01-01T00:00:00.123Z',
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: TaiUtcCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/taiutc', {
@@ -36,6 +46,16 @@ export class TaiUtc extends APIResource {
   /**
    * Service operation to update a single TAIUTC object. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.taiUtc.update('id', {
+   *   adjustmentDate: '2017-01-01T00:00:00.123Z',
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: TaiUtcUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/taiutc/${pathID}`, {
@@ -50,6 +70,16 @@ export class TaiUtc extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const taiUtcListResponse of client.taiUtc.list({
+   *   adjustmentDate: '2019-12-27T18:11:19.117Z',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: TaiUtcListParams,
@@ -63,6 +93,11 @@ export class TaiUtc extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance. Note, delete operations do not remove data
    * from historical or publish/subscribe stores.
+   *
+   * @example
+   * ```ts
+   * await client.taiUtc.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/taiutc/${id}`, {
@@ -77,6 +112,13 @@ export class TaiUtc extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.taiUtc.count({
+   *   adjustmentDate: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: TaiUtcCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/taiutc/count', {
@@ -89,6 +131,11 @@ export class TaiUtc extends APIResource {
   /**
    * Service operation to get a single TAIUTC record by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const taiutcFull = await client.taiUtc.get('id');
+   * ```
    */
   get(
     id: string,
@@ -101,6 +148,11 @@ export class TaiUtc extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.taiUtc.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/taiutc/queryhelp', {
@@ -118,6 +170,14 @@ export class TaiUtc extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const taiutcFulls = await client.taiUtc.tuple({
+   *   adjustmentDate: '2019-12-27T18:11:19.117Z',
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: TaiUtcTupleParams, options?: RequestOptions): APIPromise<TaiUtcTupleResponse> {
     return this._client.get('/udl/taiutc/tuple', { query, ...options });

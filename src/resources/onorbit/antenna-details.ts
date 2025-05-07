@@ -14,6 +14,16 @@ export class AntennaDetails extends APIResource {
    * the database. An antenna may have multiple details records compiled by various
    * sources. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbit.antennaDetails.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idAntenna: 'ANTENNA-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: AntennaDetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/antennadetails', {
@@ -27,6 +37,12 @@ export class AntennaDetails extends APIResource {
    * Service operation to get a single AntennaDetails record by its unique ID passed
    * as a path parameter. An antenna may have multiple details records compiled by
    * various sources.
+   *
+   * @example
+   * ```ts
+   * const antennaDetailsFull =
+   *   await client.onorbit.antennaDetails.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -41,6 +57,16 @@ export class AntennaDetails extends APIResource {
    * multiple details records compiled by various sources. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbit.antennaDetails.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idAntenna: 'ANTENNA-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: AntennaDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/antennadetails/${pathID}`, {
@@ -55,6 +81,14 @@ export class AntennaDetails extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const antennaDetailsAbridged of client.onorbit.antennaDetails.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: AntennaDetailListParams | null | undefined = {},
@@ -71,6 +105,11 @@ export class AntennaDetails extends APIResource {
    * path parameter. An antenna may have multiple details records compiled by various
    * sources. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbit.antennaDetails.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/antennadetails/${id}`, {

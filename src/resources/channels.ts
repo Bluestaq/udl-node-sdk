@@ -13,6 +13,17 @@ export class Channels extends APIResource {
    * database. A Comm payload may have multiple transponders and a transponder may
    * have many channels. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.channels.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idTransponder: 'REF-TRANSPONDER-ID',
+   *   name: 'Example name',
+   *   source: 'system.source',
+   * });
+   * ```
    */
   create(body: ChannelCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/channel', {
@@ -26,6 +37,11 @@ export class Channels extends APIResource {
    * Service operation to get a single Channel record by its unique ID passed as a
    * path parameter. A Comm payload may have multiple transponders and a transponder
    * may have many channels.
+   *
+   * @example
+   * ```ts
+   * const channelFull = await client.channels.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -40,6 +56,17 @@ export class Channels extends APIResource {
    * transponders and a transponder may have many channels. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.channels.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idTransponder: 'REF-TRANSPONDER-ID',
+   *   name: 'Example name',
+   *   source: 'system.source',
+   * });
+   * ```
    */
   update(pathID: string, body: ChannelUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/channel/${pathID}`, {
@@ -54,6 +81,14 @@ export class Channels extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const channelAbridged of client.channels.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: ChannelListParams | null | undefined = {},
@@ -67,6 +102,11 @@ export class Channels extends APIResource {
    * parameter. A Comm payload may have multiple transponders and a transponder may
    * have many channels. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.channels.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/channel/${id}`, {
@@ -81,6 +121,11 @@ export class Channels extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.channels.count();
+   * ```
    */
   count(query: ChannelCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/channel/count', {
@@ -93,6 +138,11 @@ export class Channels extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.channels.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/channel/queryhelp', {
@@ -110,6 +160,13 @@ export class Channels extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const channelFulls = await client.channels.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: ChannelTupleParams, options?: RequestOptions): APIPromise<ChannelTupleResponse> {
     return this._client.get('/udl/channel/tuple', { query, ...options });

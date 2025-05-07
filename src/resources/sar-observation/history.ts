@@ -12,6 +12,14 @@ export class History extends APIResource {
    * parameters not specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * const histories =
+   *   await client.sarObservation.history.retrieve({
+   *     collectionStart: '2019-12-27T18:11:19.117Z',
+   *   });
+   * ```
    */
   retrieve(query: HistoryRetrieveParams, options?: RequestOptions): APIPromise<HistoryRetrieveResponse> {
     return this._client.get('/udl/sarobservation/history', { query, ...options });
@@ -23,6 +31,13 @@ export class History extends APIResource {
    * Secure Content Store. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * await client.sarObservation.history.aodr({
+   *   collectionStart: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sarobservation/history/aodr', {
@@ -38,6 +53,13 @@ export class History extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.sarObservation.history.count({
+   *   collectionStart: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sarobservation/history/count', {

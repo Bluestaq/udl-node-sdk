@@ -12,6 +12,17 @@ export class Country extends APIResource {
    * Service operation to take a single diplomaticclearancecountry record as a POST
    * body and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.diplomaticClearance.country.create({
+   *   classificationMarking: 'U',
+   *   countryCode: 'NL',
+   *   dataMode: 'TEST',
+   *   lastChangedDate: '2024-01-01T16:00:00.123Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: CountryCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/diplomaticclearancecountry', {
@@ -24,6 +35,12 @@ export class Country extends APIResource {
   /**
    * Service operation to get a single diplomaticclearancecountry record by its
    * unique ID passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const country =
+   *   await client.diplomaticClearance.country.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -37,6 +54,17 @@ export class Country extends APIResource {
    * Service operation to update a single diplomaticclearancecountry record. A
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.diplomaticClearance.country.update('id', {
+   *   classificationMarking: 'U',
+   *   countryCode: 'NL',
+   *   dataMode: 'TEST',
+   *   lastChangedDate: '2024-01-01T16:00:00.123Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: CountryUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/diplomaticclearancecountry/${pathID}`, {
@@ -51,6 +79,14 @@ export class Country extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const countryListResponse of client.diplomaticClearance.country.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: CountryListParams | null | undefined = {},
@@ -66,6 +102,11 @@ export class Country extends APIResource {
    * Service operation to delete a diplomaticclearancecountry record specified by the
    * passed ID path parameter. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.diplomaticClearance.country.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/diplomaticclearancecountry/${id}`, {
@@ -80,6 +121,12 @@ export class Country extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.diplomaticClearance.country.count();
+   * ```
    */
   count(query: CountryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/diplomaticclearancecountry/count', {
@@ -95,6 +142,21 @@ export class Country extends APIResource {
    * This operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.diplomaticClearance.country.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       countryCode: 'NL',
+   *       dataMode: 'TEST',
+   *       lastChangedDate: '2024-01-01T16:00:00.123Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: CountryCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -108,6 +170,11 @@ export class Country extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.diplomaticClearance.country.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/diplomaticclearancecountry/queryhelp', {
@@ -125,6 +192,14 @@ export class Country extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.diplomaticClearance.country.tuple({
+   *     columns: 'columns',
+   *   });
+   * ```
    */
   tuple(query: CountryTupleParams, options?: RequestOptions): APIPromise<CountryTupleResponse> {
     return this._client.get('/udl/diplomaticclearancecountry/tuple', { query, ...options });
@@ -135,6 +210,23 @@ export class Country extends APIResource {
    * body and ingest into the database. This operation is intended to be used for
    * automated feeds into UDL. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.diplomaticClearance.country.unvalidatedPublish(
+   *   {
+   *     body: [
+   *       {
+   *         classificationMarking: 'U',
+   *         countryCode: 'NL',
+   *         dataMode: 'TEST',
+   *         lastChangedDate: '2024-01-01T16:00:00.123Z',
+   *         source: 'Bluestaq',
+   *       },
+   *     ],
+   *   },
+   * );
+   * ```
    */
   unvalidatedPublish(params: CountryUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

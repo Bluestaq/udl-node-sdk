@@ -11,6 +11,20 @@ export class Swir extends APIResource {
    * the database. This operation is intended to be used for automated feeds into
    * UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.observations.swir.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       source: 'Bluestaq',
+   *       ts: '2021-01-01T01:01:01.123456Z',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: SwirUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

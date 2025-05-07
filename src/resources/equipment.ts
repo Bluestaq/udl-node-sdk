@@ -13,6 +13,18 @@ export class Equipment extends APIResource {
    * Service operation to take a single equipment record as a POST body and ingest
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.equipment.create({
+   *   classificationMarking: 'U',
+   *   countryCode: 'IQ',
+   *   dataMode: 'TEST',
+   *   lat: 39.019242,
+   *   lon: -104.251659,
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: EquipmentCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/equipment', {
@@ -25,6 +37,11 @@ export class Equipment extends APIResource {
   /**
    * Service operation to get a single equipment record by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const equipmentFull = await client.equipment.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -38,6 +55,18 @@ export class Equipment extends APIResource {
    * Service operation to update a single equipment record. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.equipment.update('id', {
+   *   classificationMarking: 'U',
+   *   countryCode: 'IQ',
+   *   dataMode: 'TEST',
+   *   lat: 39.019242,
+   *   lon: -104.251659,
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: EquipmentUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/equipment/${pathID}`, {
@@ -52,6 +81,14 @@ export class Equipment extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const equipmentAbridged of client.equipment.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: EquipmentListParams | null | undefined = {},
@@ -64,6 +101,11 @@ export class Equipment extends APIResource {
    * Service operation to delete a equipment record specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.equipment.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/equipment/${id}`, {
@@ -78,6 +120,11 @@ export class Equipment extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.equipment.count();
+   * ```
    */
   count(query: EquipmentCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/equipment/count', {
@@ -93,6 +140,22 @@ export class Equipment extends APIResource {
    * not intended to be used for automated feeds into UDL. Data providers should
    * contact the UDL team for specific role assignments and for instructions on
    * setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.equipment.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       countryCode: 'IQ',
+   *       dataMode: 'TEST',
+   *       lat: 39.019242,
+   *       lon: -104.251659,
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: EquipmentCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -106,6 +169,11 @@ export class Equipment extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.equipment.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/equipment/queryhelp', {
@@ -123,6 +191,13 @@ export class Equipment extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const equipmentFulls = await client.equipment.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: EquipmentTupleParams, options?: RequestOptions): APIPromise<EquipmentTupleResponse> {
     return this._client.get('/udl/equipment/tuple', { query, ...options });

@@ -23,6 +23,16 @@ export class AttitudeData extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const attitudeDataAbridged of client.ephemeris.attitudeData.list(
+   *   { asId: 'asId' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: AttitudeDataListParams,
@@ -40,6 +50,13 @@ export class AttitudeData extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.ephemeris.attitudeData.count({
+   *   asId: 'asId',
+   * });
+   * ```
    */
   count(query: AttitudeDataCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/attitudedata/count', {

@@ -20,6 +20,19 @@ export class Evac extends APIResource {
    * Service operation to take a single evac as a POST body and ingest into the
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.evac.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   pickupLat: 75.1234,
+   *   pickupLon: 175.1234,
+   *   reqTime: '2021-10-15T16:00:00.123Z',
+   *   source: 'Bluestaq',
+   *   type: 'REQUEST',
+   * });
+   * ```
    */
   create(body: EvacCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/evac', {
@@ -32,6 +45,11 @@ export class Evac extends APIResource {
   /**
    * Service operation to get a single Evac by its unique ID passed as a path
    * parameter.
+   *
+   * @example
+   * ```ts
+   * const evacFull = await client.evac.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -46,6 +64,16 @@ export class Evac extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const evacAbridged of client.evac.list({
+   *   reqTime: '2019-12-27T18:11:19.117Z',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(query: EvacListParams, options?: RequestOptions): PagePromise<EvacAbridgedsOffsetPage, EvacAbridged> {
     return this._client.getAPIList('/udl/evac', OffsetPage<EvacAbridged>, { query, ...options });
@@ -57,6 +85,13 @@ export class Evac extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.evac.count({
+   *   reqTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: EvacCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/evac/count', {
@@ -72,6 +107,23 @@ export class Evac extends APIResource {
    * intended to be used for automated feeds into UDL. Data providers should contact
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.evac.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       pickupLat: 75.1234,
+   *       pickupLon: 175.1234,
+   *       reqTime: '2021-10-15T16:00:00.123Z',
+   *       source: 'Bluestaq',
+   *       type: 'REQUEST',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: EvacCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -85,6 +137,11 @@ export class Evac extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.evac.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/evac/queryhelp', {
@@ -97,6 +154,23 @@ export class Evac extends APIResource {
    * Service operation to take a list of Evac events as a POST body and ingest into
    * the database. Requires a specific role, please contact the UDL team to gain
    * access. This operation is intended to be used for automated feeds into UDL.
+   *
+   * @example
+   * ```ts
+   * await client.evac.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       pickupLat: 75.1234,
+   *       pickupLon: 175.1234,
+   *       reqTime: '2021-10-15T16:00:00.123Z',
+   *       source: 'Bluestaq',
+   *       type: 'REQUEST',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: EvacUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

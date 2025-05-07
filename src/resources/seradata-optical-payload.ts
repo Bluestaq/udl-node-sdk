@@ -12,6 +12,16 @@ export class SeradataOpticalPayload extends APIResource {
    * Service operation to take a single SeradataOpticalPayload as a POST body and
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.seradataOpticalPayload.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   *   spacecraftId: 'spacecraftId',
+   * });
+   * ```
    */
   create(body: SeradataOpticalPayloadCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/seradataopticalpayload', {
@@ -25,6 +35,16 @@ export class SeradataOpticalPayload extends APIResource {
    * Service operation to update an SeradataOpticalPayload. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.seradataOpticalPayload.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   *   spacecraftId: 'spacecraftId',
+   * });
+   * ```
    */
   update(
     pathID: string,
@@ -43,6 +63,14 @@ export class SeradataOpticalPayload extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const seradataOpticalPayloadListResponse of client.seradataOpticalPayload.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SeradataOpticalPayloadListParams | null | undefined = {},
@@ -59,6 +87,11 @@ export class SeradataOpticalPayload extends APIResource {
    * Service operation to delete an SeradataOpticalPayload specified by the passed ID
    * path parameter. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.seradataOpticalPayload.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/seradataopticalpayload/${id}`, {
@@ -73,6 +106,12 @@ export class SeradataOpticalPayload extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.seradataOpticalPayload.count();
+   * ```
    */
   count(
     query: SeradataOpticalPayloadCountParams | null | undefined = {},
@@ -88,6 +127,12 @@ export class SeradataOpticalPayload extends APIResource {
   /**
    * Service operation to get a single SeradataOpticalPayload by its unique ID passed
    * as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const seradataOpticalPayload =
+   *   await client.seradataOpticalPayload.get('id');
+   * ```
    */
   get(
     id: string,
@@ -100,6 +145,11 @@ export class SeradataOpticalPayload extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.seradataOpticalPayload.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/seradataopticalpayload/queryhelp', {
@@ -117,6 +167,13 @@ export class SeradataOpticalPayload extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.seradataOpticalPayload.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(
     query: SeradataOpticalPayloadTupleParams,

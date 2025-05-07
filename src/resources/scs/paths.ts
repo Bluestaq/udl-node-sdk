@@ -10,6 +10,15 @@ export class Paths extends APIResource {
    * Creates the path and uploads file that is passed. If folder exist it will only
    * create folders that are missing. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * const path = await client.scs.paths.create({
+   *   id: 'id',
+   *   classificationMarking: 'classificationMarking',
+   *   body: fs.createReadStream('path/to/file'),
+   * });
+   * ```
    */
   create(params: PathCreateParams, options?: RequestOptions): APIPromise<string> {
     const { id, classificationMarking, body, description, overwrite, tags } = params;

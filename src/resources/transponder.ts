@@ -14,6 +14,16 @@ export class Transponder extends APIResource {
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance. A Comm payload may have multiple
    * transponders and a transponder may have many channels.
+   *
+   * @example
+   * ```ts
+   * await client.transponder.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idComm: 'REF-COMM-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: TransponderCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/transponder', {
@@ -28,6 +38,16 @@ export class Transponder extends APIResource {
    * perform this service operation. Please contact the UDL team for assistance. A
    * Comm payload may have multiple transponders and a transponder may have many
    * channels.
+   *
+   * @example
+   * ```ts
+   * await client.transponder.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idComm: 'REF-COMM-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: TransponderUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/transponder/${pathID}`, {
@@ -42,6 +62,14 @@ export class Transponder extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const transponderListResponse of client.transponder.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: TransponderListParams | null | undefined = {},
@@ -58,6 +86,11 @@ export class Transponder extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance. A Comm payload may have multiple
    * transponders and a transponder may have many channels.
+   *
+   * @example
+   * ```ts
+   * await client.transponder.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/transponder/${id}`, {
@@ -72,6 +105,11 @@ export class Transponder extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.transponder.count();
+   * ```
    */
   count(query: TransponderCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/transponder/count', {
@@ -85,6 +123,11 @@ export class Transponder extends APIResource {
    * Service operation to get a single Transponder record by its unique ID passed as
    * a path parameter. A Comm payload may have multiple transponders and a
    * transponder may have many channels.
+   *
+   * @example
+   * ```ts
+   * const transponder = await client.transponder.get('id');
+   * ```
    */
   get(
     id: string,
@@ -97,6 +140,11 @@ export class Transponder extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.transponder.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/transponder/queryhelp', {
@@ -114,6 +162,13 @@ export class Transponder extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.transponder.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: TransponderTupleParams, options?: RequestOptions): APIPromise<TransponderTupleResponse> {
     return this._client.get('/udl/transponder/tuple', { query, ...options });

@@ -11,6 +11,12 @@ export class AircraftSorties extends APIResource {
   /**
    * Service operation to get a single AircraftSortie record by its unique ID passed
    * as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const aircraftsortieFull =
+   *   await client.aircraftSorties.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -23,6 +29,16 @@ export class AircraftSorties extends APIResource {
   /**
    * Service operation to update a single AircraftSortie. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.aircraftSorties.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   plannedDepTime: '2021-01-01T01:01:01.123Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: AircraftSortyUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/aircraftsortie/${pathID}`, {
@@ -35,6 +51,11 @@ export class AircraftSorties extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.aircraftSorties.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/aircraftsortie/queryhelp', {
@@ -52,6 +73,15 @@ export class AircraftSorties extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const aircraftsortieFulls =
+   *   await client.aircraftSorties.tuple({
+   *     columns: 'columns',
+   *     plannedDepTime: '2019-12-27T18:11:19.117Z',
+   *   });
+   * ```
    */
   tuple(query: AircraftSortyTupleParams, options?: RequestOptions): APIPromise<AircraftSortyTupleResponse> {
     return this._client.get('/udl/aircraftsortie/tuple', { query, ...options });

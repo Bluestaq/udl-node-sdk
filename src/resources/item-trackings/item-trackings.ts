@@ -23,6 +23,18 @@ export class ItemTrackings extends APIResource {
    * Service operation to take a single itemtracking record as a POST body and ingest
    * into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.itemTrackings.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   scanCode: 'ABC1234',
+   *   scannerId: '2051M',
+   *   source: 'Bluestaq',
+   *   ts: '2023-03-21T14:22:00.123Z',
+   * });
+   * ```
    */
   create(body: ItemTrackingCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/itemtracking', {
@@ -37,6 +49,16 @@ export class ItemTrackings extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const itemTrackingListResponse of client.itemTrackings.list(
+   *   { ts: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: ItemTrackingListParams,
@@ -52,6 +74,11 @@ export class ItemTrackings extends APIResource {
    * Service operation to delete an item tracking object specified by the passed ID
    * path parameter. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.itemTrackings.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/itemtracking/${id}`, {
@@ -66,6 +93,13 @@ export class ItemTrackings extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.itemTrackings.count({
+   *   ts: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: ItemTrackingCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/itemtracking/count', {
@@ -78,6 +112,11 @@ export class ItemTrackings extends APIResource {
   /**
    * Service operation to get a single item tracking record by its unique ID passed
    * as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const itemTracking = await client.itemTrackings.get('id');
+   * ```
    */
   get(
     id: string,
@@ -90,6 +129,11 @@ export class ItemTrackings extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.itemTrackings.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/itemtracking/queryhelp', {
@@ -107,6 +151,14 @@ export class ItemTrackings extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.itemTrackings.tuple({
+   *   columns: 'columns',
+   *   ts: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   tuple(query: ItemTrackingTupleParams, options?: RequestOptions): APIPromise<ItemTrackingTupleResponse> {
     return this._client.get('/udl/itemtracking/tuple', { query, ...options });
@@ -117,6 +169,22 @@ export class ItemTrackings extends APIResource {
    * ingest into the database. This operation is intended to be used for automated
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.itemTrackings.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       scanCode: 'ABC1234',
+   *       scannerId: '2051M',
+   *       source: 'Bluestaq',
+   *       ts: '2023-03-21T14:22:00.123Z',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: ItemTrackingUnvalidatedPublishParams,

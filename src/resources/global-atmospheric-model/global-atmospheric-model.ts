@@ -21,6 +21,12 @@ export class GlobalAtmosphericModel extends APIResource {
   /**
    * Service operation to get a single GlobalAtmosphericModel record by its unique ID
    * passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const globalAtmosphericModel =
+   *   await client.globalAtmosphericModel.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -36,6 +42,13 @@ export class GlobalAtmosphericModel extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.globalAtmosphericModel.count({
+   *   ts: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: GlobalAtmosphericModelCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/globalatmosphericmodel/count', {
@@ -49,6 +62,15 @@ export class GlobalAtmosphericModel extends APIResource {
    * Service operation to get a single GlobalAtmosphericModel compressed data file by
    * its unique ID passed as a path parameter. The compressed data file is returned
    * as an attachment Content-Disposition.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.globalAtmosphericModel.getFile('id');
+   *
+   * const content = await response.blob();
+   * console.log(content);
+   * ```
    */
   getFile(
     id: string,
@@ -68,6 +90,13 @@ export class GlobalAtmosphericModel extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.globalAtmosphericModel.query({
+   *   ts: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   query(
     query: GlobalAtmosphericModelQueryParams,
@@ -79,6 +108,11 @@ export class GlobalAtmosphericModel extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.globalAtmosphericModel.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/globalatmosphericmodel/queryhelp', {
@@ -96,6 +130,14 @@ export class GlobalAtmosphericModel extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.globalAtmosphericModel.tuple({
+   *   columns: 'columns',
+   *   ts: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   tuple(
     query: GlobalAtmosphericModelTupleParams,
@@ -123,6 +165,17 @@ export class GlobalAtmosphericModel extends APIResource {
    * This operation is intended to be used for automated feeds into UDL. A specific
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.globalAtmosphericModel.unvalidatedPublish({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   source: 'Bluestaq',
+   *   ts: '2024-03-01T11:45:00.123Z',
+   *   type: 'Global Total Electron Density',
+   * });
+   * ```
    */
   unvalidatedPublish(
     body: GlobalAtmosphericModelUnvalidatedPublishParams,

@@ -13,6 +13,17 @@ export class LaunchSite extends APIResource {
    * Service operation to take a single launch site as a POST body and ingest into
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.launchSite.create({
+   *   classificationMarking: 'U',
+   *   code: 'SAN MARCO',
+   *   dataMode: 'TEST',
+   *   name: 'Example launch site name',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: LaunchSiteCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/launchsite', {
@@ -25,6 +36,17 @@ export class LaunchSite extends APIResource {
   /**
    * Service operation to update a launch. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.launchSite.update('id', {
+   *   classificationMarking: 'U',
+   *   code: 'SAN MARCO',
+   *   dataMode: 'TEST',
+   *   name: 'Example launch site name',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: LaunchSiteUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/launchsite/${pathID}`, {
@@ -39,6 +61,14 @@ export class LaunchSite extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const launchSiteListResponse of client.launchSite.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: LaunchSiteListParams | null | undefined = {},
@@ -54,6 +84,11 @@ export class LaunchSite extends APIResource {
    * Service operation to delete a launch site specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.launchSite.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/launchsite/${id}`, {
@@ -68,6 +103,11 @@ export class LaunchSite extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.launchSite.count();
+   * ```
    */
   count(query: LaunchSiteCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/launchsite/count', {
@@ -80,6 +120,11 @@ export class LaunchSite extends APIResource {
   /**
    * Service operation to get a single launch site by its unique ID passed as a path
    * parameter.
+   *
+   * @example
+   * ```ts
+   * const launchSite = await client.launchSite.get('id');
+   * ```
    */
   get(
     id: string,
@@ -92,6 +137,11 @@ export class LaunchSite extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.launchSite.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/launchsite/queryhelp', {
@@ -109,6 +159,13 @@ export class LaunchSite extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.launchSite.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: LaunchSiteTupleParams, options?: RequestOptions): APIPromise<LaunchSiteTupleResponse> {
     return this._client.get('/udl/launchsite/tuple', { query, ...options });

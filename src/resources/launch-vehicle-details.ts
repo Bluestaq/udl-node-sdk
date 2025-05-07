@@ -15,6 +15,16 @@ export class LaunchVehicleDetails extends APIResource {
    * and characteristics, compiled by a particular source. A vehicle may have
    * multiple details records from various sources. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.launchVehicleDetails.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idLaunchVehicle: 'LAUNCHVEHICLE-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: LaunchVehicleDetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/launchvehicledetails', {
@@ -30,6 +40,16 @@ export class LaunchVehicleDetails extends APIResource {
    * source. A vehicle may have multiple details records from various sources. A
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.launchVehicleDetails.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idLaunchVehicle: 'LAUNCHVEHICLE-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: LaunchVehicleDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/launchvehicledetails/${pathID}`, {
@@ -44,6 +64,14 @@ export class LaunchVehicleDetails extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const launchVehicleDetailListResponse of client.launchVehicleDetails.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: LaunchVehicleDetailListParams | null | undefined = {},
@@ -61,6 +89,11 @@ export class LaunchVehicleDetails extends APIResource {
    * and characteristics, compiled by a particular source. A vehicle may have
    * multiple details records from various sources. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.launchVehicleDetails.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/launchvehicledetails/${id}`, {
@@ -74,6 +107,12 @@ export class LaunchVehicleDetails extends APIResource {
    * passed as a path parameter. LaunchVehicleDetails represents launch vehicle
    * details and characteristics, compiled by a particular source. A vehicle may have
    * multiple details records from various sources.
+   *
+   * @example
+   * ```ts
+   * const launchVehicleDetail =
+   *   await client.launchVehicleDetails.get('id');
+   * ```
    */
   get(
     id: string,

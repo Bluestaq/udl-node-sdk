@@ -14,6 +14,17 @@ export class EmitterGeolocation extends APIResource {
    * UDL. Data providers should contact the UDL team for specific role assignments
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.emitterGeolocation.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   signalOfInterestType: 'RF',
+   *   source: 'Bluestaq',
+   *   startTime: '2024-05-31T21:12:12.123456Z',
+   * });
+   * ```
    */
   create(body: EmitterGeolocationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/emittergeolocation', {
@@ -26,6 +37,12 @@ export class EmitterGeolocation extends APIResource {
   /**
    * Service operation to get a single RF geolocation by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const emitterGeolocation =
+   *   await client.emitterGeolocation.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -40,6 +57,11 @@ export class EmitterGeolocation extends APIResource {
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance. Note, delete operations do not remove data
    * from historical or publish/subscribe stores.
+   *
+   * @example
+   * ```ts
+   * await client.emitterGeolocation.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/emittergeolocation/${id}`, {
@@ -54,6 +76,13 @@ export class EmitterGeolocation extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.emitterGeolocation.count({
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: EmitterGeolocationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/emittergeolocation/count', {
@@ -69,6 +98,21 @@ export class EmitterGeolocation extends APIResource {
    * intended to be used for automated feeds into UDL. Data providers should contact
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.emitterGeolocation.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       signalOfInterestType: 'RF',
+   *       source: 'Bluestaq',
+   *       startTime: '2024-05-31T21:12:12.123456Z',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: EmitterGeolocationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -84,6 +128,13 @@ export class EmitterGeolocation extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.emitterGeolocation.query({
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   query(
     query: EmitterGeolocationQueryParams,
@@ -95,6 +146,11 @@ export class EmitterGeolocation extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.emitterGeolocation.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/emittergeolocation/queryhelp', {
@@ -112,6 +168,14 @@ export class EmitterGeolocation extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.emitterGeolocation.tuple({
+   *   columns: 'columns',
+   *   startTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   tuple(
     query: EmitterGeolocationTupleParams,
@@ -125,6 +189,21 @@ export class EmitterGeolocation extends APIResource {
    * ingest into the database. This operation is intended to be used for automated
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.emitterGeolocation.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       signalOfInterestType: 'RF',
+   *       source: 'Bluestaq',
+   *       startTime: '2024-05-31T21:12:12.123456Z',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: EmitterGeolocationUnvalidatedPublishParams,

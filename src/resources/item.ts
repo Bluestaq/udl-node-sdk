@@ -12,6 +12,17 @@ export class Item extends APIResource {
    * Service operation to take a single item record as a POST body and ingest into
    * the database. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.item.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   scanCode: '12345ABCD',
+   *   source: 'Bluestaq',
+   *   type: 'CARGO',
+   * });
+   * ```
    */
   create(body: ItemCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/item', {
@@ -25,6 +36,17 @@ export class Item extends APIResource {
    * Service operation to update a single Item. An Item can be cargo, equipment, or a
    * passenger. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.item.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   scanCode: '12345ABCD',
+   *   source: 'Bluestaq',
+   *   type: 'CARGO',
+   * });
+   * ```
    */
   update(pathID: string, body: ItemUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/item/${pathID}`, {
@@ -39,6 +61,14 @@ export class Item extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const itemListResponse of client.item.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: ItemListParams | null | undefined = {},
@@ -51,6 +81,11 @@ export class Item extends APIResource {
    * Service operation to delete a item record specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.item.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/item/${id}`, {
@@ -65,6 +100,11 @@ export class Item extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.item.count();
+   * ```
    */
   count(query: ItemCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/item/count', {
@@ -77,6 +117,11 @@ export class Item extends APIResource {
   /**
    * Service operation to get a single item record by its unique ID passed as a path
    * parameter.
+   *
+   * @example
+   * ```ts
+   * const item = await client.item.get('id');
+   * ```
    */
   get(
     id: string,
@@ -89,6 +134,11 @@ export class Item extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.item.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/item/queryhelp', {
@@ -106,6 +156,13 @@ export class Item extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.item.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: ItemTupleParams, options?: RequestOptions): APIPromise<ItemTupleResponse> {
     return this._client.get('/udl/item/tuple', { query, ...options });
@@ -116,6 +173,21 @@ export class Item extends APIResource {
    * the database. This operation is intended to be used for automated feeds into
    * UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.item.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       scanCode: '12345ABCD',
+   *       source: 'Bluestaq',
+   *       type: 'CARGO',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: ItemUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

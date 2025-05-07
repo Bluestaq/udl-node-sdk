@@ -11,6 +11,24 @@ export class AirspaceControlOrders extends APIResource {
    * and ingest into the database. This operation is intended to be used for
    * automated feeds into UDL. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airOperations.airspaceControlOrders.unvalidatedPublish(
+   *   {
+   *     body: [
+   *       {
+   *         classificationMarking: 'U',
+   *         dataMode: 'TEST',
+   *         opExName: 'DESERT WIND',
+   *         originator: 'USCENTCOM',
+   *         source: 'Bluestaq',
+   *         startTime: '2024-01-07T13:55:43.123Z',
+   *       },
+   *     ],
+   *   },
+   * );
+   * ```
    */
   unvalidatedPublish(
     params: AirspaceControlOrderUnvalidatedPublishParams,

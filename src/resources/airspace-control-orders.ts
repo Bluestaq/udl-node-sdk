@@ -12,6 +12,18 @@ export class AirspaceControlOrders extends APIResource {
    * Service operation to take a single AirspaceControlOrder record as a POST body
    * and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.airspaceControlOrders.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   opExName: 'DESERT WIND',
+   *   originator: 'USCENTCOM',
+   *   source: 'Bluestaq',
+   *   startTime: '2024-01-07T13:55:43.123Z',
+   * });
+   * ```
    */
   create(body: AirspaceControlOrderCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/airspacecontrolorder', {
@@ -24,6 +36,12 @@ export class AirspaceControlOrders extends APIResource {
   /**
    * Service operation to get a single AirspaceControlOrder record by its unique ID
    * passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const airspacecontrolorderFull =
+   *   await client.airspaceControlOrders.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -38,6 +56,14 @@ export class AirspaceControlOrders extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const airspacecontrolorderAbridged of client.airspaceControlOrders.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: AirspaceControlOrderListParams | null | undefined = {},
@@ -55,6 +81,11 @@ export class AirspaceControlOrders extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.airspaceControlOrders.count();
+   * ```
    */
   count(
     query: AirspaceControlOrderCountParams | null | undefined = {},
@@ -73,6 +104,22 @@ export class AirspaceControlOrders extends APIResource {
    * operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.airspaceControlOrders.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       opExName: 'DESERT WIND',
+   *       originator: 'USCENTCOM',
+   *       source: 'Bluestaq',
+   *       startTime: '2024-01-07T13:55:43.123Z',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: AirspaceControlOrderCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -86,6 +133,11 @@ export class AirspaceControlOrders extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.airspaceControlOrders.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/airspacecontrolorder/queryhelp', {
@@ -103,6 +155,14 @@ export class AirspaceControlOrders extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const airspacecontrolorderFulls =
+   *   await client.airspaceControlOrders.tuple({
+   *     columns: 'columns',
+   *   });
+   * ```
    */
   tuple(
     query: AirspaceControlOrderTupleParams,

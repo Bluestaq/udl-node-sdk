@@ -15,6 +15,17 @@ export class Onorbitthruster extends APIResource {
    * spacecraft's engine and a particular on-orbit spacecraft. An Engine type may be
    * associated with many different on-orbit spacecraft. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitthruster.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idEngine: 'ENGINE-ID',
+   *   idOnOrbit: 'ONORBIT-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: OnorbitthrusterCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/onorbitthruster', {
@@ -30,6 +41,17 @@ export class Onorbitthruster extends APIResource {
    * spacecraft. An Engine type may be associated with many different on-orbit
    * spacecraft. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitthruster.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idEngine: 'ENGINE-ID',
+   *   idOnOrbit: 'ONORBIT-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: OnorbitthrusterUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/onorbitthruster/${pathID}`, {
@@ -44,6 +66,14 @@ export class Onorbitthruster extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const onorbitthrusterListResponse of client.onorbitthruster.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: OnorbitthrusterListParams | null | undefined = {},
@@ -61,6 +91,11 @@ export class Onorbitthruster extends APIResource {
    * spacecraft's engine and a particular on-orbit spacecraft. An Engine type may be
    * associated with many different on-orbit spacecraft. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.onorbitthruster.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/onorbitthruster/${id}`, {
@@ -74,6 +109,13 @@ export class Onorbitthruster extends APIResource {
    * as a path parameter. An OnorbitThruster is the association between an on-orbit
    * spacecraft's engine and a particular on-orbit spacecraft. An Engine type may be
    * associated with many different on-orbit spacecraft.
+   *
+   * @example
+   * ```ts
+   * const onorbitthruster = await client.onorbitthruster.get(
+   *   'id',
+   * );
+   * ```
    */
   get(
     id: string,

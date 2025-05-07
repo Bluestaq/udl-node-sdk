@@ -25,6 +25,16 @@ export class LogisticsSupport extends APIResource {
    * Service operation to take a single LogisticsSupport record as a POST body and
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.logisticsSupport.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   rptCreatedTime: '2023-07-13T13:47:00.123Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: LogisticsSupportCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/logisticssupport', {
@@ -38,6 +48,16 @@ export class LogisticsSupport extends APIResource {
    * Service operation to update a single LogisticsSupport record. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.logisticsSupport.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   rptCreatedTime: '2023-07-13T13:47:00.123Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: LogisticsSupportUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/logisticssupport/${pathID}`, {
@@ -52,6 +72,14 @@ export class LogisticsSupport extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const logisticsSupportListResponse of client.logisticsSupport.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: LogisticsSupportListParams | null | undefined = {},
@@ -69,6 +97,11 @@ export class LogisticsSupport extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.logisticsSupport.count();
+   * ```
    */
   count(
     query: LogisticsSupportCountParams | null | undefined = {},
@@ -87,6 +120,20 @@ export class LogisticsSupport extends APIResource {
    * operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.logisticsSupport.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       rptCreatedTime: '2023-07-13T13:47:00.123Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: LogisticsSupportCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -100,6 +147,13 @@ export class LogisticsSupport extends APIResource {
   /**
    * Service operation to get a single LogisticsSupport record by its unique ID
    * passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const logisticsSupport = await client.logisticsSupport.get(
+   *   'id',
+   * );
+   * ```
    */
   get(
     id: string,
@@ -112,6 +166,11 @@ export class LogisticsSupport extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.logisticsSupport.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/logisticssupport/queryhelp', {
@@ -129,6 +188,13 @@ export class LogisticsSupport extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.logisticsSupport.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(
     query: LogisticsSupportTupleParams,
@@ -142,6 +208,20 @@ export class LogisticsSupport extends APIResource {
    * ingest into the database. This operation is intended to be used for automated
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.logisticsSupport.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       rptCreatedTime: '2023-07-13T13:47:00.123Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: LogisticsSupportUnvalidatedPublishParams,

@@ -20,6 +20,16 @@ export class CollectResponses extends APIResource {
    * Service operation to take a single Collect Response object as a POST body and
    * ingest into the database. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.collectResponses.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idRequest: 'REF-REQUEST-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: CollectResponseCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/collectresponse', {
@@ -32,6 +42,12 @@ export class CollectResponses extends APIResource {
   /**
    * Service operation to get a single Collect Response record by its unique ID
    * passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const collectResponseFull =
+   *   await client.collectResponses.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -46,6 +62,16 @@ export class CollectResponses extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const collectResponseAbridged of client.collectResponses.list(
+   *   { createdAt: '2019-12-27' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: CollectResponseListParams,
@@ -63,6 +89,13 @@ export class CollectResponses extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.collectResponses.count({
+   *   createdAt: '2019-12-27',
+   * });
+   * ```
    */
   count(query: CollectResponseCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/collectresponse/count', {
@@ -78,6 +111,20 @@ export class CollectResponses extends APIResource {
    * operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.collectResponses.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       idRequest: 'REF-REQUEST-ID',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: CollectResponseCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -91,6 +138,11 @@ export class CollectResponses extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.collectResponses.queryHelp();
+   * ```
    */
   queryHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/collectresponse/queryhelp', {
@@ -104,6 +156,20 @@ export class CollectResponses extends APIResource {
    * into the database. This operation is intended to be used for automated feeds
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.collectResponses.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       idRequest: 'REF-REQUEST-ID',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: CollectResponseUnvalidatedPublishParams,

@@ -27,6 +27,16 @@ export class Maneuvers extends APIResource {
    * UDL. Data providers should contact the UDL team for specific role assignments
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.maneuvers.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   eventStartTime: '2023-11-16T01:05:16.835689Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: ManeuverCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/maneuver', {
@@ -41,6 +51,16 @@ export class Maneuvers extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const maneuverListResponse of client.maneuvers.list(
+   *   { eventStartTime: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: ManeuverListParams,
@@ -55,6 +75,13 @@ export class Maneuvers extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.maneuvers.count({
+   *   eventStartTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: ManeuverCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/maneuver/count', {
@@ -70,6 +97,20 @@ export class Maneuvers extends APIResource {
    * intended to be used for automated feeds into UDL. Data providers should contact
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.maneuvers.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       eventStartTime: '2023-11-16T01:05:16.835689Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: ManeuverCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -83,6 +124,11 @@ export class Maneuvers extends APIResource {
   /**
    * Service operation to get a single maneuver by its unique ID passed as a path
    * parameter.
+   *
+   * @example
+   * ```ts
+   * const maneuver = await client.maneuvers.get('id');
+   * ```
    */
   get(
     id: string,
@@ -95,6 +141,11 @@ export class Maneuvers extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.maneuvers.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/maneuver/queryhelp', {
@@ -112,6 +163,14 @@ export class Maneuvers extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.maneuvers.tuple({
+   *   columns: 'columns',
+   *   eventStartTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   tuple(query: ManeuverTupleParams, options?: RequestOptions): APIPromise<ManeuverTupleResponse> {
     return this._client.get('/udl/maneuver/tuple', { query, ...options });
@@ -122,6 +181,20 @@ export class Maneuvers extends APIResource {
    * database. This operation is intended to be used for automated feeds into UDL. A
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.maneuvers.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       eventStartTime: '2023-11-16T01:05:16.835689Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: ManeuverUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

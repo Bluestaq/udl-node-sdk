@@ -12,6 +12,18 @@ export class NavigationalObstruction extends APIResource {
    * Service operation to take a single navigational obstruction record as a POST
    * body and ingest into the database. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.navigationalObstruction.create({
+   *   classificationMarking: 'U',
+   *   cycleDate: '2024-06-13',
+   *   dataMode: 'TEST',
+   *   obstacleId: '359655',
+   *   obstacleType: 'V',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: NavigationalObstructionCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/navigationalobstruction', {
@@ -25,6 +37,18 @@ export class NavigationalObstruction extends APIResource {
    * Service operation to update a single navigational obstruction record. A specific
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.navigationalObstruction.update('id', {
+   *   classificationMarking: 'U',
+   *   cycleDate: '2024-06-13',
+   *   dataMode: 'TEST',
+   *   obstacleId: '359655',
+   *   obstacleType: 'V',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(
     pathID: string,
@@ -43,6 +67,14 @@ export class NavigationalObstruction extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const navigationalObstructionListResponse of client.navigationalObstruction.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: NavigationalObstructionListParams | null | undefined = {},
@@ -61,6 +93,12 @@ export class NavigationalObstruction extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.navigationalObstruction.count();
+   * ```
    */
   count(
     query: NavigationalObstructionCountParams | null | undefined = {},
@@ -79,6 +117,22 @@ export class NavigationalObstruction extends APIResource {
    * This operation is not intended to be used for automated feeds into UDL. Data
    * providers should contact the UDL team for specific role assignments and for
    * instructions on setting up a permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.navigationalObstruction.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       cycleDate: '2024-06-13',
+   *       dataMode: 'TEST',
+   *       obstacleId: '359655',
+   *       obstacleType: 'V',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: NavigationalObstructionCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -92,6 +146,12 @@ export class NavigationalObstruction extends APIResource {
   /**
    * Service operation to get a single navigational obstruction record by its unique
    * ID passed as a path parameter.
+   *
+   * @example
+   * ```ts
+   * const navigationalObstruction =
+   *   await client.navigationalObstruction.get('id');
+   * ```
    */
   get(
     id: string,
@@ -104,6 +164,11 @@ export class NavigationalObstruction extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.navigationalObstruction.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/navigationalobstruction/queryhelp', {
@@ -121,6 +186,13 @@ export class NavigationalObstruction extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.navigationalObstruction.tuple(
+   *   { columns: 'columns' },
+   * );
+   * ```
    */
   tuple(
     query: NavigationalObstructionTupleParams,

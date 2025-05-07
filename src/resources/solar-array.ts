@@ -13,6 +13,15 @@ export class SolarArray extends APIResource {
    * Service operation to take a single SolarArray as a POST body and ingest into the
    * database. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.solarArray.create({
+   *   dataMode: 'TEST',
+   *   name: 'Solar1',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: SolarArrayCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/solararray', {
@@ -25,6 +34,15 @@ export class SolarArray extends APIResource {
   /**
    * Service operation to update a single SolarArray. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.solarArray.update('id', {
+   *   dataMode: 'TEST',
+   *   name: 'Solar1',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: SolarArrayUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/solararray/${pathID}`, {
@@ -39,6 +57,14 @@ export class SolarArray extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const solarArrayListResponse of client.solarArray.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SolarArrayListParams | null | undefined = {},
@@ -54,6 +80,11 @@ export class SolarArray extends APIResource {
    * Service operation to delete a SolarArray object specified by the passed ID path
    * parameter. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.solarArray.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/solararray/${id}`, {
@@ -68,6 +99,11 @@ export class SolarArray extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.solarArray.count();
+   * ```
    */
   count(query: SolarArrayCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/solararray/count', {
@@ -80,6 +116,11 @@ export class SolarArray extends APIResource {
   /**
    * Service operation to get a single SolarArray record by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const solarArray = await client.solarArray.get('id');
+   * ```
    */
   get(
     id: string,
@@ -92,6 +133,11 @@ export class SolarArray extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.solarArray.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/solararray/queryhelp', {
@@ -109,6 +155,13 @@ export class SolarArray extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.solarArray.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: SolarArrayTupleParams, options?: RequestOptions): APIPromise<SolarArrayTupleResponse> {
     return this._client.get('/udl/solararray/tuple', { query, ...options });

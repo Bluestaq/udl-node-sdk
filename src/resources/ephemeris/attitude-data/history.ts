@@ -12,6 +12,14 @@ export class History extends APIResource {
    * parameters not specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * const attitudedataFulls =
+   *   await client.ephemeris.attitudeData.history.retrieve({
+   *     asId: 'asId',
+   *   });
+   * ```
    */
   retrieve(query: HistoryRetrieveParams, options?: RequestOptions): APIPromise<HistoryRetrieveResponse> {
     return this._client.get('/udl/attitudedata/history', { query, ...options });
@@ -23,6 +31,13 @@ export class History extends APIResource {
    * Secure Content Store. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * await client.ephemeris.attitudeData.history.aodr({
+   *   asId: 'asId',
+   * });
+   * ```
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/attitudedata/history/aodr', {
@@ -38,6 +53,14 @@ export class History extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.ephemeris.attitudeData.history.count({
+   *     asId: 'asId',
+   *   });
+   * ```
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/attitudedata/history/count', {

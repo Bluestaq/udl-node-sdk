@@ -15,6 +15,16 @@ export class EngineDetails extends APIResource {
    * may have several details records from multiple sources. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.engineDetails.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idEngine: 'ENGINE-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: EngineDetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/enginedetails', {
@@ -29,6 +39,12 @@ export class EngineDetails extends APIResource {
    * as a path parameter. EngineDetails are launch vehicle engine details and
    * performance characteristics/limits compiled by a particular source. A launch
    * vehicle engine may have several details records from multiple sources.
+   *
+   * @example
+   * ```ts
+   * const engineDetailsFull =
+   *   await client.engineDetails.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -44,6 +60,16 @@ export class EngineDetails extends APIResource {
    * particular source. A launch vehicle engine may have several details records from
    * multiple sources. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.engineDetails.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   idEngine: 'ENGINE-ID',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: EngineDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/enginedetails/${pathID}`, {
@@ -58,6 +84,14 @@ export class EngineDetails extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const engineDetailsAbridged of client.engineDetails.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: EngineDetailListParams | null | undefined = {},
@@ -76,6 +110,11 @@ export class EngineDetails extends APIResource {
    * may have several details records from multiple sources. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.engineDetails.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/enginedetails/${id}`, {

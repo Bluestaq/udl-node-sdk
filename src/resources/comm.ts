@@ -15,6 +15,16 @@ export class Comm extends APIResource {
    * database. A Comm is an on-orbit communications payload, including supporting
    * data such as transponders and channels, etc. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.comm.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   name: 'DSCS II C-7-COMM Payload',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: CommCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/comm', {
@@ -28,6 +38,11 @@ export class Comm extends APIResource {
    * Service operation to get a single Comm record by its unique ID passed as a path
    * parameter. A Comm is an on-orbit communications payload, including supporting
    * data such as transponders and channels, etc.
+   *
+   * @example
+   * ```ts
+   * const commFull = await client.comm.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -42,6 +57,16 @@ export class Comm extends APIResource {
    * payload, including supporting data such as transponders and channels, etc. A
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.comm.update('id', {
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   name: 'DSCS II C-7-COMM Payload',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   update(pathID: string, body: CommUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/comm/${pathID}`, {
@@ -56,6 +81,14 @@ export class Comm extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const commAbridged of client.comm.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: CommListParams | null | undefined = {},
@@ -69,6 +102,11 @@ export class Comm extends APIResource {
    * parameter. A Comm is an on-orbit communications payload, including supporting
    * data such as transponders and channels, etc. A specific role is required to
    * perform this service operation. Please contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.comm.delete('id');
+   * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/udl/comm/${id}`, {
@@ -83,6 +121,11 @@ export class Comm extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.comm.count();
+   * ```
    */
   count(query: CommCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/comm/count', {
@@ -95,6 +138,11 @@ export class Comm extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.comm.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/comm/queryhelp', {
@@ -112,6 +160,13 @@ export class Comm extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const commFulls = await client.comm.tuple({
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: CommTupleParams, options?: RequestOptions): APIPromise<CommTupleResponse> {
     return this._client.get('/udl/comm/tuple', { query, ...options });

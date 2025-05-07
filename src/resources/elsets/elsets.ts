@@ -28,6 +28,16 @@ export class Elsets extends APIResource {
    * UDL. Data providers should contact the UDL team for specific role assignments
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.elsets.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   epoch: '2018-01-01T16:00:00.123456Z',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: ElsetCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/elset', {
@@ -40,6 +50,11 @@ export class Elsets extends APIResource {
   /**
    * Service operation to get a single elset by its unique ID passed as a path
    * parameter.
+   *
+   * @example
+   * ```ts
+   * const elset = await client.elsets.retrieve('id');
+   * ```
    */
   retrieve(
     id: string,
@@ -54,6 +69,16 @@ export class Elsets extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const elsetAbridged of client.elsets.list({
+   *   epoch: '2019-12-27T18:11:19.117Z',
+   * })) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: ElsetListParams,
@@ -68,6 +93,13 @@ export class Elsets extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.elsets.count({
+   *   epoch: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: ElsetCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/elset/count', {
@@ -84,6 +116,20 @@ export class Elsets extends APIResource {
    * used for automated feeds into UDL. Data providers should contact the UDL team
    * for specific role assignments and for instructions on setting up a permanent
    * feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.elsets.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       epoch: '2018-01-01T16:00:00.123456Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: ElsetCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body, dupeCheck } = params;
@@ -101,6 +147,16 @@ export class Elsets extends APIResource {
    * UDL. Data providers should contact the UDL team for specific role assignments
    * and for instructions on setting up a permanent feed through an alternate
    * mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.elsets.createBulkFromTle({
+   *   dataMode: 'dataMode',
+   *   makeCurrent: true,
+   *   source: 'source',
+   *   body: 'body',
+   * });
+   * ```
    */
   createBulkFromTle(params: ElsetCreateBulkFromTleParams, options?: RequestOptions): APIPromise<void> {
     const { dataMode, makeCurrent, source, body, autoCreateSats, control, origin, tags } = params;
@@ -115,6 +171,11 @@ export class Elsets extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.elsets.queryCurrentElsetHelp();
+   * ```
    */
   queryCurrentElsetHelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/currentelset/queryhelp', {
@@ -126,6 +187,11 @@ export class Elsets extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.elsets.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/elset/queryhelp', {
@@ -143,6 +209,14 @@ export class Elsets extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const elsets = await client.elsets.tuple({
+   *   columns: 'columns',
+   *   epoch: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   tuple(query: ElsetTupleParams, options?: RequestOptions): APIPromise<ElsetTupleResponse> {
     return this._client.get('/udl/elset/tuple', { query, ...options });
@@ -152,6 +226,20 @@ export class Elsets extends APIResource {
    * Service operation to take elsets as a POST body and ingest into the database
    * with or without dupe detection. Default is no dupe checking. This operation is
    * intended to be used for automated feeds into UDL.
+   *
+   * @example
+   * ```ts
+   * await client.elsets.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       dataMode: 'TEST',
+   *       epoch: '2018-01-01T16:00:00.123456Z',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(params: ElsetUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;

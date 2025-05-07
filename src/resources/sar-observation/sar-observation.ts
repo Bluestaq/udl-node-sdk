@@ -26,6 +26,18 @@ export class SarObservation extends APIResource {
    * into UDL. Data providers should contact the UDL team for specific role
    * assignments and for instructions on setting up a permanent feed through an
    * alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.sarObservation.create({
+   *   classificationMarking: 'U',
+   *   collectionEnd: '2023-04-22T17:38:10.201770Z',
+   *   collectionStart: '2023-04-22T17:35:00.123456Z',
+   *   dataMode: 'TEST',
+   *   sarMode: 'SPOTLIGHT',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: SarObservationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/sarobservation', {
@@ -40,6 +52,16 @@ export class SarObservation extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const sarObservationListResponse of client.sarObservation.list(
+   *   { collectionStart: '2019-12-27T18:11:19.117Z' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SarObservationListParams,
@@ -57,6 +79,13 @@ export class SarObservation extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.sarObservation.count({
+   *   collectionStart: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
    */
   count(query: SarObservationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/sarobservation/count', {
@@ -72,6 +101,22 @@ export class SarObservation extends APIResource {
    * intended to be used for automated feeds into UDL. Data providers should contact
    * the UDL team for specific role assignments and for instructions on setting up a
    * permanent feed through an alternate mechanism.
+   *
+   * @example
+   * ```ts
+   * await client.sarObservation.createBulk({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       collectionEnd: '2023-04-22T17:38:10.201770Z',
+   *       collectionStart: '2023-04-22T17:35:00.123456Z',
+   *       dataMode: 'TEST',
+   *       sarMode: 'SPOTLIGHT',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   createBulk(params: SarObservationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
     const { body } = params;
@@ -85,6 +130,13 @@ export class SarObservation extends APIResource {
   /**
    * Service operation to get a single SAR observations by its unique ID passed as a
    * path parameter.
+   *
+   * @example
+   * ```ts
+   * const sarObservation = await client.sarObservation.get(
+   *   'id',
+   * );
+   * ```
    */
   get(
     id: string,
@@ -97,6 +149,11 @@ export class SarObservation extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.sarObservation.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/sarobservation/queryhelp', {
@@ -114,6 +171,14 @@ export class SarObservation extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const response = await client.sarObservation.tuple({
+   *   collectionStart: '2019-12-27T18:11:19.117Z',
+   *   columns: 'columns',
+   * });
+   * ```
    */
   tuple(query: SarObservationTupleParams, options?: RequestOptions): APIPromise<SarObservationTupleResponse> {
     return this._client.get('/udl/sarobservation/tuple', { query, ...options });
@@ -124,6 +189,22 @@ export class SarObservation extends APIResource {
    * database. This operation is intended to be used for automated feeds into UDL. A
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.sarObservation.unvalidatedPublish({
+   *   body: [
+   *     {
+   *       classificationMarking: 'U',
+   *       collectionEnd: '2023-04-22T17:38:10.201770Z',
+   *       collectionStart: '2023-04-22T17:35:00.123456Z',
+   *       dataMode: 'TEST',
+   *       sarMode: 'SPOTLIGHT',
+   *       source: 'Bluestaq',
+   *     },
+   *   ],
+   * });
+   * ```
    */
   unvalidatedPublish(
     params: SarObservationUnvalidatedPublishParams,

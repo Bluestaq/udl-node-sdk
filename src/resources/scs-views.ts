@@ -9,6 +9,16 @@ import { path } from '../internal/utils/path';
 export class ScsViews extends APIResource {
   /**
    * Return a single file to view in browser.
+   *
+   * @example
+   * ```ts
+   * const scsView = await client.scsViews.retrieve(
+   *   '/Documentation/project.pdf',
+   * );
+   *
+   * const content = await scsView.blob();
+   * console.log(content);
+   * ```
    */
   retrieve(
     id: string,

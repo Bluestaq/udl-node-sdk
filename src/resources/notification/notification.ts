@@ -28,6 +28,17 @@ export class Notification extends APIResource {
    * pulled via Secure Messaging and historical REST services. A specific role is
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
+   *
+   * @example
+   * ```ts
+   * await client.notification.create({
+   *   classificationMarking: 'U',
+   *   dataMode: 'TEST',
+   *   msgBody: 'msgBody',
+   *   msgType: 'msgType',
+   *   source: 'Bluestaq',
+   * });
+   * ```
    */
   create(body: NotificationCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/notification', {
@@ -42,6 +53,16 @@ export class Notification extends APIResource {
    * specified in this API documentation. See the queryhelp operation
    * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
    * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const notificationListResponse of client.notification.list(
+   *   { createdAt: '2019-12-27' },
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: NotificationListParams,
@@ -59,6 +80,13 @@ export class Notification extends APIResource {
    * particular query criteria without retrieving large amounts of data. See the
    * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
    * valid/required query parameter information.
+   *
+   * @example
+   * ```ts
+   * const response = await client.notification.count({
+   *   createdAt: '2019-12-27',
+   * });
+   * ```
    */
   count(query: NotificationCountParams, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/notification/count', {
@@ -81,6 +109,18 @@ export class Notification extends APIResource {
    * through this service may be pulled via Secure Messaging and historical REST
    * services. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
+   *
+   * @example
+   * ```ts
+   * await client.notification.createRaw({
+   *   classificationMarking: 'classificationMarking',
+   *   dataMode: 'dataMode',
+   *   msgType: 'msgType',
+   *   origin: 'origin',
+   *   source: 'source',
+   *   body: '{ "Alert": "Warning",  "Code": 12345 }',
+   * });
+   * ```
    */
   createRaw(params: NotificationCreateRawParams, options?: RequestOptions): APIPromise<void> {
     const { classificationMarking, dataMode, msgType, origin, source, body, msgId, tags } = params;
@@ -95,6 +135,13 @@ export class Notification extends APIResource {
   /**
    * Service operation to get a single notification by its unique ID passed as a path
    * parameter.
+   *
+   * @example
+   * ```ts
+   * const notificationFull = await client.notification.get(
+   *   'id',
+   * );
+   * ```
    */
   get(
     id: string,
@@ -107,6 +154,11 @@ export class Notification extends APIResource {
   /**
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
+   *
+   * @example
+   * ```ts
+   * await client.notification.queryhelp();
+   * ```
    */
   queryhelp(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/notification/queryhelp', {
@@ -124,6 +176,14 @@ export class Notification extends APIResource {
    * information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
+   *
+   * @example
+   * ```ts
+   * const notificationFulls = await client.notification.tuple({
+   *   columns: 'columns',
+   *   createdAt: '2019-12-27',
+   * });
+   * ```
    */
   tuple(query: NotificationTupleParams, options?: RequestOptions): APIPromise<NotificationTupleResponse> {
     return this._client.get('/udl/notification/tuple', { query, ...options });

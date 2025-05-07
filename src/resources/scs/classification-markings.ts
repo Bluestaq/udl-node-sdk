@@ -7,6 +7,12 @@ import { RequestOptions } from '../../internal/request-options';
 export class ClassificationMarkings extends APIResource {
   /**
    * Returns a list of all classification markings appropriate to the current user.
+   *
+   * @example
+   * ```ts
+   * const classificationMarkings =
+   *   await client.scs.classificationMarkings.list();
+   * ```
    */
   list(options?: RequestOptions): APIPromise<ClassificationMarkingListResponse> {
     return this._client.get('/scs/getClassificationMarkings', options);
