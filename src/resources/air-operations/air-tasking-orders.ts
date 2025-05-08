@@ -61,7 +61,7 @@ export class AirTaskingOrders extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const airTaskingOrderListResponse of client.airOperations.airTaskingOrders.list()) {
+   * for await (const airtaskingorderAbridged of client.airOperations.airTaskingOrders.list()) {
    *   // ...
    * }
    * ```
@@ -69,8 +69,8 @@ export class AirTaskingOrders extends APIResource {
   list(
     query: AirTaskingOrderListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<AirTaskingOrderListResponsesOffsetPage, AirTaskingOrderListResponse> {
-    return this._client.getAPIList('/udl/airtaskingorder', OffsetPage<AirTaskingOrderListResponse>, {
+  ): PagePromise<AirtaskingorderAbridgedsOffsetPage, AirtaskingorderAbridged> {
+    return this._client.getAPIList('/udl/airtaskingorder', OffsetPage<AirtaskingorderAbridged>, {
       query,
       ...options,
     });
@@ -177,7 +177,7 @@ export class AirTaskingOrders extends APIResource {
   }
 }
 
-export type AirTaskingOrderListResponsesOffsetPage = OffsetPage<AirTaskingOrderListResponse>;
+export type AirtaskingorderAbridgedsOffsetPage = OffsetPage<AirtaskingorderAbridged>;
 
 /**
  * Beta Version Air Tasking Order: The ATO is used to task air missions, assign
@@ -646,7 +646,7 @@ export namespace AirTaskingOrderFull {
  * Beta Version Air Tasking Order: The ATO is used to task air missions, assign
  * cross force tasking as well as intraservice tasking.
  */
-export interface AirTaskingOrderListResponse {
+export interface AirtaskingorderAbridged {
   /**
    * The effective begin time for this ATO in ISO 8601 UTC format with millisecond
    * precision.
@@ -708,7 +708,7 @@ export interface AirTaskingOrderListResponse {
    * A collection that specifies the tasked country, tasked service, unit and mission
    * level tasking for this ATO.
    */
-  acMsnTasking?: Array<AirTaskingOrderListResponse.AcMsnTasking>;
+  acMsnTasking?: Array<AirtaskingorderAbridged.AcMsnTasking>;
 
   /**
    * Time the row was created in the database.
@@ -730,7 +730,7 @@ export interface AirTaskingOrderListResponse {
    * A collection that details special instructions, important information, guidance,
    * and amplifying information regarding this ATO.
    */
-  genText?: Array<AirTaskingOrderListResponse.GenText>;
+  genText?: Array<AirtaskingorderAbridged.GenText>;
 
   /**
    * The month in which the message originated.
@@ -755,7 +755,7 @@ export interface AirTaskingOrderListResponse {
   /**
    * A collection that specifies the naval flight operations for this ATO.
    */
-  navalFltOps?: Array<AirTaskingOrderListResponse.NavalFltOp>;
+  navalFltOps?: Array<AirtaskingorderAbridged.NavalFltOp>;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -786,7 +786,7 @@ export interface AirTaskingOrderListResponse {
   sourceDL?: string;
 }
 
-export namespace AirTaskingOrderListResponse {
+export namespace AirtaskingorderAbridged {
   /**
    * Collection that specifies the tasked country, tasked service, unit and mission
    * level tasking for this ATO.
@@ -2008,10 +2008,10 @@ export namespace AirTaskingOrderUnvalidatedPublishParams {
 export declare namespace AirTaskingOrders {
   export {
     type AirTaskingOrderFull as AirTaskingOrderFull,
-    type AirTaskingOrderListResponse as AirTaskingOrderListResponse,
+    type AirtaskingorderAbridged as AirtaskingorderAbridged,
     type AirTaskingOrderCountResponse as AirTaskingOrderCountResponse,
     type AirTaskingOrderTupleResponse as AirTaskingOrderTupleResponse,
-    type AirTaskingOrderListResponsesOffsetPage as AirTaskingOrderListResponsesOffsetPage,
+    type AirtaskingorderAbridgedsOffsetPage as AirtaskingorderAbridgedsOffsetPage,
     type AirTaskingOrderCreateParams as AirTaskingOrderCreateParams,
     type AirTaskingOrderRetrieveParams as AirTaskingOrderRetrieveParams,
     type AirTaskingOrderListParams as AirTaskingOrderListParams,
