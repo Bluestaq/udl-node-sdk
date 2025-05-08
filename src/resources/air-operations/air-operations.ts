@@ -8,13 +8,13 @@ import {
   AirTaskingOrderCreateParams,
   AirTaskingOrderFull,
   AirTaskingOrderListParams,
-  AirTaskingOrderListResponse,
-  AirTaskingOrderListResponsesOffsetPage,
   AirTaskingOrderRetrieveParams,
   AirTaskingOrderTupleParams,
   AirTaskingOrderTupleResponse,
   AirTaskingOrderUnvalidatedPublishParams,
   AirTaskingOrders,
+  AirtaskingorderAbridged,
+  AirtaskingorderAbridgedsOffsetPage,
 } from './air-tasking-orders';
 import * as AircraftSortieAPI from './aircraft-sortie';
 import {
@@ -74,10 +74,10 @@ export declare namespace AirOperations {
   export {
     AirTaskingOrders as AirTaskingOrders,
     type AirTaskingOrderFull as AirTaskingOrderFull,
-    type AirTaskingOrderListResponse as AirTaskingOrderListResponse,
+    type AirtaskingorderAbridged as AirtaskingorderAbridged,
     type AirTaskingOrderCountResponse as AirTaskingOrderCountResponse,
     type AirTaskingOrderTupleResponse as AirTaskingOrderTupleResponse,
-    type AirTaskingOrderListResponsesOffsetPage as AirTaskingOrderListResponsesOffsetPage,
+    type AirtaskingorderAbridgedsOffsetPage as AirtaskingorderAbridgedsOffsetPage,
     type AirTaskingOrderCreateParams as AirTaskingOrderCreateParams,
     type AirTaskingOrderRetrieveParams as AirTaskingOrderRetrieveParams,
     type AirTaskingOrderListParams as AirTaskingOrderListParams,

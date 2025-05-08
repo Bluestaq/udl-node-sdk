@@ -65,7 +65,7 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/air-operations/air-tasking-orders.ts">AirTaskingOrderFull</a></code>
-- <code><a href="./src/resources/air-operations/air-tasking-orders.ts">AirTaskingOrderListResponse</a></code>
+- <code><a href="./src/resources/air-operations/air-tasking-orders.ts">AirtaskingorderAbridged</a></code>
 - <code><a href="./src/resources/air-operations/air-tasking-orders.ts">AirTaskingOrderCountResponse</a></code>
 - <code><a href="./src/resources/air-operations/air-tasking-orders.ts">AirTaskingOrderTupleResponse</a></code>
 
@@ -73,7 +73,7 @@ Methods:
 
 - <code title="post /udl/airtaskingorder">client.airOperations.airTaskingOrders.<a href="./src/resources/air-operations/air-tasking-orders.ts">create</a>({ ...params }) -> void</code>
 - <code title="get /udl/airtaskingorder/{id}">client.airOperations.airTaskingOrders.<a href="./src/resources/air-operations/air-tasking-orders.ts">retrieve</a>(id, { ...params }) -> AirTaskingOrderFull</code>
-- <code title="get /udl/airtaskingorder">client.airOperations.airTaskingOrders.<a href="./src/resources/air-operations/air-tasking-orders.ts">list</a>({ ...params }) -> AirTaskingOrderListResponsesOffsetPage</code>
+- <code title="get /udl/airtaskingorder">client.airOperations.airTaskingOrders.<a href="./src/resources/air-operations/air-tasking-orders.ts">list</a>({ ...params }) -> AirtaskingorderAbridgedsOffsetPage</code>
 - <code title="get /udl/airtaskingorder/count">client.airOperations.airTaskingOrders.<a href="./src/resources/air-operations/air-tasking-orders.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/airtaskingorder/queryhelp">client.airOperations.airTaskingOrders.<a href="./src/resources/air-operations/air-tasking-orders.ts">queryHelp</a>() -> void</code>
 - <code title="get /udl/airtaskingorder/tuple">client.airOperations.airTaskingOrders.<a href="./src/resources/air-operations/air-tasking-orders.ts">tuple</a>({ ...params }) -> AirTaskingOrderTupleResponse</code>

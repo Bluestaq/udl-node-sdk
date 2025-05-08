@@ -4,7 +4,7 @@ export { AirOperations } from './air-operations';
 export {
   AirTaskingOrders,
   type AirTaskingOrderFull,
-  type AirTaskingOrderListResponse,
+  type AirtaskingorderAbridged,
   type AirTaskingOrderCountResponse,
   type AirTaskingOrderTupleResponse,
   type AirTaskingOrderCreateParams,
@@ -13,7 +13,7 @@ export {
   type AirTaskingOrderCountParams,
   type AirTaskingOrderTupleParams,
   type AirTaskingOrderUnvalidatedPublishParams,
-  type AirTaskingOrderListResponsesOffsetPage,
+  type AirtaskingorderAbridgedsOffsetPage,
 } from './air-tasking-orders';
 export {
   AircraftSortie,
