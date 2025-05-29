@@ -118,14 +118,11 @@ export class Aircraft extends APIResource {
    *
    * @example
    * ```ts
-   * await client.aircraft.queryhelp();
+   * const response = await client.aircraft.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/aircraft/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<AircraftQueryhelpResponse> {
+    return this._client.get('/udl/aircraft/queryhelp', options);
   }
 
   /**
@@ -475,6 +472,62 @@ export interface AircraftFull {
 
 export type AircraftCountResponse = string;
 
+export interface AircraftQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AircraftQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AircraftQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type AircraftTupleQueryResponse = Array<AircraftFull>;
 
 export interface AircraftCreateParams {
@@ -766,6 +819,7 @@ export declare namespace Aircraft {
     type AircraftAbridged as AircraftAbridged,
     type AircraftFull as AircraftFull,
     type AircraftCountResponse as AircraftCountResponse,
+    type AircraftQueryhelpResponse as AircraftQueryhelpResponse,
     type AircraftTupleQueryResponse as AircraftTupleQueryResponse,
     type AircraftAbridgedsOffsetPage as AircraftAbridgedsOffsetPage,
     type AircraftCreateParams as AircraftCreateParams,

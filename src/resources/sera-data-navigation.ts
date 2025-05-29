@@ -141,14 +141,12 @@ export class SeraDataNavigation extends APIResource {
    *
    * @example
    * ```ts
-   * await client.seraDataNavigation.queryhelp();
+   * const response =
+   *   await client.seraDataNavigation.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/seradatanavigation/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SeraDataNavigationQueryhelpResponse> {
+    return this._client.get('/udl/seradatanavigation/queryhelp', options);
   }
 
   /**
@@ -445,6 +443,62 @@ export interface SeraDataNavigationGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface SeraDataNavigationQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SeraDataNavigationQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SeraDataNavigationQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type SeraDataNavigationTupleResponse =
@@ -840,6 +894,7 @@ export declare namespace SeraDataNavigation {
     type SeraDataNavigationListResponse as SeraDataNavigationListResponse,
     type SeraDataNavigationCountResponse as SeraDataNavigationCountResponse,
     type SeraDataNavigationGetResponse as SeraDataNavigationGetResponse,
+    type SeraDataNavigationQueryhelpResponse as SeraDataNavigationQueryhelpResponse,
     type SeraDataNavigationTupleResponse as SeraDataNavigationTupleResponse,
     type SeraDataNavigationListResponsesOffsetPage as SeraDataNavigationListResponsesOffsetPage,
     type SeraDataNavigationCreateParams as SeraDataNavigationCreateParams,

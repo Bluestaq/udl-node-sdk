@@ -136,14 +136,12 @@ export class AirspaceControlOrders extends APIResource {
    *
    * @example
    * ```ts
-   * await client.airspaceControlOrders.queryHelp();
+   * const response =
+   *   await client.airspaceControlOrders.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/airspacecontrolorder/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<AirspaceControlOrderQueryHelpResponse> {
+    return this._client.get('/udl/airspacecontrolorder/queryhelp', options);
   }
 
   /**
@@ -1272,6 +1270,62 @@ export namespace AirspacecontrolorderFull {
 
 export type AirspaceControlOrderCountResponse = string;
 
+export interface AirspaceControlOrderQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AirspaceControlOrderQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AirspaceControlOrderQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type AirspaceControlOrderTupleResponse = Array<AirspacecontrolorderFull>;
 
 export interface AirspaceControlOrderCreateParams {
@@ -2343,6 +2397,7 @@ export declare namespace AirspaceControlOrders {
     type AirspacecontrolorderAbridged as AirspacecontrolorderAbridged,
     type AirspacecontrolorderFull as AirspacecontrolorderFull,
     type AirspaceControlOrderCountResponse as AirspaceControlOrderCountResponse,
+    type AirspaceControlOrderQueryHelpResponse as AirspaceControlOrderQueryHelpResponse,
     type AirspaceControlOrderTupleResponse as AirspaceControlOrderTupleResponse,
     type AirspacecontrolorderAbridgedsOffsetPage as AirspacecontrolorderAbridgedsOffsetPage,
     type AirspaceControlOrderCreateParams as AirspaceControlOrderCreateParams,

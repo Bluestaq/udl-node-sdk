@@ -141,14 +141,11 @@ export class Channels extends APIResource {
    *
    * @example
    * ```ts
-   * await client.channels.queryhelp();
+   * const response = await client.channels.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/channel/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<ChannelQueryhelpResponse> {
+    return this._client.get('/udl/channel/queryhelp', options);
   }
 
   /**
@@ -456,6 +453,62 @@ export interface ChannelFull {
 
 export type ChannelCountResponse = string;
 
+export interface ChannelQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<ChannelQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace ChannelQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type ChannelTupleResponse = Array<ChannelFull>;
 
 export interface ChannelCreateParams {
@@ -719,6 +772,7 @@ export declare namespace Channels {
     type ChannelAbridged as ChannelAbridged,
     type ChannelFull as ChannelFull,
     type ChannelCountResponse as ChannelCountResponse,
+    type ChannelQueryhelpResponse as ChannelQueryhelpResponse,
     type ChannelTupleResponse as ChannelTupleResponse,
     type ChannelAbridgedsOffsetPage as ChannelAbridgedsOffsetPage,
     type ChannelCreateParams as ChannelCreateParams,

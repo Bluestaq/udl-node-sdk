@@ -139,14 +139,11 @@ export class RfBandType extends APIResource {
    *
    * @example
    * ```ts
-   * await client.rfBandType.queryhelp();
+   * const response = await client.rfBandType.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/rfbandtype/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<RfBandTypeQueryhelpResponse> {
+    return this._client.get('/udl/rfbandtype/queryhelp', options);
   }
 
   /**
@@ -328,6 +325,62 @@ export interface RfBandTypeGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface RfBandTypeQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<RfBandTypeQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace RfBandTypeQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type RfBandTypeTupleResponse = Array<RfBandTypeTupleResponse.RfBandTypeTupleResponseItem>;
@@ -566,6 +619,7 @@ export declare namespace RfBandType {
     type RfBandTypeListResponse as RfBandTypeListResponse,
     type RfBandTypeCountResponse as RfBandTypeCountResponse,
     type RfBandTypeGetResponse as RfBandTypeGetResponse,
+    type RfBandTypeQueryhelpResponse as RfBandTypeQueryhelpResponse,
     type RfBandTypeTupleResponse as RfBandTypeTupleResponse,
     type RfBandTypeListResponsesOffsetPage as RfBandTypeListResponsesOffsetPage,
     type RfBandTypeCreateParams as RfBandTypeCreateParams,

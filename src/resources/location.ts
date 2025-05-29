@@ -141,14 +141,11 @@ export class Location extends APIResource {
    *
    * @example
    * ```ts
-   * await client.location.queryhelp();
+   * const response = await client.location.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/location/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<LocationQueryhelpResponse> {
+    return this._client.get('/udl/location/queryhelp', options);
   }
 
   /**
@@ -476,6 +473,62 @@ export interface LocationListResponse {
 
 export type LocationCountResponse = string;
 
+export interface LocationQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<LocationQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace LocationQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type LocationTupleResponse = Array<LocationFull>;
 
 export interface LocationCreateParams {
@@ -662,6 +715,7 @@ export declare namespace Location {
     type LocationIngest as LocationIngest,
     type LocationListResponse as LocationListResponse,
     type LocationCountResponse as LocationCountResponse,
+    type LocationQueryhelpResponse as LocationQueryhelpResponse,
     type LocationTupleResponse as LocationTupleResponse,
     type LocationListResponsesOffsetPage as LocationListResponsesOffsetPage,
     type LocationCreateParams as LocationCreateParams,

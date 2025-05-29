@@ -2,7 +2,6 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
-import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 
 export class AttitudeData extends APIResource {
@@ -10,11 +9,8 @@ export class AttitudeData extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/attitudedata/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<AttitudeDataQueryHelpResponse> {
+    return this._client.get('/udl/attitudedata/queryhelp', options);
   }
 
   /**
@@ -243,6 +239,62 @@ export interface AttitudedataFull {
   zRate?: Array<number>;
 }
 
+export interface AttitudeDataQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AttitudeDataQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AttitudeDataQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type AttitudeDataTupleResponse = Array<AttitudedataFull>;
 
 export interface AttitudeDataTupleParams {
@@ -267,6 +319,7 @@ export interface AttitudeDataTupleParams {
 export declare namespace AttitudeData {
   export {
     type AttitudedataFull as AttitudedataFull,
+    type AttitudeDataQueryHelpResponse as AttitudeDataQueryHelpResponse,
     type AttitudeDataTupleResponse as AttitudeDataTupleResponse,
     type AttitudeDataTupleParams as AttitudeDataTupleParams,
   };

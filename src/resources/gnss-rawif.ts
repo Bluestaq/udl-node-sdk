@@ -74,11 +74,8 @@ export class GnssRawif extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/gnssrawif/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<GnssRawifQueryhelpResponse> {
+    return this._client.get('/udl/gnssrawif/queryhelp', options);
   }
 
   /**
@@ -711,6 +708,62 @@ export interface GnssRawifGetResponse {
   tags?: Array<string>;
 }
 
+export interface GnssRawifQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<GnssRawifQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace GnssRawifQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type GnssRawifTupleResponse = Array<GnssRawifTupleResponse.GnssRawifTupleResponseItem>;
 
 export namespace GnssRawifTupleResponse {
@@ -1070,6 +1123,7 @@ export declare namespace GnssRawif {
     type GnssRawifListResponse as GnssRawifListResponse,
     type GnssRawifCountResponse as GnssRawifCountResponse,
     type GnssRawifGetResponse as GnssRawifGetResponse,
+    type GnssRawifQueryhelpResponse as GnssRawifQueryhelpResponse,
     type GnssRawifTupleResponse as GnssRawifTupleResponse,
     type GnssRawifListResponsesOffsetPage as GnssRawifListResponsesOffsetPage,
     type GnssRawifListParams as GnssRawifListParams,

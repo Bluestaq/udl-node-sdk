@@ -13,6 +13,7 @@ export {
   Onboardnavigation,
   type OnboardnavigationListResponse,
   type OnboardnavigationCountResponse,
+  type OnboardnavigationQueryhelpResponse,
   type OnboardnavigationTupleResponse,
   type OnboardnavigationListParams,
   type OnboardnavigationCountParams,

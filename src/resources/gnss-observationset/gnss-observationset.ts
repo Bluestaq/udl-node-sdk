@@ -68,11 +68,8 @@ export class GnssObservationset extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/gnssobservationset/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<GnssObservationsetQueryhelpResponse> {
+    return this._client.get('/udl/gnssobservationset/queryhelp', options);
   }
 
   /**
@@ -435,6 +432,62 @@ export namespace GnssObservationsetListResponse {
 }
 
 export type GnssObservationsetCountResponse = string;
+
+export interface GnssObservationsetQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<GnssObservationsetQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace GnssObservationsetQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type GnssObservationsetTupleResponse = Array<HistoryAPI.GnssObservationSetFull>;
 
@@ -1097,6 +1150,7 @@ export declare namespace GnssObservationset {
   export {
     type GnssObservationsetListResponse as GnssObservationsetListResponse,
     type GnssObservationsetCountResponse as GnssObservationsetCountResponse,
+    type GnssObservationsetQueryhelpResponse as GnssObservationsetQueryhelpResponse,
     type GnssObservationsetTupleResponse as GnssObservationsetTupleResponse,
     type GnssObservationsetListResponsesOffsetPage as GnssObservationsetListResponsesOffsetPage,
     type GnssObservationsetListParams as GnssObservationsetListParams,

@@ -151,14 +151,12 @@ export class RfObservation extends APIResource {
    *
    * @example
    * ```ts
-   * await client.observations.rfObservation.queryhelp();
+   * const response =
+   *   await client.observations.rfObservation.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/rfobservation/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<RfObservationQueryhelpResponse> {
+    return this._client.get('/udl/rfobservation/queryhelp', options);
   }
 
   /**
@@ -1307,6 +1305,62 @@ export interface RfObservationGetResponse {
    * Video bandwidth in Hz.
    */
   videoBandwidth?: number;
+}
+
+export interface RfObservationQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<RfObservationQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace RfObservationQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type RfObservationTupleResponse = Array<RfObservationTupleResponse.RfObservationTupleResponseItem>;
@@ -3547,6 +3601,7 @@ export declare namespace RfObservation {
     type RfObservationListResponse as RfObservationListResponse,
     type RfObservationCountResponse as RfObservationCountResponse,
     type RfObservationGetResponse as RfObservationGetResponse,
+    type RfObservationQueryhelpResponse as RfObservationQueryhelpResponse,
     type RfObservationTupleResponse as RfObservationTupleResponse,
     type RfObservationListResponsesOffsetPage as RfObservationListResponsesOffsetPage,
     type RfObservationCreateParams as RfObservationCreateParams,

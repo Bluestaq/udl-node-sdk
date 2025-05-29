@@ -24,9 +24,16 @@ export const tool: Tool = {
         description:
           "Path to create. Will attempt to create all folders in the path that do not exist. Must start and end with '/'.",
       },
+      sendNotification: {
+        type: 'boolean',
+        description: 'Whether or not to send a notification that this folder was created.',
+      },
       classificationMarking: {
         type: 'string',
         description: 'Classification marking of the folder or file in IC/CAPCO portion-marked format.',
+      },
+      deleteOn: {
+        type: 'integer',
       },
       description: {
         type: 'string',

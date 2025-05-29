@@ -13,6 +13,7 @@ export {
   TrackRoute,
   type TrackRouteListResponse,
   type TrackRouteCountResponse,
+  type TrackRouteQueryhelpResponse,
   type TrackRouteTupleResponse,
   type TrackRouteCreateParams,
   type TrackRouteUpdateParams,

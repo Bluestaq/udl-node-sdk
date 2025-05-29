@@ -143,14 +143,11 @@ export class Engines extends APIResource {
    *
    * @example
    * ```ts
-   * await client.engines.queryhelp();
+   * const response = await client.engines.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/engine/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<EngineQueryhelpResponse> {
+    return this._client.get('/udl/engine/queryhelp', options);
   }
 
   /**
@@ -335,6 +332,62 @@ export interface EngineAbridged {
 
 export type EngineCountResponse = string;
 
+export interface EngineQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<EngineQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace EngineQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type EngineTupleResponse = Array<Engine>;
 
 export interface EngineCreateParams {
@@ -466,6 +519,7 @@ export declare namespace Engines {
     type Engine as Engine,
     type EngineAbridged as EngineAbridged,
     type EngineCountResponse as EngineCountResponse,
+    type EngineQueryhelpResponse as EngineQueryhelpResponse,
     type EngineTupleResponse as EngineTupleResponse,
     type EngineAbridgedsOffsetPage as EngineAbridgedsOffsetPage,
     type EngineCreateParams as EngineCreateParams,

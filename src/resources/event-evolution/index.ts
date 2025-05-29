@@ -4,6 +4,7 @@ export {
   EventEvolution,
   type EventEvolutionListResponse,
   type EventEvolutionCountResponse,
+  type EventEvolutionQueryhelpResponse,
   type EventEvolutionTupleResponse,
   type EventEvolutionCreateParams,
   type EventEvolutionRetrieveParams,

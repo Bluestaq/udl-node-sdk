@@ -133,14 +133,11 @@ export class Poi extends APIResource {
    *
    * @example
    * ```ts
-   * await client.poi.queryhelp();
+   * const response = await client.poi.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/poi/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<PoiQueryhelpResponse> {
+    return this._client.get('/udl/poi/queryhelp', options);
   }
 
   /**
@@ -824,6 +821,62 @@ export interface PoiGetResponse {
    * List of URLs to before/after images of this Point of Interest entity.
    */
   urls?: Array<string>;
+}
+
+export interface PoiQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<PoiQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace PoiQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type PoiTupleResponse = Array<PoiTupleResponse.PoiTupleResponseItem>;
@@ -2131,6 +2184,7 @@ export declare namespace Poi {
     type PoiListResponse as PoiListResponse,
     type PoiCountResponse as PoiCountResponse,
     type PoiGetResponse as PoiGetResponse,
+    type PoiQueryhelpResponse as PoiQueryhelpResponse,
     type PoiTupleResponse as PoiTupleResponse,
     type PoiListResponsesOffsetPage as PoiListResponsesOffsetPage,
     type PoiCreateParams as PoiCreateParams,

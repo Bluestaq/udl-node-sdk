@@ -1276,7 +1276,7 @@ export namespace HistoryRetrieveResponse {
          * The reference frame of the covariance matrix elements. If the covReferenceFrame
          * is null it is assumed to be J2000.
          */
-        covReferenceFrame?: 'J2000' | 'UVW';
+        covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
         /**
          * Time the row was created in the database, auto-populated by the system.

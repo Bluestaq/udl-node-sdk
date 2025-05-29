@@ -169,14 +169,11 @@ export class LogisticsSupport extends APIResource {
    *
    * @example
    * ```ts
-   * await client.logisticsSupport.queryhelp();
+   * const response = await client.logisticsSupport.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/logisticssupport/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<LogisticsSupportQueryhelpResponse> {
+    return this._client.get('/udl/logisticssupport/queryhelp', options);
   }
 
   /**
@@ -1765,6 +1762,62 @@ export namespace LogisticsSupportGetResponse {
        */
       segTailNumber?: string;
     }
+  }
+}
+
+export interface LogisticsSupportQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<LogisticsSupportQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace LogisticsSupportQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -5565,6 +5618,7 @@ export declare namespace LogisticsSupport {
     type LogisticsSupportListResponse as LogisticsSupportListResponse,
     type LogisticsSupportCountResponse as LogisticsSupportCountResponse,
     type LogisticsSupportGetResponse as LogisticsSupportGetResponse,
+    type LogisticsSupportQueryhelpResponse as LogisticsSupportQueryhelpResponse,
     type LogisticsSupportTupleResponse as LogisticsSupportTupleResponse,
     type LogisticsSupportListResponsesOffsetPage as LogisticsSupportListResponsesOffsetPage,
     type LogisticsSupportCreateParams as LogisticsSupportCreateParams,

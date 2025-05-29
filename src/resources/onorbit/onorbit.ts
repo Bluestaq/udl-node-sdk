@@ -166,14 +166,11 @@ export class Onorbit extends APIResource {
    *
    * @example
    * ```ts
-   * await client.onorbit.queryhelp();
+   * const response = await client.onorbit.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/onorbit/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<OnorbitQueryhelpResponse> {
+    return this._client.get('/udl/onorbit/queryhelp', options);
   }
 
   /**
@@ -1457,6 +1454,62 @@ export namespace OnorbitGetSignatureResponse {
   }
 }
 
+export interface OnorbitQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<OnorbitQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace OnorbitQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type OnorbitTupleResponse = Array<Shared.OnorbitFull>;
 
 export interface OnorbitCreateParams {
@@ -1772,6 +1825,7 @@ export declare namespace Onorbit {
     type OnorbitListResponse as OnorbitListResponse,
     type OnorbitCountResponse as OnorbitCountResponse,
     type OnorbitGetSignatureResponse as OnorbitGetSignatureResponse,
+    type OnorbitQueryhelpResponse as OnorbitQueryhelpResponse,
     type OnorbitTupleResponse as OnorbitTupleResponse,
     type OnorbitListResponsesOffsetPage as OnorbitListResponsesOffsetPage,
     type OnorbitCreateParams as OnorbitCreateParams,

@@ -137,14 +137,11 @@ export class Ephemeris extends APIResource {
    *
    * @example
    * ```ts
-   * await client.ephemeris.queryhelp();
+   * const response = await client.ephemeris.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/ephemeris/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<EphemerisQueryhelpResponse> {
+    return this._client.get('/udl/ephemeris/queryhelp', options);
   }
 
   /**
@@ -386,6 +383,62 @@ export interface EphemerisAbridged {
 
 export type EphemerisCountResponse = string;
 
+export interface EphemerisQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<EphemerisQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace EphemerisQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type EphemerisTupleResponse = Array<Shared.EphemerisFull>;
 
 export interface EphemerisListParams extends OffsetPageParams {
@@ -575,7 +628,7 @@ export interface EphemerisUnvalidatedPublishParams {
    * The reference frame of the covariance matrix elements. If the covReferenceFrame
    * is null it is assumed to be J2000.
    */
-  covReferenceFrame?: 'J2000' | 'UVW';
+  covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
   /**
    * Notes/description of the provided ephemeris. A value of DSTOP signifies the
@@ -909,6 +962,7 @@ export declare namespace Ephemeris {
   export {
     type EphemerisAbridged as EphemerisAbridged,
     type EphemerisCountResponse as EphemerisCountResponse,
+    type EphemerisQueryhelpResponse as EphemerisQueryhelpResponse,
     type EphemerisTupleResponse as EphemerisTupleResponse,
     type EphemerisAbridgedsOffsetPage as EphemerisAbridgedsOffsetPage,
     type EphemerisListParams as EphemerisListParams,

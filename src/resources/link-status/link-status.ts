@@ -11,6 +11,7 @@ import {
   DatalinkListParams,
   DatalinkListResponse,
   DatalinkListResponsesOffsetPage,
+  DatalinkQueryhelpResponse,
   DatalinkTupleParams,
   DatalinkTupleResponse,
   DatalinkUnvalidatedPublishParams,
@@ -133,14 +134,11 @@ export class LinkStatus extends APIResource {
    *
    * @example
    * ```ts
-   * await client.linkStatus.queryhelp();
+   * const response = await client.linkStatus.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/linkstatus/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<LinkStatusQueryhelpResponse> {
+    return this._client.get('/udl/linkstatus/queryhelp', options);
   }
 
   /**
@@ -547,6 +545,62 @@ export interface LinkStatusGetResponse {
    * The SYSCAP mission status of the system(s) forming the link.
    */
   sysCap?: string;
+}
+
+export interface LinkStatusQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<LinkStatusQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace LinkStatusQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type LinkStatusTupleResponse = Array<LinkStatusTupleResponse.LinkStatusTupleResponseItem>;
@@ -999,6 +1053,7 @@ export declare namespace LinkStatus {
     type LinkStatusListResponse as LinkStatusListResponse,
     type LinkStatusCountResponse as LinkStatusCountResponse,
     type LinkStatusGetResponse as LinkStatusGetResponse,
+    type LinkStatusQueryhelpResponse as LinkStatusQueryhelpResponse,
     type LinkStatusTupleResponse as LinkStatusTupleResponse,
     type LinkStatusListResponsesOffsetPage as LinkStatusListResponsesOffsetPage,
     type LinkStatusCreateParams as LinkStatusCreateParams,
@@ -1013,6 +1068,7 @@ export declare namespace LinkStatus {
     type DatalinkIngest as DatalinkIngest,
     type DatalinkListResponse as DatalinkListResponse,
     type DatalinkCountResponse as DatalinkCountResponse,
+    type DatalinkQueryhelpResponse as DatalinkQueryhelpResponse,
     type DatalinkTupleResponse as DatalinkTupleResponse,
     type DatalinkListResponsesOffsetPage as DatalinkListResponsesOffsetPage,
     type DatalinkCreateParams as DatalinkCreateParams,

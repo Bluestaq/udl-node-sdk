@@ -70,11 +70,8 @@ export class SpaceEnvObservation extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/spaceenvobservation/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SpaceEnvObservationQueryhelpResponse> {
+    return this._client.get('/udl/spaceenvobservation/queryhelp', options);
   }
 
   /**
@@ -447,6 +444,62 @@ export namespace SpaceEnvObservationListResponse {
 }
 
 export type SpaceEnvObservationCountResponse = string;
+
+export interface SpaceEnvObservationQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SpaceEnvObservationQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SpaceEnvObservationQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type SpaceEnvObservationTupleResponse = Array<HistoryAPI.SpaceEnvObservationFull>;
 
@@ -1124,6 +1177,7 @@ export declare namespace SpaceEnvObservation {
   export {
     type SpaceEnvObservationListResponse as SpaceEnvObservationListResponse,
     type SpaceEnvObservationCountResponse as SpaceEnvObservationCountResponse,
+    type SpaceEnvObservationQueryhelpResponse as SpaceEnvObservationQueryhelpResponse,
     type SpaceEnvObservationTupleResponse as SpaceEnvObservationTupleResponse,
     type SpaceEnvObservationListResponsesOffsetPage as SpaceEnvObservationListResponsesOffsetPage,
     type SpaceEnvObservationListParams as SpaceEnvObservationListParams,

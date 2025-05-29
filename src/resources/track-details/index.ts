@@ -13,6 +13,7 @@ export {
   TrackDetails,
   type TrackDetailListResponse,
   type TrackDetailCountResponse,
+  type TrackDetailQueryhelpResponse,
   type TrackDetailTupleResponse,
   type TrackDetailListParams,
   type TrackDetailCountParams,

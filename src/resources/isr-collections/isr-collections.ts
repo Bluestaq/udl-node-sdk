@@ -70,11 +70,8 @@ export class IsrCollections extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/isrcollection/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<IsrCollectionQueryhelpResponse> {
+    return this._client.get('/udl/isrcollection/queryhelp', options);
   }
 
   /**
@@ -948,6 +945,62 @@ export namespace IsrCollectionListResponse {
 }
 
 export type IsrCollectionCountResponse = string;
+
+export interface IsrCollectionQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<IsrCollectionQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace IsrCollectionQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type IsrCollectionTupleResponse = Array<IsrCollectionTupleResponse.IsrCollectionTupleResponseItem>;
 
@@ -3458,6 +3511,7 @@ export declare namespace IsrCollections {
   export {
     type IsrCollectionListResponse as IsrCollectionListResponse,
     type IsrCollectionCountResponse as IsrCollectionCountResponse,
+    type IsrCollectionQueryhelpResponse as IsrCollectionQueryhelpResponse,
     type IsrCollectionTupleResponse as IsrCollectionTupleResponse,
     type IsrCollectionListResponsesOffsetPage as IsrCollectionListResponsesOffsetPage,
     type IsrCollectionListParams as IsrCollectionListParams,

@@ -11,6 +11,7 @@ export {
   type PersonnelRecoveryFullL,
   type PersonnelrecoveryListResponse,
   type PersonnelrecoveryCountResponse,
+  type PersonnelrecoveryQueryhelpResponse,
   type PersonnelrecoveryTupleResponse,
   type PersonnelrecoveryCreateParams,
   type PersonnelrecoveryListParams,

@@ -4,6 +4,7 @@ export {
   CollectRequests,
   type CollectRequestAbridged,
   type CollectRequestCountResponse,
+  type CollectRequestQueryHelpResponse,
   type CollectRequestTupleResponse,
   type CollectRequestCreateParams,
   type CollectRequestRetrieveParams,

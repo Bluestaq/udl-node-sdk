@@ -152,14 +152,11 @@ export class SarObservation extends APIResource {
    *
    * @example
    * ```ts
-   * await client.sarObservation.queryhelp();
+   * const response = await client.sarObservation.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/sarobservation/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SarObservationQueryhelpResponse> {
+    return this._client.get('/udl/sarobservation/queryhelp', options);
   }
 
   /**
@@ -1089,6 +1086,62 @@ export interface SarObservationGetResponse {
    * Hand Circularly Polarized) Rotating right relative to the earth's surface.
    */
   txPolarization?: string;
+}
+
+export interface SarObservationQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SarObservationQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SarObservationQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type SarObservationTupleResponse = Array<SarObservationTupleResponse.SarObservationTupleResponseItem>;
@@ -2825,6 +2878,7 @@ export declare namespace SarObservation {
     type SarObservationListResponse as SarObservationListResponse,
     type SarObservationCountResponse as SarObservationCountResponse,
     type SarObservationGetResponse as SarObservationGetResponse,
+    type SarObservationQueryhelpResponse as SarObservationQueryhelpResponse,
     type SarObservationTupleResponse as SarObservationTupleResponse,
     type SarObservationListResponsesOffsetPage as SarObservationListResponsesOffsetPage,
     type SarObservationCreateParams as SarObservationCreateParams,

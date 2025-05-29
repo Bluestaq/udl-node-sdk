@@ -13,6 +13,7 @@ export {
   type SiteStatusListResponse,
   type SiteStatusCountResponse,
   type SiteStatusGetResponse,
+  type SiteStatusQueryhelpResponse,
   type SiteStatusTupleResponse,
   type SiteStatusCreateParams,
   type SiteStatusUpdateParams,

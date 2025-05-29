@@ -69,11 +69,8 @@ export class Sigact extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/sigact/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SigactQueryhelpResponse> {
+    return this._client.get('/udl/sigact/queryhelp', options);
   }
 
   /**
@@ -681,6 +678,62 @@ export namespace SigactListResponse {
 }
 
 export type SigactCountResponse = string;
+
+export interface SigactQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SigactQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SigactQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type SigactTupleResponse = Array<SigactTupleResponse.SigactTupleResponseItem>;
 
@@ -1850,6 +1903,7 @@ export declare namespace Sigact {
   export {
     type SigactListResponse as SigactListResponse,
     type SigactCountResponse as SigactCountResponse,
+    type SigactQueryhelpResponse as SigactQueryhelpResponse,
     type SigactTupleResponse as SigactTupleResponse,
     type SigactListResponsesOffsetPage as SigactListResponsesOffsetPage,
     type SigactListParams as SigactListParams,

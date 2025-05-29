@@ -14,6 +14,7 @@ export {
   type SensorMaintenanceCountResponse,
   type SensorMaintenanceCurrentResponse,
   type SensorMaintenanceGetResponse,
+  type SensorMaintenanceQueryhelpResponse,
   type SensorMaintenanceTupleResponse,
   type SensorMaintenanceCreateParams,
   type SensorMaintenanceUpdateParams,

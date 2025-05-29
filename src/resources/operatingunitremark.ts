@@ -134,14 +134,12 @@ export class Operatingunitremark extends APIResource {
    *
    * @example
    * ```ts
-   * await client.operatingunitremark.queryhelp();
+   * const response =
+   *   await client.operatingunitremark.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/operatingunitremark/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<OperatingunitremarkQueryhelpResponse> {
+    return this._client.get('/udl/operatingunitremark/queryhelp', options);
   }
 
   /**
@@ -360,6 +358,62 @@ export interface OperatingunitremarkGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface OperatingunitremarkQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<OperatingunitremarkQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace OperatingunitremarkQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type OperatingunitremarkTupleResponse =
@@ -658,6 +712,7 @@ export declare namespace Operatingunitremark {
     type OperatingunitremarkListResponse as OperatingunitremarkListResponse,
     type OperatingunitremarkCountResponse as OperatingunitremarkCountResponse,
     type OperatingunitremarkGetResponse as OperatingunitremarkGetResponse,
+    type OperatingunitremarkQueryhelpResponse as OperatingunitremarkQueryhelpResponse,
     type OperatingunitremarkTupleResponse as OperatingunitremarkTupleResponse,
     type OperatingunitremarkListResponsesOffsetPage as OperatingunitremarkListResponsesOffsetPage,
     type OperatingunitremarkCreateParams as OperatingunitremarkCreateParams,

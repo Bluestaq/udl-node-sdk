@@ -122,14 +122,11 @@ export class H3Geo extends APIResource {
    *
    * @example
    * ```ts
-   * await client.h3Geo.queryhelp();
+   * const response = await client.h3Geo.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/h3geo/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<H3GeoQueryhelpResponse> {
+    return this._client.get('/udl/h3geo/queryhelp', options);
   }
 
   /**
@@ -530,6 +527,62 @@ export namespace H3GeoGetResponse {
      * assumed to have originated from the primary Enterprise UDL.
      */
     sourceDL?: string;
+  }
+}
+
+export interface H3GeoQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<H3GeoQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace H3GeoQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -1075,6 +1128,7 @@ export declare namespace H3Geo {
     type H3GeoListResponse as H3GeoListResponse,
     type H3GeoCountResponse as H3GeoCountResponse,
     type H3GeoGetResponse as H3GeoGetResponse,
+    type H3GeoQueryhelpResponse as H3GeoQueryhelpResponse,
     type H3GeoTupleResponse as H3GeoTupleResponse,
     type H3GeoListResponsesOffsetPage as H3GeoListResponsesOffsetPage,
     type H3GeoCreateParams as H3GeoCreateParams,

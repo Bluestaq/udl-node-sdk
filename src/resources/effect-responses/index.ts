@@ -5,6 +5,7 @@ export {
   type EffectResponseRetrieveResponse,
   type EffectResponseListResponse,
   type EffectResponseCountResponse,
+  type EffectResponseQueryHelpResponse,
   type EffectResponseTupleResponse,
   type EffectResponseCreateParams,
   type EffectResponseRetrieveParams,

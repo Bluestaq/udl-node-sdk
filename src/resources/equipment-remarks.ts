@@ -134,14 +134,11 @@ export class EquipmentRemarks extends APIResource {
    *
    * @example
    * ```ts
-   * await client.equipmentRemarks.queryHelp();
+   * const response = await client.equipmentRemarks.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/equipmentremark/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<EquipmentRemarkQueryHelpResponse> {
+    return this._client.get('/udl/equipmentremark/queryhelp', options);
   }
 
   /**
@@ -363,6 +360,62 @@ export interface EquipmentRemarkFull {
 
 export type EquipmentRemarkCountResponse = string;
 
+export interface EquipmentRemarkQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<EquipmentRemarkQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace EquipmentRemarkQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type EquipmentRemarkTupleResponse = Array<EquipmentRemarkFull>;
 
 export interface EquipmentRemarkCreateParams {
@@ -556,6 +609,7 @@ export declare namespace EquipmentRemarks {
     type EquipmentRemarkAbridged as EquipmentRemarkAbridged,
     type EquipmentRemarkFull as EquipmentRemarkFull,
     type EquipmentRemarkCountResponse as EquipmentRemarkCountResponse,
+    type EquipmentRemarkQueryHelpResponse as EquipmentRemarkQueryHelpResponse,
     type EquipmentRemarkTupleResponse as EquipmentRemarkTupleResponse,
     type EquipmentRemarkAbridgedsOffsetPage as EquipmentRemarkAbridgedsOffsetPage,
     type EquipmentRemarkCreateParams as EquipmentRemarkCreateParams,

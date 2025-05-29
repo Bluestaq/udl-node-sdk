@@ -148,14 +148,11 @@ export class AirfieldStatus extends APIResource {
    *
    * @example
    * ```ts
-   * await client.airfieldStatus.queryhelp();
+   * const response = await client.airfieldStatus.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/airfieldstatus/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<AirfieldStatusQueryhelpResponse> {
+    return this._client.get('/udl/airfieldstatus/queryhelp', options);
   }
 
   /**
@@ -724,6 +721,62 @@ export interface AirfieldstatusFull {
 
 export type AirfieldStatusCountResponse = string;
 
+export interface AirfieldStatusQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AirfieldStatusQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AirfieldStatusQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type AirfieldStatusTupleResponse = Array<AirfieldstatusFull>;
 
 export interface AirfieldStatusCreateParams {
@@ -1235,6 +1288,7 @@ export declare namespace AirfieldStatus {
     type AirfieldstatusAbridged as AirfieldstatusAbridged,
     type AirfieldstatusFull as AirfieldstatusFull,
     type AirfieldStatusCountResponse as AirfieldStatusCountResponse,
+    type AirfieldStatusQueryhelpResponse as AirfieldStatusQueryhelpResponse,
     type AirfieldStatusTupleResponse as AirfieldStatusTupleResponse,
     type AirfieldstatusAbridgedsOffsetPage as AirfieldstatusAbridgedsOffsetPage,
     type AirfieldStatusCreateParams as AirfieldStatusCreateParams,

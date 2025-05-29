@@ -150,14 +150,11 @@ export class SiteStatus extends APIResource {
    *
    * @example
    * ```ts
-   * await client.siteStatus.queryhelp();
+   * const response = await client.siteStatus.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/sitestatus/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SiteStatusQueryhelpResponse> {
+    return this._client.get('/udl/sitestatus/queryhelp', options);
   }
 
   /**
@@ -765,6 +762,62 @@ export interface SiteStatusGetResponse {
    * Description of the current weather conditions over a site.
    */
   weatherMessage?: string;
+}
+
+export interface SiteStatusQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SiteStatusQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SiteStatusQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type SiteStatusTupleResponse = Array<SiteStatusTupleResponse.SiteStatusTupleResponseItem>;
@@ -1638,6 +1691,7 @@ export declare namespace SiteStatus {
     type SiteStatusListResponse as SiteStatusListResponse,
     type SiteStatusCountResponse as SiteStatusCountResponse,
     type SiteStatusGetResponse as SiteStatusGetResponse,
+    type SiteStatusQueryhelpResponse as SiteStatusQueryhelpResponse,
     type SiteStatusTupleResponse as SiteStatusTupleResponse,
     type SiteStatusListResponsesOffsetPage as SiteStatusListResponsesOffsetPage,
     type SiteStatusCreateParams as SiteStatusCreateParams,

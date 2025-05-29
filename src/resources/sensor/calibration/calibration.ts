@@ -138,14 +138,12 @@ export class Calibration extends APIResource {
    *
    * @example
    * ```ts
-   * await client.sensor.calibration.queryHelp();
+   * const response =
+   *   await client.sensor.calibration.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/sensorcalibration/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<CalibrationQueryHelpResponse> {
+    return this._client.get('/udl/sensorcalibration/queryhelp', options);
   }
 
   /**
@@ -260,43 +258,43 @@ export interface CalibrationRetrieveResponse {
   id?: string;
 
   /**
-   * Sensor azimuth/right-ascension acceleration bias rate, in degrees per second
-   * squared, during sensor operation.
+   * Sensor azimuth/right-ascension acceleration bias, in degrees per second squared.
    */
   azRaAccelBias?: number;
 
   /**
-   * Standard deviation azimuth/right-ascension acceleration bias rate, in degrees
-   * per second squared.
+   * The standard deviation of the azimuth/right ascension acceleration residuals, in
+   * degrees, used to determine the sensor azimuth/right-ascension acceleration bias.
    */
   azRaAccelSigma?: number;
 
   /**
-   * Sensor azimuth/right-ascension bias, in degrees, during sensor operation.
+   * Sensor azimuth/right-ascension bias, in degrees.
    */
   azRaBias?: number;
 
   /**
-   * Sensor azimuth/right-ascension bias rate, in degrees per second, during sensor
-   * operation.
+   * Sensor azimuth/right-ascension rate bias, in degrees per second.
    */
-  azRaBiasRate?: number;
+  azRaRateBias?: number;
 
   /**
-   * The mean azimuth/right-ascension average, in degrees, for the duration span.
+   * The standard deviation of the azimuth/right ascension rate residuals, in
+   * degrees, used to determine the sensor azimuth/right-ascension rate bias.
    */
-  azRaMean?: number;
+  azRaRateSigma?: number;
 
   /**
-   * The root mean square of the azimuth/right-ascension, in degrees, for the
-   * duration span.
+   * The root mean square of the azimuth/right-ascension residuals, in degrees, used
+   * to determine the sensor azimuth/right-ascension bias.
    */
   azRaRms?: number;
 
   /**
-   * Standard deviation azimuth/right-ascension bias rate, in degrees per second.
+   * The standard deviation of the azimuth/right ascension residuals, in degrees,
+   * used to determine the sensor azimuth/right-ascension bias.
    */
-  azRaSigmaRate?: number;
+  azRaSigma?: number;
 
   /**
    * Specifies the calibration reference angle set for this calibration data set.
@@ -345,43 +343,43 @@ export interface CalibrationRetrieveResponse {
   ecr?: Array<number>;
 
   /**
-   * Sensor elevation/declination acceleration bias rate, in degrees per second
-   * squared, during sensor operation.
+   * Sensor elevation/declination acceleration bias, in degrees per second squared.
    */
   elDecAccelBias?: number;
 
   /**
-   * Standard deviation elevation/declination acceleration bias rate, in degrees per
-   * second squared.
+   * The standard deviation of the elevation/declination acceleration residuals, in
+   * degrees, used to determine the sensor elevation/declination acceleration bias.
    */
   elDecAccelSigma?: number;
 
   /**
-   * Sensor elevation/declination bias, in degrees, during sensor operation.
+   * Sensor elevation/declination bias, in degrees.
    */
   elDecBias?: number;
 
   /**
-   * Sensor elevation/declination bias rate, in degrees per second, during sensor
-   * operation.
+   * Sensor elevation/declination rate bias, in degrees per second.
    */
-  elDecBiasRate?: number;
+  elDecRateBias?: number;
 
   /**
-   * The mean elevation/declination residuals, in degrees, for the duration span.
+   * The standard deviation of the elevation/declination rate residuals, in degrees,
+   * used to determine the sensor elevation/declination rate bias.
    */
-  elDecMean?: number;
+  elDecRateSigma?: number;
 
   /**
-   * The root mean square of the elevation/declination, in degrees, for the duration
-   * span.
+   * The root mean square of the elevation/declination residuals, in degrees, used to
+   * determine the sensor elevation/declination bias.
    */
   elDecRms?: number;
 
   /**
-   * Standard deviation elevation/declination bias rate, in degrees per second.
+   * The standard deviation of the elevation/declination residuals, in degrees, used
+   * to determine the sensor elevation/declination bias.
    */
-  elDecSigmaRate?: number;
+  elDecSigma?: number;
 
   /**
    * Calibration data span end time in ISO 8601 UTC format with millisecond
@@ -454,67 +452,69 @@ export interface CalibrationRetrieveResponse {
   origNetwork?: string;
 
   /**
-   * The photometric observation noise bias in visual magnitude.
+   * The sensor photometric observation magnitude bias, in visual magnitude.
    */
   photoBias?: number;
 
   /**
-   * The photometric observation noise standard deviation in visual magnitude.
+   * The standard deviation of the magnitude residuals, in visual magnitude, used to
+   * determine the photometric bias.
    */
   photoSigma?: number;
 
   /**
-   * Sensor range rate bias acceleration, in kilometers per second squared, during
-   * sensor operation.
+   * Sensor range rate acceleration bias, in kilometers per second squared.
    */
   rangeAccelBias?: number;
 
   /**
-   * Standard deviation range rate bias acceleration, in kilometers per second
-   * squared.
+   * The standard deviation of the range acceleration residuals, in kilometers per
+   * second squared, used to determine the sensor range acceleration bias.
    */
   rangeAccelSigma?: number;
 
   /**
-   * Sensor range bias, in kilometers, for the duration span.
+   * Sensor range bias, in kilometers.
    */
   rangeBias?: number;
 
   /**
-   * Sensor range rate bias, in kilometers per second for the duration span.
+   * Sensor range rate bias, in kilometers per second.
    */
   rangeRateBias?: number;
 
   /**
-   * The root mean square of the calibration sensor range rate, in kilometers per
-   * second, for the duration span.
+   * The root mean square of the range rate residuals, in kilometers per second, used
+   * to determine the sensor range rate bias.
    */
   rangeRateRms?: number;
 
   /**
-   * Standard deviation range rate, in kilometers per second, for the duration span.
+   * The standard deviation of the range rate residuals, in kilometers per second,
+   * used to determine the sensor range rate bias.
    */
   rangeRateSigma?: number;
 
   /**
-   * The root mean square of the calibration sensor range, in kilometers, for the
-   * duration span.
+   * The root mean square of the range residuals, in kilometers, used to determine
+   * the sensor range bias.
    */
   rangeRms?: number;
 
   /**
-   * Calibration standard deviation range, in kilometers, for the duration span.
+   * The standard deviation of the range residuals, in kilometers, used to determine
+   * the sensor range bias.
    */
   rangeSigma?: number;
 
   /**
-   * The radar cross section (RCS) observation noise bias in square meters.
+   * The sensor radar cross section (RCS) observation bias, in square meters.
    */
   rcsBias?: number;
 
   /**
-   * The radar cross section (RCS) observation noise standard deviation in square
-   * meters.
+   * The standard deviation of the radar cross section residuals, in square meters,
+   * used to determine the radar cross section bias.
    */
   rcsSigma?: number;
 
@@ -541,12 +541,13 @@ export interface CalibrationRetrieveResponse {
   sourceDL?: string;
 
   /**
-   * Sensor time bias, in seconds, for the duration span.
+   * Sensor time bias, in seconds.
    */
   timeBias?: number;
 
   /**
-   * Standard deviation time, in seconds, for the duration span.
+   * The standard deviation of the time residuals, in seconds, used to determine the
+   * sensor time bias.
    */
   timeBiasSigma?: number;
 }
@@ -612,43 +613,43 @@ export namespace CalibrationQueryResponse {
     id?: string;
 
     /**
-     * Sensor azimuth/right-ascension acceleration bias rate, in degrees per second
-     * squared, during sensor operation.
+     * Sensor azimuth/right-ascension acceleration bias, in degrees per second squared.
      */
     azRaAccelBias?: number;
 
     /**
-     * Standard deviation azimuth/right-ascension acceleration bias rate, in degrees
-     * per second squared.
+     * The standard deviation of the azimuth/right ascension acceleration residuals, in
+     * degrees, used to determine the sensor azimuth/right-ascension acceleration bias.
      */
     azRaAccelSigma?: number;
 
     /**
-     * Sensor azimuth/right-ascension bias, in degrees, during sensor operation.
+     * Sensor azimuth/right-ascension bias, in degrees.
      */
     azRaBias?: number;
 
     /**
-     * Sensor azimuth/right-ascension bias rate, in degrees per second, during sensor
-     * operation.
+     * Sensor azimuth/right-ascension rate bias, in degrees per second.
      */
-    azRaBiasRate?: number;
+    azRaRateBias?: number;
 
     /**
-     * The mean azimuth/right-ascension average, in degrees, for the duration span.
+     * The standard deviation of the azimuth/right ascension rate residuals, in
+     * degrees, used to determine the sensor azimuth/right-ascension rate bias.
      */
-    azRaMean?: number;
+    azRaRateSigma?: number;
 
     /**
-     * The root mean square of the azimuth/right-ascension, in degrees, for the
-     * duration span.
+     * The root mean square of the azimuth/right-ascension residuals, in degrees, used
+     * to determine the sensor azimuth/right-ascension bias.
      */
     azRaRms?: number;
 
     /**
-     * Standard deviation azimuth/right-ascension bias rate, in degrees per second.
+     * The standard deviation of the azimuth/right ascension residuals, in degrees,
+     * used to determine the sensor azimuth/right-ascension bias.
      */
-    azRaSigmaRate?: number;
+    azRaSigma?: number;
 
     /**
      * Specifies the calibration reference angle set for this calibration data set.
@@ -697,43 +698,43 @@ export namespace CalibrationQueryResponse {
     ecr?: Array<number>;
 
     /**
-     * Sensor elevation/declination acceleration bias rate, in degrees per second
-     * squared, during sensor operation.
+     * Sensor elevation/declination acceleration bias, in degrees per second squared.
      */
     elDecAccelBias?: number;
 
     /**
-     * Standard deviation elevation/declination acceleration bias rate, in degrees per
-     * second squared.
+     * The standard deviation of the elevation/declination acceleration residuals, in
+     * degrees, used to determine the sensor elevation/declination acceleration bias.
      */
     elDecAccelSigma?: number;
 
     /**
-     * Sensor elevation/declination bias, in degrees, during sensor operation.
+     * Sensor elevation/declination bias, in degrees.
      */
     elDecBias?: number;
 
     /**
-     * Sensor elevation/declination bias rate, in degrees per second, during sensor
-     * operation.
+     * Sensor elevation/declination rate bias, in degrees per second.
      */
-    elDecBiasRate?: number;
+    elDecRateBias?: number;
 
     /**
-     * The mean elevation/declination residuals, in degrees, for the duration span.
+     * The standard deviation of the elevation/declination rate residuals, in degrees,
+     * used to determine the sensor elevation/declination rate bias.
      */
-    elDecMean?: number;
+    elDecRateSigma?: number;
 
     /**
-     * The root mean square of the elevation/declination, in degrees, for the duration
-     * span.
+     * The root mean square of the elevation/declination residuals, in degrees, used to
+     * determine the sensor elevation/declination bias.
      */
     elDecRms?: number;
 
     /**
-     * Standard deviation elevation/declination bias rate, in degrees per second.
+     * The standard deviation of the elevation/declination residuals, in degrees, used
+     * to determine the sensor elevation/declination bias.
      */
-    elDecSigmaRate?: number;
+    elDecSigma?: number;
 
     /**
      * Calibration data span end time in ISO 8601 UTC format with millisecond
@@ -806,67 +807,69 @@ export namespace CalibrationQueryResponse {
     origNetwork?: string;
 
     /**
-     * The photometric observation noise bias in visual magnitude.
+     * The sensor photometric observation magnitude bias, in visual magnitude.
      */
     photoBias?: number;
 
     /**
-     * The photometric observation noise standard deviation in visual magnitude.
+     * The standard deviation of the magnitude residuals, in visual magnitude, used to
+     * determine the photometric bias.
      */
     photoSigma?: number;
 
     /**
-     * Sensor range rate bias acceleration, in kilometers per second squared, during
-     * sensor operation.
+     * Sensor range rate acceleration bias, in kilometers per second squared.
      */
     rangeAccelBias?: number;
 
     /**
-     * Standard deviation range rate bias acceleration, in kilometers per second
-     * squared.
+     * The standard deviation of the range acceleration residuals, in kilometers per
+     * second squared, used to determine the sensor range acceleration bias.
      */
     rangeAccelSigma?: number;
 
     /**
-     * Sensor range bias, in kilometers, for the duration span.
+     * Sensor range bias, in kilometers.
      */
     rangeBias?: number;
 
     /**
-     * Sensor range rate bias, in kilometers per second for the duration span.
+     * Sensor range rate bias, in kilometers per second.
      */
     rangeRateBias?: number;
 
     /**
-     * The root mean square of the calibration sensor range rate, in kilometers per
-     * second, for the duration span.
+     * The root mean square of the range rate residuals, in kilometers per second, used
+     * to determine the sensor range rate bias.
      */
     rangeRateRms?: number;
 
     /**
-     * Standard deviation range rate, in kilometers per second, for the duration span.
+     * The standard deviation of the range rate residuals, in kilometers per second,
+     * used to determine the sensor range rate bias.
      */
     rangeRateSigma?: number;
 
     /**
-     * The root mean square of the calibration sensor range, in kilometers, for the
-     * duration span.
+     * The root mean square of the range residuals, in kilometers, used to determine
+     * the sensor range bias.
      */
     rangeRms?: number;
 
     /**
-     * Calibration standard deviation range, in kilometers, for the duration span.
+     * The standard deviation of the range residuals, in kilometers, used to determine
+     * the sensor range bias.
      */
     rangeSigma?: number;
 
     /**
-     * The radar cross section (RCS) observation noise bias in square meters.
+     * The sensor radar cross section (RCS) observation bias, in square meters.
      */
     rcsBias?: number;
 
     /**
-     * The radar cross section (RCS) observation noise standard deviation in square
-     * meters.
+     * The standard deviation of the radar cross section residuals, in square meters,
+     * used to determine the radar cross section bias.
      */
     rcsSigma?: number;
 
@@ -893,14 +896,71 @@ export namespace CalibrationQueryResponse {
     sourceDL?: string;
 
     /**
-     * Sensor time bias, in seconds, for the duration span.
+     * Sensor time bias, in seconds.
      */
     timeBias?: number;
 
     /**
-     * Standard deviation time, in seconds, for the duration span.
+     * The standard deviation of the time residuals, in seconds, used to determine the
+     * sensor time bias.
      */
     timeBiasSigma?: number;
+  }
+}
+
+export interface CalibrationQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<CalibrationQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace CalibrationQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -963,43 +1023,43 @@ export namespace CalibrationTupleResponse {
     id?: string;
 
     /**
-     * Sensor azimuth/right-ascension acceleration bias rate, in degrees per second
-     * squared, during sensor operation.
+     * Sensor azimuth/right-ascension acceleration bias, in degrees per second squared.
      */
     azRaAccelBias?: number;
 
     /**
-     * Standard deviation azimuth/right-ascension acceleration bias rate, in degrees
-     * per second squared.
+     * The standard deviation of the azimuth/right ascension acceleration residuals, in
+     * degrees, used to determine the sensor azimuth/right-ascension acceleration bias.
      */
     azRaAccelSigma?: number;
 
     /**
-     * Sensor azimuth/right-ascension bias, in degrees, during sensor operation.
+     * Sensor azimuth/right-ascension bias, in degrees.
      */
     azRaBias?: number;
 
     /**
-     * Sensor azimuth/right-ascension bias rate, in degrees per second, during sensor
-     * operation.
+     * Sensor azimuth/right-ascension rate bias, in degrees per second.
      */
-    azRaBiasRate?: number;
+    azRaRateBias?: number;
 
     /**
-     * The mean azimuth/right-ascension average, in degrees, for the duration span.
+     * The standard deviation of the azimuth/right ascension rate residuals, in
+     * degrees, used to determine the sensor azimuth/right-ascension rate bias.
      */
-    azRaMean?: number;
+    azRaRateSigma?: number;
 
     /**
-     * The root mean square of the azimuth/right-ascension, in degrees, for the
-     * duration span.
+     * The root mean square of the azimuth/right-ascension residuals, in degrees, used
+     * to determine the sensor azimuth/right-ascension bias.
      */
     azRaRms?: number;
 
     /**
-     * Standard deviation azimuth/right-ascension bias rate, in degrees per second.
+     * The standard deviation of the azimuth/right ascension residuals, in degrees,
+     * used to determine the sensor azimuth/right-ascension bias.
      */
-    azRaSigmaRate?: number;
+    azRaSigma?: number;
 
     /**
      * Specifies the calibration reference angle set for this calibration data set.
@@ -1048,43 +1108,43 @@ export namespace CalibrationTupleResponse {
     ecr?: Array<number>;
 
     /**
-     * Sensor elevation/declination acceleration bias rate, in degrees per second
-     * squared, during sensor operation.
+     * Sensor elevation/declination acceleration bias, in degrees per second squared.
      */
     elDecAccelBias?: number;
 
     /**
-     * Standard deviation elevation/declination acceleration bias rate, in degrees per
-     * second squared.
+     * The standard deviation of the elevation/declination acceleration residuals, in
+     * degrees, used to determine the sensor elevation/declination acceleration bias.
      */
     elDecAccelSigma?: number;
 
     /**
-     * Sensor elevation/declination bias, in degrees, during sensor operation.
+     * Sensor elevation/declination bias, in degrees.
      */
     elDecBias?: number;
 
     /**
-     * Sensor elevation/declination bias rate, in degrees per second, during sensor
-     * operation.
+     * Sensor elevation/declination rate bias, in degrees per second.
      */
-    elDecBiasRate?: number;
+    elDecRateBias?: number;
 
     /**
-     * The mean elevation/declination residuals, in degrees, for the duration span.
+     * The standard deviation of the elevation/declination rate residuals, in degrees,
+     * used to determine the sensor elevation/declination rate bias.
      */
-    elDecMean?: number;
+    elDecRateSigma?: number;
 
     /**
-     * The root mean square of the elevation/declination, in degrees, for the duration
-     * span.
+     * The root mean square of the elevation/declination residuals, in degrees, used to
+     * determine the sensor elevation/declination bias.
      */
     elDecRms?: number;
 
     /**
-     * Standard deviation elevation/declination bias rate, in degrees per second.
+     * The standard deviation of the elevation/declination residuals, in degrees, used
+     * to determine the sensor elevation/declination bias.
      */
-    elDecSigmaRate?: number;
+    elDecSigma?: number;
 
     /**
      * Calibration data span end time in ISO 8601 UTC format with millisecond
@@ -1157,67 +1217,69 @@ export namespace CalibrationTupleResponse {
     origNetwork?: string;
 
     /**
-     * The photometric observation noise bias in visual magnitude.
+     * The sensor photometric observation magnitude bias, in visual magnitude.
      */
     photoBias?: number;
 
     /**
-     * The photometric observation noise standard deviation in visual magnitude.
+     * The standard deviation of the magnitude residuals, in visual magnitude, used to
+     * determine the photometric bias.
      */
     photoSigma?: number;
 
     /**
-     * Sensor range rate bias acceleration, in kilometers per second squared, during
-     * sensor operation.
+     * Sensor range rate acceleration bias, in kilometers per second squared.
      */
     rangeAccelBias?: number;
 
     /**
-     * Standard deviation range rate bias acceleration, in kilometers per second
-     * squared.
+     * The standard deviation of the range acceleration residuals, in kilometers per
+     * second squared, used to determine the sensor range acceleration bias.
      */
     rangeAccelSigma?: number;
 
     /**
-     * Sensor range bias, in kilometers, for the duration span.
+     * Sensor range bias, in kilometers.
      */
     rangeBias?: number;
 
     /**
-     * Sensor range rate bias, in kilometers per second for the duration span.
+     * Sensor range rate bias, in kilometers per second.
      */
     rangeRateBias?: number;
 
     /**
-     * The root mean square of the calibration sensor range rate, in kilometers per
-     * second, for the duration span.
+     * The root mean square of the range rate residuals, in kilometers per second, used
+     * to determine the sensor range rate bias.
      */
     rangeRateRms?: number;
 
     /**
-     * Standard deviation range rate, in kilometers per second, for the duration span.
+     * The standard deviation of the range rate residuals, in kilometers per second,
+     * used to determine the sensor range rate bias.
      */
     rangeRateSigma?: number;
 
     /**
-     * The root mean square of the calibration sensor range, in kilometers, for the
-     * duration span.
+     * The root mean square of the range residuals, in kilometers, used to determine
+     * the sensor range bias.
      */
     rangeRms?: number;
 
     /**
-     * Calibration standard deviation range, in kilometers, for the duration span.
+     * The standard deviation of the range residuals, in kilometers, used to determine
+     * the sensor range bias.
      */
     rangeSigma?: number;
 
     /**
-     * The radar cross section (RCS) observation noise bias in square meters.
+     * The sensor radar cross section (RCS) observation bias, in square meters.
      */
     rcsBias?: number;
 
     /**
-     * The radar cross section (RCS) observation noise standard deviation in square
-     * meters.
+     * The standard deviation of the radar cross section residuals, in square meters,
+     * used to determine the radar cross section bias.
      */
     rcsSigma?: number;
 
@@ -1244,12 +1306,13 @@ export namespace CalibrationTupleResponse {
     sourceDL?: string;
 
     /**
-     * Sensor time bias, in seconds, for the duration span.
+     * Sensor time bias, in seconds.
      */
     timeBias?: number;
 
     /**
-     * Standard deviation time, in seconds, for the duration span.
+     * The standard deviation of the time residuals, in seconds, used to determine the
+     * sensor time bias.
      */
     timeBiasSigma?: number;
   }
@@ -1305,43 +1368,43 @@ export interface CalibrationCreateParams {
   id?: string;
 
   /**
-   * Sensor azimuth/right-ascension acceleration bias rate, in degrees per second
-   * squared, during sensor operation.
+   * Sensor azimuth/right-ascension acceleration bias, in degrees per second squared.
    */
   azRaAccelBias?: number;
 
   /**
-   * Standard deviation azimuth/right-ascension acceleration bias rate, in degrees
-   * per second squared.
+   * The standard deviation of the azimuth/right ascension acceleration residuals, in
+   * degrees, used to determine the sensor azimuth/right-ascension acceleration bias.
    */
   azRaAccelSigma?: number;
 
   /**
-   * Sensor azimuth/right-ascension bias, in degrees, during sensor operation.
+   * Sensor azimuth/right-ascension bias, in degrees.
    */
   azRaBias?: number;
 
   /**
-   * Sensor azimuth/right-ascension bias rate, in degrees per second, during sensor
-   * operation.
+   * Sensor azimuth/right-ascension rate bias, in degrees per second.
    */
-  azRaBiasRate?: number;
+  azRaRateBias?: number;
 
   /**
-   * The mean azimuth/right-ascension average, in degrees, for the duration span.
+   * The standard deviation of the azimuth/right ascension rate residuals, in
+   * degrees, used to determine the sensor azimuth/right-ascension rate bias.
    */
-  azRaMean?: number;
+  azRaRateSigma?: number;
 
   /**
-   * The root mean square of the azimuth/right-ascension, in degrees, for the
-   * duration span.
+   * The root mean square of the azimuth/right-ascension residuals, in degrees, used
+   * to determine the sensor azimuth/right-ascension bias.
    */
   azRaRms?: number;
 
   /**
-   * Standard deviation azimuth/right-ascension bias rate, in degrees per second.
+   * The standard deviation of the azimuth/right ascension residuals, in degrees,
+   * used to determine the sensor azimuth/right-ascension bias.
    */
-  azRaSigmaRate?: number;
+  azRaSigma?: number;
 
   /**
    * Specifies the calibration reference angle set for this calibration data set.
@@ -1379,43 +1442,43 @@ export interface CalibrationCreateParams {
   ecr?: Array<number>;
 
   /**
-   * Sensor elevation/declination acceleration bias rate, in degrees per second
-   * squared, during sensor operation.
+   * Sensor elevation/declination acceleration bias, in degrees per second squared.
    */
   elDecAccelBias?: number;
 
   /**
-   * Standard deviation elevation/declination acceleration bias rate, in degrees per
-   * second squared.
+   * The standard deviation of the elevation/declination acceleration residuals, in
+   * degrees, used to determine the sensor elevation/declination acceleration bias.
    */
   elDecAccelSigma?: number;
 
   /**
-   * Sensor elevation/declination bias, in degrees, during sensor operation.
+   * Sensor elevation/declination bias, in degrees.
    */
   elDecBias?: number;
 
   /**
-   * Sensor elevation/declination bias rate, in degrees per second, during sensor
-   * operation.
+   * Sensor elevation/declination rate bias, in degrees per second.
    */
-  elDecBiasRate?: number;
+  elDecRateBias?: number;
 
   /**
-   * The mean elevation/declination residuals, in degrees, for the duration span.
+   * The standard deviation of the elevation/declination rate residuals, in degrees,
+   * used to determine the sensor elevation/declination rate bias.
    */
-  elDecMean?: number;
+  elDecRateSigma?: number;
 
   /**
-   * The root mean square of the elevation/declination, in degrees, for the duration
-   * span.
+   * The root mean square of the elevation/declination residuals, in degrees, used to
+   * determine the sensor elevation/declination bias.
    */
   elDecRms?: number;
 
   /**
-   * Standard deviation elevation/declination bias rate, in degrees per second.
+   * The standard deviation of the elevation/declination residuals, in degrees, used
+   * to determine the sensor elevation/declination bias.
    */
-  elDecSigmaRate?: number;
+  elDecSigma?: number;
 
   /**
    * Calibration data span end time in ISO 8601 UTC format with millisecond
@@ -1482,67 +1545,69 @@ export interface CalibrationCreateParams {
   origin?: string;
 
   /**
-   * The photometric observation noise bias in visual magnitude.
+   * The sensor photometric observation magnitude bias, in visual magnitude.
    */
   photoBias?: number;
 
   /**
-   * The photometric observation noise standard deviation in visual magnitude.
+   * The standard deviation of the magnitude residuals, in visual magnitude, used to
+   * determine the photometric bias.
    */
   photoSigma?: number;
 
   /**
-   * Sensor range rate bias acceleration, in kilometers per second squared, during
-   * sensor operation.
+   * Sensor range rate acceleration bias, in kilometers per second squared.
    */
   rangeAccelBias?: number;
 
   /**
-   * Standard deviation range rate bias acceleration, in kilometers per second
-   * squared.
+   * The standard deviation of the range acceleration residuals, in kilometers per
+   * second squared, used to determine the sensor range acceleration bias.
    */
   rangeAccelSigma?: number;
 
   /**
-   * Sensor range bias, in kilometers, for the duration span.
+   * Sensor range bias, in kilometers.
    */
   rangeBias?: number;
 
   /**
-   * Sensor range rate bias, in kilometers per second for the duration span.
+   * Sensor range rate bias, in kilometers per second.
    */
   rangeRateBias?: number;
 
   /**
-   * The root mean square of the calibration sensor range rate, in kilometers per
-   * second, for the duration span.
+   * The root mean square of the range rate residuals, in kilometers per second, used
+   * to determine the sensor range rate bias.
    */
   rangeRateRms?: number;
 
   /**
-   * Standard deviation range rate, in kilometers per second, for the duration span.
+   * The standard deviation of the range rate residuals, in kilometers per second,
+   * used to determine the sensor range rate bias.
    */
   rangeRateSigma?: number;
 
   /**
-   * The root mean square of the calibration sensor range, in kilometers, for the
-   * duration span.
+   * The root mean square of the range residuals, in kilometers, used to determine
+   * the sensor range bias.
    */
   rangeRms?: number;
 
   /**
-   * Calibration standard deviation range, in kilometers, for the duration span.
+   * The standard deviation of the range residuals, in kilometers, used to determine
+   * the sensor range bias.
    */
   rangeSigma?: number;
 
   /**
-   * The radar cross section (RCS) observation noise bias in square meters.
+   * The sensor radar cross section (RCS) observation bias, in square meters.
    */
   rcsBias?: number;
 
   /**
-   * The radar cross section (RCS) observation noise standard deviation in square
-   * meters.
+   * The standard deviation of the radar cross section residuals, in square meters,
+   * used to determine the radar cross section bias.
    */
   rcsSigma?: number;
 
@@ -1562,12 +1627,13 @@ export interface CalibrationCreateParams {
   senType?: string;
 
   /**
-   * Sensor time bias, in seconds, for the duration span.
+   * Sensor time bias, in seconds.
    */
   timeBias?: number;
 
   /**
-   * Standard deviation time, in seconds, for the duration span.
+   * The standard deviation of the time residuals, in seconds, used to determine the
+   * sensor time bias.
    */
   timeBiasSigma?: number;
 }
@@ -1651,43 +1717,43 @@ export namespace CalibrationCreateBulkParams {
     id?: string;
 
     /**
-     * Sensor azimuth/right-ascension acceleration bias rate, in degrees per second
-     * squared, during sensor operation.
+     * Sensor azimuth/right-ascension acceleration bias, in degrees per second squared.
      */
     azRaAccelBias?: number;
 
     /**
-     * Standard deviation azimuth/right-ascension acceleration bias rate, in degrees
-     * per second squared.
+     * The standard deviation of the azimuth/right ascension acceleration residuals, in
+     * degrees, used to determine the sensor azimuth/right-ascension acceleration bias.
      */
     azRaAccelSigma?: number;
 
     /**
-     * Sensor azimuth/right-ascension bias, in degrees, during sensor operation.
+     * Sensor azimuth/right-ascension bias, in degrees.
      */
     azRaBias?: number;
 
     /**
-     * Sensor azimuth/right-ascension bias rate, in degrees per second, during sensor
-     * operation.
+     * Sensor azimuth/right-ascension rate bias, in degrees per second.
      */
-    azRaBiasRate?: number;
+    azRaRateBias?: number;
 
     /**
-     * The mean azimuth/right-ascension average, in degrees, for the duration span.
+     * The standard deviation of the azimuth/right ascension rate residuals, in
+     * degrees, used to determine the sensor azimuth/right-ascension rate bias.
      */
-    azRaMean?: number;
+    azRaRateSigma?: number;
 
     /**
-     * The root mean square of the azimuth/right-ascension, in degrees, for the
-     * duration span.
+     * The root mean square of the azimuth/right-ascension residuals, in degrees, used
+     * to determine the sensor azimuth/right-ascension bias.
      */
     azRaRms?: number;
 
     /**
-     * Standard deviation azimuth/right-ascension bias rate, in degrees per second.
+     * The standard deviation of the azimuth/right ascension residuals, in degrees,
+     * used to determine the sensor azimuth/right-ascension bias.
      */
-    azRaSigmaRate?: number;
+    azRaSigma?: number;
 
     /**
      * Specifies the calibration reference angle set for this calibration data set.
@@ -1725,43 +1791,43 @@ export namespace CalibrationCreateBulkParams {
     ecr?: Array<number>;
 
     /**
-     * Sensor elevation/declination acceleration bias rate, in degrees per second
-     * squared, during sensor operation.
+     * Sensor elevation/declination acceleration bias, in degrees per second squared.
      */
     elDecAccelBias?: number;
 
     /**
-     * Standard deviation elevation/declination acceleration bias rate, in degrees per
-     * second squared.
+     * The standard deviation of the elevation/declination acceleration residuals, in
+     * degrees, used to determine the sensor elevation/declination acceleration bias.
      */
     elDecAccelSigma?: number;
 
     /**
-     * Sensor elevation/declination bias, in degrees, during sensor operation.
+     * Sensor elevation/declination bias, in degrees.
      */
     elDecBias?: number;
 
     /**
-     * Sensor elevation/declination bias rate, in degrees per second, during sensor
-     * operation.
+     * Sensor elevation/declination rate bias, in degrees per second.
      */
-    elDecBiasRate?: number;
+    elDecRateBias?: number;
 
     /**
-     * The mean elevation/declination residuals, in degrees, for the duration span.
+     * The standard deviation of the elevation/declination rate residuals, in degrees,
+     * used to determine the sensor elevation/declination rate bias.
      */
-    elDecMean?: number;
+    elDecRateSigma?: number;
 
     /**
-     * The root mean square of the elevation/declination, in degrees, for the duration
-     * span.
+     * The root mean square of the elevation/declination residuals, in degrees, used to
+     * determine the sensor elevation/declination bias.
      */
     elDecRms?: number;
 
     /**
-     * Standard deviation elevation/declination bias rate, in degrees per second.
+     * The standard deviation of the elevation/declination residuals, in degrees, used
+     * to determine the sensor elevation/declination bias.
      */
-    elDecSigmaRate?: number;
+    elDecSigma?: number;
 
     /**
      * Calibration data span end time in ISO 8601 UTC format with millisecond
@@ -1828,67 +1894,69 @@ export namespace CalibrationCreateBulkParams {
     origin?: string;
 
     /**
-     * The photometric observation noise bias in visual magnitude.
+     * The sensor photometric observation magnitude bias, in visual magnitude.
      */
     photoBias?: number;
 
     /**
-     * The photometric observation noise standard deviation in visual magnitude.
+     * The standard deviation of the magnitude residuals, in visual magnitude, used to
+     * determine the photometric bias.
      */
     photoSigma?: number;
 
     /**
-     * Sensor range rate bias acceleration, in kilometers per second squared, during
-     * sensor operation.
+     * Sensor range rate acceleration bias, in kilometers per second squared.
      */
     rangeAccelBias?: number;
 
     /**
-     * Standard deviation range rate bias acceleration, in kilometers per second
-     * squared.
+     * The standard deviation of the range acceleration residuals, in kilometers per
+     * second squared, used to determine the sensor range acceleration bias.
      */
     rangeAccelSigma?: number;
 
     /**
-     * Sensor range bias, in kilometers, for the duration span.
+     * Sensor range bias, in kilometers.
      */
     rangeBias?: number;
 
     /**
-     * Sensor range rate bias, in kilometers per second for the duration span.
+     * Sensor range rate bias, in kilometers per second.
      */
     rangeRateBias?: number;
 
     /**
-     * The root mean square of the calibration sensor range rate, in kilometers per
-     * second, for the duration span.
+     * The root mean square of the range rate residuals, in kilometers per second, used
+     * to determine the sensor range rate bias.
      */
     rangeRateRms?: number;
 
     /**
-     * Standard deviation range rate, in kilometers per second, for the duration span.
+     * The standard deviation of the range rate residuals, in kilometers per second,
+     * used to determine the sensor range rate bias.
      */
     rangeRateSigma?: number;
 
     /**
-     * The root mean square of the calibration sensor range, in kilometers, for the
-     * duration span.
+     * The root mean square of the range residuals, in kilometers, used to determine
+     * the sensor range bias.
      */
     rangeRms?: number;
 
     /**
-     * Calibration standard deviation range, in kilometers, for the duration span.
+     * The standard deviation of the range residuals, in kilometers, used to determine
+     * the sensor range bias.
      */
     rangeSigma?: number;
 
     /**
-     * The radar cross section (RCS) observation noise bias in square meters.
+     * The sensor radar cross section (RCS) observation bias, in square meters.
      */
     rcsBias?: number;
 
     /**
-     * The radar cross section (RCS) observation noise standard deviation in square
-     * meters.
+     * The standard deviation of the radar cross section residuals, in square meters,
+     * used to determine the radar cross section bias.
      */
     rcsSigma?: number;
 
@@ -1908,12 +1976,13 @@ export namespace CalibrationCreateBulkParams {
     senType?: string;
 
     /**
-     * Sensor time bias, in seconds, for the duration span.
+     * Sensor time bias, in seconds.
      */
     timeBias?: number;
 
     /**
-     * Standard deviation time, in seconds, for the duration span.
+     * The standard deviation of the time residuals, in seconds, used to determine the
+     * sensor time bias.
      */
     timeBiasSigma?: number;
   }
@@ -2012,43 +2081,43 @@ export namespace CalibrationUnvalidatedPublishParams {
     id?: string;
 
     /**
-     * Sensor azimuth/right-ascension acceleration bias rate, in degrees per second
-     * squared, during sensor operation.
+     * Sensor azimuth/right-ascension acceleration bias, in degrees per second squared.
      */
     azRaAccelBias?: number;
 
     /**
-     * Standard deviation azimuth/right-ascension acceleration bias rate, in degrees
-     * per second squared.
+     * The standard deviation of the azimuth/right ascension acceleration residuals, in
+     * degrees, used to determine the sensor azimuth/right-ascension acceleration bias.
      */
     azRaAccelSigma?: number;
 
     /**
-     * Sensor azimuth/right-ascension bias, in degrees, during sensor operation.
+     * Sensor azimuth/right-ascension bias, in degrees.
      */
     azRaBias?: number;
 
     /**
-     * Sensor azimuth/right-ascension bias rate, in degrees per second, during sensor
-     * operation.
+     * Sensor azimuth/right-ascension rate bias, in degrees per second.
      */
-    azRaBiasRate?: number;
+    azRaRateBias?: number;
 
     /**
-     * The mean azimuth/right-ascension average, in degrees, for the duration span.
+     * The standard deviation of the azimuth/right ascension rate residuals, in
+     * degrees, used to determine the sensor azimuth/right-ascension rate bias.
      */
-    azRaMean?: number;
+    azRaRateSigma?: number;
 
     /**
-     * The root mean square of the azimuth/right-ascension, in degrees, for the
-     * duration span.
+     * The root mean square of the azimuth/right-ascension residuals, in degrees, used
+     * to determine the sensor azimuth/right-ascension bias.
      */
     azRaRms?: number;
 
     /**
-     * Standard deviation azimuth/right-ascension bias rate, in degrees per second.
+     * The standard deviation of the azimuth/right ascension residuals, in degrees,
+     * used to determine the sensor azimuth/right-ascension bias.
      */
-    azRaSigmaRate?: number;
+    azRaSigma?: number;
 
     /**
      * Specifies the calibration reference angle set for this calibration data set.
@@ -2086,43 +2155,43 @@ export namespace CalibrationUnvalidatedPublishParams {
     ecr?: Array<number>;
 
     /**
-     * Sensor elevation/declination acceleration bias rate, in degrees per second
-     * squared, during sensor operation.
+     * Sensor elevation/declination acceleration bias, in degrees per second squared.
      */
     elDecAccelBias?: number;
 
     /**
-     * Standard deviation elevation/declination acceleration bias rate, in degrees per
-     * second squared.
+     * The standard deviation of the elevation/declination acceleration residuals, in
+     * degrees, used to determine the sensor elevation/declination acceleration bias.
      */
     elDecAccelSigma?: number;
 
     /**
-     * Sensor elevation/declination bias, in degrees, during sensor operation.
+     * Sensor elevation/declination bias, in degrees.
      */
     elDecBias?: number;
 
     /**
-     * Sensor elevation/declination bias rate, in degrees per second, during sensor
-     * operation.
+     * Sensor elevation/declination rate bias, in degrees per second.
      */
-    elDecBiasRate?: number;
+    elDecRateBias?: number;
 
     /**
-     * The mean elevation/declination residuals, in degrees, for the duration span.
+     * The standard deviation of the elevation/declination rate residuals, in degrees,
+     * used to determine the sensor elevation/declination rate bias.
      */
-    elDecMean?: number;
+    elDecRateSigma?: number;
 
     /**
-     * The root mean square of the elevation/declination, in degrees, for the duration
-     * span.
+     * The root mean square of the elevation/declination residuals, in degrees, used to
+     * determine the sensor elevation/declination bias.
      */
     elDecRms?: number;
 
     /**
-     * Standard deviation elevation/declination bias rate, in degrees per second.
+     * The standard deviation of the elevation/declination residuals, in degrees, used
+     * to determine the sensor elevation/declination bias.
      */
-    elDecSigmaRate?: number;
+    elDecSigma?: number;
 
     /**
      * Calibration data span end time in ISO 8601 UTC format with millisecond
@@ -2189,67 +2258,69 @@ export namespace CalibrationUnvalidatedPublishParams {
     origin?: string;
 
     /**
-     * The photometric observation noise bias in visual magnitude.
+     * The sensor photometric observation magnitude bias, in visual magnitude.
      */
     photoBias?: number;
 
     /**
-     * The photometric observation noise standard deviation in visual magnitude.
+     * The standard deviation of the magnitude residuals, in visual magnitude, used to
+     * determine the photometric bias.
      */
     photoSigma?: number;
 
     /**
-     * Sensor range rate bias acceleration, in kilometers per second squared, during
-     * sensor operation.
+     * Sensor range rate acceleration bias, in kilometers per second squared.
      */
     rangeAccelBias?: number;
 
     /**
-     * Standard deviation range rate bias acceleration, in kilometers per second
-     * squared.
+     * The standard deviation of the range acceleration residuals, in kilometers per
+     * second squared, used to determine the sensor range acceleration bias.
      */
     rangeAccelSigma?: number;
 
     /**
-     * Sensor range bias, in kilometers, for the duration span.
+     * Sensor range bias, in kilometers.
      */
     rangeBias?: number;
 
     /**
-     * Sensor range rate bias, in kilometers per second for the duration span.
+     * Sensor range rate bias, in kilometers per second.
      */
     rangeRateBias?: number;
 
     /**
-     * The root mean square of the calibration sensor range rate, in kilometers per
-     * second, for the duration span.
+     * The root mean square of the range rate residuals, in kilometers per second, used
+     * to determine the sensor range rate bias.
      */
     rangeRateRms?: number;
 
     /**
-     * Standard deviation range rate, in kilometers per second, for the duration span.
+     * The standard deviation of the range rate residuals, in kilometers per second,
+     * used to determine the sensor range rate bias.
      */
     rangeRateSigma?: number;
 
     /**
-     * The root mean square of the calibration sensor range, in kilometers, for the
-     * duration span.
+     * The root mean square of the range residuals, in kilometers, used to determine
+     * the sensor range bias.
      */
     rangeRms?: number;
 
     /**
-     * Calibration standard deviation range, in kilometers, for the duration span.
+     * The standard deviation of the range residuals, in kilometers, used to determine
+     * the sensor range bias.
      */
     rangeSigma?: number;
 
     /**
-     * The radar cross section (RCS) observation noise bias in square meters.
+     * The sensor radar cross section (RCS) observation bias, in square meters.
      */
     rcsBias?: number;
 
     /**
-     * The radar cross section (RCS) observation noise standard deviation in square
-     * meters.
+     * The standard deviation of the radar cross section residuals, in square meters,
+     * used to determine the radar cross section bias.
      */
     rcsSigma?: number;
 
@@ -2269,12 +2340,13 @@ export namespace CalibrationUnvalidatedPublishParams {
     senType?: string;
 
     /**
-     * Sensor time bias, in seconds, for the duration span.
+     * Sensor time bias, in seconds.
      */
     timeBias?: number;
 
     /**
-     * Standard deviation time, in seconds, for the duration span.
+     * The standard deviation of the time residuals, in seconds, used to determine the
+     * sensor time bias.
      */
     timeBiasSigma?: number;
   }
@@ -2287,6 +2359,7 @@ export declare namespace Calibration {
     type CalibrationRetrieveResponse as CalibrationRetrieveResponse,
     type CalibrationCountResponse as CalibrationCountResponse,
     type CalibrationQueryResponse as CalibrationQueryResponse,
+    type CalibrationQueryHelpResponse as CalibrationQueryHelpResponse,
     type CalibrationTupleResponse as CalibrationTupleResponse,
     type CalibrationCreateParams as CalibrationCreateParams,
     type CalibrationRetrieveParams as CalibrationRetrieveParams,

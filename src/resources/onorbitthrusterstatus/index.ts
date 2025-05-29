@@ -12,6 +12,7 @@ export {
   Onorbitthrusterstatus,
   type OnorbitthrusterstatusListResponse,
   type OnorbitthrusterstatusCountResponse,
+  type OnorbitthrusterstatusQueryhelpResponse,
   type OnorbitthrusterstatusTupleResponse,
   type OnorbitthrusterstatusCreateParams,
   type OnorbitthrusterstatusListParams,

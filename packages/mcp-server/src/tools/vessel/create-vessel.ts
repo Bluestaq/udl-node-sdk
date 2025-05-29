@@ -188,12 +188,13 @@ export const tool: Tool = {
           type: {
             type: 'string',
             description:
-              'The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).',
+              'The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR, LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).',
             enum: [
               'AIRCRAFT',
               'BUS',
               'COMM',
               'IR',
+              'LASEREMITTER',
               'NAVIGATION',
               'ONORBIT',
               'RFEMITTER',

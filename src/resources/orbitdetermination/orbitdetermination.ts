@@ -151,14 +151,12 @@ export class Orbitdetermination extends APIResource {
    *
    * @example
    * ```ts
-   * await client.orbitdetermination.queryhelp();
+   * const response =
+   *   await client.orbitdetermination.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/orbitdetermination/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<OrbitdeterminationQueryhelpResponse> {
+    return this._client.get('/udl/orbitdetermination/queryhelp', options);
   }
 
   /**
@@ -934,7 +932,7 @@ export namespace OrbitdeterminationListResponse {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -2266,7 +2264,7 @@ export namespace OrbitdeterminationGetResponse {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -2875,6 +2873,62 @@ export namespace OrbitdeterminationGetResponse {
      * frame than the primary vector.
      */
     zvelAlt2?: number;
+  }
+}
+
+export interface OrbitdeterminationQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<OrbitdeterminationQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace OrbitdeterminationQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -3644,7 +3698,7 @@ export namespace OrbitdeterminationTupleResponse {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * Time the row was created in the database, auto-populated by the system.
@@ -4921,7 +4975,7 @@ export namespace OrbitdeterminationCreateParams {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
     /**
      * Optional source-provided and searchable metadata or descriptor of the data.
@@ -6203,7 +6257,7 @@ export namespace OrbitdeterminationCreateBulkParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.
@@ -7482,7 +7536,7 @@ export namespace OrbitdeterminationUnvalidatedPublishParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.
@@ -8059,6 +8113,7 @@ export declare namespace Orbitdetermination {
     type OrbitdeterminationListResponse as OrbitdeterminationListResponse,
     type OrbitdeterminationCountResponse as OrbitdeterminationCountResponse,
     type OrbitdeterminationGetResponse as OrbitdeterminationGetResponse,
+    type OrbitdeterminationQueryhelpResponse as OrbitdeterminationQueryhelpResponse,
     type OrbitdeterminationTupleResponse as OrbitdeterminationTupleResponse,
     type OrbitdeterminationListResponsesOffsetPage as OrbitdeterminationListResponsesOffsetPage,
     type OrbitdeterminationCreateParams as OrbitdeterminationCreateParams,

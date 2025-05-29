@@ -149,14 +149,11 @@ export class SoiObservationSet extends APIResource {
    *
    * @example
    * ```ts
-   * await client.soiObservationSet.queryhelp();
+   * const response = await client.soiObservationSet.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/soiobservationset/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SoiObservationSetQueryhelpResponse> {
+    return this._client.get('/udl/soiobservationset/queryhelp', options);
   }
 
   /**
@@ -741,6 +738,62 @@ export namespace SoiObservationSetListResponse {
 }
 
 export type SoiObservationSetCountResponse = string;
+
+export interface SoiObservationSetQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SoiObservationSetQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SoiObservationSetQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type SoiObservationSetTupleResponse = Array<HistoryAPI.SoiObservationSetFull>;
 
@@ -3456,6 +3509,7 @@ export declare namespace SoiObservationSet {
   export {
     type SoiObservationSetListResponse as SoiObservationSetListResponse,
     type SoiObservationSetCountResponse as SoiObservationSetCountResponse,
+    type SoiObservationSetQueryhelpResponse as SoiObservationSetQueryhelpResponse,
     type SoiObservationSetTupleResponse as SoiObservationSetTupleResponse,
     type SoiObservationSetListResponsesOffsetPage as SoiObservationSetListResponsesOffsetPage,
     type SoiObservationSetCreateParams as SoiObservationSetCreateParams,

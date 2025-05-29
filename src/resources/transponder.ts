@@ -143,14 +143,11 @@ export class Transponder extends APIResource {
    *
    * @example
    * ```ts
-   * await client.transponder.queryhelp();
+   * const response = await client.transponder.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/transponder/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<TransponderQueryhelpResponse> {
+    return this._client.get('/udl/transponder/queryhelp', options);
   }
 
   /**
@@ -437,6 +434,62 @@ export interface TransponderGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface TransponderQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<TransponderQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace TransponderQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type TransponderTupleResponse = Array<TransponderTupleResponse.TransponderTupleResponseItem>;
@@ -810,6 +863,7 @@ export declare namespace Transponder {
     type TransponderListResponse as TransponderListResponse,
     type TransponderCountResponse as TransponderCountResponse,
     type TransponderGetResponse as TransponderGetResponse,
+    type TransponderQueryhelpResponse as TransponderQueryhelpResponse,
     type TransponderTupleResponse as TransponderTupleResponse,
     type TransponderListResponsesOffsetPage as TransponderListResponsesOffsetPage,
     type TransponderCreateParams as TransponderCreateParams,

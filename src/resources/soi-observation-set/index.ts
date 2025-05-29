@@ -13,6 +13,7 @@ export {
   SoiObservationSet,
   type SoiObservationSetListResponse,
   type SoiObservationSetCountResponse,
+  type SoiObservationSetQueryhelpResponse,
   type SoiObservationSetTupleResponse,
   type SoiObservationSetCreateParams,
   type SoiObservationSetListParams,

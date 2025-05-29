@@ -13,6 +13,7 @@ export {
   SpaceEnvObservation,
   type SpaceEnvObservationListResponse,
   type SpaceEnvObservationCountResponse,
+  type SpaceEnvObservationQueryhelpResponse,
   type SpaceEnvObservationTupleResponse,
   type SpaceEnvObservationListParams,
   type SpaceEnvObservationCountParams,

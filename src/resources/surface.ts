@@ -136,14 +136,11 @@ export class Surface extends APIResource {
    *
    * @example
    * ```ts
-   * await client.surface.queryhelp();
+   * const response = await client.surface.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/surface/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SurfaceQueryhelpResponse> {
+    return this._client.get('/udl/surface/queryhelp', options);
   }
 
   /**
@@ -1327,6 +1324,62 @@ export namespace SurfaceGetResponse {
      * system.
      */
     updatedBy?: string;
+  }
+}
+
+export interface SurfaceQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SurfaceQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SurfaceQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -2990,6 +3043,7 @@ export declare namespace Surface {
     type SurfaceListResponse as SurfaceListResponse,
     type SurfaceCountResponse as SurfaceCountResponse,
     type SurfaceGetResponse as SurfaceGetResponse,
+    type SurfaceQueryhelpResponse as SurfaceQueryhelpResponse,
     type SurfaceTupleResponse as SurfaceTupleResponse,
     type SurfaceListResponsesOffsetPage as SurfaceListResponsesOffsetPage,
     type SurfaceCreateParams as SurfaceCreateParams,

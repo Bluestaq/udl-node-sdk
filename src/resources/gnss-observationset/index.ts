@@ -4,6 +4,7 @@ export {
   GnssObservationset,
   type GnssObservationsetListResponse,
   type GnssObservationsetCountResponse,
+  type GnssObservationsetQueryhelpResponse,
   type GnssObservationsetTupleResponse,
   type GnssObservationsetListParams,
   type GnssObservationsetCountParams,

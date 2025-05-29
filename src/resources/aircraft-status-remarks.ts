@@ -144,14 +144,12 @@ export class AircraftStatusRemarks extends APIResource {
    *
    * @example
    * ```ts
-   * await client.aircraftStatusRemarks.queryhelp();
+   * const response =
+   *   await client.aircraftStatusRemarks.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/aircraftstatusremark/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<AircraftStatusRemarkQueryhelpResponse> {
+    return this._client.get('/udl/aircraftstatusremark/queryhelp', options);
   }
 
   /**
@@ -417,6 +415,62 @@ export interface AircraftstatusremarkFull {
 
 export type AircraftStatusRemarkCountResponse = string;
 
+export interface AircraftStatusRemarkQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AircraftStatusRemarkQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AircraftStatusRemarkQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type AircraftStatusRemarkTupleResponse = Array<AircraftstatusremarkFull>;
 
 export interface AircraftStatusRemarkCreateParams {
@@ -618,6 +672,7 @@ export declare namespace AircraftStatusRemarks {
     type AircraftstatusremarkAbridged as AircraftstatusremarkAbridged,
     type AircraftstatusremarkFull as AircraftstatusremarkFull,
     type AircraftStatusRemarkCountResponse as AircraftStatusRemarkCountResponse,
+    type AircraftStatusRemarkQueryhelpResponse as AircraftStatusRemarkQueryhelpResponse,
     type AircraftStatusRemarkTupleResponse as AircraftStatusRemarkTupleResponse,
     type AircraftstatusremarkAbridgedsOffsetPage as AircraftstatusremarkAbridgedsOffsetPage,
     type AircraftStatusRemarkCreateParams as AircraftStatusRemarkCreateParams,

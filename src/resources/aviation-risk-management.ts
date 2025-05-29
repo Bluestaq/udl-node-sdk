@@ -170,14 +170,12 @@ export class AviationRiskManagement extends APIResource {
    *
    * @example
    * ```ts
-   * await client.aviationRiskManagement.queryHelp();
+   * const response =
+   *   await client.aviationRiskManagement.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/aviationriskmanagement/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<AviationRiskManagementQueryHelpResponse> {
+    return this._client.get('/udl/aviationriskmanagement/queryhelp', options);
   }
 
   /**
@@ -870,6 +868,62 @@ export namespace AviationRiskManagementQueryResponse {
         }
       }
     }
+  }
+}
+
+export interface AviationRiskManagementQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AviationRiskManagementQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AviationRiskManagementQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -2365,6 +2419,7 @@ export declare namespace AviationRiskManagement {
     type AviationRiskManagementRetrieveResponse as AviationRiskManagementRetrieveResponse,
     type AviationRiskManagementCountResponse as AviationRiskManagementCountResponse,
     type AviationRiskManagementQueryResponse as AviationRiskManagementQueryResponse,
+    type AviationRiskManagementQueryHelpResponse as AviationRiskManagementQueryHelpResponse,
     type AviationRiskManagementTupleResponse as AviationRiskManagementTupleResponse,
     type AviationRiskManagementCreateParams as AviationRiskManagementCreateParams,
     type AviationRiskManagementRetrieveParams as AviationRiskManagementRetrieveParams,

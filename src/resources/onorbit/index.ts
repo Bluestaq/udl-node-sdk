@@ -16,6 +16,7 @@ export {
   type OnorbitListResponse,
   type OnorbitCountResponse,
   type OnorbitGetSignatureResponse,
+  type OnorbitQueryhelpResponse,
   type OnorbitTupleResponse,
   type OnorbitCreateParams,
   type OnorbitUpdateParams,

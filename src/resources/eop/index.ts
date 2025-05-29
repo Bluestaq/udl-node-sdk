@@ -5,6 +5,7 @@ export {
   type EopAbridged,
   type EopCountResponse,
   type EopListTupleResponse,
+  type EopQueryhelpResponse,
   type EopCreateParams,
   type EopRetrieveParams,
   type EopUpdateParams,

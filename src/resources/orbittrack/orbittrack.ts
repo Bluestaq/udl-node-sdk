@@ -71,11 +71,8 @@ export class Orbittrack extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/orbittrack/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<OrbittrackQueryhelpResponse> {
+    return this._client.get('/udl/orbittrack/queryhelp', options);
   }
 
   /**
@@ -498,6 +495,62 @@ export namespace OrbittrackListResponse {
 }
 
 export type OrbittrackCountResponse = string;
+
+export interface OrbittrackQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<OrbittrackQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace OrbittrackQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type OrbittrackTupleResponse = Array<OrbittrackTupleResponse.OrbittrackTupleResponseItem>;
 
@@ -1695,6 +1748,7 @@ export declare namespace Orbittrack {
   export {
     type OrbittrackListResponse as OrbittrackListResponse,
     type OrbittrackCountResponse as OrbittrackCountResponse,
+    type OrbittrackQueryhelpResponse as OrbittrackQueryhelpResponse,
     type OrbittrackTupleResponse as OrbittrackTupleResponse,
     type OrbittrackListResponsesOffsetPage as OrbittrackListResponsesOffsetPage,
     type OrbittrackListParams as OrbittrackListParams,

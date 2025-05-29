@@ -5,6 +5,7 @@ export {
   type FeatureAssessmentRetrieveResponse,
   type FeatureAssessmentCountResponse,
   type FeatureAssessmentQueryResponse,
+  type FeatureAssessmentQueryHelpResponse,
   type FeatureAssessmentTupleResponse,
   type FeatureAssessmentCreateParams,
   type FeatureAssessmentRetrieveParams,

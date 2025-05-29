@@ -23,9 +23,16 @@ export const tool: Tool = {
         type: 'string',
         description: 'The complete path for the object to be updated.',
       },
+      sendNotification: {
+        type: 'boolean',
+        description: 'Whether or not to send a notification that the target file/folder was updated.',
+      },
       classificationMarking: {
         type: 'string',
         description: 'Classification marking of the folder or file in IC/CAPCO portion-marked format.',
+      },
+      deleteOn: {
+        type: 'integer',
       },
       description: {
         type: 'string',

@@ -14,6 +14,7 @@ export {
   type PassiveRadarObservationListResponse,
   type PassiveRadarObservationCountResponse,
   type PassiveRadarObservationGetResponse,
+  type PassiveRadarObservationQueryhelpResponse,
   type PassiveRadarObservationTupleResponse,
   type PassiveRadarObservationCreateParams,
   type PassiveRadarObservationListParams,

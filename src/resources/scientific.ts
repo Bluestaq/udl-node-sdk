@@ -140,14 +140,11 @@ export class Scientific extends APIResource {
    *
    * @example
    * ```ts
-   * await client.scientific.queryhelp();
+   * const response = await client.scientific.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/scientific/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<ScientificQueryhelpResponse> {
+    return this._client.get('/udl/scientific/queryhelp', options);
   }
 
   /**
@@ -398,6 +395,62 @@ export interface ScientificGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface ScientificQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<ScientificQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace ScientificQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type ScientificTupleResponse = Array<ScientificTupleResponse.ScientificTupleResponseItem>;
@@ -738,6 +791,7 @@ export declare namespace Scientific {
     type ScientificListResponse as ScientificListResponse,
     type ScientificCountResponse as ScientificCountResponse,
     type ScientificGetResponse as ScientificGetResponse,
+    type ScientificQueryhelpResponse as ScientificQueryhelpResponse,
     type ScientificTupleResponse as ScientificTupleResponse,
     type ScientificListResponsesOffsetPage as ScientificListResponsesOffsetPage,
     type ScientificCreateParams as ScientificCreateParams,

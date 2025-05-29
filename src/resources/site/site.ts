@@ -11,6 +11,7 @@ import {
   OperationListParams,
   OperationListResponse,
   OperationListResponsesOffsetPage,
+  OperationQueryHelpResponse,
   OperationRetrieveParams,
   OperationRetrieveResponse,
   OperationTupleParams,
@@ -137,14 +138,11 @@ export class Site extends APIResource {
    *
    * @example
    * ```ts
-   * await client.site.queryhelp();
+   * const response = await client.site.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/site/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SiteQueryhelpResponse> {
+    return this._client.get('/udl/site/queryhelp', options);
   }
 
   /**
@@ -1901,6 +1899,62 @@ export namespace SiteGetResponse {
      * The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
      */
     type?: string;
+  }
+}
+
+export interface SiteQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SiteQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SiteQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -4229,6 +4283,7 @@ export declare namespace Site {
     type SiteListResponse as SiteListResponse,
     type SiteCountResponse as SiteCountResponse,
     type SiteGetResponse as SiteGetResponse,
+    type SiteQueryhelpResponse as SiteQueryhelpResponse,
     type SiteTupleResponse as SiteTupleResponse,
     type SiteListResponsesOffsetPage as SiteListResponsesOffsetPage,
     type SiteCreateParams as SiteCreateParams,
@@ -4244,6 +4299,7 @@ export declare namespace Site {
     type OperationRetrieveResponse as OperationRetrieveResponse,
     type OperationListResponse as OperationListResponse,
     type OperationCountResponse as OperationCountResponse,
+    type OperationQueryHelpResponse as OperationQueryHelpResponse,
     type OperationTupleResponse as OperationTupleResponse,
     type OperationListResponsesOffsetPage as OperationListResponsesOffsetPage,
     type OperationCreateParams as OperationCreateParams,

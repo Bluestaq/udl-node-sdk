@@ -13,6 +13,7 @@ export {
   type ItemTrackingListResponse,
   type ItemTrackingCountResponse,
   type ItemTrackingGetResponse,
+  type ItemTrackingQueryhelpResponse,
   type ItemTrackingTupleResponse,
   type ItemTrackingCreateParams,
   type ItemTrackingListParams,

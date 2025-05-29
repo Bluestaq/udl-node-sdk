@@ -12,6 +12,8 @@ export {
   type ElsetIngest,
   type ElsetAbridged,
   type ElsetCountResponse,
+  type ElsetQueryCurrentElsetHelpResponse,
+  type ElsetQueryhelpResponse,
   type ElsetTupleResponse,
   type ElsetCreateParams,
   type ElsetRetrieveParams,

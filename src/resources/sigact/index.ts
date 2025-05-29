@@ -12,6 +12,7 @@ export {
   Sigact,
   type SigactListResponse,
   type SigactCountResponse,
+  type SigactQueryhelpResponse,
   type SigactTupleResponse,
   type SigactListParams,
   type SigactCountParams,

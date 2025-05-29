@@ -14,6 +14,7 @@ export {
   type ManeuverListResponse,
   type ManeuverCountResponse,
   type ManeuverGetResponse,
+  type ManeuverQueryhelpResponse,
   type ManeuverTupleResponse,
   type ManeuverCreateParams,
   type ManeuverListParams,

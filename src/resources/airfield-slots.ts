@@ -144,14 +144,11 @@ export class AirfieldSlots extends APIResource {
    *
    * @example
    * ```ts
-   * await client.airfieldSlots.queryhelp();
+   * const response = await client.airfieldSlots.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/airfieldslot/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<AirfieldSlotQueryhelpResponse> {
+    return this._client.get('/udl/airfieldslot/queryhelp', options);
   }
 
   /**
@@ -469,6 +466,62 @@ export interface AirfieldslotFull {
 
 export type AirfieldSlotCountResponse = string;
 
+export interface AirfieldSlotQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AirfieldSlotQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AirfieldSlotQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type AirfieldSlotTupleResponse = Array<AirfieldslotFull>;
 
 export interface AirfieldSlotCreateParams {
@@ -724,6 +777,7 @@ export declare namespace AirfieldSlots {
     type AirfieldslotAbridged as AirfieldslotAbridged,
     type AirfieldslotFull as AirfieldslotFull,
     type AirfieldSlotCountResponse as AirfieldSlotCountResponse,
+    type AirfieldSlotQueryhelpResponse as AirfieldSlotQueryhelpResponse,
     type AirfieldSlotTupleResponse as AirfieldSlotTupleResponse,
     type AirfieldslotAbridgedsOffsetPage as AirfieldslotAbridgedsOffsetPage,
     type AirfieldSlotCreateParams as AirfieldSlotCreateParams,

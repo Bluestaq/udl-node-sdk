@@ -99,14 +99,11 @@ export class SiteRemark extends APIResource {
    *
    * @example
    * ```ts
-   * await client.siteRemark.queryhelp();
+   * const response = await client.siteRemark.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/siteremark/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SiteRemarkQueryhelpResponse> {
+    return this._client.get('/udl/siteremark/queryhelp', options);
   }
 
   /**
@@ -325,6 +322,62 @@ export interface SiteRemarkGetResponse {
   type?: string;
 }
 
+export interface SiteRemarkQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SiteRemarkQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SiteRemarkQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type SiteRemarkTupleResponse = Array<SiteRemarkTupleResponse.SiteRemarkTupleResponseItem>;
 
 export namespace SiteRemarkTupleResponse {
@@ -531,6 +584,7 @@ export declare namespace SiteRemark {
     type SiteRemarkListResponse as SiteRemarkListResponse,
     type SiteRemarkCountResponse as SiteRemarkCountResponse,
     type SiteRemarkGetResponse as SiteRemarkGetResponse,
+    type SiteRemarkQueryhelpResponse as SiteRemarkQueryhelpResponse,
     type SiteRemarkTupleResponse as SiteRemarkTupleResponse,
     type SiteRemarkListResponsesOffsetPage as SiteRemarkListResponsesOffsetPage,
     type SiteRemarkCreateParams as SiteRemarkCreateParams,

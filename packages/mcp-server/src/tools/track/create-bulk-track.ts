@@ -64,6 +64,22 @@ export const tool: Tool = {
               description:
                 'Nationality or organization of the tracking/reporting system or platform (e.g. FR, NATO, US, etc.).',
             },
+            attitude: {
+              type: 'array',
+              description:
+                'The attitude (Yaw, Pitch, and Roll), in degrees, of the track object. When provided, the array must always contain 3 values. These values represent the vehicle\'s rotation about the vertical, lateral, and longitudinal axes, respectively, in a locally level, East, North, Up "right handed" coordinate system centered on the vehicle.\nYaw is measured in degrees and ranges from -180 to 180.\nPitch is measured in degrees and ranges from -90 to 90.\nRoll is measured in degrees and ranges from -180 to 180.',
+              items: {
+                type: 'number',
+              },
+            },
+            attitudeRate: {
+              type: 'array',
+              description:
+                'The attitude rate (Yaw Rate, Pitch Rate, and Roll Rate), in degrees per second, of the track object. When provided, the array must always contain 3 values. These values represent the rate of change of the vehicle\'s rotation about the vertical, lateral, and longitudinal axes, respectively, in a locally level, East, North, Up "right handed" coordinate system centered on the vehicle.',
+              items: {
+                type: 'number',
+              },
+            },
             callSign: {
               type: 'string',
               description: 'The call sign currently assigned to this track object.',
@@ -116,6 +132,14 @@ export const tool: Tool = {
               type: 'array',
               description:
                 "Track object velocity in ECEF [x', y', z'], meters/sec.  When provided, array must always contain 3 values.",
+              items: {
+                type: 'number',
+              },
+            },
+            eNUAcc: {
+              type: 'array',
+              description:
+                'East, North, Up acceleration components, in meters per second squared.  When provided, array must always contain 3 values.',
               items: {
                 type: 'number',
               },

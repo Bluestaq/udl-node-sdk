@@ -137,14 +137,11 @@ export class Item extends APIResource {
    *
    * @example
    * ```ts
-   * await client.item.queryhelp();
+   * const response = await client.item.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/item/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<ItemQueryhelpResponse> {
+    return this._client.get('/udl/item/queryhelp', options);
   }
 
   /**
@@ -824,6 +821,62 @@ export interface ItemGetResponse {
    * Width of the cargo in meters. Applicable for cargo item types only.
    */
   width?: number;
+}
+
+export interface ItemQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<ItemQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace ItemQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type ItemTupleResponse = Array<ItemTupleResponse.ItemTupleResponseItem>;
@@ -2032,6 +2085,7 @@ export declare namespace Item {
     type ItemListResponse as ItemListResponse,
     type ItemCountResponse as ItemCountResponse,
     type ItemGetResponse as ItemGetResponse,
+    type ItemQueryhelpResponse as ItemQueryhelpResponse,
     type ItemTupleResponse as ItemTupleResponse,
     type ItemListResponsesOffsetPage as ItemListResponsesOffsetPage,
     type ItemCreateParams as ItemCreateParams,

@@ -148,14 +148,12 @@ export class SeradataOpticalPayload extends APIResource {
    *
    * @example
    * ```ts
-   * await client.seradataOpticalPayload.queryhelp();
+   * const response =
+   *   await client.seradataOpticalPayload.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/seradataopticalpayload/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SeradataOpticalPayloadQueryhelpResponse> {
+    return this._client.get('/udl/seradataopticalpayload/queryhelp', options);
   }
 
   /**
@@ -506,6 +504,62 @@ export interface SeradataOpticalPayloadGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface SeradataOpticalPayloadQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SeradataOpticalPayloadQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SeradataOpticalPayloadQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type SeradataOpticalPayloadTupleResponse =
@@ -982,6 +1036,7 @@ export declare namespace SeradataOpticalPayload {
     type SeradataOpticalPayloadListResponse as SeradataOpticalPayloadListResponse,
     type SeradataOpticalPayloadCountResponse as SeradataOpticalPayloadCountResponse,
     type SeradataOpticalPayloadGetResponse as SeradataOpticalPayloadGetResponse,
+    type SeradataOpticalPayloadQueryhelpResponse as SeradataOpticalPayloadQueryhelpResponse,
     type SeradataOpticalPayloadTupleResponse as SeradataOpticalPayloadTupleResponse,
     type SeradataOpticalPayloadListResponsesOffsetPage as SeradataOpticalPayloadListResponsesOffsetPage,
     type SeradataOpticalPayloadCreateParams as SeradataOpticalPayloadCreateParams,

@@ -5,6 +5,7 @@ export {
   type GlobalAtmosphericModelRetrieveResponse,
   type GlobalAtmosphericModelCountResponse,
   type GlobalAtmosphericModelQueryResponse,
+  type GlobalAtmosphericModelQueryHelpResponse,
   type GlobalAtmosphericModelTupleResponse,
   type GlobalAtmosphericModelRetrieveParams,
   type GlobalAtmosphericModelCountParams,

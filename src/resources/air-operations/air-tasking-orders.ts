@@ -106,14 +106,12 @@ export class AirTaskingOrders extends APIResource {
    *
    * @example
    * ```ts
-   * await client.airOperations.airTaskingOrders.queryHelp();
+   * const response =
+   *   await client.airOperations.airTaskingOrders.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/airtaskingorder/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<AirTaskingOrderQueryHelpResponse> {
+    return this._client.get('/udl/airtaskingorder/queryhelp', options);
   }
 
   /**
@@ -1107,6 +1105,62 @@ export namespace AirtaskingorderAbridged {
 
 export type AirTaskingOrderCountResponse = string;
 
+export interface AirTaskingOrderQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AirTaskingOrderQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AirTaskingOrderQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type AirTaskingOrderTupleResponse = Array<AirTaskingOrderFull>;
 
 export interface AirTaskingOrderCreateParams {
@@ -2010,6 +2064,7 @@ export declare namespace AirTaskingOrders {
     type AirTaskingOrderFull as AirTaskingOrderFull,
     type AirtaskingorderAbridged as AirtaskingorderAbridged,
     type AirTaskingOrderCountResponse as AirTaskingOrderCountResponse,
+    type AirTaskingOrderQueryHelpResponse as AirTaskingOrderQueryHelpResponse,
     type AirTaskingOrderTupleResponse as AirTaskingOrderTupleResponse,
     type AirtaskingorderAbridgedsOffsetPage as AirtaskingorderAbridgedsOffsetPage,
     type AirTaskingOrderCreateParams as AirTaskingOrderCreateParams,

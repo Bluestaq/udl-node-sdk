@@ -147,14 +147,11 @@ export class EffectResponses extends APIResource {
    *
    * @example
    * ```ts
-   * await client.effectResponses.queryHelp();
+   * const response = await client.effectResponses.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/effectresponse/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<EffectResponseQueryHelpResponse> {
+    return this._client.get('/udl/effectresponse/queryhelp', options);
   }
 
   /**
@@ -825,6 +822,62 @@ export namespace EffectResponseListResponse {
 }
 
 export type EffectResponseCountResponse = string;
+
+export interface EffectResponseQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<EffectResponseQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace EffectResponseQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type EffectResponseTupleResponse = Array<EffectResponseTupleResponse.EffectResponseTupleResponseItem>;
 
@@ -2061,6 +2114,7 @@ export declare namespace EffectResponses {
     type EffectResponseRetrieveResponse as EffectResponseRetrieveResponse,
     type EffectResponseListResponse as EffectResponseListResponse,
     type EffectResponseCountResponse as EffectResponseCountResponse,
+    type EffectResponseQueryHelpResponse as EffectResponseQueryHelpResponse,
     type EffectResponseTupleResponse as EffectResponseTupleResponse,
     type EffectResponseListResponsesOffsetPage as EffectResponseListResponsesOffsetPage,
     type EffectResponseCreateParams as EffectResponseCreateParams,

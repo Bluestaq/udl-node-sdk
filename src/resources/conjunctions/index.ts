@@ -6,6 +6,7 @@ export {
   type ConjunctionFull,
   type ConjunctionCountResponse,
   type ConjunctionGetHistoryResponse,
+  type ConjunctionQueryhelpResponse,
   type ConjunctionTupleResponse,
   type ConjunctionRetrieveParams,
   type ConjunctionListParams,

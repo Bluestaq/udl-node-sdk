@@ -72,11 +72,8 @@ export class AIs extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/ais/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<AIQueryhelpResponse> {
+    return this._client.get('/udl/ais/queryhelp', options);
   }
 
   /**
@@ -431,6 +428,62 @@ export interface AIsAbridged {
 export type AICountResponse = string;
 
 export type AIHistoryCountResponse = string;
+
+export interface AIQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AIQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AIQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type AITupleResponse = Array<Shared.AIsFull>;
 
@@ -807,6 +860,7 @@ export declare namespace AIs {
     type AIsAbridged as AIsAbridged,
     type AICountResponse as AICountResponse,
     type AIHistoryCountResponse as AIHistoryCountResponse,
+    type AIQueryhelpResponse as AIQueryhelpResponse,
     type AITupleResponse as AITupleResponse,
     type AIsAbridgedsOffsetPage as AIsAbridgedsOffsetPage,
     type AIListParams as AIListParams,

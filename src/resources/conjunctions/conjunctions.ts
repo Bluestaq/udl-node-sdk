@@ -167,14 +167,11 @@ export class Conjunctions extends APIResource {
    *
    * @example
    * ```ts
-   * await client.conjunctions.queryhelp();
+   * const response = await client.conjunctions.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/conjunction/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<ConjunctionQueryhelpResponse> {
+    return this._client.get('/udl/conjunction/queryhelp', options);
   }
 
   /**
@@ -817,7 +814,7 @@ export namespace ConjunctionAbridged {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -1515,7 +1512,7 @@ export namespace ConjunctionAbridged {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -2650,7 +2647,7 @@ export namespace ConjunctionFull {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -3392,7 +3389,7 @@ export namespace ConjunctionFull {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -4008,6 +4005,62 @@ export type ConjunctionCountResponse = string;
 
 export type ConjunctionGetHistoryResponse = Array<ConjunctionFull>;
 
+export interface ConjunctionQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<ConjunctionQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace ConjunctionQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type ConjunctionTupleResponse = Array<ConjunctionFull>;
 
 export interface ConjunctionRetrieveParams {
@@ -4577,7 +4630,7 @@ export namespace ConjunctionCreateUdlParams {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
     /**
      * Optional source-provided and searchable metadata or descriptor of the data.
@@ -5276,7 +5329,7 @@ export namespace ConjunctionCreateUdlParams {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
     /**
      * Optional source-provided and searchable metadata or descriptor of the data.
@@ -6381,7 +6434,7 @@ export namespace ConjunctionCreateBulkParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.
@@ -7080,7 +7133,7 @@ export namespace ConjunctionCreateBulkParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.
@@ -8223,7 +8276,7 @@ export namespace ConjunctionUnvalidatedPublishParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.
@@ -8922,7 +8975,7 @@ export namespace ConjunctionUnvalidatedPublishParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.
@@ -9538,6 +9591,7 @@ export declare namespace Conjunctions {
     type ConjunctionFull as ConjunctionFull,
     type ConjunctionCountResponse as ConjunctionCountResponse,
     type ConjunctionGetHistoryResponse as ConjunctionGetHistoryResponse,
+    type ConjunctionQueryhelpResponse as ConjunctionQueryhelpResponse,
     type ConjunctionTupleResponse as ConjunctionTupleResponse,
     type ConjunctionAbridgedsOffsetPage as ConjunctionAbridgedsOffsetPage,
     type ConjunctionRetrieveParams as ConjunctionRetrieveParams,

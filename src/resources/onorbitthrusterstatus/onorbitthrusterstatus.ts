@@ -165,14 +165,12 @@ export class Onorbitthrusterstatus extends APIResource {
    *
    * @example
    * ```ts
-   * await client.onorbitthrusterstatus.queryhelp();
+   * const response =
+   *   await client.onorbitthrusterstatus.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/onorbitthrusterstatus/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<OnorbitthrusterstatusQueryhelpResponse> {
+    return this._client.get('/udl/onorbitthrusterstatus/queryhelp', options);
   }
 
   /**
@@ -353,6 +351,62 @@ export interface OnorbitthrusterstatusListResponse {
 }
 
 export type OnorbitthrusterstatusCountResponse = string;
+
+export interface OnorbitthrusterstatusQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<OnorbitthrusterstatusQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace OnorbitthrusterstatusQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type OnorbitthrusterstatusTupleResponse = Array<HistoryAPI.OnorbitthrusterstatusFull>;
 
@@ -705,6 +759,7 @@ export declare namespace Onorbitthrusterstatus {
   export {
     type OnorbitthrusterstatusListResponse as OnorbitthrusterstatusListResponse,
     type OnorbitthrusterstatusCountResponse as OnorbitthrusterstatusCountResponse,
+    type OnorbitthrusterstatusQueryhelpResponse as OnorbitthrusterstatusQueryhelpResponse,
     type OnorbitthrusterstatusTupleResponse as OnorbitthrusterstatusTupleResponse,
     type OnorbitthrusterstatusListResponsesOffsetPage as OnorbitthrusterstatusListResponsesOffsetPage,
     type OnorbitthrusterstatusCreateParams as OnorbitthrusterstatusCreateParams,

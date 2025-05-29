@@ -67,11 +67,8 @@ export class Track extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/track/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<TrackQueryhelpResponse> {
+    return this._client.get('/udl/track/queryhelp', options);
   }
 
   /**
@@ -171,6 +168,26 @@ export interface TrackListResponse {
   assetNat?: string;
 
   /**
+   * The attitude (Yaw, Pitch, and Roll), in degrees, of the track object. When
+   * provided, the array must always contain 3 values. These values represent the
+   * vehicle's rotation about the vertical, lateral, and longitudinal axes,
+   * respectively, in a locally level, East, North, Up "right handed" coordinate
+   * system centered on the vehicle. Yaw is measured in degrees and ranges from -180
+   * to 180. Pitch is measured in degrees and ranges from -90 to 90. Roll is measured
+   * in degrees and ranges from -180 to 180.
+   */
+  attitude?: Array<number>;
+
+  /**
+   * The attitude rate (Yaw Rate, Pitch Rate, and Roll Rate), in degrees per second,
+   * of the track object. When provided, the array must always contain 3 values.
+   * These values represent the rate of change of the vehicle's rotation about the
+   * vertical, lateral, and longitudinal axes, respectively, in a locally level,
+   * East, North, Up "right handed" coordinate system centered on the vehicle.
+   */
+  attitudeRate?: Array<number>;
+
+  /**
    * The call sign currently assigned to this track object.
    */
   callSign?: string;
@@ -252,6 +269,12 @@ export interface TrackListResponse {
    * must always contain 3 values.
    */
   ecefVel?: Array<number>;
+
+  /**
+   * East, North, Up acceleration components, in meters per second squared. When
+   * provided, array must always contain 3 values.
+   */
+  eNUAcc?: Array<number>;
 
   /**
    * East, North, Up position components, in meters. When provided, array must always
@@ -644,6 +667,62 @@ export interface TrackListResponse {
 
 export type TrackCountResponse = string;
 
+export interface TrackQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<TrackQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace TrackQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type TrackTupleResponse = Array<HistoryAPI.TrackFull>;
 
 export interface TrackListParams extends OffsetPageParams {
@@ -736,6 +815,26 @@ export namespace TrackCreateBulkParams {
     assetNat?: string;
 
     /**
+     * The attitude (Yaw, Pitch, and Roll), in degrees, of the track object. When
+     * provided, the array must always contain 3 values. These values represent the
+     * vehicle's rotation about the vertical, lateral, and longitudinal axes,
+     * respectively, in a locally level, East, North, Up "right handed" coordinate
+     * system centered on the vehicle. Yaw is measured in degrees and ranges from -180
+     * to 180. Pitch is measured in degrees and ranges from -90 to 90. Roll is measured
+     * in degrees and ranges from -180 to 180.
+     */
+    attitude?: Array<number>;
+
+    /**
+     * The attitude rate (Yaw Rate, Pitch Rate, and Roll Rate), in degrees per second,
+     * of the track object. When provided, the array must always contain 3 values.
+     * These values represent the rate of change of the vehicle's rotation about the
+     * vertical, lateral, and longitudinal axes, respectively, in a locally level,
+     * East, North, Up "right handed" coordinate system centered on the vehicle.
+     */
+    attitudeRate?: Array<number>;
+
+    /**
      * The call sign currently assigned to this track object.
      */
     callSign?: string;
@@ -806,6 +905,12 @@ export namespace TrackCreateBulkParams {
      * must always contain 3 values.
      */
     ecefVel?: Array<number>;
+
+    /**
+     * East, North, Up acceleration components, in meters per second squared. When
+     * provided, array must always contain 3 values.
+     */
+    eNUAcc?: Array<number>;
 
     /**
      * East, North, Up position components, in meters. When provided, array must always
@@ -1274,6 +1379,26 @@ export namespace TrackUnvalidatedPublishParams {
     assetNat?: string;
 
     /**
+     * The attitude (Yaw, Pitch, and Roll), in degrees, of the track object. When
+     * provided, the array must always contain 3 values. These values represent the
+     * vehicle's rotation about the vertical, lateral, and longitudinal axes,
+     * respectively, in a locally level, East, North, Up "right handed" coordinate
+     * system centered on the vehicle. Yaw is measured in degrees and ranges from -180
+     * to 180. Pitch is measured in degrees and ranges from -90 to 90. Roll is measured
+     * in degrees and ranges from -180 to 180.
+     */
+    attitude?: Array<number>;
+
+    /**
+     * The attitude rate (Yaw Rate, Pitch Rate, and Roll Rate), in degrees per second,
+     * of the track object. When provided, the array must always contain 3 values.
+     * These values represent the rate of change of the vehicle's rotation about the
+     * vertical, lateral, and longitudinal axes, respectively, in a locally level,
+     * East, North, Up "right handed" coordinate system centered on the vehicle.
+     */
+    attitudeRate?: Array<number>;
+
+    /**
      * The call sign currently assigned to this track object.
      */
     callSign?: string;
@@ -1344,6 +1469,12 @@ export namespace TrackUnvalidatedPublishParams {
      * must always contain 3 values.
      */
     ecefVel?: Array<number>;
+
+    /**
+     * East, North, Up acceleration components, in meters per second squared. When
+     * provided, array must always contain 3 values.
+     */
+    eNUAcc?: Array<number>;
 
     /**
      * East, North, Up position components, in meters. When provided, array must always
@@ -1728,6 +1859,7 @@ export declare namespace Track {
   export {
     type TrackListResponse as TrackListResponse,
     type TrackCountResponse as TrackCountResponse,
+    type TrackQueryhelpResponse as TrackQueryhelpResponse,
     type TrackTupleResponse as TrackTupleResponse,
     type TrackListResponsesOffsetPage as TrackListResponsesOffsetPage,
     type TrackListParams as TrackListParams,

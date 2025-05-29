@@ -14,6 +14,7 @@ export {
   type SkyImageryListResponse,
   type SkyImageryCountResponse,
   type SkyImageryGetResponse,
+  type SkyImageryQueryhelpResponse,
   type SkyImageryTupleResponse,
   type SkyImageryListParams,
   type SkyImageryCountParams,

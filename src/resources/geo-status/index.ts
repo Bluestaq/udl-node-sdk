@@ -4,6 +4,7 @@ export {
   GeoStatus,
   type GeoStatusListResponse,
   type GeoStatusCountResponse,
+  type GeoStatusQueryhelpResponse,
   type GeoStatusTupleResponse,
   type GeoStatusCreateParams,
   type GeoStatusListParams,

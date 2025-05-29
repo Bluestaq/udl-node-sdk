@@ -104,14 +104,11 @@ export class AirLoadPlans extends APIResource {
    *
    * @example
    * ```ts
-   * await client.airLoadPlans.queryhelp();
+   * const response = await client.airLoadPlans.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/airloadplan/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<AirLoadPlanQueryhelpResponse> {
+    return this._client.get('/udl/airloadplan/queryhelp', options);
   }
 
   /**
@@ -1737,6 +1734,62 @@ export namespace AirloadplanFull {
 
 export type AirLoadPlanCountResponse = string;
 
+export interface AirLoadPlanQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AirLoadPlanQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AirLoadPlanQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type AirLoadPlanTupleResponse = Array<AirloadplanFull>;
 
 export interface AirLoadPlanCreateParams {
@@ -2549,6 +2602,7 @@ export declare namespace AirLoadPlans {
     type AirloadplanAbridged as AirloadplanAbridged,
     type AirloadplanFull as AirloadplanFull,
     type AirLoadPlanCountResponse as AirLoadPlanCountResponse,
+    type AirLoadPlanQueryhelpResponse as AirLoadPlanQueryhelpResponse,
     type AirLoadPlanTupleResponse as AirLoadPlanTupleResponse,
     type AirloadplanAbridgedsOffsetPage as AirloadplanAbridgedsOffsetPage,
     type AirLoadPlanCreateParams as AirLoadPlanCreateParams,

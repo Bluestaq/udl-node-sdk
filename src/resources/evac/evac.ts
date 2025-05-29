@@ -140,14 +140,11 @@ export class Evac extends APIResource {
    *
    * @example
    * ```ts
-   * await client.evac.queryHelp();
+   * const response = await client.evac.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/evac/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<EvacQueryHelpResponse> {
+    return this._client.get('/udl/evac/queryhelp', options);
   }
 
   /**
@@ -881,6 +878,62 @@ export namespace EvacAbridged {
 }
 
 export type EvacCountResponse = string;
+
+export interface EvacQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<EvacQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace EvacQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export interface EvacCreateParams {
   /**
@@ -2958,6 +3011,7 @@ export declare namespace Evac {
   export {
     type EvacAbridged as EvacAbridged,
     type EvacCountResponse as EvacCountResponse,
+    type EvacQueryHelpResponse as EvacQueryHelpResponse,
     type EvacAbridgedsOffsetPage as EvacAbridgedsOffsetPage,
     type EvacCreateParams as EvacCreateParams,
     type EvacRetrieveParams as EvacRetrieveParams,

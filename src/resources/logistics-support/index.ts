@@ -15,6 +15,7 @@ export {
   type LogisticsSupportListResponse,
   type LogisticsSupportCountResponse,
   type LogisticsSupportGetResponse,
+  type LogisticsSupportQueryhelpResponse,
   type LogisticsSupportTupleResponse,
   type LogisticsSupportCreateParams,
   type LogisticsSupportUpdateParams,

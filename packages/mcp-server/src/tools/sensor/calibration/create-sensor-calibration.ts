@@ -50,35 +50,35 @@ export const tool: Tool = {
       },
       azRaAccelBias: {
         type: 'number',
-        description:
-          'Sensor azimuth/right-ascension acceleration bias rate, in degrees per second squared, during sensor operation.',
+        description: 'Sensor azimuth/right-ascension acceleration bias, in degrees per second squared.',
       },
       azRaAccelSigma: {
         type: 'number',
         description:
-          'Standard deviation azimuth/right-ascension acceleration bias rate, in degrees per second squared.',
+          'The standard deviation of the azimuth/right ascension acceleration residuals, in degrees, used to determine the sensor azimuth/right-ascension acceleration bias.',
       },
       azRaBias: {
         type: 'number',
-        description: 'Sensor azimuth/right-ascension bias, in degrees, during sensor operation.',
+        description: 'Sensor azimuth/right-ascension bias, in degrees.',
       },
-      azRaBiasRate: {
+      azRaRateBias: {
+        type: 'number',
+        description: 'Sensor azimuth/right-ascension rate bias, in degrees per second.',
+      },
+      azRaRateSigma: {
         type: 'number',
         description:
-          'Sensor azimuth/right-ascension bias rate, in degrees per second, during sensor operation.',
-      },
-      azRaMean: {
-        type: 'number',
-        description: 'The mean azimuth/right-ascension average, in degrees, for the duration span.',
+          'The standard deviation of the azimuth/right ascension rate residuals, in degrees, used to determine the sensor azimuth/right-ascension rate bias.',
       },
       azRaRms: {
         type: 'number',
         description:
-          'The root mean square of the azimuth/right-ascension, in degrees, for the duration span.',
+          'The root mean square of the azimuth/right-ascension residuals, in degrees, used to determine the sensor azimuth/right-ascension bias.',
       },
-      azRaSigmaRate: {
+      azRaSigma: {
         type: 'number',
-        description: 'Standard deviation azimuth/right-ascension bias rate, in degrees per second.',
+        description:
+          'The standard deviation of the azimuth/right ascension residuals, in degrees, used to determine the sensor azimuth/right-ascension bias.',
       },
       calAngleRef: {
         type: 'string',
@@ -111,34 +111,35 @@ export const tool: Tool = {
       },
       elDecAccelBias: {
         type: 'number',
-        description:
-          'Sensor elevation/declination acceleration bias rate, in degrees per second squared, during sensor operation.',
+        description: 'Sensor elevation/declination acceleration bias, in degrees per second squared.',
       },
       elDecAccelSigma: {
         type: 'number',
         description:
-          'Standard deviation elevation/declination acceleration bias rate, in degrees per second squared.',
+          'The standard deviation of the elevation/declination acceleration residuals, in degrees, used to determine the sensor elevation/declination acceleration bias.',
       },
       elDecBias: {
         type: 'number',
-        description: 'Sensor elevation/declination bias, in degrees, during sensor operation.',
+        description: 'Sensor elevation/declination bias, in degrees.',
       },
-      elDecBiasRate: {
+      elDecRateBias: {
+        type: 'number',
+        description: 'Sensor elevation/declination rate bias, in degrees per second.',
+      },
+      elDecRateSigma: {
         type: 'number',
         description:
-          'Sensor elevation/declination bias rate, in degrees per second, during sensor operation.',
-      },
-      elDecMean: {
-        type: 'number',
-        description: 'The mean elevation/declination residuals, in degrees, for the duration span.',
+          'The standard deviation of the elevation/declination rate residuals, in degrees, used to determine the sensor elevation/declination rate bias.',
       },
       elDecRms: {
         type: 'number',
-        description: 'The root mean square of the elevation/declination, in degrees, for the duration span.',
+        description:
+          'The root mean square of the elevation/declination residuals, in degrees, used to determine the sensor elevation/declination bias.',
       },
-      elDecSigmaRate: {
+      elDecSigma: {
         type: 'number',
-        description: 'Standard deviation elevation/declination bias rate, in degrees per second.',
+        description:
+          'The standard deviation of the elevation/declination residuals, in degrees, used to determine the sensor elevation/declination bias.',
       },
       endTime: {
         type: 'string',
@@ -192,54 +193,58 @@ export const tool: Tool = {
       },
       photoBias: {
         type: 'number',
-        description: 'The photometric observation noise bias in visual magnitude.',
+        description: 'The sensor photometric observation magnitude bias, in visual magnitude.',
       },
       photoSigma: {
         type: 'number',
-        description: 'The photometric observation noise standard deviation in visual magnitude.',
+        description:
+          'The standard deviation of the magnitude residuals, in visual magnitude, used to determine the photometric bias.',
       },
       rangeAccelBias: {
         type: 'number',
-        description:
-          'Sensor range rate bias acceleration, in kilometers per second squared, during sensor operation.',
+        description: 'Sensor range rate acceleration bias, in kilometers per second squared.',
       },
       rangeAccelSigma: {
         type: 'number',
-        description: 'Standard deviation range rate bias acceleration, in kilometers per second squared.',
+        description:
+          'The standard deviation of the range acceleration residuals, in kilometers per second squared, used to determine the sensor range acceleration bias.',
       },
       rangeBias: {
         type: 'number',
-        description: 'Sensor range bias, in kilometers, for the duration span.',
+        description: 'Sensor range bias, in kilometers.',
       },
       rangeRateBias: {
         type: 'number',
-        description: 'Sensor range rate bias, in kilometers per second for the duration span.',
+        description: 'Sensor range rate bias, in kilometers per second.',
       },
       rangeRateRms: {
         type: 'number',
         description:
-          'The root mean square of the calibration sensor range rate, in kilometers per second, for the duration span.',
+          'The root mean square of the range rate residuals, in kilometers per second, used to determine the sensor range rate bias.',
       },
       rangeRateSigma: {
         type: 'number',
-        description: 'Standard deviation range rate, in kilometers per second, for the duration span.',
+        description:
+          'The standard deviation of the range rate residuals, in kilometers per second, used to determine the sensor range rate bias.',
       },
       rangeRms: {
         type: 'number',
         description:
-          'The root mean square of the calibration sensor range, in kilometers, for the duration span.',
+          'The root mean square of the range residuals, in kilometers, used to determine the sensor range bias.',
       },
       rangeSigma: {
         type: 'number',
-        description: 'Calibration standard deviation range, in kilometers, for the duration span.',
+        description:
+          'The standard deviation of the range residuals, in kilometers, used to determine the sensor range bias.',
       },
       rcsBias: {
         type: 'number',
-        description: 'The radar cross section (RCS) observation noise bias in square meters.',
+        description: 'The sensor radar cross section (RCS) observation bias, in square meters.',
       },
       rcsSigma: {
         type: 'number',
-        description: 'The radar cross section (RCS) observation noise standard deviation in square meters.',
+        description:
+          'The standard deviation of the radar cross section residuals, in square meters, used to determine the radar cross section bias.',
       },
       refTargets: {
         type: 'array',
@@ -258,11 +263,12 @@ export const tool: Tool = {
       },
       timeBias: {
         type: 'number',
-        description: 'Sensor time bias, in seconds, for the duration span.',
+        description: 'Sensor time bias, in seconds.',
       },
       timeBiasSigma: {
         type: 'number',
-        description: 'Standard deviation time, in seconds, for the duration span.',
+        description:
+          'The standard deviation of the time residuals, in seconds, used to determine the sensor time bias.',
       },
     },
   },

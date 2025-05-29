@@ -23,7 +23,9 @@ describe('resource v2', () => {
   test('update: required and optional params', async () => {
     const response = await client.scs.v2.update({
       path: 'path',
+      sendNotification: true,
       classificationMarking: 'U',
+      deleteOn: 0,
       description: 'A description of the updated folder.',
       readAcl: 'user.id1,group.id1',
       tags: ['TAG1', 'TAG2'],
@@ -96,8 +98,10 @@ describe('resource v2', () => {
       classificationMarking: 'classificationMarking',
       path: 'path',
       body: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      deleteAfter: 'deleteAfter',
       description: 'description',
       overwrite: true,
+      sendNotification: true,
       tags: 'tags',
     });
   });
@@ -116,7 +120,9 @@ describe('resource v2', () => {
   test('folderCreate: required and optional params', async () => {
     const response = await client.scs.v2.folderCreate({
       path: 'path',
+      sendNotification: true,
       classificationMarking: 'U',
+      deleteOn: 0,
       description: 'My first folder',
       readAcl: 'user.id1,group.id1',
       tags: ['TAG1', 'TAG2'],

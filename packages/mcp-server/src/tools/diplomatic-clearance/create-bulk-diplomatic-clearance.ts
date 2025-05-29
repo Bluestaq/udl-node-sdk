@@ -86,7 +86,7 @@ export const tool: Tool = {
                   altCountryCode: {
                     type: 'string',
                     description:
-                      'Specifies an alternate country code if the data provider code is not part of an official Country Code standard such as ISO-3166 or FIPS. This field will be set to the value provided by the source and should be used for all Queries specifying a Country Code.',
+                      'Specifies an alternate country code if the data provider code does not match a UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value provided by the source and should be used for all Queries specifying a Country Code.',
                   },
                   clearanceId: {
                     type: 'string',

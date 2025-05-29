@@ -187,14 +187,11 @@ export class TrackRoute extends APIResource {
    *
    * @example
    * ```ts
-   * await client.trackRoute.queryhelp();
+   * const response = await client.trackRoute.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/trackroute/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<TrackRouteQueryhelpResponse> {
+    return this._client.get('/udl/trackroute/queryhelp', options);
   }
 
   /**
@@ -633,6 +630,62 @@ export namespace TrackRouteListResponse {
 }
 
 export type TrackRouteCountResponse = string;
+
+export interface TrackRouteQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<TrackRouteQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace TrackRouteQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type TrackRouteTupleResponse = Array<HistoryAPI.TrackRouteFull>;
 
@@ -2082,6 +2135,7 @@ export declare namespace TrackRoute {
   export {
     type TrackRouteListResponse as TrackRouteListResponse,
     type TrackRouteCountResponse as TrackRouteCountResponse,
+    type TrackRouteQueryhelpResponse as TrackRouteQueryhelpResponse,
     type TrackRouteTupleResponse as TrackRouteTupleResponse,
     type TrackRouteListResponsesOffsetPage as TrackRouteListResponsesOffsetPage,
     type TrackRouteCreateParams as TrackRouteCreateParams,

@@ -173,14 +173,12 @@ export class Country extends APIResource {
    *
    * @example
    * ```ts
-   * await client.diplomaticClearance.country.queryHelp();
+   * const response =
+   *   await client.diplomaticClearance.country.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/diplomaticclearancecountry/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<CountryQueryHelpResponse> {
+    return this._client.get('/udl/diplomaticclearancecountry/queryhelp', options);
   }
 
   /**
@@ -322,10 +320,10 @@ export interface CountryRetrieveResponse {
   agency?: string;
 
   /**
-   * Specifies an alternate country code if the data provider code is not part of an
-   * official Country Code standard such as ISO-3166 or FIPS. This field will be set
-   * to the value provided by the source and should be used for all Queries
-   * specifying a Country Code.
+   * Specifies an alternate country code if the data provider code does not match a
+   * UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+   * provided by the source and should be used for all Queries specifying a Country
+   * Code.
    */
   altCountryCode?: string;
 
@@ -973,10 +971,10 @@ export interface CountryListResponse {
   agency?: string;
 
   /**
-   * Specifies an alternate country code if the data provider code is not part of an
-   * official Country Code standard such as ISO-3166 or FIPS. This field will be set
-   * to the value provided by the source and should be used for all Queries
-   * specifying a Country Code.
+   * Specifies an alternate country code if the data provider code does not match a
+   * UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+   * provided by the source and should be used for all Queries specifying a Country
+   * Code.
    */
   altCountryCode?: string;
 
@@ -1544,6 +1542,62 @@ export namespace CountryListResponse {
 
 export type CountryCountResponse = string;
 
+export interface CountryQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<CountryQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace CountryQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type CountryTupleResponse = Array<CountryTupleResponse.CountryTupleResponseItem>;
 
 export namespace CountryTupleResponse {
@@ -1629,10 +1683,10 @@ export namespace CountryTupleResponse {
     agency?: string;
 
     /**
-     * Specifies an alternate country code if the data provider code is not part of an
-     * official Country Code standard such as ISO-3166 or FIPS. This field will be set
-     * to the value provided by the source and should be used for all Queries
-     * specifying a Country Code.
+     * Specifies an alternate country code if the data provider code does not match a
+     * UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+     * provided by the source and should be used for all Queries specifying a Country
+     * Code.
      */
     altCountryCode?: string;
 
@@ -2276,10 +2330,10 @@ export interface CountryCreateParams {
   agency?: string;
 
   /**
-   * Specifies an alternate country code if the data provider code is not part of an
-   * official Country Code standard such as ISO-3166 or FIPS. This field will be set
-   * to the value provided by the source and should be used for all Queries
-   * specifying a Country Code.
+   * Specifies an alternate country code if the data provider code does not match a
+   * UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+   * provided by the source and should be used for all Queries specifying a Country
+   * Code.
    */
   altCountryCode?: string;
 
@@ -2893,10 +2947,10 @@ export interface CountryUpdateParams {
   agency?: string;
 
   /**
-   * Specifies an alternate country code if the data provider code is not part of an
-   * official Country Code standard such as ISO-3166 or FIPS. This field will be set
-   * to the value provided by the source and should be used for all Queries
-   * specifying a Country Code.
+   * Specifies an alternate country code if the data provider code does not match a
+   * UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+   * provided by the source and should be used for all Queries specifying a Country
+   * Code.
    */
   altCountryCode?: string;
 
@@ -3522,10 +3576,10 @@ export namespace CountryCreateBulkParams {
     agency?: string;
 
     /**
-     * Specifies an alternate country code if the data provider code is not part of an
-     * official Country Code standard such as ISO-3166 or FIPS. This field will be set
-     * to the value provided by the source and should be used for all Queries
-     * specifying a Country Code.
+     * Specifies an alternate country code if the data provider code does not match a
+     * UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+     * provided by the source and should be used for all Queries specifying a Country
+     * Code.
      */
     altCountryCode?: string;
 
@@ -4158,10 +4212,10 @@ export namespace CountryUnvalidatedPublishParams {
     agency?: string;
 
     /**
-     * Specifies an alternate country code if the data provider code is not part of an
-     * official Country Code standard such as ISO-3166 or FIPS. This field will be set
-     * to the value provided by the source and should be used for all Queries
-     * specifying a Country Code.
+     * Specifies an alternate country code if the data provider code does not match a
+     * UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+     * provided by the source and should be used for all Queries specifying a Country
+     * Code.
      */
     altCountryCode?: string;
 
@@ -4698,6 +4752,7 @@ export declare namespace Country {
     type CountryRetrieveResponse as CountryRetrieveResponse,
     type CountryListResponse as CountryListResponse,
     type CountryCountResponse as CountryCountResponse,
+    type CountryQueryHelpResponse as CountryQueryHelpResponse,
     type CountryTupleResponse as CountryTupleResponse,
     type CountryListResponsesOffsetPage as CountryListResponsesOffsetPage,
     type CountryCreateParams as CountryCreateParams,

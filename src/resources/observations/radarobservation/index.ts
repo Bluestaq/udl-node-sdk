@@ -14,6 +14,7 @@ export {
   type RadarobservationListResponse,
   type RadarobservationCountResponse,
   type RadarobservationGetResponse,
+  type RadarobservationQueryhelpResponse,
   type RadarobservationTupleResponse,
   type RadarobservationCreateParams,
   type RadarobservationListParams,

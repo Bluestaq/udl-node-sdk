@@ -146,14 +146,11 @@ export class CollectRequests extends APIResource {
    *
    * @example
    * ```ts
-   * await client.collectRequests.queryHelp();
+   * const response = await client.collectRequests.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/collectrequest/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<CollectRequestQueryHelpResponse> {
+    return this._client.get('/udl/collectrequest/queryhelp', options);
   }
 
   /**
@@ -1188,7 +1185,7 @@ export namespace CollectRequestAbridged {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -1757,6 +1754,62 @@ export namespace CollectRequestAbridged {
 }
 
 export type CollectRequestCountResponse = string;
+
+export interface CollectRequestQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<CollectRequestQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace CollectRequestQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type CollectRequestTupleResponse = Array<Shared.CollectRequestFull>;
 
@@ -2701,7 +2754,7 @@ export namespace CollectRequestCreateParams {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
     /**
      * Optional source-provided and searchable metadata or descriptor of the data.
@@ -4250,7 +4303,7 @@ export namespace CollectRequestCreateBulkParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.
@@ -5794,7 +5847,7 @@ export namespace CollectRequestUnvalidatedPublishParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.
@@ -6370,6 +6423,7 @@ export declare namespace CollectRequests {
   export {
     type CollectRequestAbridged as CollectRequestAbridged,
     type CollectRequestCountResponse as CollectRequestCountResponse,
+    type CollectRequestQueryHelpResponse as CollectRequestQueryHelpResponse,
     type CollectRequestTupleResponse as CollectRequestTupleResponse,
     type CollectRequestAbridgedsOffsetPage as CollectRequestAbridgedsOffsetPage,
     type CollectRequestCreateParams as CollectRequestCreateParams,

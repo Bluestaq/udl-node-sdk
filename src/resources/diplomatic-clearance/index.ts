@@ -5,6 +5,7 @@ export {
   type CountryRetrieveResponse,
   type CountryListResponse,
   type CountryCountResponse,
+  type CountryQueryHelpResponse,
   type CountryTupleResponse,
   type CountryCreateParams,
   type CountryRetrieveParams,
@@ -19,6 +20,7 @@ export {
 export {
   DiplomaticClearance,
   type DiplomaticClearanceCountResponse,
+  type DiplomaticClearanceQueryhelpResponse,
   type DiplomaticClearanceTupleResponse,
   type DiplomaticClearanceCreateParams,
   type DiplomaticClearanceRetrieveParams,

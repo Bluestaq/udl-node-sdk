@@ -170,14 +170,11 @@ export class Status extends APIResource {
    *
    * @example
    * ```ts
-   * await client.status.queryhelp();
+   * const response = await client.status.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/status/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<StatusQueryhelpResponse> {
+    return this._client.get('/udl/status/queryhelp', options);
   }
 
   /**
@@ -1053,6 +1050,62 @@ export namespace StatusGetByEntityTypeResponse {
   }
 }
 
+export interface StatusQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<StatusQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace StatusQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type StatusTupleResponse = Array<StatusTupleResponse.StatusTupleResponseItem>;
 
 export namespace StatusTupleResponse {
@@ -1629,6 +1682,7 @@ export declare namespace Status {
     type StatusGetResponse as StatusGetResponse,
     type StatusGetByEntityIDResponse as StatusGetByEntityIDResponse,
     type StatusGetByEntityTypeResponse as StatusGetByEntityTypeResponse,
+    type StatusQueryhelpResponse as StatusQueryhelpResponse,
     type StatusTupleResponse as StatusTupleResponse,
     type StatusListResponsesOffsetPage as StatusListResponsesOffsetPage,
     type StatusCreateParams as StatusCreateParams,

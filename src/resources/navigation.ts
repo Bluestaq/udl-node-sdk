@@ -141,14 +141,11 @@ export class Navigation extends APIResource {
    *
    * @example
    * ```ts
-   * await client.navigation.queryhelp();
+   * const response = await client.navigation.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/navigation/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<NavigationQueryhelpResponse> {
+    return this._client.get('/udl/navigation/queryhelp', options);
   }
 
   /**
@@ -349,6 +346,62 @@ export interface NavigationGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface NavigationQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<NavigationQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace NavigationQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type NavigationTupleResponse = Array<NavigationTupleResponse.NavigationTupleResponseItem>;
@@ -614,6 +667,7 @@ export declare namespace Navigation {
     type NavigationListResponse as NavigationListResponse,
     type NavigationCountResponse as NavigationCountResponse,
     type NavigationGetResponse as NavigationGetResponse,
+    type NavigationQueryhelpResponse as NavigationQueryhelpResponse,
     type NavigationTupleResponse as NavigationTupleResponse,
     type NavigationListResponsesOffsetPage as NavigationListResponsesOffsetPage,
     type NavigationCreateParams as NavigationCreateParams,

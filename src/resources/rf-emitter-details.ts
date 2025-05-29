@@ -144,14 +144,11 @@ export class RfEmitterDetails extends APIResource {
    *
    * @example
    * ```ts
-   * await client.rfEmitterDetails.queryhelp();
+   * const response = await client.rfEmitterDetails.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/rfemitterdetails/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<RfEmitterDetailQueryhelpResponse> {
+    return this._client.get('/udl/rfemitterdetails/queryhelp', options);
   }
 
   /**
@@ -615,6 +612,62 @@ export interface RfEmitterDetailGetResponse {
    * Array of URLs containing additional information on this RF Emitter.
    */
   urls?: Array<string>;
+}
+
+export interface RfEmitterDetailQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<RfEmitterDetailQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace RfEmitterDetailQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type RfEmitterDetailTupleResponse =
@@ -1252,6 +1305,7 @@ export declare namespace RfEmitterDetails {
     type RfEmitterDetailListResponse as RfEmitterDetailListResponse,
     type RfEmitterDetailCountResponse as RfEmitterDetailCountResponse,
     type RfEmitterDetailGetResponse as RfEmitterDetailGetResponse,
+    type RfEmitterDetailQueryhelpResponse as RfEmitterDetailQueryhelpResponse,
     type RfEmitterDetailTupleResponse as RfEmitterDetailTupleResponse,
     type RfEmitterDetailListResponsesOffsetPage as RfEmitterDetailListResponsesOffsetPage,
     type RfEmitterDetailCreateParams as RfEmitterDetailCreateParams,

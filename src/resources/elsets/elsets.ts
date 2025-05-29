@@ -174,14 +174,12 @@ export class Elsets extends APIResource {
    *
    * @example
    * ```ts
-   * await client.elsets.queryCurrentElsetHelp();
+   * const response =
+   *   await client.elsets.queryCurrentElsetHelp();
    * ```
    */
-  queryCurrentElsetHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/currentelset/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryCurrentElsetHelp(options?: RequestOptions): APIPromise<ElsetQueryCurrentElsetHelpResponse> {
+    return this._client.get('/udl/currentelset/queryhelp', options);
   }
 
   /**
@@ -190,14 +188,11 @@ export class Elsets extends APIResource {
    *
    * @example
    * ```ts
-   * await client.elsets.queryhelp();
+   * const response = await client.elsets.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/elset/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<ElsetQueryhelpResponse> {
+    return this._client.get('/udl/elset/queryhelp', options);
   }
 
   /**
@@ -1174,6 +1169,118 @@ export interface ElsetAbridged {
 
 export type ElsetCountResponse = string;
 
+export interface ElsetQueryCurrentElsetHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<ElsetQueryCurrentElsetHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace ElsetQueryCurrentElsetHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
+export interface ElsetQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<ElsetQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace ElsetQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type ElsetTupleResponse = Array<Elset>;
 
 export interface ElsetCreateParams {
@@ -1558,6 +1665,8 @@ export declare namespace Elsets {
     type ElsetIngest as ElsetIngest,
     type ElsetAbridged as ElsetAbridged,
     type ElsetCountResponse as ElsetCountResponse,
+    type ElsetQueryCurrentElsetHelpResponse as ElsetQueryCurrentElsetHelpResponse,
+    type ElsetQueryhelpResponse as ElsetQueryhelpResponse,
     type ElsetTupleResponse as ElsetTupleResponse,
     type ElsetAbridgedsOffsetPage as ElsetAbridgedsOffsetPage,
     type ElsetCreateParams as ElsetCreateParams,

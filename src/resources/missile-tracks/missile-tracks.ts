@@ -69,11 +69,8 @@ export class MissileTracks extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/missiletrack/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<MissileTrackQueryhelpResponse> {
+    return this._client.get('/udl/missiletrack/queryhelp', options);
   }
 
   /**
@@ -683,10 +680,10 @@ export namespace MissileTrackListResponse {
     cov?: Array<number>;
 
     /**
-     * The reference frame of the covariance elements (ECEF, J2000, UVW). If the
-     * referenceFrame is null it is assumed to be UVW.
+     * The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
+     * GCRF). If the referenceFrame is null it is assumed to be UVW.
      */
-    covReferenceFrame?: string;
+    covReferenceFrame?: 'ECEF' | 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
     /**
      * The flight azimuth associated with the current state vector (0-360 degrees).
@@ -777,6 +774,62 @@ export namespace MissileTrackListResponse {
 }
 
 export type MissileTrackCountResponse = string;
+
+export interface MissileTrackQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<MissileTrackQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace MissileTrackQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type MissileTrackTupleResponse = Array<MissileTrackTupleResponse.MissileTrackTupleResponseItem>;
 
@@ -1353,10 +1406,10 @@ export namespace MissileTrackTupleResponse {
       cov?: Array<number>;
 
       /**
-       * The reference frame of the covariance elements (ECEF, J2000, UVW). If the
-       * referenceFrame is null it is assumed to be UVW.
+       * The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
+       * GCRF). If the referenceFrame is null it is assumed to be UVW.
        */
-      covReferenceFrame?: string;
+      covReferenceFrame?: 'ECEF' | 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * The flight azimuth associated with the current state vector (0-360 degrees).
@@ -2028,10 +2081,10 @@ export namespace MissileTrackCreateBulkParams {
       cov?: Array<number>;
 
       /**
-       * The reference frame of the covariance elements (ECEF, J2000, UVW). If the
-       * referenceFrame is null it is assumed to be UVW.
+       * The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
+       * GCRF). If the referenceFrame is null it is assumed to be UVW.
        */
-      covReferenceFrame?: string;
+      covReferenceFrame?: 'ECEF' | 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * The flight azimuth associated with the current state vector (0-360 degrees).
@@ -2703,10 +2756,10 @@ export namespace MissileTrackUnvalidatedPublishParams {
       cov?: Array<number>;
 
       /**
-       * The reference frame of the covariance elements (ECEF, J2000, UVW). If the
-       * referenceFrame is null it is assumed to be UVW.
+       * The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
+       * GCRF). If the referenceFrame is null it is assumed to be UVW.
        */
-      covReferenceFrame?: string;
+      covReferenceFrame?: 'ECEF' | 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * The flight azimuth associated with the current state vector (0-360 degrees).
@@ -2803,6 +2856,7 @@ export declare namespace MissileTracks {
   export {
     type MissileTrackListResponse as MissileTrackListResponse,
     type MissileTrackCountResponse as MissileTrackCountResponse,
+    type MissileTrackQueryhelpResponse as MissileTrackQueryhelpResponse,
     type MissileTrackTupleResponse as MissileTrackTupleResponse,
     type MissileTrackListResponsesOffsetPage as MissileTrackListResponsesOffsetPage,
     type MissileTrackListParams as MissileTrackListParams,

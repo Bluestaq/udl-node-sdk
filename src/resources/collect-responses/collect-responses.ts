@@ -141,14 +141,11 @@ export class CollectResponses extends APIResource {
    *
    * @example
    * ```ts
-   * await client.collectResponses.queryHelp();
+   * const response = await client.collectResponses.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/collectresponse/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<CollectResponseQueryHelpResponse> {
+    return this._client.get('/udl/collectresponse/queryhelp', options);
   }
 
   /**
@@ -398,6 +395,62 @@ export interface CollectResponseAbridged {
 }
 
 export type CollectResponseCountResponse = string;
+
+export interface CollectResponseQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<CollectResponseQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace CollectResponseQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export interface CollectResponseCreateParams {
   /**
@@ -1030,6 +1083,7 @@ export declare namespace CollectResponses {
   export {
     type CollectResponseAbridged as CollectResponseAbridged,
     type CollectResponseCountResponse as CollectResponseCountResponse,
+    type CollectResponseQueryHelpResponse as CollectResponseQueryHelpResponse,
     type CollectResponseAbridgedsOffsetPage as CollectResponseAbridgedsOffsetPage,
     type CollectResponseCreateParams as CollectResponseCreateParams,
     type CollectResponseRetrieveParams as CollectResponseRetrieveParams,

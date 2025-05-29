@@ -15,6 +15,7 @@ export {
   type VideoGetPlayerStreamingInfoResponse,
   type VideoGetPublisherStreamingInfoResponse,
   type VideoGetStreamFileResponse,
+  type VideoQueryhelpResponse,
   type VideoTupleResponse,
   type VideoCreateParams,
   type VideoListParams,

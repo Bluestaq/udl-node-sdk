@@ -14,6 +14,7 @@ import {
   CalibrationCountResponse,
   CalibrationCreateBulkParams,
   CalibrationCreateParams,
+  CalibrationQueryHelpResponse,
   CalibrationQueryParams,
   CalibrationQueryResponse,
   CalibrationRetrieveParams,
@@ -157,14 +158,11 @@ export class Sensor extends APIResource {
    *
    * @example
    * ```ts
-   * await client.sensor.queryhelp();
+   * const response = await client.sensor.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/sensor/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SensorQueryhelpResponse> {
+    return this._client.get('/udl/sensor/queryhelp', options);
   }
 
   /**
@@ -370,13 +368,14 @@ export namespace SensorListResponse {
 
     /**
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
-     * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+     * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
     type:
       | 'AIRCRAFT'
       | 'BUS'
       | 'COMM'
       | 'IR'
+      | 'LASEREMITTER'
       | 'NAVIGATION'
       | 'ONORBIT'
       | 'RFEMITTER'
@@ -771,6 +770,13 @@ export namespace SensorListResponse {
     acceptSampleRanges?: Array<number>;
 
     /**
+     * Number of bits used in the conversion from analog electrons in a pixel well to a
+     * digital number. The digital number has a maximum value of 2^N, where N is the
+     * number of bits.
+     */
+    analogToDigitalBitSize?: number;
+
+    /**
      * Optical sensor camera aperture.
      */
     aperture?: number;
@@ -780,6 +786,24 @@ export namespace SensorListResponse {
      * radar, in scans/minute.
      */
     asrScanRate?: number;
+
+    /**
+     * One-way radar receiver loss factor due to atmospheric effects. This value will
+     * often be the same as the corresponding transmission factor but may be different
+     * for bistatic systems.
+     */
+    atmosReceiverLoss?: number;
+
+    /**
+     * One-way radar transmission loss factor due to atmospheric effects.
+     */
+    atmosTransmissionLoss?: number;
+
+    /**
+     * Average atmospheric angular width with no distortion from turbulence at an
+     * optical sensor site in arcseconds.
+     */
+    avgAtmosSeeingConditions?: number;
 
     /**
      * Array of azimuth angles of a radar beam, in degrees. If this field is populated,
@@ -793,9 +817,28 @@ export namespace SensorListResponse {
     azimuthRate?: number;
 
     /**
+     * Average background sky brightness at an optical sensor site during new moon
+     * conditions. This field uses units of watts per square meter per steradian
+     * (W/(m^2 str)) consistent with sensor detection bands.
+     */
+    backgroundSkyRadiance?: number;
+
+    /**
+     * Average background sky brightness at an optical sensor site during new moon
+     * conditions. This field uses units of visual magnitude consistent with sensor
+     * detection bands.
+     */
+    backgroundSkyVisMag?: number;
+
+    /**
      * Sensor band.
      */
     band?: string;
+
+    /**
+     * The total bandwidth, in megahertz, about the radar center frequency.
+     */
+    bandwidth?: number;
 
     /**
      * Array designating the beam order of provided values (e.g. vb1 for vertical beam
@@ -822,6 +865,21 @@ export namespace SensorListResponse {
     boresightOffAngle?: number;
 
     /**
+     * Weighted center wavelength for an optical sensor bandpass in micrometers. It is
+     * the center wavelength in a weighted integral sense, accounting for the
+     * sensitivity vs. wavelength curve for the sensor focal plane array.
+     */
+    centerWavelength?: number;
+
+    /**
+     * Collapsing loss in decibels. Collapsing losses occur when two or more sources of
+     * noise are added to the target signal. Examples include receiver bandwidth
+     * mismatch with filtering bandwidth and elevation or azimuth beam collapse onto
+     * position/height indicator displays.
+     */
+    collapsingLoss?: number;
+
+    /**
      * Time the row was created in the database, auto-populated by the system.
      */
     createdAt?: string;
@@ -839,6 +897,12 @@ export namespace SensorListResponse {
     critShear?: number;
 
     /**
+     * Current flowing through optical sensor focal plane electronics with a closed
+     * shutter in electrons per second.
+     */
+    darkCurrent?: number;
+
+    /**
      * Array of time delay(s) for pulses from a radar beam to get to the first range
      * gate, in nanoseconds. If this field is populated, the associated beam(s) must be
      * provided in the beamOrder field.
@@ -849,6 +913,28 @@ export namespace SensorListResponse {
      * Description of the equipment and data source.
      */
     description?: string;
+
+    /**
+     * Detection signal-to-noise ratio (SNR) threshold in decibels. This value is
+     * typically lower than trackSNR.
+     */
+    detectSNR?: number;
+
+    /**
+     * Sensor duty cycle as a fraction of 1. Duty cycle is the fraction of time a
+     * sensor is actively transmitting.
+     */
+    dutyCycle?: number;
+
+    /**
+     * Sensor Earth limb exclusion height in kilometers and is generally only applied
+     * to space-based sensors. Some models used an earth exclusion angle instead, but
+     * this assumes the sensor is in a circular orbit with constant altitude relative
+     * to the earth. The limb exclusion height can be used for space-based sensors in
+     * any orbit (assuming it is constant with sensor altitude). The limb height is
+     * defined to be 0 at the surface of the earth.
+     */
+    earthLimbExclHgt?: number;
 
     /**
      * Array of elevation angles of a radar beam, in degrees. If this field is
@@ -885,13 +971,26 @@ export namespace SensorListResponse {
     fgpCrit?: number;
 
     /**
+     * Noise term, in decibels, that arises when a radar receiver filter has a
+     * non-optimal bandwidth for an incoming signal (i.e., when it does not match the
+     * pulse width).
+     */
+    filterMismatchFactor?: number;
+
+    /**
+     * F-number for an optical telescope. It is dimensionless and is defined as the
+     * ratio of the focal length to the aperture width.
+     */
+    fNum?: number;
+
+    /**
      * For radar based sensors, the focal point elevation of the radar at the site, in
      * meters.
      */
     focalPoint?: number;
 
     /**
-     * Horizontal field of view.
+     * Horizontal field of view, in degrees.
      */
     hFOV?: number;
 
@@ -922,6 +1021,20 @@ export namespace SensorListResponse {
     location?: string;
 
     /**
+     * Aggregated radar range equation gain in decibels for maximum sensitivity. It is
+     * a roll-up value for low fidelity modeling and is often the only sensitivity
+     * value available for a radar system without access to detailed performance
+     * parameters.
+     */
+    loopGain?: number;
+
+    /**
+     * Lowest aspect angle of the full moon in degrees at which the sensor can achieve
+     * full performance.
+     */
+    lunarExclAngle?: number;
+
+    /**
      * Angle between magnetic north and true north at the sensor site, in degrees.
      */
     magDec?: number;
@@ -937,6 +1050,11 @@ export namespace SensorListResponse {
     maxDeviationAngle?: number;
 
     /**
+     * Maximum integration time per image frame in seconds for an optical sensor.
+     */
+    maxIntegrationTime?: number;
+
+    /**
      * Maximum observable sensor range, in kilometers.
      */
     maxObservableRange?: number;
@@ -946,6 +1064,16 @@ export namespace SensorListResponse {
      * this range.
      */
     maxRangeLimit?: number;
+
+    /**
+     * Maximum wavelength detectable by an optical sensor in micrometers.
+     */
+    maxWavelength?: number;
+
+    /**
+     * Minimum integration time per image frame in seconds for an optical sensor.
+     */
+    minIntegrationTime?: number;
 
     /**
      * Minimum range measurement capability of the sensor, in kilometers.
@@ -959,9 +1087,25 @@ export namespace SensorListResponse {
     minSignalNoiseRatio?: number;
 
     /**
+     * Minimum wavelength detectable by an optical sensor in micrometers.
+     */
+    minWavelength?: number;
+
+    /**
      * Negative Range-rate/relative velocity limit (kilometers/second).
      */
     negativeRangeRateLimit?: number;
+
+    /**
+     * Noise figure for a radar system in decibels. This value may be used to compute
+     * system noise when the system temperature is unavailable.
+     */
+    noiseFigure?: number;
+
+    /**
+     * Number of pulses that are non-coherently integrated during detection processing.
+     */
+    nonCoherentIntegratedPulses?: number;
 
     /**
      * For radar based sensors, number of integrated pulses in a transmit cycle.
@@ -969,10 +1113,103 @@ export namespace SensorListResponse {
     numIntegratedPulses?: number;
 
     /**
+     * Number of integration frames for an optical sensor.
+     */
+    numIntegrationFrames?: number;
+
+    /**
+     * The number of optical integration mode characteristics provided in this record.
+     * If provided, the numOpticalIntegrationModes value indicates the number of
+     * elements in each of the opticalIntegrationTimes, opticalIntegrationAngularRates,
+     * opticalIntegrationFrames, opticalIntegrationPixelBinnings, and
+     * opticalIntegrationSNRs arrays.
+     */
+    numOpticalIntegrationModes?: number;
+
+    /**
+     * The number of waveforms characteristics provided in this record. If provided,
+     * the numWaveforms value indicates the number of elements in each of the
+     * waveformPulseWidths, waveformBandWidths, waveformMinRanges, waveformMaxRanges,
+     * and waveformLoopGains arrays.
+     */
+    numWaveforms?: number;
+
+    /**
+     * Array containing the angular rate, in arcsec/sec, for each provided optical
+     * integration mode. The number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationAngularRates?: Array<number>;
+
+    /**
+     * Array containing the number of frames, for each optical integration mode. The
+     * number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationFrames?: Array<number>;
+
+    /**
+     * Array containing the pixel binning, for each optical integration mode. The
+     * number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationPixelBinnings?: Array<number>;
+
+    /**
+     * Array of optical integration modes signal to noise ratios. The number of
+     * elements must be equal to the value indicated in numOpticalIntegrationModes.
+     */
+    opticalIntegrationSNRs?: Array<number>;
+
+    /**
+     * Array containing the time, in seconds, for each provided optical integration
+     * mode. The number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationTimes?: Array<number>;
+
+    /**
+     * Fraction of incident light transmitted to an optical sensor focal plane array.
+     * The value is given as a fraction of 1, not as a percent.
+     */
+    opticalTransmission?: number;
+
+    /**
      * The originating source network on which this record was created, auto-populated
      * by the system.
      */
     origNetwork?: string;
+
+    /**
+     * Two-way pattern absorption/propagation loss due to medium in decibels.
+     */
+    patternAbsorptionLoss?: number;
+
+    /**
+     * Losses from the beam shape, scanning, and pattern factor in decibels. These
+     * losses occur when targets are not directly in line with a beam center. For space
+     * surveillance, this will occur most often during sensor scanning.
+     */
+    patternScanLoss?: number;
+
+    /**
+     * Maximum instantaneous radar transmit power in watts for use in the radar range
+     * equation.
+     */
+    peakPower?: number;
+
+    /**
+     * Angular field-of-view covered by one pixel in a focal plane array in
+     * microradians. The pixel is assumed to be a perfect square so that only a single
+     * value is required.
+     */
+    pixelInstantaneousFOV?: number;
+
+    /**
+     * Maximum number of electrons that can be collected in a single pixel on an
+     * optical sensor focal plane array.
+     */
+    pixelWellDepth?: number;
 
     /**
      * Positive Range-rate/relative velocity limit (kilometers/second).
@@ -984,6 +1221,11 @@ export namespace SensorListResponse {
      * new pulses transmitted per second.
      */
     prf?: number;
+
+    /**
+     * Designated probability of detection at the signal-to-noise detection threshold.
+     */
+    probDetectSNR?: number;
 
     /**
      * For radar based sensors, probability of the indication of the presence of a
@@ -999,7 +1241,13 @@ export namespace SensorListResponse {
     pulseRepPeriods?: Array<number>;
 
     /**
-     * Radar frequency of the sensor (if a radar sensor).
+     * Fraction of incident photons converted to electrons at the focal plane array.
+     * This value is a decimal number between 0 and 1, inclusive.
+     */
+    quantumEff?: number;
+
+    /**
+     * Radar frequency in hertz, of the sensor (if a radar sensor).
      */
     radarFrequency?: number;
 
@@ -1025,6 +1273,12 @@ export namespace SensorListResponse {
     radioFrequency?: number;
 
     /**
+     * Losses due to the presence of a protective radome surrounding a radar sensor, in
+     * decibels.
+     */
+    radomeLoss?: number;
+
+    /**
      * Array of the number(s) of discrete altitudes where return signals are sampled by
      * a radar beam. If this field is populated, the associated beam(s) must be
      * provided in the beamOrder field.
@@ -1036,6 +1290,40 @@ export namespace SensorListResponse {
      * is populated, the associated beam(s) must be provided in the beamOrder field.
      */
     rangeSpacings?: Array<number>;
+
+    /**
+     * Number of false-signal electrons generated by optical sensor focal plane
+     * read-out electronics from photon-to-electron conversion during frame
+     * integration. The units are in electrons RMS.
+     */
+    readNoise?: number;
+
+    /**
+     * Radar receive gain in decibels.
+     */
+    receiveGain?: number;
+
+    /**
+     * Horizontal/azimuthal receive beamwidth for a radar in degrees.
+     */
+    receiveHorizBeamWidth?: number;
+
+    /**
+     * Aggregate radar receive loss, in decibels.
+     */
+    receiveLoss?: number;
+
+    /**
+     * Vertical/elevation receive beamwidth for a radar in degrees.
+     */
+    receiveVertBeamWidth?: number;
+
+    /**
+     * Reference temperature for radar noise in Kelvin. A reference temperature is used
+     * when the radar system temperature is unknown and is combined with the system
+     * noise figure to estimate signal loss.
+     */
+    refTemp?: number;
 
     /**
      * Array of the total number(s) of records required to meet consensus for a radar
@@ -1063,9 +1351,23 @@ export namespace SensorListResponse {
     runMeanCodes?: Array<number>;
 
     /**
+     * Radar signal processing losses, in decibels.
+     */
+    signalProcessingLoss?: number;
+
+    /**
      * Site code of the sensor.
      */
     siteCode?: string;
+
+    /**
+     * Sensor and target position vector origins are at the center of the earth. The
+     * sun vector origin is at the target position and points toward the sun. Any value
+     * between 0 and 180 degrees is acceptable and is assumed to apply in both
+     * directions (i.e., a solar exclusion angle of 30 degrees is understood to mean no
+     * viewing for any angle between -30 deg and +30 deg).
+     */
+    solarExclAngle?: number;
 
     /**
      * Array of the number(s) of Doppler spectra used to process measurements from
@@ -1117,9 +1419,35 @@ export namespace SensorListResponse {
     trackAngle?: number;
 
     /**
+     * Track signal-to-noise ratio (SNR) threshold in decibels. This value is typically
+     * higher than detectSNR.
+     */
+    trackSNR?: number;
+
+    /**
+     * Radar transmit gain in decibels.
+     */
+    transmitGain?: number;
+
+    /**
+     * Horizontal/azimuthal transmit beamwidth for a radar in degrees.
+     */
+    transmitHorizBeamWidth?: number;
+
+    /**
+     * Aggregate radar transmit loss, in decibels.
+     */
+    transmitLoss?: number;
+
+    /**
      * Radar transmit power in Watts.
      */
     transmitPower?: number;
+
+    /**
+     * Vertical/elevation transmit beamwidth for a radar in degrees.
+     */
+    transmitVertBeamWidth?: number;
 
     /**
      * True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
@@ -1130,6 +1458,16 @@ export namespace SensorListResponse {
      * Antenna true tilt, in degrees.
      */
     trueTilt?: number;
+
+    /**
+     * Twilight angle for ground-based optical sensors in degrees. A sensor cannot view
+     * targets until the sun is below the twilight angle relative to the local horizon.
+     * The sign of the angle is positive despite the sun elevation being negative after
+     * local sunset. Typical values for the twilight angle are civil twilight (6
+     * degrees), nautical twilight (12 degrees), and astronomical twilight (18
+     * degrees).
+     */
+    twilightAngle?: number;
 
     /**
      * Flag indicating if a vertical radar beam was used in the wind calculation.
@@ -1151,7 +1489,7 @@ export namespace SensorListResponse {
     vertGateWidths?: Array<number>;
 
     /**
-     * Vertical field of view.
+     * Vertical field of view, in degrees.
      */
     vFOV?: number;
 
@@ -1159,6 +1497,41 @@ export namespace SensorListResponse {
      * Vertical pixel resolution.
      */
     vResPixels?: number;
+
+    /**
+     * Array containing the bandwidth, in megahertz, for each provided waveform. The
+     * number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformBandwidths?: Array<number>;
+
+    /**
+     * Array containing the loop gain, in decibels, for each provided waveform. The
+     * number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field (10 SNR vs. 1 dBsm at 1000 km).
+     */
+    waveformLoopGains?: Array<number>;
+
+    /**
+     * Array containing the maximum range, in kilometers, for each provided waveform.
+     * The number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformMaxRanges?: Array<number>;
+
+    /**
+     * Array containing the minimum range, in kilometers, for each provided waveform.
+     * The number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformMinRanges?: Array<number>;
+
+    /**
+     * Array containing the pulse width, in microseconds, for each provided waveform.
+     * The number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformPulseWidths?: Array<number>;
 
     /**
      * Peformance zone-1 maximum range, in kilometers. Note that the zones apply only
@@ -1631,13 +2004,14 @@ export namespace SensorGetResponse {
 
     /**
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
-     * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+     * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
     type:
       | 'AIRCRAFT'
       | 'BUS'
       | 'COMM'
       | 'IR'
+      | 'LASEREMITTER'
       | 'NAVIGATION'
       | 'ONORBIT'
       | 'RFEMITTER'
@@ -3774,6 +4148,13 @@ export namespace SensorGetResponse {
     acceptSampleRanges?: Array<number>;
 
     /**
+     * Number of bits used in the conversion from analog electrons in a pixel well to a
+     * digital number. The digital number has a maximum value of 2^N, where N is the
+     * number of bits.
+     */
+    analogToDigitalBitSize?: number;
+
+    /**
      * Optical sensor camera aperture.
      */
     aperture?: number;
@@ -3783,6 +4164,24 @@ export namespace SensorGetResponse {
      * radar, in scans/minute.
      */
     asrScanRate?: number;
+
+    /**
+     * One-way radar receiver loss factor due to atmospheric effects. This value will
+     * often be the same as the corresponding transmission factor but may be different
+     * for bistatic systems.
+     */
+    atmosReceiverLoss?: number;
+
+    /**
+     * One-way radar transmission loss factor due to atmospheric effects.
+     */
+    atmosTransmissionLoss?: number;
+
+    /**
+     * Average atmospheric angular width with no distortion from turbulence at an
+     * optical sensor site in arcseconds.
+     */
+    avgAtmosSeeingConditions?: number;
 
     /**
      * Array of azimuth angles of a radar beam, in degrees. If this field is populated,
@@ -3796,9 +4195,28 @@ export namespace SensorGetResponse {
     azimuthRate?: number;
 
     /**
+     * Average background sky brightness at an optical sensor site during new moon
+     * conditions. This field uses units of watts per square meter per steradian
+     * (W/(m^2 str)) consistent with sensor detection bands.
+     */
+    backgroundSkyRadiance?: number;
+
+    /**
+     * Average background sky brightness at an optical sensor site during new moon
+     * conditions. This field uses units of visual magnitude consistent with sensor
+     * detection bands.
+     */
+    backgroundSkyVisMag?: number;
+
+    /**
      * Sensor band.
      */
     band?: string;
+
+    /**
+     * The total bandwidth, in megahertz, about the radar center frequency.
+     */
+    bandwidth?: number;
 
     /**
      * Array designating the beam order of provided values (e.g. vb1 for vertical beam
@@ -3825,6 +4243,21 @@ export namespace SensorGetResponse {
     boresightOffAngle?: number;
 
     /**
+     * Weighted center wavelength for an optical sensor bandpass in micrometers. It is
+     * the center wavelength in a weighted integral sense, accounting for the
+     * sensitivity vs. wavelength curve for the sensor focal plane array.
+     */
+    centerWavelength?: number;
+
+    /**
+     * Collapsing loss in decibels. Collapsing losses occur when two or more sources of
+     * noise are added to the target signal. Examples include receiver bandwidth
+     * mismatch with filtering bandwidth and elevation or azimuth beam collapse onto
+     * position/height indicator displays.
+     */
+    collapsingLoss?: number;
+
+    /**
      * Time the row was created in the database, auto-populated by the system.
      */
     createdAt?: string;
@@ -3842,6 +4275,12 @@ export namespace SensorGetResponse {
     critShear?: number;
 
     /**
+     * Current flowing through optical sensor focal plane electronics with a closed
+     * shutter in electrons per second.
+     */
+    darkCurrent?: number;
+
+    /**
      * Array of time delay(s) for pulses from a radar beam to get to the first range
      * gate, in nanoseconds. If this field is populated, the associated beam(s) must be
      * provided in the beamOrder field.
@@ -3852,6 +4291,28 @@ export namespace SensorGetResponse {
      * Description of the equipment and data source.
      */
     description?: string;
+
+    /**
+     * Detection signal-to-noise ratio (SNR) threshold in decibels. This value is
+     * typically lower than trackSNR.
+     */
+    detectSNR?: number;
+
+    /**
+     * Sensor duty cycle as a fraction of 1. Duty cycle is the fraction of time a
+     * sensor is actively transmitting.
+     */
+    dutyCycle?: number;
+
+    /**
+     * Sensor Earth limb exclusion height in kilometers and is generally only applied
+     * to space-based sensors. Some models used an earth exclusion angle instead, but
+     * this assumes the sensor is in a circular orbit with constant altitude relative
+     * to the earth. The limb exclusion height can be used for space-based sensors in
+     * any orbit (assuming it is constant with sensor altitude). The limb height is
+     * defined to be 0 at the surface of the earth.
+     */
+    earthLimbExclHgt?: number;
 
     /**
      * Array of elevation angles of a radar beam, in degrees. If this field is
@@ -3888,13 +4349,26 @@ export namespace SensorGetResponse {
     fgpCrit?: number;
 
     /**
+     * Noise term, in decibels, that arises when a radar receiver filter has a
+     * non-optimal bandwidth for an incoming signal (i.e., when it does not match the
+     * pulse width).
+     */
+    filterMismatchFactor?: number;
+
+    /**
+     * F-number for an optical telescope. It is dimensionless and is defined as the
+     * ratio of the focal length to the aperture width.
+     */
+    fNum?: number;
+
+    /**
      * For radar based sensors, the focal point elevation of the radar at the site, in
      * meters.
      */
     focalPoint?: number;
 
     /**
-     * Horizontal field of view.
+     * Horizontal field of view, in degrees.
      */
     hFOV?: number;
 
@@ -3925,6 +4399,20 @@ export namespace SensorGetResponse {
     location?: string;
 
     /**
+     * Aggregated radar range equation gain in decibels for maximum sensitivity. It is
+     * a roll-up value for low fidelity modeling and is often the only sensitivity
+     * value available for a radar system without access to detailed performance
+     * parameters.
+     */
+    loopGain?: number;
+
+    /**
+     * Lowest aspect angle of the full moon in degrees at which the sensor can achieve
+     * full performance.
+     */
+    lunarExclAngle?: number;
+
+    /**
      * Angle between magnetic north and true north at the sensor site, in degrees.
      */
     magDec?: number;
@@ -3940,6 +4428,11 @@ export namespace SensorGetResponse {
     maxDeviationAngle?: number;
 
     /**
+     * Maximum integration time per image frame in seconds for an optical sensor.
+     */
+    maxIntegrationTime?: number;
+
+    /**
      * Maximum observable sensor range, in kilometers.
      */
     maxObservableRange?: number;
@@ -3949,6 +4442,16 @@ export namespace SensorGetResponse {
      * this range.
      */
     maxRangeLimit?: number;
+
+    /**
+     * Maximum wavelength detectable by an optical sensor in micrometers.
+     */
+    maxWavelength?: number;
+
+    /**
+     * Minimum integration time per image frame in seconds for an optical sensor.
+     */
+    minIntegrationTime?: number;
 
     /**
      * Minimum range measurement capability of the sensor, in kilometers.
@@ -3962,9 +4465,25 @@ export namespace SensorGetResponse {
     minSignalNoiseRatio?: number;
 
     /**
+     * Minimum wavelength detectable by an optical sensor in micrometers.
+     */
+    minWavelength?: number;
+
+    /**
      * Negative Range-rate/relative velocity limit (kilometers/second).
      */
     negativeRangeRateLimit?: number;
+
+    /**
+     * Noise figure for a radar system in decibels. This value may be used to compute
+     * system noise when the system temperature is unavailable.
+     */
+    noiseFigure?: number;
+
+    /**
+     * Number of pulses that are non-coherently integrated during detection processing.
+     */
+    nonCoherentIntegratedPulses?: number;
 
     /**
      * For radar based sensors, number of integrated pulses in a transmit cycle.
@@ -3972,10 +4491,103 @@ export namespace SensorGetResponse {
     numIntegratedPulses?: number;
 
     /**
+     * Number of integration frames for an optical sensor.
+     */
+    numIntegrationFrames?: number;
+
+    /**
+     * The number of optical integration mode characteristics provided in this record.
+     * If provided, the numOpticalIntegrationModes value indicates the number of
+     * elements in each of the opticalIntegrationTimes, opticalIntegrationAngularRates,
+     * opticalIntegrationFrames, opticalIntegrationPixelBinnings, and
+     * opticalIntegrationSNRs arrays.
+     */
+    numOpticalIntegrationModes?: number;
+
+    /**
+     * The number of waveforms characteristics provided in this record. If provided,
+     * the numWaveforms value indicates the number of elements in each of the
+     * waveformPulseWidths, waveformBandWidths, waveformMinRanges, waveformMaxRanges,
+     * and waveformLoopGains arrays.
+     */
+    numWaveforms?: number;
+
+    /**
+     * Array containing the angular rate, in arcsec/sec, for each provided optical
+     * integration mode. The number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationAngularRates?: Array<number>;
+
+    /**
+     * Array containing the number of frames, for each optical integration mode. The
+     * number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationFrames?: Array<number>;
+
+    /**
+     * Array containing the pixel binning, for each optical integration mode. The
+     * number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationPixelBinnings?: Array<number>;
+
+    /**
+     * Array of optical integration modes signal to noise ratios. The number of
+     * elements must be equal to the value indicated in numOpticalIntegrationModes.
+     */
+    opticalIntegrationSNRs?: Array<number>;
+
+    /**
+     * Array containing the time, in seconds, for each provided optical integration
+     * mode. The number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationTimes?: Array<number>;
+
+    /**
+     * Fraction of incident light transmitted to an optical sensor focal plane array.
+     * The value is given as a fraction of 1, not as a percent.
+     */
+    opticalTransmission?: number;
+
+    /**
      * The originating source network on which this record was created, auto-populated
      * by the system.
      */
     origNetwork?: string;
+
+    /**
+     * Two-way pattern absorption/propagation loss due to medium in decibels.
+     */
+    patternAbsorptionLoss?: number;
+
+    /**
+     * Losses from the beam shape, scanning, and pattern factor in decibels. These
+     * losses occur when targets are not directly in line with a beam center. For space
+     * surveillance, this will occur most often during sensor scanning.
+     */
+    patternScanLoss?: number;
+
+    /**
+     * Maximum instantaneous radar transmit power in watts for use in the radar range
+     * equation.
+     */
+    peakPower?: number;
+
+    /**
+     * Angular field-of-view covered by one pixel in a focal plane array in
+     * microradians. The pixel is assumed to be a perfect square so that only a single
+     * value is required.
+     */
+    pixelInstantaneousFOV?: number;
+
+    /**
+     * Maximum number of electrons that can be collected in a single pixel on an
+     * optical sensor focal plane array.
+     */
+    pixelWellDepth?: number;
 
     /**
      * Positive Range-rate/relative velocity limit (kilometers/second).
@@ -3987,6 +4599,11 @@ export namespace SensorGetResponse {
      * new pulses transmitted per second.
      */
     prf?: number;
+
+    /**
+     * Designated probability of detection at the signal-to-noise detection threshold.
+     */
+    probDetectSNR?: number;
 
     /**
      * For radar based sensors, probability of the indication of the presence of a
@@ -4002,7 +4619,13 @@ export namespace SensorGetResponse {
     pulseRepPeriods?: Array<number>;
 
     /**
-     * Radar frequency of the sensor (if a radar sensor).
+     * Fraction of incident photons converted to electrons at the focal plane array.
+     * This value is a decimal number between 0 and 1, inclusive.
+     */
+    quantumEff?: number;
+
+    /**
+     * Radar frequency in hertz, of the sensor (if a radar sensor).
      */
     radarFrequency?: number;
 
@@ -4028,6 +4651,12 @@ export namespace SensorGetResponse {
     radioFrequency?: number;
 
     /**
+     * Losses due to the presence of a protective radome surrounding a radar sensor, in
+     * decibels.
+     */
+    radomeLoss?: number;
+
+    /**
      * Array of the number(s) of discrete altitudes where return signals are sampled by
      * a radar beam. If this field is populated, the associated beam(s) must be
      * provided in the beamOrder field.
@@ -4039,6 +4668,40 @@ export namespace SensorGetResponse {
      * is populated, the associated beam(s) must be provided in the beamOrder field.
      */
     rangeSpacings?: Array<number>;
+
+    /**
+     * Number of false-signal electrons generated by optical sensor focal plane
+     * read-out electronics from photon-to-electron conversion during frame
+     * integration. The units are in electrons RMS.
+     */
+    readNoise?: number;
+
+    /**
+     * Radar receive gain in decibels.
+     */
+    receiveGain?: number;
+
+    /**
+     * Horizontal/azimuthal receive beamwidth for a radar in degrees.
+     */
+    receiveHorizBeamWidth?: number;
+
+    /**
+     * Aggregate radar receive loss, in decibels.
+     */
+    receiveLoss?: number;
+
+    /**
+     * Vertical/elevation receive beamwidth for a radar in degrees.
+     */
+    receiveVertBeamWidth?: number;
+
+    /**
+     * Reference temperature for radar noise in Kelvin. A reference temperature is used
+     * when the radar system temperature is unknown and is combined with the system
+     * noise figure to estimate signal loss.
+     */
+    refTemp?: number;
 
     /**
      * Array of the total number(s) of records required to meet consensus for a radar
@@ -4066,9 +4729,23 @@ export namespace SensorGetResponse {
     runMeanCodes?: Array<number>;
 
     /**
+     * Radar signal processing losses, in decibels.
+     */
+    signalProcessingLoss?: number;
+
+    /**
      * Site code of the sensor.
      */
     siteCode?: string;
+
+    /**
+     * Sensor and target position vector origins are at the center of the earth. The
+     * sun vector origin is at the target position and points toward the sun. Any value
+     * between 0 and 180 degrees is acceptable and is assumed to apply in both
+     * directions (i.e., a solar exclusion angle of 30 degrees is understood to mean no
+     * viewing for any angle between -30 deg and +30 deg).
+     */
+    solarExclAngle?: number;
 
     /**
      * Array of the number(s) of Doppler spectra used to process measurements from
@@ -4120,9 +4797,35 @@ export namespace SensorGetResponse {
     trackAngle?: number;
 
     /**
+     * Track signal-to-noise ratio (SNR) threshold in decibels. This value is typically
+     * higher than detectSNR.
+     */
+    trackSNR?: number;
+
+    /**
+     * Radar transmit gain in decibels.
+     */
+    transmitGain?: number;
+
+    /**
+     * Horizontal/azimuthal transmit beamwidth for a radar in degrees.
+     */
+    transmitHorizBeamWidth?: number;
+
+    /**
+     * Aggregate radar transmit loss, in decibels.
+     */
+    transmitLoss?: number;
+
+    /**
      * Radar transmit power in Watts.
      */
     transmitPower?: number;
+
+    /**
+     * Vertical/elevation transmit beamwidth for a radar in degrees.
+     */
+    transmitVertBeamWidth?: number;
 
     /**
      * True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
@@ -4133,6 +4836,16 @@ export namespace SensorGetResponse {
      * Antenna true tilt, in degrees.
      */
     trueTilt?: number;
+
+    /**
+     * Twilight angle for ground-based optical sensors in degrees. A sensor cannot view
+     * targets until the sun is below the twilight angle relative to the local horizon.
+     * The sign of the angle is positive despite the sun elevation being negative after
+     * local sunset. Typical values for the twilight angle are civil twilight (6
+     * degrees), nautical twilight (12 degrees), and astronomical twilight (18
+     * degrees).
+     */
+    twilightAngle?: number;
 
     /**
      * Time the row was last updated in the database, auto-populated by the system.
@@ -4165,7 +4878,7 @@ export namespace SensorGetResponse {
     vertGateWidths?: Array<number>;
 
     /**
-     * Vertical field of view.
+     * Vertical field of view, in degrees.
      */
     vFOV?: number;
 
@@ -4173,6 +4886,41 @@ export namespace SensorGetResponse {
      * Vertical pixel resolution.
      */
     vResPixels?: number;
+
+    /**
+     * Array containing the bandwidth, in megahertz, for each provided waveform. The
+     * number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformBandwidths?: Array<number>;
+
+    /**
+     * Array containing the loop gain, in decibels, for each provided waveform. The
+     * number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field (10 SNR vs. 1 dBsm at 1000 km).
+     */
+    waveformLoopGains?: Array<number>;
+
+    /**
+     * Array containing the maximum range, in kilometers, for each provided waveform.
+     * The number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformMaxRanges?: Array<number>;
+
+    /**
+     * Array containing the minimum range, in kilometers, for each provided waveform.
+     * The number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformMinRanges?: Array<number>;
+
+    /**
+     * Array containing the pulse width, in microseconds, for each provided waveform.
+     * The number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformPulseWidths?: Array<number>;
 
     /**
      * Peformance zone-1 maximum range, in kilometers. Note that the zones apply only
@@ -4532,6 +5280,62 @@ export namespace SensorGetResponse {
   }
 }
 
+export interface SensorQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SensorQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SensorQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type SensorTupleResponse = Array<SensorTupleResponse.SensorTupleResponseItem>;
 
 export namespace SensorTupleResponse {
@@ -4725,13 +5529,14 @@ export namespace SensorTupleResponse {
 
       /**
        * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
-       * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+       * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
        */
       type:
         | 'AIRCRAFT'
         | 'BUS'
         | 'COMM'
         | 'IR'
+        | 'LASEREMITTER'
         | 'NAVIGATION'
         | 'ONORBIT'
         | 'RFEMITTER'
@@ -6868,6 +7673,13 @@ export namespace SensorTupleResponse {
       acceptSampleRanges?: Array<number>;
 
       /**
+       * Number of bits used in the conversion from analog electrons in a pixel well to a
+       * digital number. The digital number has a maximum value of 2^N, where N is the
+       * number of bits.
+       */
+      analogToDigitalBitSize?: number;
+
+      /**
        * Optical sensor camera aperture.
        */
       aperture?: number;
@@ -6877,6 +7689,24 @@ export namespace SensorTupleResponse {
        * radar, in scans/minute.
        */
       asrScanRate?: number;
+
+      /**
+       * One-way radar receiver loss factor due to atmospheric effects. This value will
+       * often be the same as the corresponding transmission factor but may be different
+       * for bistatic systems.
+       */
+      atmosReceiverLoss?: number;
+
+      /**
+       * One-way radar transmission loss factor due to atmospheric effects.
+       */
+      atmosTransmissionLoss?: number;
+
+      /**
+       * Average atmospheric angular width with no distortion from turbulence at an
+       * optical sensor site in arcseconds.
+       */
+      avgAtmosSeeingConditions?: number;
 
       /**
        * Array of azimuth angles of a radar beam, in degrees. If this field is populated,
@@ -6890,9 +7720,28 @@ export namespace SensorTupleResponse {
       azimuthRate?: number;
 
       /**
+       * Average background sky brightness at an optical sensor site during new moon
+       * conditions. This field uses units of watts per square meter per steradian
+       * (W/(m^2 str)) consistent with sensor detection bands.
+       */
+      backgroundSkyRadiance?: number;
+
+      /**
+       * Average background sky brightness at an optical sensor site during new moon
+       * conditions. This field uses units of visual magnitude consistent with sensor
+       * detection bands.
+       */
+      backgroundSkyVisMag?: number;
+
+      /**
        * Sensor band.
        */
       band?: string;
+
+      /**
+       * The total bandwidth, in megahertz, about the radar center frequency.
+       */
+      bandwidth?: number;
 
       /**
        * Array designating the beam order of provided values (e.g. vb1 for vertical beam
@@ -6919,6 +7768,21 @@ export namespace SensorTupleResponse {
       boresightOffAngle?: number;
 
       /**
+       * Weighted center wavelength for an optical sensor bandpass in micrometers. It is
+       * the center wavelength in a weighted integral sense, accounting for the
+       * sensitivity vs. wavelength curve for the sensor focal plane array.
+       */
+      centerWavelength?: number;
+
+      /**
+       * Collapsing loss in decibels. Collapsing losses occur when two or more sources of
+       * noise are added to the target signal. Examples include receiver bandwidth
+       * mismatch with filtering bandwidth and elevation or azimuth beam collapse onto
+       * position/height indicator displays.
+       */
+      collapsingLoss?: number;
+
+      /**
        * Time the row was created in the database, auto-populated by the system.
        */
       createdAt?: string;
@@ -6936,6 +7800,12 @@ export namespace SensorTupleResponse {
       critShear?: number;
 
       /**
+       * Current flowing through optical sensor focal plane electronics with a closed
+       * shutter in electrons per second.
+       */
+      darkCurrent?: number;
+
+      /**
        * Array of time delay(s) for pulses from a radar beam to get to the first range
        * gate, in nanoseconds. If this field is populated, the associated beam(s) must be
        * provided in the beamOrder field.
@@ -6946,6 +7816,28 @@ export namespace SensorTupleResponse {
        * Description of the equipment and data source.
        */
       description?: string;
+
+      /**
+       * Detection signal-to-noise ratio (SNR) threshold in decibels. This value is
+       * typically lower than trackSNR.
+       */
+      detectSNR?: number;
+
+      /**
+       * Sensor duty cycle as a fraction of 1. Duty cycle is the fraction of time a
+       * sensor is actively transmitting.
+       */
+      dutyCycle?: number;
+
+      /**
+       * Sensor Earth limb exclusion height in kilometers and is generally only applied
+       * to space-based sensors. Some models used an earth exclusion angle instead, but
+       * this assumes the sensor is in a circular orbit with constant altitude relative
+       * to the earth. The limb exclusion height can be used for space-based sensors in
+       * any orbit (assuming it is constant with sensor altitude). The limb height is
+       * defined to be 0 at the surface of the earth.
+       */
+      earthLimbExclHgt?: number;
 
       /**
        * Array of elevation angles of a radar beam, in degrees. If this field is
@@ -6982,13 +7874,26 @@ export namespace SensorTupleResponse {
       fgpCrit?: number;
 
       /**
+       * Noise term, in decibels, that arises when a radar receiver filter has a
+       * non-optimal bandwidth for an incoming signal (i.e., when it does not match the
+       * pulse width).
+       */
+      filterMismatchFactor?: number;
+
+      /**
+       * F-number for an optical telescope. It is dimensionless and is defined as the
+       * ratio of the focal length to the aperture width.
+       */
+      fNum?: number;
+
+      /**
        * For radar based sensors, the focal point elevation of the radar at the site, in
        * meters.
        */
       focalPoint?: number;
 
       /**
-       * Horizontal field of view.
+       * Horizontal field of view, in degrees.
        */
       hFOV?: number;
 
@@ -7019,6 +7924,20 @@ export namespace SensorTupleResponse {
       location?: string;
 
       /**
+       * Aggregated radar range equation gain in decibels for maximum sensitivity. It is
+       * a roll-up value for low fidelity modeling and is often the only sensitivity
+       * value available for a radar system without access to detailed performance
+       * parameters.
+       */
+      loopGain?: number;
+
+      /**
+       * Lowest aspect angle of the full moon in degrees at which the sensor can achieve
+       * full performance.
+       */
+      lunarExclAngle?: number;
+
+      /**
        * Angle between magnetic north and true north at the sensor site, in degrees.
        */
       magDec?: number;
@@ -7034,6 +7953,11 @@ export namespace SensorTupleResponse {
       maxDeviationAngle?: number;
 
       /**
+       * Maximum integration time per image frame in seconds for an optical sensor.
+       */
+      maxIntegrationTime?: number;
+
+      /**
        * Maximum observable sensor range, in kilometers.
        */
       maxObservableRange?: number;
@@ -7043,6 +7967,16 @@ export namespace SensorTupleResponse {
        * this range.
        */
       maxRangeLimit?: number;
+
+      /**
+       * Maximum wavelength detectable by an optical sensor in micrometers.
+       */
+      maxWavelength?: number;
+
+      /**
+       * Minimum integration time per image frame in seconds for an optical sensor.
+       */
+      minIntegrationTime?: number;
 
       /**
        * Minimum range measurement capability of the sensor, in kilometers.
@@ -7056,9 +7990,25 @@ export namespace SensorTupleResponse {
       minSignalNoiseRatio?: number;
 
       /**
+       * Minimum wavelength detectable by an optical sensor in micrometers.
+       */
+      minWavelength?: number;
+
+      /**
        * Negative Range-rate/relative velocity limit (kilometers/second).
        */
       negativeRangeRateLimit?: number;
+
+      /**
+       * Noise figure for a radar system in decibels. This value may be used to compute
+       * system noise when the system temperature is unavailable.
+       */
+      noiseFigure?: number;
+
+      /**
+       * Number of pulses that are non-coherently integrated during detection processing.
+       */
+      nonCoherentIntegratedPulses?: number;
 
       /**
        * For radar based sensors, number of integrated pulses in a transmit cycle.
@@ -7066,10 +8016,103 @@ export namespace SensorTupleResponse {
       numIntegratedPulses?: number;
 
       /**
+       * Number of integration frames for an optical sensor.
+       */
+      numIntegrationFrames?: number;
+
+      /**
+       * The number of optical integration mode characteristics provided in this record.
+       * If provided, the numOpticalIntegrationModes value indicates the number of
+       * elements in each of the opticalIntegrationTimes, opticalIntegrationAngularRates,
+       * opticalIntegrationFrames, opticalIntegrationPixelBinnings, and
+       * opticalIntegrationSNRs arrays.
+       */
+      numOpticalIntegrationModes?: number;
+
+      /**
+       * The number of waveforms characteristics provided in this record. If provided,
+       * the numWaveforms value indicates the number of elements in each of the
+       * waveformPulseWidths, waveformBandWidths, waveformMinRanges, waveformMaxRanges,
+       * and waveformLoopGains arrays.
+       */
+      numWaveforms?: number;
+
+      /**
+       * Array containing the angular rate, in arcsec/sec, for each provided optical
+       * integration mode. The number of elements must be equal to the value indicated in
+       * numOpticalIntegrationModes.
+       */
+      opticalIntegrationAngularRates?: Array<number>;
+
+      /**
+       * Array containing the number of frames, for each optical integration mode. The
+       * number of elements must be equal to the value indicated in
+       * numOpticalIntegrationModes.
+       */
+      opticalIntegrationFrames?: Array<number>;
+
+      /**
+       * Array containing the pixel binning, for each optical integration mode. The
+       * number of elements must be equal to the value indicated in
+       * numOpticalIntegrationModes.
+       */
+      opticalIntegrationPixelBinnings?: Array<number>;
+
+      /**
+       * Array of optical integration modes signal to noise ratios. The number of
+       * elements must be equal to the value indicated in numOpticalIntegrationModes.
+       */
+      opticalIntegrationSNRs?: Array<number>;
+
+      /**
+       * Array containing the time, in seconds, for each provided optical integration
+       * mode. The number of elements must be equal to the value indicated in
+       * numOpticalIntegrationModes.
+       */
+      opticalIntegrationTimes?: Array<number>;
+
+      /**
+       * Fraction of incident light transmitted to an optical sensor focal plane array.
+       * The value is given as a fraction of 1, not as a percent.
+       */
+      opticalTransmission?: number;
+
+      /**
        * The originating source network on which this record was created, auto-populated
        * by the system.
        */
       origNetwork?: string;
+
+      /**
+       * Two-way pattern absorption/propagation loss due to medium in decibels.
+       */
+      patternAbsorptionLoss?: number;
+
+      /**
+       * Losses from the beam shape, scanning, and pattern factor in decibels. These
+       * losses occur when targets are not directly in line with a beam center. For space
+       * surveillance, this will occur most often during sensor scanning.
+       */
+      patternScanLoss?: number;
+
+      /**
+       * Maximum instantaneous radar transmit power in watts for use in the radar range
+       * equation.
+       */
+      peakPower?: number;
+
+      /**
+       * Angular field-of-view covered by one pixel in a focal plane array in
+       * microradians. The pixel is assumed to be a perfect square so that only a single
+       * value is required.
+       */
+      pixelInstantaneousFOV?: number;
+
+      /**
+       * Maximum number of electrons that can be collected in a single pixel on an
+       * optical sensor focal plane array.
+       */
+      pixelWellDepth?: number;
 
       /**
        * Positive Range-rate/relative velocity limit (kilometers/second).
@@ -7081,6 +8124,11 @@ export namespace SensorTupleResponse {
        * new pulses transmitted per second.
        */
       prf?: number;
+
+      /**
+       * Designated probability of detection at the signal-to-noise detection threshold.
+       */
+      probDetectSNR?: number;
 
       /**
        * For radar based sensors, probability of the indication of the presence of a
@@ -7096,7 +8144,13 @@ export namespace SensorTupleResponse {
       pulseRepPeriods?: Array<number>;
 
       /**
-       * Radar frequency of the sensor (if a radar sensor).
+       * Fraction of incident photons converted to electrons at the focal plane array.
+       * This value is a decimal number between 0 and 1, inclusive.
+       */
+      quantumEff?: number;
+
+      /**
+       * Radar frequency in hertz, of the sensor (if a radar sensor).
        */
       radarFrequency?: number;
 
@@ -7122,6 +8176,12 @@ export namespace SensorTupleResponse {
       radioFrequency?: number;
 
       /**
+       * Losses due to the presence of a protective radome surrounding a radar sensor, in
+       * decibels.
+       */
+      radomeLoss?: number;
+
+      /**
        * Array of the number(s) of discrete altitudes where return signals are sampled by
        * a radar beam. If this field is populated, the associated beam(s) must be
        * provided in the beamOrder field.
@@ -7133,6 +8193,40 @@ export namespace SensorTupleResponse {
        * is populated, the associated beam(s) must be provided in the beamOrder field.
        */
       rangeSpacings?: Array<number>;
+
+      /**
+       * Number of false-signal electrons generated by optical sensor focal plane
+       * read-out electronics from photon-to-electron conversion during frame
+       * integration. The units are in electrons RMS.
+       */
+      readNoise?: number;
+
+      /**
+       * Radar receive gain in decibels.
+       */
+      receiveGain?: number;
+
+      /**
+       * Horizontal/azimuthal receive beamwidth for a radar in degrees.
+       */
+      receiveHorizBeamWidth?: number;
+
+      /**
+       * Aggregate radar receive loss, in decibels.
+       */
+      receiveLoss?: number;
+
+      /**
+       * Vertical/elevation receive beamwidth for a radar in degrees.
+       */
+      receiveVertBeamWidth?: number;
+
+      /**
+       * Reference temperature for radar noise in Kelvin. A reference temperature is used
+       * when the radar system temperature is unknown and is combined with the system
+       * noise figure to estimate signal loss.
+       */
+      refTemp?: number;
 
       /**
        * Array of the total number(s) of records required to meet consensus for a radar
@@ -7160,9 +8254,23 @@ export namespace SensorTupleResponse {
       runMeanCodes?: Array<number>;
 
       /**
+       * Radar signal processing losses, in decibels.
+       */
+      signalProcessingLoss?: number;
+
+      /**
        * Site code of the sensor.
        */
       siteCode?: string;
+
+      /**
+       * Sensor and target position vector origins are at the center of the earth. The
+       * sun vector origin is at the target position and points toward the sun. Any value
+       * between 0 and 180 degrees is acceptable and is assumed to apply in both
+       * directions (i.e., a solar exclusion angle of 30 degrees is understood to mean no
+       * viewing for any angle between -30 deg and +30 deg).
+       */
+      solarExclAngle?: number;
 
       /**
        * Array of the number(s) of Doppler spectra used to process measurements from
@@ -7214,9 +8322,35 @@ export namespace SensorTupleResponse {
       trackAngle?: number;
 
       /**
+       * Track signal-to-noise ratio (SNR) threshold in decibels. This value is typically
+       * higher than detectSNR.
+       */
+      trackSNR?: number;
+
+      /**
+       * Radar transmit gain in decibels.
+       */
+      transmitGain?: number;
+
+      /**
+       * Horizontal/azimuthal transmit beamwidth for a radar in degrees.
+       */
+      transmitHorizBeamWidth?: number;
+
+      /**
+       * Aggregate radar transmit loss, in decibels.
+       */
+      transmitLoss?: number;
+
+      /**
        * Radar transmit power in Watts.
        */
       transmitPower?: number;
+
+      /**
+       * Vertical/elevation transmit beamwidth for a radar in degrees.
+       */
+      transmitVertBeamWidth?: number;
 
       /**
        * True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
@@ -7227,6 +8361,16 @@ export namespace SensorTupleResponse {
        * Antenna true tilt, in degrees.
        */
       trueTilt?: number;
+
+      /**
+       * Twilight angle for ground-based optical sensors in degrees. A sensor cannot view
+       * targets until the sun is below the twilight angle relative to the local horizon.
+       * The sign of the angle is positive despite the sun elevation being negative after
+       * local sunset. Typical values for the twilight angle are civil twilight (6
+       * degrees), nautical twilight (12 degrees), and astronomical twilight (18
+       * degrees).
+       */
+      twilightAngle?: number;
 
       /**
        * Time the row was last updated in the database, auto-populated by the system.
@@ -7259,7 +8403,7 @@ export namespace SensorTupleResponse {
       vertGateWidths?: Array<number>;
 
       /**
-       * Vertical field of view.
+       * Vertical field of view, in degrees.
        */
       vFOV?: number;
 
@@ -7267,6 +8411,41 @@ export namespace SensorTupleResponse {
        * Vertical pixel resolution.
        */
       vResPixels?: number;
+
+      /**
+       * Array containing the bandwidth, in megahertz, for each provided waveform. The
+       * number of elements in this array must be equal to the value indicated in the
+       * numWaveforms field.
+       */
+      waveformBandwidths?: Array<number>;
+
+      /**
+       * Array containing the loop gain, in decibels, for each provided waveform. The
+       * number of elements in this array must be equal to the value indicated in the
+       * numWaveforms field (10 SNR vs. 1 dBsm at 1000 km).
+       */
+      waveformLoopGains?: Array<number>;
+
+      /**
+       * Array containing the maximum range, in kilometers, for each provided waveform.
+       * The number of elements in this array must be equal to the value indicated in the
+       * numWaveforms field.
+       */
+      waveformMaxRanges?: Array<number>;
+
+      /**
+       * Array containing the minimum range, in kilometers, for each provided waveform.
+       * The number of elements in this array must be equal to the value indicated in the
+       * numWaveforms field.
+       */
+      waveformMinRanges?: Array<number>;
+
+      /**
+       * Array containing the pulse width, in microseconds, for each provided waveform.
+       * The number of elements in this array must be equal to the value indicated in the
+       * numWaveforms field.
+       */
+      waveformPulseWidths?: Array<number>;
 
       /**
        * Peformance zone-1 maximum range, in kilometers. Note that the zones apply only
@@ -7785,13 +8964,14 @@ export namespace SensorCreateParams {
 
     /**
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
-     * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+     * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
     type:
       | 'AIRCRAFT'
       | 'BUS'
       | 'COMM'
       | 'IR'
+      | 'LASEREMITTER'
       | 'NAVIGATION'
       | 'ONORBIT'
       | 'RFEMITTER'
@@ -8061,6 +9241,13 @@ export namespace SensorCreateParams {
     acceptSampleRanges?: Array<number>;
 
     /**
+     * Number of bits used in the conversion from analog electrons in a pixel well to a
+     * digital number. The digital number has a maximum value of 2^N, where N is the
+     * number of bits.
+     */
+    analogToDigitalBitSize?: number;
+
+    /**
      * Optical sensor camera aperture.
      */
     aperture?: number;
@@ -8070,6 +9257,24 @@ export namespace SensorCreateParams {
      * radar, in scans/minute.
      */
     asrScanRate?: number;
+
+    /**
+     * One-way radar receiver loss factor due to atmospheric effects. This value will
+     * often be the same as the corresponding transmission factor but may be different
+     * for bistatic systems.
+     */
+    atmosReceiverLoss?: number;
+
+    /**
+     * One-way radar transmission loss factor due to atmospheric effects.
+     */
+    atmosTransmissionLoss?: number;
+
+    /**
+     * Average atmospheric angular width with no distortion from turbulence at an
+     * optical sensor site in arcseconds.
+     */
+    avgAtmosSeeingConditions?: number;
 
     /**
      * Array of azimuth angles of a radar beam, in degrees. If this field is populated,
@@ -8083,9 +9288,28 @@ export namespace SensorCreateParams {
     azimuthRate?: number;
 
     /**
+     * Average background sky brightness at an optical sensor site during new moon
+     * conditions. This field uses units of watts per square meter per steradian
+     * (W/(m^2 str)) consistent with sensor detection bands.
+     */
+    backgroundSkyRadiance?: number;
+
+    /**
+     * Average background sky brightness at an optical sensor site during new moon
+     * conditions. This field uses units of visual magnitude consistent with sensor
+     * detection bands.
+     */
+    backgroundSkyVisMag?: number;
+
+    /**
      * Sensor band.
      */
     band?: string;
+
+    /**
+     * The total bandwidth, in megahertz, about the radar center frequency.
+     */
+    bandwidth?: number;
 
     /**
      * Array designating the beam order of provided values (e.g. vb1 for vertical beam
@@ -8112,10 +9336,31 @@ export namespace SensorCreateParams {
     boresightOffAngle?: number;
 
     /**
+     * Weighted center wavelength for an optical sensor bandpass in micrometers. It is
+     * the center wavelength in a weighted integral sense, accounting for the
+     * sensitivity vs. wavelength curve for the sensor focal plane array.
+     */
+    centerWavelength?: number;
+
+    /**
+     * Collapsing loss in decibels. Collapsing losses occur when two or more sources of
+     * noise are added to the target signal. Examples include receiver bandwidth
+     * mismatch with filtering bandwidth and elevation or azimuth beam collapse onto
+     * position/height indicator displays.
+     */
+    collapsingLoss?: number;
+
+    /**
      * Threshold shear value beyond which one of the radial velocity values will be
      * rejected, measured in units of inverse second.
      */
     critShear?: number;
+
+    /**
+     * Current flowing through optical sensor focal plane electronics with a closed
+     * shutter in electrons per second.
+     */
+    darkCurrent?: number;
 
     /**
      * Array of time delay(s) for pulses from a radar beam to get to the first range
@@ -8128,6 +9373,28 @@ export namespace SensorCreateParams {
      * Description of the equipment and data source.
      */
     description?: string;
+
+    /**
+     * Detection signal-to-noise ratio (SNR) threshold in decibels. This value is
+     * typically lower than trackSNR.
+     */
+    detectSNR?: number;
+
+    /**
+     * Sensor duty cycle as a fraction of 1. Duty cycle is the fraction of time a
+     * sensor is actively transmitting.
+     */
+    dutyCycle?: number;
+
+    /**
+     * Sensor Earth limb exclusion height in kilometers and is generally only applied
+     * to space-based sensors. Some models used an earth exclusion angle instead, but
+     * this assumes the sensor is in a circular orbit with constant altitude relative
+     * to the earth. The limb exclusion height can be used for space-based sensors in
+     * any orbit (assuming it is constant with sensor altitude). The limb height is
+     * defined to be 0 at the surface of the earth.
+     */
+    earthLimbExclHgt?: number;
 
     /**
      * Array of elevation angles of a radar beam, in degrees. If this field is
@@ -8164,13 +9431,26 @@ export namespace SensorCreateParams {
     fgpCrit?: number;
 
     /**
+     * Noise term, in decibels, that arises when a radar receiver filter has a
+     * non-optimal bandwidth for an incoming signal (i.e., when it does not match the
+     * pulse width).
+     */
+    filterMismatchFactor?: number;
+
+    /**
+     * F-number for an optical telescope. It is dimensionless and is defined as the
+     * ratio of the focal length to the aperture width.
+     */
+    fNum?: number;
+
+    /**
      * For radar based sensors, the focal point elevation of the radar at the site, in
      * meters.
      */
     focalPoint?: number;
 
     /**
-     * Horizontal field of view.
+     * Horizontal field of view, in degrees.
      */
     hFOV?: number;
 
@@ -8201,6 +9481,20 @@ export namespace SensorCreateParams {
     location?: string;
 
     /**
+     * Aggregated radar range equation gain in decibels for maximum sensitivity. It is
+     * a roll-up value for low fidelity modeling and is often the only sensitivity
+     * value available for a radar system without access to detailed performance
+     * parameters.
+     */
+    loopGain?: number;
+
+    /**
+     * Lowest aspect angle of the full moon in degrees at which the sensor can achieve
+     * full performance.
+     */
+    lunarExclAngle?: number;
+
+    /**
      * Angle between magnetic north and true north at the sensor site, in degrees.
      */
     magDec?: number;
@@ -8216,6 +9510,11 @@ export namespace SensorCreateParams {
     maxDeviationAngle?: number;
 
     /**
+     * Maximum integration time per image frame in seconds for an optical sensor.
+     */
+    maxIntegrationTime?: number;
+
+    /**
      * Maximum observable sensor range, in kilometers.
      */
     maxObservableRange?: number;
@@ -8225,6 +9524,16 @@ export namespace SensorCreateParams {
      * this range.
      */
     maxRangeLimit?: number;
+
+    /**
+     * Maximum wavelength detectable by an optical sensor in micrometers.
+     */
+    maxWavelength?: number;
+
+    /**
+     * Minimum integration time per image frame in seconds for an optical sensor.
+     */
+    minIntegrationTime?: number;
 
     /**
      * Minimum range measurement capability of the sensor, in kilometers.
@@ -8238,14 +9547,123 @@ export namespace SensorCreateParams {
     minSignalNoiseRatio?: number;
 
     /**
+     * Minimum wavelength detectable by an optical sensor in micrometers.
+     */
+    minWavelength?: number;
+
+    /**
      * Negative Range-rate/relative velocity limit (kilometers/second).
      */
     negativeRangeRateLimit?: number;
 
     /**
+     * Noise figure for a radar system in decibels. This value may be used to compute
+     * system noise when the system temperature is unavailable.
+     */
+    noiseFigure?: number;
+
+    /**
+     * Number of pulses that are non-coherently integrated during detection processing.
+     */
+    nonCoherentIntegratedPulses?: number;
+
+    /**
      * For radar based sensors, number of integrated pulses in a transmit cycle.
      */
     numIntegratedPulses?: number;
+
+    /**
+     * Number of integration frames for an optical sensor.
+     */
+    numIntegrationFrames?: number;
+
+    /**
+     * The number of optical integration mode characteristics provided in this record.
+     * If provided, the numOpticalIntegrationModes value indicates the number of
+     * elements in each of the opticalIntegrationTimes, opticalIntegrationAngularRates,
+     * opticalIntegrationFrames, opticalIntegrationPixelBinnings, and
+     * opticalIntegrationSNRs arrays.
+     */
+    numOpticalIntegrationModes?: number;
+
+    /**
+     * The number of waveforms characteristics provided in this record. If provided,
+     * the numWaveforms value indicates the number of elements in each of the
+     * waveformPulseWidths, waveformBandWidths, waveformMinRanges, waveformMaxRanges,
+     * and waveformLoopGains arrays.
+     */
+    numWaveforms?: number;
+
+    /**
+     * Array containing the angular rate, in arcsec/sec, for each provided optical
+     * integration mode. The number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationAngularRates?: Array<number>;
+
+    /**
+     * Array containing the number of frames, for each optical integration mode. The
+     * number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationFrames?: Array<number>;
+
+    /**
+     * Array containing the pixel binning, for each optical integration mode. The
+     * number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationPixelBinnings?: Array<number>;
+
+    /**
+     * Array of optical integration modes signal to noise ratios. The number of
+     * elements must be equal to the value indicated in numOpticalIntegrationModes.
+     */
+    opticalIntegrationSNRs?: Array<number>;
+
+    /**
+     * Array containing the time, in seconds, for each provided optical integration
+     * mode. The number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationTimes?: Array<number>;
+
+    /**
+     * Fraction of incident light transmitted to an optical sensor focal plane array.
+     * The value is given as a fraction of 1, not as a percent.
+     */
+    opticalTransmission?: number;
+
+    /**
+     * Two-way pattern absorption/propagation loss due to medium in decibels.
+     */
+    patternAbsorptionLoss?: number;
+
+    /**
+     * Losses from the beam shape, scanning, and pattern factor in decibels. These
+     * losses occur when targets are not directly in line with a beam center. For space
+     * surveillance, this will occur most often during sensor scanning.
+     */
+    patternScanLoss?: number;
+
+    /**
+     * Maximum instantaneous radar transmit power in watts for use in the radar range
+     * equation.
+     */
+    peakPower?: number;
+
+    /**
+     * Angular field-of-view covered by one pixel in a focal plane array in
+     * microradians. The pixel is assumed to be a perfect square so that only a single
+     * value is required.
+     */
+    pixelInstantaneousFOV?: number;
+
+    /**
+     * Maximum number of electrons that can be collected in a single pixel on an
+     * optical sensor focal plane array.
+     */
+    pixelWellDepth?: number;
 
     /**
      * Positive Range-rate/relative velocity limit (kilometers/second).
@@ -8257,6 +9675,11 @@ export namespace SensorCreateParams {
      * new pulses transmitted per second.
      */
     prf?: number;
+
+    /**
+     * Designated probability of detection at the signal-to-noise detection threshold.
+     */
+    probDetectSNR?: number;
 
     /**
      * For radar based sensors, probability of the indication of the presence of a
@@ -8272,7 +9695,13 @@ export namespace SensorCreateParams {
     pulseRepPeriods?: Array<number>;
 
     /**
-     * Radar frequency of the sensor (if a radar sensor).
+     * Fraction of incident photons converted to electrons at the focal plane array.
+     * This value is a decimal number between 0 and 1, inclusive.
+     */
+    quantumEff?: number;
+
+    /**
+     * Radar frequency in hertz, of the sensor (if a radar sensor).
      */
     radarFrequency?: number;
 
@@ -8298,6 +9727,12 @@ export namespace SensorCreateParams {
     radioFrequency?: number;
 
     /**
+     * Losses due to the presence of a protective radome surrounding a radar sensor, in
+     * decibels.
+     */
+    radomeLoss?: number;
+
+    /**
      * Array of the number(s) of discrete altitudes where return signals are sampled by
      * a radar beam. If this field is populated, the associated beam(s) must be
      * provided in the beamOrder field.
@@ -8309,6 +9744,40 @@ export namespace SensorCreateParams {
      * is populated, the associated beam(s) must be provided in the beamOrder field.
      */
     rangeSpacings?: Array<number>;
+
+    /**
+     * Number of false-signal electrons generated by optical sensor focal plane
+     * read-out electronics from photon-to-electron conversion during frame
+     * integration. The units are in electrons RMS.
+     */
+    readNoise?: number;
+
+    /**
+     * Radar receive gain in decibels.
+     */
+    receiveGain?: number;
+
+    /**
+     * Horizontal/azimuthal receive beamwidth for a radar in degrees.
+     */
+    receiveHorizBeamWidth?: number;
+
+    /**
+     * Aggregate radar receive loss, in decibels.
+     */
+    receiveLoss?: number;
+
+    /**
+     * Vertical/elevation receive beamwidth for a radar in degrees.
+     */
+    receiveVertBeamWidth?: number;
+
+    /**
+     * Reference temperature for radar noise in Kelvin. A reference temperature is used
+     * when the radar system temperature is unknown and is combined with the system
+     * noise figure to estimate signal loss.
+     */
+    refTemp?: number;
 
     /**
      * Array of the total number(s) of records required to meet consensus for a radar
@@ -8336,9 +9805,23 @@ export namespace SensorCreateParams {
     runMeanCodes?: Array<number>;
 
     /**
+     * Radar signal processing losses, in decibels.
+     */
+    signalProcessingLoss?: number;
+
+    /**
      * Site code of the sensor.
      */
     siteCode?: string;
+
+    /**
+     * Sensor and target position vector origins are at the center of the earth. The
+     * sun vector origin is at the target position and points toward the sun. Any value
+     * between 0 and 180 degrees is acceptable and is assumed to apply in both
+     * directions (i.e., a solar exclusion angle of 30 degrees is understood to mean no
+     * viewing for any angle between -30 deg and +30 deg).
+     */
+    solarExclAngle?: number;
 
     /**
      * Array of the number(s) of Doppler spectra used to process measurements from
@@ -8390,9 +9873,35 @@ export namespace SensorCreateParams {
     trackAngle?: number;
 
     /**
+     * Track signal-to-noise ratio (SNR) threshold in decibels. This value is typically
+     * higher than detectSNR.
+     */
+    trackSNR?: number;
+
+    /**
+     * Radar transmit gain in decibels.
+     */
+    transmitGain?: number;
+
+    /**
+     * Horizontal/azimuthal transmit beamwidth for a radar in degrees.
+     */
+    transmitHorizBeamWidth?: number;
+
+    /**
+     * Aggregate radar transmit loss, in decibels.
+     */
+    transmitLoss?: number;
+
+    /**
      * Radar transmit power in Watts.
      */
     transmitPower?: number;
+
+    /**
+     * Vertical/elevation transmit beamwidth for a radar in degrees.
+     */
+    transmitVertBeamWidth?: number;
 
     /**
      * True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
@@ -8403,6 +9912,16 @@ export namespace SensorCreateParams {
      * Antenna true tilt, in degrees.
      */
     trueTilt?: number;
+
+    /**
+     * Twilight angle for ground-based optical sensors in degrees. A sensor cannot view
+     * targets until the sun is below the twilight angle relative to the local horizon.
+     * The sign of the angle is positive despite the sun elevation being negative after
+     * local sunset. Typical values for the twilight angle are civil twilight (6
+     * degrees), nautical twilight (12 degrees), and astronomical twilight (18
+     * degrees).
+     */
+    twilightAngle?: number;
 
     /**
      * Flag indicating if a vertical radar beam was used in the wind calculation.
@@ -8424,7 +9943,7 @@ export namespace SensorCreateParams {
     vertGateWidths?: Array<number>;
 
     /**
-     * Vertical field of view.
+     * Vertical field of view, in degrees.
      */
     vFOV?: number;
 
@@ -8432,6 +9951,41 @@ export namespace SensorCreateParams {
      * Vertical pixel resolution.
      */
     vResPixels?: number;
+
+    /**
+     * Array containing the bandwidth, in megahertz, for each provided waveform. The
+     * number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformBandwidths?: Array<number>;
+
+    /**
+     * Array containing the loop gain, in decibels, for each provided waveform. The
+     * number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field (10 SNR vs. 1 dBsm at 1000 km).
+     */
+    waveformLoopGains?: Array<number>;
+
+    /**
+     * Array containing the maximum range, in kilometers, for each provided waveform.
+     * The number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformMaxRanges?: Array<number>;
+
+    /**
+     * Array containing the minimum range, in kilometers, for each provided waveform.
+     * The number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformMinRanges?: Array<number>;
+
+    /**
+     * Array containing the pulse width, in microseconds, for each provided waveform.
+     * The number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformPulseWidths?: Array<number>;
 
     /**
      * Peformance zone-1 maximum range, in kilometers. Note that the zones apply only
@@ -8796,13 +10350,14 @@ export namespace SensorUpdateParams {
 
     /**
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
-     * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+     * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
     type:
       | 'AIRCRAFT'
       | 'BUS'
       | 'COMM'
       | 'IR'
+      | 'LASEREMITTER'
       | 'NAVIGATION'
       | 'ONORBIT'
       | 'RFEMITTER'
@@ -9072,6 +10627,13 @@ export namespace SensorUpdateParams {
     acceptSampleRanges?: Array<number>;
 
     /**
+     * Number of bits used in the conversion from analog electrons in a pixel well to a
+     * digital number. The digital number has a maximum value of 2^N, where N is the
+     * number of bits.
+     */
+    analogToDigitalBitSize?: number;
+
+    /**
      * Optical sensor camera aperture.
      */
     aperture?: number;
@@ -9081,6 +10643,24 @@ export namespace SensorUpdateParams {
      * radar, in scans/minute.
      */
     asrScanRate?: number;
+
+    /**
+     * One-way radar receiver loss factor due to atmospheric effects. This value will
+     * often be the same as the corresponding transmission factor but may be different
+     * for bistatic systems.
+     */
+    atmosReceiverLoss?: number;
+
+    /**
+     * One-way radar transmission loss factor due to atmospheric effects.
+     */
+    atmosTransmissionLoss?: number;
+
+    /**
+     * Average atmospheric angular width with no distortion from turbulence at an
+     * optical sensor site in arcseconds.
+     */
+    avgAtmosSeeingConditions?: number;
 
     /**
      * Array of azimuth angles of a radar beam, in degrees. If this field is populated,
@@ -9094,9 +10674,28 @@ export namespace SensorUpdateParams {
     azimuthRate?: number;
 
     /**
+     * Average background sky brightness at an optical sensor site during new moon
+     * conditions. This field uses units of watts per square meter per steradian
+     * (W/(m^2 str)) consistent with sensor detection bands.
+     */
+    backgroundSkyRadiance?: number;
+
+    /**
+     * Average background sky brightness at an optical sensor site during new moon
+     * conditions. This field uses units of visual magnitude consistent with sensor
+     * detection bands.
+     */
+    backgroundSkyVisMag?: number;
+
+    /**
      * Sensor band.
      */
     band?: string;
+
+    /**
+     * The total bandwidth, in megahertz, about the radar center frequency.
+     */
+    bandwidth?: number;
 
     /**
      * Array designating the beam order of provided values (e.g. vb1 for vertical beam
@@ -9123,10 +10722,31 @@ export namespace SensorUpdateParams {
     boresightOffAngle?: number;
 
     /**
+     * Weighted center wavelength for an optical sensor bandpass in micrometers. It is
+     * the center wavelength in a weighted integral sense, accounting for the
+     * sensitivity vs. wavelength curve for the sensor focal plane array.
+     */
+    centerWavelength?: number;
+
+    /**
+     * Collapsing loss in decibels. Collapsing losses occur when two or more sources of
+     * noise are added to the target signal. Examples include receiver bandwidth
+     * mismatch with filtering bandwidth and elevation or azimuth beam collapse onto
+     * position/height indicator displays.
+     */
+    collapsingLoss?: number;
+
+    /**
      * Threshold shear value beyond which one of the radial velocity values will be
      * rejected, measured in units of inverse second.
      */
     critShear?: number;
+
+    /**
+     * Current flowing through optical sensor focal plane electronics with a closed
+     * shutter in electrons per second.
+     */
+    darkCurrent?: number;
 
     /**
      * Array of time delay(s) for pulses from a radar beam to get to the first range
@@ -9139,6 +10759,28 @@ export namespace SensorUpdateParams {
      * Description of the equipment and data source.
      */
     description?: string;
+
+    /**
+     * Detection signal-to-noise ratio (SNR) threshold in decibels. This value is
+     * typically lower than trackSNR.
+     */
+    detectSNR?: number;
+
+    /**
+     * Sensor duty cycle as a fraction of 1. Duty cycle is the fraction of time a
+     * sensor is actively transmitting.
+     */
+    dutyCycle?: number;
+
+    /**
+     * Sensor Earth limb exclusion height in kilometers and is generally only applied
+     * to space-based sensors. Some models used an earth exclusion angle instead, but
+     * this assumes the sensor is in a circular orbit with constant altitude relative
+     * to the earth. The limb exclusion height can be used for space-based sensors in
+     * any orbit (assuming it is constant with sensor altitude). The limb height is
+     * defined to be 0 at the surface of the earth.
+     */
+    earthLimbExclHgt?: number;
 
     /**
      * Array of elevation angles of a radar beam, in degrees. If this field is
@@ -9175,13 +10817,26 @@ export namespace SensorUpdateParams {
     fgpCrit?: number;
 
     /**
+     * Noise term, in decibels, that arises when a radar receiver filter has a
+     * non-optimal bandwidth for an incoming signal (i.e., when it does not match the
+     * pulse width).
+     */
+    filterMismatchFactor?: number;
+
+    /**
+     * F-number for an optical telescope. It is dimensionless and is defined as the
+     * ratio of the focal length to the aperture width.
+     */
+    fNum?: number;
+
+    /**
      * For radar based sensors, the focal point elevation of the radar at the site, in
      * meters.
      */
     focalPoint?: number;
 
     /**
-     * Horizontal field of view.
+     * Horizontal field of view, in degrees.
      */
     hFOV?: number;
 
@@ -9212,6 +10867,20 @@ export namespace SensorUpdateParams {
     location?: string;
 
     /**
+     * Aggregated radar range equation gain in decibels for maximum sensitivity. It is
+     * a roll-up value for low fidelity modeling and is often the only sensitivity
+     * value available for a radar system without access to detailed performance
+     * parameters.
+     */
+    loopGain?: number;
+
+    /**
+     * Lowest aspect angle of the full moon in degrees at which the sensor can achieve
+     * full performance.
+     */
+    lunarExclAngle?: number;
+
+    /**
      * Angle between magnetic north and true north at the sensor site, in degrees.
      */
     magDec?: number;
@@ -9227,6 +10896,11 @@ export namespace SensorUpdateParams {
     maxDeviationAngle?: number;
 
     /**
+     * Maximum integration time per image frame in seconds for an optical sensor.
+     */
+    maxIntegrationTime?: number;
+
+    /**
      * Maximum observable sensor range, in kilometers.
      */
     maxObservableRange?: number;
@@ -9236,6 +10910,16 @@ export namespace SensorUpdateParams {
      * this range.
      */
     maxRangeLimit?: number;
+
+    /**
+     * Maximum wavelength detectable by an optical sensor in micrometers.
+     */
+    maxWavelength?: number;
+
+    /**
+     * Minimum integration time per image frame in seconds for an optical sensor.
+     */
+    minIntegrationTime?: number;
 
     /**
      * Minimum range measurement capability of the sensor, in kilometers.
@@ -9249,14 +10933,123 @@ export namespace SensorUpdateParams {
     minSignalNoiseRatio?: number;
 
     /**
+     * Minimum wavelength detectable by an optical sensor in micrometers.
+     */
+    minWavelength?: number;
+
+    /**
      * Negative Range-rate/relative velocity limit (kilometers/second).
      */
     negativeRangeRateLimit?: number;
 
     /**
+     * Noise figure for a radar system in decibels. This value may be used to compute
+     * system noise when the system temperature is unavailable.
+     */
+    noiseFigure?: number;
+
+    /**
+     * Number of pulses that are non-coherently integrated during detection processing.
+     */
+    nonCoherentIntegratedPulses?: number;
+
+    /**
      * For radar based sensors, number of integrated pulses in a transmit cycle.
      */
     numIntegratedPulses?: number;
+
+    /**
+     * Number of integration frames for an optical sensor.
+     */
+    numIntegrationFrames?: number;
+
+    /**
+     * The number of optical integration mode characteristics provided in this record.
+     * If provided, the numOpticalIntegrationModes value indicates the number of
+     * elements in each of the opticalIntegrationTimes, opticalIntegrationAngularRates,
+     * opticalIntegrationFrames, opticalIntegrationPixelBinnings, and
+     * opticalIntegrationSNRs arrays.
+     */
+    numOpticalIntegrationModes?: number;
+
+    /**
+     * The number of waveforms characteristics provided in this record. If provided,
+     * the numWaveforms value indicates the number of elements in each of the
+     * waveformPulseWidths, waveformBandWidths, waveformMinRanges, waveformMaxRanges,
+     * and waveformLoopGains arrays.
+     */
+    numWaveforms?: number;
+
+    /**
+     * Array containing the angular rate, in arcsec/sec, for each provided optical
+     * integration mode. The number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationAngularRates?: Array<number>;
+
+    /**
+     * Array containing the number of frames, for each optical integration mode. The
+     * number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationFrames?: Array<number>;
+
+    /**
+     * Array containing the pixel binning, for each optical integration mode. The
+     * number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationPixelBinnings?: Array<number>;
+
+    /**
+     * Array of optical integration modes signal to noise ratios. The number of
+     * elements must be equal to the value indicated in numOpticalIntegrationModes.
+     */
+    opticalIntegrationSNRs?: Array<number>;
+
+    /**
+     * Array containing the time, in seconds, for each provided optical integration
+     * mode. The number of elements must be equal to the value indicated in
+     * numOpticalIntegrationModes.
+     */
+    opticalIntegrationTimes?: Array<number>;
+
+    /**
+     * Fraction of incident light transmitted to an optical sensor focal plane array.
+     * The value is given as a fraction of 1, not as a percent.
+     */
+    opticalTransmission?: number;
+
+    /**
+     * Two-way pattern absorption/propagation loss due to medium in decibels.
+     */
+    patternAbsorptionLoss?: number;
+
+    /**
+     * Losses from the beam shape, scanning, and pattern factor in decibels. These
+     * losses occur when targets are not directly in line with a beam center. For space
+     * surveillance, this will occur most often during sensor scanning.
+     */
+    patternScanLoss?: number;
+
+    /**
+     * Maximum instantaneous radar transmit power in watts for use in the radar range
+     * equation.
+     */
+    peakPower?: number;
+
+    /**
+     * Angular field-of-view covered by one pixel in a focal plane array in
+     * microradians. The pixel is assumed to be a perfect square so that only a single
+     * value is required.
+     */
+    pixelInstantaneousFOV?: number;
+
+    /**
+     * Maximum number of electrons that can be collected in a single pixel on an
+     * optical sensor focal plane array.
+     */
+    pixelWellDepth?: number;
 
     /**
      * Positive Range-rate/relative velocity limit (kilometers/second).
@@ -9268,6 +11061,11 @@ export namespace SensorUpdateParams {
      * new pulses transmitted per second.
      */
     prf?: number;
+
+    /**
+     * Designated probability of detection at the signal-to-noise detection threshold.
+     */
+    probDetectSNR?: number;
 
     /**
      * For radar based sensors, probability of the indication of the presence of a
@@ -9283,7 +11081,13 @@ export namespace SensorUpdateParams {
     pulseRepPeriods?: Array<number>;
 
     /**
-     * Radar frequency of the sensor (if a radar sensor).
+     * Fraction of incident photons converted to electrons at the focal plane array.
+     * This value is a decimal number between 0 and 1, inclusive.
+     */
+    quantumEff?: number;
+
+    /**
+     * Radar frequency in hertz, of the sensor (if a radar sensor).
      */
     radarFrequency?: number;
 
@@ -9309,6 +11113,12 @@ export namespace SensorUpdateParams {
     radioFrequency?: number;
 
     /**
+     * Losses due to the presence of a protective radome surrounding a radar sensor, in
+     * decibels.
+     */
+    radomeLoss?: number;
+
+    /**
      * Array of the number(s) of discrete altitudes where return signals are sampled by
      * a radar beam. If this field is populated, the associated beam(s) must be
      * provided in the beamOrder field.
@@ -9320,6 +11130,40 @@ export namespace SensorUpdateParams {
      * is populated, the associated beam(s) must be provided in the beamOrder field.
      */
     rangeSpacings?: Array<number>;
+
+    /**
+     * Number of false-signal electrons generated by optical sensor focal plane
+     * read-out electronics from photon-to-electron conversion during frame
+     * integration. The units are in electrons RMS.
+     */
+    readNoise?: number;
+
+    /**
+     * Radar receive gain in decibels.
+     */
+    receiveGain?: number;
+
+    /**
+     * Horizontal/azimuthal receive beamwidth for a radar in degrees.
+     */
+    receiveHorizBeamWidth?: number;
+
+    /**
+     * Aggregate radar receive loss, in decibels.
+     */
+    receiveLoss?: number;
+
+    /**
+     * Vertical/elevation receive beamwidth for a radar in degrees.
+     */
+    receiveVertBeamWidth?: number;
+
+    /**
+     * Reference temperature for radar noise in Kelvin. A reference temperature is used
+     * when the radar system temperature is unknown and is combined with the system
+     * noise figure to estimate signal loss.
+     */
+    refTemp?: number;
 
     /**
      * Array of the total number(s) of records required to meet consensus for a radar
@@ -9347,9 +11191,23 @@ export namespace SensorUpdateParams {
     runMeanCodes?: Array<number>;
 
     /**
+     * Radar signal processing losses, in decibels.
+     */
+    signalProcessingLoss?: number;
+
+    /**
      * Site code of the sensor.
      */
     siteCode?: string;
+
+    /**
+     * Sensor and target position vector origins are at the center of the earth. The
+     * sun vector origin is at the target position and points toward the sun. Any value
+     * between 0 and 180 degrees is acceptable and is assumed to apply in both
+     * directions (i.e., a solar exclusion angle of 30 degrees is understood to mean no
+     * viewing for any angle between -30 deg and +30 deg).
+     */
+    solarExclAngle?: number;
 
     /**
      * Array of the number(s) of Doppler spectra used to process measurements from
@@ -9401,9 +11259,35 @@ export namespace SensorUpdateParams {
     trackAngle?: number;
 
     /**
+     * Track signal-to-noise ratio (SNR) threshold in decibels. This value is typically
+     * higher than detectSNR.
+     */
+    trackSNR?: number;
+
+    /**
+     * Radar transmit gain in decibels.
+     */
+    transmitGain?: number;
+
+    /**
+     * Horizontal/azimuthal transmit beamwidth for a radar in degrees.
+     */
+    transmitHorizBeamWidth?: number;
+
+    /**
+     * Aggregate radar transmit loss, in decibels.
+     */
+    transmitLoss?: number;
+
+    /**
      * Radar transmit power in Watts.
      */
     transmitPower?: number;
+
+    /**
+     * Vertical/elevation transmit beamwidth for a radar in degrees.
+     */
+    transmitVertBeamWidth?: number;
 
     /**
      * True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
@@ -9414,6 +11298,16 @@ export namespace SensorUpdateParams {
      * Antenna true tilt, in degrees.
      */
     trueTilt?: number;
+
+    /**
+     * Twilight angle for ground-based optical sensors in degrees. A sensor cannot view
+     * targets until the sun is below the twilight angle relative to the local horizon.
+     * The sign of the angle is positive despite the sun elevation being negative after
+     * local sunset. Typical values for the twilight angle are civil twilight (6
+     * degrees), nautical twilight (12 degrees), and astronomical twilight (18
+     * degrees).
+     */
+    twilightAngle?: number;
 
     /**
      * Flag indicating if a vertical radar beam was used in the wind calculation.
@@ -9435,7 +11329,7 @@ export namespace SensorUpdateParams {
     vertGateWidths?: Array<number>;
 
     /**
-     * Vertical field of view.
+     * Vertical field of view, in degrees.
      */
     vFOV?: number;
 
@@ -9443,6 +11337,41 @@ export namespace SensorUpdateParams {
      * Vertical pixel resolution.
      */
     vResPixels?: number;
+
+    /**
+     * Array containing the bandwidth, in megahertz, for each provided waveform. The
+     * number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformBandwidths?: Array<number>;
+
+    /**
+     * Array containing the loop gain, in decibels, for each provided waveform. The
+     * number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field (10 SNR vs. 1 dBsm at 1000 km).
+     */
+    waveformLoopGains?: Array<number>;
+
+    /**
+     * Array containing the maximum range, in kilometers, for each provided waveform.
+     * The number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformMaxRanges?: Array<number>;
+
+    /**
+     * Array containing the minimum range, in kilometers, for each provided waveform.
+     * The number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformMinRanges?: Array<number>;
+
+    /**
+     * Array containing the pulse width, in microseconds, for each provided waveform.
+     * The number of elements in this array must be equal to the value indicated in the
+     * numWaveforms field.
+     */
+    waveformPulseWidths?: Array<number>;
 
     /**
      * Peformance zone-1 maximum range, in kilometers. Note that the zones apply only
@@ -9684,6 +11613,7 @@ export declare namespace Sensor {
     type SensorListResponse as SensorListResponse,
     type SensorCountResponse as SensorCountResponse,
     type SensorGetResponse as SensorGetResponse,
+    type SensorQueryhelpResponse as SensorQueryhelpResponse,
     type SensorTupleResponse as SensorTupleResponse,
     type SensorListResponsesOffsetPage as SensorListResponsesOffsetPage,
     type SensorCreateParams as SensorCreateParams,
@@ -9699,6 +11629,7 @@ export declare namespace Sensor {
     type CalibrationRetrieveResponse as CalibrationRetrieveResponse,
     type CalibrationCountResponse as CalibrationCountResponse,
     type CalibrationQueryResponse as CalibrationQueryResponse,
+    type CalibrationQueryHelpResponse as CalibrationQueryHelpResponse,
     type CalibrationTupleResponse as CalibrationTupleResponse,
     type CalibrationCreateParams as CalibrationCreateParams,
     type CalibrationRetrieveParams as CalibrationRetrieveParams,

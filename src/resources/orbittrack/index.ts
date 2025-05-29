@@ -13,6 +13,7 @@ export {
   Orbittrack,
   type OrbittrackListResponse,
   type OrbittrackCountResponse,
+  type OrbittrackQueryhelpResponse,
   type OrbittrackTupleResponse,
   type OrbittrackListParams,
   type OrbittrackCountParams,

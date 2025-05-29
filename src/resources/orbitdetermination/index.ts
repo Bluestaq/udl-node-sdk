@@ -14,6 +14,7 @@ export {
   type OrbitdeterminationListResponse,
   type OrbitdeterminationCountResponse,
   type OrbitdeterminationGetResponse,
+  type OrbitdeterminationQueryhelpResponse,
   type OrbitdeterminationTupleResponse,
   type OrbitdeterminationCreateParams,
   type OrbitdeterminationListParams,

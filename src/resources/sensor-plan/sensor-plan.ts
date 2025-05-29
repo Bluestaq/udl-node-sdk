@@ -140,14 +140,11 @@ export class SensorPlan extends APIResource {
    *
    * @example
    * ```ts
-   * await client.sensorPlan.queryhelp();
+   * const response = await client.sensorPlan.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/sensorplan/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SensorPlanQueryhelpResponse> {
+    return this._client.get('/udl/sensorplan/queryhelp', options);
   }
 
   /**
@@ -1543,7 +1540,7 @@ export namespace SensorPlanGetResponse {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * Time the row was created in the database, auto-populated by the system.
@@ -2153,6 +2150,62 @@ export namespace SensorPlanGetResponse {
        */
       zvelAlt2?: number;
     }
+  }
+}
+
+export interface SensorPlanQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SensorPlanQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SensorPlanQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -3363,7 +3416,7 @@ export namespace SensorPlanTupleResponse {
          * The reference frame of the covariance matrix elements. If the covReferenceFrame
          * is null it is assumed to be J2000.
          */
-        covReferenceFrame?: 'J2000' | 'UVW';
+        covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
         /**
          * Time the row was created in the database, auto-populated by the system.
@@ -5052,7 +5105,7 @@ export namespace SensorPlanCreateParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.
@@ -6697,7 +6750,7 @@ export namespace SensorPlanUpdateParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.
@@ -8398,7 +8451,7 @@ export namespace SensorPlanUnvalidatedPublishParams {
          * The reference frame of the covariance matrix elements. If the covReferenceFrame
          * is null it is assumed to be J2000.
          */
-        covReferenceFrame?: 'J2000' | 'UVW';
+        covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
         /**
          * Optional source-provided and searchable metadata or descriptor of the data.
@@ -8976,6 +9029,7 @@ export declare namespace SensorPlan {
     type SensorPlanListResponse as SensorPlanListResponse,
     type SensorPlanCountResponse as SensorPlanCountResponse,
     type SensorPlanGetResponse as SensorPlanGetResponse,
+    type SensorPlanQueryhelpResponse as SensorPlanQueryhelpResponse,
     type SensorPlanTupleResponse as SensorPlanTupleResponse,
     type SensorPlanListResponsesOffsetPage as SensorPlanListResponsesOffsetPage,
     type SensorPlanCreateParams as SensorPlanCreateParams,

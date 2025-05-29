@@ -21,9 +21,10 @@ export class Paths extends APIResource {
    * ```
    */
   create(params: PathCreateParams, options?: RequestOptions): APIPromise<string> {
-    const { id, classificationMarking, body, description, overwrite, tags } = params;
+    const { id, classificationMarking, body, deleteAfter, description, overwrite, sendNotification, tags } =
+      params;
     return this._client.post('/scs/path', {
-      query: { id, classificationMarking, description, overwrite, tags },
+      query: { id, classificationMarking, deleteAfter, description, overwrite, sendNotification, tags },
       body: body,
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/octet-stream' }, options?.headers]),
@@ -50,6 +51,11 @@ export interface PathCreateParams {
   body: string | ArrayBuffer | ArrayBufferView | Blob | DataView;
 
   /**
+   * Query param: Length of time after which to automatically delete the file.
+   */
+  deleteAfter?: string;
+
+  /**
    * Query param: Description
    */
   description?: string;
@@ -59,6 +65,11 @@ export interface PathCreateParams {
    * one exists.
    */
   overwrite?: boolean;
+
+  /**
+   * Query param: Whether or not to send a notification that this file was uploaded.
+   */
+  sendNotification?: boolean;
 
   /**
    * Query param: Tags

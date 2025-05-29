@@ -136,14 +136,11 @@ export class SolarArray extends APIResource {
    *
    * @example
    * ```ts
-   * await client.solarArray.queryhelp();
+   * const response = await client.solarArray.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/solararray/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SolarArrayQueryhelpResponse> {
+    return this._client.get('/udl/solararray/queryhelp', options);
   }
 
   /**
@@ -318,6 +315,62 @@ export interface SolarArrayGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface SolarArrayQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SolarArrayQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SolarArrayQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type SolarArrayTupleResponse = Array<SolarArrayTupleResponse.SolarArrayTupleResponseItem>;
@@ -526,6 +579,7 @@ export declare namespace SolarArray {
     type SolarArrayListResponse as SolarArrayListResponse,
     type SolarArrayCountResponse as SolarArrayCountResponse,
     type SolarArrayGetResponse as SolarArrayGetResponse,
+    type SolarArrayQueryhelpResponse as SolarArrayQueryhelpResponse,
     type SolarArrayTupleResponse as SolarArrayTupleResponse,
     type SolarArrayListResponsesOffsetPage as SolarArrayListResponsesOffsetPage,
     type SolarArrayCreateParams as SolarArrayCreateParams,

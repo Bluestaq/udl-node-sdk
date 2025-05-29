@@ -13,6 +13,7 @@ export {
   WeatherReport,
   type WeatherReportListResponse,
   type WeatherReportCountResponse,
+  type WeatherReportQueryhelpResponse,
   type WeatherReportTupleResponse,
   type WeatherReportCreateParams,
   type WeatherReportListParams,
