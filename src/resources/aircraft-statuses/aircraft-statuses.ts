@@ -146,14 +146,11 @@ export class AircraftStatuses extends APIResource {
    *
    * @example
    * ```ts
-   * await client.aircraftStatuses.queryhelp();
+   * const response = await client.aircraftStatuses.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/aircraftstatus/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<AircraftStatusQueryhelpResponse> {
+    return this._client.get('/udl/aircraftstatus/queryhelp', options);
   }
 
   /**
@@ -501,6 +498,62 @@ export interface AircraftstatusAbridged {
 }
 
 export type AircraftStatusCountResponse = string;
+
+export interface AircraftStatusQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AircraftStatusQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AircraftStatusQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type AircraftStatusTupleResponse = Array<Shared.AircraftstatusFull>;
 
@@ -1118,6 +1171,7 @@ export declare namespace AircraftStatuses {
   export {
     type AircraftstatusAbridged as AircraftstatusAbridged,
     type AircraftStatusCountResponse as AircraftStatusCountResponse,
+    type AircraftStatusQueryhelpResponse as AircraftStatusQueryhelpResponse,
     type AircraftStatusTupleResponse as AircraftStatusTupleResponse,
     type AircraftstatusAbridgedsOffsetPage as AircraftstatusAbridgedsOffsetPage,
     type AircraftStatusCreateParams as AircraftStatusCreateParams,

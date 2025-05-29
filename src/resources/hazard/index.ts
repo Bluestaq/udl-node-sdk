@@ -5,6 +5,7 @@ export {
   type HazardListResponse,
   type HazardCountResponse,
   type HazardGetResponse,
+  type HazardQueryhelpResponse,
   type HazardTupleResponse,
   type HazardCreateParams,
   type HazardListParams,

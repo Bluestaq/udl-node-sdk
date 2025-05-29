@@ -13,6 +13,7 @@ export {
   Mti,
   type MtiListResponse,
   type MtiCountResponse,
+  type MtiQueryhelpResponse,
   type MtiTupleResponse,
   type MtiListParams,
   type MtiCountParams,

@@ -149,14 +149,12 @@ export class Radarobservation extends APIResource {
    *
    * @example
    * ```ts
-   * await client.observations.radarobservation.queryhelp();
+   * const response =
+   *   await client.observations.radarobservation.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/radarobservation/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<RadarobservationQueryhelpResponse> {
+    return this._client.get('/udl/radarobservation/queryhelp', options);
   }
 
   /**
@@ -1066,6 +1064,62 @@ export interface RadarobservationGetResponse {
    * Z velocity of target in km/sec in J2000 coordinate frame.
    */
   zvel?: number;
+}
+
+export interface RadarobservationQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<RadarobservationQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace RadarobservationQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type RadarobservationTupleResponse =
@@ -2728,6 +2782,7 @@ export declare namespace Radarobservation {
     type RadarobservationListResponse as RadarobservationListResponse,
     type RadarobservationCountResponse as RadarobservationCountResponse,
     type RadarobservationGetResponse as RadarobservationGetResponse,
+    type RadarobservationQueryhelpResponse as RadarobservationQueryhelpResponse,
     type RadarobservationTupleResponse as RadarobservationTupleResponse,
     type RadarobservationListResponsesOffsetPage as RadarobservationListResponsesOffsetPage,
     type RadarobservationCreateParams as RadarobservationCreateParams,

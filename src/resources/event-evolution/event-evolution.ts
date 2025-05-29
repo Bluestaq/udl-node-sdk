@@ -148,14 +148,11 @@ export class EventEvolution extends APIResource {
    *
    * @example
    * ```ts
-   * await client.eventEvolution.queryhelp();
+   * const response = await client.eventEvolution.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/eventevolution/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<EventEvolutionQueryhelpResponse> {
+    return this._client.get('/udl/eventevolution/queryhelp', options);
   }
 
   /**
@@ -433,6 +430,62 @@ export interface EventEvolutionListResponse {
 }
 
 export type EventEvolutionCountResponse = string;
+
+export interface EventEvolutionQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<EventEvolutionQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace EventEvolutionQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type EventEvolutionTupleResponse = Array<Shared.EventEvolutionFull>;
 
@@ -1139,6 +1192,7 @@ export declare namespace EventEvolution {
   export {
     type EventEvolutionListResponse as EventEvolutionListResponse,
     type EventEvolutionCountResponse as EventEvolutionCountResponse,
+    type EventEvolutionQueryhelpResponse as EventEvolutionQueryhelpResponse,
     type EventEvolutionTupleResponse as EventEvolutionTupleResponse,
     type EventEvolutionListResponsesOffsetPage as EventEvolutionListResponsesOffsetPage,
     type EventEvolutionCreateParams as EventEvolutionCreateParams,

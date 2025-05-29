@@ -142,14 +142,11 @@ export class FeatureAssessment extends APIResource {
    *
    * @example
    * ```ts
-   * await client.featureAssessment.queryHelp();
+   * const response = await client.featureAssessment.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/featureassessment/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<FeatureAssessmentQueryHelpResponse> {
+    return this._client.get('/udl/featureassessment/queryhelp', options);
   }
 
   /**
@@ -798,6 +795,62 @@ export namespace FeatureAssessmentQueryResponse {
      * Estimated physical width of the feature, in meters.
      */
     width?: number;
+  }
+}
+
+export interface FeatureAssessmentQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<FeatureAssessmentQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace FeatureAssessmentQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -1988,6 +2041,7 @@ export declare namespace FeatureAssessment {
     type FeatureAssessmentRetrieveResponse as FeatureAssessmentRetrieveResponse,
     type FeatureAssessmentCountResponse as FeatureAssessmentCountResponse,
     type FeatureAssessmentQueryResponse as FeatureAssessmentQueryResponse,
+    type FeatureAssessmentQueryHelpResponse as FeatureAssessmentQueryHelpResponse,
     type FeatureAssessmentTupleResponse as FeatureAssessmentTupleResponse,
     type FeatureAssessmentCreateParams as FeatureAssessmentCreateParams,
     type FeatureAssessmentRetrieveParams as FeatureAssessmentRetrieveParams,

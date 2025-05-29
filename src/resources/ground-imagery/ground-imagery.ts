@@ -164,14 +164,11 @@ export class GroundImagery extends APIResource {
    *
    * @example
    * ```ts
-   * await client.groundImagery.queryhelp();
+   * const response = await client.groundImagery.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/groundimagery/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<GroundImageryQueryhelpResponse> {
+    return this._client.get('/udl/groundimagery/queryhelp', options);
   }
 
   /**
@@ -593,6 +590,62 @@ export interface GroundImageryGetResponse {
    * automatically and ignored on create/edit operations.
    */
   updatedBy?: string;
+}
+
+export interface GroundImageryQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<GroundImageryQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace GroundImageryQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type GroundImageryTupleResponse = Array<GroundImageryTupleResponse.GroundImageryTupleResponseItem>;
@@ -1055,6 +1108,7 @@ export declare namespace GroundImagery {
     type GroundImageryListResponse as GroundImageryListResponse,
     type GroundImageryCountResponse as GroundImageryCountResponse,
     type GroundImageryGetResponse as GroundImageryGetResponse,
+    type GroundImageryQueryhelpResponse as GroundImageryQueryhelpResponse,
     type GroundImageryTupleResponse as GroundImageryTupleResponse,
     type GroundImageryListResponsesOffsetPage as GroundImageryListResponsesOffsetPage,
     type GroundImageryCreateParams as GroundImageryCreateParams,

@@ -105,14 +105,12 @@ export class Monoradar extends APIResource {
    *
    * @example
    * ```ts
-   * await client.observations.monoradar.queryhelp();
+   * const response =
+   *   await client.observations.monoradar.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/monoradar/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<MonoradarQueryhelpResponse> {
+    return this._client.get('/udl/monoradar/queryhelp', options);
   }
 
   /**
@@ -581,6 +579,62 @@ export interface MonoradarListResponse {
 }
 
 export type MonoradarCountResponse = string;
+
+export interface MonoradarQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<MonoradarQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace MonoradarQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type MonoradarTupleResponse = Array<MonoradarTupleResponse.MonoradarTupleResponseItem>;
 
@@ -1836,6 +1890,7 @@ export declare namespace Monoradar {
   export {
     type MonoradarListResponse as MonoradarListResponse,
     type MonoradarCountResponse as MonoradarCountResponse,
+    type MonoradarQueryhelpResponse as MonoradarQueryhelpResponse,
     type MonoradarTupleResponse as MonoradarTupleResponse,
     type MonoradarListResponsesOffsetPage as MonoradarListResponsesOffsetPage,
     type MonoradarListParams as MonoradarListParams,

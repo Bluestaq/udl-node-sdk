@@ -142,14 +142,12 @@ export class SeradataRadarPayload extends APIResource {
    *
    * @example
    * ```ts
-   * await client.seradataRadarPayload.queryhelp();
+   * const response =
+   *   await client.seradataRadarPayload.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/seradataradarpayload/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SeradataRadarPayloadQueryhelpResponse> {
+    return this._client.get('/udl/seradataradarpayload/queryhelp', options);
   }
 
   /**
@@ -562,6 +560,62 @@ export interface SeradataRadarPayloadGetResponse {
    * Wave length in meters.
    */
   waveLength?: number;
+}
+
+export interface SeradataRadarPayloadQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SeradataRadarPayloadQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SeradataRadarPayloadQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type SeradataRadarPayloadTupleResponse =
@@ -1131,6 +1185,7 @@ export declare namespace SeradataRadarPayload {
     type SeradataRadarPayloadListResponse as SeradataRadarPayloadListResponse,
     type SeradataRadarPayloadCountResponse as SeradataRadarPayloadCountResponse,
     type SeradataRadarPayloadGetResponse as SeradataRadarPayloadGetResponse,
+    type SeradataRadarPayloadQueryhelpResponse as SeradataRadarPayloadQueryhelpResponse,
     type SeradataRadarPayloadTupleResponse as SeradataRadarPayloadTupleResponse,
     type SeradataRadarPayloadListResponsesOffsetPage as SeradataRadarPayloadListResponsesOffsetPage,
     type SeradataRadarPayloadCreateParams as SeradataRadarPayloadCreateParams,

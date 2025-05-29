@@ -142,14 +142,11 @@ export class WeatherData extends APIResource {
    *
    * @example
    * ```ts
-   * await client.weatherData.queryhelp();
+   * const response = await client.weatherData.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/weatherdata/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<WeatherDataQueryhelpResponse> {
+    return this._client.get('/udl/weatherdata/queryhelp', options);
   }
 
   /**
@@ -471,6 +468,62 @@ export interface WeatherDataListResponse {
 }
 
 export type WeatherDataCountResponse = string;
+
+export interface WeatherDataQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<WeatherDataQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace WeatherDataQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type WeatherDataTupleResponse = Array<HistoryAPI.WeatherDataFull>;
 
@@ -1268,6 +1321,7 @@ export declare namespace WeatherData {
   export {
     type WeatherDataListResponse as WeatherDataListResponse,
     type WeatherDataCountResponse as WeatherDataCountResponse,
+    type WeatherDataQueryhelpResponse as WeatherDataQueryhelpResponse,
     type WeatherDataTupleResponse as WeatherDataTupleResponse,
     type WeatherDataListResponsesOffsetPage as WeatherDataListResponsesOffsetPage,
     type WeatherDataCreateParams as WeatherDataCreateParams,

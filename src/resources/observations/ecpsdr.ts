@@ -134,14 +134,12 @@ export class EcpsdrResource extends APIResource {
    *
    * @example
    * ```ts
-   * await client.observations.ecpsdr.queryHelp();
+   * const response =
+   *   await client.observations.ecpsdr.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/ecpsdr/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<EcpsdrQueryHelpResponse> {
+    return this._client.get('/udl/ecpsdr/queryhelp', options);
   }
 
   /**
@@ -809,6 +807,62 @@ export interface EcpsdrAbridged {
 
 export type EcpsdrCountResponse = string;
 
+export interface EcpsdrQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<EcpsdrQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace EcpsdrQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type EcpsdrTupleResponse = Array<Ecpsdr>;
 
 export interface EcpsdrCreateParams {
@@ -1441,6 +1495,7 @@ export declare namespace EcpsdrResource {
     type Ecpsdr as Ecpsdr,
     type EcpsdrAbridged as EcpsdrAbridged,
     type EcpsdrCountResponse as EcpsdrCountResponse,
+    type EcpsdrQueryHelpResponse as EcpsdrQueryHelpResponse,
     type EcpsdrTupleResponse as EcpsdrTupleResponse,
     type EcpsdrAbridgedsOffsetPage as EcpsdrAbridgedsOffsetPage,
     type EcpsdrCreateParams as EcpsdrCreateParams,

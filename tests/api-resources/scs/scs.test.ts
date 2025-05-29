@@ -107,8 +107,10 @@ describe('resource scs', () => {
       fileName: 'fileName',
       path: 'path',
       body: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      deleteAfter: 'deleteAfter',
       description: 'description',
       overwrite: true,
+      sendNotification: true,
       tags: 'tags',
     });
   });

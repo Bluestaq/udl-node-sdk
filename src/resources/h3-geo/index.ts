@@ -5,6 +5,7 @@ export {
   type H3GeoListResponse,
   type H3GeoCountResponse,
   type H3GeoGetResponse,
+  type H3GeoQueryhelpResponse,
   type H3GeoTupleResponse,
   type H3GeoCreateParams,
   type H3GeoListParams,

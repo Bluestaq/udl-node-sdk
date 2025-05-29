@@ -13,6 +13,7 @@ export {
   Notification,
   type NotificationListResponse,
   type NotificationCountResponse,
+  type NotificationQueryhelpResponse,
   type NotificationTupleResponse,
   type NotificationCreateParams,
   type NotificationListParams,

@@ -204,14 +204,11 @@ export class SensorMaintenance extends APIResource {
    *
    * @example
    * ```ts
-   * await client.sensorMaintenance.queryhelp();
+   * const response = await client.sensorMaintenance.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/sensormaintenance/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SensorMaintenanceQueryhelpResponse> {
+    return this._client.get('/udl/sensormaintenance/queryhelp', options);
   }
 
   /**
@@ -814,6 +811,62 @@ export interface SensorMaintenanceGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface SensorMaintenanceQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SensorMaintenanceQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SensorMaintenanceQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type SensorMaintenanceTupleResponse =
@@ -1585,6 +1638,7 @@ export declare namespace SensorMaintenance {
     type SensorMaintenanceCountResponse as SensorMaintenanceCountResponse,
     type SensorMaintenanceCurrentResponse as SensorMaintenanceCurrentResponse,
     type SensorMaintenanceGetResponse as SensorMaintenanceGetResponse,
+    type SensorMaintenanceQueryhelpResponse as SensorMaintenanceQueryhelpResponse,
     type SensorMaintenanceTupleResponse as SensorMaintenanceTupleResponse,
     type SensorMaintenanceListResponsesOffsetPage as SensorMaintenanceListResponsesOffsetPage,
     type SensorMaintenanceCreateParams as SensorMaintenanceCreateParams,

@@ -176,14 +176,11 @@ export class Personnelrecovery extends APIResource {
    *
    * @example
    * ```ts
-   * await client.personnelrecovery.queryhelp();
+   * const response = await client.personnelrecovery.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/personnelrecovery/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<PersonnelrecoveryQueryhelpResponse> {
+    return this._client.get('/udl/personnelrecovery/queryhelp', options);
   }
 
   /**
@@ -1038,6 +1035,62 @@ export namespace PersonnelrecoveryListResponse {
 }
 
 export type PersonnelrecoveryCountResponse = string;
+
+export interface PersonnelrecoveryQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<PersonnelrecoveryQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace PersonnelrecoveryQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type PersonnelrecoveryTupleResponse = Array<PersonnelRecoveryFullL>;
 
@@ -2281,6 +2334,7 @@ export declare namespace Personnelrecovery {
     type PersonnelRecoveryFullL as PersonnelRecoveryFullL,
     type PersonnelrecoveryListResponse as PersonnelrecoveryListResponse,
     type PersonnelrecoveryCountResponse as PersonnelrecoveryCountResponse,
+    type PersonnelrecoveryQueryhelpResponse as PersonnelrecoveryQueryhelpResponse,
     type PersonnelrecoveryTupleResponse as PersonnelrecoveryTupleResponse,
     type PersonnelrecoveryListResponsesOffsetPage as PersonnelrecoveryListResponsesOffsetPage,
     type PersonnelrecoveryCreateParams as PersonnelrecoveryCreateParams,

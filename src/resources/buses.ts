@@ -135,14 +135,11 @@ export class Buses extends APIResource {
    *
    * @example
    * ```ts
-   * await client.buses.queryHelp();
+   * const response = await client.buses.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/bus/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<BusQueryHelpResponse> {
+    return this._client.get('/udl/bus/queryhelp', options);
   }
 
   /**
@@ -815,6 +812,62 @@ export interface BusFull {
 
 export type BusCountResponse = string;
 
+export interface BusQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<BusQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace BusQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type BusTupleResponse = Array<BusFull>;
 
 export interface BusCreateParams {
@@ -1454,6 +1507,7 @@ export declare namespace Buses {
     type BusAbridged as BusAbridged,
     type BusFull as BusFull,
     type BusCountResponse as BusCountResponse,
+    type BusQueryHelpResponse as BusQueryHelpResponse,
     type BusTupleResponse as BusTupleResponse,
     type BusAbridgedsOffsetPage as BusAbridgedsOffsetPage,
     type BusCreateParams as BusCreateParams,

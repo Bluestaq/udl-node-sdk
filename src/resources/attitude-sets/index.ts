@@ -4,6 +4,7 @@ export {
   AttitudeSets,
   type AttitudesetAbridged,
   type AttitudeSetCountResponse,
+  type AttitudeSetQueryHelpResponse,
   type AttitudeSetTupleResponse,
   type AttitudeSetCreateParams,
   type AttitudeSetListParams,

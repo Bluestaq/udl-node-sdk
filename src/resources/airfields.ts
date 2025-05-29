@@ -121,14 +121,11 @@ export class Airfields extends APIResource {
    *
    * @example
    * ```ts
-   * await client.airfields.queryhelp();
+   * const response = await client.airfields.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/airfield/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<AirfieldQueryhelpResponse> {
+    return this._client.get('/udl/airfield/queryhelp', options);
   }
 
   /**
@@ -690,6 +687,62 @@ export interface AirfieldFull {
 
 export type AirfieldCountResponse = string;
 
+export interface AirfieldQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AirfieldQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AirfieldQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type AirfieldTupleResponse = Array<AirfieldFull>;
 
 export interface AirfieldCreateParams {
@@ -1191,6 +1244,7 @@ export declare namespace Airfields {
     type AirfieldAbridged as AirfieldAbridged,
     type AirfieldFull as AirfieldFull,
     type AirfieldCountResponse as AirfieldCountResponse,
+    type AirfieldQueryhelpResponse as AirfieldQueryhelpResponse,
     type AirfieldTupleResponse as AirfieldTupleResponse,
     type AirfieldAbridgedsOffsetPage as AirfieldAbridgedsOffsetPage,
     type AirfieldCreateParams as AirfieldCreateParams,

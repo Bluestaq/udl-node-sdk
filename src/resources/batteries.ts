@@ -133,14 +133,11 @@ export class Batteries extends APIResource {
    *
    * @example
    * ```ts
-   * await client.batteries.queryhelp();
+   * const response = await client.batteries.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/battery/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<BatteryQueryhelpResponse> {
+    return this._client.get('/udl/battery/queryhelp', options);
   }
 
   /**
@@ -313,6 +310,62 @@ export interface BatteryFull {
 
 export type BatteryCountResponse = string;
 
+export interface BatteryQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<BatteryQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace BatteryQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type BatteryTupleResponse = Array<BatteryFull>;
 
 export interface BatteryCreateParams {
@@ -434,6 +487,7 @@ export declare namespace Batteries {
     type BatteryAbridged as BatteryAbridged,
     type BatteryFull as BatteryFull,
     type BatteryCountResponse as BatteryCountResponse,
+    type BatteryQueryhelpResponse as BatteryQueryhelpResponse,
     type BatteryTupleResponse as BatteryTupleResponse,
     type BatteryAbridgedsOffsetPage as BatteryAbridgedsOffsetPage,
     type BatteryCreateParams as BatteryCreateParams,

@@ -144,14 +144,11 @@ export class Substatus extends APIResource {
    *
    * @example
    * ```ts
-   * await client.substatus.queryhelp();
+   * const response = await client.substatus.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/substatus/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SubstatusQueryhelpResponse> {
+    return this._client.get('/udl/substatus/queryhelp', options);
   }
 
   /**
@@ -355,6 +352,62 @@ export interface SubstatusGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface SubstatusQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SubstatusQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SubstatusQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type SubstatusTupleResponse = Array<SubstatusTupleResponse.SubstatusTupleResponseItem>;
@@ -614,6 +667,7 @@ export declare namespace Substatus {
     type SubstatusListResponse as SubstatusListResponse,
     type SubstatusCountResponse as SubstatusCountResponse,
     type SubstatusGetResponse as SubstatusGetResponse,
+    type SubstatusQueryhelpResponse as SubstatusQueryhelpResponse,
     type SubstatusTupleResponse as SubstatusTupleResponse,
     type SubstatusListResponsesOffsetPage as SubstatusListResponsesOffsetPage,
     type SubstatusCreateParams as SubstatusCreateParams,

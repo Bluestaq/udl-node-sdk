@@ -25,5 +25,5 @@ export {
   type ProviderMetadataRetrieveResponse,
   type ProviderMetadataRetrieveParams,
 } from './provider-metadata';
-export { QueryHelp } from './query-help';
+export { QueryHelp, type QueryHelpRetrieveResponse } from './query-help';
 export { SupportingData } from './supporting-data';

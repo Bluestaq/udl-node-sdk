@@ -31,7 +31,7 @@ import {
   ProviderMetadataRetrieveResponse,
 } from './provider-metadata';
 import * as QueryHelpAPI from './query-help';
-import { QueryHelp } from './query-help';
+import { QueryHelp, QueryHelpRetrieveResponse } from './query-help';
 
 export class SupportingData extends APIResource {
   dataTypes: DataTypesAPI.DataTypes = new DataTypesAPI.DataTypes(this._client);
@@ -79,5 +79,5 @@ export declare namespace SupportingData {
     type ProviderMetadataRetrieveParams as ProviderMetadataRetrieveParams,
   };
 
-  export { QueryHelp as QueryHelp };
+  export { QueryHelp as QueryHelp, type QueryHelpRetrieveResponse as QueryHelpRetrieveResponse };
 }

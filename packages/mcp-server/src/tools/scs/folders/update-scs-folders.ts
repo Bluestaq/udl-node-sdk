@@ -40,6 +40,9 @@ export const tool: Tool = {
           createdDate: {
             type: 'string',
           },
+          deleteOn: {
+            type: 'integer',
+          },
           description: {
             type: 'string',
           },

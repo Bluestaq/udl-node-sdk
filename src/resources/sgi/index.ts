@@ -15,6 +15,7 @@ export {
   type SgiCountResponse,
   type SgiGetResponse,
   type SgiGetDataByEffectiveAsOfDateResponse,
+  type SgiQueryhelpResponse,
   type SgiTupleResponse,
   type SgiCreateParams,
   type SgiUpdateParams,

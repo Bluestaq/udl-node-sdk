@@ -148,14 +148,11 @@ export class Hazard extends APIResource {
    *
    * @example
    * ```ts
-   * await client.hazard.queryhelp();
+   * const response = await client.hazard.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/hazard/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<HazardQueryhelpResponse> {
+    return this._client.get('/udl/hazard/queryhelp', options);
   }
 
   /**
@@ -751,6 +748,62 @@ export interface HazardGetResponse {
    * The Atomic Number of the material associated with this detection.
    */
   z?: number;
+}
+
+export interface HazardQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<HazardQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace HazardQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type HazardTupleResponse = Array<HazardTupleResponse.HazardTupleResponseItem>;
@@ -1627,6 +1680,7 @@ export declare namespace Hazard {
     type HazardListResponse as HazardListResponse,
     type HazardCountResponse as HazardCountResponse,
     type HazardGetResponse as HazardGetResponse,
+    type HazardQueryhelpResponse as HazardQueryhelpResponse,
     type HazardTupleResponse as HazardTupleResponse,
     type HazardListResponsesOffsetPage as HazardListResponsesOffsetPage,
     type HazardCreateParams as HazardCreateParams,

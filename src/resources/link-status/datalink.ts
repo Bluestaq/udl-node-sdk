@@ -83,14 +83,12 @@ export class Datalink extends APIResource {
    *
    * @example
    * ```ts
-   * await client.linkStatus.datalink.queryhelp();
+   * const response =
+   *   await client.linkStatus.datalink.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/datalink/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<DatalinkQueryhelpResponse> {
+    return this._client.get('/udl/datalink/queryhelp', options);
   }
 
   /**
@@ -1599,6 +1597,62 @@ export namespace DatalinkListResponse {
 
 export type DatalinkCountResponse = string;
 
+export interface DatalinkQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<DatalinkQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace DatalinkQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type DatalinkTupleResponse = Array<DatalinkTupleResponse.DatalinkTupleResponseItem>;
 
 export namespace DatalinkTupleResponse {
@@ -3054,6 +3108,7 @@ export declare namespace Datalink {
     type DatalinkIngest as DatalinkIngest,
     type DatalinkListResponse as DatalinkListResponse,
     type DatalinkCountResponse as DatalinkCountResponse,
+    type DatalinkQueryhelpResponse as DatalinkQueryhelpResponse,
     type DatalinkTupleResponse as DatalinkTupleResponse,
     type DatalinkListResponsesOffsetPage as DatalinkListResponsesOffsetPage,
     type DatalinkCreateParams as DatalinkCreateParams,

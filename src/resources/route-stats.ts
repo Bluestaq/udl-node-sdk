@@ -163,14 +163,11 @@ export class RouteStats extends APIResource {
    *
    * @example
    * ```ts
-   * await client.routeStats.queryHelp();
+   * const response = await client.routeStats.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/routestats/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<RouteStatQueryHelpResponse> {
+    return this._client.get('/udl/routestats/queryhelp', options);
   }
 
   /**
@@ -655,6 +652,62 @@ export namespace RouteStatQueryResponse {
      * etc.).
      */
     vehicleType?: string;
+  }
+}
+
+export interface RouteStatQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<RouteStatQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace RouteStatQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -1658,6 +1711,7 @@ export declare namespace RouteStats {
     type RouteStatRetrieveResponse as RouteStatRetrieveResponse,
     type RouteStatCountResponse as RouteStatCountResponse,
     type RouteStatQueryResponse as RouteStatQueryResponse,
+    type RouteStatQueryHelpResponse as RouteStatQueryHelpResponse,
     type RouteStatTupleResponse as RouteStatTupleResponse,
     type RouteStatCreateParams as RouteStatCreateParams,
     type RouteStatRetrieveParams as RouteStatRetrieveParams,

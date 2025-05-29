@@ -2,6 +2,7 @@
 
 export {
   DiffOfArrival,
+  type DiffOfArrivalQueryhelpResponse,
   type DiffOfArrivalTupleResponse,
   type DiffOfArrivalRetrieveParams,
   type DiffOfArrivalTupleParams,

@@ -142,14 +142,11 @@ export class LaunchVehicle extends APIResource {
    *
    * @example
    * ```ts
-   * await client.launchVehicle.queryhelp();
+   * const response = await client.launchVehicle.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/launchvehicle/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<LaunchVehicleQueryhelpResponse> {
+    return this._client.get('/udl/launchvehicle/queryhelp', options);
   }
 
   /**
@@ -919,6 +916,62 @@ export namespace LaunchVehicleGetResponse {
      * Total thrust of one of the vernier or additional engines in a vacuum in kN.
      */
     vernierThrustVacuum?: number;
+  }
+}
+
+export interface LaunchVehicleQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<LaunchVehicleQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace LaunchVehicleQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -1734,6 +1787,7 @@ export declare namespace LaunchVehicle {
     type LaunchVehicleListResponse as LaunchVehicleListResponse,
     type LaunchVehicleCountResponse as LaunchVehicleCountResponse,
     type LaunchVehicleGetResponse as LaunchVehicleGetResponse,
+    type LaunchVehicleQueryhelpResponse as LaunchVehicleQueryhelpResponse,
     type LaunchVehicleTupleResponse as LaunchVehicleTupleResponse,
     type LaunchVehicleListResponsesOffsetPage as LaunchVehicleListResponsesOffsetPage,
     type LaunchVehicleCreateParams as LaunchVehicleCreateParams,

@@ -4,6 +4,7 @@ export {
   Evac,
   type EvacAbridged,
   type EvacCountResponse,
+  type EvacQueryHelpResponse,
   type EvacCreateParams,
   type EvacRetrieveParams,
   type EvacListParams,

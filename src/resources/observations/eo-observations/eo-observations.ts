@@ -149,14 +149,12 @@ export class EoObservations extends APIResource {
    *
    * @example
    * ```ts
-   * await client.observations.eoObservations.queryhelp();
+   * const response =
+   *   await client.observations.eoObservations.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/eoobservation/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<EoObservationQueryhelpResponse> {
+    return this._client.get('/udl/eoobservation/queryhelp', options);
   }
 
   /**
@@ -830,6 +828,62 @@ export interface EoObservationAbridged {
 }
 
 export type EoObservationCountResponse = string;
+
+export interface EoObservationQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<EoObservationQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace EoObservationQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type EoObservationTupleResponse = Array<HistoryAPI.EoObservationFull>;
 
@@ -4252,6 +4306,7 @@ export declare namespace EoObservations {
   export {
     type EoObservationAbridged as EoObservationAbridged,
     type EoObservationCountResponse as EoObservationCountResponse,
+    type EoObservationQueryhelpResponse as EoObservationQueryhelpResponse,
     type EoObservationTupleResponse as EoObservationTupleResponse,
     type EoObservationAbridgedsOffsetPage as EoObservationAbridgedsOffsetPage,
     type EoObservationCreateParams as EoObservationCreateParams,

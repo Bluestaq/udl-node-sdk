@@ -30,6 +30,10 @@ export const tool: Tool = {
       body: {
         type: 'string',
       },
+      deleteAfter: {
+        type: 'string',
+        description: 'Length of time after which to automatically delete the file.',
+      },
       description: {
         type: 'string',
         description: 'Description',
@@ -37,6 +41,10 @@ export const tool: Tool = {
       overwrite: {
         type: 'boolean',
         description: 'Whether or not to overwrite a file with the same name and path, if one exists.',
+      },
+      sendNotification: {
+        type: 'boolean',
+        description: 'Whether or not to send a notification that this file was uploaded.',
       },
       tags: {
         type: 'string',

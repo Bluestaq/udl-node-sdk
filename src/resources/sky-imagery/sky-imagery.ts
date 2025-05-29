@@ -90,11 +90,8 @@ export class SkyImagery extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/skyimagery/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SkyImageryQueryhelpResponse> {
+    return this._client.get('/udl/skyimagery/queryhelp', options);
   }
 
   /**
@@ -767,6 +764,62 @@ export interface SkyImageryGetResponse {
   transactionId?: string;
 }
 
+export interface SkyImageryQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SkyImageryQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SkyImageryQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type SkyImageryTupleResponse = Array<SkyImageryTupleResponse.SkyImageryTupleResponseItem>;
 
 export namespace SkyImageryTupleResponse {
@@ -1153,6 +1206,7 @@ export declare namespace SkyImagery {
     type SkyImageryListResponse as SkyImageryListResponse,
     type SkyImageryCountResponse as SkyImageryCountResponse,
     type SkyImageryGetResponse as SkyImageryGetResponse,
+    type SkyImageryQueryhelpResponse as SkyImageryQueryhelpResponse,
     type SkyImageryTupleResponse as SkyImageryTupleResponse,
     type SkyImageryListResponsesOffsetPage as SkyImageryListResponsesOffsetPage,
     type SkyImageryListParams as SkyImageryListParams,

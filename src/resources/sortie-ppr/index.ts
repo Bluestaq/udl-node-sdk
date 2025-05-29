@@ -13,6 +13,7 @@ export {
   SortiePpr,
   type SortiePprListResponse,
   type SortiePprCountResponse,
+  type SortiePprQueryhelpResponse,
   type SortiePprTupleResponse,
   type SortiePprCreateParams,
   type SortiePprUpdateParams,

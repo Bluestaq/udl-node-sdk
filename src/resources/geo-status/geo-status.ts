@@ -144,14 +144,11 @@ export class GeoStatus extends APIResource {
    *
    * @example
    * ```ts
-   * await client.geoStatus.queryhelp();
+   * const response = await client.geoStatus.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/geostatus/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<GeoStatusQueryhelpResponse> {
+    return this._client.get('/udl/geostatus/queryhelp', options);
   }
 
   /**
@@ -341,6 +338,62 @@ export interface GeoStatusListResponse {
 }
 
 export type GeoStatusCountResponse = string;
+
+export interface GeoStatusQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<GeoStatusQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace GeoStatusQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type GeoStatusTupleResponse = Array<HistoryAPI.GeoStatusFull>;
 
@@ -676,6 +729,7 @@ export declare namespace GeoStatus {
   export {
     type GeoStatusListResponse as GeoStatusListResponse,
     type GeoStatusCountResponse as GeoStatusCountResponse,
+    type GeoStatusQueryhelpResponse as GeoStatusQueryhelpResponse,
     type GeoStatusTupleResponse as GeoStatusTupleResponse,
     type GeoStatusListResponsesOffsetPage as GeoStatusListResponsesOffsetPage,
     type GeoStatusCreateParams as GeoStatusCreateParams,

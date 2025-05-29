@@ -70,11 +70,8 @@ export class TrackDetails extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/trackdetails/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<TrackDetailQueryhelpResponse> {
+    return this._client.get('/udl/trackdetails/queryhelp', options);
   }
 
   /**
@@ -1312,6 +1309,62 @@ export interface TrackDetailListResponse {
 }
 
 export type TrackDetailCountResponse = string;
+
+export interface TrackDetailQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<TrackDetailQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace TrackDetailQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type TrackDetailTupleResponse = Array<HistoryAPI.TrackDetailsFull>;
 
@@ -2568,6 +2621,7 @@ export declare namespace TrackDetails {
   export {
     type TrackDetailListResponse as TrackDetailListResponse,
     type TrackDetailCountResponse as TrackDetailCountResponse,
+    type TrackDetailQueryhelpResponse as TrackDetailQueryhelpResponse,
     type TrackDetailTupleResponse as TrackDetailTupleResponse,
     type TrackDetailListResponsesOffsetPage as TrackDetailListResponsesOffsetPage,
     type TrackDetailListParams as TrackDetailListParams,

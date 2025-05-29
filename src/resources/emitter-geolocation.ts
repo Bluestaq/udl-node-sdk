@@ -149,14 +149,12 @@ export class EmitterGeolocation extends APIResource {
    *
    * @example
    * ```ts
-   * await client.emitterGeolocation.queryHelp();
+   * const response =
+   *   await client.emitterGeolocation.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/emittergeolocation/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<EmitterGeolocationQueryHelpResponse> {
+    return this._client.get('/udl/emittergeolocation/queryhelp', options);
   }
 
   /**
@@ -797,6 +795,62 @@ export namespace EmitterGeolocationQueryResponse {
      * UDL team.
      */
     tags?: Array<string>;
+  }
+}
+
+export interface EmitterGeolocationQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<EmitterGeolocationQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace EmitterGeolocationQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -1927,6 +1981,7 @@ export declare namespace EmitterGeolocation {
     type EmitterGeolocationRetrieveResponse as EmitterGeolocationRetrieveResponse,
     type EmitterGeolocationCountResponse as EmitterGeolocationCountResponse,
     type EmitterGeolocationQueryResponse as EmitterGeolocationQueryResponse,
+    type EmitterGeolocationQueryHelpResponse as EmitterGeolocationQueryHelpResponse,
     type EmitterGeolocationTupleResponse as EmitterGeolocationTupleResponse,
     type EmitterGeolocationCreateParams as EmitterGeolocationCreateParams,
     type EmitterGeolocationRetrieveParams as EmitterGeolocationRetrieveParams,

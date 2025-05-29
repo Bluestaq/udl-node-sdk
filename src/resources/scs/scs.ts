@@ -186,9 +186,28 @@ export class Scs extends APIResource {
    * ```
    */
   fileUpload(params: ScFileUploadParams, options?: RequestOptions): APIPromise<string> {
-    const { classificationMarking, fileName, path, body, description, overwrite, tags } = params;
+    const {
+      classificationMarking,
+      fileName,
+      path,
+      body,
+      deleteAfter,
+      description,
+      overwrite,
+      sendNotification,
+      tags,
+    } = params;
     return this._client.post('/scs/file', {
-      query: { classificationMarking, fileName, path, description, overwrite, tags },
+      query: {
+        classificationMarking,
+        fileName,
+        path,
+        deleteAfter,
+        description,
+        overwrite,
+        sendNotification,
+        tags,
+      },
       body: body,
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/octet-stream' }, options?.headers]),
@@ -339,6 +358,11 @@ export interface ScFileUploadParams {
   body: string | ArrayBuffer | ArrayBufferView | Blob | DataView;
 
   /**
+   * Query param: Length of time after which to automatically delete the file.
+   */
+  deleteAfter?: string;
+
+  /**
    * Query param: Description
    */
   description?: string;
@@ -348,6 +372,11 @@ export interface ScFileUploadParams {
    * one exists.
    */
   overwrite?: boolean;
+
+  /**
+   * Query param: Whether or not to send a notification that this file was uploaded.
+   */
+  sendNotification?: boolean;
 
   /**
    * Query param: Tags

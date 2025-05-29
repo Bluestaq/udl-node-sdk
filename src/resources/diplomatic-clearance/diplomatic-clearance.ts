@@ -13,6 +13,7 @@ import {
   CountryListParams,
   CountryListResponse,
   CountryListResponsesOffsetPage,
+  CountryQueryHelpResponse,
   CountryRetrieveParams,
   CountryRetrieveResponse,
   CountryTupleParams,
@@ -207,14 +208,12 @@ export class DiplomaticClearance extends APIResource {
    *
    * @example
    * ```ts
-   * await client.diplomaticClearance.queryhelp();
+   * const response =
+   *   await client.diplomaticClearance.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/diplomaticclearance/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<DiplomaticClearanceQueryhelpResponse> {
+    return this._client.get('/udl/diplomaticclearance/queryhelp', options);
   }
 
   /**
@@ -245,6 +244,62 @@ export class DiplomaticClearance extends APIResource {
 }
 
 export type DiplomaticClearanceCountResponse = string;
+
+export interface DiplomaticClearanceQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<DiplomaticClearanceQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace DiplomaticClearanceQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type DiplomaticClearanceTupleResponse = Array<DiplomaticClearanceAPI.DiplomaticclearanceFull>;
 
@@ -351,10 +406,10 @@ export namespace DiplomaticClearanceCreateParams {
     action?: string;
 
     /**
-     * Specifies an alternate country code if the data provider code is not part of an
-     * official Country Code standard such as ISO-3166 or FIPS. This field will be set
-     * to the value provided by the source and should be used for all Queries
-     * specifying a Country Code.
+     * Specifies an alternate country code if the data provider code does not match a
+     * UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+     * provided by the source and should be used for all Queries specifying a Country
+     * Code.
      */
     altCountryCode?: string;
 
@@ -619,10 +674,10 @@ export namespace DiplomaticClearanceUpdateParams {
     action?: string;
 
     /**
-     * Specifies an alternate country code if the data provider code is not part of an
-     * official Country Code standard such as ISO-3166 or FIPS. This field will be set
-     * to the value provided by the source and should be used for all Queries
-     * specifying a Country Code.
+     * Specifies an alternate country code if the data provider code does not match a
+     * UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+     * provided by the source and should be used for all Queries specifying a Country
+     * Code.
      */
     altCountryCode?: string;
 
@@ -910,10 +965,10 @@ export namespace DiplomaticClearanceCreateBulkParams {
       action?: string;
 
       /**
-       * Specifies an alternate country code if the data provider code is not part of an
-       * official Country Code standard such as ISO-3166 or FIPS. This field will be set
-       * to the value provided by the source and should be used for all Queries
-       * specifying a Country Code.
+       * Specifies an alternate country code if the data provider code does not match a
+       * UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+       * provided by the source and should be used for all Queries specifying a Country
+       * Code.
        */
       altCountryCode?: string;
 
@@ -1096,6 +1151,7 @@ DiplomaticClearance.Country = Country;
 export declare namespace DiplomaticClearance {
   export {
     type DiplomaticClearanceCountResponse as DiplomaticClearanceCountResponse,
+    type DiplomaticClearanceQueryhelpResponse as DiplomaticClearanceQueryhelpResponse,
     type DiplomaticClearanceTupleResponse as DiplomaticClearanceTupleResponse,
     type DiplomaticClearanceCreateParams as DiplomaticClearanceCreateParams,
     type DiplomaticClearanceRetrieveParams as DiplomaticClearanceRetrieveParams,
@@ -1119,6 +1175,7 @@ export declare namespace DiplomaticClearance {
     type CountryRetrieveResponse as CountryRetrieveResponse,
     type CountryListResponse as CountryListResponse,
     type CountryCountResponse as CountryCountResponse,
+    type CountryQueryHelpResponse as CountryQueryHelpResponse,
     type CountryTupleResponse as CountryTupleResponse,
     type CountryListResponsesOffsetPage as CountryListResponsesOffsetPage,
     type CountryCreateParams as CountryCreateParams,

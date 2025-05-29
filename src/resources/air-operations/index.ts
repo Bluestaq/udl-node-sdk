@@ -6,6 +6,7 @@ export {
   type AirTaskingOrderFull,
   type AirtaskingorderAbridged,
   type AirTaskingOrderCountResponse,
+  type AirTaskingOrderQueryHelpResponse,
   type AirTaskingOrderTupleResponse,
   type AirTaskingOrderCreateParams,
   type AirTaskingOrderRetrieveParams,

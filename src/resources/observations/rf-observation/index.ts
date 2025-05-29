@@ -14,6 +14,7 @@ export {
   type RfObservationListResponse,
   type RfObservationCountResponse,
   type RfObservationGetResponse,
+  type RfObservationQueryhelpResponse,
   type RfObservationTupleResponse,
   type RfObservationCreateParams,
   type RfObservationListParams,

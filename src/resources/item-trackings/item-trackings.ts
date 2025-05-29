@@ -132,14 +132,11 @@ export class ItemTrackings extends APIResource {
    *
    * @example
    * ```ts
-   * await client.itemTrackings.queryhelp();
+   * const response = await client.itemTrackings.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/itemtracking/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<ItemTrackingQueryhelpResponse> {
+    return this._client.get('/udl/itemtracking/queryhelp', options);
   }
 
   /**
@@ -483,6 +480,62 @@ export interface ItemTrackingGetResponse {
    * This array must be the same length as keys.
    */
   values?: Array<string>;
+}
+
+export interface ItemTrackingQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<ItemTrackingQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace ItemTrackingQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type ItemTrackingTupleResponse = Array<ItemTrackingTupleResponse.ItemTrackingTupleResponseItem>;
@@ -923,6 +976,7 @@ export declare namespace ItemTrackings {
     type ItemTrackingListResponse as ItemTrackingListResponse,
     type ItemTrackingCountResponse as ItemTrackingCountResponse,
     type ItemTrackingGetResponse as ItemTrackingGetResponse,
+    type ItemTrackingQueryhelpResponse as ItemTrackingQueryhelpResponse,
     type ItemTrackingTupleResponse as ItemTrackingTupleResponse,
     type ItemTrackingListResponsesOffsetPage as ItemTrackingListResponsesOffsetPage,
     type ItemTrackingCreateParams as ItemTrackingCreateParams,

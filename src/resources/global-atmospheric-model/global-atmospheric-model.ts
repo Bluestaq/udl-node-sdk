@@ -111,14 +111,12 @@ export class GlobalAtmosphericModel extends APIResource {
    *
    * @example
    * ```ts
-   * await client.globalAtmosphericModel.queryHelp();
+   * const response =
+   *   await client.globalAtmosphericModel.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/globalatmosphericmodel/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<GlobalAtmosphericModelQueryHelpResponse> {
+    return this._client.get('/udl/globalatmosphericmodel/queryhelp', options);
   }
 
   /**
@@ -548,6 +546,62 @@ export namespace GlobalAtmosphericModelQueryResponse {
   }
 }
 
+export interface GlobalAtmosphericModelQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<GlobalAtmosphericModelQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace GlobalAtmosphericModelQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type GlobalAtmosphericModelTupleResponse =
   Array<GlobalAtmosphericModelTupleResponse.GlobalAtmosphericModelTupleResponseItem>;
 
@@ -933,6 +987,7 @@ export declare namespace GlobalAtmosphericModel {
     type GlobalAtmosphericModelRetrieveResponse as GlobalAtmosphericModelRetrieveResponse,
     type GlobalAtmosphericModelCountResponse as GlobalAtmosphericModelCountResponse,
     type GlobalAtmosphericModelQueryResponse as GlobalAtmosphericModelQueryResponse,
+    type GlobalAtmosphericModelQueryHelpResponse as GlobalAtmosphericModelQueryHelpResponse,
     type GlobalAtmosphericModelTupleResponse as GlobalAtmosphericModelTupleResponse,
     type GlobalAtmosphericModelRetrieveParams as GlobalAtmosphericModelRetrieveParams,
     type GlobalAtmosphericModelCountParams as GlobalAtmosphericModelCountParams,

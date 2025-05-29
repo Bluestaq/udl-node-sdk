@@ -148,14 +148,11 @@ export class Onorbitevent extends APIResource {
    *
    * @example
    * ```ts
-   * await client.onorbitevent.queryhelp();
+   * const response = await client.onorbitevent.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/onorbitevent/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<OnorbiteventQueryhelpResponse> {
+    return this._client.get('/udl/onorbitevent/queryhelp', options);
   }
 
   /**
@@ -794,6 +791,62 @@ export interface OnorbiteventGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface OnorbiteventQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<OnorbiteventQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace OnorbiteventQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type OnorbiteventTupleResponse = Array<OnorbiteventTupleResponse.OnorbiteventTupleResponseItem>;
@@ -1709,6 +1762,7 @@ export declare namespace Onorbitevent {
     type OnorbiteventListResponse as OnorbiteventListResponse,
     type OnorbiteventCountResponse as OnorbiteventCountResponse,
     type OnorbiteventGetResponse as OnorbiteventGetResponse,
+    type OnorbiteventQueryhelpResponse as OnorbiteventQueryhelpResponse,
     type OnorbiteventTupleResponse as OnorbiteventTupleResponse,
     type OnorbiteventListResponsesOffsetPage as OnorbiteventListResponsesOffsetPage,
     type OnorbiteventCreateParams as OnorbiteventCreateParams,

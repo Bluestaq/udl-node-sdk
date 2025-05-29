@@ -135,14 +135,12 @@ export class AirTransportMissions extends APIResource {
    *
    * @example
    * ```ts
-   * await client.airTransportMissions.queryhelp();
+   * const response =
+   *   await client.airTransportMissions.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/airtransportmission/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<AirTransportMissionQueryhelpResponse> {
+    return this._client.get('/udl/airtransportmission/queryhelp', options);
   }
 
   /**
@@ -683,6 +681,62 @@ export namespace AirTransportMissionAbridged {
 }
 
 export type AirTransportMissionCountResponse = string;
+
+export interface AirTransportMissionQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AirTransportMissionQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AirTransportMissionQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type AirTransportMissionTupleResponse = Array<Shared.AirTransportMissionFull>;
 
@@ -1672,6 +1726,7 @@ export declare namespace AirTransportMissions {
   export {
     type AirTransportMissionAbridged as AirTransportMissionAbridged,
     type AirTransportMissionCountResponse as AirTransportMissionCountResponse,
+    type AirTransportMissionQueryhelpResponse as AirTransportMissionQueryhelpResponse,
     type AirTransportMissionTupleResponse as AirTransportMissionTupleResponse,
     type AirTransportMissionAbridgedsOffsetPage as AirTransportMissionAbridgedsOffsetPage,
     type AirTransportMissionCreateParams as AirTransportMissionCreateParams,

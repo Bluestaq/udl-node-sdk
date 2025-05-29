@@ -54,14 +54,11 @@ export class AircraftSorties extends APIResource {
    *
    * @example
    * ```ts
-   * await client.aircraftSorties.queryhelp();
+   * const response = await client.aircraftSorties.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/aircraftsortie/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<AircraftSortyQueryhelpResponse> {
+    return this._client.get('/udl/aircraftsortie/queryhelp', options);
   }
 
   /**
@@ -85,6 +82,62 @@ export class AircraftSorties extends APIResource {
    */
   tuple(query: AircraftSortyTupleParams, options?: RequestOptions): APIPromise<AircraftSortyTupleResponse> {
     return this._client.get('/udl/aircraftsortie/tuple', { query, ...options });
+  }
+}
+
+export interface AircraftSortyQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AircraftSortyQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AircraftSortyQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -515,6 +568,7 @@ export interface AircraftSortyTupleParams {
 
 export declare namespace AircraftSorties {
   export {
+    type AircraftSortyQueryhelpResponse as AircraftSortyQueryhelpResponse,
     type AircraftSortyTupleResponse as AircraftSortyTupleResponse,
     type AircraftSortyRetrieveParams as AircraftSortyRetrieveParams,
     type AircraftSortyUpdateParams as AircraftSortyUpdateParams,

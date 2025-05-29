@@ -4,6 +4,7 @@ export {
   AircraftStatuses,
   type AircraftstatusAbridged,
   type AircraftStatusCountResponse,
+  type AircraftStatusQueryhelpResponse,
   type AircraftStatusTupleResponse,
   type AircraftStatusCreateParams,
   type AircraftStatusRetrieveParams,

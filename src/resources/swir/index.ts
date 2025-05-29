@@ -13,6 +13,7 @@ export {
   Swir,
   type SwirListResponse,
   type SwirCountResponse,
+  type SwirQueryhelpResponse,
   type SwirTupleResponse,
   type SwirCreateParams,
   type SwirListParams,

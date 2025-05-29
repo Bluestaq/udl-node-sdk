@@ -136,14 +136,11 @@ export class Ir extends APIResource {
    *
    * @example
    * ```ts
-   * await client.ir.queryhelp();
+   * const response = await client.ir.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/ir/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<IrQueryhelpResponse> {
+    return this._client.get('/udl/ir/queryhelp', options);
   }
 
   /**
@@ -344,6 +341,62 @@ export interface IrGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface IrQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<IrQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace IrQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type IrTupleResponse = Array<IrTupleResponse.IrTupleResponseItem>;
@@ -609,6 +662,7 @@ export declare namespace Ir {
     type IrListResponse as IrListResponse,
     type IrCountResponse as IrCountResponse,
     type IrGetResponse as IrGetResponse,
+    type IrQueryhelpResponse as IrQueryhelpResponse,
     type IrTupleResponse as IrTupleResponse,
     type IrListResponsesOffsetPage as IrListResponsesOffsetPage,
     type IrCreateParams as IrCreateParams,

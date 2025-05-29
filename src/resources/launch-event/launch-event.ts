@@ -145,14 +145,11 @@ export class LaunchEvent extends APIResource {
    *
    * @example
    * ```ts
-   * await client.launchEvent.queryhelp();
+   * const response = await client.launchEvent.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/launchevent/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<LaunchEventQueryhelpResponse> {
+    return this._client.get('/udl/launchevent/queryhelp', options);
   }
 
   /**
@@ -465,6 +462,62 @@ export interface LaunchEventGetResponse {
    * Satellite/catalog number of the target on-orbit object.
    */
   satNo?: number;
+}
+
+export interface LaunchEventQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<LaunchEventQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace LaunchEventQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type LaunchEventTupleResponse = Array<LaunchEventTupleResponse.LaunchEventTupleResponseItem>;
@@ -968,6 +1021,7 @@ export declare namespace LaunchEvent {
     type LaunchEventListResponse as LaunchEventListResponse,
     type LaunchEventCountResponse as LaunchEventCountResponse,
     type LaunchEventGetResponse as LaunchEventGetResponse,
+    type LaunchEventQueryhelpResponse as LaunchEventQueryhelpResponse,
     type LaunchEventTupleResponse as LaunchEventTupleResponse,
     type LaunchEventListResponsesOffsetPage as LaunchEventListResponsesOffsetPage,
     type LaunchEventCreateParams as LaunchEventCreateParams,

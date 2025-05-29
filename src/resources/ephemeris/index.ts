@@ -12,6 +12,7 @@ export {
   Ephemeris,
   type EphemerisAbridged,
   type EphemerisCountResponse,
+  type EphemerisQueryhelpResponse,
   type EphemerisTupleResponse,
   type EphemerisListParams,
   type EphemerisCountParams,

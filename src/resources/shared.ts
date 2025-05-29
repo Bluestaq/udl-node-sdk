@@ -2459,7 +2459,7 @@ export namespace CollectRequestFull {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -4897,6 +4897,8 @@ export namespace FileData {
 
     createdDate?: string;
 
+    deleteOn?: number;
+
     description?: string;
 
     docTitle?: string;
@@ -6491,13 +6493,14 @@ export namespace OnorbitFull {
 
     /**
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
-     * NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+     * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
     type:
       | 'AIRCRAFT'
       | 'BUS'
       | 'COMM'
       | 'IR'
+      | 'LASEREMITTER'
       | 'NAVIGATION'
       | 'ONORBIT'
       | 'RFEMITTER'

@@ -6,6 +6,7 @@ export {
   type StarCatalogListResponse,
   type StarCatalogCountResponse,
   type StarCatalogGetResponse,
+  type StarCatalogQueryhelpResponse,
   type StarCatalogTupleResponse,
   type StarCatalogCreateParams,
   type StarCatalogUpdateParams,

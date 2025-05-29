@@ -13,6 +13,7 @@ export {
   WeatherData,
   type WeatherDataListResponse,
   type WeatherDataCountResponse,
+  type WeatherDataQueryhelpResponse,
   type WeatherDataTupleResponse,
   type WeatherDataCreateParams,
   type WeatherDataListParams,

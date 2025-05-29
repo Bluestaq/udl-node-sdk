@@ -136,14 +136,11 @@ export class RfBand extends APIResource {
    *
    * @example
    * ```ts
-   * await client.rfBand.queryhelp();
+   * const response = await client.rfBand.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/rfband/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<RfBandQueryhelpResponse> {
+    return this._client.get('/udl/rfband/queryhelp', options);
   }
 
   /**
@@ -503,6 +500,62 @@ export interface RfBandGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface RfBandQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<RfBandQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace RfBandQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type RfBandTupleResponse = Array<RfBandTupleResponse.RfBandTupleResponseItem>;
@@ -994,6 +1047,7 @@ export declare namespace RfBand {
     type RfBandListResponse as RfBandListResponse,
     type RfBandCountResponse as RfBandCountResponse,
     type RfBandGetResponse as RfBandGetResponse,
+    type RfBandQueryhelpResponse as RfBandQueryhelpResponse,
     type RfBandTupleResponse as RfBandTupleResponse,
     type RfBandListResponsesOffsetPage as RfBandListResponsesOffsetPage,
     type RfBandCreateParams as RfBandCreateParams,

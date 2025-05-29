@@ -133,14 +133,11 @@ export class Antennas extends APIResource {
    *
    * @example
    * ```ts
-   * await client.antennas.queryhelp();
+   * const response = await client.antennas.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/antenna/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<AntennaQueryhelpResponse> {
+    return this._client.get('/udl/antenna/queryhelp', options);
   }
 
   /**
@@ -317,6 +314,62 @@ export interface AntennaFull {
 
 export type AntennaCountResponse = string;
 
+export interface AntennaQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AntennaQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AntennaQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type AntennaTupleResponse = Array<AntennaFull>;
 
 export interface AntennaCreateParams {
@@ -438,6 +491,7 @@ export declare namespace Antennas {
     type AntennaAbridged as AntennaAbridged,
     type AntennaFull as AntennaFull,
     type AntennaCountResponse as AntennaCountResponse,
+    type AntennaQueryhelpResponse as AntennaQueryhelpResponse,
     type AntennaTupleResponse as AntennaTupleResponse,
     type AntennaAbridgedsOffsetPage as AntennaAbridgedsOffsetPage,
     type AntennaCreateParams as AntennaCreateParams,

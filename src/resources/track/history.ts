@@ -115,6 +115,26 @@ export interface TrackFull {
   assetNat?: string;
 
   /**
+   * The attitude (Yaw, Pitch, and Roll), in degrees, of the track object. When
+   * provided, the array must always contain 3 values. These values represent the
+   * vehicle's rotation about the vertical, lateral, and longitudinal axes,
+   * respectively, in a locally level, East, North, Up "right handed" coordinate
+   * system centered on the vehicle. Yaw is measured in degrees and ranges from -180
+   * to 180. Pitch is measured in degrees and ranges from -90 to 90. Roll is measured
+   * in degrees and ranges from -180 to 180.
+   */
+  attitude?: Array<number>;
+
+  /**
+   * The attitude rate (Yaw Rate, Pitch Rate, and Roll Rate), in degrees per second,
+   * of the track object. When provided, the array must always contain 3 values.
+   * These values represent the rate of change of the vehicle's rotation about the
+   * vertical, lateral, and longitudinal axes, respectively, in a locally level,
+   * East, North, Up "right handed" coordinate system centered on the vehicle.
+   */
+  attitudeRate?: Array<number>;
+
+  /**
    * The call sign currently assigned to this track object.
    */
   callSign?: string;
@@ -196,6 +216,12 @@ export interface TrackFull {
    * must always contain 3 values.
    */
   ecefVel?: Array<number>;
+
+  /**
+   * East, North, Up acceleration components, in meters per second squared. When
+   * provided, array must always contain 3 values.
+   */
+  eNUAcc?: Array<number>;
 
   /**
    * East, North, Up position components, in meters. When provided, array must always

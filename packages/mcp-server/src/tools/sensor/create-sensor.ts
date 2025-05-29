@@ -81,12 +81,13 @@ export const tool: Tool = {
           type: {
             type: 'string',
             description:
-              'The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).',
+              'The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR, LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).',
             enum: [
               'AIRCRAFT',
               'BUS',
               'COMM',
               'IR',
+              'LASEREMITTER',
               'NAVIGATION',
               'ONORBIT',
               'RFEMITTER',
@@ -336,6 +337,11 @@ export const tool: Tool = {
                 type: 'number',
               },
             },
+            analogToDigitalBitSize: {
+              type: 'integer',
+              description:
+                'Number of bits used in the conversion from analog electrons in a pixel well to a digital number. The digital number has a maximum value of 2^N, where N is the number of bits.',
+            },
             aperture: {
               type: 'number',
               description: 'Optical sensor camera aperture.',
@@ -344,6 +350,20 @@ export const tool: Tool = {
               type: 'number',
               description:
                 'For ASR (Air Surveillance Radar) sensors, the scan (360 deg sweep) rate of the radar, in scans/minute.',
+            },
+            atmosReceiverLoss: {
+              type: 'number',
+              description:
+                'One-way radar receiver loss factor due to atmospheric effects. This value will often be the same as the corresponding transmission factor but may be different for bistatic systems.',
+            },
+            atmosTransmissionLoss: {
+              type: 'number',
+              description: 'One-way radar transmission loss factor due to atmospheric effects.',
+            },
+            avgAtmosSeeingConditions: {
+              type: 'number',
+              description:
+                'Average atmospheric angular width with no distortion from turbulence at an optical sensor site in arcseconds.',
             },
             azAngs: {
               type: 'array',
@@ -357,9 +377,23 @@ export const tool: Tool = {
               type: 'number',
               description: 'Azimuth rate acquisition limit (radians/minute).',
             },
+            backgroundSkyRadiance: {
+              type: 'number',
+              description:
+                'Average background sky brightness at an optical sensor site during new moon conditions. This field uses units of watts per square meter per steradian (W/(m^2 str)) consistent with sensor detection bands.',
+            },
+            backgroundSkyVisMag: {
+              type: 'number',
+              description:
+                'Average background sky brightness at an optical sensor site during new moon conditions. This field uses units of visual magnitude consistent with sensor detection bands.',
+            },
             band: {
               type: 'string',
               description: 'Sensor band.',
+            },
+            bandwidth: {
+              type: 'number',
+              description: 'The total bandwidth, in megahertz, about the radar center frequency.',
             },
             beamOrder: {
               type: 'array',
@@ -381,6 +415,16 @@ export const tool: Tool = {
               type: 'number',
               description: 'The number of degrees off of the boresight for the sensor.',
             },
+            centerWavelength: {
+              type: 'number',
+              description:
+                'Weighted center wavelength for an optical sensor bandpass in micrometers. It is the center wavelength in a weighted integral sense, accounting for the sensitivity vs. wavelength curve for the sensor focal plane array.',
+            },
+            collapsingLoss: {
+              type: 'number',
+              description:
+                'Collapsing loss in decibels. Collapsing losses occur when two or more sources of noise are added to the target signal. Examples include receiver bandwidth mismatch with filtering bandwidth and elevation or azimuth beam collapse onto position/height indicator displays.',
+            },
             createdAt: {
               type: 'string',
               description: 'Time the row was created in the database, auto-populated by the system.',
@@ -396,6 +440,11 @@ export const tool: Tool = {
               description:
                 'Threshold shear value beyond which one of the radial velocity values will be rejected, measured in units of inverse second.',
             },
+            darkCurrent: {
+              type: 'number',
+              description:
+                'Current flowing through optical sensor focal plane electronics with a closed shutter in electrons per second.',
+            },
             delayGates: {
               type: 'array',
               description:
@@ -407,6 +456,21 @@ export const tool: Tool = {
             description: {
               type: 'string',
               description: 'Description of the equipment and data source.',
+            },
+            detectSNR: {
+              type: 'number',
+              description:
+                'Detection signal-to-noise ratio (SNR) threshold in decibels. This value is typically lower than trackSNR.',
+            },
+            dutyCycle: {
+              type: 'number',
+              description:
+                'Sensor duty cycle as a fraction of 1. Duty cycle is the fraction of time a sensor is actively transmitting.',
+            },
+            earthLimbExclHgt: {
+              type: 'number',
+              description:
+                'Sensor Earth limb exclusion height in kilometers and is generally only applied to space-based sensors. Some models used an earth exclusion angle instead, but this assumes the sensor is in a circular orbit with constant altitude relative to the earth. The limb exclusion height can be used for space-based sensors in any orbit (assuming it is constant with sensor altitude). The limb height is defined to be 0 at the surface of the earth.',
             },
             elAngs: {
               type: 'array',
@@ -439,6 +503,16 @@ export const tool: Tool = {
               description:
                 'Maximum number of times the first guess was propagated in each gate before failing the first guess check.',
             },
+            filterMismatchFactor: {
+              type: 'number',
+              description:
+                'Noise term, in decibels, that arises when a radar receiver filter has a non-optimal bandwidth for an incoming signal (i.e., when it does not match the pulse width).',
+            },
+            fNum: {
+              type: 'number',
+              description:
+                'F-number for an optical telescope. It is dimensionless and is defined as the ratio of the focal length to the aperture width.',
+            },
             focalPoint: {
               type: 'number',
               description:
@@ -446,7 +520,7 @@ export const tool: Tool = {
             },
             hFOV: {
               type: 'number',
-              description: 'Horizontal field of view.',
+              description: 'Horizontal field of view, in degrees.',
             },
             hResPixels: {
               type: 'integer',
@@ -469,6 +543,16 @@ export const tool: Tool = {
               type: 'string',
               description: 'Site where measurement is taken.',
             },
+            loopGain: {
+              type: 'number',
+              description:
+                'Aggregated radar range equation gain in decibels for maximum sensitivity. It is a roll-up value for low fidelity modeling and is often the only sensitivity value available for a radar system without access to detailed performance parameters.',
+            },
+            lunarExclAngle: {
+              type: 'number',
+              description:
+                'Lowest aspect angle of the full moon in degrees at which the sensor can achieve full performance.',
+            },
             magDec: {
               type: 'number',
               description: 'Angle between magnetic north and true north at the sensor site, in degrees.',
@@ -481,6 +565,10 @@ export const tool: Tool = {
               type: 'number',
               description: 'Max deviation angle of the sensor in degrees.',
             },
+            maxIntegrationTime: {
+              type: 'number',
+              description: 'Maximum integration time per image frame in seconds for an optical sensor.',
+            },
             maxObservableRange: {
               type: 'number',
               description: 'Maximum observable sensor range, in kilometers.',
@@ -489,6 +577,14 @@ export const tool: Tool = {
               type: 'number',
               description:
                 'Maximum observable range limit in kilometers -- sensor cannot acquire beyond this range.',
+            },
+            maxWavelength: {
+              type: 'number',
+              description: 'Maximum wavelength detectable by an optical sensor in micrometers.',
+            },
+            minIntegrationTime: {
+              type: 'number',
+              description: 'Minimum integration time per image frame in seconds for an optical sensor.',
             },
             minRangeLimit: {
               type: 'number',
@@ -499,18 +595,114 @@ export const tool: Tool = {
               description:
                 'Signal to Noise Ratio, in decibels. The values for this range from 0.0 - + 99.99 dB.',
             },
+            minWavelength: {
+              type: 'number',
+              description: 'Minimum wavelength detectable by an optical sensor in micrometers.',
+            },
             negativeRangeRateLimit: {
               type: 'number',
               description: 'Negative Range-rate/relative velocity limit (kilometers/second).',
+            },
+            noiseFigure: {
+              type: 'number',
+              description:
+                'Noise figure for a radar system in decibels. This value may be used to compute system noise when the system temperature is unavailable.',
+            },
+            nonCoherentIntegratedPulses: {
+              type: 'integer',
+              description: 'Number of pulses that are non-coherently integrated during detection processing.',
             },
             numIntegratedPulses: {
               type: 'integer',
               description: 'For radar based sensors, number of integrated pulses in a transmit cycle.',
             },
+            numIntegrationFrames: {
+              type: 'integer',
+              description: 'Number of integration frames for an optical sensor.',
+            },
+            numOpticalIntegrationModes: {
+              type: 'integer',
+              description:
+                'The number of optical integration mode characteristics provided in this record. If provided, the numOpticalIntegrationModes value indicates the number of elements in each of the opticalIntegrationTimes, opticalIntegrationAngularRates, opticalIntegrationFrames, opticalIntegrationPixelBinnings, and opticalIntegrationSNRs arrays.',
+            },
+            numWaveforms: {
+              type: 'integer',
+              description:
+                'The number of waveforms characteristics provided in this record.  If provided, the numWaveforms value indicates the number of elements in each of the waveformPulseWidths, waveformBandWidths, waveformMinRanges, waveformMaxRanges, and waveformLoopGains arrays.',
+            },
+            opticalIntegrationAngularRates: {
+              type: 'array',
+              description:
+                'Array containing the angular rate, in arcsec/sec, for each provided optical integration mode. The number of elements must be equal to the value indicated in numOpticalIntegrationModes.',
+              items: {
+                type: 'number',
+              },
+            },
+            opticalIntegrationFrames: {
+              type: 'array',
+              description:
+                'Array containing the number of frames, for each optical integration mode. The number of elements must be equal to the value indicated in numOpticalIntegrationModes.',
+              items: {
+                type: 'number',
+              },
+            },
+            opticalIntegrationPixelBinnings: {
+              type: 'array',
+              description:
+                'Array containing the pixel binning, for each optical integration mode. The number of elements must be equal to the value indicated in numOpticalIntegrationModes.',
+              items: {
+                type: 'number',
+              },
+            },
+            opticalIntegrationSNRs: {
+              type: 'array',
+              description:
+                'Array of optical integration modes signal to noise ratios. The number of elements must be equal to the value indicated in numOpticalIntegrationModes.',
+              items: {
+                type: 'number',
+              },
+            },
+            opticalIntegrationTimes: {
+              type: 'array',
+              description:
+                'Array containing the time, in seconds, for each provided optical integration mode. The number of elements must be equal to the value indicated in numOpticalIntegrationModes.',
+              items: {
+                type: 'number',
+              },
+            },
+            opticalTransmission: {
+              type: 'number',
+              description:
+                'Fraction of incident light transmitted to an optical sensor focal plane array. The value is given as a fraction of 1, not as a percent.',
+            },
             origNetwork: {
               type: 'string',
               description:
                 'The originating source network on which this record was created, auto-populated by the system.',
+            },
+            patternAbsorptionLoss: {
+              type: 'number',
+              description: 'Two-way pattern absorption/propagation loss due to medium in decibels.',
+            },
+            patternScanLoss: {
+              type: 'number',
+              description:
+                'Losses from the beam shape, scanning, and pattern factor in decibels. These losses occur when targets are not directly in line with a beam center. For space surveillance, this will occur most often during sensor scanning.',
+            },
+            peakPower: {
+              type: 'number',
+              description:
+                'Maximum instantaneous radar transmit power in watts for use in the radar range equation.',
+            },
+            pixelInstantaneousFOV: {
+              type: 'number',
+              description:
+                'Angular field-of-view covered by one pixel in a focal plane array in microradians. The pixel is assumed to be a perfect square so that only a single value is required.',
+            },
+            pixelWellDepth: {
+              type: 'integer',
+              description:
+                'Maximum number of electrons that can be collected in a single pixel on an optical sensor focal plane array.',
             },
             positiveRangeRateLimit: {
               type: 'number',
@@ -520,6 +712,10 @@ export const tool: Tool = {
               type: 'number',
               description:
                 'For radar based sensors, pulse repetition frequency (PRF), in hertz. Number of new pulses transmitted per second.',
+            },
+            probDetectSNR: {
+              type: 'number',
+              description: 'Designated probability of detection at the signal-to-noise detection threshold.',
             },
             probFalseAlarm: {
               type: 'number',
@@ -534,9 +730,14 @@ export const tool: Tool = {
                 type: 'number',
               },
             },
+            quantumEff: {
+              type: 'number',
+              description:
+                'Fraction of incident photons converted to electrons at the focal plane array. This value is a decimal number between 0 and 1, inclusive.',
+            },
             radarFrequency: {
               type: 'number',
-              description: 'Radar frequency of the sensor (if a radar sensor).',
+              description: 'Radar frequency in hertz, of the sensor (if a radar sensor).',
             },
             radarMessageFormat: {
               type: 'string',
@@ -558,6 +759,11 @@ export const tool: Tool = {
               type: 'number',
               description: 'Radio frequency (if sensor is RF).',
             },
+            radomeLoss: {
+              type: 'number',
+              description:
+                'Losses due to the presence of a protective radome surrounding a radar sensor, in decibels.',
+            },
             rangeGates: {
               type: 'array',
               description:
@@ -573,6 +779,32 @@ export const tool: Tool = {
               items: {
                 type: 'number',
               },
+            },
+            readNoise: {
+              type: 'integer',
+              description:
+                'Number of false-signal electrons generated by optical sensor focal plane read-out electronics from photon-to-electron conversion during frame integration. The units are in electrons RMS.',
+            },
+            receiveGain: {
+              type: 'number',
+              description: 'Radar receive gain in decibels.',
+            },
+            receiveHorizBeamWidth: {
+              type: 'number',
+              description: 'Horizontal/azimuthal receive beamwidth for a radar in degrees.',
+            },
+            receiveLoss: {
+              type: 'number',
+              description: 'Aggregate radar receive loss, in decibels.',
+            },
+            receiveVertBeamWidth: {
+              type: 'number',
+              description: 'Vertical/elevation receive beamwidth for a radar in degrees.',
+            },
+            refTemp: {
+              type: 'number',
+              description:
+                'Reference temperature for radar noise in Kelvin. A reference temperature is used when the radar system temperature is unknown and is combined with the system noise figure to estimate signal loss.',
             },
             reqRecords: {
               type: 'array',
@@ -598,9 +830,18 @@ export const tool: Tool = {
                 type: 'integer',
               },
             },
+            signalProcessingLoss: {
+              type: 'number',
+              description: 'Radar signal processing losses, in decibels.',
+            },
             siteCode: {
               type: 'string',
               description: 'Site code of the sensor.',
+            },
+            solarExclAngle: {
+              type: 'number',
+              description:
+                'Sensor and target position vector origins are at the center of the earth. The sun vector origin is at the target position and points toward the sun. Any value between 0 and 180 degrees is acceptable and is assumed to apply in both directions (i.e., a solar exclusion angle of 30 degrees is understood to mean no viewing for any angle between -30 deg and +30 deg).',
             },
             specAvgSpectraNums: {
               type: 'array',
@@ -648,9 +889,30 @@ export const tool: Tool = {
               description:
                 'Beginning track angle limit, in radians. Track angle is the angle between the camera axis and the gimbal plane. Values range from 0 - PI/2.',
             },
+            trackSNR: {
+              type: 'number',
+              description:
+                'Track signal-to-noise ratio (SNR) threshold in decibels. This value is typically higher than detectSNR.',
+            },
+            transmitGain: {
+              type: 'number',
+              description: 'Radar transmit gain in decibels.',
+            },
+            transmitHorizBeamWidth: {
+              type: 'number',
+              description: 'Horizontal/azimuthal transmit beamwidth for a radar in degrees.',
+            },
+            transmitLoss: {
+              type: 'number',
+              description: 'Aggregate radar transmit loss, in decibels.',
+            },
             transmitPower: {
               type: 'number',
               description: 'Radar transmit power in Watts.',
+            },
+            transmitVertBeamWidth: {
+              type: 'number',
+              description: 'Vertical/elevation transmit beamwidth for a radar in degrees.',
             },
             trueNorthCorrector: {
               type: 'integer',
@@ -659,6 +921,11 @@ export const tool: Tool = {
             trueTilt: {
               type: 'number',
               description: 'Antenna true tilt, in degrees.',
+            },
+            twilightAngle: {
+              type: 'number',
+              description:
+                'Twilight angle for ground-based optical sensors in degrees. A sensor cannot view targets until the sun is below the twilight angle relative to the local horizon. The sign of the angle is positive despite the sun elevation being negative after local sunset. Typical values for the twilight angle are civil twilight (6 degrees), nautical twilight (12 degrees), and astronomical twilight (18 degrees).',
             },
             vertBeamFlag: {
               type: 'boolean',
@@ -682,11 +949,51 @@ export const tool: Tool = {
             },
             vFOV: {
               type: 'number',
-              description: 'Vertical field of view.',
+              description: 'Vertical field of view, in degrees.',
             },
             vResPixels: {
               type: 'integer',
               description: 'Vertical pixel resolution.',
+            },
+            waveformBandwidths: {
+              type: 'array',
+              description:
+                'Array containing the bandwidth, in megahertz, for each provided waveform.  The number of elements in this array must be equal to the value indicated in the numWaveforms field.',
+              items: {
+                type: 'number',
+              },
+            },
+            waveformLoopGains: {
+              type: 'array',
+              description:
+                'Array containing the loop gain, in decibels, for each provided waveform.  The number of elements in this array must be equal to the value indicated in the numWaveforms field (10 SNR vs. 1 dBsm at 1000 km).',
+              items: {
+                type: 'number',
+              },
+            },
+            waveformMaxRanges: {
+              type: 'array',
+              description:
+                'Array containing the maximum range, in kilometers, for each provided waveform.  The number of elements in this array must be equal to the value indicated in the numWaveforms field.',
+              items: {
+                type: 'number',
+              },
+            },
+            waveformMinRanges: {
+              type: 'array',
+              description:
+                'Array containing the minimum range, in kilometers, for each provided waveform.  The number of elements in this array must be equal to the value indicated in the numWaveforms field.',
+              items: {
+                type: 'number',
+              },
+            },
+            waveformPulseWidths: {
+              type: 'array',
+              description:
+                'Array containing the pulse width, in microseconds, for each provided waveform.  The number of elements in this array must be equal to the value indicated in the numWaveforms field.',
+              items: {
+                type: 'number',
+              },
             },
             z1MaxRange: {
               type: 'number',

@@ -19,6 +19,7 @@ export {
   type StateVectorFull,
   type StateVectorIngest,
   type StateVectorCountResponse,
+  type StateVectorQueryhelpResponse,
   type StateVectorTupleResponse,
   type StateVectorCreateParams,
   type StateVectorListParams,

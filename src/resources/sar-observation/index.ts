@@ -13,6 +13,7 @@ export {
   type SarObservationListResponse,
   type SarObservationCountResponse,
   type SarObservationGetResponse,
+  type SarObservationQueryhelpResponse,
   type SarObservationTupleResponse,
   type SarObservationCreateParams,
   type SarObservationListParams,

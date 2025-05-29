@@ -58,11 +58,8 @@ export class IonOobservation extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/ionoobservation/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<IonOobservationQueryhelpResponse> {
+    return this._client.get('/udl/ionoobservation/queryhelp', options);
   }
 
   /**
@@ -1489,6 +1486,62 @@ export namespace IonOobservationListResponse {
 }
 
 export type IonOobservationCountResponse = string;
+
+export interface IonOobservationQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<IonOobservationQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace IonOobservationQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type IonOobservationTupleResponse =
   Array<IonOobservationTupleResponse.IonOobservationTupleResponseItem>;
@@ -5642,6 +5695,7 @@ export declare namespace IonOobservation {
   export {
     type IonOobservationListResponse as IonOobservationListResponse,
     type IonOobservationCountResponse as IonOobservationCountResponse,
+    type IonOobservationQueryhelpResponse as IonOobservationQueryhelpResponse,
     type IonOobservationTupleResponse as IonOobservationTupleResponse,
     type IonOobservationListResponsesOffsetPage as IonOobservationListResponsesOffsetPage,
     type IonOobservationListParams as IonOobservationListParams,

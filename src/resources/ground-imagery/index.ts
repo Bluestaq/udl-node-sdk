@@ -5,6 +5,7 @@ export {
   type GroundImageryListResponse,
   type GroundImageryCountResponse,
   type GroundImageryGetResponse,
+  type GroundImageryQueryhelpResponse,
   type GroundImageryTupleResponse,
   type GroundImageryCreateParams,
   type GroundImageryListParams,

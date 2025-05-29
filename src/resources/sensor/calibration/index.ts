@@ -5,6 +5,7 @@ export {
   type CalibrationRetrieveResponse,
   type CalibrationCountResponse,
   type CalibrationQueryResponse,
+  type CalibrationQueryHelpResponse,
   type CalibrationTupleResponse,
   type CalibrationCreateParams,
   type CalibrationRetrieveParams,

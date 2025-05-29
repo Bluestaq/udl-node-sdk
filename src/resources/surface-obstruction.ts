@@ -142,14 +142,12 @@ export class SurfaceObstruction extends APIResource {
    *
    * @example
    * ```ts
-   * await client.surfaceObstruction.queryhelp();
+   * const response =
+   *   await client.surfaceObstruction.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/surfaceobstruction/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SurfaceObstructionQueryhelpResponse> {
+    return this._client.get('/udl/surfaceobstruction/queryhelp', options);
   }
 
   /**
@@ -438,6 +436,62 @@ export interface SurfaceObstructionGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface SurfaceObstructionQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SurfaceObstructionQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SurfaceObstructionQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type SurfaceObstructionTupleResponse =
@@ -855,6 +909,7 @@ export declare namespace SurfaceObstruction {
     type SurfaceObstructionListResponse as SurfaceObstructionListResponse,
     type SurfaceObstructionCountResponse as SurfaceObstructionCountResponse,
     type SurfaceObstructionGetResponse as SurfaceObstructionGetResponse,
+    type SurfaceObstructionQueryhelpResponse as SurfaceObstructionQueryhelpResponse,
     type SurfaceObstructionTupleResponse as SurfaceObstructionTupleResponse,
     type SurfaceObstructionListResponsesOffsetPage as SurfaceObstructionListResponsesOffsetPage,
     type SurfaceObstructionCreateParams as SurfaceObstructionCreateParams,

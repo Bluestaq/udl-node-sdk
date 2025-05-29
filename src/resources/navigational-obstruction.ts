@@ -167,14 +167,12 @@ export class NavigationalObstruction extends APIResource {
    *
    * @example
    * ```ts
-   * await client.navigationalObstruction.queryhelp();
+   * const response =
+   *   await client.navigationalObstruction.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/navigationalobstruction/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<NavigationalObstructionQueryhelpResponse> {
+    return this._client.get('/udl/navigationalobstruction/queryhelp', options);
   }
 
   /**
@@ -1159,6 +1157,62 @@ export interface NavigationalObstructionGetResponse {
    * This obstacle's World Area Code installation number (WAC-INNR).
    */
   wacINNR?: string;
+}
+
+export interface NavigationalObstructionQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<NavigationalObstructionQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace NavigationalObstructionQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type NavigationalObstructionTupleResponse =
@@ -3037,6 +3091,7 @@ export declare namespace NavigationalObstruction {
     type NavigationalObstructionListResponse as NavigationalObstructionListResponse,
     type NavigationalObstructionCountResponse as NavigationalObstructionCountResponse,
     type NavigationalObstructionGetResponse as NavigationalObstructionGetResponse,
+    type NavigationalObstructionQueryhelpResponse as NavigationalObstructionQueryhelpResponse,
     type NavigationalObstructionTupleResponse as NavigationalObstructionTupleResponse,
     type NavigationalObstructionListResponsesOffsetPage as NavigationalObstructionListResponsesOffsetPage,
     type NavigationalObstructionCreateParams as NavigationalObstructionCreateParams,

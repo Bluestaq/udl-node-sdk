@@ -42,11 +42,8 @@ export class H3GeoHexCell extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/h3geohexcell/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<H3GeoHexCellQueryhelpResponse> {
+    return this._client.get('/udl/h3geohexcell/queryhelp', options);
   }
 
   /**
@@ -214,6 +211,62 @@ export interface H3GeoHexCellListResponse {
 }
 
 export type H3GeoHexCellCountResponse = string;
+
+export interface H3GeoHexCellQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<H3GeoHexCellQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace H3GeoHexCellQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type H3GeoHexCellTupleResponse = Array<H3GeoHexCellTupleResponse.H3GeoHexCellTupleResponseItem>;
 
@@ -407,6 +460,7 @@ export declare namespace H3GeoHexCell {
   export {
     type H3GeoHexCellListResponse as H3GeoHexCellListResponse,
     type H3GeoHexCellCountResponse as H3GeoHexCellCountResponse,
+    type H3GeoHexCellQueryhelpResponse as H3GeoHexCellQueryhelpResponse,
     type H3GeoHexCellTupleResponse as H3GeoHexCellTupleResponse,
     type H3GeoHexCellListResponsesOffsetPage as H3GeoHexCellListResponsesOffsetPage,
     type H3GeoHexCellListParams as H3GeoHexCellListParams,

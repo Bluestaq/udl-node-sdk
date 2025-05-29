@@ -166,14 +166,11 @@ export class AirEvents extends APIResource {
    *
    * @example
    * ```ts
-   * await client.airEvents.queryhelp();
+   * const response = await client.airEvents.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/airevent/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<AirEventQueryhelpResponse> {
+    return this._client.get('/udl/airevent/queryhelp', options);
   }
 
   /**
@@ -1298,6 +1295,62 @@ export namespace AirEventGetResponse {
      * The name and/or number of the point of contact for this tanker.
      */
     tankerPOC?: string;
+  }
+}
+
+export interface AirEventQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AirEventQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AirEventQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -3877,6 +3930,7 @@ export declare namespace AirEvents {
     type AirEventListResponse as AirEventListResponse,
     type AirEventCountResponse as AirEventCountResponse,
     type AirEventGetResponse as AirEventGetResponse,
+    type AirEventQueryhelpResponse as AirEventQueryhelpResponse,
     type AirEventTupleResponse as AirEventTupleResponse,
     type AirEventListResponsesOffsetPage as AirEventListResponsesOffsetPage,
     type AirEventCreateParams as AirEventCreateParams,

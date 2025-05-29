@@ -177,14 +177,11 @@ export class Organization extends APIResource {
    *
    * @example
    * ```ts
-   * await client.organization.queryhelp();
+   * const response = await client.organization.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/organization/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<OrganizationQueryhelpResponse> {
+    return this._client.get('/udl/organization/queryhelp', options);
   }
 
   /**
@@ -467,6 +464,62 @@ export type OrganizationGetOrganizationCategoriesResponse = Array<string>;
 
 export type OrganizationGetOrganizationTypesResponse = Array<string>;
 
+export interface OrganizationQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<OrganizationQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace OrganizationQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type OrganizationTupleResponse = Array<OrganizationFull>;
 
 export interface OrganizationCreateParams {
@@ -704,6 +757,7 @@ export declare namespace Organization {
     type OrganizationCountResponse as OrganizationCountResponse,
     type OrganizationGetOrganizationCategoriesResponse as OrganizationGetOrganizationCategoriesResponse,
     type OrganizationGetOrganizationTypesResponse as OrganizationGetOrganizationTypesResponse,
+    type OrganizationQueryhelpResponse as OrganizationQueryhelpResponse,
     type OrganizationTupleResponse as OrganizationTupleResponse,
     type OrganizationListResponsesOffsetPage as OrganizationListResponsesOffsetPage,
     type OrganizationCreateParams as OrganizationCreateParams,

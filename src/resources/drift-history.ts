@@ -61,11 +61,8 @@ export class DriftHistory extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/drifthistory/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<DriftHistoryQueryhelpResponse> {
+    return this._client.get('/udl/drifthistory/queryhelp', options);
   }
 
   /**
@@ -84,6 +81,62 @@ export class DriftHistory extends APIResource {
 }
 
 export type DriftHistoryCountResponse = string;
+
+export interface DriftHistoryQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<DriftHistoryQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace DriftHistoryQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type DriftHistoryTupleResponse = Array<Shared.DriftHistoryFull>;
 
@@ -118,6 +171,7 @@ export interface DriftHistoryTupleParams {
 export declare namespace DriftHistory {
   export {
     type DriftHistoryCountResponse as DriftHistoryCountResponse,
+    type DriftHistoryQueryhelpResponse as DriftHistoryQueryhelpResponse,
     type DriftHistoryTupleResponse as DriftHistoryTupleResponse,
     type DriftHistoryRetrieveParams as DriftHistoryRetrieveParams,
     type DriftHistoryListParams as DriftHistoryListParams,

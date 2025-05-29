@@ -4,6 +4,7 @@ export {
   AirTransportMissions,
   type AirTransportMissionAbridged,
   type AirTransportMissionCountResponse,
+  type AirTransportMissionQueryhelpResponse,
   type AirTransportMissionTupleResponse,
   type AirTransportMissionCreateParams,
   type AirTransportMissionRetrieveParams,

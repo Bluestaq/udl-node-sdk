@@ -153,14 +153,12 @@ export class AirfieldSlotConsumptions extends APIResource {
    *
    * @example
    * ```ts
-   * await client.airfieldSlotConsumptions.queryhelp();
+   * const response =
+   *   await client.airfieldSlotConsumptions.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/airfieldslotconsumption/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<AirfieldSlotConsumptionQueryhelpResponse> {
+    return this._client.get('/udl/airfieldslotconsumption/queryhelp', options);
   }
 
   /**
@@ -653,6 +651,62 @@ export interface AirfieldslotconsumptionFull {
 
 export type AirfieldSlotConsumptionCountResponse = string;
 
+export interface AirfieldSlotConsumptionQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<AirfieldSlotConsumptionQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace AirfieldSlotConsumptionQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type AirfieldSlotConsumptionTupleResponse = Array<AirfieldslotconsumptionFull>;
 
 export interface AirfieldSlotConsumptionCreateParams {
@@ -1095,6 +1149,7 @@ export declare namespace AirfieldSlotConsumptions {
     type AirfieldslotconsumptionAbridged as AirfieldslotconsumptionAbridged,
     type AirfieldslotconsumptionFull as AirfieldslotconsumptionFull,
     type AirfieldSlotConsumptionCountResponse as AirfieldSlotConsumptionCountResponse,
+    type AirfieldSlotConsumptionQueryhelpResponse as AirfieldSlotConsumptionQueryhelpResponse,
     type AirfieldSlotConsumptionTupleResponse as AirfieldSlotConsumptionTupleResponse,
     type AirfieldslotconsumptionAbridgedsOffsetPage as AirfieldslotconsumptionAbridgedsOffsetPage,
     type AirfieldSlotConsumptionCreateParams as AirfieldSlotConsumptionCreateParams,

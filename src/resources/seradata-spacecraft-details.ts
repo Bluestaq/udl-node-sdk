@@ -153,14 +153,12 @@ export class SeradataSpacecraftDetails extends APIResource {
    *
    * @example
    * ```ts
-   * await client.seradataSpacecraftDetails.queryhelp();
+   * const response =
+   *   await client.seradataSpacecraftDetails.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/seradataspacecraftdetails/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SeradataSpacecraftDetailQueryhelpResponse> {
+    return this._client.get('/udl/seradataspacecraftdetails/queryhelp', options);
   }
 
   /**
@@ -3321,6 +3319,62 @@ export namespace SeradataSpacecraftDetailGetResponse {
      * system.
      */
     updatedBy?: string;
+  }
+}
+
+export interface SeradataSpacecraftDetailQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SeradataSpacecraftDetailQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SeradataSpacecraftDetailQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -6953,6 +7007,7 @@ export declare namespace SeradataSpacecraftDetails {
     type SeradataSpacecraftDetailListResponse as SeradataSpacecraftDetailListResponse,
     type SeradataSpacecraftDetailCountResponse as SeradataSpacecraftDetailCountResponse,
     type SeradataSpacecraftDetailGetResponse as SeradataSpacecraftDetailGetResponse,
+    type SeradataSpacecraftDetailQueryhelpResponse as SeradataSpacecraftDetailQueryhelpResponse,
     type SeradataSpacecraftDetailTupleResponse as SeradataSpacecraftDetailTupleResponse,
     type SeradataSpacecraftDetailListResponsesOffsetPage as SeradataSpacecraftDetailListResponsesOffsetPage,
     type SeradataSpacecraftDetailCreateParams as SeradataSpacecraftDetailCreateParams,

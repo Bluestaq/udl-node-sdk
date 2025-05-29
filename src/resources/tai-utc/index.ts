@@ -13,6 +13,7 @@ export {
   TaiUtc,
   type TaiUtcListResponse,
   type TaiUtcCountResponse,
+  type TaiUtcQueryhelpResponse,
   type TaiUtcTupleResponse,
   type TaiUtcCreateParams,
   type TaiUtcUpdateParams,

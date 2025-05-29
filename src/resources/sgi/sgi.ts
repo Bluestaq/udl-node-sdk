@@ -195,14 +195,11 @@ export class Sgi extends APIResource {
    *
    * @example
    * ```ts
-   * await client.sgi.queryhelp();
+   * const response = await client.sgi.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/sgi/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SgiQueryhelpResponse> {
+    return this._client.get('/udl/sgi/queryhelp', options);
   }
 
   /**
@@ -1426,6 +1423,62 @@ export interface SgiGetDataByEffectiveAsOfDateResponse {
    * 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
    */
   y54?: number;
+}
+
+export interface SgiQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SgiQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SgiQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type SgiTupleResponse = Array<SgiTupleResponse.SgiTupleResponseItem>;
@@ -3440,6 +3493,7 @@ export declare namespace Sgi {
     type SgiCountResponse as SgiCountResponse,
     type SgiGetResponse as SgiGetResponse,
     type SgiGetDataByEffectiveAsOfDateResponse as SgiGetDataByEffectiveAsOfDateResponse,
+    type SgiQueryhelpResponse as SgiQueryhelpResponse,
     type SgiTupleResponse as SgiTupleResponse,
     type SgiListResponsesOffsetPage as SgiListResponsesOffsetPage,
     type SgiCreateParams as SgiCreateParams,

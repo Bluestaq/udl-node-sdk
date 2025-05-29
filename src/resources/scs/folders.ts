@@ -21,9 +21,9 @@ export class Folders extends APIResource {
    * ```
    */
   create(params: FolderCreateParams, options?: RequestOptions): APIPromise<string> {
-    const { id, classificationMarking, description, read, tags, write } = params;
+    const { id, classificationMarking, description, read, sendNotification, tags, write } = params;
     return this._client.post('/scs/folder', {
-      query: { id, classificationMarking, description, read, tags, write },
+      query: { id, classificationMarking, description, read, sendNotification, tags, write },
       ...options,
     });
   }
@@ -94,6 +94,11 @@ export interface FolderCreateParams {
   read?: string;
 
   /**
+   * Whether or not to send a notification that this folder was created.
+   */
+  sendNotification?: boolean;
+
+  /**
    * Comma separated list of tags to add to the folder.
    */
   tags?: string;
@@ -140,6 +145,8 @@ export namespace FolderUpdateParams {
     createdBy?: string;
 
     createdDate?: string;
+
+    deleteOn?: number;
 
     description?: string;
 

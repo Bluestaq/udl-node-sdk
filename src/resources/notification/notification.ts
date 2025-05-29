@@ -157,14 +157,11 @@ export class Notification extends APIResource {
    *
    * @example
    * ```ts
-   * await client.notification.queryhelp();
+   * const response = await client.notification.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/notification/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<NotificationQueryhelpResponse> {
+    return this._client.get('/udl/notification/queryhelp', options);
   }
 
   /**
@@ -282,6 +279,62 @@ export interface NotificationListResponse {
 }
 
 export type NotificationCountResponse = string;
+
+export interface NotificationQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<NotificationQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace NotificationQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type NotificationTupleResponse = Array<HistoryAPI.NotificationFull>;
 
@@ -453,6 +506,7 @@ export declare namespace Notification {
   export {
     type NotificationListResponse as NotificationListResponse,
     type NotificationCountResponse as NotificationCountResponse,
+    type NotificationQueryhelpResponse as NotificationQueryhelpResponse,
     type NotificationTupleResponse as NotificationTupleResponse,
     type NotificationListResponsesOffsetPage as NotificationListResponsesOffsetPage,
     type NotificationCreateParams as NotificationCreateParams,

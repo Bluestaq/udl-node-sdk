@@ -165,14 +165,11 @@ export class Video extends APIResource {
    *
    * @example
    * ```ts
-   * await client.video.queryhelp();
+   * const response = await client.video.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/video/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<VideoQueryhelpResponse> {
+    return this._client.get('/udl/video/queryhelp', options);
   }
 
   /**
@@ -549,6 +546,62 @@ export interface VideoGetStreamFileResponse {
   videoUrls?: Array<string>;
 }
 
+export interface VideoQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<VideoQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace VideoQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type VideoTupleResponse = Array<HistoryAPI.VideoStreamsFull>;
 
 export interface VideoCreateParams {
@@ -693,6 +746,7 @@ export declare namespace Video {
     type VideoGetPlayerStreamingInfoResponse as VideoGetPlayerStreamingInfoResponse,
     type VideoGetPublisherStreamingInfoResponse as VideoGetPublisherStreamingInfoResponse,
     type VideoGetStreamFileResponse as VideoGetStreamFileResponse,
+    type VideoQueryhelpResponse as VideoQueryhelpResponse,
     type VideoTupleResponse as VideoTupleResponse,
     type VideoListResponsesOffsetPage as VideoListResponsesOffsetPage,
     type VideoCreateParams as VideoCreateParams,

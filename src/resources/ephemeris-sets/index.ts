@@ -5,6 +5,7 @@ export {
   type EphemerisSet,
   type EphemerisSetAbridged,
   type EphemerisSetCountResponse,
+  type EphemerisSetQueryhelpResponse,
   type EphemerisSetTupleResponse,
   type EphemerisSetCreateParams,
   type EphemerisSetRetrieveParams,

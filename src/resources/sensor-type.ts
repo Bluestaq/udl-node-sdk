@@ -3,7 +3,6 @@
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
-import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
@@ -40,11 +39,8 @@ export class SensorType extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/sensortype/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SensorTypeQueryhelpResponse> {
+    return this._client.get('/udl/sensortype/queryhelp', options);
   }
 }
 
@@ -142,6 +138,62 @@ export interface SensorTypeGetResponse {
   updatedBy?: string;
 }
 
+export interface SensorTypeQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SensorTypeQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SensorTypeQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export interface SensorTypeListParams extends OffsetPageParams {}
 
 export interface SensorTypeGetParams {
@@ -154,6 +206,7 @@ export declare namespace SensorType {
   export {
     type SensorTypeListResponse as SensorTypeListResponse,
     type SensorTypeGetResponse as SensorTypeGetResponse,
+    type SensorTypeQueryhelpResponse as SensorTypeQueryhelpResponse,
     type SensorTypeListResponsesOffsetPage as SensorTypeListResponsesOffsetPage,
     type SensorTypeListParams as SensorTypeListParams,
     type SensorTypeGetParams as SensorTypeGetParams,

@@ -142,14 +142,12 @@ export class SeraDataEarlyWarning extends APIResource {
    *
    * @example
    * ```ts
-   * await client.seraDataEarlyWarning.queryhelp();
+   * const response =
+   *   await client.seraDataEarlyWarning.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/seradataearlywarning/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SeraDataEarlyWarningQueryhelpResponse> {
+    return this._client.get('/udl/seradataearlywarning/queryhelp', options);
   }
 
   /**
@@ -456,6 +454,62 @@ export interface SeraDataEarlyWarningGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface SeraDataEarlyWarningQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SeraDataEarlyWarningQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SeraDataEarlyWarningQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type SeraDataEarlyWarningTupleResponse =
@@ -866,6 +920,7 @@ export declare namespace SeraDataEarlyWarning {
     type SeraDataEarlyWarningListResponse as SeraDataEarlyWarningListResponse,
     type SeraDataEarlyWarningCountResponse as SeraDataEarlyWarningCountResponse,
     type SeraDataEarlyWarningGetResponse as SeraDataEarlyWarningGetResponse,
+    type SeraDataEarlyWarningQueryhelpResponse as SeraDataEarlyWarningQueryhelpResponse,
     type SeraDataEarlyWarningTupleResponse as SeraDataEarlyWarningTupleResponse,
     type SeraDataEarlyWarningListResponsesOffsetPage as SeraDataEarlyWarningListResponsesOffsetPage,
     type SeraDataEarlyWarningCreateParams as SeraDataEarlyWarningCreateParams,

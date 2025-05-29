@@ -5,6 +5,7 @@ export {
   type AirfieldstatusAbridged,
   type AirfieldstatusFull,
   type AirfieldStatusCountResponse,
+  type AirfieldStatusQueryhelpResponse,
   type AirfieldStatusTupleResponse,
   type AirfieldStatusCreateParams,
   type AirfieldStatusRetrieveParams,

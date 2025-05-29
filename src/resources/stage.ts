@@ -144,14 +144,11 @@ export class Stage extends APIResource {
    *
    * @example
    * ```ts
-   * await client.stage.queryhelp();
+   * const response = await client.stage.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/stage/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<StageQueryhelpResponse> {
+    return this._client.get('/udl/stage/queryhelp', options);
   }
 
   /**
@@ -644,6 +641,62 @@ export interface StageGetResponse {
    * Total thrust of one of the vernier or additional engines in a vacuum in kN.
    */
   vernierThrustVacuum?: number;
+}
+
+export interface StageQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<StageQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace StageQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type StageTupleResponse = Array<StageTupleResponse.StageTupleResponseItem>;
@@ -1345,6 +1398,7 @@ export declare namespace Stage {
     type StageListResponse as StageListResponse,
     type StageCountResponse as StageCountResponse,
     type StageGetResponse as StageGetResponse,
+    type StageQueryhelpResponse as StageQueryhelpResponse,
     type StageTupleResponse as StageTupleResponse,
     type StageListResponsesOffsetPage as StageListResponsesOffsetPage,
     type StageCreateParams as StageCreateParams,

@@ -142,14 +142,11 @@ export class Flightplan extends APIResource {
    *
    * @example
    * ```ts
-   * await client.flightplan.queryhelp();
+   * const response = await client.flightplan.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/flightplan/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<FlightplanQueryhelpResponse> {
+    return this._client.get('/udl/flightplan/queryhelp', options);
   }
 
   /**
@@ -1335,6 +1332,62 @@ export namespace FlightPlanAbridged {
 }
 
 export type FlightplanCountResponse = string;
+
+export interface FlightplanQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<FlightplanQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace FlightplanQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type FlightplanTupleResponse = Array<Shared.FlightPlanFull>;
 
@@ -4644,6 +4697,7 @@ export declare namespace Flightplan {
   export {
     type FlightPlanAbridged as FlightPlanAbridged,
     type FlightplanCountResponse as FlightplanCountResponse,
+    type FlightplanQueryhelpResponse as FlightplanQueryhelpResponse,
     type FlightplanTupleResponse as FlightplanTupleResponse,
     type FlightPlanAbridgedsOffsetPage as FlightPlanAbridgedsOffsetPage,
     type FlightplanCreateParams as FlightplanCreateParams,

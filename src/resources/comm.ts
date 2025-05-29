@@ -141,14 +141,11 @@ export class Comm extends APIResource {
    *
    * @example
    * ```ts
-   * await client.comm.queryhelp();
+   * const response = await client.comm.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/comm/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<CommQueryhelpResponse> {
+    return this._client.get('/udl/comm/queryhelp', options);
   }
 
   /**
@@ -498,6 +495,62 @@ export namespace CommFull {
 
 export type CommCountResponse = string;
 
+export interface CommQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<CommQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace CommQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type CommTupleResponse = Array<CommFull>;
 
 export interface CommCreateParams {
@@ -656,6 +709,7 @@ export declare namespace Comm {
     type CommAbridged as CommAbridged,
     type CommFull as CommFull,
     type CommCountResponse as CommCountResponse,
+    type CommQueryhelpResponse as CommQueryhelpResponse,
     type CommTupleResponse as CommTupleResponse,
     type CommAbridgedsOffsetPage as CommAbridgedsOffsetPage,
     type CommCreateParams as CommCreateParams,

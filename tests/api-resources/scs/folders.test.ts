@@ -29,6 +29,7 @@ describe('resource folders', () => {
       classificationMarking: 'classificationMarking',
       description: 'description',
       read: 'read',
+      sendNotification: true,
       tags: 'tags',
       write: 'write',
     });

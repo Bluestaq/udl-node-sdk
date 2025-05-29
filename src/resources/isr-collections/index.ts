@@ -13,6 +13,7 @@ export {
   IsrCollections,
   type IsrCollectionListResponse,
   type IsrCollectionCountResponse,
+  type IsrCollectionQueryhelpResponse,
   type IsrCollectionTupleResponse,
   type IsrCollectionListParams,
   type IsrCollectionCountParams,

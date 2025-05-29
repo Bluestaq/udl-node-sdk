@@ -183,14 +183,12 @@ export class PassiveRadarObservation extends APIResource {
    *
    * @example
    * ```ts
-   * await client.observations.passiveRadarObservation.queryhelp();
+   * const response =
+   *   await client.observations.passiveRadarObservation.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/passiveradarobservation/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<PassiveRadarObservationQueryhelpResponse> {
+    return this._client.get('/udl/passiveradarobservation/queryhelp', options);
   }
 
   /**
@@ -1046,6 +1044,62 @@ export interface PassiveRadarObservationGetResponse {
    * Z velocity of target in kilometers/sec in J2000 coordinate frame.
    */
   zvel?: number;
+}
+
+export interface PassiveRadarObservationQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<PassiveRadarObservationQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace PassiveRadarObservationQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type PassiveRadarObservationTupleResponse =
@@ -2650,6 +2704,7 @@ export declare namespace PassiveRadarObservation {
     type PassiveRadarObservationListResponse as PassiveRadarObservationListResponse,
     type PassiveRadarObservationCountResponse as PassiveRadarObservationCountResponse,
     type PassiveRadarObservationGetResponse as PassiveRadarObservationGetResponse,
+    type PassiveRadarObservationQueryhelpResponse as PassiveRadarObservationQueryhelpResponse,
     type PassiveRadarObservationTupleResponse as PassiveRadarObservationTupleResponse,
     type PassiveRadarObservationListResponsesOffsetPage as PassiveRadarObservationListResponsesOffsetPage,
     type PassiveRadarObservationCreateParams as PassiveRadarObservationCreateParams,

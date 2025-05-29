@@ -13,6 +13,7 @@ export {
   type MissionAssignmentListResponse,
   type MissionAssignmentCountResponse,
   type MissionAssignmentGetResponse,
+  type MissionAssignmentQueryhelpResponse,
   type MissionAssignmentTupleResponse,
   type MissionAssignmentCreateParams,
   type MissionAssignmentUpdateParams,

@@ -140,14 +140,11 @@ export class Onorbitlist extends APIResource {
    *
    * @example
    * ```ts
-   * await client.onorbitlist.queryhelp();
+   * const response = await client.onorbitlist.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/onorbitlist/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<OnorbitlistQueryhelpResponse> {
+    return this._client.get('/udl/onorbitlist/queryhelp', options);
   }
 
   /**
@@ -331,6 +328,62 @@ export interface OnorbitlistGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface OnorbitlistQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<OnorbitlistQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace OnorbitlistQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type OnorbitlistTupleResponse = Array<OnorbitlistTupleResponse.OnorbitlistTupleResponseItem>;
@@ -570,6 +623,7 @@ export declare namespace Onorbitlist {
     type OnorbitlistListResponse as OnorbitlistListResponse,
     type OnorbitlistCountResponse as OnorbitlistCountResponse,
     type OnorbitlistGetResponse as OnorbitlistGetResponse,
+    type OnorbitlistQueryhelpResponse as OnorbitlistQueryhelpResponse,
     type OnorbitlistTupleResponse as OnorbitlistTupleResponse,
     type OnorbitlistListResponsesOffsetPage as OnorbitlistListResponsesOffsetPage,
     type OnorbitlistCreateParams as OnorbitlistCreateParams,

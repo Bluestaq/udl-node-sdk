@@ -35,6 +35,10 @@ export const tool: Tool = {
         type: 'string',
         description: 'Comma separated list of user ids who can read contents of the folder.',
       },
+      sendNotification: {
+        type: 'boolean',
+        description: 'Whether or not to send a notification that this folder was created.',
+      },
       tags: {
         type: 'string',
         description: 'Comma separated list of tags to add to the folder.',

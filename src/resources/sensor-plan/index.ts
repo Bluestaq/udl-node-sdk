@@ -13,6 +13,7 @@ export {
   type SensorPlanListResponse,
   type SensorPlanCountResponse,
   type SensorPlanGetResponse,
+  type SensorPlanQueryhelpResponse,
   type SensorPlanTupleResponse,
   type SensorPlanCreateParams,
   type SensorPlanUpdateParams,

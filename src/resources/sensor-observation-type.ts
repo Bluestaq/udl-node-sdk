@@ -3,7 +3,6 @@
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
-import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
@@ -31,11 +30,8 @@ export class SensorObservationType extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/sensorobservationtype/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SensorObservationTypeQueryhelpResponse> {
+    return this._client.get('/udl/sensorobservationtype/queryhelp', options);
   }
 }
 
@@ -133,6 +129,62 @@ export interface SensorObservationTypeGetResponse {
   updatedBy?: string;
 }
 
+export interface SensorObservationTypeQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SensorObservationTypeQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SensorObservationTypeQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export interface SensorObservationTypeListParams extends OffsetPageParams {}
 
 export interface SensorObservationTypeGetParams {
@@ -145,6 +197,7 @@ export declare namespace SensorObservationType {
   export {
     type SensorObservationTypeListResponse as SensorObservationTypeListResponse,
     type SensorObservationTypeGetResponse as SensorObservationTypeGetResponse,
+    type SensorObservationTypeQueryhelpResponse as SensorObservationTypeQueryhelpResponse,
     type SensorObservationTypeListResponsesOffsetPage as SensorObservationTypeListResponsesOffsetPage,
     type SensorObservationTypeListParams as SensorObservationTypeListParams,
     type SensorObservationTypeGetParams as SensorObservationTypeGetParams,

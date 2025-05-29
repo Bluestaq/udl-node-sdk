@@ -147,14 +147,11 @@ export class Operatingunit extends APIResource {
    *
    * @example
    * ```ts
-   * await client.operatingunit.queryhelp();
+   * const response = await client.operatingunit.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/operatingunit/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<OperatingunitQueryhelpResponse> {
+    return this._client.get('/udl/operatingunit/queryhelp', options);
   }
 
   /**
@@ -1306,6 +1303,62 @@ export namespace OperatingunitGetResponse {
      * system.
      */
     updatedBy?: string;
+  }
+}
+
+export interface OperatingunitQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<OperatingunitQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace OperatingunitQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -2937,6 +2990,7 @@ export declare namespace Operatingunit {
     type OperatingunitListResponse as OperatingunitListResponse,
     type OperatingunitCountResponse as OperatingunitCountResponse,
     type OperatingunitGetResponse as OperatingunitGetResponse,
+    type OperatingunitQueryhelpResponse as OperatingunitQueryhelpResponse,
     type OperatingunitTupleResponse as OperatingunitTupleResponse,
     type OperatingunitListResponsesOffsetPage as OperatingunitListResponsesOffsetPage,
     type OperatingunitCreateParams as OperatingunitCreateParams,

@@ -140,14 +140,11 @@ export class LaunchSite extends APIResource {
    *
    * @example
    * ```ts
-   * await client.launchSite.queryhelp();
+   * const response = await client.launchSite.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/launchsite/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<LaunchSiteQueryhelpResponse> {
+    return this._client.get('/udl/launchsite/queryhelp', options);
   }
 
   /**
@@ -489,6 +486,62 @@ export namespace LaunchSiteGetResponse {
      * system.
      */
     updatedBy?: string;
+  }
+}
+
+export interface LaunchSiteQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<LaunchSiteQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace LaunchSiteQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -893,6 +946,7 @@ export declare namespace LaunchSite {
     type LaunchSiteListResponse as LaunchSiteListResponse,
     type LaunchSiteCountResponse as LaunchSiteCountResponse,
     type LaunchSiteGetResponse as LaunchSiteGetResponse,
+    type LaunchSiteQueryhelpResponse as LaunchSiteQueryhelpResponse,
     type LaunchSiteTupleResponse as LaunchSiteTupleResponse,
     type LaunchSiteListResponsesOffsetPage as LaunchSiteListResponsesOffsetPage,
     type LaunchSiteCreateParams as LaunchSiteCreateParams,

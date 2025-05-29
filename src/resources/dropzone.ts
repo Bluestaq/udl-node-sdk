@@ -167,14 +167,11 @@ export class Dropzone extends APIResource {
    *
    * @example
    * ```ts
-   * await client.dropzone.queryHelp();
+   * const response = await client.dropzone.queryHelp();
    * ```
    */
-  queryHelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/dropzone/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryHelp(options?: RequestOptions): APIPromise<DropzoneQueryHelpResponse> {
+    return this._client.get('/udl/dropzone/queryhelp', options);
   }
 
   /**
@@ -680,6 +677,62 @@ export namespace DropzoneQueryResponse {
      * The identifier of the Zone Availability Report (ZAR) for the drop zone.
      */
     zarId?: string;
+  }
+}
+
+export interface DropzoneQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<DropzoneQueryHelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace DropzoneQueryHelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -1733,6 +1786,7 @@ export declare namespace Dropzone {
     type DropzoneRetrieveResponse as DropzoneRetrieveResponse,
     type DropzoneCountResponse as DropzoneCountResponse,
     type DropzoneQueryResponse as DropzoneQueryResponse,
+    type DropzoneQueryHelpResponse as DropzoneQueryHelpResponse,
     type DropzoneTupleResponse as DropzoneTupleResponse,
     type DropzoneCreateParams as DropzoneCreateParams,
     type DropzoneRetrieveParams as DropzoneRetrieveParams,

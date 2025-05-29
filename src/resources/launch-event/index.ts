@@ -14,6 +14,7 @@ export {
   type LaunchEventListResponse,
   type LaunchEventCountResponse,
   type LaunchEventGetResponse,
+  type LaunchEventQueryhelpResponse,
   type LaunchEventTupleResponse,
   type LaunchEventCreateParams,
   type LaunchEventListParams,

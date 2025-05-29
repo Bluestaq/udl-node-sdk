@@ -26,9 +26,9 @@ export class V2 extends APIResource {
    * ```
    */
   update(params: V2UpdateParams, options?: RequestOptions): APIPromise<void> {
-    const { path, ...body } = params;
+    const { path, sendNotification, ...body } = params;
     return this._client.patch('/scs/v2/update', {
-      query: { path },
+      query: { path, sendNotification },
       body,
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -106,9 +106,10 @@ export class V2 extends APIResource {
    * ```
    */
   fileUpload(params: V2FileUploadParams, options?: RequestOptions): APIPromise<void> {
-    const { classificationMarking, path, body, description, overwrite, tags } = params;
+    const { classificationMarking, path, body, deleteAfter, description, overwrite, sendNotification, tags } =
+      params;
     return this._client.post('/scs/v2/file', {
-      query: { classificationMarking, path, description, overwrite, tags },
+      query: { classificationMarking, path, deleteAfter, description, overwrite, sendNotification, tags },
       body: body,
       ...options,
       headers: buildHeaders([
@@ -140,9 +141,9 @@ export class V2 extends APIResource {
    * ```
    */
   folderCreate(params: V2FolderCreateParams, options?: RequestOptions): APIPromise<void> {
-    const { path, ...body } = params;
+    const { path, sendNotification, ...body } = params;
     return this._client.post('/scs/v2/folder', {
-      query: { path },
+      query: { path, sendNotification },
       body,
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -210,6 +211,8 @@ export interface ScsEntity {
 
   data?: string;
 
+  deleteOn?: number;
+
   /**
    * Optional description for the file or folder.
    */
@@ -257,10 +260,21 @@ export interface V2UpdateParams {
   path: string;
 
   /**
+   * Query param: Whether or not to send a notification that the target file/folder
+   * was updated.
+   */
+  sendNotification?: boolean;
+
+  /**
    * Body param: Classification marking of the folder or file in IC/CAPCO
    * portion-marked format.
    */
   classificationMarking?: string;
+
+  /**
+   * Body param:
+   */
+  deleteOn?: number;
 
   /**
    * Body param: Optional description for the file or folder.
@@ -332,6 +346,11 @@ export interface V2FileUploadParams {
   body: string | ArrayBuffer | ArrayBufferView | Blob | DataView;
 
   /**
+   * Query param: Length of time after which to automatically delete the file.
+   */
+  deleteAfter?: string;
+
+  /**
    * Query param: Optional description of uploaded document.
    */
   description?: string;
@@ -341,6 +360,11 @@ export interface V2FileUploadParams {
    * one exists.
    */
   overwrite?: boolean;
+
+  /**
+   * Query param: Whether or not to send a notification that this file was uploaded.
+   */
+  sendNotification?: boolean;
 
   /**
    * Query param: Optional array of provider/source specific tags for this data, used
@@ -358,10 +382,20 @@ export interface V2FolderCreateParams {
   path: string;
 
   /**
+   * Query param: Whether or not to send a notification that this folder was created.
+   */
+  sendNotification?: boolean;
+
+  /**
    * Body param: Classification marking of the folder or file in IC/CAPCO
    * portion-marked format.
    */
   classificationMarking?: string;
+
+  /**
+   * Body param:
+   */
+  deleteOn?: number;
 
   /**
    * Body param: Optional description for the file or folder.

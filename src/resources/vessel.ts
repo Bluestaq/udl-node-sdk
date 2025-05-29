@@ -145,14 +145,11 @@ export class Vessel extends APIResource {
    *
    * @example
    * ```ts
-   * await client.vessel.queryhelp();
+   * const response = await client.vessel.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/vessel/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<VesselQueryhelpResponse> {
+    return this._client.get('/udl/vessel/queryhelp', options);
   }
 
   /**
@@ -622,6 +619,62 @@ export interface VesselGetResponse {
    * Year the vessel went into service.
    */
   yearBuilt?: string;
+}
+
+export interface VesselQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<VesselQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace VesselQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type VesselTupleResponse = Array<VesselTupleResponse.VesselTupleResponseItem>;
@@ -1488,6 +1541,7 @@ export declare namespace Vessel {
     type VesselListResponse as VesselListResponse,
     type VesselCountResponse as VesselCountResponse,
     type VesselGetResponse as VesselGetResponse,
+    type VesselQueryhelpResponse as VesselQueryhelpResponse,
     type VesselTupleResponse as VesselTupleResponse,
     type VesselListResponsesOffsetPage as VesselListResponsesOffsetPage,
     type VesselCreateParams as VesselCreateParams,

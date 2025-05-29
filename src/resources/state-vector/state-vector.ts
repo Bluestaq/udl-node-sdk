@@ -148,14 +148,11 @@ export class StateVector extends APIResource {
    *
    * @example
    * ```ts
-   * await client.stateVector.queryhelp();
+   * const response = await client.stateVector.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/statevector/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<StateVectorQueryhelpResponse> {
+    return this._client.get('/udl/statevector/queryhelp', options);
   }
 
   /**
@@ -348,7 +345,7 @@ export interface StateVectorAbridged {
    * The reference frame of the covariance matrix elements. If the covReferenceFrame
    * is null it is assumed to be J2000.
    */
-  covReferenceFrame?: 'J2000' | 'UVW';
+  covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
   /**
    * Time the row was created in the database, auto-populated by the system.
@@ -1046,7 +1043,7 @@ export interface StateVectorFull {
    * The reference frame of the covariance matrix elements. If the covReferenceFrame
    * is null it is assumed to be J2000.
    */
-  covReferenceFrame?: 'J2000' | 'UVW';
+  covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
   /**
    * Time the row was created in the database, auto-populated by the system.
@@ -1793,7 +1790,7 @@ export interface StateVectorIngest {
    * The reference frame of the covariance matrix elements. If the covReferenceFrame
    * is null it is assumed to be J2000.
    */
-  covReferenceFrame?: 'J2000' | 'UVW';
+  covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
   /**
    * Time the row was created in the database, auto-populated by the system.
@@ -2394,6 +2391,62 @@ export interface StateVectorIngest {
 
 export type StateVectorCountResponse = string;
 
+export interface StateVectorQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<StateVectorQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace StateVectorQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type StateVectorTupleResponse = Array<StateVectorFull>;
 
 export interface StateVectorCreateParams {
@@ -2517,7 +2570,7 @@ export interface StateVectorCreateParams {
    * The reference frame of the covariance matrix elements. If the covReferenceFrame
    * is null it is assumed to be J2000.
    */
-  covReferenceFrame?: 'J2000' | 'UVW';
+  covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
   /**
    * Optional source-provided and searchable metadata or descriptor of the data.
@@ -3148,6 +3201,7 @@ export declare namespace StateVector {
     type StateVectorFull as StateVectorFull,
     type StateVectorIngest as StateVectorIngest,
     type StateVectorCountResponse as StateVectorCountResponse,
+    type StateVectorQueryhelpResponse as StateVectorQueryhelpResponse,
     type StateVectorTupleResponse as StateVectorTupleResponse,
     type StateVectorAbridgedsOffsetPage as StateVectorAbridgedsOffsetPage,
     type StateVectorCreateParams as StateVectorCreateParams,

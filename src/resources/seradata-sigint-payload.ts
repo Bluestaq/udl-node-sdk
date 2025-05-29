@@ -147,14 +147,12 @@ export class SeradataSigintPayload extends APIResource {
    *
    * @example
    * ```ts
-   * await client.seradataSigintPayload.queryhelp();
+   * const response =
+   *   await client.seradataSigintPayload.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/seradatasigintpayload/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SeradataSigintPayloadQueryhelpResponse> {
+    return this._client.get('/udl/seradatasigintpayload/queryhelp', options);
   }
 
   /**
@@ -451,6 +449,62 @@ export interface SeradataSigintPayloadGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface SeradataSigintPayloadQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SeradataSigintPayloadQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SeradataSigintPayloadQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type SeradataSigintPayloadTupleResponse =
@@ -846,6 +900,7 @@ export declare namespace SeradataSigintPayload {
     type SeradataSigintPayloadListResponse as SeradataSigintPayloadListResponse,
     type SeradataSigintPayloadCountResponse as SeradataSigintPayloadCountResponse,
     type SeradataSigintPayloadGetResponse as SeradataSigintPayloadGetResponse,
+    type SeradataSigintPayloadQueryhelpResponse as SeradataSigintPayloadQueryhelpResponse,
     type SeradataSigintPayloadTupleResponse as SeradataSigintPayloadTupleResponse,
     type SeradataSigintPayloadListResponsesOffsetPage as SeradataSigintPayloadListResponsesOffsetPage,
     type SeradataSigintPayloadCreateParams as SeradataSigintPayloadCreateParams,

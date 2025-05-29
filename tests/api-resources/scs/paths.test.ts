@@ -29,8 +29,10 @@ describe('resource paths', () => {
       id: 'id',
       classificationMarking: 'classificationMarking',
       body: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      deleteAfter: 'deleteAfter',
       description: 'description',
       overwrite: true,
+      sendNotification: true,
       tags: 'tags',
     });
   });

@@ -185,14 +185,11 @@ export class MissionAssignment extends APIResource {
    *
    * @example
    * ```ts
-   * await client.missionAssignment.queryhelp();
+   * const response = await client.missionAssignment.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/missionassignment/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<MissionAssignmentQueryhelpResponse> {
+    return this._client.get('/udl/missionassignment/queryhelp', options);
   }
 
   /**
@@ -944,6 +941,62 @@ export interface MissionAssignmentGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface MissionAssignmentQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<MissionAssignmentQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace MissionAssignmentQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type MissionAssignmentTupleResponse =
@@ -2384,6 +2437,7 @@ export declare namespace MissionAssignment {
     type MissionAssignmentListResponse as MissionAssignmentListResponse,
     type MissionAssignmentCountResponse as MissionAssignmentCountResponse,
     type MissionAssignmentGetResponse as MissionAssignmentGetResponse,
+    type MissionAssignmentQueryhelpResponse as MissionAssignmentQueryhelpResponse,
     type MissionAssignmentTupleResponse as MissionAssignmentTupleResponse,
     type MissionAssignmentListResponsesOffsetPage as MissionAssignmentListResponsesOffsetPage,
     type MissionAssignmentCreateParams as MissionAssignmentCreateParams,

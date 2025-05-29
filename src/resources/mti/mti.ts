@@ -68,11 +68,8 @@ export class Mti extends APIResource {
    * Service operation to provide detailed information on available dynamic query
    * parameters for a particular data type.
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/mti/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<MtiQueryhelpResponse> {
+    return this._client.get('/udl/mti/queryhelp', options);
   }
 
   /**
@@ -1150,6 +1147,62 @@ export namespace MtiListResponse {
 }
 
 export type MtiCountResponse = string;
+
+export interface MtiQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<MtiQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace MtiQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type MtiTupleResponse = Array<HistoryAPI.MtiFull>;
 
@@ -3270,6 +3323,7 @@ export declare namespace Mti {
   export {
     type MtiListResponse as MtiListResponse,
     type MtiCountResponse as MtiCountResponse,
+    type MtiQueryhelpResponse as MtiQueryhelpResponse,
     type MtiTupleResponse as MtiTupleResponse,
     type MtiListResponsesOffsetPage as MtiListResponsesOffsetPage,
     type MtiListParams as MtiListParams,

@@ -5,6 +5,7 @@ export {
   type AIsAbridged,
   type AICountResponse,
   type AIHistoryCountResponse,
+  type AIQueryhelpResponse,
   type AITupleResponse,
   type AIListParams,
   type AICountParams,

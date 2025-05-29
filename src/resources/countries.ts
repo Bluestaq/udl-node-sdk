@@ -132,14 +132,11 @@ export class Countries extends APIResource {
    *
    * @example
    * ```ts
-   * await client.countries.queryhelp();
+   * const response = await client.countries.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/country/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<CountryQueryhelpResponse> {
+    return this._client.get('/udl/country/queryhelp', options);
   }
 
   /**
@@ -335,6 +332,62 @@ export interface CountryFull {
 
 export type CountryCountResponse = string;
 
+export interface CountryQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<CountryQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace CountryQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type CountryTupleResponse = Array<CountryFull>;
 
 export interface CountryCreateParams {
@@ -484,6 +537,7 @@ export declare namespace Countries {
     type CountryAbridged as CountryAbridged,
     type CountryFull as CountryFull,
     type CountryCountResponse as CountryCountResponse,
+    type CountryQueryhelpResponse as CountryQueryhelpResponse,
     type CountryTupleResponse as CountryTupleResponse,
     type CountryAbridgedsOffsetPage as CountryAbridgedsOffsetPage,
     type CountryCreateParams as CountryCreateParams,

@@ -161,14 +161,11 @@ export class EphemerisSets extends APIResource {
    *
    * @example
    * ```ts
-   * await client.ephemerisSets.queryhelp();
+   * const response = await client.ephemerisSets.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/ephemerisset/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<EphemerisSetQueryhelpResponse> {
+    return this._client.get('/udl/ephemerisset/queryhelp', options);
   }
 
   /**
@@ -284,7 +281,7 @@ export interface EphemerisSet {
    * The reference frame of the covariance matrix elements. If the covReferenceFrame
    * is null it is assumed to be J2000.
    */
-  covReferenceFrame?: 'J2000' | 'UVW';
+  covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
   /**
    * Time the row was created in the database, in UTC.
@@ -567,7 +564,7 @@ export interface EphemerisSetAbridged {
    * The reference frame of the covariance matrix elements. If the covReferenceFrame
    * is null it is assumed to be J2000.
    */
-  covReferenceFrame?: 'J2000' | 'UVW';
+  covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
   /**
    * Time the row was created in the database, in UTC.
@@ -733,6 +730,62 @@ export interface EphemerisSetAbridged {
 
 export type EphemerisSetCountResponse = string;
 
+export interface EphemerisSetQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<EphemerisSetQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace EphemerisSetQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
+
 export type EphemerisSetTupleResponse = Array<EphemerisSet>;
 
 export interface EphemerisSetCreateParams {
@@ -815,7 +868,7 @@ export interface EphemerisSetCreateParams {
    * The reference frame of the covariance matrix elements. If the covReferenceFrame
    * is null it is assumed to be J2000.
    */
-  covReferenceFrame?: 'J2000' | 'UVW';
+  covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
 
   /**
    * Notes/description of the provided ephemeris. A value of DSTOP signifies the
@@ -1225,6 +1278,7 @@ export declare namespace EphemerisSets {
     type EphemerisSet as EphemerisSet,
     type EphemerisSetAbridged as EphemerisSetAbridged,
     type EphemerisSetCountResponse as EphemerisSetCountResponse,
+    type EphemerisSetQueryhelpResponse as EphemerisSetQueryhelpResponse,
     type EphemerisSetTupleResponse as EphemerisSetTupleResponse,
     type EphemerisSetAbridgedsOffsetPage as EphemerisSetAbridgedsOffsetPage,
     type EphemerisSetCreateParams as EphemerisSetCreateParams,

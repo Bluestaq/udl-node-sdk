@@ -12,6 +12,7 @@ export {
   MissileTracks,
   type MissileTrackListResponse,
   type MissileTrackCountResponse,
+  type MissileTrackQueryhelpResponse,
   type MissileTrackTupleResponse,
   type MissileTrackListParams,
   type MissileTrackCountParams,

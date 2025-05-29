@@ -12,6 +12,7 @@ export {
   Monoradar,
   type MonoradarListResponse,
   type MonoradarCountResponse,
+  type MonoradarQueryhelpResponse,
   type MonoradarTupleResponse,
   type MonoradarListParams,
   type MonoradarCountParams,

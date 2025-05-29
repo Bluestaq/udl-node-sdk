@@ -141,14 +141,11 @@ export class Swir extends APIResource {
    *
    * @example
    * ```ts
-   * await client.swir.queryhelp();
+   * const response = await client.swir.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/swir/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SwirQueryhelpResponse> {
+    return this._client.get('/udl/swir/queryhelp', options);
   }
 
   /**
@@ -288,6 +285,62 @@ export interface SwirListResponse {
 }
 
 export type SwirCountResponse = string;
+
+export interface SwirQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SwirQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SwirQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type SwirTupleResponse = Array<HistoryAPI.SwirFull>;
 
@@ -569,6 +622,7 @@ export declare namespace Swir {
   export {
     type SwirListResponse as SwirListResponse,
     type SwirCountResponse as SwirCountResponse,
+    type SwirQueryhelpResponse as SwirQueryhelpResponse,
     type SwirTupleResponse as SwirTupleResponse,
     type SwirListResponsesOffsetPage as SwirListResponsesOffsetPage,
     type SwirCreateParams as SwirCreateParams,

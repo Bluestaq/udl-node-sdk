@@ -151,14 +151,11 @@ export class LaunchDetection extends APIResource {
    *
    * @example
    * ```ts
-   * await client.launchDetection.queryhelp();
+   * const response = await client.launchDetection.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/launchdetection/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<LaunchDetectionQueryhelpResponse> {
+    return this._client.get('/udl/launchdetection/queryhelp', options);
   }
 
   /**
@@ -513,6 +510,62 @@ export interface LaunchDetectionGetResponse {
    * automatically and ignored on create/edit operations.
    */
   updatedBy?: string;
+}
+
+export interface LaunchDetectionQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<LaunchDetectionQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace LaunchDetectionQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type LaunchDetectionTupleResponse =
@@ -992,6 +1045,7 @@ export declare namespace LaunchDetection {
     type LaunchDetectionListResponse as LaunchDetectionListResponse,
     type LaunchDetectionCountResponse as LaunchDetectionCountResponse,
     type LaunchDetectionGetResponse as LaunchDetectionGetResponse,
+    type LaunchDetectionQueryhelpResponse as LaunchDetectionQueryhelpResponse,
     type LaunchDetectionTupleResponse as LaunchDetectionTupleResponse,
     type LaunchDetectionListResponsesOffsetPage as LaunchDetectionListResponsesOffsetPage,
     type LaunchDetectionCreateParams as LaunchDetectionCreateParams,

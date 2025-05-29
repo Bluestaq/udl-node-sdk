@@ -169,14 +169,11 @@ export class Eop extends APIResource {
    *
    * @example
    * ```ts
-   * await client.eop.queryhelp();
+   * const response = await client.eop.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/eop/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<EopQueryhelpResponse> {
+    return this._client.get('/udl/eop/queryhelp', options);
   }
 }
 
@@ -473,6 +470,62 @@ export interface EopAbridged {
 export type EopCountResponse = string;
 
 export type EopListTupleResponse = Array<Shared.EopFull>;
+
+export interface EopQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<EopQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace EopQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export interface EopCreateParams {
   /**
@@ -999,6 +1052,7 @@ export declare namespace Eop {
     type EopAbridged as EopAbridged,
     type EopCountResponse as EopCountResponse,
     type EopListTupleResponse as EopListTupleResponse,
+    type EopQueryhelpResponse as EopQueryhelpResponse,
     type EopAbridgedsOffsetPage as EopAbridgedsOffsetPage,
     type EopCreateParams as EopCreateParams,
     type EopRetrieveParams as EopRetrieveParams,

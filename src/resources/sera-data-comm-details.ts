@@ -139,14 +139,12 @@ export class SeraDataCommDetails extends APIResource {
    *
    * @example
    * ```ts
-   * await client.seraDataCommDetails.queryhelp();
+   * const response =
+   *   await client.seraDataCommDetails.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/seradatacommdetails/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<SeraDataCommDetailQueryhelpResponse> {
+    return this._client.get('/udl/seradatacommdetails/queryhelp', options);
   }
 
   /**
@@ -607,6 +605,62 @@ export interface SeraDataCommDetailGetResponse {
    * Comm userUplinkTo in Ghz.
    */
   userUplinkTo?: number;
+}
+
+export interface SeraDataCommDetailQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<SeraDataCommDetailQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace SeraDataCommDetailQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type SeraDataCommDetailTupleResponse =
@@ -1248,6 +1302,7 @@ export declare namespace SeraDataCommDetails {
     type SeraDataCommDetailListResponse as SeraDataCommDetailListResponse,
     type SeraDataCommDetailCountResponse as SeraDataCommDetailCountResponse,
     type SeraDataCommDetailGetResponse as SeraDataCommDetailGetResponse,
+    type SeraDataCommDetailQueryhelpResponse as SeraDataCommDetailQueryhelpResponse,
     type SeraDataCommDetailTupleResponse as SeraDataCommDetailTupleResponse,
     type SeraDataCommDetailListResponsesOffsetPage as SeraDataCommDetailListResponsesOffsetPage,
     type SeraDataCommDetailCreateParams as SeraDataCommDetailCreateParams,

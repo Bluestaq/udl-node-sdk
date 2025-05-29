@@ -119,14 +119,11 @@ export class WeatherReport extends APIResource {
    *
    * @example
    * ```ts
-   * await client.weatherReport.queryhelp();
+   * const response = await client.weatherReport.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/weatherreport/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<WeatherReportQueryhelpResponse> {
+    return this._client.get('/udl/weatherreport/queryhelp', options);
   }
 
   /**
@@ -752,6 +749,62 @@ export interface WeatherReportListResponse {
 }
 
 export type WeatherReportCountResponse = string;
+
+export interface WeatherReportQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<WeatherReportQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace WeatherReportQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type WeatherReportTupleResponse = Array<HistoryAPI.WeatherReportFull>;
 
@@ -1907,6 +1960,7 @@ export declare namespace WeatherReport {
   export {
     type WeatherReportListResponse as WeatherReportListResponse,
     type WeatherReportCountResponse as WeatherReportCountResponse,
+    type WeatherReportQueryhelpResponse as WeatherReportQueryhelpResponse,
     type WeatherReportTupleResponse as WeatherReportTupleResponse,
     type WeatherReportListResponsesOffsetPage as WeatherReportListResponsesOffsetPage,
     type WeatherReportCreateParams as WeatherReportCreateParams,

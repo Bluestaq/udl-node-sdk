@@ -117,14 +117,11 @@ export class Crew extends APIResource {
    *
    * @example
    * ```ts
-   * await client.crew.queryhelp();
+   * const response = await client.crew.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/crew/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<CrewQueryhelpResponse> {
+    return this._client.get('/udl/crew/queryhelp', options);
   }
 
   /**
@@ -1677,6 +1674,62 @@ export namespace CrewFull {
 }
 
 export type CrewCountResponse = string;
+
+export interface CrewQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<CrewQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace CrewQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type CrewTupleResponse = Array<CrewFull>;
 
@@ -3852,6 +3905,7 @@ export declare namespace Crew {
     type CrewAbridged as CrewAbridged,
     type CrewFull as CrewFull,
     type CrewCountResponse as CrewCountResponse,
+    type CrewQueryhelpResponse as CrewQueryhelpResponse,
     type CrewTupleResponse as CrewTupleResponse,
     type CrewAbridgedsOffsetPage as CrewAbridgedsOffsetPage,
     type CrewCreateParams as CrewCreateParams,

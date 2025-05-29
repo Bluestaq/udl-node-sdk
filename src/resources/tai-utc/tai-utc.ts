@@ -151,14 +151,11 @@ export class TaiUtc extends APIResource {
    *
    * @example
    * ```ts
-   * await client.taiUtc.queryhelp();
+   * const response = await client.taiUtc.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/taiutc/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<TaiUtcQueryhelpResponse> {
+    return this._client.get('/udl/taiutc/queryhelp', options);
   }
 
   /**
@@ -288,6 +285,62 @@ export interface TaiUtcListResponse {
 }
 
 export type TaiUtcCountResponse = string;
+
+export interface TaiUtcQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<TaiUtcQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace TaiUtcQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
+}
 
 export type TaiUtcTupleResponse = Array<HistoryAPI.TaiutcFull>;
 
@@ -475,6 +528,7 @@ export declare namespace TaiUtc {
   export {
     type TaiUtcListResponse as TaiUtcListResponse,
     type TaiUtcCountResponse as TaiUtcCountResponse,
+    type TaiUtcQueryhelpResponse as TaiUtcQueryhelpResponse,
     type TaiUtcTupleResponse as TaiUtcTupleResponse,
     type TaiUtcListResponsesOffsetPage as TaiUtcListResponsesOffsetPage,
     type TaiUtcCreateParams as TaiUtcCreateParams,

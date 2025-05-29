@@ -4,6 +4,7 @@ export {
   EoObservations,
   type EoObservationAbridged,
   type EoObservationCountResponse,
+  type EoObservationQueryhelpResponse,
   type EoObservationTupleResponse,
   type EoObservationCreateParams,
   type EoObservationRetrieveParams,

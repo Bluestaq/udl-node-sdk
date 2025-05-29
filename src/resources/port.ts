@@ -144,14 +144,11 @@ export class Port extends APIResource {
    *
    * @example
    * ```ts
-   * await client.port.queryhelp();
+   * const response = await client.port.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/port/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<PortQueryhelpResponse> {
+    return this._client.get('/udl/port/queryhelp', options);
   }
 
   /**
@@ -532,6 +529,62 @@ export interface PortGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export interface PortQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<PortQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace PortQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
+  }
 }
 
 export type PortTupleResponse = Array<PortTupleResponse.PortTupleResponseItem>;
@@ -1208,6 +1261,7 @@ export declare namespace Port {
     type PortListResponse as PortListResponse,
     type PortCountResponse as PortCountResponse,
     type PortGetResponse as PortGetResponse,
+    type PortQueryhelpResponse as PortQueryhelpResponse,
     type PortTupleResponse as PortTupleResponse,
     type PortListResponsesOffsetPage as PortListResponsesOffsetPage,
     type PortCreateParams as PortCreateParams,

@@ -150,14 +150,11 @@ export class ObjectOfInterest extends APIResource {
    *
    * @example
    * ```ts
-   * await client.objectOfInterest.queryhelp();
+   * const response = await client.objectOfInterest.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/objectofinterest/queryhelp', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  queryhelp(options?: RequestOptions): APIPromise<ObjectOfInterestQueryhelpResponse> {
+    return this._client.get('/udl/objectofinterest/queryhelp', options);
   }
 
   /**
@@ -857,6 +854,62 @@ export namespace ObjectOfInterestGetResponse {
      * and 1.
      */
     weight?: number;
+  }
+}
+
+export interface ObjectOfInterestQueryhelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<ObjectOfInterestQueryhelpResponse.Parameter>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export namespace ObjectOfInterestQueryhelpResponse {
+  export interface Parameter {
+    classificationMarking?: string;
+
+    derived?: boolean;
+
+    description?: string;
+
+    elemMatch?: boolean;
+
+    format?: string;
+
+    histQuerySupported?: boolean;
+
+    histTupleSupported?: boolean;
+
+    name?: string;
+
+    required?: boolean;
+
+    restQuerySupported?: boolean;
+
+    restTupleSupported?: boolean;
+
+    type?: string;
+
+    unitOfMeasure?: string;
+
+    utcDate?: boolean;
   }
 }
 
@@ -1808,6 +1861,7 @@ export declare namespace ObjectOfInterest {
     type ObjectOfInterestListResponse as ObjectOfInterestListResponse,
     type ObjectOfInterestCountResponse as ObjectOfInterestCountResponse,
     type ObjectOfInterestGetResponse as ObjectOfInterestGetResponse,
+    type ObjectOfInterestQueryhelpResponse as ObjectOfInterestQueryhelpResponse,
     type ObjectOfInterestTupleResponse as ObjectOfInterestTupleResponse,
     type ObjectOfInterestListResponsesOffsetPage as ObjectOfInterestListResponsesOffsetPage,
     type ObjectOfInterestCreateParams as ObjectOfInterestCreateParams,
