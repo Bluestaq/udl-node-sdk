@@ -175,13 +175,13 @@ List methods in the Unifieddatalibrary API are paginated.
 You can use the `for await … of` syntax to iterate through items across all pages:
 
 ```ts
-async function fetchAllElsetsCurrents(params) {
-  const allElsetsCurrents = [];
+async function fetchAllElsetAbridgeds(params) {
+  const allElsetAbridgeds = [];
   // Automatically fetches more pages as needed.
   for await (const elsetAbridged of client.elsets.current.list()) {
-    allElsetsCurrents.push(elsetAbridged);
+    allElsetAbridgeds.push(elsetAbridged);
   }
-  return allElsetsCurrents;
+  return allElsetAbridgeds;
 }
 ```
 
