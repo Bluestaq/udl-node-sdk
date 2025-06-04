@@ -30,14 +30,10 @@ const client = new Unifieddatalibrary({
   password: process.env['UDL_AUTH_PASSWORD'], // This is the default and can be omitted
 });
 
-async function main() {
-  const page = await client.elsets.current.list();
-  const elsetAbridged = page.items[0];
+const page = await client.elsets.current.list();
+const elsetAbridged = page.items[0];
 
-  console.log(elsetAbridged.idElset);
-}
-
-main();
+console.log(elsetAbridged.idElset);
 ```
 
 ### Request & Response types
@@ -53,11 +49,7 @@ const client = new Unifieddatalibrary({
   password: process.env['UDL_AUTH_PASSWORD'], // This is the default and can be omitted
 });
 
-async function main() {
-  const [elsetAbridged]: [Unifieddatalibrary.ElsetAbridged] = await client.elsets.current.list();
-}
-
-main();
+const [elsetAbridged]: [Unifieddatalibrary.ElsetAbridged] = await client.elsets.current.list();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -99,19 +91,15 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-async function main() {
-  const page = await client.elsets.current.list().catch(async (err) => {
-    if (err instanceof Unifieddatalibrary.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
-}
-
-main();
+const page = await client.elsets.current.list().catch(async (err) => {
+  if (err instanceof Unifieddatalibrary.APIError) {
+    console.log(err.status); // 400
+    console.log(err.name); // BadRequestError
+    console.log(err.headers); // {server: 'nginx', ...}
+  } else {
+    throw err;
+  }
+});
 ```
 
 Error codes are as follows:
