@@ -1,7 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Unifieddatalibrary from 'unified-data-library';
-import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import { Metadata, Endpoint, HandlerFunction } from './types';
+
+export { Metadata, Endpoint, HandlerFunction };
 
 import create_air_events from './air-events/create-air-events';
 import update_air_events from './air-events/update-air-events';
@@ -1476,27 +1477,6 @@ import retrieve_scs_file from './scs/file/retrieve-scs-file';
 import update_scs_file from './scs/file/update-scs-file';
 import list_scs_file from './scs/file/list-scs-file';
 import retrieve_scs_views from './scs-views/retrieve-scs-views';
-
-export type HandlerFunction = (
-  client: Unifieddatalibrary,
-  args: Record<string, unknown> | undefined,
-) => Promise<any>;
-
-export type Metadata = {
-  resource: string;
-  operation: 'read' | 'write';
-  tags: string[];
-
-  httpMethod?: string;
-  httpPath?: string;
-  operationId?: string;
-};
-
-export type Endpoint = {
-  metadata: Metadata;
-  tool: Tool;
-  handler: HandlerFunction;
-};
 
 export const endpoints: Endpoint[] = [];
 
