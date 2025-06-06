@@ -1,5 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { asTextContentResult } from 'unified-data-library-mcp/tools/types';
+
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../';
 import Unifieddatalibrary from 'unified-data-library';
@@ -1115,9 +1117,10 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
+export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return client.collectRequests.create(body);
+  await client.collectRequests.create(body);
+  return asTextContentResult('Successful tool call');
 };
 
 export default { metadata, tool, handler };
