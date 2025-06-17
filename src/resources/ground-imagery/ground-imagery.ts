@@ -222,7 +222,12 @@ export class GroundImagery extends APIResource {
     return this._client.post(
       '/filedrop/udl-groundimagery',
       multipartFormRequestOptions(
-        { body, ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
+        {
+          body,
+          defaultBaseURL: 'https://imagery.unifieddatalibrary.com',
+          ...options,
+          headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+        },
         this._client,
       ),
     );
