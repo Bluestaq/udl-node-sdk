@@ -1,6 +1,6 @@
 # Unifieddatalibrary TypeScript API Library
 
-[![NPM version](https://img.shields.io/npm/v/unified-data-library.svg)](https://npmjs.org/package/unified-data-library) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/unified-data-library)
+[![NPM version](<https://img.shields.io/npm/v/unified-data-library.svg?label=npm%20(stable)>)](https://npmjs.org/package/unified-data-library) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/unified-data-library)
 
 This library provides convenient access to the Unifieddatalibrary REST API from server-side TypeScript or JavaScript.
 
