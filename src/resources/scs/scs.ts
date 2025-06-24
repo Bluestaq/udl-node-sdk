@@ -432,17 +432,17 @@ export interface ScSearchParams {
   /**
    * Body param:
    */
-  metaDataCriteria?: Record<string, Array<string>>;
+  metaDataCriteria?: { [key: string]: Array<string> };
 
   /**
    * Body param:
    */
-  nonRangeCriteria?: Record<string, Array<string>>;
+  nonRangeCriteria?: { [key: string]: Array<string> };
 
   /**
    * Body param:
    */
-  rangeCriteria?: Record<string, Array<string>>;
+  rangeCriteria?: { [key: string]: Array<string> };
 
   /**
    * Body param:
