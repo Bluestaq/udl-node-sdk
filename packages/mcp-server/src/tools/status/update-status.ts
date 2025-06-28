@@ -153,8 +153,8 @@ export const tool: Tool = {
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const { id, ...body } = args as any;
-  await client.status.update(id, body);
-  return asTextContentResult('Successful tool call');
+  const response = await client.status.update(id, body).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };
