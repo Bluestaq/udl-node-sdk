@@ -167,8 +167,8 @@ export const tool: Tool = {
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  await client.seraDataCommDetails.create(body);
-  return asTextContentResult('Successful tool call');
+  const response = await client.seraDataCommDetails.create(body).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

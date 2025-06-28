@@ -563,8 +563,8 @@ export const tool: Tool = {
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  await client.diplomaticClearance.country.unvalidatedPublish(body);
-  return asTextContentResult('Successful tool call');
+  const response = await client.diplomaticClearance.country.unvalidatedPublish(body).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };
