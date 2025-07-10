@@ -9,8 +9,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 Because it's not published yet, clone the repo and build it:
 
 ```sh
-git clone git@github.com:stainless-sdks/unifieddatalibrary-typescript.git
-cd unifieddatalibrary-typescript
+git clone git@github.com:Bluestaq/udl-node-sdk.git
+cd udl-node-sdk
 ./scripts/bootstrap
 ./scripts/build
 ```
@@ -41,11 +41,7 @@ For clients with a configuration JSON, it might look something like this:
   "mcpServers": {
     "unified_data_library_api": {
       "command": "node",
-      "args": [
-        "/path/to/local/unifieddatalibrary-typescript/packages/mcp-server",
-        "--client=claude",
-        "--tools=dynamic"
-      ],
+      "args": ["/path/to/local/udl-node-sdk/packages/mcp-server", "--client=claude", "--tools=dynamic"],
       "env": {
         "UDL_AUTH_PASSWORD": "My Password",
         "UDL_AUTH_USERNAME": "My Username"
