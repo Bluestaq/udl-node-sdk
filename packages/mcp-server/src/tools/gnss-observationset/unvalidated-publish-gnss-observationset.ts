@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'unvalidated_publish_gnss_observationset',
   description:
-    'Service operation to accept one or more GNSSObservationSet(s) and associated GNSS Observation(s) as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.\n',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to accept one or more GNSSObservationSet(s) and associated GNSS Observation(s) as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.\n",
   inputSchema: {
     type: 'object',
     properties: {

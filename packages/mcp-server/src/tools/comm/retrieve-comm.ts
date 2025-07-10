@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'retrieve_comm',
   description:
-    'Service operation to get a single Comm record by its unique ID passed as a path parameter. A Comm is an on-orbit communications payload, including supporting data such as transponders and channels, etc.',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to get a single Comm record by its unique ID passed as a path parameter. A Comm is an on-orbit communications payload, including supporting data such as transponders and channels, etc.",
   inputSchema: {
     type: 'object',
     properties: {

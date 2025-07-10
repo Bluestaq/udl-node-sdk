@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'get_navigation',
   description:
-    'Service operation to get a single Navigation record by its unique ID passed as a path parameter. An Navigation is an on-orbit navigation payload.',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to get a single Navigation record by its unique ID passed as a path parameter. An Navigation is an on-orbit navigation payload.",
   inputSchema: {
     type: 'object',
     properties: {
