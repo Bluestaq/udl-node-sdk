@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'create_geo_status',
   description:
-    'Service operation to take a single GEOStatus record as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to take a single GEOStatus record as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {}\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
@@ -108,6 +108,12 @@ export const tool: Tool = {
         type: 'string',
         description:
           'Indicates the trough (gravity well) or drift direction of a space object:\n\n255 - Influenced by 255° longitude trough. \n\n75 - Influenced by 75° longitude trough. \n\nBoth - Oscillating between both 255 and 75 troughs. \n\nEast - Drifting eastward; large relative energy and a period less than 1436.1 minutes. \n\nWest - Drifting westward; large relative energy and a period greater than 1436.2 minutes.',
+      },
+      jq_filter: {
+        type: 'string',
+        title: 'jq Filter',
+        description:
+          'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
   },

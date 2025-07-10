@@ -16,7 +16,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'get_weather_data',
-  description: 'Service operation to get a single WeatherData by its unique ID passed as a path parameter.',
+  description:
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to get a single WeatherData by its unique ID passed as a path parameter.",
   inputSchema: {
     type: 'object',
     properties: {

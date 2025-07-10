@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { maybeFilter } from 'unified-data-library-mcp/filtering';
 import { asTextContentResult } from 'unified-data-library-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
@@ -16,7 +17,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'describe_topic_secure_messaging',
-  description: 'Retrieve the details of the specified topic or data type.',
+  description:
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRetrieve the details of the specified topic or data type.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/topic_details',\n  $defs: {\n    topic_details: {\n      type: 'object',\n      properties: {\n        description: {\n          type: 'string',\n          description: 'A description of the data content of this topic.'\n        },\n        maxPos: {\n          type: 'integer',\n          description: 'The maximum (latest) kafka offset for this topic.'\n        },\n        minPos: {\n          type: 'integer',\n          description: 'The minimum (oldest) kafka offset for this topic.'\n        },\n        topic: {\n          type: 'string',\n          description: 'The name of the topic in kafka.'\n        },\n        udlOpenAPISchema: {\n          type: 'string',\n          description: 'The UDL schema that the objects in this topic apply to.'\n        }\n      },\n      required: []\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
@@ -29,13 +31,21 @@ export const tool: Tool = {
       maxResults: {
         type: 'integer',
       },
+      jq_filter: {
+        type: 'string',
+        title: 'jq Filter',
+        description:
+          'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
+      },
     },
   },
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const { topic, ...body } = args as any;
-  return asTextContentResult(await client.secureMessaging.describeTopic(topic, body));
+  return asTextContentResult(
+    await maybeFilter(args, await client.secureMessaging.describeTopic(topic, body)),
+  );
 };
 
 export default { metadata, tool, handler };

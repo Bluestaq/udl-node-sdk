@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'unvalidated_publish_report_and_activity_udl_sigact',
   description:
-    'Service operation to take a list of SigAct as a POST body and ingest into the database. A SigAct provides data for Report and Activity information. Requires a specific role, please contact the UDL team to gain access. This operation is intended to be used for automated feeds into UDL.\n',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to take a list of SigAct as a POST body and ingest into the database. A SigAct provides data for Report and Activity information. Requires a specific role, please contact the UDL team to gain access. This operation is intended to be used for automated feeds into UDL.\n",
   inputSchema: {
     type: 'object',
     properties: {

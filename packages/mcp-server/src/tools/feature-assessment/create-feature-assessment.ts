@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'create_feature_assessment',
   description:
-    'Service operation to take a single FeatureAssessment record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to take a single FeatureAssessment record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.",
   inputSchema: {
     type: 'object',
     properties: {
