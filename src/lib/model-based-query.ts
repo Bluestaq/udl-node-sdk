@@ -1,16 +1,16 @@
 /**
  * A dynamic query builder that generates field-based filter methods at runtime.
- * 
+ *
  * This utility enables fluent query construction for TypeScript interfaces by dynamically
  * creating methods based on interface properties and supported query operators.
- * 
+ *
  * Example:
  * ```typescript
  * interface User {
  *   id: number;
  *   name: string;
  * }
- * 
+ *
  * const query = createQuery<User>();
  * query.name_like("Rob").id_gte(100);
  * const params = query.toParams();
@@ -23,12 +23,12 @@ type QueryOperator = '_eq' | '_gte' | '_lte' | '_like' | '_not' | '_between';
 
 // Define the operator symbols
 const OPERATORS: Record<QueryOperator, string> = {
-  '_eq': '',
-  '_gte': '>=',
-  '_lte': '<=',
-  '_like': 'like',
-  '_not': 'not',
-  '_between': 'between',
+  _eq: '',
+  _gte: '>=',
+  _lte: '<=',
+  _like: 'like',
+  _not: 'not',
+  _between: 'between',
 };
 
 // Type for the query methods that will be dynamically generated
@@ -43,7 +43,7 @@ type Query<T> = {
 
 /**
  * Creates a query builder for a given interface type.
- * 
+ *
  * @template T - The interface type to create a query builder for
  * @returns A query object with dynamically generated filter methods
  */
@@ -65,7 +65,7 @@ export function createQuery<T>(): Query<T> {
       }
 
       const [, fieldName, operator] = match;
-      
+
       // Return a method that adds the filter
       return (value: any) => {
         if (fieldName && operator) {
@@ -73,12 +73,12 @@ export function createQuery<T>(): Query<T> {
         }
         return query;
       };
-    }
+    },
   });
 
   /**
    * Adds a filter to the internal filter store using the specified operator and value.
-   * 
+   *
    * @param fieldName - The name of the model field to filter
    * @param operator - The operation symbol (e.g., '>=', 'like', 'not')
    * @param value - The value to compare against. For 'between', this must be a 2-tuple
@@ -105,7 +105,7 @@ export function createQuery<T>(): Query<T> {
 
 /**
  * Type helper to extract the interface type from a query builder.
- * 
+ *
  * @template T - The interface type
  * @returns The interface type T
  */
@@ -113,11 +113,10 @@ export type QueryType<T> = T;
 
 /**
  * Utility type to create query parameter types for a given interface.
- * 
+ *
  * @template T - The interface type
  * @returns A type representing all possible query parameters for the interface
  */
 export type QueryParams<T> = {
   [K in keyof T as `${string & K}${QueryOperator}`]?: any;
 };
-
