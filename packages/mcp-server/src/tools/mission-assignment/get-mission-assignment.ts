@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { maybeFilter } from 'unified-data-library-mcp/filtering';
-import { asTextContentResult } from 'unified-data-library-mcp/tools/types';
+import { Metadata, asTextContentResult } from 'unified-data-library-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import type { Metadata } from '../';
 import Unifieddatalibrary from 'unified-data-library';
 
 export const metadata: Metadata = {
