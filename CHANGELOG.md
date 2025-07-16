@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.3 (2025-07-16)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
+
+### Chores
+
+* update SDK settings ([988cd2a](https://github.com/Bluestaq/udl-node-sdk/commit/988cd2a80083cc984a5969334398c4b9a967d8f6))
+
 ## 0.1.0-alpha.2 (2025-07-16)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)

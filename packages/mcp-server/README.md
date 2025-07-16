@@ -4,32 +4,17 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
-### Building
+### Direct invocation
 
-Because it's not published yet, clone the repo and build it:
-
-```sh
-git clone git@github.com:Bluestaq/udl-node-sdk.git
-cd udl-node-sdk
-./scripts/bootstrap
-./scripts/build
-```
-
-### Running
+You can run the MCP Server directly via `npx`:
 
 ```sh
-# set env vars as needed
 export UDL_AUTH_PASSWORD="My Password"
 export UDL_AUTH_USERNAME="My Username"
-node ./packages/mcp-server/dist/index.js
+npx -y unified-data-library-mcp@latest
 ```
 
-> [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npx -y unified-data-library-mcp`
-
 ### Via MCP Client
-
-[Build the project](#building) as mentioned above.
 
 There is a partial list of existing clients at [modelcontextprotocol.io](https://modelcontextprotocol.io/clients). If you already
 have a client, consult their documentation to install the MCP server.
@@ -40,8 +25,8 @@ For clients with a configuration JSON, it might look something like this:
 {
   "mcpServers": {
     "unified_data_library_api": {
-      "command": "node",
-      "args": ["/path/to/local/udl-node-sdk/packages/mcp-server", "--client=claude", "--tools=dynamic"],
+      "command": "npx",
+      "args": ["-y", "unified-data-library-mcp", "--client=claude", "--tools=dynamic"],
       "env": {
         "UDL_AUTH_PASSWORD": "My Password",
         "UDL_AUTH_USERNAME": "My Username"
