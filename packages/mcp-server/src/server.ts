@@ -26,13 +26,9 @@ export { endpoints } from './tools';
 export const server = new McpServer(
   {
     name: 'unified_data_library_api',
-    version: '0.1.0-alpha.3',
+    version: '0.1.0-alpha.4',
   },
-  {
-    capabilities: {
-      tools: {},
-    },
-  },
+  { capabilities: { tools: {} } },
 );
 
 /**
