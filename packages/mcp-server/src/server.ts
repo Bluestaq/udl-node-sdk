@@ -28,11 +28,7 @@ export const server = new McpServer(
     name: 'unified_data_library_api',
     version: '0.1.0-alpha.3',
   },
-  {
-    capabilities: {
-      tools: {},
-    },
-  },
+  { capabilities: { tools: {} } },
 );
 
 /**
