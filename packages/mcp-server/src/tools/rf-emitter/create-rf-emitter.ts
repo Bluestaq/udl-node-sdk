@@ -59,6 +59,7 @@ export const tool: Tool = {
         description: 'Type of this RF Emitter.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'name', 'source'],
     $defs: {
       entity_ingest: {
         type: 'object',

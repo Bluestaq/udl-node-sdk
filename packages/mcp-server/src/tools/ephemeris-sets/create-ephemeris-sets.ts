@@ -337,6 +337,16 @@ export const tool: Tool = {
         format: 'date-time',
       },
     },
+    required: [
+      'category',
+      'classificationMarking',
+      'dataMode',
+      'numPoints',
+      'pointEndTime',
+      'pointStartTime',
+      'source',
+      'type',
+    ],
   },
 };
 

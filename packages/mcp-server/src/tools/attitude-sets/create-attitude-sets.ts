@@ -316,6 +316,17 @@ export const tool: Tool = {
           'Attitude ephemeris step size, in seconds. This applies to Attitude Ephemeris Messages (AEM) that employ a fixed step size.',
       },
     },
+    required: [
+      'classificationMarking',
+      'dataMode',
+      'endTime',
+      'frame1',
+      'frame2',
+      'numPoints',
+      'source',
+      'startTime',
+      'type',
+    ],
   },
 };
 

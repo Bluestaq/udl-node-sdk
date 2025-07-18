@@ -27,6 +27,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
     $defs: {
       state_vector_ingest: {
         type: 'object',

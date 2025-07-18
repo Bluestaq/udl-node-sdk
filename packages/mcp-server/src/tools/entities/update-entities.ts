@@ -227,6 +227,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['id', 'classificationMarking', 'dataMode', 'name', 'source', 'type'],
     $defs: {
       location_ingest: {
         type: 'object',

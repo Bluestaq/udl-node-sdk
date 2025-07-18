@@ -249,6 +249,7 @@ export const tool: Tool = {
         description: 'Type of this bus.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'name', 'source'],
     $defs: {
       entity_ingest: {
         type: 'object',

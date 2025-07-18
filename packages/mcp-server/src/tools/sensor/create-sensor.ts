@@ -1142,7 +1142,6 @@ export const tool: Tool = {
             description: 'The observation measurement type produced by a sensor.',
           },
         },
-        required: [],
       },
       sensorStats: {
         type: 'array',
@@ -1231,13 +1230,13 @@ export const tool: Tool = {
             description: 'The specific sensor type and/or surveillance capability of this sensor.',
           },
         },
-        required: [],
       },
       shortName: {
         type: 'string',
         description: 'Optional short name for the sensor.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'sensorName', 'source'],
     $defs: {
       location_ingest: {
         type: 'object',

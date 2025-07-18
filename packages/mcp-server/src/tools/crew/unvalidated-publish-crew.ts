@@ -431,7 +431,6 @@ export const tool: Tool = {
                     description: 'The wing the crew member serves.',
                   },
                 },
-                required: [],
               },
             },
             crewName: {
@@ -668,6 +667,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

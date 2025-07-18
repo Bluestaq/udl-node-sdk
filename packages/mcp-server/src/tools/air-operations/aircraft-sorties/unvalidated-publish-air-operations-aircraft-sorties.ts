@@ -396,6 +396,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 
