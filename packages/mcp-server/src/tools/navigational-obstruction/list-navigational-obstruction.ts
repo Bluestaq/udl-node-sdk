@@ -37,6 +37,7 @@ export const tool: Tool = {
         description: "(One or more of fields 'cycleDate, obstacleId' are required.) The ID of this obstacle.",
       },
     },
+    required: [],
   },
 };
 

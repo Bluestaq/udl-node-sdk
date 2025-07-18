@@ -79,6 +79,7 @@ export const tool: Tool = {
         description: 'Payload category, e.g. Magnetometer, Radiometer, Sensor, etc.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'name', 'source', 'spacecraftId'],
     $defs: {
       entity_ingest: {
         type: 'object',

@@ -131,7 +131,6 @@ export const tool: Tool = {
                       'Status of the GNSS receiver signal. Status options are 0, 1 or 2 (0 being the best).',
                   },
                 },
-                required: [],
               },
             },
             hDop: {
@@ -273,6 +272,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

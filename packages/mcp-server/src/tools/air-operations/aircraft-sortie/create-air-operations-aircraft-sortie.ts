@@ -338,6 +338,7 @@ export const tool: Tool = {
         description: 'The tail number of the aircraft assigned to this sortie.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'plannedDepTime', 'source'],
   },
 };
 

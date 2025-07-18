@@ -168,7 +168,6 @@ export const tool: Tool = {
               description: 'Total weight of hazardous cargo, including non-explosive parts, in kilograms.',
             },
           },
-          required: [],
         },
       },
       jcsPriority: {
@@ -283,7 +282,6 @@ export const tool: Tool = {
               description: 'User who published the remark.',
             },
           },
-          required: [],
         },
       },
       requirements: {
@@ -371,7 +369,6 @@ export const tool: Tool = {
               description: 'Unit line number.',
             },
           },
-          required: [],
         },
       },
       sourceSysDeviation: {
@@ -388,6 +385,7 @@ export const tool: Tool = {
         description: 'The type of mission (e.g. SAAM, CHNL, etc.).',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'source'],
   },
 };
 

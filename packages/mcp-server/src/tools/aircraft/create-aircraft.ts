@@ -106,6 +106,7 @@ export const tool: Tool = {
         description: 'The tail number of this aircraft.',
       },
     },
+    required: ['aircraftMDS', 'classificationMarking', 'dataMode', 'source'],
     $defs: {
       entity_ingest: {
         type: 'object',

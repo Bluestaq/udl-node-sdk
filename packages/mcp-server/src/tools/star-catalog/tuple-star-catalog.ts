@@ -42,6 +42,7 @@ export const tool: Tool = {
           "(One or more of fields 'dec, ra' are required.) Barycentric right ascension of the source in the International Celestial Reference System (ICRS) frame at the reference epoch, in degrees.",
       },
     },
+    required: ['columns'],
   },
 };
 

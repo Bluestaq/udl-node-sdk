@@ -28,6 +28,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
     $defs: {
       datalink_ingest: {
         type: 'object',
@@ -281,7 +282,6 @@ export const tool: Tool = {
                           'Designator assigned to a voice interface control and coordination net for multilink coordination (e.g. ADCCN, DCN, VPN, etc.).',
                       },
                     },
-                    required: [],
                   },
                 },
                 name: {
@@ -299,7 +299,6 @@ export const tool: Tool = {
                     'Designated force of unit specified by ship name, unit call sign, or unit designator.',
                 },
               },
-              required: [],
             },
           },
           nonLinkUnitDes: {
@@ -354,7 +353,6 @@ export const tool: Tool = {
                     'A qualifier for the end of the effective time period of this data link, such as AFTER, ASOF, NLT, etc. Used with field linkStopTimeMod to indicate a relative time.',
                 },
               },
-              required: [],
             },
           },
           origin: {
@@ -468,7 +466,6 @@ export const tool: Tool = {
                   description: 'Specifies the type of document referenced.',
                 },
               },
-              required: [],
             },
           },
           refPoints: {
@@ -509,7 +506,6 @@ export const tool: Tool = {
                   description: 'Type of data link reference point or grid origin.',
                 },
               },
-              required: [],
             },
           },
           remarks: {
@@ -528,7 +524,6 @@ export const tool: Tool = {
                   description: 'Indicates the subject matter of the remark.',
                 },
               },
-              required: [],
             },
           },
           resTrackQual: {
@@ -564,7 +559,6 @@ export const tool: Tool = {
                   description: 'Description of the special track number.',
                 },
               },
-              required: [],
             },
           },
           speedDiff: {
@@ -646,7 +640,6 @@ export const tool: Tool = {
                     'Designator assigned to a voice interface control and coordination net for this data link message (e.g. ADCCN, DCN, VPN, etc.).',
                 },
               },
-              required: [],
             },
           },
           winSizeMin: {

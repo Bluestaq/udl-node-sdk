@@ -365,7 +365,6 @@ export const tool: Tool = {
                       'The indicator for the general text block. Examples include "OPENING REMARKS" and "GENERAL SPINS INFORMATION".',
                   },
                 },
-                required: [],
               },
             },
             msgMonth: {
@@ -446,6 +445,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

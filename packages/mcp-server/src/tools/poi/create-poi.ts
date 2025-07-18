@@ -261,6 +261,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['classificationMarking', 'dataMode', 'name', 'poiid', 'source', 'ts'],
   },
 };
 

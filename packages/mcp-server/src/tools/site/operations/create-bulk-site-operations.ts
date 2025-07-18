@@ -93,7 +93,6 @@ export const tool: Tool = {
                             'The Zulu (UTC) operational stop time, expressed in ISO 8601 format as HH:MM.',
                         },
                       },
-                      required: [],
                     },
                   },
                   operationName: {
@@ -112,7 +111,6 @@ export const tool: Tool = {
                     format: 'date-time',
                   },
                 },
-                required: [],
               },
             },
             dopsLastChangedBy: {
@@ -175,7 +173,6 @@ export const tool: Tool = {
                       'Maximum on ground (MOG) number of working wide-body aircraft based on spacing and manpower, for the aircraft type specified.',
                   },
                 },
-                required: [],
               },
             },
             mogsLastChangedBy: {
@@ -237,7 +234,6 @@ export const tool: Tool = {
                     description: 'Text remark regarding this operational deviation.',
                   },
                 },
-                required: [],
               },
             },
             operationalPlannings: {
@@ -284,7 +280,6 @@ export const tool: Tool = {
                     description: 'The status of this operational planning.',
                   },
                 },
-                required: [],
               },
             },
             origin: {
@@ -330,7 +325,6 @@ export const tool: Tool = {
                     description: 'The intended use of this pathway.',
                   },
                 },
-                required: [],
               },
             },
             sourceDL: {
@@ -409,7 +403,6 @@ export const tool: Tool = {
                     format: 'date-time',
                   },
                 },
-                required: [],
               },
             },
           },
@@ -417,6 +410,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

@@ -333,6 +333,7 @@ export const tool: Tool = {
           "Transmit polarization e.g. H - (Horizontally Polarized) Perpendicular to Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L - (Left Hand Circularly Polarized) Rotating left relative to the earth's surface, R - (Right Hand Circularly Polarized) Rotating right relative to the earth's surface.",
       },
     },
+    required: ['classificationMarking', 'collectionEnd', 'collectionStart', 'dataMode', 'sarMode', 'source'],
   },
 };
 

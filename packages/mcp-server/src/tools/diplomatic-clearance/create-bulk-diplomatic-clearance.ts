@@ -193,7 +193,6 @@ export const tool: Tool = {
                     description: 'Remarks concerning the valid diplomatic clearance window.',
                   },
                 },
-                required: [],
               },
             },
             diplomaticClearanceRemarks: {
@@ -222,7 +221,6 @@ export const tool: Tool = {
                     description: 'User who published the remark.',
                   },
                 },
-                required: [],
               },
             },
             dipWorksheetName: {
@@ -271,6 +269,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

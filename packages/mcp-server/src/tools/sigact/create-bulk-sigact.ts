@@ -353,7 +353,6 @@ export const tool: Tool = {
                           description: 'start position.',
                         },
                       },
-                      required: [],
                     },
                   },
                   documentId: {
@@ -361,7 +360,6 @@ export const tool: Tool = {
                     description: 'The document id of the related document.',
                   },
                 },
-                required: [],
               },
             },
             repUnit: {
@@ -441,6 +439,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 
