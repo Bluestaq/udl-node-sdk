@@ -485,6 +485,7 @@ export const tool: Tool = {
         description: 'Video bandwidth in Hz.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'obTime', 'source', 'type'],
   },
 };
 

@@ -68,7 +68,6 @@ export const tool: Tool = {
               description: 'Highest altitude of the track route altitude block above mean sea level in feet.',
             },
           },
-          required: [],
         },
       },
       apnSetting: {
@@ -162,7 +161,6 @@ export const tool: Tool = {
               description: 'The username of the contact.',
             },
           },
-          required: [],
         },
       },
       priFreq: {
@@ -256,7 +254,6 @@ export const tool: Tool = {
               description: 'Name of a waypoint which identifies the location of the point.',
             },
           },
-          required: [],
         },
       },
       schedulerOrgName: {
@@ -293,6 +290,7 @@ export const tool: Tool = {
           'Type of process used by AMC to schedule an air refueling event. Possible values are A (Matched Long Range), F (Matched AMC Short Notice), N (Unmatched Theater Operation Short Notice (Theater Assets)), R, Unmatched Long Range, S (Soft Air Refueling), T (Matched Theater Operation Short Notice (Theater Assets)), V (Unmatched AMC Short Notice), X (Unmatched Theater Operation Short Notice (AMC Assets)), Y (Matched Theater Operation Short Notice (AMC Assets)), Z (Other Air Refueling).',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'lastUpdateDate', 'source', 'type'],
   },
 };
 

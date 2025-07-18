@@ -126,7 +126,6 @@ export const tool: Tool = {
                 'Value representing the difference between the catalog magnitude and instrumental magnitude for a set of standard stars, at calibration (e.g. -5.0 to 30.0).',
             },
           },
-          required: [],
         },
       },
       calibrationType: {
@@ -840,6 +839,7 @@ export const tool: Tool = {
           'Key to indicate which, if any of, the pre/post photometer calibrations are valid for use when generating data for the EOSSA file. If the field is not populated, then the provided calibration data will be used when generating the EOSSA file (e.g. PRE, POST, BOTH, NONE).',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'numObs', 'source', 'startTime', 'type'],
   },
 };
 

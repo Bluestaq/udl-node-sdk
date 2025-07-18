@@ -1290,6 +1290,7 @@ export const tool: Tool = {
         description: 'The shape (BOX, ELLIPSOID) of the screening volume.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'source', 'tca'],
   },
 };
 

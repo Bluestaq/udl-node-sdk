@@ -28,6 +28,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
     $defs: {
       elset_ingest: {
         type: 'object',

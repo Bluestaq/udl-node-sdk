@@ -111,7 +111,6 @@ export const tool: Tool = {
                   description: 'Notes for the amplitude data.',
                 },
               },
-              required: [],
             },
             antennaElementPosition: {
               type: 'object',
@@ -141,7 +140,6 @@ export const tool: Tool = {
                   },
                 },
               },
-              required: [],
             },
             antennaElementPositionCoordinateSystem: {
               type: 'string',
@@ -210,7 +208,6 @@ export const tool: Tool = {
                   description: 'Notes for the azimuth data.',
                 },
               },
-              required: [],
             },
             b0: {
               type: 'number',
@@ -282,7 +279,6 @@ export const tool: Tool = {
                       "Characteristic's URSI ID. See the characteristic's description for its corresponding URSI ID.",
                   },
                 },
-                required: [],
               },
             },
             createdAt: {
@@ -318,7 +314,6 @@ export const tool: Tool = {
                   description: 'Notes for the datum with details of what the data is, units, etc.',
                 },
               },
-              required: [],
             },
             deltafoF2: {
               type: 'number',
@@ -423,7 +418,6 @@ export const tool: Tool = {
                       description: 'The valley depth, in grams per cubic centimeter.',
                     },
                   },
-                  required: [],
                 },
                 parabolic: {
                   type: 'object',
@@ -458,11 +452,9 @@ export const tool: Tool = {
                             description: 'Height of the layer peak, in kilometers.',
                           },
                         },
-                        required: [],
                       },
                     },
                   },
-                  required: [],
                 },
                 quasiParabolic: {
                   type: 'object',
@@ -516,11 +508,9 @@ export const tool: Tool = {
                               "Ending range of the segment, in kilometers from the Earth's center.",
                           },
                         },
-                        required: [],
                       },
                     },
                   },
-                  required: [],
                 },
                 shiftedChebyshev: {
                   type: 'object',
@@ -576,11 +566,9 @@ export const tool: Tool = {
                             description: 'Height at which density is half of the peak Nm, in kilometers.',
                           },
                         },
-                        required: [],
                       },
                     },
                   },
-                  required: [],
                 },
                 topsideExtensionChapmanConst: {
                   type: 'object',
@@ -608,7 +596,6 @@ export const tool: Tool = {
                       description: 'Scale height if F2 layer at the peak, in kilometers.',
                     },
                   },
-                  required: [],
                 },
                 topsideExtensionVaryChap: {
                   type: 'object',
@@ -648,7 +635,6 @@ export const tool: Tool = {
                       description: 'Scale height if F2 layer at the peak, in kilometers.',
                     },
                   },
-                  required: [],
                 },
                 valleyModelCoeffs: {
                   type: 'array',
@@ -662,7 +648,6 @@ export const tool: Tool = {
                   description: 'Description of the valley model and parameters.',
                 },
               },
-              required: [],
             },
             doppler: {
               type: 'object',
@@ -711,7 +696,6 @@ export const tool: Tool = {
                   description: 'Notes for the doppler data.',
                 },
               },
-              required: [],
             },
             downE: {
               type: 'number',
@@ -788,7 +772,6 @@ export const tool: Tool = {
                   description: 'Notes for the elevation data.',
                 },
               },
-              required: [],
             },
             fbEs: {
               type: 'number',
@@ -918,7 +901,6 @@ export const tool: Tool = {
                   description: 'Notes for the frequency data.',
                 },
               },
-              required: [],
             },
             fxE: {
               type: 'number',
@@ -1079,7 +1061,6 @@ export const tool: Tool = {
                     'Notes for the phase data. Orientation and position for each antenna element across the antenna_element dimension.',
                 },
               },
-              required: [],
             },
             plasmaFrequency: {
               type: 'array',
@@ -1149,7 +1130,6 @@ export const tool: Tool = {
                   description: 'Notes for the polarization data.',
                 },
               },
-              required: [],
             },
             power: {
               type: 'object',
@@ -1198,7 +1178,6 @@ export const tool: Tool = {
                   description: 'Notes for the power data.',
                 },
               },
-              required: [],
             },
             qe: {
               type: 'number',
@@ -1255,7 +1234,6 @@ export const tool: Tool = {
                   description: 'Notes for the range data.',
                 },
               },
-              required: [],
             },
             receiveCoordinates: {
               type: 'array',
@@ -1318,7 +1296,6 @@ export const tool: Tool = {
                   description: 'Scaler version.',
                 },
               },
-              required: [],
             },
             stokes: {
               type: 'object',
@@ -1374,7 +1351,6 @@ export const tool: Tool = {
                   },
                 },
               },
-              required: [],
             },
             systemNotes: {
               type: 'string',
@@ -1455,7 +1431,6 @@ export const tool: Tool = {
                   description: 'The notes indicate the scheme and accuracy.',
                 },
               },
-              required: [],
             },
             traceGeneric: {
               type: 'object',
@@ -1486,7 +1461,6 @@ export const tool: Tool = {
                   description: 'Notes for the trace generic data.',
                 },
               },
-              required: [],
             },
             transmitCoordinates: {
               type: 'array',
@@ -1552,6 +1526,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

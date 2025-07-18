@@ -276,7 +276,6 @@ export const tool: Tool = {
                             'Estimated signal-to-noise ratio (SNR) of the target return, in decibels.',
                         },
                       },
-                      required: [],
                     },
                   },
                   d4: {
@@ -314,7 +313,6 @@ export const tool: Tool = {
                     format: 'date-time',
                   },
                 },
-                required: [],
               },
             },
             freeTexts: {
@@ -337,7 +335,6 @@ export const tool: Tool = {
                     description: 'Free text data message.',
                   },
                 },
-                required: [],
               },
             },
             hrrs: {
@@ -470,7 +467,6 @@ export const tool: Tool = {
                             'Scatterer’s Doppler index relative to Range-Doppler chip, where increasing index equates to increasing Doppler.',
                         },
                       },
-                      required: [],
                     },
                   },
                   h4: {
@@ -500,7 +496,6 @@ export const tool: Tool = {
                       'The Peak Scatter returns the maximum power level (e.g. in milliwatts, or dBm) registered by the sensor.',
                   },
                 },
-                required: [],
               },
             },
             jobDefs: {
@@ -648,7 +643,6 @@ export const tool: Tool = {
                       'East-West position of the second corner (Point B) defining the area for sensor service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to -180) of the Prime Meridian.',
                   },
                 },
-                required: [],
               },
             },
             jobRequests: {
@@ -760,7 +754,6 @@ export const tool: Tool = {
                       'East-West position of the third corner (Point C) defining the requested area for service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to -180) of the Prime Meridian.',
                   },
                 },
-                required: [],
               },
             },
             missions: {
@@ -792,7 +785,6 @@ export const tool: Tool = {
                     format: 'date',
                   },
                 },
-                required: [],
               },
             },
             origin: {
@@ -880,7 +872,6 @@ export const tool: Tool = {
                     format: 'date-time',
                   },
                 },
-                required: [],
               },
             },
           },
@@ -888,6 +879,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

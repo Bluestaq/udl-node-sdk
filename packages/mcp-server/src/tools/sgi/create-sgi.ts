@@ -318,6 +318,7 @@ export const tool: Tool = {
           '54 day Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal. 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'effectiveDate', 'sgiDate', 'source'],
   },
 };
 

@@ -143,7 +143,6 @@ export const tool: Tool = {
                       description: 'The particular type of recovery vehicle to be used.',
                     },
                   },
-                  required: [],
                 },
                 ingress: {
                   type: 'number',
@@ -182,10 +181,8 @@ export const tool: Tool = {
                       description: 'The particular type of recovery vehicle to be used.',
                     },
                   },
-                  required: [],
                 },
               },
-              required: [],
             },
             identity: {
               type: 'string',
@@ -255,7 +252,6 @@ export const tool: Tool = {
                           'The type of hostile fire received (SMALL ARMS, MORTAR, ARTILLERY, ROCKETS).',
                       },
                     },
-                    required: [],
                   },
                 },
                 oscCallSign: {
@@ -279,7 +275,6 @@ export const tool: Tool = {
                   },
                 },
               },
-              required: [],
             },
             origin: {
               type: 'string',
@@ -341,6 +336,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

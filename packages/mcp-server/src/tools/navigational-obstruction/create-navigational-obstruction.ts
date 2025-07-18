@@ -359,6 +359,7 @@ export const tool: Tool = {
         description: "This obstacle's World Area Code installation number (WAC-INNR).",
       },
     },
+    required: ['classificationMarking', 'cycleDate', 'dataMode', 'obstacleId', 'obstacleType', 'source'],
   },
 };
 

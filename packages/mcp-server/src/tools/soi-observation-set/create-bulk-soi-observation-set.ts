@@ -134,7 +134,6 @@ export const tool: Tool = {
                       'Value representing the difference between the catalog magnitude and instrumental magnitude for a set of standard stars, at calibration (e.g. -5.0 to 30.0).',
                   },
                 },
-                required: [],
               },
             },
             calibrationType: {
@@ -881,6 +880,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.6 (2025-07-18)
+
+Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
+
+### Bug Fixes
+
+* **mcp:** include required section for top-level properties and support naming transformations ([dbe0d7c](https://github.com/Bluestaq/udl-node-sdk/commit/dbe0d7cbbd6a61d14f67c856c1c51d1b0b4e57cc))
+
 ## 0.1.0-alpha.5 (2025-07-17)
 
 Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)

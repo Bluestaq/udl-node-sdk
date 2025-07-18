@@ -1236,6 +1236,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['classificationMarking', 'dataMode', 'recType', 'source', 'startTime', 'type'],
   },
 };
 

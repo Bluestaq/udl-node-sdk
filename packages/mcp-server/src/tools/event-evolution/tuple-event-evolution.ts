@@ -43,6 +43,7 @@ export const tool: Tool = {
         format: 'date-time',
       },
     },
+    required: ['columns'],
   },
 };
 

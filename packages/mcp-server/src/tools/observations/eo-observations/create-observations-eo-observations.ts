@@ -561,7 +561,6 @@ export const tool: Tool = {
             },
           },
         },
-        required: [],
       },
       expDuration: {
         type: 'number',
@@ -889,6 +888,7 @@ export const tool: Tool = {
           'This is the uncertainty in the zero point for the filter used for this observation/row in units of mag. For use with differential photometry.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'obTime', 'source'],
   },
 };
 

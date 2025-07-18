@@ -917,6 +917,7 @@ export const tool: Tool = {
           'The Weighted Root Mean Squared (RMS) of the differential correction of the target object that produced this OD state. WRMS is a quality indicator of the OD update, with a value of 1.00 being optimal. WRMS applies to batch least squares (BLS) processes.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'endTime', 'initialOD', 'method', 'source', 'startTime'],
   },
 };
 

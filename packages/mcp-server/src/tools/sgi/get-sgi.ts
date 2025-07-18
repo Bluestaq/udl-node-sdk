@@ -30,6 +30,7 @@ export const tool: Tool = {
         type: 'integer',
       },
     },
+    required: ['id'],
   },
 };
 

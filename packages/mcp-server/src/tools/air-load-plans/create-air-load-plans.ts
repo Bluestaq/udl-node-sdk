@@ -142,7 +142,6 @@ export const tool: Tool = {
               description: 'Net explosive weight of the hazardous material, in kilograms.',
             },
           },
-          required: [],
         },
       },
       airLoadPlanHR: {
@@ -210,7 +209,6 @@ export const tool: Tool = {
               description: 'Flag indicating if the remains are viewable.',
             },
           },
-          required: [],
         },
       },
       airLoadPlanPalletDetails: {
@@ -260,7 +258,6 @@ export const tool: Tool = {
               description: 'Flag indicating if this cargo is considered special interest.',
             },
           },
-          required: [],
         },
       },
       airLoadPlanPaxCargo: {
@@ -334,7 +331,6 @@ export const tool: Tool = {
               description: 'Number of space required passengers in this group.',
             },
           },
-          required: [],
         },
       },
       airLoadPlanULNActuals: {
@@ -398,7 +394,6 @@ export const tool: Tool = {
               description: 'Remarks concerning these unit line number actuals.',
             },
           },
-          required: [],
         },
       },
       arrAirfield: {
@@ -638,6 +633,7 @@ export const tool: Tool = {
           'The operating weight of the aircraft including cargo, mail, baggage, and passengers, but without usable fuel, in kilograms.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'estDepTime', 'source'],
   },
 };
 

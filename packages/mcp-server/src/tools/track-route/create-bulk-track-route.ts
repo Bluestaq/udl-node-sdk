@@ -77,7 +77,6 @@ export const tool: Tool = {
                       'Highest altitude of the track route altitude block above mean sea level in feet.',
                   },
                 },
-                required: [],
               },
             },
             apnSetting: {
@@ -186,7 +185,6 @@ export const tool: Tool = {
                     description: 'The username of the contact.',
                   },
                 },
-                required: [],
               },
             },
             priFreq: {
@@ -281,7 +279,6 @@ export const tool: Tool = {
                     description: 'Name of a waypoint which identifies the location of the point.',
                   },
                 },
-                required: [],
               },
             },
             schedulerOrgName: {
@@ -337,6 +334,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

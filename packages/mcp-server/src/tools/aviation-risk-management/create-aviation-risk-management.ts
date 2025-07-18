@@ -119,7 +119,6 @@ export const tool: Tool = {
                             'The score of the associated aircraft sortie as defined by the data source. Value ranges from 0 to 3, where a value of 0 indicates a low and a value of 3 indicates severe. A value of -1 indicates no score.',
                         },
                       },
-                      required: [],
                     },
                   },
                   extScoreId: {
@@ -154,7 +153,6 @@ export const tool: Tool = {
                     description: 'Remarks and/or comments regarding the worksheet score.',
                   },
                 },
-                required: [],
               },
             },
             dispositionComments: {
@@ -232,6 +230,7 @@ export const tool: Tool = {
         description: 'Identifier for the unit which this risk management record is evaluated.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'idMission', 'source'],
   },
 };
 

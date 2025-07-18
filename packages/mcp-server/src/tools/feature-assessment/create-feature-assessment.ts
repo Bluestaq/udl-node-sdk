@@ -219,6 +219,7 @@ export const tool: Tool = {
         description: 'Estimated physical width of the feature, in meters.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'featureTs', 'featureUoM', 'idAnalyticImagery', 'source'],
   },
 };
 

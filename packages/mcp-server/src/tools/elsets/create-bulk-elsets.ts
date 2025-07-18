@@ -32,6 +32,7 @@ export const tool: Tool = {
           'Boolean indicating if these elsets should be checked for duplicates, default is not to.',
       },
     },
+    required: ['body'],
     $defs: {
       elset_ingest: {
         type: 'object',

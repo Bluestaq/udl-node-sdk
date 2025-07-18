@@ -272,6 +272,7 @@ export const tool: Tool = {
           'The standard deviation of the time residuals, in seconds, used to determine the sensor time bias.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'idSensor', 'source', 'startTime'],
   },
 };
 

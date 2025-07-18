@@ -91,7 +91,6 @@ export const tool: Tool = {
                     description: 'The metric score adjusted to be relative and comparable to other domains.',
                   },
                 },
-                required: [],
               },
             },
             actionStartTime: {
@@ -155,7 +154,6 @@ export const tool: Tool = {
                 'The WGS-84 longitude of the weapon destination location, in degrees.  -180 to 180 degrees (negative values west of Prime Meridian).',
             },
           },
-          required: [],
         },
       },
       actorSrcId: {
@@ -191,7 +189,6 @@ export const tool: Tool = {
               description: 'The metric score adjusted to be relative and comparable to other domains.',
             },
           },
-          required: [],
         },
       },
       collateralDamageEst: {
@@ -262,6 +259,7 @@ export const tool: Tool = {
           'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'source', 'type'],
   },
 };
 

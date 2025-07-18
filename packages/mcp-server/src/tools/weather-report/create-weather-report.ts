@@ -417,6 +417,7 @@ export const tool: Tool = {
         description: 'Boolean describing whether or not the wind direction and/or speed is variable.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'lat', 'lon', 'obTime', 'reportType', 'source'],
   },
 };
 

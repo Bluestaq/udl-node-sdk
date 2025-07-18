@@ -580,7 +580,6 @@ export const tool: Tool = {
                   },
                 },
               },
-              required: [],
             },
             expDuration: {
               type: 'number',
@@ -932,6 +931,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

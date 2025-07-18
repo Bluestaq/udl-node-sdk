@@ -474,6 +474,7 @@ export const tool: Tool = {
           'Cartesian Z velocity of the target, in kilometers/second, in the specified alt2ReferenceFrame. Alternate reference frames are optional and are intended to allow a data source to provide an equivalent vector in a different cartesian frame than the primary vector.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'epoch', 'source'],
   },
 };
 

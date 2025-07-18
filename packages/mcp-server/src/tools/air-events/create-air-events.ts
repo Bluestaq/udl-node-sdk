@@ -258,7 +258,6 @@ export const tool: Tool = {
               description: 'Indicates the unique number by Unit ID, which identifies an air refueling event.',
             },
           },
-          required: [],
         },
       },
       remarks: {
@@ -288,7 +287,6 @@ export const tool: Tool = {
               description: 'User who published the remark.',
             },
           },
-          required: [],
         },
       },
       revTrack: {
@@ -407,7 +405,6 @@ export const tool: Tool = {
               description: 'The name and/or number of the point of contact for this tanker.',
             },
           },
-          required: [],
         },
       },
       trackTime: {
@@ -415,6 +412,7 @@ export const tool: Tool = {
         description: 'Length of time the receiver unit has requested for an air event, in hours.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'source', 'type'],
   },
 };
 

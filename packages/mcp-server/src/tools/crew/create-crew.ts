@@ -413,7 +413,6 @@ export const tool: Tool = {
               description: 'The wing the crew member serves.',
             },
           },
-          required: [],
         },
       },
       crewName: {
@@ -623,6 +622,7 @@ export const tool: Tool = {
           'Identifies the trip kit needed by the crew. A trip kit contains charts, regulations, maps, etc. carried by the crew during missions.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'origCrewId', 'source'],
   },
 };
 

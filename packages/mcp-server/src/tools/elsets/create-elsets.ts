@@ -194,6 +194,7 @@ export const tool: Tool = {
           "Boolean indicating this Elset was unable to be correlated to a known object. This flag should only be set to true by data providers after an attempt to correlate to an on-orbit object was made and failed. If unable to correlate, the 'origObjectId' field may be populated with an internal data provider specific identifier.",
       },
     },
+    required: ['classificationMarking', 'dataMode', 'epoch', 'source'],
   },
 };
 

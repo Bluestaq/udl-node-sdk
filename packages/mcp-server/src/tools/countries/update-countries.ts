@@ -20,7 +20,10 @@ export const tool: Tool = {
   inputSchema: {
     type: 'object',
     properties: {
-      code: {
+      path_code: {
+        type: 'string',
+      },
+      body_code: {
         type: 'string',
         description:
           'The country code. Optimally, this value is the ISO 3166 Alpha-2-two-character country code, however it can represent various consortiums that do not appear in the ISO document.',
@@ -60,6 +63,7 @@ export const tool: Tool = {
           'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
+    required: ['path_code', 'body_code', 'dataMode', 'source'],
   },
 };
 

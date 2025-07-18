@@ -162,6 +162,7 @@ export const tool: Tool = {
         description: 'Year the vessel went into service.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'source'],
     $defs: {
       entity_ingest: {
         type: 'object',

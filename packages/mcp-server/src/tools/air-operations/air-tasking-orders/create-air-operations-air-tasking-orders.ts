@@ -341,7 +341,6 @@ export const tool: Tool = {
                 'The indicator for the general text block. Examples include "OPENING REMARKS" and "GENERAL SPINS INFORMATION".',
             },
           },
-          required: [],
         },
       },
       msgMonth: {
@@ -402,6 +401,7 @@ export const tool: Tool = {
           'Originating system or organization which produced the data, if different from the source. The origin may be different than the source if the source was a mediating system which forwarded the data on behalf of the origin system. If null, the source may be assumed to be the origin.',
       },
     },
+    required: ['beginTs', 'classificationMarking', 'dataMode', 'opExerName', 'source'],
   },
 };
 

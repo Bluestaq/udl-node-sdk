@@ -119,7 +119,6 @@ export const tool: Tool = {
                     format: 'date-time',
                   },
                 },
-                required: [],
               },
             },
             logisticsRecordId: {
@@ -148,7 +147,6 @@ export const tool: Tool = {
                     description: 'User who published the remark.',
                   },
                 },
-                required: [],
               },
             },
             logisticsSupportItems: {
@@ -230,7 +228,6 @@ export const tool: Tool = {
                                 description: 'The point of contact at the sourced location.',
                               },
                             },
-                            required: [],
                           },
                         },
                         measurementUnitCode: {
@@ -264,7 +261,6 @@ export const tool: Tool = {
                             'Work Unit Code (WUC), or for some aircraft types, the Reference Designator.',
                         },
                       },
-                      required: [],
                     },
                   },
                   logisticsRemarks: {
@@ -289,7 +285,6 @@ export const tool: Tool = {
                           description: 'User who published the remark.',
                         },
                       },
-                      required: [],
                     },
                   },
                   logisticsSpecialties: {
@@ -330,7 +325,6 @@ export const tool: Tool = {
                             'Indicates where the repairs will be performed, or which shop specialty has been assigned responsibility for correcting the discrepancy. Shop specialties are normally listed in abbreviated format.',
                         },
                       },
-                      required: [],
                     },
                   },
                   quantity: {
@@ -390,7 +384,6 @@ export const tool: Tool = {
                       'The code that represents the International Civil Aviation Organization (ICAO) designations of an airport.',
                   },
                 },
-                required: [],
               },
             },
             logisticsTransportationPlans: {
@@ -551,7 +544,6 @@ export const tool: Tool = {
                             'The identifier that represents a specific aircraft within an aircraft type.',
                         },
                       },
-                      required: [],
                     },
                   },
                   logisticsTransportationPlansRemarks: {
@@ -576,7 +568,6 @@ export const tool: Tool = {
                           description: 'User who published the remark.',
                         },
                       },
-                      required: [],
                     },
                   },
                   majcom: {
@@ -629,7 +620,6 @@ export const tool: Tool = {
                     description: 'Contains the tail number displayed by GDSS2.',
                   },
                 },
-                required: [],
               },
             },
             maintStatusCode: {
@@ -698,6 +688,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

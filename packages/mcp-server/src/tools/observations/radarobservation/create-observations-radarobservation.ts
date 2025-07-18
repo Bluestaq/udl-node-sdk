@@ -291,6 +291,7 @@ export const tool: Tool = {
         description: 'Z velocity of target in km/sec in J2000 coordinate frame.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'obTime', 'source'],
   },
 };
 

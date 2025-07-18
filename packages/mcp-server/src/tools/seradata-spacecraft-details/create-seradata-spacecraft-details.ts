@@ -397,6 +397,7 @@ export const tool: Tool = {
         description: 'Youtube link of launch.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'name', 'source'],
   },
 };
 

@@ -106,7 +106,6 @@ export const tool: Tool = {
                           description: 'One of possible control point type codes, such as CP, ER, OT, etc.',
                         },
                       },
-                      required: [],
                     },
                   },
                   airspaceTimePeriod: {
@@ -150,7 +149,6 @@ export const tool: Tool = {
                             'The start time designating that the airspace control order is active.',
                         },
                       },
-                      required: [],
                     },
                   },
                   bearing0: {
@@ -302,7 +300,6 @@ export const tool: Tool = {
                       'Specifies the unit of length for which widths are given. Use M for meters, KM for kilometers, or NM for nautical miles.',
                   },
                 },
-                required: [],
               },
             },
             cmStat: {
@@ -318,7 +315,6 @@ export const tool: Tool = {
               },
             },
           },
-          required: [],
         },
       },
       airspaceControlOrderReferences: {
@@ -367,7 +363,6 @@ export const tool: Tool = {
               description: 'Specifies the type for this reference.',
             },
           },
-          required: [],
         },
       },
       areaOfValidity: {
@@ -464,6 +459,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['classificationMarking', 'dataMode', 'opExName', 'originator', 'source', 'startTime'],
   },
 };
 
