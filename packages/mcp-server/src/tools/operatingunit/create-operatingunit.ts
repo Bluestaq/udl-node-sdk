@@ -301,6 +301,7 @@ export const tool: Tool = {
           'World Aeronautical Chart identifier for the area in which a designated operating unit is located.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'name', 'source'],
   },
 };
 

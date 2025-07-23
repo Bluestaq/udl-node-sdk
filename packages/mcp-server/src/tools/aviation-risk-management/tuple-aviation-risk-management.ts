@@ -36,6 +36,7 @@ export const tool: Tool = {
         type: 'integer',
       },
     },
+    required: ['columns', 'idMission'],
   },
 };
 

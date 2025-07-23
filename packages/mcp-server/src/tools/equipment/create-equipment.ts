@@ -276,6 +276,7 @@ export const tool: Tool = {
           'World Aeronautical Chart identifier for the area in which a designated place is located.',
       },
     },
+    required: ['classificationMarking', 'countryCode', 'dataMode', 'lat', 'lon', 'source'],
   },
 };
 

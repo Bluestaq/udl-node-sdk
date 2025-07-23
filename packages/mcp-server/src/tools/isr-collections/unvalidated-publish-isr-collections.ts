@@ -147,14 +147,12 @@ export const tool: Tool = {
                             description: 'Unit the POC belongs to.',
                           },
                         },
-                        required: [],
                       },
                       reportingCriteria: {
                         type: 'string',
                         description: 'The reporting criteria of the collection requirement.',
                       },
                     },
-                    required: [],
                   },
                   hash: {
                     type: 'string',
@@ -228,7 +226,6 @@ export const tool: Tool = {
                     description: 'Type collection this requirement applies to.',
                   },
                 },
-                required: [],
               },
             },
             createdAt: {
@@ -376,7 +373,6 @@ export const tool: Tool = {
                               format: 'date-time',
                             },
                           },
-                          required: [],
                         },
                       },
                       planned: {
@@ -403,7 +399,6 @@ export const tool: Tool = {
                                   format: 'date-time',
                                 },
                               },
-                              required: [],
                             },
                           },
                           start: {
@@ -417,10 +412,8 @@ export const tool: Tool = {
                             format: 'date-time',
                           },
                         },
-                        required: [],
                       },
                     },
-                    required: [],
                   },
                   collectionType: {
                     type: 'string',
@@ -551,14 +544,12 @@ export const tool: Tool = {
                                   description: 'Unit the POC belongs to.',
                                 },
                               },
-                              required: [],
                             },
                             reportingCriteria: {
                               type: 'string',
                               description: 'The reporting criteria of the collection requirement.',
                             },
                           },
-                          required: [],
                         },
                         hash: {
                           type: 'string',
@@ -635,7 +626,6 @@ export const tool: Tool = {
                           description: 'Type collection this requirement applies to.',
                         },
                       },
-                      required: [],
                     },
                   },
                   taskingCountry: {
@@ -718,7 +708,6 @@ export const tool: Tool = {
                     enum: ['Deliberate', 'Dynamic', 'Training', 'Transit'],
                   },
                 },
-                required: [],
               },
             },
             transit: {
@@ -740,7 +729,6 @@ export const tool: Tool = {
                     description: 'Length of mission in milliseconds.',
                   },
                 },
-                required: [],
               },
             },
             updatedAt: {
@@ -759,6 +747,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

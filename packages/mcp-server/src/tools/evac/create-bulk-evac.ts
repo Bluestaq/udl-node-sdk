@@ -90,7 +90,6 @@ export const tool: Tool = {
                           description: 'Type of patient allergy (e.g.  PENICILLIN, SULFA, OTHER).',
                         },
                       },
-                      required: [],
                     },
                   },
                   bloodType: {
@@ -166,7 +165,6 @@ export const tool: Tool = {
                             'Health condition assessment.  Intended as, but not constrained to, K07.1 Condition Type Enumeration (e.g. ACTIVITY HIGH, ACTIVITY LOW, ACTIVITY MEDIUM, ACTIVITY NONE, AVPU ALERT, AVPU ALTERED MENTAL STATE, AVPU PAIN, AVPU UNRESPONSIVE, etc.).',
                         },
                       },
-                      required: [],
                     },
                   },
                   contamType: {
@@ -211,7 +209,6 @@ export const tool: Tool = {
                             'The cause or manner of causation of the medical condition.  Intended as, but not constrained to, K07.1 EtiologyType Enumeration (e.g. ASSAULT, BUILDING COLLAPSE, BURN CHEMICAL, BURN ELECTRICAL, BURN, BURN HOT LIQUID, BURN RADIATION, BURN THERMAL, etc.).',
                         },
                       },
-                      required: [],
                     },
                   },
                   evacType: {
@@ -250,7 +247,6 @@ export const tool: Tool = {
                             'Generalized state of health type (BIOLOGICAL, CHEMICAL, COGNITIVE, HYDRATION, LIFE SIGN, RADIATION, SHOCK, THERMAL).',
                         },
                       },
-                      required: [],
                     },
                   },
                   injury: {
@@ -279,7 +275,6 @@ export const tool: Tool = {
                             'Classification of the injury type (ABRASION, AMPUTATION IT, AVULATION, BALLISTIC, BLAST WAVE, BURN 1ST DEGREE, BURN 2ND DEGREE, BURN 3RD DEGREE, BURN INHALATION, BURN LOWER AIRWAY, CHEST FLAIL, CHEST OPEN, DEGLOVING, ECCHYMOSIS, FRACTURE CLOSED, FRACTURE CREPITUS, FRACTURE IT, FRACTURE OPEN, HEMATOMA, IRREGULAR CONSISTENCY, IRREGULAR CONSISTENCY RIDGED, IRREGULAR CONSISTENCY SWOLLEN, IRREGULAR CONSISTENCY SWOLLEN DISTENDED, IRREGULAR CONSISTENCY TENDER, IRREGULAR POSITION, IRREGULAR SHAPE, IRREGULAR SHAPE MISSHAPED, IRREGULAR SHAPE NON SYMMETRICAL, LACERATION, NEUROVASCULAR COMPROMISE, NEUROVASCULAR INTACT, PUNCTURE, SEAT BELT SIGN, STAB, TIC TIM).',
                         },
                       },
-                      required: [],
                     },
                   },
                   last4SSN: {
@@ -322,7 +317,6 @@ export const tool: Tool = {
                             'The type of medication administered.   Intended as, but not constrained to, K07.1 Medication Enumeration (CEFOTETAN, ABRASION, ABX, AMOXILOXACIN, ANALGESIC, COLLOID, CRYOPECIPITATES, CRYSTALLOID, EPINEPHRINE, ERTAPENEM, FENTANYL, HEXTEND, LACTATED RINGERS, MOBIC, MORPHINE, NARCOTIC, NS, PENICILLIN, PLASMA, PLATELETS, PRBC, TYLENOL, WHOLE BLOOD MT).',
                         },
                       },
-                      required: [],
                     },
                   },
                   name: {
@@ -407,7 +401,6 @@ export const tool: Tool = {
                             'Type of treatment administered or to be administered.  Intended as, but not constrained to, K07.1 Treatment Type Enumeration (e.g. AIRWAY ADJUNCT, AIRWAY ASSISTED VENTILATION, AIRWAY COMBI TUBE USED, AIRWAY ET NT, AIRWAY INTUBATED, AIRWAY NPA OPA APPLIED, AIRWAY PATIENT, AIRWAY POSITIONAL, AIRWAY SURGICAL CRIC, BREATHING CHEST SEAL, BREATHING CHEST TUBE, etc.).',
                         },
                       },
-                      required: [],
                     },
                   },
                   vitalSignData: {
@@ -442,11 +435,9 @@ export const tool: Tool = {
                             'Vital sign value 2.  The content of this field is dependent on the type of vital sign being measured (see the vitalSign field).',
                         },
                       },
-                      required: [],
                     },
                   },
                 },
-                required: [],
               },
             },
             ce: {
@@ -497,7 +488,6 @@ export const tool: Tool = {
                       'The type of hostile fire received (SMALL ARMS, MORTAR, ARTILLERY, ROCKETS).',
                   },
                 },
-                required: [],
               },
             },
             idWeatherReport: {
@@ -624,6 +614,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

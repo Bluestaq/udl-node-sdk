@@ -90,7 +90,6 @@ export const tool: Tool = {
               description: 'Fuel remaining at the air refueling exit in pounds.',
             },
           },
-          required: [],
         },
       },
       amcMissionId: {
@@ -272,7 +271,6 @@ export const tool: Tool = {
                 'The waypoint number for which the message was generated, or enter "PLAN" for a message impacting the entire route.',
             },
           },
-          required: [],
         },
       },
       flightPlanPointGroups: {
@@ -346,7 +344,6 @@ export const tool: Tool = {
                     description: 'Name of this point.',
                   },
                 },
-                required: [],
               },
             },
             fromTakeoffTime: {
@@ -430,7 +427,6 @@ export const tool: Tool = {
               description: 'Specifies which Point Group case requires the most fuel.',
             },
           },
-          required: [],
         },
       },
       flightPlanWaypoints: {
@@ -905,6 +901,7 @@ export const tool: Tool = {
         format: 'date-time',
       },
     },
+    required: ['arrAirfield', 'classificationMarking', 'dataMode', 'depAirfield', 'genTS', 'source'],
   },
 };
 

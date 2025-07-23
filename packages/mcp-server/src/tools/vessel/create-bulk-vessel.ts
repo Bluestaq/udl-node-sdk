@@ -188,6 +188,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
     $defs: {
       entity_ingest: {
         type: 'object',

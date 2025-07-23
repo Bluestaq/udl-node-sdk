@@ -172,7 +172,6 @@ export const tool: Tool = {
                       'Phone number to contact the Diplomatic Attache Office (DAO) for this country over a secure SIPR line.',
                   },
                 },
-                required: [],
               },
             },
             diplomaticClearanceCountryEntryExitPoints: {
@@ -195,7 +194,6 @@ export const tool: Tool = {
                     description: 'Name of this entry/exit point.',
                   },
                 },
-                required: [],
               },
             },
             diplomaticClearanceCountryProfiles: {
@@ -463,7 +461,6 @@ export const tool: Tool = {
                       'Flag indicating whether crew reporting is undefined for the country using this diplomatic clearance profile.',
                   },
                 },
-                required: [],
               },
             },
             existingProfile: {
@@ -557,6 +554,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

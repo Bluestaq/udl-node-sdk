@@ -579,7 +579,6 @@ export const tool: Tool = {
                   },
                 },
               },
-              required: [],
             },
             expDuration: {
               type: 'number',
@@ -935,6 +934,7 @@ export const tool: Tool = {
         description: 'Flag to convert observation reference frame into J2000.',
       },
     },
+    required: ['body'],
   },
 };
 

@@ -376,6 +376,7 @@ export const tool: Tool = {
         description: 'The width of the surface type, in meters.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'name', 'source', 'type'],
   },
 };
 

@@ -98,7 +98,6 @@ export const tool: Tool = {
                             'The metric score adjusted to be relative and comparable to other domains.',
                         },
                       },
-                      required: [],
                     },
                   },
                   actionStartTime: {
@@ -163,7 +162,6 @@ export const tool: Tool = {
                       'The WGS-84 longitude of the weapon destination location, in degrees.  -180 to 180 degrees (negative values west of Prime Meridian).',
                   },
                 },
-                required: [],
               },
             },
             actorSrcId: {
@@ -200,7 +198,6 @@ export const tool: Tool = {
                     description: 'The metric score adjusted to be relative and comparable to other domains.',
                   },
                 },
-                required: [],
               },
             },
             collateralDamageEst: {
@@ -285,6 +282,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['body'],
   },
 };
 

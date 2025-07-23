@@ -1113,6 +1113,7 @@ export const tool: Tool = {
           'The angular distance, in degrees, in the sensor-y direction from scan center defined by the central vector.  The specification of xAngle and yAngle defines a rectangle of width 2*xAngle and height 2*yAngle centered about the central vector.',
       },
     },
+    required: ['classificationMarking', 'dataMode', 'source', 'startTime', 'type'],
   },
 };
 
