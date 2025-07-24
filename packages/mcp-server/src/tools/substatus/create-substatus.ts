@@ -70,6 +70,7 @@ export const tool: Tool = {
     },
     required: ['classificationMarking', 'dataMode', 'notes', 'source', 'status', 'statusId', 'type'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

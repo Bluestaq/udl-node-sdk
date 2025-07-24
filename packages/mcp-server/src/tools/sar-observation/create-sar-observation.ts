@@ -335,6 +335,7 @@ export const tool: Tool = {
     },
     required: ['classificationMarking', 'collectionEnd', 'collectionStart', 'dataMode', 'sarMode', 'source'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

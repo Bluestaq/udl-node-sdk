@@ -58,6 +58,7 @@ export const tool: Tool = {
     },
     required: ['id', 'classificationMarking'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

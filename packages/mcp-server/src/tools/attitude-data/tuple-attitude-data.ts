@@ -45,6 +45,9 @@ export const tool: Tool = {
     },
     required: ['asId', 'columns'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

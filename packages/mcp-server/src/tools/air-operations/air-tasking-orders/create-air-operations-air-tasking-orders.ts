@@ -403,6 +403,7 @@ export const tool: Tool = {
     },
     required: ['beginTs', 'classificationMarking', 'dataMode', 'opExerName', 'source'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

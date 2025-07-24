@@ -133,6 +133,7 @@ export const tool: Tool = {
     },
     required: ['lat', 'lon'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

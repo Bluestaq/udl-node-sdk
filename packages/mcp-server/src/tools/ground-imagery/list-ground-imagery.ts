@@ -41,6 +41,9 @@ export const tool: Tool = {
     },
     required: ['imageTime'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

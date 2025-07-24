@@ -38,6 +38,9 @@ export const tool: Tool = {
     },
     required: ['columns', 'idMission'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

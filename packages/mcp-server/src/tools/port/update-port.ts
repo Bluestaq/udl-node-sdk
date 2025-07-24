@@ -119,6 +119,9 @@ export const tool: Tool = {
     },
     required: ['path_id', 'classificationMarking', 'dataMode', 'source'],
   },
+  annotations: {
+    idempotentHint: true,
+  },
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
