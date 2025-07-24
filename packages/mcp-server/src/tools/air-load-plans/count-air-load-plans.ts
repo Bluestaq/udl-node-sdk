@@ -42,6 +42,9 @@ export const tool: Tool = {
     },
     required: ['estDepTime'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

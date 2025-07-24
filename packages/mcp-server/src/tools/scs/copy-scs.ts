@@ -38,6 +38,7 @@ export const tool: Tool = {
     },
     required: ['id', 'targetPath'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

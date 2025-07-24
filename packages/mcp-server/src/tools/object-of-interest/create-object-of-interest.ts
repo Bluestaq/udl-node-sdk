@@ -235,6 +235,7 @@ export const tool: Tool = {
       'statusDate',
     ],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

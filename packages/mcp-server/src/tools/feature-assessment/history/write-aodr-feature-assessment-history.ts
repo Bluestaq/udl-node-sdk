@@ -60,6 +60,9 @@ export const tool: Tool = {
     },
     required: ['idAnalyticImagery'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

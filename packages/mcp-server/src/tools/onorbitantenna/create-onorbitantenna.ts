@@ -106,6 +106,7 @@ export const tool: Tool = {
     },
     required: ['classificationMarking', 'dataMode', 'idAntenna', 'idOnOrbit', 'source'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

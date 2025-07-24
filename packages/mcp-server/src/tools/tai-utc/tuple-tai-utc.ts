@@ -47,6 +47,9 @@ export const tool: Tool = {
     },
     required: ['adjustmentDate', 'columns'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

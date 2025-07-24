@@ -96,6 +96,7 @@ export const tool: Tool = {
     },
     required: ['classificationMarking', 'dataMode', 'idSortie', 'source'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

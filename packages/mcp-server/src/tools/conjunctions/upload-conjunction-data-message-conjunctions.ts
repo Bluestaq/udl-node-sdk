@@ -55,6 +55,7 @@ export const tool: Tool = {
     },
     required: ['classification', 'dataMode', 'filename', 'source', 'body'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
