@@ -207,6 +207,7 @@ export const tool: Tool = {
     },
     required: ['cells', 'classificationMarking', 'dataMode', 'numCells', 'source', 'startTime'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

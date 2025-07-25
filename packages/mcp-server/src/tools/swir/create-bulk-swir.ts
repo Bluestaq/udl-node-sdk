@@ -149,6 +149,7 @@ export const tool: Tool = {
     },
     required: ['body'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

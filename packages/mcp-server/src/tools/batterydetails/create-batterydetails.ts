@@ -88,6 +88,7 @@ export const tool: Tool = {
     },
     required: ['classificationMarking', 'dataMode', 'idBattery', 'source'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

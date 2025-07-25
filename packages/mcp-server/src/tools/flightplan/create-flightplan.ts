@@ -903,6 +903,7 @@ export const tool: Tool = {
     },
     required: ['arrAirfield', 'classificationMarking', 'dataMode', 'depAirfield', 'genTS', 'source'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

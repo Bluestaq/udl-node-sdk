@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.7 (2025-07-24)
+
+Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
+
+### Chores
+
+* **internal:** codegen related update ([454dc64](https://github.com/Bluestaq/udl-node-sdk/commit/454dc642b2a41fde51701642d387264858bf0868))
+
 ## 0.1.0-alpha.6 (2025-07-18)
 
 Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)

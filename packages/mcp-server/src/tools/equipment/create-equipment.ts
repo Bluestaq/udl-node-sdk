@@ -278,6 +278,7 @@ export const tool: Tool = {
     },
     required: ['classificationMarking', 'countryCode', 'dataMode', 'lat', 'lon', 'source'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

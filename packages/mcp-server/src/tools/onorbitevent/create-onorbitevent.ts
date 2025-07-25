@@ -244,6 +244,7 @@ export const tool: Tool = {
     },
     required: ['classificationMarking', 'dataMode', 'eventTime', 'source'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

@@ -35,6 +35,9 @@ export const tool: Tool = {
     },
     required: ['plannedDepTime'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

@@ -361,6 +361,7 @@ export const tool: Tool = {
     },
     required: ['classificationMarking', 'cycleDate', 'dataMode', 'obstacleId', 'obstacleType', 'source'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

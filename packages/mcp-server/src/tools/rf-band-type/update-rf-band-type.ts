@@ -67,6 +67,9 @@ export const tool: Tool = {
     },
     required: ['path_id', 'body_id', 'classificationMarking', 'dataMode', 'description', 'source'],
   },
+  annotations: {
+    idempotentHint: true,
+  },
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

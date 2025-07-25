@@ -61,6 +61,9 @@ export const tool: Tool = {
     },
     required: ['eventStartTime'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

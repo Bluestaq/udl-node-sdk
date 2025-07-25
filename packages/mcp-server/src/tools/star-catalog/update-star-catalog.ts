@@ -233,6 +233,9 @@ export const tool: Tool = {
       'starEpoch',
     ],
   },
+  annotations: {
+    idempotentHint: true,
+  },
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {

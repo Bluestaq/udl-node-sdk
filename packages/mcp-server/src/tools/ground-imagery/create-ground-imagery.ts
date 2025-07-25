@@ -144,6 +144,7 @@ export const tool: Tool = {
     },
     required: ['classificationMarking', 'dataMode', 'filename', 'imageTime', 'source'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
