@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.8 (2025-07-30)
+
+Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
+
+### Chores
+
+* **internal:** remove redundant imports config ([d06eb22](https://github.com/Bluestaq/udl-node-sdk/commit/d06eb22c75bb3ff5e913c67f15715118c6506189))
+
 ## 0.1.0-alpha.7 (2025-07-24)
 
 Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
