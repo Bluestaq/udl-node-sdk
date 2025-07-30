@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../core/resource';
-import * as DataownerAPI from './dataowner';
-import { APIPromise } from '../../core/api-promise';
-import { RequestOptions } from '../../internal/request-options';
+import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as DataownerAPI from 'bluestaq@unified-data-library/resources/supporting-data/dataowner';
+import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
+import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
 
 export class ProviderMetadata extends APIResource {
   retrieve(

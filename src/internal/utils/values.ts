@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { UnifieddatalibraryError } from '../../core/error';
+import { UnifieddatalibraryError } from 'bluestaq@unified-data-library/core/error';
 
 // https://url.spec.whatwg.org/#url-scheme-string
 const startsWithSchemeRegexp = /^[a-z][a-z0-9+.-]*:/i;

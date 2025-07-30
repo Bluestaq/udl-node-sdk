@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../core/resource';
-import * as AirTaskingOrdersAPI from './air-tasking-orders';
+import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as AirTaskingOrdersAPI from 'bluestaq@unified-data-library/resources/air-operations/air-tasking-orders';
 import {
   AirTaskingOrderCountParams,
   AirTaskingOrderCountResponse,
@@ -16,8 +16,8 @@ import {
   AirTaskingOrders,
   AirtaskingorderAbridged,
   AirtaskingorderAbridgedsOffsetPage,
-} from './air-tasking-orders';
-import * as AircraftSortieAPI from './aircraft-sortie';
+} from 'bluestaq@unified-data-library/resources/air-operations/air-tasking-orders';
+import * as AircraftSortieAPI from 'bluestaq@unified-data-library/resources/air-operations/aircraft-sortie';
 import {
   AircraftSortie,
   AircraftSortieCountParams,
@@ -33,23 +33,30 @@ import {
   AircraftsortieAbridged,
   AircraftsortieAbridgedsOffsetPage,
   AircraftsortieFull,
-} from './aircraft-sortie';
-import * as AircraftSortiesAPI from './aircraft-sorties';
-import { AircraftSorties, AircraftSortyUnvalidatedPublishParams } from './aircraft-sorties';
-import * as AirspaceControlOrdersAPI from './airspace-control-orders';
+} from 'bluestaq@unified-data-library/resources/air-operations/aircraft-sortie';
+import * as AircraftSortiesAPI from 'bluestaq@unified-data-library/resources/air-operations/aircraft-sorties';
+import {
+  AircraftSorties,
+  AircraftSortyUnvalidatedPublishParams,
+} from 'bluestaq@unified-data-library/resources/air-operations/aircraft-sorties';
+import * as AirspaceControlOrdersAPI from 'bluestaq@unified-data-library/resources/air-operations/airspace-control-orders';
 import {
   AirspaceControlOrderUnvalidatedPublishParams,
   AirspaceControlOrders,
-} from './airspace-control-orders';
-import * as CrewpapersAPI from './crewpapers';
-import { CrewpaperUnpublishParams, CrewpaperUploadPdfParams, Crewpapers } from './crewpapers';
-import * as DiplomaticClearanceAPI from './diplomatic-clearance';
+} from 'bluestaq@unified-data-library/resources/air-operations/airspace-control-orders';
+import * as CrewpapersAPI from 'bluestaq@unified-data-library/resources/air-operations/crewpapers';
+import {
+  CrewpaperUnpublishParams,
+  CrewpaperUploadPdfParams,
+  Crewpapers,
+} from 'bluestaq@unified-data-library/resources/air-operations/crewpapers';
+import * as DiplomaticClearanceAPI from 'bluestaq@unified-data-library/resources/air-operations/diplomatic-clearance';
 import {
   DiplomaticClearance,
   DiplomaticClearanceUnvalidatedPublishParams,
   DiplomaticclearanceAbridged,
   DiplomaticclearanceFull,
-} from './diplomatic-clearance';
+} from 'bluestaq@unified-data-library/resources/air-operations/diplomatic-clearance';
 
 export class AirOperations extends APIResource {
   airTaskingOrders: AirTaskingOrdersAPI.AirTaskingOrders = new AirTaskingOrdersAPI.AirTaskingOrders(

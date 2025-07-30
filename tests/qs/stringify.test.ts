@@ -1,7 +1,7 @@
 import iconv from 'iconv-lite';
-import { stringify } from 'unified-data-library/internal/qs';
-import { encode } from 'unified-data-library/internal/qs/utils';
-import { StringifyOptions } from 'unified-data-library/internal/qs/types';
+import { stringify } from 'udl-node-sdk/internal/qs';
+import { encode } from 'udl-node-sdk/internal/qs/utils';
+import { StringifyOptions } from 'udl-node-sdk/internal/qs/types';
 import { empty_test_cases } from './empty-keys-cases';
 import assert from 'assert';
 

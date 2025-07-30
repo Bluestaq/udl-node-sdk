@@ -55,12 +55,12 @@ $ cd udl-node-sdk
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link unified-data-library
+$ yarn link udl-node-sdk
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global unified-data-library
+$ pnpm link -—global udl-node-sdk
 ```
 
 ## Running tests

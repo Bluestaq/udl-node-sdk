@@ -1,14 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as AntennasAPI from './antennas';
-import * as AttitudeDataAPI from './attitude-data';
-import * as BatteriesAPI from './batteries';
-import * as EnginesAPI from './engines';
-import * as LocationAPI from './location';
-import * as OrganizationAPI from './organization';
-import * as SolarArrayDetailsAPI from './solar-array-details';
-import * as AircraftSortieAPI from './air-operations/aircraft-sortie';
-import { OffsetPage } from '../core/pagination';
+import * as AntennasAPI from 'bluestaq@unified-data-library/resources/antennas';
+import * as AttitudeDataAPI from 'bluestaq@unified-data-library/resources/attitude-data';
+import * as BatteriesAPI from 'bluestaq@unified-data-library/resources/batteries';
+import * as EnginesAPI from 'bluestaq@unified-data-library/resources/engines';
+import * as LocationAPI from 'bluestaq@unified-data-library/resources/location';
+import * as OrganizationAPI from 'bluestaq@unified-data-library/resources/organization';
+import * as SolarArrayDetailsAPI from 'bluestaq@unified-data-library/resources/solar-array-details';
+import * as AircraftSortieAPI from 'bluestaq@unified-data-library/resources/air-operations/aircraft-sortie';
+import { OffsetPage } from 'bluestaq@unified-data-library/core/pagination';
 
 /**
  * The information in an Air Transport Mission contains unique identification,

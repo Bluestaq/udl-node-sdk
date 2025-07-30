@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { UnifieddatalibraryError } from '../../core/error';
-import { encodeUTF8 } from './bytes';
+import { UnifieddatalibraryError } from 'bluestaq@unified-data-library/core/error';
+import { encodeUTF8 } from 'bluestaq@unified-data-library/internal/utils/bytes';
 
 export const toBase64 = (data: string | Uint8Array | null | undefined): string => {
   if (!data) return '';

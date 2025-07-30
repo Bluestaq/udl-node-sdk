@@ -1,14 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../core/resource';
-import * as DataTypesAPI from './data-types';
+import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as DataTypesAPI from 'bluestaq@unified-data-library/resources/supporting-data/data-types';
 import {
   DataTypeListParams,
   DataTypeListResponse,
   DataTypeListResponsesOffsetPage,
   DataTypes,
-} from './data-types';
-import * as DataownerAPI from './dataowner';
+} from 'bluestaq@unified-data-library/resources/supporting-data/data-types';
+import * as DataownerAPI from 'bluestaq@unified-data-library/resources/supporting-data/dataowner';
 import {
   Dataowner,
   DataownerAbridged,
@@ -16,22 +16,25 @@ import {
   DataownerCountResponse,
   DataownerRetrieveParams,
   DataownerRetrieveResponse,
-} from './dataowner';
-import * as DataownerTypesAPI from './dataowner-types';
+} from 'bluestaq@unified-data-library/resources/supporting-data/dataowner';
+import * as DataownerTypesAPI from 'bluestaq@unified-data-library/resources/supporting-data/dataowner-types';
 import {
   DataownerTypeListParams,
   DataownerTypeListResponse,
   DataownerTypeListResponsesOffsetPage,
   DataownerTypes,
-} from './dataowner-types';
-import * as ProviderMetadataAPI from './provider-metadata';
+} from 'bluestaq@unified-data-library/resources/supporting-data/dataowner-types';
+import * as ProviderMetadataAPI from 'bluestaq@unified-data-library/resources/supporting-data/provider-metadata';
 import {
   ProviderMetadata,
   ProviderMetadataRetrieveParams,
   ProviderMetadataRetrieveResponse,
-} from './provider-metadata';
-import * as QueryHelpAPI from './query-help';
-import { QueryHelp, QueryHelpRetrieveResponse } from './query-help';
+} from 'bluestaq@unified-data-library/resources/supporting-data/provider-metadata';
+import * as QueryHelpAPI from 'bluestaq@unified-data-library/resources/supporting-data/query-help';
+import {
+  QueryHelp,
+  QueryHelpRetrieveResponse,
+} from 'bluestaq@unified-data-library/resources/supporting-data/query-help';
 
 export class SupportingData extends APIResource {
   dataTypes: DataTypesAPI.DataTypes = new DataTypesAPI.DataTypes(this._client);

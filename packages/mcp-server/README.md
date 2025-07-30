@@ -24,7 +24,7 @@ For clients with a configuration JSON, it might look something like this:
 ```json
 {
   "mcpServers": {
-    "unified_data_library_api": {
+    "udl_node_sdk_api": {
       "command": "npx",
       "args": ["-y", "unified-data-library-mcp", "--client=claude", "--tools=dynamic"],
       "env": {

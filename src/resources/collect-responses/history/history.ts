@@ -1,14 +1,18 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../core/resource';
-import * as Shared from '../../shared';
-import { CollectResponseFullsOffsetPage } from '../../shared';
-import * as AodrAPI from './aodr';
-import { Aodr, AodrListParams } from './aodr';
-import { APIPromise } from '../../../core/api-promise';
-import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
-import { buildHeaders } from '../../../internal/headers';
-import { RequestOptions } from '../../../internal/request-options';
+import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
+import { CollectResponseFullsOffsetPage } from 'bluestaq@unified-data-library/resources/shared';
+import * as AodrAPI from 'bluestaq@unified-data-library/resources/collect-responses/history/aodr';
+import { Aodr, AodrListParams } from 'bluestaq@unified-data-library/resources/collect-responses/history/aodr';
+import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
+import {
+  OffsetPage,
+  type OffsetPageParams,
+  PagePromise,
+} from 'bluestaq@unified-data-library/core/pagination';
+import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
+import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
 
 export class History extends APIResource {
   aodr: AodrAPI.Aodr = new AodrAPI.Aodr(this._client);

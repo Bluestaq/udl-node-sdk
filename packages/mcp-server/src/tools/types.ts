@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Unifieddatalibrary from 'unified-data-library';
+import Unifieddatalibrary from 'udl-node-sdk';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 
 type TextContentBlock = {

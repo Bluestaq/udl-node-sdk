@@ -1,12 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../core/resource';
-import * as DiplomaticClearanceAPI from '../air-operations/diplomatic-clearance';
-import { DiplomaticclearanceFullsOffsetPage } from '../air-operations/diplomatic-clearance';
-import { APIPromise } from '../../core/api-promise';
-import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
-import { buildHeaders } from '../../internal/headers';
-import { RequestOptions } from '../../internal/request-options';
+import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as DiplomaticClearanceAPI from 'bluestaq@unified-data-library/resources/air-operations/diplomatic-clearance';
+import { DiplomaticclearanceFullsOffsetPage } from 'bluestaq@unified-data-library/resources/air-operations/diplomatic-clearance';
+import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
+import {
+  OffsetPage,
+  type OffsetPageParams,
+  PagePromise,
+} from 'bluestaq@unified-data-library/core/pagination';
+import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
+import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
 
 export class History extends APIResource {
   /**
