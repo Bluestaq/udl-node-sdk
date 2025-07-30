@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../core/resource';
-import { APIPromise } from '../../core/api-promise';
-import { buildHeaders } from '../../internal/headers';
-import { RequestOptions } from '../../internal/request-options';
+import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
+import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
+import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
 
 export class Swir extends APIResource {
   /**

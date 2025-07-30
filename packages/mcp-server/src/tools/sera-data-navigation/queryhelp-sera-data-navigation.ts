@@ -4,7 +4,7 @@ import { maybeFilter } from 'unified-data-library-mcp/filtering';
 import { Metadata, asTextContentResult } from 'unified-data-library-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import Unifieddatalibrary from 'unified-data-library';
+import Unifieddatalibrary from 'udl-node-sdk';
 
 export const metadata: Metadata = {
   resource: 'sera_data_navigation',

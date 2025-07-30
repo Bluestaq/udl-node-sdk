@@ -1,28 +1,46 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../core/resource';
-import * as Shared from '../shared';
-import * as ClassificationMarkingsAPI from './classification-markings';
-import { ClassificationMarkingListResponse, ClassificationMarkings } from './classification-markings';
-import * as FileAPI from './file';
-import { File, FileListParams, FileRetrieveParams, FileUpdateParams } from './file';
-import * as FileMetadataAPI from './file-metadata';
-import { FileMetadata, FileMetadataListResponse } from './file-metadata';
-import * as FoldersAPI from './folders';
+import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
+import * as ClassificationMarkingsAPI from 'bluestaq@unified-data-library/resources/scs/classification-markings';
+import {
+  ClassificationMarkingListResponse,
+  ClassificationMarkings,
+} from 'bluestaq@unified-data-library/resources/scs/classification-markings';
+import * as FileAPI from 'bluestaq@unified-data-library/resources/scs/file';
+import {
+  File,
+  FileListParams,
+  FileRetrieveParams,
+  FileUpdateParams,
+} from 'bluestaq@unified-data-library/resources/scs/file';
+import * as FileMetadataAPI from 'bluestaq@unified-data-library/resources/scs/file-metadata';
+import {
+  FileMetadata,
+  FileMetadataListResponse,
+} from 'bluestaq@unified-data-library/resources/scs/file-metadata';
+import * as FoldersAPI from 'bluestaq@unified-data-library/resources/scs/folders';
 import {
   FolderCreateParams,
   FolderCreateResponse,
   FolderRetrieveParams,
   FolderUpdateParams,
   Folders,
-} from './folders';
-import * as GroupsAPI from './groups';
-import { GroupListResponse, Groups } from './groups';
-import * as PathsAPI from './paths';
-import { PathCreateParams, PathCreateResponse, Paths } from './paths';
-import * as RangeParametersAPI from './range-parameters';
-import { RangeParameterListResponse, RangeParameters } from './range-parameters';
-import * as V2API from './v2';
+} from 'bluestaq@unified-data-library/resources/scs/folders';
+import * as GroupsAPI from 'bluestaq@unified-data-library/resources/scs/groups';
+import { GroupListResponse, Groups } from 'bluestaq@unified-data-library/resources/scs/groups';
+import * as PathsAPI from 'bluestaq@unified-data-library/resources/scs/paths';
+import {
+  PathCreateParams,
+  PathCreateResponse,
+  Paths,
+} from 'bluestaq@unified-data-library/resources/scs/paths';
+import * as RangeParametersAPI from 'bluestaq@unified-data-library/resources/scs/range-parameters';
+import {
+  RangeParameterListResponse,
+  RangeParameters,
+} from 'bluestaq@unified-data-library/resources/scs/range-parameters';
+import * as V2API from 'bluestaq@unified-data-library/resources/scs/v2';
 import {
   Attachment,
   ScsEntitiesOffsetPage,
@@ -35,10 +53,10 @@ import {
   V2ListParams,
   V2MoveParams,
   V2UpdateParams,
-} from './v2';
-import { APIPromise } from '../../core/api-promise';
-import { buildHeaders } from '../../internal/headers';
-import { RequestOptions } from '../../internal/request-options';
+} from 'bluestaq@unified-data-library/resources/scs/v2';
+import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
+import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
+import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
 
 export class Scs extends APIResource {
   folders: FoldersAPI.Folders = new FoldersAPI.Folders(this._client);

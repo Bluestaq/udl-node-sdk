@@ -3,10 +3,10 @@
 import { UnifieddatalibraryError } from './error';
 import { FinalRequestOptions } from '../internal/request-options';
 import { defaultParseResponse } from '../internal/parse';
-import { type Unifieddatalibrary } from '../client';
-import { APIPromise } from './api-promise';
-import { type APIResponseProps } from '../internal/parse';
-import { maybeObj } from '../internal/utils/values';
+import { type Unifieddatalibrary } from 'bluestaq@unified-data-library/client';
+import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
+import { type APIResponseProps } from 'bluestaq@unified-data-library/internal/parse';
+import { maybeObj } from 'bluestaq@unified-data-library/internal/utils/values';
 
 export type PageRequestOptions = Pick<FinalRequestOptions, 'query' | 'headers' | 'body' | 'path' | 'method'>;
 

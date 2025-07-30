@@ -1,13 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../core/resource';
-import * as AntennasAPI from '../antennas';
-import * as BatteriesAPI from '../batteries';
-import * as EnginesAPI from '../engines';
-import * as LocationAPI from '../location';
-import * as OrganizationAPI from '../organization';
-import * as SolarArrayDetailsAPI from '../solar-array-details';
-import * as CalibrationAPI from './calibration/calibration';
+import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as AntennasAPI from 'bluestaq@unified-data-library/resources/antennas';
+import * as BatteriesAPI from 'bluestaq@unified-data-library/resources/batteries';
+import * as EnginesAPI from 'bluestaq@unified-data-library/resources/engines';
+import * as LocationAPI from 'bluestaq@unified-data-library/resources/location';
+import * as OrganizationAPI from 'bluestaq@unified-data-library/resources/organization';
+import * as SolarArrayDetailsAPI from 'bluestaq@unified-data-library/resources/solar-array-details';
+import * as CalibrationAPI from 'bluestaq@unified-data-library/resources/sensor/calibration/calibration';
 import {
   Calibration,
   CalibrationCountParams,
@@ -22,12 +22,16 @@ import {
   CalibrationTupleParams,
   CalibrationTupleResponse,
   CalibrationUnvalidatedPublishParams,
-} from './calibration/calibration';
-import { APIPromise } from '../../core/api-promise';
-import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
-import { buildHeaders } from '../../internal/headers';
-import { RequestOptions } from '../../internal/request-options';
-import { path } from '../../internal/utils/path';
+} from 'bluestaq@unified-data-library/resources/sensor/calibration/calibration';
+import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
+import {
+  OffsetPage,
+  type OffsetPageParams,
+  PagePromise,
+} from 'bluestaq@unified-data-library/core/pagination';
+import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
+import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
+import { path } from 'bluestaq@unified-data-library/internal/utils/path';
 
 export class Sensor extends APIResource {
   calibration: CalibrationAPI.Calibration = new CalibrationAPI.Calibration(this._client);

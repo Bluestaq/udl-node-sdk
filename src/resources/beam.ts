@@ -1,12 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../core/resource';
-import * as BeamContoursAPI from './beam-contours';
-import { APIPromise } from '../core/api-promise';
-import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
-import { buildHeaders } from '../internal/headers';
-import { RequestOptions } from '../internal/request-options';
-import { path } from '../internal/utils/path';
+import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as BeamContoursAPI from 'bluestaq@unified-data-library/resources/beam-contours';
+import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
+import {
+  OffsetPage,
+  type OffsetPageParams,
+  PagePromise,
+} from 'bluestaq@unified-data-library/core/pagination';
+import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
+import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
+import { path } from 'bluestaq@unified-data-library/internal/utils/path';
 
 export class Beam extends APIResource {
   /**

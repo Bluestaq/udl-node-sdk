@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "unified-data-library/*": ["dist/src/*"],
-      "unified-data-library": ["dist/src/index.ts"]
+      "udl-node-sdk/*": ["dist/src/*"],
+      "udl-node-sdk": ["dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,

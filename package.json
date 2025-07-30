@@ -1,5 +1,5 @@
 {
-  "name": "unified-data-library",
+  "name": "udl-node-sdk",
   "version": "0.1.0-alpha.7",
   "description": "The official TypeScript library for the Unifieddatalibrary API",
   "author": "Unifieddatalibrary <unifieddatalibrary@bluestaq.com>",

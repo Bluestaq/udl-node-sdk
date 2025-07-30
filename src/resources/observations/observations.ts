@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../core/resource';
-import * as EcpsdrAPI from './ecpsdr';
+import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as EcpsdrAPI from 'bluestaq@unified-data-library/resources/observations/ecpsdr';
 import {
   Ecpsdr,
   EcpsdrAbridged,
@@ -16,10 +16,13 @@ import {
   EcpsdrRetrieveParams,
   EcpsdrTupleParams,
   EcpsdrTupleResponse,
-} from './ecpsdr';
-import * as SwirAPI from './swir';
-import { Swir, SwirUnvalidatedPublishParams } from './swir';
-import * as EoObservationsAPI from './eo-observations/eo-observations';
+} from 'bluestaq@unified-data-library/resources/observations/ecpsdr';
+import * as SwirAPI from 'bluestaq@unified-data-library/resources/observations/swir';
+import {
+  Swir,
+  SwirUnvalidatedPublishParams,
+} from 'bluestaq@unified-data-library/resources/observations/swir';
+import * as EoObservationsAPI from 'bluestaq@unified-data-library/resources/observations/eo-observations/eo-observations';
 import {
   EoObservationAbridged,
   EoObservationAbridgedsOffsetPage,
@@ -34,8 +37,8 @@ import {
   EoObservationTupleResponse,
   EoObservationUnvalidatedPublishParams,
   EoObservations,
-} from './eo-observations/eo-observations';
-import * as MonoradarAPI from './monoradar/monoradar';
+} from 'bluestaq@unified-data-library/resources/observations/eo-observations/eo-observations';
+import * as MonoradarAPI from 'bluestaq@unified-data-library/resources/observations/monoradar/monoradar';
 import {
   Monoradar,
   MonoradarCountParams,
@@ -48,8 +51,8 @@ import {
   MonoradarTupleParams,
   MonoradarTupleResponse,
   MonoradarUnvalidatedPublishParams,
-} from './monoradar/monoradar';
-import * as PassiveRadarObservationAPI from './passive-radar-observation/passive-radar-observation';
+} from 'bluestaq@unified-data-library/resources/observations/monoradar/monoradar';
+import * as PassiveRadarObservationAPI from 'bluestaq@unified-data-library/resources/observations/passive-radar-observation/passive-radar-observation';
 import {
   PassiveRadarObservation,
   PassiveRadarObservationCountParams,
@@ -65,8 +68,8 @@ import {
   PassiveRadarObservationQueryhelpResponse,
   PassiveRadarObservationTupleParams,
   PassiveRadarObservationTupleResponse,
-} from './passive-radar-observation/passive-radar-observation';
-import * as RadarobservationAPI from './radarobservation/radarobservation';
+} from 'bluestaq@unified-data-library/resources/observations/passive-radar-observation/passive-radar-observation';
+import * as RadarobservationAPI from 'bluestaq@unified-data-library/resources/observations/radarobservation/radarobservation';
 import {
   Radarobservation,
   RadarobservationCountParams,
@@ -82,8 +85,8 @@ import {
   RadarobservationTupleParams,
   RadarobservationTupleResponse,
   RadarobservationUnvalidatedPublishParams,
-} from './radarobservation/radarobservation';
-import * as RfObservationAPI from './rf-observation/rf-observation';
+} from 'bluestaq@unified-data-library/resources/observations/radarobservation/radarobservation';
+import * as RfObservationAPI from 'bluestaq@unified-data-library/resources/observations/rf-observation/rf-observation';
 import {
   RfObservation,
   RfObservationCountParams,
@@ -99,7 +102,7 @@ import {
   RfObservationTupleParams,
   RfObservationTupleResponse,
   RfObservationUnvalidatedPublishParams,
-} from './rf-observation/rf-observation';
+} from 'bluestaq@unified-data-library/resources/observations/rf-observation/rf-observation';
 
 export class Observations extends APIResource {
   ecpsdr: EcpsdrAPI.EcpsdrResource = new EcpsdrAPI.EcpsdrResource(this._client);
