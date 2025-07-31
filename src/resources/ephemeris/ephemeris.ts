@@ -1,16 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as Shared from 'bluestaq@unified-data-library/resources/shared';
-import * as HistoryAPI from 'bluestaq@unified-data-library/resources/ephemeris/history';
+import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
+import * as HistoryAPI from './history';
 import {
   History,
   HistoryAodrParams,
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-} from 'bluestaq@unified-data-library/resources/ephemeris/history';
-import * as AttitudeDataAPI from 'bluestaq@unified-data-library/resources/ephemeris/attitude-data/attitude-data';
+} from './history';
+import * as AttitudeDataAPI from './attitude-data/attitude-data';
 import {
   AttitudeData,
   AttitudeDataAbridged,
@@ -18,15 +18,11 @@ import {
   AttitudeDataCountParams,
   AttitudeDataCountResponse,
   AttitudeDataListParams,
-} from 'bluestaq@unified-data-library/resources/ephemeris/attitude-data/attitude-data';
-import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
-import {
-  OffsetPage,
-  type OffsetPageParams,
-  PagePromise,
-} from 'bluestaq@unified-data-library/core/pagination';
-import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
-import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
+} from './attitude-data/attitude-data';
+import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Ephemeris extends APIResource {
   attitudeData: AttitudeDataAPI.AttitudeData = new AttitudeDataAPI.AttitudeData(this._client);

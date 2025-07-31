@@ -4,8 +4,8 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { Endpoint, endpoints, HandlerFunction, query } from './tools';
 import { CallToolRequestSchema, ListToolsRequestSchema, Tool } from '@modelcontextprotocol/sdk/types.js';
-import { ClientOptions } from 'udl-node-sdk';
-import Unifieddatalibrary from 'udl-node-sdk';
+import { ClientOptions } from 'unified-data-library';
+import Unifieddatalibrary from 'unified-data-library';
 import {
   applyCompatibilityTransformations,
   ClientCapabilities,
@@ -19,13 +19,13 @@ import { McpOptions } from './options';
 export { McpOptions } from './options';
 export { ClientType } from './compat';
 export { Filter } from './tools';
-export { ClientOptions } from 'udl-node-sdk';
+export { ClientOptions } from 'unified-data-library';
 export { endpoints } from './tools';
 
 // Create server instance
 export const server = new McpServer(
   {
-    name: 'udl_node_sdk_api',
+    name: 'unified_data_library_api',
     version: '0.1.0-alpha.7',
   },
   { capabilities: { tools: {} } },

@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { hasOwn } from './values';
-import { type Unifieddatalibrary } from 'bluestaq@unified-data-library/client';
-import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
+import { type Unifieddatalibrary } from '../../client';
+import { RequestOptions } from '../request-options';
 
 type LogFn = (message: string, ...rest: unknown[]) => void;
 export type Logger = {

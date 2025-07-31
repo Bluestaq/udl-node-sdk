@@ -2,10 +2,10 @@
 
 export { Unifieddatalibrary as default } from './client';
 
-export { type Uploadable, toFile } from 'bluestaq@unified-data-library/core/uploads';
-export { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
-export { Unifieddatalibrary, type ClientOptions } from 'bluestaq@unified-data-library/client';
-export { PagePromise } from 'bluestaq@unified-data-library/core/pagination';
+export { type Uploadable, toFile } from './core/uploads';
+export { APIPromise } from './core/api-promise';
+export { Unifieddatalibrary, type ClientOptions } from './client';
+export { PagePromise } from './core/pagination';
 export {
   UnifieddatalibraryError,
   APIError,
@@ -20,4 +20,4 @@ export {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-} from 'bluestaq@unified-data-library/core/error';
+} from './core/error';

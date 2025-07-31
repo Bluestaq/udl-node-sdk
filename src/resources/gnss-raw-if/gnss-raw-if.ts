@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as HistoryAPI from 'bluestaq@unified-data-library/resources/gnss-raw-if/history';
+import { APIResource } from '../../core/resource';
+import * as HistoryAPI from './history';
 import {
   History,
   HistoryAodrParams,
@@ -9,7 +9,7 @@ import {
   HistoryCountResponse,
   HistoryQueryParams,
   HistoryQueryResponse,
-} from 'bluestaq@unified-data-library/resources/gnss-raw-if/history';
+} from './history';
 
 export class GnssRawIf extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);

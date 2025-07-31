@@ -27,7 +27,7 @@
     "fix": "eslint --fix --ext ts,js ."
   },
   "dependencies": {
-    "udl-node-sdk": "file:../../dist/",
+    "unified-data-library": "file:../../dist/",
     "@modelcontextprotocol/sdk": "^1.11.5",
     "jq-web": "https://github.com/stainless-api/jq-web/releases/download/v0.8.2/jq-web.tar.gz",
     "yargs": "^17.7.2",

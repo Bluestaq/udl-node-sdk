@@ -1,31 +1,22 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as Shared from 'bluestaq@unified-data-library/resources/shared';
-import * as CurrentAPI from 'bluestaq@unified-data-library/resources/elsets/current';
-import {
-  Current,
-  CurrentListParams,
-  CurrentTupleParams,
-  CurrentTupleResponse,
-} from 'bluestaq@unified-data-library/resources/elsets/current';
-import * as HistoryAPI from 'bluestaq@unified-data-library/resources/elsets/history';
+import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
+import * as CurrentAPI from './current';
+import { Current, CurrentListParams, CurrentTupleParams, CurrentTupleResponse } from './current';
+import * as HistoryAPI from './history';
 import {
   History,
   HistoryAodrParams,
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-} from 'bluestaq@unified-data-library/resources/elsets/history';
-import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
-import {
-  OffsetPage,
-  type OffsetPageParams,
-  PagePromise,
-} from 'bluestaq@unified-data-library/core/pagination';
-import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
-import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
-import { path } from 'bluestaq@unified-data-library/internal/utils/path';
+} from './history';
+import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Elsets extends APIResource {
   current: CurrentAPI.Current = new CurrentAPI.Current(this._client);

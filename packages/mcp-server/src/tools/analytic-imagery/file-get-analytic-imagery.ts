@@ -3,7 +3,7 @@
 import { Metadata, asBinaryContentResult } from 'unified-data-library-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import Unifieddatalibrary from 'udl-node-sdk';
+import Unifieddatalibrary from 'unified-data-library';
 
 export const metadata: Metadata = {
   resource: 'analytic_imagery',
