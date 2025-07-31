@@ -2532,7 +2532,7 @@ The following tools are available in this MCP server.
 
 ### Resource `scs.paths`:
 
-- `create_scs_paths` (`write`): Creates the path and uploads file that is passed. If folder exist it will only create folders that are missing. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `create_with_file_scs_paths` (`write`): Creates the path and uploads file that is passed. If folder exist it will only create folders that are missing. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 
 ### Resource `scs.v2`:
 

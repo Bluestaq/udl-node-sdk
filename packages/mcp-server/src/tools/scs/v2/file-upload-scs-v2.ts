@@ -30,7 +30,7 @@ export const tool: Tool = {
         description:
           "The complete path for the upload including filename. Will attempt to create folders in path if necessary. Must start with '/'.",
       },
-      body: {
+      params: {
         type: 'string',
       },
       deleteAfter: {
@@ -61,14 +61,14 @@ export const tool: Tool = {
           'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
-    required: ['classificationMarking', 'path', 'body'],
+    required: ['classificationMarking', 'path', 'params'],
   },
   annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
-  const { body, ...body } = args as any;
-  const response = await client.scs.v2.fileUpload(body).asResponse();
+  const { params, ...body } = args as any;
+  const response = await client.scs.v2.fileUpload(params).asResponse();
   return asTextContentResult(await response.text());
 };
 

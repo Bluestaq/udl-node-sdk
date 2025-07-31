@@ -252,10 +252,10 @@ export class Conjunctions extends APIResource {
    * );
    * ```
    */
-  uploadConjunctionDataMessage(body: Uploadable, options?: RequestOptions): APIPromise<void> {
+  uploadConjunctionDataMessage(aprams: Uploadable, options?: RequestOptions): APIPromise<void> {
     const { classification, dataMode, filename, source, tags } = params;
     return this._client.post('/filedrop/cdms', {
-      body: body,
+      body: aprams,
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/zip', Accept: '*/*' }, options?.headers]),
     });

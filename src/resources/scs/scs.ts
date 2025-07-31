@@ -19,7 +19,7 @@ import {
 import * as GroupsAPI from './groups';
 import { GroupListResponse, Groups } from './groups';
 import * as PathsAPI from './paths';
-import { PathCreateResponse, Paths } from './paths';
+import { PathCreateWithFileResponse, Paths } from './paths';
 import * as RangeParametersAPI from './range-parameters';
 import { RangeParameterListResponse, RangeParameters } from './range-parameters';
 import * as V2API from './v2';
@@ -187,7 +187,7 @@ export class Scs extends APIResource {
    * ```
    */
   fileUpload(
-    body: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
+    params: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
     options?: RequestOptions,
   ): APIPromise<string> {
     const {
@@ -201,7 +201,7 @@ export class Scs extends APIResource {
       tags,
     } = params;
     return this._client.post('/scs/file', {
-      body: body,
+      body: params,
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/octet-stream' }, options?.headers]),
     });
@@ -457,7 +457,7 @@ export declare namespace Scs {
     type RangeParameterListResponse as RangeParameterListResponse,
   };
 
-  export { Paths as Paths, type PathCreateResponse as PathCreateResponse };
+  export { Paths as Paths, type PathCreateWithFileResponse as PathCreateWithFileResponse };
 
   export {
     V2 as V2,

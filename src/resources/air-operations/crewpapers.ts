@@ -46,12 +46,12 @@ export class Crewpapers extends APIResource {
    * ```
    */
   uploadPdf(
-    body: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
+    params: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
     options?: RequestOptions,
   ): APIPromise<void> {
     const { aircraftSortieIds, classificationMarking, paperStatus, papersVersion } = params;
     return this._client.post('/filedrop/crewpapers', {
-      body: body,
+      body: params,
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/pdf', Accept: '*/*' }, options?.headers]),
     });

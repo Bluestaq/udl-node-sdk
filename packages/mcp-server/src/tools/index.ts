@@ -1465,7 +1465,7 @@ import list_scs_classification_markings from './scs/classification-markings/list
 import list_scs_groups from './scs/groups/list-scs-groups';
 import list_scs_file_metadata from './scs/file-metadata/list-scs-file-metadata';
 import list_scs_range_parameters from './scs/range-parameters/list-scs-range-parameters';
-import create_scs_paths from './scs/paths/create-scs-paths';
+import create_with_file_scs_paths from './scs/paths/create-with-file-scs-paths';
 import update_scs_v2 from './scs/v2/update-scs-v2';
 import list_scs_v2 from './scs/v2/list-scs-v2';
 import delete_scs_v2 from './scs/v2/delete-scs-v2';
@@ -2945,7 +2945,7 @@ addEndpoint(list_scs_classification_markings);
 addEndpoint(list_scs_groups);
 addEndpoint(list_scs_file_metadata);
 addEndpoint(list_scs_range_parameters);
-addEndpoint(create_scs_paths);
+addEndpoint(create_with_file_scs_paths);
 addEndpoint(update_scs_v2);
 addEndpoint(list_scs_v2);
 addEndpoint(delete_scs_v2);
