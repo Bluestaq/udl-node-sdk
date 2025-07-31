@@ -11,7 +11,7 @@ export {
   type FolderUpdateParams,
 } from './folders';
 export { Groups, type GroupListResponse } from './groups';
-export { Paths, type PathCreateResponse, type PathCreateParams } from './paths';
+export { Paths, type PathCreateResponse } from './paths';
 export { RangeParameters, type RangeParameterListResponse } from './range-parameters';
 export {
   Scs,
@@ -26,7 +26,6 @@ export {
   type ScCopyParams,
   type ScDownloadParams,
   type ScFileDownloadParams,
-  type ScFileUploadParams,
   type ScMoveParams,
   type ScRenameParams,
   type ScSearchParams,
@@ -40,7 +39,6 @@ export {
   type V2ListParams,
   type V2DeleteParams,
   type V2CopyParams,
-  type V2FileUploadParams,
   type V2FolderCreateParams,
   type V2MoveParams,
   type ScsEntitiesOffsetPage,

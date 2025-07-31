@@ -47,7 +47,6 @@ import {
 import * as CrewpapersAPI from 'bluestaq@unified-data-library/resources/air-operations/crewpapers';
 import {
   CrewpaperUnpublishParams,
-  CrewpaperUploadPdfParams,
   Crewpapers,
 } from 'bluestaq@unified-data-library/resources/air-operations/crewpapers';
 import * as DiplomaticClearanceAPI from 'bluestaq@unified-data-library/resources/air-operations/diplomatic-clearance';
@@ -122,11 +121,7 @@ export declare namespace AirOperations {
     type AirspaceControlOrderUnvalidatedPublishParams as AirspaceControlOrderUnvalidatedPublishParams,
   };
 
-  export {
-    Crewpapers as Crewpapers,
-    type CrewpaperUnpublishParams as CrewpaperUnpublishParams,
-    type CrewpaperUploadPdfParams as CrewpaperUploadPdfParams,
-  };
+  export { Crewpapers as Crewpapers, type CrewpaperUnpublishParams as CrewpaperUnpublishParams };
 
   export {
     DiplomaticClearance as DiplomaticClearance,

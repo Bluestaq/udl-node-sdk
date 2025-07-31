@@ -119,7 +119,7 @@ Methods:
 Methods:
 
 - <code title="post /udl/crewpapers/unpublish">client.airOperations.crewpapers.<a href="./src/resources/air-operations/crewpapers.ts">unpublish</a>({ ...params }) -> void</code>
-- <code title="post /filedrop/crewpapers">client.airOperations.crewpapers.<a href="./src/resources/air-operations/crewpapers.ts">uploadPdf</a>({ ...params }) -> void</code>
+- <code title="post /filedrop/crewpapers">client.airOperations.crewpapers.<a href="./src/resources/air-operations/crewpapers.ts">uploadPdf</a>(body, { ...params }) -> void</code>
 
 ## DiplomaticClearance
 
@@ -734,7 +734,7 @@ Methods:
 - <code title="get /udl/conjunction/queryhelp">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">queryhelp</a>() -> ConjunctionQueryhelpResponse</code>
 - <code title="get /udl/conjunction/tuple">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">tuple</a>({ ...params }) -> ConjunctionTupleResponse</code>
 - <code title="post /filedrop/udl-conjunction">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
-- <code title="post /filedrop/cdms">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">uploadConjunctionDataMessage</a>({ ...params }) -> void</code>
+- <code title="post /filedrop/cdms">client.conjunctions.<a href="./src/resources/conjunctions/conjunctions.ts">uploadConjunctionDataMessage</a>(body, { ...params }) -> void</code>
 
 ## History
 
@@ -4387,7 +4387,7 @@ Methods:
 - <code title="post /scs/copy">client.scs.<a href="./src/resources/scs/scs.ts">copy</a>({ ...params }) -> string</code>
 - <code title="post /scs/download">client.scs.<a href="./src/resources/scs/scs.ts">download</a>([ ...body ]) -> Response</code>
 - <code title="get /scs/download">client.scs.<a href="./src/resources/scs/scs.ts">fileDownload</a>({ ...params }) -> Response</code>
-- <code title="post /scs/file">client.scs.<a href="./src/resources/scs/scs.ts">fileUpload</a>({ ...params }) -> string</code>
+- <code title="post /scs/file">client.scs.<a href="./src/resources/scs/scs.ts">fileUpload</a>(body, { ...params }) -> string</code>
 - <code title="put /scs/move">client.scs.<a href="./src/resources/scs/scs.ts">move</a>({ ...params }) -> string</code>
 - <code title="put /scs/rename">client.scs.<a href="./src/resources/scs/scs.ts">rename</a>({ ...params }) -> void</code>
 - <code title="post /scs/search">client.scs.<a href="./src/resources/scs/scs.ts">search</a>({ ...params }) -> ScSearchResponse</code>
@@ -4453,7 +4453,7 @@ Types:
 
 Methods:
 
-- <code title="post /scs/path">client.scs.paths.<a href="./src/resources/scs/paths.ts">create</a>({ ...params }) -> string</code>
+- <code title="post /scs/path">client.scs.paths.<a href="./src/resources/scs/paths.ts">create</a>(body, { ...params }) -> string</code>
 
 ## V2
 
@@ -4468,7 +4468,7 @@ Methods:
 - <code title="get /scs/v2/list">client.scs.v2.<a href="./src/resources/scs/v2.ts">list</a>({ ...params }) -> ScsEntitiesOffsetPage</code>
 - <code title="delete /scs/v2/delete">client.scs.v2.<a href="./src/resources/scs/v2.ts">delete</a>({ ...params }) -> void</code>
 - <code title="post /scs/v2/copy">client.scs.v2.<a href="./src/resources/scs/v2.ts">copy</a>({ ...params }) -> void</code>
-- <code title="post /scs/v2/file">client.scs.v2.<a href="./src/resources/scs/v2.ts">fileUpload</a>({ ...params }) -> void</code>
+- <code title="post /scs/v2/file">client.scs.v2.<a href="./src/resources/scs/v2.ts">fileUpload</a>(body, { ...params }) -> void</code>
 - <code title="post /scs/v2/folder">client.scs.v2.<a href="./src/resources/scs/v2.ts">folderCreate</a>({ ...params }) -> void</code>
 - <code title="put /scs/v2/move">client.scs.v2.<a href="./src/resources/scs/v2.ts">move</a>({ ...params }) -> void</code>
 

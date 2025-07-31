@@ -86,12 +86,9 @@ describe('resource scs', () => {
   });
 
   test('fileUpload: only required params', async () => {
-    const responsePromise = client.scs.fileUpload({
-      classificationMarking: 'classificationMarking',
-      fileName: 'fileName',
-      path: 'path',
-      body: await toFile(Buffer.from('# my file contents'), 'README.md'),
-    });
+    const responsePromise = client.scs.fileUpload(
+      await toFile(Buffer.from('# my file contents'), 'README.md'),
+    );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -102,17 +99,19 @@ describe('resource scs', () => {
   });
 
   test('fileUpload: required and optional params', async () => {
-    const response = await client.scs.fileUpload({
-      classificationMarking: 'classificationMarking',
-      fileName: 'fileName',
-      path: 'path',
-      body: await toFile(Buffer.from('# my file contents'), 'README.md'),
-      deleteAfter: 'deleteAfter',
-      description: 'description',
-      overwrite: true,
-      sendNotification: true,
-      tags: 'tags',
-    });
+    const response = await client.scs.fileUpload(
+      await toFile(Buffer.from('# my file contents'), 'README.md'),
+      {
+        classificationMarking: 'classificationMarking',
+        fileName: 'fileName',
+        path: 'path',
+        deleteAfter: 'deleteAfter',
+        description: 'description',
+        overwrite: true,
+        sendNotification: true,
+        tags: 'tags',
+      },
+    );
   });
 
   test('move: only required params', async () => {

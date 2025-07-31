@@ -54,7 +54,7 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
-  const body = args as any;
+  const { body, ...body } = args as any;
   const response = await client.airOperations.crewpapers.uploadPdf(body).asResponse();
   return asTextContentResult(await response.text());
 };
