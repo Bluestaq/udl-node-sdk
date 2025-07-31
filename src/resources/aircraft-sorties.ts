@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as AircraftSortieAPI from 'bluestaq@unified-data-library/resources/air-operations/aircraft-sortie';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
 import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
@@ -22,7 +22,7 @@ export class AircraftSorties extends APIResource {
     id: string,
     query: AircraftSortyRetrieveParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AircraftSortieAPI.AircraftsortieFull> {
+  ): APIPromise<Shared.AircraftsortieFull> {
     return this._client.get(path`/udl/aircraftsortie/${id}`, { query, ...options });
   }
 
@@ -141,7 +141,7 @@ export namespace AircraftSortyQueryhelpResponse {
   }
 }
 
-export type AircraftSortyTupleResponse = Array<AircraftSortieAPI.AircraftsortieFull>;
+export type AircraftSortyTupleResponse = Array<Shared.AircraftsortieFull>;
 
 export interface AircraftSortyRetrieveParams {
   firstResult?: number;

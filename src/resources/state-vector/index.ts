@@ -16,7 +16,6 @@ export {
 export {
   StateVector,
   type StateVectorAbridged,
-  type StateVectorFull,
   type StateVectorIngest,
   type StateVectorCountResponse,
   type StateVectorQueryhelpResponse,
@@ -28,6 +27,5 @@ export {
   type StateVectorGetParams,
   type StateVectorTupleParams,
   type StateVectorUnvalidatedPublishParams,
-  type StateVectorFullsOffsetPage,
   type StateVectorAbridgedsOffsetPage,
 } from './state-vector';

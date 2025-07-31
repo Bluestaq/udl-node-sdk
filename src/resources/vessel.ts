@@ -2,6 +2,7 @@
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
 import * as EntitiesAPI from 'bluestaq@unified-data-library/resources/entities';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -458,7 +459,7 @@ export interface VesselGetResponse {
    * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
    * entity can have an operating unit, a location (if terrestrial), and statuses.
    */
-  entity?: EntitiesAPI.EntityFull;
+  entity?: Shared.EntityFull;
 
   /**
    * The date this vessel was first seen.
@@ -751,7 +752,7 @@ export namespace VesselTupleResponse {
      * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
      * entity can have an operating unit, a location (if terrestrial), and statuses.
      */
-    entity?: EntitiesAPI.EntityFull;
+    entity?: Shared.EntityFull;
 
     /**
      * The date this vessel was first seen.

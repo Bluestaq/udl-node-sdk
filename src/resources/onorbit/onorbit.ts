@@ -11,7 +11,6 @@ import {
   AntennaDetails,
   AntennaDetailsAbridged,
   AntennaDetailsAbridgedsOffsetPage,
-  AntennaDetailsFull,
 } from 'bluestaq@unified-data-library/resources/onorbit/antenna-details';
 import * as EoObservationsAPI from 'bluestaq@unified-data-library/resources/observations/eo-observations/eo-observations';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
@@ -1844,7 +1843,6 @@ export declare namespace Onorbit {
   export {
     AntennaDetails as AntennaDetails,
     type AntennaDetailsAbridged as AntennaDetailsAbridged,
-    type AntennaDetailsFull as AntennaDetailsFull,
     type AntennaDetailsAbridgedsOffsetPage as AntennaDetailsAbridgedsOffsetPage,
     type AntennaDetailCreateParams as AntennaDetailCreateParams,
     type AntennaDetailRetrieveParams as AntennaDetailRetrieveParams,

@@ -1,8 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as EnginesAPI from 'bluestaq@unified-data-library/resources/engines';
-import * as OrganizationAPI from 'bluestaq@unified-data-library/resources/organization';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -544,7 +543,7 @@ export namespace LaunchVehicleGetResponse {
      * etc. An organization may have parent and child organizations as well as link to
      * a former organization if this org previously existed as another organization.
      */
-    manufacturerOrg?: OrganizationAPI.OrganizationFull;
+    manufacturerOrg?: Shared.OrganizationFull;
 
     /**
      * ID of the organization that manufactures the launch vehicle.
@@ -764,7 +763,7 @@ export namespace LaunchVehicleGetResponse {
      * Known launch vehicle engines and their performance characteristics and limits. A
      * launch vehicle has 1 to many engines per stage.
      */
-    engine?: EnginesAPI.Engine;
+    engine?: Shared.Engine;
 
     /**
      * Stage length in meters.
@@ -1272,7 +1271,7 @@ export namespace LaunchVehicleTupleResponse {
        * etc. An organization may have parent and child organizations as well as link to
        * a former organization if this org previously existed as another organization.
        */
-      manufacturerOrg?: OrganizationAPI.OrganizationFull;
+      manufacturerOrg?: Shared.OrganizationFull;
 
       /**
        * ID of the organization that manufactures the launch vehicle.
@@ -1492,7 +1491,7 @@ export namespace LaunchVehicleTupleResponse {
        * Known launch vehicle engines and their performance characteristics and limits. A
        * launch vehicle has 1 to many engines per stage.
        */
-      engine?: EnginesAPI.Engine;
+      engine?: Shared.Engine;
 
       /**
        * Stage length in meters.

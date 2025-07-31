@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as AttitudeDataAPI from 'bluestaq@unified-data-library/resources/attitude-data';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
 import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
@@ -71,7 +71,7 @@ export class History extends APIResource {
   }
 }
 
-export type HistoryRetrieveResponse = Array<AttitudeDataAPI.AttitudedataFull>;
+export type HistoryRetrieveResponse = Array<Shared.AttitudedataFull>;
 
 export type HistoryCountResponse = string;
 

@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as AirfieldStatusAPI from 'bluestaq@unified-data-library/resources/airfield-status/airfield-status';
-import { AirfieldstatusFullsOffsetPage } from 'bluestaq@unified-data-library/resources/airfield-status/airfield-status';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
+import { AirfieldstatusFullsOffsetPage } from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -30,12 +30,11 @@ export class History extends APIResource {
   list(
     query: HistoryListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<AirfieldstatusFullsOffsetPage, AirfieldStatusAPI.AirfieldstatusFull> {
-    return this._client.getAPIList(
-      '/udl/airfieldstatus/history',
-      OffsetPage<AirfieldStatusAPI.AirfieldstatusFull>,
-      { query, ...options },
-    );
+  ): PagePromise<AirfieldstatusFullsOffsetPage, Shared.AirfieldstatusFull> {
+    return this._client.getAPIList('/udl/airfieldstatus/history', OffsetPage<Shared.AirfieldstatusFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**

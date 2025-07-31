@@ -1,14 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import * as HistoryAPI from 'bluestaq@unified-data-library/resources/onorbitthrusterstatus/history';
 import {
   History,
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  OnorbitthrusterstatusFull,
-  OnorbitthrusterstatusFullsOffsetPage,
 } from 'bluestaq@unified-data-library/resources/onorbitthrusterstatus/history';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
@@ -159,7 +158,7 @@ export class Onorbitthrusterstatus extends APIResource {
     id: string,
     query: OnorbitthrusterstatusGetParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<HistoryAPI.OnorbitthrusterstatusFull> {
+  ): APIPromise<Shared.OnorbitthrusterstatusFull> {
     return this._client.get(path`/udl/onorbitthrusterstatus/${id}`, { query, ...options });
   }
 
@@ -412,7 +411,7 @@ export namespace OnorbitthrusterstatusQueryhelpResponse {
   }
 }
 
-export type OnorbitthrusterstatusTupleResponse = Array<HistoryAPI.OnorbitthrusterstatusFull>;
+export type OnorbitthrusterstatusTupleResponse = Array<Shared.OnorbitthrusterstatusFull>;
 
 export interface OnorbitthrusterstatusCreateParams {
   /**
@@ -776,9 +775,7 @@ export declare namespace Onorbitthrusterstatus {
 
   export {
     History as History,
-    type OnorbitthrusterstatusFull as OnorbitthrusterstatusFull,
     type HistoryCountResponse as HistoryCountResponse,
-    type OnorbitthrusterstatusFullsOffsetPage as OnorbitthrusterstatusFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryCountParams as HistoryCountParams,
   };

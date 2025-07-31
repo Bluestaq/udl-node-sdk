@@ -3,7 +3,6 @@
 export {
   Conjunctions,
   type ConjunctionAbridged,
-  type ConjunctionFull,
   type ConjunctionCountResponse,
   type ConjunctionGetHistoryResponse,
   type ConjunctionQueryhelpResponse,

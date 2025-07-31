@@ -2,6 +2,7 @@
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
 import * as EnginesAPI from 'bluestaq@unified-data-library/resources/engines';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -279,7 +280,7 @@ export interface OnorbitthrusterGetResponse {
    * Known launch vehicle engines and their performance characteristics and limits. A
    * launch vehicle has 1 to many engines per stage.
    */
-  engine?: EnginesAPI.Engine;
+  engine?: Shared.Engine;
 
   /**
    * Originating system or organization which produced the data, if different from

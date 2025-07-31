@@ -1,12 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as AntennasAPI from 'bluestaq@unified-data-library/resources/antennas';
-import * as BatteriesAPI from 'bluestaq@unified-data-library/resources/batteries';
-import * as EnginesAPI from 'bluestaq@unified-data-library/resources/engines';
 import * as LocationAPI from 'bluestaq@unified-data-library/resources/location';
-import * as OrganizationAPI from 'bluestaq@unified-data-library/resources/organization';
-import * as SolarArrayDetailsAPI from 'bluestaq@unified-data-library/resources/solar-array-details';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import * as CalibrationAPI from 'bluestaq@unified-data-library/resources/sensor/calibration/calibration';
 import {
   Calibration,
@@ -2071,7 +2067,7 @@ export namespace SensorGetResponse {
      * Model representation of a location, which is a specific fixed point on the earth
      * and is used to denote the locations of fixed sensors, operating units, etc.
      */
-    location?: LocationAPI.LocationFull;
+    location?: Shared.LocationFull;
 
     /**
      * Model object representing on-orbit objects or satellites in the system.
@@ -2383,7 +2379,7 @@ export namespace SensorGetResponse {
          * antennas. A spacecraft may have multiple antennas and each antenna can have
          * multiple 'details' records compiled by different sources.
          */
-        antenna?: AntennasAPI.AntennaFull;
+        antenna?: Shared.AntennaFull;
 
         /**
          * Time the row was created in the database, auto-populated by the system.
@@ -2469,7 +2465,7 @@ export namespace SensorGetResponse {
         /**
          * Model representation of specific spacecraft battery types.
          */
-        battery?: BatteriesAPI.BatteryFull;
+        battery?: Shared.BatteryFull;
 
         /**
          * Time the row was created in the database, auto-populated by the system.
@@ -2970,7 +2966,7 @@ export namespace SensorGetResponse {
            * organization, ignored on create/update. These details must be created separately
            * via the /udl/solararraydetails operations.
            */
-          solarArrayDetails?: Array<SolarArrayDetailsAPI.SolarArrayDetailsFull>;
+          solarArrayDetails?: Array<Shared.SolarArrayDetailsFull>;
 
           /**
            * Time the row was last updated in the database, auto-populated by the system.
@@ -3044,7 +3040,7 @@ export namespace SensorGetResponse {
          * Known launch vehicle engines and their performance characteristics and limits. A
          * launch vehicle has 1 to many engines per stage.
          */
-        engine?: EnginesAPI.Engine;
+        engine?: Shared.Engine;
 
         /**
          * Originating system or organization which produced the data, if different from
@@ -3426,7 +3422,7 @@ export namespace SensorGetResponse {
        * Model representation of a location, which is a specific fixed point on the earth
        * and is used to denote the locations of fixed sensors, operating units, etc.
        */
-      location?: LocationAPI.LocationFull;
+      location?: Shared.LocationFull;
 
       /**
        * Location name for the coordinates.
@@ -3514,7 +3510,7 @@ export namespace SensorGetResponse {
        * etc. An organization may have parent and child organizations as well as link to
        * a former organization if this org previously existed as another organization.
        */
-      organization?: OrganizationAPI.OrganizationFull;
+      organization?: Shared.OrganizationFull;
 
       /**
        * Originating system or organization which produced the data, if different from
@@ -5596,7 +5592,7 @@ export namespace SensorTupleResponse {
        * Model representation of a location, which is a specific fixed point on the earth
        * and is used to denote the locations of fixed sensors, operating units, etc.
        */
-      location?: LocationAPI.LocationFull;
+      location?: Shared.LocationFull;
 
       /**
        * Model object representing on-orbit objects or satellites in the system.
@@ -5908,7 +5904,7 @@ export namespace SensorTupleResponse {
            * antennas. A spacecraft may have multiple antennas and each antenna can have
            * multiple 'details' records compiled by different sources.
            */
-          antenna?: AntennasAPI.AntennaFull;
+          antenna?: Shared.AntennaFull;
 
           /**
            * Time the row was created in the database, auto-populated by the system.
@@ -5994,7 +5990,7 @@ export namespace SensorTupleResponse {
           /**
            * Model representation of specific spacecraft battery types.
            */
-          battery?: BatteriesAPI.BatteryFull;
+          battery?: Shared.BatteryFull;
 
           /**
            * Time the row was created in the database, auto-populated by the system.
@@ -6495,7 +6491,7 @@ export namespace SensorTupleResponse {
              * organization, ignored on create/update. These details must be created separately
              * via the /udl/solararraydetails operations.
              */
-            solarArrayDetails?: Array<SolarArrayDetailsAPI.SolarArrayDetailsFull>;
+            solarArrayDetails?: Array<Shared.SolarArrayDetailsFull>;
 
             /**
              * Time the row was last updated in the database, auto-populated by the system.
@@ -6569,7 +6565,7 @@ export namespace SensorTupleResponse {
            * Known launch vehicle engines and their performance characteristics and limits. A
            * launch vehicle has 1 to many engines per stage.
            */
-          engine?: EnginesAPI.Engine;
+          engine?: Shared.Engine;
 
           /**
            * Originating system or organization which produced the data, if different from
@@ -6951,7 +6947,7 @@ export namespace SensorTupleResponse {
          * Model representation of a location, which is a specific fixed point on the earth
          * and is used to denote the locations of fixed sensors, operating units, etc.
          */
-        location?: LocationAPI.LocationFull;
+        location?: Shared.LocationFull;
 
         /**
          * Location name for the coordinates.
@@ -7039,7 +7035,7 @@ export namespace SensorTupleResponse {
          * etc. An organization may have parent and child organizations as well as link to
          * a former organization if this org previously existed as another organization.
          */
-        organization?: OrganizationAPI.OrganizationFull;
+        organization?: Shared.OrganizationFull;
 
         /**
          * Originating system or organization which produced the data, if different from

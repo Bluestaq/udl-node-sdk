@@ -2,6 +2,7 @@
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
 import * as AntennasAPI from 'bluestaq@unified-data-library/resources/antennas';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -258,7 +259,7 @@ export interface OnorbitantennaGetResponse {
    * antennas. A spacecraft may have multiple antennas and each antenna can have
    * multiple 'details' records compiled by different sources.
    */
-  antenna?: AntennasAPI.AntennaFull;
+  antenna?: Shared.AntennaFull;
 
   /**
    * Time the row was created in the database, auto-populated by the system.

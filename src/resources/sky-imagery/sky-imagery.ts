@@ -12,7 +12,6 @@ import {
   HistoryListResponse,
   HistoryListResponsesOffsetPage,
 } from 'bluestaq@unified-data-library/resources/sky-imagery/history';
-import * as EoObservationsHistoryAPI from 'bluestaq@unified-data-library/resources/observations/eo-observations/history';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -542,7 +541,7 @@ export interface SkyImageryGetResponse {
   /**
    * Collection of linked EOObservations.
    */
-  eoObservations?: Array<EoObservationsHistoryAPI.EoObservationFull>;
+  eoObservations?: Array<Shared.EoObservationFull>;
 
   /**
    * End time of the exposure, in ISO 8601 UTC format with microsecond precision.
@@ -917,7 +916,7 @@ export namespace SkyImageryTupleResponse {
     /**
      * Collection of linked EOObservations.
      */
-    eoObservations?: Array<EoObservationsHistoryAPI.EoObservationFull>;
+    eoObservations?: Array<Shared.EoObservationFull>;
 
     /**
      * End time of the exposure, in ISO 8601 UTC format with microsecond precision.

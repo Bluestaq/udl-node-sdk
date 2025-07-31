@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import * as StateVectorAPI from 'bluestaq@unified-data-library/resources/state-vector/state-vector';
 import { StateVectorAbridgedsOffsetPage } from 'bluestaq@unified-data-library/resources/state-vector/state-vector';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
@@ -68,7 +69,7 @@ export class Current extends APIResource {
   }
 }
 
-export type CurrentTupleResponse = Array<StateVectorAPI.StateVectorFull>;
+export type CurrentTupleResponse = Array<Shared.StateVectorFull>;
 
 export interface CurrentListParams extends OffsetPageParams {}
 

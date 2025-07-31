@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as ChannelsAPI from 'bluestaq@unified-data-library/resources/channels';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -351,7 +351,7 @@ export interface TransponderGetResponse {
   /**
    * Collection of Channels for this Transponder.
    */
-  channels?: Array<ChannelsAPI.ChannelFull>;
+  channels?: Array<Shared.ChannelFull>;
 
   /**
    * Time the row was created in the database, auto-populated by the system.
@@ -548,7 +548,7 @@ export namespace TransponderTupleResponse {
     /**
      * Collection of Channels for this Transponder.
      */
-    channels?: Array<ChannelsAPI.ChannelFull>;
+    channels?: Array<Shared.ChannelFull>;
 
     /**
      * Time the row was created in the database, auto-populated by the system.

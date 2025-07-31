@@ -1,11 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as AntennasAPI from 'bluestaq@unified-data-library/resources/antennas';
-import * as BatteriesAPI from 'bluestaq@unified-data-library/resources/batteries';
-import * as EnginesAPI from 'bluestaq@unified-data-library/resources/engines';
-import * as EntitiesAPI from 'bluestaq@unified-data-library/resources/entities';
-import * as SolarArrayDetailsAPI from 'bluestaq@unified-data-library/resources/solar-array-details';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -1496,7 +1492,7 @@ export namespace SeradataSpacecraftDetailGetResponse {
        * antennas. A spacecraft may have multiple antennas and each antenna can have
        * multiple 'details' records compiled by different sources.
        */
-      antenna?: AntennasAPI.AntennaFull;
+      antenna?: Shared.AntennaFull;
 
       /**
        * Time the row was created in the database, auto-populated by the system.
@@ -1582,7 +1578,7 @@ export namespace SeradataSpacecraftDetailGetResponse {
       /**
        * Model representation of specific spacecraft battery types.
        */
-      battery?: BatteriesAPI.BatteryFull;
+      battery?: Shared.BatteryFull;
 
       /**
        * Time the row was created in the database, auto-populated by the system.
@@ -2083,7 +2079,7 @@ export namespace SeradataSpacecraftDetailGetResponse {
          * organization, ignored on create/update. These details must be created separately
          * via the /udl/solararraydetails operations.
          */
-        solarArrayDetails?: Array<SolarArrayDetailsAPI.SolarArrayDetailsFull>;
+        solarArrayDetails?: Array<Shared.SolarArrayDetailsFull>;
 
         /**
          * Time the row was last updated in the database, auto-populated by the system.
@@ -2157,7 +2153,7 @@ export namespace SeradataSpacecraftDetailGetResponse {
        * Known launch vehicle engines and their performance characteristics and limits. A
        * launch vehicle has 1 to many engines per stage.
        */
-      engine?: EnginesAPI.Engine;
+      engine?: Shared.Engine;
 
       /**
        * Originating system or organization which produced the data, if different from
@@ -2261,7 +2257,7 @@ export namespace SeradataSpacecraftDetailGetResponse {
      * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
      * entity can have an operating unit, a location (if terrestrial), and statuses.
      */
-    entity?: EntitiesAPI.EntityFull;
+    entity?: Shared.EntityFull;
 
     /**
      * Frequency band, e.g. Gamma.
@@ -4185,7 +4181,7 @@ export namespace SeradataSpacecraftDetailTupleResponse {
          * antennas. A spacecraft may have multiple antennas and each antenna can have
          * multiple 'details' records compiled by different sources.
          */
-        antenna?: AntennasAPI.AntennaFull;
+        antenna?: Shared.AntennaFull;
 
         /**
          * Time the row was created in the database, auto-populated by the system.
@@ -4271,7 +4267,7 @@ export namespace SeradataSpacecraftDetailTupleResponse {
         /**
          * Model representation of specific spacecraft battery types.
          */
-        battery?: BatteriesAPI.BatteryFull;
+        battery?: Shared.BatteryFull;
 
         /**
          * Time the row was created in the database, auto-populated by the system.
@@ -4772,7 +4768,7 @@ export namespace SeradataSpacecraftDetailTupleResponse {
            * organization, ignored on create/update. These details must be created separately
            * via the /udl/solararraydetails operations.
            */
-          solarArrayDetails?: Array<SolarArrayDetailsAPI.SolarArrayDetailsFull>;
+          solarArrayDetails?: Array<Shared.SolarArrayDetailsFull>;
 
           /**
            * Time the row was last updated in the database, auto-populated by the system.
@@ -4846,7 +4842,7 @@ export namespace SeradataSpacecraftDetailTupleResponse {
          * Known launch vehicle engines and their performance characteristics and limits. A
          * launch vehicle has 1 to many engines per stage.
          */
-        engine?: EnginesAPI.Engine;
+        engine?: Shared.Engine;
 
         /**
          * Originating system or organization which produced the data, if different from
@@ -4950,7 +4946,7 @@ export namespace SeradataSpacecraftDetailTupleResponse {
        * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
        * entity can have an operating unit, a location (if terrestrial), and statuses.
        */
-      entity?: EntitiesAPI.EntityFull;
+      entity?: Shared.EntityFull;
 
       /**
        * Frequency band, e.g. Gamma.

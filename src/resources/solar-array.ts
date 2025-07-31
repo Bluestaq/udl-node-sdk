@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as SolarArrayDetailsAPI from 'bluestaq@unified-data-library/resources/solar-array-details';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -307,7 +307,7 @@ export interface SolarArrayGetResponse {
    * organization, ignored on create/update. These details must be created separately
    * via the /udl/solararraydetails operations.
    */
-  solarArrayDetails?: Array<SolarArrayDetailsAPI.SolarArrayDetailsFull>;
+  solarArrayDetails?: Array<Shared.SolarArrayDetailsFull>;
 
   /**
    * Time the row was last updated in the database, auto-populated by the system.
@@ -449,7 +449,7 @@ export namespace SolarArrayTupleResponse {
      * organization, ignored on create/update. These details must be created separately
      * via the /udl/solararraydetails operations.
      */
-    solarArrayDetails?: Array<SolarArrayDetailsAPI.SolarArrayDetailsFull>;
+    solarArrayDetails?: Array<Shared.SolarArrayDetailsFull>;
 
     /**
      * Time the row was last updated in the database, auto-populated by the system.

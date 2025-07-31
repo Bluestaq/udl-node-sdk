@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import * as DiplomaticClearanceAPI from 'bluestaq@unified-data-library/resources/air-operations/diplomatic-clearance';
 import { DiplomaticclearanceAbridgedsOffsetPage } from 'bluestaq@unified-data-library/resources/air-operations/diplomatic-clearance';
 import * as CountryAPI from 'bluestaq@unified-data-library/resources/diplomatic-clearance/country';
@@ -81,7 +82,7 @@ export class DiplomaticClearance extends APIResource {
     id: string,
     query: DiplomaticClearanceRetrieveParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<DiplomaticClearanceAPI.DiplomaticclearanceFull> {
+  ): APIPromise<Shared.DiplomaticclearanceFull> {
     return this._client.get(path`/udl/diplomaticclearance/${id}`, { query, ...options });
   }
 
@@ -305,7 +306,7 @@ export namespace DiplomaticClearanceQueryhelpResponse {
   }
 }
 
-export type DiplomaticClearanceTupleResponse = Array<DiplomaticClearanceAPI.DiplomaticclearanceFull>;
+export type DiplomaticClearanceTupleResponse = Array<Shared.DiplomaticclearanceFull>;
 
 export interface DiplomaticClearanceCreateParams {
   /**

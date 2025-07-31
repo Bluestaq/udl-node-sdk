@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import * as HistoryAPI from 'bluestaq@unified-data-library/resources/notification/history';
 import {
   History,
@@ -8,8 +9,6 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  NotificationFull,
-  NotificationFullsOffsetPage,
 } from 'bluestaq@unified-data-library/resources/notification/history';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
@@ -151,7 +150,7 @@ export class Notification extends APIResource {
     id: string,
     query: NotificationGetParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<HistoryAPI.NotificationFull> {
+  ): APIPromise<Shared.NotificationFull> {
     return this._client.get(path`/udl/notification/${id}`, { query, ...options });
   }
 
@@ -340,7 +339,7 @@ export namespace NotificationQueryhelpResponse {
   }
 }
 
-export type NotificationTupleResponse = Array<HistoryAPI.NotificationFull>;
+export type NotificationTupleResponse = Array<Shared.NotificationFull>;
 
 export interface NotificationCreateParams {
   /**
@@ -523,9 +522,7 @@ export declare namespace Notification {
 
   export {
     History as History,
-    type NotificationFull as NotificationFull,
     type HistoryCountResponse as HistoryCountResponse,
-    type NotificationFullsOffsetPage as NotificationFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
