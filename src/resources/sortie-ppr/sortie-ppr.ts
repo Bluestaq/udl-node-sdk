@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import * as HistoryAPI from 'bluestaq@unified-data-library/resources/sortie-ppr/history';
 import {
   History,
@@ -8,8 +9,6 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  SortiePprFull,
-  SortiePprFullsOffsetPage,
 } from 'bluestaq@unified-data-library/resources/sortie-ppr/history';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
@@ -178,7 +177,7 @@ export class SortiePpr extends APIResource {
     id: string,
     query: SortiePprGetParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<HistoryAPI.SortiePprFull> {
+  ): APIPromise<Shared.SortiePprFull> {
     return this._client.get(path`/udl/sortieppr/${id}`, { query, ...options });
   }
 
@@ -429,7 +428,7 @@ export namespace SortiePprQueryhelpResponse {
   }
 }
 
-export type SortiePprTupleResponse = Array<HistoryAPI.SortiePprFull>;
+export type SortiePprTupleResponse = Array<Shared.SortiePprFull>;
 
 export interface SortiePprCreateParams {
   /**
@@ -894,9 +893,7 @@ export declare namespace SortiePpr {
 
   export {
     History as History,
-    type SortiePprFull as SortiePprFull,
     type HistoryCountResponse as HistoryCountResponse,
-    type SortiePprFullsOffsetPage as SortiePprFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

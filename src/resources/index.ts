@@ -36,7 +36,6 @@ export {
 export {
   AirLoadPlans,
   type AirloadplanAbridged,
-  type AirloadplanFull,
   type AirLoadPlanCountResponse,
   type AirLoadPlanQueryhelpResponse,
   type AirLoadPlanTupleResponse,
@@ -65,7 +64,6 @@ export {
 export {
   Aircraft,
   type AircraftAbridged,
-  type AircraftFull,
   type AircraftCountResponse,
   type AircraftQueryhelpResponse,
   type AircraftTupleQueryResponse,
@@ -88,7 +86,6 @@ export {
 export {
   AircraftStatusRemarks,
   type AircraftstatusremarkAbridged,
-  type AircraftstatusremarkFull,
   type AircraftStatusRemarkCountResponse,
   type AircraftStatusRemarkQueryhelpResponse,
   type AircraftStatusRemarkTupleResponse,
@@ -117,7 +114,6 @@ export {
 export {
   AirfieldSlotConsumptions,
   type AirfieldslotconsumptionAbridged,
-  type AirfieldslotconsumptionFull,
   type AirfieldSlotConsumptionCountResponse,
   type AirfieldSlotConsumptionQueryhelpResponse,
   type AirfieldSlotConsumptionTupleResponse,
@@ -132,7 +128,6 @@ export {
 export {
   AirfieldSlots,
   type AirfieldslotAbridged,
-  type AirfieldslotFull,
   type AirfieldSlotCountResponse,
   type AirfieldSlotQueryhelpResponse,
   type AirfieldSlotTupleResponse,
@@ -147,7 +142,6 @@ export {
 export {
   AirfieldStatus,
   type AirfieldstatusAbridged,
-  type AirfieldstatusFull,
   type AirfieldStatusCountResponse,
   type AirfieldStatusQueryhelpResponse,
   type AirfieldStatusTupleResponse,
@@ -157,13 +151,11 @@ export {
   type AirfieldStatusListParams,
   type AirfieldStatusCountParams,
   type AirfieldStatusTupleParams,
-  type AirfieldstatusFullsOffsetPage,
   type AirfieldstatusAbridgedsOffsetPage,
 } from './airfield-status/airfield-status';
 export {
   Airfields,
   type AirfieldAbridged,
-  type AirfieldFull,
   type AirfieldCountResponse,
   type AirfieldQueryhelpResponse,
   type AirfieldTupleResponse,
@@ -179,7 +171,6 @@ export { AirloadPlans, type AirloadPlanUpdateParams } from './airload-plans';
 export {
   AirspaceControlOrders,
   type AirspacecontrolorderAbridged,
-  type AirspacecontrolorderFull,
   type AirspaceControlOrderCountResponse,
   type AirspaceControlOrderQueryHelpResponse,
   type AirspaceControlOrderTupleResponse,
@@ -194,7 +185,6 @@ export {
 export {
   AnalyticImagery,
   type AnalyticImageryAbridged,
-  type AnalyticImageryFull,
   type AnalyticImageryCountResponse,
   type AnalyticImageryHistoryResponse,
   type AnalyticImageryHistoryCountResponse,
@@ -214,7 +204,6 @@ export {
 export {
   Antennas,
   type AntennaAbridged,
-  type AntennaFull,
   type AntennaCountResponse,
   type AntennaQueryhelpResponse,
   type AntennaTupleResponse,
@@ -228,7 +217,6 @@ export {
 } from './antennas';
 export {
   AttitudeData,
-  type AttitudedataFull,
   type AttitudeDataQueryHelpResponse,
   type AttitudeDataTupleResponse,
   type AttitudeDataTupleParams,
@@ -266,7 +254,6 @@ export {
 export {
   Batteries,
   type BatteryAbridged,
-  type BatteryFull,
   type BatteryCountResponse,
   type BatteryQueryhelpResponse,
   type BatteryTupleResponse,
@@ -281,7 +268,6 @@ export {
 export {
   Batterydetails,
   type BatterydetailsAbridged,
-  type BatterydetailsFull,
   type BatterydetailCreateParams,
   type BatterydetailRetrieveParams,
   type BatterydetailUpdateParams,
@@ -291,7 +277,6 @@ export {
 export {
   Beam,
   type BeamAbridged,
-  type BeamFull,
   type BeamCountResponse,
   type BeamQueryHelpResponse,
   type BeamTupleResponse,
@@ -306,7 +291,6 @@ export {
 export {
   BeamContours,
   type BeamcontourAbridged,
-  type BeamcontourFull,
   type BeamContourCountResponse,
   type BeamContourQueryHelpResponse,
   type BeamContourTupleResponse,
@@ -322,7 +306,6 @@ export {
 export {
   Buses,
   type BusAbridged,
-  type BusFull,
   type BusCountResponse,
   type BusQueryHelpResponse,
   type BusTupleResponse,
@@ -337,7 +320,6 @@ export {
 export {
   Channels,
   type ChannelAbridged,
-  type ChannelFull,
   type ChannelCountResponse,
   type ChannelQueryhelpResponse,
   type ChannelTupleResponse,
@@ -380,7 +362,6 @@ export {
 export {
   Comm,
   type CommAbridged,
-  type CommFull,
   type CommCountResponse,
   type CommQueryhelpResponse,
   type CommTupleResponse,
@@ -395,7 +376,6 @@ export {
 export {
   Conjunctions,
   type ConjunctionAbridged,
-  type ConjunctionFull,
   type ConjunctionCountResponse,
   type ConjunctionGetHistoryResponse,
   type ConjunctionQueryhelpResponse,
@@ -414,7 +394,6 @@ export { Cots, type CotCreateParams } from './cots';
 export {
   Countries,
   type CountryAbridged,
-  type CountryFull,
   type CountryCountResponse,
   type CountryQueryhelpResponse,
   type CountryTupleResponse,
@@ -429,7 +408,6 @@ export {
 export {
   Crew,
   type CrewAbridged,
-  type CrewFull,
   type CrewCountResponse,
   type CrewQueryhelpResponse,
   type CrewTupleResponse,
@@ -559,7 +537,6 @@ export {
 } from './emitter-geolocation';
 export {
   EngineDetails,
-  type EngineDetailsFull,
   type EngineDetailsAbridged,
   type EngineDetailCreateParams,
   type EngineDetailRetrieveParams,
@@ -569,7 +546,6 @@ export {
 } from './engine-details';
 export {
   Engines,
-  type Engine,
   type EngineAbridged,
   type EngineCountResponse,
   type EngineQueryhelpResponse,
@@ -585,7 +561,6 @@ export {
 export {
   Entities,
   type EntityAbridged,
-  type EntityFull,
   type EntityIngest,
   type EntityCountResponse,
   type EntityGetAllTypesResponse,
@@ -1019,7 +994,6 @@ export {
 } from './link-status/link-status';
 export {
   Location,
-  type LocationFull,
   type LocationIngest,
   type LocationListResponse,
   type LocationCountResponse,
@@ -1387,7 +1361,6 @@ export {
 } from './orbittrack/orbittrack';
 export {
   Organization,
-  type OrganizationFull,
   type OrganizationListResponse,
   type OrganizationCountResponse,
   type OrganizationGetOrganizationCategoriesResponse,
@@ -1406,7 +1379,6 @@ export {
 } from './organization';
 export {
   Organizationdetails,
-  type OrganizationDetailsFull,
   type OrganizationdetailListResponse,
   type OrganizationdetailFindBySourceResponse,
   type OrganizationdetailCreateParams,
@@ -1895,7 +1867,6 @@ export {
 } from './solar-array';
 export {
   SolarArrayDetails,
-  type SolarArrayDetailsFull,
   type SolarArrayDetailListResponse,
   type SolarArrayDetailCreateParams,
   type SolarArrayDetailUpdateParams,
@@ -1967,7 +1938,6 @@ export {
 export {
   StateVector,
   type StateVectorAbridged,
-  type StateVectorFull,
   type StateVectorIngest,
   type StateVectorCountResponse,
   type StateVectorQueryhelpResponse,
@@ -1979,7 +1949,6 @@ export {
   type StateVectorGetParams,
   type StateVectorTupleParams,
   type StateVectorUnvalidatedPublishParams,
-  type StateVectorFullsOffsetPage,
   type StateVectorAbridgedsOffsetPage,
 } from './state-vector/state-vector';
 export {

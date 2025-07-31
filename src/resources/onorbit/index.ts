@@ -3,7 +3,6 @@
 export {
   AntennaDetails,
   type AntennaDetailsAbridged,
-  type AntennaDetailsFull,
   type AntennaDetailCreateParams,
   type AntennaDetailRetrieveParams,
   type AntennaDetailUpdateParams,

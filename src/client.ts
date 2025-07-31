@@ -52,7 +52,6 @@ import {
   AirLoadPlans,
   AirloadplanAbridged,
   AirloadplanAbridgedsOffsetPage,
-  AirloadplanFull,
 } from 'bluestaq@unified-data-library/resources/air-load-plans';
 import {
   Aircraft,
@@ -61,7 +60,6 @@ import {
   AircraftCountParams,
   AircraftCountResponse,
   AircraftCreateParams,
-  AircraftFull,
   AircraftListParams,
   AircraftQueryhelpResponse,
   AircraftRetrieveParams,
@@ -90,7 +88,6 @@ import {
   AircraftStatusRemarks,
   AircraftstatusremarkAbridged,
   AircraftstatusremarkAbridgedsOffsetPage,
-  AircraftstatusremarkFull,
 } from 'bluestaq@unified-data-library/resources/aircraft-status-remarks';
 import {
   AirfieldSlotConsumptionCountParams,
@@ -105,7 +102,6 @@ import {
   AirfieldSlotConsumptions,
   AirfieldslotconsumptionAbridged,
   AirfieldslotconsumptionAbridgedsOffsetPage,
-  AirfieldslotconsumptionFull,
 } from 'bluestaq@unified-data-library/resources/airfield-slot-consumptions';
 import {
   AirfieldSlotCountParams,
@@ -120,7 +116,6 @@ import {
   AirfieldSlots,
   AirfieldslotAbridged,
   AirfieldslotAbridgedsOffsetPage,
-  AirfieldslotFull,
 } from 'bluestaq@unified-data-library/resources/airfield-slots';
 import {
   AirfieldAbridged,
@@ -128,7 +123,6 @@ import {
   AirfieldCountParams,
   AirfieldCountResponse,
   AirfieldCreateParams,
-  AirfieldFull,
   AirfieldListParams,
   AirfieldQueryhelpResponse,
   AirfieldRetrieveParams,
@@ -151,7 +145,6 @@ import {
   AirspaceControlOrders,
   AirspacecontrolorderAbridged,
   AirspacecontrolorderAbridgedsOffsetPage,
-  AirspacecontrolorderFull,
 } from 'bluestaq@unified-data-library/resources/airspace-control-orders';
 import {
   AIsObjectUnvalidatedPublishParams,
@@ -164,7 +157,6 @@ import {
   AnalyticImageryCountParams,
   AnalyticImageryCountResponse,
   AnalyticImageryFileGetParams,
-  AnalyticImageryFull,
   AnalyticImageryHistoryAodrParams,
   AnalyticImageryHistoryCountParams,
   AnalyticImageryHistoryCountResponse,
@@ -183,7 +175,6 @@ import {
   AntennaCountParams,
   AntennaCountResponse,
   AntennaCreateParams,
-  AntennaFull,
   AntennaListParams,
   AntennaQueryhelpResponse,
   AntennaRetrieveParams,
@@ -197,7 +188,6 @@ import {
   AttitudeDataQueryHelpResponse,
   AttitudeDataTupleParams,
   AttitudeDataTupleResponse,
-  AttitudedataFull,
 } from 'bluestaq@unified-data-library/resources/attitude-data';
 import {
   AttitudesetRetrieveParams,
@@ -226,7 +216,6 @@ import {
   BatteryCountParams,
   BatteryCountResponse,
   BatteryCreateParams,
-  BatteryFull,
   BatteryListParams,
   BatteryQueryhelpResponse,
   BatteryRetrieveParams,
@@ -242,7 +231,6 @@ import {
   Batterydetails,
   BatterydetailsAbridged,
   BatterydetailsAbridgedsOffsetPage,
-  BatterydetailsFull,
 } from 'bluestaq@unified-data-library/resources/batterydetails';
 import {
   Beam,
@@ -251,7 +239,6 @@ import {
   BeamCountParams,
   BeamCountResponse,
   BeamCreateParams,
-  BeamFull,
   BeamListParams,
   BeamQueryHelpResponse,
   BeamRetrieveParams,
@@ -273,7 +260,6 @@ import {
   BeamContours,
   BeamcontourAbridged,
   BeamcontourAbridgedsOffsetPage,
-  BeamcontourFull,
 } from 'bluestaq@unified-data-library/resources/beam-contours';
 import {
   BusAbridged,
@@ -281,7 +267,6 @@ import {
   BusCountParams,
   BusCountResponse,
   BusCreateParams,
-  BusFull,
   BusListParams,
   BusQueryHelpResponse,
   BusRetrieveParams,
@@ -296,7 +281,6 @@ import {
   ChannelCountParams,
   ChannelCountResponse,
   ChannelCreateParams,
-  ChannelFull,
   ChannelListParams,
   ChannelQueryhelpResponse,
   ChannelRetrieveParams,
@@ -312,7 +296,6 @@ import {
   CommCountParams,
   CommCountResponse,
   CommCreateParams,
-  CommFull,
   CommListParams,
   CommQueryhelpResponse,
   CommRetrieveParams,
@@ -328,7 +311,6 @@ import {
   CountryCountParams,
   CountryCountResponse,
   CountryCreateParams,
-  CountryFull,
   CountryListParams,
   CountryQueryhelpResponse,
   CountryRetrieveParams,
@@ -343,7 +325,6 @@ import {
   CrewCountParams,
   CrewCountResponse,
   CrewCreateParams,
-  CrewFull,
   CrewListParams,
   CrewQueryhelpResponse,
   CrewRetrieveParams,
@@ -402,10 +383,8 @@ import {
   EngineDetails,
   EngineDetailsAbridged,
   EngineDetailsAbridgedsOffsetPage,
-  EngineDetailsFull,
 } from 'bluestaq@unified-data-library/resources/engine-details';
 import {
-  Engine,
   EngineAbridged,
   EngineAbridgedsOffsetPage,
   EngineCountParams,
@@ -426,7 +405,6 @@ import {
   EntityCountParams,
   EntityCountResponse,
   EntityCreateParams,
-  EntityFull,
   EntityGetAllTypesParams,
   EntityGetAllTypesResponse,
   EntityIngest,
@@ -625,7 +603,6 @@ import {
   LocationCountParams,
   LocationCountResponse,
   LocationCreateParams,
-  LocationFull,
   LocationGetParams,
   LocationIngest,
   LocationListParams,
@@ -829,7 +806,6 @@ import {
   OrganizationCountParams,
   OrganizationCountResponse,
   OrganizationCreateParams,
-  OrganizationFull,
   OrganizationGetOrganizationCategoriesParams,
   OrganizationGetOrganizationCategoriesResponse,
   OrganizationGetOrganizationTypesParams,
@@ -844,7 +820,6 @@ import {
   OrganizationUpdateParams,
 } from 'bluestaq@unified-data-library/resources/organization';
 import {
-  OrganizationDetailsFull,
   OrganizationdetailCreateParams,
   OrganizationdetailFindBySourceParams,
   OrganizationdetailFindBySourceResponse,
@@ -1147,7 +1122,6 @@ import {
   SolarArrayDetailListResponsesOffsetPage,
   SolarArrayDetailUpdateParams,
   SolarArrayDetails,
-  SolarArrayDetailsFull,
 } from 'bluestaq@unified-data-library/resources/solar-array-details';
 import {
   Stage,
@@ -1302,7 +1276,6 @@ import {
   AirfieldStatusUpdateParams,
   AirfieldstatusAbridged,
   AirfieldstatusAbridgedsOffsetPage,
-  AirfieldstatusFull,
 } from 'bluestaq@unified-data-library/resources/airfield-status/airfield-status';
 import {
   AICountParams,
@@ -1366,7 +1339,6 @@ import {
   ConjunctionCountResponse,
   ConjunctionCreateBulkParams,
   ConjunctionCreateUdlParams,
-  ConjunctionFull,
   ConjunctionGetHistoryParams,
   ConjunctionGetHistoryResponse,
   ConjunctionListParams,
@@ -2092,7 +2064,6 @@ import {
   StateVectorCountResponse,
   StateVectorCreateBulkParams,
   StateVectorCreateParams,
-  StateVectorFull,
   StateVectorGetParams,
   StateVectorIngest,
   StateVectorListParams,
@@ -3303,7 +3274,6 @@ export declare namespace Unifieddatalibrary {
   export {
     AirLoadPlans as AirLoadPlans,
     type AirloadplanAbridged as AirloadplanAbridged,
-    type AirloadplanFull as AirloadplanFull,
     type AirLoadPlanCountResponse as AirLoadPlanCountResponse,
     type AirLoadPlanQueryhelpResponse as AirLoadPlanQueryhelpResponse,
     type AirLoadPlanTupleResponse as AirLoadPlanTupleResponse,
@@ -3335,7 +3305,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Aircraft as Aircraft,
     type AircraftAbridged as AircraftAbridged,
-    type AircraftFull as AircraftFull,
     type AircraftCountResponse as AircraftCountResponse,
     type AircraftQueryhelpResponse as AircraftQueryhelpResponse,
     type AircraftTupleQueryResponse as AircraftTupleQueryResponse,
@@ -3360,7 +3329,6 @@ export declare namespace Unifieddatalibrary {
   export {
     AircraftStatusRemarks as AircraftStatusRemarks,
     type AircraftstatusremarkAbridged as AircraftstatusremarkAbridged,
-    type AircraftstatusremarkFull as AircraftstatusremarkFull,
     type AircraftStatusRemarkCountResponse as AircraftStatusRemarkCountResponse,
     type AircraftStatusRemarkQueryhelpResponse as AircraftStatusRemarkQueryhelpResponse,
     type AircraftStatusRemarkTupleResponse as AircraftStatusRemarkTupleResponse,
@@ -3391,7 +3359,6 @@ export declare namespace Unifieddatalibrary {
   export {
     AirfieldSlots as AirfieldSlots,
     type AirfieldslotAbridged as AirfieldslotAbridged,
-    type AirfieldslotFull as AirfieldslotFull,
     type AirfieldSlotCountResponse as AirfieldSlotCountResponse,
     type AirfieldSlotQueryhelpResponse as AirfieldSlotQueryhelpResponse,
     type AirfieldSlotTupleResponse as AirfieldSlotTupleResponse,
@@ -3407,7 +3374,6 @@ export declare namespace Unifieddatalibrary {
   export {
     AirfieldStatus as AirfieldStatus,
     type AirfieldstatusAbridged as AirfieldstatusAbridged,
-    type AirfieldstatusFull as AirfieldstatusFull,
     type AirfieldStatusCountResponse as AirfieldStatusCountResponse,
     type AirfieldStatusQueryhelpResponse as AirfieldStatusQueryhelpResponse,
     type AirfieldStatusTupleResponse as AirfieldStatusTupleResponse,
@@ -3423,7 +3389,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Airfields as Airfields,
     type AirfieldAbridged as AirfieldAbridged,
-    type AirfieldFull as AirfieldFull,
     type AirfieldCountResponse as AirfieldCountResponse,
     type AirfieldQueryhelpResponse as AirfieldQueryhelpResponse,
     type AirfieldTupleResponse as AirfieldTupleResponse,
@@ -3439,7 +3404,6 @@ export declare namespace Unifieddatalibrary {
   export {
     AirfieldSlotConsumptions as AirfieldSlotConsumptions,
     type AirfieldslotconsumptionAbridged as AirfieldslotconsumptionAbridged,
-    type AirfieldslotconsumptionFull as AirfieldslotconsumptionFull,
     type AirfieldSlotConsumptionCountResponse as AirfieldSlotConsumptionCountResponse,
     type AirfieldSlotConsumptionQueryhelpResponse as AirfieldSlotConsumptionQueryhelpResponse,
     type AirfieldSlotConsumptionTupleResponse as AirfieldSlotConsumptionTupleResponse,
@@ -3457,7 +3421,6 @@ export declare namespace Unifieddatalibrary {
   export {
     AirspaceControlOrders as AirspaceControlOrders,
     type AirspacecontrolorderAbridged as AirspacecontrolorderAbridged,
-    type AirspacecontrolorderFull as AirspacecontrolorderFull,
     type AirspaceControlOrderCountResponse as AirspaceControlOrderCountResponse,
     type AirspaceControlOrderQueryHelpResponse as AirspaceControlOrderQueryHelpResponse,
     type AirspaceControlOrderTupleResponse as AirspaceControlOrderTupleResponse,
@@ -3493,7 +3456,6 @@ export declare namespace Unifieddatalibrary {
   export {
     AnalyticImagery as AnalyticImagery,
     type AnalyticImageryAbridged as AnalyticImageryAbridged,
-    type AnalyticImageryFull as AnalyticImageryFull,
     type AnalyticImageryCountResponse as AnalyticImageryCountResponse,
     type AnalyticImageryHistoryResponse as AnalyticImageryHistoryResponse,
     type AnalyticImageryHistoryCountResponse as AnalyticImageryHistoryCountResponse,
@@ -3514,7 +3476,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Antennas as Antennas,
     type AntennaAbridged as AntennaAbridged,
-    type AntennaFull as AntennaFull,
     type AntennaCountResponse as AntennaCountResponse,
     type AntennaQueryhelpResponse as AntennaQueryhelpResponse,
     type AntennaTupleResponse as AntennaTupleResponse,
@@ -3529,7 +3490,6 @@ export declare namespace Unifieddatalibrary {
 
   export {
     AttitudeData as AttitudeData,
-    type AttitudedataFull as AttitudedataFull,
     type AttitudeDataQueryHelpResponse as AttitudeDataQueryHelpResponse,
     type AttitudeDataTupleResponse as AttitudeDataTupleResponse,
     type AttitudeDataTupleParams as AttitudeDataTupleParams,
@@ -3554,7 +3514,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Batteries as Batteries,
     type BatteryAbridged as BatteryAbridged,
-    type BatteryFull as BatteryFull,
     type BatteryCountResponse as BatteryCountResponse,
     type BatteryQueryhelpResponse as BatteryQueryhelpResponse,
     type BatteryTupleResponse as BatteryTupleResponse,
@@ -3570,7 +3529,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Batterydetails as Batterydetails,
     type BatterydetailsAbridged as BatterydetailsAbridged,
-    type BatterydetailsFull as BatterydetailsFull,
     type BatterydetailsAbridgedsOffsetPage as BatterydetailsAbridgedsOffsetPage,
     type BatterydetailCreateParams as BatterydetailCreateParams,
     type BatterydetailRetrieveParams as BatterydetailRetrieveParams,
@@ -3581,7 +3539,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Beam as Beam,
     type BeamAbridged as BeamAbridged,
-    type BeamFull as BeamFull,
     type BeamCountResponse as BeamCountResponse,
     type BeamQueryHelpResponse as BeamQueryHelpResponse,
     type BeamTupleResponse as BeamTupleResponse,
@@ -3597,7 +3554,6 @@ export declare namespace Unifieddatalibrary {
   export {
     BeamContours as BeamContours,
     type BeamcontourAbridged as BeamcontourAbridged,
-    type BeamcontourFull as BeamcontourFull,
     type BeamContourCountResponse as BeamContourCountResponse,
     type BeamContourQueryHelpResponse as BeamContourQueryHelpResponse,
     type BeamContourTupleResponse as BeamContourTupleResponse,
@@ -3614,7 +3570,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Buses as Buses,
     type BusAbridged as BusAbridged,
-    type BusFull as BusFull,
     type BusCountResponse as BusCountResponse,
     type BusQueryHelpResponse as BusQueryHelpResponse,
     type BusTupleResponse as BusTupleResponse,
@@ -3630,7 +3585,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Channels as Channels,
     type ChannelAbridged as ChannelAbridged,
-    type ChannelFull as ChannelFull,
     type ChannelCountResponse as ChannelCountResponse,
     type ChannelQueryhelpResponse as ChannelQueryhelpResponse,
     type ChannelTupleResponse as ChannelTupleResponse,
@@ -3676,7 +3630,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Comm as Comm,
     type CommAbridged as CommAbridged,
-    type CommFull as CommFull,
     type CommCountResponse as CommCountResponse,
     type CommQueryhelpResponse as CommQueryhelpResponse,
     type CommTupleResponse as CommTupleResponse,
@@ -3692,7 +3645,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Conjunctions as Conjunctions,
     type ConjunctionAbridged as ConjunctionAbridged,
-    type ConjunctionFull as ConjunctionFull,
     type ConjunctionCountResponse as ConjunctionCountResponse,
     type ConjunctionGetHistoryResponse as ConjunctionGetHistoryResponse,
     type ConjunctionQueryhelpResponse as ConjunctionQueryhelpResponse,
@@ -3811,7 +3763,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Countries as Countries,
     type CountryAbridged as CountryAbridged,
-    type CountryFull as CountryFull,
     type CountryCountResponse as CountryCountResponse,
     type CountryQueryhelpResponse as CountryQueryhelpResponse,
     type CountryTupleResponse as CountryTupleResponse,
@@ -3827,7 +3778,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Crew as Crew,
     type CrewAbridged as CrewAbridged,
-    type CrewFull as CrewFull,
     type CrewCountResponse as CrewCountResponse,
     type CrewQueryhelpResponse as CrewQueryhelpResponse,
     type CrewTupleResponse as CrewTupleResponse,
@@ -3933,7 +3883,6 @@ export declare namespace Unifieddatalibrary {
 
   export {
     EngineDetails as EngineDetails,
-    type EngineDetailsFull as EngineDetailsFull,
     type EngineDetailsAbridged as EngineDetailsAbridged,
     type EngineDetailsAbridgedsOffsetPage as EngineDetailsAbridgedsOffsetPage,
     type EngineDetailCreateParams as EngineDetailCreateParams,
@@ -3944,7 +3893,6 @@ export declare namespace Unifieddatalibrary {
 
   export {
     Engines as Engines,
-    type Engine as Engine,
     type EngineAbridged as EngineAbridged,
     type EngineCountResponse as EngineCountResponse,
     type EngineQueryhelpResponse as EngineQueryhelpResponse,
@@ -3961,7 +3909,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Entities as Entities,
     type EntityAbridged as EntityAbridged,
-    type EntityFull as EntityFull,
     type EntityIngest as EntityIngest,
     type EntityCountResponse as EntityCountResponse,
     type EntityGetAllTypesResponse as EntityGetAllTypesResponse,
@@ -4390,7 +4337,6 @@ export declare namespace Unifieddatalibrary {
 
   export {
     Location as Location,
-    type LocationFull as LocationFull,
     type LocationIngest as LocationIngest,
     type LocationListResponse as LocationListResponse,
     type LocationCountResponse as LocationCountResponse,
@@ -4785,7 +4731,6 @@ export declare namespace Unifieddatalibrary {
 
   export {
     Organization as Organization,
-    type OrganizationFull as OrganizationFull,
     type OrganizationListResponse as OrganizationListResponse,
     type OrganizationCountResponse as OrganizationCountResponse,
     type OrganizationGetOrganizationCategoriesResponse as OrganizationGetOrganizationCategoriesResponse,
@@ -4805,7 +4750,6 @@ export declare namespace Unifieddatalibrary {
 
   export {
     Organizationdetails as Organizationdetails,
-    type OrganizationDetailsFull as OrganizationDetailsFull,
     type OrganizationdetailListResponse as OrganizationdetailListResponse,
     type OrganizationdetailFindBySourceResponse as OrganizationdetailFindBySourceResponse,
     type OrganizationdetailListResponsesOffsetPage as OrganizationdetailListResponsesOffsetPage,
@@ -5279,7 +5223,6 @@ export declare namespace Unifieddatalibrary {
 
   export {
     SolarArrayDetails as SolarArrayDetails,
-    type SolarArrayDetailsFull as SolarArrayDetailsFull,
     type SolarArrayDetailListResponse as SolarArrayDetailListResponse,
     type SolarArrayDetailListResponsesOffsetPage as SolarArrayDetailListResponsesOffsetPage,
     type SolarArrayDetailCreateParams as SolarArrayDetailCreateParams,
@@ -5356,7 +5299,6 @@ export declare namespace Unifieddatalibrary {
   export {
     StateVector as StateVector,
     type StateVectorAbridged as StateVectorAbridged,
-    type StateVectorFull as StateVectorFull,
     type StateVectorIngest as StateVectorIngest,
     type StateVectorCountResponse as StateVectorCountResponse,
     type StateVectorQueryhelpResponse as StateVectorQueryhelpResponse,
@@ -5640,19 +5582,57 @@ export declare namespace Unifieddatalibrary {
 
   export { ScsViews as ScsViews, type ScsViewRetrieveParams as ScsViewRetrieveParams };
 
+  export type AirTaskingOrderFull = API.AirTaskingOrderFull;
   export type AirTransportMissionFull = API.AirTransportMissionFull;
+  export type AircraftFull = API.AircraftFull;
+  export type AircraftsortieFull = API.AircraftsortieFull;
   export type AircraftstatusFull = API.AircraftstatusFull;
+  export type AircraftstatusremarkFull = API.AircraftstatusremarkFull;
+  export type AirfieldFull = API.AirfieldFull;
+  export type AirfieldslotFull = API.AirfieldslotFull;
+  export type AirfieldslotconsumptionFull = API.AirfieldslotconsumptionFull;
+  export type AirfieldstatusFull = API.AirfieldstatusFull;
+  export type AirloadplanFull = API.AirloadplanFull;
+  export type AirspacecontrolorderFull = API.AirspacecontrolorderFull;
   export type AIsFull = API.AIsFull;
+  export type AnalyticImageryFull = API.AnalyticImageryFull;
+  export type AntennaDetailsFull = API.AntennaDetailsFull;
+  export type AntennaFull = API.AntennaFull;
+  export type AttitudedataFull = API.AttitudedataFull;
   export type AttitudesetFull = API.AttitudesetFull;
+  export type BatteryFull = API.BatteryFull;
+  export type BatterydetailsFull = API.BatterydetailsFull;
+  export type BeamFull = API.BeamFull;
+  export type BeamcontourFull = API.BeamcontourFull;
+  export type BusFull = API.BusFull;
+  export type ChannelFull = API.ChannelFull;
   export type CollectRequestFull = API.CollectRequestFull;
   export type CollectResponseFull = API.CollectResponseFull;
+  export type CommFull = API.CommFull;
+  export type ConjunctionFull = API.ConjunctionFull;
+  export type CountryFull = API.CountryFull;
+  export type CrewFull = API.CrewFull;
+  export type DiplomaticclearanceFull = API.DiplomaticclearanceFull;
   export type DriftHistoryAbridged = API.DriftHistoryAbridged;
   export type DriftHistoryFull = API.DriftHistoryFull;
+  export type Engine = API.Engine;
+  export type EngineDetailsFull = API.EngineDetailsFull;
+  export type EntityFull = API.EntityFull;
+  export type EoObservationFull = API.EoObservationFull;
   export type EopFull = API.EopFull;
   export type EphemerisFull = API.EphemerisFull;
   export type EvacFull = API.EvacFull;
   export type EventEvolutionFull = API.EventEvolutionFull;
   export type FileData = API.FileData;
   export type FlightPlanFull = API.FlightPlanFull;
+  export type LocationFull = API.LocationFull;
+  export type NotificationFull = API.NotificationFull;
+  export type OnboardnavigationFull = API.OnboardnavigationFull;
   export type OnorbitFull = API.OnorbitFull;
+  export type OnorbitthrusterstatusFull = API.OnorbitthrusterstatusFull;
+  export type OrganizationDetailsFull = API.OrganizationDetailsFull;
+  export type OrganizationFull = API.OrganizationFull;
+  export type SolarArrayDetailsFull = API.SolarArrayDetailsFull;
+  export type SortiePprFull = API.SortiePprFull;
+  export type StateVectorFull = API.StateVectorFull;
 }

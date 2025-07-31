@@ -2,21 +2,59 @@
 
 Types:
 
+- <code><a href="./src/resources/shared.ts">AirTaskingOrderFull</a></code>
 - <code><a href="./src/resources/shared.ts">AirTransportMissionFull</a></code>
+- <code><a href="./src/resources/shared.ts">AircraftFull</a></code>
+- <code><a href="./src/resources/shared.ts">AircraftsortieFull</a></code>
 - <code><a href="./src/resources/shared.ts">AircraftstatusFull</a></code>
+- <code><a href="./src/resources/shared.ts">AircraftstatusremarkFull</a></code>
+- <code><a href="./src/resources/shared.ts">AirfieldFull</a></code>
+- <code><a href="./src/resources/shared.ts">AirfieldslotFull</a></code>
+- <code><a href="./src/resources/shared.ts">AirfieldslotconsumptionFull</a></code>
+- <code><a href="./src/resources/shared.ts">AirfieldstatusFull</a></code>
+- <code><a href="./src/resources/shared.ts">AirloadplanFull</a></code>
+- <code><a href="./src/resources/shared.ts">AirspacecontrolorderFull</a></code>
 - <code><a href="./src/resources/shared.ts">AIsFull</a></code>
+- <code><a href="./src/resources/shared.ts">AnalyticImageryFull</a></code>
+- <code><a href="./src/resources/shared.ts">AntennaDetailsFull</a></code>
+- <code><a href="./src/resources/shared.ts">AntennaFull</a></code>
+- <code><a href="./src/resources/shared.ts">AttitudedataFull</a></code>
 - <code><a href="./src/resources/shared.ts">AttitudesetFull</a></code>
+- <code><a href="./src/resources/shared.ts">BatteryFull</a></code>
+- <code><a href="./src/resources/shared.ts">BatterydetailsFull</a></code>
+- <code><a href="./src/resources/shared.ts">BeamFull</a></code>
+- <code><a href="./src/resources/shared.ts">BeamcontourFull</a></code>
+- <code><a href="./src/resources/shared.ts">BusFull</a></code>
+- <code><a href="./src/resources/shared.ts">ChannelFull</a></code>
 - <code><a href="./src/resources/shared.ts">CollectRequestFull</a></code>
 - <code><a href="./src/resources/shared.ts">CollectResponseFull</a></code>
+- <code><a href="./src/resources/shared.ts">CommFull</a></code>
+- <code><a href="./src/resources/shared.ts">ConjunctionFull</a></code>
+- <code><a href="./src/resources/shared.ts">CountryFull</a></code>
+- <code><a href="./src/resources/shared.ts">CrewFull</a></code>
+- <code><a href="./src/resources/shared.ts">DiplomaticclearanceFull</a></code>
 - <code><a href="./src/resources/shared.ts">DriftHistoryAbridged</a></code>
 - <code><a href="./src/resources/shared.ts">DriftHistoryFull</a></code>
+- <code><a href="./src/resources/shared.ts">Engine</a></code>
+- <code><a href="./src/resources/shared.ts">EngineDetailsFull</a></code>
+- <code><a href="./src/resources/shared.ts">EntityFull</a></code>
+- <code><a href="./src/resources/shared.ts">EoObservationFull</a></code>
 - <code><a href="./src/resources/shared.ts">EopFull</a></code>
 - <code><a href="./src/resources/shared.ts">EphemerisFull</a></code>
 - <code><a href="./src/resources/shared.ts">EvacFull</a></code>
 - <code><a href="./src/resources/shared.ts">EventEvolutionFull</a></code>
 - <code><a href="./src/resources/shared.ts">FileData</a></code>
 - <code><a href="./src/resources/shared.ts">FlightPlanFull</a></code>
+- <code><a href="./src/resources/shared.ts">LocationFull</a></code>
+- <code><a href="./src/resources/shared.ts">NotificationFull</a></code>
+- <code><a href="./src/resources/shared.ts">OnboardnavigationFull</a></code>
 - <code><a href="./src/resources/shared.ts">OnorbitFull</a></code>
+- <code><a href="./src/resources/shared.ts">OnorbitthrusterstatusFull</a></code>
+- <code><a href="./src/resources/shared.ts">OrganizationDetailsFull</a></code>
+- <code><a href="./src/resources/shared.ts">OrganizationFull</a></code>
+- <code><a href="./src/resources/shared.ts">SolarArrayDetailsFull</a></code>
+- <code><a href="./src/resources/shared.ts">SortiePprFull</a></code>
+- <code><a href="./src/resources/shared.ts">StateVectorFull</a></code>
 
 # AirEvents
 
@@ -46,7 +84,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/air-load-plans.ts">AirloadplanAbridged</a></code>
-- <code><a href="./src/resources/air-load-plans.ts">AirloadplanFull</a></code>
 - <code><a href="./src/resources/air-load-plans.ts">AirLoadPlanCountResponse</a></code>
 - <code><a href="./src/resources/air-load-plans.ts">AirLoadPlanQueryhelpResponse</a></code>
 - <code><a href="./src/resources/air-load-plans.ts">AirLoadPlanTupleResponse</a></code>
@@ -66,7 +103,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/air-operations/air-tasking-orders.ts">AirTaskingOrderFull</a></code>
 - <code><a href="./src/resources/air-operations/air-tasking-orders.ts">AirtaskingorderAbridged</a></code>
 - <code><a href="./src/resources/air-operations/air-tasking-orders.ts">AirTaskingOrderCountResponse</a></code>
 - <code><a href="./src/resources/air-operations/air-tasking-orders.ts">AirTaskingOrderQueryHelpResponse</a></code>
@@ -87,7 +123,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/air-operations/aircraft-sortie.ts">AircraftsortieAbridged</a></code>
-- <code><a href="./src/resources/air-operations/aircraft-sortie.ts">AircraftsortieFull</a></code>
 - <code><a href="./src/resources/air-operations/aircraft-sortie.ts">AircraftSortieCountResponse</a></code>
 - <code><a href="./src/resources/air-operations/aircraft-sortie.ts">AircraftSortieHistoryCountResponse</a></code>
 - <code><a href="./src/resources/air-operations/aircraft-sortie.ts">AircraftSortieHistoryQueryResponse</a></code>
@@ -126,7 +161,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/air-operations/diplomatic-clearance.ts">DiplomaticclearanceAbridged</a></code>
-- <code><a href="./src/resources/air-operations/diplomatic-clearance.ts">DiplomaticclearanceFull</a></code>
 
 Methods:
 
@@ -168,7 +202,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/aircraft.ts">AircraftAbridged</a></code>
-- <code><a href="./src/resources/aircraft.ts">AircraftFull</a></code>
 - <code><a href="./src/resources/aircraft.ts">AircraftCountResponse</a></code>
 - <code><a href="./src/resources/aircraft.ts">AircraftQueryhelpResponse</a></code>
 - <code><a href="./src/resources/aircraft.ts">AircraftTupleQueryResponse</a></code>
@@ -202,7 +235,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/aircraft-status-remarks.ts">AircraftstatusremarkAbridged</a></code>
-- <code><a href="./src/resources/aircraft-status-remarks.ts">AircraftstatusremarkFull</a></code>
 - <code><a href="./src/resources/aircraft-status-remarks.ts">AircraftStatusRemarkCountResponse</a></code>
 - <code><a href="./src/resources/aircraft-status-remarks.ts">AircraftStatusRemarkQueryhelpResponse</a></code>
 - <code><a href="./src/resources/aircraft-status-remarks.ts">AircraftStatusRemarkTupleResponse</a></code>
@@ -254,7 +286,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/airfield-slots.ts">AirfieldslotAbridged</a></code>
-- <code><a href="./src/resources/airfield-slots.ts">AirfieldslotFull</a></code>
 - <code><a href="./src/resources/airfield-slots.ts">AirfieldSlotCountResponse</a></code>
 - <code><a href="./src/resources/airfield-slots.ts">AirfieldSlotQueryhelpResponse</a></code>
 - <code><a href="./src/resources/airfield-slots.ts">AirfieldSlotTupleResponse</a></code>
@@ -275,7 +306,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/airfield-status/airfield-status.ts">AirfieldstatusAbridged</a></code>
-- <code><a href="./src/resources/airfield-status/airfield-status.ts">AirfieldstatusFull</a></code>
 - <code><a href="./src/resources/airfield-status/airfield-status.ts">AirfieldStatusCountResponse</a></code>
 - <code><a href="./src/resources/airfield-status/airfield-status.ts">AirfieldStatusQueryhelpResponse</a></code>
 - <code><a href="./src/resources/airfield-status/airfield-status.ts">AirfieldStatusTupleResponse</a></code>
@@ -307,7 +337,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/airfields.ts">AirfieldAbridged</a></code>
-- <code><a href="./src/resources/airfields.ts">AirfieldFull</a></code>
 - <code><a href="./src/resources/airfields.ts">AirfieldCountResponse</a></code>
 - <code><a href="./src/resources/airfields.ts">AirfieldQueryhelpResponse</a></code>
 - <code><a href="./src/resources/airfields.ts">AirfieldTupleResponse</a></code>
@@ -327,7 +356,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/airfield-slot-consumptions.ts">AirfieldslotconsumptionAbridged</a></code>
-- <code><a href="./src/resources/airfield-slot-consumptions.ts">AirfieldslotconsumptionFull</a></code>
 - <code><a href="./src/resources/airfield-slot-consumptions.ts">AirfieldSlotConsumptionCountResponse</a></code>
 - <code><a href="./src/resources/airfield-slot-consumptions.ts">AirfieldSlotConsumptionQueryhelpResponse</a></code>
 - <code><a href="./src/resources/airfield-slot-consumptions.ts">AirfieldSlotConsumptionTupleResponse</a></code>
@@ -355,7 +383,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/airspace-control-orders.ts">AirspacecontrolorderAbridged</a></code>
-- <code><a href="./src/resources/airspace-control-orders.ts">AirspacecontrolorderFull</a></code>
 - <code><a href="./src/resources/airspace-control-orders.ts">AirspaceControlOrderCountResponse</a></code>
 - <code><a href="./src/resources/airspace-control-orders.ts">AirspaceControlOrderQueryHelpResponse</a></code>
 - <code><a href="./src/resources/airspace-control-orders.ts">AirspaceControlOrderTupleResponse</a></code>
@@ -407,7 +434,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/analytic-imagery.ts">AnalyticImageryAbridged</a></code>
-- <code><a href="./src/resources/analytic-imagery.ts">AnalyticImageryFull</a></code>
 - <code><a href="./src/resources/analytic-imagery.ts">AnalyticImageryCountResponse</a></code>
 - <code><a href="./src/resources/analytic-imagery.ts">AnalyticImageryHistoryResponse</a></code>
 - <code><a href="./src/resources/analytic-imagery.ts">AnalyticImageryHistoryCountResponse</a></code>
@@ -432,7 +458,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/antennas.ts">AntennaAbridged</a></code>
-- <code><a href="./src/resources/antennas.ts">AntennaFull</a></code>
 - <code><a href="./src/resources/antennas.ts">AntennaCountResponse</a></code>
 - <code><a href="./src/resources/antennas.ts">AntennaQueryhelpResponse</a></code>
 - <code><a href="./src/resources/antennas.ts">AntennaTupleResponse</a></code>
@@ -452,7 +477,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/attitude-data.ts">AttitudedataFull</a></code>
 - <code><a href="./src/resources/attitude-data.ts">AttitudeDataQueryHelpResponse</a></code>
 - <code><a href="./src/resources/attitude-data.ts">AttitudeDataTupleResponse</a></code>
 
@@ -502,7 +526,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/batteries.ts">BatteryAbridged</a></code>
-- <code><a href="./src/resources/batteries.ts">BatteryFull</a></code>
 - <code><a href="./src/resources/batteries.ts">BatteryCountResponse</a></code>
 - <code><a href="./src/resources/batteries.ts">BatteryQueryhelpResponse</a></code>
 - <code><a href="./src/resources/batteries.ts">BatteryTupleResponse</a></code>
@@ -523,7 +546,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/batterydetails.ts">BatterydetailsAbridged</a></code>
-- <code><a href="./src/resources/batterydetails.ts">BatterydetailsFull</a></code>
 
 Methods:
 
@@ -538,7 +560,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/beam.ts">BeamAbridged</a></code>
-- <code><a href="./src/resources/beam.ts">BeamFull</a></code>
 - <code><a href="./src/resources/beam.ts">BeamCountResponse</a></code>
 - <code><a href="./src/resources/beam.ts">BeamQueryHelpResponse</a></code>
 - <code><a href="./src/resources/beam.ts">BeamTupleResponse</a></code>
@@ -559,7 +580,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/beam-contours.ts">BeamcontourAbridged</a></code>
-- <code><a href="./src/resources/beam-contours.ts">BeamcontourFull</a></code>
 - <code><a href="./src/resources/beam-contours.ts">BeamContourCountResponse</a></code>
 - <code><a href="./src/resources/beam-contours.ts">BeamContourQueryHelpResponse</a></code>
 - <code><a href="./src/resources/beam-contours.ts">BeamContourTupleResponse</a></code>
@@ -581,7 +601,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/buses.ts">BusAbridged</a></code>
-- <code><a href="./src/resources/buses.ts">BusFull</a></code>
 - <code><a href="./src/resources/buses.ts">BusCountResponse</a></code>
 - <code><a href="./src/resources/buses.ts">BusQueryHelpResponse</a></code>
 - <code><a href="./src/resources/buses.ts">BusTupleResponse</a></code>
@@ -602,7 +621,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/channels.ts">ChannelAbridged</a></code>
-- <code><a href="./src/resources/channels.ts">ChannelFull</a></code>
 - <code><a href="./src/resources/channels.ts">ChannelCountResponse</a></code>
 - <code><a href="./src/resources/channels.ts">ChannelQueryhelpResponse</a></code>
 - <code><a href="./src/resources/channels.ts">ChannelTupleResponse</a></code>
@@ -696,7 +714,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/comm.ts">CommAbridged</a></code>
-- <code><a href="./src/resources/comm.ts">CommFull</a></code>
 - <code><a href="./src/resources/comm.ts">CommCountResponse</a></code>
 - <code><a href="./src/resources/comm.ts">CommQueryhelpResponse</a></code>
 - <code><a href="./src/resources/comm.ts">CommTupleResponse</a></code>
@@ -717,7 +734,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/conjunctions/conjunctions.ts">ConjunctionAbridged</a></code>
-- <code><a href="./src/resources/conjunctions/conjunctions.ts">ConjunctionFull</a></code>
 - <code><a href="./src/resources/conjunctions/conjunctions.ts">ConjunctionCountResponse</a></code>
 - <code><a href="./src/resources/conjunctions/conjunctions.ts">ConjunctionGetHistoryResponse</a></code>
 - <code><a href="./src/resources/conjunctions/conjunctions.ts">ConjunctionQueryhelpResponse</a></code>
@@ -916,7 +932,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/countries.ts">CountryAbridged</a></code>
-- <code><a href="./src/resources/countries.ts">CountryFull</a></code>
 - <code><a href="./src/resources/countries.ts">CountryCountResponse</a></code>
 - <code><a href="./src/resources/countries.ts">CountryQueryhelpResponse</a></code>
 - <code><a href="./src/resources/countries.ts">CountryTupleResponse</a></code>
@@ -937,7 +952,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/crew.ts">CrewAbridged</a></code>
-- <code><a href="./src/resources/crew.ts">CrewFull</a></code>
 - <code><a href="./src/resources/crew.ts">CrewCountResponse</a></code>
 - <code><a href="./src/resources/crew.ts">CrewQueryhelpResponse</a></code>
 - <code><a href="./src/resources/crew.ts">CrewTupleResponse</a></code>
@@ -1174,7 +1188,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/engine-details.ts">EngineDetailsFull</a></code>
 - <code><a href="./src/resources/engine-details.ts">EngineDetailsAbridged</a></code>
 
 Methods:
@@ -1189,7 +1202,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/engines.ts">Engine</a></code>
 - <code><a href="./src/resources/engines.ts">EngineAbridged</a></code>
 - <code><a href="./src/resources/engines.ts">EngineCountResponse</a></code>
 - <code><a href="./src/resources/engines.ts">EngineQueryhelpResponse</a></code>
@@ -1211,7 +1223,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/entities.ts">EntityAbridged</a></code>
-- <code><a href="./src/resources/entities.ts">EntityFull</a></code>
 - <code><a href="./src/resources/entities.ts">EntityIngest</a></code>
 - <code><a href="./src/resources/entities.ts">EntityCountResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetAllTypesResponse</a></code>
@@ -1984,7 +1995,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/location.ts">LocationFull</a></code>
 - <code><a href="./src/resources/location.ts">LocationIngest</a></code>
 - <code><a href="./src/resources/location.ts">LocationListResponse</a></code>
 - <code><a href="./src/resources/location.ts">LocationCountResponse</a></code>
@@ -2278,7 +2288,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/notification/history.ts">NotificationFull</a></code>
 - <code><a href="./src/resources/notification/history.ts">HistoryCountResponse</a></code>
 
 Methods:
@@ -2493,7 +2502,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/observations/eo-observations/history.ts">EoObservationFull</a></code>
 - <code><a href="./src/resources/observations/eo-observations/history.ts">HistoryCountResponse</a></code>
 
 Methods:
@@ -2524,7 +2532,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/onboardnavigation/history.ts">OnboardnavigationFull</a></code>
 - <code><a href="./src/resources/onboardnavigation/history.ts">HistoryCountResponse</a></code>
 
 Methods:
@@ -2561,7 +2568,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/onorbit/antenna-details.ts">AntennaDetailsAbridged</a></code>
-- <code><a href="./src/resources/onorbit/antenna-details.ts">AntennaDetailsFull</a></code>
 
 Methods:
 
@@ -2712,7 +2718,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/onorbitthrusterstatus/history.ts">OnorbitthrusterstatusFull</a></code>
 - <code><a href="./src/resources/onorbitthrusterstatus/history.ts">HistoryCountResponse</a></code>
 
 Methods:
@@ -2830,7 +2835,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/organization.ts">OrganizationFull</a></code>
 - <code><a href="./src/resources/organization.ts">OrganizationListResponse</a></code>
 - <code><a href="./src/resources/organization.ts">OrganizationCountResponse</a></code>
 - <code><a href="./src/resources/organization.ts">OrganizationGetOrganizationCategoriesResponse</a></code>
@@ -2855,7 +2859,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/organizationdetails.ts">OrganizationDetailsFull</a></code>
 - <code><a href="./src/resources/organizationdetails.ts">OrganizationdetailListResponse</a></code>
 - <code><a href="./src/resources/organizationdetails.ts">OrganizationdetailFindBySourceResponse</a></code>
 
@@ -3636,7 +3639,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/solar-array-details.ts">SolarArrayDetailsFull</a></code>
 - <code><a href="./src/resources/solar-array-details.ts">SolarArrayDetailListResponse</a></code>
 
 Methods:
@@ -3673,7 +3675,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/sortie-ppr/history.ts">SortiePprFull</a></code>
 - <code><a href="./src/resources/sortie-ppr/history.ts">HistoryCountResponse</a></code>
 
 Methods:
@@ -3768,7 +3769,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/state-vector/state-vector.ts">StateVectorAbridged</a></code>
-- <code><a href="./src/resources/state-vector/state-vector.ts">StateVectorFull</a></code>
 - <code><a href="./src/resources/state-vector/state-vector.ts">StateVectorIngest</a></code>
 - <code><a href="./src/resources/state-vector/state-vector.ts">StateVectorCountResponse</a></code>
 - <code><a href="./src/resources/state-vector/state-vector.ts">StateVectorQueryhelpResponse</a></code>

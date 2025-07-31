@@ -10,7 +10,6 @@ import {
   HistoryCountResponse,
   HistoryListParams,
 } from 'bluestaq@unified-data-library/resources/ephemeris-sets/history';
-import * as StateVectorAPI from 'bluestaq@unified-data-library/resources/state-vector/state-vector';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -446,7 +445,7 @@ export interface EphemerisSet {
    * the 'Discover' tab in the storefront to confirm coordinate frames by data
    * provider.
    */
-  stateVector?: StateVectorAPI.StateVectorFull;
+  stateVector?: Shared.StateVectorFull;
 
   /**
    * Ephemeris step size, in seconds.

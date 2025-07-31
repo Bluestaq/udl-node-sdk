@@ -6,7 +6,6 @@ import {
   AirTaskingOrderCountParams,
   AirTaskingOrderCountResponse,
   AirTaskingOrderCreateParams,
-  AirTaskingOrderFull,
   AirTaskingOrderListParams,
   AirTaskingOrderQueryHelpResponse,
   AirTaskingOrderRetrieveParams,
@@ -32,7 +31,6 @@ import {
   AircraftSortieListParams,
   AircraftsortieAbridged,
   AircraftsortieAbridgedsOffsetPage,
-  AircraftsortieFull,
 } from 'bluestaq@unified-data-library/resources/air-operations/aircraft-sortie';
 import * as AircraftSortiesAPI from 'bluestaq@unified-data-library/resources/air-operations/aircraft-sorties';
 import {
@@ -54,7 +52,6 @@ import {
   DiplomaticClearance,
   DiplomaticClearanceUnvalidatedPublishParams,
   DiplomaticclearanceAbridged,
-  DiplomaticclearanceFull,
 } from 'bluestaq@unified-data-library/resources/air-operations/diplomatic-clearance';
 
 export class AirOperations extends APIResource {
@@ -80,7 +77,6 @@ AirOperations.DiplomaticClearance = DiplomaticClearance;
 export declare namespace AirOperations {
   export {
     AirTaskingOrders as AirTaskingOrders,
-    type AirTaskingOrderFull as AirTaskingOrderFull,
     type AirtaskingorderAbridged as AirtaskingorderAbridged,
     type AirTaskingOrderCountResponse as AirTaskingOrderCountResponse,
     type AirTaskingOrderQueryHelpResponse as AirTaskingOrderQueryHelpResponse,
@@ -97,7 +93,6 @@ export declare namespace AirOperations {
   export {
     AircraftSortie as AircraftSortie,
     type AircraftsortieAbridged as AircraftsortieAbridged,
-    type AircraftsortieFull as AircraftsortieFull,
     type AircraftSortieCountResponse as AircraftSortieCountResponse,
     type AircraftSortieHistoryCountResponse as AircraftSortieHistoryCountResponse,
     type AircraftSortieHistoryQueryResponse as AircraftSortieHistoryQueryResponse,
@@ -126,7 +121,6 @@ export declare namespace AirOperations {
   export {
     DiplomaticClearance as DiplomaticClearance,
     type DiplomaticclearanceAbridged as DiplomaticclearanceAbridged,
-    type DiplomaticclearanceFull as DiplomaticclearanceFull,
     type DiplomaticClearanceUnvalidatedPublishParams as DiplomaticClearanceUnvalidatedPublishParams,
   };
 }

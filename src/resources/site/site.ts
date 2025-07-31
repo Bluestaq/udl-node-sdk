@@ -2,6 +2,7 @@
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
 import * as EntitiesAPI from 'bluestaq@unified-data-library/resources/entities';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import * as OperationsAPI from 'bluestaq@unified-data-library/resources/site/operations';
 import {
   OperationCountParams,
@@ -964,7 +965,7 @@ export interface SiteGetResponse {
    * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
    * entity can have an operating unit, a location (if terrestrial), and statuses.
    */
-  entity?: EntitiesAPI.EntityFull;
+  entity?: Shared.EntityFull;
 
   /**
    * Eval represents the Intelligence Confidence Level or the Reliability/degree of
@@ -2171,7 +2172,7 @@ export namespace SiteTupleResponse {
      * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
      * entity can have an operating unit, a location (if terrestrial), and statuses.
      */
-    entity?: EntitiesAPI.EntityFull;
+    entity?: Shared.EntityFull;
 
     /**
      * Eval represents the Intelligence Confidence Level or the Reliability/degree of

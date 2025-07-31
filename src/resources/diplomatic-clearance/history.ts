@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as DiplomaticClearanceAPI from 'bluestaq@unified-data-library/resources/air-operations/diplomatic-clearance';
-import { DiplomaticclearanceFullsOffsetPage } from 'bluestaq@unified-data-library/resources/air-operations/diplomatic-clearance';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
+import { DiplomaticclearanceFullsOffsetPage } from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -32,10 +32,10 @@ export class History extends APIResource {
   list(
     query: HistoryListParams,
     options?: RequestOptions,
-  ): PagePromise<DiplomaticclearanceFullsOffsetPage, DiplomaticClearanceAPI.DiplomaticclearanceFull> {
+  ): PagePromise<DiplomaticclearanceFullsOffsetPage, Shared.DiplomaticclearanceFull> {
     return this._client.getAPIList(
       '/udl/diplomaticclearance/history',
-      OffsetPage<DiplomaticClearanceAPI.DiplomaticclearanceFull>,
+      OffsetPage<Shared.DiplomaticclearanceFull>,
       { query, ...options },
     );
   }

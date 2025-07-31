@@ -2,12 +2,10 @@
 
 export {
   History,
-  type SortiePprFull,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
-  type SortiePprFullsOffsetPage,
 } from './history';
 export {
   SortiePpr,

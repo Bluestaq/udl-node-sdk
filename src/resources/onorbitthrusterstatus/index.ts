@@ -2,11 +2,9 @@
 
 export {
   History,
-  type OnorbitthrusterstatusFull,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryCountParams,
-  type OnorbitthrusterstatusFullsOffsetPage,
 } from './history';
 export {
   Onorbitthrusterstatus,

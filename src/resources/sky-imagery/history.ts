@@ -2,7 +2,6 @@
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
 import * as Shared from 'bluestaq@unified-data-library/resources/shared';
-import * as EoObservationsHistoryAPI from 'bluestaq@unified-data-library/resources/observations/eo-observations/history';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -147,7 +146,7 @@ export interface HistoryListResponse {
   /**
    * Collection of linked EOObservations.
    */
-  eoObservations?: Array<EoObservationsHistoryAPI.EoObservationFull>;
+  eoObservations?: Array<Shared.EoObservationFull>;
 
   /**
    * End time of the exposure, in ISO 8601 UTC format with microsecond precision.

@@ -2,6 +2,7 @@
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
 import * as BatteriesAPI from 'bluestaq@unified-data-library/resources/batteries';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -259,7 +260,7 @@ export interface OnorbitbatteryGetResponse {
   /**
    * Model representation of specific spacecraft battery types.
    */
-  battery?: BatteriesAPI.BatteryFull;
+  battery?: Shared.BatteryFull;
 
   /**
    * Time the row was created in the database, auto-populated by the system.

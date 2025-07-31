@@ -2,6 +2,7 @@
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
 import * as LocationAPI from 'bluestaq@unified-data-library/resources/location';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -634,7 +635,7 @@ export interface LaunchSiteDetailGetResponse {
    * Model representation of a location, which is a specific fixed point on the earth
    * and is used to denote the locations of fixed sensors, operating units, etc.
    */
-  location?: LocationAPI.LocationFull;
+  location?: Shared.LocationFull;
 
   /**
    * Originating system or organization which produced the data, if different from

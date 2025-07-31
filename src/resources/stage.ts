@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as EnginesAPI from 'bluestaq@unified-data-library/resources/engines';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -489,7 +489,7 @@ export interface StageGetResponse {
    * Known launch vehicle engines and their performance characteristics and limits. A
    * launch vehicle has 1 to many engines per stage.
    */
-  engine?: EnginesAPI.Engine;
+  engine?: Shared.Engine;
 
   /**
    * Stage length in meters.
@@ -794,7 +794,7 @@ export namespace StageTupleResponse {
      * Known launch vehicle engines and their performance characteristics and limits. A
      * launch vehicle has 1 to many engines per stage.
      */
-    engine?: EnginesAPI.Engine;
+    engine?: Shared.Engine;
 
     /**
      * Stage length in meters.

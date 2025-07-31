@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import * as HistoryAPI from 'bluestaq@unified-data-library/resources/onboardnavigation/history';
 import {
   History,
@@ -8,8 +9,6 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  OnboardnavigationFull,
-  OnboardnavigationFullsOffsetPage,
 } from 'bluestaq@unified-data-library/resources/onboardnavigation/history';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
@@ -328,7 +327,7 @@ export namespace OnboardnavigationQueryhelpResponse {
   }
 }
 
-export type OnboardnavigationTupleResponse = Array<HistoryAPI.OnboardnavigationFull>;
+export type OnboardnavigationTupleResponse = Array<Shared.OnboardnavigationFull>;
 
 export interface OnboardnavigationListParams extends OffsetPageParams {
   /**
@@ -664,9 +663,7 @@ export declare namespace Onboardnavigation {
 
   export {
     History as History,
-    type OnboardnavigationFull as OnboardnavigationFull,
     type HistoryCountResponse as HistoryCountResponse,
-    type OnboardnavigationFullsOffsetPage as OnboardnavigationFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

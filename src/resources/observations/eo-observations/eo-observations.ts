@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import * as HistoryAPI from 'bluestaq@unified-data-library/resources/observations/eo-observations/history';
 import {
-  EoObservationFull,
-  EoObservationFullsOffsetPage,
   History,
   HistoryAodrParams,
   HistoryCountParams,
@@ -63,7 +62,7 @@ export class EoObservations extends APIResource {
     id: string,
     query: EoObservationRetrieveParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<HistoryAPI.EoObservationFull> {
+  ): APIPromise<Shared.EoObservationFull> {
     return this._client.get(path`/udl/eoobservation/${id}`, { query, ...options });
   }
 
@@ -889,7 +888,7 @@ export namespace EoObservationQueryhelpResponse {
   }
 }
 
-export type EoObservationTupleResponse = Array<HistoryAPI.EoObservationFull>;
+export type EoObservationTupleResponse = Array<Shared.EoObservationFull>;
 
 export interface EoObservationCreateParams {
   /**
@@ -4324,9 +4323,7 @@ export declare namespace EoObservations {
 
   export {
     History as History,
-    type EoObservationFull as EoObservationFull,
     type HistoryCountResponse as HistoryCountResponse,
-    type EoObservationFullsOffsetPage as EoObservationFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

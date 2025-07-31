@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as StateVectorAPI from 'bluestaq@unified-data-library/resources/state-vector/state-vector';
-import { StateVectorFullsOffsetPage } from 'bluestaq@unified-data-library/resources/state-vector/state-vector';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
+import { StateVectorFullsOffsetPage } from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -32,8 +32,8 @@ export class History extends APIResource {
   list(
     query: HistoryListParams,
     options?: RequestOptions,
-  ): PagePromise<StateVectorFullsOffsetPage, StateVectorAPI.StateVectorFull> {
-    return this._client.getAPIList('/udl/statevector/history', OffsetPage<StateVectorAPI.StateVectorFull>, {
+  ): PagePromise<StateVectorFullsOffsetPage, Shared.StateVectorFull> {
+    return this._client.getAPIList('/udl/statevector/history', OffsetPage<Shared.StateVectorFull>, {
       query,
       ...options,
     });

@@ -1,8 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as LocationAPI from 'bluestaq@unified-data-library/resources/location';
-import * as OrganizationAPI from 'bluestaq@unified-data-library/resources/organization';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -1022,7 +1021,7 @@ export interface OperatingunitGetResponse {
    * Model representation of a location, which is a specific fixed point on the earth
    * and is used to denote the locations of fixed sensors, operating units, etc.
    */
-  location?: LocationAPI.LocationFull;
+  location?: Shared.LocationFull;
 
   /**
    * Location name for the coordinates.
@@ -1110,7 +1109,7 @@ export interface OperatingunitGetResponse {
    * etc. An organization may have parent and child organizations as well as link to
    * a former organization if this org previously existed as another organization.
    */
-  organization?: OrganizationAPI.OrganizationFull;
+  organization?: Shared.OrganizationFull;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -1710,7 +1709,7 @@ export namespace OperatingunitTupleResponse {
      * Model representation of a location, which is a specific fixed point on the earth
      * and is used to denote the locations of fixed sensors, operating units, etc.
      */
-    location?: LocationAPI.LocationFull;
+    location?: Shared.LocationFull;
 
     /**
      * Location name for the coordinates.
@@ -1798,7 +1797,7 @@ export namespace OperatingunitTupleResponse {
      * etc. An organization may have parent and child organizations as well as link to
      * a former organization if this org previously existed as another organization.
      */
-    organization?: OrganizationAPI.OrganizationFull;
+    organization?: Shared.OrganizationFull;
 
     /**
      * Originating system or organization which produced the data, if different from
