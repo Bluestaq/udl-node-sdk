@@ -606,8 +606,6 @@ import {
   LocationGetParams,
   LocationIngest,
   LocationListParams,
-  LocationListResponse,
-  LocationListResponsesOffsetPage,
   LocationQueryhelpResponse,
   LocationTupleParams,
   LocationTupleResponse,
@@ -695,7 +693,6 @@ import {
   Onorbitantenna,
   OnorbitantennaCreateParams,
   OnorbitantennaGetParams,
-  OnorbitantennaGetResponse,
   OnorbitantennaListParams,
   OnorbitantennaListResponse,
   OnorbitantennaListResponsesOffsetPage,
@@ -705,7 +702,6 @@ import {
   Onorbitbattery,
   OnorbitbatteryCreateParams,
   OnorbitbatteryGetParams,
-  OnorbitbatteryGetResponse,
   OnorbitbatteryListParams,
   OnorbitbatteryListResponse,
   OnorbitbatteryListResponsesOffsetPage,
@@ -714,7 +710,6 @@ import {
 import {
   OnorbitdetailCreateParams,
   OnorbitdetailGetParams,
-  OnorbitdetailGetResponse,
   OnorbitdetailListParams,
   OnorbitdetailListResponse,
   OnorbitdetailListResponsesOffsetPage,
@@ -755,7 +750,6 @@ import {
   Onorbitsolararray,
   OnorbitsolararrayCreateParams,
   OnorbitsolararrayGetParams,
-  OnorbitsolararrayGetResponse,
   OnorbitsolararrayListParams,
   OnorbitsolararrayListResponse,
   OnorbitsolararrayListResponsesOffsetPage,
@@ -765,7 +759,6 @@ import {
   Onorbitthruster,
   OnorbitthrusterCreateParams,
   OnorbitthrusterGetParams,
-  OnorbitthrusterGetResponse,
   OnorbitthrusterListParams,
   OnorbitthrusterListResponse,
   OnorbitthrusterListResponsesOffsetPage,
@@ -777,7 +770,6 @@ import {
   OperatingunitCountResponse,
   OperatingunitCreateParams,
   OperatingunitGetParams,
-  OperatingunitGetResponse,
   OperatingunitListParams,
   OperatingunitListResponse,
   OperatingunitListResponsesOffsetPage,
@@ -793,7 +785,6 @@ import {
   OperatingunitremarkCreateBulkParams,
   OperatingunitremarkCreateParams,
   OperatingunitremarkGetParams,
-  OperatingunitremarkGetResponse,
   OperatingunitremarkListParams,
   OperatingunitremarkListResponse,
   OperatingunitremarkListResponsesOffsetPage,
@@ -868,7 +859,6 @@ import {
   RfBandCountResponse,
   RfBandCreateParams,
   RfBandGetParams,
-  RfBandGetResponse,
   RfBandListParams,
   RfBandListResponse,
   RfBandListResponsesOffsetPage,
@@ -1105,7 +1095,6 @@ import {
   SolarArrayCountResponse,
   SolarArrayCreateParams,
   SolarArrayGetParams,
-  SolarArrayGetResponse,
   SolarArrayListParams,
   SolarArrayListResponse,
   SolarArrayListResponsesOffsetPage,
@@ -1148,7 +1137,6 @@ import {
   StatusGetByEntityTypeParams,
   StatusGetByEntityTypeResponse,
   StatusGetParams,
-  StatusGetResponse,
   StatusListParams,
   StatusListResponse,
   StatusListResponsesOffsetPage,
@@ -1163,7 +1151,6 @@ import {
   SubstatusCountResponse,
   SubstatusCreateParams,
   SubstatusGetParams,
-  SubstatusGetResponse,
   SubstatusListParams,
   SubstatusListResponse,
   SubstatusListResponsesOffsetPage,
@@ -1387,6 +1374,7 @@ import {
   EffectRequests,
 } from 'bluestaq@unified-data-library/resources/effect-requests/effect-requests';
 import {
+  EffectResponseActionsListFull,
   EffectResponseCountParams,
   EffectResponseCountResponse,
   EffectResponseCreateBulkParams,
@@ -1394,6 +1382,7 @@ import {
   EffectResponseListParams,
   EffectResponseListResponse,
   EffectResponseListResponsesOffsetPage,
+  EffectResponseMetricsFull,
   EffectResponseQueryHelpResponse,
   EffectResponseRetrieveParams,
   EffectResponseRetrieveResponse,
@@ -1600,10 +1589,14 @@ import {
   IsrCollectionCountParams,
   IsrCollectionCountResponse,
   IsrCollectionCreateBulkParams,
+  IsrCollectionCriticalTimesFull,
+  IsrCollectionExploitationRequirementFull,
   IsrCollectionListParams,
   IsrCollectionListResponse,
   IsrCollectionListResponsesOffsetPage,
+  IsrCollectionPocFull,
   IsrCollectionQueryhelpResponse,
+  IsrCollectionRequirementsFull,
   IsrCollectionTupleParams,
   IsrCollectionTupleResponse,
   IsrCollectionUnvalidatedPublishParams,
@@ -1655,7 +1648,13 @@ import {
   LinkStatusTupleResponse,
 } from 'bluestaq@unified-data-library/resources/link-status/link-status';
 import {
+  LogisticsDiscrepancyInfosFull,
+  LogisticsPartsFull,
+  LogisticsRemarksAbridged,
   LogisticsRemarksFull,
+  LogisticsSegmentsFull,
+  LogisticsSpecialtiesFull,
+  LogisticsStocksFull,
   LogisticsSupport,
   LogisticsSupportCountParams,
   LogisticsSupportCountResponse,
@@ -1663,6 +1662,7 @@ import {
   LogisticsSupportCreateParams,
   LogisticsSupportGetParams,
   LogisticsSupportGetResponse,
+  LogisticsSupportItemsFull,
   LogisticsSupportListParams,
   LogisticsSupportListResponse,
   LogisticsSupportListResponsesOffsetPage,
@@ -1671,6 +1671,7 @@ import {
   LogisticsSupportTupleResponse,
   LogisticsSupportUnvalidatedPublishParams,
   LogisticsSupportUpdateParams,
+  LogisticsTransportationPlansFull,
 } from 'bluestaq@unified-data-library/resources/logistics-support/logistics-support';
 import {
   ManeuverCountParams,
@@ -3846,6 +3847,8 @@ export declare namespace Unifieddatalibrary {
 
   export {
     EffectResponses as EffectResponses,
+    type EffectResponseActionsListFull as EffectResponseActionsListFull,
+    type EffectResponseMetricsFull as EffectResponseMetricsFull,
     type EffectResponseRetrieveResponse as EffectResponseRetrieveResponse,
     type EffectResponseListResponse as EffectResponseListResponse,
     type EffectResponseCountResponse as EffectResponseCountResponse,
@@ -4186,6 +4189,10 @@ export declare namespace Unifieddatalibrary {
 
   export {
     IsrCollections as IsrCollections,
+    type IsrCollectionCriticalTimesFull as IsrCollectionCriticalTimesFull,
+    type IsrCollectionExploitationRequirementFull as IsrCollectionExploitationRequirementFull,
+    type IsrCollectionPocFull as IsrCollectionPocFull,
+    type IsrCollectionRequirementsFull as IsrCollectionRequirementsFull,
     type IsrCollectionListResponse as IsrCollectionListResponse,
     type IsrCollectionCountResponse as IsrCollectionCountResponse,
     type IsrCollectionQueryhelpResponse as IsrCollectionQueryhelpResponse,
@@ -4338,11 +4345,9 @@ export declare namespace Unifieddatalibrary {
   export {
     Location as Location,
     type LocationIngest as LocationIngest,
-    type LocationListResponse as LocationListResponse,
     type LocationCountResponse as LocationCountResponse,
     type LocationQueryhelpResponse as LocationQueryhelpResponse,
     type LocationTupleResponse as LocationTupleResponse,
-    type LocationListResponsesOffsetPage as LocationListResponsesOffsetPage,
     type LocationCreateParams as LocationCreateParams,
     type LocationUpdateParams as LocationUpdateParams,
     type LocationListParams as LocationListParams,
@@ -4353,7 +4358,15 @@ export declare namespace Unifieddatalibrary {
 
   export {
     LogisticsSupport as LogisticsSupport,
+    type LogisticsDiscrepancyInfosFull as LogisticsDiscrepancyInfosFull,
+    type LogisticsPartsFull as LogisticsPartsFull,
+    type LogisticsRemarksAbridged as LogisticsRemarksAbridged,
     type LogisticsRemarksFull as LogisticsRemarksFull,
+    type LogisticsSegmentsFull as LogisticsSegmentsFull,
+    type LogisticsSpecialtiesFull as LogisticsSpecialtiesFull,
+    type LogisticsStocksFull as LogisticsStocksFull,
+    type LogisticsSupportItemsFull as LogisticsSupportItemsFull,
+    type LogisticsTransportationPlansFull as LogisticsTransportationPlansFull,
     type LogisticsSupportListResponse as LogisticsSupportListResponse,
     type LogisticsSupportCountResponse as LogisticsSupportCountResponse,
     type LogisticsSupportGetResponse as LogisticsSupportGetResponse,
@@ -4567,7 +4580,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Onorbitantenna as Onorbitantenna,
     type OnorbitantennaListResponse as OnorbitantennaListResponse,
-    type OnorbitantennaGetResponse as OnorbitantennaGetResponse,
     type OnorbitantennaListResponsesOffsetPage as OnorbitantennaListResponsesOffsetPage,
     type OnorbitantennaCreateParams as OnorbitantennaCreateParams,
     type OnorbitantennaUpdateParams as OnorbitantennaUpdateParams,
@@ -4578,7 +4590,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Onorbitbattery as Onorbitbattery,
     type OnorbitbatteryListResponse as OnorbitbatteryListResponse,
-    type OnorbitbatteryGetResponse as OnorbitbatteryGetResponse,
     type OnorbitbatteryListResponsesOffsetPage as OnorbitbatteryListResponsesOffsetPage,
     type OnorbitbatteryCreateParams as OnorbitbatteryCreateParams,
     type OnorbitbatteryUpdateParams as OnorbitbatteryUpdateParams,
@@ -4589,7 +4600,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Onorbitdetails as Onorbitdetails,
     type OnorbitdetailListResponse as OnorbitdetailListResponse,
-    type OnorbitdetailGetResponse as OnorbitdetailGetResponse,
     type OnorbitdetailListResponsesOffsetPage as OnorbitdetailListResponsesOffsetPage,
     type OnorbitdetailCreateParams as OnorbitdetailCreateParams,
     type OnorbitdetailUpdateParams as OnorbitdetailUpdateParams,
@@ -4632,7 +4642,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Onorbitsolararray as Onorbitsolararray,
     type OnorbitsolararrayListResponse as OnorbitsolararrayListResponse,
-    type OnorbitsolararrayGetResponse as OnorbitsolararrayGetResponse,
     type OnorbitsolararrayListResponsesOffsetPage as OnorbitsolararrayListResponsesOffsetPage,
     type OnorbitsolararrayCreateParams as OnorbitsolararrayCreateParams,
     type OnorbitsolararrayUpdateParams as OnorbitsolararrayUpdateParams,
@@ -4643,7 +4652,6 @@ export declare namespace Unifieddatalibrary {
   export {
     Onorbitthruster as Onorbitthruster,
     type OnorbitthrusterListResponse as OnorbitthrusterListResponse,
-    type OnorbitthrusterGetResponse as OnorbitthrusterGetResponse,
     type OnorbitthrusterListResponsesOffsetPage as OnorbitthrusterListResponsesOffsetPage,
     type OnorbitthrusterCreateParams as OnorbitthrusterCreateParams,
     type OnorbitthrusterUpdateParams as OnorbitthrusterUpdateParams,
@@ -4670,7 +4678,6 @@ export declare namespace Unifieddatalibrary {
     Operatingunit as Operatingunit,
     type OperatingunitListResponse as OperatingunitListResponse,
     type OperatingunitCountResponse as OperatingunitCountResponse,
-    type OperatingunitGetResponse as OperatingunitGetResponse,
     type OperatingunitQueryhelpResponse as OperatingunitQueryhelpResponse,
     type OperatingunitTupleResponse as OperatingunitTupleResponse,
     type OperatingunitListResponsesOffsetPage as OperatingunitListResponsesOffsetPage,
@@ -4686,7 +4693,6 @@ export declare namespace Unifieddatalibrary {
     Operatingunitremark as Operatingunitremark,
     type OperatingunitremarkListResponse as OperatingunitremarkListResponse,
     type OperatingunitremarkCountResponse as OperatingunitremarkCountResponse,
-    type OperatingunitremarkGetResponse as OperatingunitremarkGetResponse,
     type OperatingunitremarkQueryhelpResponse as OperatingunitremarkQueryhelpResponse,
     type OperatingunitremarkTupleResponse as OperatingunitremarkTupleResponse,
     type OperatingunitremarkListResponsesOffsetPage as OperatingunitremarkListResponsesOffsetPage,
@@ -4815,7 +4821,6 @@ export declare namespace Unifieddatalibrary {
     RfBand as RfBand,
     type RfBandListResponse as RfBandListResponse,
     type RfBandCountResponse as RfBandCountResponse,
-    type RfBandGetResponse as RfBandGetResponse,
     type RfBandQueryhelpResponse as RfBandQueryhelpResponse,
     type RfBandTupleResponse as RfBandTupleResponse,
     type RfBandListResponsesOffsetPage as RfBandListResponsesOffsetPage,
@@ -5209,7 +5214,6 @@ export declare namespace Unifieddatalibrary {
     SolarArray as SolarArray,
     type SolarArrayListResponse as SolarArrayListResponse,
     type SolarArrayCountResponse as SolarArrayCountResponse,
-    type SolarArrayGetResponse as SolarArrayGetResponse,
     type SolarArrayQueryhelpResponse as SolarArrayQueryhelpResponse,
     type SolarArrayTupleResponse as SolarArrayTupleResponse,
     type SolarArrayListResponsesOffsetPage as SolarArrayListResponsesOffsetPage,
@@ -5317,7 +5321,6 @@ export declare namespace Unifieddatalibrary {
     Status as Status,
     type StatusListResponse as StatusListResponse,
     type StatusCountResponse as StatusCountResponse,
-    type StatusGetResponse as StatusGetResponse,
     type StatusGetByEntityIDResponse as StatusGetByEntityIDResponse,
     type StatusGetByEntityTypeResponse as StatusGetByEntityTypeResponse,
     type StatusQueryhelpResponse as StatusQueryhelpResponse,
@@ -5337,7 +5340,6 @@ export declare namespace Unifieddatalibrary {
     Substatus as Substatus,
     type SubstatusListResponse as SubstatusListResponse,
     type SubstatusCountResponse as SubstatusCountResponse,
-    type SubstatusGetResponse as SubstatusGetResponse,
     type SubstatusQueryhelpResponse as SubstatusQueryhelpResponse,
     type SubstatusTupleResponse as SubstatusTupleResponse,
     type SubstatusListResponsesOffsetPage as SubstatusListResponsesOffsetPage,
@@ -5612,6 +5614,7 @@ export declare namespace Unifieddatalibrary {
   export type ConjunctionFull = API.ConjunctionFull;
   export type CountryFull = API.CountryFull;
   export type CrewFull = API.CrewFull;
+  export type DailyOperationFull = API.DailyOperationFull;
   export type DiplomaticclearanceFull = API.DiplomaticclearanceFull;
   export type DriftHistoryAbridged = API.DriftHistoryAbridged;
   export type DriftHistoryFull = API.DriftHistoryFull;
@@ -5625,14 +5628,35 @@ export declare namespace Unifieddatalibrary {
   export type EventEvolutionFull = API.EventEvolutionFull;
   export type FileData = API.FileData;
   export type FlightPlanFull = API.FlightPlanFull;
+  export type LocationAbridged = API.LocationAbridged;
   export type LocationFull = API.LocationFull;
+  export type MaximumOnGroundFull = API.MaximumOnGroundFull;
   export type NotificationFull = API.NotificationFull;
   export type OnboardnavigationFull = API.OnboardnavigationFull;
+  export type OnorbitAntennaFull = API.OnorbitAntennaFull;
+  export type OnorbitBatteryFull = API.OnorbitBatteryFull;
+  export type OnorbitDetailsFull = API.OnorbitDetailsFull;
   export type OnorbitFull = API.OnorbitFull;
+  export type OnorbitSolarArrayFull = API.OnorbitSolarArrayFull;
+  export type OnorbitThrusterFull = API.OnorbitThrusterFull;
   export type OnorbitthrusterstatusFull = API.OnorbitthrusterstatusFull;
+  export type OperatingHoursFull = API.OperatingHoursFull;
+  export type OperatingUnitRemarkFull = API.OperatingUnitRemarkFull;
+  export type OperatingunitFull = API.OperatingunitFull;
+  export type OperationalDeviationFull = API.OperationalDeviationFull;
+  export type OperationalPlanningFull = API.OperationalPlanningFull;
   export type OrganizationDetailsFull = API.OrganizationDetailsFull;
   export type OrganizationFull = API.OrganizationFull;
+  export type ParamDescriptor = API.ParamDescriptor;
+  export type PathwayFull = API.PathwayFull;
+  export type RelatedDocumentFull = API.RelatedDocumentFull;
+  export type RfBandFull = API.RfBandFull;
+  export type SofDataSourceRefFull = API.SofDataSourceRefFull;
   export type SolarArrayDetailsFull = API.SolarArrayDetailsFull;
+  export type SolarArrayFull = API.SolarArrayFull;
   export type SortiePprFull = API.SortiePprFull;
   export type StateVectorFull = API.StateVectorFull;
+  export type StatusFull = API.StatusFull;
+  export type SubStatusFull = API.SubStatusFull;
+  export type WaiverFull = API.WaiverFull;
 }

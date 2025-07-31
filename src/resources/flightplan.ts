@@ -1348,7 +1348,7 @@ export interface FlightplanQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<FlightplanQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -1359,38 +1359,6 @@ export interface FlightplanQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace FlightplanQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type FlightplanTupleResponse = Array<Shared.FlightPlanFull>;

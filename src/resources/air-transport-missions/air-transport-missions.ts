@@ -697,7 +697,7 @@ export interface AirTransportMissionQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<AirTransportMissionQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -708,38 +708,6 @@ export interface AirTransportMissionQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace AirTransportMissionQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type AirTransportMissionTupleResponse = Array<Shared.AirTransportMissionFull>;

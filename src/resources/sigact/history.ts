@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -470,7 +471,7 @@ export interface HistoryListResponse {
   /**
    * Related document ids.
    */
-  relatedDocs?: Array<HistoryListResponse.RelatedDoc>;
+  relatedDocs?: Array<Shared.RelatedDocumentFull>;
 
   /**
    * The reporting unit.
@@ -563,49 +564,6 @@ export interface HistoryListResponse {
    * The mode of this attack or event (e.g. Direct Fire, IED Explosion, etc.).
    */
   typeOfAttack?: string;
-}
-
-export namespace HistoryListResponse {
-  export interface RelatedDoc {
-    /**
-     * List of data sources related to this document.
-     */
-    dataSourceRefs?: Array<RelatedDoc.DataSourceRef>;
-
-    /**
-     * The document id of the related document.
-     */
-    documentId?: string;
-  }
-
-  export namespace RelatedDoc {
-    export interface DataSourceRef {
-      /**
-       * Data source id.
-       */
-      dataSourceId?: string;
-
-      /**
-       * end position.
-       */
-      endPosition?: string;
-
-      /**
-       * paragraph number.
-       */
-      paragraphNumber?: string;
-
-      /**
-       * sentence number.
-       */
-      sentenceNumber?: string;
-
-      /**
-       * start position.
-       */
-      startPosition?: string;
-    }
-  }
 }
 
 export type HistoryCountResponse = string;

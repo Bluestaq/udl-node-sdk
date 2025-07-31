@@ -899,7 +899,7 @@ export interface EvacQueryHelpResponse {
 
   name?: string;
 
-  parameters?: Array<EvacQueryHelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -910,38 +910,6 @@ export interface EvacQueryHelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace EvacQueryHelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export interface EvacCreateParams {

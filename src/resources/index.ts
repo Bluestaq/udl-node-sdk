@@ -486,6 +486,8 @@ export {
 } from './effect-requests/effect-requests';
 export {
   EffectResponses,
+  type EffectResponseActionsListFull,
+  type EffectResponseMetricsFull,
   type EffectResponseRetrieveResponse,
   type EffectResponseListResponse,
   type EffectResponseCountResponse,
@@ -853,6 +855,10 @@ export {
 } from './ir';
 export {
   IsrCollections,
+  type IsrCollectionCriticalTimesFull,
+  type IsrCollectionExploitationRequirementFull,
+  type IsrCollectionPocFull,
+  type IsrCollectionRequirementsFull,
   type IsrCollectionListResponse,
   type IsrCollectionCountResponse,
   type IsrCollectionQueryhelpResponse,
@@ -995,7 +1001,6 @@ export {
 export {
   Location,
   type LocationIngest,
-  type LocationListResponse,
   type LocationCountResponse,
   type LocationQueryhelpResponse,
   type LocationTupleResponse,
@@ -1005,11 +1010,18 @@ export {
   type LocationCountParams,
   type LocationGetParams,
   type LocationTupleParams,
-  type LocationListResponsesOffsetPage,
 } from './location';
 export {
   LogisticsSupport,
+  type LogisticsDiscrepancyInfosFull,
+  type LogisticsPartsFull,
+  type LogisticsRemarksAbridged,
   type LogisticsRemarksFull,
+  type LogisticsSegmentsFull,
+  type LogisticsSpecialtiesFull,
+  type LogisticsStocksFull,
+  type LogisticsSupportItemsFull,
+  type LogisticsTransportationPlansFull,
   type LogisticsSupportListResponse,
   type LogisticsSupportCountResponse,
   type LogisticsSupportGetResponse,
@@ -1209,7 +1221,6 @@ export {
 export {
   Onorbitantenna,
   type OnorbitantennaListResponse,
-  type OnorbitantennaGetResponse,
   type OnorbitantennaCreateParams,
   type OnorbitantennaUpdateParams,
   type OnorbitantennaListParams,
@@ -1219,7 +1230,6 @@ export {
 export {
   Onorbitbattery,
   type OnorbitbatteryListResponse,
-  type OnorbitbatteryGetResponse,
   type OnorbitbatteryCreateParams,
   type OnorbitbatteryUpdateParams,
   type OnorbitbatteryListParams,
@@ -1229,7 +1239,6 @@ export {
 export {
   Onorbitdetails,
   type OnorbitdetailListResponse,
-  type OnorbitdetailGetResponse,
   type OnorbitdetailCreateParams,
   type OnorbitdetailUpdateParams,
   type OnorbitdetailListParams,
@@ -1269,7 +1278,6 @@ export {
 export {
   Onorbitsolararray,
   type OnorbitsolararrayListResponse,
-  type OnorbitsolararrayGetResponse,
   type OnorbitsolararrayCreateParams,
   type OnorbitsolararrayUpdateParams,
   type OnorbitsolararrayListParams,
@@ -1279,7 +1287,6 @@ export {
 export {
   Onorbitthruster,
   type OnorbitthrusterListResponse,
-  type OnorbitthrusterGetResponse,
   type OnorbitthrusterCreateParams,
   type OnorbitthrusterUpdateParams,
   type OnorbitthrusterListParams,
@@ -1304,7 +1311,6 @@ export {
   Operatingunit,
   type OperatingunitListResponse,
   type OperatingunitCountResponse,
-  type OperatingunitGetResponse,
   type OperatingunitQueryhelpResponse,
   type OperatingunitTupleResponse,
   type OperatingunitCreateParams,
@@ -1319,7 +1325,6 @@ export {
   Operatingunitremark,
   type OperatingunitremarkListResponse,
   type OperatingunitremarkCountResponse,
-  type OperatingunitremarkGetResponse,
   type OperatingunitremarkQueryhelpResponse,
   type OperatingunitremarkTupleResponse,
   type OperatingunitremarkCreateParams,
@@ -1442,7 +1447,6 @@ export {
   RfBand,
   type RfBandListResponse,
   type RfBandCountResponse,
-  type RfBandGetResponse,
   type RfBandQueryhelpResponse,
   type RfBandTupleResponse,
   type RfBandCreateParams,
@@ -1854,7 +1858,6 @@ export {
   SolarArray,
   type SolarArrayListResponse,
   type SolarArrayCountResponse,
-  type SolarArrayGetResponse,
   type SolarArrayQueryhelpResponse,
   type SolarArrayTupleResponse,
   type SolarArrayCreateParams,
@@ -1955,7 +1958,6 @@ export {
   Status,
   type StatusListResponse,
   type StatusCountResponse,
-  type StatusGetResponse,
   type StatusGetByEntityIDResponse,
   type StatusGetByEntityTypeResponse,
   type StatusQueryhelpResponse,
@@ -1974,7 +1976,6 @@ export {
   Substatus,
   type SubstatusListResponse,
   type SubstatusCountResponse,
-  type SubstatusGetResponse,
   type SubstatusQueryhelpResponse,
   type SubstatusTupleResponse,
   type SubstatusCreateParams,

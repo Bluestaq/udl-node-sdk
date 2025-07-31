@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import * as HistoryAPI from 'bluestaq@unified-data-library/resources/mti/history';
 import {
   History,
@@ -1163,7 +1164,7 @@ export interface MtiQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<MtiQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -1174,38 +1175,6 @@ export interface MtiQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace MtiQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type MtiTupleResponse = Array<HistoryAPI.MtiFull>;

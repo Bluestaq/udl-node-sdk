@@ -744,7 +744,7 @@ export interface EphemerisSetQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<EphemerisSetQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -755,38 +755,6 @@ export interface EphemerisSetQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace EphemerisSetQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type EphemerisSetTupleResponse = Array<EphemerisSet>;

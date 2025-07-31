@@ -658,7 +658,7 @@ export interface AirTaskingOrderQueryHelpResponse {
 
   name?: string;
 
-  parameters?: Array<AirTaskingOrderQueryHelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -669,38 +669,6 @@ export interface AirTaskingOrderQueryHelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace AirTaskingOrderQueryHelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type AirTaskingOrderTupleResponse = Array<Shared.AirTaskingOrderFull>;

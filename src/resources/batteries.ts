@@ -244,7 +244,7 @@ export interface BatteryQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<BatteryQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -255,38 +255,6 @@ export interface BatteryQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace BatteryQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type BatteryTupleResponse = Array<Shared.BatteryFull>;

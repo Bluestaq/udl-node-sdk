@@ -2,6 +2,7 @@
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
 import * as EquipmentRemarksAPI from 'bluestaq@unified-data-library/resources/equipment-remarks';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -1189,7 +1190,7 @@ export interface EquipmentQueryHelpResponse {
 
   name?: string;
 
-  parameters?: Array<EquipmentQueryHelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -1200,38 +1201,6 @@ export interface EquipmentQueryHelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace EquipmentQueryHelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type EquipmentTupleResponse = Array<EquipmentFull>;

@@ -11,7 +11,15 @@ export {
 } from './history';
 export {
   LogisticsSupport,
+  type LogisticsDiscrepancyInfosFull,
+  type LogisticsPartsFull,
+  type LogisticsRemarksAbridged,
   type LogisticsRemarksFull,
+  type LogisticsSegmentsFull,
+  type LogisticsSpecialtiesFull,
+  type LogisticsStocksFull,
+  type LogisticsSupportItemsFull,
+  type LogisticsTransportationPlansFull,
   type LogisticsSupportListResponse,
   type LogisticsSupportCountResponse,
   type LogisticsSupportGetResponse,

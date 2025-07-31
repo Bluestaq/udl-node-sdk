@@ -808,7 +808,7 @@ export interface OnorbiteventQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<OnorbiteventQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -819,38 +819,6 @@ export interface OnorbiteventQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace OnorbiteventQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type OnorbiteventTupleResponse = Array<OnorbiteventTupleResponse.OnorbiteventTupleResponseItem>;

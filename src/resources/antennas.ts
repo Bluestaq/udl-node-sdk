@@ -246,7 +246,7 @@ export interface AntennaQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<AntennaQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -257,38 +257,6 @@ export interface AntennaQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace AntennaQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type AntennaTupleResponse = Array<Shared.AntennaFull>;

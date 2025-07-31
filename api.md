@@ -32,6 +32,7 @@ Types:
 - <code><a href="./src/resources/shared.ts">ConjunctionFull</a></code>
 - <code><a href="./src/resources/shared.ts">CountryFull</a></code>
 - <code><a href="./src/resources/shared.ts">CrewFull</a></code>
+- <code><a href="./src/resources/shared.ts">DailyOperationFull</a></code>
 - <code><a href="./src/resources/shared.ts">DiplomaticclearanceFull</a></code>
 - <code><a href="./src/resources/shared.ts">DriftHistoryAbridged</a></code>
 - <code><a href="./src/resources/shared.ts">DriftHistoryFull</a></code>
@@ -45,16 +46,37 @@ Types:
 - <code><a href="./src/resources/shared.ts">EventEvolutionFull</a></code>
 - <code><a href="./src/resources/shared.ts">FileData</a></code>
 - <code><a href="./src/resources/shared.ts">FlightPlanFull</a></code>
+- <code><a href="./src/resources/shared.ts">LocationAbridged</a></code>
 - <code><a href="./src/resources/shared.ts">LocationFull</a></code>
+- <code><a href="./src/resources/shared.ts">MaximumOnGroundFull</a></code>
 - <code><a href="./src/resources/shared.ts">NotificationFull</a></code>
 - <code><a href="./src/resources/shared.ts">OnboardnavigationFull</a></code>
+- <code><a href="./src/resources/shared.ts">OnorbitAntennaFull</a></code>
+- <code><a href="./src/resources/shared.ts">OnorbitBatteryFull</a></code>
+- <code><a href="./src/resources/shared.ts">OnorbitDetailsFull</a></code>
 - <code><a href="./src/resources/shared.ts">OnorbitFull</a></code>
+- <code><a href="./src/resources/shared.ts">OnorbitSolarArrayFull</a></code>
+- <code><a href="./src/resources/shared.ts">OnorbitThrusterFull</a></code>
 - <code><a href="./src/resources/shared.ts">OnorbitthrusterstatusFull</a></code>
+- <code><a href="./src/resources/shared.ts">OperatingHoursFull</a></code>
+- <code><a href="./src/resources/shared.ts">OperatingUnitRemarkFull</a></code>
+- <code><a href="./src/resources/shared.ts">OperatingunitFull</a></code>
+- <code><a href="./src/resources/shared.ts">OperationalDeviationFull</a></code>
+- <code><a href="./src/resources/shared.ts">OperationalPlanningFull</a></code>
 - <code><a href="./src/resources/shared.ts">OrganizationDetailsFull</a></code>
 - <code><a href="./src/resources/shared.ts">OrganizationFull</a></code>
+- <code><a href="./src/resources/shared.ts">ParamDescriptor</a></code>
+- <code><a href="./src/resources/shared.ts">PathwayFull</a></code>
+- <code><a href="./src/resources/shared.ts">RelatedDocumentFull</a></code>
+- <code><a href="./src/resources/shared.ts">RfBandFull</a></code>
+- <code><a href="./src/resources/shared.ts">SofDataSourceRefFull</a></code>
 - <code><a href="./src/resources/shared.ts">SolarArrayDetailsFull</a></code>
+- <code><a href="./src/resources/shared.ts">SolarArrayFull</a></code>
 - <code><a href="./src/resources/shared.ts">SortiePprFull</a></code>
 - <code><a href="./src/resources/shared.ts">StateVectorFull</a></code>
+- <code><a href="./src/resources/shared.ts">StatusFull</a></code>
+- <code><a href="./src/resources/shared.ts">SubStatusFull</a></code>
+- <code><a href="./src/resources/shared.ts">WaiverFull</a></code>
 
 # AirEvents
 
@@ -1106,6 +1128,8 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/effect-responses/effect-responses.ts">EffectResponseActionsListFull</a></code>
+- <code><a href="./src/resources/effect-responses/effect-responses.ts">EffectResponseMetricsFull</a></code>
 - <code><a href="./src/resources/effect-responses/effect-responses.ts">EffectResponseRetrieveResponse</a></code>
 - <code><a href="./src/resources/effect-responses/effect-responses.ts">EffectResponseListResponse</a></code>
 - <code><a href="./src/resources/effect-responses/effect-responses.ts">EffectResponseCountResponse</a></code>
@@ -1729,6 +1753,10 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/isr-collections/isr-collections.ts">IsrCollectionCriticalTimesFull</a></code>
+- <code><a href="./src/resources/isr-collections/isr-collections.ts">IsrCollectionExploitationRequirementFull</a></code>
+- <code><a href="./src/resources/isr-collections/isr-collections.ts">IsrCollectionPocFull</a></code>
+- <code><a href="./src/resources/isr-collections/isr-collections.ts">IsrCollectionRequirementsFull</a></code>
 - <code><a href="./src/resources/isr-collections/isr-collections.ts">IsrCollectionListResponse</a></code>
 - <code><a href="./src/resources/isr-collections/isr-collections.ts">IsrCollectionCountResponse</a></code>
 - <code><a href="./src/resources/isr-collections/isr-collections.ts">IsrCollectionQueryhelpResponse</a></code>
@@ -1996,7 +2024,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/location.ts">LocationIngest</a></code>
-- <code><a href="./src/resources/location.ts">LocationListResponse</a></code>
 - <code><a href="./src/resources/location.ts">LocationCountResponse</a></code>
 - <code><a href="./src/resources/location.ts">LocationQueryhelpResponse</a></code>
 - <code><a href="./src/resources/location.ts">LocationTupleResponse</a></code>
@@ -2005,7 +2032,7 @@ Methods:
 
 - <code title="post /udl/location">client.location.<a href="./src/resources/location.ts">create</a>({ ...params }) -> void</code>
 - <code title="put /udl/location/{id}">client.location.<a href="./src/resources/location.ts">update</a>(id, { ...params }) -> void</code>
-- <code title="get /udl/location">client.location.<a href="./src/resources/location.ts">list</a>({ ...params }) -> LocationListResponsesOffsetPage</code>
+- <code title="get /udl/location">client.location.<a href="./src/resources/location.ts">list</a>({ ...params }) -> LocationAbridgedsOffsetPage</code>
 - <code title="delete /udl/location/{id}">client.location.<a href="./src/resources/location.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/location/count">client.location.<a href="./src/resources/location.ts">count</a>({ ...params }) -> string</code>
 - <code title="get /udl/location/{id}">client.location.<a href="./src/resources/location.ts">get</a>(id, { ...params }) -> LocationFull</code>
@@ -2016,7 +2043,15 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsDiscrepancyInfosFull</a></code>
+- <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsPartsFull</a></code>
+- <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsRemarksAbridged</a></code>
 - <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsRemarksFull</a></code>
+- <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsSegmentsFull</a></code>
+- <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsSpecialtiesFull</a></code>
+- <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsStocksFull</a></code>
+- <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsSupportItemsFull</a></code>
+- <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsTransportationPlansFull</a></code>
 - <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsSupportListResponse</a></code>
 - <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsSupportCountResponse</a></code>
 - <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsSupportGetResponse</a></code>
@@ -2582,7 +2617,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/onorbitantenna.ts">OnorbitantennaListResponse</a></code>
-- <code><a href="./src/resources/onorbitantenna.ts">OnorbitantennaGetResponse</a></code>
 
 Methods:
 
@@ -2590,14 +2624,13 @@ Methods:
 - <code title="put /udl/onorbitantenna/{id}">client.onorbitantenna.<a href="./src/resources/onorbitantenna.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/onorbitantenna">client.onorbitantenna.<a href="./src/resources/onorbitantenna.ts">list</a>({ ...params }) -> OnorbitantennaListResponsesOffsetPage</code>
 - <code title="delete /udl/onorbitantenna/{id}">client.onorbitantenna.<a href="./src/resources/onorbitantenna.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/onorbitantenna/{id}">client.onorbitantenna.<a href="./src/resources/onorbitantenna.ts">get</a>(id, { ...params }) -> OnorbitantennaGetResponse</code>
+- <code title="get /udl/onorbitantenna/{id}">client.onorbitantenna.<a href="./src/resources/onorbitantenna.ts">get</a>(id, { ...params }) -> OnorbitAntennaFull</code>
 
 # Onorbitbattery
 
 Types:
 
 - <code><a href="./src/resources/onorbitbattery.ts">OnorbitbatteryListResponse</a></code>
-- <code><a href="./src/resources/onorbitbattery.ts">OnorbitbatteryGetResponse</a></code>
 
 Methods:
 
@@ -2605,14 +2638,13 @@ Methods:
 - <code title="put /udl/onorbitbattery/{id}">client.onorbitbattery.<a href="./src/resources/onorbitbattery.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/onorbitbattery">client.onorbitbattery.<a href="./src/resources/onorbitbattery.ts">list</a>({ ...params }) -> OnorbitbatteryListResponsesOffsetPage</code>
 - <code title="delete /udl/onorbitbattery/{id}">client.onorbitbattery.<a href="./src/resources/onorbitbattery.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/onorbitbattery/{id}">client.onorbitbattery.<a href="./src/resources/onorbitbattery.ts">get</a>(id, { ...params }) -> OnorbitbatteryGetResponse</code>
+- <code title="get /udl/onorbitbattery/{id}">client.onorbitbattery.<a href="./src/resources/onorbitbattery.ts">get</a>(id, { ...params }) -> OnorbitBatteryFull</code>
 
 # Onorbitdetails
 
 Types:
 
 - <code><a href="./src/resources/onorbitdetails.ts">OnorbitdetailListResponse</a></code>
-- <code><a href="./src/resources/onorbitdetails.ts">OnorbitdetailGetResponse</a></code>
 
 Methods:
 
@@ -2620,7 +2652,7 @@ Methods:
 - <code title="put /udl/onorbitdetails/{id}">client.onorbitdetails.<a href="./src/resources/onorbitdetails.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/onorbitdetails">client.onorbitdetails.<a href="./src/resources/onorbitdetails.ts">list</a>({ ...params }) -> OnorbitdetailListResponsesOffsetPage</code>
 - <code title="delete /udl/onorbitdetails/{id}">client.onorbitdetails.<a href="./src/resources/onorbitdetails.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/onorbitdetails/{id}">client.onorbitdetails.<a href="./src/resources/onorbitdetails.ts">get</a>(id, { ...params }) -> OnorbitdetailGetResponse</code>
+- <code title="get /udl/onorbitdetails/{id}">client.onorbitdetails.<a href="./src/resources/onorbitdetails.ts">get</a>(id, { ...params }) -> OnorbitDetailsFull</code>
 
 # Onorbitevent
 
@@ -2669,7 +2701,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/onorbitsolararray.ts">OnorbitsolararrayListResponse</a></code>
-- <code><a href="./src/resources/onorbitsolararray.ts">OnorbitsolararrayGetResponse</a></code>
 
 Methods:
 
@@ -2677,14 +2708,13 @@ Methods:
 - <code title="put /udl/onorbitsolararray/{id}">client.onorbitsolararray.<a href="./src/resources/onorbitsolararray.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/onorbitsolararray">client.onorbitsolararray.<a href="./src/resources/onorbitsolararray.ts">list</a>({ ...params }) -> OnorbitsolararrayListResponsesOffsetPage</code>
 - <code title="delete /udl/onorbitsolararray/{id}">client.onorbitsolararray.<a href="./src/resources/onorbitsolararray.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/onorbitsolararray/{id}">client.onorbitsolararray.<a href="./src/resources/onorbitsolararray.ts">get</a>(id, { ...params }) -> OnorbitsolararrayGetResponse</code>
+- <code title="get /udl/onorbitsolararray/{id}">client.onorbitsolararray.<a href="./src/resources/onorbitsolararray.ts">get</a>(id, { ...params }) -> OnorbitSolarArrayFull</code>
 
 # Onorbitthruster
 
 Types:
 
 - <code><a href="./src/resources/onorbitthruster.ts">OnorbitthrusterListResponse</a></code>
-- <code><a href="./src/resources/onorbitthruster.ts">OnorbitthrusterGetResponse</a></code>
 
 Methods:
 
@@ -2692,7 +2722,7 @@ Methods:
 - <code title="put /udl/onorbitthruster/{id}">client.onorbitthruster.<a href="./src/resources/onorbitthruster.ts">update</a>(pathID, { ...params }) -> void</code>
 - <code title="get /udl/onorbitthruster">client.onorbitthruster.<a href="./src/resources/onorbitthruster.ts">list</a>({ ...params }) -> OnorbitthrusterListResponsesOffsetPage</code>
 - <code title="delete /udl/onorbitthruster/{id}">client.onorbitthruster.<a href="./src/resources/onorbitthruster.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/onorbitthruster/{id}">client.onorbitthruster.<a href="./src/resources/onorbitthruster.ts">get</a>(id, { ...params }) -> OnorbitthrusterGetResponse</code>
+- <code title="get /udl/onorbitthruster/{id}">client.onorbitthruster.<a href="./src/resources/onorbitthruster.ts">get</a>(id, { ...params }) -> OnorbitThrusterFull</code>
 
 # Onorbitthrusterstatus
 
@@ -2731,7 +2761,6 @@ Types:
 
 - <code><a href="./src/resources/operatingunit.ts">OperatingunitListResponse</a></code>
 - <code><a href="./src/resources/operatingunit.ts">OperatingunitCountResponse</a></code>
-- <code><a href="./src/resources/operatingunit.ts">OperatingunitGetResponse</a></code>
 - <code><a href="./src/resources/operatingunit.ts">OperatingunitQueryhelpResponse</a></code>
 - <code><a href="./src/resources/operatingunit.ts">OperatingunitTupleResponse</a></code>
 
@@ -2742,7 +2771,7 @@ Methods:
 - <code title="get /udl/operatingunit">client.operatingunit.<a href="./src/resources/operatingunit.ts">list</a>({ ...params }) -> OperatingunitListResponsesOffsetPage</code>
 - <code title="delete /udl/operatingunit/{id}">client.operatingunit.<a href="./src/resources/operatingunit.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/operatingunit/count">client.operatingunit.<a href="./src/resources/operatingunit.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/operatingunit/{id}">client.operatingunit.<a href="./src/resources/operatingunit.ts">get</a>(id, { ...params }) -> OperatingunitGetResponse</code>
+- <code title="get /udl/operatingunit/{id}">client.operatingunit.<a href="./src/resources/operatingunit.ts">get</a>(id, { ...params }) -> OperatingunitFull</code>
 - <code title="get /udl/operatingunit/queryhelp">client.operatingunit.<a href="./src/resources/operatingunit.ts">queryhelp</a>() -> OperatingunitQueryhelpResponse</code>
 - <code title="get /udl/operatingunit/tuple">client.operatingunit.<a href="./src/resources/operatingunit.ts">tuple</a>({ ...params }) -> OperatingunitTupleResponse</code>
 
@@ -2752,7 +2781,6 @@ Types:
 
 - <code><a href="./src/resources/operatingunitremark.ts">OperatingunitremarkListResponse</a></code>
 - <code><a href="./src/resources/operatingunitremark.ts">OperatingunitremarkCountResponse</a></code>
-- <code><a href="./src/resources/operatingunitremark.ts">OperatingunitremarkGetResponse</a></code>
 - <code><a href="./src/resources/operatingunitremark.ts">OperatingunitremarkQueryhelpResponse</a></code>
 - <code><a href="./src/resources/operatingunitremark.ts">OperatingunitremarkTupleResponse</a></code>
 
@@ -2762,7 +2790,7 @@ Methods:
 - <code title="get /udl/operatingunitremark">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">list</a>({ ...params }) -> OperatingunitremarkListResponsesOffsetPage</code>
 - <code title="get /udl/operatingunitremark/count">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/operatingunitremark/createBulk">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/operatingunitremark/{id}">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">get</a>(id, { ...params }) -> OperatingunitremarkGetResponse</code>
+- <code title="get /udl/operatingunitremark/{id}">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">get</a>(id, { ...params }) -> OperatingUnitRemarkFull</code>
 - <code title="get /udl/operatingunitremark/queryhelp">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">queryhelp</a>() -> OperatingunitremarkQueryhelpResponse</code>
 - <code title="get /udl/operatingunitremark/tuple">client.operatingunitremark.<a href="./src/resources/operatingunitremark.ts">tuple</a>({ ...params }) -> OperatingunitremarkTupleResponse</code>
 
@@ -2951,7 +2979,6 @@ Types:
 
 - <code><a href="./src/resources/rf-band.ts">RfBandListResponse</a></code>
 - <code><a href="./src/resources/rf-band.ts">RfBandCountResponse</a></code>
-- <code><a href="./src/resources/rf-band.ts">RfBandGetResponse</a></code>
 - <code><a href="./src/resources/rf-band.ts">RfBandQueryhelpResponse</a></code>
 - <code><a href="./src/resources/rf-band.ts">RfBandTupleResponse</a></code>
 
@@ -2962,7 +2989,7 @@ Methods:
 - <code title="get /udl/rfband">client.rfBand.<a href="./src/resources/rf-band.ts">list</a>({ ...params }) -> RfBandListResponsesOffsetPage</code>
 - <code title="delete /udl/rfband/{id}">client.rfBand.<a href="./src/resources/rf-band.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/rfband/count">client.rfBand.<a href="./src/resources/rf-band.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/rfband/{id}">client.rfBand.<a href="./src/resources/rf-band.ts">get</a>(id, { ...params }) -> RfBandGetResponse</code>
+- <code title="get /udl/rfband/{id}">client.rfBand.<a href="./src/resources/rf-band.ts">get</a>(id, { ...params }) -> RfBandFull</code>
 - <code title="get /udl/rfband/queryhelp">client.rfBand.<a href="./src/resources/rf-band.ts">queryhelp</a>() -> RfBandQueryhelpResponse</code>
 - <code title="get /udl/rfband/tuple">client.rfBand.<a href="./src/resources/rf-band.ts">tuple</a>({ ...params }) -> RfBandTupleResponse</code>
 
@@ -3620,7 +3647,6 @@ Types:
 
 - <code><a href="./src/resources/solar-array.ts">SolarArrayListResponse</a></code>
 - <code><a href="./src/resources/solar-array.ts">SolarArrayCountResponse</a></code>
-- <code><a href="./src/resources/solar-array.ts">SolarArrayGetResponse</a></code>
 - <code><a href="./src/resources/solar-array.ts">SolarArrayQueryhelpResponse</a></code>
 - <code><a href="./src/resources/solar-array.ts">SolarArrayTupleResponse</a></code>
 
@@ -3631,7 +3657,7 @@ Methods:
 - <code title="get /udl/solararray">client.solarArray.<a href="./src/resources/solar-array.ts">list</a>({ ...params }) -> SolarArrayListResponsesOffsetPage</code>
 - <code title="delete /udl/solararray/{id}">client.solarArray.<a href="./src/resources/solar-array.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/solararray/count">client.solarArray.<a href="./src/resources/solar-array.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/solararray/{id}">client.solarArray.<a href="./src/resources/solar-array.ts">get</a>(id, { ...params }) -> SolarArrayGetResponse</code>
+- <code title="get /udl/solararray/{id}">client.solarArray.<a href="./src/resources/solar-array.ts">get</a>(id, { ...params }) -> SolarArrayFull</code>
 - <code title="get /udl/solararray/queryhelp">client.solarArray.<a href="./src/resources/solar-array.ts">queryhelp</a>() -> SolarArrayQueryhelpResponse</code>
 - <code title="get /udl/solararray/tuple">client.solarArray.<a href="./src/resources/solar-array.ts">tuple</a>({ ...params }) -> SolarArrayTupleResponse</code>
 
@@ -3814,7 +3840,6 @@ Types:
 
 - <code><a href="./src/resources/status.ts">StatusListResponse</a></code>
 - <code><a href="./src/resources/status.ts">StatusCountResponse</a></code>
-- <code><a href="./src/resources/status.ts">StatusGetResponse</a></code>
 - <code><a href="./src/resources/status.ts">StatusGetByEntityIDResponse</a></code>
 - <code><a href="./src/resources/status.ts">StatusGetByEntityTypeResponse</a></code>
 - <code><a href="./src/resources/status.ts">StatusQueryhelpResponse</a></code>
@@ -3827,7 +3852,7 @@ Methods:
 - <code title="get /udl/status">client.status.<a href="./src/resources/status.ts">list</a>({ ...params }) -> StatusListResponsesOffsetPage</code>
 - <code title="delete /udl/status/{id}">client.status.<a href="./src/resources/status.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/status/count">client.status.<a href="./src/resources/status.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/status/{id}">client.status.<a href="./src/resources/status.ts">get</a>(id, { ...params }) -> StatusGetResponse</code>
+- <code title="get /udl/status/{id}">client.status.<a href="./src/resources/status.ts">get</a>(id, { ...params }) -> StatusFull</code>
 - <code title="get /udl/status/byIdEntity/{idEntity}">client.status.<a href="./src/resources/status.ts">getByEntityID</a>(idEntity, { ...params }) -> StatusGetByEntityIDResponse</code>
 - <code title="get /udl/status/byEntityType/{entityType}">client.status.<a href="./src/resources/status.ts">getByEntityType</a>(entityType, { ...params }) -> StatusGetByEntityTypeResponse</code>
 - <code title="get /udl/status/queryhelp">client.status.<a href="./src/resources/status.ts">queryhelp</a>() -> StatusQueryhelpResponse</code>
@@ -3839,7 +3864,6 @@ Types:
 
 - <code><a href="./src/resources/substatus.ts">SubstatusListResponse</a></code>
 - <code><a href="./src/resources/substatus.ts">SubstatusCountResponse</a></code>
-- <code><a href="./src/resources/substatus.ts">SubstatusGetResponse</a></code>
 - <code><a href="./src/resources/substatus.ts">SubstatusQueryhelpResponse</a></code>
 - <code><a href="./src/resources/substatus.ts">SubstatusTupleResponse</a></code>
 
@@ -3850,7 +3874,7 @@ Methods:
 - <code title="get /udl/substatus">client.substatus.<a href="./src/resources/substatus.ts">list</a>({ ...params }) -> SubstatusListResponsesOffsetPage</code>
 - <code title="delete /udl/substatus/{id}">client.substatus.<a href="./src/resources/substatus.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/substatus/count">client.substatus.<a href="./src/resources/substatus.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/substatus/{id}">client.substatus.<a href="./src/resources/substatus.ts">get</a>(id, { ...params }) -> SubstatusGetResponse</code>
+- <code title="get /udl/substatus/{id}">client.substatus.<a href="./src/resources/substatus.ts">get</a>(id, { ...params }) -> SubStatusFull</code>
 - <code title="get /udl/substatus/queryhelp">client.substatus.<a href="./src/resources/substatus.ts">queryhelp</a>() -> SubstatusQueryhelpResponse</code>
 - <code title="get /udl/substatus/tuple">client.substatus.<a href="./src/resources/substatus.ts">tuple</a>({ ...params }) -> SubstatusTupleResponse</code>
 

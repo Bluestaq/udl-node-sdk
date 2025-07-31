@@ -345,7 +345,7 @@ export interface OrganizationQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<OrganizationQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -356,38 +356,6 @@ export interface OrganizationQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace OrganizationQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type OrganizationTupleResponse = Array<Shared.OrganizationFull>;
