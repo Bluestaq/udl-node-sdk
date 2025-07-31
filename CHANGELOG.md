@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.1.0-alpha.8 (2025-07-31)
+
+Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
+
+### ⚠ BREAKING CHANGES
+
+* **api:** move multiple models to shared resources
+
+### Features
+
+* **api:** define additional models to reduce duplication ([cd084ed](https://github.com/Bluestaq/udl-node-sdk/commit/cd084ed5683f2c9d4a0f801a5776e1260639b414))
+* **api:** manual updates ([f1589ce](https://github.com/Bluestaq/udl-node-sdk/commit/f1589ce7b5a599ac3f9e5d5a02ddc186c13d5b15))
+
+
+### Bug Fixes
+
+* **mcp:** fix tool description of jq_filter ([5e002ac](https://github.com/Bluestaq/udl-node-sdk/commit/5e002ace631ac7907c8bcbe28afc6e93774fe528))
+
+
+### Chores
+
+* **api:** move multiple models to shared resources ([7024527](https://github.com/Bluestaq/udl-node-sdk/commit/7024527cb56621205e948913de1dc902972252dd))
+* **internal:** codegen related update ([0f95165](https://github.com/Bluestaq/udl-node-sdk/commit/0f951652ecdbb60d0b41ac91ccdd9a3c463c91d7))
+* **internal:** remove redundant imports config ([d06eb22](https://github.com/Bluestaq/udl-node-sdk/commit/d06eb22c75bb3ff5e913c67f15715118c6506189))
+
 ## 0.1.0-alpha.7 (2025-07-24)
 
 Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
