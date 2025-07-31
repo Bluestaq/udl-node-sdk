@@ -1,26 +1,22 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as Shared from 'bluestaq@unified-data-library/resources/shared';
-import * as HistoryAPI from 'bluestaq@unified-data-library/resources/ground-imagery/history';
+import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
+import * as HistoryAPI from './history';
 import {
   History,
   HistoryCountParams,
   HistoryCountResponse,
   HistoryQueryParams,
   HistoryQueryResponse,
-} from 'bluestaq@unified-data-library/resources/ground-imagery/history';
-import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
-import {
-  OffsetPage,
-  type OffsetPageParams,
-  PagePromise,
-} from 'bluestaq@unified-data-library/core/pagination';
-import { type Uploadable } from 'bluestaq@unified-data-library/core/uploads';
-import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
-import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
-import { multipartFormRequestOptions } from 'bluestaq@unified-data-library/internal/uploads';
-import { path } from 'bluestaq@unified-data-library/internal/utils/path';
+} from './history';
+import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
+import { type Uploadable } from '../../core/uploads';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { multipartFormRequestOptions } from '../../internal/uploads';
+import { path } from '../../internal/utils/path';
 
 export class GroundImagery extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);

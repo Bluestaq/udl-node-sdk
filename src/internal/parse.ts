@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import type { FinalRequestOptions } from './request-options';
-import { type Unifieddatalibrary } from 'bluestaq@unified-data-library/client';
-import { formatRequestDetails, loggerFor } from 'bluestaq@unified-data-library/internal/utils/log';
+import { type Unifieddatalibrary } from '../client';
+import { formatRequestDetails, loggerFor } from './utils/log';
 
 export type APIResponseProps = {
   response: Response;

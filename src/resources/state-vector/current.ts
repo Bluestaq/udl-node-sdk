@@ -1,16 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as Shared from 'bluestaq@unified-data-library/resources/shared';
-import * as StateVectorAPI from 'bluestaq@unified-data-library/resources/state-vector/state-vector';
-import { StateVectorAbridgedsOffsetPage } from 'bluestaq@unified-data-library/resources/state-vector/state-vector';
-import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
-import {
-  OffsetPage,
-  type OffsetPageParams,
-  PagePromise,
-} from 'bluestaq@unified-data-library/core/pagination';
-import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
+import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
+import * as StateVectorAPI from './state-vector';
+import { StateVectorAbridgedsOffsetPage } from './state-vector';
+import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Current extends APIResource {
   /**

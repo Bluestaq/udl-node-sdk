@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Shared from 'bluestaq@unified-data-library/resources/shared';
-import { OffsetPage } from 'bluestaq@unified-data-library/core/pagination';
+import * as Shared from './shared';
+import { OffsetPage } from '../core/pagination';
 
 /**
  * Beta Version Air Tasking Order: The ATO is used to task air missions, assign

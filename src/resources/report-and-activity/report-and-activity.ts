@@ -1,19 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as UdlH3geoAPI from 'bluestaq@unified-data-library/resources/report-and-activity/udl-h3geo';
-import {
-  UdlH3geo,
-  UdlH3geoUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/report-and-activity/udl-h3geo';
-import * as UdlSigactAPI from 'bluestaq@unified-data-library/resources/report-and-activity/udl-sigact';
-import {
-  UdlSigact,
-  UdlSigactFileGetParams,
-  UdlSigactUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/report-and-activity/udl-sigact';
-import * as PoiAPI from 'bluestaq@unified-data-library/resources/report-and-activity/poi/poi';
-import { Poi } from 'bluestaq@unified-data-library/resources/report-and-activity/poi/poi';
+import { APIResource } from '../../core/resource';
+import * as UdlH3geoAPI from './udl-h3geo';
+import { UdlH3geo, UdlH3geoUnvalidatedPublishParams } from './udl-h3geo';
+import * as UdlSigactAPI from './udl-sigact';
+import { UdlSigact, UdlSigactFileGetParams, UdlSigactUnvalidatedPublishParams } from './udl-sigact';
+import * as PoiAPI from './poi/poi';
+import { Poi } from './poi/poi';
 
 export class ReportAndActivity extends APIResource {
   poi: PoiAPI.Poi = new PoiAPI.Poi(this._client);

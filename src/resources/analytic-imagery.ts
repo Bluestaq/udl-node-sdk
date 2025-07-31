@@ -1,18 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as Shared from 'bluestaq@unified-data-library/resources/shared';
-import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
-import {
-  OffsetPage,
-  type OffsetPageParams,
-  PagePromise,
-} from 'bluestaq@unified-data-library/core/pagination';
-import { type Uploadable } from 'bluestaq@unified-data-library/core/uploads';
-import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
-import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
-import { multipartFormRequestOptions } from 'bluestaq@unified-data-library/internal/uploads';
-import { path } from 'bluestaq@unified-data-library/internal/utils/path';
+import { APIResource } from '../core/resource';
+import * as Shared from './shared';
+import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
+import { type Uploadable } from '../core/uploads';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { multipartFormRequestOptions } from '../internal/uploads';
+import { path } from '../internal/utils/path';
 
 export class AnalyticImagery extends APIResource {
   /**

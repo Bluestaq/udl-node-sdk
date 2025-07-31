@@ -13,16 +13,12 @@ import * as Shims from './internal/shims';
 import * as Opts from './internal/request-options';
 import * as qs from './internal/qs';
 import { VERSION } from './version';
-import * as Errors from 'bluestaq@unified-data-library/core/error';
-import * as Pagination from 'bluestaq@unified-data-library/core/pagination';
-import {
-  AbstractPage,
-  type OffsetPageParams,
-  OffsetPageResponse,
-} from 'bluestaq@unified-data-library/core/pagination';
-import * as Uploads from 'bluestaq@unified-data-library/core/uploads';
-import * as API from 'bluestaq@unified-data-library/resources/index';
-import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
+import * as Errors from './core/error';
+import * as Pagination from './core/pagination';
+import { AbstractPage, type OffsetPageParams, OffsetPageResponse } from './core/pagination';
+import * as Uploads from './core/uploads';
+import * as API from './resources/index';
+import { APIPromise } from './core/api-promise';
 import {
   AirEventCountParams,
   AirEventCountResponse,
@@ -39,7 +35,7 @@ import {
   AirEventUnvalidatedPublishParams,
   AirEventUpdateParams,
   AirEvents,
-} from 'bluestaq@unified-data-library/resources/air-events';
+} from './resources/air-events';
 import {
   AirLoadPlanCountParams,
   AirLoadPlanCountResponse,
@@ -52,7 +48,7 @@ import {
   AirLoadPlans,
   AirloadplanAbridged,
   AirloadplanAbridgedsOffsetPage,
-} from 'bluestaq@unified-data-library/resources/air-load-plans';
+} from './resources/air-load-plans';
 import {
   Aircraft,
   AircraftAbridged,
@@ -66,7 +62,7 @@ import {
   AircraftTupleQueryParams,
   AircraftTupleQueryResponse,
   AircraftUpdateParams,
-} from 'bluestaq@unified-data-library/resources/aircraft';
+} from './resources/aircraft';
 import {
   AircraftSorties,
   AircraftSortyQueryhelpResponse,
@@ -74,7 +70,7 @@ import {
   AircraftSortyTupleParams,
   AircraftSortyTupleResponse,
   AircraftSortyUpdateParams,
-} from 'bluestaq@unified-data-library/resources/aircraft-sorties';
+} from './resources/aircraft-sorties';
 import {
   AircraftStatusRemarkCountParams,
   AircraftStatusRemarkCountResponse,
@@ -88,7 +84,7 @@ import {
   AircraftStatusRemarks,
   AircraftstatusremarkAbridged,
   AircraftstatusremarkAbridgedsOffsetPage,
-} from 'bluestaq@unified-data-library/resources/aircraft-status-remarks';
+} from './resources/aircraft-status-remarks';
 import {
   AirfieldSlotConsumptionCountParams,
   AirfieldSlotConsumptionCountResponse,
@@ -102,7 +98,7 @@ import {
   AirfieldSlotConsumptions,
   AirfieldslotconsumptionAbridged,
   AirfieldslotconsumptionAbridgedsOffsetPage,
-} from 'bluestaq@unified-data-library/resources/airfield-slot-consumptions';
+} from './resources/airfield-slot-consumptions';
 import {
   AirfieldSlotCountParams,
   AirfieldSlotCountResponse,
@@ -116,7 +112,7 @@ import {
   AirfieldSlots,
   AirfieldslotAbridged,
   AirfieldslotAbridgedsOffsetPage,
-} from 'bluestaq@unified-data-library/resources/airfield-slots';
+} from './resources/airfield-slots';
 import {
   AirfieldAbridged,
   AirfieldAbridgedsOffsetPage,
@@ -130,8 +126,8 @@ import {
   AirfieldTupleResponse,
   AirfieldUpdateParams,
   Airfields,
-} from 'bluestaq@unified-data-library/resources/airfields';
-import { AirloadPlanUpdateParams, AirloadPlans } from 'bluestaq@unified-data-library/resources/airload-plans';
+} from './resources/airfields';
+import { AirloadPlanUpdateParams, AirloadPlans } from './resources/airload-plans';
 import {
   AirspaceControlOrderCountParams,
   AirspaceControlOrderCountResponse,
@@ -145,11 +141,8 @@ import {
   AirspaceControlOrders,
   AirspacecontrolorderAbridged,
   AirspacecontrolorderAbridgedsOffsetPage,
-} from 'bluestaq@unified-data-library/resources/airspace-control-orders';
-import {
-  AIsObjectUnvalidatedPublishParams,
-  AIsObjects,
-} from 'bluestaq@unified-data-library/resources/ais-objects';
+} from './resources/airspace-control-orders';
+import { AIsObjectUnvalidatedPublishParams, AIsObjects } from './resources/ais-objects';
 import {
   AnalyticImagery,
   AnalyticImageryAbridged,
@@ -168,7 +161,7 @@ import {
   AnalyticImageryTupleParams,
   AnalyticImageryTupleResponse,
   AnalyticImageryUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/analytic-imagery';
+} from './resources/analytic-imagery';
 import {
   AntennaAbridged,
   AntennaAbridgedsOffsetPage,
@@ -182,17 +175,14 @@ import {
   AntennaTupleResponse,
   AntennaUpdateParams,
   Antennas,
-} from 'bluestaq@unified-data-library/resources/antennas';
+} from './resources/antennas';
 import {
   AttitudeData,
   AttitudeDataQueryHelpResponse,
   AttitudeDataTupleParams,
   AttitudeDataTupleResponse,
-} from 'bluestaq@unified-data-library/resources/attitude-data';
-import {
-  AttitudesetRetrieveParams,
-  Attitudesets,
-} from 'bluestaq@unified-data-library/resources/attitudesets';
+} from './resources/attitude-data';
+import { AttitudesetRetrieveParams, Attitudesets } from './resources/attitudesets';
 import {
   AviationRiskManagement,
   AviationRiskManagementCountParams,
@@ -208,7 +198,7 @@ import {
   AviationRiskManagementTupleResponse,
   AviationRiskManagementUnvalidatedPublishParams,
   AviationRiskManagementUpdateParams,
-} from 'bluestaq@unified-data-library/resources/aviation-risk-management';
+} from './resources/aviation-risk-management';
 import {
   Batteries,
   BatteryAbridged,
@@ -222,7 +212,7 @@ import {
   BatteryTupleParams,
   BatteryTupleResponse,
   BatteryUpdateParams,
-} from 'bluestaq@unified-data-library/resources/batteries';
+} from './resources/batteries';
 import {
   BatterydetailCreateParams,
   BatterydetailListParams,
@@ -231,7 +221,7 @@ import {
   Batterydetails,
   BatterydetailsAbridged,
   BatterydetailsAbridgedsOffsetPage,
-} from 'bluestaq@unified-data-library/resources/batterydetails';
+} from './resources/batterydetails';
 import {
   Beam,
   BeamAbridged,
@@ -245,7 +235,7 @@ import {
   BeamTupleParams,
   BeamTupleResponse,
   BeamUpdateParams,
-} from 'bluestaq@unified-data-library/resources/beam';
+} from './resources/beam';
 import {
   BeamContourCountParams,
   BeamContourCountResponse,
@@ -260,7 +250,7 @@ import {
   BeamContours,
   BeamcontourAbridged,
   BeamcontourAbridgedsOffsetPage,
-} from 'bluestaq@unified-data-library/resources/beam-contours';
+} from './resources/beam-contours';
 import {
   BusAbridged,
   BusAbridgedsOffsetPage,
@@ -274,7 +264,7 @@ import {
   BusTupleResponse,
   BusUpdateParams,
   Buses,
-} from 'bluestaq@unified-data-library/resources/buses';
+} from './resources/buses';
 import {
   ChannelAbridged,
   ChannelAbridgedsOffsetPage,
@@ -288,7 +278,7 @@ import {
   ChannelTupleResponse,
   ChannelUpdateParams,
   Channels,
-} from 'bluestaq@unified-data-library/resources/channels';
+} from './resources/channels';
 import {
   Comm,
   CommAbridged,
@@ -302,8 +292,8 @@ import {
   CommTupleParams,
   CommTupleResponse,
   CommUpdateParams,
-} from 'bluestaq@unified-data-library/resources/comm';
-import { CotCreateParams, Cots } from 'bluestaq@unified-data-library/resources/cots';
+} from './resources/comm';
+import { CotCreateParams, Cots } from './resources/cots';
 import {
   Countries,
   CountryAbridged,
@@ -317,7 +307,7 @@ import {
   CountryTupleParams,
   CountryTupleResponse,
   CountryUpdateParams,
-} from 'bluestaq@unified-data-library/resources/countries';
+} from './resources/countries';
 import {
   Crew,
   CrewAbridged,
@@ -332,7 +322,7 @@ import {
   CrewTupleResponse,
   CrewUnvalidatedPublishParams,
   CrewUpdateParams,
-} from 'bluestaq@unified-data-library/resources/crew';
+} from './resources/crew';
 import {
   DriftHistory,
   DriftHistoryCountParams,
@@ -342,7 +332,7 @@ import {
   DriftHistoryRetrieveParams,
   DriftHistoryTupleParams,
   DriftHistoryTupleResponse,
-} from 'bluestaq@unified-data-library/resources/drift-history';
+} from './resources/drift-history';
 import {
   Dropzone,
   DropzoneCountParams,
@@ -358,8 +348,8 @@ import {
   DropzoneTupleResponse,
   DropzoneUnvalidatedPublishParams,
   DropzoneUpdateParams,
-} from 'bluestaq@unified-data-library/resources/dropzone';
-import { EcpSdr, EcpSdrUnvalidatedPublishParams } from 'bluestaq@unified-data-library/resources/ecp-sdr';
+} from './resources/dropzone';
+import { EcpSdr, EcpSdrUnvalidatedPublishParams } from './resources/ecp-sdr';
 import {
   EmitterGeolocation,
   EmitterGeolocationCountParams,
@@ -374,7 +364,7 @@ import {
   EmitterGeolocationTupleParams,
   EmitterGeolocationTupleResponse,
   EmitterGeolocationUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/emitter-geolocation';
+} from './resources/emitter-geolocation';
 import {
   EngineDetailCreateParams,
   EngineDetailListParams,
@@ -383,7 +373,7 @@ import {
   EngineDetails,
   EngineDetailsAbridged,
   EngineDetailsAbridgedsOffsetPage,
-} from 'bluestaq@unified-data-library/resources/engine-details';
+} from './resources/engine-details';
 import {
   EngineAbridged,
   EngineAbridgedsOffsetPage,
@@ -397,7 +387,7 @@ import {
   EngineTupleResponse,
   EngineUpdateParams,
   Engines,
-} from 'bluestaq@unified-data-library/resources/engines';
+} from './resources/engines';
 import {
   Entities,
   EntityAbridged,
@@ -414,7 +404,7 @@ import {
   EntityTupleParams,
   EntityTupleResponse,
   EntityUpdateParams,
-} from 'bluestaq@unified-data-library/resources/entities';
+} from './resources/entities';
 import {
   Equipment,
   EquipmentAbridged,
@@ -430,7 +420,7 @@ import {
   EquipmentTupleParams,
   EquipmentTupleResponse,
   EquipmentUpdateParams,
-} from 'bluestaq@unified-data-library/resources/equipment';
+} from './resources/equipment';
 import {
   EquipmentRemarkAbridged,
   EquipmentRemarkAbridgedsOffsetPage,
@@ -445,7 +435,7 @@ import {
   EquipmentRemarkTupleParams,
   EquipmentRemarkTupleResponse,
   EquipmentRemarks,
-} from 'bluestaq@unified-data-library/resources/equipment-remarks';
+} from './resources/equipment-remarks';
 import {
   FlightPlanAbridged,
   FlightPlanAbridgedsOffsetPage,
@@ -460,7 +450,7 @@ import {
   FlightplanTupleResponse,
   FlightplanUnvalidatedPublishParams,
   FlightplanUpdateParams,
-} from 'bluestaq@unified-data-library/resources/flightplan';
+} from './resources/flightplan';
 import {
   GnssRawif,
   GnssRawifCountParams,
@@ -475,7 +465,7 @@ import {
   GnssRawifTupleParams,
   GnssRawifTupleResponse,
   GnssRawifUploadZipParams,
-} from 'bluestaq@unified-data-library/resources/gnss-rawif';
+} from './resources/gnss-rawif';
 import {
   H3GeoHexCell,
   H3GeoHexCellCountParams,
@@ -486,7 +476,7 @@ import {
   H3GeoHexCellQueryhelpResponse,
   H3GeoHexCellTupleParams,
   H3GeoHexCellTupleResponse,
-} from 'bluestaq@unified-data-library/resources/h3-geo-hex-cell';
+} from './resources/h3-geo-hex-cell';
 import {
   IonOobservation,
   IonOobservationCountParams,
@@ -499,7 +489,7 @@ import {
   IonOobservationTupleParams,
   IonOobservationTupleResponse,
   IonOobservationUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/ion-oobservation';
+} from './resources/ion-oobservation';
 import {
   Ir,
   IrCountParams,
@@ -514,7 +504,7 @@ import {
   IrTupleParams,
   IrTupleResponse,
   IrUpdateParams,
-} from 'bluestaq@unified-data-library/resources/ir';
+} from './resources/ir';
 import {
   Item,
   ItemCountParams,
@@ -530,7 +520,7 @@ import {
   ItemTupleResponse,
   ItemUnvalidatedPublishParams,
   ItemUpdateParams,
-} from 'bluestaq@unified-data-library/resources/item';
+} from './resources/item';
 import {
   LaunchDetection,
   LaunchDetectionCountParams,
@@ -545,7 +535,7 @@ import {
   LaunchDetectionTupleParams,
   LaunchDetectionTupleResponse,
   LaunchDetectionUpdateParams,
-} from 'bluestaq@unified-data-library/resources/launch-detection';
+} from './resources/launch-detection';
 import {
   LaunchSite,
   LaunchSiteCountParams,
@@ -560,7 +550,7 @@ import {
   LaunchSiteTupleParams,
   LaunchSiteTupleResponse,
   LaunchSiteUpdateParams,
-} from 'bluestaq@unified-data-library/resources/launch-site';
+} from './resources/launch-site';
 import {
   LaunchSiteDetailCreateParams,
   LaunchSiteDetailFindBySourceParams,
@@ -572,7 +562,7 @@ import {
   LaunchSiteDetailListResponsesOffsetPage,
   LaunchSiteDetailUpdateParams,
   LaunchSiteDetails,
-} from 'bluestaq@unified-data-library/resources/launch-site-details';
+} from './resources/launch-site-details';
 import {
   LaunchVehicle,
   LaunchVehicleCountParams,
@@ -587,7 +577,7 @@ import {
   LaunchVehicleTupleParams,
   LaunchVehicleTupleResponse,
   LaunchVehicleUpdateParams,
-} from 'bluestaq@unified-data-library/resources/launch-vehicle';
+} from './resources/launch-vehicle';
 import {
   LaunchVehicleDetailCreateParams,
   LaunchVehicleDetailGetParams,
@@ -597,7 +587,7 @@ import {
   LaunchVehicleDetailListResponsesOffsetPage,
   LaunchVehicleDetailUpdateParams,
   LaunchVehicleDetails,
-} from 'bluestaq@unified-data-library/resources/launch-vehicle-details';
+} from './resources/launch-vehicle-details';
 import {
   Location,
   LocationCountParams,
@@ -610,7 +600,7 @@ import {
   LocationTupleParams,
   LocationTupleResponse,
   LocationUpdateParams,
-} from 'bluestaq@unified-data-library/resources/location';
+} from './resources/location';
 import {
   Manifold,
   ManifoldCountParams,
@@ -626,7 +616,7 @@ import {
   ManifoldTupleParams,
   ManifoldTupleResponse,
   ManifoldUpdateParams,
-} from 'bluestaq@unified-data-library/resources/manifold';
+} from './resources/manifold';
 import {
   Manifoldelset,
   ManifoldelsetCountParams,
@@ -642,7 +632,7 @@ import {
   ManifoldelsetTupleParams,
   ManifoldelsetTupleResponse,
   ManifoldelsetUpdateParams,
-} from 'bluestaq@unified-data-library/resources/manifoldelset';
+} from './resources/manifoldelset';
 import {
   Navigation,
   NavigationCountParams,
@@ -657,7 +647,7 @@ import {
   NavigationTupleParams,
   NavigationTupleResponse,
   NavigationUpdateParams,
-} from 'bluestaq@unified-data-library/resources/navigation';
+} from './resources/navigation';
 import {
   NavigationalObstruction,
   NavigationalObstructionCountParams,
@@ -673,7 +663,7 @@ import {
   NavigationalObstructionTupleParams,
   NavigationalObstructionTupleResponse,
   NavigationalObstructionUpdateParams,
-} from 'bluestaq@unified-data-library/resources/navigational-obstruction';
+} from './resources/navigational-obstruction';
 import {
   ObjectOfInterest,
   ObjectOfInterestCountParams,
@@ -688,7 +678,7 @@ import {
   ObjectOfInterestTupleParams,
   ObjectOfInterestTupleResponse,
   ObjectOfInterestUpdateParams,
-} from 'bluestaq@unified-data-library/resources/object-of-interest';
+} from './resources/object-of-interest';
 import {
   Onorbitantenna,
   OnorbitantennaCreateParams,
@@ -697,7 +687,7 @@ import {
   OnorbitantennaListResponse,
   OnorbitantennaListResponsesOffsetPage,
   OnorbitantennaUpdateParams,
-} from 'bluestaq@unified-data-library/resources/onorbitantenna';
+} from './resources/onorbitantenna';
 import {
   Onorbitbattery,
   OnorbitbatteryCreateParams,
@@ -706,7 +696,7 @@ import {
   OnorbitbatteryListResponse,
   OnorbitbatteryListResponsesOffsetPage,
   OnorbitbatteryUpdateParams,
-} from 'bluestaq@unified-data-library/resources/onorbitbattery';
+} from './resources/onorbitbattery';
 import {
   OnorbitdetailCreateParams,
   OnorbitdetailGetParams,
@@ -715,7 +705,7 @@ import {
   OnorbitdetailListResponsesOffsetPage,
   OnorbitdetailUpdateParams,
   Onorbitdetails,
-} from 'bluestaq@unified-data-library/resources/onorbitdetails';
+} from './resources/onorbitdetails';
 import {
   Onorbitevent,
   OnorbiteventCountParams,
@@ -730,7 +720,7 @@ import {
   OnorbiteventTupleParams,
   OnorbiteventTupleResponse,
   OnorbiteventUpdateParams,
-} from 'bluestaq@unified-data-library/resources/onorbitevent';
+} from './resources/onorbitevent';
 import {
   Onorbitlist,
   OnorbitlistCountParams,
@@ -745,7 +735,7 @@ import {
   OnorbitlistTupleParams,
   OnorbitlistTupleResponse,
   OnorbitlistUpdateParams,
-} from 'bluestaq@unified-data-library/resources/onorbitlist';
+} from './resources/onorbitlist';
 import {
   Onorbitsolararray,
   OnorbitsolararrayCreateParams,
@@ -754,7 +744,7 @@ import {
   OnorbitsolararrayListResponse,
   OnorbitsolararrayListResponsesOffsetPage,
   OnorbitsolararrayUpdateParams,
-} from 'bluestaq@unified-data-library/resources/onorbitsolararray';
+} from './resources/onorbitsolararray';
 import {
   Onorbitthruster,
   OnorbitthrusterCreateParams,
@@ -763,7 +753,7 @@ import {
   OnorbitthrusterListResponse,
   OnorbitthrusterListResponsesOffsetPage,
   OnorbitthrusterUpdateParams,
-} from 'bluestaq@unified-data-library/resources/onorbitthruster';
+} from './resources/onorbitthruster';
 import {
   Operatingunit,
   OperatingunitCountParams,
@@ -777,7 +767,7 @@ import {
   OperatingunitTupleParams,
   OperatingunitTupleResponse,
   OperatingunitUpdateParams,
-} from 'bluestaq@unified-data-library/resources/operatingunit';
+} from './resources/operatingunit';
 import {
   Operatingunitremark,
   OperatingunitremarkCountParams,
@@ -791,7 +781,7 @@ import {
   OperatingunitremarkQueryhelpResponse,
   OperatingunitremarkTupleParams,
   OperatingunitremarkTupleResponse,
-} from 'bluestaq@unified-data-library/resources/operatingunitremark';
+} from './resources/operatingunitremark';
 import {
   Organization,
   OrganizationCountParams,
@@ -809,7 +799,7 @@ import {
   OrganizationTupleParams,
   OrganizationTupleResponse,
   OrganizationUpdateParams,
-} from 'bluestaq@unified-data-library/resources/organization';
+} from './resources/organization';
 import {
   OrganizationdetailCreateParams,
   OrganizationdetailFindBySourceParams,
@@ -820,7 +810,7 @@ import {
   OrganizationdetailListResponsesOffsetPage,
   OrganizationdetailUpdateParams,
   Organizationdetails,
-} from 'bluestaq@unified-data-library/resources/organizationdetails';
+} from './resources/organizationdetails';
 import {
   Poi,
   PoiCountParams,
@@ -836,7 +826,7 @@ import {
   PoiTupleParams,
   PoiTupleResponse,
   PoiUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/poi';
+} from './resources/poi';
 import {
   Port,
   PortCountParams,
@@ -852,7 +842,7 @@ import {
   PortTupleParams,
   PortTupleResponse,
   PortUpdateParams,
-} from 'bluestaq@unified-data-library/resources/port';
+} from './resources/port';
 import {
   RfBand,
   RfBandCountParams,
@@ -866,7 +856,7 @@ import {
   RfBandTupleParams,
   RfBandTupleResponse,
   RfBandUpdateParams,
-} from 'bluestaq@unified-data-library/resources/rf-band';
+} from './resources/rf-band';
 import {
   RfBandType,
   RfBandTypeCountParams,
@@ -881,7 +871,7 @@ import {
   RfBandTypeTupleParams,
   RfBandTypeTupleResponse,
   RfBandTypeUpdateParams,
-} from 'bluestaq@unified-data-library/resources/rf-band-type';
+} from './resources/rf-band-type';
 import {
   RfEmitter,
   RfEmitterCountParams,
@@ -896,7 +886,7 @@ import {
   RfEmitterTupleParams,
   RfEmitterTupleResponse,
   RfEmitterUpdateParams,
-} from 'bluestaq@unified-data-library/resources/rf-emitter';
+} from './resources/rf-emitter';
 import {
   RfEmitterDetailCountParams,
   RfEmitterDetailCountResponse,
@@ -911,7 +901,7 @@ import {
   RfEmitterDetailTupleResponse,
   RfEmitterDetailUpdateParams,
   RfEmitterDetails,
-} from 'bluestaq@unified-data-library/resources/rf-emitter-details';
+} from './resources/rf-emitter-details';
 import {
   RouteStatCountParams,
   RouteStatCountResponse,
@@ -927,7 +917,7 @@ import {
   RouteStatUnvalidatedPublishParams,
   RouteStatUpdateParams,
   RouteStats,
-} from 'bluestaq@unified-data-library/resources/route-stats';
+} from './resources/route-stats';
 import {
   Scientific,
   ScientificCountParams,
@@ -942,8 +932,8 @@ import {
   ScientificTupleParams,
   ScientificTupleResponse,
   ScientificUpdateParams,
-} from 'bluestaq@unified-data-library/resources/scientific';
-import { ScsViewRetrieveParams, ScsViews } from 'bluestaq@unified-data-library/resources/scs-views';
+} from './resources/scientific';
+import { ScsViewRetrieveParams, ScsViews } from './resources/scs-views';
 import {
   SecureMessaging,
   SecureMessagingDescribeTopicParams,
@@ -951,7 +941,7 @@ import {
   SecureMessagingGetMessagesParams,
   SecureMessagingListTopicsResponse,
   TopicDetails,
-} from 'bluestaq@unified-data-library/resources/secure-messaging';
+} from './resources/secure-messaging';
 import {
   SensorObservationType,
   SensorObservationTypeGetParams,
@@ -960,7 +950,7 @@ import {
   SensorObservationTypeListResponse,
   SensorObservationTypeListResponsesOffsetPage,
   SensorObservationTypeQueryhelpResponse,
-} from 'bluestaq@unified-data-library/resources/sensor-observation-type';
+} from './resources/sensor-observation-type';
 import {
   SensorType,
   SensorTypeGetParams,
@@ -969,7 +959,7 @@ import {
   SensorTypeListResponse,
   SensorTypeListResponsesOffsetPage,
   SensorTypeQueryhelpResponse,
-} from 'bluestaq@unified-data-library/resources/sensor-type';
+} from './resources/sensor-type';
 import {
   SeraDataCommDetailCountParams,
   SeraDataCommDetailCountResponse,
@@ -984,7 +974,7 @@ import {
   SeraDataCommDetailTupleResponse,
   SeraDataCommDetailUpdateParams,
   SeraDataCommDetails,
-} from 'bluestaq@unified-data-library/resources/sera-data-comm-details';
+} from './resources/sera-data-comm-details';
 import {
   SeraDataEarlyWarning,
   SeraDataEarlyWarningCountParams,
@@ -999,7 +989,7 @@ import {
   SeraDataEarlyWarningTupleParams,
   SeraDataEarlyWarningTupleResponse,
   SeraDataEarlyWarningUpdateParams,
-} from 'bluestaq@unified-data-library/resources/sera-data-early-warning';
+} from './resources/sera-data-early-warning';
 import {
   SeraDataNavigation,
   SeraDataNavigationCountParams,
@@ -1014,7 +1004,7 @@ import {
   SeraDataNavigationTupleParams,
   SeraDataNavigationTupleResponse,
   SeraDataNavigationUpdateParams,
-} from 'bluestaq@unified-data-library/resources/sera-data-navigation';
+} from './resources/sera-data-navigation';
 import {
   SeradataOpticalPayload,
   SeradataOpticalPayloadCountParams,
@@ -1029,7 +1019,7 @@ import {
   SeradataOpticalPayloadTupleParams,
   SeradataOpticalPayloadTupleResponse,
   SeradataOpticalPayloadUpdateParams,
-} from 'bluestaq@unified-data-library/resources/seradata-optical-payload';
+} from './resources/seradata-optical-payload';
 import {
   SeradataRadarPayload,
   SeradataRadarPayloadCountParams,
@@ -1044,7 +1034,7 @@ import {
   SeradataRadarPayloadTupleParams,
   SeradataRadarPayloadTupleResponse,
   SeradataRadarPayloadUpdateParams,
-} from 'bluestaq@unified-data-library/resources/seradata-radar-payload';
+} from './resources/seradata-radar-payload';
 import {
   SeradataSigintPayload,
   SeradataSigintPayloadCountParams,
@@ -1059,7 +1049,7 @@ import {
   SeradataSigintPayloadTupleParams,
   SeradataSigintPayloadTupleResponse,
   SeradataSigintPayloadUpdateParams,
-} from 'bluestaq@unified-data-library/resources/seradata-sigint-payload';
+} from './resources/seradata-sigint-payload';
 import {
   SeradataSpacecraftDetailCountParams,
   SeradataSpacecraftDetailCountResponse,
@@ -1074,7 +1064,7 @@ import {
   SeradataSpacecraftDetailTupleResponse,
   SeradataSpacecraftDetailUpdateParams,
   SeradataSpacecraftDetails,
-} from 'bluestaq@unified-data-library/resources/seradata-spacecraft-details';
+} from './resources/seradata-spacecraft-details';
 import {
   SiteRemark,
   SiteRemarkCountParams,
@@ -1088,7 +1078,7 @@ import {
   SiteRemarkQueryhelpResponse,
   SiteRemarkTupleParams,
   SiteRemarkTupleResponse,
-} from 'bluestaq@unified-data-library/resources/site-remark';
+} from './resources/site-remark';
 import {
   SolarArray,
   SolarArrayCountParams,
@@ -1102,7 +1092,7 @@ import {
   SolarArrayTupleParams,
   SolarArrayTupleResponse,
   SolarArrayUpdateParams,
-} from 'bluestaq@unified-data-library/resources/solar-array';
+} from './resources/solar-array';
 import {
   SolarArrayDetailCreateParams,
   SolarArrayDetailGetParams,
@@ -1111,7 +1101,7 @@ import {
   SolarArrayDetailListResponsesOffsetPage,
   SolarArrayDetailUpdateParams,
   SolarArrayDetails,
-} from 'bluestaq@unified-data-library/resources/solar-array-details';
+} from './resources/solar-array-details';
 import {
   Stage,
   StageCountParams,
@@ -1126,7 +1116,7 @@ import {
   StageTupleParams,
   StageTupleResponse,
   StageUpdateParams,
-} from 'bluestaq@unified-data-library/resources/stage';
+} from './resources/stage';
 import {
   Status,
   StatusCountParams,
@@ -1144,7 +1134,7 @@ import {
   StatusTupleParams,
   StatusTupleResponse,
   StatusUpdateParams,
-} from 'bluestaq@unified-data-library/resources/status';
+} from './resources/status';
 import {
   Substatus,
   SubstatusCountParams,
@@ -1158,7 +1148,7 @@ import {
   SubstatusTupleParams,
   SubstatusTupleResponse,
   SubstatusUpdateParams,
-} from 'bluestaq@unified-data-library/resources/substatus';
+} from './resources/substatus';
 import {
   Surface,
   SurfaceCountParams,
@@ -1173,7 +1163,7 @@ import {
   SurfaceTupleParams,
   SurfaceTupleResponse,
   SurfaceUpdateParams,
-} from 'bluestaq@unified-data-library/resources/surface';
+} from './resources/surface';
 import {
   SurfaceObstruction,
   SurfaceObstructionCountParams,
@@ -1189,7 +1179,7 @@ import {
   SurfaceObstructionTupleResponse,
   SurfaceObstructionUnvalidatedPublishParams,
   SurfaceObstructionUpdateParams,
-} from 'bluestaq@unified-data-library/resources/surface-obstruction';
+} from './resources/surface-obstruction';
 import {
   Transponder,
   TransponderCountParams,
@@ -1204,7 +1194,7 @@ import {
   TransponderTupleParams,
   TransponderTupleResponse,
   TransponderUpdateParams,
-} from 'bluestaq@unified-data-library/resources/transponder';
+} from './resources/transponder';
 import {
   Vessel,
   VesselCountParams,
@@ -1220,8 +1210,8 @@ import {
   VesselTupleParams,
   VesselTupleResponse,
   VesselUpdateParams,
-} from 'bluestaq@unified-data-library/resources/vessel';
-import { AirOperations } from 'bluestaq@unified-data-library/resources/air-operations/air-operations';
+} from './resources/vessel';
+import { AirOperations } from './resources/air-operations/air-operations';
 import {
   AirTransportMissionAbridged,
   AirTransportMissionAbridgedsOffsetPage,
@@ -1235,7 +1225,7 @@ import {
   AirTransportMissionTupleResponse,
   AirTransportMissionUpdateParams,
   AirTransportMissions,
-} from 'bluestaq@unified-data-library/resources/air-transport-missions/air-transport-missions';
+} from './resources/air-transport-missions/air-transport-missions';
 import {
   AircraftStatusCountParams,
   AircraftStatusCountResponse,
@@ -1249,7 +1239,7 @@ import {
   AircraftStatuses,
   AircraftstatusAbridged,
   AircraftstatusAbridgedsOffsetPage,
-} from 'bluestaq@unified-data-library/resources/aircraft-statuses/aircraft-statuses';
+} from './resources/aircraft-statuses/aircraft-statuses';
 import {
   AirfieldStatus,
   AirfieldStatusCountParams,
@@ -1263,7 +1253,7 @@ import {
   AirfieldStatusUpdateParams,
   AirfieldstatusAbridged,
   AirfieldstatusAbridgedsOffsetPage,
-} from 'bluestaq@unified-data-library/resources/airfield-status/airfield-status';
+} from './resources/airfield-status/airfield-status';
 import {
   AICountParams,
   AICountResponse,
@@ -1277,7 +1267,7 @@ import {
   AIs,
   AIsAbridged,
   AIsAbridgedsOffsetPage,
-} from 'bluestaq@unified-data-library/resources/ais/ais';
+} from './resources/ais/ais';
 import {
   AttitudeSetCountParams,
   AttitudeSetCountResponse,
@@ -1290,7 +1280,7 @@ import {
   AttitudeSets,
   AttitudesetAbridged,
   AttitudesetAbridgedsOffsetPage,
-} from 'bluestaq@unified-data-library/resources/attitude-sets/attitude-sets';
+} from './resources/attitude-sets/attitude-sets';
 import {
   CollectRequestAbridged,
   CollectRequestAbridgedsOffsetPage,
@@ -1305,7 +1295,7 @@ import {
   CollectRequestTupleResponse,
   CollectRequestUnvalidatedPublishParams,
   CollectRequests,
-} from 'bluestaq@unified-data-library/resources/collect-requests/collect-requests';
+} from './resources/collect-requests/collect-requests';
 import {
   CollectResponseAbridged,
   CollectResponseAbridgedsOffsetPage,
@@ -1318,7 +1308,7 @@ import {
   CollectResponseRetrieveParams,
   CollectResponseUnvalidatedPublishParams,
   CollectResponses,
-} from 'bluestaq@unified-data-library/resources/collect-responses/collect-responses';
+} from './resources/collect-responses/collect-responses';
 import {
   ConjunctionAbridged,
   ConjunctionAbridgedsOffsetPage,
@@ -1335,7 +1325,7 @@ import {
   ConjunctionTupleResponse,
   ConjunctionUnvalidatedPublishParams,
   Conjunctions,
-} from 'bluestaq@unified-data-library/resources/conjunctions/conjunctions';
+} from './resources/conjunctions/conjunctions';
 import {
   DiffOfArrival,
   DiffOfArrivalQueryhelpResponse,
@@ -1343,7 +1333,7 @@ import {
   DiffOfArrivalTupleParams,
   DiffOfArrivalTupleResponse,
   DiffOfArrivalUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/diff-of-arrival/diff-of-arrival';
+} from './resources/diff-of-arrival/diff-of-arrival';
 import {
   DiplomaticClearance,
   DiplomaticClearanceCountParams,
@@ -1356,7 +1346,7 @@ import {
   DiplomaticClearanceTupleParams,
   DiplomaticClearanceTupleResponse,
   DiplomaticClearanceUpdateParams,
-} from 'bluestaq@unified-data-library/resources/diplomatic-clearance/diplomatic-clearance';
+} from './resources/diplomatic-clearance/diplomatic-clearance';
 import {
   EffectRequestCountParams,
   EffectRequestCountResponse,
@@ -1372,7 +1362,7 @@ import {
   EffectRequestTupleResponse,
   EffectRequestUnvalidatedPublishParams,
   EffectRequests,
-} from 'bluestaq@unified-data-library/resources/effect-requests/effect-requests';
+} from './resources/effect-requests/effect-requests';
 import {
   EffectResponseActionsListFull,
   EffectResponseCountParams,
@@ -1390,7 +1380,7 @@ import {
   EffectResponseTupleResponse,
   EffectResponseUnvalidatedPublishParams,
   EffectResponses,
-} from 'bluestaq@unified-data-library/resources/effect-responses/effect-responses';
+} from './resources/effect-responses/effect-responses';
 import {
   Elset,
   ElsetAbridged,
@@ -1409,7 +1399,7 @@ import {
   ElsetTupleResponse,
   ElsetUnvalidatedPublishParams,
   Elsets,
-} from 'bluestaq@unified-data-library/resources/elsets/elsets';
+} from './resources/elsets/elsets';
 import {
   Eop,
   EopAbridged,
@@ -1423,7 +1413,7 @@ import {
   EopQueryhelpResponse,
   EopRetrieveParams,
   EopUpdateParams,
-} from 'bluestaq@unified-data-library/resources/eop/eop';
+} from './resources/eop/eop';
 import {
   EphemerisSet,
   EphemerisSetAbridged,
@@ -1438,7 +1428,7 @@ import {
   EphemerisSetTupleParams,
   EphemerisSetTupleResponse,
   EphemerisSets,
-} from 'bluestaq@unified-data-library/resources/ephemeris-sets/ephemeris-sets';
+} from './resources/ephemeris-sets/ephemeris-sets';
 import {
   Ephemeris,
   EphemerisAbridged,
@@ -1451,7 +1441,7 @@ import {
   EphemerisTupleParams,
   EphemerisTupleResponse,
   EphemerisUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/ephemeris/ephemeris';
+} from './resources/ephemeris/ephemeris';
 import {
   Evac,
   EvacAbridged,
@@ -1464,7 +1454,7 @@ import {
   EvacQueryHelpResponse,
   EvacRetrieveParams,
   EvacUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/evac/evac';
+} from './resources/evac/evac';
 import {
   EventEvolution,
   EventEvolutionCountParams,
@@ -1479,7 +1469,7 @@ import {
   EventEvolutionTupleParams,
   EventEvolutionTupleResponse,
   EventEvolutionUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/event-evolution/event-evolution';
+} from './resources/event-evolution/event-evolution';
 import {
   FeatureAssessment,
   FeatureAssessmentCountParams,
@@ -1494,7 +1484,7 @@ import {
   FeatureAssessmentTupleParams,
   FeatureAssessmentTupleResponse,
   FeatureAssessmentUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/feature-assessment/feature-assessment';
+} from './resources/feature-assessment/feature-assessment';
 import {
   GeoStatus,
   GeoStatusCountParams,
@@ -1508,7 +1498,7 @@ import {
   GeoStatusQueryhelpResponse,
   GeoStatusTupleParams,
   GeoStatusTupleResponse,
-} from 'bluestaq@unified-data-library/resources/geo-status/geo-status';
+} from './resources/geo-status/geo-status';
 import {
   GlobalAtmosphericModel,
   GlobalAtmosphericModelCountParams,
@@ -1522,8 +1512,8 @@ import {
   GlobalAtmosphericModelTupleParams,
   GlobalAtmosphericModelTupleResponse,
   GlobalAtmosphericModelUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/global-atmospheric-model/global-atmospheric-model';
-import { GnssObservations } from 'bluestaq@unified-data-library/resources/gnss-observations/gnss-observations';
+} from './resources/global-atmospheric-model/global-atmospheric-model';
+import { GnssObservations } from './resources/gnss-observations/gnss-observations';
 import {
   GnssObservationset,
   GnssObservationsetCountParams,
@@ -1536,8 +1526,8 @@ import {
   GnssObservationsetTupleParams,
   GnssObservationsetTupleResponse,
   GnssObservationsetUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/gnss-observationset/gnss-observationset';
-import { GnssRawIf } from 'bluestaq@unified-data-library/resources/gnss-raw-if/gnss-raw-if';
+} from './resources/gnss-observationset/gnss-observationset';
+import { GnssRawIf } from './resources/gnss-raw-if/gnss-raw-if';
 import {
   GroundImagery,
   GroundImageryCountParams,
@@ -1554,7 +1544,7 @@ import {
   GroundImageryTupleParams,
   GroundImageryTupleResponse,
   GroundImageryUploadZipParams,
-} from 'bluestaq@unified-data-library/resources/ground-imagery/ground-imagery';
+} from './resources/ground-imagery/ground-imagery';
 import {
   H3Geo,
   H3GeoCountParams,
@@ -1568,7 +1558,7 @@ import {
   H3GeoQueryhelpResponse,
   H3GeoTupleParams,
   H3GeoTupleResponse,
-} from 'bluestaq@unified-data-library/resources/h3-geo/h3-geo';
+} from './resources/h3-geo/h3-geo';
 import {
   Hazard,
   HazardCountParams,
@@ -1583,8 +1573,8 @@ import {
   HazardQueryhelpResponse,
   HazardTupleParams,
   HazardTupleResponse,
-} from 'bluestaq@unified-data-library/resources/hazard/hazard';
-import { IonoObservation } from 'bluestaq@unified-data-library/resources/iono-observation/iono-observation';
+} from './resources/hazard/hazard';
+import { IonoObservation } from './resources/iono-observation/iono-observation';
 import {
   IsrCollectionCountParams,
   IsrCollectionCountResponse,
@@ -1601,7 +1591,7 @@ import {
   IsrCollectionTupleResponse,
   IsrCollectionUnvalidatedPublishParams,
   IsrCollections,
-} from 'bluestaq@unified-data-library/resources/isr-collections/isr-collections';
+} from './resources/isr-collections/isr-collections';
 import {
   ItemTrackingCountParams,
   ItemTrackingCountResponse,
@@ -1616,7 +1606,7 @@ import {
   ItemTrackingTupleResponse,
   ItemTrackingUnvalidatedPublishParams,
   ItemTrackings,
-} from 'bluestaq@unified-data-library/resources/item-trackings/item-trackings';
+} from './resources/item-trackings/item-trackings';
 import {
   LaunchEvent,
   LaunchEventCountParams,
@@ -1632,7 +1622,7 @@ import {
   LaunchEventTupleParams,
   LaunchEventTupleResponse,
   LaunchEventUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/launch-event/launch-event';
+} from './resources/launch-event/launch-event';
 import {
   LinkStatus,
   LinkStatusCountParams,
@@ -1646,7 +1636,7 @@ import {
   LinkStatusQueryhelpResponse,
   LinkStatusTupleParams,
   LinkStatusTupleResponse,
-} from 'bluestaq@unified-data-library/resources/link-status/link-status';
+} from './resources/link-status/link-status';
 import {
   LogisticsDiscrepancyInfosFull,
   LogisticsPartsFull,
@@ -1672,7 +1662,7 @@ import {
   LogisticsSupportUnvalidatedPublishParams,
   LogisticsSupportUpdateParams,
   LogisticsTransportationPlansFull,
-} from 'bluestaq@unified-data-library/resources/logistics-support/logistics-support';
+} from './resources/logistics-support/logistics-support';
 import {
   ManeuverCountParams,
   ManeuverCountResponse,
@@ -1688,7 +1678,7 @@ import {
   ManeuverTupleResponse,
   ManeuverUnvalidatedPublishParams,
   Maneuvers,
-} from 'bluestaq@unified-data-library/resources/maneuvers/maneuvers';
+} from './resources/maneuvers/maneuvers';
 import {
   MissileTrackCountParams,
   MissileTrackCountResponse,
@@ -1701,7 +1691,7 @@ import {
   MissileTrackTupleResponse,
   MissileTrackUnvalidatedPublishParams,
   MissileTracks,
-} from 'bluestaq@unified-data-library/resources/missile-tracks/missile-tracks';
+} from './resources/missile-tracks/missile-tracks';
 import {
   MissionAssignment,
   MissionAssignmentCountParams,
@@ -1717,7 +1707,7 @@ import {
   MissionAssignmentTupleParams,
   MissionAssignmentTupleResponse,
   MissionAssignmentUpdateParams,
-} from 'bluestaq@unified-data-library/resources/mission-assignment/mission-assignment';
+} from './resources/mission-assignment/mission-assignment';
 import {
   Mti,
   MtiCountParams,
@@ -1730,7 +1720,7 @@ import {
   MtiTupleParams,
   MtiTupleResponse,
   MtiUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/mti/mti';
+} from './resources/mti/mti';
 import {
   Notification,
   NotificationCountParams,
@@ -1744,8 +1734,8 @@ import {
   NotificationQueryhelpResponse,
   NotificationTupleParams,
   NotificationTupleResponse,
-} from 'bluestaq@unified-data-library/resources/notification/notification';
-import { Observations } from 'bluestaq@unified-data-library/resources/observations/observations';
+} from './resources/notification/notification';
+import { Observations } from './resources/observations/observations';
 import {
   Onboardnavigation,
   OnboardnavigationCountParams,
@@ -1758,7 +1748,7 @@ import {
   OnboardnavigationTupleParams,
   OnboardnavigationTupleResponse,
   OnboardnavigationUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/onboardnavigation/onboardnavigation';
+} from './resources/onboardnavigation/onboardnavigation';
 import {
   Onorbit,
   OnorbitCountParams,
@@ -1775,7 +1765,7 @@ import {
   OnorbitTupleParams,
   OnorbitTupleResponse,
   OnorbitUpdateParams,
-} from 'bluestaq@unified-data-library/resources/onorbit/onorbit';
+} from './resources/onorbit/onorbit';
 import {
   Onorbitthrusterstatus,
   OnorbitthrusterstatusCountParams,
@@ -1789,7 +1779,7 @@ import {
   OnorbitthrusterstatusQueryhelpResponse,
   OnorbitthrusterstatusTupleParams,
   OnorbitthrusterstatusTupleResponse,
-} from 'bluestaq@unified-data-library/resources/onorbitthrusterstatus/onorbitthrusterstatus';
+} from './resources/onorbitthrusterstatus/onorbitthrusterstatus';
 import {
   Orbitdetermination,
   OrbitdeterminationCountParams,
@@ -1805,7 +1795,7 @@ import {
   OrbitdeterminationTupleParams,
   OrbitdeterminationTupleResponse,
   OrbitdeterminationUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/orbitdetermination/orbitdetermination';
+} from './resources/orbitdetermination/orbitdetermination';
 import {
   Orbittrack,
   OrbittrackCountParams,
@@ -1818,7 +1808,7 @@ import {
   OrbittrackTupleParams,
   OrbittrackTupleResponse,
   OrbittrackUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/orbittrack/orbittrack';
+} from './resources/orbittrack/orbittrack';
 import {
   PersonnelRecoveryFullL,
   Personnelrecovery,
@@ -1834,8 +1824,8 @@ import {
   PersonnelrecoveryQueryhelpResponse,
   PersonnelrecoveryTupleParams,
   PersonnelrecoveryTupleResponse,
-} from 'bluestaq@unified-data-library/resources/personnelrecovery/personnelrecovery';
-import { ReportAndActivity } from 'bluestaq@unified-data-library/resources/report-and-activity/report-and-activity';
+} from './resources/personnelrecovery/personnelrecovery';
+import { ReportAndActivity } from './resources/report-and-activity/report-and-activity';
 import {
   SarObservation,
   SarObservationCountParams,
@@ -1851,7 +1841,7 @@ import {
   SarObservationTupleParams,
   SarObservationTupleResponse,
   SarObservationUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/sar-observation/sar-observation';
+} from './resources/sar-observation/sar-observation';
 import {
   ScAggregateDocTypeResponse,
   ScAllowableFileExtensionsResponse,
@@ -1869,7 +1859,7 @@ import {
   ScSearchResponse,
   ScUpdateTagsParams,
   Scs,
-} from 'bluestaq@unified-data-library/resources/scs/scs';
+} from './resources/scs/scs';
 import {
   SensorMaintenance,
   SensorMaintenanceCountParams,
@@ -1887,7 +1877,7 @@ import {
   SensorMaintenanceTupleParams,
   SensorMaintenanceTupleResponse,
   SensorMaintenanceUpdateParams,
-} from 'bluestaq@unified-data-library/resources/sensor-maintenance/sensor-maintenance';
+} from './resources/sensor-maintenance/sensor-maintenance';
 import {
   SensorPlan,
   SensorPlanCountParams,
@@ -1903,7 +1893,7 @@ import {
   SensorPlanTupleResponse,
   SensorPlanUnvalidatedPublishParams,
   SensorPlanUpdateParams,
-} from 'bluestaq@unified-data-library/resources/sensor-plan/sensor-plan';
+} from './resources/sensor-plan/sensor-plan';
 import {
   Sensor,
   SensorCountParams,
@@ -1918,7 +1908,7 @@ import {
   SensorTupleParams,
   SensorTupleResponse,
   SensorUpdateParams,
-} from 'bluestaq@unified-data-library/resources/sensor/sensor';
+} from './resources/sensor/sensor';
 import {
   Sgi,
   SgiCountParams,
@@ -1937,7 +1927,7 @@ import {
   SgiTupleResponse,
   SgiUnvalidatedPublishParams,
   SgiUpdateParams,
-} from 'bluestaq@unified-data-library/resources/sgi/sgi';
+} from './resources/sgi/sgi';
 import {
   Sigact,
   SigactCountParams,
@@ -1950,7 +1940,7 @@ import {
   SigactTupleParams,
   SigactTupleResponse,
   SigactUploadZipParams,
-} from 'bluestaq@unified-data-library/resources/sigact/sigact';
+} from './resources/sigact/sigact';
 import {
   SiteStatus,
   SiteStatusCountParams,
@@ -1965,7 +1955,7 @@ import {
   SiteStatusTupleParams,
   SiteStatusTupleResponse,
   SiteStatusUpdateParams,
-} from 'bluestaq@unified-data-library/resources/site-status/site-status';
+} from './resources/site-status/site-status';
 import {
   Site,
   SiteCountParams,
@@ -1980,7 +1970,7 @@ import {
   SiteTupleParams,
   SiteTupleResponse,
   SiteUpdateParams,
-} from 'bluestaq@unified-data-library/resources/site/site';
+} from './resources/site/site';
 import {
   SkyImagery,
   SkyImageryCountParams,
@@ -1995,7 +1985,7 @@ import {
   SkyImageryTupleParams,
   SkyImageryTupleResponse,
   SkyImageryUploadZipParams,
-} from 'bluestaq@unified-data-library/resources/sky-imagery/sky-imagery';
+} from './resources/sky-imagery/sky-imagery';
 import {
   SoiObservationSet,
   SoiObservationSetCountParams,
@@ -2010,7 +2000,7 @@ import {
   SoiObservationSetTupleParams,
   SoiObservationSetTupleResponse,
   SoiObservationSetUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/soi-observation-set/soi-observation-set';
+} from './resources/soi-observation-set/soi-observation-set';
 import {
   SortiePpr,
   SortiePprCountParams,
@@ -2026,7 +2016,7 @@ import {
   SortiePprTupleResponse,
   SortiePprUnvalidatedPublishParams,
   SortiePprUpdateParams,
-} from 'bluestaq@unified-data-library/resources/sortie-ppr/sortie-ppr';
+} from './resources/sortie-ppr/sortie-ppr';
 import {
   SpaceEnvObservation,
   SpaceEnvObservationCountParams,
@@ -2039,7 +2029,7 @@ import {
   SpaceEnvObservationTupleParams,
   SpaceEnvObservationTupleResponse,
   SpaceEnvObservationUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/space-env-observation/space-env-observation';
+} from './resources/space-env-observation/space-env-observation';
 import {
   StarCatalog,
   StarCatalogCountParams,
@@ -2056,7 +2046,7 @@ import {
   StarCatalogTupleResponse,
   StarCatalogUnvalidatedPublishParams,
   StarCatalogUpdateParams,
-} from 'bluestaq@unified-data-library/resources/star-catalog/star-catalog';
+} from './resources/star-catalog/star-catalog';
 import {
   StateVector,
   StateVectorAbridged,
@@ -2072,8 +2062,8 @@ import {
   StateVectorTupleParams,
   StateVectorTupleResponse,
   StateVectorUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/state-vector/state-vector';
-import { SupportingData } from 'bluestaq@unified-data-library/resources/supporting-data/supporting-data';
+} from './resources/state-vector/state-vector';
+import { SupportingData } from './resources/supporting-data/supporting-data';
 import {
   Swir,
   SwirCountParams,
@@ -2087,7 +2077,7 @@ import {
   SwirQueryhelpResponse,
   SwirTupleParams,
   SwirTupleResponse,
-} from 'bluestaq@unified-data-library/resources/swir/swir';
+} from './resources/swir/swir';
 import {
   TaiUtc,
   TaiUtcCountParams,
@@ -2101,8 +2091,8 @@ import {
   TaiUtcTupleParams,
   TaiUtcTupleResponse,
   TaiUtcUpdateParams,
-} from 'bluestaq@unified-data-library/resources/tai-utc/tai-utc';
-import { TdoaFdoa } from 'bluestaq@unified-data-library/resources/tdoa-fdoa/tdoa-fdoa';
+} from './resources/tai-utc/tai-utc';
+import { TdoaFdoa } from './resources/tdoa-fdoa/tdoa-fdoa';
 import {
   TrackDetailCountParams,
   TrackDetailCountResponse,
@@ -2114,7 +2104,7 @@ import {
   TrackDetailTupleParams,
   TrackDetailTupleResponse,
   TrackDetails,
-} from 'bluestaq@unified-data-library/resources/track-details/track-details';
+} from './resources/track-details/track-details';
 import {
   TrackRoute,
   TrackRouteCountParams,
@@ -2130,7 +2120,7 @@ import {
   TrackRouteTupleResponse,
   TrackRouteUnvalidatedPublishParams,
   TrackRouteUpdateParams,
-} from 'bluestaq@unified-data-library/resources/track-route/track-route';
+} from './resources/track-route/track-route';
 import {
   Track,
   TrackCountParams,
@@ -2143,7 +2133,7 @@ import {
   TrackTupleParams,
   TrackTupleResponse,
   TrackUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/track/track';
+} from './resources/track/track';
 import {
   Video,
   VideoCountParams,
@@ -2162,7 +2152,7 @@ import {
   VideoQueryhelpResponse,
   VideoTupleParams,
   VideoTupleResponse,
-} from 'bluestaq@unified-data-library/resources/video/video';
+} from './resources/video/video';
 import {
   WeatherData,
   WeatherDataCountParams,
@@ -2177,7 +2167,7 @@ import {
   WeatherDataTupleParams,
   WeatherDataTupleResponse,
   WeatherDataUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/weather-data/weather-data';
+} from './resources/weather-data/weather-data';
 import {
   WeatherReport,
   WeatherReportCountParams,
@@ -2191,20 +2181,20 @@ import {
   WeatherReportTupleParams,
   WeatherReportTupleResponse,
   WeatherReportUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/weather-report/weather-report';
-import { type Fetch } from 'bluestaq@unified-data-library/internal/builtin-types';
-import { HeadersLike, NullableHeaders, buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
-import { FinalRequestOptions, RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
-import { toBase64 } from 'bluestaq@unified-data-library/internal/utils/base64';
-import { readEnv } from 'bluestaq@unified-data-library/internal/utils/env';
+} from './resources/weather-report/weather-report';
+import { type Fetch } from './internal/builtin-types';
+import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
+import { FinalRequestOptions, RequestOptions } from './internal/request-options';
+import { toBase64 } from './internal/utils/base64';
+import { readEnv } from './internal/utils/env';
 import {
   type LogLevel,
   type Logger,
   formatRequestDetails,
   loggerFor,
   parseLogLevel,
-} from 'bluestaq@unified-data-library/internal/utils/log';
-import { isEmptyObj } from 'bluestaq@unified-data-library/internal/utils/values';
+} from './internal/utils/log';
+import { isEmptyObj } from './internal/utils/values';
 
 export interface ClientOptions {
   /**

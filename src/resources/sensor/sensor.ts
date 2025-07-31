@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as LocationAPI from 'bluestaq@unified-data-library/resources/location';
-import * as Shared from 'bluestaq@unified-data-library/resources/shared';
-import * as CalibrationAPI from 'bluestaq@unified-data-library/resources/sensor/calibration/calibration';
+import { APIResource } from '../../core/resource';
+import * as LocationAPI from '../location';
+import * as Shared from '../shared';
+import * as CalibrationAPI from './calibration/calibration';
 import {
   Calibration,
   CalibrationCountParams,
@@ -18,16 +18,12 @@ import {
   CalibrationTupleParams,
   CalibrationTupleResponse,
   CalibrationUnvalidatedPublishParams,
-} from 'bluestaq@unified-data-library/resources/sensor/calibration/calibration';
-import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
-import {
-  OffsetPage,
-  type OffsetPageParams,
-  PagePromise,
-} from 'bluestaq@unified-data-library/core/pagination';
-import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
-import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
-import { path } from 'bluestaq@unified-data-library/internal/utils/path';
+} from './calibration/calibration';
+import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Sensor extends APIResource {
   calibration: CalibrationAPI.Calibration = new CalibrationAPI.Calibration(this._client);

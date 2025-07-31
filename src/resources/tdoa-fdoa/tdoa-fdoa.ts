@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as DiffofarrivalAPI from 'bluestaq@unified-data-library/resources/tdoa-fdoa/diffofarrival/diffofarrival';
+import { APIResource } from '../../core/resource';
+import * as DiffofarrivalAPI from './diffofarrival/diffofarrival';
 import {
   Diffofarrival,
   DiffofarrivalAbridged,
@@ -12,7 +12,7 @@ import {
   DiffofarrivalCreateParams,
   DiffofarrivalFull,
   DiffofarrivalListParams,
-} from 'bluestaq@unified-data-library/resources/tdoa-fdoa/diffofarrival/diffofarrival';
+} from './diffofarrival/diffofarrival';
 
 export class TdoaFdoa extends APIResource {
   diffofarrival: DiffofarrivalAPI.Diffofarrival = new DiffofarrivalAPI.Diffofarrival(this._client);

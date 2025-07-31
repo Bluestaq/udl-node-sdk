@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from 'bluestaq@unified-data-library/core/resource';
-import * as Shared from 'bluestaq@unified-data-library/resources/shared';
-import * as AntennaDetailsAPI from 'bluestaq@unified-data-library/resources/onorbit/antenna-details';
+import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
+import * as AntennaDetailsAPI from './antenna-details';
 import {
   AntennaDetailCreateParams,
   AntennaDetailListParams,
@@ -11,17 +11,13 @@ import {
   AntennaDetails,
   AntennaDetailsAbridged,
   AntennaDetailsAbridgedsOffsetPage,
-} from 'bluestaq@unified-data-library/resources/onorbit/antenna-details';
-import * as EoObservationsAPI from 'bluestaq@unified-data-library/resources/observations/eo-observations/eo-observations';
-import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
-import {
-  OffsetPage,
-  type OffsetPageParams,
-  PagePromise,
-} from 'bluestaq@unified-data-library/core/pagination';
-import { buildHeaders } from 'bluestaq@unified-data-library/internal/headers';
-import { RequestOptions } from 'bluestaq@unified-data-library/internal/request-options';
-import { path } from 'bluestaq@unified-data-library/internal/utils/path';
+} from './antenna-details';
+import * as EoObservationsAPI from '../observations/eo-observations/eo-observations';
+import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Onorbit extends APIResource {
   antennaDetails: AntennaDetailsAPI.AntennaDetails = new AntennaDetailsAPI.AntennaDetails(this._client);

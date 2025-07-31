@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Unifieddatalibrary from 'bluestaq@unified-data-library';
+import Unifieddatalibrary from 'unified-data-library';
 
 const client = new Unifieddatalibrary({
   password: 'My Password',
