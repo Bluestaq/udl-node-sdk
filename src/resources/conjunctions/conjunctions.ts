@@ -250,22 +250,20 @@ export class Conjunctions extends APIResource {
    *
    * @example
    * ```ts
-   * await client.conjunctions.uploadConjunctionDataMessage({
-   *   classification: 'classification',
-   *   dataMode: 'REAL',
-   *   filename: 'filename',
-   *   source: 'source',
-   *   body: fs.createReadStream('path/to/file'),
-   * });
+   * await client.conjunctions.uploadConjunctionDataMessage(
+   *   fs.createReadStream('path/to/file'),
+   *   {
+   *     classification: 'classification',
+   *     dataMode: 'REAL',
+   *     filename: 'filename',
+   *     source: 'source',
+   *   },
+   * );
    * ```
    */
-  uploadConjunctionDataMessage(
-    params: ConjunctionUploadConjunctionDataMessageParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { classification, dataMode, filename, source, body, tags } = params;
+  uploadConjunctionDataMessage(body: Uploadable, options?: RequestOptions): APIPromise<void> {
+    const { classification, dataMode, filename, source, tags } = params;
     return this._client.post('/filedrop/cdms', {
-      query: { classification, dataMode, filename, source, tags },
       body: body,
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/zip', Accept: '*/*' }, options?.headers]),
@@ -9554,44 +9552,6 @@ export namespace ConjunctionUnvalidatedPublishParams {
   }
 }
 
-export interface ConjunctionUploadConjunctionDataMessageParams {
-  /**
-   * Query param: Classification marking of the data in IC/CAPCO Portion-marked
-   * format.
-   */
-  classification: string;
-
-  /**
-   * Query param: Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE
-   * data.
-   */
-  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
-
-  /**
-   * Query param: Filename of the payload.
-   */
-  filename: string;
-
-  /**
-   * Query param: Source of the data.
-   */
-  source: string;
-
-  /**
-   * Body param:
-   */
-  body: Uploadable;
-
-  /**
-   * Query param: Optional array of provider/source specific tags for this data,
-   * where each element is no longer than 32 characters, used for implementing data
-   * owner conditional access controls to restrict access to the data. Should be left
-   * null by data providers unless conditional access controls are coordinated with
-   * the UDL team.
-   */
-  tags?: string;
-}
-
 Conjunctions.History = History;
 
 export declare namespace Conjunctions {
@@ -9611,7 +9571,6 @@ export declare namespace Conjunctions {
     type ConjunctionGetHistoryParams as ConjunctionGetHistoryParams,
     type ConjunctionTupleParams as ConjunctionTupleParams,
     type ConjunctionUnvalidatedPublishParams as ConjunctionUnvalidatedPublishParams,
-    type ConjunctionUploadConjunctionDataMessageParams as ConjunctionUploadConjunctionDataMessageParams,
   };
 
   export {

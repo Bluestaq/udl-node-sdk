@@ -79,11 +79,9 @@ describe('resource v2', () => {
   });
 
   test('fileUpload: only required params', async () => {
-    const responsePromise = client.scs.v2.fileUpload({
-      classificationMarking: 'classificationMarking',
-      path: 'path',
-      body: await toFile(Buffer.from('# my file contents'), 'README.md'),
-    });
+    const responsePromise = client.scs.v2.fileUpload(
+      await toFile(Buffer.from('# my file contents'), 'README.md'),
+    );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -94,16 +92,18 @@ describe('resource v2', () => {
   });
 
   test('fileUpload: required and optional params', async () => {
-    const response = await client.scs.v2.fileUpload({
-      classificationMarking: 'classificationMarking',
-      path: 'path',
-      body: await toFile(Buffer.from('# my file contents'), 'README.md'),
-      deleteAfter: 'deleteAfter',
-      description: 'description',
-      overwrite: true,
-      sendNotification: true,
-      tags: 'tags',
-    });
+    const response = await client.scs.v2.fileUpload(
+      await toFile(Buffer.from('# my file contents'), 'README.md'),
+      {
+        classificationMarking: 'classificationMarking',
+        path: 'path',
+        deleteAfter: 'deleteAfter',
+        description: 'description',
+        overwrite: true,
+        sendNotification: true,
+        tags: 'tags',
+      },
+    );
   });
 
   test('folderCreate: only required params', async () => {
