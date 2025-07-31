@@ -1081,7 +1081,7 @@ export interface RadarobservationQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<RadarobservationQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -1092,38 +1092,6 @@ export interface RadarobservationQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace RadarobservationQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type RadarobservationTupleResponse =

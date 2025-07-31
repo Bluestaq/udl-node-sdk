@@ -11,6 +11,10 @@ export {
 } from './history';
 export {
   IsrCollections,
+  type IsrCollectionCriticalTimesFull,
+  type IsrCollectionExploitationRequirementFull,
+  type IsrCollectionPocFull,
+  type IsrCollectionRequirementsFull,
   type IsrCollectionListResponse,
   type IsrCollectionCountResponse,
   type IsrCollectionQueryhelpResponse,

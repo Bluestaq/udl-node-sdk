@@ -599,7 +599,7 @@ export interface RfEmitterQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<RfEmitterQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -610,38 +610,6 @@ export interface RfEmitterQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace RfEmitterQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type RfEmitterTupleResponse = Array<RfEmitterTupleResponse.RfEmitterTupleResponseItem>;

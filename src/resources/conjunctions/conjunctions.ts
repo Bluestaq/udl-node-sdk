@@ -2102,7 +2102,7 @@ export interface ConjunctionQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<ConjunctionQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -2113,38 +2113,6 @@ export interface ConjunctionQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace ConjunctionQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type ConjunctionTupleResponse = Array<Shared.ConjunctionFull>;

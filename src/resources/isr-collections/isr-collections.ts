@@ -1,6 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as IsrCollectionsAPI from 'bluestaq@unified-data-library/resources/isr-collections/isr-collections';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import * as HistoryAPI from 'bluestaq@unified-data-library/resources/isr-collections/history';
 import {
   History,
@@ -112,6 +114,208 @@ export class IsrCollections extends APIResource {
 }
 
 export type IsrCollectionListResponsesOffsetPage = OffsetPage<IsrCollectionListResponse>;
+
+export interface IsrCollectionCriticalTimesFull {
+  /**
+   * Critical start time to collect an image for this requirement.
+   */
+  earliestImagingTime: string;
+
+  /**
+   * Critical stop time to collect an image for this requirement.
+   */
+  latestImagingTime: string;
+}
+
+export interface IsrCollectionExploitationRequirementFull {
+  /**
+   * Exploitation requirement id.
+   */
+  id?: string;
+
+  /**
+   * Amplifying data for the exploitation requirement.
+   */
+  amplification?: string;
+
+  /**
+   * List of e-mails to disseminate collection verification information.
+   */
+  dissemination?: string;
+
+  /**
+   * Essential Elements of Information.
+   */
+  eei?: string;
+
+  poc?: IsrCollectionPocFull;
+
+  /**
+   * The reporting criteria of the collection requirement.
+   */
+  reportingCriteria?: string;
+}
+
+export interface IsrCollectionPocFull {
+  /**
+   * Unique identifier of the collection requirement POC.
+   */
+  id?: string;
+
+  /**
+   * Callsign of the POC.
+   */
+  callsign?: string;
+
+  /**
+   * Chat name of the POC.
+   */
+  chatName?: string;
+
+  /**
+   * Chat system the POC is accessing.
+   */
+  chatSystem?: string;
+
+  /**
+   * Email address of the POC.
+   */
+  email?: string;
+
+  /**
+   * Name of the POC.
+   */
+  name?: string;
+
+  /**
+   * Amplifying notes about the POC.
+   */
+  notes?: string;
+
+  /**
+   * Phone number of the POC.
+   */
+  phone?: string;
+
+  /**
+   * Radio Frequency the POC is on.
+   */
+  radioFrequency?: number;
+
+  /**
+   * Unit the POC belongs to.
+   */
+  unit?: string;
+}
+
+export interface IsrCollectionRequirementsFull {
+  /**
+   * Collection Requirement Unique Identifier.
+   */
+  id?: string;
+
+  /**
+   * Country code of the collection requirement. A Country may represent countries,
+   * multi-national consortiums, and international organizations.
+   */
+  country?: string;
+
+  /**
+   * Collection Requirement Unique Identifier.
+   */
+  cridNumbers?: string;
+
+  criticalTimes?: IsrCollectionCriticalTimesFull;
+
+  /**
+   * Is this collection requirement an emphasized/critical requirement.
+   */
+  emphasized?: boolean;
+
+  exploitationRequirement?: IsrCollectionExploitationRequirementFull;
+
+  /**
+   * Encryption hashing algorithm.
+   */
+  hash?: string;
+
+  /**
+   * Primary type of intelligence to be collected for this requirement.
+   */
+  intelDiscipline?: string;
+
+  /**
+   * Is this collection request for the Prism system?.
+   */
+  isPrismCr?: boolean;
+
+  /**
+   * Human readable name for this operation.
+   */
+  operation?: string;
+
+  /**
+   * 1-n priority for this collection requirement.
+   */
+  priority?: number;
+
+  /**
+   * Reconnaissance Survey information the operator needs.
+   */
+  reconSurvey?: string;
+
+  /**
+   * Record id.
+   */
+  recordId?: string;
+
+  /**
+   * Region of the collection requirement.
+   */
+  region?: string;
+
+  /**
+   * Sub category of primary intelligence to be collected for this requirement.
+   */
+  secondary?: boolean;
+
+  /**
+   * Free text field for the user to specify special instructions needed for this
+   * collection.
+   */
+  specialComGuidance?: string;
+
+  /**
+   * Start time for this requirement, should be within the mission time window.
+   */
+  start?: string;
+
+  /**
+   * Stop time for this requirement, should be within the mission time window.
+   */
+  stop?: string;
+
+  /**
+   * Subregion of the collection requirement.
+   */
+  subregion?: string;
+
+  /**
+   * The name of the military unit that this assigned collection requirement will
+   * support.
+   */
+  supportedUnit?: string;
+
+  /**
+   * Array of POI Id's for the targets being tasked.
+   */
+  targetList?: Array<string>;
+
+  /**
+   * Type collection this requirement applies to.
+   */
+  type?: string;
+}
 
 /**
  * ISR Collection data.
@@ -961,7 +1165,7 @@ export interface IsrCollectionQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<IsrCollectionQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -972,38 +1176,6 @@ export interface IsrCollectionQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace IsrCollectionQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type IsrCollectionTupleResponse = Array<IsrCollectionTupleResponse.IsrCollectionTupleResponseItem>;
@@ -1049,7 +1221,7 @@ export namespace IsrCollectionTupleResponse {
     /**
      * Mission desired collection requirements.
      */
-    collectionRequirements?: Array<IsrCollectionTupleResponseItem.CollectionRequirement>;
+    collectionRequirements?: Array<IsrCollectionsAPI.IsrCollectionRequirementsFull>;
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -1209,212 +1381,6 @@ export namespace IsrCollectionTupleResponse {
   }
 
   export namespace IsrCollectionTupleResponseItem {
-    export interface CollectionRequirement {
-      /**
-       * Collection Requirement Unique Identifier.
-       */
-      id?: string;
-
-      /**
-       * Country code of the collection requirement. A Country may represent countries,
-       * multi-national consortiums, and international organizations.
-       */
-      country?: string;
-
-      /**
-       * Collection Requirement Unique Identifier.
-       */
-      cridNumbers?: string;
-
-      criticalTimes?: CollectionRequirement.CriticalTimes;
-
-      /**
-       * Is this collection requirement an emphasized/critical requirement.
-       */
-      emphasized?: boolean;
-
-      exploitationRequirement?: CollectionRequirement.ExploitationRequirement;
-
-      /**
-       * Encryption hashing algorithm.
-       */
-      hash?: string;
-
-      /**
-       * Primary type of intelligence to be collected for this requirement.
-       */
-      intelDiscipline?: string;
-
-      /**
-       * Is this collection request for the Prism system?.
-       */
-      isPrismCr?: boolean;
-
-      /**
-       * Human readable name for this operation.
-       */
-      operation?: string;
-
-      /**
-       * 1-n priority for this collection requirement.
-       */
-      priority?: number;
-
-      /**
-       * Reconnaissance Survey information the operator needs.
-       */
-      reconSurvey?: string;
-
-      /**
-       * Record id.
-       */
-      recordId?: string;
-
-      /**
-       * Region of the collection requirement.
-       */
-      region?: string;
-
-      /**
-       * Sub category of primary intelligence to be collected for this requirement.
-       */
-      secondary?: boolean;
-
-      /**
-       * Free text field for the user to specify special instructions needed for this
-       * collection.
-       */
-      specialComGuidance?: string;
-
-      /**
-       * Start time for this requirement, should be within the mission time window.
-       */
-      start?: string;
-
-      /**
-       * Stop time for this requirement, should be within the mission time window.
-       */
-      stop?: string;
-
-      /**
-       * Subregion of the collection requirement.
-       */
-      subregion?: string;
-
-      /**
-       * The name of the military unit that this assigned collection requirement will
-       * support.
-       */
-      supportedUnit?: string;
-
-      /**
-       * Array of POI Id's for the targets being tasked.
-       */
-      targetList?: Array<string>;
-
-      /**
-       * Type collection this requirement applies to.
-       */
-      type?: string;
-    }
-
-    export namespace CollectionRequirement {
-      export interface CriticalTimes {
-        /**
-         * Critical start time to collect an image for this requirement.
-         */
-        earliestImagingTime: string;
-
-        /**
-         * Critical stop time to collect an image for this requirement.
-         */
-        latestImagingTime: string;
-      }
-
-      export interface ExploitationRequirement {
-        /**
-         * Exploitation requirement id.
-         */
-        id?: string;
-
-        /**
-         * Amplifying data for the exploitation requirement.
-         */
-        amplification?: string;
-
-        /**
-         * List of e-mails to disseminate collection verification information.
-         */
-        dissemination?: string;
-
-        /**
-         * Essential Elements of Information.
-         */
-        eei?: string;
-
-        poc?: ExploitationRequirement.Poc;
-
-        /**
-         * The reporting criteria of the collection requirement.
-         */
-        reportingCriteria?: string;
-      }
-
-      export namespace ExploitationRequirement {
-        export interface Poc {
-          /**
-           * Unique identifier of the collection requirement POC.
-           */
-          id?: string;
-
-          /**
-           * Callsign of the POC.
-           */
-          callsign?: string;
-
-          /**
-           * Chat name of the POC.
-           */
-          chatName?: string;
-
-          /**
-           * Chat system the POC is accessing.
-           */
-          chatSystem?: string;
-
-          /**
-           * Email address of the POC.
-           */
-          email?: string;
-
-          /**
-           * Name of the POC.
-           */
-          name?: string;
-
-          /**
-           * Amplifying notes about the POC.
-           */
-          notes?: string;
-
-          /**
-           * Phone number of the POC.
-           */
-          phone?: string;
-
-          /**
-           * Radio Frequency the POC is on.
-           */
-          radioFrequency?: number;
-
-          /**
-           * Unit the POC belongs to.
-           */
-          unit?: string;
-        }
-      }
-    }
-
     export interface Tasking {
       /**
        * Tasking Unique Identifier.
@@ -1457,7 +1423,7 @@ export namespace IsrCollectionTupleResponse {
       /**
        * Tasking desired collection requirements.
        */
-      taskingCollectionRequirements?: Array<Tasking.TaskingCollectionRequirement>;
+      taskingCollectionRequirements?: Array<IsrCollectionsAPI.IsrCollectionRequirementsFull>;
 
       /**
        * Country code of the tasking. A Country may represent countries, multi-national
@@ -1615,212 +1581,6 @@ export namespace IsrCollectionTupleResponse {
              * Stop time of collection, in ISO 8601 UTC format.
              */
             stop?: string;
-          }
-        }
-      }
-
-      export interface TaskingCollectionRequirement {
-        /**
-         * Collection Requirement Unique Identifier.
-         */
-        id?: string;
-
-        /**
-         * Country code of the collection requirement. A Country may represent countries,
-         * multi-national consortiums, and international organizations.
-         */
-        country?: string;
-
-        /**
-         * Collection Requirement Unique Identifier.
-         */
-        cridNumbers?: string;
-
-        criticalTimes?: TaskingCollectionRequirement.CriticalTimes;
-
-        /**
-         * Is this collection requirement an emphasized/critical requirement.
-         */
-        emphasized?: boolean;
-
-        exploitationRequirement?: TaskingCollectionRequirement.ExploitationRequirement;
-
-        /**
-         * Encryption hashing algorithm.
-         */
-        hash?: string;
-
-        /**
-         * Primary type of intelligence to be collected for this requirement.
-         */
-        intelDiscipline?: string;
-
-        /**
-         * Is this collection request for the Prism system?.
-         */
-        isPrismCr?: boolean;
-
-        /**
-         * Human readable name for this operation.
-         */
-        operation?: string;
-
-        /**
-         * 1-n priority for this collection requirement.
-         */
-        priority?: number;
-
-        /**
-         * Reconnaissance Survey information the operator needs.
-         */
-        reconSurvey?: string;
-
-        /**
-         * Record id.
-         */
-        recordId?: string;
-
-        /**
-         * Region of the collection requirement.
-         */
-        region?: string;
-
-        /**
-         * Sub category of primary intelligence to be collected for this requirement.
-         */
-        secondary?: boolean;
-
-        /**
-         * Free text field for the user to specify special instructions needed for this
-         * collection.
-         */
-        specialComGuidance?: string;
-
-        /**
-         * Start time for this requirement, should be within the mission time window.
-         */
-        start?: string;
-
-        /**
-         * Stop time for this requirement, should be within the mission time window.
-         */
-        stop?: string;
-
-        /**
-         * Subregion of the collection requirement.
-         */
-        subregion?: string;
-
-        /**
-         * The name of the military unit that this assigned collection requirement will
-         * support.
-         */
-        supportedUnit?: string;
-
-        /**
-         * Array of POI Id's for the targets being tasked.
-         */
-        targetList?: Array<string>;
-
-        /**
-         * Type collection this requirement applies to.
-         */
-        type?: string;
-      }
-
-      export namespace TaskingCollectionRequirement {
-        export interface CriticalTimes {
-          /**
-           * Critical start time to collect an image for this requirement.
-           */
-          earliestImagingTime: string;
-
-          /**
-           * Critical stop time to collect an image for this requirement.
-           */
-          latestImagingTime: string;
-        }
-
-        export interface ExploitationRequirement {
-          /**
-           * Exploitation requirement id.
-           */
-          id?: string;
-
-          /**
-           * Amplifying data for the exploitation requirement.
-           */
-          amplification?: string;
-
-          /**
-           * List of e-mails to disseminate collection verification information.
-           */
-          dissemination?: string;
-
-          /**
-           * Essential Elements of Information.
-           */
-          eei?: string;
-
-          poc?: ExploitationRequirement.Poc;
-
-          /**
-           * The reporting criteria of the collection requirement.
-           */
-          reportingCriteria?: string;
-        }
-
-        export namespace ExploitationRequirement {
-          export interface Poc {
-            /**
-             * Unique identifier of the collection requirement POC.
-             */
-            id?: string;
-
-            /**
-             * Callsign of the POC.
-             */
-            callsign?: string;
-
-            /**
-             * Chat name of the POC.
-             */
-            chatName?: string;
-
-            /**
-             * Chat system the POC is accessing.
-             */
-            chatSystem?: string;
-
-            /**
-             * Email address of the POC.
-             */
-            email?: string;
-
-            /**
-             * Name of the POC.
-             */
-            name?: string;
-
-            /**
-             * Amplifying notes about the POC.
-             */
-            notes?: string;
-
-            /**
-             * Phone number of the POC.
-             */
-            phone?: string;
-
-            /**
-             * Radio Frequency the POC is on.
-             */
-            radioFrequency?: number;
-
-            /**
-             * Unit the POC belongs to.
-             */
-            unit?: string;
           }
         }
       }
@@ -3513,6 +3273,10 @@ IsrCollections.History = History;
 
 export declare namespace IsrCollections {
   export {
+    type IsrCollectionCriticalTimesFull as IsrCollectionCriticalTimesFull,
+    type IsrCollectionExploitationRequirementFull as IsrCollectionExploitationRequirementFull,
+    type IsrCollectionPocFull as IsrCollectionPocFull,
+    type IsrCollectionRequirementsFull as IsrCollectionRequirementsFull,
     type IsrCollectionListResponse as IsrCollectionListResponse,
     type IsrCollectionCountResponse as IsrCollectionCountResponse,
     type IsrCollectionQueryhelpResponse as IsrCollectionQueryhelpResponse,

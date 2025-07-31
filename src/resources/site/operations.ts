@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import { APIPromise } from 'bluestaq@unified-data-library/core/api-promise';
 import {
   OffsetPage,
@@ -297,7 +298,7 @@ export interface OperationRetrieveResponse {
    * Collection providing hours of operation and other information specific to a day
    * of the week.
    */
-  dailyOperations?: Array<OperationRetrieveResponse.DailyOperation>;
+  dailyOperations?: Array<Shared.DailyOperationFull>;
 
   /**
    * The name of the person who made the most recent change to data in the
@@ -325,7 +326,7 @@ export interface OperationRetrieveResponse {
    * Collection providing maximum on ground (MOG) information for specific aircraft
    * at the site associated with this SiteOperations record.
    */
-  maximumOnGrounds?: Array<OperationRetrieveResponse.MaximumOnGround>;
+  maximumOnGrounds?: Array<Shared.MaximumOnGroundFull>;
 
   /**
    * The name of the person who made the most recent change to data in the
@@ -349,12 +350,12 @@ export interface OperationRetrieveResponse {
    * Collection providing relevant information in the event of deviations/exceptions
    * to normal operations.
    */
-  operationalDeviations?: Array<OperationRetrieveResponse.OperationalDeviation>;
+  operationalDeviations?: Array<Shared.OperationalDeviationFull>;
 
   /**
    * Collection of planning information associated with this SiteOperations record.
    */
-  operationalPlannings?: Array<OperationRetrieveResponse.OperationalPlanning>;
+  operationalPlannings?: Array<Shared.OperationalPlanningFull>;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -374,7 +375,7 @@ export interface OperationRetrieveResponse {
    * Collection detailing operational pathways at the Site associated with this
    * SiteOperations record.
    */
-  pathways?: Array<OperationRetrieveResponse.Pathway>;
+  pathways?: Array<Shared.PathwayFull>;
 
   /**
    * The source data library from which this record was received. This could be a
@@ -398,287 +399,7 @@ export interface OperationRetrieveResponse {
    * Collection documenting operational waivers that have been issued for the Site
    * associated with this record.
    */
-  waivers?: Array<OperationRetrieveResponse.Waiver>;
-}
-
-export namespace OperationRetrieveResponse {
-  /**
-   * Collection providing hours of operation and other information specific to a day
-   * of the week.
-   */
-  export interface DailyOperation {
-    /**
-     * The day of the week to which this operational information pertains.
-     */
-    dayOfWeek?: 'MONDAY' | 'TUESDAY' | 'WEDNESDAY' | 'THURSDAY' | 'FRIDAY' | 'SATURDAY' | 'SUNDAY';
-
-    /**
-     * A collection containing the operational start and stop times scheduled for the
-     * day of the week specified.
-     */
-    operatingHours?: Array<DailyOperation.OperatingHour>;
-
-    /**
-     * The name or type of operation to which this information pertains.
-     */
-    operationName?: string;
-
-    /**
-     * The name of the person who made the most recent change to this DailyOperation
-     * data.
-     */
-    ophrsLastChangedBy?: string;
-
-    /**
-     * The datetime of the most recent change made to this DailyOperation data, in ISO
-     * 8601 UTC format with millisecond precision.
-     */
-    ophrsLastChangedDate?: string;
-  }
-
-  export namespace DailyOperation {
-    /**
-     * A collection containing the operational start and stop times scheduled for the
-     * day of the week specified.
-     */
-    export interface OperatingHour {
-      /**
-       * The Zulu (UTC) operational start time, expressed in ISO 8601 format as HH:MM.
-       */
-      opStartTime?: string;
-
-      /**
-       * The Zulu (UTC) operational stop time, expressed in ISO 8601 format as HH:MM.
-       */
-      opStopTime?: string;
-    }
-  }
-
-  /**
-   * Collection providing maximum on ground (MOG) information for specific aircraft
-   * at the site associated with this SiteOperations record.
-   */
-  export interface MaximumOnGround {
-    /**
-     * The Model Design Series (MDS) designation of the aircraft to which this maximum
-     * on ground (MOG) data pertains.
-     */
-    aircraftMDS?: string;
-
-    /**
-     * Maximum on ground (MOG) number of contingent aircraft based on spacing and
-     * manpower, for the aircraft type specified.
-     */
-    contingencyMOG?: number;
-
-    /**
-     * The name of the person who made the most recent change to this maximum on ground
-     * data.
-     */
-    mogLastChangedBy?: string;
-
-    /**
-     * The datetime of the most recent change made to this maximum on ground data, in
-     * ISO 8601 UTC format with millisecond precision.
-     */
-    mogLastChangedDate?: string;
-
-    /**
-     * Maximum on ground (MOG) number of parking wide-body aircraft based on spacing
-     * and manpower, for the aircraft type specified.
-     */
-    wideParkingMOG?: number;
-
-    /**
-     * Maximum on ground (MOG) number of working wide-body aircraft based on spacing
-     * and manpower, for the aircraft type specified.
-     */
-    wideWorkingMOG?: number;
-  }
-
-  /**
-   * Collection providing relevant information in the event of deviations/exceptions
-   * to normal operations.
-   */
-  export interface OperationalDeviation {
-    /**
-     * The Model Design Series (MDS) designation of the aircraft affected by this
-     * operational deviation.
-     */
-    affectedAircraftMDS?: string;
-
-    /**
-     * The maximum on ground (MOG) number for aircraft affected by this operational
-     * deviation.
-     */
-    affectedMOG?: number;
-
-    /**
-     * On ground time for aircraft affected by this operational deviation.
-     */
-    aircraftOnGroundTime?: string;
-
-    /**
-     * Rest time for crew affected by this operational deviation.
-     */
-    crewRestTime?: string;
-
-    /**
-     * The name of the person who made the most recent change to this
-     * OperationalDeviation data.
-     */
-    odLastChangedBy?: string;
-
-    /**
-     * The datetime of the most recent change made to this OperationalDeviation data,
-     * in ISO 8601 UTC format with millisecond precision.
-     */
-    odLastChangedDate?: string;
-
-    /**
-     * Text remark regarding this operational deviation.
-     */
-    odRemark?: string;
-  }
-
-  /**
-   * Collection of planning information associated with this SiteOperations record.
-   */
-  export interface OperationalPlanning {
-    /**
-     * The end date of this operational planning, in ISO8601 UTC format with
-     * millisecond precision.
-     */
-    opEndDate?: string;
-
-    /**
-     * The name of the person who made the most recent change made to this
-     * OperationalPlanning data.
-     */
-    opLastChangedBy?: string;
-
-    /**
-     * The datetime of the most recent change made to this OperationalPlanning data, in
-     * ISO8601 UTC format with millisecond precision.
-     */
-    opLastChangedDate?: string;
-
-    /**
-     * Remark text regarding this operation planning.
-     */
-    opRemark?: string;
-
-    /**
-     * The person, unit, organization, etc. responsible for this operation planning.
-     */
-    opSource?: string;
-
-    /**
-     * The start date of this operational planning, in ISO8601 UTC format with
-     * millisecond precision.
-     */
-    opStartDate?: string;
-
-    /**
-     * The status of this operational planning.
-     */
-    opStatus?: string;
-  }
-
-  /**
-   * Collection detailing operational pathways at the Site associated with this
-   * SiteOperations record.
-   */
-  export interface Pathway {
-    /**
-     * Text defining this pathway from its constituent parts.
-     */
-    pwDefinition?: string;
-
-    /**
-     * The name of the person who made the most recent change to this Pathway data.
-     */
-    pwLastChangedBy?: string;
-
-    /**
-     * The datetime of the most recent change made to this Pathway data, in ISO 8601
-     * UTC format with millisecond precision.
-     */
-    pwLastChangedDate?: string;
-
-    /**
-     * The type of paths that constitute this pathway.
-     */
-    pwType?: string;
-
-    /**
-     * The intended use of this pathway.
-     */
-    pwUsage?: string;
-  }
-
-  /**
-   * Collection documenting operational waivers that have been issued for the Site
-   * associated with this record.
-   */
-  export interface Waiver {
-    /**
-     * The expiration date of this waiver, in ISO8601 UTC format with millisecond
-     * precision.
-     */
-    expirationDate?: string;
-
-    /**
-     * Boolean indicating whether or not this waiver has expired.
-     */
-    hasExpired?: boolean;
-
-    /**
-     * The issue date of this waiver, in ISO8601 UTC format with millisecond precision.
-     */
-    issueDate?: string;
-
-    /**
-     * The name of the person who issued this waiver.
-     */
-    issuerName?: string;
-
-    /**
-     * The name of the person requesting this waiver.
-     */
-    requesterName?: string;
-
-    /**
-     * The phone number of the person requesting this waiver.
-     */
-    requesterPhoneNumber?: string;
-
-    /**
-     * The unit requesting this waiver.
-     */
-    requestingUnit?: string;
-
-    /**
-     * Description of the entities to which this waiver applies.
-     */
-    waiverAppliesTo?: string;
-
-    /**
-     * The description of this waiver.
-     */
-    waiverDescription?: string;
-
-    /**
-     * The name of the person who made the most recent change to this Waiver data.
-     */
-    waiverLastChangedBy?: string;
-
-    /**
-     * The datetime of the most recent change made to this waiver data, in ISO8601 UTC
-     * format with millisecond precision.
-     */
-    waiverLastChangedDate?: string;
-  }
+  waivers?: Array<Shared.WaiverFull>;
 }
 
 /**
@@ -1136,7 +857,7 @@ export interface OperationQueryHelpResponse {
 
   name?: string;
 
-  parameters?: Array<OperationQueryHelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -1147,38 +868,6 @@ export interface OperationQueryHelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace OperationQueryHelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type OperationTupleResponse = Array<OperationTupleResponse.OperationTupleResponseItem>;
@@ -1242,7 +931,7 @@ export namespace OperationTupleResponse {
      * Collection providing hours of operation and other information specific to a day
      * of the week.
      */
-    dailyOperations?: Array<OperationTupleResponseItem.DailyOperation>;
+    dailyOperations?: Array<Shared.DailyOperationFull>;
 
     /**
      * The name of the person who made the most recent change to data in the
@@ -1270,7 +959,7 @@ export namespace OperationTupleResponse {
      * Collection providing maximum on ground (MOG) information for specific aircraft
      * at the site associated with this SiteOperations record.
      */
-    maximumOnGrounds?: Array<OperationTupleResponseItem.MaximumOnGround>;
+    maximumOnGrounds?: Array<Shared.MaximumOnGroundFull>;
 
     /**
      * The name of the person who made the most recent change to data in the
@@ -1294,12 +983,12 @@ export namespace OperationTupleResponse {
      * Collection providing relevant information in the event of deviations/exceptions
      * to normal operations.
      */
-    operationalDeviations?: Array<OperationTupleResponseItem.OperationalDeviation>;
+    operationalDeviations?: Array<Shared.OperationalDeviationFull>;
 
     /**
      * Collection of planning information associated with this SiteOperations record.
      */
-    operationalPlannings?: Array<OperationTupleResponseItem.OperationalPlanning>;
+    operationalPlannings?: Array<Shared.OperationalPlanningFull>;
 
     /**
      * Originating system or organization which produced the data, if different from
@@ -1319,7 +1008,7 @@ export namespace OperationTupleResponse {
      * Collection detailing operational pathways at the Site associated with this
      * SiteOperations record.
      */
-    pathways?: Array<OperationTupleResponseItem.Pathway>;
+    pathways?: Array<Shared.PathwayFull>;
 
     /**
      * The source data library from which this record was received. This could be a
@@ -1343,287 +1032,7 @@ export namespace OperationTupleResponse {
      * Collection documenting operational waivers that have been issued for the Site
      * associated with this record.
      */
-    waivers?: Array<OperationTupleResponseItem.Waiver>;
-  }
-
-  export namespace OperationTupleResponseItem {
-    /**
-     * Collection providing hours of operation and other information specific to a day
-     * of the week.
-     */
-    export interface DailyOperation {
-      /**
-       * The day of the week to which this operational information pertains.
-       */
-      dayOfWeek?: 'MONDAY' | 'TUESDAY' | 'WEDNESDAY' | 'THURSDAY' | 'FRIDAY' | 'SATURDAY' | 'SUNDAY';
-
-      /**
-       * A collection containing the operational start and stop times scheduled for the
-       * day of the week specified.
-       */
-      operatingHours?: Array<DailyOperation.OperatingHour>;
-
-      /**
-       * The name or type of operation to which this information pertains.
-       */
-      operationName?: string;
-
-      /**
-       * The name of the person who made the most recent change to this DailyOperation
-       * data.
-       */
-      ophrsLastChangedBy?: string;
-
-      /**
-       * The datetime of the most recent change made to this DailyOperation data, in ISO
-       * 8601 UTC format with millisecond precision.
-       */
-      ophrsLastChangedDate?: string;
-    }
-
-    export namespace DailyOperation {
-      /**
-       * A collection containing the operational start and stop times scheduled for the
-       * day of the week specified.
-       */
-      export interface OperatingHour {
-        /**
-         * The Zulu (UTC) operational start time, expressed in ISO 8601 format as HH:MM.
-         */
-        opStartTime?: string;
-
-        /**
-         * The Zulu (UTC) operational stop time, expressed in ISO 8601 format as HH:MM.
-         */
-        opStopTime?: string;
-      }
-    }
-
-    /**
-     * Collection providing maximum on ground (MOG) information for specific aircraft
-     * at the site associated with this SiteOperations record.
-     */
-    export interface MaximumOnGround {
-      /**
-       * The Model Design Series (MDS) designation of the aircraft to which this maximum
-       * on ground (MOG) data pertains.
-       */
-      aircraftMDS?: string;
-
-      /**
-       * Maximum on ground (MOG) number of contingent aircraft based on spacing and
-       * manpower, for the aircraft type specified.
-       */
-      contingencyMOG?: number;
-
-      /**
-       * The name of the person who made the most recent change to this maximum on ground
-       * data.
-       */
-      mogLastChangedBy?: string;
-
-      /**
-       * The datetime of the most recent change made to this maximum on ground data, in
-       * ISO 8601 UTC format with millisecond precision.
-       */
-      mogLastChangedDate?: string;
-
-      /**
-       * Maximum on ground (MOG) number of parking wide-body aircraft based on spacing
-       * and manpower, for the aircraft type specified.
-       */
-      wideParkingMOG?: number;
-
-      /**
-       * Maximum on ground (MOG) number of working wide-body aircraft based on spacing
-       * and manpower, for the aircraft type specified.
-       */
-      wideWorkingMOG?: number;
-    }
-
-    /**
-     * Collection providing relevant information in the event of deviations/exceptions
-     * to normal operations.
-     */
-    export interface OperationalDeviation {
-      /**
-       * The Model Design Series (MDS) designation of the aircraft affected by this
-       * operational deviation.
-       */
-      affectedAircraftMDS?: string;
-
-      /**
-       * The maximum on ground (MOG) number for aircraft affected by this operational
-       * deviation.
-       */
-      affectedMOG?: number;
-
-      /**
-       * On ground time for aircraft affected by this operational deviation.
-       */
-      aircraftOnGroundTime?: string;
-
-      /**
-       * Rest time for crew affected by this operational deviation.
-       */
-      crewRestTime?: string;
-
-      /**
-       * The name of the person who made the most recent change to this
-       * OperationalDeviation data.
-       */
-      odLastChangedBy?: string;
-
-      /**
-       * The datetime of the most recent change made to this OperationalDeviation data,
-       * in ISO 8601 UTC format with millisecond precision.
-       */
-      odLastChangedDate?: string;
-
-      /**
-       * Text remark regarding this operational deviation.
-       */
-      odRemark?: string;
-    }
-
-    /**
-     * Collection of planning information associated with this SiteOperations record.
-     */
-    export interface OperationalPlanning {
-      /**
-       * The end date of this operational planning, in ISO8601 UTC format with
-       * millisecond precision.
-       */
-      opEndDate?: string;
-
-      /**
-       * The name of the person who made the most recent change made to this
-       * OperationalPlanning data.
-       */
-      opLastChangedBy?: string;
-
-      /**
-       * The datetime of the most recent change made to this OperationalPlanning data, in
-       * ISO8601 UTC format with millisecond precision.
-       */
-      opLastChangedDate?: string;
-
-      /**
-       * Remark text regarding this operation planning.
-       */
-      opRemark?: string;
-
-      /**
-       * The person, unit, organization, etc. responsible for this operation planning.
-       */
-      opSource?: string;
-
-      /**
-       * The start date of this operational planning, in ISO8601 UTC format with
-       * millisecond precision.
-       */
-      opStartDate?: string;
-
-      /**
-       * The status of this operational planning.
-       */
-      opStatus?: string;
-    }
-
-    /**
-     * Collection detailing operational pathways at the Site associated with this
-     * SiteOperations record.
-     */
-    export interface Pathway {
-      /**
-       * Text defining this pathway from its constituent parts.
-       */
-      pwDefinition?: string;
-
-      /**
-       * The name of the person who made the most recent change to this Pathway data.
-       */
-      pwLastChangedBy?: string;
-
-      /**
-       * The datetime of the most recent change made to this Pathway data, in ISO 8601
-       * UTC format with millisecond precision.
-       */
-      pwLastChangedDate?: string;
-
-      /**
-       * The type of paths that constitute this pathway.
-       */
-      pwType?: string;
-
-      /**
-       * The intended use of this pathway.
-       */
-      pwUsage?: string;
-    }
-
-    /**
-     * Collection documenting operational waivers that have been issued for the Site
-     * associated with this record.
-     */
-    export interface Waiver {
-      /**
-       * The expiration date of this waiver, in ISO8601 UTC format with millisecond
-       * precision.
-       */
-      expirationDate?: string;
-
-      /**
-       * Boolean indicating whether or not this waiver has expired.
-       */
-      hasExpired?: boolean;
-
-      /**
-       * The issue date of this waiver, in ISO8601 UTC format with millisecond precision.
-       */
-      issueDate?: string;
-
-      /**
-       * The name of the person who issued this waiver.
-       */
-      issuerName?: string;
-
-      /**
-       * The name of the person requesting this waiver.
-       */
-      requesterName?: string;
-
-      /**
-       * The phone number of the person requesting this waiver.
-       */
-      requesterPhoneNumber?: string;
-
-      /**
-       * The unit requesting this waiver.
-       */
-      requestingUnit?: string;
-
-      /**
-       * Description of the entities to which this waiver applies.
-       */
-      waiverAppliesTo?: string;
-
-      /**
-       * The description of this waiver.
-       */
-      waiverDescription?: string;
-
-      /**
-       * The name of the person who made the most recent change to this Waiver data.
-       */
-      waiverLastChangedBy?: string;
-
-      /**
-       * The datetime of the most recent change made to this waiver data, in ISO8601 UTC
-       * format with millisecond precision.
-       */
-      waiverLastChangedDate?: string;
-    }
+    waivers?: Array<Shared.WaiverFull>;
   }
 }
 

@@ -783,7 +783,7 @@ export interface SkyImageryQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<SkyImageryQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -794,38 +794,6 @@ export interface SkyImageryQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace SkyImageryQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type SkyImageryTupleResponse = Array<SkyImageryTupleResponse.SkyImageryTupleResponseItem>;

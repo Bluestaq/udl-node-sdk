@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import * as HistoryAPI from 'bluestaq@unified-data-library/resources/sigact/history';
 import {
   History,
@@ -694,7 +695,7 @@ export interface SigactQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<SigactQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -705,38 +706,6 @@ export interface SigactQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace SigactQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type SigactTupleResponse = Array<SigactTupleResponse.SigactTupleResponseItem>;
@@ -1167,7 +1136,7 @@ export namespace SigactTupleResponse {
     /**
      * Related document ids.
      */
-    relatedDocs?: Array<SigactTupleResponseItem.RelatedDoc>;
+    relatedDocs?: Array<Shared.RelatedDocumentFull>;
 
     /**
      * The reporting unit.
@@ -1260,49 +1229,6 @@ export namespace SigactTupleResponse {
      * The mode of this attack or event (e.g. Direct Fire, IED Explosion, etc.).
      */
     typeOfAttack?: string;
-  }
-
-  export namespace SigactTupleResponseItem {
-    export interface RelatedDoc {
-      /**
-       * List of data sources related to this document.
-       */
-      dataSourceRefs?: Array<RelatedDoc.DataSourceRef>;
-
-      /**
-       * The document id of the related document.
-       */
-      documentId?: string;
-    }
-
-    export namespace RelatedDoc {
-      export interface DataSourceRef {
-        /**
-         * Data source id.
-         */
-        dataSourceId?: string;
-
-        /**
-         * end position.
-         */
-        endPosition?: string;
-
-        /**
-         * paragraph number.
-         */
-        paragraphNumber?: string;
-
-        /**
-         * sentence number.
-         */
-        sentenceNumber?: string;
-
-        /**
-         * start position.
-         */
-        startPosition?: string;
-      }
-    }
   }
 }
 

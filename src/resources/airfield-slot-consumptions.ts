@@ -432,7 +432,7 @@ export interface AirfieldSlotConsumptionQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<AirfieldSlotConsumptionQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -443,38 +443,6 @@ export interface AirfieldSlotConsumptionQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace AirfieldSlotConsumptionQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type AirfieldSlotConsumptionTupleResponse = Array<Shared.AirfieldslotconsumptionFull>;

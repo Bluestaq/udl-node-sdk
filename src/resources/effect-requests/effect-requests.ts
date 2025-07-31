@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from 'bluestaq@unified-data-library/core/resource';
+import * as Shared from 'bluestaq@unified-data-library/resources/shared';
 import * as HistoryAPI from 'bluestaq@unified-data-library/resources/effect-requests/history';
 import {
   History,
@@ -521,7 +522,7 @@ export interface EffectRequestQueryHelpResponse {
 
   name?: string;
 
-  parameters?: Array<EffectRequestQueryHelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -532,38 +533,6 @@ export interface EffectRequestQueryHelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace EffectRequestQueryHelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type EffectRequestTupleResponse = Array<EffectRequestTupleResponse.EffectRequestTupleResponseItem>;

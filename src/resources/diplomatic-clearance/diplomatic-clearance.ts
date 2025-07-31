@@ -261,7 +261,7 @@ export interface DiplomaticClearanceQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<DiplomaticClearanceQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -272,38 +272,6 @@ export interface DiplomaticClearanceQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace DiplomaticClearanceQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type DiplomaticClearanceTupleResponse = Array<Shared.DiplomaticclearanceFull>;
