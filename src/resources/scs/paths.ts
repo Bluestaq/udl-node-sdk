@@ -13,7 +13,7 @@ export class Paths extends APIResource {
    *
    * @example
    * ```ts
-   * const path = await client.scs.paths.create(
+   * const response = await client.scs.paths.createWithFile(
    *   fs.createReadStream('path/to/file'),
    *   {
    *     id: 'id',
@@ -22,21 +22,21 @@ export class Paths extends APIResource {
    * );
    * ```
    */
-  create(
-    body: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
+  createWithFile(
+    params: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
     options?: RequestOptions,
   ): APIPromise<string> {
     const { id, classificationMarking, deleteAfter, description, overwrite, sendNotification, tags } = params;
     return this._client.post('/scs/path', {
-      body: body,
+      body: params,
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/octet-stream' }, options?.headers]),
     });
   }
 }
 
-export type PathCreateResponse = string;
+export type PathCreateWithFileResponse = string;
 
 export declare namespace Paths {
-  export { type PathCreateResponse as PathCreateResponse };
+  export { type PathCreateWithFileResponse as PathCreateWithFileResponse };
 }

@@ -9,8 +9,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource paths', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.scs.paths.create(
+  test('createWithFile: only required params', async () => {
+    const responsePromise = client.scs.paths.createWithFile(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
     );
     const rawResponse = await responsePromise.asResponse();
@@ -22,8 +22,8 @@ describe('resource paths', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: required and optional params', async () => {
-    const response = await client.scs.paths.create(
+  test('createWithFile: required and optional params', async () => {
+    const response = await client.scs.paths.createWithFile(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
       {
         id: 'id',

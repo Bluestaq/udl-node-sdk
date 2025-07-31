@@ -11,7 +11,7 @@ export {
   type FolderUpdateParams,
 } from './folders';
 export { Groups, type GroupListResponse } from './groups';
-export { Paths, type PathCreateResponse } from './paths';
+export { Paths, type PathCreateWithFileResponse } from './paths';
 export { RangeParameters, type RangeParameterListResponse } from './range-parameters';
 export {
   Scs,

@@ -108,13 +108,13 @@ export class V2 extends APIResource {
    * ```
    */
   fileUpload(
-    body: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
+    params: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
     options?: RequestOptions,
   ): APIPromise<void> {
     const { classificationMarking, path, deleteAfter, description, overwrite, sendNotification, tags } =
       params;
     return this._client.post('/scs/v2/file', {
-      body: body,
+      body: params,
       ...options,
       headers: buildHeaders([
         { 'Content-Type': 'application/octet-stream', Accept: '*/*' },
