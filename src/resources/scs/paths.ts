@@ -13,70 +13,30 @@ export class Paths extends APIResource {
    *
    * @example
    * ```ts
-   * const path = await client.scs.paths.create({
-   *   id: 'id',
-   *   classificationMarking: 'classificationMarking',
-   *   body: fs.createReadStream('path/to/file'),
-   * });
+   * const response = await client.scs.paths.createWithFile(
+   *   fs.createReadStream('path/to/file'),
+   *   {
+   *     id: 'id',
+   *     classificationMarking: 'classificationMarking',
+   *   },
+   * );
    * ```
    */
-  create(params: PathCreateParams, options?: RequestOptions): APIPromise<string> {
-    const { id, classificationMarking, body, deleteAfter, description, overwrite, sendNotification, tags } =
-      params;
+  createWithFile(
+    params: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    const { id, classificationMarking, deleteAfter, description, overwrite, sendNotification, tags } = params;
     return this._client.post('/scs/path', {
-      query: { id, classificationMarking, deleteAfter, description, overwrite, sendNotification, tags },
-      body: body,
+      body: params,
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/octet-stream' }, options?.headers]),
     });
   }
 }
 
-export type PathCreateResponse = string;
-
-export interface PathCreateParams {
-  /**
-   * Query param: The full path to create, including path and file name
-   */
-  id: string;
-
-  /**
-   * Query param: Classification (ex. U//FOUO)
-   */
-  classificationMarking: string;
-
-  /**
-   * Body param:
-   */
-  body: string | ArrayBuffer | ArrayBufferView | Blob | DataView;
-
-  /**
-   * Query param: Length of time after which to automatically delete the file.
-   */
-  deleteAfter?: string;
-
-  /**
-   * Query param: Description
-   */
-  description?: string;
-
-  /**
-   * Query param: Whether or not to overwrite a file with the same name and path, if
-   * one exists.
-   */
-  overwrite?: boolean;
-
-  /**
-   * Query param: Whether or not to send a notification that this file was uploaded.
-   */
-  sendNotification?: boolean;
-
-  /**
-   * Query param: Tags
-   */
-  tags?: string;
-}
+export type PathCreateWithFileResponse = string;
 
 export declare namespace Paths {
-  export { type PathCreateResponse as PathCreateResponse, type PathCreateParams as PathCreateParams };
+  export { type PathCreateWithFileResponse as PathCreateWithFileResponse };
 }

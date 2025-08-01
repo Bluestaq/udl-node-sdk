@@ -2887,7 +2887,7 @@ export interface OrbitdeterminationQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<OrbitdeterminationQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -2898,38 +2898,6 @@ export interface OrbitdeterminationQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace OrbitdeterminationQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type OrbitdeterminationTupleResponse =

@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as EffectResponsesAPI from './effect-responses';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -125,7 +126,7 @@ export interface HistoryListResponse {
   /**
    * List of actions associated with this effect response.
    */
-  actionsList?: Array<HistoryListResponse.ActionsList>;
+  actionsList?: Array<EffectResponsesAPI.EffectResponseActionsListFull>;
 
   /**
    * The record ID, depending on the type identified in actorSrcType, of the
@@ -142,7 +143,7 @@ export interface HistoryListResponse {
   /**
    * List of COA metrics associated with this effect response.
    */
-  coaMetrics?: Array<HistoryListResponse.CoaMetric>;
+  coaMetrics?: Array<EffectResponsesAPI.EffectResponseMetricsFull>;
 
   /**
    * The collateral damage estimate (CDE) of the munition being fired.
@@ -233,156 +234,6 @@ export interface HistoryListResponse {
    * The number of shots required to destroy target.
    */
   shotsRequired?: number;
-}
-
-export namespace HistoryListResponse {
-  export interface ActionsList {
-    /**
-     * The record ID, depending on the type identified in actorSrcType, of the
-     * requested asset/actor.
-     */
-    actionActorSrcId?: string;
-
-    /**
-     * The source type of the asset/actor identifier (AIRCRAFT, LANDCRAFT, SEACRAFT,
-     * TRACK).
-     */
-    actionActorSrcType?: string;
-
-    /**
-     * The desired end time of this task, in ISO8601 UTC format.
-     */
-    actionEndTime?: string;
-
-    /**
-     * Identifier of this action.
-     */
-    actionId?: string;
-
-    /**
-     * List of metrics associated with this action.
-     */
-    actionMetrics?: Array<ActionsList.ActionMetric>;
-
-    /**
-     * The desired start time of this task, in ISO8601 UTC format.
-     */
-    actionStartTime?: string;
-
-    /**
-     * The WGS-84 altitude of the asset/actor location at weapon launch, in meters.
-     */
-    actorInterceptAlt?: number;
-
-    /**
-     * The WGS-84 latitude of the asset/actor location at weapon launch, in degrees.
-     * -90 to 90 degrees (negative values south of equator).
-     */
-    actorInterceptLat?: number;
-
-    /**
-     * The WGS-84 longitude of the asset/actor location at weapon launch, in degrees.
-     * -180 to 180 degrees (negative values west of Prime Meridian).
-     */
-    actorInterceptLon?: number;
-
-    /**
-     * The type of munition or sensor used by this asset/actor.
-     */
-    effector?: string;
-
-    /**
-     * A summary string describing different aspects of the action.
-     */
-    summary?: string;
-
-    /**
-     * The POI or TRACK ID, depending on the type identified in targetSrcType, of the
-     * requested target. This identifier corresponds to either poi.poiid or track.trkId
-     * from their respective schemas.
-     */
-    targetSrcId?: string;
-
-    /**
-     * The source type of the targetId identifier (POI, TRACK).
-     */
-    targetSrcType?: string;
-
-    /**
-     * The end time of the asset TOT (time over target), in ISO8601 UTC format.
-     */
-    totEndTime?: string;
-
-    /**
-     * The start time of the asset TOT (time over target), in ISO8601 UTC format.
-     */
-    totStartTime?: string;
-
-    /**
-     * The WGS-84 altitude of the weapon destination location, in meters.
-     */
-    weaponInterceptAlt?: number;
-
-    /**
-     * The WGS-84 latitude of the weapon destination location, in degrees. -90 to 90
-     * degrees (negative values south of equator).
-     */
-    weaponInterceptLat?: number;
-
-    /**
-     * The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
-     * degrees (negative values west of Prime Meridian).
-     */
-    weaponInterceptLon?: number;
-  }
-
-  export namespace ActionsList {
-    export interface ActionMetric {
-      /**
-       * The metric score specific to its domain.
-       */
-      domainValue?: number;
-
-      /**
-       * The type of the metric (e.g. CollateralDamage, GoalAchievement, OpportunityCost,
-       * Timeliness, Unavailable, etc.).
-       */
-      metricType?: string;
-
-      /**
-       * The metric that was used to score this task.
-       */
-      provenance?: string;
-
-      /**
-       * The metric score adjusted to be relative and comparable to other domains.
-       */
-      relativeValue?: number;
-    }
-  }
-
-  export interface CoaMetric {
-    /**
-     * The metric score specific to its domain.
-     */
-    domainValue?: number;
-
-    /**
-     * The type of the metric (e.g. CollateralDamage, GoalAchievement, OpportunityCost,
-     * Timeliness, Unavailable, etc.).
-     */
-    metricType?: string;
-
-    /**
-     * The metric that was used to score this task.
-     */
-    provenance?: string;
-
-    /**
-     * The metric score adjusted to be relative and comparable to other domains.
-     */
-    relativeValue?: number;
-  }
 }
 
 export type HistoryCountResponse = string;

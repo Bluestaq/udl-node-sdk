@@ -10,7 +10,6 @@ import {
   HistoryCountResponse,
   HistoryListParams,
 } from './history';
-import * as StateVectorAPI from '../state-vector/state-vector';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -442,7 +441,7 @@ export interface EphemerisSet {
    * the 'Discover' tab in the storefront to confirm coordinate frames by data
    * provider.
    */
-  stateVector?: StateVectorAPI.StateVectorFull;
+  stateVector?: Shared.StateVectorFull;
 
   /**
    * Ephemeris step size, in seconds.
@@ -741,7 +740,7 @@ export interface EphemerisSetQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<EphemerisSetQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -752,38 +751,6 @@ export interface EphemerisSetQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace EphemerisSetQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type EphemerisSetTupleResponse = Array<EphemerisSet>;

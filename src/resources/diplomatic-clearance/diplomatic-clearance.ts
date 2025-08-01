@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
 import * as DiplomaticClearanceAPI from '../air-operations/diplomatic-clearance';
 import { DiplomaticclearanceAbridgedsOffsetPage } from '../air-operations/diplomatic-clearance';
 import * as CountryAPI from './country';
@@ -77,7 +78,7 @@ export class DiplomaticClearance extends APIResource {
     id: string,
     query: DiplomaticClearanceRetrieveParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<DiplomaticClearanceAPI.DiplomaticclearanceFull> {
+  ): APIPromise<Shared.DiplomaticclearanceFull> {
     return this._client.get(path`/udl/diplomaticclearance/${id}`, { query, ...options });
   }
 
@@ -256,7 +257,7 @@ export interface DiplomaticClearanceQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<DiplomaticClearanceQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -269,39 +270,7 @@ export interface DiplomaticClearanceQueryhelpResponse {
   uri?: string;
 }
 
-export namespace DiplomaticClearanceQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
-}
-
-export type DiplomaticClearanceTupleResponse = Array<DiplomaticClearanceAPI.DiplomaticclearanceFull>;
+export type DiplomaticClearanceTupleResponse = Array<Shared.DiplomaticclearanceFull>;
 
 export interface DiplomaticClearanceCreateParams {
   /**

@@ -507,7 +507,7 @@ export interface OrbittrackQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<OrbittrackQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -518,38 +518,6 @@ export interface OrbittrackQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace OrbittrackQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type OrbittrackTupleResponse = Array<OrbittrackTupleResponse.OrbittrackTupleResponseItem>;

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'unvalidated_publish_event_evolution',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to take a list of EventEvolution records as a POST body and ingest into the database. Requires a specific role, please contact the UDL team to gain access. This operation is intended to be used for automated feeds into UDL.\n\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {}\n}\n```",
+    'Service operation to take a list of EventEvolution records as a POST body and ingest into the database. Requires a specific role, please contact the UDL team to gain access. This operation is intended to be used for automated feeds into UDL.\n',
   inputSchema: {
     type: 'object',
     properties: {
@@ -187,12 +187,6 @@ export const tool: Tool = {
           },
           required: ['classificationMarking', 'dataMode', 'eventId', 'source', 'startTime', 'summary'],
         },
-      },
-      jq_filter: {
-        type: 'string',
-        title: 'jq Filter',
-        description:
-          'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
     required: ['body'],

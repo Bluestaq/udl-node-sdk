@@ -2,6 +2,8 @@
 
 export {
   EffectResponses,
+  type EffectResponseActionsListFull,
+  type EffectResponseMetricsFull,
   type EffectResponseRetrieveResponse,
   type EffectResponseListResponse,
   type EffectResponseCountResponse,

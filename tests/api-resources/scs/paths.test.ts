@@ -9,12 +9,10 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource paths', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.scs.paths.create({
-      id: 'id',
-      classificationMarking: 'classificationMarking',
-      body: await toFile(Buffer.from('# my file contents'), 'README.md'),
-    });
+  test('createWithFile: only required params', async () => {
+    const responsePromise = client.scs.paths.createWithFile(
+      await toFile(Buffer.from('# my file contents'), 'README.md'),
+    );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,16 +22,18 @@ describe('resource paths', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: required and optional params', async () => {
-    const response = await client.scs.paths.create({
-      id: 'id',
-      classificationMarking: 'classificationMarking',
-      body: await toFile(Buffer.from('# my file contents'), 'README.md'),
-      deleteAfter: 'deleteAfter',
-      description: 'description',
-      overwrite: true,
-      sendNotification: true,
-      tags: 'tags',
-    });
+  test('createWithFile: required and optional params', async () => {
+    const response = await client.scs.paths.createWithFile(
+      await toFile(Buffer.from('# my file contents'), 'README.md'),
+      {
+        id: 'id',
+        classificationMarking: 'classificationMarking',
+        deleteAfter: 'deleteAfter',
+        description: 'description',
+        overwrite: true,
+        sendNotification: true,
+        tags: 'tags',
+      },
+    );
   });
 });

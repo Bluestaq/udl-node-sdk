@@ -17,10 +17,8 @@ export {
 } from './eo-observations';
 export {
   History,
-  type EoObservationFull,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
-  type EoObservationFullsOffsetPage,
 } from './history';

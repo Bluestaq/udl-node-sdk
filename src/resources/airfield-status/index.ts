@@ -3,7 +3,6 @@
 export {
   AirfieldStatus,
   type AirfieldstatusAbridged,
-  type AirfieldstatusFull,
   type AirfieldStatusCountResponse,
   type AirfieldStatusQueryhelpResponse,
   type AirfieldStatusTupleResponse,
@@ -13,7 +12,6 @@ export {
   type AirfieldStatusListParams,
   type AirfieldStatusCountParams,
   type AirfieldStatusTupleParams,
-  type AirfieldstatusFullsOffsetPage,
   type AirfieldstatusAbridgedsOffsetPage,
 } from './airfield-status';
 export {

@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -8,8 +9,6 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  OnboardnavigationFull,
-  OnboardnavigationFullsOffsetPage,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
@@ -279,7 +278,7 @@ export interface OnboardnavigationQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<OnboardnavigationQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -292,39 +291,7 @@ export interface OnboardnavigationQueryhelpResponse {
   uri?: string;
 }
 
-export namespace OnboardnavigationQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
-}
-
-export type OnboardnavigationTupleResponse = Array<HistoryAPI.OnboardnavigationFull>;
+export type OnboardnavigationTupleResponse = Array<Shared.OnboardnavigationFull>;
 
 export interface OnboardnavigationListParams extends OffsetPageParams {
   /**
@@ -660,9 +627,7 @@ export declare namespace Onboardnavigation {
 
   export {
     History as History,
-    type OnboardnavigationFull as OnboardnavigationFull,
     type HistoryCountResponse as HistoryCountResponse,
-    type OnboardnavigationFullsOffsetPage as OnboardnavigationFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

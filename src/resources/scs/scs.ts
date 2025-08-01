@@ -19,7 +19,7 @@ import {
 import * as GroupsAPI from './groups';
 import { GroupListResponse, Groups } from './groups';
 import * as PathsAPI from './paths';
-import { PathCreateParams, PathCreateResponse, Paths } from './paths';
+import { PathCreateWithFileResponse, Paths } from './paths';
 import * as RangeParametersAPI from './range-parameters';
 import { RangeParameterListResponse, RangeParameters } from './range-parameters';
 import * as V2API from './v2';
@@ -30,7 +30,6 @@ import {
   V2,
   V2CopyParams,
   V2DeleteParams,
-  V2FileUploadParams,
   V2FolderCreateParams,
   V2ListParams,
   V2MoveParams,
@@ -177,20 +176,24 @@ export class Scs extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.scs.fileUpload({
-   *   classificationMarking: 'classificationMarking',
-   *   fileName: 'fileName',
-   *   path: 'path',
-   *   body: fs.createReadStream('path/to/file'),
-   * });
+   * const response = await client.scs.fileUpload(
+   *   fs.createReadStream('path/to/file'),
+   *   {
+   *     classificationMarking: 'classificationMarking',
+   *     fileName: 'fileName',
+   *     path: 'path',
+   *   },
+   * );
    * ```
    */
-  fileUpload(params: ScFileUploadParams, options?: RequestOptions): APIPromise<string> {
+  fileUpload(
+    params: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
+    options?: RequestOptions,
+  ): APIPromise<string> {
     const {
       classificationMarking,
       fileName,
       path,
-      body,
       deleteAfter,
       description,
       overwrite,
@@ -198,17 +201,7 @@ export class Scs extends APIResource {
       tags,
     } = params;
     return this._client.post('/scs/file', {
-      query: {
-        classificationMarking,
-        fileName,
-        path,
-        deleteAfter,
-        description,
-        overwrite,
-        sendNotification,
-        tags,
-      },
-      body: body,
+      body: params,
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/octet-stream' }, options?.headers]),
     });
@@ -336,54 +329,6 @@ export interface ScFileDownloadParams {
   maxResults?: number;
 }
 
-export interface ScFileUploadParams {
-  /**
-   * Query param: Classification (ex. U//FOUO)
-   */
-  classificationMarking: string;
-
-  /**
-   * Query param: FileName (ex. dog.jpg)
-   */
-  fileName: string;
-
-  /**
-   * Query param: The base path to upload file (ex. images)
-   */
-  path: string;
-
-  /**
-   * Body param:
-   */
-  body: string | ArrayBuffer | ArrayBufferView | Blob | DataView;
-
-  /**
-   * Query param: Length of time after which to automatically delete the file.
-   */
-  deleteAfter?: string;
-
-  /**
-   * Query param: Description
-   */
-  description?: string;
-
-  /**
-   * Query param: Whether or not to overwrite a file with the same name and path, if
-   * one exists.
-   */
-  overwrite?: boolean;
-
-  /**
-   * Query param: Whether or not to send a notification that this file was uploaded.
-   */
-  sendNotification?: boolean;
-
-  /**
-   * Query param: Tags
-   */
-  tags?: string;
-}
-
 export interface ScMoveParams {
   /**
    * The path of the item to copy
@@ -484,7 +429,6 @@ export declare namespace Scs {
     type ScCopyParams as ScCopyParams,
     type ScDownloadParams as ScDownloadParams,
     type ScFileDownloadParams as ScFileDownloadParams,
-    type ScFileUploadParams as ScFileUploadParams,
     type ScMoveParams as ScMoveParams,
     type ScRenameParams as ScRenameParams,
     type ScSearchParams as ScSearchParams,
@@ -513,11 +457,7 @@ export declare namespace Scs {
     type RangeParameterListResponse as RangeParameterListResponse,
   };
 
-  export {
-    Paths as Paths,
-    type PathCreateResponse as PathCreateResponse,
-    type PathCreateParams as PathCreateParams,
-  };
+  export { Paths as Paths, type PathCreateWithFileResponse as PathCreateWithFileResponse };
 
   export {
     V2 as V2,
@@ -528,7 +468,6 @@ export declare namespace Scs {
     type V2ListParams as V2ListParams,
     type V2DeleteParams as V2DeleteParams,
     type V2CopyParams as V2CopyParams,
-    type V2FileUploadParams as V2FileUploadParams,
     type V2FolderCreateParams as V2FolderCreateParams,
     type V2MoveParams as V2MoveParams,
   };

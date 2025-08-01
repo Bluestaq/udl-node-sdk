@@ -2,12 +2,10 @@
 
 export {
   History,
-  type NotificationFull,
   type HistoryCountResponse,
   type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
-  type NotificationFullsOffsetPage,
 } from './history';
 export {
   Notification,

@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as OrganizationAPI from './organization';
+import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
@@ -610,7 +610,7 @@ export interface LaunchVehicleDetailGetResponse {
    * etc. An organization may have parent and child organizations as well as link to
    * a former organization if this org previously existed as another organization.
    */
-  manufacturerOrg?: OrganizationAPI.OrganizationFull;
+  manufacturerOrg?: Shared.OrganizationFull;
 
   /**
    * ID of the organization that manufactures the launch vehicle.

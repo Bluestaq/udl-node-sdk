@@ -12,7 +12,6 @@ import {
   HistoryListResponse,
   HistoryListResponsesOffsetPage,
 } from './history';
-import * as EoObservationsHistoryAPI from '../observations/eo-observations/history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { type Uploadable } from '../../core/uploads';
@@ -538,7 +537,7 @@ export interface SkyImageryGetResponse {
   /**
    * Collection of linked EOObservations.
    */
-  eoObservations?: Array<EoObservationsHistoryAPI.EoObservationFull>;
+  eoObservations?: Array<Shared.EoObservationFull>;
 
   /**
    * End time of the exposure, in ISO 8601 UTC format with microsecond precision.
@@ -780,7 +779,7 @@ export interface SkyImageryQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<SkyImageryQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -791,38 +790,6 @@ export interface SkyImageryQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace SkyImageryQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type SkyImageryTupleResponse = Array<SkyImageryTupleResponse.SkyImageryTupleResponseItem>;
@@ -913,7 +880,7 @@ export namespace SkyImageryTupleResponse {
     /**
      * Collection of linked EOObservations.
      */
-    eoObservations?: Array<EoObservationsHistoryAPI.EoObservationFull>;
+    eoObservations?: Array<Shared.EoObservationFull>;
 
     /**
      * End time of the exposure, in ISO 8601 UTC format with microsecond precision.

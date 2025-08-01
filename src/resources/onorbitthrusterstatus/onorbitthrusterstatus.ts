@@ -1,15 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  OnorbitthrusterstatusFull,
-  OnorbitthrusterstatusFullsOffsetPage,
-} from './history';
+import { History, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -155,7 +149,7 @@ export class Onorbitthrusterstatus extends APIResource {
     id: string,
     query: OnorbitthrusterstatusGetParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<HistoryAPI.OnorbitthrusterstatusFull> {
+  ): APIPromise<Shared.OnorbitthrusterstatusFull> {
     return this._client.get(path`/udl/onorbitthrusterstatus/${id}`, { query, ...options });
   }
 
@@ -363,7 +357,7 @@ export interface OnorbitthrusterstatusQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<OnorbitthrusterstatusQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -376,39 +370,7 @@ export interface OnorbitthrusterstatusQueryhelpResponse {
   uri?: string;
 }
 
-export namespace OnorbitthrusterstatusQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
-}
-
-export type OnorbitthrusterstatusTupleResponse = Array<HistoryAPI.OnorbitthrusterstatusFull>;
+export type OnorbitthrusterstatusTupleResponse = Array<Shared.OnorbitthrusterstatusFull>;
 
 export interface OnorbitthrusterstatusCreateParams {
   /**
@@ -772,9 +734,7 @@ export declare namespace Onorbitthrusterstatus {
 
   export {
     History as History,
-    type OnorbitthrusterstatusFull as OnorbitthrusterstatusFull,
     type HistoryCountResponse as HistoryCountResponse,
-    type OnorbitthrusterstatusFullsOffsetPage as OnorbitthrusterstatusFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryCountParams as HistoryCountParams,
   };

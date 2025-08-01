@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import * as EntitiesAPI from './entities';
+import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
@@ -315,7 +316,7 @@ export interface NavigationGetResponse {
    * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
    * entity can have an operating unit, a location (if terrestrial), and statuses.
    */
-  entity?: EntitiesAPI.EntityFull;
+  entity?: Shared.EntityFull;
 
   /**
    * ID of the parent entity for this navigation.
@@ -359,7 +360,7 @@ export interface NavigationQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<NavigationQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -370,38 +371,6 @@ export interface NavigationQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace NavigationQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type NavigationTupleResponse = Array<NavigationTupleResponse.NavigationTupleResponseItem>;
@@ -470,7 +439,7 @@ export namespace NavigationTupleResponse {
      * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
      * entity can have an operating unit, a location (if terrestrial), and statuses.
      */
-    entity?: EntitiesAPI.EntityFull;
+    entity?: Shared.EntityFull;
 
     /**
      * ID of the parent entity for this navigation.

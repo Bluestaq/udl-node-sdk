@@ -1,8 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as LocationAPI from './location';
-import * as OrganizationAPI from './organization';
+import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
@@ -495,7 +494,7 @@ export interface RfEmitterDetailGetResponse {
    * etc. An organization may have parent and child organizations as well as link to
    * a former organization if this org previously existed as another organization.
    */
-  manufacturerOrg?: OrganizationAPI.OrganizationFull;
+  manufacturerOrg?: Shared.OrganizationFull;
 
   /**
    * Unique identifier of the organization which manufactures this RF Emitter.
@@ -535,7 +534,7 @@ export interface RfEmitterDetailGetResponse {
    * Model representation of a location, which is a specific fixed point on the earth
    * and is used to denote the locations of fixed sensors, operating units, etc.
    */
-  productionFacilityLocation?: LocationAPI.LocationFull;
+  productionFacilityLocation?: Shared.LocationFull;
 
   /**
    * Unique identifier of the location of the production facility for this RF
@@ -625,7 +624,7 @@ export interface RfEmitterDetailQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<RfEmitterDetailQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -636,38 +635,6 @@ export interface RfEmitterDetailQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace RfEmitterDetailQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type RfEmitterDetailTupleResponse =
@@ -784,7 +751,7 @@ export namespace RfEmitterDetailTupleResponse {
      * etc. An organization may have parent and child organizations as well as link to
      * a former organization if this org previously existed as another organization.
      */
-    manufacturerOrg?: OrganizationAPI.OrganizationFull;
+    manufacturerOrg?: Shared.OrganizationFull;
 
     /**
      * Unique identifier of the organization which manufactures this RF Emitter.
@@ -824,7 +791,7 @@ export namespace RfEmitterDetailTupleResponse {
      * Model representation of a location, which is a specific fixed point on the earth
      * and is used to denote the locations of fixed sensors, operating units, etc.
      */
-    productionFacilityLocation?: LocationAPI.LocationFull;
+    productionFacilityLocation?: Shared.LocationFull;
 
     /**
      * Unique identifier of the location of the production facility for this RF

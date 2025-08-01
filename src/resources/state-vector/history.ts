@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as StateVectorAPI from './state-vector';
-import { StateVectorFullsOffsetPage } from './state-vector';
+import * as Shared from '../shared';
+import { StateVectorFullsOffsetPage } from '../shared';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -28,8 +28,8 @@ export class History extends APIResource {
   list(
     query: HistoryListParams,
     options?: RequestOptions,
-  ): PagePromise<StateVectorFullsOffsetPage, StateVectorAPI.StateVectorFull> {
-    return this._client.getAPIList('/udl/statevector/history', OffsetPage<StateVectorAPI.StateVectorFull>, {
+  ): PagePromise<StateVectorFullsOffsetPage, Shared.StateVectorFull> {
+    return this._client.getAPIList('/udl/statevector/history', OffsetPage<Shared.StateVectorFull>, {
       query,
       ...options,
     });

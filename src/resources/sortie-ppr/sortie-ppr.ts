@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -8,8 +9,6 @@ import {
   HistoryCountParams,
   HistoryCountResponse,
   HistoryListParams,
-  SortiePprFull,
-  SortiePprFullsOffsetPage,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
@@ -174,7 +173,7 @@ export class SortiePpr extends APIResource {
     id: string,
     query: SortiePprGetParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<HistoryAPI.SortiePprFull> {
+  ): APIPromise<Shared.SortiePprFull> {
     return this._client.get(path`/udl/sortieppr/${id}`, { query, ...options });
   }
 
@@ -380,7 +379,7 @@ export interface SortiePprQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<SortiePprQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -393,39 +392,7 @@ export interface SortiePprQueryhelpResponse {
   uri?: string;
 }
 
-export namespace SortiePprQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
-}
-
-export type SortiePprTupleResponse = Array<HistoryAPI.SortiePprFull>;
+export type SortiePprTupleResponse = Array<Shared.SortiePprFull>;
 
 export interface SortiePprCreateParams {
   /**
@@ -890,9 +857,7 @@ export declare namespace SortiePpr {
 
   export {
     History as History,
-    type SortiePprFull as SortiePprFull,
     type HistoryCountResponse as HistoryCountResponse,
-    type SortiePprFullsOffsetPage as SortiePprFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,

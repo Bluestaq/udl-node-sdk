@@ -6,7 +6,6 @@ import {
   AirTaskingOrderCountParams,
   AirTaskingOrderCountResponse,
   AirTaskingOrderCreateParams,
-  AirTaskingOrderFull,
   AirTaskingOrderListParams,
   AirTaskingOrderQueryHelpResponse,
   AirTaskingOrderRetrieveParams,
@@ -32,7 +31,6 @@ import {
   AircraftSortieListParams,
   AircraftsortieAbridged,
   AircraftsortieAbridgedsOffsetPage,
-  AircraftsortieFull,
 } from './aircraft-sortie';
 import * as AircraftSortiesAPI from './aircraft-sorties';
 import { AircraftSorties, AircraftSortyUnvalidatedPublishParams } from './aircraft-sorties';
@@ -42,13 +40,12 @@ import {
   AirspaceControlOrders,
 } from './airspace-control-orders';
 import * as CrewpapersAPI from './crewpapers';
-import { CrewpaperUnpublishParams, CrewpaperUploadPdfParams, Crewpapers } from './crewpapers';
+import { CrewpaperUnpublishParams, Crewpapers } from './crewpapers';
 import * as DiplomaticClearanceAPI from './diplomatic-clearance';
 import {
   DiplomaticClearance,
   DiplomaticClearanceUnvalidatedPublishParams,
   DiplomaticclearanceAbridged,
-  DiplomaticclearanceFull,
 } from './diplomatic-clearance';
 
 export class AirOperations extends APIResource {
@@ -74,7 +71,6 @@ AirOperations.DiplomaticClearance = DiplomaticClearance;
 export declare namespace AirOperations {
   export {
     AirTaskingOrders as AirTaskingOrders,
-    type AirTaskingOrderFull as AirTaskingOrderFull,
     type AirtaskingorderAbridged as AirtaskingorderAbridged,
     type AirTaskingOrderCountResponse as AirTaskingOrderCountResponse,
     type AirTaskingOrderQueryHelpResponse as AirTaskingOrderQueryHelpResponse,
@@ -91,7 +87,6 @@ export declare namespace AirOperations {
   export {
     AircraftSortie as AircraftSortie,
     type AircraftsortieAbridged as AircraftsortieAbridged,
-    type AircraftsortieFull as AircraftsortieFull,
     type AircraftSortieCountResponse as AircraftSortieCountResponse,
     type AircraftSortieHistoryCountResponse as AircraftSortieHistoryCountResponse,
     type AircraftSortieHistoryQueryResponse as AircraftSortieHistoryQueryResponse,
@@ -115,16 +110,11 @@ export declare namespace AirOperations {
     type AirspaceControlOrderUnvalidatedPublishParams as AirspaceControlOrderUnvalidatedPublishParams,
   };
 
-  export {
-    Crewpapers as Crewpapers,
-    type CrewpaperUnpublishParams as CrewpaperUnpublishParams,
-    type CrewpaperUploadPdfParams as CrewpaperUploadPdfParams,
-  };
+  export { Crewpapers as Crewpapers, type CrewpaperUnpublishParams as CrewpaperUnpublishParams };
 
   export {
     DiplomaticClearance as DiplomaticClearance,
     type DiplomaticclearanceAbridged as DiplomaticclearanceAbridged,
-    type DiplomaticclearanceFull as DiplomaticclearanceFull,
     type DiplomaticClearanceUnvalidatedPublishParams as DiplomaticClearanceUnvalidatedPublishParams,
   };
 }

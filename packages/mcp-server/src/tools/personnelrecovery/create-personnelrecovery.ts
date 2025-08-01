@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'create_personnelrecovery',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to take a single Personnel Recovery object as a POST body and ingest into the database. Requires a specific role, please contact the UDL team to gain access.",
+    'Service operation to take a single Personnel Recovery object as a POST body and ingest into the database. Requires a specific role, please contact the UDL team to gain access.',
   inputSchema: {
     type: 'object',
     properties: {

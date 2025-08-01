@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'file_upload_scs_v2',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nOperation to upload a file. A specific role is required to perform this service operation. Please contact the UDL team for assistance.\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {}\n}\n```",
+    'Operation to upload a file. A specific role is required to perform this service operation. Please contact the UDL team for assistance.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -30,7 +30,7 @@ export const tool: Tool = {
         description:
           "The complete path for the upload including filename. Will attempt to create folders in path if necessary. Must start with '/'.",
       },
-      body: {
+      params: {
         type: 'string',
       },
       deleteAfter: {
@@ -54,21 +54,15 @@ export const tool: Tool = {
         description:
           'Optional array of provider/source specific tags for this data, used for implementing data owner conditional access controls to restrict access to the data.',
       },
-      jq_filter: {
-        type: 'string',
-        title: 'jq Filter',
-        description:
-          'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
-      },
     },
-    required: ['classificationMarking', 'path', 'body'],
+    required: ['classificationMarking', 'path', 'params'],
   },
   annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
-  const body = args as any;
-  const response = await client.scs.v2.fileUpload(body).asResponse();
+  const { params, ...body } = args as any;
+  const response = await client.scs.v2.fileUpload(params).asResponse();
   return asTextContentResult(await response.text());
 };
 

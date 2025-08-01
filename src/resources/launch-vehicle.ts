@@ -1,8 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as EnginesAPI from './engines';
-import * as OrganizationAPI from './organization';
+import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
@@ -540,7 +539,7 @@ export namespace LaunchVehicleGetResponse {
      * etc. An organization may have parent and child organizations as well as link to
      * a former organization if this org previously existed as another organization.
      */
-    manufacturerOrg?: OrganizationAPI.OrganizationFull;
+    manufacturerOrg?: Shared.OrganizationFull;
 
     /**
      * ID of the organization that manufactures the launch vehicle.
@@ -760,7 +759,7 @@ export namespace LaunchVehicleGetResponse {
      * Known launch vehicle engines and their performance characteristics and limits. A
      * launch vehicle has 1 to many engines per stage.
      */
-    engine?: EnginesAPI.Engine;
+    engine?: Shared.Engine;
 
     /**
      * Stage length in meters.
@@ -930,7 +929,7 @@ export interface LaunchVehicleQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<LaunchVehicleQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -941,38 +940,6 @@ export interface LaunchVehicleQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace LaunchVehicleQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type LaunchVehicleTupleResponse = Array<LaunchVehicleTupleResponse.LaunchVehicleTupleResponseItem>;
@@ -1268,7 +1235,7 @@ export namespace LaunchVehicleTupleResponse {
        * etc. An organization may have parent and child organizations as well as link to
        * a former organization if this org previously existed as another organization.
        */
-      manufacturerOrg?: OrganizationAPI.OrganizationFull;
+      manufacturerOrg?: Shared.OrganizationFull;
 
       /**
        * ID of the organization that manufactures the launch vehicle.
@@ -1488,7 +1455,7 @@ export namespace LaunchVehicleTupleResponse {
        * Known launch vehicle engines and their performance characteristics and limits. A
        * launch vehicle has 1 to many engines per stage.
        */
-      engine?: EnginesAPI.Engine;
+      engine?: Shared.Engine;
 
       /**
        * Stage length in meters.

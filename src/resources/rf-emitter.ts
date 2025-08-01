@@ -2,8 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import * as EntitiesAPI from './entities';
-import * as LocationAPI from './location';
-import * as OrganizationAPI from './organization';
+import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
@@ -311,7 +310,7 @@ export interface RfEmitterGetResponse {
    * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
    * entity can have an operating unit, a location (if terrestrial), and statuses.
    */
-  entity?: EntitiesAPI.EntityFull;
+  entity?: Shared.EntityFull;
 
   /**
    * ID of the parent entity for this rfemitter.
@@ -465,7 +464,7 @@ export namespace RfEmitterGetResponse {
      * etc. An organization may have parent and child organizations as well as link to
      * a former organization if this org previously existed as another organization.
      */
-    manufacturerOrg?: OrganizationAPI.OrganizationFull;
+    manufacturerOrg?: Shared.OrganizationFull;
 
     /**
      * Unique identifier of the organization which manufactures this RF Emitter.
@@ -505,7 +504,7 @@ export namespace RfEmitterGetResponse {
      * Model representation of a location, which is a specific fixed point on the earth
      * and is used to denote the locations of fixed sensors, operating units, etc.
      */
-    productionFacilityLocation?: LocationAPI.LocationFull;
+    productionFacilityLocation?: Shared.LocationFull;
 
     /**
      * Unique identifier of the location of the production facility for this RF
@@ -596,7 +595,7 @@ export interface RfEmitterQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<RfEmitterQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -607,38 +606,6 @@ export interface RfEmitterQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace RfEmitterQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type RfEmitterTupleResponse = Array<RfEmitterTupleResponse.RfEmitterTupleResponseItem>;
@@ -703,7 +670,7 @@ export namespace RfEmitterTupleResponse {
      * such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
      * entity can have an operating unit, a location (if terrestrial), and statuses.
      */
-    entity?: EntitiesAPI.EntityFull;
+    entity?: Shared.EntityFull;
 
     /**
      * ID of the parent entity for this rfemitter.
@@ -857,7 +824,7 @@ export namespace RfEmitterTupleResponse {
        * etc. An organization may have parent and child organizations as well as link to
        * a former organization if this org previously existed as another organization.
        */
-      manufacturerOrg?: OrganizationAPI.OrganizationFull;
+      manufacturerOrg?: Shared.OrganizationFull;
 
       /**
        * Unique identifier of the organization which manufactures this RF Emitter.
@@ -897,7 +864,7 @@ export namespace RfEmitterTupleResponse {
        * Model representation of a location, which is a specific fixed point on the earth
        * and is used to denote the locations of fixed sensors, operating units, etc.
        */
-      productionFacilityLocation?: LocationAPI.LocationFull;
+      productionFacilityLocation?: Shared.LocationFull;
 
       /**
        * Unique identifier of the location of the production facility for this RF

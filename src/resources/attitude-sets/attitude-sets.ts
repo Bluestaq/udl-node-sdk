@@ -404,7 +404,7 @@ export interface AttitudeSetQueryHelpResponse {
 
   name?: string;
 
-  parameters?: Array<AttitudeSetQueryHelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -415,38 +415,6 @@ export interface AttitudeSetQueryHelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace AttitudeSetQueryHelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type AttitudeSetTupleResponse = Array<Shared.AttitudesetFull>;

@@ -1,6 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as EffectResponsesAPI from './effect-responses';
+import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import {
   History,
@@ -211,6 +213,129 @@ export class EffectResponses extends APIResource {
 
 export type EffectResponseListResponsesOffsetPage = OffsetPage<EffectResponseListResponse>;
 
+export interface EffectResponseActionsListFull {
+  /**
+   * The record ID, depending on the type identified in actorSrcType, of the
+   * requested asset/actor.
+   */
+  actionActorSrcId?: string;
+
+  /**
+   * The source type of the asset/actor identifier (AIRCRAFT, LANDCRAFT, SEACRAFT,
+   * TRACK).
+   */
+  actionActorSrcType?: string;
+
+  /**
+   * The desired end time of this task, in ISO8601 UTC format.
+   */
+  actionEndTime?: string;
+
+  /**
+   * Identifier of this action.
+   */
+  actionId?: string;
+
+  /**
+   * List of metrics associated with this action.
+   */
+  actionMetrics?: Array<EffectResponseMetricsFull>;
+
+  /**
+   * The desired start time of this task, in ISO8601 UTC format.
+   */
+  actionStartTime?: string;
+
+  /**
+   * The WGS-84 altitude of the asset/actor location at weapon launch, in meters.
+   */
+  actorInterceptAlt?: number;
+
+  /**
+   * The WGS-84 latitude of the asset/actor location at weapon launch, in degrees.
+   * -90 to 90 degrees (negative values south of equator).
+   */
+  actorInterceptLat?: number;
+
+  /**
+   * The WGS-84 longitude of the asset/actor location at weapon launch, in degrees.
+   * -180 to 180 degrees (negative values west of Prime Meridian).
+   */
+  actorInterceptLon?: number;
+
+  /**
+   * The type of munition or sensor used by this asset/actor.
+   */
+  effector?: string;
+
+  /**
+   * A summary string describing different aspects of the action.
+   */
+  summary?: string;
+
+  /**
+   * The POI or TRACK ID, depending on the type identified in targetSrcType, of the
+   * requested target. This identifier corresponds to either poi.poiid or track.trkId
+   * from their respective schemas.
+   */
+  targetSrcId?: string;
+
+  /**
+   * The source type of the targetId identifier (POI, TRACK).
+   */
+  targetSrcType?: string;
+
+  /**
+   * The end time of the asset TOT (time over target), in ISO8601 UTC format.
+   */
+  totEndTime?: string;
+
+  /**
+   * The start time of the asset TOT (time over target), in ISO8601 UTC format.
+   */
+  totStartTime?: string;
+
+  /**
+   * The WGS-84 altitude of the weapon destination location, in meters.
+   */
+  weaponInterceptAlt?: number;
+
+  /**
+   * The WGS-84 latitude of the weapon destination location, in degrees. -90 to 90
+   * degrees (negative values south of equator).
+   */
+  weaponInterceptLat?: number;
+
+  /**
+   * The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
+   * degrees (negative values west of Prime Meridian).
+   */
+  weaponInterceptLon?: number;
+}
+
+export interface EffectResponseMetricsFull {
+  /**
+   * The metric score specific to its domain.
+   */
+  domainValue?: number;
+
+  /**
+   * The type of the metric (e.g. CollateralDamage, GoalAchievement, OpportunityCost,
+   * Timeliness, Unavailable, etc.).
+   */
+  metricType?: string;
+
+  /**
+   * The metric that was used to score this task.
+   */
+  provenance?: string;
+
+  /**
+   * The metric score adjusted to be relative and comparable to other domains.
+   */
+  relativeValue?: number;
+}
+
 /**
  * A response for various effects on a target.
  */
@@ -256,7 +381,7 @@ export interface EffectResponseRetrieveResponse {
   /**
    * List of actions associated with this effect response.
    */
-  actionsList?: Array<EffectResponseRetrieveResponse.ActionsList>;
+  actionsList?: Array<EffectResponseActionsListFull>;
 
   /**
    * The record ID, depending on the type identified in actorSrcType, of the
@@ -273,7 +398,7 @@ export interface EffectResponseRetrieveResponse {
   /**
    * List of COA metrics associated with this effect response.
    */
-  coaMetrics?: Array<EffectResponseRetrieveResponse.CoaMetric>;
+  coaMetrics?: Array<EffectResponseMetricsFull>;
 
   /**
    * The collateral damage estimate (CDE) of the munition being fired.
@@ -364,156 +489,6 @@ export interface EffectResponseRetrieveResponse {
    * The number of shots required to destroy target.
    */
   shotsRequired?: number;
-}
-
-export namespace EffectResponseRetrieveResponse {
-  export interface ActionsList {
-    /**
-     * The record ID, depending on the type identified in actorSrcType, of the
-     * requested asset/actor.
-     */
-    actionActorSrcId?: string;
-
-    /**
-     * The source type of the asset/actor identifier (AIRCRAFT, LANDCRAFT, SEACRAFT,
-     * TRACK).
-     */
-    actionActorSrcType?: string;
-
-    /**
-     * The desired end time of this task, in ISO8601 UTC format.
-     */
-    actionEndTime?: string;
-
-    /**
-     * Identifier of this action.
-     */
-    actionId?: string;
-
-    /**
-     * List of metrics associated with this action.
-     */
-    actionMetrics?: Array<ActionsList.ActionMetric>;
-
-    /**
-     * The desired start time of this task, in ISO8601 UTC format.
-     */
-    actionStartTime?: string;
-
-    /**
-     * The WGS-84 altitude of the asset/actor location at weapon launch, in meters.
-     */
-    actorInterceptAlt?: number;
-
-    /**
-     * The WGS-84 latitude of the asset/actor location at weapon launch, in degrees.
-     * -90 to 90 degrees (negative values south of equator).
-     */
-    actorInterceptLat?: number;
-
-    /**
-     * The WGS-84 longitude of the asset/actor location at weapon launch, in degrees.
-     * -180 to 180 degrees (negative values west of Prime Meridian).
-     */
-    actorInterceptLon?: number;
-
-    /**
-     * The type of munition or sensor used by this asset/actor.
-     */
-    effector?: string;
-
-    /**
-     * A summary string describing different aspects of the action.
-     */
-    summary?: string;
-
-    /**
-     * The POI or TRACK ID, depending on the type identified in targetSrcType, of the
-     * requested target. This identifier corresponds to either poi.poiid or track.trkId
-     * from their respective schemas.
-     */
-    targetSrcId?: string;
-
-    /**
-     * The source type of the targetId identifier (POI, TRACK).
-     */
-    targetSrcType?: string;
-
-    /**
-     * The end time of the asset TOT (time over target), in ISO8601 UTC format.
-     */
-    totEndTime?: string;
-
-    /**
-     * The start time of the asset TOT (time over target), in ISO8601 UTC format.
-     */
-    totStartTime?: string;
-
-    /**
-     * The WGS-84 altitude of the weapon destination location, in meters.
-     */
-    weaponInterceptAlt?: number;
-
-    /**
-     * The WGS-84 latitude of the weapon destination location, in degrees. -90 to 90
-     * degrees (negative values south of equator).
-     */
-    weaponInterceptLat?: number;
-
-    /**
-     * The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
-     * degrees (negative values west of Prime Meridian).
-     */
-    weaponInterceptLon?: number;
-  }
-
-  export namespace ActionsList {
-    export interface ActionMetric {
-      /**
-       * The metric score specific to its domain.
-       */
-      domainValue?: number;
-
-      /**
-       * The type of the metric (e.g. CollateralDamage, GoalAchievement, OpportunityCost,
-       * Timeliness, Unavailable, etc.).
-       */
-      metricType?: string;
-
-      /**
-       * The metric that was used to score this task.
-       */
-      provenance?: string;
-
-      /**
-       * The metric score adjusted to be relative and comparable to other domains.
-       */
-      relativeValue?: number;
-    }
-  }
-
-  export interface CoaMetric {
-    /**
-     * The metric score specific to its domain.
-     */
-    domainValue?: number;
-
-    /**
-     * The type of the metric (e.g. CollateralDamage, GoalAchievement, OpportunityCost,
-     * Timeliness, Unavailable, etc.).
-     */
-    metricType?: string;
-
-    /**
-     * The metric that was used to score this task.
-     */
-    provenance?: string;
-
-    /**
-     * The metric score adjusted to be relative and comparable to other domains.
-     */
-    relativeValue?: number;
-  }
 }
 
 /**
@@ -834,7 +809,7 @@ export interface EffectResponseQueryHelpResponse {
 
   name?: string;
 
-  parameters?: Array<EffectResponseQueryHelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -845,38 +820,6 @@ export interface EffectResponseQueryHelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace EffectResponseQueryHelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type EffectResponseTupleResponse = Array<EffectResponseTupleResponse.EffectResponseTupleResponseItem>;
@@ -927,7 +870,7 @@ export namespace EffectResponseTupleResponse {
     /**
      * List of actions associated with this effect response.
      */
-    actionsList?: Array<EffectResponseTupleResponseItem.ActionsList>;
+    actionsList?: Array<EffectResponsesAPI.EffectResponseActionsListFull>;
 
     /**
      * The record ID, depending on the type identified in actorSrcType, of the
@@ -944,7 +887,7 @@ export namespace EffectResponseTupleResponse {
     /**
      * List of COA metrics associated with this effect response.
      */
-    coaMetrics?: Array<EffectResponseTupleResponseItem.CoaMetric>;
+    coaMetrics?: Array<EffectResponsesAPI.EffectResponseMetricsFull>;
 
     /**
      * The collateral damage estimate (CDE) of the munition being fired.
@@ -1035,156 +978,6 @@ export namespace EffectResponseTupleResponse {
      * The number of shots required to destroy target.
      */
     shotsRequired?: number;
-  }
-
-  export namespace EffectResponseTupleResponseItem {
-    export interface ActionsList {
-      /**
-       * The record ID, depending on the type identified in actorSrcType, of the
-       * requested asset/actor.
-       */
-      actionActorSrcId?: string;
-
-      /**
-       * The source type of the asset/actor identifier (AIRCRAFT, LANDCRAFT, SEACRAFT,
-       * TRACK).
-       */
-      actionActorSrcType?: string;
-
-      /**
-       * The desired end time of this task, in ISO8601 UTC format.
-       */
-      actionEndTime?: string;
-
-      /**
-       * Identifier of this action.
-       */
-      actionId?: string;
-
-      /**
-       * List of metrics associated with this action.
-       */
-      actionMetrics?: Array<ActionsList.ActionMetric>;
-
-      /**
-       * The desired start time of this task, in ISO8601 UTC format.
-       */
-      actionStartTime?: string;
-
-      /**
-       * The WGS-84 altitude of the asset/actor location at weapon launch, in meters.
-       */
-      actorInterceptAlt?: number;
-
-      /**
-       * The WGS-84 latitude of the asset/actor location at weapon launch, in degrees.
-       * -90 to 90 degrees (negative values south of equator).
-       */
-      actorInterceptLat?: number;
-
-      /**
-       * The WGS-84 longitude of the asset/actor location at weapon launch, in degrees.
-       * -180 to 180 degrees (negative values west of Prime Meridian).
-       */
-      actorInterceptLon?: number;
-
-      /**
-       * The type of munition or sensor used by this asset/actor.
-       */
-      effector?: string;
-
-      /**
-       * A summary string describing different aspects of the action.
-       */
-      summary?: string;
-
-      /**
-       * The POI or TRACK ID, depending on the type identified in targetSrcType, of the
-       * requested target. This identifier corresponds to either poi.poiid or track.trkId
-       * from their respective schemas.
-       */
-      targetSrcId?: string;
-
-      /**
-       * The source type of the targetId identifier (POI, TRACK).
-       */
-      targetSrcType?: string;
-
-      /**
-       * The end time of the asset TOT (time over target), in ISO8601 UTC format.
-       */
-      totEndTime?: string;
-
-      /**
-       * The start time of the asset TOT (time over target), in ISO8601 UTC format.
-       */
-      totStartTime?: string;
-
-      /**
-       * The WGS-84 altitude of the weapon destination location, in meters.
-       */
-      weaponInterceptAlt?: number;
-
-      /**
-       * The WGS-84 latitude of the weapon destination location, in degrees. -90 to 90
-       * degrees (negative values south of equator).
-       */
-      weaponInterceptLat?: number;
-
-      /**
-       * The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
-       * degrees (negative values west of Prime Meridian).
-       */
-      weaponInterceptLon?: number;
-    }
-
-    export namespace ActionsList {
-      export interface ActionMetric {
-        /**
-         * The metric score specific to its domain.
-         */
-        domainValue?: number;
-
-        /**
-         * The type of the metric (e.g. CollateralDamage, GoalAchievement, OpportunityCost,
-         * Timeliness, Unavailable, etc.).
-         */
-        metricType?: string;
-
-        /**
-         * The metric that was used to score this task.
-         */
-        provenance?: string;
-
-        /**
-         * The metric score adjusted to be relative and comparable to other domains.
-         */
-        relativeValue?: number;
-      }
-    }
-
-    export interface CoaMetric {
-      /**
-       * The metric score specific to its domain.
-       */
-      domainValue?: number;
-
-      /**
-       * The type of the metric (e.g. CollateralDamage, GoalAchievement, OpportunityCost,
-       * Timeliness, Unavailable, etc.).
-       */
-      metricType?: string;
-
-      /**
-       * The metric that was used to score this task.
-       */
-      provenance?: string;
-
-      /**
-       * The metric score adjusted to be relative and comparable to other domains.
-       */
-      relativeValue?: number;
-    }
   }
 }
 
@@ -2111,6 +1904,8 @@ EffectResponses.History = History;
 
 export declare namespace EffectResponses {
   export {
+    type EffectResponseActionsListFull as EffectResponseActionsListFull,
+    type EffectResponseMetricsFull as EffectResponseMetricsFull,
     type EffectResponseRetrieveResponse as EffectResponseRetrieveResponse,
     type EffectResponseListResponse as EffectResponseListResponse,
     type EffectResponseCountResponse as EffectResponseCountResponse,

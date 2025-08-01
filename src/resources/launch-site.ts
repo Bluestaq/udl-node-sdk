@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as LocationAPI from './location';
+import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
@@ -451,7 +451,7 @@ export namespace LaunchSiteGetResponse {
      * Model representation of a location, which is a specific fixed point on the earth
      * and is used to denote the locations of fixed sensors, operating units, etc.
      */
-    location?: LocationAPI.LocationFull;
+    location?: Shared.LocationFull;
 
     /**
      * Originating system or organization which produced the data, if different from
@@ -500,7 +500,7 @@ export interface LaunchSiteQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<LaunchSiteQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -511,38 +511,6 @@ export interface LaunchSiteQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace LaunchSiteQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type LaunchSiteTupleResponse = Array<LaunchSiteTupleResponse.LaunchSiteTupleResponseItem>;
@@ -738,7 +706,7 @@ export namespace LaunchSiteTupleResponse {
        * Model representation of a location, which is a specific fixed point on the earth
        * and is used to denote the locations of fixed sensors, operating units, etc.
        */
-      location?: LocationAPI.LocationFull;
+      location?: Shared.LocationFull;
 
       /**
        * Originating system or organization which produced the data, if different from

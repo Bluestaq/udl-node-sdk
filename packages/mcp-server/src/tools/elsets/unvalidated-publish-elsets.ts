@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'unvalidated_publish_elsets',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to take elsets as a POST body and ingest into the database with or without dupe detection. Default is no dupe checking. This operation is intended to be used for automated feeds into UDL.\n",
+    'Service operation to take elsets as a POST body and ingest into the database with or without dupe detection. Default is no dupe checking. This operation is intended to be used for automated feeds into UDL.\n',
   inputSchema: {
     type: 'object',
     properties: {

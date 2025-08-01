@@ -11,7 +11,6 @@ import {
   AntennaDetails,
   AntennaDetailsAbridged,
   AntennaDetailsAbridgedsOffsetPage,
-  AntennaDetailsFull,
 } from './antenna-details';
 import * as EoObservationsAPI from '../observations/eo-observations/eo-observations';
 import { APIPromise } from '../../core/api-promise';
@@ -1465,7 +1464,7 @@ export interface OnorbitQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<OnorbitQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -1476,38 +1475,6 @@ export interface OnorbitQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace OnorbitQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type OnorbitTupleResponse = Array<Shared.OnorbitFull>;
@@ -1840,7 +1807,6 @@ export declare namespace Onorbit {
   export {
     AntennaDetails as AntennaDetails,
     type AntennaDetailsAbridged as AntennaDetailsAbridged,
-    type AntennaDetailsFull as AntennaDetailsFull,
     type AntennaDetailsAbridgedsOffsetPage as AntennaDetailsAbridgedsOffsetPage,
     type AntennaDetailCreateParams as AntennaDetailCreateParams,
     type AntennaDetailRetrieveParams as AntennaDetailRetrieveParams,

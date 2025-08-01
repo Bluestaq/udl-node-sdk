@@ -3,7 +3,6 @@
 export {
   Conjunctions,
   type ConjunctionAbridged,
-  type ConjunctionFull,
   type ConjunctionCountResponse,
   type ConjunctionGetHistoryResponse,
   type ConjunctionQueryhelpResponse,
@@ -16,7 +15,6 @@ export {
   type ConjunctionGetHistoryParams,
   type ConjunctionTupleParams,
   type ConjunctionUnvalidatedPublishParams,
-  type ConjunctionUploadConjunctionDataMessageParams,
   type ConjunctionAbridgedsOffsetPage,
 } from './conjunctions';
 export {

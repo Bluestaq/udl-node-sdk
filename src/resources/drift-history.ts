@@ -93,7 +93,7 @@ export interface DriftHistoryQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<DriftHistoryQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -104,38 +104,6 @@ export interface DriftHistoryQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace DriftHistoryQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type DriftHistoryTupleResponse = Array<Shared.DriftHistoryFull>;

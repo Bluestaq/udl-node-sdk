@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
 import * as StateVectorAPI from './state-vector';
 import { StateVectorAbridgedsOffsetPage } from './state-vector';
 import { APIPromise } from '../../core/api-promise';
@@ -64,7 +65,7 @@ export class Current extends APIResource {
   }
 }
 
-export type CurrentTupleResponse = Array<StateVectorAPI.StateVectorFull>;
+export type CurrentTupleResponse = Array<Shared.StateVectorFull>;
 
 export interface CurrentListParams extends OffsetPageParams {}
 

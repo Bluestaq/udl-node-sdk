@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
-import * as AttitudeDataAPI from '../../attitude-data';
+import * as Shared from '../../shared';
 import { APIPromise } from '../../../core/api-promise';
 import { buildHeaders } from '../../../internal/headers';
 import { RequestOptions } from '../../../internal/request-options';
@@ -71,7 +71,7 @@ export class History extends APIResource {
   }
 }
 
-export type HistoryRetrieveResponse = Array<AttitudeDataAPI.AttitudedataFull>;
+export type HistoryRetrieveResponse = Array<Shared.AttitudedataFull>;
 
 export type HistoryCountResponse = string;
 

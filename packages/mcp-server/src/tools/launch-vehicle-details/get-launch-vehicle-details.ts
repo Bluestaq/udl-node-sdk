@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'get_launch_vehicle_details',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to get a single LaunchVehicleDetails record by its unique ID passed as a path parameter. LaunchVehicleDetails represents launch vehicle details and characteristics, compiled by a particular source. A vehicle may have multiple details records from various sources.",
+    'Service operation to get a single LaunchVehicleDetails record by its unique ID passed as a path parameter. LaunchVehicleDetails represents launch vehicle details and characteristics, compiled by a particular source. A vehicle may have multiple details records from various sources.',
   inputSchema: {
     type: 'object',
     properties: {

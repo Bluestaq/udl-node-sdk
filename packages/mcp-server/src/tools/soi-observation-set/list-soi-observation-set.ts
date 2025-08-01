@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'list_soi_observation_set',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to dynamically query data by a variety of query parameters. The query will return the SOI Observation Sets and not the associated SOI Observations. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.",
+    'Service operation to dynamically query data by a variety of query parameters. The query will return the SOI Observation Sets and not the associated SOI Observations. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.',
   inputSchema: {
     type: 'object',
     properties: {

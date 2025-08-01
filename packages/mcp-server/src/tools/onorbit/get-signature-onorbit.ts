@@ -15,8 +15,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'get_signature_onorbit',
-  description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nThis service queries common information across Radar, EO, and RF observations.",
+  description: 'This service queries common information across Radar, EO, and RF observations.',
   inputSchema: {
     type: 'object',
     properties: {

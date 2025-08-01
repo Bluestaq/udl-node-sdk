@@ -34,20 +34,24 @@ export class Crewpapers extends APIResource {
    *
    * @example
    * ```ts
-   * await client.airOperations.crewpapers.uploadPdf({
-   *   aircraftSortieIds: 'aircraftSortieIds',
-   *   classificationMarking: 'x',
-   *   paperStatus: 'PUBLISHED',
-   *   papersVersion: 'x',
-   *   body: fs.createReadStream('path/to/file'),
-   * });
+   * await client.airOperations.crewpapers.uploadPdf(
+   *   fs.createReadStream('path/to/file'),
+   *   {
+   *     aircraftSortieIds: 'aircraftSortieIds',
+   *     classificationMarking: 'x',
+   *     paperStatus: 'PUBLISHED',
+   *     papersVersion: 'x',
+   *   },
+   * );
    * ```
    */
-  uploadPdf(params: CrewpaperUploadPdfParams, options?: RequestOptions): APIPromise<void> {
-    const { aircraftSortieIds, classificationMarking, paperStatus, papersVersion, body } = params;
+  uploadPdf(
+    params: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { aircraftSortieIds, classificationMarking, paperStatus, papersVersion } = params;
     return this._client.post('/filedrop/crewpapers', {
-      query: { aircraftSortieIds, classificationMarking, paperStatus, papersVersion },
-      body: body,
+      body: params,
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/pdf', Accept: '*/*' }, options?.headers]),
     });
@@ -61,37 +65,6 @@ export interface CrewpaperUnpublishParams {
   ids: string;
 }
 
-export interface CrewpaperUploadPdfParams {
-  /**
-   * Query param: Comma-separated list of AircraftSortie IDs the Crew Papers are
-   * being added to.
-   */
-  aircraftSortieIds: string;
-
-  /**
-   * Query param: classificationMarking of the Crew Papers.
-   */
-  classificationMarking: string;
-
-  /**
-   * Query param: The status of the supporting document.
-   */
-  paperStatus: 'PUBLISHED' | 'DELETED' | 'UPDATED' | 'READ';
-
-  /**
-   * Query param: The version number of the crew paper.
-   */
-  papersVersion: string;
-
-  /**
-   * Body param:
-   */
-  body: string | ArrayBuffer | ArrayBufferView | Blob | DataView;
-}
-
 export declare namespace Crewpapers {
-  export {
-    type CrewpaperUnpublishParams as CrewpaperUnpublishParams,
-    type CrewpaperUploadPdfParams as CrewpaperUploadPdfParams,
-  };
+  export { type CrewpaperUnpublishParams as CrewpaperUnpublishParams };
 }

@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as AircraftSortieAPI from './air-operations/aircraft-sortie';
+import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
@@ -22,7 +22,7 @@ export class AircraftSorties extends APIResource {
     id: string,
     query: AircraftSortyRetrieveParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AircraftSortieAPI.AircraftsortieFull> {
+  ): APIPromise<Shared.AircraftsortieFull> {
     return this._client.get(path`/udl/aircraftsortie/${id}`, { query, ...options });
   }
 
@@ -96,7 +96,7 @@ export interface AircraftSortyQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<AircraftSortyQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -109,39 +109,7 @@ export interface AircraftSortyQueryhelpResponse {
   uri?: string;
 }
 
-export namespace AircraftSortyQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
-}
-
-export type AircraftSortyTupleResponse = Array<AircraftSortieAPI.AircraftsortieFull>;
+export type AircraftSortyTupleResponse = Array<Shared.AircraftsortieFull>;
 
 export interface AircraftSortyRetrieveParams {
   firstResult?: number;

@@ -1180,7 +1180,7 @@ export interface ElsetQueryCurrentElsetHelpResponse {
 
   name?: string;
 
-  parameters?: Array<ElsetQueryCurrentElsetHelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -1191,38 +1191,6 @@ export interface ElsetQueryCurrentElsetHelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace ElsetQueryCurrentElsetHelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export interface ElsetQueryhelpResponse {
@@ -1236,7 +1204,7 @@ export interface ElsetQueryhelpResponse {
 
   name?: string;
 
-  parameters?: Array<ElsetQueryhelpResponse.Parameter>;
+  parameters?: Array<Shared.ParamDescriptor>;
 
   requiredRoles?: Array<string>;
 
@@ -1247,38 +1215,6 @@ export interface ElsetQueryhelpResponse {
   typeName?: string;
 
   uri?: string;
-}
-
-export namespace ElsetQueryhelpResponse {
-  export interface Parameter {
-    classificationMarking?: string;
-
-    derived?: boolean;
-
-    description?: string;
-
-    elemMatch?: boolean;
-
-    format?: string;
-
-    histQuerySupported?: boolean;
-
-    histTupleSupported?: boolean;
-
-    name?: string;
-
-    required?: boolean;
-
-    restQuerySupported?: boolean;
-
-    restTupleSupported?: boolean;
-
-    type?: string;
-
-    unitOfMeasure?: string;
-
-    utcDate?: boolean;
-  }
 }
 
 export type ElsetTupleResponse = Array<Elset>;

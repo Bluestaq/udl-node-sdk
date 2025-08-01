@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
-import * as EoObservationsHistoryAPI from '../observations/eo-observations/history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -143,7 +142,7 @@ export interface HistoryListResponse {
   /**
    * Collection of linked EOObservations.
    */
-  eoObservations?: Array<EoObservationsHistoryAPI.EoObservationFull>;
+  eoObservations?: Array<Shared.EoObservationFull>;
 
   /**
    * End time of the exposure, in ISO 8601 UTC format with microsecond precision.

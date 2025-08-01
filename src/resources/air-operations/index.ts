@@ -3,7 +3,6 @@
 export { AirOperations } from './air-operations';
 export {
   AirTaskingOrders,
-  type AirTaskingOrderFull,
   type AirtaskingorderAbridged,
   type AirTaskingOrderCountResponse,
   type AirTaskingOrderQueryHelpResponse,
@@ -19,7 +18,6 @@ export {
 export {
   AircraftSortie,
   type AircraftsortieAbridged,
-  type AircraftsortieFull,
   type AircraftSortieCountResponse,
   type AircraftSortieHistoryCountResponse,
   type AircraftSortieHistoryQueryResponse,
@@ -37,12 +35,10 @@ export {
   AirspaceControlOrders,
   type AirspaceControlOrderUnvalidatedPublishParams,
 } from './airspace-control-orders';
-export { Crewpapers, type CrewpaperUnpublishParams, type CrewpaperUploadPdfParams } from './crewpapers';
+export { Crewpapers, type CrewpaperUnpublishParams } from './crewpapers';
 export {
   DiplomaticClearance,
   type DiplomaticclearanceAbridged,
-  type DiplomaticclearanceFull,
   type DiplomaticClearanceUnvalidatedPublishParams,
   type DiplomaticclearanceAbridgedsOffsetPage,
-  type DiplomaticclearanceFullsOffsetPage,
 } from './diplomatic-clearance';
