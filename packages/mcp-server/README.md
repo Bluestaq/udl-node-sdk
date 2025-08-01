@@ -11,6 +11,7 @@ You can run the MCP Server directly via `npx`:
 ```sh
 export UDL_AUTH_PASSWORD="My Password"
 export UDL_AUTH_USERNAME="My Username"
+export UDL_ACCESS_TOKEN="My Access Token"
 npx -y unified-data-library-mcp@latest
 ```
 
@@ -29,7 +30,8 @@ For clients with a configuration JSON, it might look something like this:
       "args": ["-y", "unified-data-library-mcp", "--client=claude", "--tools=dynamic"],
       "env": {
         "UDL_AUTH_PASSWORD": "My Password",
-        "UDL_AUTH_USERNAME": "My Username"
+        "UDL_AUTH_USERNAME": "My Username",
+        "UDL_ACCESS_TOKEN": "My Access Token"
       }
     }
   }
