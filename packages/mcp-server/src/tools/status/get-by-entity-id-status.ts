@@ -45,8 +45,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
-  const { idEntity, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(args, await client.status.getByEntityID(idEntity, body)));
+  const { idEntity, jq_filter, ...body } = args as any;
+  return asTextContentResult(await maybeFilter(jq_filter, await client.status.getByEntityID(idEntity, body)));
 };
 
 export default { metadata, tool, handler };

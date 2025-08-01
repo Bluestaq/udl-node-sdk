@@ -36,7 +36,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
-  return asTextContentResult(await maybeFilter(args, await client.poi.queryhelp()));
+  const { jq_filter } = args as any;
+  return asTextContentResult(await maybeFilter(jq_filter, await client.poi.queryhelp()));
 };
 
 export default { metadata, tool, handler };

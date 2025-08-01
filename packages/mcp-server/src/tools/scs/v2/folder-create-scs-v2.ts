@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'folder_create_scs_v2',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nCreates all folders in provided path that don't exist. Can be used to create a single folder or a new folder structure. Provided classificationMarking, description, writeAcl, readAcl, and tags are applied to the deepest folder in the provided path. If parent folders are created by this request, each parent folder will be created with the same classificationMarking and tags. A specific role is required to perform this service operation. Please contact the UDL team for assistance.\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {}\n}\n```",
+    "Creates all folders in provided path that don't exist. Can be used to create a single folder or a new folder structure. Provided classificationMarking, description, writeAcl, readAcl, and tags are applied to the deepest folder in the provided path. If parent folders are created by this request, each parent folder will be created with the same classificationMarking and tags. A specific role is required to perform this service operation. Please contact the UDL team for assistance.",
   inputSchema: {
     type: 'object',
     properties: {
@@ -59,12 +59,6 @@ export const tool: Tool = {
         type: 'string',
         description:
           'For folders only. Comma separated list of user and group ids that should have write access on this folder and the items nested in it.',
-      },
-      jq_filter: {
-        type: 'string',
-        title: 'jq Filter',
-        description:
-          'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
     required: ['path'],

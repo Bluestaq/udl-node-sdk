@@ -45,8 +45,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
-  const { id, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(args, await client.h3Geo.get(id, body)));
+  const { id, jq_filter, ...body } = args as any;
+  return asTextContentResult(await maybeFilter(jq_filter, await client.h3Geo.get(id, body)));
 };
 
 export default { metadata, tool, handler };
