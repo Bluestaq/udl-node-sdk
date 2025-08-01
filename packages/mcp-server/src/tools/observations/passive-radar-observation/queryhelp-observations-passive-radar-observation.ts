@@ -36,8 +36,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
+  const { jq_filter } = args as any;
   return asTextContentResult(
-    await maybeFilter(args, await client.observations.passiveRadarObservation.queryhelp()),
+    await maybeFilter(jq_filter, await client.observations.passiveRadarObservation.queryhelp()),
   );
 };
 

@@ -36,8 +36,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
+  const { jq_filter } = args as any;
   return asTextContentResult(
-    await maybeFilter(args, await client.airOperations.airTaskingOrders.queryHelp()),
+    await maybeFilter(jq_filter, await client.airOperations.airTaskingOrders.queryHelp()),
   );
 };
 
