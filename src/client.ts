@@ -2200,12 +2200,17 @@ export interface ClientOptions {
   /**
    * Password for HTTP Basic Authentication
    */
-  password?: string | undefined;
+  password?: string | null | undefined;
 
   /**
    * Username for HTTP Basic Authentication
    */
-  username?: string | undefined;
+  username?: string | null | undefined;
+
+  /**
+   * Access token for Bearer Authentication
+   */
+  accessToken?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -2280,8 +2285,9 @@ export interface ClientOptions {
  * API Client for interfacing with the Unifieddatalibrary API.
  */
 export class Unifieddatalibrary {
-  password: string;
-  username: string;
+  password: string | null;
+  username: string | null;
+  accessToken: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -2298,8 +2304,9 @@ export class Unifieddatalibrary {
   /**
    * API Client for interfacing with the Unifieddatalibrary API.
    *
-   * @param {string | undefined} [opts.password=process.env['UDL_AUTH_PASSWORD'] ?? undefined]
-   * @param {string | undefined} [opts.username=process.env['UDL_AUTH_USERNAME'] ?? undefined]
+   * @param {string | null | undefined} [opts.password=process.env['UDL_AUTH_PASSWORD'] ?? null]
+   * @param {string | null | undefined} [opts.username=process.env['UDL_AUTH_USERNAME'] ?? null]
+   * @param {string | null | undefined} [opts.accessToken=process.env['UDL_ACCESS_TOKEN'] ?? null]
    * @param {string} [opts.baseURL=process.env['UNIFIEDDATALIBRARY_BASE_URL'] ?? https://unifieddatalibrary.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -2310,24 +2317,15 @@ export class Unifieddatalibrary {
    */
   constructor({
     baseURL = readEnv('UNIFIEDDATALIBRARY_BASE_URL'),
-    password = readEnv('UDL_AUTH_PASSWORD'),
-    username = readEnv('UDL_AUTH_USERNAME'),
+    password = readEnv('UDL_AUTH_PASSWORD') ?? null,
+    username = readEnv('UDL_AUTH_USERNAME') ?? null,
+    accessToken = readEnv('UDL_ACCESS_TOKEN') ?? null,
     ...opts
   }: ClientOptions = {}) {
-    if (password === undefined) {
-      throw new Errors.UnifieddatalibraryError(
-        "The UDL_AUTH_PASSWORD environment variable is missing or empty; either provide it, or instantiate the Unifieddatalibrary client with an password option, like new Unifieddatalibrary({ password: 'My Password' }).",
-      );
-    }
-    if (username === undefined) {
-      throw new Errors.UnifieddatalibraryError(
-        "The UDL_AUTH_USERNAME environment variable is missing or empty; either provide it, or instantiate the Unifieddatalibrary client with an username option, like new Unifieddatalibrary({ username: 'My Username' }).",
-      );
-    }
-
     const options: ClientOptions = {
       password,
       username,
+      accessToken,
       ...opts,
       baseURL: baseURL || `https://unifieddatalibrary.com`,
     };
@@ -2351,6 +2349,7 @@ export class Unifieddatalibrary {
 
     this.password = password;
     this.username = username;
+    this.accessToken = accessToken;
   }
 
   /**
@@ -2368,6 +2367,7 @@ export class Unifieddatalibrary {
       fetchOptions: this.fetchOptions,
       password: this.password,
       username: this.username,
+      accessToken: this.accessToken,
       ...options,
     });
     return client;
@@ -2385,10 +2385,30 @@ export class Unifieddatalibrary {
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
-    return;
+    if (this.username && this.password && values.get('authorization')) {
+      return;
+    }
+    if (nulls.has('authorization')) {
+      return;
+    }
+
+    if (this.accessToken && values.get('authorization')) {
+      return;
+    }
+    if (nulls.has('authorization')) {
+      return;
+    }
+
+    throw new Error(
+      'Could not resolve authentication method. Expected either username, password or accessToken to be set. Or for one of the "Authorization" or "Authorization" headers to be explicitly omitted',
+    );
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
+    return buildHeaders([await this.basicAuth(opts), await this.bearerAuth(opts)]);
+  }
+
+  protected async basicAuth(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
     if (!this.username) {
       return undefined;
     }
@@ -2400,6 +2420,13 @@ export class Unifieddatalibrary {
     const credentials = `${this.username}:${this.password}`;
     const Authorization = `Basic ${toBase64(credentials)}`;
     return buildHeaders([{ Authorization }]);
+  }
+
+  protected async bearerAuth(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
+    if (this.accessToken == null) {
+      return undefined;
+    }
+    return buildHeaders([{ Authorization: `Bearer ${this.accessToken}` }]);
   }
 
   protected stringifyQuery(query: Record<string, unknown>): string {
