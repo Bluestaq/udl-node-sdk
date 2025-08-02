@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.9 (2025-08-02)
+
+Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
+
+### Features
+
+* **api:** support for Bearer Auth ([4cfa778](https://github.com/Bluestaq/udl-node-sdk/commit/4cfa7783ef04dc3999abf9aff2760b50c3ea449d))
+* **mcp:** add logging when environment variable is set ([277def7](https://github.com/Bluestaq/udl-node-sdk/commit/277def72b4b69c002fdb96d8c419baba9d7ccc96))
+
 ## 0.1.0-alpha.8 (2025-08-01)
 
 Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
