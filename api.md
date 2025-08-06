@@ -176,7 +176,7 @@ Methods:
 Methods:
 
 - <code title="post /udl/crewpapers/unpublish">client.airOperations.crewpapers.<a href="./src/resources/air-operations/crewpapers.ts">unpublish</a>({ ...params }) -> void</code>
-- <code title="post /filedrop/crewpapers">client.airOperations.crewpapers.<a href="./src/resources/air-operations/crewpapers.ts">uploadPdf</a>(params, { ...params }) -> void</code>
+- <code title="post /filedrop/crewpapers">client.airOperations.crewpapers.<a href="./src/resources/air-operations/crewpapers.ts">uploadPdf</a>(bodyParam, { ...params }) -> void</code>
 
 ## DiplomaticClearance
 

@@ -38,18 +38,18 @@ export const tool: Tool = {
         type: 'string',
         description: 'The version number of the crew paper.',
       },
-      params: {
+      body_param: {
         type: 'string',
       },
     },
-    required: ['aircraftSortieIds', 'classificationMarking', 'paperStatus', 'papersVersion', 'params'],
+    required: ['aircraftSortieIds', 'classificationMarking', 'paperStatus', 'papersVersion', 'body_param'],
   },
   annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
-  const { params, ...body } = args as any;
-  const response = await client.airOperations.crewpapers.uploadPdf(params).asResponse();
+  const { body_param, ...body } = args as any;
+  const response = await client.airOperations.crewpapers.uploadPdf(body_param).asResponse();
   return asTextContentResult(await response.text());
 };
 
