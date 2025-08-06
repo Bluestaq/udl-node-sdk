@@ -981,13 +981,6 @@ describe('resource conjunctions', () => {
   test('uploadConjunctionDataMessage: required and optional params', async () => {
     const response = await client.conjunctions.uploadConjunctionDataMessage(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
-      {
-        classification: 'classification',
-        dataMode: 'REAL',
-        filename: 'filename',
-        source: 'source',
-        tags: 'tags',
-      },
     );
   });
 });

@@ -25,15 +25,6 @@ describe('resource paths', () => {
   test('createWithFile: required and optional params', async () => {
     const response = await client.scs.paths.createWithFile(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
-      {
-        id: 'id',
-        classificationMarking: 'classificationMarking',
-        deleteAfter: 'deleteAfter',
-        description: 'description',
-        overwrite: true,
-        sendNotification: true,
-        tags: 'tags',
-      },
     );
   });
 });

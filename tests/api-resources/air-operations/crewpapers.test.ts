@@ -40,12 +40,6 @@ describe('resource crewpapers', () => {
   test('uploadPdf: required and optional params', async () => {
     const response = await client.airOperations.crewpapers.uploadPdf(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
-      {
-        aircraftSortieIds: 'aircraftSortieIds',
-        classificationMarking: 'x',
-        paperStatus: 'PUBLISHED',
-        papersVersion: 'x',
-      },
     );
   });
 });

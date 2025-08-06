@@ -49,7 +49,6 @@ export class Crewpapers extends APIResource {
     fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
     options?: RequestOptions,
   ): APIPromise<void> {
-    const { aircraftSortieIds, classificationMarking, paperStatus, papersVersion } = params;
     return this._client.post('/filedrop/crewpapers', {
       body: fileContent,
       ...options,

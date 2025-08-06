@@ -190,16 +190,6 @@ export class Scs extends APIResource {
     fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
     options?: RequestOptions,
   ): APIPromise<string> {
-    const {
-      classificationMarking,
-      fileName,
-      path,
-      deleteAfter,
-      description,
-      overwrite,
-      sendNotification,
-      tags,
-    } = params;
     return this._client.post('/scs/file', {
       body: fileContent,
       ...options,
