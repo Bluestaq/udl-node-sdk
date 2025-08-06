@@ -23,12 +23,12 @@ export class Paths extends APIResource {
    * ```
    */
   createWithFile(
-    params: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
+    fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
     options?: RequestOptions,
   ): APIPromise<string> {
     const { id, classificationMarking, deleteAfter, description, overwrite, sendNotification, tags } = params;
     return this._client.post('/scs/path', {
-      body: params,
+      body: fileContent,
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/octet-stream' }, options?.headers]),
     });
