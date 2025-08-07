@@ -101,16 +101,6 @@ describe('resource scs', () => {
   test('fileUpload: required and optional params', async () => {
     const response = await client.scs.fileUpload(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
-      {
-        classificationMarking: 'classificationMarking',
-        fileName: 'fileName',
-        path: 'path',
-        deleteAfter: 'deleteAfter',
-        description: 'description',
-        overwrite: true,
-        sendNotification: true,
-        tags: 'tags',
-      },
     );
   });
 

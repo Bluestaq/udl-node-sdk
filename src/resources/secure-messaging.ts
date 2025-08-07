@@ -5,6 +5,7 @@ import { APIPromise } from '../core/api-promise';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
+import { KafkaOffsetPage, PagePromise } from '../core/pagination';
 
 export class SecureMessaging extends APIResource {
   /**
@@ -41,13 +42,17 @@ export class SecureMessaging extends APIResource {
     offset: number,
     params: SecureMessagingGetMessagesParams,
     options?: RequestOptions,
-  ): APIPromise<void> {
+  ): PagePromise<KafkaOffsetPage<object>, object> {
     const { topic, ...query } = params;
-    return this._client.get(path`/sm/getMessages/${topic}/${offset}`, {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.getAPIList(
+      path`/sm/getMessages/${topic}/${offset}`,
+      KafkaOffsetPage.withPathFn<object>((nextOffset) => path`/sm/getMessages/${topic}/${nextOffset}`),
+      {
+        query,
+        ...options,
+        headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+      },
+    );
   }
 
   /**

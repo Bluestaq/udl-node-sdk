@@ -30,7 +30,7 @@ export const tool: Tool = {
         description:
           "The complete path for the upload including filename. Will attempt to create folders in path if necessary. Must start with '/'.",
       },
-      params: {
+      file_content: {
         type: 'string',
       },
       deleteAfter: {
@@ -55,14 +55,14 @@ export const tool: Tool = {
           'Optional array of provider/source specific tags for this data, used for implementing data owner conditional access controls to restrict access to the data.',
       },
     },
-    required: ['classificationMarking', 'path', 'params'],
+    required: ['classificationMarking', 'path', 'file_content'],
   },
   annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
-  const { params, ...body } = args as any;
-  const response = await client.scs.v2.fileUpload(params).asResponse();
+  const { file_content, ...body } = args as any;
+  const response = await client.scs.v2.fileUpload(file_content).asResponse();
   return asTextContentResult(await response.text());
 };
 
