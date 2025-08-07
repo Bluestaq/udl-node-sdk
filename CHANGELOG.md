@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.0-alpha.10 (2025-08-07)
+
+Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
+
+### Features
+
+* **api:** manual updates ([99cc00e](https://github.com/Bluestaq/udl-node-sdk/commit/99cc00e7ff1f5b10fb82fae79f42eeab325afea9))
+* **api:** manual updates ([6679fae](https://github.com/Bluestaq/udl-node-sdk/commit/6679faebc9a070927f11fe03279b6b71592633f9))
+* **mcp:** add unix socket option for remote MCP ([a722c40](https://github.com/Bluestaq/udl-node-sdk/commit/a722c40dfd949f20e21882bd5c415ab890cacd0a))
+
+
+### Bug Fixes
+
+* remove unused params ([17ccc57](https://github.com/Bluestaq/udl-node-sdk/commit/17ccc5723fc05f469f359190735e5a531d2fa047))
+
+
+### Chores
+
+* bump dependencies ([3ef6c9d](https://github.com/Bluestaq/udl-node-sdk/commit/3ef6c9d60e1f4002a37375d57776df49335edd4a))
+* **internal:** move publish config ([01fdf07](https://github.com/Bluestaq/udl-node-sdk/commit/01fdf073b1f6fe519043e4008f116838ed29fd50))
+* **mcp:** refactor streamable http transport ([3f20b86](https://github.com/Bluestaq/udl-node-sdk/commit/3f20b86121ae6147b7c8b2246067c2e2be0912bd))
+
 ## 0.1.0-alpha.9 (2025-08-06)
 
 Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
