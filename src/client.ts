@@ -1324,6 +1324,7 @@ import {
   ConjunctionTupleParams,
   ConjunctionTupleResponse,
   ConjunctionUnvalidatedPublishParams,
+  ConjunctionUploadConjunctionDataMessageParams,
   Conjunctions,
 } from './resources/conjunctions/conjunctions';
 import {
@@ -1851,6 +1852,7 @@ import {
   ScDeleteParams,
   ScDownloadParams,
   ScFileDownloadParams,
+  ScFileUploadParams,
   ScFileUploadResponse,
   ScMoveParams,
   ScMoveResponse,
@@ -3676,6 +3678,7 @@ export declare namespace Unifieddatalibrary {
     type ConjunctionGetHistoryParams as ConjunctionGetHistoryParams,
     type ConjunctionTupleParams as ConjunctionTupleParams,
     type ConjunctionUnvalidatedPublishParams as ConjunctionUnvalidatedPublishParams,
+    type ConjunctionUploadConjunctionDataMessageParams as ConjunctionUploadConjunctionDataMessageParams,
   };
 
   export { Cots as Cots, type CotCreateParams as CotCreateParams };
@@ -5593,6 +5596,7 @@ export declare namespace Unifieddatalibrary {
     type ScCopyParams as ScCopyParams,
     type ScDownloadParams as ScDownloadParams,
     type ScFileDownloadParams as ScFileDownloadParams,
+    type ScFileUploadParams as ScFileUploadParams,
     type ScMoveParams as ScMoveParams,
     type ScRenameParams as ScRenameParams,
     type ScSearchParams as ScSearchParams,

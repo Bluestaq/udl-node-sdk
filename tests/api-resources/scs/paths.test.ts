@@ -12,6 +12,7 @@ describe('resource paths', () => {
   test('createWithFile: only required params', async () => {
     const responsePromise = client.scs.paths.createWithFile(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
+      { id: 'id', classificationMarking: 'classificationMarking' },
     );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);

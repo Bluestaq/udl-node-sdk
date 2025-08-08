@@ -62,7 +62,7 @@ export const tool: Tool = {
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const { file_content, ...body } = args as any;
-  const response = await client.scs.v2.fileUpload(file_content).asResponse();
+  const response = await client.scs.v2.fileUpload(file_content, body).asResponse();
   return asTextContentResult(await response.text());
 };
 

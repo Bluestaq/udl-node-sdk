@@ -67,7 +67,7 @@ export const tool: Tool = {
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const { file_content, jq_filter, ...body } = args as any;
   return asTextContentResult(
-    await maybeFilter(jq_filter, await client.scs.paths.createWithFile(file_content)),
+    await maybeFilter(jq_filter, await client.scs.paths.createWithFile(file_content, body)),
   );
 };
 
