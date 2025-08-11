@@ -78,10 +78,9 @@ describe('resource v2', () => {
     const response = await client.scs.v2.copy({ fromPath: 'fromPath', toPath: 'toPath' });
   });
 
-  test('fileUpload: only required params', async () => {
+  test('fileUpload', async () => {
     const responsePromise = client.scs.v2.fileUpload(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
-      { classificationMarking: 'classificationMarking', path: 'path' },
     );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -90,16 +89,6 @@ describe('resource v2', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('fileUpload: required and optional params', async () => {
-    const response = await client.scs.v2.fileUpload(
-      await toFile(Buffer.from('# my file contents'), 'README.md'),
-      {
-        classificationMarking: 'classificationMarking',
-        path: 'path',
-      },
-    );
   });
 
   test('folderCreate: only required params', async () => {

@@ -85,10 +85,9 @@ describe('resource scs', () => {
     const response = await client.scs.fileDownload({ id: 'id', firstResult: 0, maxResults: 0 });
   });
 
-  test('fileUpload: only required params', async () => {
+  test('fileUpload', async () => {
     const responsePromise = client.scs.fileUpload(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
-      { classificationMarking: 'classificationMarking', fileName: 'fileName', path: 'path' },
     );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -97,17 +96,6 @@ describe('resource scs', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('fileUpload: required and optional params', async () => {
-    const response = await client.scs.fileUpload(
-      await toFile(Buffer.from('# my file contents'), 'README.md'),
-      {
-        classificationMarking: 'classificationMarking',
-        fileName: 'fileName',
-        path: 'path',
-      },
-    );
   });
 
   test('move: only required params', async () => {

@@ -100,38 +100,15 @@ export class V2 extends APIResource {
    * ```ts
    * await client.scs.v2.fileUpload(
    *   fs.createReadStream('path/to/file'),
-   *   {
-   *     classificationMarking: 'classificationMarking',
-   *     path: 'path',
-   *   },
    * );
    * ```
    */
   fileUpload(
     fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
-    params: V2FileUploadParams,
     options?: RequestOptions,
   ): APIPromise<void> {
-    const {
-      classificationMarking,
-      path: path_,
-      deleteAfter,
-      description,
-      overwrite,
-      sendNotification,
-      tags,
-    } = params;
     return this._client.post('/scs/v2/file', {
       body: fileContent,
-      query: {
-        classificationMarking,
-        path: path_,
-        deleteAfter,
-        description,
-        overwrite,
-        sendNotification,
-        tags,
-      },
       ...options,
       headers: buildHeaders([
         { 'Content-Type': 'application/octet-stream', Accept: '*/*' },
@@ -348,48 +325,6 @@ export interface V2CopyParams {
   toPath: string;
 }
 
-export interface V2FileUploadParams {
-  /**
-   * Query param: Classification marking of uploaded document. If folders are
-   * created, they will also have this classification marking.
-   */
-  classificationMarking: string;
-
-  /**
-   * Query param: The complete path for the upload including filename. Will attempt
-   * to create folders in path if necessary. Must start with '/'.
-   */
-  path: string;
-
-  /**
-   * Query param: Length of time after which to automatically delete the file.
-   */
-  deleteAfter?: string;
-
-  /**
-   * Query param: Optional description of uploaded document.
-   */
-  description?: string;
-
-  /**
-   * Query param: Whether or not to overwrite a file with the same name and path, if
-   * one exists.
-   */
-  overwrite?: boolean;
-
-  /**
-   * Query param: Whether or not to send a notification that this file was uploaded.
-   */
-  sendNotification?: boolean;
-
-  /**
-   * Query param: Optional array of provider/source specific tags for this data, used
-   * for implementing data owner conditional access controls to restrict access to
-   * the data.
-   */
-  tags?: string;
-}
-
 export interface V2FolderCreateParams {
   /**
    * Query param: Path to create. Will attempt to create all folders in the path that
@@ -460,7 +395,6 @@ export declare namespace V2 {
     type V2ListParams as V2ListParams,
     type V2DeleteParams as V2DeleteParams,
     type V2CopyParams as V2CopyParams,
-    type V2FileUploadParams as V2FileUploadParams,
     type V2FolderCreateParams as V2FolderCreateParams,
     type V2MoveParams as V2MoveParams,
   };
