@@ -7,7 +7,7 @@ import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Unifieddatalibrary from 'unified-data-library';
 
 export const metadata: Metadata = {
-  resource: 'supporting_data.dataowner_types',
+  resource: 'supporting_data.dataowner',
   operation: 'read',
   tags: [],
   httpMethod: 'get',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export const tool: Tool = {
-  name: 'list_supporting_data_dataowner_types',
+  name: 'retrieve_data_owner_types_supporting_data_dataowner',
   description:
     "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRetrieves all distinct data owner types.\n\n# Response Schema\n```json\n{\n  type: 'array',\n  items: {\n    type: 'string'\n  }\n}\n```",
   inputSchema: {
@@ -43,8 +43,9 @@ export const tool: Tool = {
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const { jq_filter, ...body } = args as any;
-  const response = await client.supportingData.dataownerTypes.list(body).asResponse();
-  return asTextContentResult(await maybeFilter(jq_filter, await response.json()));
+  return asTextContentResult(
+    await maybeFilter(jq_filter, await client.supportingData.dataowner.retrieveDataOwnerTypes(body)),
+  );
 };
 
 export default { metadata, tool, handler };

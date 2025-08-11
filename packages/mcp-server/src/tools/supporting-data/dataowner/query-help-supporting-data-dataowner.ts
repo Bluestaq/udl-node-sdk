@@ -7,7 +7,7 @@ import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Unifieddatalibrary from 'unified-data-library';
 
 export const metadata: Metadata = {
-  resource: 'supporting_data.query_help',
+  resource: 'supporting_data.dataowner',
   operation: 'read',
   tags: [],
   httpMethod: 'get',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export const tool: Tool = {
-  name: 'retrieve_supporting_data_query_help',
+  name: 'query_help_supporting_data_dataowner',
   description:
     "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to provide detailed information on available dynamic query parameters for a particular data type.\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {\n    aodrSupported: {\n      type: 'boolean'\n    },\n    classificationMarking: {\n      type: 'string'\n    },\n    description: {\n      type: 'string'\n    },\n    historySupported: {\n      type: 'boolean'\n    },\n    name: {\n      type: 'string'\n    },\n    parameters: {\n      type: 'array',\n      items: {\n        $ref: '#/$defs/param_descriptor'\n      }\n    },\n    requiredRoles: {\n      type: 'array',\n      items: {\n        type: 'string'\n      }\n    },\n    restSupported: {\n      type: 'boolean'\n    },\n    sortSupported: {\n      type: 'boolean'\n    },\n    typeName: {\n      type: 'string'\n    },\n    uri: {\n      type: 'string'\n    }\n  },\n  $defs: {\n    param_descriptor: {\n      type: 'object',\n      properties: {\n        classificationMarking: {\n          type: 'string'\n        },\n        derived: {\n          type: 'boolean'\n        },\n        description: {\n          type: 'string'\n        },\n        elemMatch: {\n          type: 'boolean'\n        },\n        format: {\n          type: 'string'\n        },\n        histQuerySupported: {\n          type: 'boolean'\n        },\n        histTupleSupported: {\n          type: 'boolean'\n        },\n        name: {\n          type: 'string'\n        },\n        required: {\n          type: 'boolean'\n        },\n        restQuerySupported: {\n          type: 'boolean'\n        },\n        restTupleSupported: {\n          type: 'boolean'\n        },\n        type: {\n          type: 'string'\n        },\n        unitOfMeasure: {\n          type: 'string'\n        },\n        utcDate: {\n          type: 'boolean'\n        }\n      }\n    }\n  }\n}\n```",
   inputSchema: {
@@ -37,7 +37,7 @@ export const tool: Tool = {
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const { jq_filter } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.supportingData.queryHelp.retrieve()));
+  return asTextContentResult(await maybeFilter(jq_filter, await client.supportingData.dataowner.queryHelp()));
 };
 
 export default { metadata, tool, handler };

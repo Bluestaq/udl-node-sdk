@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
@@ -26,6 +27,31 @@ export class Dataowner extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
+  }
+
+  /**
+   * Service operation to provide detailed information on available dynamic query
+   * parameters for a particular data type.
+   */
+  queryHelp(options?: RequestOptions): APIPromise<DataownerQueryHelpResponse> {
+    return this._client.get('/udl/dataowner/queryhelp', options);
+  }
+
+  /**
+   * Retrieves all distinct data owner types.
+   */
+  retrieveDataOwnerTypes(
+    query: DataownerRetrieveDataOwnerTypesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<DataownerRetrieveDataOwnerTypesResponse> {
+    return this._client.get('/udl/dataowner/getDataOwnerTypes', { query, ...options });
+  }
+
+  retrieveProviderMetadata(
+    query: DataownerRetrieveProviderMetadataParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<DataownerRetrieveProviderMetadataResponse> {
+    return this._client.get('/udl/dataowner/providerMetadata', { query, ...options });
   }
 }
 
@@ -105,6 +131,34 @@ export type DataownerRetrieveResponse = Array<DataownerAbridged>;
 
 export type DataownerCountResponse = string;
 
+export interface DataownerQueryHelpResponse {
+  aodrSupported?: boolean;
+
+  classificationMarking?: string;
+
+  description?: string;
+
+  historySupported?: boolean;
+
+  name?: string;
+
+  parameters?: Array<Shared.ParamDescriptor>;
+
+  requiredRoles?: Array<string>;
+
+  restSupported?: boolean;
+
+  sortSupported?: boolean;
+
+  typeName?: string;
+
+  uri?: string;
+}
+
+export type DataownerRetrieveDataOwnerTypesResponse = Array<string>;
+
+export type DataownerRetrieveProviderMetadataResponse = Array<DataownerAbridged>;
+
 export interface DataownerRetrieveParams {
   firstResult?: number;
 
@@ -117,12 +171,29 @@ export interface DataownerCountParams {
   maxResults?: number;
 }
 
+export interface DataownerRetrieveDataOwnerTypesParams {
+  firstResult?: number;
+
+  maxResults?: number;
+}
+
+export interface DataownerRetrieveProviderMetadataParams {
+  firstResult?: number;
+
+  maxResults?: number;
+}
+
 export declare namespace Dataowner {
   export {
     type DataownerAbridged as DataownerAbridged,
     type DataownerRetrieveResponse as DataownerRetrieveResponse,
     type DataownerCountResponse as DataownerCountResponse,
+    type DataownerQueryHelpResponse as DataownerQueryHelpResponse,
+    type DataownerRetrieveDataOwnerTypesResponse as DataownerRetrieveDataOwnerTypesResponse,
+    type DataownerRetrieveProviderMetadataResponse as DataownerRetrieveProviderMetadataResponse,
     type DataownerRetrieveParams as DataownerRetrieveParams,
     type DataownerCountParams as DataownerCountParams,
+    type DataownerRetrieveDataOwnerTypesParams as DataownerRetrieveDataOwnerTypesParams,
+    type DataownerRetrieveProviderMetadataParams as DataownerRetrieveProviderMetadataParams,
   };
 }
