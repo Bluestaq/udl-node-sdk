@@ -16,24 +16,23 @@ import {
   AirtaskingorderAbridged,
   AirtaskingorderAbridgedsOffsetPage,
 } from './air-tasking-orders';
-import * as AircraftSortieAPI from './aircraft-sortie';
+import * as AircraftSortiesAPI from './aircraft-sorties';
 import {
-  AircraftSortie,
-  AircraftSortieCountParams,
-  AircraftSortieCountResponse,
-  AircraftSortieCreateBulkParams,
-  AircraftSortieCreateParams,
-  AircraftSortieHistoryAodrParams,
-  AircraftSortieHistoryCountParams,
-  AircraftSortieHistoryCountResponse,
-  AircraftSortieHistoryQueryParams,
-  AircraftSortieHistoryQueryResponse,
-  AircraftSortieListParams,
+  AircraftSorties,
+  AircraftSortyCountParams,
+  AircraftSortyCountResponse,
+  AircraftSortyCreateBulkParams,
+  AircraftSortyCreateParams,
+  AircraftSortyHistoryAodrParams,
+  AircraftSortyHistoryCountParams,
+  AircraftSortyHistoryCountResponse,
+  AircraftSortyHistoryQueryParams,
+  AircraftSortyHistoryQueryResponse,
+  AircraftSortyListParams,
+  AircraftSortyUnvalidatedPublishParams,
   AircraftsortieAbridged,
   AircraftsortieAbridgedsOffsetPage,
-} from './aircraft-sortie';
-import * as AircraftSortiesAPI from './aircraft-sorties';
-import { AircraftSorties, AircraftSortyUnvalidatedPublishParams } from './aircraft-sorties';
+} from './aircraft-sorties';
 import * as AirspaceControlOrdersAPI from './airspace-control-orders';
 import {
   AirspaceControlOrderUnvalidatedPublishParams,
@@ -52,7 +51,6 @@ export class AirOperations extends APIResource {
   airTaskingOrders: AirTaskingOrdersAPI.AirTaskingOrders = new AirTaskingOrdersAPI.AirTaskingOrders(
     this._client,
   );
-  aircraftSortie: AircraftSortieAPI.AircraftSortie = new AircraftSortieAPI.AircraftSortie(this._client);
   aircraftSorties: AircraftSortiesAPI.AircraftSorties = new AircraftSortiesAPI.AircraftSorties(this._client);
   airspaceControlOrders: AirspaceControlOrdersAPI.AirspaceControlOrders =
     new AirspaceControlOrdersAPI.AirspaceControlOrders(this._client);
@@ -62,7 +60,6 @@ export class AirOperations extends APIResource {
 }
 
 AirOperations.AirTaskingOrders = AirTaskingOrders;
-AirOperations.AircraftSortie = AircraftSortie;
 AirOperations.AircraftSorties = AircraftSorties;
 AirOperations.AirspaceControlOrders = AirspaceControlOrders;
 AirOperations.Crewpapers = Crewpapers;
@@ -85,23 +82,19 @@ export declare namespace AirOperations {
   };
 
   export {
-    AircraftSortie as AircraftSortie,
-    type AircraftsortieAbridged as AircraftsortieAbridged,
-    type AircraftSortieCountResponse as AircraftSortieCountResponse,
-    type AircraftSortieHistoryCountResponse as AircraftSortieHistoryCountResponse,
-    type AircraftSortieHistoryQueryResponse as AircraftSortieHistoryQueryResponse,
-    type AircraftsortieAbridgedsOffsetPage as AircraftsortieAbridgedsOffsetPage,
-    type AircraftSortieCreateParams as AircraftSortieCreateParams,
-    type AircraftSortieListParams as AircraftSortieListParams,
-    type AircraftSortieCountParams as AircraftSortieCountParams,
-    type AircraftSortieCreateBulkParams as AircraftSortieCreateBulkParams,
-    type AircraftSortieHistoryAodrParams as AircraftSortieHistoryAodrParams,
-    type AircraftSortieHistoryCountParams as AircraftSortieHistoryCountParams,
-    type AircraftSortieHistoryQueryParams as AircraftSortieHistoryQueryParams,
-  };
-
-  export {
     AircraftSorties as AircraftSorties,
+    type AircraftsortieAbridged as AircraftsortieAbridged,
+    type AircraftSortyCountResponse as AircraftSortyCountResponse,
+    type AircraftSortyHistoryCountResponse as AircraftSortyHistoryCountResponse,
+    type AircraftSortyHistoryQueryResponse as AircraftSortyHistoryQueryResponse,
+    type AircraftsortieAbridgedsOffsetPage as AircraftsortieAbridgedsOffsetPage,
+    type AircraftSortyCreateParams as AircraftSortyCreateParams,
+    type AircraftSortyListParams as AircraftSortyListParams,
+    type AircraftSortyCountParams as AircraftSortyCountParams,
+    type AircraftSortyCreateBulkParams as AircraftSortyCreateBulkParams,
+    type AircraftSortyHistoryAodrParams as AircraftSortyHistoryAodrParams,
+    type AircraftSortyHistoryCountParams as AircraftSortyHistoryCountParams,
+    type AircraftSortyHistoryQueryParams as AircraftSortyHistoryQueryParams,
     type AircraftSortyUnvalidatedPublishParams as AircraftSortyUnvalidatedPublishParams,
   };
 

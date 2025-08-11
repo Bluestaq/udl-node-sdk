@@ -14,6 +14,7 @@ import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class AttitudeSets extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
@@ -59,6 +60,25 @@ export class AttitudeSets extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
+  }
+
+  /**
+   * Service operation to get a single AttitudeSet record by its unique ID passed as
+   * a path parameter.
+   *
+   * @example
+   * ```ts
+   * const attitudesetFull = await client.attitudeSets.retrieve(
+   *   'id',
+   * );
+   * ```
+   */
+  retrieve(
+    id: string,
+    query: AttitudeSetRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.AttitudesetFull> {
+    return this._client.get(path`/udl/attitudeset/${id}`, { query, ...options });
   }
 
   /**
@@ -797,6 +817,12 @@ export namespace AttitudeSetCreateParams {
   }
 }
 
+export interface AttitudeSetRetrieveParams {
+  firstResult?: number;
+
+  maxResults?: number;
+}
+
 export interface AttitudeSetListParams extends OffsetPageParams {
   /**
    * The epoch or start time of the attitude parameter or attitude ephemeris, in ISO
@@ -1231,6 +1257,7 @@ export declare namespace AttitudeSets {
     type AttitudeSetTupleResponse as AttitudeSetTupleResponse,
     type AttitudesetAbridgedsOffsetPage as AttitudesetAbridgedsOffsetPage,
     type AttitudeSetCreateParams as AttitudeSetCreateParams,
+    type AttitudeSetRetrieveParams as AttitudeSetRetrieveParams,
     type AttitudeSetListParams as AttitudeSetListParams,
     type AttitudeSetCountParams as AttitudeSetCountParams,
     type AttitudeSetTupleParams as AttitudeSetTupleParams,
