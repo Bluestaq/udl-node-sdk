@@ -3844,41 +3844,17 @@ Types:
 - <code><a href="./src/resources/supporting-data/dataowner.ts">DataownerAbridged</a></code>
 - <code><a href="./src/resources/supporting-data/dataowner.ts">DataownerRetrieveResponse</a></code>
 - <code><a href="./src/resources/supporting-data/dataowner.ts">DataownerCountResponse</a></code>
+- <code><a href="./src/resources/supporting-data/dataowner.ts">DataownerQueryHelpResponse</a></code>
+- <code><a href="./src/resources/supporting-data/dataowner.ts">DataownerRetrieveDataOwnerTypesResponse</a></code>
+- <code><a href="./src/resources/supporting-data/dataowner.ts">DataownerRetrieveProviderMetadataResponse</a></code>
 
 Methods:
 
 - <code title="get /udl/dataowner">client.supportingData.dataowner.<a href="./src/resources/supporting-data/dataowner.ts">retrieve</a>({ ...params }) -> DataownerRetrieveResponse</code>
 - <code title="get /udl/dataowner/count">client.supportingData.dataowner.<a href="./src/resources/supporting-data/dataowner.ts">count</a>({ ...params }) -> string</code>
-
-## DataownerTypes
-
-Types:
-
-- <code><a href="./src/resources/supporting-data/dataowner-types.ts">DataownerTypeListResponse</a></code>
-
-Methods:
-
-- <code title="get /udl/dataowner/getDataOwnerTypes">client.supportingData.dataownerTypes.<a href="./src/resources/supporting-data/dataowner-types.ts">list</a>({ ...params }) -> DataownerTypeListResponsesOffsetPage</code>
-
-## ProviderMetadata
-
-Types:
-
-- <code><a href="./src/resources/supporting-data/provider-metadata.ts">ProviderMetadataRetrieveResponse</a></code>
-
-Methods:
-
-- <code title="get /udl/dataowner/providerMetadata">client.supportingData.providerMetadata.<a href="./src/resources/supporting-data/provider-metadata.ts">retrieve</a>({ ...params }) -> ProviderMetadataRetrieveResponse</code>
-
-## QueryHelp
-
-Types:
-
-- <code><a href="./src/resources/supporting-data/query-help.ts">QueryHelpRetrieveResponse</a></code>
-
-Methods:
-
-- <code title="get /udl/dataowner/queryhelp">client.supportingData.queryHelp.<a href="./src/resources/supporting-data/query-help.ts">retrieve</a>() -> QueryHelpRetrieveResponse</code>
+- <code title="get /udl/dataowner/queryhelp">client.supportingData.dataowner.<a href="./src/resources/supporting-data/dataowner.ts">queryHelp</a>() -> DataownerQueryHelpResponse</code>
+- <code title="get /udl/dataowner/getDataOwnerTypes">client.supportingData.dataowner.<a href="./src/resources/supporting-data/dataowner.ts">retrieveDataOwnerTypes</a>({ ...params }) -> DataownerRetrieveDataOwnerTypesResponse</code>
+- <code title="get /udl/dataowner/providerMetadata">client.supportingData.dataowner.<a href="./src/resources/supporting-data/dataowner.ts">retrieveProviderMetadata</a>({ ...params }) -> DataownerRetrieveProviderMetadataResponse</code>
 
 # Surface
 

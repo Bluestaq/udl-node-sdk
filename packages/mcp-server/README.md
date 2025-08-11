@@ -2218,18 +2218,9 @@ The following tools are available in this MCP server.
 
 - `retrieve_supporting_data_dataowner` (`read`):
 - `count_supporting_data_dataowner` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-
-### Resource `supporting_data.dataowner_types`:
-
-- `list_supporting_data_dataowner_types` (`read`): Retrieves all distinct data owner types.
-
-### Resource `supporting_data.provider_metadata`:
-
-- `retrieve_supporting_data_provider_metadata` (`read`):
-
-### Resource `supporting_data.query_help`:
-
-- `retrieve_supporting_data_query_help` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `query_help_supporting_data_dataowner` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `retrieve_data_owner_types_supporting_data_dataowner` (`read`): Retrieves all distinct data owner types.
+- `retrieve_provider_metadata_supporting_data_dataowner` (`read`):
 
 ### Resource `surface`:
 
