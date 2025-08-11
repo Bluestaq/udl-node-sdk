@@ -388,7 +388,6 @@ export {
   type ConjunctionGetHistoryParams,
   type ConjunctionTupleParams,
   type ConjunctionUnvalidatedPublishParams,
-  type ConjunctionUploadConjunctionDataMessageParams,
   type ConjunctionAbridgedsOffsetPage,
 } from './conjunctions/conjunctions';
 export { Cots, type CotCreateParams } from './cots';
@@ -1563,7 +1562,6 @@ export {
   type ScCopyParams,
   type ScDownloadParams,
   type ScFileDownloadParams,
-  type ScFileUploadParams,
   type ScMoveParams,
   type ScRenameParams,
   type ScSearchParams,

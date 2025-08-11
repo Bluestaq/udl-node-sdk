@@ -965,10 +965,9 @@ describe('resource conjunctions', () => {
     });
   });
 
-  test('uploadConjunctionDataMessage: only required params', async () => {
+  test('uploadConjunctionDataMessage', async () => {
     const responsePromise = client.conjunctions.uploadConjunctionDataMessage(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
-      { classification: 'classification', dataMode: 'REAL', filename: 'filename', source: 'source' },
     );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -977,18 +976,5 @@ describe('resource conjunctions', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('uploadConjunctionDataMessage: required and optional params', async () => {
-    const response = await client.conjunctions.uploadConjunctionDataMessage(
-      await toFile(Buffer.from('# my file contents'), 'README.md'),
-      {
-        classification: 'classification',
-        dataMode: 'REAL',
-        filename: 'filename',
-        source: 'source',
-        tags: 'tags',
-      },
-    );
   });
 });

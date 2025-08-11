@@ -21,40 +21,18 @@ export const tool: Tool = {
   inputSchema: {
     type: 'object',
     properties: {
-      classification: {
-        type: 'string',
-        description: 'Classification marking of the data in IC/CAPCO Portion-marked format.',
-      },
-      dataMode: {
-        type: 'string',
-        description: 'Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.',
-        enum: ['REAL', 'TEST', 'SIMULATED', 'EXERCISE'],
-      },
-      filename: {
-        type: 'string',
-        description: 'Filename of the payload.',
-      },
-      source: {
-        type: 'string',
-        description: 'Source of the data.',
-      },
       file_content: {
         type: 'string',
       },
-      tags: {
-        type: 'string',
-        description:
-          'Optional array of provider/source specific tags for this data, where each element is no longer than 32 characters, used for implementing data owner conditional access controls to restrict access to the data. Should be left null by data providers unless conditional access controls are coordinated with the UDL team.',
-      },
     },
-    required: ['classification', 'dataMode', 'filename', 'source', 'file_content'],
+    required: ['file_content'],
   },
   annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const { file_content, ...body } = args as any;
-  const response = await client.conjunctions.uploadConjunctionDataMessage(file_content, body).asResponse();
+  const response = await client.conjunctions.uploadConjunctionDataMessage(file_content).asResponse();
   return asTextContentResult(await response.text());
 };
 

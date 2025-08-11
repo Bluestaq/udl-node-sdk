@@ -21,36 +21,8 @@ export const tool: Tool = {
   inputSchema: {
     type: 'object',
     properties: {
-      id: {
-        type: 'string',
-        description: 'The full path to create, including path and file name',
-      },
-      classificationMarking: {
-        type: 'string',
-        description: 'Classification (ex. U//FOUO)',
-      },
       file_content: {
         type: 'string',
-      },
-      deleteAfter: {
-        type: 'string',
-        description: 'Length of time after which to automatically delete the file.',
-      },
-      description: {
-        type: 'string',
-        description: 'Description',
-      },
-      overwrite: {
-        type: 'boolean',
-        description: 'Whether or not to overwrite a file with the same name and path, if one exists.',
-      },
-      sendNotification: {
-        type: 'boolean',
-        description: 'Whether or not to send a notification that this file was uploaded.',
-      },
-      tags: {
-        type: 'string',
-        description: 'Tags',
       },
       jq_filter: {
         type: 'string',
@@ -59,7 +31,7 @@ export const tool: Tool = {
           'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
-    required: ['id', 'classificationMarking', 'file_content'],
+    required: ['file_content'],
   },
   annotations: {},
 };
@@ -67,7 +39,7 @@ export const tool: Tool = {
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const { file_content, jq_filter, ...body } = args as any;
   return asTextContentResult(
-    await maybeFilter(jq_filter, await client.scs.paths.createWithFile(file_content, body)),
+    await maybeFilter(jq_filter, await client.scs.paths.createWithFile(file_content)),
   );
 };
 

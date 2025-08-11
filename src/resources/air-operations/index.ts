@@ -35,7 +35,7 @@ export {
   AirspaceControlOrders,
   type AirspaceControlOrderUnvalidatedPublishParams,
 } from './airspace-control-orders';
-export { Crewpapers, type CrewpaperUnpublishParams, type CrewpaperUploadPdfParams } from './crewpapers';
+export { Crewpapers, type CrewpaperUnpublishParams } from './crewpapers';
 export {
   DiplomaticClearance,
   type DiplomaticclearanceAbridged,

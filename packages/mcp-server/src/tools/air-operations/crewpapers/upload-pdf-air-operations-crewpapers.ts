@@ -21,35 +21,18 @@ export const tool: Tool = {
   inputSchema: {
     type: 'object',
     properties: {
-      aircraftSortieIds: {
-        type: 'string',
-        description: 'Comma-separated list of AircraftSortie IDs the Crew Papers are being added to.',
-      },
-      classificationMarking: {
-        type: 'string',
-        description: 'classificationMarking of the Crew Papers.',
-      },
-      paperStatus: {
-        type: 'string',
-        description: 'The status of the supporting document.',
-        enum: ['PUBLISHED', 'DELETED', 'UPDATED', 'READ'],
-      },
-      papersVersion: {
-        type: 'string',
-        description: 'The version number of the crew paper.',
-      },
       file_content: {
         type: 'string',
       },
     },
-    required: ['aircraftSortieIds', 'classificationMarking', 'paperStatus', 'papersVersion', 'file_content'],
+    required: ['file_content'],
   },
   annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const { file_content, ...body } = args as any;
-  const response = await client.airOperations.crewpapers.uploadPdf(file_content, body).asResponse();
+  const response = await client.airOperations.crewpapers.uploadPdf(file_content).asResponse();
   return asTextContentResult(await response.text());
 };
 
