@@ -21,8 +21,40 @@ export const tool: Tool = {
   inputSchema: {
     type: 'object',
     properties: {
+      classificationMarking: {
+        type: 'string',
+        description: 'Classification (ex. U//FOUO)',
+      },
+      fileName: {
+        type: 'string',
+        description: 'FileName (ex. dog.jpg)',
+      },
+      path: {
+        type: 'string',
+        description: 'The base path to upload file (ex. images)',
+      },
       file_content: {
         type: 'string',
+      },
+      deleteAfter: {
+        type: 'string',
+        description: 'Length of time after which to automatically delete the file.',
+      },
+      description: {
+        type: 'string',
+        description: 'Description ',
+      },
+      overwrite: {
+        type: 'boolean',
+        description: 'Whether or not to overwrite a file with the same name and path, if one exists.',
+      },
+      sendNotification: {
+        type: 'boolean',
+        description: 'Whether or not to send a notification that this file was uploaded.',
+      },
+      tags: {
+        type: 'string',
+        description: 'Tags',
       },
       jq_filter: {
         type: 'string',
@@ -31,14 +63,14 @@ export const tool: Tool = {
           'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
-    required: ['file_content'],
+    required: ['classificationMarking', 'fileName', 'path', 'file_content'],
   },
   annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const { file_content, jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.scs.fileUpload(file_content)));
+  return asTextContentResult(await maybeFilter(jq_filter, await client.scs.fileUpload(file_content, body)));
 };
 
 export default { metadata, tool, handler };

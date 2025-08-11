@@ -9,9 +9,10 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource paths', () => {
-  test('createWithFile', async () => {
+  test('createWithFile: only required params', async () => {
     const responsePromise = client.scs.paths.createWithFile(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
+      { id: 'id', classificationMarking: 'classificationMarking' },
     );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -20,5 +21,20 @@ describe('resource paths', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('createWithFile: required and optional params', async () => {
+    const response = await client.scs.paths.createWithFile(
+      await toFile(Buffer.from('# my file contents'), 'README.md'),
+      {
+        id: 'id',
+        classificationMarking: 'classificationMarking',
+        deleteAfter: 'deleteAfter',
+        description: 'description',
+        overwrite: true,
+        sendNotification: true,
+        tags: 'tags',
+      },
+    );
   });
 });

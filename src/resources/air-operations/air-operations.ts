@@ -39,7 +39,7 @@ import {
   AirspaceControlOrders,
 } from './airspace-control-orders';
 import * as CrewpapersAPI from './crewpapers';
-import { CrewpaperUnpublishParams, Crewpapers } from './crewpapers';
+import { CrewpaperUnpublishParams, CrewpaperUploadPdfParams, Crewpapers } from './crewpapers';
 import * as DiplomaticClearanceAPI from './diplomatic-clearance';
 import {
   DiplomaticClearance,
@@ -103,7 +103,11 @@ export declare namespace AirOperations {
     type AirspaceControlOrderUnvalidatedPublishParams as AirspaceControlOrderUnvalidatedPublishParams,
   };
 
-  export { Crewpapers as Crewpapers, type CrewpaperUnpublishParams as CrewpaperUnpublishParams };
+  export {
+    Crewpapers as Crewpapers,
+    type CrewpaperUnpublishParams as CrewpaperUnpublishParams,
+    type CrewpaperUploadPdfParams as CrewpaperUploadPdfParams,
+  };
 
   export {
     DiplomaticClearance as DiplomaticClearance,
