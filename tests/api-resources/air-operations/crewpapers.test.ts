@@ -27,6 +27,12 @@ describe('resource crewpapers', () => {
   test('uploadPdf: only required params', async () => {
     const responsePromise = client.airOperations.crewpapers.uploadPdf(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
+      {
+        aircraftSortieIds: 'aircraftSortieIds',
+        classificationMarking: 'x',
+        paperStatus: 'PUBLISHED',
+        papersVersion: 'x',
+      },
     );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -40,6 +46,12 @@ describe('resource crewpapers', () => {
   test('uploadPdf: required and optional params', async () => {
     const response = await client.airOperations.crewpapers.uploadPdf(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
+      {
+        aircraftSortieIds: 'aircraftSortieIds',
+        classificationMarking: 'x',
+        paperStatus: 'PUBLISHED',
+        papersVersion: 'x',
+      },
     );
   });
 });

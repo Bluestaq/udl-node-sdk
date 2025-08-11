@@ -88,6 +88,7 @@ describe('resource scs', () => {
   test('fileUpload: only required params', async () => {
     const responsePromise = client.scs.fileUpload(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
+      { classificationMarking: 'classificationMarking', fileName: 'fileName', path: 'path' },
     );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -101,6 +102,11 @@ describe('resource scs', () => {
   test('fileUpload: required and optional params', async () => {
     const response = await client.scs.fileUpload(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
+      {
+        classificationMarking: 'classificationMarking',
+        fileName: 'fileName',
+        path: 'path',
+      },
     );
   });
 
