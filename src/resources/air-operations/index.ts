@@ -16,21 +16,21 @@ export {
   type AirtaskingorderAbridgedsOffsetPage,
 } from './air-tasking-orders';
 export {
-  AircraftSortie,
+  AircraftSorties,
   type AircraftsortieAbridged,
-  type AircraftSortieCountResponse,
-  type AircraftSortieHistoryCountResponse,
-  type AircraftSortieHistoryQueryResponse,
-  type AircraftSortieCreateParams,
-  type AircraftSortieListParams,
-  type AircraftSortieCountParams,
-  type AircraftSortieCreateBulkParams,
-  type AircraftSortieHistoryAodrParams,
-  type AircraftSortieHistoryCountParams,
-  type AircraftSortieHistoryQueryParams,
+  type AircraftSortyCountResponse,
+  type AircraftSortyHistoryCountResponse,
+  type AircraftSortyHistoryQueryResponse,
+  type AircraftSortyCreateParams,
+  type AircraftSortyListParams,
+  type AircraftSortyCountParams,
+  type AircraftSortyCreateBulkParams,
+  type AircraftSortyHistoryAodrParams,
+  type AircraftSortyHistoryCountParams,
+  type AircraftSortyHistoryQueryParams,
+  type AircraftSortyUnvalidatedPublishParams,
   type AircraftsortieAbridgedsOffsetPage,
-} from './aircraft-sortie';
-export { AircraftSorties, type AircraftSortyUnvalidatedPublishParams } from './aircraft-sorties';
+} from './aircraft-sorties';
 export {
   AirspaceControlOrders,
   type AirspaceControlOrderUnvalidatedPublishParams,
