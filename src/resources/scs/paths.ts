@@ -15,15 +15,22 @@ export class Paths extends APIResource {
    * ```ts
    * const response = await client.scs.paths.createWithFile(
    *   fs.createReadStream('path/to/file'),
+   *   {
+   *     id: 'id',
+   *     classificationMarking: 'classificationMarking',
+   *   },
    * );
    * ```
    */
   createWithFile(
     fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
+    params: PathCreateWithFileParams,
     options?: RequestOptions,
   ): APIPromise<string> {
+    const { id, classificationMarking, deleteAfter, description, overwrite, sendNotification, tags } = params;
     return this._client.post('/scs/path', {
       body: fileContent,
+      query: { id, classificationMarking, deleteAfter, description, overwrite, sendNotification, tags },
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/octet-stream' }, options?.headers]),
     });
@@ -32,6 +39,47 @@ export class Paths extends APIResource {
 
 export type PathCreateWithFileResponse = string;
 
+export interface PathCreateWithFileParams {
+  /**
+   * Query param: The full path to create, including path and file name
+   */
+  id: string;
+
+  /**
+   * Query param: Classification (ex. U//FOUO)
+   */
+  classificationMarking: string;
+
+  /**
+   * Query param: Length of time after which to automatically delete the file.
+   */
+  deleteAfter?: string;
+
+  /**
+   * Query param: Description
+   */
+  description?: string;
+
+  /**
+   * Query param: Whether or not to overwrite a file with the same name and path, if
+   * one exists.
+   */
+  overwrite?: boolean;
+
+  /**
+   * Query param: Whether or not to send a notification that this file was uploaded.
+   */
+  sendNotification?: boolean;
+
+  /**
+   * Query param: Tags
+   */
+  tags?: string;
+}
+
 export declare namespace Paths {
-  export { type PathCreateWithFileResponse as PathCreateWithFileResponse };
+  export {
+    type PathCreateWithFileResponse as PathCreateWithFileResponse,
+    type PathCreateWithFileParams as PathCreateWithFileParams,
+  };
 }
