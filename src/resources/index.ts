@@ -33,19 +33,6 @@ export {
   type AirEventUnvalidatedPublishParams,
   type AirEventListResponsesOffsetPage,
 } from './air-events';
-export {
-  AirLoadPlans,
-  type AirloadplanAbridged,
-  type AirLoadPlanCountResponse,
-  type AirLoadPlanQueryhelpResponse,
-  type AirLoadPlanTupleResponse,
-  type AirLoadPlanCreateParams,
-  type AirLoadPlanRetrieveParams,
-  type AirLoadPlanListParams,
-  type AirLoadPlanCountParams,
-  type AirLoadPlanTupleParams,
-  type AirloadplanAbridgedsOffsetPage,
-} from './air-load-plans';
 export { AirOperations } from './air-operations/air-operations';
 export {
   AirTransportMissions,
@@ -167,7 +154,20 @@ export {
   type AirfieldTupleParams,
   type AirfieldAbridgedsOffsetPage,
 } from './airfields';
-export { AirloadPlans, type AirloadPlanUpdateParams } from './airload-plans';
+export {
+  AirloadPlans,
+  type AirloadplanAbridged,
+  type AirloadPlanCountResponse,
+  type AirloadPlanQueryhelpResponse,
+  type AirloadPlanTupleResponse,
+  type AirloadPlanCreateParams,
+  type AirloadPlanRetrieveParams,
+  type AirloadPlanUpdateParams,
+  type AirloadPlanListParams,
+  type AirloadPlanCountParams,
+  type AirloadPlanTupleParams,
+  type AirloadplanAbridgedsOffsetPage,
+} from './airload-plans';
 export {
   AirspaceControlOrders,
   type AirspacecontrolorderAbridged,
@@ -228,13 +228,13 @@ export {
   type AttitudeSetQueryHelpResponse,
   type AttitudeSetTupleResponse,
   type AttitudeSetCreateParams,
+  type AttitudeSetRetrieveParams,
   type AttitudeSetListParams,
   type AttitudeSetCountParams,
   type AttitudeSetTupleParams,
   type AttitudeSetUnvalidatedPublishParams,
   type AttitudesetAbridgedsOffsetPage,
 } from './attitude-sets/attitude-sets';
-export { Attitudesets, type AttitudesetRetrieveParams } from './attitudesets';
 export {
   AviationRiskManagement,
   type AviationRiskManagementRetrieveResponse,
@@ -388,6 +388,7 @@ export {
   type ConjunctionGetHistoryParams,
   type ConjunctionTupleParams,
   type ConjunctionUnvalidatedPublishParams,
+  type ConjunctionUploadConjunctionDataMessageParams,
   type ConjunctionAbridgedsOffsetPage,
 } from './conjunctions/conjunctions';
 export { Cots, type CotCreateParams } from './cots';
@@ -751,22 +752,21 @@ export {
   type GnssObservationsetUnvalidatedPublishParams,
   type GnssObservationsetListResponsesOffsetPage,
 } from './gnss-observationset/gnss-observationset';
-export { GnssRawIf } from './gnss-raw-if/gnss-raw-if';
 export {
-  GnssRawif,
-  type GnssRawifListResponse,
-  type GnssRawifCountResponse,
-  type GnssRawifGetResponse,
-  type GnssRawifQueryhelpResponse,
-  type GnssRawifTupleResponse,
-  type GnssRawifListParams,
-  type GnssRawifCountParams,
-  type GnssRawifFileGetParams,
-  type GnssRawifGetParams,
-  type GnssRawifTupleParams,
-  type GnssRawifUploadZipParams,
-  type GnssRawifListResponsesOffsetPage,
-} from './gnss-rawif';
+  GnssRawIf,
+  type GnssRawIfListResponse,
+  type GnssRawIfCountResponse,
+  type GnssRawIfGetResponse,
+  type GnssRawIfQueryhelpResponse,
+  type GnssRawIfTupleResponse,
+  type GnssRawIfListParams,
+  type GnssRawIfCountParams,
+  type GnssRawIfFileGetParams,
+  type GnssRawIfGetParams,
+  type GnssRawIfTupleParams,
+  type GnssRawIfUploadZipParams,
+  type GnssRawIfListResponsesOffsetPage,
+} from './gnss-raw-if/gnss-raw-if';
 export {
   GroundImagery,
   type GroundImageryListResponse,
@@ -825,19 +825,18 @@ export {
   type HazardListResponsesOffsetPage,
 } from './hazard/hazard';
 export {
-  IonOobservation,
-  type IonOobservationListResponse,
-  type IonOobservationCountResponse,
-  type IonOobservationQueryhelpResponse,
-  type IonOobservationTupleResponse,
-  type IonOobservationListParams,
-  type IonOobservationCountParams,
-  type IonOobservationCreateBulkParams,
-  type IonOobservationTupleParams,
-  type IonOobservationUnvalidatedPublishParams,
-  type IonOobservationListResponsesOffsetPage,
-} from './ion-oobservation';
-export { IonoObservation } from './iono-observation/iono-observation';
+  IonoObservations,
+  type IonoObservationListResponse,
+  type IonoObservationCountResponse,
+  type IonoObservationQueryhelpResponse,
+  type IonoObservationTupleResponse,
+  type IonoObservationListParams,
+  type IonoObservationCountParams,
+  type IonoObservationCreateBulkParams,
+  type IonoObservationTupleParams,
+  type IonoObservationUnvalidatedPublishParams,
+  type IonoObservationListResponsesOffsetPage,
+} from './iono-observations/iono-observations';
 export {
   Ir,
   type IrListResponse,
@@ -1442,7 +1441,7 @@ export {
   type PortTupleParams,
   type PortListResponsesOffsetPage,
 } from './port';
-export { ReportAndActivity } from './report-and-activity/report-and-activity';
+export { ReportAndActivities } from './report-and-activities/report-and-activities';
 export {
   RfBand,
   type RfBandListResponse,
@@ -1562,6 +1561,7 @@ export {
   type ScCopyParams,
   type ScDownloadParams,
   type ScFileDownloadParams,
+  type ScFileUploadParams,
   type ScMoveParams,
   type ScRenameParams,
   type ScSearchParams,

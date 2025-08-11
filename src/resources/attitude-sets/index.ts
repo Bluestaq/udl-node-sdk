@@ -7,6 +7,7 @@ export {
   type AttitudeSetQueryHelpResponse,
   type AttitudeSetTupleResponse,
   type AttitudeSetCreateParams,
+  type AttitudeSetRetrieveParams,
   type AttitudeSetListParams,
   type AttitudeSetCountParams,
   type AttitudeSetTupleParams,

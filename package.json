@@ -1,6 +1,6 @@
 {
   "name": "unified-data-library",
-  "version": "0.1.0-alpha.9",
+  "version": "0.1.0-alpha.10",
   "description": "The official TypeScript library for the Unifieddatalibrary API",
   "author": "Unifieddatalibrary <unifieddatalibrary@bluestaq.com>",
   "types": "dist/index.d.ts",
@@ -13,6 +13,9 @@
     "**/*"
   ],
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "./scripts/test",
     "build": "./scripts/build",

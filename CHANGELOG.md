@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.1.0-alpha.10 (2025-08-11)
+
+Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
+
+### Features
+
+* **api:** manual updates ([06e0c57](https://github.com/Bluestaq/udl-node-sdk/commit/06e0c57713bef02a9f19e9592f1105d2d20b78d3))
+* **api:** manual updates ([ce01787](https://github.com/Bluestaq/udl-node-sdk/commit/ce017876ae30d623e710ef46a7634e1f884610ac))
+* **api:** manual updates ([0268d55](https://github.com/Bluestaq/udl-node-sdk/commit/0268d55a9a9701c0eddb6983ad0fb3c99aaa2400))
+* **api:** manual updates ([99cc00e](https://github.com/Bluestaq/udl-node-sdk/commit/99cc00e7ff1f5b10fb82fae79f42eeab325afea9))
+* **api:** manual updates ([6679fae](https://github.com/Bluestaq/udl-node-sdk/commit/6679faebc9a070927f11fe03279b6b71592633f9))
+* **api:** remove unnecessary query params for upload methods ([6be0b79](https://github.com/Bluestaq/udl-node-sdk/commit/6be0b79469dd72d5d3485bd8ec8534df43d6545c))
+* **mcp:** add unix socket option for remote MCP ([a722c40](https://github.com/Bluestaq/udl-node-sdk/commit/a722c40dfd949f20e21882bd5c415ab890cacd0a))
+
+
+### Bug Fixes
+
+* **methods:** define methods with parameters and binary body correctly ([4027d8a](https://github.com/Bluestaq/udl-node-sdk/commit/4027d8a1276dfcb8fd71e86197248e0e9a75fc2f))
+* remove unused params ([17ccc57](https://github.com/Bluestaq/udl-node-sdk/commit/17ccc5723fc05f469f359190735e5a531d2fa047))
+
+
+### Chores
+
+* bump dependencies ([3ef6c9d](https://github.com/Bluestaq/udl-node-sdk/commit/3ef6c9d60e1f4002a37375d57776df49335edd4a))
+* **internal:** move publish config ([01fdf07](https://github.com/Bluestaq/udl-node-sdk/commit/01fdf073b1f6fe519043e4008f116838ed29fd50))
+* **internal:** update comment in script ([f9fb4d1](https://github.com/Bluestaq/udl-node-sdk/commit/f9fb4d1a096e11867e300a032159451a97c6e248))
+* **mcp:** refactor streamable http transport ([3f20b86](https://github.com/Bluestaq/udl-node-sdk/commit/3f20b86121ae6147b7c8b2246067c2e2be0912bd))
+* update @stainless-api/prism-cli to v5.15.0 ([5922159](https://github.com/Bluestaq/udl-node-sdk/commit/5922159efd6dfab9ccdd0cdc9fc8ac469a5095c0))
+
 ## 0.1.0-alpha.9 (2025-08-06)
 
 Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)

@@ -11,19 +11,12 @@ export {
   type DataownerAbridged,
   type DataownerRetrieveResponse,
   type DataownerCountResponse,
+  type DataownerQueryHelpResponse,
+  type DataownerRetrieveDataOwnerTypesResponse,
+  type DataownerRetrieveProviderMetadataResponse,
   type DataownerRetrieveParams,
   type DataownerCountParams,
+  type DataownerRetrieveDataOwnerTypesParams,
+  type DataownerRetrieveProviderMetadataParams,
 } from './dataowner';
-export {
-  DataownerTypes,
-  type DataownerTypeListResponse,
-  type DataownerTypeListParams,
-  type DataownerTypeListResponsesOffsetPage,
-} from './dataowner-types';
-export {
-  ProviderMetadata,
-  type ProviderMetadataRetrieveResponse,
-  type ProviderMetadataRetrieveParams,
-} from './provider-metadata';
-export { QueryHelp, type QueryHelpRetrieveResponse } from './query-help';
 export { SupportingData } from './supporting-data';

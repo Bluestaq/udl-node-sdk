@@ -37,19 +37,6 @@ import {
   AirEvents,
 } from './resources/air-events';
 import {
-  AirLoadPlanCountParams,
-  AirLoadPlanCountResponse,
-  AirLoadPlanCreateParams,
-  AirLoadPlanListParams,
-  AirLoadPlanQueryhelpResponse,
-  AirLoadPlanRetrieveParams,
-  AirLoadPlanTupleParams,
-  AirLoadPlanTupleResponse,
-  AirLoadPlans,
-  AirloadplanAbridged,
-  AirloadplanAbridgedsOffsetPage,
-} from './resources/air-load-plans';
-import {
   Aircraft,
   AircraftAbridged,
   AircraftAbridgedsOffsetPage,
@@ -127,7 +114,20 @@ import {
   AirfieldUpdateParams,
   Airfields,
 } from './resources/airfields';
-import { AirloadPlanUpdateParams, AirloadPlans } from './resources/airload-plans';
+import {
+  AirloadPlanCountParams,
+  AirloadPlanCountResponse,
+  AirloadPlanCreateParams,
+  AirloadPlanListParams,
+  AirloadPlanQueryhelpResponse,
+  AirloadPlanRetrieveParams,
+  AirloadPlanTupleParams,
+  AirloadPlanTupleResponse,
+  AirloadPlanUpdateParams,
+  AirloadPlans,
+  AirloadplanAbridged,
+  AirloadplanAbridgedsOffsetPage,
+} from './resources/airload-plans';
 import {
   AirspaceControlOrderCountParams,
   AirspaceControlOrderCountResponse,
@@ -182,7 +182,6 @@ import {
   AttitudeDataTupleParams,
   AttitudeDataTupleResponse,
 } from './resources/attitude-data';
-import { AttitudesetRetrieveParams, Attitudesets } from './resources/attitudesets';
 import {
   AviationRiskManagement,
   AviationRiskManagementCountParams,
@@ -452,21 +451,6 @@ import {
   FlightplanUpdateParams,
 } from './resources/flightplan';
 import {
-  GnssRawif,
-  GnssRawifCountParams,
-  GnssRawifCountResponse,
-  GnssRawifFileGetParams,
-  GnssRawifGetParams,
-  GnssRawifGetResponse,
-  GnssRawifListParams,
-  GnssRawifListResponse,
-  GnssRawifListResponsesOffsetPage,
-  GnssRawifQueryhelpResponse,
-  GnssRawifTupleParams,
-  GnssRawifTupleResponse,
-  GnssRawifUploadZipParams,
-} from './resources/gnss-rawif';
-import {
   H3GeoHexCell,
   H3GeoHexCellCountParams,
   H3GeoHexCellCountResponse,
@@ -477,19 +461,6 @@ import {
   H3GeoHexCellTupleParams,
   H3GeoHexCellTupleResponse,
 } from './resources/h3-geo-hex-cell';
-import {
-  IonOobservation,
-  IonOobservationCountParams,
-  IonOobservationCountResponse,
-  IonOobservationCreateBulkParams,
-  IonOobservationListParams,
-  IonOobservationListResponse,
-  IonOobservationListResponsesOffsetPage,
-  IonOobservationQueryhelpResponse,
-  IonOobservationTupleParams,
-  IonOobservationTupleResponse,
-  IonOobservationUnvalidatedPublishParams,
-} from './resources/ion-oobservation';
 import {
   Ir,
   IrCountParams,
@@ -1274,6 +1245,7 @@ import {
   AttitudeSetCreateParams,
   AttitudeSetListParams,
   AttitudeSetQueryHelpResponse,
+  AttitudeSetRetrieveParams,
   AttitudeSetTupleParams,
   AttitudeSetTupleResponse,
   AttitudeSetUnvalidatedPublishParams,
@@ -1324,6 +1296,7 @@ import {
   ConjunctionTupleParams,
   ConjunctionTupleResponse,
   ConjunctionUnvalidatedPublishParams,
+  ConjunctionUploadConjunctionDataMessageParams,
   Conjunctions,
 } from './resources/conjunctions/conjunctions';
 import {
@@ -1527,7 +1500,21 @@ import {
   GnssObservationsetTupleResponse,
   GnssObservationsetUnvalidatedPublishParams,
 } from './resources/gnss-observationset/gnss-observationset';
-import { GnssRawIf } from './resources/gnss-raw-if/gnss-raw-if';
+import {
+  GnssRawIf,
+  GnssRawIfCountParams,
+  GnssRawIfCountResponse,
+  GnssRawIfFileGetParams,
+  GnssRawIfGetParams,
+  GnssRawIfGetResponse,
+  GnssRawIfListParams,
+  GnssRawIfListResponse,
+  GnssRawIfListResponsesOffsetPage,
+  GnssRawIfQueryhelpResponse,
+  GnssRawIfTupleParams,
+  GnssRawIfTupleResponse,
+  GnssRawIfUploadZipParams,
+} from './resources/gnss-raw-if/gnss-raw-if';
 import {
   GroundImagery,
   GroundImageryCountParams,
@@ -1574,7 +1561,19 @@ import {
   HazardTupleParams,
   HazardTupleResponse,
 } from './resources/hazard/hazard';
-import { IonoObservation } from './resources/iono-observation/iono-observation';
+import {
+  IonoObservationCountParams,
+  IonoObservationCountResponse,
+  IonoObservationCreateBulkParams,
+  IonoObservationListParams,
+  IonoObservationListResponse,
+  IonoObservationListResponsesOffsetPage,
+  IonoObservationQueryhelpResponse,
+  IonoObservationTupleParams,
+  IonoObservationTupleResponse,
+  IonoObservationUnvalidatedPublishParams,
+  IonoObservations,
+} from './resources/iono-observations/iono-observations';
 import {
   IsrCollectionCountParams,
   IsrCollectionCountResponse,
@@ -1825,7 +1824,7 @@ import {
   PersonnelrecoveryTupleParams,
   PersonnelrecoveryTupleResponse,
 } from './resources/personnelrecovery/personnelrecovery';
-import { ReportAndActivity } from './resources/report-and-activity/report-and-activity';
+import { ReportAndActivities } from './resources/report-and-activities/report-and-activities';
 import {
   SarObservation,
   SarObservationCountParams,
@@ -1851,6 +1850,7 @@ import {
   ScDeleteParams,
   ScDownloadParams,
   ScFileDownloadParams,
+  ScFileUploadParams,
   ScFileUploadResponse,
   ScMoveParams,
   ScMoveResponse,
@@ -2937,7 +2937,6 @@ export class Unifieddatalibrary {
   static toFile = Uploads.toFile;
 
   airEvents: API.AirEvents = new API.AirEvents(this);
-  airLoadPlans: API.AirLoadPlans = new API.AirLoadPlans(this);
   airOperations: API.AirOperations = new API.AirOperations(this);
   airTransportMissions: API.AirTransportMissions = new API.AirTransportMissions(this);
   aircraft: API.Aircraft = new API.Aircraft(this);
@@ -2956,7 +2955,6 @@ export class Unifieddatalibrary {
   antennas: API.Antennas = new API.Antennas(this);
   attitudeData: API.AttitudeData = new API.AttitudeData(this);
   attitudeSets: API.AttitudeSets = new API.AttitudeSets(this);
-  attitudesets: API.Attitudesets = new API.Attitudesets(this);
   batteries: API.Batteries = new API.Batteries(this);
   batterydetails: API.Batterydetails = new API.Batterydetails(this);
   beam: API.Beam = new API.Beam(this);
@@ -2996,12 +2994,10 @@ export class Unifieddatalibrary {
   flightplan: API.Flightplan = new API.Flightplan(this);
   geoStatus: API.GeoStatus = new API.GeoStatus(this);
   gnssObservationset: API.GnssObservationset = new API.GnssObservationset(this);
-  gnssRawif: API.GnssRawif = new API.GnssRawif(this);
   groundImagery: API.GroundImagery = new API.GroundImagery(this);
   h3Geo: API.H3Geo = new API.H3Geo(this);
   h3GeoHexCell: API.H3GeoHexCell = new API.H3GeoHexCell(this);
   hazard: API.Hazard = new API.Hazard(this);
-  ionOobservation: API.IonOobservation = new API.IonOobservation(this);
   ir: API.Ir = new API.Ir(this);
   isrCollections: API.IsrCollections = new API.IsrCollections(this);
   item: API.Item = new API.Item(this);
@@ -3095,14 +3091,13 @@ export class Unifieddatalibrary {
   weatherReport: API.WeatherReport = new API.WeatherReport(this);
   gnssObservations: API.GnssObservations = new API.GnssObservations(this);
   gnssRawIf: API.GnssRawIf = new API.GnssRawIf(this);
-  ionoObservation: API.IonoObservation = new API.IonoObservation(this);
-  reportAndActivity: API.ReportAndActivity = new API.ReportAndActivity(this);
+  ionoObservations: API.IonoObservations = new API.IonoObservations(this);
+  reportAndActivities: API.ReportAndActivities = new API.ReportAndActivities(this);
   secureMessaging: API.SecureMessaging = new API.SecureMessaging(this);
   scs: API.Scs = new API.Scs(this);
   scsViews: API.ScsViews = new API.ScsViews(this);
 }
 Unifieddatalibrary.AirEvents = AirEvents;
-Unifieddatalibrary.AirLoadPlans = AirLoadPlans;
 Unifieddatalibrary.AirOperations = AirOperations;
 Unifieddatalibrary.AirTransportMissions = AirTransportMissions;
 Unifieddatalibrary.Aircraft = Aircraft;
@@ -3121,7 +3116,6 @@ Unifieddatalibrary.AnalyticImagery = AnalyticImagery;
 Unifieddatalibrary.Antennas = Antennas;
 Unifieddatalibrary.AttitudeData = AttitudeData;
 Unifieddatalibrary.AttitudeSets = AttitudeSets;
-Unifieddatalibrary.Attitudesets = Attitudesets;
 Unifieddatalibrary.Batteries = Batteries;
 Unifieddatalibrary.Batterydetails = Batterydetails;
 Unifieddatalibrary.Beam = Beam;
@@ -3161,12 +3155,10 @@ Unifieddatalibrary.EventEvolution = EventEvolution;
 Unifieddatalibrary.Flightplan = Flightplan;
 Unifieddatalibrary.GeoStatus = GeoStatus;
 Unifieddatalibrary.GnssObservationset = GnssObservationset;
-Unifieddatalibrary.GnssRawif = GnssRawif;
 Unifieddatalibrary.GroundImagery = GroundImagery;
 Unifieddatalibrary.H3Geo = H3Geo;
 Unifieddatalibrary.H3GeoHexCell = H3GeoHexCell;
 Unifieddatalibrary.Hazard = Hazard;
-Unifieddatalibrary.IonOobservation = IonOobservation;
 Unifieddatalibrary.Ir = Ir;
 Unifieddatalibrary.IsrCollections = IsrCollections;
 Unifieddatalibrary.Item = Item;
@@ -3260,8 +3252,8 @@ Unifieddatalibrary.WeatherData = WeatherData;
 Unifieddatalibrary.WeatherReport = WeatherReport;
 Unifieddatalibrary.GnssObservations = GnssObservations;
 Unifieddatalibrary.GnssRawIf = GnssRawIf;
-Unifieddatalibrary.IonoObservation = IonoObservation;
-Unifieddatalibrary.ReportAndActivity = ReportAndActivity;
+Unifieddatalibrary.IonoObservations = IonoObservations;
+Unifieddatalibrary.ReportAndActivities = ReportAndActivities;
 Unifieddatalibrary.SecureMessaging = SecureMessaging;
 Unifieddatalibrary.Scs = Scs;
 Unifieddatalibrary.ScsViews = ScsViews;
@@ -3287,20 +3279,6 @@ export declare namespace Unifieddatalibrary {
     type AirEventGetParams as AirEventGetParams,
     type AirEventTupleParams as AirEventTupleParams,
     type AirEventUnvalidatedPublishParams as AirEventUnvalidatedPublishParams,
-  };
-
-  export {
-    AirLoadPlans as AirLoadPlans,
-    type AirloadplanAbridged as AirloadplanAbridged,
-    type AirLoadPlanCountResponse as AirLoadPlanCountResponse,
-    type AirLoadPlanQueryhelpResponse as AirLoadPlanQueryhelpResponse,
-    type AirLoadPlanTupleResponse as AirLoadPlanTupleResponse,
-    type AirloadplanAbridgedsOffsetPage as AirloadplanAbridgedsOffsetPage,
-    type AirLoadPlanCreateParams as AirLoadPlanCreateParams,
-    type AirLoadPlanRetrieveParams as AirLoadPlanRetrieveParams,
-    type AirLoadPlanListParams as AirLoadPlanListParams,
-    type AirLoadPlanCountParams as AirLoadPlanCountParams,
-    type AirLoadPlanTupleParams as AirLoadPlanTupleParams,
   };
 
   export { AirOperations as AirOperations };
@@ -3434,7 +3412,20 @@ export declare namespace Unifieddatalibrary {
     type AirfieldSlotConsumptionTupleParams as AirfieldSlotConsumptionTupleParams,
   };
 
-  export { AirloadPlans as AirloadPlans, type AirloadPlanUpdateParams as AirloadPlanUpdateParams };
+  export {
+    AirloadPlans as AirloadPlans,
+    type AirloadplanAbridged as AirloadplanAbridged,
+    type AirloadPlanCountResponse as AirloadPlanCountResponse,
+    type AirloadPlanQueryhelpResponse as AirloadPlanQueryhelpResponse,
+    type AirloadPlanTupleResponse as AirloadPlanTupleResponse,
+    type AirloadplanAbridgedsOffsetPage as AirloadplanAbridgedsOffsetPage,
+    type AirloadPlanCreateParams as AirloadPlanCreateParams,
+    type AirloadPlanRetrieveParams as AirloadPlanRetrieveParams,
+    type AirloadPlanUpdateParams as AirloadPlanUpdateParams,
+    type AirloadPlanListParams as AirloadPlanListParams,
+    type AirloadPlanCountParams as AirloadPlanCountParams,
+    type AirloadPlanTupleParams as AirloadPlanTupleParams,
+  };
 
   export {
     AirspaceControlOrders as AirspaceControlOrders,
@@ -3521,13 +3512,12 @@ export declare namespace Unifieddatalibrary {
     type AttitudeSetTupleResponse as AttitudeSetTupleResponse,
     type AttitudesetAbridgedsOffsetPage as AttitudesetAbridgedsOffsetPage,
     type AttitudeSetCreateParams as AttitudeSetCreateParams,
+    type AttitudeSetRetrieveParams as AttitudeSetRetrieveParams,
     type AttitudeSetListParams as AttitudeSetListParams,
     type AttitudeSetCountParams as AttitudeSetCountParams,
     type AttitudeSetTupleParams as AttitudeSetTupleParams,
     type AttitudeSetUnvalidatedPublishParams as AttitudeSetUnvalidatedPublishParams,
   };
-
-  export { Attitudesets as Attitudesets, type AttitudesetRetrieveParams as AttitudesetRetrieveParams };
 
   export {
     Batteries as Batteries,
@@ -3676,6 +3666,7 @@ export declare namespace Unifieddatalibrary {
     type ConjunctionGetHistoryParams as ConjunctionGetHistoryParams,
     type ConjunctionTupleParams as ConjunctionTupleParams,
     type ConjunctionUnvalidatedPublishParams as ConjunctionUnvalidatedPublishParams,
+    type ConjunctionUploadConjunctionDataMessageParams as ConjunctionUploadConjunctionDataMessageParams,
   };
 
   export { Cots as Cots, type CotCreateParams as CotCreateParams };
@@ -4098,22 +4089,6 @@ export declare namespace Unifieddatalibrary {
   };
 
   export {
-    GnssRawif as GnssRawif,
-    type GnssRawifListResponse as GnssRawifListResponse,
-    type GnssRawifCountResponse as GnssRawifCountResponse,
-    type GnssRawifGetResponse as GnssRawifGetResponse,
-    type GnssRawifQueryhelpResponse as GnssRawifQueryhelpResponse,
-    type GnssRawifTupleResponse as GnssRawifTupleResponse,
-    type GnssRawifListResponsesOffsetPage as GnssRawifListResponsesOffsetPage,
-    type GnssRawifListParams as GnssRawifListParams,
-    type GnssRawifCountParams as GnssRawifCountParams,
-    type GnssRawifFileGetParams as GnssRawifFileGetParams,
-    type GnssRawifGetParams as GnssRawifGetParams,
-    type GnssRawifTupleParams as GnssRawifTupleParams,
-    type GnssRawifUploadZipParams as GnssRawifUploadZipParams,
-  };
-
-  export {
     GroundImagery as GroundImagery,
     type GroundImageryListResponse as GroundImageryListResponse,
     type GroundImageryCountResponse as GroundImageryCountResponse,
@@ -4172,20 +4147,6 @@ export declare namespace Unifieddatalibrary {
     type HazardCreateBulkParams as HazardCreateBulkParams,
     type HazardGetParams as HazardGetParams,
     type HazardTupleParams as HazardTupleParams,
-  };
-
-  export {
-    IonOobservation as IonOobservation,
-    type IonOobservationListResponse as IonOobservationListResponse,
-    type IonOobservationCountResponse as IonOobservationCountResponse,
-    type IonOobservationQueryhelpResponse as IonOobservationQueryhelpResponse,
-    type IonOobservationTupleResponse as IonOobservationTupleResponse,
-    type IonOobservationListResponsesOffsetPage as IonOobservationListResponsesOffsetPage,
-    type IonOobservationListParams as IonOobservationListParams,
-    type IonOobservationCountParams as IonOobservationCountParams,
-    type IonOobservationCreateBulkParams as IonOobservationCreateBulkParams,
-    type IonOobservationTupleParams as IonOobservationTupleParams,
-    type IonOobservationUnvalidatedPublishParams as IonOobservationUnvalidatedPublishParams,
   };
 
   export {
@@ -5565,11 +5526,37 @@ export declare namespace Unifieddatalibrary {
 
   export { GnssObservations as GnssObservations };
 
-  export { GnssRawIf as GnssRawIf };
+  export {
+    GnssRawIf as GnssRawIf,
+    type GnssRawIfListResponse as GnssRawIfListResponse,
+    type GnssRawIfCountResponse as GnssRawIfCountResponse,
+    type GnssRawIfGetResponse as GnssRawIfGetResponse,
+    type GnssRawIfQueryhelpResponse as GnssRawIfQueryhelpResponse,
+    type GnssRawIfTupleResponse as GnssRawIfTupleResponse,
+    type GnssRawIfListResponsesOffsetPage as GnssRawIfListResponsesOffsetPage,
+    type GnssRawIfListParams as GnssRawIfListParams,
+    type GnssRawIfCountParams as GnssRawIfCountParams,
+    type GnssRawIfFileGetParams as GnssRawIfFileGetParams,
+    type GnssRawIfGetParams as GnssRawIfGetParams,
+    type GnssRawIfTupleParams as GnssRawIfTupleParams,
+    type GnssRawIfUploadZipParams as GnssRawIfUploadZipParams,
+  };
 
-  export { IonoObservation as IonoObservation };
+  export {
+    IonoObservations as IonoObservations,
+    type IonoObservationListResponse as IonoObservationListResponse,
+    type IonoObservationCountResponse as IonoObservationCountResponse,
+    type IonoObservationQueryhelpResponse as IonoObservationQueryhelpResponse,
+    type IonoObservationTupleResponse as IonoObservationTupleResponse,
+    type IonoObservationListResponsesOffsetPage as IonoObservationListResponsesOffsetPage,
+    type IonoObservationListParams as IonoObservationListParams,
+    type IonoObservationCountParams as IonoObservationCountParams,
+    type IonoObservationCreateBulkParams as IonoObservationCreateBulkParams,
+    type IonoObservationTupleParams as IonoObservationTupleParams,
+    type IonoObservationUnvalidatedPublishParams as IonoObservationUnvalidatedPublishParams,
+  };
 
-  export { ReportAndActivity as ReportAndActivity };
+  export { ReportAndActivities as ReportAndActivities };
 
   export {
     SecureMessaging as SecureMessaging,
@@ -5593,6 +5580,7 @@ export declare namespace Unifieddatalibrary {
     type ScCopyParams as ScCopyParams,
     type ScDownloadParams as ScDownloadParams,
     type ScFileDownloadParams as ScFileDownloadParams,
+    type ScFileUploadParams as ScFileUploadParams,
     type ScMoveParams as ScMoveParams,
     type ScRenameParams as ScRenameParams,
     type ScSearchParams as ScSearchParams,

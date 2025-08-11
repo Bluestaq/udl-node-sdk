@@ -157,3 +157,65 @@ export class OffsetPage<Item> extends AbstractPage<Item> {
     };
   }
 }
+
+/**
+ * Pagination for Kafka-style endpoints that return the next offset in a response header.
+ *
+ * This page type reads the `KAFKA_NEXT_OFFSET` header from the response to determine
+ * if there are more pages available and what offset to use for the next request.
+ */
+export abstract class KafkaOffsetPage<Item> extends AbstractPage<Item> {
+  /**
+   * Create a page class with a path function for constructing next page URLs.
+   *
+   * @param fn - A function that takes a Kafka offset and returns the path for the next page request
+   * @returns A KafkaOffsetPage class constructor with the path function bound
+   */
+  static withPathFn<PageItem>(
+    fn: (nextOffset: number) => string,
+  ): new (
+    client: Unifieddatalibrary,
+    response: Response,
+    body: OffsetPageResponse<PageItem>,
+    options: FinalRequestOptions,
+  ) => KafkaOffsetPage<PageItem> {
+    return class ClassWithBuilder extends KafkaOffsetPage<PageItem> {
+      override pathFn = fn;
+    };
+  }
+
+  abstract pathFn: (nextOffset: number) => string;
+  items: Array<Item>;
+
+  constructor(
+    client: Unifieddatalibrary,
+    response: Response,
+    body: OffsetPageResponse<Item>,
+    options: FinalRequestOptions,
+  ) {
+    super(client, response, body, options);
+
+    this.items = body || [];
+  }
+
+  getPaginatedItems(): Item[] {
+    return this.items ?? [];
+  }
+
+  nextPageRequestOptions(): PageRequestOptions | null {
+    const nextOffsetStr = this.response.headers.get('KAFKA_NEXT_OFFSET');
+    if (!nextOffsetStr) {
+      return null;
+    }
+
+    const nextOffset = parseInt(nextOffsetStr, 10);
+    if (isNaN(nextOffset)) {
+      return null;
+    }
+
+    return {
+      ...this.options,
+      path: this.pathFn(nextOffset),
+    };
+  }
+}

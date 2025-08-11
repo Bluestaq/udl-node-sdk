@@ -81,6 +81,7 @@ describe('resource v2', () => {
   test('fileUpload: only required params', async () => {
     const responsePromise = client.scs.v2.fileUpload(
       await toFile(Buffer.from('# my file contents'), 'README.md'),
+      { classificationMarking: 'classificationMarking', path: 'path' },
     );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);

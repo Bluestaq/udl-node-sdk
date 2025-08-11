@@ -38,7 +38,7 @@ export const tool: Tool = {
         type: 'string',
         description: 'Source of the data.',
       },
-      aprams: {
+      file_content: {
         type: 'string',
       },
       tags: {
@@ -47,14 +47,14 @@ export const tool: Tool = {
           'Optional array of provider/source specific tags for this data, where each element is no longer than 32 characters, used for implementing data owner conditional access controls to restrict access to the data. Should be left null by data providers unless conditional access controls are coordinated with the UDL team.',
       },
     },
-    required: ['classification', 'dataMode', 'filename', 'source', 'aprams'],
+    required: ['classification', 'dataMode', 'filename', 'source', 'file_content'],
   },
   annotations: {},
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
-  const { aprams, ...body } = args as any;
-  const response = await client.conjunctions.uploadConjunctionDataMessage(aprams).asResponse();
+  const { file_content, ...body } = args as any;
+  const response = await client.conjunctions.uploadConjunctionDataMessage(file_content, body).asResponse();
   return asTextContentResult(await response.text());
 };
 
