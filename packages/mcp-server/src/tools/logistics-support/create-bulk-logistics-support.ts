@@ -129,24 +129,7 @@ export const tool: Tool = {
               type: 'array',
               description: 'Remarks associated with this LogisticsSupport record.',
               items: {
-                type: 'object',
-                description: 'Remarks associated with this LogisticsSupport record.',
-                properties: {
-                  lastChanged: {
-                    type: 'string',
-                    description:
-                      'Date the remark was published or updated, in ISO 8601 UTC format, with millisecond precision.',
-                    format: 'date-time',
-                  },
-                  remark: {
-                    type: 'string',
-                    description: 'Text of the remark.',
-                  },
-                  username: {
-                    type: 'string',
-                    description: 'User who published the remark.',
-                  },
-                },
+                $ref: '#/$defs/logistics_remarks_ingest',
               },
             },
             logisticsSupportItems: {
@@ -267,24 +250,7 @@ export const tool: Tool = {
                     type: 'array',
                     description: 'Remarks associated with this support item.',
                     items: {
-                      type: 'object',
-                      description: 'Remarks associated with this LogisticsSupport record.',
-                      properties: {
-                        lastChanged: {
-                          type: 'string',
-                          description:
-                            'Date the remark was published or updated, in ISO 8601 UTC format, with millisecond precision.',
-                          format: 'date-time',
-                        },
-                        remark: {
-                          type: 'string',
-                          description: 'Text of the remark.',
-                        },
-                        username: {
-                          type: 'string',
-                          description: 'User who published the remark.',
-                        },
-                      },
+                      $ref: '#/$defs/logistics_remarks_ingest',
                     },
                   },
                   logisticsSpecialties: {
@@ -550,24 +516,7 @@ export const tool: Tool = {
                     type: 'array',
                     description: 'Remarks associated with this transportation plan.',
                     items: {
-                      type: 'object',
-                      description: 'Remarks associated with this LogisticsSupport record.',
-                      properties: {
-                        lastChanged: {
-                          type: 'string',
-                          description:
-                            'Date the remark was published or updated, in ISO 8601 UTC format, with millisecond precision.',
-                          format: 'date-time',
-                        },
-                        remark: {
-                          type: 'string',
-                          description: 'Text of the remark.',
-                        },
-                        username: {
-                          type: 'string',
-                          description: 'User who published the remark.',
-                        },
-                      },
+                      $ref: '#/$defs/logistics_remarks_ingest',
                     },
                   },
                   majcom: {
@@ -689,6 +638,28 @@ export const tool: Tool = {
       },
     },
     required: ['body'],
+    $defs: {
+      logistics_remarks_ingest: {
+        type: 'object',
+        description: 'Remarks associated with this LogisticsSupport record.',
+        properties: {
+          lastChanged: {
+            type: 'string',
+            description:
+              'Date the remark was published or updated, in ISO 8601 UTC format, with millisecond precision.',
+            format: 'date-time',
+          },
+          remark: {
+            type: 'string',
+            description: 'Text of the remark.',
+          },
+          username: {
+            type: 'string',
+            description: 'User who published the remark.',
+          },
+        },
+      },
+    },
   },
   annotations: {},
 };

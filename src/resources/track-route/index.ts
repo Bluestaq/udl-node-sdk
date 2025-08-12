@@ -11,6 +11,10 @@ export {
 } from './history';
 export {
   TrackRoute,
+  type AltitudeBlocksIngest,
+  type PointOfContactIngest,
+  type RoutePointsIngest,
+  type TrackRouteIngest,
   type TrackRouteListResponse,
   type TrackRouteCountResponse,
   type TrackRouteQueryhelpResponse,

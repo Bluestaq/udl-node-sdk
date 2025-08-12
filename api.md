@@ -18,9 +18,11 @@ Types:
 - <code><a href="./src/resources/shared.ts">AnalyticImageryFull</a></code>
 - <code><a href="./src/resources/shared.ts">AntennaDetailsFull</a></code>
 - <code><a href="./src/resources/shared.ts">AntennaFull</a></code>
+- <code><a href="./src/resources/shared.ts">AntennaIngest</a></code>
 - <code><a href="./src/resources/shared.ts">AttitudedataFull</a></code>
 - <code><a href="./src/resources/shared.ts">AttitudesetFull</a></code>
 - <code><a href="./src/resources/shared.ts">BatteryFull</a></code>
+- <code><a href="./src/resources/shared.ts">BatteryIngest</a></code>
 - <code><a href="./src/resources/shared.ts">BatterydetailsFull</a></code>
 - <code><a href="./src/resources/shared.ts">BeamFull</a></code>
 - <code><a href="./src/resources/shared.ts">BeamcontourFull</a></code>
@@ -38,6 +40,7 @@ Types:
 - <code><a href="./src/resources/shared.ts">DriftHistoryFull</a></code>
 - <code><a href="./src/resources/shared.ts">Engine</a></code>
 - <code><a href="./src/resources/shared.ts">EngineDetailsFull</a></code>
+- <code><a href="./src/resources/shared.ts">EngineIngest</a></code>
 - <code><a href="./src/resources/shared.ts">EntityFull</a></code>
 - <code><a href="./src/resources/shared.ts">EoObservationFull</a></code>
 - <code><a href="./src/resources/shared.ts">EopFull</a></code>
@@ -72,10 +75,12 @@ Types:
 - <code><a href="./src/resources/shared.ts">SofDataSourceRefFull</a></code>
 - <code><a href="./src/resources/shared.ts">SolarArrayDetailsFull</a></code>
 - <code><a href="./src/resources/shared.ts">SolarArrayFull</a></code>
+- <code><a href="./src/resources/shared.ts">SolarArrayIngest</a></code>
 - <code><a href="./src/resources/shared.ts">SortiePprFull</a></code>
 - <code><a href="./src/resources/shared.ts">StateVectorFull</a></code>
 - <code><a href="./src/resources/shared.ts">StatusFull</a></code>
 - <code><a href="./src/resources/shared.ts">SubStatusFull</a></code>
+- <code><a href="./src/resources/shared.ts">SubStatusIngest</a></code>
 - <code><a href="./src/resources/shared.ts">WaiverFull</a></code>
 
 # AirEvents
@@ -1994,6 +1999,7 @@ Types:
 - <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsPartsFull</a></code>
 - <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsRemarksAbridged</a></code>
 - <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsRemarksFull</a></code>
+- <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsRemarksIngest</a></code>
 - <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsSegmentsFull</a></code>
 - <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsSpecialtiesFull</a></code>
 - <code><a href="./src/resources/logistics-support/logistics-support.ts">LogisticsStocksFull</a></code>
@@ -4053,6 +4059,10 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/track-route/track-route.ts">AltitudeBlocksIngest</a></code>
+- <code><a href="./src/resources/track-route/track-route.ts">PointOfContactIngest</a></code>
+- <code><a href="./src/resources/track-route/track-route.ts">RoutePointsIngest</a></code>
+- <code><a href="./src/resources/track-route/track-route.ts">TrackRouteIngest</a></code>
 - <code><a href="./src/resources/track-route/track-route.ts">TrackRouteListResponse</a></code>
 - <code><a href="./src/resources/track-route/track-route.ts">TrackRouteCountResponse</a></code>
 - <code><a href="./src/resources/track-route/track-route.ts">TrackRouteQueryhelpResponse</a></code>
