@@ -1016,6 +1016,7 @@ export {
   type LogisticsPartsFull,
   type LogisticsRemarksAbridged,
   type LogisticsRemarksFull,
+  type LogisticsRemarksIngest,
   type LogisticsSegmentsFull,
   type LogisticsSpecialtiesFull,
   type LogisticsStocksFull,
@@ -2074,6 +2075,10 @@ export {
 } from './track-details/track-details';
 export {
   TrackRoute,
+  type AltitudeBlocksIngest,
+  type PointOfContactIngest,
+  type RoutePointsIngest,
+  type TrackRouteIngest,
   type TrackRouteListResponse,
   type TrackRouteCountResponse,
   type TrackRouteQueryhelpResponse,
