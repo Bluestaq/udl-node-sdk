@@ -130,6 +130,34 @@ over time, you can manually enable or disable certain capabilities:
 --resource=cards,accounts --operation=read --tag=kyc --no-tool=create_cards
 ```
 
+## Running remotely
+
+Launching the client with `--transport=http` launches the server as a remote server using Streamable HTTP transport. The `--port` setting can choose the port it will run on, and the `--socket` setting allows it to run on a Unix socket.
+
+Authorization can be provided via the `Authorization` header using the Basic or Bearer scheme.
+
+Additionally, authorization can be provided via the following headers:
+| Header | Equivalent client option | Security scheme |
+| --------------------- | ------------------------ | --------------- |
+| `x-udl-auth-username` | `username` | BasicAuth |
+| `x-udl-auth-password` | `password` | BasicAuth |
+| `x-udl-access-token` | `accessToken` | BearerAuth |
+
+A configuration JSON for this server might look like this:
+
+```json
+{
+  "mcpServers": {
+    "unified_data_library_api": {
+      "url": "http://localhost:3000", # or wherever the server is hosted
+      "headers": {
+        "Authorization": "Basic <auth value>"
+      }
+    }
+  }
+}
+```
+
 ## Importing the tools and server individually
 
 ```js
