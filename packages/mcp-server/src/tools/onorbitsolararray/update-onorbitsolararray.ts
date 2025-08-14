@@ -59,6 +59,12 @@ export const tool: Tool = {
         description: 'The number of solar arrays on the spacecraft of the type identified by idSolarArray.',
       },
       solarArray: {
+        $ref: '#/$defs/solar_array_ingest',
+      },
+    },
+    required: ['path_id', 'classificationMarking', 'dataMode', 'idOnOrbit', 'idSolarArray', 'source'],
+    $defs: {
+      solar_array_ingest: {
         type: 'object',
         description:
           "Model representation of information on on-orbit/spacecraft solar arrays. A spacecraft may have multiple solar arrays and each solar array can have multiple 'details' records compiled by different sources.",
@@ -105,7 +111,6 @@ export const tool: Tool = {
         required: ['dataMode', 'name', 'source'],
       },
     },
-    required: ['path_id', 'classificationMarking', 'dataMode', 'idOnOrbit', 'idSolarArray', 'source'],
   },
   annotations: {
     idempotentHint: true,

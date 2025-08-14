@@ -15,6 +15,7 @@ export {
   type LogisticsPartsFull,
   type LogisticsRemarksAbridged,
   type LogisticsRemarksFull,
+  type LogisticsRemarksIngest,
   type LogisticsSegmentsFull,
   type LogisticsSpecialtiesFull,
   type LogisticsStocksFull,

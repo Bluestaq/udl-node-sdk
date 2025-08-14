@@ -368,6 +368,27 @@ export interface LogisticsRemarksFull {
 /**
  * Remarks associated with this LogisticsSupport record.
  */
+export interface LogisticsRemarksIngest {
+  /**
+   * Date the remark was published or updated, in ISO 8601 UTC format, with
+   * millisecond precision.
+   */
+  lastChanged?: string;
+
+  /**
+   * Text of the remark.
+   */
+  remark?: string;
+
+  /**
+   * User who published the remark.
+   */
+  username?: string;
+}
+
+/**
+ * Remarks associated with this LogisticsSupport record.
+ */
 export interface LogisticsSegmentsFull {
   /**
    * Airport ICAO arrival code.
@@ -2036,7 +2057,7 @@ export interface LogisticsSupportCreateParams {
   /**
    * Remarks associated with this LogisticsSupport record.
    */
-  logisticsRemarks?: Array<LogisticsSupportCreateParams.LogisticsRemark>;
+  logisticsRemarks?: Array<LogisticsRemarksIngest>;
 
   /**
    * Support items associated with this LogisticsSupport record.
@@ -2132,27 +2153,6 @@ export namespace LogisticsSupportCreateParams {
   }
 
   /**
-   * Remarks associated with this LogisticsSupport record.
-   */
-  export interface LogisticsRemark {
-    /**
-     * Date the remark was published or updated, in ISO 8601 UTC format, with
-     * millisecond precision.
-     */
-    lastChanged?: string;
-
-    /**
-     * Text of the remark.
-     */
-    remark?: string;
-
-    /**
-     * User who published the remark.
-     */
-    username?: string;
-  }
-
-  /**
    * Support items associated with this LogisticsSupport record.
    */
   export interface LogisticsSupportItem {
@@ -2199,7 +2199,7 @@ export namespace LogisticsSupportCreateParams {
     /**
      * Remarks associated with this support item.
      */
-    logisticsRemarks?: Array<LogisticsSupportItem.LogisticsRemark>;
+    logisticsRemarks?: Array<LogisticsSupportAPI.LogisticsRemarksIngest>;
 
     /**
      * The specialties required to implement this support item.
@@ -2365,27 +2365,6 @@ export namespace LogisticsSupportCreateParams {
     }
 
     /**
-     * Remarks associated with this LogisticsSupport record.
-     */
-    export interface LogisticsRemark {
-      /**
-       * Date the remark was published or updated, in ISO 8601 UTC format, with
-       * millisecond precision.
-       */
-      lastChanged?: string;
-
-      /**
-       * Text of the remark.
-       */
-      remark?: string;
-
-      /**
-       * User who published the remark.
-       */
-      username?: string;
-    }
-
-    /**
      * The specialties required to implement this support item.
      */
     export interface LogisticsSpecialty {
@@ -2515,7 +2494,7 @@ export namespace LogisticsSupportCreateParams {
     /**
      * Remarks associated with this transportation plan.
      */
-    logisticsTransportationPlansRemarks?: Array<LogisticsTransportationPlan.LogisticsTransportationPlansRemark>;
+    logisticsTransportationPlansRemarks?: Array<LogisticsSupportAPI.LogisticsRemarksIngest>;
 
     /**
      * The major command for the current unit.
@@ -2669,27 +2648,6 @@ export namespace LogisticsSupportCreateParams {
        * The identifier that represents a specific aircraft within an aircraft type.
        */
       segTailNumber?: string;
-    }
-
-    /**
-     * Remarks associated with this LogisticsSupport record.
-     */
-    export interface LogisticsTransportationPlansRemark {
-      /**
-       * Date the remark was published or updated, in ISO 8601 UTC format, with
-       * millisecond precision.
-       */
-      lastChanged?: string;
-
-      /**
-       * Text of the remark.
-       */
-      remark?: string;
-
-      /**
-       * User who published the remark.
-       */
-      username?: string;
     }
   }
 }
@@ -2789,7 +2747,7 @@ export interface LogisticsSupportUpdateParams {
   /**
    * Remarks associated with this LogisticsSupport record.
    */
-  logisticsRemarks?: Array<LogisticsSupportUpdateParams.LogisticsRemark>;
+  logisticsRemarks?: Array<LogisticsRemarksIngest>;
 
   /**
    * Support items associated with this LogisticsSupport record.
@@ -2885,27 +2843,6 @@ export namespace LogisticsSupportUpdateParams {
   }
 
   /**
-   * Remarks associated with this LogisticsSupport record.
-   */
-  export interface LogisticsRemark {
-    /**
-     * Date the remark was published or updated, in ISO 8601 UTC format, with
-     * millisecond precision.
-     */
-    lastChanged?: string;
-
-    /**
-     * Text of the remark.
-     */
-    remark?: string;
-
-    /**
-     * User who published the remark.
-     */
-    username?: string;
-  }
-
-  /**
    * Support items associated with this LogisticsSupport record.
    */
   export interface LogisticsSupportItem {
@@ -2952,7 +2889,7 @@ export namespace LogisticsSupportUpdateParams {
     /**
      * Remarks associated with this support item.
      */
-    logisticsRemarks?: Array<LogisticsSupportItem.LogisticsRemark>;
+    logisticsRemarks?: Array<LogisticsSupportAPI.LogisticsRemarksIngest>;
 
     /**
      * The specialties required to implement this support item.
@@ -3118,27 +3055,6 @@ export namespace LogisticsSupportUpdateParams {
     }
 
     /**
-     * Remarks associated with this LogisticsSupport record.
-     */
-    export interface LogisticsRemark {
-      /**
-       * Date the remark was published or updated, in ISO 8601 UTC format, with
-       * millisecond precision.
-       */
-      lastChanged?: string;
-
-      /**
-       * Text of the remark.
-       */
-      remark?: string;
-
-      /**
-       * User who published the remark.
-       */
-      username?: string;
-    }
-
-    /**
      * The specialties required to implement this support item.
      */
     export interface LogisticsSpecialty {
@@ -3268,7 +3184,7 @@ export namespace LogisticsSupportUpdateParams {
     /**
      * Remarks associated with this transportation plan.
      */
-    logisticsTransportationPlansRemarks?: Array<LogisticsTransportationPlan.LogisticsTransportationPlansRemark>;
+    logisticsTransportationPlansRemarks?: Array<LogisticsSupportAPI.LogisticsRemarksIngest>;
 
     /**
      * The major command for the current unit.
@@ -3422,27 +3338,6 @@ export namespace LogisticsSupportUpdateParams {
        * The identifier that represents a specific aircraft within an aircraft type.
        */
       segTailNumber?: string;
-    }
-
-    /**
-     * Remarks associated with this LogisticsSupport record.
-     */
-    export interface LogisticsTransportationPlansRemark {
-      /**
-       * Date the remark was published or updated, in ISO 8601 UTC format, with
-       * millisecond precision.
-       */
-      lastChanged?: string;
-
-      /**
-       * Text of the remark.
-       */
-      remark?: string;
-
-      /**
-       * User who published the remark.
-       */
-      username?: string;
     }
   }
 }
@@ -3560,7 +3455,7 @@ export namespace LogisticsSupportCreateBulkParams {
     /**
      * Remarks associated with this LogisticsSupport record.
      */
-    logisticsRemarks?: Array<Body.LogisticsRemark>;
+    logisticsRemarks?: Array<LogisticsSupportAPI.LogisticsRemarksIngest>;
 
     /**
      * Support items associated with this LogisticsSupport record.
@@ -3656,27 +3551,6 @@ export namespace LogisticsSupportCreateBulkParams {
     }
 
     /**
-     * Remarks associated with this LogisticsSupport record.
-     */
-    export interface LogisticsRemark {
-      /**
-       * Date the remark was published or updated, in ISO 8601 UTC format, with
-       * millisecond precision.
-       */
-      lastChanged?: string;
-
-      /**
-       * Text of the remark.
-       */
-      remark?: string;
-
-      /**
-       * User who published the remark.
-       */
-      username?: string;
-    }
-
-    /**
      * Support items associated with this LogisticsSupport record.
      */
     export interface LogisticsSupportItem {
@@ -3723,7 +3597,7 @@ export namespace LogisticsSupportCreateBulkParams {
       /**
        * Remarks associated with this support item.
        */
-      logisticsRemarks?: Array<LogisticsSupportItem.LogisticsRemark>;
+      logisticsRemarks?: Array<LogisticsSupportAPI.LogisticsRemarksIngest>;
 
       /**
        * The specialties required to implement this support item.
@@ -3889,27 +3763,6 @@ export namespace LogisticsSupportCreateBulkParams {
       }
 
       /**
-       * Remarks associated with this LogisticsSupport record.
-       */
-      export interface LogisticsRemark {
-        /**
-         * Date the remark was published or updated, in ISO 8601 UTC format, with
-         * millisecond precision.
-         */
-        lastChanged?: string;
-
-        /**
-         * Text of the remark.
-         */
-        remark?: string;
-
-        /**
-         * User who published the remark.
-         */
-        username?: string;
-      }
-
-      /**
        * The specialties required to implement this support item.
        */
       export interface LogisticsSpecialty {
@@ -4039,7 +3892,7 @@ export namespace LogisticsSupportCreateBulkParams {
       /**
        * Remarks associated with this transportation plan.
        */
-      logisticsTransportationPlansRemarks?: Array<LogisticsTransportationPlan.LogisticsTransportationPlansRemark>;
+      logisticsTransportationPlansRemarks?: Array<LogisticsSupportAPI.LogisticsRemarksIngest>;
 
       /**
        * The major command for the current unit.
@@ -4193,27 +4046,6 @@ export namespace LogisticsSupportCreateBulkParams {
          * The identifier that represents a specific aircraft within an aircraft type.
          */
         segTailNumber?: string;
-      }
-
-      /**
-       * Remarks associated with this LogisticsSupport record.
-       */
-      export interface LogisticsTransportationPlansRemark {
-        /**
-         * Date the remark was published or updated, in ISO 8601 UTC format, with
-         * millisecond precision.
-         */
-        lastChanged?: string;
-
-        /**
-         * Text of the remark.
-         */
-        remark?: string;
-
-        /**
-         * User who published the remark.
-         */
-        username?: string;
       }
     }
   }
@@ -4344,7 +4176,7 @@ export namespace LogisticsSupportUnvalidatedPublishParams {
     /**
      * Remarks associated with this LogisticsSupport record.
      */
-    logisticsRemarks?: Array<Body.LogisticsRemark>;
+    logisticsRemarks?: Array<LogisticsSupportAPI.LogisticsRemarksIngest>;
 
     /**
      * Support items associated with this LogisticsSupport record.
@@ -4440,27 +4272,6 @@ export namespace LogisticsSupportUnvalidatedPublishParams {
     }
 
     /**
-     * Remarks associated with this LogisticsSupport record.
-     */
-    export interface LogisticsRemark {
-      /**
-       * Date the remark was published or updated, in ISO 8601 UTC format, with
-       * millisecond precision.
-       */
-      lastChanged?: string;
-
-      /**
-       * Text of the remark.
-       */
-      remark?: string;
-
-      /**
-       * User who published the remark.
-       */
-      username?: string;
-    }
-
-    /**
      * Support items associated with this LogisticsSupport record.
      */
     export interface LogisticsSupportItem {
@@ -4507,7 +4318,7 @@ export namespace LogisticsSupportUnvalidatedPublishParams {
       /**
        * Remarks associated with this support item.
        */
-      logisticsRemarks?: Array<LogisticsSupportItem.LogisticsRemark>;
+      logisticsRemarks?: Array<LogisticsSupportAPI.LogisticsRemarksIngest>;
 
       /**
        * The specialties required to implement this support item.
@@ -4673,27 +4484,6 @@ export namespace LogisticsSupportUnvalidatedPublishParams {
       }
 
       /**
-       * Remarks associated with this LogisticsSupport record.
-       */
-      export interface LogisticsRemark {
-        /**
-         * Date the remark was published or updated, in ISO 8601 UTC format, with
-         * millisecond precision.
-         */
-        lastChanged?: string;
-
-        /**
-         * Text of the remark.
-         */
-        remark?: string;
-
-        /**
-         * User who published the remark.
-         */
-        username?: string;
-      }
-
-      /**
        * The specialties required to implement this support item.
        */
       export interface LogisticsSpecialty {
@@ -4823,7 +4613,7 @@ export namespace LogisticsSupportUnvalidatedPublishParams {
       /**
        * Remarks associated with this transportation plan.
        */
-      logisticsTransportationPlansRemarks?: Array<LogisticsTransportationPlan.LogisticsTransportationPlansRemark>;
+      logisticsTransportationPlansRemarks?: Array<LogisticsSupportAPI.LogisticsRemarksIngest>;
 
       /**
        * The major command for the current unit.
@@ -4978,27 +4768,6 @@ export namespace LogisticsSupportUnvalidatedPublishParams {
          */
         segTailNumber?: string;
       }
-
-      /**
-       * Remarks associated with this LogisticsSupport record.
-       */
-      export interface LogisticsTransportationPlansRemark {
-        /**
-         * Date the remark was published or updated, in ISO 8601 UTC format, with
-         * millisecond precision.
-         */
-        lastChanged?: string;
-
-        /**
-         * Text of the remark.
-         */
-        remark?: string;
-
-        /**
-         * User who published the remark.
-         */
-        username?: string;
-      }
     }
   }
 }
@@ -5011,6 +4780,7 @@ export declare namespace LogisticsSupport {
     type LogisticsPartsFull as LogisticsPartsFull,
     type LogisticsRemarksAbridged as LogisticsRemarksAbridged,
     type LogisticsRemarksFull as LogisticsRemarksFull,
+    type LogisticsRemarksIngest as LogisticsRemarksIngest,
     type LogisticsSegmentsFull as LogisticsSegmentsFull,
     type LogisticsSpecialtiesFull as LogisticsSpecialtiesFull,
     type LogisticsStocksFull as LogisticsStocksFull,

@@ -52,22 +52,7 @@ export const tool: Tool = {
         type: 'array',
         description: 'Minimum and maximum altitude bounds for the track.',
         items: {
-          type: 'object',
-          description: 'Minimum and maximum altitude bounds for the track.',
-          properties: {
-            altitudeSequenceId: {
-              type: 'string',
-              description: 'Sequencing field for the altitude block.',
-            },
-            lowerAltitude: {
-              type: 'number',
-              description: 'Lowest altitude of the track route altitude block above mean sea level in feet.',
-            },
-            upperAltitude: {
-              type: 'number',
-              description: 'Highest altitude of the track route altitude block above mean sea level in feet.',
-            },
-          },
+          $ref: '#/$defs/altitude_blocks_ingest',
         },
       },
       apnSetting: {
@@ -120,47 +105,7 @@ export const tool: Tool = {
         type: 'array',
         description: 'Point of contacts for scheduling or modifying the route.',
         items: {
-          type: 'object',
-          description: 'Point of contacts for scheduling or modifying the route.',
-          properties: {
-            office: {
-              type: 'string',
-              description: 'Office name for which the contact belongs.',
-            },
-            phone: {
-              type: 'string',
-              description: 'Phone number of the contact.',
-            },
-            pocName: {
-              type: 'string',
-              description: 'The name of the contact.',
-            },
-            pocOrg: {
-              type: 'string',
-              description: 'Organization name for which the contact belongs.',
-            },
-            pocSequenceId: {
-              type: 'integer',
-              description: 'Sequencing field for point of contact.',
-            },
-            pocTypeName: {
-              type: 'string',
-              description:
-                "A code or name that represents the contact's role in association to the track route (ex. Originator, Scheduler, Maintainer, etc.).",
-            },
-            rank: {
-              type: 'string',
-              description: 'The rank of contact.',
-            },
-            remark: {
-              type: 'string',
-              description: 'Text of the remark.',
-            },
-            username: {
-              type: 'string',
-              description: 'The username of the contact.',
-            },
-          },
+          $ref: '#/$defs/point_of_contact_ingest',
         },
       },
       priFreq: {
@@ -189,71 +134,7 @@ export const tool: Tool = {
         type: 'array',
         description: 'Points identified within the route.',
         items: {
-          type: 'object',
-          description: 'Points identified within the route.',
-          properties: {
-            altCountryCode: {
-              type: 'string',
-              description:
-                'Specifies an alternate country code if the data provider code is not part of an official NAVAID Country Code standard such as ISO-3166 or FIPS. This field will be set to the value provided by the source and should be used for all Queries specifying a Country Code.',
-            },
-            countryCode: {
-              type: 'string',
-              description:
-                'The DoD Standard Country Code designator for the country where the route point resides. This field should be set to "OTHR" if the source value does not match a UDL country code value (ISO-3166-ALPHA-2).',
-            },
-            dafifPt: {
-              type: 'boolean',
-              description:
-                'Flag indicating this is a Digital Aeronautical Flight Information File (DAFIF) point.',
-            },
-            magDec: {
-              type: 'number',
-              description:
-                'The magnetic declination/variation of the route point location from true north, in degrees. Positive values east of true north and negative values west of true north.',
-            },
-            navaid: {
-              type: 'string',
-              description: 'Navigational Aid (NAVAID) identification code.',
-            },
-            navaidLength: {
-              type: 'number',
-              description: 'The length of the course from the Navigational Aid (NAVAID) in nautical miles.',
-            },
-            navaidType: {
-              type: 'string',
-              description: 'The NAVAID type of this route point (ex. VOR, VORTAC, TACAN, etc.).',
-            },
-            ptLat: {
-              type: 'number',
-              description:
-                'WGS84 latitude of the point location, in degrees. -90 to 90 degrees (negative values south of equator).',
-            },
-            ptLon: {
-              type: 'number',
-              description:
-                'WGS84 longitude of the point location, in degrees. -180 to 180 degrees (negative values west of Prime Meridian).',
-            },
-            ptSequenceId: {
-              type: 'integer',
-              description:
-                'Sequencing field for the track route. This is the identifier representing the sequence of waypoints associated to the track route.',
-            },
-            ptTypeCode: {
-              type: 'string',
-              description:
-                'Code representation of the point within the track route (ex. EP, EX, CP, IP, etc.).',
-            },
-            ptTypeName: {
-              type: 'string',
-              description:
-                'The name that represents the point within the track route (ex. ENTRY POINT, EXIT POINT, CONTROL POINT, INITIAL POINT, etc.).',
-            },
-            waypointName: {
-              type: 'string',
-              description: 'Name of a waypoint which identifies the location of the point.',
-            },
-          },
+          $ref: '#/$defs/route_points_ingest',
         },
       },
       schedulerOrgName: {
@@ -291,6 +172,136 @@ export const tool: Tool = {
       },
     },
     required: ['classificationMarking', 'dataMode', 'lastUpdateDate', 'source', 'type'],
+    $defs: {
+      altitude_blocks_ingest: {
+        type: 'object',
+        description: 'Minimum and maximum altitude bounds for the track.',
+        properties: {
+          altitudeSequenceId: {
+            type: 'string',
+            description: 'Sequencing field for the altitude block.',
+          },
+          lowerAltitude: {
+            type: 'number',
+            description: 'Lowest altitude of the track route altitude block above mean sea level in feet.',
+          },
+          upperAltitude: {
+            type: 'number',
+            description: 'Highest altitude of the track route altitude block above mean sea level in feet.',
+          },
+        },
+      },
+      point_of_contact_ingest: {
+        type: 'object',
+        description: 'Point of contacts for scheduling or modifying the route.',
+        properties: {
+          office: {
+            type: 'string',
+            description: 'Office name for which the contact belongs.',
+          },
+          phone: {
+            type: 'string',
+            description: 'Phone number of the contact.',
+          },
+          pocName: {
+            type: 'string',
+            description: 'The name of the contact.',
+          },
+          pocOrg: {
+            type: 'string',
+            description: 'Organization name for which the contact belongs.',
+          },
+          pocSequenceId: {
+            type: 'integer',
+            description: 'Sequencing field for point of contact.',
+          },
+          pocTypeName: {
+            type: 'string',
+            description:
+              "A code or name that represents the contact's role in association to the track route (ex. Originator, Scheduler, Maintainer, etc.).",
+          },
+          rank: {
+            type: 'string',
+            description: 'The rank of contact.',
+          },
+          remark: {
+            type: 'string',
+            description: 'Text of the remark.',
+          },
+          username: {
+            type: 'string',
+            description: 'The username of the contact.',
+          },
+        },
+      },
+      route_points_ingest: {
+        type: 'object',
+        description: 'Points identified within the route.',
+        properties: {
+          altCountryCode: {
+            type: 'string',
+            description:
+              'Specifies an alternate country code if the data provider code is not part of an official NAVAID Country Code standard such as ISO-3166 or FIPS. This field will be set to the value provided by the source and should be used for all Queries specifying a Country Code.',
+          },
+          countryCode: {
+            type: 'string',
+            description:
+              'The DoD Standard Country Code designator for the country where the route point resides. This field should be set to "OTHR" if the source value does not match a UDL country code value (ISO-3166-ALPHA-2).',
+          },
+          dafifPt: {
+            type: 'boolean',
+            description:
+              'Flag indicating this is a Digital Aeronautical Flight Information File (DAFIF) point.',
+          },
+          magDec: {
+            type: 'number',
+            description:
+              'The magnetic declination/variation of the route point location from true north, in degrees. Positive values east of true north and negative values west of true north.',
+          },
+          navaid: {
+            type: 'string',
+            description: 'Navigational Aid (NAVAID) identification code.',
+          },
+          navaidLength: {
+            type: 'number',
+            description: 'The length of the course from the Navigational Aid (NAVAID) in nautical miles.',
+          },
+          navaidType: {
+            type: 'string',
+            description: 'The NAVAID type of this route point (ex. VOR, VORTAC, TACAN, etc.).',
+          },
+          ptLat: {
+            type: 'number',
+            description:
+              'WGS84 latitude of the point location, in degrees. -90 to 90 degrees (negative values south of equator).',
+          },
+          ptLon: {
+            type: 'number',
+            description:
+              'WGS84 longitude of the point location, in degrees. -180 to 180 degrees (negative values west of Prime Meridian).',
+          },
+          ptSequenceId: {
+            type: 'integer',
+            description:
+              'Sequencing field for the track route. This is the identifier representing the sequence of waypoints associated to the track route.',
+          },
+          ptTypeCode: {
+            type: 'string',
+            description:
+              'Code representation of the point within the track route (ex. EP, EX, CP, IP, etc.).',
+          },
+          ptTypeName: {
+            type: 'string',
+            description:
+              'The name that represents the point within the track route (ex. ENTRY POINT, EXIT POINT, CONTROL POINT, INITIAL POINT, etc.).',
+          },
+          waypointName: {
+            type: 'string',
+            description: 'Name of a waypoint which identifies the location of the point.',
+          },
+        },
+      },
+    },
   },
   annotations: {},
 };

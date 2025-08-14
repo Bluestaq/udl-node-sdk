@@ -1641,6 +1641,7 @@ import {
   LogisticsPartsFull,
   LogisticsRemarksAbridged,
   LogisticsRemarksFull,
+  LogisticsRemarksIngest,
   LogisticsSegmentsFull,
   LogisticsSpecialtiesFull,
   LogisticsStocksFull,
@@ -2106,12 +2107,16 @@ import {
   TrackDetails,
 } from './resources/track-details/track-details';
 import {
+  AltitudeBlocksIngest,
+  PointOfContactIngest,
+  RoutePointsIngest,
   TrackRoute,
   TrackRouteCountParams,
   TrackRouteCountResponse,
   TrackRouteCreateBulkParams,
   TrackRouteCreateParams,
   TrackRouteGetParams,
+  TrackRouteIngest,
   TrackRouteListParams,
   TrackRouteListResponse,
   TrackRouteListResponsesOffsetPage,
@@ -4340,6 +4345,7 @@ export declare namespace Unifieddatalibrary {
     type LogisticsPartsFull as LogisticsPartsFull,
     type LogisticsRemarksAbridged as LogisticsRemarksAbridged,
     type LogisticsRemarksFull as LogisticsRemarksFull,
+    type LogisticsRemarksIngest as LogisticsRemarksIngest,
     type LogisticsSegmentsFull as LogisticsSegmentsFull,
     type LogisticsSpecialtiesFull as LogisticsSpecialtiesFull,
     type LogisticsStocksFull as LogisticsStocksFull,
@@ -5425,6 +5431,10 @@ export declare namespace Unifieddatalibrary {
 
   export {
     TrackRoute as TrackRoute,
+    type AltitudeBlocksIngest as AltitudeBlocksIngest,
+    type PointOfContactIngest as PointOfContactIngest,
+    type RoutePointsIngest as RoutePointsIngest,
+    type TrackRouteIngest as TrackRouteIngest,
     type TrackRouteListResponse as TrackRouteListResponse,
     type TrackRouteCountResponse as TrackRouteCountResponse,
     type TrackRouteQueryhelpResponse as TrackRouteQueryhelpResponse,
@@ -5605,9 +5615,11 @@ export declare namespace Unifieddatalibrary {
   export type AnalyticImageryFull = API.AnalyticImageryFull;
   export type AntennaDetailsFull = API.AntennaDetailsFull;
   export type AntennaFull = API.AntennaFull;
+  export type AntennaIngest = API.AntennaIngest;
   export type AttitudedataFull = API.AttitudedataFull;
   export type AttitudesetFull = API.AttitudesetFull;
   export type BatteryFull = API.BatteryFull;
+  export type BatteryIngest = API.BatteryIngest;
   export type BatterydetailsFull = API.BatterydetailsFull;
   export type BeamFull = API.BeamFull;
   export type BeamcontourFull = API.BeamcontourFull;
@@ -5625,6 +5637,7 @@ export declare namespace Unifieddatalibrary {
   export type DriftHistoryFull = API.DriftHistoryFull;
   export type Engine = API.Engine;
   export type EngineDetailsFull = API.EngineDetailsFull;
+  export type EngineIngest = API.EngineIngest;
   export type EntityFull = API.EntityFull;
   export type EoObservationFull = API.EoObservationFull;
   export type EopFull = API.EopFull;
@@ -5659,9 +5672,11 @@ export declare namespace Unifieddatalibrary {
   export type SofDataSourceRefFull = API.SofDataSourceRefFull;
   export type SolarArrayDetailsFull = API.SolarArrayDetailsFull;
   export type SolarArrayFull = API.SolarArrayFull;
+  export type SolarArrayIngest = API.SolarArrayIngest;
   export type SortiePprFull = API.SortiePprFull;
   export type StateVectorFull = API.StateVectorFull;
   export type StatusFull = API.StatusFull;
   export type SubStatusFull = API.SubStatusFull;
+  export type SubStatusIngest = API.SubStatusIngest;
   export type WaiverFull = API.WaiverFull;
 }
