@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2025-08-15)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Bug Fixes
+
+* **mcp:** generate additionalProperties=true for map schemas to avoid validation issues ([8d9413c](https://github.com/Bluestaq/udl-node-sdk/commit/8d9413c68935e7d921606ff3c88f383266bdd675))
+
+
+### Chores
+
+* **deps:** update dependency @types/node to v20.17.58 ([e59a638](https://github.com/Bluestaq/udl-node-sdk/commit/e59a638c84504e87330066e98525fa33116786f1))
+* **internal:** formatting change ([a7b1720](https://github.com/Bluestaq/udl-node-sdk/commit/a7b17207081d5da466d24b8eaac244896e51ebf3))
+* **mcp:** document remote server in README.md ([20c0899](https://github.com/Bluestaq/udl-node-sdk/commit/20c089970ecfb2ee64a55059d6a8831597d9ef33))
+* **mcp:** update README ([c54be92](https://github.com/Bluestaq/udl-node-sdk/commit/c54be9239ce641da2d55c6c2181e25aceb5090de))
+
 ## 0.1.0-alpha.11 (2025-08-14)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
