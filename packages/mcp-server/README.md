@@ -143,13 +143,13 @@ Additionally, authorization can be provided via the following headers:
 | `x-udl-auth-password` | `password` | BasicAuth |
 | `x-udl-access-token` | `accessToken` | BearerAuth |
 
-A configuration JSON for this server might look like this:
+A configuration JSON for this server might look like this, assuming the server is hosted at `http://localhost:3000`:
 
 ```json
 {
   "mcpServers": {
     "unified_data_library_api": {
-      "url": "http://localhost:3000", # or wherever the server is hosted
+      "url": "http://localhost:3000",
       "headers": {
         "Authorization": "Basic <auth value>"
       }
