@@ -38,12 +38,15 @@ export const tool: Tool = {
       },
       metaDataCriteria: {
         type: 'object',
+        additionalProperties: true,
       },
       nonRangeCriteria: {
         type: 'object',
+        additionalProperties: true,
       },
       rangeCriteria: {
         type: 'object',
+        additionalProperties: true,
       },
       searchAfter: {
         type: 'string',

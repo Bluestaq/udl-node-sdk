@@ -3102,6 +3102,7 @@ export class Unifieddatalibrary {
   scs: API.Scs = new API.Scs(this);
   scsViews: API.ScsViews = new API.ScsViews(this);
 }
+
 Unifieddatalibrary.AirEvents = AirEvents;
 Unifieddatalibrary.AirOperations = AirOperations;
 Unifieddatalibrary.AirTransportMissions = AirTransportMissions;
@@ -3262,6 +3263,7 @@ Unifieddatalibrary.ReportAndActivities = ReportAndActivities;
 Unifieddatalibrary.SecureMessaging = SecureMessaging;
 Unifieddatalibrary.Scs = Scs;
 Unifieddatalibrary.ScsViews = ScsViews;
+
 export declare namespace Unifieddatalibrary {
   export type RequestOptions = Opts.RequestOptions;
 
