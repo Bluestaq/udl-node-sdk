@@ -23,15 +23,15 @@ export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> =
   }
 
   const username =
-    req.headers['x-udl-auth-username'] instanceof Array ?
+    Array.isArray(req.headers['x-udl-auth-username']) ?
       req.headers['x-udl-auth-username'][0]
     : req.headers['x-udl-auth-username'];
   const password =
-    req.headers['x-udl-auth-password'] instanceof Array ?
+    Array.isArray(req.headers['x-udl-auth-password']) ?
       req.headers['x-udl-auth-password'][0]
     : req.headers['x-udl-auth-password'];
   const accessToken =
-    req.headers['x-udl-access-token'] instanceof Array ?
+    Array.isArray(req.headers['x-udl-access-token']) ?
       req.headers['x-udl-access-token'][0]
     : req.headers['x-udl-access-token'];
   return { username, password, accessToken };
