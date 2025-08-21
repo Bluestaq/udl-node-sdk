@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2025-08-21)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Features
+
+* **mcp:** add code execution tool ([dfe67a6](https://github.com/Bluestaq/udl-node-sdk/commit/dfe67a63a33d5511dbecaa49077f327b1a4b0bcc))
+* **mcp:** add option to infer mcp client ([de02327](https://github.com/Bluestaq/udl-node-sdk/commit/de02327ddac7e30d4906ecc683dd584615d928fb))
+* **mcp:** parse query string as mcp client options in mcp server ([39bad3f](https://github.com/Bluestaq/udl-node-sdk/commit/39bad3f29b2316bfa734b9ca85aad536aeb819e8))
+
+
+### Bug Fixes
+
+* **mcp:** generate additionalProperties=true for map schemas to avoid validation issues ([8d9413c](https://github.com/Bluestaq/udl-node-sdk/commit/8d9413c68935e7d921606ff3c88f383266bdd675))
+
+
+### Chores
+
+* **deps:** update dependency @types/node to v20.17.58 ([e59a638](https://github.com/Bluestaq/udl-node-sdk/commit/e59a638c84504e87330066e98525fa33116786f1))
+* **internal:** formatting change ([a7b1720](https://github.com/Bluestaq/udl-node-sdk/commit/a7b17207081d5da466d24b8eaac244896e51ebf3))
+* **internal:** make mcp-server publishing public by defaut ([53000de](https://github.com/Bluestaq/udl-node-sdk/commit/53000dee1d815203d64ed2ace505db5fe0e1cde8))
+* **internal:** refactor array check ([70b5801](https://github.com/Bluestaq/udl-node-sdk/commit/70b5801a807fdc4d8890176a38c16e3c499b7dbd))
+* **mcp:** add cors to oauth metadata route ([f5ce814](https://github.com/Bluestaq/udl-node-sdk/commit/f5ce8145f1de040f4ccbe6999d84b339611740c2))
+* **mcp:** document remote server in README.md ([20c0899](https://github.com/Bluestaq/udl-node-sdk/commit/20c089970ecfb2ee64a55059d6a8831597d9ef33))
+* **mcp:** update package.json ([b0d151a](https://github.com/Bluestaq/udl-node-sdk/commit/b0d151a8a0911a41edc20f17b6f3b6564412e2b1))
+* **mcp:** update README ([c54be92](https://github.com/Bluestaq/udl-node-sdk/commit/c54be9239ce641da2d55c6c2181e25aceb5090de))
+* **mcp:** update types ([d56adcb](https://github.com/Bluestaq/udl-node-sdk/commit/d56adcbae2239e143e7ae9c71cda048ec1b97f69))
+
 ## 0.1.0-alpha.11 (2025-08-14)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
