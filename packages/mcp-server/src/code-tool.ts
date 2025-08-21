@@ -1,10 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type ClientOptions } from 'unified-data-library/client';
-
 import { dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import Unifieddatalibrary from 'unified-data-library';
+import Unifieddatalibrary, { ClientOptions } from 'unified-data-library';
 import { Endpoint, ContentBlock, Metadata } from './tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
