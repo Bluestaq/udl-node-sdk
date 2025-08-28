@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.0-alpha.13 (2025-08-28)
+
+Full Changelog: [v0.1.0-alpha.12...v0.1.0-alpha.13](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.12...v0.1.0-alpha.13)
+
+### Features
+
+* **mcp:** change remote server query option parsing logic ([1db2551](https://github.com/Bluestaq/udl-node-sdk/commit/1db25510288f9bb7ac3484a21d650a5cbf348a89))
+
+
+### Chores
+
+* add package to package.json ([3510c25](https://github.com/Bluestaq/udl-node-sdk/commit/3510c25110c2c2818c95e3658027f65a2142f43b))
+* **client:** qualify global Blob ([bd71a90](https://github.com/Bluestaq/udl-node-sdk/commit/bd71a90962dc809a66658e7ea373353676a44901))
+* **internal:** codegen related update ([5d81d62](https://github.com/Bluestaq/udl-node-sdk/commit/5d81d62ee25d7b04e7e18c965c88f773019eb20b))
+* **internal:** update global Error reference ([4beaeb3](https://github.com/Bluestaq/udl-node-sdk/commit/4beaeb397ff761dfba222232f327b05308d90ae2))
+* update CI script ([c1d48ea](https://github.com/Bluestaq/udl-node-sdk/commit/c1d48ea0aa39c7908feb0ed3d5bf1f71614476e5))
+
 ## 0.1.0-alpha.12 (2025-08-21)
 
 Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
