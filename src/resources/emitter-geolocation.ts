@@ -284,12 +284,6 @@ export interface EmitterGeolocationRetrieveResponse {
   andims?: number;
 
   /**
-   * Optional geographical region or polygon (lat/lon pairs) of the area surrounding
-   * the Point of Interest as projected on the ground.
-   */
-  area?: string;
-
-  /**
    * Geographical spatial_ref_sys for region.
    */
   asrid?: number;
@@ -892,12 +886,6 @@ export namespace EmitterGeolocationTupleResponse {
      * Number of dimensions of the geometry depicted by region.
      */
     andims?: number;
-
-    /**
-     * Optional geographical region or polygon (lat/lon pairs) of the area surrounding
-     * the Point of Interest as projected on the ground.
-     */
-    area?: string;
 
     /**
      * Geographical spatial_ref_sys for region.

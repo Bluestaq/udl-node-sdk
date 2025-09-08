@@ -239,7 +239,7 @@ export interface ScsEntity {
    */
   description?: string;
 
-  fileName?: string;
+  filename?: string;
 
   filePath?: string;
 
@@ -327,6 +327,27 @@ export interface V2ListParams extends OffsetPageParams {
    * The base path to list
    */
   path: string;
+
+  /**
+   * The order in which entries should be sorted
+   */
+  order?: string;
+
+  /**
+   * The starting point for pagination results, usually set to the value of the
+   * SEARCH_AFTER header returned in the previous request.
+   */
+  searchAfter?: string;
+
+  /**
+   * The number of results to retrieve.
+   */
+  size?: number;
+
+  /**
+   * The field on which to sort entries
+   */
+  sort?: string;
 }
 
 export interface V2DeleteParams {

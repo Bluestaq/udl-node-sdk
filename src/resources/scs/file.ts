@@ -13,12 +13,7 @@ export class File extends APIResource {
    * Returns a FileData object representing the file with the given ID that is
    * visible to the calling user.
    *
-   * @example
-   * ```ts
-   * const fileData = await client.scs.file.retrieve({
-   *   id: 'id',
-   * });
-   * ```
+   * @deprecated
    */
   retrieve(query: FileRetrieveParams, options?: RequestOptions): APIPromise<Shared.FileData> {
     return this._client.get('/scs/file', { query, ...options });
@@ -28,22 +23,7 @@ export class File extends APIResource {
    * operation to update files metadata. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    *
-   * @example
-   * ```ts
-   * await client.scs.file.update({
-   *   fileDataList: [
-   *     {
-   *       id: '/example/folder/example_file.txt',
-   *       attributes: {
-   *         classification: 'U',
-   *         description: 'A new Example description',
-   *         tags: null,
-   *         metaInfo: 'A new Example metaInfo',
-   *       },
-   *     },
-   *   ],
-   * });
-   * ```
+   * @deprecated
    */
   update(body: FileUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.patch('/scs/file', {
@@ -58,15 +38,7 @@ export class File extends APIResource {
    * subdirectories in the passed-in path directory that are visible to the calling
    * user.
    *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const fileData of client.scs.file.list({
-   *   path: 'path',
-   * })) {
-   *   // ...
-   * }
-   * ```
+   * @deprecated
    */
   list(query: FileListParams, options?: RequestOptions): PagePromise<FileDataOffsetPage, Shared.FileData> {
     return this._client.getAPIList('/scs/list', OffsetPage<Shared.FileData>, { query, ...options });

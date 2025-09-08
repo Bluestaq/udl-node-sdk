@@ -595,13 +595,6 @@ export interface NavigationalObstructionListResponse {
   quality?: string;
 
   /**
-   * Optional URI location in the document repository of the raw file parsed by the
-   * system to produce this record. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this value.
-   */
-  rawFileURI?: string;
-
-  /**
    * Date this obstacle data was revised, in ISO 8601 date-only format (ex.
    * YYYY-MM-DD).
    */
@@ -1067,13 +1060,6 @@ export interface NavigationalObstructionGetResponse {
    * inadequate source material, this code indicates the quality of the data.
    */
   quality?: string;
-
-  /**
-   * Optional URI location in the document repository of the raw file parsed by the
-   * system to produce this record. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this value.
-   */
-  rawFileURI?: string;
 
   /**
    * Date this obstacle data was revised, in ISO 8601 date-only format (ex.
@@ -1578,13 +1564,6 @@ export namespace NavigationalObstructionTupleResponse {
      * inadequate source material, this code indicates the quality of the data.
      */
     quality?: string;
-
-    /**
-     * Optional URI location in the document repository of the raw file parsed by the
-     * system to produce this record. To download the raw file, prepend
-     * https://udl-hostname/scs/download?id= to this value.
-     */
-    rawFileURI?: string;
 
     /**
      * Date this obstacle data was revised, in ISO 8601 date-only format (ex.

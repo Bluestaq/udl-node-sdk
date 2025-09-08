@@ -570,7 +570,7 @@ export const tool: Tool = {
             rangeAccels: {
               type: 'array',
               description:
-                "Array of the range acceleratons of target in kilometers per second squared. The 'tovs' and 'rangeAccels' arrays must match in size, if 'rangeAccels' is provided. If there is an associated image the range acceleration is assumed to be at image center.",
+                "Array of the range accelerations of target in kilometers per second squared. The 'tovs' and 'rangeAccels' arrays must match in size, if 'rangeAccels' is provided. If there is an associated image the range acceleration is assumed to be at image center.",
               items: {
                 type: 'number',
               },

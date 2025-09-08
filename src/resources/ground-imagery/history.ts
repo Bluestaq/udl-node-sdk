@@ -168,15 +168,6 @@ export namespace HistoryQueryResponse {
     origSensorId?: string;
 
     /**
-     * Geographical region or polygon (lon/lat pairs) of the image as projected on the
-     * ground in geoJSON or geoText format. This is an optional convenience field only
-     * used for create operations. The system will auto-detect the format (Well Known
-     * Text or GeoJSON) and populate both regionText and regionGeoJSON fields
-     * appropriately. When omitted, regionText or regionGeoJSON is expected.
-     */
-    region?: string;
-
-    /**
      * Geographical region or polygon (lat/lon pairs), as depicted by the GeoJSON
      * representation of the geometry/geography, of the image as projected on the
      * ground. Reference: https://geojson.org/. Ignored if included with a create

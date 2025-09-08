@@ -133,13 +133,6 @@ export interface AirTaskingOrderFull {
   origNetwork?: string;
 
   /**
-   * Optional URI location in the document repository of the raw file parsed by the
-   * system to produce this record. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this value.
-   */
-  rawFileURI?: string;
-
-  /**
    * The source data library from which this record was received. This could be a
    * remote or tactical UDL or another data library. If null, the record should be
    * assumed to have originated from the primary Enterprise UDL.
@@ -3974,13 +3967,6 @@ export interface AirspacecontrolorderFull {
   qualSN?: number;
 
   /**
-   * Optional URI location in the document repository of the raw file parsed by the
-   * system to produce this record. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this value.
-   */
-  rawFileURI?: string;
-
-  /**
    * The unique message identifier sequentially assigned by the originator.
    */
   serialNum?: string;
@@ -4774,12 +4760,6 @@ export interface AnalyticImageryFull {
   annText?: Array<string>;
 
   /**
-   * Optional geographical region or polygon (lat/lon pairs) of the area surrounding
-   * the point of interest as projected on the ground.
-   */
-  area?: string;
-
-  /**
    * Geographical spatial_ref_sys for region.
    */
   asrid?: number;
@@ -5049,12 +5029,6 @@ export namespace AnalyticImageryFull {
      * should contain one annotation per four values of the area (annLims) array.
      */
     annText?: Array<string>;
-
-    /**
-     * Optional geographical region or polygon (lat/lon pairs) of the area surrounding
-     * the feature assessment as projected on the ground.
-     */
-    area?: string;
 
     /**
      * Geographical spatial_ref_sys for region.
@@ -6453,19 +6427,6 @@ export interface BeamcontourFull {
    * BORESIGHT or CONTOUR.
    */
   gain?: number;
-
-  /**
-   * GeoJSON or Well Known Text expression of the boresight point, service area point
-   * or region, or the gain contour region in geographic longitude, latitude pairs.
-   * Boresight and service area point(s) are represented as a 'Point' or
-   * 'MultiPoint', service areas and closed gain contours as 'Polygon', and open
-   * contours as 'LineString'. This is an optional convenience field only used for
-   * create operations. The system will auto-detect the format (Well Known Text or
-   * GeoJSON) and populate both geographyText and geographyJson fields appropriately.
-   * A create request must contain one of the geography, geographyText, or
-   * geographyJson.
-   */
-  geography?: string;
 
   /**
    * Geographical region or polygon (lat/lon pairs), as depicted by the GeoJSON
@@ -15463,12 +15424,6 @@ export interface EventEvolutionFull {
   andims?: number;
 
   /**
-   * Optional geographical region or polygon (lat/lon pairs) of the area surrounding
-   * the point of interest as projected on the ground.
-   */
-  area?: string;
-
-  /**
    * Geographical spatial_ref_sys for region.
    */
   asrid?: number;
@@ -15614,21 +15569,31 @@ export interface EventEvolutionFull {
   url?: Array<string>;
 }
 
+/**
+ * @deprecated
+ */
 export interface FileData {
   id?: string;
 
+  /**
+   * @deprecated
+   */
   attributes?: FileData.Attributes;
-
-  contentAction?: 'UPDATE' | 'COPY' | 'MOVE';
 
   targetName?: string;
 
   targetPath?: string;
 
+  /**
+   * @deprecated
+   */
   type?: 'file' | 'folder' | 'summary';
 }
 
 export namespace FileData {
+  /**
+   * @deprecated
+   */
   export interface Attributes {
     id?: string;
 
@@ -19728,9 +19693,18 @@ export interface RfBandFull {
   band?: string;
 
   /**
-   * RF Band frequency range bandwidth in Mhz.
+   * RF Band frequency range bandwidth in megahertz.
    */
   bandwidth?: number;
+
+  /**
+   * Array of frequency range bandwidth settings, in megahertz for this RFBand. If
+   * this array is specified then it must be the same size as the frequencySettings
+   * array. A null value may be used for one or more of the frequencies in the
+   * frequencySettings array if there is no corresponding value for a given
+   * frequency.
+   */
+  bandwidthSettings?: Array<number>;
 
   /**
    * Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
@@ -19739,7 +19713,15 @@ export interface RfBandFull {
   beamwidth?: number;
 
   /**
-   * Center frequency of RF frequency range, if applicable, in Mhz.
+   * Array of beamwidth settings, in degrees for this RFBand. If this array is
+   * specified then it must be the same size as the frequencySettings array. A null
+   * value may be used for one or more of the frequencies in the frequencySettings
+   * array if there is no corresponding value for a given frequency.
+   */
+  beamwidthSettings?: Array<number>;
+
+  /**
+   * Center frequency of RF frequency range, if applicable, in megahertz.
    */
   centerFreq?: number;
 
@@ -19755,7 +19737,15 @@ export interface RfBandFull {
   createdBy?: string;
 
   /**
-   * RF Range edge gain, in dBi.
+   * Array of delay settings, in seconds for this RFBand. If this array is specified
+   * then it must be the same size as the frequencySettings array. A null value may
+   * be used for one or more of the frequencies in the frequencySettings array if
+   * there is no corresponding value for a given frequency.
+   */
+  delaySettings?: Array<number>;
+
+  /**
+   * RF Range edge gain, in decibel relative to isotrope.
    */
   edgeGain?: number;
 
@@ -19767,7 +19757,7 @@ export interface RfBandFull {
    * dipole. Effective radiated power and effective isotropic radiated power both
    * measure the amount of power a radio transmitter and antenna (or other source of
    * electromagnetic waves) radiates in a specific direction: in the direction of
-   * maximum signal strength (the "main lobe") of its radiation pattern.
+   * maximum signal strength (the main lobe) of its radiation pattern.
    */
   eirp?: number;
 
@@ -19779,24 +19769,46 @@ export interface RfBandFull {
    * Effective radiated power and effective isotropic radiated power both measure the
    * amount of power a radio transmitter and antenna (or other source of
    * electromagnetic waves) radiates in a specific direction: in the direction of
-   * maximum signal strength (the "main lobe") of its radiation pattern.
+   * maximum signal strength (the main lobe) of its radiation pattern.
    */
   erp?: number;
 
   /**
-   * End/maximum of transmit RF frequency range, if applicable, in Mhz.
+   * End/maximum of transmit RF frequency range, if applicable, in megahertz.
    */
   freqMax?: number;
 
   /**
-   * Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+   * Start/minimum of transmit RF frequency range, if applicable, in megahertz.
    */
   freqMin?: number;
+
+  /**
+   * Array of frequency settings, in megahertz for this RFBand. This array and the
+   * settings arrays must match in size.
+   */
+  frequencySettings?: Array<number>;
+
+  /**
+   * Array of gain settings, in decibels for this RFBand. If this array is specified
+   * then it must be the same size as the frequencySettings array. A null value may
+   * be used for one or more of the frequencies in the frequencySettings array if
+   * there is no corresponding value for a given frequency.
+   */
+  gainSettings?: Array<number>;
 
   /**
    * RF Band mode (e.g. TX, RX).
    */
   mode?: 'TX' | 'RX';
+
+  /**
+   * Array of signal noise settings, in decibels for this RFBand. If this array is
+   * specified then it must be the same size as the frequencySettings array. A null
+   * value may be used for one or more of the frequencies in the frequencySettings
+   * array if there is no corresponding value for a given frequency.
+   */
+  noiseSettings?: Array<number>;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -19813,7 +19825,7 @@ export interface RfBandFull {
   origNetwork?: string;
 
   /**
-   * RF Range maximum gain, in dBi.
+   * RF Range maximum gain, in decibel relative to isotrope.
    */
   peakGain?: number;
 
@@ -19828,7 +19840,7 @@ export interface RfBandFull {
 
   /**
    * Purpose or use of the RF Band -- COMM = communications, TTC =
-   * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+   * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.
    */
   purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
 

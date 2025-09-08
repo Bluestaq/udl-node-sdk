@@ -127,10 +127,6 @@ export const tool: Tool = {
           },
         },
       },
-      contentAction: {
-        type: 'string',
-        enum: ['UPDATE', 'COPY', 'MOVE'],
-      },
       targetName: {
         type: 'string',
       },

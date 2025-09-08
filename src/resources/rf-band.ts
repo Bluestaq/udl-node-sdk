@@ -10,9 +10,9 @@ import { path } from '../internal/utils/path';
 
 export class RfBand extends APIResource {
   /**
-   * Service operation to take a single RFBand as a POST body and ingest into the
-   * database. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
+   * Service operation to take a single RFBand record as a POST body and ingest into
+   * the database. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
    *
    * @example
    * ```ts
@@ -34,8 +34,8 @@ export class RfBand extends APIResource {
   }
 
   /**
-   * Service operation to update an RFBand. A specific role is required to perform
-   * this service operation. Please contact the UDL team for assistance.
+   * Service operation to update a single RFBand record. A specific role is required
+   * to perform this service operation. Please contact the UDL team for assistance.
    *
    * @example
    * ```ts
@@ -78,9 +78,9 @@ export class RfBand extends APIResource {
   }
 
   /**
-   * Service operation to delete an RFBand specified by the passed ID path parameter.
-   * A specific role is required to perform this service operation. Please contact
-   * the UDL team for assistance.
+   * Service operation to delete a RFBand record specified by the passed ID path
+   * parameter. A specific role is required to perform this service operation. Please
+   * contact the UDL team for assistance.
    *
    * @example
    * ```ts
@@ -115,8 +115,8 @@ export class RfBand extends APIResource {
   }
 
   /**
-   * Service operation to get a single RFBand by its unique ID passed as a path
-   * parameter.
+   * Service operation to get a single RFBand record by its unique ID passed as a
+   * path parameter.
    *
    * @example
    * ```ts
@@ -224,9 +224,18 @@ export interface RfBandListResponse {
   band?: string;
 
   /**
-   * RF Band frequency range bandwidth in Mhz.
+   * RF Band frequency range bandwidth in megahertz.
    */
   bandwidth?: number;
+
+  /**
+   * Array of frequency range bandwidth settings, in megahertz for this RFBand. If
+   * this array is specified then it must be the same size as the frequencySettings
+   * array. A null value may be used for one or more of the frequencies in the
+   * frequencySettings array if there is no corresponding value for a given
+   * frequency.
+   */
+  bandwidthSettings?: Array<number>;
 
   /**
    * Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
@@ -235,7 +244,15 @@ export interface RfBandListResponse {
   beamwidth?: number;
 
   /**
-   * Center frequency of RF frequency range, if applicable, in Mhz.
+   * Array of beamwidth settings, in degrees for this RFBand. If this array is
+   * specified then it must be the same size as the frequencySettings array. A null
+   * value may be used for one or more of the frequencies in the frequencySettings
+   * array if there is no corresponding value for a given frequency.
+   */
+  beamwidthSettings?: Array<number>;
+
+  /**
+   * Center frequency of RF frequency range, if applicable, in megahertz.
    */
   centerFreq?: number;
 
@@ -251,7 +268,15 @@ export interface RfBandListResponse {
   createdBy?: string;
 
   /**
-   * RF Range edge gain, in dBi.
+   * Array of delay settings, in seconds for this RFBand. If this array is specified
+   * then it must be the same size as the frequencySettings array. A null value may
+   * be used for one or more of the frequencies in the frequencySettings array if
+   * there is no corresponding value for a given frequency.
+   */
+  delaySettings?: Array<number>;
+
+  /**
+   * RF Range edge gain, in decibel relative to isotrope.
    */
   edgeGain?: number;
 
@@ -263,7 +288,7 @@ export interface RfBandListResponse {
    * dipole. Effective radiated power and effective isotropic radiated power both
    * measure the amount of power a radio transmitter and antenna (or other source of
    * electromagnetic waves) radiates in a specific direction: in the direction of
-   * maximum signal strength (the "main lobe") of its radiation pattern.
+   * maximum signal strength (the main lobe) of its radiation pattern.
    */
   eirp?: number;
 
@@ -275,24 +300,46 @@ export interface RfBandListResponse {
    * Effective radiated power and effective isotropic radiated power both measure the
    * amount of power a radio transmitter and antenna (or other source of
    * electromagnetic waves) radiates in a specific direction: in the direction of
-   * maximum signal strength (the "main lobe") of its radiation pattern.
+   * maximum signal strength (the main lobe) of its radiation pattern.
    */
   erp?: number;
 
   /**
-   * End/maximum of transmit RF frequency range, if applicable, in Mhz.
+   * End/maximum of transmit RF frequency range, if applicable, in megahertz.
    */
   freqMax?: number;
 
   /**
-   * Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+   * Start/minimum of transmit RF frequency range, if applicable, in megahertz.
    */
   freqMin?: number;
+
+  /**
+   * Array of frequency settings, in megahertz for this RFBand. This array and the
+   * settings arrays must match in size.
+   */
+  frequencySettings?: Array<number>;
+
+  /**
+   * Array of gain settings, in decibels for this RFBand. If this array is specified
+   * then it must be the same size as the frequencySettings array. A null value may
+   * be used for one or more of the frequencies in the frequencySettings array if
+   * there is no corresponding value for a given frequency.
+   */
+  gainSettings?: Array<number>;
 
   /**
    * RF Band mode (e.g. TX, RX).
    */
   mode?: 'TX' | 'RX';
+
+  /**
+   * Array of signal noise settings, in decibels for this RFBand. If this array is
+   * specified then it must be the same size as the frequencySettings array. A null
+   * value may be used for one or more of the frequencies in the frequencySettings
+   * array if there is no corresponding value for a given frequency.
+   */
+  noiseSettings?: Array<number>;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -309,7 +356,7 @@ export interface RfBandListResponse {
   origNetwork?: string;
 
   /**
-   * RF Range maximum gain, in dBi.
+   * RF Range maximum gain, in decibel relative to isotrope.
    */
   peakGain?: number;
 
@@ -324,7 +371,7 @@ export interface RfBandListResponse {
 
   /**
    * Purpose or use of the RF Band -- COMM = communications, TTC =
-   * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+   * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.
    */
   purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
 }
@@ -409,9 +456,18 @@ export interface RfBandCreateParams {
   band?: string;
 
   /**
-   * RF Band frequency range bandwidth in Mhz.
+   * RF Band frequency range bandwidth in megahertz.
    */
   bandwidth?: number;
+
+  /**
+   * Array of frequency range bandwidth settings, in megahertz for this RFBand. If
+   * this array is specified then it must be the same size as the frequencySettings
+   * array. A null value may be used for one or more of the frequencies in the
+   * frequencySettings array if there is no corresponding value for a given
+   * frequency.
+   */
+  bandwidthSettings?: Array<number>;
 
   /**
    * Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
@@ -420,12 +476,28 @@ export interface RfBandCreateParams {
   beamwidth?: number;
 
   /**
-   * Center frequency of RF frequency range, if applicable, in Mhz.
+   * Array of beamwidth settings, in degrees for this RFBand. If this array is
+   * specified then it must be the same size as the frequencySettings array. A null
+   * value may be used for one or more of the frequencies in the frequencySettings
+   * array if there is no corresponding value for a given frequency.
+   */
+  beamwidthSettings?: Array<number>;
+
+  /**
+   * Center frequency of RF frequency range, if applicable, in megahertz.
    */
   centerFreq?: number;
 
   /**
-   * RF Range edge gain, in dBi.
+   * Array of delay settings, in seconds for this RFBand. If this array is specified
+   * then it must be the same size as the frequencySettings array. A null value may
+   * be used for one or more of the frequencies in the frequencySettings array if
+   * there is no corresponding value for a given frequency.
+   */
+  delaySettings?: Array<number>;
+
+  /**
+   * RF Range edge gain, in decibel relative to isotrope.
    */
   edgeGain?: number;
 
@@ -437,7 +509,7 @@ export interface RfBandCreateParams {
    * dipole. Effective radiated power and effective isotropic radiated power both
    * measure the amount of power a radio transmitter and antenna (or other source of
    * electromagnetic waves) radiates in a specific direction: in the direction of
-   * maximum signal strength (the "main lobe") of its radiation pattern.
+   * maximum signal strength (the main lobe) of its radiation pattern.
    */
   eirp?: number;
 
@@ -449,24 +521,46 @@ export interface RfBandCreateParams {
    * Effective radiated power and effective isotropic radiated power both measure the
    * amount of power a radio transmitter and antenna (or other source of
    * electromagnetic waves) radiates in a specific direction: in the direction of
-   * maximum signal strength (the "main lobe") of its radiation pattern.
+   * maximum signal strength (the main lobe) of its radiation pattern.
    */
   erp?: number;
 
   /**
-   * End/maximum of transmit RF frequency range, if applicable, in Mhz.
+   * End/maximum of transmit RF frequency range, if applicable, in megahertz.
    */
   freqMax?: number;
 
   /**
-   * Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+   * Start/minimum of transmit RF frequency range, if applicable, in megahertz.
    */
   freqMin?: number;
+
+  /**
+   * Array of frequency settings, in megahertz for this RFBand. This array and the
+   * settings arrays must match in size.
+   */
+  frequencySettings?: Array<number>;
+
+  /**
+   * Array of gain settings, in decibels for this RFBand. If this array is specified
+   * then it must be the same size as the frequencySettings array. A null value may
+   * be used for one or more of the frequencies in the frequencySettings array if
+   * there is no corresponding value for a given frequency.
+   */
+  gainSettings?: Array<number>;
 
   /**
    * RF Band mode (e.g. TX, RX).
    */
   mode?: 'TX' | 'RX';
+
+  /**
+   * Array of signal noise settings, in decibels for this RFBand. If this array is
+   * specified then it must be the same size as the frequencySettings array. A null
+   * value may be used for one or more of the frequencies in the frequencySettings
+   * array if there is no corresponding value for a given frequency.
+   */
+  noiseSettings?: Array<number>;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -477,7 +571,7 @@ export interface RfBandCreateParams {
   origin?: string;
 
   /**
-   * RF Range maximum gain, in dBi.
+   * RF Range maximum gain, in decibel relative to isotrope.
    */
   peakGain?: number;
 
@@ -492,7 +586,7 @@ export interface RfBandCreateParams {
 
   /**
    * Purpose or use of the RF Band -- COMM = communications, TTC =
-   * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+   * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.
    */
   purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
 }
@@ -549,9 +643,18 @@ export interface RfBandUpdateParams {
   band?: string;
 
   /**
-   * RF Band frequency range bandwidth in Mhz.
+   * RF Band frequency range bandwidth in megahertz.
    */
   bandwidth?: number;
+
+  /**
+   * Array of frequency range bandwidth settings, in megahertz for this RFBand. If
+   * this array is specified then it must be the same size as the frequencySettings
+   * array. A null value may be used for one or more of the frequencies in the
+   * frequencySettings array if there is no corresponding value for a given
+   * frequency.
+   */
+  bandwidthSettings?: Array<number>;
 
   /**
    * Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
@@ -560,12 +663,28 @@ export interface RfBandUpdateParams {
   beamwidth?: number;
 
   /**
-   * Center frequency of RF frequency range, if applicable, in Mhz.
+   * Array of beamwidth settings, in degrees for this RFBand. If this array is
+   * specified then it must be the same size as the frequencySettings array. A null
+   * value may be used for one or more of the frequencies in the frequencySettings
+   * array if there is no corresponding value for a given frequency.
+   */
+  beamwidthSettings?: Array<number>;
+
+  /**
+   * Center frequency of RF frequency range, if applicable, in megahertz.
    */
   centerFreq?: number;
 
   /**
-   * RF Range edge gain, in dBi.
+   * Array of delay settings, in seconds for this RFBand. If this array is specified
+   * then it must be the same size as the frequencySettings array. A null value may
+   * be used for one or more of the frequencies in the frequencySettings array if
+   * there is no corresponding value for a given frequency.
+   */
+  delaySettings?: Array<number>;
+
+  /**
+   * RF Range edge gain, in decibel relative to isotrope.
    */
   edgeGain?: number;
 
@@ -577,7 +696,7 @@ export interface RfBandUpdateParams {
    * dipole. Effective radiated power and effective isotropic radiated power both
    * measure the amount of power a radio transmitter and antenna (or other source of
    * electromagnetic waves) radiates in a specific direction: in the direction of
-   * maximum signal strength (the "main lobe") of its radiation pattern.
+   * maximum signal strength (the main lobe) of its radiation pattern.
    */
   eirp?: number;
 
@@ -589,24 +708,46 @@ export interface RfBandUpdateParams {
    * Effective radiated power and effective isotropic radiated power both measure the
    * amount of power a radio transmitter and antenna (or other source of
    * electromagnetic waves) radiates in a specific direction: in the direction of
-   * maximum signal strength (the "main lobe") of its radiation pattern.
+   * maximum signal strength (the main lobe) of its radiation pattern.
    */
   erp?: number;
 
   /**
-   * End/maximum of transmit RF frequency range, if applicable, in Mhz.
+   * End/maximum of transmit RF frequency range, if applicable, in megahertz.
    */
   freqMax?: number;
 
   /**
-   * Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+   * Start/minimum of transmit RF frequency range, if applicable, in megahertz.
    */
   freqMin?: number;
+
+  /**
+   * Array of frequency settings, in megahertz for this RFBand. This array and the
+   * settings arrays must match in size.
+   */
+  frequencySettings?: Array<number>;
+
+  /**
+   * Array of gain settings, in decibels for this RFBand. If this array is specified
+   * then it must be the same size as the frequencySettings array. A null value may
+   * be used for one or more of the frequencies in the frequencySettings array if
+   * there is no corresponding value for a given frequency.
+   */
+  gainSettings?: Array<number>;
 
   /**
    * RF Band mode (e.g. TX, RX).
    */
   mode?: 'TX' | 'RX';
+
+  /**
+   * Array of signal noise settings, in decibels for this RFBand. If this array is
+   * specified then it must be the same size as the frequencySettings array. A null
+   * value may be used for one or more of the frequencies in the frequencySettings
+   * array if there is no corresponding value for a given frequency.
+   */
+  noiseSettings?: Array<number>;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -617,7 +758,7 @@ export interface RfBandUpdateParams {
   origin?: string;
 
   /**
-   * RF Range maximum gain, in dBi.
+   * RF Range maximum gain, in decibel relative to isotrope.
    */
   peakGain?: number;
 
@@ -632,7 +773,7 @@ export interface RfBandUpdateParams {
 
   /**
    * Purpose or use of the RF Band -- COMM = communications, TTC =
-   * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+   * Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.
    */
   purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
 }

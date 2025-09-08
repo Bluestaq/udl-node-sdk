@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'update_rf_emitter',
   description:
-    'Service operation to update an RFEmitter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.',
+    'Service operation to update a single RFEmitter record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -48,14 +48,23 @@ export const tool: Tool = {
       entity: {
         $ref: '#/$defs/entity_ingest',
       },
+      extSysId: {
+        type: 'string',
+        description: 'The originating system ID for the RF Emitter.',
+      },
       idEntity: {
         type: 'string',
-        description: 'ID of the parent entity for this rfemitter.',
+        description: 'ID by reference of the parent entity for this RFEmitter.',
       },
       origin: {
         type: 'string',
         description:
           'Originating system or organization which produced the data, if different from the source. The origin may be different than the source if the source was a mediating system which forwarded the data on behalf of the origin system. If null, the source may be assumed to be the origin.',
+      },
+      subtype: {
+        type: 'string',
+        description:
+          'The RF Emitter subtype, which can distinguish specialized deployments (e.g. BLOCK_0_AVL, BLOCK_0_DS1, BLOCK_0_TEST, BLOCK_1, BLOCK_1_TEST, NONE).',
       },
       type: {
         type: 'string',

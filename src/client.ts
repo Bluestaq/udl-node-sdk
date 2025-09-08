@@ -920,7 +920,6 @@ import {
   SensorObservationTypeListParams,
   SensorObservationTypeListResponse,
   SensorObservationTypeListResponsesOffsetPage,
-  SensorObservationTypeQueryhelpResponse,
 } from './resources/sensor-observation-type';
 import {
   SensorType,
@@ -929,7 +928,6 @@ import {
   SensorTypeListParams,
   SensorTypeListResponse,
   SensorTypeListResponsesOffsetPage,
-  SensorTypeQueryhelpResponse,
 } from './resources/sensor-type';
 import {
   SeraDataCommDetailCountParams,
@@ -1843,7 +1841,6 @@ import {
   SarObservationUnvalidatedPublishParams,
 } from './resources/sar-observation/sar-observation';
 import {
-  ScAggregateDocTypeResponse,
   ScAllowableFileExtensionsResponse,
   ScAllowableFileMimesResponse,
   ScCopyParams,
@@ -1858,7 +1855,6 @@ import {
   ScRenameParams,
   ScSearchParams,
   ScSearchResponse,
-  ScUpdateTagsParams,
   Scs,
 } from './resources/scs/scs';
 import {
@@ -4938,7 +4934,6 @@ export declare namespace Unifieddatalibrary {
     SensorObservationType as SensorObservationType,
     type SensorObservationTypeListResponse as SensorObservationTypeListResponse,
     type SensorObservationTypeGetResponse as SensorObservationTypeGetResponse,
-    type SensorObservationTypeQueryhelpResponse as SensorObservationTypeQueryhelpResponse,
     type SensorObservationTypeListResponsesOffsetPage as SensorObservationTypeListResponsesOffsetPage,
     type SensorObservationTypeListParams as SensorObservationTypeListParams,
     type SensorObservationTypeGetParams as SensorObservationTypeGetParams,
@@ -4965,7 +4960,6 @@ export declare namespace Unifieddatalibrary {
     SensorType as SensorType,
     type SensorTypeListResponse as SensorTypeListResponse,
     type SensorTypeGetResponse as SensorTypeGetResponse,
-    type SensorTypeQueryhelpResponse as SensorTypeQueryhelpResponse,
     type SensorTypeListResponsesOffsetPage as SensorTypeListResponsesOffsetPage,
     type SensorTypeListParams as SensorTypeListParams,
     type SensorTypeGetParams as SensorTypeGetParams,
@@ -5581,7 +5575,6 @@ export declare namespace Unifieddatalibrary {
 
   export {
     Scs as Scs,
-    type ScAggregateDocTypeResponse as ScAggregateDocTypeResponse,
     type ScAllowableFileExtensionsResponse as ScAllowableFileExtensionsResponse,
     type ScAllowableFileMimesResponse as ScAllowableFileMimesResponse,
     type ScCopyResponse as ScCopyResponse,
@@ -5596,7 +5589,6 @@ export declare namespace Unifieddatalibrary {
     type ScMoveParams as ScMoveParams,
     type ScRenameParams as ScRenameParams,
     type ScSearchParams as ScSearchParams,
-    type ScUpdateTagsParams as ScUpdateTagsParams,
   };
 
   export { ScsViews as ScsViews, type ScsViewRetrieveParams as ScsViewRetrieveParams };

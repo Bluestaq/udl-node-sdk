@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'create_rf_band',
   description:
-    'Service operation to take a single RFBand as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.',
+    'Service operation to take a single RFBand record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -53,43 +53,91 @@ export const tool: Tool = {
       },
       bandwidth: {
         type: 'number',
-        description: 'RF Band frequency range bandwidth in Mhz.',
+        description: 'RF Band frequency range bandwidth in megahertz.',
+      },
+      bandwidthSettings: {
+        type: 'array',
+        description:
+          'Array of frequency range bandwidth settings, in megahertz for this RFBand. If this array is specified then it must  be the same size as the frequencySettings array. A null value may be used for one or more of the frequencies in the frequencySettings array if there is no corresponding value for a given frequency.',
+        items: {
+          type: 'number',
+        },
       },
       beamwidth: {
         type: 'number',
         description:
           'Angle between the half-power (-3 dB) points of the main lobe of the antenna, in degrees.',
       },
+      beamwidthSettings: {
+        type: 'array',
+        description:
+          'Array of beamwidth settings, in degrees for this RFBand. If this array is specified then it must  be the same size as the frequencySettings array. A null value may be used for one or more of the frequencies in the frequencySettings array if there is no corresponding value for a given frequency.',
+        items: {
+          type: 'number',
+        },
+      },
       centerFreq: {
         type: 'number',
-        description: 'Center frequency of RF frequency range, if applicable, in Mhz.',
+        description: 'Center frequency of RF frequency range, if applicable, in megahertz.',
+      },
+      delaySettings: {
+        type: 'array',
+        description:
+          'Array of delay settings, in seconds for this RFBand. If this array is specified then it must  be the same size as the frequencySettings array. A null value may be used for one or more of the frequencies in the frequencySettings array if there is no corresponding value for a given frequency.',
+        items: {
+          type: 'number',
+        },
       },
       edgeGain: {
         type: 'number',
-        description: 'RF Range edge gain, in dBi.',
+        description: 'RF Range edge gain, in decibel relative to isotrope.',
       },
       eirp: {
         type: 'number',
         description:
-          'EIRP is defined as the RMS power input in decibel watts required to a lossless half-wave dipole antenna to give the same maximum power density far from the antenna as the actual transmitter. It is equal to the power input to the transmitter\'s antenna multiplied by the antenna gain relative to a half-wave dipole. Effective radiated power and effective isotropic radiated power both measure the amount of power a radio transmitter and antenna (or other source of electromagnetic waves) radiates in a specific direction: in the direction of maximum signal strength (the "main lobe") of its radiation pattern.',
+          "EIRP is defined as the RMS power input in decibel watts required to a lossless half-wave dipole antenna to give the same maximum power density far from the antenna as the actual transmitter. It is equal to the power input to the transmitter's antenna multiplied by the antenna gain relative to a half-wave dipole. Effective radiated power and effective isotropic radiated power both measure the amount of power a radio transmitter and antenna (or other source of electromagnetic waves) radiates in a specific direction: in the direction of maximum signal strength (the main lobe) of its radiation pattern.",
       },
       erp: {
         type: 'number',
         description:
-          'Effective Radiated Power (ERP) is the total power in decibel watts radiated by an actual antenna relative to a half-wave dipole rather than a theoretical isotropic antenna. A half-wave dipole has a gain of 2.15 dB compared to an isotropic antenna.  EIRP(dB) = ERP (dB)+2.15 dB or EIRP (W) = 1.64*ERP(W). Effective radiated power and effective isotropic radiated power both measure the amount of power a radio transmitter and antenna (or other source of electromagnetic waves) radiates in a specific direction: in the direction of maximum signal strength (the "main lobe") of its radiation pattern.',
+          'Effective Radiated Power (ERP) is the total power in decibel watts radiated by an actual antenna relative to a half-wave dipole rather than a theoretical isotropic antenna. A half-wave dipole has a gain of 2.15 dB compared to an isotropic antenna. EIRP(dB) = ERP (dB)+2.15 dB or EIRP (W) = 1.64*ERP(W). Effective radiated power and effective isotropic radiated power both measure the amount of power a radio transmitter and antenna (or other source of electromagnetic waves) radiates in a specific direction: in the direction of maximum signal strength (the main lobe) of its radiation pattern.',
       },
       freqMax: {
         type: 'number',
-        description: 'End/maximum of transmit RF frequency range, if applicable, in Mhz.',
+        description: 'End/maximum of transmit RF frequency range, if applicable, in megahertz.',
       },
       freqMin: {
         type: 'number',
-        description: 'Start/minimum of transmit RF frequency range, if applicable, in Mhz.',
+        description: 'Start/minimum of transmit RF frequency range, if applicable, in megahertz.',
+      },
+      frequencySettings: {
+        type: 'array',
+        description:
+          'Array of frequency settings, in megahertz for this RFBand. This array and the settings arrays must match in size.',
+        items: {
+          type: 'number',
+        },
+      },
+      gainSettings: {
+        type: 'array',
+        description:
+          'Array of gain settings, in decibels for this RFBand. If this array is specified then it must  be the same size as the frequencySettings array. A null value may be used for one or more of the frequencies in the frequencySettings array if there is no corresponding value for a given frequency.',
+        items: {
+          type: 'number',
+        },
       },
       mode: {
         type: 'string',
         description: 'RF Band mode (e.g. TX, RX).',
         enum: ['TX', 'RX'],
+      },
+      noiseSettings: {
+        type: 'array',
+        description:
+          'Array of signal noise settings, in decibels for this RFBand. If this array is specified then it must  be the same size as the frequencySettings array. A null value may be used for one or more of the frequencies in the frequencySettings array if there is no corresponding value for a given frequency.',
+        items: {
+          type: 'number',
+        },
       },
       origin: {
         type: 'string',
@@ -98,7 +146,7 @@ export const tool: Tool = {
       },
       peakGain: {
         type: 'number',
-        description: 'RF Range maximum gain, in dBi.',
+        description: 'RF Range maximum gain, in decibel relative to isotrope.',
       },
       polarization: {
         type: 'string',
@@ -109,7 +157,7 @@ export const tool: Tool = {
       purpose: {
         type: 'string',
         description:
-          'Purpose or use of the RF Band -- COMM = communications, TTC = Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).',
+          'Purpose or use of the RF Band -- COMM = communications, TTC = Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.',
         enum: ['COMM', 'TTC', 'OPS', 'OTHER'],
       },
     },

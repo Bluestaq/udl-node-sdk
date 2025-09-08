@@ -415,11 +415,6 @@ export const tool: Tool = {
             type: 'integer',
             description: 'The serial number associated with the message qualifier.',
           },
-          rawFileURI: {
-            type: 'string',
-            description:
-              'Optional URI location in the document repository of the raw file parsed by the system to produce this record. To download the raw file, prepend https://udl-hostname/scs/download?id= to this value.',
-          },
           references: {
             type: 'array',
             description:
