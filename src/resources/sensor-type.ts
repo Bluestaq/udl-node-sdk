@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { RequestOptions } from '../internal/request-options';
@@ -34,14 +33,6 @@ export class SensorType extends APIResource {
     options?: RequestOptions,
   ): APIPromise<SensorTypeGetResponse> {
     return this._client.get(path`/udl/sensortype/${id}`, { query, ...options });
-  }
-
-  /**
-   * Service operation to provide detailed information on available dynamic query
-   * parameters for a particular data type.
-   */
-  queryhelp(options?: RequestOptions): APIPromise<SensorTypeQueryhelpResponse> {
-    return this._client.get('/udl/sensortype/queryhelp', options);
   }
 }
 
@@ -139,30 +130,6 @@ export interface SensorTypeGetResponse {
   updatedBy?: string;
 }
 
-export interface SensorTypeQueryhelpResponse {
-  aodrSupported?: boolean;
-
-  classificationMarking?: string;
-
-  description?: string;
-
-  historySupported?: boolean;
-
-  name?: string;
-
-  parameters?: Array<Shared.ParamDescriptor>;
-
-  requiredRoles?: Array<string>;
-
-  restSupported?: boolean;
-
-  sortSupported?: boolean;
-
-  typeName?: string;
-
-  uri?: string;
-}
-
 export interface SensorTypeListParams extends OffsetPageParams {}
 
 export interface SensorTypeGetParams {
@@ -175,7 +142,6 @@ export declare namespace SensorType {
   export {
     type SensorTypeListResponse as SensorTypeListResponse,
     type SensorTypeGetResponse as SensorTypeGetResponse,
-    type SensorTypeQueryhelpResponse as SensorTypeQueryhelpResponse,
     type SensorTypeListResponsesOffsetPage as SensorTypeListResponsesOffsetPage,
     type SensorTypeListParams as SensorTypeListParams,
     type SensorTypeGetParams as SensorTypeGetParams,

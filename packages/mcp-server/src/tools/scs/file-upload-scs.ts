@@ -23,15 +23,15 @@ export const tool: Tool = {
     properties: {
       classificationMarking: {
         type: 'string',
-        description: 'Classification (ex. U//FOUO)',
+        description: 'Classification marking of the file being uploaded.',
       },
       fileName: {
         type: 'string',
-        description: 'FileName (ex. dog.jpg)',
+        description: 'Name of the file to upload.',
       },
       path: {
         type: 'string',
-        description: 'The base path to upload file (ex. images)',
+        description: 'The base path to upload file',
       },
       file_content: {
         type: 'string',

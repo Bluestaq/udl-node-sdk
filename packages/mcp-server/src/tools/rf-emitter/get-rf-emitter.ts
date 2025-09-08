@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'get_rf_emitter',
-  description: 'Service operation to get a single RFEmitter by its unique ID passed as a path parameter.',
+  description:
+    'Service operation to get a single RFEmitter record by its unique ID passed as a path parameter.',
   inputSchema: {
     type: 'object',
     properties: {

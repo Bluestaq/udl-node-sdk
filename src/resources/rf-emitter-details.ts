@@ -33,8 +33,9 @@ export class RfEmitterDetails extends APIResource {
   }
 
   /**
-   * Service operation to update an RFEmitterDetails. A specific role is required to
-   * perform this service operation. Please contact the UDL team for assistance.
+   * Service operation to update a single RFEmitterDetails record. A specific role is
+   * required to perform this service operation. Please contact the UDL team for
+   * assistance.
    *
    * @example
    * ```ts
@@ -79,9 +80,9 @@ export class RfEmitterDetails extends APIResource {
   }
 
   /**
-   * Service operation to delete an RFEmitterDetails specified by the passed ID path
-   * parameter. A specific role is required to perform this service operation. Please
-   * contact the UDL team for assistance.
+   * Service operation to delete a single RFEmitterDetails record specified by the
+   * passed ID path parameter. A specific role is required to perform this service
+   * operation. Please contact the UDL team for assistance.
    *
    * @example
    * ```ts
@@ -119,8 +120,8 @@ export class RfEmitterDetails extends APIResource {
   }
 
   /**
-   * Service operation to get a single RFEmitterDetails by its unique ID passed as a
-   * path parameter.
+   * Service operation to get a single RFEmitterDetails record by its unique ID
+   * passed as a path parameter.
    *
    * @example
    * ```ts
@@ -231,20 +232,25 @@ export interface RfEmitterDetailListResponse {
   altName?: string;
 
   /**
-   * For parabolic/dish antennas, the diameter of the antenna in meters.
+   * An RF Amplifier associated with an RF Emitter Details.
    */
-  antennaDiameter?: number;
+  amplifier?: RfEmitterDetailListResponse.Amplifier;
 
   /**
-   * Array with 1-2 values specifying the length and width (for rectangular) and just
-   * length for dipole antennas in meters.
+   * The set of antennas hosted on this EW Emitter system.
    */
-  antennaSize?: Array<number>;
+  antennas?: Array<RfEmitterDetailListResponse.Antenna>;
 
   /**
-   * Barrage noise bandwidth in Mhz.
+   * Barrage noise bandwidth, in megahertz.
    */
   barrageNoiseBandwidth?: number;
+
+  /**
+   * The length of time, in seconds, for the RF Emitter built-in test to run to
+   * completion.
+   */
+  bitRunTime?: number;
 
   /**
    * Time the row was created in the database, auto-populated by the system.
@@ -268,12 +274,12 @@ export interface RfEmitterDetailListResponse {
   designator?: string;
 
   /**
-   * Doppler noise value in Mhz.
+   * Doppler noise value, in megahertz.
    */
   dopplerNoise?: number;
 
   /**
-   * Digital Form Radio Memory instantaneous bandwidth in Mhz.
+   * Digital Form Radio Memory instantaneous bandwidth in megahertz.
    */
   drfmInstantaneousBandwidth?: number;
 
@@ -283,9 +289,28 @@ export interface RfEmitterDetailListResponse {
   family?: string;
 
   /**
-   * Unique identifier of the organization which manufactures this RF Emitter.
+   * A fixed attenuation value to be set on the SRF Emitter HPA when commanding an
+   * Electronic Attack/Techniques Tactics and Procedures task, in decibels.
    */
-  manufacturerOrgId?: string;
+  fixedAttenuation?: number;
+
+  /**
+   * Unique identifier of the organization which manufactured this RF Emitter.
+   */
+  idManufacturerOrg?: string;
+
+  /**
+   * Unique identifier of the location of the production facility for this RF
+   * Emitter.
+   */
+  idProductionFacilityLocation?: string;
+
+  /**
+   * COCOM that has temporary responsibility for scheduling and management of the RF
+   * Emitter (e.g. SPACEFOR-CENT, SPACEFOR-EURAF, SPACEFOR-INDOPAC, SPACEFOR-KOR,
+   * SPACEFOR-STRATNORTH, SPACESOC, NONE).
+   */
+  loanedToCocom?: string;
 
   /**
    * Notes on the RF Emitter.
@@ -317,25 +342,28 @@ export interface RfEmitterDetailListResponse {
   origNetwork?: string;
 
   /**
-   * Unique identifier of the location of the production facility for this RF
-   * Emitter.
+   * A set of system/frequency band adjustments to the power offset commanded in an
+   * EA/TTP task.
    */
-  productionFacilityLocationId?: string;
+  powerOffsets?: Array<RfEmitterDetailListResponse.PowerOffset>;
+
+  /**
+   * The length of time, in seconds, for the RF Emitter to prepare for a task,
+   * including sufficient time to slew the antenna and configure the equipment.
+   */
+  prepTime?: number;
+
+  /**
+   * Primary COCOM that is responsible for scheduling and management of the RF
+   * Emitter (e.g. SPACEFOR-CENT, SPACEFOR-EURAF, SPACEFOR-INDOPAC, SPACEFOR-KOR,
+   * SPACEFOR-STRATNORTH, SPACESOC, NONE).
+   */
+  primaryCocom?: string;
 
   /**
    * Name of the production facility for this RF Emitter.
    */
   productionFacilityName?: string;
-
-  /**
-   * Receiver bandwidth in Mhz.
-   */
-  receiverBandwidth?: number;
-
-  /**
-   * Receiver sensitivity in dBm.
-   */
-  receiverSensitivity?: number;
 
   /**
    * Type or name of receiver.
@@ -348,38 +376,406 @@ export interface RfEmitterDetailListResponse {
   secondaryNotes?: string;
 
   /**
+   * The set of software services running on this EW Emitter system.
+   */
+  services?: Array<RfEmitterDetailListResponse.Service>;
+
+  /**
    * Receiver sensitivity is the lowest power level at which the receiver can detect
    * an RF signal and demodulate data. Sensitivity is purely a receiver specification
-   * and is independent of the transmitter. End sensitivity range, in dBm.
+   * and is independent of the transmitter. End sensitivity range, in
+   * decibel-milliwatts.
    */
   systemSensitivityEnd?: number;
 
   /**
    * Receiver sensitivity is the lowest power level at which the receiver can detect
    * an RF signal and demodulate data. Sensitivity is purely a receiver specification
-   * and is independent of the transmitter. Start sensitivity range, in dBm.
+   * and is independent of the transmitter. Start sensitivity range, in
+   * decibel-milliwatts.
    */
   systemSensitivityStart?: number;
 
   /**
-   * Transmit power in Watts.
+   * The set of EA/TTP techniques that are supported by this EW Emitter system.
    */
-  transmitPower?: number;
+  ttps?: Array<RfEmitterDetailListResponse.Ttp>;
 
   /**
-   * Transmitter bandwidth in Mhz.
+   * Time the row was last updated in the database, auto-populated by the system.
    */
-  transmitterBandwidth?: number;
+  updatedAt?: string;
 
   /**
-   * Transmitter frequency in Mhz.
+   * Application user who updated the row in the database, auto-populated by the
+   * system.
    */
-  transmitterFrequency?: number;
+  updatedBy?: string;
 
   /**
    * Array of URLs containing additional information on this RF Emitter.
    */
   urls?: Array<string>;
+}
+
+export namespace RfEmitterDetailListResponse {
+  /**
+   * An RF Amplifier associated with an RF Emitter Details.
+   */
+  export interface Amplifier {
+    /**
+     * The device identifier of the amplifier.
+     */
+    deviceIdentifier?: string;
+
+    /**
+     * The manufacturer of the amplifier.
+     */
+    manufacturer?: string;
+
+    /**
+     * The model name of the amplifier.
+     */
+    modelName?: string;
+
+    /**
+     * The amplifier power level, in watts.
+     */
+    power?: number;
+  }
+
+  /**
+   * An RF Antenna associated with an RF Emitter Details.
+   */
+  export interface Antenna {
+    /**
+     * For parabolic/dish antennas, the diameter of the antenna in meters.
+     */
+    antennaDiameter?: number;
+
+    /**
+     * Array with 1-2 values specifying the length and width (for rectangular) and just
+     * length for dipole antennas in meters.
+     */
+    antennaSize?: Array<number>;
+
+    /**
+     * A flag to indicate whether the antenna points at a fixed azimuth/elevation.
+     */
+    azElFixed?: boolean;
+
+    /**
+     * The set of antenna feeds for this antenna.
+     */
+    feeds?: Array<Antenna.Feed>;
+
+    /**
+     * Antenna azimuth, in degrees clockwise from true North, for a fixed antenna.
+     */
+    fixedAzimuth?: number;
+
+    /**
+     * Antenna elevation, in degrees, for a fixed antenna.
+     */
+    fixedElevation?: number;
+
+    /**
+     * Array of maximum azimuths, in degrees.
+     */
+    maxAzimuths?: Array<number>;
+
+    /**
+     * Maximum elevation, in degrees.
+     */
+    maxElevation?: number;
+
+    /**
+     * Array of minimum azimuths, in degrees.
+     */
+    minAzimuths?: Array<number>;
+
+    /**
+     * Minimum elevation, in degrees.
+     */
+    minElevation?: number;
+
+    /**
+     * The name of the antenna.
+     */
+    name?: string;
+
+    /**
+     * The set of receiver channels for this antenna.
+     */
+    receiverChannels?: Array<Antenna.ReceiverChannel>;
+
+    /**
+     * The set of transmit channels for this antenna.
+     */
+    transmitChannels?: Array<Antenna.TransmitChannel>;
+  }
+
+  export namespace Antenna {
+    /**
+     * An RF Antenna Feed associated with an RF Antenna.
+     */
+    export interface Feed {
+      /**
+       * Maximum frequency, in megahertz.
+       */
+      freqMax?: number;
+
+      /**
+       * Minimum frequency, in megahertz.
+       */
+      freqMin?: number;
+
+      /**
+       * The feed name.
+       */
+      name?: string;
+
+      /**
+       * The antenna feed linear/circular polarization (e.g. HORIZONTAL, VERTICAL,
+       * LEFT_HAND_CIRCULAR, RIGHT_HAND_CIRCULAR).
+       */
+      polarization?: string;
+    }
+
+    /**
+     * An RF Antenna Receiver Channel associated with an RF Antenna.
+     */
+    export interface ReceiverChannel {
+      /**
+       * The receiver bandwidth, in megahertz, must satisfy the constraint: minBandwidth
+       * ≤ bandwidth ≤ maxBandwidth.
+       */
+      bandwidth?: number;
+
+      /**
+       * The receive channel number.
+       */
+      channelNum?: string;
+
+      /**
+       * The receive channel device identifier.
+       */
+      deviceIdentifier?: string;
+
+      /**
+       * Maximum frequency, in megahertz.
+       */
+      freqMax?: number;
+
+      /**
+       * Minimum frequency, in megahertz.
+       */
+      freqMin?: number;
+
+      /**
+       * The maximum receiver bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      maxBandwidth?: number;
+
+      /**
+       * The receiver bandwidth, in megahertz, must satisfy the constraint: minBandwidth
+       * ≤ bandwidth ≤ maxBandwidth.
+       */
+      minBandwidth?: number;
+
+      /**
+       * Receiver sensitivity, in decibel-milliwatts.
+       */
+      sensitivity?: number;
+    }
+
+    /**
+     * An RF Antenna Transmit Channel associated with an RF Antenna.
+     */
+    export interface TransmitChannel {
+      /**
+       * Transmit power, in watts.
+       */
+      power: number;
+
+      /**
+       * The transmitter bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      bandwidth?: number;
+
+      /**
+       * The transmit channel number.
+       */
+      channelNum?: string;
+
+      /**
+       * The transmit channel device identifier.
+       */
+      deviceIdentifier?: string;
+
+      /**
+       * The transmitter frequency, in megahertz, must satisfy the constraint: freqMin <=
+       * freq <= freqMax.
+       */
+      freq?: number;
+
+      /**
+       * The maximum transmitter frequency, in megahertz, must satisfy the constraint:
+       * freqMin ≤ freq ≤ freqMax.
+       */
+      freqMax?: number;
+
+      /**
+       * The minimum transmitter frequency, in megahertz, must satisfy the constraint:
+       * freqMin ≤ freq ≤ freqMax.
+       */
+      freqMin?: number;
+
+      /**
+       * The hardware sample rate, in bits per second for this transmit channel.
+       */
+      hardwareSampleRate?: number;
+
+      /**
+       * The maximum transmitter bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      maxBandwidth?: number;
+
+      /**
+       * Maximum gain, in decibels.
+       */
+      maxGain?: number;
+
+      /**
+       * The minimum transmitter bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      minBandwidth?: number;
+
+      /**
+       * Minimum gain, in decibels.
+       */
+      minGain?: number;
+
+      /**
+       * The set of sample rates supported by this transmit channel, in bits per second.
+       */
+      sampleRates?: Array<number>;
+    }
+  }
+
+  /**
+   * An RF Emitter Power Offset associated with an RF Emitter Details.
+   */
+  export interface PowerOffset {
+    /**
+     * The RF frequency band (e.g. HF, VHF, P, UHF, L, S, C, X, KU, K, KA, V, W, MM).
+     */
+    frequencyBand?: string;
+
+    /**
+     * Power offset, in decibels.
+     */
+    powerOffset?: number;
+  }
+
+  /**
+   * An RF Emitter SW Service associated with an RF Emitter Details.
+   */
+  export interface Service {
+    /**
+     * The name for this software service.
+     */
+    name?: string;
+
+    /**
+     * The version for this software service.
+     */
+    version?: string;
+  }
+
+  /**
+   * An RF Emitter TTP associated with an RF Emitter Details.
+   */
+  export interface Ttp {
+    /**
+     * The name of the output signal.
+     */
+    outputSignalName?: string;
+
+    /**
+     * The set of TTPs affected by this signal.
+     */
+    techniqueDefinitions?: Array<Ttp.TechniqueDefinition>;
+  }
+
+  export namespace Ttp {
+    /**
+     * An RF Emitter Technique Definition associated with an RF Emitter TTP.
+     */
+    export interface TechniqueDefinition {
+      /**
+       * The EW Emitter system technique name.
+       */
+      name?: string;
+
+      /**
+       * The set of required/optional parameters for this technique.
+       */
+      paramDefinitions?: Array<TechniqueDefinition.ParamDefinition>;
+    }
+
+    export namespace TechniqueDefinition {
+      /**
+       * An RF Emitter Technique Parameter Definition associated with an RF Emitter
+       * Technique Definition.
+       */
+      export interface ParamDefinition {
+        /**
+         * Default parameter value used if not overridden in a SEW task definition.
+         */
+        defaultValue?: string;
+
+        /**
+         * Maximum allowable value for a numeric parameter.
+         */
+        max?: number;
+
+        /**
+         * Minimum allowable value for a numeric parameter.
+         */
+        min?: number;
+
+        /**
+         * The name of the parameter.
+         */
+        name?: string;
+
+        /**
+         * A flag to specify that a parameter is optional.
+         */
+        optional?: boolean;
+
+        /**
+         * The type of parameter (e.g. STRING, DOUBLE, INT, LIST).
+         */
+        type?: string;
+
+        /**
+         * Units (degrees, seconds, decibels, etc.) for a numeric parameter.
+         */
+        units?: string;
+
+        /**
+         * Valid values for strictly defined parameters.
+         */
+        validValues?: Array<string>;
+      }
+    }
+  }
 }
 
 export type RfEmitterDetailCountResponse = string;
@@ -438,20 +834,25 @@ export interface RfEmitterDetailGetResponse {
   altName?: string;
 
   /**
-   * For parabolic/dish antennas, the diameter of the antenna in meters.
+   * An RF Amplifier associated with an RF Emitter Details.
    */
-  antennaDiameter?: number;
+  amplifier?: RfEmitterDetailGetResponse.Amplifier;
 
   /**
-   * Array with 1-2 values specifying the length and width (for rectangular) and just
-   * length for dipole antennas in meters.
+   * The set of antennas hosted on this EW Emitter system.
    */
-  antennaSize?: Array<number>;
+  antennas?: Array<RfEmitterDetailGetResponse.Antenna>;
 
   /**
-   * Barrage noise bandwidth in Mhz.
+   * Barrage noise bandwidth, in megahertz.
    */
   barrageNoiseBandwidth?: number;
+
+  /**
+   * The length of time, in seconds, for the RF Emitter built-in test to run to
+   * completion.
+   */
+  bitRunTime?: number;
 
   /**
    * Time the row was created in the database, auto-populated by the system.
@@ -475,12 +876,12 @@ export interface RfEmitterDetailGetResponse {
   designator?: string;
 
   /**
-   * Doppler noise value in Mhz.
+   * Doppler noise value, in megahertz.
    */
   dopplerNoise?: number;
 
   /**
-   * Digital Form Radio Memory instantaneous bandwidth in Mhz.
+   * Digital Form Radio Memory instantaneous bandwidth in megahertz.
    */
   drfmInstantaneousBandwidth?: number;
 
@@ -490,16 +891,28 @@ export interface RfEmitterDetailGetResponse {
   family?: string;
 
   /**
-   * An organization such as a corporation, manufacturer, consortium, government,
-   * etc. An organization may have parent and child organizations as well as link to
-   * a former organization if this org previously existed as another organization.
+   * A fixed attenuation value to be set on the SRF Emitter HPA when commanding an
+   * Electronic Attack/Techniques Tactics and Procedures task, in decibels.
    */
-  manufacturerOrg?: Shared.OrganizationFull;
+  fixedAttenuation?: number;
 
   /**
-   * Unique identifier of the organization which manufactures this RF Emitter.
+   * Unique identifier of the organization which manufactured this RF Emitter.
    */
-  manufacturerOrgId?: string;
+  idManufacturerOrg?: string;
+
+  /**
+   * Unique identifier of the location of the production facility for this RF
+   * Emitter.
+   */
+  idProductionFacilityLocation?: string;
+
+  /**
+   * COCOM that has temporary responsibility for scheduling and management of the RF
+   * Emitter (e.g. SPACEFOR-CENT, SPACEFOR-EURAF, SPACEFOR-INDOPAC, SPACEFOR-KOR,
+   * SPACEFOR-STRATNORTH, SPACESOC, NONE).
+   */
+  loanedToCocom?: string;
 
   /**
    * Notes on the RF Emitter.
@@ -531,31 +944,28 @@ export interface RfEmitterDetailGetResponse {
   origNetwork?: string;
 
   /**
-   * Model representation of a location, which is a specific fixed point on the earth
-   * and is used to denote the locations of fixed sensors, operating units, etc.
+   * A set of system/frequency band adjustments to the power offset commanded in an
+   * EA/TTP task.
    */
-  productionFacilityLocation?: Shared.LocationFull;
+  powerOffsets?: Array<RfEmitterDetailGetResponse.PowerOffset>;
 
   /**
-   * Unique identifier of the location of the production facility for this RF
-   * Emitter.
+   * The length of time, in seconds, for the RF Emitter to prepare for a task,
+   * including sufficient time to slew the antenna and configure the equipment.
    */
-  productionFacilityLocationId?: string;
+  prepTime?: number;
+
+  /**
+   * Primary COCOM that is responsible for scheduling and management of the RF
+   * Emitter (e.g. SPACEFOR-CENT, SPACEFOR-EURAF, SPACEFOR-INDOPAC, SPACEFOR-KOR,
+   * SPACEFOR-STRATNORTH, SPACESOC, NONE).
+   */
+  primaryCocom?: string;
 
   /**
    * Name of the production facility for this RF Emitter.
    */
   productionFacilityName?: string;
-
-  /**
-   * Receiver bandwidth in Mhz.
-   */
-  receiverBandwidth?: number;
-
-  /**
-   * Receiver sensitivity in dBm.
-   */
-  receiverSensitivity?: number;
 
   /**
    * Type or name of receiver.
@@ -568,33 +978,30 @@ export interface RfEmitterDetailGetResponse {
   secondaryNotes?: string;
 
   /**
+   * The set of software services running on this EW Emitter system.
+   */
+  services?: Array<RfEmitterDetailGetResponse.Service>;
+
+  /**
    * Receiver sensitivity is the lowest power level at which the receiver can detect
    * an RF signal and demodulate data. Sensitivity is purely a receiver specification
-   * and is independent of the transmitter. End sensitivity range, in dBm.
+   * and is independent of the transmitter. End sensitivity range, in
+   * decibel-milliwatts.
    */
   systemSensitivityEnd?: number;
 
   /**
    * Receiver sensitivity is the lowest power level at which the receiver can detect
    * an RF signal and demodulate data. Sensitivity is purely a receiver specification
-   * and is independent of the transmitter. Start sensitivity range, in dBm.
+   * and is independent of the transmitter. Start sensitivity range, in
+   * decibel-milliwatts.
    */
   systemSensitivityStart?: number;
 
   /**
-   * Transmit power in Watts.
+   * The set of EA/TTP techniques that are supported by this EW Emitter system.
    */
-  transmitPower?: number;
-
-  /**
-   * Transmitter bandwidth in Mhz.
-   */
-  transmitterBandwidth?: number;
-
-  /**
-   * Transmitter frequency in Mhz.
-   */
-  transmitterFrequency?: number;
+  ttps?: Array<RfEmitterDetailGetResponse.Ttp>;
 
   /**
    * Time the row was last updated in the database, auto-populated by the system.
@@ -611,6 +1018,366 @@ export interface RfEmitterDetailGetResponse {
    * Array of URLs containing additional information on this RF Emitter.
    */
   urls?: Array<string>;
+}
+
+export namespace RfEmitterDetailGetResponse {
+  /**
+   * An RF Amplifier associated with an RF Emitter Details.
+   */
+  export interface Amplifier {
+    /**
+     * The device identifier of the amplifier.
+     */
+    deviceIdentifier?: string;
+
+    /**
+     * The manufacturer of the amplifier.
+     */
+    manufacturer?: string;
+
+    /**
+     * The model name of the amplifier.
+     */
+    modelName?: string;
+
+    /**
+     * The amplifier power level, in watts.
+     */
+    power?: number;
+  }
+
+  /**
+   * An RF Antenna associated with an RF Emitter Details.
+   */
+  export interface Antenna {
+    /**
+     * For parabolic/dish antennas, the diameter of the antenna in meters.
+     */
+    antennaDiameter?: number;
+
+    /**
+     * Array with 1-2 values specifying the length and width (for rectangular) and just
+     * length for dipole antennas in meters.
+     */
+    antennaSize?: Array<number>;
+
+    /**
+     * A flag to indicate whether the antenna points at a fixed azimuth/elevation.
+     */
+    azElFixed?: boolean;
+
+    /**
+     * The set of antenna feeds for this antenna.
+     */
+    feeds?: Array<Antenna.Feed>;
+
+    /**
+     * Antenna azimuth, in degrees clockwise from true North, for a fixed antenna.
+     */
+    fixedAzimuth?: number;
+
+    /**
+     * Antenna elevation, in degrees, for a fixed antenna.
+     */
+    fixedElevation?: number;
+
+    /**
+     * Array of maximum azimuths, in degrees.
+     */
+    maxAzimuths?: Array<number>;
+
+    /**
+     * Maximum elevation, in degrees.
+     */
+    maxElevation?: number;
+
+    /**
+     * Array of minimum azimuths, in degrees.
+     */
+    minAzimuths?: Array<number>;
+
+    /**
+     * Minimum elevation, in degrees.
+     */
+    minElevation?: number;
+
+    /**
+     * The name of the antenna.
+     */
+    name?: string;
+
+    /**
+     * The set of receiver channels for this antenna.
+     */
+    receiverChannels?: Array<Antenna.ReceiverChannel>;
+
+    /**
+     * The set of transmit channels for this antenna.
+     */
+    transmitChannels?: Array<Antenna.TransmitChannel>;
+  }
+
+  export namespace Antenna {
+    /**
+     * An RF Antenna Feed associated with an RF Antenna.
+     */
+    export interface Feed {
+      /**
+       * Maximum frequency, in megahertz.
+       */
+      freqMax?: number;
+
+      /**
+       * Minimum frequency, in megahertz.
+       */
+      freqMin?: number;
+
+      /**
+       * The feed name.
+       */
+      name?: string;
+
+      /**
+       * The antenna feed linear/circular polarization (e.g. HORIZONTAL, VERTICAL,
+       * LEFT_HAND_CIRCULAR, RIGHT_HAND_CIRCULAR).
+       */
+      polarization?: string;
+    }
+
+    /**
+     * An RF Antenna Receiver Channel associated with an RF Antenna.
+     */
+    export interface ReceiverChannel {
+      /**
+       * The receiver bandwidth, in megahertz, must satisfy the constraint: minBandwidth
+       * ≤ bandwidth ≤ maxBandwidth.
+       */
+      bandwidth?: number;
+
+      /**
+       * The receive channel number.
+       */
+      channelNum?: string;
+
+      /**
+       * The receive channel device identifier.
+       */
+      deviceIdentifier?: string;
+
+      /**
+       * Maximum frequency, in megahertz.
+       */
+      freqMax?: number;
+
+      /**
+       * Minimum frequency, in megahertz.
+       */
+      freqMin?: number;
+
+      /**
+       * The maximum receiver bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      maxBandwidth?: number;
+
+      /**
+       * The receiver bandwidth, in megahertz, must satisfy the constraint: minBandwidth
+       * ≤ bandwidth ≤ maxBandwidth.
+       */
+      minBandwidth?: number;
+
+      /**
+       * Receiver sensitivity, in decibel-milliwatts.
+       */
+      sensitivity?: number;
+    }
+
+    /**
+     * An RF Antenna Transmit Channel associated with an RF Antenna.
+     */
+    export interface TransmitChannel {
+      /**
+       * Transmit power, in watts.
+       */
+      power: number;
+
+      /**
+       * The transmitter bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      bandwidth?: number;
+
+      /**
+       * The transmit channel number.
+       */
+      channelNum?: string;
+
+      /**
+       * The transmit channel device identifier.
+       */
+      deviceIdentifier?: string;
+
+      /**
+       * The transmitter frequency, in megahertz, must satisfy the constraint: freqMin <=
+       * freq <= freqMax.
+       */
+      freq?: number;
+
+      /**
+       * The maximum transmitter frequency, in megahertz, must satisfy the constraint:
+       * freqMin ≤ freq ≤ freqMax.
+       */
+      freqMax?: number;
+
+      /**
+       * The minimum transmitter frequency, in megahertz, must satisfy the constraint:
+       * freqMin ≤ freq ≤ freqMax.
+       */
+      freqMin?: number;
+
+      /**
+       * The hardware sample rate, in bits per second for this transmit channel.
+       */
+      hardwareSampleRate?: number;
+
+      /**
+       * The maximum transmitter bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      maxBandwidth?: number;
+
+      /**
+       * Maximum gain, in decibels.
+       */
+      maxGain?: number;
+
+      /**
+       * The minimum transmitter bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      minBandwidth?: number;
+
+      /**
+       * Minimum gain, in decibels.
+       */
+      minGain?: number;
+
+      /**
+       * The set of sample rates supported by this transmit channel, in bits per second.
+       */
+      sampleRates?: Array<number>;
+    }
+  }
+
+  /**
+   * An RF Emitter Power Offset associated with an RF Emitter Details.
+   */
+  export interface PowerOffset {
+    /**
+     * The RF frequency band (e.g. HF, VHF, P, UHF, L, S, C, X, KU, K, KA, V, W, MM).
+     */
+    frequencyBand?: string;
+
+    /**
+     * Power offset, in decibels.
+     */
+    powerOffset?: number;
+  }
+
+  /**
+   * An RF Emitter SW Service associated with an RF Emitter Details.
+   */
+  export interface Service {
+    /**
+     * The name for this software service.
+     */
+    name?: string;
+
+    /**
+     * The version for this software service.
+     */
+    version?: string;
+  }
+
+  /**
+   * An RF Emitter TTP associated with an RF Emitter Details.
+   */
+  export interface Ttp {
+    /**
+     * The name of the output signal.
+     */
+    outputSignalName?: string;
+
+    /**
+     * The set of TTPs affected by this signal.
+     */
+    techniqueDefinitions?: Array<Ttp.TechniqueDefinition>;
+  }
+
+  export namespace Ttp {
+    /**
+     * An RF Emitter Technique Definition associated with an RF Emitter TTP.
+     */
+    export interface TechniqueDefinition {
+      /**
+       * The EW Emitter system technique name.
+       */
+      name?: string;
+
+      /**
+       * The set of required/optional parameters for this technique.
+       */
+      paramDefinitions?: Array<TechniqueDefinition.ParamDefinition>;
+    }
+
+    export namespace TechniqueDefinition {
+      /**
+       * An RF Emitter Technique Parameter Definition associated with an RF Emitter
+       * Technique Definition.
+       */
+      export interface ParamDefinition {
+        /**
+         * Default parameter value used if not overridden in a SEW task definition.
+         */
+        defaultValue?: string;
+
+        /**
+         * Maximum allowable value for a numeric parameter.
+         */
+        max?: number;
+
+        /**
+         * Minimum allowable value for a numeric parameter.
+         */
+        min?: number;
+
+        /**
+         * The name of the parameter.
+         */
+        name?: string;
+
+        /**
+         * A flag to specify that a parameter is optional.
+         */
+        optional?: boolean;
+
+        /**
+         * The type of parameter (e.g. STRING, DOUBLE, INT, LIST).
+         */
+        type?: string;
+
+        /**
+         * Units (degrees, seconds, decibels, etc.) for a numeric parameter.
+         */
+        units?: string;
+
+        /**
+         * Valid values for strictly defined parameters.
+         */
+        validValues?: Array<string>;
+      }
+    }
+  }
 }
 
 export interface RfEmitterDetailQueryhelpResponse {
@@ -695,20 +1462,25 @@ export namespace RfEmitterDetailTupleResponse {
     altName?: string;
 
     /**
-     * For parabolic/dish antennas, the diameter of the antenna in meters.
+     * An RF Amplifier associated with an RF Emitter Details.
      */
-    antennaDiameter?: number;
+    amplifier?: RfEmitterDetailTupleResponseItem.Amplifier;
 
     /**
-     * Array with 1-2 values specifying the length and width (for rectangular) and just
-     * length for dipole antennas in meters.
+     * The set of antennas hosted on this EW Emitter system.
      */
-    antennaSize?: Array<number>;
+    antennas?: Array<RfEmitterDetailTupleResponseItem.Antenna>;
 
     /**
-     * Barrage noise bandwidth in Mhz.
+     * Barrage noise bandwidth, in megahertz.
      */
     barrageNoiseBandwidth?: number;
+
+    /**
+     * The length of time, in seconds, for the RF Emitter built-in test to run to
+     * completion.
+     */
+    bitRunTime?: number;
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -732,12 +1504,12 @@ export namespace RfEmitterDetailTupleResponse {
     designator?: string;
 
     /**
-     * Doppler noise value in Mhz.
+     * Doppler noise value, in megahertz.
      */
     dopplerNoise?: number;
 
     /**
-     * Digital Form Radio Memory instantaneous bandwidth in Mhz.
+     * Digital Form Radio Memory instantaneous bandwidth in megahertz.
      */
     drfmInstantaneousBandwidth?: number;
 
@@ -747,16 +1519,28 @@ export namespace RfEmitterDetailTupleResponse {
     family?: string;
 
     /**
-     * An organization such as a corporation, manufacturer, consortium, government,
-     * etc. An organization may have parent and child organizations as well as link to
-     * a former organization if this org previously existed as another organization.
+     * A fixed attenuation value to be set on the SRF Emitter HPA when commanding an
+     * Electronic Attack/Techniques Tactics and Procedures task, in decibels.
      */
-    manufacturerOrg?: Shared.OrganizationFull;
+    fixedAttenuation?: number;
 
     /**
-     * Unique identifier of the organization which manufactures this RF Emitter.
+     * Unique identifier of the organization which manufactured this RF Emitter.
      */
-    manufacturerOrgId?: string;
+    idManufacturerOrg?: string;
+
+    /**
+     * Unique identifier of the location of the production facility for this RF
+     * Emitter.
+     */
+    idProductionFacilityLocation?: string;
+
+    /**
+     * COCOM that has temporary responsibility for scheduling and management of the RF
+     * Emitter (e.g. SPACEFOR-CENT, SPACEFOR-EURAF, SPACEFOR-INDOPAC, SPACEFOR-KOR,
+     * SPACEFOR-STRATNORTH, SPACESOC, NONE).
+     */
+    loanedToCocom?: string;
 
     /**
      * Notes on the RF Emitter.
@@ -788,31 +1572,28 @@ export namespace RfEmitterDetailTupleResponse {
     origNetwork?: string;
 
     /**
-     * Model representation of a location, which is a specific fixed point on the earth
-     * and is used to denote the locations of fixed sensors, operating units, etc.
+     * A set of system/frequency band adjustments to the power offset commanded in an
+     * EA/TTP task.
      */
-    productionFacilityLocation?: Shared.LocationFull;
+    powerOffsets?: Array<RfEmitterDetailTupleResponseItem.PowerOffset>;
 
     /**
-     * Unique identifier of the location of the production facility for this RF
-     * Emitter.
+     * The length of time, in seconds, for the RF Emitter to prepare for a task,
+     * including sufficient time to slew the antenna and configure the equipment.
      */
-    productionFacilityLocationId?: string;
+    prepTime?: number;
+
+    /**
+     * Primary COCOM that is responsible for scheduling and management of the RF
+     * Emitter (e.g. SPACEFOR-CENT, SPACEFOR-EURAF, SPACEFOR-INDOPAC, SPACEFOR-KOR,
+     * SPACEFOR-STRATNORTH, SPACESOC, NONE).
+     */
+    primaryCocom?: string;
 
     /**
      * Name of the production facility for this RF Emitter.
      */
     productionFacilityName?: string;
-
-    /**
-     * Receiver bandwidth in Mhz.
-     */
-    receiverBandwidth?: number;
-
-    /**
-     * Receiver sensitivity in dBm.
-     */
-    receiverSensitivity?: number;
 
     /**
      * Type or name of receiver.
@@ -825,33 +1606,30 @@ export namespace RfEmitterDetailTupleResponse {
     secondaryNotes?: string;
 
     /**
+     * The set of software services running on this EW Emitter system.
+     */
+    services?: Array<RfEmitterDetailTupleResponseItem.Service>;
+
+    /**
      * Receiver sensitivity is the lowest power level at which the receiver can detect
      * an RF signal and demodulate data. Sensitivity is purely a receiver specification
-     * and is independent of the transmitter. End sensitivity range, in dBm.
+     * and is independent of the transmitter. End sensitivity range, in
+     * decibel-milliwatts.
      */
     systemSensitivityEnd?: number;
 
     /**
      * Receiver sensitivity is the lowest power level at which the receiver can detect
      * an RF signal and demodulate data. Sensitivity is purely a receiver specification
-     * and is independent of the transmitter. Start sensitivity range, in dBm.
+     * and is independent of the transmitter. Start sensitivity range, in
+     * decibel-milliwatts.
      */
     systemSensitivityStart?: number;
 
     /**
-     * Transmit power in Watts.
+     * The set of EA/TTP techniques that are supported by this EW Emitter system.
      */
-    transmitPower?: number;
-
-    /**
-     * Transmitter bandwidth in Mhz.
-     */
-    transmitterBandwidth?: number;
-
-    /**
-     * Transmitter frequency in Mhz.
-     */
-    transmitterFrequency?: number;
+    ttps?: Array<RfEmitterDetailTupleResponseItem.Ttp>;
 
     /**
      * Time the row was last updated in the database, auto-populated by the system.
@@ -868,6 +1646,366 @@ export namespace RfEmitterDetailTupleResponse {
      * Array of URLs containing additional information on this RF Emitter.
      */
     urls?: Array<string>;
+  }
+
+  export namespace RfEmitterDetailTupleResponseItem {
+    /**
+     * An RF Amplifier associated with an RF Emitter Details.
+     */
+    export interface Amplifier {
+      /**
+       * The device identifier of the amplifier.
+       */
+      deviceIdentifier?: string;
+
+      /**
+       * The manufacturer of the amplifier.
+       */
+      manufacturer?: string;
+
+      /**
+       * The model name of the amplifier.
+       */
+      modelName?: string;
+
+      /**
+       * The amplifier power level, in watts.
+       */
+      power?: number;
+    }
+
+    /**
+     * An RF Antenna associated with an RF Emitter Details.
+     */
+    export interface Antenna {
+      /**
+       * For parabolic/dish antennas, the diameter of the antenna in meters.
+       */
+      antennaDiameter?: number;
+
+      /**
+       * Array with 1-2 values specifying the length and width (for rectangular) and just
+       * length for dipole antennas in meters.
+       */
+      antennaSize?: Array<number>;
+
+      /**
+       * A flag to indicate whether the antenna points at a fixed azimuth/elevation.
+       */
+      azElFixed?: boolean;
+
+      /**
+       * The set of antenna feeds for this antenna.
+       */
+      feeds?: Array<Antenna.Feed>;
+
+      /**
+       * Antenna azimuth, in degrees clockwise from true North, for a fixed antenna.
+       */
+      fixedAzimuth?: number;
+
+      /**
+       * Antenna elevation, in degrees, for a fixed antenna.
+       */
+      fixedElevation?: number;
+
+      /**
+       * Array of maximum azimuths, in degrees.
+       */
+      maxAzimuths?: Array<number>;
+
+      /**
+       * Maximum elevation, in degrees.
+       */
+      maxElevation?: number;
+
+      /**
+       * Array of minimum azimuths, in degrees.
+       */
+      minAzimuths?: Array<number>;
+
+      /**
+       * Minimum elevation, in degrees.
+       */
+      minElevation?: number;
+
+      /**
+       * The name of the antenna.
+       */
+      name?: string;
+
+      /**
+       * The set of receiver channels for this antenna.
+       */
+      receiverChannels?: Array<Antenna.ReceiverChannel>;
+
+      /**
+       * The set of transmit channels for this antenna.
+       */
+      transmitChannels?: Array<Antenna.TransmitChannel>;
+    }
+
+    export namespace Antenna {
+      /**
+       * An RF Antenna Feed associated with an RF Antenna.
+       */
+      export interface Feed {
+        /**
+         * Maximum frequency, in megahertz.
+         */
+        freqMax?: number;
+
+        /**
+         * Minimum frequency, in megahertz.
+         */
+        freqMin?: number;
+
+        /**
+         * The feed name.
+         */
+        name?: string;
+
+        /**
+         * The antenna feed linear/circular polarization (e.g. HORIZONTAL, VERTICAL,
+         * LEFT_HAND_CIRCULAR, RIGHT_HAND_CIRCULAR).
+         */
+        polarization?: string;
+      }
+
+      /**
+       * An RF Antenna Receiver Channel associated with an RF Antenna.
+       */
+      export interface ReceiverChannel {
+        /**
+         * The receiver bandwidth, in megahertz, must satisfy the constraint: minBandwidth
+         * ≤ bandwidth ≤ maxBandwidth.
+         */
+        bandwidth?: number;
+
+        /**
+         * The receive channel number.
+         */
+        channelNum?: string;
+
+        /**
+         * The receive channel device identifier.
+         */
+        deviceIdentifier?: string;
+
+        /**
+         * Maximum frequency, in megahertz.
+         */
+        freqMax?: number;
+
+        /**
+         * Minimum frequency, in megahertz.
+         */
+        freqMin?: number;
+
+        /**
+         * The maximum receiver bandwidth, in megahertz, must satisfy the constraint:
+         * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+         */
+        maxBandwidth?: number;
+
+        /**
+         * The receiver bandwidth, in megahertz, must satisfy the constraint: minBandwidth
+         * ≤ bandwidth ≤ maxBandwidth.
+         */
+        minBandwidth?: number;
+
+        /**
+         * Receiver sensitivity, in decibel-milliwatts.
+         */
+        sensitivity?: number;
+      }
+
+      /**
+       * An RF Antenna Transmit Channel associated with an RF Antenna.
+       */
+      export interface TransmitChannel {
+        /**
+         * Transmit power, in watts.
+         */
+        power: number;
+
+        /**
+         * The transmitter bandwidth, in megahertz, must satisfy the constraint:
+         * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+         */
+        bandwidth?: number;
+
+        /**
+         * The transmit channel number.
+         */
+        channelNum?: string;
+
+        /**
+         * The transmit channel device identifier.
+         */
+        deviceIdentifier?: string;
+
+        /**
+         * The transmitter frequency, in megahertz, must satisfy the constraint: freqMin <=
+         * freq <= freqMax.
+         */
+        freq?: number;
+
+        /**
+         * The maximum transmitter frequency, in megahertz, must satisfy the constraint:
+         * freqMin ≤ freq ≤ freqMax.
+         */
+        freqMax?: number;
+
+        /**
+         * The minimum transmitter frequency, in megahertz, must satisfy the constraint:
+         * freqMin ≤ freq ≤ freqMax.
+         */
+        freqMin?: number;
+
+        /**
+         * The hardware sample rate, in bits per second for this transmit channel.
+         */
+        hardwareSampleRate?: number;
+
+        /**
+         * The maximum transmitter bandwidth, in megahertz, must satisfy the constraint:
+         * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+         */
+        maxBandwidth?: number;
+
+        /**
+         * Maximum gain, in decibels.
+         */
+        maxGain?: number;
+
+        /**
+         * The minimum transmitter bandwidth, in megahertz, must satisfy the constraint:
+         * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+         */
+        minBandwidth?: number;
+
+        /**
+         * Minimum gain, in decibels.
+         */
+        minGain?: number;
+
+        /**
+         * The set of sample rates supported by this transmit channel, in bits per second.
+         */
+        sampleRates?: Array<number>;
+      }
+    }
+
+    /**
+     * An RF Emitter Power Offset associated with an RF Emitter Details.
+     */
+    export interface PowerOffset {
+      /**
+       * The RF frequency band (e.g. HF, VHF, P, UHF, L, S, C, X, KU, K, KA, V, W, MM).
+       */
+      frequencyBand?: string;
+
+      /**
+       * Power offset, in decibels.
+       */
+      powerOffset?: number;
+    }
+
+    /**
+     * An RF Emitter SW Service associated with an RF Emitter Details.
+     */
+    export interface Service {
+      /**
+       * The name for this software service.
+       */
+      name?: string;
+
+      /**
+       * The version for this software service.
+       */
+      version?: string;
+    }
+
+    /**
+     * An RF Emitter TTP associated with an RF Emitter Details.
+     */
+    export interface Ttp {
+      /**
+       * The name of the output signal.
+       */
+      outputSignalName?: string;
+
+      /**
+       * The set of TTPs affected by this signal.
+       */
+      techniqueDefinitions?: Array<Ttp.TechniqueDefinition>;
+    }
+
+    export namespace Ttp {
+      /**
+       * An RF Emitter Technique Definition associated with an RF Emitter TTP.
+       */
+      export interface TechniqueDefinition {
+        /**
+         * The EW Emitter system technique name.
+         */
+        name?: string;
+
+        /**
+         * The set of required/optional parameters for this technique.
+         */
+        paramDefinitions?: Array<TechniqueDefinition.ParamDefinition>;
+      }
+
+      export namespace TechniqueDefinition {
+        /**
+         * An RF Emitter Technique Parameter Definition associated with an RF Emitter
+         * Technique Definition.
+         */
+        export interface ParamDefinition {
+          /**
+           * Default parameter value used if not overridden in a SEW task definition.
+           */
+          defaultValue?: string;
+
+          /**
+           * Maximum allowable value for a numeric parameter.
+           */
+          max?: number;
+
+          /**
+           * Minimum allowable value for a numeric parameter.
+           */
+          min?: number;
+
+          /**
+           * The name of the parameter.
+           */
+          name?: string;
+
+          /**
+           * A flag to specify that a parameter is optional.
+           */
+          optional?: boolean;
+
+          /**
+           * The type of parameter (e.g. STRING, DOUBLE, INT, LIST).
+           */
+          type?: string;
+
+          /**
+           * Units (degrees, seconds, decibels, etc.) for a numeric parameter.
+           */
+          units?: string;
+
+          /**
+           * Valid values for strictly defined parameters.
+           */
+          validValues?: Array<string>;
+        }
+      }
+    }
   }
 }
 
@@ -921,20 +2059,25 @@ export interface RfEmitterDetailCreateParams {
   altName?: string;
 
   /**
-   * For parabolic/dish antennas, the diameter of the antenna in meters.
+   * An RF Amplifier associated with an RF Emitter Details.
    */
-  antennaDiameter?: number;
+  amplifier?: RfEmitterDetailCreateParams.Amplifier;
 
   /**
-   * Array with 1-2 values specifying the length and width (for rectangular) and just
-   * length for dipole antennas in meters.
+   * The set of antennas hosted on this EW Emitter system.
    */
-  antennaSize?: Array<number>;
+  antennas?: Array<RfEmitterDetailCreateParams.Antenna>;
 
   /**
-   * Barrage noise bandwidth in Mhz.
+   * Barrage noise bandwidth, in megahertz.
    */
   barrageNoiseBandwidth?: number;
+
+  /**
+   * The length of time, in seconds, for the RF Emitter built-in test to run to
+   * completion.
+   */
+  bitRunTime?: number;
 
   /**
    * Detailed description of the RF Emitter.
@@ -947,12 +2090,12 @@ export interface RfEmitterDetailCreateParams {
   designator?: string;
 
   /**
-   * Doppler noise value in Mhz.
+   * Doppler noise value, in megahertz.
    */
   dopplerNoise?: number;
 
   /**
-   * Digital Form Radio Memory instantaneous bandwidth in Mhz.
+   * Digital Form Radio Memory instantaneous bandwidth in megahertz.
    */
   drfmInstantaneousBandwidth?: number;
 
@@ -962,9 +2105,28 @@ export interface RfEmitterDetailCreateParams {
   family?: string;
 
   /**
-   * Unique identifier of the organization which manufactures this RF Emitter.
+   * A fixed attenuation value to be set on the SRF Emitter HPA when commanding an
+   * Electronic Attack/Techniques Tactics and Procedures task, in decibels.
    */
-  manufacturerOrgId?: string;
+  fixedAttenuation?: number;
+
+  /**
+   * Unique identifier of the organization which manufactured this RF Emitter.
+   */
+  idManufacturerOrg?: string;
+
+  /**
+   * Unique identifier of the location of the production facility for this RF
+   * Emitter.
+   */
+  idProductionFacilityLocation?: string;
+
+  /**
+   * COCOM that has temporary responsibility for scheduling and management of the RF
+   * Emitter (e.g. SPACEFOR-CENT, SPACEFOR-EURAF, SPACEFOR-INDOPAC, SPACEFOR-KOR,
+   * SPACEFOR-STRATNORTH, SPACESOC, NONE).
+   */
+  loanedToCocom?: string;
 
   /**
    * Notes on the RF Emitter.
@@ -990,25 +2152,28 @@ export interface RfEmitterDetailCreateParams {
   origin?: string;
 
   /**
-   * Unique identifier of the location of the production facility for this RF
-   * Emitter.
+   * A set of system/frequency band adjustments to the power offset commanded in an
+   * EA/TTP task.
    */
-  productionFacilityLocationId?: string;
+  powerOffsets?: Array<RfEmitterDetailCreateParams.PowerOffset>;
+
+  /**
+   * The length of time, in seconds, for the RF Emitter to prepare for a task,
+   * including sufficient time to slew the antenna and configure the equipment.
+   */
+  prepTime?: number;
+
+  /**
+   * Primary COCOM that is responsible for scheduling and management of the RF
+   * Emitter (e.g. SPACEFOR-CENT, SPACEFOR-EURAF, SPACEFOR-INDOPAC, SPACEFOR-KOR,
+   * SPACEFOR-STRATNORTH, SPACESOC, NONE).
+   */
+  primaryCocom?: string;
 
   /**
    * Name of the production facility for this RF Emitter.
    */
   productionFacilityName?: string;
-
-  /**
-   * Receiver bandwidth in Mhz.
-   */
-  receiverBandwidth?: number;
-
-  /**
-   * Receiver sensitivity in dBm.
-   */
-  receiverSensitivity?: number;
 
   /**
    * Type or name of receiver.
@@ -1021,38 +2186,395 @@ export interface RfEmitterDetailCreateParams {
   secondaryNotes?: string;
 
   /**
+   * The set of software services running on this EW Emitter system.
+   */
+  services?: Array<RfEmitterDetailCreateParams.Service>;
+
+  /**
    * Receiver sensitivity is the lowest power level at which the receiver can detect
    * an RF signal and demodulate data. Sensitivity is purely a receiver specification
-   * and is independent of the transmitter. End sensitivity range, in dBm.
+   * and is independent of the transmitter. End sensitivity range, in
+   * decibel-milliwatts.
    */
   systemSensitivityEnd?: number;
 
   /**
    * Receiver sensitivity is the lowest power level at which the receiver can detect
    * an RF signal and demodulate data. Sensitivity is purely a receiver specification
-   * and is independent of the transmitter. Start sensitivity range, in dBm.
+   * and is independent of the transmitter. Start sensitivity range, in
+   * decibel-milliwatts.
    */
   systemSensitivityStart?: number;
 
   /**
-   * Transmit power in Watts.
+   * The set of EA/TTP techniques that are supported by this EW Emitter system.
    */
-  transmitPower?: number;
-
-  /**
-   * Transmitter bandwidth in Mhz.
-   */
-  transmitterBandwidth?: number;
-
-  /**
-   * Transmitter frequency in Mhz.
-   */
-  transmitterFrequency?: number;
+  ttps?: Array<RfEmitterDetailCreateParams.Ttp>;
 
   /**
    * Array of URLs containing additional information on this RF Emitter.
    */
   urls?: Array<string>;
+}
+
+export namespace RfEmitterDetailCreateParams {
+  /**
+   * An RF Amplifier associated with an RF Emitter Details.
+   */
+  export interface Amplifier {
+    /**
+     * The device identifier of the amplifier.
+     */
+    deviceIdentifier?: string;
+
+    /**
+     * The manufacturer of the amplifier.
+     */
+    manufacturer?: string;
+
+    /**
+     * The model name of the amplifier.
+     */
+    modelName?: string;
+
+    /**
+     * The amplifier power level, in watts.
+     */
+    power?: number;
+  }
+
+  /**
+   * An RF Antenna associated with an RF Emitter Details.
+   */
+  export interface Antenna {
+    /**
+     * For parabolic/dish antennas, the diameter of the antenna in meters.
+     */
+    antennaDiameter?: number;
+
+    /**
+     * Array with 1-2 values specifying the length and width (for rectangular) and just
+     * length for dipole antennas in meters.
+     */
+    antennaSize?: Array<number>;
+
+    /**
+     * A flag to indicate whether the antenna points at a fixed azimuth/elevation.
+     */
+    azElFixed?: boolean;
+
+    /**
+     * The set of antenna feeds for this antenna.
+     */
+    feeds?: Array<Antenna.Feed>;
+
+    /**
+     * Antenna azimuth, in degrees clockwise from true North, for a fixed antenna.
+     */
+    fixedAzimuth?: number;
+
+    /**
+     * Antenna elevation, in degrees, for a fixed antenna.
+     */
+    fixedElevation?: number;
+
+    /**
+     * Array of maximum azimuths, in degrees.
+     */
+    maxAzimuths?: Array<number>;
+
+    /**
+     * Maximum elevation, in degrees.
+     */
+    maxElevation?: number;
+
+    /**
+     * Array of minimum azimuths, in degrees.
+     */
+    minAzimuths?: Array<number>;
+
+    /**
+     * Minimum elevation, in degrees.
+     */
+    minElevation?: number;
+
+    /**
+     * The name of the antenna.
+     */
+    name?: string;
+
+    /**
+     * The set of receiver channels for this antenna.
+     */
+    receiverChannels?: Array<Antenna.ReceiverChannel>;
+
+    /**
+     * The set of transmit channels for this antenna.
+     */
+    transmitChannels?: Array<Antenna.TransmitChannel>;
+  }
+
+  export namespace Antenna {
+    /**
+     * An RF Antenna Feed associated with an RF Antenna.
+     */
+    export interface Feed {
+      /**
+       * Maximum frequency, in megahertz.
+       */
+      freqMax?: number;
+
+      /**
+       * Minimum frequency, in megahertz.
+       */
+      freqMin?: number;
+
+      /**
+       * The feed name.
+       */
+      name?: string;
+
+      /**
+       * The antenna feed linear/circular polarization (e.g. HORIZONTAL, VERTICAL,
+       * LEFT_HAND_CIRCULAR, RIGHT_HAND_CIRCULAR).
+       */
+      polarization?: string;
+    }
+
+    /**
+     * An RF Antenna Receiver Channel associated with an RF Antenna.
+     */
+    export interface ReceiverChannel {
+      /**
+       * The receiver bandwidth, in megahertz, must satisfy the constraint: minBandwidth
+       * ≤ bandwidth ≤ maxBandwidth.
+       */
+      bandwidth?: number;
+
+      /**
+       * The receive channel number.
+       */
+      channelNum?: string;
+
+      /**
+       * The receive channel device identifier.
+       */
+      deviceIdentifier?: string;
+
+      /**
+       * Maximum frequency, in megahertz.
+       */
+      freqMax?: number;
+
+      /**
+       * Minimum frequency, in megahertz.
+       */
+      freqMin?: number;
+
+      /**
+       * The maximum receiver bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      maxBandwidth?: number;
+
+      /**
+       * The receiver bandwidth, in megahertz, must satisfy the constraint: minBandwidth
+       * ≤ bandwidth ≤ maxBandwidth.
+       */
+      minBandwidth?: number;
+
+      /**
+       * Receiver sensitivity, in decibel-milliwatts.
+       */
+      sensitivity?: number;
+    }
+
+    /**
+     * An RF Antenna Transmit Channel associated with an RF Antenna.
+     */
+    export interface TransmitChannel {
+      /**
+       * Transmit power, in watts.
+       */
+      power: number;
+
+      /**
+       * The transmitter bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      bandwidth?: number;
+
+      /**
+       * The transmit channel number.
+       */
+      channelNum?: string;
+
+      /**
+       * The transmit channel device identifier.
+       */
+      deviceIdentifier?: string;
+
+      /**
+       * The transmitter frequency, in megahertz, must satisfy the constraint: freqMin <=
+       * freq <= freqMax.
+       */
+      freq?: number;
+
+      /**
+       * The maximum transmitter frequency, in megahertz, must satisfy the constraint:
+       * freqMin ≤ freq ≤ freqMax.
+       */
+      freqMax?: number;
+
+      /**
+       * The minimum transmitter frequency, in megahertz, must satisfy the constraint:
+       * freqMin ≤ freq ≤ freqMax.
+       */
+      freqMin?: number;
+
+      /**
+       * The hardware sample rate, in bits per second for this transmit channel.
+       */
+      hardwareSampleRate?: number;
+
+      /**
+       * The maximum transmitter bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      maxBandwidth?: number;
+
+      /**
+       * Maximum gain, in decibels.
+       */
+      maxGain?: number;
+
+      /**
+       * The minimum transmitter bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      minBandwidth?: number;
+
+      /**
+       * Minimum gain, in decibels.
+       */
+      minGain?: number;
+
+      /**
+       * The set of sample rates supported by this transmit channel, in bits per second.
+       */
+      sampleRates?: Array<number>;
+    }
+  }
+
+  /**
+   * An RF Emitter Power Offset associated with an RF Emitter Details.
+   */
+  export interface PowerOffset {
+    /**
+     * The RF frequency band (e.g. HF, VHF, P, UHF, L, S, C, X, KU, K, KA, V, W, MM).
+     */
+    frequencyBand?: string;
+
+    /**
+     * Power offset, in decibels.
+     */
+    powerOffset?: number;
+  }
+
+  /**
+   * An RF Emitter SW Service associated with an RF Emitter Details.
+   */
+  export interface Service {
+    /**
+     * The name for this software service.
+     */
+    name?: string;
+
+    /**
+     * The version for this software service.
+     */
+    version?: string;
+  }
+
+  /**
+   * An RF Emitter TTP associated with an RF Emitter Details.
+   */
+  export interface Ttp {
+    /**
+     * The name of the output signal.
+     */
+    outputSignalName?: string;
+
+    /**
+     * The set of TTPs affected by this signal.
+     */
+    techniqueDefinitions?: Array<Ttp.TechniqueDefinition>;
+  }
+
+  export namespace Ttp {
+    /**
+     * An RF Emitter Technique Definition associated with an RF Emitter TTP.
+     */
+    export interface TechniqueDefinition {
+      /**
+       * The EW Emitter system technique name.
+       */
+      name?: string;
+
+      /**
+       * The set of required/optional parameters for this technique.
+       */
+      paramDefinitions?: Array<TechniqueDefinition.ParamDefinition>;
+    }
+
+    export namespace TechniqueDefinition {
+      /**
+       * An RF Emitter Technique Parameter Definition associated with an RF Emitter
+       * Technique Definition.
+       */
+      export interface ParamDefinition {
+        /**
+         * Default parameter value used if not overridden in a SEW task definition.
+         */
+        defaultValue?: string;
+
+        /**
+         * Maximum allowable value for a numeric parameter.
+         */
+        max?: number;
+
+        /**
+         * Minimum allowable value for a numeric parameter.
+         */
+        min?: number;
+
+        /**
+         * The name of the parameter.
+         */
+        name?: string;
+
+        /**
+         * A flag to specify that a parameter is optional.
+         */
+        optional?: boolean;
+
+        /**
+         * The type of parameter (e.g. STRING, DOUBLE, INT, LIST).
+         */
+        type?: string;
+
+        /**
+         * Units (degrees, seconds, decibels, etc.) for a numeric parameter.
+         */
+        units?: string;
+
+        /**
+         * Valid values for strictly defined parameters.
+         */
+        validValues?: Array<string>;
+      }
+    }
+  }
 }
 
 export interface RfEmitterDetailUpdateParams {
@@ -1105,20 +2627,25 @@ export interface RfEmitterDetailUpdateParams {
   altName?: string;
 
   /**
-   * For parabolic/dish antennas, the diameter of the antenna in meters.
+   * An RF Amplifier associated with an RF Emitter Details.
    */
-  antennaDiameter?: number;
+  amplifier?: RfEmitterDetailUpdateParams.Amplifier;
 
   /**
-   * Array with 1-2 values specifying the length and width (for rectangular) and just
-   * length for dipole antennas in meters.
+   * The set of antennas hosted on this EW Emitter system.
    */
-  antennaSize?: Array<number>;
+  antennas?: Array<RfEmitterDetailUpdateParams.Antenna>;
 
   /**
-   * Barrage noise bandwidth in Mhz.
+   * Barrage noise bandwidth, in megahertz.
    */
   barrageNoiseBandwidth?: number;
+
+  /**
+   * The length of time, in seconds, for the RF Emitter built-in test to run to
+   * completion.
+   */
+  bitRunTime?: number;
 
   /**
    * Detailed description of the RF Emitter.
@@ -1131,12 +2658,12 @@ export interface RfEmitterDetailUpdateParams {
   designator?: string;
 
   /**
-   * Doppler noise value in Mhz.
+   * Doppler noise value, in megahertz.
    */
   dopplerNoise?: number;
 
   /**
-   * Digital Form Radio Memory instantaneous bandwidth in Mhz.
+   * Digital Form Radio Memory instantaneous bandwidth in megahertz.
    */
   drfmInstantaneousBandwidth?: number;
 
@@ -1146,9 +2673,28 @@ export interface RfEmitterDetailUpdateParams {
   family?: string;
 
   /**
-   * Unique identifier of the organization which manufactures this RF Emitter.
+   * A fixed attenuation value to be set on the SRF Emitter HPA when commanding an
+   * Electronic Attack/Techniques Tactics and Procedures task, in decibels.
    */
-  manufacturerOrgId?: string;
+  fixedAttenuation?: number;
+
+  /**
+   * Unique identifier of the organization which manufactured this RF Emitter.
+   */
+  idManufacturerOrg?: string;
+
+  /**
+   * Unique identifier of the location of the production facility for this RF
+   * Emitter.
+   */
+  idProductionFacilityLocation?: string;
+
+  /**
+   * COCOM that has temporary responsibility for scheduling and management of the RF
+   * Emitter (e.g. SPACEFOR-CENT, SPACEFOR-EURAF, SPACEFOR-INDOPAC, SPACEFOR-KOR,
+   * SPACEFOR-STRATNORTH, SPACESOC, NONE).
+   */
+  loanedToCocom?: string;
 
   /**
    * Notes on the RF Emitter.
@@ -1174,25 +2720,28 @@ export interface RfEmitterDetailUpdateParams {
   origin?: string;
 
   /**
-   * Unique identifier of the location of the production facility for this RF
-   * Emitter.
+   * A set of system/frequency band adjustments to the power offset commanded in an
+   * EA/TTP task.
    */
-  productionFacilityLocationId?: string;
+  powerOffsets?: Array<RfEmitterDetailUpdateParams.PowerOffset>;
+
+  /**
+   * The length of time, in seconds, for the RF Emitter to prepare for a task,
+   * including sufficient time to slew the antenna and configure the equipment.
+   */
+  prepTime?: number;
+
+  /**
+   * Primary COCOM that is responsible for scheduling and management of the RF
+   * Emitter (e.g. SPACEFOR-CENT, SPACEFOR-EURAF, SPACEFOR-INDOPAC, SPACEFOR-KOR,
+   * SPACEFOR-STRATNORTH, SPACESOC, NONE).
+   */
+  primaryCocom?: string;
 
   /**
    * Name of the production facility for this RF Emitter.
    */
   productionFacilityName?: string;
-
-  /**
-   * Receiver bandwidth in Mhz.
-   */
-  receiverBandwidth?: number;
-
-  /**
-   * Receiver sensitivity in dBm.
-   */
-  receiverSensitivity?: number;
 
   /**
    * Type or name of receiver.
@@ -1205,38 +2754,395 @@ export interface RfEmitterDetailUpdateParams {
   secondaryNotes?: string;
 
   /**
+   * The set of software services running on this EW Emitter system.
+   */
+  services?: Array<RfEmitterDetailUpdateParams.Service>;
+
+  /**
    * Receiver sensitivity is the lowest power level at which the receiver can detect
    * an RF signal and demodulate data. Sensitivity is purely a receiver specification
-   * and is independent of the transmitter. End sensitivity range, in dBm.
+   * and is independent of the transmitter. End sensitivity range, in
+   * decibel-milliwatts.
    */
   systemSensitivityEnd?: number;
 
   /**
    * Receiver sensitivity is the lowest power level at which the receiver can detect
    * an RF signal and demodulate data. Sensitivity is purely a receiver specification
-   * and is independent of the transmitter. Start sensitivity range, in dBm.
+   * and is independent of the transmitter. Start sensitivity range, in
+   * decibel-milliwatts.
    */
   systemSensitivityStart?: number;
 
   /**
-   * Transmit power in Watts.
+   * The set of EA/TTP techniques that are supported by this EW Emitter system.
    */
-  transmitPower?: number;
-
-  /**
-   * Transmitter bandwidth in Mhz.
-   */
-  transmitterBandwidth?: number;
-
-  /**
-   * Transmitter frequency in Mhz.
-   */
-  transmitterFrequency?: number;
+  ttps?: Array<RfEmitterDetailUpdateParams.Ttp>;
 
   /**
    * Array of URLs containing additional information on this RF Emitter.
    */
   urls?: Array<string>;
+}
+
+export namespace RfEmitterDetailUpdateParams {
+  /**
+   * An RF Amplifier associated with an RF Emitter Details.
+   */
+  export interface Amplifier {
+    /**
+     * The device identifier of the amplifier.
+     */
+    deviceIdentifier?: string;
+
+    /**
+     * The manufacturer of the amplifier.
+     */
+    manufacturer?: string;
+
+    /**
+     * The model name of the amplifier.
+     */
+    modelName?: string;
+
+    /**
+     * The amplifier power level, in watts.
+     */
+    power?: number;
+  }
+
+  /**
+   * An RF Antenna associated with an RF Emitter Details.
+   */
+  export interface Antenna {
+    /**
+     * For parabolic/dish antennas, the diameter of the antenna in meters.
+     */
+    antennaDiameter?: number;
+
+    /**
+     * Array with 1-2 values specifying the length and width (for rectangular) and just
+     * length for dipole antennas in meters.
+     */
+    antennaSize?: Array<number>;
+
+    /**
+     * A flag to indicate whether the antenna points at a fixed azimuth/elevation.
+     */
+    azElFixed?: boolean;
+
+    /**
+     * The set of antenna feeds for this antenna.
+     */
+    feeds?: Array<Antenna.Feed>;
+
+    /**
+     * Antenna azimuth, in degrees clockwise from true North, for a fixed antenna.
+     */
+    fixedAzimuth?: number;
+
+    /**
+     * Antenna elevation, in degrees, for a fixed antenna.
+     */
+    fixedElevation?: number;
+
+    /**
+     * Array of maximum azimuths, in degrees.
+     */
+    maxAzimuths?: Array<number>;
+
+    /**
+     * Maximum elevation, in degrees.
+     */
+    maxElevation?: number;
+
+    /**
+     * Array of minimum azimuths, in degrees.
+     */
+    minAzimuths?: Array<number>;
+
+    /**
+     * Minimum elevation, in degrees.
+     */
+    minElevation?: number;
+
+    /**
+     * The name of the antenna.
+     */
+    name?: string;
+
+    /**
+     * The set of receiver channels for this antenna.
+     */
+    receiverChannels?: Array<Antenna.ReceiverChannel>;
+
+    /**
+     * The set of transmit channels for this antenna.
+     */
+    transmitChannels?: Array<Antenna.TransmitChannel>;
+  }
+
+  export namespace Antenna {
+    /**
+     * An RF Antenna Feed associated with an RF Antenna.
+     */
+    export interface Feed {
+      /**
+       * Maximum frequency, in megahertz.
+       */
+      freqMax?: number;
+
+      /**
+       * Minimum frequency, in megahertz.
+       */
+      freqMin?: number;
+
+      /**
+       * The feed name.
+       */
+      name?: string;
+
+      /**
+       * The antenna feed linear/circular polarization (e.g. HORIZONTAL, VERTICAL,
+       * LEFT_HAND_CIRCULAR, RIGHT_HAND_CIRCULAR).
+       */
+      polarization?: string;
+    }
+
+    /**
+     * An RF Antenna Receiver Channel associated with an RF Antenna.
+     */
+    export interface ReceiverChannel {
+      /**
+       * The receiver bandwidth, in megahertz, must satisfy the constraint: minBandwidth
+       * ≤ bandwidth ≤ maxBandwidth.
+       */
+      bandwidth?: number;
+
+      /**
+       * The receive channel number.
+       */
+      channelNum?: string;
+
+      /**
+       * The receive channel device identifier.
+       */
+      deviceIdentifier?: string;
+
+      /**
+       * Maximum frequency, in megahertz.
+       */
+      freqMax?: number;
+
+      /**
+       * Minimum frequency, in megahertz.
+       */
+      freqMin?: number;
+
+      /**
+       * The maximum receiver bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      maxBandwidth?: number;
+
+      /**
+       * The receiver bandwidth, in megahertz, must satisfy the constraint: minBandwidth
+       * ≤ bandwidth ≤ maxBandwidth.
+       */
+      minBandwidth?: number;
+
+      /**
+       * Receiver sensitivity, in decibel-milliwatts.
+       */
+      sensitivity?: number;
+    }
+
+    /**
+     * An RF Antenna Transmit Channel associated with an RF Antenna.
+     */
+    export interface TransmitChannel {
+      /**
+       * Transmit power, in watts.
+       */
+      power: number;
+
+      /**
+       * The transmitter bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      bandwidth?: number;
+
+      /**
+       * The transmit channel number.
+       */
+      channelNum?: string;
+
+      /**
+       * The transmit channel device identifier.
+       */
+      deviceIdentifier?: string;
+
+      /**
+       * The transmitter frequency, in megahertz, must satisfy the constraint: freqMin <=
+       * freq <= freqMax.
+       */
+      freq?: number;
+
+      /**
+       * The maximum transmitter frequency, in megahertz, must satisfy the constraint:
+       * freqMin ≤ freq ≤ freqMax.
+       */
+      freqMax?: number;
+
+      /**
+       * The minimum transmitter frequency, in megahertz, must satisfy the constraint:
+       * freqMin ≤ freq ≤ freqMax.
+       */
+      freqMin?: number;
+
+      /**
+       * The hardware sample rate, in bits per second for this transmit channel.
+       */
+      hardwareSampleRate?: number;
+
+      /**
+       * The maximum transmitter bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      maxBandwidth?: number;
+
+      /**
+       * Maximum gain, in decibels.
+       */
+      maxGain?: number;
+
+      /**
+       * The minimum transmitter bandwidth, in megahertz, must satisfy the constraint:
+       * minBandwidth ≤ bandwidth ≤ maxBandwidth.
+       */
+      minBandwidth?: number;
+
+      /**
+       * Minimum gain, in decibels.
+       */
+      minGain?: number;
+
+      /**
+       * The set of sample rates supported by this transmit channel, in bits per second.
+       */
+      sampleRates?: Array<number>;
+    }
+  }
+
+  /**
+   * An RF Emitter Power Offset associated with an RF Emitter Details.
+   */
+  export interface PowerOffset {
+    /**
+     * The RF frequency band (e.g. HF, VHF, P, UHF, L, S, C, X, KU, K, KA, V, W, MM).
+     */
+    frequencyBand?: string;
+
+    /**
+     * Power offset, in decibels.
+     */
+    powerOffset?: number;
+  }
+
+  /**
+   * An RF Emitter SW Service associated with an RF Emitter Details.
+   */
+  export interface Service {
+    /**
+     * The name for this software service.
+     */
+    name?: string;
+
+    /**
+     * The version for this software service.
+     */
+    version?: string;
+  }
+
+  /**
+   * An RF Emitter TTP associated with an RF Emitter Details.
+   */
+  export interface Ttp {
+    /**
+     * The name of the output signal.
+     */
+    outputSignalName?: string;
+
+    /**
+     * The set of TTPs affected by this signal.
+     */
+    techniqueDefinitions?: Array<Ttp.TechniqueDefinition>;
+  }
+
+  export namespace Ttp {
+    /**
+     * An RF Emitter Technique Definition associated with an RF Emitter TTP.
+     */
+    export interface TechniqueDefinition {
+      /**
+       * The EW Emitter system technique name.
+       */
+      name?: string;
+
+      /**
+       * The set of required/optional parameters for this technique.
+       */
+      paramDefinitions?: Array<TechniqueDefinition.ParamDefinition>;
+    }
+
+    export namespace TechniqueDefinition {
+      /**
+       * An RF Emitter Technique Parameter Definition associated with an RF Emitter
+       * Technique Definition.
+       */
+      export interface ParamDefinition {
+        /**
+         * Default parameter value used if not overridden in a SEW task definition.
+         */
+        defaultValue?: string;
+
+        /**
+         * Maximum allowable value for a numeric parameter.
+         */
+        max?: number;
+
+        /**
+         * Minimum allowable value for a numeric parameter.
+         */
+        min?: number;
+
+        /**
+         * The name of the parameter.
+         */
+        name?: string;
+
+        /**
+         * A flag to specify that a parameter is optional.
+         */
+        optional?: boolean;
+
+        /**
+         * The type of parameter (e.g. STRING, DOUBLE, INT, LIST).
+         */
+        type?: string;
+
+        /**
+         * Units (degrees, seconds, decibels, etc.) for a numeric parameter.
+         */
+        units?: string;
+
+        /**
+         * Valid values for strictly defined parameters.
+         */
+        validValues?: Array<string>;
+      }
+    }
+  }
 }
 
 export interface RfEmitterDetailListParams extends OffsetPageParams {}

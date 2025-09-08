@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'delete_rf_emitter',
   description:
-    'Service operation to delete an RFEmitter specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.',
+    'Service operation to delete a RFEmitter record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.',
   inputSchema: {
     type: 'object',
     properties: {

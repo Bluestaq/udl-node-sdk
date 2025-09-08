@@ -1551,7 +1551,6 @@ export {
 } from './scientific';
 export {
   Scs,
-  type ScAggregateDocTypeResponse,
   type ScAllowableFileExtensionsResponse,
   type ScAllowableFileMimesResponse,
   type ScCopyResponse,
@@ -1566,7 +1565,6 @@ export {
   type ScMoveParams,
   type ScRenameParams,
   type ScSearchParams,
-  type ScUpdateTagsParams,
 } from './scs/scs';
 export { ScsViews, type ScsViewRetrieveParams } from './scs-views';
 export {
@@ -1614,7 +1612,6 @@ export {
   SensorObservationType,
   type SensorObservationTypeListResponse,
   type SensorObservationTypeGetResponse,
-  type SensorObservationTypeQueryhelpResponse,
   type SensorObservationTypeListParams,
   type SensorObservationTypeGetParams,
   type SensorObservationTypeListResponsesOffsetPage,
@@ -1639,7 +1636,6 @@ export {
   SensorType,
   type SensorTypeListResponse,
   type SensorTypeGetResponse,
-  type SensorTypeQueryhelpResponse,
   type SensorTypeListParams,
   type SensorTypeGetParams,
   type SensorTypeListResponsesOffsetPage,

@@ -345,13 +345,6 @@ export interface AirspacecontrolorderAbridged {
   qualSN?: number;
 
   /**
-   * Optional URI location in the document repository of the raw file parsed by the
-   * system to produce this record. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this value.
-   */
-  rawFileURI?: string;
-
-  /**
    * The unique message identifier sequentially assigned by the originator.
    */
   serialNum?: string;

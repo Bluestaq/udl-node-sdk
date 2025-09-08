@@ -488,13 +488,6 @@ export interface DatalinkIngest {
   qualSN?: number;
 
   /**
-   * Optional URI location in the document repository of the raw file parsed by the
-   * system to produce this record. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this value.
-   */
-  rawFileURI?: string;
-
-  /**
    * Collection of reference information. There can be 0 to many DataLinkReferences
    * collections within the datalink service.
    */
@@ -1210,13 +1203,6 @@ export interface DatalinkListResponse {
    * The serial number associated with the message qualifier.
    */
   qualSN?: number;
-
-  /**
-   * Optional URI location in the document repository of the raw file parsed by the
-   * system to produce this record. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this value.
-   */
-  rawFileURI?: string;
 
   /**
    * Collection of reference information. There can be 0 to many DataLinkReferences
@@ -1963,13 +1949,6 @@ export namespace DatalinkTupleResponse {
      * The serial number associated with the message qualifier.
      */
     qualSN?: number;
-
-    /**
-     * Optional URI location in the document repository of the raw file parsed by the
-     * system to produce this record. To download the raw file, prepend
-     * https://udl-hostname/scs/download?id= to this value.
-     */
-    rawFileURI?: string;
 
     /**
      * Collection of reference information. There can be 0 to many DataLinkReferences

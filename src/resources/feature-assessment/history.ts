@@ -165,12 +165,6 @@ export namespace HistoryQueryResponse {
     annText?: Array<string>;
 
     /**
-     * Optional geographical region or polygon (lat/lon pairs) of the area surrounding
-     * the feature assessment as projected on the ground.
-     */
-    area?: string;
-
-    /**
      * Geographical spatial_ref_sys for region.
      */
     asrid?: number;

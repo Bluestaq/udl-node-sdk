@@ -326,11 +326,6 @@ export const tool: Tool = {
               description:
                 'When horizontal and/or vertical accuracy requirements cannot be met because of inadequate source material, this code indicates the quality of the data.',
             },
-            rawFileURI: {
-              type: 'string',
-              description:
-                'Optional URI location in the document repository of the raw file parsed by the system to produce this record. To download the raw file, prepend https://udl-hostname/scs/download?id= to this value.',
-            },
             revDate: {
               type: 'string',
               description:

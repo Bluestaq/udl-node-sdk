@@ -1766,12 +1766,12 @@ The following tools are available in this MCP server.
 
 ### Resource `rf_band`:
 
-- `create_rf_band` (`write`): Service operation to take a single RFBand as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `update_rf_band` (`write`): Service operation to update an RFBand. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `create_rf_band` (`write`): Service operation to take a single RFBand record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `update_rf_band` (`write`): Service operation to update a single RFBand record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `list_rf_band` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `delete_rf_band` (`write`): Service operation to delete an RFBand specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `delete_rf_band` (`write`): Service operation to delete a RFBand record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `count_rf_band` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `get_rf_band` (`read`): Service operation to get a single RFBand by its unique ID passed as a path parameter.
+- `get_rf_band` (`read`): Service operation to get a single RFBand record by its unique ID passed as a path parameter.
 - `queryhelp_rf_band` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_rf_band` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
@@ -1789,22 +1789,22 @@ The following tools are available in this MCP server.
 ### Resource `rf_emitter`:
 
 - `create_rf_emitter` (`write`): Service operation to take a single RFEmitter as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `update_rf_emitter` (`write`): Service operation to update an RFEmitter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `update_rf_emitter` (`write`): Service operation to update a single RFEmitter record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `list_rf_emitter` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `delete_rf_emitter` (`write`): Service operation to delete an RFEmitter specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `delete_rf_emitter` (`write`): Service operation to delete a RFEmitter record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `count_rf_emitter` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `get_rf_emitter` (`read`): Service operation to get a single RFEmitter by its unique ID passed as a path parameter.
+- `get_rf_emitter` (`read`): Service operation to get a single RFEmitter record by its unique ID passed as a path parameter.
 - `queryhelp_rf_emitter` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_rf_emitter` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
 ### Resource `rf_emitter_details`:
 
 - `create_rf_emitter_details` (`write`): Service operation to take a single RFEmitterDetails as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `update_rf_emitter_details` (`write`): Service operation to update an RFEmitterDetails. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `update_rf_emitter_details` (`write`): Service operation to update a single RFEmitterDetails record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `list_rf_emitter_details` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `delete_rf_emitter_details` (`write`): Service operation to delete an RFEmitterDetails specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `delete_rf_emitter_details` (`write`): Service operation to delete a single RFEmitterDetails record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `count_rf_emitter_details` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `get_rf_emitter_details` (`read`): Service operation to get a single RFEmitterDetails by its unique ID passed as a path parameter.
+- `get_rf_emitter_details` (`read`): Service operation to get a single RFEmitterDetails record by its unique ID passed as a path parameter.
 - `queryhelp_rf_emitter_details` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_rf_emitter_details` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
@@ -1887,7 +1887,6 @@ The following tools are available in this MCP server.
 
 - `list_sensor_observation_type` (`read`):
 - `get_sensor_observation_type` (`read`):
-- `queryhelp_sensor_observation_type` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 
 ### Resource `sensor_plan`:
 
@@ -1910,7 +1909,6 @@ The following tools are available in this MCP server.
 
 - `list_sensor_type` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `get_sensor_type` (`read`): Service operation to get a single Sensortype record by its unique ID passed as a path parameter.
-- `queryhelp_sensor_type` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 
 ### Resource `sera_data_comm_details`:
 
@@ -2521,9 +2519,8 @@ The following tools are available in this MCP server.
 ### Resource `scs`:
 
 - `delete_scs` (`write`): Deletes the requested file or folder in the passed path directory that is visible to the calling user. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `aggregate_doc_type_scs` (`read`): Returns a map of document types and counts in root folder.
-- `allowable_file_extensions_scs` (`read`): Returns a list of allowable file extensions for upload.
-- `allowable_file_mimes_scs` (`read`): Returns a list of allowable file mime types for upload.
+- `allowable_file_extensions_scs` (`read`): Returns a list of the allowed filename extensions.
+- `allowable_file_mimes_scs` (`read`): Returns a list of the allowed file upload mime types.
 - `copy_scs` (`write`): operation to copy folders or files. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `download_scs` (`write`): Downloads a zip of one or more files and/or folders.
 - `file_download_scs` (`read`): Download a single file from SCS.
@@ -2531,29 +2528,12 @@ The following tools are available in this MCP server.
 - `move_scs` (`write`): operation to move folders or files. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `rename_scs` (`write`): Operation to rename folders or files. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `search_scs` (`write`): Search for files by metadata and/or text in file content.
-- `update_tags_scs` (`write`): Updates tags for given folder.
 
 ### Resource `scs.folders`:
 
 - `create_scs_folders` (`write`): Creates a new folder that is passed as part of the path. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `retrieve_scs_folders` (`read`): Returns a FileData object representing the folder ID that is visible to the calling user.
 - `update_scs_folders` (`write`): operation to update folders metadata. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
-### Resource `scs.classification_markings`:
-
-- `list_scs_classification_markings` (`read`): Returns a list of all classification markings appropriate to the current user.
-
-### Resource `scs.groups`:
-
-- `list_scs_groups` (`read`): Returns a list of all available groups for ACL UIs
-
-### Resource `scs.file_metadata`:
-
-- `list_scs_file_metadata` (`read`): Returns a set of File Metadata that can be used for search endpoint.
-
-### Resource `scs.range_parameters`:
-
-- `list_scs_range_parameters` (`read`): Returns a set of File Metadata that can be used for search endpoint.
 
 ### Resource `scs.paths`:
 

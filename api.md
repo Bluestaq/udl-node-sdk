@@ -3162,13 +3162,11 @@ Types:
 
 - <code><a href="./src/resources/sensor-observation-type.ts">SensorObservationTypeListResponse</a></code>
 - <code><a href="./src/resources/sensor-observation-type.ts">SensorObservationTypeGetResponse</a></code>
-- <code><a href="./src/resources/sensor-observation-type.ts">SensorObservationTypeQueryhelpResponse</a></code>
 
 Methods:
 
 - <code title="get /udl/sensorobservationtype">client.sensorObservationType.<a href="./src/resources/sensor-observation-type.ts">list</a>({ ...params }) -> SensorObservationTypeListResponsesOffsetPage</code>
 - <code title="get /udl/sensorobservationtype/{id}">client.sensorObservationType.<a href="./src/resources/sensor-observation-type.ts">get</a>(id, { ...params }) -> SensorObservationTypeGetResponse</code>
-- <code title="get /udl/sensorobservationtype/queryhelp">client.sensorObservationType.<a href="./src/resources/sensor-observation-type.ts">queryhelp</a>() -> SensorObservationTypeQueryhelpResponse</code>
 
 # SensorPlan
 
@@ -3210,13 +3208,11 @@ Types:
 
 - <code><a href="./src/resources/sensor-type.ts">SensorTypeListResponse</a></code>
 - <code><a href="./src/resources/sensor-type.ts">SensorTypeGetResponse</a></code>
-- <code><a href="./src/resources/sensor-type.ts">SensorTypeQueryhelpResponse</a></code>
 
 Methods:
 
 - <code title="get /udl/sensortype">client.sensorType.<a href="./src/resources/sensor-type.ts">list</a>({ ...params }) -> SensorTypeListResponsesOffsetPage</code>
 - <code title="get /udl/sensortype/{id}">client.sensorType.<a href="./src/resources/sensor-type.ts">get</a>(id, { ...params }) -> SensorTypeGetResponse</code>
-- <code title="get /udl/sensortype/queryhelp">client.sensorType.<a href="./src/resources/sensor-type.ts">queryhelp</a>() -> SensorTypeQueryhelpResponse</code>
 
 # SeraDataCommDetails
 
@@ -4361,7 +4357,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/scs/scs.ts">ScAggregateDocTypeResponse</a></code>
 - <code><a href="./src/resources/scs/scs.ts">ScAllowableFileExtensionsResponse</a></code>
 - <code><a href="./src/resources/scs/scs.ts">ScAllowableFileMimesResponse</a></code>
 - <code><a href="./src/resources/scs/scs.ts">ScCopyResponse</a></code>
@@ -4372,7 +4367,6 @@ Types:
 Methods:
 
 - <code title="delete /scs/delete">client.scs.<a href="./src/resources/scs/scs.ts">delete</a>({ ...params }) -> void</code>
-- <code title="get /scs/aggregateDocType">client.scs.<a href="./src/resources/scs/scs.ts">aggregateDocType</a>() -> ScAggregateDocTypeResponse</code>
 - <code title="get /scs/allowableFileExtensions">client.scs.<a href="./src/resources/scs/scs.ts">allowableFileExtensions</a>() -> ScAllowableFileExtensionsResponse</code>
 - <code title="get /scs/allowableFileMimes">client.scs.<a href="./src/resources/scs/scs.ts">allowableFileMimes</a>() -> ScAllowableFileMimesResponse</code>
 - <code title="post /scs/copy">client.scs.<a href="./src/resources/scs/scs.ts">copy</a>({ ...params }) -> string</code>
@@ -4382,7 +4376,6 @@ Methods:
 - <code title="put /scs/move">client.scs.<a href="./src/resources/scs/scs.ts">move</a>({ ...params }) -> string</code>
 - <code title="put /scs/rename">client.scs.<a href="./src/resources/scs/scs.ts">rename</a>({ ...params }) -> void</code>
 - <code title="post /scs/search">client.scs.<a href="./src/resources/scs/scs.ts">search</a>({ ...params }) -> ScSearchResponse</code>
-- <code title="put /scs/updateTagsForFilesInFolder">client.scs.<a href="./src/resources/scs/scs.ts">updateTags</a>({ ...params }) -> void</code>
 
 ## Folders
 
@@ -4398,43 +4391,11 @@ Methods:
 
 ## ClassificationMarkings
 
-Types:
-
-- <code><a href="./src/resources/scs/classification-markings.ts">ClassificationMarkingListResponse</a></code>
-
-Methods:
-
-- <code title="get /scs/getClassificationMarkings">client.scs.classificationMarkings.<a href="./src/resources/scs/classification-markings.ts">list</a>() -> ClassificationMarkingListResponse</code>
-
 ## Groups
-
-Types:
-
-- <code><a href="./src/resources/scs/groups.ts">GroupListResponse</a></code>
-
-Methods:
-
-- <code title="get /scs/groups">client.scs.groups.<a href="./src/resources/scs/groups.ts">list</a>() -> GroupListResponse</code>
 
 ## FileMetadata
 
-Types:
-
-- <code><a href="./src/resources/scs/file-metadata.ts">FileMetadataListResponse</a></code>
-
-Methods:
-
-- <code title="get /scs/listFileMetadata">client.scs.fileMetadata.<a href="./src/resources/scs/file-metadata.ts">list</a>() -> FileMetadataListResponse</code>
-
 ## RangeParameters
-
-Types:
-
-- <code><a href="./src/resources/scs/range-parameters.ts">RangeParameterListResponse</a></code>
-
-Methods:
-
-- <code title="get /scs/listRangeParameters">client.scs.rangeParameters.<a href="./src/resources/scs/range-parameters.ts">list</a>() -> RangeParameterListResponse</code>
 
 ## Paths
 

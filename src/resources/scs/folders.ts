@@ -12,13 +12,7 @@ export class Folders extends APIResource {
    * required to perform this service operation. Please contact the UDL team for
    * assistance.
    *
-   * @example
-   * ```ts
-   * const folder = await client.scs.folders.create({
-   *   id: 'id',
-   *   classificationMarking: 'classificationMarking',
-   * });
-   * ```
+   * @deprecated
    */
   create(params: FolderCreateParams, options?: RequestOptions): APIPromise<string> {
     const { id, classificationMarking, description, read, sendNotification, tags, write } = params;
@@ -32,12 +26,7 @@ export class Folders extends APIResource {
    * Returns a FileData object representing the folder ID that is visible to the
    * calling user.
    *
-   * @example
-   * ```ts
-   * const fileData = await client.scs.folders.retrieve({
-   *   id: 'id',
-   * });
-   * ```
+   * @deprecated
    */
   retrieve(query: FolderRetrieveParams, options?: RequestOptions): APIPromise<Shared.FileData> {
     return this._client.get('/scs/folder', { query, ...options });
@@ -47,19 +36,7 @@ export class Folders extends APIResource {
    * operation to update folders metadata. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
    *
-   * @example
-   * ```ts
-   * await client.scs.folders.update({
-   *   id: '/example/folder/',
-   *   attributes: {
-   *     classification: 'U',
-   *     path: '/example/folder/',
-   *     description: 'A new Example Description',
-   *     tags: null,
-   *     metaInfo: 'A new Example Meta Info',
-   *   },
-   * });
-   * ```
+   * @deprecated
    */
   update(body: FolderUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.patch('/scs/folder', {
@@ -123,18 +100,25 @@ export interface FolderRetrieveParams {
 export interface FolderUpdateParams {
   id?: string;
 
+  /**
+   * @deprecated
+   */
   attributes?: FolderUpdateParams.Attributes;
-
-  contentAction?: 'UPDATE' | 'COPY' | 'MOVE';
 
   targetName?: string;
 
   targetPath?: string;
 
+  /**
+   * @deprecated
+   */
   type?: 'file' | 'folder' | 'summary';
 }
 
 export namespace FolderUpdateParams {
+  /**
+   * @deprecated
+   */
   export interface Attributes {
     id?: string;
 

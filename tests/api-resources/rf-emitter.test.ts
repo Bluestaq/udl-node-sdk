@@ -31,7 +31,7 @@ describe('resource rfEmitter', () => {
       dataMode: 'TEST',
       name: 'RF_NAME',
       source: 'Bluestaq',
-      id: 'RFEMITTER-ID',
+      id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
       entity: {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -80,8 +80,10 @@ describe('resource rfEmitter', () => {
         taskable: false,
         urls: ['URL1', 'URL2'],
       },
+      extSysId: 'EXTSYS-ID',
       idEntity: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       origin: 'THIRD_PARTY_DATASOURCE',
+      subtype: 'BLOCK_1',
       type: 'TYPE_OF_EMITTER',
     });
   });
@@ -108,7 +110,7 @@ describe('resource rfEmitter', () => {
       dataMode: 'TEST',
       name: 'RF_NAME',
       source: 'Bluestaq',
-      body_id: 'RFEMITTER-ID',
+      body_id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
       entity: {
         classificationMarking: 'U',
         dataMode: 'TEST',
@@ -157,8 +159,10 @@ describe('resource rfEmitter', () => {
         taskable: false,
         urls: ['URL1', 'URL2'],
       },
+      extSysId: 'EXTSYS-ID',
       idEntity: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       origin: 'THIRD_PARTY_DATASOURCE',
+      subtype: 'BLOCK_1',
       type: 'TYPE_OF_EMITTER',
     });
   });

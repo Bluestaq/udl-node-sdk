@@ -3,11 +3,11 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as ClassificationMarkingsAPI from './classification-markings';
-import { ClassificationMarkingListResponse, ClassificationMarkings } from './classification-markings';
+import { ClassificationMarkings } from './classification-markings';
 import * as FileAPI from './file';
 import { File, FileListParams, FileRetrieveParams, FileUpdateParams } from './file';
 import * as FileMetadataAPI from './file-metadata';
-import { FileMetadata, FileMetadataListResponse } from './file-metadata';
+import { FileMetadata } from './file-metadata';
 import * as FoldersAPI from './folders';
 import {
   FolderCreateParams,
@@ -17,11 +17,11 @@ import {
   Folders,
 } from './folders';
 import * as GroupsAPI from './groups';
-import { GroupListResponse, Groups } from './groups';
+import { Groups } from './groups';
 import * as PathsAPI from './paths';
 import { PathCreateWithFileParams, PathCreateWithFileResponse, Paths } from './paths';
 import * as RangeParametersAPI from './range-parameters';
-import { RangeParameterListResponse, RangeParameters } from './range-parameters';
+import { RangeParameters } from './range-parameters';
 import * as V2API from './v2';
 import {
   Attachment,
@@ -56,10 +56,7 @@ export class Scs extends APIResource {
    * visible to the calling user. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    *
-   * @example
-   * ```ts
-   * await client.scs.delete({ id: 'id' });
-   * ```
+   * @deprecated
    */
   delete(params: ScDeleteParams, options?: RequestOptions): APIPromise<void> {
     const { id } = params;
@@ -71,19 +68,7 @@ export class Scs extends APIResource {
   }
 
   /**
-   * Returns a map of document types and counts in root folder.
-   *
-   * @example
-   * ```ts
-   * const response = await client.scs.aggregateDocType();
-   * ```
-   */
-  aggregateDocType(options?: RequestOptions): APIPromise<ScAggregateDocTypeResponse> {
-    return this._client.get('/scs/aggregateDocType', options);
-  }
-
-  /**
-   * Returns a list of allowable file extensions for upload.
+   * Returns a list of the allowed filename extensions.
    *
    * @example
    * ```ts
@@ -95,7 +80,7 @@ export class Scs extends APIResource {
   }
 
   /**
-   * Returns a list of allowable file mime types for upload.
+   * Returns a list of the allowed file upload mime types.
    *
    * @example
    * ```ts
@@ -110,13 +95,7 @@ export class Scs extends APIResource {
    * operation to copy folders or files. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    *
-   * @example
-   * ```ts
-   * const response = await client.scs.copy({
-   *   id: 'id',
-   *   targetPath: 'targetPath',
-   * });
-   * ```
+   * @deprecated
    */
   copy(params: ScCopyParams, options?: RequestOptions): APIPromise<string> {
     const { id, targetPath } = params;
@@ -129,10 +108,7 @@ export class Scs extends APIResource {
    * @example
    * ```ts
    * const response = await client.scs.download({
-   *   body: [
-   *     '/processPalantirXml/media/PT_MEDIA6831731772984708680',
-   *     '/processPalantirXml/media/PT_MEDIA7297147303810886654',
-   *   ],
+   *   body: ['/MyFolderToDownload/'],
    * });
    *
    * const content = await response.blob();
@@ -175,17 +151,7 @@ export class Scs extends APIResource {
    * Operation to upload a file. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    *
-   * @example
-   * ```ts
-   * const response = await client.scs.fileUpload(
-   *   fs.createReadStream('path/to/file'),
-   *   {
-   *     classificationMarking: 'classificationMarking',
-   *     fileName: 'fileName',
-   *     path: 'path',
-   *   },
-   * );
-   * ```
+   * @deprecated
    */
   fileUpload(
     fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
@@ -223,13 +189,7 @@ export class Scs extends APIResource {
    * operation to move folders or files. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    *
-   * @example
-   * ```ts
-   * const response = await client.scs.move({
-   *   id: 'id',
-   *   targetPath: 'targetPath',
-   * });
-   * ```
+   * @deprecated
    */
   move(params: ScMoveParams, options?: RequestOptions): APIPromise<string> {
     const { id, targetPath } = params;
@@ -240,10 +200,7 @@ export class Scs extends APIResource {
    * Operation to rename folders or files. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
    *
-   * @example
-   * ```ts
-   * await client.scs.rename({ id: 'id', newName: 'newName' });
-   * ```
+   * @deprecated
    */
   rename(params: ScRenameParams, options?: RequestOptions): APIPromise<void> {
     const { id, newName } = params;
@@ -257,43 +214,13 @@ export class Scs extends APIResource {
   /**
    * Search for files by metadata and/or text in file content.
    *
-   * @example
-   * ```ts
-   * const fileData = await client.scs.search({
-   *   path: 'path',
-   *   metaDataCriteria: {
-   *     CREATED_AT: ['< 2022-06-14T07:48:11.302Z'],
-   *   },
-   * });
-   * ```
+   * @deprecated
    */
   search(params: ScSearchParams, options?: RequestOptions): APIPromise<ScSearchResponse> {
     const { path: path_, count, offset, ...body } = params;
     return this._client.post('/scs/search', { query: { path: path_, count, offset }, body, ...options });
   }
-
-  /**
-   * Updates tags for given folder.
-   *
-   * @example
-   * ```ts
-   * await client.scs.updateTags({
-   *   folder: 'folder',
-   *   tags: 'tags',
-   * });
-   * ```
-   */
-  updateTags(params: ScUpdateTagsParams, options?: RequestOptions): APIPromise<void> {
-    const { folder, tags } = params;
-    return this._client.put('/scs/updateTagsForFilesInFolder', {
-      query: { folder, tags },
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
-  }
 }
-
-export type ScAggregateDocTypeResponse = Array<string>;
 
 export type ScAllowableFileExtensionsResponse = Array<string>;
 
@@ -327,7 +254,7 @@ export interface ScCopyParams {
 }
 
 export interface ScDownloadParams {
-  body: Array<string>;
+  body: Array<unknown>;
 }
 
 export interface ScFileDownloadParams {
@@ -343,17 +270,17 @@ export interface ScFileDownloadParams {
 
 export interface ScFileUploadParams {
   /**
-   * Query param: Classification (ex. U//FOUO)
+   * Query param: Classification marking of the file being uploaded.
    */
   classificationMarking: string;
 
   /**
-   * Query param: FileName (ex. dog.jpg)
+   * Query param: Name of the file to upload.
    */
   fileName: string;
 
   /**
-   * Query param: The base path to upload file (ex. images)
+   * Query param: The base path to upload file
    */
   path: string;
 
@@ -386,7 +313,7 @@ export interface ScFileUploadParams {
 
 export interface ScMoveParams {
   /**
-   * The path of the item to copy
+   * The path of the item to move
    */
   id: string;
 
@@ -450,18 +377,6 @@ export interface ScSearchParams {
   searchAfter?: string;
 }
 
-export interface ScUpdateTagsParams {
-  /**
-   * The base path to folder
-   */
-  folder: string;
-
-  /**
-   * The new tag
-   */
-  tags: string;
-}
-
 Scs.Folders = Folders;
 Scs.ClassificationMarkings = ClassificationMarkings;
 Scs.Groups = Groups;
@@ -473,7 +388,6 @@ Scs.File = File;
 
 export declare namespace Scs {
   export {
-    type ScAggregateDocTypeResponse as ScAggregateDocTypeResponse,
     type ScAllowableFileExtensionsResponse as ScAllowableFileExtensionsResponse,
     type ScAllowableFileMimesResponse as ScAllowableFileMimesResponse,
     type ScCopyResponse as ScCopyResponse,
@@ -488,7 +402,6 @@ export declare namespace Scs {
     type ScMoveParams as ScMoveParams,
     type ScRenameParams as ScRenameParams,
     type ScSearchParams as ScSearchParams,
-    type ScUpdateTagsParams as ScUpdateTagsParams,
   };
 
   export {
@@ -499,19 +412,13 @@ export declare namespace Scs {
     type FolderUpdateParams as FolderUpdateParams,
   };
 
-  export {
-    ClassificationMarkings as ClassificationMarkings,
-    type ClassificationMarkingListResponse as ClassificationMarkingListResponse,
-  };
+  export { ClassificationMarkings as ClassificationMarkings };
 
-  export { Groups as Groups, type GroupListResponse as GroupListResponse };
+  export { Groups as Groups };
 
-  export { FileMetadata as FileMetadata, type FileMetadataListResponse as FileMetadataListResponse };
+  export { FileMetadata as FileMetadata };
 
-  export {
-    RangeParameters as RangeParameters,
-    type RangeParameterListResponse as RangeParameterListResponse,
-  };
+  export { RangeParameters as RangeParameters };
 
   export {
     Paths as Paths,
