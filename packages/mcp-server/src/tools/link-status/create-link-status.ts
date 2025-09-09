@@ -134,10 +134,6 @@ export const tool: Tool = {
         type: 'integer',
         description: 'Satellite/catalog number of the target on-orbit secondary object.',
       },
-      snr: {
-        type: 'number',
-        description: 'Signal to noise ratio, in dB.',
-      },
       sysCap: {
         type: 'string',
         description: 'The SYSCAP mission status of the system(s) forming the link.',

@@ -53,11 +53,6 @@ export const tool: Tool = {
         type: 'integer',
         description: 'Model execution cadence, in minutes.',
       },
-      dataSourceIdentifier: {
-        type: 'string',
-        description:
-          'A unique identification code or label assigned to a particular source from which atmospheric data originates.',
-      },
       endAlt: {
         type: 'number',
         description: 'Ending altitude of model outputs, in kilometers.',

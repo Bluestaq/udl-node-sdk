@@ -254,7 +254,7 @@ export interface ScCopyParams {
 }
 
 export interface ScDownloadParams {
-  body: Array<string>;
+  body: Array<unknown>;
 }
 
 export interface ScFileDownloadParams {

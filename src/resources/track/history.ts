@@ -85,7 +85,7 @@ export interface TrackFull {
   source: string;
 
   /**
-   * Track timestamp in ISO8601 UTC format with microsecond precision.
+   * Track timestamp in ISO8601 UTC format.
    */
   ts: string;
 
@@ -116,23 +116,19 @@ export interface TrackFull {
 
   /**
    * The attitude (Yaw, Pitch, and Roll), in degrees, of the track object. When
-   * provided, the array must always contain 3 values defining the attitude and may
-   * specify an optional timestamp indicating when the data was measured, last known
-   * to be correct and/or predicted to occur. These values represent the vehicle's
-   * rotation about the vertical, lateral, and longitudinal axes, respectively, in a
-   * locally level, East, North, Up "right handed" coordinate system centered on the
-   * vehicle. Yaw is measured in degrees and ranges from -180 to 180. Pitch is
-   * measured in degrees and ranges from -90 to 90. Roll is measured in degrees and
-   * ranges from -180 to 180.
+   * provided, the array must always contain 3 values. These values represent the
+   * vehicle's rotation about the vertical, lateral, and longitudinal axes,
+   * respectively, in a locally level, East, North, Up "right handed" coordinate
+   * system centered on the vehicle. Yaw is measured in degrees and ranges from -180
+   * to 180. Pitch is measured in degrees and ranges from -90 to 90. Roll is measured
+   * in degrees and ranges from -180 to 180.
    */
   attitude?: Array<number>;
 
   /**
    * The attitude rate (Yaw Rate, Pitch Rate, and Roll Rate), in degrees per second,
-   * of the track object. When provided, the array must always contain 3 values
-   * defining the attitude rate and may specify an optional timestamp indicating when
-   * the data was measured, last known to be correct and/or predicted to occur. These
-   * values represent the rate of change of the vehicle's rotation about the
+   * of the track object. When provided, the array must always contain 3 values.
+   * These values represent the rate of change of the vehicle's rotation about the
    * vertical, lateral, and longitudinal axes, respectively, in a locally level,
    * East, North, Up "right handed" coordinate system centered on the vehicle.
    */
@@ -149,27 +145,6 @@ export interface TrackFull {
    * complete location, identification, and limited status information.
    */
   cntct?: string;
-
-  /**
-   * An optional string array containing additional data (keys) representing relevant
-   * items for context of fields not specifically defined in this schema. This array
-   * is paired with the contextValues string array and must contain the same number
-   * of items. Please note these fields are intended for contextual use only and do
-   * not pertain to core schema information. To ensure proper integration and avoid
-   * misuse, coordination of how these fields are populated and consumed is required
-   * during onboarding.
-   */
-  contextKeys?: Array<string>;
-
-  /**
-   * An optional string array containing the values associated with the contextKeys
-   * array. This array is paired with the contextKeys string array and must contain
-   * the same number of items. Please note these fields are intended for contextual
-   * use only and do not pertain to core schema information. To ensure proper
-   * integration and avoid misuse, coordination of how these fields are populated and
-   * consumed is required during onboarding.
-   */
-  contextValues?: Array<string>;
 
   /**
    * The track object course-over-ground, in degrees clockwise from true North at the
@@ -225,37 +200,28 @@ export interface TrackFull {
   createdBy?: string;
 
   /**
-   * Array of the track object acceleration, [x'', y'', z''], in meters per second
-   * squared, in the Earth Centered - Earth Fixed (ECEF) reference frame. When
-   * provided, array must always contain 3 values.
+   * Track object acceleration in ECEF [x'', y'', z''], meters/sec^2. When provided,
+   * array must always contain 3 values.
    */
   ecefAcc?: Array<number>;
 
   /**
-   * Array of the track object position, [x, y, z], in meters, in the Earth
-   * Centered - Earth Fixed (ECEF) reference frame. When provided, array must always
-   * contain 3 values.
+   * Track object location in ECEF [x, y, z], meters. When provided, array must
+   * always contain 3 values.
    */
   ecefPos?: Array<number>;
 
   /**
-   * Array of the track object velocity, [x', y', z'], in meters per second, in the
-   * Earth Centered - Earth Fixed (ECEF) reference frame. When provided, array must
-   * always contain 3 values.
+   * Track object velocity in ECEF [x', y', z'], meters/sec. When provided, array
+   * must always contain 3 values.
    */
   ecefVel?: Array<number>;
 
   /**
    * East, North, Up acceleration components, in meters per second squared. When
-   * provided, array must always contain 3 values defining the acceleration.
+   * provided, array must always contain 3 values.
    */
   eNUAcc?: Array<number>;
-
-  /**
-   * East, North, Up ground velocity components, in meters per second. When provided,
-   * array must always contain 3 values.
-   */
-  eNUGroundVel?: Array<number>;
 
   /**
    * East, North, Up position components, in meters. When provided, array must always
@@ -264,8 +230,8 @@ export interface TrackFull {
   eNUPos?: Array<number>;
 
   /**
-   * East, North, Up velocity components, in meters per second. When provided, array
-   * must always contain 3 values.
+   * East, North, Up velocity components, in meters/sec. When provided, array must
+   * always contain 3 values.
    */
   eNUVel?: Array<number>;
 
@@ -294,14 +260,14 @@ export interface TrackFull {
   envConf?: number;
 
   /**
-   * Uncertainty ellipsoid [semi-major axis (meters), semi-minor axis (meters),
-   * orientation (degrees)]. When provided, array must always contain 3 values.
+   * Uncertainty ellipsoid [semi-major axis (m), semi-minor axis (m), orientation
+   * (deg)].
    */
   errEllp?: Array<number>;
 
   /**
    * The track object heading, in degrees clockwise from true North at the object
-   * location (0-360 degrees).
+   * location.
    */
   hdng?: number;
 
@@ -344,8 +310,8 @@ export interface TrackFull {
 
   /**
    * Estimate of the acceleration, [x'', y'', z''], of the track object in the
-   * defined cartesian system, in meters per second squared. When provided, array
-   * must always contain 3 values.
+   * defined cartesian system, in meters/sec^2. When provided, array must always
+   * contain 3 values.
    */
   lcAcc?: Array<number>;
 
@@ -362,15 +328,15 @@ export interface TrackFull {
   lcPos?: Array<number>;
 
   /**
-   * x, y, and z-axis rotations (degrees) about ECEF that define a local cartesian
-   * system. When provided, array must always contain 3 values.
+   * x, y, and z-axis rotations about ECEF that define a local cartesian system. When
+   * provided, array must always contain 3 values.
    */
   lcs?: Array<number>;
 
   /**
    * Estimate of the velocity, [x', y', z'], of the track object in the defined
-   * cartesian system, in meters per second. When provided, array must always contain
-   * 3 values.
+   * cartesian system, in meters/sec. When provided, array must always contain 3
+   * values.
    */
   lcVel?: Array<number>;
 
@@ -382,7 +348,7 @@ export interface TrackFull {
 
   /**
    * Mode-1 interrogation response (mission code), indicating mission or aircraft
-   * type. Assume leading 0's for any inputs that are less than 2 digits.
+   * type.
    */
   m1?: number;
 
@@ -392,8 +358,7 @@ export interface TrackFull {
   m1v?: number;
 
   /**
-   * Mode-2 interrogation response (military identification code). Assume leading 0's
-   * for any inputs that are less than 4 digits.
+   * Mode-2 interrogation response (military identification code).
    */
   m2?: number;
 
@@ -405,8 +370,7 @@ export interface TrackFull {
   /**
    * Mode-3/A interrogation response (aircraft identification), provides a 4-digit
    * octal identification code for the aircraft, assigned by the air traffic
-   * controller. Mode-3/A is shared military/civilian use. Assume leading 0's for any
-   * inputs that are less than 4 digits.
+   * controller. Mode-3/A is shared military/civilian use.
    */
   m3a?: number;
 
@@ -449,8 +413,7 @@ export interface TrackFull {
   modType?: string;
 
   /**
-   * Timestamp when the message was created, in ISO8601 UTC format with microsecond
-   * precision.
+   * Message Timestamp.
    */
   msgTs?: string;
 
@@ -472,12 +435,6 @@ export interface TrackFull {
    * equivalent.
    */
   objAct?: string;
-
-  /**
-   * This is the free-text, generally human-readable, name of the System or Resource
-   * corresponding to this track record.
-   */
-  objDescription?: string;
 
   /**
    * The UID or designation of the tracked object.
@@ -572,7 +529,7 @@ export interface TrackFull {
   sourceDL?: string;
 
   /**
-   * Track object speed, in meters per second.
+   * Track object spd, in meters/sec.
    */
   spd?: number;
 
@@ -626,9 +583,7 @@ export interface TrackFull {
   trkId?: string;
 
   /**
-   * UUID of the track item object. Intended for, but not restricted to, STANAG-4676
-   * messages. This ID is used to distinguish an individual track within a message or
-   * external system containing multiple tracks on single or multiple targets.
+   * UUID of the track item object, applies to STANAG-4676 messages.
    */
   trkItmId?: string;
 
@@ -655,20 +610,6 @@ export interface TrackFull {
    * Status of the track (e.g., INITIATING, MAINTAINING, DROPPING, TERMINATED, etc.).
    */
   trkStat?: string;
-
-  /**
-   * The vertical uncertainty represents the 1-sigma position uncertainty
-   * perpendicular to the error Ellipse surface in the up (+) / down (-) direction
-   * measured in meters.
-   */
-  vertUnc?: number;
-
-  /**
-   * The angle by which the Inertial Navigation System (INS) rotates the geodetic
-   * frame about the axis to avoid the introduction of a singularity at the North
-   * pole when it is calculating vehicle location.
-   */
-  wanderAng?: number;
 }
 
 export type HistoryCountResponse = string;

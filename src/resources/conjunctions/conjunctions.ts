@@ -1019,12 +1019,6 @@ export namespace ConjunctionAbridged {
     mass?: number;
 
     /**
-     * Time when message was generated in ISO 8601 UTC format with microsecond
-     * precision.
-     */
-    msgTs?: string;
-
-    /**
      * The number of observations available for the OD of the object.
      */
     obsAvailable?: number;
@@ -1721,12 +1715,6 @@ export namespace ConjunctionAbridged {
      * The mass of the object, in kilograms.
      */
     mass?: number;
-
-    /**
-     * Time when message was generated in ISO 8601 UTC format with microsecond
-     * precision.
-     */
-    msgTs?: string;
 
     /**
      * The number of observations available for the OD of the object.
@@ -2876,12 +2864,6 @@ export namespace ConjunctionCreateUdlParams {
     mass?: number;
 
     /**
-     * Time when message was generated in ISO 8601 UTC format with microsecond
-     * precision.
-     */
-    msgTs?: string;
-
-    /**
      * The number of observations available for the OD of the object.
      */
     obsAvailable?: number;
@@ -3579,12 +3561,6 @@ export namespace ConjunctionCreateUdlParams {
      * The mass of the object, in kilograms.
      */
     mass?: number;
-
-    /**
-     * Time when message was generated in ISO 8601 UTC format with microsecond
-     * precision.
-     */
-    msgTs?: string;
 
     /**
      * The number of observations available for the OD of the object.
@@ -4692,12 +4668,6 @@ export namespace ConjunctionCreateBulkParams {
       mass?: number;
 
       /**
-       * Time when message was generated in ISO 8601 UTC format with microsecond
-       * precision.
-       */
-      msgTs?: string;
-
-      /**
        * The number of observations available for the OD of the object.
        */
       obsAvailable?: number;
@@ -5395,12 +5365,6 @@ export namespace ConjunctionCreateBulkParams {
        * The mass of the object, in kilograms.
        */
       mass?: number;
-
-      /**
-       * Time when message was generated in ISO 8601 UTC format with microsecond
-       * precision.
-       */
-      msgTs?: string;
 
       /**
        * The number of observations available for the OD of the object.
@@ -6546,12 +6510,6 @@ export namespace ConjunctionUnvalidatedPublishParams {
       mass?: number;
 
       /**
-       * Time when message was generated in ISO 8601 UTC format with microsecond
-       * precision.
-       */
-      msgTs?: string;
-
-      /**
        * The number of observations available for the OD of the object.
        */
       obsAvailable?: number;
@@ -7249,12 +7207,6 @@ export namespace ConjunctionUnvalidatedPublishParams {
        * The mass of the object, in kilograms.
        */
       mass?: number;
-
-      /**
-       * Time when message was generated in ISO 8601 UTC format with microsecond
-       * precision.
-       */
-      msgTs?: string;
 
       /**
        * The number of observations available for the OD of the object.

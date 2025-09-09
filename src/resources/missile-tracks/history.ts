@@ -208,27 +208,6 @@ export namespace HistoryQueryResponse {
     containment?: number;
 
     /**
-     * An optional string array containing additional data (keys) representing relevant
-     * items for context of fields not specifically defined in this schema. This array
-     * is paired with the contextValues string array and must contain the same number
-     * of items. Please note these fields are intended for contextual use only and do
-     * not pertain to core schema information. To ensure proper integration and avoid
-     * misuse, coordination of how these fields are populated and consumed is required
-     * during onboarding.
-     */
-    contextKeys?: Array<string>;
-
-    /**
-     * An optional string array containing the values associated with the contextKeys
-     * array. This array is paired with the contextKeys string array and must contain
-     * the same number of items. Please note these fields are intended for contextual
-     * use only and do not pertain to core schema information. To ensure proper
-     * integration and avoid misuse, coordination of how these fields are populated and
-     * consumed is required during onboarding.
-     */
-    contextValues?: Array<string>;
-
-    /**
      * Time the row was created in the database.
      */
     createdAt?: string;
@@ -266,11 +245,6 @@ export namespace HistoryQueryResponse {
      * UNKNOWN: Environment is not known.
      */
     env?: 'AIR' | 'LAND' | 'SPACE' | 'SURFACE' | 'SUBSURFACE' | 'UNKNOWN';
-
-    /**
-     * Estimated impact point altitude relative to WGS-84 ellipsoid, in kilometers.
-     */
-    impactAlt?: number;
 
     /**
      * Three element array representing an Area of Uncertainty (AoU). The array element
@@ -311,11 +285,6 @@ export namespace HistoryQueryResponse {
     impactAouType?: string;
 
     /**
-     * Confidence level of the impact point estimate. 0 - 100 percent.
-     */
-    impactConf?: number;
-
-    /**
      * WGS-84 latitude of the missile object impact point, in degrees. -90 to 90
      * degrees (negative values south of equator).
      */
@@ -337,11 +306,6 @@ export namespace HistoryQueryResponse {
      * Source code for source of information used to detect track.
      */
     infoSource?: string;
-
-    /**
-     * Estimated launch point altitude relative to WGS-84 ellipsoid, in kilometers.
-     */
-    launchAlt?: number;
 
     /**
      * Three element array representing an Area of Uncertainty (AoU). The array element
@@ -382,22 +346,6 @@ export namespace HistoryQueryResponse {
     launchAouType?: string;
 
     /**
-     * Angle between true north and the object's current position, with respect to the
-     * launch point, in degrees. 0 to 360 degrees.
-     */
-    launchAz?: number;
-
-    /**
-     * Uncertainty of the launch azimuth, in degrees.
-     */
-    launchAzUnc?: number;
-
-    /**
-     * Confidence level in the accuracy of the launch point estimate. 0 - 100 percent.
-     */
-    launchConf?: number;
-
-    /**
      * WGS-84 latitude of the missile launch point, in degrees. -90 to 90 degrees
      * (negative values south of equator).
      */
@@ -418,16 +366,6 @@ export namespace HistoryQueryResponse {
      * Indicates whether or not the missile is considered lost.
      */
     lostTrkInd?: boolean;
-
-    /**
-     * Maneuver end time, in ISO 8601 UTC format with microsecond precision.
-     */
-    maneuverEnd?: string;
-
-    /**
-     * Maneuver start time, in ISO 8601 UTC format with microsecond precision.
-     */
-    maneuverStart?: string;
 
     /**
      * The timestamp of the external message from which this request originated, if
@@ -645,27 +583,6 @@ export namespace HistoryQueryResponse {
       confidence?: number;
 
       /**
-       * An optional string array containing additional data (keys) representing relevant
-       * items for context of fields not specifically defined in this schema. This array
-       * is paired with the contextValues string array and must contain the same number
-       * of items. Please note these fields are intended for contextual use only and do
-       * not pertain to core schema information. To ensure proper integration and avoid
-       * misuse, coordination of how these fields are populated and consumed is required
-       * during onboarding.
-       */
-      contextKeys?: Array<string>;
-
-      /**
-       * An optional string array containing the values associated with the contextKeys
-       * array. This array is paired with the contextKeys string array and must contain
-       * the same number of items. Please note these fields are intended for contextual
-       * use only and do not pertain to core schema information. To ensure proper
-       * integration and avoid misuse, coordination of how these fields are populated and
-       * consumed is required during onboarding.
-       */
-      contextValues?: Array<string>;
-
-      /**
        * Track object course, in degrees clockwise from true north.
        */
       course?: number;
@@ -742,21 +659,11 @@ export namespace HistoryQueryResponse {
       pos?: Array<number>;
 
       /**
-       * Flag indicating whether the vector data was propagated.
-       */
-      propagated?: boolean;
-
-      /**
        * The quaternion describing the attitude of the spacecraft with respect to the
        * reference frame listed in the 'referenceFrame' field. The array element order
        * convention is the three vector components, followed by the scalar component.
        */
       quat?: Array<number>;
-
-      /**
-       * Range from the originating system or sensor to the object, in kilometers.
-       */
-      range?: number;
 
       /**
        * The reference frame of the cartesian vector (ECEF, J2000). If the referenceFrame
@@ -775,7 +682,7 @@ export namespace HistoryQueryResponse {
       status?: string;
 
       /**
-       * Source of the epoch time.
+       * Source of the time value.
        */
       timeSource?: string;
 
@@ -800,11 +707,6 @@ export namespace HistoryQueryResponse {
        * (negative values west of Prime Meridian).
        */
       vectorLon?: number;
-
-      /**
-       * Vector track ID within the originating system or sensor.
-       */
-      vectorTrackId?: string;
 
       /**
        * Three element array, expressing the cartesian velocity vector of the target

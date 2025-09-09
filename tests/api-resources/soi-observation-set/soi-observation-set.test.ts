@@ -73,7 +73,6 @@ describe('resource soiObservationSet', () => {
         {
           obStartTime: '2018-01-01T16:00:00.888456Z',
           currentSpectralFilterNum: 0,
-          declinationRates: [0, 0, 0],
           declinations: [-0.45, -0.45, -0.45],
           expDuration: 0.455,
           extinctionCoeffs: [0.32, 0.32, 0.32],
@@ -290,7 +289,6 @@ describe('resource soiObservationSet', () => {
             {
               obStartTime: '2018-01-01T16:00:00.888456Z',
               currentSpectralFilterNum: 0,
-              declinationRates: [0, 0, 0],
               declinations: [-0.45, -0.45, -0.45],
               expDuration: 0.455,
               extinctionCoeffs: [0.32, 0.32, 0.32],
@@ -531,7 +529,6 @@ describe('resource soiObservationSet', () => {
             {
               obStartTime: '2018-01-01T16:00:00.888456Z',
               currentSpectralFilterNum: 0,
-              declinationRates: [0, 0, 0],
               declinations: [-0.45, -0.45, -0.45],
               expDuration: 0.455,
               extinctionCoeffs: [0.32, 0.32, 0.32],

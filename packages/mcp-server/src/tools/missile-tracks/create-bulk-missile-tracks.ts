@@ -100,22 +100,6 @@ export const tool: Tool = {
               description:
                 'The percentage of time that the estimated AoU will "cover" the true position of the track.',
             },
-            contextKeys: {
-              type: 'array',
-              description:
-                'An optional string array containing additional data (keys) representing relevant items for context of fields not specifically defined in this schema. This array is paired with the contextValues string array and must contain the same number of items. Please note these fields are intended for contextual use only and do not pertain to core schema information. To ensure proper integration and avoid misuse, coordination of how these fields are populated and consumed is required during onboarding.',
-              items: {
-                type: 'string',
-              },
-            },
-            contextValues: {
-              type: 'array',
-              description:
-                'An optional string array containing the values associated with the contextKeys array. This array is paired with the contextKeys string array and must contain the same number of items. Please note these fields are intended for contextual use only and do not pertain to core schema information. To ensure proper integration and avoid misuse, coordination of how these fields are populated and consumed is required during onboarding.',
-              items: {
-                type: 'string',
-              },
-            },
             createdAt: {
               type: 'string',
               description: 'Time the row was created in the database.',
@@ -139,10 +123,6 @@ export const tool: Tool = {
                 'The track environment type (AIR, LAND, SPACE, SUBSURFACE, SURFACE, UNKNOWN):\n\n AIR: Between sea level and the Kármán line, which has an altitude of 100 kilometers (62 miles).\n\n LAND: On the surface of dry land.\n\n SPACE: Above the Kármán line, which has an altitude of 100 kilometers (62 miles).\n\n SURFACE: On the surface of a body of water.\n\n SUBSURFACE: Below the surface of a body of water.\n\n UNKNOWN: Environment is not known.',
               enum: ['AIR', 'LAND', 'SPACE', 'SURFACE', 'SUBSURFACE', 'UNKNOWN'],
             },
-            impactAlt: {
-              type: 'number',
-              description: 'Estimated impact point altitude relative to WGS-84 ellipsoid, in kilometers.',
-            },
             impactAouData: {
               type: 'array',
               description:
@@ -155,10 +135,6 @@ export const tool: Tool = {
               type: 'string',
               description:
                 'The Area of Uncertainty (AoU) type (BEARING, ELLIPSE, OTHER) definition. This type defines the elements of the aouEllp array and is required if aouEllp is not null. See the aouEllp field definition for specific information.',
-            },
-            impactConf: {
-              type: 'number',
-              description: 'Confidence level of the impact point estimate. 0 - 100 percent.',
             },
             impactLat: {
               type: 'number',
@@ -180,10 +156,6 @@ export const tool: Tool = {
               type: 'string',
               description: 'Source code for source of information used to detect track.',
             },
-            launchAlt: {
-              type: 'number',
-              description: 'Estimated launch point altitude relative to WGS-84 ellipsoid, in kilometers.',
-            },
             launchAouData: {
               type: 'array',
               description:
@@ -196,19 +168,6 @@ export const tool: Tool = {
               type: 'string',
               description:
                 'The Area of Uncertainty (AoU) type (BEARING, ELLIPSE, OTHER) definition. This type defines the elements of the aouEllp array and is required if aouEllp is not null. See the aouEllp field definition for specific information.',
-            },
-            launchAz: {
-              type: 'number',
-              description:
-                "Angle between true north and the object's current position, with respect to the launch point, in degrees. 0 to 360 degrees.",
-            },
-            launchAzUnc: {
-              type: 'number',
-              description: 'Uncertainty of the launch azimuth, in degrees.',
-            },
-            launchConf: {
-              type: 'number',
-              description: 'Confidence level in the accuracy of the launch point estimate. 0 - 100 percent.',
             },
             launchLat: {
               type: 'number',
@@ -228,16 +187,6 @@ export const tool: Tool = {
             lostTrkInd: {
               type: 'boolean',
               description: 'Indicates whether or not the missile is considered lost.',
-            },
-            maneuverEnd: {
-              type: 'string',
-              description: 'Maneuver end time, in ISO 8601 UTC format with microsecond precision.',
-              format: 'date-time',
-            },
-            maneuverStart: {
-              type: 'string',
-              description: 'Maneuver start time, in ISO 8601 UTC format with microsecond precision.',
-              format: 'date-time',
             },
             msgCreateDate: {
               type: 'string',
@@ -376,22 +325,6 @@ export const tool: Tool = {
                     type: 'integer',
                     description: 'Confidence of the vector, 0-100.',
                   },
-                  contextKeys: {
-                    type: 'array',
-                    description:
-                      'An optional string array containing additional data (keys) representing relevant items for context of fields not specifically defined in this schema. This array is paired with the contextValues string array and must contain the same number of items. Please note these fields are intended for contextual use only and do not pertain to core schema information. To ensure proper integration and avoid misuse, coordination of how these fields are populated and consumed is required during onboarding.',
-                    items: {
-                      type: 'string',
-                    },
-                  },
-                  contextValues: {
-                    type: 'array',
-                    description:
-                      'An optional string array containing the values associated with the contextKeys array. This array is paired with the contextKeys string array and must contain the same number of items. Please note these fields are intended for contextual use only and do not pertain to core schema information. To ensure proper integration and avoid misuse, coordination of how these fields are populated and consumed is required during onboarding.',
-                    items: {
-                      type: 'string',
-                    },
-                  },
                   course: {
                     type: 'number',
                     description: 'Track object course, in degrees clockwise from true north.',
@@ -436,10 +369,6 @@ export const tool: Tool = {
                       type: 'number',
                     },
                   },
-                  propagated: {
-                    type: 'boolean',
-                    description: 'Flag indicating whether the vector data was propagated.',
-                  },
                   quat: {
                     type: 'array',
                     description:
@@ -447,10 +376,6 @@ export const tool: Tool = {
                     items: {
                       type: 'number',
                     },
-                  },
-                  range: {
-                    type: 'number',
-                    description: 'Range from the originating system or sensor to the object, in kilometers.',
                   },
                   referenceFrame: {
                     type: 'string',
@@ -467,7 +392,7 @@ export const tool: Tool = {
                   },
                   timeSource: {
                     type: 'string',
-                    description: 'Source of the epoch time.',
+                    description: 'Source of the time value.',
                   },
                   type: {
                     type: 'string',
@@ -486,10 +411,6 @@ export const tool: Tool = {
                     type: 'number',
                     description:
                       'WGS-84 object longitude subpoint at epoch, represented as -180 to 180 degrees (negative values west of Prime Meridian).',
-                  },
-                  vectorTrackId: {
-                    type: 'string',
-                    description: 'Vector track ID within the originating system or sensor.',
                   },
                   vel: {
                     type: 'array',
