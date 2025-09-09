@@ -1134,6 +1134,12 @@ export namespace OrbitdeterminationListResponse {
     mass?: number;
 
     /**
+     * Time when message was generated in ISO 8601 UTC format with microsecond
+     * precision.
+     */
+    msgTs?: string;
+
+    /**
      * The number of observations available for the OD of the object.
      */
     obsAvailable?: number;
@@ -2476,6 +2482,12 @@ export namespace OrbitdeterminationGetResponse {
      * The mass of the object, in kilograms.
      */
     mass?: number;
+
+    /**
+     * Time when message was generated in ISO 8601 UTC format with microsecond
+     * precision.
+     */
+    msgTs?: string;
 
     /**
      * The number of observations available for the OD of the object.
@@ -3880,6 +3892,12 @@ export namespace OrbitdeterminationTupleResponse {
       mass?: number;
 
       /**
+       * Time when message was generated in ISO 8601 UTC format with microsecond
+       * precision.
+       */
+      msgTs?: string;
+
+      /**
        * The number of observations available for the OD of the object.
        */
       obsAvailable?: number;
@@ -5125,6 +5143,12 @@ export namespace OrbitdeterminationCreateParams {
      * The mass of the object, in kilograms.
      */
     mass?: number;
+
+    /**
+     * Time when message was generated in ISO 8601 UTC format with microsecond
+     * precision.
+     */
+    msgTs?: string;
 
     /**
      * The number of observations available for the OD of the object.
@@ -6409,6 +6433,12 @@ export namespace OrbitdeterminationCreateBulkParams {
       mass?: number;
 
       /**
+       * Time when message was generated in ISO 8601 UTC format with microsecond
+       * precision.
+       */
+      msgTs?: string;
+
+      /**
        * The number of observations available for the OD of the object.
        */
       obsAvailable?: number;
@@ -7686,6 +7716,12 @@ export namespace OrbitdeterminationUnvalidatedPublishParams {
        * The mass of the object, in kilograms.
        */
       mass?: number;
+
+      /**
+       * Time when message was generated in ISO 8601 UTC format with microsecond
+       * precision.
+       */
+      msgTs?: string;
 
       /**
        * The number of observations available for the OD of the object.

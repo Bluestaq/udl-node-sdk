@@ -471,6 +471,12 @@ export const tool: Tool = {
                   type: 'number',
                   description: 'The mass of the object, in kilograms.',
                 },
+                msgTs: {
+                  type: 'string',
+                  description:
+                    'Time when message was generated in ISO 8601 UTC format with microsecond precision.',
+                  format: 'date-time',
+                },
                 obsAvailable: {
                   type: 'integer',
                   description: 'The number of observations available for the OD of the object.',
@@ -959,6 +965,12 @@ export const tool: Tool = {
                 mass: {
                   type: 'number',
                   description: 'The mass of the object, in kilograms.',
+                },
+                msgTs: {
+                  type: 'string',
+                  description:
+                    'Time when message was generated in ISO 8601 UTC format with microsecond precision.',
+                  format: 'date-time',
                 },
                 obsAvailable: {
                   type: 'integer',

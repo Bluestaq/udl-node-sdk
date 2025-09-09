@@ -1387,6 +1387,12 @@ export namespace CollectRequestAbridged {
     mass?: number;
 
     /**
+     * Time when message was generated in ISO 8601 UTC format with microsecond
+     * precision.
+     */
+    msgTs?: string;
+
+    /**
      * The number of observations available for the OD of the object.
      */
     obsAvailable?: number;
@@ -2904,6 +2910,12 @@ export namespace CollectRequestCreateParams {
      * The mass of the object, in kilograms.
      */
     mass?: number;
+
+    /**
+     * Time when message was generated in ISO 8601 UTC format with microsecond
+     * precision.
+     */
+    msgTs?: string;
 
     /**
      * The number of observations available for the OD of the object.
@@ -4455,6 +4467,12 @@ export namespace CollectRequestCreateBulkParams {
       mass?: number;
 
       /**
+       * Time when message was generated in ISO 8601 UTC format with microsecond
+       * precision.
+       */
+      msgTs?: string;
+
+      /**
        * The number of observations available for the OD of the object.
        */
       obsAvailable?: number;
@@ -5997,6 +6015,12 @@ export namespace CollectRequestUnvalidatedPublishParams {
        * The mass of the object, in kilograms.
        */
       mass?: number;
+
+      /**
+       * Time when message was generated in ISO 8601 UTC format with microsecond
+       * precision.
+       */
+      msgTs?: string;
 
       /**
        * The number of observations available for the OD of the object.

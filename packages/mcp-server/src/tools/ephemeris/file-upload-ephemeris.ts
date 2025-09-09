@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'file_upload_ephemeris',
   description:
-    'Service operation to post/store Ephemeris data. This operation is  intended to be used for automated feeds into UDL. The payload is in Ephemeris format as described by the "Flight Safety Handbook" published by 18th Space Command. A specific role is required to perform this service operation. Please contact the UDL team for assistance.\n\n</br>\n**Example:** /filedrop/ephem?classification=U&dataMode=TEST&source=Bluestaq&satNo=25544&ephemFormatType=NASA&hasMnvr=false&type=ROUTINE&category=EXTERNAL&origin=NASA&tags=tag1,tag2\n',
+    'Service operation to post/store Ephemeris data. This operation is intended to be used for automated feeds into UDL. The payload is in Ephemeris format as described by the "Flight Safety Handbook" published by 18th Space Command. A specific role is required to perform this service operation. Please contact the UDL team for assistance.\n\n</br>\n**Example:** /filedrop/ephem?classification=U&dataMode=TEST&source=Bluestaq&satNo=25544&ephemFormatType=NASA&hasMnvr=false&type=ROUTINE&category=EXTERNAL&origin=NASA&tags=tag1,tag2\n',
   inputSchema: {
     type: 'object',
     properties: {
