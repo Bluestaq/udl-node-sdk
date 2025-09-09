@@ -1375,6 +1375,12 @@ export namespace HistoryListResponse {
     mass?: number;
 
     /**
+     * Time when message was generated in ISO 8601 UTC format with microsecond
+     * precision.
+     */
+    msgTs?: string;
+
+    /**
      * The number of observations available for the OD of the object.
      */
     obsAvailable?: number;
@@ -2439,6 +2445,12 @@ export namespace HistoryListResponse {
      * The mass of the object, in kilograms.
      */
     mass?: number;
+
+    /**
+     * Time when message was generated in ISO 8601 UTC format with microsecond
+     * precision.
+     */
+    msgTs?: string;
 
     /**
      * The number of observations available for the OD of the object.

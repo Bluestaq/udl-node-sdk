@@ -320,6 +320,60 @@ export interface StarCatalogListResponse {
   id?: string;
 
   /**
+   * The ID of this object in the All Wide-field Infrared Survey Explorer (AllWISE)
+   * catalog.
+   */
+  allWISEId?: string;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W1-band (3.4 microns) magnitude in the Vega system.
+   */
+  allWISEW1Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W1-band (3.4 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW1MagUnc?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W2-band (4.6 microns) magnitude in the Vega system.
+   */
+  allWISEW2Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W2-band (4.6 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW2MagUnc?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W3-band (12 microns) magnitude in the Vega system.
+   */
+  allWISEW3Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W3-band (12 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW3MagUnc?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W4-band (22 microns) magnitude in the Vega system.
+   */
+  allWISEW4Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W4-band (22 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW4MagUnc?: number;
+
+  /**
    * Gaia DR3 optical photometric Bp-band magnitude in the Vega scale.
    */
   bpmag?: number;
@@ -418,6 +472,12 @@ export interface StarCatalogListResponse {
   multFlag?: boolean;
 
   /**
+   * Identifier indicating multiplicity is detected. Consumers should contact the
+   * provider for details on the specifications.
+   */
+  multiplicity?: string;
+
+  /**
    * Distance between source and nearest neighbor, in arcseconds.
    */
   neighborDistance?: number;
@@ -431,6 +491,13 @@ export interface StarCatalogListResponse {
    * The catalog ID of the nearest neighbor to this source.
    */
   neighborId?: number;
+
+  /**
+   * Identifier indicating the source is a non-single star and additional information
+   * is available in non-single star tables. Consumers should contact the provider
+   * for details on the specifications.
+   */
+  nonSingleStar?: string;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -517,6 +584,26 @@ export interface StarCatalogListResponse {
   shiftFlag?: boolean;
 
   /**
+   * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+   * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of one
+   * arcsecond.
+   */
+  shiftFWHM1?: number;
+
+  /**
+   * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+   * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of six
+   * arcseconds.
+   */
+  shiftFWHM6?: number;
+
+  /**
+   * The ID of this object in the Two Micron All Sky Survey (2MASS) Point Source
+   * Catalog (PSC).
+   */
+  twoMASSId?: string;
+
+  /**
    * Time the row was updated in the database.
    */
   updatedAt?: string;
@@ -530,6 +617,12 @@ export interface StarCatalogListResponse {
    * Flag indicating that the source exhibits variable magnitude.
    */
   varFlag?: boolean;
+
+  /**
+   * Identifier indicating variability is present in the photometric data. Consumers
+   * should contact the provider for details on the specifications.
+   */
+  variability?: string;
 }
 
 export type StarCatalogCountResponse = string;
@@ -602,6 +695,60 @@ export interface StarCatalogGetResponse {
   id?: string;
 
   /**
+   * The ID of this object in the All Wide-field Infrared Survey Explorer (AllWISE)
+   * catalog.
+   */
+  allWISEId?: string;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W1-band (3.4 microns) magnitude in the Vega system.
+   */
+  allWISEW1Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W1-band (3.4 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW1MagUnc?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W2-band (4.6 microns) magnitude in the Vega system.
+   */
+  allWISEW2Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W2-band (4.6 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW2MagUnc?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W3-band (12 microns) magnitude in the Vega system.
+   */
+  allWISEW3Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W3-band (12 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW3MagUnc?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W4-band (22 microns) magnitude in the Vega system.
+   */
+  allWISEW4Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W4-band (22 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW4MagUnc?: number;
+
+  /**
    * Gaia DR3 optical photometric Bp-band magnitude in the Vega scale.
    */
   bpmag?: number;
@@ -700,6 +847,12 @@ export interface StarCatalogGetResponse {
   multFlag?: boolean;
 
   /**
+   * Identifier indicating multiplicity is detected. Consumers should contact the
+   * provider for details on the specifications.
+   */
+  multiplicity?: string;
+
+  /**
    * Distance between source and nearest neighbor, in arcseconds.
    */
   neighborDistance?: number;
@@ -713,6 +866,13 @@ export interface StarCatalogGetResponse {
    * The catalog ID of the nearest neighbor to this source.
    */
   neighborId?: number;
+
+  /**
+   * Identifier indicating the source is a non-single star and additional information
+   * is available in non-single star tables. Consumers should contact the provider
+   * for details on the specifications.
+   */
+  nonSingleStar?: string;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -799,6 +959,26 @@ export interface StarCatalogGetResponse {
   shiftFlag?: boolean;
 
   /**
+   * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+   * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of one
+   * arcsecond.
+   */
+  shiftFWHM1?: number;
+
+  /**
+   * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+   * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of six
+   * arcseconds.
+   */
+  shiftFWHM6?: number;
+
+  /**
+   * The ID of this object in the Two Micron All Sky Survey (2MASS) Point Source
+   * Catalog (PSC).
+   */
+  twoMASSId?: string;
+
+  /**
    * Time the row was updated in the database.
    */
   updatedAt?: string;
@@ -812,6 +992,12 @@ export interface StarCatalogGetResponse {
    * Flag indicating that the source exhibits variable magnitude.
    */
   varFlag?: boolean;
+
+  /**
+   * Identifier indicating variability is present in the photometric data. Consumers
+   * should contact the provider for details on the specifications.
+   */
+  variability?: string;
 }
 
 export interface StarCatalogQueryhelpResponse {
@@ -907,6 +1093,60 @@ export namespace StarCatalogTupleResponse {
      * Unique identifier of the record, auto-generated by the system.
      */
     id?: string;
+
+    /**
+     * The ID of this object in the All Wide-field Infrared Survey Explorer (AllWISE)
+     * catalog.
+     */
+    allWISEId?: string;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W1-band (3.4 microns) magnitude in the Vega system.
+     */
+    allWISEW1Mag?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W1-band (3.4 microns) magnitude uncertainty in the Vega system.
+     */
+    allWISEW1MagUnc?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W2-band (4.6 microns) magnitude in the Vega system.
+     */
+    allWISEW2Mag?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W2-band (4.6 microns) magnitude uncertainty in the Vega system.
+     */
+    allWISEW2MagUnc?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W3-band (12 microns) magnitude in the Vega system.
+     */
+    allWISEW3Mag?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W3-band (12 microns) magnitude uncertainty in the Vega system.
+     */
+    allWISEW3MagUnc?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W4-band (22 microns) magnitude in the Vega system.
+     */
+    allWISEW4Mag?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W4-band (22 microns) magnitude uncertainty in the Vega system.
+     */
+    allWISEW4MagUnc?: number;
 
     /**
      * Gaia DR3 optical photometric Bp-band magnitude in the Vega scale.
@@ -1007,6 +1247,12 @@ export namespace StarCatalogTupleResponse {
     multFlag?: boolean;
 
     /**
+     * Identifier indicating multiplicity is detected. Consumers should contact the
+     * provider for details on the specifications.
+     */
+    multiplicity?: string;
+
+    /**
      * Distance between source and nearest neighbor, in arcseconds.
      */
     neighborDistance?: number;
@@ -1020,6 +1266,13 @@ export namespace StarCatalogTupleResponse {
      * The catalog ID of the nearest neighbor to this source.
      */
     neighborId?: number;
+
+    /**
+     * Identifier indicating the source is a non-single star and additional information
+     * is available in non-single star tables. Consumers should contact the provider
+     * for details on the specifications.
+     */
+    nonSingleStar?: string;
 
     /**
      * Originating system or organization which produced the data, if different from
@@ -1106,6 +1359,26 @@ export namespace StarCatalogTupleResponse {
     shiftFlag?: boolean;
 
     /**
+     * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+     * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of one
+     * arcsecond.
+     */
+    shiftFWHM1?: number;
+
+    /**
+     * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+     * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of six
+     * arcseconds.
+     */
+    shiftFWHM6?: number;
+
+    /**
+     * The ID of this object in the Two Micron All Sky Survey (2MASS) Point Source
+     * Catalog (PSC).
+     */
+    twoMASSId?: string;
+
+    /**
      * Time the row was updated in the database.
      */
     updatedAt?: string;
@@ -1119,6 +1392,12 @@ export namespace StarCatalogTupleResponse {
      * Flag indicating that the source exhibits variable magnitude.
      */
     varFlag?: boolean;
+
+    /**
+     * Identifier indicating variability is present in the photometric data. Consumers
+     * should contact the provider for details on the specifications.
+     */
+    variability?: string;
   }
 }
 
@@ -1186,6 +1465,60 @@ export interface StarCatalogCreateParams {
   id?: string;
 
   /**
+   * The ID of this object in the All Wide-field Infrared Survey Explorer (AllWISE)
+   * catalog.
+   */
+  allWISEId?: string;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W1-band (3.4 microns) magnitude in the Vega system.
+   */
+  allWISEW1Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W1-band (3.4 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW1MagUnc?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W2-band (4.6 microns) magnitude in the Vega system.
+   */
+  allWISEW2Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W2-band (4.6 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW2MagUnc?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W3-band (12 microns) magnitude in the Vega system.
+   */
+  allWISEW3Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W3-band (12 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW3MagUnc?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W4-band (22 microns) magnitude in the Vega system.
+   */
+  allWISEW4Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W4-band (22 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW4MagUnc?: number;
+
+  /**
    * Gaia DR3 optical photometric Bp-band magnitude in the Vega scale.
    */
   bpmag?: number;
@@ -1273,6 +1606,12 @@ export interface StarCatalogCreateParams {
   multFlag?: boolean;
 
   /**
+   * Identifier indicating multiplicity is detected. Consumers should contact the
+   * provider for details on the specifications.
+   */
+  multiplicity?: string;
+
+  /**
    * Distance between source and nearest neighbor, in arcseconds.
    */
   neighborDistance?: number;
@@ -1286,6 +1625,13 @@ export interface StarCatalogCreateParams {
    * The catalog ID of the nearest neighbor to this source.
    */
   neighborId?: number;
+
+  /**
+   * Identifier indicating the source is a non-single star and additional information
+   * is available in non-single star tables. Consumers should contact the provider
+   * for details on the specifications.
+   */
+  nonSingleStar?: string;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -1366,9 +1712,35 @@ export interface StarCatalogCreateParams {
   shiftFlag?: boolean;
 
   /**
+   * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+   * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of one
+   * arcsecond.
+   */
+  shiftFWHM1?: number;
+
+  /**
+   * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+   * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of six
+   * arcseconds.
+   */
+  shiftFWHM6?: number;
+
+  /**
+   * The ID of this object in the Two Micron All Sky Survey (2MASS) Point Source
+   * Catalog (PSC).
+   */
+  twoMASSId?: string;
+
+  /**
    * Flag indicating that the source exhibits variable magnitude.
    */
   varFlag?: boolean;
+
+  /**
+   * Identifier indicating variability is present in the photometric data. Consumers
+   * should contact the provider for details on the specifications.
+   */
+  variability?: string;
 }
 
 export interface StarCatalogUpdateParams {
@@ -1435,6 +1807,60 @@ export interface StarCatalogUpdateParams {
   body_id?: string;
 
   /**
+   * The ID of this object in the All Wide-field Infrared Survey Explorer (AllWISE)
+   * catalog.
+   */
+  allWISEId?: string;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W1-band (3.4 microns) magnitude in the Vega system.
+   */
+  allWISEW1Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W1-band (3.4 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW1MagUnc?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W2-band (4.6 microns) magnitude in the Vega system.
+   */
+  allWISEW2Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W2-band (4.6 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW2MagUnc?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W3-band (12 microns) magnitude in the Vega system.
+   */
+  allWISEW3Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W3-band (12 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW3MagUnc?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W4-band (22 microns) magnitude in the Vega system.
+   */
+  allWISEW4Mag?: number;
+
+  /**
+   * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+   * W4-band (22 microns) magnitude uncertainty in the Vega system.
+   */
+  allWISEW4MagUnc?: number;
+
+  /**
    * Gaia DR3 optical photometric Bp-band magnitude in the Vega scale.
    */
   bpmag?: number;
@@ -1522,6 +1948,12 @@ export interface StarCatalogUpdateParams {
   multFlag?: boolean;
 
   /**
+   * Identifier indicating multiplicity is detected. Consumers should contact the
+   * provider for details on the specifications.
+   */
+  multiplicity?: string;
+
+  /**
    * Distance between source and nearest neighbor, in arcseconds.
    */
   neighborDistance?: number;
@@ -1535,6 +1967,13 @@ export interface StarCatalogUpdateParams {
    * The catalog ID of the nearest neighbor to this source.
    */
   neighborId?: number;
+
+  /**
+   * Identifier indicating the source is a non-single star and additional information
+   * is available in non-single star tables. Consumers should contact the provider
+   * for details on the specifications.
+   */
+  nonSingleStar?: string;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -1615,9 +2054,35 @@ export interface StarCatalogUpdateParams {
   shiftFlag?: boolean;
 
   /**
+   * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+   * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of one
+   * arcsecond.
+   */
+  shiftFWHM1?: number;
+
+  /**
+   * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+   * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of six
+   * arcseconds.
+   */
+  shiftFWHM6?: number;
+
+  /**
+   * The ID of this object in the Two Micron All Sky Survey (2MASS) Point Source
+   * Catalog (PSC).
+   */
+  twoMASSId?: string;
+
+  /**
    * Flag indicating that the source exhibits variable magnitude.
    */
   varFlag?: boolean;
+
+  /**
+   * Identifier indicating variability is present in the photometric data. Consumers
+   * should contact the provider for details on the specifications.
+   */
+  variability?: string;
 }
 
 export interface StarCatalogListParams extends OffsetPageParams {
@@ -1729,6 +2194,60 @@ export namespace StarCatalogCreateBulkParams {
     id?: string;
 
     /**
+     * The ID of this object in the All Wide-field Infrared Survey Explorer (AllWISE)
+     * catalog.
+     */
+    allWISEId?: string;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W1-band (3.4 microns) magnitude in the Vega system.
+     */
+    allWISEW1Mag?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W1-band (3.4 microns) magnitude uncertainty in the Vega system.
+     */
+    allWISEW1MagUnc?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W2-band (4.6 microns) magnitude in the Vega system.
+     */
+    allWISEW2Mag?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W2-band (4.6 microns) magnitude uncertainty in the Vega system.
+     */
+    allWISEW2MagUnc?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W3-band (12 microns) magnitude in the Vega system.
+     */
+    allWISEW3Mag?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W3-band (12 microns) magnitude uncertainty in the Vega system.
+     */
+    allWISEW3MagUnc?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W4-band (22 microns) magnitude in the Vega system.
+     */
+    allWISEW4Mag?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W4-band (22 microns) magnitude uncertainty in the Vega system.
+     */
+    allWISEW4MagUnc?: number;
+
+    /**
      * Gaia DR3 optical photometric Bp-band magnitude in the Vega scale.
      */
     bpmag?: number;
@@ -1816,6 +2335,12 @@ export namespace StarCatalogCreateBulkParams {
     multFlag?: boolean;
 
     /**
+     * Identifier indicating multiplicity is detected. Consumers should contact the
+     * provider for details on the specifications.
+     */
+    multiplicity?: string;
+
+    /**
      * Distance between source and nearest neighbor, in arcseconds.
      */
     neighborDistance?: number;
@@ -1829,6 +2354,13 @@ export namespace StarCatalogCreateBulkParams {
      * The catalog ID of the nearest neighbor to this source.
      */
     neighborId?: number;
+
+    /**
+     * Identifier indicating the source is a non-single star and additional information
+     * is available in non-single star tables. Consumers should contact the provider
+     * for details on the specifications.
+     */
+    nonSingleStar?: string;
 
     /**
      * Originating system or organization which produced the data, if different from
@@ -1909,9 +2441,35 @@ export namespace StarCatalogCreateBulkParams {
     shiftFlag?: boolean;
 
     /**
+     * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+     * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of one
+     * arcsecond.
+     */
+    shiftFWHM1?: number;
+
+    /**
+     * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+     * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of six
+     * arcseconds.
+     */
+    shiftFWHM6?: number;
+
+    /**
+     * The ID of this object in the Two Micron All Sky Survey (2MASS) Point Source
+     * Catalog (PSC).
+     */
+    twoMASSId?: string;
+
+    /**
      * Flag indicating that the source exhibits variable magnitude.
      */
     varFlag?: boolean;
+
+    /**
+     * Identifier indicating variability is present in the photometric data. Consumers
+     * should contact the provider for details on the specifications.
+     */
+    variability?: string;
   }
 }
 
@@ -2022,6 +2580,60 @@ export namespace StarCatalogUnvalidatedPublishParams {
     id?: string;
 
     /**
+     * The ID of this object in the All Wide-field Infrared Survey Explorer (AllWISE)
+     * catalog.
+     */
+    allWISEId?: string;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W1-band (3.4 microns) magnitude in the Vega system.
+     */
+    allWISEW1Mag?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W1-band (3.4 microns) magnitude uncertainty in the Vega system.
+     */
+    allWISEW1MagUnc?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W2-band (4.6 microns) magnitude in the Vega system.
+     */
+    allWISEW2Mag?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W2-band (4.6 microns) magnitude uncertainty in the Vega system.
+     */
+    allWISEW2MagUnc?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W3-band (12 microns) magnitude in the Vega system.
+     */
+    allWISEW3Mag?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W3-band (12 microns) magnitude uncertainty in the Vega system.
+     */
+    allWISEW3MagUnc?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W4-band (22 microns) magnitude in the Vega system.
+     */
+    allWISEW4Mag?: number;
+
+    /**
+     * The All Wide-field Infrared Survey Explorer (AllWISE) mid-infrared photometric
+     * W4-band (22 microns) magnitude uncertainty in the Vega system.
+     */
+    allWISEW4MagUnc?: number;
+
+    /**
      * Gaia DR3 optical photometric Bp-band magnitude in the Vega scale.
      */
     bpmag?: number;
@@ -2109,6 +2721,12 @@ export namespace StarCatalogUnvalidatedPublishParams {
     multFlag?: boolean;
 
     /**
+     * Identifier indicating multiplicity is detected. Consumers should contact the
+     * provider for details on the specifications.
+     */
+    multiplicity?: string;
+
+    /**
      * Distance between source and nearest neighbor, in arcseconds.
      */
     neighborDistance?: number;
@@ -2122,6 +2740,13 @@ export namespace StarCatalogUnvalidatedPublishParams {
      * The catalog ID of the nearest neighbor to this source.
      */
     neighborId?: number;
+
+    /**
+     * Identifier indicating the source is a non-single star and additional information
+     * is available in non-single star tables. Consumers should contact the provider
+     * for details on the specifications.
+     */
+    nonSingleStar?: string;
 
     /**
      * Originating system or organization which produced the data, if different from
@@ -2202,9 +2827,35 @@ export namespace StarCatalogUnvalidatedPublishParams {
     shiftFlag?: boolean;
 
     /**
+     * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+     * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of one
+     * arcsecond.
+     */
+    shiftFWHM1?: number;
+
+    /**
+     * Photocentric shift caused by neighbors, in arcseconds. This value is constrained
+     * to a Point Spread Function (PSF) with Full Width at Half Maximum (FWHM) of six
+     * arcseconds.
+     */
+    shiftFWHM6?: number;
+
+    /**
+     * The ID of this object in the Two Micron All Sky Survey (2MASS) Point Source
+     * Catalog (PSC).
+     */
+    twoMASSId?: string;
+
+    /**
      * Flag indicating that the source exhibits variable magnitude.
      */
     varFlag?: boolean;
+
+    /**
+     * Identifier indicating variability is present in the photometric data. Consumers
+     * should contact the provider for details on the specifications.
+     */
+    variability?: string;
   }
 }
 

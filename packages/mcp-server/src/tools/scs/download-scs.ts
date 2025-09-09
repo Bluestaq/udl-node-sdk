@@ -22,8 +22,7 @@ export const tool: Tool = {
       body: {
         type: 'array',
         items: {
-          type: 'object',
-          additionalProperties: true,
+          type: 'string',
         },
       },
     },

@@ -261,6 +261,12 @@ export interface GlobalAtmosphericModelRetrieveResponse {
   createdBy?: string;
 
   /**
+   * A unique identification code or label assigned to a particular source from which
+   * atmospheric data originates.
+   */
+  dataSourceIdentifier?: string;
+
+  /**
    * Ending altitude of model outputs, in kilometers.
    */
   endAlt?: number;
@@ -441,6 +447,12 @@ export namespace GlobalAtmosphericModelQueryResponse {
      * system.
      */
     createdBy?: string;
+
+    /**
+     * A unique identification code or label assigned to a particular source from which
+     * atmospheric data originates.
+     */
+    dataSourceIdentifier?: string;
 
     /**
      * Ending altitude of model outputs, in kilometers.
@@ -646,6 +658,12 @@ export namespace GlobalAtmosphericModelTupleResponse {
      * system.
      */
     createdBy?: string;
+
+    /**
+     * A unique identification code or label assigned to a particular source from which
+     * atmospheric data originates.
+     */
+    dataSourceIdentifier?: string;
 
     /**
      * Ending altitude of model outputs, in kilometers.
@@ -857,6 +875,12 @@ export interface GlobalAtmosphericModelUnvalidatedPublishParams {
    * Model execution cadence, in minutes.
    */
   cadence?: number;
+
+  /**
+   * A unique identification code or label assigned to a particular source from which
+   * atmospheric data originates.
+   */
+  dataSourceIdentifier?: string;
 
   /**
    * Ending altitude of model outputs, in kilometers.
