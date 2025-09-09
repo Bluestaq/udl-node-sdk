@@ -1754,12 +1754,6 @@ export namespace SensorPlanGetResponse {
       mass?: number;
 
       /**
-       * Time when message was generated in ISO 8601 UTC format with microsecond
-       * precision.
-       */
-      msgTs?: string;
-
-      /**
        * The number of observations available for the OD of the object.
        */
       obsAvailable?: number;
@@ -3604,12 +3598,6 @@ export namespace SensorPlanTupleResponse {
         mass?: number;
 
         /**
-         * Time when message was generated in ISO 8601 UTC format with microsecond
-         * precision.
-         */
-        msgTs?: string;
-
-        /**
          * The number of observations available for the OD of the object.
          */
         obsAvailable?: number;
@@ -5269,12 +5257,6 @@ export namespace SensorPlanCreateParams {
       mass?: number;
 
       /**
-       * Time when message was generated in ISO 8601 UTC format with microsecond
-       * precision.
-       */
-      msgTs?: string;
-
-      /**
        * The number of observations available for the OD of the object.
        */
       obsAvailable?: number;
@@ -6918,12 +6900,6 @@ export namespace SensorPlanUpdateParams {
        * The mass of the object, in kilograms.
        */
       mass?: number;
-
-      /**
-       * Time when message was generated in ISO 8601 UTC format with microsecond
-       * precision.
-       */
-      msgTs?: string;
 
       /**
        * The number of observations available for the OD of the object.
@@ -8625,12 +8601,6 @@ export namespace SensorPlanUnvalidatedPublishParams {
          * The mass of the object, in kilograms.
          */
         mass?: number;
-
-        /**
-         * Time when message was generated in ISO 8601 UTC format with microsecond
-         * precision.
-         */
-        msgTs?: string;
 
         /**
          * The number of observations available for the OD of the object.

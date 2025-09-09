@@ -259,11 +259,6 @@ export interface HistoryListResponse {
   satNo2?: number;
 
   /**
-   * Signal to noise ratio, in dB.
-   */
-  snr?: number;
-
-  /**
    * The SYSCAP mission status of the system(s) forming the link.
    */
   sysCap?: string;

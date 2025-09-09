@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'unvalidated_publish_air_operations_aircraft_sorties',
   description:
-    'Service operation to take one or many aircraft sortie records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.\n',
+    'Service operation to take one or many aircraft sortie records as a POST body and ingest into the database.  This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.\n',
   inputSchema: {
     type: 'object',
     properties: {

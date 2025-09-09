@@ -148,12 +148,6 @@ export namespace HistoryQueryResponse {
     createdBy?: string;
 
     /**
-     * A unique identification code or label assigned to a particular source from which
-     * atmospheric data originates.
-     */
-    dataSourceIdentifier?: string;
-
-    /**
      * Ending altitude of model outputs, in kilometers.
      */
     endAlt?: number;

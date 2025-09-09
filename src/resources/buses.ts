@@ -427,12 +427,6 @@ export interface BusAbridged {
   oapSpacecraftPower?: number;
 
   /**
-   * Array of orbit types this bus can support (e.g. GEO, LEO, etc.). Must contain
-   * the same number of elements as the value of numOrbitType.
-   */
-  orbitTypes?: Array<string>;
-
-  /**
    * Originating system or organization which produced the data, if different from
    * the source. The origin may be different than the source if the source was a
    * mediating system which forwarded the data on behalf of the origin system. If

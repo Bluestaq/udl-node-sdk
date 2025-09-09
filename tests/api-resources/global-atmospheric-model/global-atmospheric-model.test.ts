@@ -140,7 +140,6 @@ describe('resource globalAtmosphericModel', () => {
       type: 'Global Total Electron Density',
       id: '026dd511-8ba5-47d3-9909-836149f87686',
       cadence: 10,
-      dataSourceIdentifier: 'Dragster globally assimilated atmospheric density v2.0',
       endAlt: 90.125,
       endLat: -88.75,
       endLon: -177.5,
