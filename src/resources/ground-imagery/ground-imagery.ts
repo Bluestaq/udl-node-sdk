@@ -7,8 +7,9 @@ import {
   History,
   HistoryCountParams,
   HistoryCountResponse,
-  HistoryQueryParams,
-  HistoryQueryResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
@@ -68,6 +69,28 @@ export class GroundImagery extends APIResource {
     return this._client.getAPIList('/udl/groundimagery', OffsetPage<GroundImageryListResponse>, {
       query,
       ...options,
+    });
+  }
+
+  /**
+   * Service operation to dynamically query historical data by a variety of query
+   * parameters not specified in this API documentation, then write that data to the
+   * Secure Content Store. See the queryhelp operation
+   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+   * parameter information.
+   *
+   * @example
+   * ```ts
+   * await client.groundImagery.aodr({
+   *   imageTime: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
+   */
+  aodr(query: GroundImageryAodrParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.get('/udl/groundimagery/history/aodr', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -134,28 +157,6 @@ export class GroundImagery extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
       __binaryResponse: true,
-    });
-  }
-
-  /**
-   * Service operation to dynamically query historical data by a variety of query
-   * parameters not specified in this API documentation, then write that data to the
-   * Secure Content Store. See the queryhelp operation
-   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-   * parameter information.
-   *
-   * @example
-   * ```ts
-   * await client.groundImagery.historyAodr({
-   *   imageTime: '2019-12-27T18:11:19.117Z',
-   * });
-   * ```
-   */
-  historyAodr(query: GroundImageryHistoryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/groundimagery/history/aodr', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -970,30 +971,7 @@ export interface GroundImageryListParams extends OffsetPageParams {
   imageTime: string;
 }
 
-export interface GroundImageryCountParams {
-  /**
-   * Timestamp the image was captured/produced. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  imageTime: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
-}
-
-export interface GroundImageryGetParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
-
-export interface GroundImageryGetFileParams {
-  firstResult?: number;
-
-  maxResults?: number;
-}
-
-export interface GroundImageryHistoryAodrParams {
+export interface GroundImageryAodrParams {
   /**
    * Timestamp the image was captured/produced. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
    */
@@ -1029,6 +1007,29 @@ export interface GroundImageryHistoryAodrParams {
    * valid values are: JSON and CSV.
    */
   outputFormat?: string;
+}
+
+export interface GroundImageryCountParams {
+  /**
+   * Timestamp the image was captured/produced. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  imageTime: string;
+
+  firstResult?: number;
+
+  maxResults?: number;
+}
+
+export interface GroundImageryGetParams {
+  firstResult?: number;
+
+  maxResults?: number;
+}
+
+export interface GroundImageryGetFileParams {
+  firstResult?: number;
+
+  maxResults?: number;
 }
 
 export interface GroundImageryTupleParams {
@@ -1069,19 +1070,20 @@ export declare namespace GroundImagery {
     type GroundImageryListResponsesOffsetPage as GroundImageryListResponsesOffsetPage,
     type GroundImageryCreateParams as GroundImageryCreateParams,
     type GroundImageryListParams as GroundImageryListParams,
+    type GroundImageryAodrParams as GroundImageryAodrParams,
     type GroundImageryCountParams as GroundImageryCountParams,
     type GroundImageryGetParams as GroundImageryGetParams,
     type GroundImageryGetFileParams as GroundImageryGetFileParams,
-    type GroundImageryHistoryAodrParams as GroundImageryHistoryAodrParams,
     type GroundImageryTupleParams as GroundImageryTupleParams,
     type GroundImageryUploadZipParams as GroundImageryUploadZipParams,
   };
 
   export {
     History as History,
+    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
-    type HistoryQueryResponse as HistoryQueryResponse,
+    type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
+    type HistoryListParams as HistoryListParams,
     type HistoryCountParams as HistoryCountParams,
-    type HistoryQueryParams as HistoryQueryParams,
   };
 }

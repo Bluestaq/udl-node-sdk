@@ -51,4 +51,23 @@ describe('resource history', () => {
       outputFormat: 'outputFormat',
     });
   });
+
+  test('count: only required params', async () => {
+    const responsePromise = client.ais.history.count({ ts: '2019-12-27T18:11:19.117Z' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('count: required and optional params', async () => {
+    const response = await client.ais.history.count({
+      ts: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResults: 0,
+    });
+  });
 });

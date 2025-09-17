@@ -2,10 +2,16 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
+import * as HistoryAPI from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+} from './history';
 import * as TupleAPI from './tuple';
 import { Tuple, TupleListParams } from './tuple';
-import * as HistoryAPI from './history/history';
-import { History, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history/history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -1065,6 +1071,7 @@ export declare namespace CollectResponses {
     History as History,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
+    type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
   };
 

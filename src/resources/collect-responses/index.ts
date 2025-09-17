@@ -17,6 +17,7 @@ export {
   History,
   type HistoryCountResponse,
   type HistoryListParams,
+  type HistoryAodrParams,
   type HistoryCountParams,
-} from './history/index';
+} from './history';
 export { Tuple, type TupleListParams } from './tuple';

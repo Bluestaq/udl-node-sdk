@@ -213,10 +213,10 @@ export class SensorMaintenance extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.sensorMaintenance.queryhelp();
+   * const response = await client.sensorMaintenance.queryHelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<SensorMaintenanceQueryhelpResponse> {
+  queryHelp(options?: RequestOptions): APIPromise<SensorMaintenanceQueryHelpResponse> {
     return this._client.get('/udl/sensormaintenance/queryhelp', options);
   }
 
@@ -820,7 +820,7 @@ export interface SensorMaintenanceListCurrentResponse {
   updatedBy?: string;
 }
 
-export interface SensorMaintenanceQueryhelpResponse {
+export interface SensorMaintenanceQueryHelpResponse {
   aodrSupported?: boolean;
 
   classificationMarking?: string;
@@ -1609,7 +1609,7 @@ export declare namespace SensorMaintenance {
     type SensorMaintenanceCountResponse as SensorMaintenanceCountResponse,
     type SensorMaintenanceGetResponse as SensorMaintenanceGetResponse,
     type SensorMaintenanceListCurrentResponse as SensorMaintenanceListCurrentResponse,
-    type SensorMaintenanceQueryhelpResponse as SensorMaintenanceQueryhelpResponse,
+    type SensorMaintenanceQueryHelpResponse as SensorMaintenanceQueryHelpResponse,
     type SensorMaintenanceTupleResponse as SensorMaintenanceTupleResponse,
     type SensorMaintenanceListResponsesOffsetPage as SensorMaintenanceListResponsesOffsetPage,
     type SensorMaintenanceListCurrentResponsesOffsetPage as SensorMaintenanceListCurrentResponsesOffsetPage,

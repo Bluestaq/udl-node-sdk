@@ -16,6 +16,7 @@ import {
   EcpsdrRetrieveParams,
   EcpsdrTupleParams,
   EcpsdrTupleResponse,
+  EcpsdrUnvalidatedPublishParams,
 } from './ecpsdr';
 import * as SwirAPI from './swir';
 import { Swir, SwirUnvalidatedPublishParams } from './swir';
@@ -103,24 +104,24 @@ import {
 
 export class Observations extends APIResource {
   ecpsdr: EcpsdrAPI.EcpsdrResource = new EcpsdrAPI.EcpsdrResource(this._client);
+  eoObservations: EoObservationsAPI.EoObservations = new EoObservationsAPI.EoObservations(this._client);
   monoradar: MonoradarAPI.Monoradar = new MonoradarAPI.Monoradar(this._client);
-  swir: SwirAPI.Swir = new SwirAPI.Swir(this._client);
+  passiveRadarObservation: PassiveRadarObservationAPI.PassiveRadarObservation =
+    new PassiveRadarObservationAPI.PassiveRadarObservation(this._client);
   radarobservation: RadarobservationAPI.Radarobservation = new RadarobservationAPI.Radarobservation(
     this._client,
   );
   rfObservation: RfObservationAPI.RfObservation = new RfObservationAPI.RfObservation(this._client);
-  passiveRadarObservation: PassiveRadarObservationAPI.PassiveRadarObservation =
-    new PassiveRadarObservationAPI.PassiveRadarObservation(this._client);
-  eoObservations: EoObservationsAPI.EoObservations = new EoObservationsAPI.EoObservations(this._client);
+  swir: SwirAPI.Swir = new SwirAPI.Swir(this._client);
 }
 
 Observations.EcpsdrResource = EcpsdrResource;
+Observations.EoObservations = EoObservations;
 Observations.Monoradar = Monoradar;
-Observations.Swir = Swir;
+Observations.PassiveRadarObservation = PassiveRadarObservation;
 Observations.Radarobservation = Radarobservation;
 Observations.RfObservation = RfObservation;
-Observations.PassiveRadarObservation = PassiveRadarObservation;
-Observations.EoObservations = EoObservations;
+Observations.Swir = Swir;
 
 export declare namespace Observations {
   export {
@@ -137,6 +138,23 @@ export declare namespace Observations {
     type EcpsdrCountParams as EcpsdrCountParams,
     type EcpsdrCreateBulkParams as EcpsdrCreateBulkParams,
     type EcpsdrTupleParams as EcpsdrTupleParams,
+    type EcpsdrUnvalidatedPublishParams as EcpsdrUnvalidatedPublishParams,
+  };
+
+  export {
+    EoObservations as EoObservations,
+    type EoObservationAbridged as EoObservationAbridged,
+    type EoObservationCountResponse as EoObservationCountResponse,
+    type EoObservationQueryhelpResponse as EoObservationQueryhelpResponse,
+    type EoObservationTupleResponse as EoObservationTupleResponse,
+    type EoObservationAbridgedsOffsetPage as EoObservationAbridgedsOffsetPage,
+    type EoObservationCreateParams as EoObservationCreateParams,
+    type EoObservationRetrieveParams as EoObservationRetrieveParams,
+    type EoObservationListParams as EoObservationListParams,
+    type EoObservationCountParams as EoObservationCountParams,
+    type EoObservationCreateBulkParams as EoObservationCreateBulkParams,
+    type EoObservationTupleParams as EoObservationTupleParams,
+    type EoObservationUnvalidatedPublishParams as EoObservationUnvalidatedPublishParams,
   };
 
   export {
@@ -153,7 +171,22 @@ export declare namespace Observations {
     type MonoradarUnvalidatedPublishParams as MonoradarUnvalidatedPublishParams,
   };
 
-  export { Swir as Swir, type SwirUnvalidatedPublishParams as SwirUnvalidatedPublishParams };
+  export {
+    PassiveRadarObservation as PassiveRadarObservation,
+    type PassiveRadarObservationListResponse as PassiveRadarObservationListResponse,
+    type PassiveRadarObservationCountResponse as PassiveRadarObservationCountResponse,
+    type PassiveRadarObservationGetResponse as PassiveRadarObservationGetResponse,
+    type PassiveRadarObservationQueryhelpResponse as PassiveRadarObservationQueryhelpResponse,
+    type PassiveRadarObservationTupleResponse as PassiveRadarObservationTupleResponse,
+    type PassiveRadarObservationListResponsesOffsetPage as PassiveRadarObservationListResponsesOffsetPage,
+    type PassiveRadarObservationCreateParams as PassiveRadarObservationCreateParams,
+    type PassiveRadarObservationListParams as PassiveRadarObservationListParams,
+    type PassiveRadarObservationCountParams as PassiveRadarObservationCountParams,
+    type PassiveRadarObservationCreateBulkParams as PassiveRadarObservationCreateBulkParams,
+    type PassiveRadarObservationFileCreateParams as PassiveRadarObservationFileCreateParams,
+    type PassiveRadarObservationGetParams as PassiveRadarObservationGetParams,
+    type PassiveRadarObservationTupleParams as PassiveRadarObservationTupleParams,
+  };
 
   export {
     Radarobservation as Radarobservation,
@@ -189,36 +222,5 @@ export declare namespace Observations {
     type RfObservationUnvalidatedPublishParams as RfObservationUnvalidatedPublishParams,
   };
 
-  export {
-    PassiveRadarObservation as PassiveRadarObservation,
-    type PassiveRadarObservationListResponse as PassiveRadarObservationListResponse,
-    type PassiveRadarObservationCountResponse as PassiveRadarObservationCountResponse,
-    type PassiveRadarObservationGetResponse as PassiveRadarObservationGetResponse,
-    type PassiveRadarObservationQueryhelpResponse as PassiveRadarObservationQueryhelpResponse,
-    type PassiveRadarObservationTupleResponse as PassiveRadarObservationTupleResponse,
-    type PassiveRadarObservationListResponsesOffsetPage as PassiveRadarObservationListResponsesOffsetPage,
-    type PassiveRadarObservationCreateParams as PassiveRadarObservationCreateParams,
-    type PassiveRadarObservationListParams as PassiveRadarObservationListParams,
-    type PassiveRadarObservationCountParams as PassiveRadarObservationCountParams,
-    type PassiveRadarObservationCreateBulkParams as PassiveRadarObservationCreateBulkParams,
-    type PassiveRadarObservationFileCreateParams as PassiveRadarObservationFileCreateParams,
-    type PassiveRadarObservationGetParams as PassiveRadarObservationGetParams,
-    type PassiveRadarObservationTupleParams as PassiveRadarObservationTupleParams,
-  };
-
-  export {
-    EoObservations as EoObservations,
-    type EoObservationAbridged as EoObservationAbridged,
-    type EoObservationCountResponse as EoObservationCountResponse,
-    type EoObservationQueryhelpResponse as EoObservationQueryhelpResponse,
-    type EoObservationTupleResponse as EoObservationTupleResponse,
-    type EoObservationAbridgedsOffsetPage as EoObservationAbridgedsOffsetPage,
-    type EoObservationCreateParams as EoObservationCreateParams,
-    type EoObservationRetrieveParams as EoObservationRetrieveParams,
-    type EoObservationListParams as EoObservationListParams,
-    type EoObservationCountParams as EoObservationCountParams,
-    type EoObservationCreateBulkParams as EoObservationCreateBulkParams,
-    type EoObservationTupleParams as EoObservationTupleParams,
-    type EoObservationUnvalidatedPublishParams as EoObservationUnvalidatedPublishParams,
-  };
+  export { Swir as Swir, type SwirUnvalidatedPublishParams as SwirUnvalidatedPublishParams };
 }

@@ -33,7 +33,24 @@ export class History extends APIResource {
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
+
+  /**
+   * Service operation to return the count of records satisfying the specified query
+   * parameters. This operation is useful to determine how many records pass a
+   * particular query criteria without retrieving large amounts of data. See the
+   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+   * valid/required query parameter information.
+   */
+  count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
+    return this._client.get('/udl/ais/history/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
+  }
 }
+
+export type HistoryCountResponse = string;
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -89,8 +106,25 @@ export interface HistoryAodrParams {
   outputFormat?: string;
 }
 
+export interface HistoryCountParams {
+  /**
+   * The timestamp that the vessel position was recorded, in ISO 8601 UTC format.
+   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+   */
+  ts: string;
+
+  firstResult?: number;
+
+  maxResults?: number;
+}
+
 export declare namespace History {
-  export { type HistoryListParams as HistoryListParams, type HistoryAodrParams as HistoryAodrParams };
+  export {
+    type HistoryCountResponse as HistoryCountResponse,
+    type HistoryListParams as HistoryListParams,
+    type HistoryAodrParams as HistoryAodrParams,
+    type HistoryCountParams as HistoryCountParams,
+  };
 }
 
 export { type AIsFullsOffsetPage };

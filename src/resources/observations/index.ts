@@ -13,6 +13,7 @@ export {
   type EcpsdrCountParams,
   type EcpsdrCreateBulkParams,
   type EcpsdrTupleParams,
+  type EcpsdrUnvalidatedPublishParams,
   type EcpsdrAbridgedsOffsetPage,
 } from './ecpsdr';
 export {

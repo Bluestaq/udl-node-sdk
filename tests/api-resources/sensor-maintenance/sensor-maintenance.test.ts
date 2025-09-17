@@ -275,8 +275,8 @@ describe('resource sensorMaintenance', () => {
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
-  test('queryhelp', async () => {
-    const responsePromise = client.sensorMaintenance.queryhelp();
+  test('queryHelp', async () => {
+    const responsePromise = client.sensorMaintenance.queryHelp();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

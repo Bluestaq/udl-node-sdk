@@ -8,9 +8,17 @@ export {
   type FolderRetrieveParams,
   type FolderUpdateParams,
 } from './folders';
+export {
+  Notifications,
+  type NotificationListResponse,
+  type NotificationListParams,
+  type NotificationListResponsesOffsetPage,
+} from './notifications/index';
 export { Paths, type PathCreateWithFileResponse, type PathCreateWithFileParams } from './paths';
 export {
   Scs,
+  type SearchCriterion,
+  type SearchLogicalCriterion,
   type ScAllowableFileExtensionsResponse,
   type ScAllowableFileMimesResponse,
   type ScCopyResponse,
@@ -30,6 +38,7 @@ export {
   V2,
   type Attachment,
   type ScsEntity,
+  type V2SearchResponse,
   type V2UpdateParams,
   type V2ListParams,
   type V2DeleteParams,
@@ -37,5 +46,7 @@ export {
   type V2FileUploadParams,
   type V2FolderCreateParams,
   type V2MoveParams,
+  type V2SearchParams,
   type ScsEntitiesOffsetPage,
 } from './v2';
+export { View, type ViewGetParams } from './view';

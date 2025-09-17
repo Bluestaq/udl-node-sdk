@@ -9,9 +9,9 @@ It is generated with [Stainless](https://www.stainless.com/).
 You can run the MCP Server directly via `npx`:
 
 ```sh
+export UDL_ACCESS_TOKEN="My Access Token"
 export UDL_AUTH_PASSWORD="My Password"
 export UDL_AUTH_USERNAME="My Username"
-export UDL_ACCESS_TOKEN="My Access Token"
 npx -y unified-data-library-mcp@latest
 ```
 
@@ -29,9 +29,9 @@ For clients with a configuration JSON, it might look something like this:
       "command": "npx",
       "args": ["-y", "unified-data-library-mcp", "--client=claude", "--tools=dynamic"],
       "env": {
+        "UDL_ACCESS_TOKEN": "My Access Token",
         "UDL_AUTH_PASSWORD": "My Password",
-        "UDL_AUTH_USERNAME": "My Username",
-        "UDL_ACCESS_TOKEN": "My Access Token"
+        "UDL_AUTH_USERNAME": "My Username"
       }
     }
   }
@@ -239,10 +239,13 @@ The following tools are available in this MCP server.
 - `list_air_operations_aircraft_sorties` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_air_operations_aircraft_sorties` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `create_bulk_air_operations_aircraft_sorties` (`write`): Service operation intended for initial integration only, to take a list of AircraftSorties as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
-- `history_aodr_air_operations_aircraft_sorties` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `history_count_air_operations_aircraft_sorties` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `history_query_air_operations_aircraft_sorties` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `unvalidated_publish_air_operations_aircraft_sorties` (`write`): Service operation to take one or many aircraft sortie records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `air_operations.aircraft_sorties.history`:
+
+- `list_aircraft_sorties_air_operations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_aircraft_sorties_air_operations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_aircraft_sorties_air_operations_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `air_operations.airspace_control_orders`:
 
@@ -281,7 +284,7 @@ The following tools are available in this MCP server.
 - `list_aircraft` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_aircraft` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `queryhelp_aircraft` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
-- `tuple_query_aircraft` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `tuple_aircraft` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
 ### Resource `aircraft_sorties`:
 
@@ -316,6 +319,17 @@ The following tools are available in this MCP server.
 
 - `list_aircraft_statuses_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_aircraft_statuses_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
+### Resource `airfield_slot_consumptions`:
+
+- `create_airfield_slot_consumptions` (`write`): Service operation to take a single airfieldslotconsumption record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `retrieve_airfield_slot_consumptions` (`read`): Service operation to get a single airfieldslotconsumption record by its unique ID passed as a path parameter.
+- `update_airfield_slot_consumptions` (`write`): Service operation to update a single AirfieldSlotConsumption. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_airfield_slot_consumptions` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `delete_airfield_slot_consumptions` (`write`): Service operation to delete an airfieldslotconsumption record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `count_airfield_slot_consumptions` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `queryhelp_airfield_slot_consumptions` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_airfield_slot_consumptions` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
 ### Resource `airfield_slots`:
 
@@ -354,17 +368,6 @@ The following tools are available in this MCP server.
 - `queryhelp_airfields` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_airfields` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
-### Resource `airfield_slot_consumptions`:
-
-- `create_airfield_slot_consumptions` (`write`): Service operation to take a single airfieldslotconsumption record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `retrieve_airfield_slot_consumptions` (`read`): Service operation to get a single airfieldslotconsumption record by its unique ID passed as a path parameter.
-- `update_airfield_slot_consumptions` (`write`): Service operation to update a single AirfieldSlotConsumption. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `list_airfield_slot_consumptions` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `delete_airfield_slot_consumptions` (`write`): Service operation to delete an airfieldslotconsumption record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `count_airfield_slot_consumptions` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `queryhelp_airfield_slot_consumptions` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
-- `tuple_airfield_slot_consumptions` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
-
 ### Resource `airload_plans`:
 
 - `create_airload_plans` (`write`): Service operation to take a single airloadplan record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
@@ -391,7 +394,6 @@ The following tools are available in this MCP server.
 - `list_ais` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_ais` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `create_bulk_ais` (`write`): Service operation intended for initial integration only, to take a list of AIS records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
-- `history_count_ais` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `queryhelp_ais` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_ais` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
@@ -399,6 +401,7 @@ The following tools are available in this MCP server.
 
 - `list_ais_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_ais_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_ais_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `ais_objects`:
 
@@ -410,9 +413,6 @@ The following tools are available in this MCP server.
 - `list_analytic_imagery` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_analytic_imagery` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `file_get_analytic_imagery` (`read`): Service operation to get a single AnalyticImagery binary image by its unique ID passed as a path parameter. The image is returned as an attachment Content-Disposition.
-- `history_analytic_imagery` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `history_aodr_analytic_imagery` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `history_count_analytic_imagery` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `queryhelp_analytic_imagery` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_analytic_imagery` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 - `unvalidated_publish_analytic_imagery` (`write`): Upload a new image with its metadata.
@@ -426,6 +426,12 @@ The following tools are available in this MCP server.
   This operation only accepts application/zip media. The application/json request body is documented to provide a convenient reference to the ingest schema.
 
   This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `analytic_imagery.history`:
+
+- `list_analytic_imagery_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_analytic_imagery_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_analytic_imagery_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `antennas`:
 
@@ -480,6 +486,19 @@ The following tools are available in this MCP server.
 - `list_attitude_sets_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_attitude_sets_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_attitude_sets_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
+### Resource `aviation_risk_management`:
+
+- `create_aviation_risk_management` (`write`): Service operation to take a single Aviation Risk Management record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `retrieve_aviation_risk_management` (`read`): Service operation to get a single Aviation Risk Management record by its unique ID passed as a path parameter.
+- `update_aviation_risk_management` (`write`): Service operation to update a single Aviation Risk Management record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_aviation_risk_management` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `delete_aviation_risk_management` (`write`): Service operation to delete an Aviation Risk Management record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `count_aviation_risk_management` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `create_bulk_aviation_risk_management` (`write`): Service operation intended for initial integration only, to take a list of Aviation Risk Management records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `query_help_aviation_risk_management` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_aviation_risk_management` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_aviation_risk_management` (`write`): Service operation to take multiple Aviation Risk Management records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 
 ### Resource `batteries`:
 
@@ -575,11 +594,8 @@ The following tools are available in this MCP server.
 ### Resource `collect_responses.history`:
 
 - `list_collect_responses_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_collect_responses_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_collect_responses_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-
-### Resource `collect_responses.history.aodr`:
-
-- `list_history_collect_responses_aodr` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `collect_responses.tuple`:
 
@@ -620,100 +636,6 @@ The following tools are available in this MCP server.
 
 - `create_cots` (`write`): This service enables posting CoT messages to the UDL TAK server. CoT data will be persisted in the UDL POI schema as well as federated to connected TAK servers.
 
-### Resource `aviation_risk_management`:
-
-- `create_aviation_risk_management` (`write`): Service operation to take a single Aviation Risk Management record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `retrieve_aviation_risk_management` (`read`): Service operation to get a single Aviation Risk Management record by its unique ID passed as a path parameter.
-- `update_aviation_risk_management` (`write`): Service operation to update a single Aviation Risk Management record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `delete_aviation_risk_management` (`write`): Service operation to delete an Aviation Risk Management record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `count_aviation_risk_management` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `create_bulk_aviation_risk_management` (`write`): Service operation intended for initial integration only, to take a list of Aviation Risk Management records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
-- `query_aviation_risk_management` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_help_aviation_risk_management` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
-- `tuple_aviation_risk_management` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
-- `unvalidated_publish_aviation_risk_management` (`write`): Service operation to take multiple Aviation Risk Management records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
-### Resource `dropzone`:
-
-- `create_dropzone` (`write`): Service operation to take a single dropzone record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `retrieve_dropzone` (`read`): Service operation to get a single dropzone record by its unique ID passed as a path parameter.
-- `update_dropzone` (`write`): Service operation to update a single dropzone record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `delete_dropzone` (`write`): Service operation to delete a dropzone record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `count_dropzone` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `create_bulk_dropzone` (`write`): Service operation intended for initial integration only, to take a list of dropzone records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
-- `query_dropzone` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_help_dropzone` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
-- `tuple_dropzone` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
-- `unvalidated_publish_dropzone` (`write`): Service operation to take multiple dropzone records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
-### Resource `emitter_geolocation`:
-
-- `create_emitter_geolocation` (`write`): Service operation to take a single RF geolocation as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
-- `retrieve_emitter_geolocation` (`read`): Service operation to get a single RF geolocation by its unique ID passed as a path parameter.
-- `delete_emitter_geolocation` (`write`): Service operation to delete a RF geolocation specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance. Note, delete operations do not remove data from historical or publish/subscribe stores.
-- `count_emitter_geolocation` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `create_bulk_emitter_geolocation` (`write`): Service operation intended for initial integration only, to take a list of RF geolocations as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
-- `query_emitter_geolocation` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_help_emitter_geolocation` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
-- `tuple_emitter_geolocation` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
-- `unvalidated_publish_emitter_geolocation` (`write`): Service operation to take multiple emittergeolocation records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
-### Resource `feature_assessment`:
-
-- `create_feature_assessment` (`write`): Service operation to take a single FeatureAssessment record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `retrieve_feature_assessment` (`read`): Service operation to get a single FeatureAssessment record by its unique ID passed as a path parameter.
-- `count_feature_assessment` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `create_bulk_feature_assessment` (`write`): Service operation intended for initial integration only, to take a list of FeatureAssessment records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
-- `query_feature_assessment` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_help_feature_assessment` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
-- `tuple_feature_assessment` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
-- `unvalidated_publish_feature_assessment` (`write`): Service operation to take multiple FeatureAssessment records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
-### Resource `feature_assessment.history`:
-
-- `count_feature_assessment_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_feature_assessment_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `write_aodr_feature_assessment_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-
-### Resource `global_atmospheric_model`:
-
-- `retrieve_global_atmospheric_model` (`read`): Service operation to get a single GlobalAtmosphericModel record by its unique ID passed as a path parameter.
-- `count_global_atmospheric_model` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `get_file_global_atmospheric_model` (`read`): Service operation to get a single GlobalAtmosphericModel compressed data file by its unique ID passed as a path parameter. The compressed data file is returned as an attachment Content-Disposition.
-- `query_global_atmospheric_model` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_help_global_atmospheric_model` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
-- `tuple_global_atmospheric_model` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
-- `unvalidated_publish_global_atmospheric_model` (`write`): Upload a file with its metadata.
-
-  The request body requires a zip file containing exactly two files:\
-  1\) A file with the `.json` file extension whose content conforms to the `GlobalAtmosphericModel_Ingest` schema.\
-  2\) A file with the `.geojson` file extension.
-
-  The JSON and GEOJSON files will be associated with each other other via the `id` field. Query the metadata via `GET /udl/globalatmosphericmodel` and use `GET /udl/globalatmosphericmodel/getFile/{id}` to retrieve the compressed GEOJSON file as `.gz` extension.
-
-  This operation only accepts application/zip media. The application/json request body is documented to provide a convenient reference to the ingest schema.
-
-  This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
-### Resource `global_atmospheric_model.history`:
-
-- `count_global_atmospheric_model_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_global_atmospheric_model_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `write_aodr_global_atmospheric_model_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-
-### Resource `route_stats`:
-
-- `create_route_stats` (`write`): Service operation to take a single routeStats record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `retrieve_route_stats` (`read`): Service operation to get a single routeStats record by its unique ID passed as a path parameter.
-- `update_route_stats` (`write`): Service operation to update a single RouteStats. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `delete_route_stats` (`write`): Service operation to delete a routeStats record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `count_route_stats` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `create_bulk_route_stats` (`write`): Service operation intended for initial integration only, to take a list of RouteStats as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
-- `query_route_stats` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_help_route_stats` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
-- `tuple_route_stats` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
-- `unvalidated_publish_route_stats` (`write`): Service operation to take multiple routestats records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
 ### Resource `countries`:
 
 - `create_countries` (`write`): Service operation to take a single Country as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
@@ -735,6 +657,22 @@ The following tools are available in this MCP server.
 - `queryhelp_crew` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_crew` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 - `unvalidated_publish_crew` (`write`): Service operation to take multiple Crew objects as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `deconflictset`:
+
+- `create_deconflictset` (`write`): Service operation to take a single DeconflictSet record as a POST body and ingest into the database. This operation does not persist any DeconflictWindow datatypes that may be present in the body of the request. This operation is not intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_deconflictset` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_deconflictset` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `get_deconflictset` (`read`): Service operation to get a single DeconflictSet record by its unique ID passed as a path parameter.
+- `queryhelp_deconflictset` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_deconflictset` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_deconflictset` (`write`): Service operation to take a single DeconflictSet record as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `deconflictset.history`:
+
+- `list_deconflictset_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_deconflictset_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_deconflictset_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `diff_of_arrival`:
 
@@ -759,12 +697,6 @@ The following tools are available in this MCP server.
 - `queryhelp_diplomatic_clearance` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_diplomatic_clearance` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
-### Resource `diplomatic_clearance.history`:
-
-- `list_diplomatic_clearance_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `aodr_diplomatic_clearance_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `count_diplomatic_clearance_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-
 ### Resource `diplomatic_clearance.country`:
 
 - `create_diplomatic_clearance_country` (`write`): Service operation to take a single diplomaticclearancecountry record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
@@ -778,6 +710,12 @@ The following tools are available in this MCP server.
 - `tuple_diplomatic_clearance_country` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 - `unvalidated_publish_diplomatic_clearance_country` (`write`): Service operation to take multiple diplomaticclearancecountry records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 
+### Resource `diplomatic_clearance.history`:
+
+- `list_diplomatic_clearance_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_diplomatic_clearance_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_diplomatic_clearance_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
 ### Resource `drift_history`:
 
 - `retrieve_drift_history` (`read`): Service operation to get a single DriftHistory record by its unique ID passed as a path parameter. DriftHistory represents historical drift rates for GEO Onorbit objects resulting from updates to OnorbitDetails driftRate values.
@@ -786,9 +724,34 @@ The following tools are available in this MCP server.
 - `queryhelp_drift_history` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_drift_history` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
-### Resource `ecp_sdr`:
+### Resource `dropzone`:
 
-- `unvalidated_publish_ecp_sdr` (`write`): Service operation to take multiple ECPSDR as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `create_dropzone` (`write`): Service operation to take a single dropzone record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `retrieve_dropzone` (`read`): Service operation to get a single dropzone record by its unique ID passed as a path parameter.
+- `update_dropzone` (`write`): Service operation to update a single dropzone record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_dropzone` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `delete_dropzone` (`write`): Service operation to delete a dropzone record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `count_dropzone` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `create_bulk_dropzone` (`write`): Service operation intended for initial integration only, to take a list of dropzone records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `query_help_dropzone` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_dropzone` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_dropzone` (`write`): Service operation to take multiple dropzone records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `ecpedr`:
+
+- `create_ecpedr` (`write`): Service operation to take a single ECPEDR record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_ecpedr` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_ecpedr` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `create_bulk_ecpedr` (`write`): Service operation intended for initial integration only, to take a list of ECPEDR records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `queryhelp_ecpedr` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_ecpedr` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_ecpedr` (`write`): Service operation to take multiple ECPEDR records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `ecpedr.history`:
+
+- `list_ecpedr_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_ecpedr_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_ecpedr_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `effect_requests`:
 
@@ -847,6 +810,35 @@ The following tools are available in this MCP server.
 - `list_elsets_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_elsets_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_elsets_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
+### Resource `emireport`:
+
+- `create_emireport` (`write`): Service operation to take a single EMIReport record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_emireport` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_emireport` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `create_bulk_emireport` (`write`): Service operation intended for initial integration only, to take a list of EMIReport records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `get_emireport` (`read`): Service operation to get a single EMIReport record by its unique ID passed as a path parameter.
+- `queryhelp_emireport` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_emireport` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_emireport` (`write`): Service operation to take multiple EMIReport records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `emireport.history`:
+
+- `list_emireport_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_emireport_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_emireport_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
+### Resource `emitter_geolocation`:
+
+- `create_emitter_geolocation` (`write`): Service operation to take a single RF geolocation as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `retrieve_emitter_geolocation` (`read`): Service operation to get a single RF geolocation by its unique ID passed as a path parameter.
+- `list_emitter_geolocation` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `delete_emitter_geolocation` (`write`): Service operation to delete a RF geolocation specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance. Note, delete operations do not remove data from historical or publish/subscribe stores.
+- `count_emitter_geolocation` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `create_bulk_emitter_geolocation` (`write`): Service operation intended for initial integration only, to take a list of RF geolocations as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `query_help_emitter_geolocation` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_emitter_geolocation` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_emitter_geolocation` (`write`): Service operation to take multiple emittergeolocation records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 
 ### Resource `engine_details`:
 
@@ -1022,6 +1014,23 @@ The following tools are available in this MCP server.
 - `aodr_event_evolution_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_event_evolution_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
+### Resource `feature_assessment`:
+
+- `create_feature_assessment` (`write`): Service operation to take a single FeatureAssessment record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `retrieve_feature_assessment` (`read`): Service operation to get a single FeatureAssessment record by its unique ID passed as a path parameter.
+- `list_feature_assessment` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_feature_assessment` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `create_bulk_feature_assessment` (`write`): Service operation intended for initial integration only, to take a list of FeatureAssessment records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `query_help_feature_assessment` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_feature_assessment` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_feature_assessment` (`write`): Service operation to take multiple FeatureAssessment records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `feature_assessment.history`:
+
+- `list_feature_assessment_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_feature_assessment_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_feature_assessment_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
 ### Resource `flightplan`:
 
 - `create_flightplan` (`write`): Service operation to take a single FlightPlan object as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
@@ -1050,6 +1059,36 @@ The following tools are available in this MCP server.
 - `aodr_geo_status_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_geo_status_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
+### Resource `global_atmospheric_model`:
+
+- `retrieve_global_atmospheric_model` (`read`): Service operation to get a single GlobalAtmosphericModel record by its unique ID passed as a path parameter.
+- `list_global_atmospheric_model` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_global_atmospheric_model` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `get_file_global_atmospheric_model` (`read`): Service operation to get a single GlobalAtmosphericModel compressed data file by its unique ID passed as a path parameter. The compressed data file is returned as an attachment Content-Disposition.
+- `query_help_global_atmospheric_model` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_global_atmospheric_model` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_global_atmospheric_model` (`write`): Upload a file with its metadata.
+
+  The request body requires a zip file containing exactly two files:\
+  1\) A file with the `.json` file extension whose content conforms to the `GlobalAtmosphericModel_Ingest` schema.\
+  2\) A file with the `.geojson` file extension.
+
+  The JSON and GEOJSON files will be associated with each other other via the `id` field. Query the metadata via `GET /udl/globalatmosphericmodel` and use `GET /udl/globalatmosphericmodel/getFile/{id}` to retrieve the compressed GEOJSON file as `.gz` extension.
+
+  This operation only accepts application/zip media. The application/json request body is documented to provide a convenient reference to the ingest schema.
+
+  This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `global_atmospheric_model.history`:
+
+- `list_global_atmospheric_model_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_global_atmospheric_model_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_global_atmospheric_model_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
+### Resource `gnss_observations.history`:
+
+- `count_gnss_observations_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
 ### Resource `gnss_observationset`:
 
 - `list_gnss_observationset` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
@@ -1064,14 +1103,40 @@ The following tools are available in this MCP server.
 - `list_gnss_observationset_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_gnss_observationset_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
+### Resource `gnss_raw_if`:
+
+- `list_gnss_raw_if` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_gnss_raw_if` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `file_get_gnss_raw_if` (`read`): Service operation to get a single GNSSRAWIF hdf5 file by its unique ID passed as a path parameter. The file is returned as an attachment Content-Disposition.
+- `get_gnss_raw_if` (`read`): Service operation to get a single GNSSRawIF by its unique ID passed as a path parameter.
+- `queryhelp_gnss_raw_if` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_gnss_raw_if` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `upload_zip_gnss_raw_if` (`write`): Upload an HDF5 file with its metadata.
+
+  The request body requires a zip file containing exactly two files:\
+  1\) A file with the `.json` file extension whose content conforms to the `GNSSRawIF_Ingest` schema.\
+  2\) A file with the `.hdf5` file extension.
+
+  The JSON and HDF5 files will be associated with each other via the `id` field. Query the metadata via `GET /udl/gnssrawif` and use `GET /udl/gnssrawif/getFile/{id}` to retrieve the HDF5 file.
+
+  This operation only accepts application/zip media. The application/json request body is documented to provide a convenient reference to the ingest schema.
+
+  This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `gnss_raw_if.history`:
+
+- `list_gnss_raw_if_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_gnss_raw_if_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_gnss_raw_if_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
 ### Resource `ground_imagery`:
 
 - `create_ground_imagery` (`write`): Service operation to take a single GroundImagery object as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `list_ground_imagery` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_ground_imagery` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_ground_imagery` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `get_ground_imagery` (`read`): Service operation to get a single GroundImagery record by its unique ID passed as a path parameter. GroundImagery represents metadata about a ground image, as well as the actual binary image data.
 - `get_file_ground_imagery` (`read`): Service operation to get a single GroundImagery binary image by its unique ID passed as a path parameter. The image is returned as an attachment Content-Disposition.
-- `history_aodr_ground_imagery` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `queryhelp_ground_imagery` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_ground_imagery` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 - `upload_zip_ground_imagery` (`write`): Upload a new image with its metadata.
@@ -1088,8 +1153,8 @@ The following tools are available in this MCP server.
 
 ### Resource `ground_imagery.history`:
 
+- `list_ground_imagery_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_ground_imagery_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_ground_imagery_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `h3_geo`:
 
@@ -1102,9 +1167,9 @@ The following tools are available in this MCP server.
 
 ### Resource `h3_geo.history`:
 
+- `list_h3_geo_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `ador_h3_geo_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_h3_geo_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_h3_geo_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `h3_geo_hex_cell`:
 
@@ -1125,9 +1190,24 @@ The following tools are available in this MCP server.
 
 ### Resource `hazard.history`:
 
+- `list_hazard_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_hazard_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_hazard_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_hazard_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
+### Resource `iono_observations`:
+
+- `list_iono_observations` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_iono_observations` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `create_bulk_iono_observations` (`write`): Service operation intended for initial integration only, to take a list of IonoObservation records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `queryhelp_iono_observations` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_iono_observations` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_iono_observations` (`write`): Service operation to take Ionospheric Observation entries as a POST body and ingest into the database with or without dupe detection. Default is no dupe checking. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `iono_observations.history`:
+
+- `list_iono_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_iono_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_iono_observations_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `ir`:
 
@@ -1182,6 +1262,33 @@ The following tools are available in this MCP server.
 
 - `list_item_trackings_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_item_trackings_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
+### Resource `laserdeconflictrequest`:
+
+- `create_laserdeconflictrequest` (`write`): Service operation to take a single LaserDeconflictRequest record as a POST body and ingest into the database. This operation does not persist any LaserDeconflictTarget datatypes that may be present in the body of the request. This operation is not intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_laserdeconflictrequest` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_laserdeconflictrequest` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `get_laserdeconflictrequest` (`read`): Service operation to get a single LaserDeconflictRequest record by its unique ID passed as a path parameter.
+- `queryhelp_laserdeconflictrequest` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_laserdeconflictrequest` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_laserdeconflictrequest` (`write`): Service operation to take a single LaserDeconflictRequest record as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `laserdeconflictrequest.history`:
+
+- `list_laserdeconflictrequest_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_laserdeconflictrequest_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_laserdeconflictrequest_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
+### Resource `laseremitter`:
+
+- `create_laseremitter` (`write`): Service operation to take a single LaserEmitter record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `update_laseremitter` (`write`): Service operation to update a single LaserEmitter record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_laseremitter` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `delete_laseremitter` (`write`): Service operation to delete a LaserEmitter record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `count_laseremitter` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `get_laseremitter` (`read`): Service operation to get a single LaserEmitter record by its unique ID passed as a path parameter.
+- `queryhelp_laseremitter` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_laseremitter` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
 ### Resource `launch_detection`:
 
@@ -1274,6 +1381,11 @@ The following tools are available in this MCP server.
 - `aodr_link_status_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_link_status_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
+### Resource `linkstatus`:
+
+- `update_linkstatus` (`write`): Service operation to update a single LinkStatus. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `delete_linkstatus` (`write`): Service operation to delete a LinkStatus object specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
 ### Resource `location`:
 
 - `create_location` (`write`): Service operation to take a single location as a POST body and ingest into the database. Locations are specific fixed points on the earth and are used to denote the locations of fixed sensors, operating units, etc. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
@@ -1355,9 +1467,9 @@ The following tools are available in this MCP server.
 
 ### Resource `missile_tracks.history`:
 
+- `list_missile_tracks_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_missile_tracks_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_missile_tracks_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_missile_tracks_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `mission_assignment`:
 
@@ -1373,9 +1485,9 @@ The following tools are available in this MCP server.
 
 ### Resource `mission_assignment.history`:
 
+- `list_mission_assignment_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_mission_assignment_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_mission_assignment_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_mission_assignment_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `mti`:
 
@@ -1450,6 +1562,24 @@ The following tools are available in this MCP server.
 - `create_bulk_observations_ecpsdr` (`write`): Service operation intended for initial integration only, to take a list of ECPSDR as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
 - `query_help_observations_ecpsdr` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_observations_ecpsdr` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_observations_ecpsdr` (`write`): Service operation to take multiple ECPSDR as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `observations.eo_observations`:
+
+- `create_observations_eo_observations` (`write`): Service operation to take a single EO observation as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `retrieve_observations_eo_observations` (`read`): Service operation to get a single EO observation by its unique ID passed as a path parameter.
+- `list_observations_eo_observations` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_observations_eo_observations` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `create_bulk_observations_eo_observations` (`write`): Service operation intended for initial integration only, to take a list of EO observations as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `queryhelp_observations_eo_observations` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_observations_eo_observations` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_observations_eo_observations` (`write`): Service operation to take multiple EO observations as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `observations.eo_observations.history`:
+
+- `list_eo_observations_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_eo_observations_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_eo_observations_observations_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `observations.monoradar`:
 
@@ -1462,13 +1592,26 @@ The following tools are available in this MCP server.
 
 ### Resource `observations.monoradar.history`:
 
+- `list_monoradar_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_monoradar_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_monoradar_observations_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_monoradar_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
-### Resource `observations.swir`:
+### Resource `observations.passive_radar_observation`:
 
-- `unvalidated_publish_observations_swir` (`write`): Service operation to take a list of SWIR records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `create_observations_passive_radar_observation` (`write`): Service operation to take a single PassiveRadarObservation as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_observations_passive_radar_observation` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_observations_passive_radar_observation` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `create_bulk_observations_passive_radar_observation` (`write`): Service operation intended for initial integration only, to take a list of PassiveRadarObservation records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `file_create_observations_passive_radar_observation` (`write`): Service operation to take multiple PassiveRadarObservation records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `get_observations_passive_radar_observation` (`read`): Service operation to get a single PassiveRadarObservation record by its unique ID passed as a path parameter.
+- `queryhelp_observations_passive_radar_observation` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_observations_passive_radar_observation` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+
+### Resource `observations.passive_radar_observation.history`:
+
+- `list_passive_radar_observation_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_passive_radar_observation_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_passive_radar_observation_observations_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `observations.radarobservation`:
 
@@ -1504,39 +1647,9 @@ The following tools are available in this MCP server.
 - `aodr_rf_observation_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_rf_observation_observations_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
-### Resource `observations.passive_radar_observation`:
+### Resource `observations.swir`:
 
-- `create_observations_passive_radar_observation` (`write`): Service operation to take a single PassiveRadarObservation as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `list_observations_passive_radar_observation` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `count_observations_passive_radar_observation` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `create_bulk_observations_passive_radar_observation` (`write`): Service operation intended for initial integration only, to take a list of PassiveRadarObservation records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
-- `file_create_observations_passive_radar_observation` (`write`): Service operation to take multiple PassiveRadarObservation records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `get_observations_passive_radar_observation` (`read`): Service operation to get a single PassiveRadarObservation record by its unique ID passed as a path parameter.
-- `queryhelp_observations_passive_radar_observation` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
-- `tuple_observations_passive_radar_observation` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
-
-### Resource `observations.passive_radar_observation.history`:
-
-- `list_passive_radar_observation_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `aodr_passive_radar_observation_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `count_passive_radar_observation_observations_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-
-### Resource `observations.eo_observations`:
-
-- `create_observations_eo_observations` (`write`): Service operation to take a single EO observation as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
-- `retrieve_observations_eo_observations` (`read`): Service operation to get a single EO observation by its unique ID passed as a path parameter.
-- `list_observations_eo_observations` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `count_observations_eo_observations` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `create_bulk_observations_eo_observations` (`write`): Service operation intended for initial integration only, to take a list of EO observations as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
-- `queryhelp_observations_eo_observations` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
-- `tuple_observations_eo_observations` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
-- `unvalidated_publish_observations_eo_observations` (`write`): Service operation to take multiple EO observations as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
-### Resource `observations.eo_observations.history`:
-
-- `list_eo_observations_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `aodr_eo_observations_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `count_eo_observations_observations_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `unvalidated_publish_observations_swir` (`write`): Service operation to take a list of SWIR records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 
 ### Resource `onboardnavigation`:
 
@@ -1764,6 +1877,21 @@ The following tools are available in this MCP server.
 - `queryhelp_port` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_port` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
+### Resource `report_and_activities.poi.history`:
+
+- `list_poi_report_and_activities_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_poi_report_and_activities_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_poi_report_and_activities_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
+### Resource `report_and_activities.udl_h3geo`:
+
+- `unvalidated_publish_report_and_activities_udl_h3geo` (`write`): Service operation to take a single H3Geo record and many associated H3Geo hex cell records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `report_and_activities.udl_sigact`:
+
+- `file_get_report_and_activities_udl_sigact` (`read`): Service operation to get a single SigAct text file by its unique ID passed as a path parameter. The text file is returned as an attachment Content-Disposition.
+- `unvalidated_publish_report_and_activities_udl_sigact` (`write`): Service operation to take a list of SigAct as a POST body and ingest into the database. A SigAct provides data for Report and Activity information. Requires a specific role, please contact the UDL team to gain access. This operation is intended to be used for automated feeds into UDL.
+
 ### Resource `rf_band`:
 
 - `create_rf_band` (`write`): Service operation to take a single RFBand record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
@@ -1808,6 +1936,19 @@ The following tools are available in this MCP server.
 - `queryhelp_rf_emitter_details` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_rf_emitter_details` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
+### Resource `route_stats`:
+
+- `create_route_stats` (`write`): Service operation to take a single routeStats record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `retrieve_route_stats` (`read`): Service operation to get a single routeStats record by its unique ID passed as a path parameter.
+- `update_route_stats` (`write`): Service operation to update a single RouteStats. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_route_stats` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `delete_route_stats` (`write`): Service operation to delete a routeStats record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `count_route_stats` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `create_bulk_route_stats` (`write`): Service operation intended for initial integration only, to take a list of RouteStats as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `query_help_route_stats` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_route_stats` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_route_stats` (`write`): Service operation to take multiple routestats records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
 ### Resource `sar_observation`:
 
 - `create_sar_observation` (`write`): Service operation to take a single SAR observation as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
@@ -1836,6 +1977,66 @@ The following tools are available in this MCP server.
 - `queryhelp_scientific` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_scientific` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
+### Resource `scs`:
+
+- `delete_scs` (`write`): Deletes the requested file or folder in the passed path directory that is visible to the calling user. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `allowable_file_extensions_scs` (`read`): Returns a list of the allowed filename extensions.
+- `allowable_file_mimes_scs` (`read`): Returns a list of the allowed file upload mime types.
+- `copy_scs` (`write`): operation to copy folders or files. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `download_scs` (`write`): Downloads a zip of one or more files and/or folders.
+- `file_download_scs` (`read`): Download a single file from SCS.
+- `file_upload_scs` (`write`): Operation to upload a file. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `move_scs` (`write`): operation to move folders or files. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `rename_scs` (`write`): Operation to rename folders or files. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `search_scs` (`write`): Search for files by metadata and/or text in file content.
+
+### Resource `scs.notifications`:
+
+- `list_scs_notifications` (`read`): Returns a list of notifications for items in a specific folder.
+
+### Resource `scs.notifications.offset`:
+
+- `get_notifications_scs_offset` (`read`): Retrieve the min and max offsets of the SCS Event Notification Kafka topic.
+- `get_latest_notifications_scs_offset` (`read`): Returns the current/latest offset for the SCS Event Notification Kafka topic.
+
+### Resource `scs.file`:
+
+- `retrieve_scs_file` (`read`): Returns a FileData object representing the file with the given ID that is visible to the calling user.
+- `update_scs_file` (`write`): operation to update files metadata. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_scs_file` (`read`): Returns a non-recursive list of FileData objects representing the files and subdirectories in the passed-in path directory that are visible to the calling user.
+
+### Resource `scs.folders`:
+
+- `create_scs_folders` (`write`): Creates a new folder that is passed as part of the path. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `retrieve_scs_folders` (`read`): Returns a FileData object representing the folder ID that is visible to the calling user.
+- `update_scs_folders` (`write`): operation to update folders metadata. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `scs.paths`:
+
+- `create_with_file_scs_paths` (`write`): Creates the path and uploads file that is passed. If folder exist it will only create folders that are missing. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `scs.view`:
+
+- `get_scs_view` (`read`): Return a single file to view in browser.
+
+### Resource `scs.v2`:
+
+- `update_scs_v2` (`write`): Update folders and files. For a folder, you may update description, writeAcl, readAcl, classificationMarking, and tags. For a file, you may update description, classificationMarking, and tags. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_scs_v2` (`read`): Returns a list of ScsEntity objects, each directly nested under the provided path.
+- `delete_scs_v2` (`write`): Operation to delete a folder or file. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `copy_scs_v2` (`write`): Operation to copy a folder or file. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `file_upload_scs_v2` (`write`): Operation to upload a file. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `folder_create_scs_v2` (`write`): Creates all folders in provided path that don't exist. Can be used to create a single folder or a new folder structure. Provided classificationMarking, description, writeAcl, readAcl, and tags are applied to the deepest folder in the provided path. If parent folders are created by this request, each parent folder will be created with the same classificationMarking and tags. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `move_scs_v2` (`write`): Operation to move or rename a folder or file. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `search_scs_v2` (`write`): Operation to search for files in the Secure Content Store.
+
+### Resource `secure_messaging`:
+
+- `describe_topic_secure_messaging` (`read`): Retrieve the details of the specified topic or data type.
+- `get_latest_offset_secure_messaging` (`read`): Returns the current/latest offset for the passed topic name.
+- `get_messages_secure_messaging` (`read`): Retrieve a set of messages from the given topic at the given offset. See Help > Secure Messaging API on Storefront for more details on how to use getMessages.
+- `list_topics_secure_messaging` (`read`): Retrieve the list of available secure messaging topics or data types available.
+
 ### Resource `sensor`:
 
 - `create_sensor` (`write`): Service operation to take a single sensor as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
@@ -1851,18 +2052,18 @@ The following tools are available in this MCP server.
 
 - `create_sensor_calibration` (`write`): Service operation to take a single SensorCalibration as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
 - `retrieve_sensor_calibration` (`read`): Service operation to get a single SensorCalibration by its unique ID passed as a path parameter.
+- `list_sensor_calibration` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_sensor_calibration` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `create_bulk_sensor_calibration` (`write`): Service operation intended for initial integration only, to take a list of SensorCalibrations as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
-- `query_sensor_calibration` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `query_help_sensor_calibration` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_sensor_calibration` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 - `unvalidated_publish_sensor_calibration` (`write`): Service operation to take multiple sensorcalibration records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 
 ### Resource `sensor.calibration.history`:
 
+- `list_calibration_sensor_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_calibration_sensor_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_calibration_sensor_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_calibration_sensor_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `write_aodr_calibration_sensor_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `sensor_maintenance`:
 
@@ -1874,7 +2075,7 @@ The following tools are available in this MCP server.
 - `create_bulk_sensor_maintenance` (`write`): Service operation to take multiple SensorMaintenance as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `get_sensor_maintenance` (`read`): Service operation to get a single SensorMaintenance record by its unique ID passed as a path parameter.
 - `list_current_sensor_maintenance` (`read`): Service operation to get current Sensor Maintenance records using any number of additional parameters.
-- `queryhelp_sensor_maintenance` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `query_help_sensor_maintenance` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_sensor_maintenance` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
 ### Resource `sensor_maintenance.history`:
@@ -2214,16 +2415,16 @@ The following tools are available in this MCP server.
 - `tuple_state_vector` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 - `unvalidated_publish_state_vector` (`write`): Service operation to take multiple state vectors as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 
+### Resource `state_vector.current`:
+
+- `list_state_vector_current` (`read`): Service operation to dynamically query/filter current StateVector data within the system by a variety of query parameters not specified in this API documentation. A current StateVector is the currently active, latest StateVector for an on-orbit object. Current state vectors are tracked by source and a source should be provided as a query parameter to this service operation to view the 'current' catalog for a particular provider. Default current state vector sources may vary by UDL environment. Please contact the UDL help desk for more information, or explicitly specify the desired source. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `tuple_state_vector_current` (`read`): Service operation to dynamically query/filter current StateVector data within the system by a variety of query parameters not specified in this API documentation. A current StateVector is the currently active, latest StateVector for an on-orbit object. Current state vectors are tracked by source and a source should be provided as a query parameter to this service operation to view the 'current' catalog for a particular provider. Default current state vector sources may vary by UDL environment. Please contact the UDL help desk for more information, or explicitly specify the desired source. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
 ### Resource `state_vector.history`:
 
 - `list_state_vector_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_state_vector_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_state_vector_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-
-### Resource `state_vector.current`:
-
-- `list_state_vector_current` (`read`): Service operation to dynamically query/filter current StateVector data within the system by a variety of query parameters not specified in this API documentation. A current StateVector is the currently active, latest StateVector for an on-orbit object. Current state vectors are tracked by source and a source should be provided as a query parameter to this service operation to view the 'current' catalog for a particular provider. Default current state vector sources may vary by UDL environment. Please contact the UDL help desk for more information, or explicitly specify the desired source. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `tuple_state_vector_current` (`read`): Service operation to dynamically query/filter current StateVector data within the system by a variety of query parameters not specified in this API documentation. A current StateVector is the currently active, latest StateVector for an on-orbit object. Current state vectors are tracked by source and a source should be provided as a query parameter to this service operation to view the 'current' catalog for a particular provider. Default current state vector sources may vary by UDL environment. Please contact the UDL help desk for more information, or explicitly specify the desired source. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `status`:
 
@@ -2448,113 +2649,3 @@ The following tools are available in this MCP server.
 - `list_weather_report_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_weather_report_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_weather_report_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-
-### Resource `gnss_observations.history`:
-
-- `count_gnss_observations_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-
-### Resource `gnss_raw_if`:
-
-- `list_gnss_raw_if` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `count_gnss_raw_if` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `file_get_gnss_raw_if` (`read`): Service operation to get a single GNSSRAWIF hdf5 file by its unique ID passed as a path parameter. The file is returned as an attachment Content-Disposition.
-- `get_gnss_raw_if` (`read`): Service operation to get a single GNSSRawIF by its unique ID passed as a path parameter.
-- `queryhelp_gnss_raw_if` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
-- `tuple_gnss_raw_if` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
-- `upload_zip_gnss_raw_if` (`write`): Upload an HDF5 file with its metadata.
-
-  The request body requires a zip file containing exactly two files:\
-  1\) A file with the `.json` file extension whose content conforms to the `GNSSRawIF_Ingest` schema.\
-  2\) A file with the `.hdf5` file extension.
-
-  The JSON and HDF5 files will be associated with each other via the `id` field. Query the metadata via `GET /udl/gnssrawif` and use `GET /udl/gnssrawif/getFile/{id}` to retrieve the HDF5 file.
-
-  This operation only accepts application/zip media. The application/json request body is documented to provide a convenient reference to the ingest schema.
-
-  This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
-### Resource `gnss_raw_if.history`:
-
-- `aodr_gnss_raw_if_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `count_gnss_raw_if_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `query_gnss_raw_if_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-
-### Resource `iono_observations`:
-
-- `list_iono_observations` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `count_iono_observations` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `create_bulk_iono_observations` (`write`): Service operation intended for initial integration only, to take a list of IonoObservation records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
-- `queryhelp_iono_observations` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
-- `tuple_iono_observations` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
-- `unvalidated_publish_iono_observations` (`write`): Service operation to take Ionospheric Observation entries as a POST body and ingest into the database with or without dupe detection. Default is no dupe checking. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
-### Resource `iono_observations.history`:
-
-- `list_iono_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `aodr_iono_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `count_iono_observations_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-
-### Resource `report_and_activities.poi.history`:
-
-- `list_poi_report_and_activities_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `aodr_poi_report_and_activities_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `count_poi_report_and_activities_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-
-### Resource `report_and_activities.udl_h3geo`:
-
-- `unvalidated_publish_report_and_activities_udl_h3geo` (`write`): Service operation to take a single H3Geo record and many associated H3Geo hex cell records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
-### Resource `report_and_activities.udl_sigact`:
-
-- `file_get_report_and_activities_udl_sigact` (`read`): Service operation to get a single SigAct text file by its unique ID passed as a path parameter. The text file is returned as an attachment Content-Disposition.
-- `unvalidated_publish_report_and_activities_udl_sigact` (`write`): Service operation to take a list of SigAct as a POST body and ingest into the database. A SigAct provides data for Report and Activity information. Requires a specific role, please contact the UDL team to gain access. This operation is intended to be used for automated feeds into UDL.
-
-### Resource `secure_messaging`:
-
-- `describe_topic_secure_messaging` (`read`): Retrieve the details of the specified topic or data type.
-- `get_latest_offset_secure_messaging` (`read`): Returns the current/latest offset for the passed topic name.
-- `get_messages_secure_messaging` (`read`): Retrieve a set of messages from the given topic at the given offset. See Help > Secure Messaging API on Storefront for more details on how to use getMessages.
-- `list_topics_secure_messaging` (`read`): Retrieve the list of available secure messaging topics or data types available.
-
-### Resource `scs`:
-
-- `delete_scs` (`write`): Deletes the requested file or folder in the passed path directory that is visible to the calling user. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `allowable_file_extensions_scs` (`read`): Returns a list of the allowed filename extensions.
-- `allowable_file_mimes_scs` (`read`): Returns a list of the allowed file upload mime types.
-- `copy_scs` (`write`): operation to copy folders or files. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `download_scs` (`write`): Downloads a zip of one or more files and/or folders.
-- `file_download_scs` (`read`): Download a single file from SCS.
-- `file_upload_scs` (`write`): Operation to upload a file. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `move_scs` (`write`): operation to move folders or files. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `rename_scs` (`write`): Operation to rename folders or files. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `search_scs` (`write`): Search for files by metadata and/or text in file content.
-
-### Resource `scs.folders`:
-
-- `create_scs_folders` (`write`): Creates a new folder that is passed as part of the path. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `retrieve_scs_folders` (`read`): Returns a FileData object representing the folder ID that is visible to the calling user.
-- `update_scs_folders` (`write`): operation to update folders metadata. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
-### Resource `scs.paths`:
-
-- `create_with_file_scs_paths` (`write`): Creates the path and uploads file that is passed. If folder exist it will only create folders that are missing. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
-### Resource `scs.v2`:
-
-- `update_scs_v2` (`write`): Update folders and files. For a folder, you may update description, writeAcl, readAcl, classificationMarking, and tags. For a file, you may update description, classificationMarking, and tags. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `list_scs_v2` (`read`): Returns a list of ScsEntity objects, each directly nested under the provided path.
-- `delete_scs_v2` (`write`): Operation to delete a folder or file. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `copy_scs_v2` (`write`): Operation to copy a folder or file. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `file_upload_scs_v2` (`write`): Operation to upload a file. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `folder_create_scs_v2` (`write`): Creates all folders in provided path that don't exist. Can be used to create a single folder or a new folder structure. Provided classificationMarking, description, writeAcl, readAcl, and tags are applied to the deepest folder in the provided path. If parent folders are created by this request, each parent folder will be created with the same classificationMarking and tags. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `move_scs_v2` (`write`): Operation to move or rename a folder or file. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-
-### Resource `scs.file`:
-
-- `retrieve_scs_file` (`read`): Returns a FileData object representing the file with the given ID that is visible to the calling user.
-- `update_scs_file` (`write`): operation to update files metadata. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `list_scs_file` (`read`): Returns a non-recursive list of FileData objects representing the files and subdirectories in the passed-in path directory that are visible to the calling user.
-
-### Resource `scs_views`:
-
-- `retrieve_scs_views` (`read`): Return a single file to view in browser.

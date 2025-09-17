@@ -16,9 +16,10 @@ export {
 } from './h3-geo';
 export {
   History,
+  type HistoryListResponse,
   type HistoryCountResponse,
-  type HistoryQueryResponse,
+  type HistoryListParams,
   type HistoryAdorParams,
   type HistoryCountParams,
-  type HistoryQueryParams,
+  type HistoryListResponsesOffsetPage,
 } from './history';
