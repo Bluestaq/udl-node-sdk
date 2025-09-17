@@ -1594,8 +1594,8 @@ export {
   SensorMaintenance,
   type SensorMaintenanceListResponse,
   type SensorMaintenanceCountResponse,
-  type SensorMaintenanceCurrentResponse,
   type SensorMaintenanceGetResponse,
+  type SensorMaintenanceListCurrentResponse,
   type SensorMaintenanceQueryhelpResponse,
   type SensorMaintenanceTupleResponse,
   type SensorMaintenanceCreateParams,
@@ -1603,10 +1603,11 @@ export {
   type SensorMaintenanceListParams,
   type SensorMaintenanceCountParams,
   type SensorMaintenanceCreateBulkParams,
-  type SensorMaintenanceCurrentParams,
   type SensorMaintenanceGetParams,
+  type SensorMaintenanceListCurrentParams,
   type SensorMaintenanceTupleParams,
   type SensorMaintenanceListResponsesOffsetPage,
+  type SensorMaintenanceListCurrentResponsesOffsetPage,
 } from './sensor-maintenance/sensor-maintenance';
 export {
   SensorObservationType,

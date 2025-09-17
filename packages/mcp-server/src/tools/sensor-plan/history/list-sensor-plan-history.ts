@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export const tool: Tool = {
-  name: 'retrieve_sensor_plan_history',
+  name: 'list_sensor_plan_history',
   description:
     'Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.',
   inputSchema: {
@@ -47,7 +47,8 @@ export const tool: Tool = {
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asTextContentResult(await client.sensorPlan.history.retrieve(body));
+  const response = await client.sensorPlan.history.list(body).asResponse();
+  return asTextContentResult(await response.json());
 };
 
 export default { metadata, tool, handler };

@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { ClassificationMarkings } from './classification-markings';
 export { File, type FileRetrieveParams, type FileUpdateParams, type FileListParams } from './file';
-export { FileMetadata } from './file-metadata';
 export {
   Folders,
   type FolderCreateResponse,
@@ -10,9 +8,7 @@ export {
   type FolderRetrieveParams,
   type FolderUpdateParams,
 } from './folders';
-export { Groups } from './groups';
 export { Paths, type PathCreateWithFileResponse, type PathCreateWithFileParams } from './paths';
-export { RangeParameters } from './range-parameters';
 export {
   Scs,
   type ScAllowableFileExtensionsResponse,

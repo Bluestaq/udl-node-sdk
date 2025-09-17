@@ -3125,8 +3125,8 @@ Types:
 
 - <code><a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">SensorMaintenanceListResponse</a></code>
 - <code><a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">SensorMaintenanceCountResponse</a></code>
-- <code><a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">SensorMaintenanceCurrentResponse</a></code>
 - <code><a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">SensorMaintenanceGetResponse</a></code>
+- <code><a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">SensorMaintenanceListCurrentResponse</a></code>
 - <code><a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">SensorMaintenanceQueryhelpResponse</a></code>
 - <code><a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">SensorMaintenanceTupleResponse</a></code>
 
@@ -3138,8 +3138,8 @@ Methods:
 - <code title="delete /udl/sensormaintenance/{id}">client.sensorMaintenance.<a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/sensormaintenance/count">client.sensorMaintenance.<a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">count</a>({ ...params }) -> string</code>
 - <code title="post /udl/sensormaintenance/createBulk">client.sensorMaintenance.<a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">createBulk</a>([ ...body ]) -> void</code>
-- <code title="get /udl/sensormaintenance/current">client.sensorMaintenance.<a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">current</a>({ ...params }) -> SensorMaintenanceCurrentResponse</code>
 - <code title="get /udl/sensormaintenance/{id}">client.sensorMaintenance.<a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">get</a>(id, { ...params }) -> SensorMaintenanceGetResponse</code>
+- <code title="get /udl/sensormaintenance/current">client.sensorMaintenance.<a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">listCurrent</a>({ ...params }) -> SensorMaintenanceListCurrentResponsesOffsetPage</code>
 - <code title="get /udl/sensormaintenance/queryhelp">client.sensorMaintenance.<a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">queryhelp</a>() -> SensorMaintenanceQueryhelpResponse</code>
 - <code title="get /udl/sensormaintenance/tuple">client.sensorMaintenance.<a href="./src/resources/sensor-maintenance/sensor-maintenance.ts">tuple</a>({ ...params }) -> SensorMaintenanceTupleResponse</code>
 
@@ -3147,12 +3147,12 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/sensor-maintenance/history.ts">HistoryRetrieveResponse</a></code>
+- <code><a href="./src/resources/sensor-maintenance/history.ts">HistoryListResponse</a></code>
 - <code><a href="./src/resources/sensor-maintenance/history.ts">HistoryCountResponse</a></code>
 
 Methods:
 
-- <code title="get /udl/sensormaintenance/history">client.sensorMaintenance.history.<a href="./src/resources/sensor-maintenance/history.ts">retrieve</a>({ ...params }) -> HistoryRetrieveResponse</code>
+- <code title="get /udl/sensormaintenance/history">client.sensorMaintenance.history.<a href="./src/resources/sensor-maintenance/history.ts">list</a>({ ...params }) -> HistoryListResponsesOffsetPage</code>
 - <code title="get /udl/sensormaintenance/history/aodr">client.sensorMaintenance.history.<a href="./src/resources/sensor-maintenance/history.ts">aodr</a>({ ...params }) -> void</code>
 - <code title="get /udl/sensormaintenance/history/count">client.sensorMaintenance.history.<a href="./src/resources/sensor-maintenance/history.ts">count</a>({ ...params }) -> string</code>
 
@@ -3193,12 +3193,12 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/sensor-plan/history.ts">HistoryRetrieveResponse</a></code>
+- <code><a href="./src/resources/sensor-plan/history.ts">HistoryListResponse</a></code>
 - <code><a href="./src/resources/sensor-plan/history.ts">HistoryCountResponse</a></code>
 
 Methods:
 
-- <code title="get /udl/sensorplan/history">client.sensorPlan.history.<a href="./src/resources/sensor-plan/history.ts">retrieve</a>({ ...params }) -> HistoryRetrieveResponse</code>
+- <code title="get /udl/sensorplan/history">client.sensorPlan.history.<a href="./src/resources/sensor-plan/history.ts">list</a>({ ...params }) -> HistoryListResponsesOffsetPage</code>
 - <code title="get /udl/sensorplan/history/aodr">client.sensorPlan.history.<a href="./src/resources/sensor-plan/history.ts">aodr</a>({ ...params }) -> void</code>
 - <code title="get /udl/sensorplan/history/count">client.sensorPlan.history.<a href="./src/resources/sensor-plan/history.ts">count</a>({ ...params }) -> string</code>
 
@@ -4388,14 +4388,6 @@ Methods:
 - <code title="post /scs/folder">client.scs.folders.<a href="./src/resources/scs/folders.ts">create</a>({ ...params }) -> string</code>
 - <code title="get /scs/folder">client.scs.folders.<a href="./src/resources/scs/folders.ts">retrieve</a>({ ...params }) -> FileData</code>
 - <code title="patch /scs/folder">client.scs.folders.<a href="./src/resources/scs/folders.ts">update</a>({ ...params }) -> void</code>
-
-## ClassificationMarkings
-
-## Groups
-
-## FileMetadata
-
-## RangeParameters
 
 ## Paths
 

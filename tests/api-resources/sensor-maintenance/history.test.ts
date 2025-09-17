@@ -9,8 +9,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource history', () => {
-  test('retrieve', async () => {
-    const responsePromise = client.sensorMaintenance.history.retrieve();
+  test('list', async () => {
+    const responsePromise = client.sensorMaintenance.history.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,10 +20,10 @@ describe('resource history', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options and params are passed correctly', async () => {
+  test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.sensorMaintenance.history.retrieve(
+      client.sensorMaintenance.history.list(
         {
           columns: 'columns',
           endTime: '2019-12-27T18:11:19.117Z',

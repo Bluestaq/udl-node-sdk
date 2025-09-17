@@ -2,11 +2,12 @@
 
 export {
   History,
-  type HistoryRetrieveResponse,
+  type HistoryListResponse,
   type HistoryCountResponse,
-  type HistoryRetrieveParams,
+  type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
+  type HistoryListResponsesOffsetPage,
 } from './history';
 export {
   SensorPlan,
