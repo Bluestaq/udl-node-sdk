@@ -4,14 +4,18 @@ export {
   AIs,
   type AIsAbridged,
   type AICountResponse,
-  type AIHistoryCountResponse,
   type AIQueryhelpResponse,
   type AITupleResponse,
   type AIListParams,
   type AICountParams,
   type AICreateBulkParams,
-  type AIHistoryCountParams,
   type AITupleParams,
   type AIsAbridgedsOffsetPage,
 } from './ais';
-export { History, type HistoryListParams, type HistoryAodrParams } from './history';
+export {
+  History,
+  type HistoryCountResponse,
+  type HistoryListParams,
+  type HistoryAodrParams,
+  type HistoryCountParams,
+} from './history';

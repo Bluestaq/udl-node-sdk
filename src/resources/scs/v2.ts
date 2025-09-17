@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as ScsAPI from './scs';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -191,6 +192,29 @@ export class V2 extends APIResource {
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
+
+  /**
+   * Operation to search for files in the Secure Content Store.
+   *
+   * @example
+   * ```ts
+   * const scsEntities = await client.scs.v2.search({
+   *   query: {
+   *     field: 'attachment.content',
+   *     operator: 'EXACT_MATCH',
+   *     value: 'This is a very cool file.',
+   *   },
+   * });
+   * ```
+   */
+  search(params: V2SearchParams, options?: RequestOptions): APIPromise<V2SearchResponse> {
+    const { order, searchAfter, size, sort, ...body } = params;
+    return this._client.post('/scs/v2/search', {
+      query: { order, searchAfter, size, sort },
+      body,
+      ...options,
+    });
+  }
 }
 
 export type ScsEntitiesOffsetPage = OffsetPage<ScsEntity>;
@@ -273,6 +297,8 @@ export interface ScsEntity {
    */
   writeAcl?: string;
 }
+
+export type V2SearchResponse = Array<ScsEntity>;
 
 export interface V2UpdateParams {
   /**
@@ -472,10 +498,40 @@ export interface V2MoveParams {
   toPath: string;
 }
 
+export interface V2SearchParams {
+  /**
+   * Query param: The order in which entries should be sorted
+   */
+  order?: string;
+
+  /**
+   * Query param: The starting point for pagination results, usually set to the value
+   * of the SEARCH_AFTER header returned in the previous request.
+   */
+  searchAfter?: string;
+
+  /**
+   * Query param: The number of results to retrieve.
+   */
+  size?: number;
+
+  /**
+   * Query param: The field on which to sort entries
+   */
+  sort?: string;
+
+  /**
+   * Body param: A search criterion, which can be a simple field comparison or a
+   * logical combination of other criteria.
+   */
+  query?: ScsAPI.SearchCriterion;
+}
+
 export declare namespace V2 {
   export {
     type Attachment as Attachment,
     type ScsEntity as ScsEntity,
+    type V2SearchResponse as V2SearchResponse,
     type ScsEntitiesOffsetPage as ScsEntitiesOffsetPage,
     type V2UpdateParams as V2UpdateParams,
     type V2ListParams as V2ListParams,
@@ -484,5 +540,6 @@ export declare namespace V2 {
     type V2FileUploadParams as V2FileUploadParams,
     type V2FolderCreateParams as V2FolderCreateParams,
     type V2MoveParams as V2MoveParams,
+    type V2SearchParams as V2SearchParams,
   };
 }

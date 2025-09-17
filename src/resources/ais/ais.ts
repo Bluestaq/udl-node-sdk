@@ -3,7 +3,13 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryListParams } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -50,21 +56,6 @@ export class AIs extends APIResource {
       body: body,
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
-  }
-
-  /**
-   * Service operation to return the count of records satisfying the specified query
-   * parameters. This operation is useful to determine how many records pass a
-   * particular query criteria without retrieving large amounts of data. See the
-   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
-   * valid/required query parameter information.
-   */
-  historyCount(query: AIHistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/ais/history/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 
@@ -427,8 +418,6 @@ export interface AIsAbridged {
 
 export type AICountResponse = string;
 
-export type AIHistoryCountResponse = string;
-
 export interface AIQueryhelpResponse {
   aodrSupported?: boolean;
 
@@ -789,18 +778,6 @@ export namespace AICreateBulkParams {
   }
 }
 
-export interface AIHistoryCountParams {
-  /**
-   * The timestamp that the vessel position was recorded, in ISO 8601 UTC format.
-   * (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-   */
-  ts: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
-}
-
 export interface AITupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
@@ -827,20 +804,20 @@ export declare namespace AIs {
   export {
     type AIsAbridged as AIsAbridged,
     type AICountResponse as AICountResponse,
-    type AIHistoryCountResponse as AIHistoryCountResponse,
     type AIQueryhelpResponse as AIQueryhelpResponse,
     type AITupleResponse as AITupleResponse,
     type AIsAbridgedsOffsetPage as AIsAbridgedsOffsetPage,
     type AIListParams as AIListParams,
     type AICountParams as AICountParams,
     type AICreateBulkParams as AICreateBulkParams,
-    type AIHistoryCountParams as AIHistoryCountParams,
     type AITupleParams as AITupleParams,
   };
 
   export {
     History as History,
+    type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
+    type HistoryCountParams as HistoryCountParams,
   };
 }

@@ -26,17 +26,30 @@ import {
   V2FolderCreateParams,
   V2ListParams,
   V2MoveParams,
+  V2SearchParams,
+  V2SearchResponse,
   V2UpdateParams,
 } from './v2';
+import * as ViewAPI from './view';
+import { View, ViewGetParams } from './view';
+import * as NotificationsAPI from './notifications/notifications';
+import {
+  NotificationListParams,
+  NotificationListResponse,
+  NotificationListResponsesOffsetPage,
+  Notifications,
+} from './notifications/notifications';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
 export class Scs extends APIResource {
+  notifications: NotificationsAPI.Notifications = new NotificationsAPI.Notifications(this._client);
+  file: FileAPI.File = new FileAPI.File(this._client);
   folders: FoldersAPI.Folders = new FoldersAPI.Folders(this._client);
   paths: PathsAPI.Paths = new PathsAPI.Paths(this._client);
+  view: ViewAPI.View = new ViewAPI.View(this._client);
   v2: V2API.V2 = new V2API.V2(this._client);
-  file: FileAPI.File = new FileAPI.File(this._client);
 
   /**
    * Deletes the requested file or folder in the passed path directory that is
@@ -209,6 +222,49 @@ export class Scs extends APIResource {
   }
 }
 
+/**
+ * A search criterion, which can be a simple field comparison or a logical
+ * combination of other criteria.
+ */
+export type SearchCriterion = SearchCriterion.ScsSearchFieldCriterion | SearchLogicalCriterion;
+
+export namespace SearchCriterion {
+  /**
+   * A search on a specific field with a given value and operator.
+   */
+  export interface ScsSearchFieldCriterion {
+    /**
+     * The field to search on (e.g., attachment.content, createdBy).
+     */
+    field?: string;
+
+    /**
+     * Supported search operators
+     */
+    operator?: 'EXACT_MATCH' | 'WILDCARD' | 'FUZZY' | 'GTE' | 'LTE' | 'GT' | 'LT';
+
+    /**
+     * The value to compare against (e.g., The Great Gatsby)
+     */
+    value?: string;
+  }
+}
+
+/**
+ * Combines multiple search criteria with a logical operator (AND, OR, NOT).
+ */
+export interface SearchLogicalCriterion {
+  /**
+   * List of search criteria to combine
+   */
+  criteria?: Array<SearchCriterion>;
+
+  /**
+   * Supported search operators
+   */
+  operator?: 'AND' | 'OR' | 'NOT';
+}
+
 export type ScAllowableFileExtensionsResponse = Array<string>;
 
 export type ScAllowableFileMimesResponse = Array<string>;
@@ -364,13 +420,17 @@ export interface ScSearchParams {
   searchAfter?: string;
 }
 
+Scs.Notifications = Notifications;
+Scs.File = File;
 Scs.Folders = Folders;
 Scs.Paths = Paths;
+Scs.View = View;
 Scs.V2 = V2;
-Scs.File = File;
 
 export declare namespace Scs {
   export {
+    type SearchCriterion as SearchCriterion,
+    type SearchLogicalCriterion as SearchLogicalCriterion,
     type ScAllowableFileExtensionsResponse as ScAllowableFileExtensionsResponse,
     type ScAllowableFileMimesResponse as ScAllowableFileMimesResponse,
     type ScCopyResponse as ScCopyResponse,
@@ -388,6 +448,20 @@ export declare namespace Scs {
   };
 
   export {
+    Notifications as Notifications,
+    type NotificationListResponse as NotificationListResponse,
+    type NotificationListResponsesOffsetPage as NotificationListResponsesOffsetPage,
+    type NotificationListParams as NotificationListParams,
+  };
+
+  export {
+    File as File,
+    type FileRetrieveParams as FileRetrieveParams,
+    type FileUpdateParams as FileUpdateParams,
+    type FileListParams as FileListParams,
+  };
+
+  export {
     Folders as Folders,
     type FolderCreateResponse as FolderCreateResponse,
     type FolderCreateParams as FolderCreateParams,
@@ -401,10 +475,13 @@ export declare namespace Scs {
     type PathCreateWithFileParams as PathCreateWithFileParams,
   };
 
+  export { View as View, type ViewGetParams as ViewGetParams };
+
   export {
     V2 as V2,
     type Attachment as Attachment,
     type ScsEntity as ScsEntity,
+    type V2SearchResponse as V2SearchResponse,
     type ScsEntitiesOffsetPage as ScsEntitiesOffsetPage,
     type V2UpdateParams as V2UpdateParams,
     type V2ListParams as V2ListParams,
@@ -413,12 +490,6 @@ export declare namespace Scs {
     type V2FileUploadParams as V2FileUploadParams,
     type V2FolderCreateParams as V2FolderCreateParams,
     type V2MoveParams as V2MoveParams,
-  };
-
-  export {
-    File as File,
-    type FileRetrieveParams as FileRetrieveParams,
-    type FileUpdateParams as FileUpdateParams,
-    type FileListParams as FileListParams,
+    type V2SearchParams as V2SearchParams,
   };
 }

@@ -58,9 +58,9 @@ export async function codeTool(): Promise<Endpoint> {
 
         const opts: ClientOptions = {
           baseURL: client.baseURL,
+          accessToken: client.accessToken,
           password: client.password,
           username: client.username,
-          accessToken: client.accessToken,
           defaultHeaders: {
             'X-Stainless-MCP': 'true',
           },

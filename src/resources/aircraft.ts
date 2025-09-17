@@ -138,15 +138,12 @@ export class Aircraft extends APIResource {
    *
    * @example
    * ```ts
-   * const aircraftFulls = await client.aircraft.tupleQuery({
+   * const aircraftFulls = await client.aircraft.tuple({
    *   columns: 'columns',
    * });
    * ```
    */
-  tupleQuery(
-    query: AircraftTupleQueryParams,
-    options?: RequestOptions,
-  ): APIPromise<AircraftTupleQueryResponse> {
+  tuple(query: AircraftTupleParams, options?: RequestOptions): APIPromise<AircraftTupleResponse> {
     return this._client.get('/udl/aircraft/tuple', { query, ...options });
   }
 }
@@ -329,7 +326,7 @@ export interface AircraftQueryhelpResponse {
   uri?: string;
 }
 
-export type AircraftTupleQueryResponse = Array<Shared.AircraftFull>;
+export type AircraftTupleResponse = Array<Shared.AircraftFull>;
 
 export interface AircraftCreateParams {
   /**
@@ -601,7 +598,7 @@ export interface AircraftCountParams {
   maxResults?: number;
 }
 
-export interface AircraftTupleQueryParams {
+export interface AircraftTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
@@ -620,13 +617,13 @@ export declare namespace Aircraft {
     type AircraftAbridged as AircraftAbridged,
     type AircraftCountResponse as AircraftCountResponse,
     type AircraftQueryhelpResponse as AircraftQueryhelpResponse,
-    type AircraftTupleQueryResponse as AircraftTupleQueryResponse,
+    type AircraftTupleResponse as AircraftTupleResponse,
     type AircraftAbridgedsOffsetPage as AircraftAbridgedsOffsetPage,
     type AircraftCreateParams as AircraftCreateParams,
     type AircraftRetrieveParams as AircraftRetrieveParams,
     type AircraftUpdateParams as AircraftUpdateParams,
     type AircraftListParams as AircraftListParams,
     type AircraftCountParams as AircraftCountParams,
-    type AircraftTupleQueryParams as AircraftTupleQueryParams,
+    type AircraftTupleParams as AircraftTupleParams,
   };
 }

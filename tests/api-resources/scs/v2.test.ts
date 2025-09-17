@@ -153,4 +153,15 @@ describe('resource v2', () => {
   test('move: required and optional params', async () => {
     const response = await client.scs.v2.move({ fromPath: 'fromPath', toPath: 'toPath' });
   });
+
+  test('search', async () => {
+    const responsePromise = client.scs.v2.search({});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
 });

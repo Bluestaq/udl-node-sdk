@@ -9,6 +9,49 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource history', () => {
+  test('list: only required params', async () => {
+    const responsePromise = client.sensor.calibration.history.list({ startTime: '2019-12-27T18:11:19.117Z' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await client.sensor.calibration.history.list({
+      startTime: '2019-12-27T18:11:19.117Z',
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
+  });
+
+  test('aodr: only required params', async () => {
+    const responsePromise = client.sensor.calibration.history.aodr({ startTime: '2019-12-27T18:11:19.117Z' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('aodr: required and optional params', async () => {
+    const response = await client.sensor.calibration.history.aodr({
+      startTime: '2019-12-27T18:11:19.117Z',
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+      notification: 'notification',
+      outputDelimiter: 'outputDelimiter',
+      outputFormat: 'outputFormat',
+    });
+  });
+
   test('count: only required params', async () => {
     const responsePromise = client.sensor.calibration.history.count({
       startTime: '2019-12-27T18:11:19.117Z',
@@ -27,53 +70,6 @@ describe('resource history', () => {
       startTime: '2019-12-27T18:11:19.117Z',
       firstResult: 0,
       maxResults: 0,
-    });
-  });
-
-  test('query: only required params', async () => {
-    const responsePromise = client.sensor.calibration.history.query({
-      startTime: '2019-12-27T18:11:19.117Z',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('query: required and optional params', async () => {
-    const response = await client.sensor.calibration.history.query({
-      startTime: '2019-12-27T18:11:19.117Z',
-      columns: 'columns',
-      firstResult: 0,
-      maxResults: 0,
-    });
-  });
-
-  test('writeAodr: only required params', async () => {
-    const responsePromise = client.sensor.calibration.history.writeAodr({
-      startTime: '2019-12-27T18:11:19.117Z',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('writeAodr: required and optional params', async () => {
-    const response = await client.sensor.calibration.history.writeAodr({
-      startTime: '2019-12-27T18:11:19.117Z',
-      columns: 'columns',
-      firstResult: 0,
-      maxResults: 0,
-      notification: 'notification',
-      outputDelimiter: 'outputDelimiter',
-      outputFormat: 'outputFormat',
     });
   });
 });

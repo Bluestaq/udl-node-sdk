@@ -250,8 +250,8 @@ describe('resource aircraft', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('tupleQuery: only required params', async () => {
-    const responsePromise = client.aircraft.tupleQuery({ columns: 'columns' });
+  test('tuple: only required params', async () => {
+    const responsePromise = client.aircraft.tuple({ columns: 'columns' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -261,7 +261,7 @@ describe('resource aircraft', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('tupleQuery: required and optional params', async () => {
-    const response = await client.aircraft.tupleQuery({ columns: 'columns', firstResult: 0, maxResults: 0 });
+  test('tuple: required and optional params', async () => {
+    const response = await client.aircraft.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
   });
 });

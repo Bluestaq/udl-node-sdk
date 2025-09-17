@@ -173,6 +173,25 @@ describe('resource aviationRiskManagement', () => {
     });
   });
 
+  test('list: only required params', async () => {
+    const responsePromise = client.aviationRiskManagement.list({ idMission: 'idMission' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await client.aviationRiskManagement.list({
+      idMission: 'idMission',
+      firstResult: 0,
+      maxResults: 0,
+    });
+  });
+
   test('delete', async () => {
     const responsePromise = client.aviationRiskManagement.delete('id');
     const rawResponse = await responsePromise.asResponse();
@@ -279,25 +298,6 @@ describe('resource aviationRiskManagement', () => {
           unitId: '63',
         },
       ],
-    });
-  });
-
-  test('query: only required params', async () => {
-    const responsePromise = client.aviationRiskManagement.query({ idMission: 'idMission' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('query: required and optional params', async () => {
-    const response = await client.aviationRiskManagement.query({
-      idMission: 'idMission',
-      firstResult: 0,
-      maxResults: 0,
     });
   });
 

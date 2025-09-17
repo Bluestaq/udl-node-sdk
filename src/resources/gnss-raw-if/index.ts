@@ -17,9 +17,10 @@ export {
 } from './gnss-raw-if';
 export {
   History,
+  type HistoryListResponse,
   type HistoryCountResponse,
-  type HistoryQueryResponse,
+  type HistoryListParams,
   type HistoryAodrParams,
   type HistoryCountParams,
-  type HistoryQueryParams,
+  type HistoryListResponsesOffsetPage,
 } from './history';

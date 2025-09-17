@@ -37,8 +37,8 @@ import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
 export class DiplomaticClearance extends APIResource {
-  history: HistoryAPI.History = new HistoryAPI.History(this._client);
   country: CountryAPI.Country = new CountryAPI.Country(this._client);
+  history: HistoryAPI.History = new HistoryAPI.History(this._client);
 
   /**
    * Service operation to take a single diplomatic clearance record as a POST body
@@ -1114,8 +1114,8 @@ export interface DiplomaticClearanceTupleParams {
   maxResults?: number;
 }
 
-DiplomaticClearance.History = History;
 DiplomaticClearance.Country = Country;
+DiplomaticClearance.History = History;
 
 export declare namespace DiplomaticClearance {
   export {
@@ -1129,14 +1129,6 @@ export declare namespace DiplomaticClearance {
     type DiplomaticClearanceCountParams as DiplomaticClearanceCountParams,
     type DiplomaticClearanceCreateBulkParams as DiplomaticClearanceCreateBulkParams,
     type DiplomaticClearanceTupleParams as DiplomaticClearanceTupleParams,
-  };
-
-  export {
-    History as History,
-    type HistoryCountResponse as HistoryCountResponse,
-    type HistoryListParams as HistoryListParams,
-    type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
   };
 
   export {
@@ -1155,6 +1147,14 @@ export declare namespace DiplomaticClearance {
     type CountryCreateBulkParams as CountryCreateBulkParams,
     type CountryTupleParams as CountryTupleParams,
     type CountryUnvalidatedPublishParams as CountryUnvalidatedPublishParams,
+  };
+
+  export {
+    History as History,
+    type HistoryCountResponse as HistoryCountResponse,
+    type HistoryListParams as HistoryListParams,
+    type HistoryAodrParams as HistoryAodrParams,
+    type HistoryCountParams as HistoryCountParams,
   };
 }
 

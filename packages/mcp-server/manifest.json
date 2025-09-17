@@ -20,13 +20,19 @@
       "command": "node",
       "args": ["${__dirname}/index.js"],
       "env": {
+        "UDL_ACCESS_TOKEN": "${user_config.UDL_ACCESS_TOKEN}",
         "UDL_AUTH_PASSWORD": "${user_config.UDL_AUTH_PASSWORD}",
-        "UDL_AUTH_USERNAME": "${user_config.UDL_AUTH_USERNAME}",
-        "UDL_ACCESS_TOKEN": "${user_config.UDL_ACCESS_TOKEN}"
+        "UDL_AUTH_USERNAME": "${user_config.UDL_AUTH_USERNAME}"
       }
     }
   },
   "user_config": {
+    "UDL_ACCESS_TOKEN": {
+      "title": "access_token",
+      "description": "Access token for Bearer Authentication",
+      "required": false,
+      "type": "string"
+    },
     "UDL_AUTH_PASSWORD": {
       "title": "password",
       "description": "Password for HTTP Basic Authentication",
@@ -36,12 +42,6 @@
     "UDL_AUTH_USERNAME": {
       "title": "username",
       "description": "Username for HTTP Basic Authentication",
-      "required": false,
-      "type": "string"
-    },
-    "UDL_ACCESS_TOKEN": {
-      "title": "access_token",
-      "description": "Access token for Bearer Authentication",
       "required": false,
       "type": "string"
     }

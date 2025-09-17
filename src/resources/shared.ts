@@ -21401,6 +21401,8 @@ export interface WaiverFull {
   waiverLastChangedDate?: string;
 }
 
+export type AircraftsortieFullsOffsetPage = OffsetPage<AircraftsortieFull>;
+
 export type AirTransportMissionFullsOffsetPage = OffsetPage<AirTransportMissionFull>;
 
 export type AircraftstatusFullsOffsetPage = OffsetPage<AircraftstatusFull>;
@@ -21437,8 +21439,8 @@ export type OnboardnavigationFullsOffsetPage = OffsetPage<OnboardnavigationFull>
 
 export type OnorbitthrusterstatusFullsOffsetPage = OffsetPage<OnorbitthrusterstatusFull>;
 
+export type FileDataOffsetPage = OffsetPage<FileData>;
+
 export type SortiePprFullsOffsetPage = OffsetPage<SortiePprFull>;
 
 export type StateVectorFullsOffsetPage = OffsetPage<StateVectorFull>;
-
-export type FileDataOffsetPage = OffsetPage<FileData>;
