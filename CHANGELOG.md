@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.14 (2025-09-03)
+
+Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
+
+### Features
+
+* **mcp:** allow setting logging level ([25ff961](https://github.com/Bluestaq/udl-node-sdk/commit/25ff961c6f6a9678a26df205c2d9f4d3b44f0e87))
+* **mcp:** expose client options in `streamableHTTPApp` ([24f150b](https://github.com/Bluestaq/udl-node-sdk/commit/24f150b1f0881021ff5ed81c8b984be8c8e01a52))
+
+
+### Bug Fixes
+
+* **mcp:** avoid importing unsupported libraries on non-node environments ([9af8ef0](https://github.com/Bluestaq/udl-node-sdk/commit/9af8ef05931310f7a8b9a4d59e2908c71a787653))
+
 ## 0.1.0-alpha.13 (2025-08-28)
 
 Full Changelog: [v0.1.0-alpha.12...v0.1.0-alpha.13](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.12...v0.1.0-alpha.13)
