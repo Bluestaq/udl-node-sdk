@@ -2,12 +2,8 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
-import * as ClassificationMarkingsAPI from './classification-markings';
-import { ClassificationMarkings } from './classification-markings';
 import * as FileAPI from './file';
 import { File, FileListParams, FileRetrieveParams, FileUpdateParams } from './file';
-import * as FileMetadataAPI from './file-metadata';
-import { FileMetadata } from './file-metadata';
 import * as FoldersAPI from './folders';
 import {
   FolderCreateParams,
@@ -16,12 +12,8 @@ import {
   FolderUpdateParams,
   Folders,
 } from './folders';
-import * as GroupsAPI from './groups';
-import { Groups } from './groups';
 import * as PathsAPI from './paths';
 import { PathCreateWithFileParams, PathCreateWithFileResponse, Paths } from './paths';
-import * as RangeParametersAPI from './range-parameters';
-import { RangeParameters } from './range-parameters';
 import * as V2API from './v2';
 import {
   Attachment,
@@ -42,11 +34,6 @@ import { RequestOptions } from '../../internal/request-options';
 
 export class Scs extends APIResource {
   folders: FoldersAPI.Folders = new FoldersAPI.Folders(this._client);
-  classificationMarkings: ClassificationMarkingsAPI.ClassificationMarkings =
-    new ClassificationMarkingsAPI.ClassificationMarkings(this._client);
-  groups: GroupsAPI.Groups = new GroupsAPI.Groups(this._client);
-  fileMetadata: FileMetadataAPI.FileMetadata = new FileMetadataAPI.FileMetadata(this._client);
-  rangeParameters: RangeParametersAPI.RangeParameters = new RangeParametersAPI.RangeParameters(this._client);
   paths: PathsAPI.Paths = new PathsAPI.Paths(this._client);
   v2: V2API.V2 = new V2API.V2(this._client);
   file: FileAPI.File = new FileAPI.File(this._client);
@@ -378,10 +365,6 @@ export interface ScSearchParams {
 }
 
 Scs.Folders = Folders;
-Scs.ClassificationMarkings = ClassificationMarkings;
-Scs.Groups = Groups;
-Scs.FileMetadata = FileMetadata;
-Scs.RangeParameters = RangeParameters;
 Scs.Paths = Paths;
 Scs.V2 = V2;
 Scs.File = File;
@@ -411,14 +394,6 @@ export declare namespace Scs {
     type FolderRetrieveParams as FolderRetrieveParams,
     type FolderUpdateParams as FolderUpdateParams,
   };
-
-  export { ClassificationMarkings as ClassificationMarkings };
-
-  export { Groups as Groups };
-
-  export { FileMetadata as FileMetadata };
-
-  export { RangeParameters as RangeParameters };
 
   export {
     Paths as Paths,

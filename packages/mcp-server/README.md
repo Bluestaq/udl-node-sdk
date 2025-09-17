@@ -1872,14 +1872,14 @@ The following tools are available in this MCP server.
 - `delete_sensor_maintenance` (`write`): Service operation to delete a SensorMaintenance object specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `count_sensor_maintenance` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `create_bulk_sensor_maintenance` (`write`): Service operation to take multiple SensorMaintenance as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `current_sensor_maintenance` (`read`): Service operation to get current Sensor Maintenance records using any number of additional parameters.
 - `get_sensor_maintenance` (`read`): Service operation to get a single SensorMaintenance record by its unique ID passed as a path parameter.
+- `list_current_sensor_maintenance` (`read`): Service operation to get current Sensor Maintenance records using any number of additional parameters.
 - `queryhelp_sensor_maintenance` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_sensor_maintenance` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
 ### Resource `sensor_maintenance.history`:
 
-- `retrieve_sensor_maintenance_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `list_sensor_maintenance_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_sensor_maintenance_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_sensor_maintenance_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
@@ -1901,7 +1901,7 @@ The following tools are available in this MCP server.
 
 ### Resource `sensor_plan.history`:
 
-- `retrieve_sensor_plan_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `list_sensor_plan_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_sensor_plan_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_sensor_plan_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 

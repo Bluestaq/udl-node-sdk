@@ -8,8 +8,9 @@ import {
   HistoryAodrParams,
   HistoryCountParams,
   HistoryCountResponse,
-  HistoryRetrieveParams,
-  HistoryRetrieveResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
@@ -9011,9 +9012,10 @@ export declare namespace SensorPlan {
 
   export {
     History as History,
-    type HistoryRetrieveResponse as HistoryRetrieveResponse,
+    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
-    type HistoryRetrieveParams as HistoryRetrieveParams,
+    type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
+    type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
   };

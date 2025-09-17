@@ -9,8 +9,8 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource history', () => {
-  test('retrieve: only required params', async () => {
-    const responsePromise = client.sensorPlan.history.retrieve({ startTime: '2019-12-27T18:11:19.117Z' });
+  test('list: only required params', async () => {
+    const responsePromise = client.sensorPlan.history.list({ startTime: '2019-12-27T18:11:19.117Z' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,8 +20,8 @@ describe('resource history', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: required and optional params', async () => {
-    const response = await client.sensorPlan.history.retrieve({
+  test('list: required and optional params', async () => {
+    const response = await client.sensorPlan.history.list({
       startTime: '2019-12-27T18:11:19.117Z',
       columns: 'columns',
       firstResult: 0,
