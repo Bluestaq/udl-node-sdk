@@ -44,7 +44,7 @@ export const tool: Tool = {
             },
             ts: {
               type: 'string',
-              description: 'Track timestamp in ISO8601 UTC format.',
+              description: 'Track timestamp in ISO8601 UTC format with microsecond precision.',
               format: 'date-time',
             },
             id: {
@@ -69,7 +69,7 @@ export const tool: Tool = {
             attitude: {
               type: 'array',
               description:
-                'The attitude (Yaw, Pitch, and Roll), in degrees, of the track object. When provided, the array must always contain 3 values. These values represent the vehicle\'s rotation about the vertical, lateral, and longitudinal axes, respectively, in a locally level, East, North, Up "right handed" coordinate system centered on the vehicle.\nYaw is measured in degrees and ranges from -180 to 180.\nPitch is measured in degrees and ranges from -90 to 90.\nRoll is measured in degrees and ranges from -180 to 180.',
+                'The attitude (Yaw, Pitch, and Roll), in degrees, of the track object. When provided, the array must always contain 3 values defining the attitude and may specify an optional timestamp indicating when the data was measured, last known to be correct and/or predicted to occur. These values represent the vehicle\'s rotation about the vertical, lateral, and longitudinal axes, respectively, in a locally level, East, North, Up "right handed" coordinate system centered on the vehicle. Yaw is measured in degrees and ranges from -180 to 180. Pitch is measured in degrees and ranges from -90 to 90. Roll is measured in degrees and ranges from -180 to 180.',
               items: {
                 type: 'number',
               },
@@ -77,7 +77,7 @@ export const tool: Tool = {
             attitudeRate: {
               type: 'array',
               description:
-                'The attitude rate (Yaw Rate, Pitch Rate, and Roll Rate), in degrees per second, of the track object. When provided, the array must always contain 3 values. These values represent the rate of change of the vehicle\'s rotation about the vertical, lateral, and longitudinal axes, respectively, in a locally level, East, North, Up "right handed" coordinate system centered on the vehicle.',
+                'The attitude rate (Yaw Rate, Pitch Rate, and Roll Rate), in degrees per second, of the track object. When provided, the array must always contain 3 values defining the attitude rate and may specify an optional timestamp indicating when the data was measured, last known to be correct and/or predicted to occur. These values represent the rate of change of the vehicle\'s rotation about the vertical, lateral, and longitudinal axes, respectively, in a locally level, East, North, Up "right handed" coordinate system centered on the vehicle.',
               items: {
                 type: 'number',
               },
@@ -90,6 +90,22 @@ export const tool: Tool = {
               type: 'string',
               description:
                 'Contact information for assets reporting PPLI (Precise Participant Location and Identification). PPLI is a Link 16 message that is used by units to transmit complete location, identification, and limited status information.',
+            },
+            contextKeys: {
+              type: 'array',
+              description:
+                'An optional string array containing additional data (keys) representing relevant items for context of fields not specifically defined in this schema. This array is paired with the contextValues string array and must contain the same number of items. Please note these fields are intended for contextual use only and do not pertain to core schema information. To ensure proper integration and avoid misuse, coordination of how these fields are populated and consumed is required during onboarding.',
+              items: {
+                type: 'string',
+              },
+            },
+            contextValues: {
+              type: 'array',
+              description:
+                'An optional string array containing the values associated with the contextKeys array. This array is paired with the contextKeys string array and must contain the same number of items. Please note these fields are intended for contextual use only and do not pertain to core schema information. To ensure proper integration and avoid misuse, coordination of how these fields are populated and consumed is required during onboarding.',
+              items: {
+                type: 'string',
+              },
             },
             course: {
               type: 'number',
@@ -117,7 +133,7 @@ export const tool: Tool = {
             ecefAcc: {
               type: 'array',
               description:
-                "Track object acceleration in ECEF [x'', y'', z''], meters/sec^2.  When provided, array must always contain 3 values.",
+                "Array of the track object acceleration, [x'', y'', z''], in meters per second squared, in the Earth Centered - Earth Fixed (ECEF) reference frame. When provided, array must always contain 3 values.",
               items: {
                 type: 'number',
               },
@@ -125,7 +141,7 @@ export const tool: Tool = {
             ecefPos: {
               type: 'array',
               description:
-                'Track object location in ECEF [x, y, z], meters.  When provided, array must always contain 3 values.',
+                'Array of the track object position, [x, y, z], in meters, in the Earth Centered - Earth Fixed (ECEF) reference frame. When provided, array must always contain 3 values.',
               items: {
                 type: 'number',
               },
@@ -133,7 +149,7 @@ export const tool: Tool = {
             ecefVel: {
               type: 'array',
               description:
-                "Track object velocity in ECEF [x', y', z'], meters/sec.  When provided, array must always contain 3 values.",
+                "Array of the track object velocity, [x', y', z'], in meters per second, in the Earth Centered - Earth Fixed (ECEF) reference frame. When provided, array must always contain 3 values.",
               items: {
                 type: 'number',
               },
@@ -141,7 +157,15 @@ export const tool: Tool = {
             eNUAcc: {
               type: 'array',
               description:
-                'East, North, Up acceleration components, in meters per second squared.  When provided, array must always contain 3 values.',
+                'East, North, Up acceleration components, in meters per second squared. When provided, array must always contain 3 values defining the acceleration.',
+              items: {
+                type: 'number',
+              },
+            },
+            eNUGroundVel: {
+              type: 'array',
+              description:
+                'East, North, Up ground velocity components, in meters per second. When provided, array must always contain 3 values.',
               items: {
                 type: 'number',
               },
@@ -149,7 +173,7 @@ export const tool: Tool = {
             eNUPos: {
               type: 'array',
               description:
-                'East, North, Up position components, in meters.  When provided, array must always contain 3 values.',
+                'East, North, Up position components, in meters. When provided, array must always contain 3 values.',
               items: {
                 type: 'number',
               },
@@ -157,7 +181,7 @@ export const tool: Tool = {
             eNUVel: {
               type: 'array',
               description:
-                'East, North, Up velocity components, in meters/sec.  When provided, array must always contain 3 values.',
+                'East, North, Up velocity components, in meters per second. When provided, array must always contain 3 values.',
               items: {
                 type: 'number',
               },
@@ -174,7 +198,7 @@ export const tool: Tool = {
             errEllp: {
               type: 'array',
               description:
-                'Uncertainty ellipsoid [semi-major axis (m), semi-minor axis (m), orientation (deg)].',
+                'Uncertainty ellipsoid [semi-major axis (meters), semi-minor axis (meters), orientation (degrees)]. When provided, array must always contain 3 values.',
               items: {
                 type: 'number',
               },
@@ -182,7 +206,7 @@ export const tool: Tool = {
             hdng: {
               type: 'number',
               description:
-                'The track object heading, in degrees clockwise from true North at the object location.',
+                'The track object heading, in degrees clockwise from true North at the object location (0-360 degrees).',
             },
             identAmp: {
               type: 'string',
@@ -209,7 +233,7 @@ export const tool: Tool = {
             lcAcc: {
               type: 'array',
               description:
-                "Estimate of the acceleration, [x'', y'', z''], of the track object in the defined cartesian system, in meters/sec^2.  When provided, array must always contain 3 values.",
+                "Estimate of the acceleration, [x'', y'', z''], of the track object in the defined cartesian system, in meters per second squared. When provided, array must always contain 3 values.",
               items: {
                 type: 'number',
               },
@@ -217,7 +241,7 @@ export const tool: Tool = {
             lco: {
               type: 'array',
               description:
-                'Origin of a local coordinate system [lat, lon, altitude].  When provided, array must always contain 3 values.',
+                'Origin of a local coordinate system [lat, lon, altitude]. When provided, array must always contain 3 values.',
               items: {
                 type: 'number',
               },
@@ -225,7 +249,7 @@ export const tool: Tool = {
             lcPos: {
               type: 'array',
               description:
-                'Estimate of the position, [x, y, z], of the track object in the defined cartesian system, in meters.  When provided, array must always contain 3 values.',
+                'Estimate of the position, [x, y, z], of the track object in the defined cartesian system, in meters. When provided, array must always contain 3 values.',
               items: {
                 type: 'number',
               },
@@ -233,7 +257,7 @@ export const tool: Tool = {
             lcs: {
               type: 'array',
               description:
-                'x, y, and z-axis rotations about ECEF that define a local cartesian system.  When provided, array must always contain 3 values.',
+                'x, y, and z-axis rotations (degrees) about ECEF that define a local cartesian system. When provided, array must always contain 3 values.',
               items: {
                 type: 'number',
               },
@@ -241,7 +265,7 @@ export const tool: Tool = {
             lcVel: {
               type: 'array',
               description:
-                "Estimate of the velocity, [x', y', z'], of the track object in the defined cartesian system, in meters/sec.  When provided, array must always contain 3 values.",
+                "Estimate of the velocity, [x', y', z'], of the track object in the defined cartesian system, in meters per second. When provided, array must always contain 3 values.",
               items: {
                 type: 'number',
               },
@@ -254,7 +278,7 @@ export const tool: Tool = {
             m1: {
               type: 'integer',
               description:
-                'Mode-1 interrogation response (mission code), indicating mission or aircraft type.',
+                "Mode-1 interrogation response (mission code), indicating mission or aircraft type. Assume leading 0's for any inputs that are less than 2 digits.",
             },
             m1v: {
               type: 'integer',
@@ -262,7 +286,8 @@ export const tool: Tool = {
             },
             m2: {
               type: 'integer',
-              description: 'Mode-2 interrogation response (military identification code).',
+              description:
+                "Mode-2 interrogation response (military identification code). Assume leading 0's for any inputs that are less than 4 digits.",
             },
             m2v: {
               type: 'integer',
@@ -271,7 +296,7 @@ export const tool: Tool = {
             m3a: {
               type: 'integer',
               description:
-                'Mode-3/A interrogation response (aircraft identification), provides a 4-digit octal identification code for the aircraft, assigned by the air traffic controller. Mode-3/A is shared military/civilian use.',
+                "Mode-3/A interrogation response (aircraft identification), provides a 4-digit octal identification code for the aircraft, assigned by the air traffic controller. Mode-3/A is shared military/civilian use. Assume leading 0's for any inputs that are less than 4 digits.",
             },
             m3av: {
               type: 'integer',
@@ -284,7 +309,8 @@ export const tool: Tool = {
             },
             msgTs: {
               type: 'string',
-              description: 'Message Timestamp.',
+              description:
+                'Timestamp when the message was created, in ISO8601 UTC format with microsecond precision.',
               format: 'date-time',
             },
             msnId: {
@@ -299,6 +325,11 @@ export const tool: Tool = {
               type: 'string',
               description:
                 'The activity in which the track object is engaged. Intended as, but not constrained to, MIL-STD-6016 environment dependent activity designations. The activity can be reported as either a combination of the code and environment (e.g. 65/AIR) or as the descriptive enumeration (e.g. DIVERTING), which are equivalent.',
+            },
+            objDescription: {
+              type: 'string',
+              description:
+                'This is the free-text, generally human-readable, name of the System or Resource corresponding to this track record.',
             },
             objId: {
               type: 'string',
@@ -353,7 +384,7 @@ export const tool: Tool = {
             },
             spd: {
               type: 'number',
-              description: 'Track object spd, in meters/sec.',
+              description: 'Track object speed, in meters per second.',
             },
             srcIds: {
               type: 'array',
@@ -396,7 +427,8 @@ export const tool: Tool = {
             },
             trkItmId: {
               type: 'string',
-              description: 'UUID of the track item object, applies to STANAG-4676 messages.',
+              description:
+                'UUID of the track item object. Intended for, but not restricted to, STANAG-4676 messages. This ID is used to distinguish an individual track within a message or external system containing multiple tracks on single or multiple targets.',
             },
             trkNum: {
               type: 'string',
@@ -415,6 +447,16 @@ export const tool: Tool = {
             trkStat: {
               type: 'string',
               description: 'Status of the track (e.g., INITIATING, MAINTAINING, DROPPING, TERMINATED, etc.).',
+            },
+            vertUnc: {
+              type: 'number',
+              description:
+                'The vertical uncertainty represents the 1-sigma position uncertainty perpendicular to the error Ellipse surface in the up (+) / down (-) direction measured in meters.',
+            },
+            wanderAng: {
+              type: 'number',
+              description:
+                'The angle by which the Inertial Navigation System (INS) rotates the geodetic frame about the axis to avoid the introduction of a singularity at the North pole when it is calculating vehicle location.',
             },
           },
           required: ['classificationMarking', 'dataMode', 'source', 'ts'],

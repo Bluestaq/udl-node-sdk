@@ -60,6 +60,7 @@ describe('resource linkstatus', () => {
       origin: 'THIRD_PARTY_DATASOURCE',
       satNo1: 1,
       satNo2: 2,
+      snr: 10.1,
       sysCap: 'Example status',
     });
   });

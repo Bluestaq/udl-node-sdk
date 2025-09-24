@@ -29,21 +29,97 @@ export const tool: Tool = {
         type: 'boolean',
         description: 'Whether or not to send a notification that this folder was created.',
       },
+      id: {
+        type: 'string',
+        description: 'Unique identifier for document.',
+      },
+      attachment: {
+        type: 'object',
+        description: 'Additional metadata associated with this document.',
+        properties: {
+          author: {
+            type: 'string',
+            description: 'The creator of this document. Can be a person or a software entity.',
+          },
+          content_length: {
+            type: 'integer',
+            description: 'The length of the document, in bytes.',
+          },
+          content_type: {
+            type: 'string',
+            description: "The document's MIME-type (if applicable).",
+          },
+          date: {
+            type: 'string',
+            description: 'The time at which this attachment was created, represented in UTC ISO format.',
+          },
+          keywords: {
+            type: 'string',
+            description:
+              'Any keywords associated with this document. Only applicable to files whose contents are indexed (e.g. text files, PDFs).',
+          },
+          language: {
+            type: 'string',
+            description: 'The human language of the document, if discernible.',
+          },
+          title: {
+            type: 'string',
+            description: 'The title of the document.',
+          },
+        },
+      },
       classificationMarking: {
         type: 'string',
         description: 'Classification marking of the folder or file in IC/CAPCO portion-marked format.',
       },
+      createdAt: {
+        type: 'string',
+        description: 'The time at which this document was created, represented in UTC ISO format.',
+      },
+      createdBy: {
+        type: 'string',
+        description: 'The creator of this document. Can be a person or a software entity.',
+      },
       deleteOn: {
         type: 'integer',
+        description:
+          'Time at which this document should be automatically deleted. Represented in milliseconds since Unix epoch.',
       },
       description: {
         type: 'string',
         description: 'Optional description for the file or folder.',
       },
+      filename: {
+        type: 'string',
+        description: 'The name of this document. Applicable to files and folders.',
+      },
+      filePath: {
+        type: 'string',
+        description: 'The absolute path to this document.',
+      },
+      keywords: {
+        type: 'string',
+        description:
+          'Optional. Any keywords associated with this document. Only applicable to files whose contents are indexed (e.g. text files, PDFs).',
+      },
+      parentPath: {
+        type: 'string',
+        description:
+          'The parent folder of this document. If this document is a root-level folder then the parent path is "/".',
+      },
+      pathType: {
+        type: 'string',
+        description: 'The type of this document.',
+        enum: ['file', 'folder'],
+      },
       readAcl: {
         type: 'string',
         description:
           'For folders only. Comma separated list of user and group ids that should have read access on this folder and the items nested in it.',
+      },
+      size: {
+        type: 'integer',
+        description: 'Size of this document in bytes.',
       },
       tags: {
         type: 'array',
@@ -54,6 +130,15 @@ export const tool: Tool = {
           description:
             'Each tag is a unique string used to associate this data with a specific provider or source.',
         },
+      },
+      updatedAt: {
+        type: 'string',
+        description:
+          'The time at which this document was most recently updated, represented in UTC ISO format.',
+      },
+      updatedBy: {
+        type: 'string',
+        description: 'The person or software entity who updated this document most recently.',
       },
       writeAcl: {
         type: 'string',
