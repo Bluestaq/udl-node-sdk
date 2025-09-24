@@ -351,6 +351,11 @@ export interface LinkStatusListResponse {
   satNo2?: number;
 
   /**
+   * Signal to noise ratio, in dB.
+   */
+  snr?: number;
+
+  /**
    * The SYSCAP mission status of the system(s) forming the link.
    */
   sysCap?: string;
@@ -541,6 +546,11 @@ export interface LinkStatusGetResponse {
    * Satellite/catalog number of the target on-orbit secondary object.
    */
   satNo2?: number;
+
+  /**
+   * Signal to noise ratio, in dB.
+   */
+  snr?: number;
 
   /**
    * The SYSCAP mission status of the system(s) forming the link.
@@ -760,6 +770,11 @@ export namespace LinkStatusTupleResponse {
     satNo2?: number;
 
     /**
+     * Signal to noise ratio, in dB.
+     */
+    snr?: number;
+
+    /**
      * The SYSCAP mission status of the system(s) forming the link.
      */
     sysCap?: string;
@@ -916,6 +931,11 @@ export interface LinkStatusCreateParams {
    * Satellite/catalog number of the target on-orbit secondary object.
    */
   satNo2?: number;
+
+  /**
+   * Signal to noise ratio, in dB.
+   */
+  snr?: number;
 
   /**
    * The SYSCAP mission status of the system(s) forming the link.

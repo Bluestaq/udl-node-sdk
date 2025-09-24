@@ -625,6 +625,13 @@ export namespace SoiObservationSetFull {
     currentSpectralFilterNum?: number;
 
     /**
+     * Array of declination rate values, in degrees per second, measuring the rate
+     * speed at which an object's declination changes over time, for each element in
+     * the intensities field, at the middle of the frame's exposure time.
+     */
+    declinationRates?: Array<number>;
+
+    /**
      * Array of declination values, in degrees, of the Target object from the frame of
      * reference of the sensor. A value is provided for each element in the intensities
      * field, at the middle of the frame’s exposure time.
