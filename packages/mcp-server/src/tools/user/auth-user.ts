@@ -7,26 +7,20 @@ import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Unifieddatalibrary from 'unified-data-library';
 
 export const metadata: Metadata = {
-  resource: 'rf_emitter_details',
+  resource: 'user',
   operation: 'read',
   tags: [],
   httpMethod: 'get',
-  httpPath: '/udl/rfemitterdetails/count',
+  httpPath: '/basicAuth',
 };
 
 export const tool: Tool = {
-  name: 'count_rf_emitter_details',
+  name: 'auth_user',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nService operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.\n\n# Response Schema\n```json\n{\n  type: 'string'\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRetrieve authentication details for the current user\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {\n    auth: {\n      type: 'boolean',\n      description: 'Authentication status'\n    },\n    roles: {\n      type: 'array',\n      description: 'List of user roles',\n      items: {\n        type: 'string'\n      }\n    },\n    sub: {\n      type: 'string',\n      description: 'Subject identifier'\n    }\n  },\n  required: [    'auth',\n    'roles',\n    'sub'\n  ]\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
-      firstResult: {
-        type: 'integer',
-      },
-      maxResults: {
-        type: 'integer',
-      },
       jq_filter: {
         type: 'string',
         title: 'jq Filter',
@@ -42,8 +36,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
-  const { jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.rfEmitterDetails.count(body)));
+  const { jq_filter } = args as any;
+  return asTextContentResult(await maybeFilter(jq_filter, await client.user.auth()));
 };
 
 export default { metadata, tool, handler };

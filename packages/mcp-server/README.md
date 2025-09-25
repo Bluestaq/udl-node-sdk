@@ -1290,6 +1290,16 @@ The following tools are available in this MCP server.
 - `queryhelp_laseremitter` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_laseremitter` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
+### Resource `laseremitter.staging`:
+
+- `create_laseremitter_staging` (`write`): Service operation to take a single LaserEmitterStaging record as a POST body and ingest into the staging database. This API allows users to create, manage, and review LaserEmitterStaging records in a staging environment before their incorporation into the production UDL. It supports workflows involving validation, review, and approval of emitter data to ensure consistency, compliance, and data quality. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `retrieve_laseremitter_staging` (`read`): Service operation to get a single LaserEmitterStaging record by its unique ID passed as a path parameter.
+- `update_laseremitter_staging` (`write`): Service operation to update a single LaserEmitterStaging record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_laseremitter_staging` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `delete_laseremitter_staging` (`write`): Service operation to delete a LaserEmitterStaging record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `create_bulk_laseremitter_staging` (`write`): Service operation to take multiple LaserEmitterStaging records as a POST body and ingest into the staging database. This API allows users to create, manage, and review LaserEmitterStaging records in a staging environment before their incorporation into the production UDL. It supports workflows involving validation, review, and approval of emitter data to ensure consistency, compliance, and data quality. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `queryhelp_laseremitter_staging` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+
 ### Resource `launch_detection`:
 
 - `create_launch_detection` (`write`): Service operation to take a single launch detection as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
@@ -1595,6 +1605,23 @@ The following tools are available in this MCP server.
 - `list_monoradar_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_monoradar_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_monoradar_observations_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
+### Resource `observations.obscorrelation`:
+
+- `create_observations_obscorrelation` (`write`): Service operation to take a single ObsCorrelation record as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `retrieve_observations_obscorrelation` (`read`): Service operation to get a single Correlation record by its unique ID passed as a path parameter.
+- `list_observations_obscorrelation` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_observations_obscorrelation` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `create_bulk_observations_obscorrelation` (`write`): Service operation intended for initial integration only, to take a list of ObsCorrelation records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `query_help_observations_obscorrelation` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_observations_obscorrelation` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_observations_obscorrelation` (`write`): Service operation to take multiple ObsCorrelation records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `observations.obscorrelation.history`:
+
+- `list_obscorrelation_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_obscorrelation_observations_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_obscorrelation_observations_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `observations.passive_radar_observation`:
 
@@ -1925,7 +1952,17 @@ The following tools are available in this MCP server.
 - `queryhelp_rf_emitter` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_rf_emitter` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
-### Resource `rf_emitter_details`:
+### Resource `rf_emitter.staging`:
+
+- `create_rf_emitter_staging` (`write`): Service operation to take a single RFEmitterStaging record as a POST body and ingest into the staging database. This API allows users to create, manage, and review RFEmitter records in a staging environment before their incorporation into the production UDL. It supports workflows involving validation, review, and approval of emitter data to ensure consistency, compliance, and data quality. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `retrieve_rf_emitter_staging` (`read`): Service operation to get a single RFEmitterStaging record by its unique ID passed as a path parameter.
+- `update_rf_emitter_staging` (`write`): Service operation to update a single RFEmitterStaging record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_rf_emitter_staging` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `delete_rf_emitter_staging` (`write`): Service operation to delete a RFEmitterStaging record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `create_bulk_rf_emitter_staging` (`write`): Service operation to take multiple RFEmitterStaging records as a POST body and ingest into the staging database. This API allows users to create, manage, and review RFEmitter records in a staging environment before their incorporation into the production UDL. It supports workflows involving validation, review, and approval of emitter data to ensure consistency, compliance, and data quality. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `queryhelp_rf_emitter_staging` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+
+### Resource `rf_emitter.details`:
 
 - `create_rf_emitter_details` (`write`): Service operation to take a single RFEmitterDetails as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `update_rf_emitter_details` (`write`): Service operation to update a single RFEmitterDetails record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
@@ -1986,6 +2023,7 @@ The following tools are available in this MCP server.
 - `download_scs` (`write`): Downloads a zip of one or more files and/or folders.
 - `file_download_scs` (`read`): Download a single file from SCS.
 - `file_upload_scs` (`write`): Operation to upload a file. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `has_write_access_scs` (`read`): Returns true if a user has write access to the specified folder.
 - `move_scs` (`write`): operation to move folders or files. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `rename_scs` (`write`): Operation to rename folders or files. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `search_scs` (`write`): Search for files by metadata and/or text in file content.
@@ -2588,6 +2626,10 @@ The following tools are available in this MCP server.
 - `get_transponder` (`read`): Service operation to get a single Transponder record by its unique ID passed as a path parameter. A Comm payload may have multiple transponders and a transponder may have many channels.
 - `queryhelp_transponder` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_transponder` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+
+### Resource `user`:
+
+- `auth_user` (`read`): Retrieve authentication details for the current user
 
 ### Resource `vessel`:
 

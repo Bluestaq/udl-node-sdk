@@ -44,6 +44,22 @@ export {
   type MonoradarUnvalidatedPublishParams,
   type MonoradarListResponsesOffsetPage,
 } from './monoradar/index';
+export {
+  Obscorrelation,
+  type ObscorrelationRetrieveResponse,
+  type ObscorrelationListResponse,
+  type ObscorrelationCountResponse,
+  type ObscorrelationQueryHelpResponse,
+  type ObscorrelationTupleResponse,
+  type ObscorrelationCreateParams,
+  type ObscorrelationRetrieveParams,
+  type ObscorrelationListParams,
+  type ObscorrelationCountParams,
+  type ObscorrelationCreateBulkParams,
+  type ObscorrelationTupleParams,
+  type ObscorrelationUnvalidatedPublishParams,
+  type ObscorrelationListResponsesOffsetPage,
+} from './obscorrelation/index';
 export { Observations } from './observations';
 export {
   PassiveRadarObservation,

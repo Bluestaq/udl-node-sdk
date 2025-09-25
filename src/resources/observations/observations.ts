@@ -50,6 +50,23 @@ import {
   MonoradarTupleResponse,
   MonoradarUnvalidatedPublishParams,
 } from './monoradar/monoradar';
+import * as ObscorrelationAPI from './obscorrelation/obscorrelation';
+import {
+  Obscorrelation,
+  ObscorrelationCountParams,
+  ObscorrelationCountResponse,
+  ObscorrelationCreateBulkParams,
+  ObscorrelationCreateParams,
+  ObscorrelationListParams,
+  ObscorrelationListResponse,
+  ObscorrelationListResponsesOffsetPage,
+  ObscorrelationQueryHelpResponse,
+  ObscorrelationRetrieveParams,
+  ObscorrelationRetrieveResponse,
+  ObscorrelationTupleParams,
+  ObscorrelationTupleResponse,
+  ObscorrelationUnvalidatedPublishParams,
+} from './obscorrelation/obscorrelation';
 import * as PassiveRadarObservationAPI from './passive-radar-observation/passive-radar-observation';
 import {
   PassiveRadarObservation,
@@ -106,6 +123,7 @@ export class Observations extends APIResource {
   ecpsdr: EcpsdrAPI.EcpsdrResource = new EcpsdrAPI.EcpsdrResource(this._client);
   eoObservations: EoObservationsAPI.EoObservations = new EoObservationsAPI.EoObservations(this._client);
   monoradar: MonoradarAPI.Monoradar = new MonoradarAPI.Monoradar(this._client);
+  obscorrelation: ObscorrelationAPI.Obscorrelation = new ObscorrelationAPI.Obscorrelation(this._client);
   passiveRadarObservation: PassiveRadarObservationAPI.PassiveRadarObservation =
     new PassiveRadarObservationAPI.PassiveRadarObservation(this._client);
   radarobservation: RadarobservationAPI.Radarobservation = new RadarobservationAPI.Radarobservation(
@@ -118,6 +136,7 @@ export class Observations extends APIResource {
 Observations.EcpsdrResource = EcpsdrResource;
 Observations.EoObservations = EoObservations;
 Observations.Monoradar = Monoradar;
+Observations.Obscorrelation = Obscorrelation;
 Observations.PassiveRadarObservation = PassiveRadarObservation;
 Observations.Radarobservation = Radarobservation;
 Observations.RfObservation = RfObservation;
@@ -169,6 +188,23 @@ export declare namespace Observations {
     type MonoradarCreateBulkParams as MonoradarCreateBulkParams,
     type MonoradarTupleParams as MonoradarTupleParams,
     type MonoradarUnvalidatedPublishParams as MonoradarUnvalidatedPublishParams,
+  };
+
+  export {
+    Obscorrelation as Obscorrelation,
+    type ObscorrelationRetrieveResponse as ObscorrelationRetrieveResponse,
+    type ObscorrelationListResponse as ObscorrelationListResponse,
+    type ObscorrelationCountResponse as ObscorrelationCountResponse,
+    type ObscorrelationQueryHelpResponse as ObscorrelationQueryHelpResponse,
+    type ObscorrelationTupleResponse as ObscorrelationTupleResponse,
+    type ObscorrelationListResponsesOffsetPage as ObscorrelationListResponsesOffsetPage,
+    type ObscorrelationCreateParams as ObscorrelationCreateParams,
+    type ObscorrelationRetrieveParams as ObscorrelationRetrieveParams,
+    type ObscorrelationListParams as ObscorrelationListParams,
+    type ObscorrelationCountParams as ObscorrelationCountParams,
+    type ObscorrelationCreateBulkParams as ObscorrelationCreateBulkParams,
+    type ObscorrelationTupleParams as ObscorrelationTupleParams,
+    type ObscorrelationUnvalidatedPublishParams as ObscorrelationUnvalidatedPublishParams,
   };
 
   export {

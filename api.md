@@ -1987,22 +1987,40 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/laseremitter.ts">LaseremitterListResponse</a></code>
-- <code><a href="./src/resources/laseremitter.ts">LaseremitterCountResponse</a></code>
-- <code><a href="./src/resources/laseremitter.ts">LaseremitterGetResponse</a></code>
-- <code><a href="./src/resources/laseremitter.ts">LaseremitterQueryhelpResponse</a></code>
-- <code><a href="./src/resources/laseremitter.ts">LaseremitterTupleResponse</a></code>
+- <code><a href="./src/resources/laseremitter/laseremitter.ts">LaseremitterListResponse</a></code>
+- <code><a href="./src/resources/laseremitter/laseremitter.ts">LaseremitterCountResponse</a></code>
+- <code><a href="./src/resources/laseremitter/laseremitter.ts">LaseremitterGetResponse</a></code>
+- <code><a href="./src/resources/laseremitter/laseremitter.ts">LaseremitterQueryhelpResponse</a></code>
+- <code><a href="./src/resources/laseremitter/laseremitter.ts">LaseremitterTupleResponse</a></code>
 
 Methods:
 
-- <code title="post /udl/laseremitter">client.laseremitter.<a href="./src/resources/laseremitter.ts">create</a>({ ...params }) -> void</code>
-- <code title="put /udl/laseremitter/{id}">client.laseremitter.<a href="./src/resources/laseremitter.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/laseremitter">client.laseremitter.<a href="./src/resources/laseremitter.ts">list</a>({ ...params }) -> LaseremitterListResponsesOffsetPage</code>
-- <code title="delete /udl/laseremitter/{id}">client.laseremitter.<a href="./src/resources/laseremitter.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/laseremitter/count">client.laseremitter.<a href="./src/resources/laseremitter.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/laseremitter/{id}">client.laseremitter.<a href="./src/resources/laseremitter.ts">get</a>(id, { ...params }) -> LaseremitterGetResponse</code>
-- <code title="get /udl/laseremitter/queryhelp">client.laseremitter.<a href="./src/resources/laseremitter.ts">queryhelp</a>() -> LaseremitterQueryhelpResponse</code>
-- <code title="get /udl/laseremitter/tuple">client.laseremitter.<a href="./src/resources/laseremitter.ts">tuple</a>({ ...params }) -> LaseremitterTupleResponse</code>
+- <code title="post /udl/laseremitter">client.laseremitter.<a href="./src/resources/laseremitter/laseremitter.ts">create</a>({ ...params }) -> void</code>
+- <code title="put /udl/laseremitter/{id}">client.laseremitter.<a href="./src/resources/laseremitter/laseremitter.ts">update</a>(pathID, { ...params }) -> void</code>
+- <code title="get /udl/laseremitter">client.laseremitter.<a href="./src/resources/laseremitter/laseremitter.ts">list</a>({ ...params }) -> LaseremitterListResponsesOffsetPage</code>
+- <code title="delete /udl/laseremitter/{id}">client.laseremitter.<a href="./src/resources/laseremitter/laseremitter.ts">delete</a>(id) -> void</code>
+- <code title="get /udl/laseremitter/count">client.laseremitter.<a href="./src/resources/laseremitter/laseremitter.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/laseremitter/{id}">client.laseremitter.<a href="./src/resources/laseremitter/laseremitter.ts">get</a>(id, { ...params }) -> LaseremitterGetResponse</code>
+- <code title="get /udl/laseremitter/queryhelp">client.laseremitter.<a href="./src/resources/laseremitter/laseremitter.ts">queryhelp</a>() -> LaseremitterQueryhelpResponse</code>
+- <code title="get /udl/laseremitter/tuple">client.laseremitter.<a href="./src/resources/laseremitter/laseremitter.ts">tuple</a>({ ...params }) -> LaseremitterTupleResponse</code>
+
+## Staging
+
+Types:
+
+- <code><a href="./src/resources/laseremitter/staging.ts">StagingRetrieveResponse</a></code>
+- <code><a href="./src/resources/laseremitter/staging.ts">StagingListResponse</a></code>
+- <code><a href="./src/resources/laseremitter/staging.ts">StagingQueryhelpResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/laseremitterstaging">client.laseremitter.staging.<a href="./src/resources/laseremitter/staging.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/laseremitterstaging/{id}">client.laseremitter.staging.<a href="./src/resources/laseremitter/staging.ts">retrieve</a>(id, { ...params }) -> StagingRetrieveResponse</code>
+- <code title="put /udl/laseremitterstaging/{id}">client.laseremitter.staging.<a href="./src/resources/laseremitter/staging.ts">update</a>(pathID, { ...params }) -> void</code>
+- <code title="get /udl/laseremitterstaging">client.laseremitter.staging.<a href="./src/resources/laseremitter/staging.ts">list</a>({ ...params }) -> StagingListResponsesOffsetPage</code>
+- <code title="delete /udl/laseremitterstaging/{id}">client.laseremitter.staging.<a href="./src/resources/laseremitter/staging.ts">delete</a>(id) -> void</code>
+- <code title="post /udl/laseremitterstaging/createBulk">client.laseremitter.staging.<a href="./src/resources/laseremitter/staging.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="get /udl/laseremitterstaging/queryhelp">client.laseremitter.staging.<a href="./src/resources/laseremitter/staging.ts">queryhelp</a>() -> StagingQueryhelpResponse</code>
 
 # LaunchDetection
 
@@ -2610,6 +2628,40 @@ Methods:
 - <code title="get /udl/monoradar/history">client.observations.monoradar.history.<a href="./src/resources/observations/monoradar/history.ts">list</a>({ ...params }) -> HistoryListResponsesOffsetPage</code>
 - <code title="get /udl/monoradar/history/aodr">client.observations.monoradar.history.<a href="./src/resources/observations/monoradar/history.ts">aodr</a>({ ...params }) -> void</code>
 - <code title="get /udl/monoradar/history/count">client.observations.monoradar.history.<a href="./src/resources/observations/monoradar/history.ts">count</a>({ ...params }) -> string</code>
+
+## Obscorrelation
+
+Types:
+
+- <code><a href="./src/resources/observations/obscorrelation/obscorrelation.ts">ObscorrelationRetrieveResponse</a></code>
+- <code><a href="./src/resources/observations/obscorrelation/obscorrelation.ts">ObscorrelationListResponse</a></code>
+- <code><a href="./src/resources/observations/obscorrelation/obscorrelation.ts">ObscorrelationCountResponse</a></code>
+- <code><a href="./src/resources/observations/obscorrelation/obscorrelation.ts">ObscorrelationQueryHelpResponse</a></code>
+- <code><a href="./src/resources/observations/obscorrelation/obscorrelation.ts">ObscorrelationTupleResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/obscorrelation">client.observations.obscorrelation.<a href="./src/resources/observations/obscorrelation/obscorrelation.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/obscorrelation/{id}">client.observations.obscorrelation.<a href="./src/resources/observations/obscorrelation/obscorrelation.ts">retrieve</a>(id, { ...params }) -> ObscorrelationRetrieveResponse</code>
+- <code title="get /udl/obscorrelation">client.observations.obscorrelation.<a href="./src/resources/observations/obscorrelation/obscorrelation.ts">list</a>({ ...params }) -> ObscorrelationListResponsesOffsetPage</code>
+- <code title="get /udl/obscorrelation/count">client.observations.obscorrelation.<a href="./src/resources/observations/obscorrelation/obscorrelation.ts">count</a>({ ...params }) -> string</code>
+- <code title="post /udl/obscorrelation/createBulk">client.observations.obscorrelation.<a href="./src/resources/observations/obscorrelation/obscorrelation.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="get /udl/obscorrelation/queryhelp">client.observations.obscorrelation.<a href="./src/resources/observations/obscorrelation/obscorrelation.ts">queryHelp</a>() -> ObscorrelationQueryHelpResponse</code>
+- <code title="get /udl/obscorrelation/tuple">client.observations.obscorrelation.<a href="./src/resources/observations/obscorrelation/obscorrelation.ts">tuple</a>({ ...params }) -> ObscorrelationTupleResponse</code>
+- <code title="post /filedrop/udl-obscorrelation">client.observations.obscorrelation.<a href="./src/resources/observations/obscorrelation/obscorrelation.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
+
+### History
+
+Types:
+
+- <code><a href="./src/resources/observations/obscorrelation/history.ts">HistoryListResponse</a></code>
+- <code><a href="./src/resources/observations/obscorrelation/history.ts">HistoryCountResponse</a></code>
+
+Methods:
+
+- <code title="get /udl/obscorrelation/history">client.observations.obscorrelation.history.<a href="./src/resources/observations/obscorrelation/history.ts">list</a>({ ...params }) -> HistoryListResponsesOffsetPage</code>
+- <code title="get /udl/obscorrelation/history/aodr">client.observations.obscorrelation.history.<a href="./src/resources/observations/obscorrelation/history.ts">aodr</a>({ ...params }) -> void</code>
+- <code title="get /udl/obscorrelation/history/count">client.observations.obscorrelation.history.<a href="./src/resources/observations/obscorrelation/history.ts">count</a>({ ...params }) -> string</code>
 
 ## PassiveRadarObservation
 
@@ -3222,43 +3274,61 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/rf-emitter.ts">RfEmitterListResponse</a></code>
-- <code><a href="./src/resources/rf-emitter.ts">RfEmitterCountResponse</a></code>
-- <code><a href="./src/resources/rf-emitter.ts">RfEmitterGetResponse</a></code>
-- <code><a href="./src/resources/rf-emitter.ts">RfEmitterQueryhelpResponse</a></code>
-- <code><a href="./src/resources/rf-emitter.ts">RfEmitterTupleResponse</a></code>
+- <code><a href="./src/resources/rf-emitter/rf-emitter.ts">RfEmitterListResponse</a></code>
+- <code><a href="./src/resources/rf-emitter/rf-emitter.ts">RfEmitterCountResponse</a></code>
+- <code><a href="./src/resources/rf-emitter/rf-emitter.ts">RfEmitterGetResponse</a></code>
+- <code><a href="./src/resources/rf-emitter/rf-emitter.ts">RfEmitterQueryhelpResponse</a></code>
+- <code><a href="./src/resources/rf-emitter/rf-emitter.ts">RfEmitterTupleResponse</a></code>
 
 Methods:
 
-- <code title="post /udl/rfemitter">client.rfEmitter.<a href="./src/resources/rf-emitter.ts">create</a>({ ...params }) -> void</code>
-- <code title="put /udl/rfemitter/{id}">client.rfEmitter.<a href="./src/resources/rf-emitter.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/rfemitter">client.rfEmitter.<a href="./src/resources/rf-emitter.ts">list</a>({ ...params }) -> RfEmitterListResponsesOffsetPage</code>
-- <code title="delete /udl/rfemitter/{id}">client.rfEmitter.<a href="./src/resources/rf-emitter.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/rfemitter/count">client.rfEmitter.<a href="./src/resources/rf-emitter.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/rfemitter/{id}">client.rfEmitter.<a href="./src/resources/rf-emitter.ts">get</a>(id, { ...params }) -> RfEmitterGetResponse</code>
-- <code title="get /udl/rfemitter/queryhelp">client.rfEmitter.<a href="./src/resources/rf-emitter.ts">queryhelp</a>() -> RfEmitterQueryhelpResponse</code>
-- <code title="get /udl/rfemitter/tuple">client.rfEmitter.<a href="./src/resources/rf-emitter.ts">tuple</a>({ ...params }) -> RfEmitterTupleResponse</code>
+- <code title="post /udl/rfemitter">client.rfEmitter.<a href="./src/resources/rf-emitter/rf-emitter.ts">create</a>({ ...params }) -> void</code>
+- <code title="put /udl/rfemitter/{id}">client.rfEmitter.<a href="./src/resources/rf-emitter/rf-emitter.ts">update</a>(pathID, { ...params }) -> void</code>
+- <code title="get /udl/rfemitter">client.rfEmitter.<a href="./src/resources/rf-emitter/rf-emitter.ts">list</a>({ ...params }) -> RfEmitterListResponsesOffsetPage</code>
+- <code title="delete /udl/rfemitter/{id}">client.rfEmitter.<a href="./src/resources/rf-emitter/rf-emitter.ts">delete</a>(id) -> void</code>
+- <code title="get /udl/rfemitter/count">client.rfEmitter.<a href="./src/resources/rf-emitter/rf-emitter.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/rfemitter/{id}">client.rfEmitter.<a href="./src/resources/rf-emitter/rf-emitter.ts">get</a>(id, { ...params }) -> RfEmitterGetResponse</code>
+- <code title="get /udl/rfemitter/queryhelp">client.rfEmitter.<a href="./src/resources/rf-emitter/rf-emitter.ts">queryhelp</a>() -> RfEmitterQueryhelpResponse</code>
+- <code title="get /udl/rfemitter/tuple">client.rfEmitter.<a href="./src/resources/rf-emitter/rf-emitter.ts">tuple</a>({ ...params }) -> RfEmitterTupleResponse</code>
 
-# RfEmitterDetails
+## Staging
 
 Types:
 
-- <code><a href="./src/resources/rf-emitter-details.ts">RfEmitterDetailListResponse</a></code>
-- <code><a href="./src/resources/rf-emitter-details.ts">RfEmitterDetailCountResponse</a></code>
-- <code><a href="./src/resources/rf-emitter-details.ts">RfEmitterDetailGetResponse</a></code>
-- <code><a href="./src/resources/rf-emitter-details.ts">RfEmitterDetailQueryhelpResponse</a></code>
-- <code><a href="./src/resources/rf-emitter-details.ts">RfEmitterDetailTupleResponse</a></code>
+- <code><a href="./src/resources/rf-emitter/staging.ts">StagingRetrieveResponse</a></code>
+- <code><a href="./src/resources/rf-emitter/staging.ts">StagingListResponse</a></code>
+- <code><a href="./src/resources/rf-emitter/staging.ts">StagingQueryhelpResponse</a></code>
 
 Methods:
 
-- <code title="post /udl/rfemitterdetails">client.rfEmitterDetails.<a href="./src/resources/rf-emitter-details.ts">create</a>({ ...params }) -> void</code>
-- <code title="put /udl/rfemitterdetails/{id}">client.rfEmitterDetails.<a href="./src/resources/rf-emitter-details.ts">update</a>(pathID, { ...params }) -> void</code>
-- <code title="get /udl/rfemitterdetails">client.rfEmitterDetails.<a href="./src/resources/rf-emitter-details.ts">list</a>({ ...params }) -> RfEmitterDetailListResponsesOffsetPage</code>
-- <code title="delete /udl/rfemitterdetails/{id}">client.rfEmitterDetails.<a href="./src/resources/rf-emitter-details.ts">delete</a>(id) -> void</code>
-- <code title="get /udl/rfemitterdetails/count">client.rfEmitterDetails.<a href="./src/resources/rf-emitter-details.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/rfemitterdetails/{id}">client.rfEmitterDetails.<a href="./src/resources/rf-emitter-details.ts">get</a>(id, { ...params }) -> RfEmitterDetailGetResponse</code>
-- <code title="get /udl/rfemitterdetails/queryhelp">client.rfEmitterDetails.<a href="./src/resources/rf-emitter-details.ts">queryhelp</a>() -> RfEmitterDetailQueryhelpResponse</code>
-- <code title="get /udl/rfemitterdetails/tuple">client.rfEmitterDetails.<a href="./src/resources/rf-emitter-details.ts">tuple</a>({ ...params }) -> RfEmitterDetailTupleResponse</code>
+- <code title="post /udl/rfemitterstaging">client.rfEmitter.staging.<a href="./src/resources/rf-emitter/staging.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/rfemitterstaging/{id}">client.rfEmitter.staging.<a href="./src/resources/rf-emitter/staging.ts">retrieve</a>(id, { ...params }) -> StagingRetrieveResponse</code>
+- <code title="put /udl/rfemitterstaging/{id}">client.rfEmitter.staging.<a href="./src/resources/rf-emitter/staging.ts">update</a>(pathID, { ...params }) -> void</code>
+- <code title="get /udl/rfemitterstaging">client.rfEmitter.staging.<a href="./src/resources/rf-emitter/staging.ts">list</a>({ ...params }) -> StagingListResponsesOffsetPage</code>
+- <code title="delete /udl/rfemitterstaging/{id}">client.rfEmitter.staging.<a href="./src/resources/rf-emitter/staging.ts">delete</a>(id) -> void</code>
+- <code title="post /udl/rfemitterstaging/createBulk">client.rfEmitter.staging.<a href="./src/resources/rf-emitter/staging.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="get /udl/rfemitterstaging/queryhelp">client.rfEmitter.staging.<a href="./src/resources/rf-emitter/staging.ts">queryhelp</a>() -> StagingQueryhelpResponse</code>
+
+## Details
+
+Types:
+
+- <code><a href="./src/resources/rf-emitter/details.ts">DetailListResponse</a></code>
+- <code><a href="./src/resources/rf-emitter/details.ts">DetailCountResponse</a></code>
+- <code><a href="./src/resources/rf-emitter/details.ts">DetailGetResponse</a></code>
+- <code><a href="./src/resources/rf-emitter/details.ts">DetailQueryhelpResponse</a></code>
+- <code><a href="./src/resources/rf-emitter/details.ts">DetailTupleResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/rfemitterdetails">client.rfEmitter.details.<a href="./src/resources/rf-emitter/details.ts">create</a>({ ...params }) -> void</code>
+- <code title="put /udl/rfemitterdetails/{id}">client.rfEmitter.details.<a href="./src/resources/rf-emitter/details.ts">update</a>(pathID, { ...params }) -> void</code>
+- <code title="get /udl/rfemitterdetails">client.rfEmitter.details.<a href="./src/resources/rf-emitter/details.ts">list</a>({ ...params }) -> DetailListResponsesOffsetPage</code>
+- <code title="delete /udl/rfemitterdetails/{id}">client.rfEmitter.details.<a href="./src/resources/rf-emitter/details.ts">delete</a>(id) -> void</code>
+- <code title="get /udl/rfemitterdetails/count">client.rfEmitter.details.<a href="./src/resources/rf-emitter/details.ts">count</a>({ ...params }) -> string</code>
+- <code title="get /udl/rfemitterdetails/{id}">client.rfEmitter.details.<a href="./src/resources/rf-emitter/details.ts">get</a>(id, { ...params }) -> DetailGetResponse</code>
+- <code title="get /udl/rfemitterdetails/queryhelp">client.rfEmitter.details.<a href="./src/resources/rf-emitter/details.ts">queryhelp</a>() -> DetailQueryhelpResponse</code>
+- <code title="get /udl/rfemitterdetails/tuple">client.rfEmitter.details.<a href="./src/resources/rf-emitter/details.ts">tuple</a>({ ...params }) -> DetailTupleResponse</code>
 
 # RouteStats
 
@@ -3348,6 +3418,7 @@ Types:
 - <code><a href="./src/resources/scs/scs.ts">ScAllowableFileMimesResponse</a></code>
 - <code><a href="./src/resources/scs/scs.ts">ScCopyResponse</a></code>
 - <code><a href="./src/resources/scs/scs.ts">ScFileUploadResponse</a></code>
+- <code><a href="./src/resources/scs/scs.ts">ScHasWriteAccessResponse</a></code>
 - <code><a href="./src/resources/scs/scs.ts">ScMoveResponse</a></code>
 - <code><a href="./src/resources/scs/scs.ts">ScSearchResponse</a></code>
 
@@ -3360,6 +3431,7 @@ Methods:
 - <code title="post /scs/download">client.scs.<a href="./src/resources/scs/scs.ts">download</a>([ ...body ]) -> Response</code>
 - <code title="get /scs/download">client.scs.<a href="./src/resources/scs/scs.ts">fileDownload</a>({ ...params }) -> Response</code>
 - <code title="post /scs/file">client.scs.<a href="./src/resources/scs/scs.ts">fileUpload</a>(fileContent, { ...params }) -> string</code>
+- <code title="get /scs/userHasWriteAccess">client.scs.<a href="./src/resources/scs/scs.ts">hasWriteAccess</a>({ ...params }) -> ScHasWriteAccessResponse</code>
 - <code title="put /scs/move">client.scs.<a href="./src/resources/scs/scs.ts">move</a>({ ...params }) -> string</code>
 - <code title="put /scs/rename">client.scs.<a href="./src/resources/scs/scs.ts">rename</a>({ ...params }) -> void</code>
 - <code title="post /scs/search">client.scs.<a href="./src/resources/scs/scs.ts">search</a>({ ...params }) -> ScSearchResponse</code>
@@ -4500,6 +4572,16 @@ Methods:
 - <code title="get /udl/transponder/{id}">client.transponder.<a href="./src/resources/transponder.ts">get</a>(id, { ...params }) -> TransponderGetResponse</code>
 - <code title="get /udl/transponder/queryhelp">client.transponder.<a href="./src/resources/transponder.ts">queryhelp</a>() -> TransponderQueryhelpResponse</code>
 - <code title="get /udl/transponder/tuple">client.transponder.<a href="./src/resources/transponder.ts">tuple</a>({ ...params }) -> TransponderTupleResponse</code>
+
+# User
+
+Types:
+
+- <code><a href="./src/resources/user.ts">UserAuthResponse</a></code>
+
+Methods:
+
+- <code title="get /basicAuth">client.user.<a href="./src/resources/user.ts">auth</a>() -> UserAuthResponse</code>
 
 # Vessel
 

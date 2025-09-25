@@ -186,6 +186,27 @@ export class Scs extends APIResource {
   }
 
   /**
+   * Returns true if a user has write access to the specified folder.
+   *
+   * @example
+   * ```ts
+   * const response = await client.scs.hasWriteAccess({
+   *   path: 'path',
+   * });
+   * ```
+   */
+  hasWriteAccess(
+    query: ScHasWriteAccessParams,
+    options?: RequestOptions,
+  ): APIPromise<ScHasWriteAccessResponse> {
+    return this._client.get('/scs/userHasWriteAccess', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
+  }
+
+  /**
    * operation to move folders or files. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    *
@@ -273,6 +294,8 @@ export type ScCopyResponse = string;
 
 export type ScFileUploadResponse = string;
 
+export type ScHasWriteAccessResponse = boolean;
+
 export type ScMoveResponse = string;
 
 export type ScSearchResponse = Array<Shared.FileData>;
@@ -352,6 +375,17 @@ export interface ScFileUploadParams {
    * Query param: Tags
    */
   tags?: string;
+}
+
+export interface ScHasWriteAccessParams {
+  /**
+   * Folder path for which to check user write access.
+   */
+  path: string;
+
+  firstResult?: number;
+
+  maxResults?: number;
 }
 
 export interface ScMoveParams {
@@ -435,6 +469,7 @@ export declare namespace Scs {
     type ScAllowableFileMimesResponse as ScAllowableFileMimesResponse,
     type ScCopyResponse as ScCopyResponse,
     type ScFileUploadResponse as ScFileUploadResponse,
+    type ScHasWriteAccessResponse as ScHasWriteAccessResponse,
     type ScMoveResponse as ScMoveResponse,
     type ScSearchResponse as ScSearchResponse,
     type ScDeleteParams as ScDeleteParams,
@@ -442,6 +477,7 @@ export declare namespace Scs {
     type ScDownloadParams as ScDownloadParams,
     type ScFileDownloadParams as ScFileDownloadParams,
     type ScFileUploadParams as ScFileUploadParams,
+    type ScHasWriteAccessParams as ScHasWriteAccessParams,
     type ScMoveParams as ScMoveParams,
     type ScRenameParams as ScRenameParams,
     type ScSearchParams as ScSearchParams,

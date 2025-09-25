@@ -1,14 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../core/resource';
-import * as Shared from './shared';
-import { APIPromise } from '../core/api-promise';
-import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
-import { buildHeaders } from '../internal/headers';
-import { RequestOptions } from '../internal/request-options';
-import { path } from '../internal/utils/path';
+import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
+import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
-export class RfEmitterDetails extends APIResource {
+export class Details extends APIResource {
   /**
    * Service operation to take a single RFEmitterDetails as a POST body and ingest
    * into the database. A specific role is required to perform this service
@@ -16,7 +16,7 @@ export class RfEmitterDetails extends APIResource {
    *
    * @example
    * ```ts
-   * await client.rfEmitterDetails.create({
+   * await client.rfEmitter.details.create({
    *   classificationMarking: 'U',
    *   dataMode: 'TEST',
    *   idRFEmitter: 'RFEMITTER-ID',
@@ -24,7 +24,7 @@ export class RfEmitterDetails extends APIResource {
    * });
    * ```
    */
-  create(body: RfEmitterDetailCreateParams, options?: RequestOptions): APIPromise<void> {
+  create(body: DetailCreateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/udl/rfemitterdetails', {
       body,
       ...options,
@@ -39,7 +39,7 @@ export class RfEmitterDetails extends APIResource {
    *
    * @example
    * ```ts
-   * await client.rfEmitterDetails.update('id', {
+   * await client.rfEmitter.details.update('id', {
    *   classificationMarking: 'U',
    *   dataMode: 'TEST',
    *   idRFEmitter: 'RFEMITTER-ID',
@@ -47,7 +47,7 @@ export class RfEmitterDetails extends APIResource {
    * });
    * ```
    */
-  update(pathID: string, body: RfEmitterDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
+  update(pathID: string, body: DetailUpdateParams, options?: RequestOptions): APIPromise<void> {
     return this._client.put(path`/udl/rfemitterdetails/${pathID}`, {
       body,
       ...options,
@@ -64,16 +64,16 @@ export class RfEmitterDetails extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const rfEmitterDetailListResponse of client.rfEmitterDetails.list()) {
+   * for await (const detailListResponse of client.rfEmitter.details.list()) {
    *   // ...
    * }
    * ```
    */
   list(
-    query: RfEmitterDetailListParams | null | undefined = {},
+    query: DetailListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<RfEmitterDetailListResponsesOffsetPage, RfEmitterDetailListResponse> {
-    return this._client.getAPIList('/udl/rfemitterdetails', OffsetPage<RfEmitterDetailListResponse>, {
+  ): PagePromise<DetailListResponsesOffsetPage, DetailListResponse> {
+    return this._client.getAPIList('/udl/rfemitterdetails', OffsetPage<DetailListResponse>, {
       query,
       ...options,
     });
@@ -86,7 +86,7 @@ export class RfEmitterDetails extends APIResource {
    *
    * @example
    * ```ts
-   * await client.rfEmitterDetails.delete('id');
+   * await client.rfEmitter.details.delete('id');
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
@@ -105,13 +105,10 @@ export class RfEmitterDetails extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.rfEmitterDetails.count();
+   * const response = await client.rfEmitter.details.count();
    * ```
    */
-  count(
-    query: RfEmitterDetailCountParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
+  count(query: DetailCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
     return this._client.get('/udl/rfemitterdetails/count', {
       query,
       ...options,
@@ -125,16 +122,14 @@ export class RfEmitterDetails extends APIResource {
    *
    * @example
    * ```ts
-   * const rfEmitterDetail = await client.rfEmitterDetails.get(
-   *   'id',
-   * );
+   * const detail = await client.rfEmitter.details.get('id');
    * ```
    */
   get(
     id: string,
-    query: RfEmitterDetailGetParams | null | undefined = {},
+    query: DetailGetParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<RfEmitterDetailGetResponse> {
+  ): APIPromise<DetailGetResponse> {
     return this._client.get(path`/udl/rfemitterdetails/${id}`, { query, ...options });
   }
 
@@ -144,10 +139,10 @@ export class RfEmitterDetails extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.rfEmitterDetails.queryhelp();
+   * const response = await client.rfEmitter.details.queryhelp();
    * ```
    */
-  queryhelp(options?: RequestOptions): APIPromise<RfEmitterDetailQueryhelpResponse> {
+  queryhelp(options?: RequestOptions): APIPromise<DetailQueryhelpResponse> {
     return this._client.get('/udl/rfemitterdetails/queryhelp', options);
   }
 
@@ -163,26 +158,23 @@ export class RfEmitterDetails extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.rfEmitterDetails.tuple({
+   * const response = await client.rfEmitter.details.tuple({
    *   columns: 'columns',
    * });
    * ```
    */
-  tuple(
-    query: RfEmitterDetailTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<RfEmitterDetailTupleResponse> {
+  tuple(query: DetailTupleParams, options?: RequestOptions): APIPromise<DetailTupleResponse> {
     return this._client.get('/udl/rfemitterdetails/tuple', { query, ...options });
   }
 }
 
-export type RfEmitterDetailListResponsesOffsetPage = OffsetPage<RfEmitterDetailListResponse>;
+export type DetailListResponsesOffsetPage = OffsetPage<DetailListResponse>;
 
 /**
  * Details for a particular RF Emitter, collected by a particular source. An RF
  * Emitter may have multiple details records from various sources.
  */
-export interface RfEmitterDetailListResponse {
+export interface DetailListResponse {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -234,12 +226,12 @@ export interface RfEmitterDetailListResponse {
   /**
    * An RF Amplifier associated with an RF Emitter Details.
    */
-  amplifier?: RfEmitterDetailListResponse.Amplifier;
+  amplifier?: DetailListResponse.Amplifier;
 
   /**
    * The set of antennas hosted on this EW Emitter system.
    */
-  antennas?: Array<RfEmitterDetailListResponse.Antenna>;
+  antennas?: Array<DetailListResponse.Antenna>;
 
   /**
    * Barrage noise bandwidth, in megahertz.
@@ -345,7 +337,7 @@ export interface RfEmitterDetailListResponse {
    * A set of system/frequency band adjustments to the power offset commanded in an
    * EA/TTP task.
    */
-  powerOffsets?: Array<RfEmitterDetailListResponse.PowerOffset>;
+  powerOffsets?: Array<DetailListResponse.PowerOffset>;
 
   /**
    * The length of time, in seconds, for the RF Emitter to prepare for a task,
@@ -378,7 +370,7 @@ export interface RfEmitterDetailListResponse {
   /**
    * The set of software services running on this EW Emitter system.
    */
-  services?: Array<RfEmitterDetailListResponse.Service>;
+  services?: Array<DetailListResponse.Service>;
 
   /**
    * Receiver sensitivity is the lowest power level at which the receiver can detect
@@ -399,7 +391,7 @@ export interface RfEmitterDetailListResponse {
   /**
    * The set of EA/TTP techniques that are supported by this EW Emitter system.
    */
-  ttps?: Array<RfEmitterDetailListResponse.Ttp>;
+  ttps?: Array<DetailListResponse.Ttp>;
 
   /**
    * Time the row was last updated in the database, auto-populated by the system.
@@ -418,7 +410,7 @@ export interface RfEmitterDetailListResponse {
   urls?: Array<string>;
 }
 
-export namespace RfEmitterDetailListResponse {
+export namespace DetailListResponse {
   /**
    * An RF Amplifier associated with an RF Emitter Details.
    */
@@ -778,13 +770,13 @@ export namespace RfEmitterDetailListResponse {
   }
 }
 
-export type RfEmitterDetailCountResponse = string;
+export type DetailCountResponse = string;
 
 /**
  * Details for a particular RF Emitter, collected by a particular source. An RF
  * Emitter may have multiple details records from various sources.
  */
-export interface RfEmitterDetailGetResponse {
+export interface DetailGetResponse {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -836,12 +828,12 @@ export interface RfEmitterDetailGetResponse {
   /**
    * An RF Amplifier associated with an RF Emitter Details.
    */
-  amplifier?: RfEmitterDetailGetResponse.Amplifier;
+  amplifier?: DetailGetResponse.Amplifier;
 
   /**
    * The set of antennas hosted on this EW Emitter system.
    */
-  antennas?: Array<RfEmitterDetailGetResponse.Antenna>;
+  antennas?: Array<DetailGetResponse.Antenna>;
 
   /**
    * Barrage noise bandwidth, in megahertz.
@@ -947,7 +939,7 @@ export interface RfEmitterDetailGetResponse {
    * A set of system/frequency band adjustments to the power offset commanded in an
    * EA/TTP task.
    */
-  powerOffsets?: Array<RfEmitterDetailGetResponse.PowerOffset>;
+  powerOffsets?: Array<DetailGetResponse.PowerOffset>;
 
   /**
    * The length of time, in seconds, for the RF Emitter to prepare for a task,
@@ -980,7 +972,7 @@ export interface RfEmitterDetailGetResponse {
   /**
    * The set of software services running on this EW Emitter system.
    */
-  services?: Array<RfEmitterDetailGetResponse.Service>;
+  services?: Array<DetailGetResponse.Service>;
 
   /**
    * Receiver sensitivity is the lowest power level at which the receiver can detect
@@ -1001,7 +993,7 @@ export interface RfEmitterDetailGetResponse {
   /**
    * The set of EA/TTP techniques that are supported by this EW Emitter system.
    */
-  ttps?: Array<RfEmitterDetailGetResponse.Ttp>;
+  ttps?: Array<DetailGetResponse.Ttp>;
 
   /**
    * Time the row was last updated in the database, auto-populated by the system.
@@ -1020,7 +1012,7 @@ export interface RfEmitterDetailGetResponse {
   urls?: Array<string>;
 }
 
-export namespace RfEmitterDetailGetResponse {
+export namespace DetailGetResponse {
   /**
    * An RF Amplifier associated with an RF Emitter Details.
    */
@@ -1380,7 +1372,7 @@ export namespace RfEmitterDetailGetResponse {
   }
 }
 
-export interface RfEmitterDetailQueryhelpResponse {
+export interface DetailQueryhelpResponse {
   aodrSupported?: boolean;
 
   classificationMarking?: string;
@@ -1404,15 +1396,14 @@ export interface RfEmitterDetailQueryhelpResponse {
   uri?: string;
 }
 
-export type RfEmitterDetailTupleResponse =
-  Array<RfEmitterDetailTupleResponse.RfEmitterDetailTupleResponseItem>;
+export type DetailTupleResponse = Array<DetailTupleResponse.DetailTupleResponseItem>;
 
-export namespace RfEmitterDetailTupleResponse {
+export namespace DetailTupleResponse {
   /**
    * Details for a particular RF Emitter, collected by a particular source. An RF
    * Emitter may have multiple details records from various sources.
    */
-  export interface RfEmitterDetailTupleResponseItem {
+  export interface DetailTupleResponseItem {
     /**
      * Classification marking of the data in IC/CAPCO Portion-marked format.
      */
@@ -1464,12 +1455,12 @@ export namespace RfEmitterDetailTupleResponse {
     /**
      * An RF Amplifier associated with an RF Emitter Details.
      */
-    amplifier?: RfEmitterDetailTupleResponseItem.Amplifier;
+    amplifier?: DetailTupleResponseItem.Amplifier;
 
     /**
      * The set of antennas hosted on this EW Emitter system.
      */
-    antennas?: Array<RfEmitterDetailTupleResponseItem.Antenna>;
+    antennas?: Array<DetailTupleResponseItem.Antenna>;
 
     /**
      * Barrage noise bandwidth, in megahertz.
@@ -1575,7 +1566,7 @@ export namespace RfEmitterDetailTupleResponse {
      * A set of system/frequency band adjustments to the power offset commanded in an
      * EA/TTP task.
      */
-    powerOffsets?: Array<RfEmitterDetailTupleResponseItem.PowerOffset>;
+    powerOffsets?: Array<DetailTupleResponseItem.PowerOffset>;
 
     /**
      * The length of time, in seconds, for the RF Emitter to prepare for a task,
@@ -1608,7 +1599,7 @@ export namespace RfEmitterDetailTupleResponse {
     /**
      * The set of software services running on this EW Emitter system.
      */
-    services?: Array<RfEmitterDetailTupleResponseItem.Service>;
+    services?: Array<DetailTupleResponseItem.Service>;
 
     /**
      * Receiver sensitivity is the lowest power level at which the receiver can detect
@@ -1629,7 +1620,7 @@ export namespace RfEmitterDetailTupleResponse {
     /**
      * The set of EA/TTP techniques that are supported by this EW Emitter system.
      */
-    ttps?: Array<RfEmitterDetailTupleResponseItem.Ttp>;
+    ttps?: Array<DetailTupleResponseItem.Ttp>;
 
     /**
      * Time the row was last updated in the database, auto-populated by the system.
@@ -1648,7 +1639,7 @@ export namespace RfEmitterDetailTupleResponse {
     urls?: Array<string>;
   }
 
-  export namespace RfEmitterDetailTupleResponseItem {
+  export namespace DetailTupleResponseItem {
     /**
      * An RF Amplifier associated with an RF Emitter Details.
      */
@@ -2009,7 +2000,7 @@ export namespace RfEmitterDetailTupleResponse {
   }
 }
 
-export interface RfEmitterDetailCreateParams {
+export interface DetailCreateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -2061,12 +2052,12 @@ export interface RfEmitterDetailCreateParams {
   /**
    * An RF Amplifier associated with an RF Emitter Details.
    */
-  amplifier?: RfEmitterDetailCreateParams.Amplifier;
+  amplifier?: DetailCreateParams.Amplifier;
 
   /**
    * The set of antennas hosted on this EW Emitter system.
    */
-  antennas?: Array<RfEmitterDetailCreateParams.Antenna>;
+  antennas?: Array<DetailCreateParams.Antenna>;
 
   /**
    * Barrage noise bandwidth, in megahertz.
@@ -2155,7 +2146,7 @@ export interface RfEmitterDetailCreateParams {
    * A set of system/frequency band adjustments to the power offset commanded in an
    * EA/TTP task.
    */
-  powerOffsets?: Array<RfEmitterDetailCreateParams.PowerOffset>;
+  powerOffsets?: Array<DetailCreateParams.PowerOffset>;
 
   /**
    * The length of time, in seconds, for the RF Emitter to prepare for a task,
@@ -2188,7 +2179,7 @@ export interface RfEmitterDetailCreateParams {
   /**
    * The set of software services running on this EW Emitter system.
    */
-  services?: Array<RfEmitterDetailCreateParams.Service>;
+  services?: Array<DetailCreateParams.Service>;
 
   /**
    * Receiver sensitivity is the lowest power level at which the receiver can detect
@@ -2209,7 +2200,7 @@ export interface RfEmitterDetailCreateParams {
   /**
    * The set of EA/TTP techniques that are supported by this EW Emitter system.
    */
-  ttps?: Array<RfEmitterDetailCreateParams.Ttp>;
+  ttps?: Array<DetailCreateParams.Ttp>;
 
   /**
    * Array of URLs containing additional information on this RF Emitter.
@@ -2217,7 +2208,7 @@ export interface RfEmitterDetailCreateParams {
   urls?: Array<string>;
 }
 
-export namespace RfEmitterDetailCreateParams {
+export namespace DetailCreateParams {
   /**
    * An RF Amplifier associated with an RF Emitter Details.
    */
@@ -2577,7 +2568,7 @@ export namespace RfEmitterDetailCreateParams {
   }
 }
 
-export interface RfEmitterDetailUpdateParams {
+export interface DetailUpdateParams {
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
@@ -2629,12 +2620,12 @@ export interface RfEmitterDetailUpdateParams {
   /**
    * An RF Amplifier associated with an RF Emitter Details.
    */
-  amplifier?: RfEmitterDetailUpdateParams.Amplifier;
+  amplifier?: DetailUpdateParams.Amplifier;
 
   /**
    * The set of antennas hosted on this EW Emitter system.
    */
-  antennas?: Array<RfEmitterDetailUpdateParams.Antenna>;
+  antennas?: Array<DetailUpdateParams.Antenna>;
 
   /**
    * Barrage noise bandwidth, in megahertz.
@@ -2723,7 +2714,7 @@ export interface RfEmitterDetailUpdateParams {
    * A set of system/frequency band adjustments to the power offset commanded in an
    * EA/TTP task.
    */
-  powerOffsets?: Array<RfEmitterDetailUpdateParams.PowerOffset>;
+  powerOffsets?: Array<DetailUpdateParams.PowerOffset>;
 
   /**
    * The length of time, in seconds, for the RF Emitter to prepare for a task,
@@ -2756,7 +2747,7 @@ export interface RfEmitterDetailUpdateParams {
   /**
    * The set of software services running on this EW Emitter system.
    */
-  services?: Array<RfEmitterDetailUpdateParams.Service>;
+  services?: Array<DetailUpdateParams.Service>;
 
   /**
    * Receiver sensitivity is the lowest power level at which the receiver can detect
@@ -2777,7 +2768,7 @@ export interface RfEmitterDetailUpdateParams {
   /**
    * The set of EA/TTP techniques that are supported by this EW Emitter system.
    */
-  ttps?: Array<RfEmitterDetailUpdateParams.Ttp>;
+  ttps?: Array<DetailUpdateParams.Ttp>;
 
   /**
    * Array of URLs containing additional information on this RF Emitter.
@@ -2785,7 +2776,7 @@ export interface RfEmitterDetailUpdateParams {
   urls?: Array<string>;
 }
 
-export namespace RfEmitterDetailUpdateParams {
+export namespace DetailUpdateParams {
   /**
    * An RF Amplifier associated with an RF Emitter Details.
    */
@@ -3145,21 +3136,21 @@ export namespace RfEmitterDetailUpdateParams {
   }
 }
 
-export interface RfEmitterDetailListParams extends OffsetPageParams {}
+export interface DetailListParams extends OffsetPageParams {}
 
-export interface RfEmitterDetailCountParams {
+export interface DetailCountParams {
   firstResult?: number;
 
   maxResults?: number;
 }
 
-export interface RfEmitterDetailGetParams {
+export interface DetailGetParams {
   firstResult?: number;
 
   maxResults?: number;
 }
 
-export interface RfEmitterDetailTupleParams {
+export interface DetailTupleParams {
   /**
    * Comma-separated list of valid field names for this data type to be returned in
    * the response. Only the fields specified will be returned as well as the
@@ -3173,19 +3164,19 @@ export interface RfEmitterDetailTupleParams {
   maxResults?: number;
 }
 
-export declare namespace RfEmitterDetails {
+export declare namespace Details {
   export {
-    type RfEmitterDetailListResponse as RfEmitterDetailListResponse,
-    type RfEmitterDetailCountResponse as RfEmitterDetailCountResponse,
-    type RfEmitterDetailGetResponse as RfEmitterDetailGetResponse,
-    type RfEmitterDetailQueryhelpResponse as RfEmitterDetailQueryhelpResponse,
-    type RfEmitterDetailTupleResponse as RfEmitterDetailTupleResponse,
-    type RfEmitterDetailListResponsesOffsetPage as RfEmitterDetailListResponsesOffsetPage,
-    type RfEmitterDetailCreateParams as RfEmitterDetailCreateParams,
-    type RfEmitterDetailUpdateParams as RfEmitterDetailUpdateParams,
-    type RfEmitterDetailListParams as RfEmitterDetailListParams,
-    type RfEmitterDetailCountParams as RfEmitterDetailCountParams,
-    type RfEmitterDetailGetParams as RfEmitterDetailGetParams,
-    type RfEmitterDetailTupleParams as RfEmitterDetailTupleParams,
+    type DetailListResponse as DetailListResponse,
+    type DetailCountResponse as DetailCountResponse,
+    type DetailGetResponse as DetailGetResponse,
+    type DetailQueryhelpResponse as DetailQueryhelpResponse,
+    type DetailTupleResponse as DetailTupleResponse,
+    type DetailListResponsesOffsetPage as DetailListResponsesOffsetPage,
+    type DetailCreateParams as DetailCreateParams,
+    type DetailUpdateParams as DetailUpdateParams,
+    type DetailListParams as DetailListParams,
+    type DetailCountParams as DetailCountParams,
+    type DetailGetParams as DetailGetParams,
+    type DetailTupleParams as DetailTupleParams,
   };
 }

@@ -6,35 +6,40 @@ import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Unifieddatalibrary from 'unified-data-library';
 
 export const metadata: Metadata = {
-  resource: 'rf_emitter_details',
-  operation: 'write',
+  resource: 'rf_emitter.details',
+  operation: 'read',
   tags: [],
-  httpMethod: 'delete',
+  httpMethod: 'get',
   httpPath: '/udl/rfemitterdetails/{id}',
 };
 
 export const tool: Tool = {
-  name: 'delete_rf_emitter_details',
+  name: 'get_rf_emitter_details',
   description:
-    'Service operation to delete a single RFEmitterDetails record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.',
+    'Service operation to get a single RFEmitterDetails record by its unique ID passed as a path parameter.',
   inputSchema: {
     type: 'object',
     properties: {
       id: {
         type: 'string',
       },
+      firstResult: {
+        type: 'integer',
+      },
+      maxResults: {
+        type: 'integer',
+      },
     },
     required: ['id'],
   },
   annotations: {
-    idempotentHint: true,
+    readOnlyHint: true,
   },
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const { id, ...body } = args as any;
-  const response = await client.rfEmitterDetails.delete(id).asResponse();
-  return asTextContentResult(await response.text());
+  return asTextContentResult(await client.rfEmitter.details.get(id, body));
 };
 
 export default { metadata, tool, handler };
