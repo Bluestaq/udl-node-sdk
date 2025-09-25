@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "unified-data-library-mcp/*": ["src/*"],
-      "unified-data-library-mcp": ["src/index.ts"]
+      "unified-data-library-mcp/*": ["./src/*"],
+      "unified-data-library-mcp": ["./src/index.ts"]
     },
     "noEmit": true,
 
