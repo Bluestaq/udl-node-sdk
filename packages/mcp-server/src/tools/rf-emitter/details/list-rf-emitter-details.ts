@@ -6,23 +6,20 @@ import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Unifieddatalibrary from 'unified-data-library';
 
 export const metadata: Metadata = {
-  resource: 'rf_emitter_details',
+  resource: 'rf_emitter.details',
   operation: 'read',
   tags: [],
   httpMethod: 'get',
-  httpPath: '/udl/rfemitterdetails/{id}',
+  httpPath: '/udl/rfemitterdetails',
 };
 
 export const tool: Tool = {
-  name: 'get_rf_emitter_details',
+  name: 'list_rf_emitter_details',
   description:
-    'Service operation to get a single RFEmitterDetails record by its unique ID passed as a path parameter.',
+    'Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.',
   inputSchema: {
     type: 'object',
     properties: {
-      id: {
-        type: 'string',
-      },
       firstResult: {
         type: 'integer',
       },
@@ -30,7 +27,7 @@ export const tool: Tool = {
         type: 'integer',
       },
     },
-    required: ['id'],
+    required: [],
   },
   annotations: {
     readOnlyHint: true,
@@ -38,8 +35,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
-  const { id, ...body } = args as any;
-  return asTextContentResult(await client.rfEmitterDetails.get(id, body));
+  const body = args as any;
+  const response = await client.rfEmitter.details.list(body).asResponse();
+  return asTextContentResult(await response.json());
 };
 
 export default { metadata, tool, handler };

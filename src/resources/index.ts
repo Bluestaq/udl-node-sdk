@@ -972,7 +972,7 @@ export {
   type LaseremitterGetParams,
   type LaseremitterTupleParams,
   type LaseremitterListResponsesOffsetPage,
-} from './laseremitter';
+} from './laseremitter/laseremitter';
 export {
   LaunchDetection,
   type LaunchDetectionListResponse,
@@ -1560,22 +1560,7 @@ export {
   type RfEmitterGetParams,
   type RfEmitterTupleParams,
   type RfEmitterListResponsesOffsetPage,
-} from './rf-emitter';
-export {
-  RfEmitterDetails,
-  type RfEmitterDetailListResponse,
-  type RfEmitterDetailCountResponse,
-  type RfEmitterDetailGetResponse,
-  type RfEmitterDetailQueryhelpResponse,
-  type RfEmitterDetailTupleResponse,
-  type RfEmitterDetailCreateParams,
-  type RfEmitterDetailUpdateParams,
-  type RfEmitterDetailListParams,
-  type RfEmitterDetailCountParams,
-  type RfEmitterDetailGetParams,
-  type RfEmitterDetailTupleParams,
-  type RfEmitterDetailListResponsesOffsetPage,
-} from './rf-emitter-details';
+} from './rf-emitter/rf-emitter';
 export {
   RouteStats,
   type RouteStatRetrieveResponse,
@@ -1632,6 +1617,7 @@ export {
   type ScAllowableFileMimesResponse,
   type ScCopyResponse,
   type ScFileUploadResponse,
+  type ScHasWriteAccessResponse,
   type ScMoveResponse,
   type ScSearchResponse,
   type ScDeleteParams,
@@ -1639,6 +1625,7 @@ export {
   type ScDownloadParams,
   type ScFileDownloadParams,
   type ScFileUploadParams,
+  type ScHasWriteAccessParams,
   type ScMoveParams,
   type ScRenameParams,
   type ScSearchParams,
@@ -2181,6 +2168,7 @@ export {
   type TransponderTupleParams,
   type TransponderListResponsesOffsetPage,
 } from './transponder';
+export { User, type UserAuthResponse } from './user';
 export {
   Vessel,
   type VesselListResponse,

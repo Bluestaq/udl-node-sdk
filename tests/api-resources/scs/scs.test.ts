@@ -99,6 +99,21 @@ describe('resource scs', () => {
     );
   });
 
+  test('hasWriteAccess: only required params', async () => {
+    const responsePromise = client.scs.hasWriteAccess({ path: 'path' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('hasWriteAccess: required and optional params', async () => {
+    const response = await client.scs.hasWriteAccess({ path: 'path', firstResult: 0, maxResults: 0 });
+  });
+
   test('move: only required params', async () => {
     const responsePromise = client.scs.move({ id: 'id', targetPath: 'targetPath' });
     const rawResponse = await responsePromise.asResponse();

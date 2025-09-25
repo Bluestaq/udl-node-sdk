@@ -476,21 +476,6 @@ import {
   ItemUpdateParams,
 } from './resources/item';
 import {
-  Laseremitter,
-  LaseremitterCountParams,
-  LaseremitterCountResponse,
-  LaseremitterCreateParams,
-  LaseremitterGetParams,
-  LaseremitterGetResponse,
-  LaseremitterListParams,
-  LaseremitterListResponse,
-  LaseremitterListResponsesOffsetPage,
-  LaseremitterQueryhelpResponse,
-  LaseremitterTupleParams,
-  LaseremitterTupleResponse,
-  LaseremitterUpdateParams,
-} from './resources/laseremitter';
-import {
   LaunchDetection,
   LaunchDetectionCountParams,
   LaunchDetectionCountResponse,
@@ -843,36 +828,6 @@ import {
   RfBandTypeUpdateParams,
 } from './resources/rf-band-type';
 import {
-  RfEmitter,
-  RfEmitterCountParams,
-  RfEmitterCountResponse,
-  RfEmitterCreateParams,
-  RfEmitterGetParams,
-  RfEmitterGetResponse,
-  RfEmitterListParams,
-  RfEmitterListResponse,
-  RfEmitterListResponsesOffsetPage,
-  RfEmitterQueryhelpResponse,
-  RfEmitterTupleParams,
-  RfEmitterTupleResponse,
-  RfEmitterUpdateParams,
-} from './resources/rf-emitter';
-import {
-  RfEmitterDetailCountParams,
-  RfEmitterDetailCountResponse,
-  RfEmitterDetailCreateParams,
-  RfEmitterDetailGetParams,
-  RfEmitterDetailGetResponse,
-  RfEmitterDetailListParams,
-  RfEmitterDetailListResponse,
-  RfEmitterDetailListResponsesOffsetPage,
-  RfEmitterDetailQueryhelpResponse,
-  RfEmitterDetailTupleParams,
-  RfEmitterDetailTupleResponse,
-  RfEmitterDetailUpdateParams,
-  RfEmitterDetails,
-} from './resources/rf-emitter-details';
-import {
   RouteStatCountParams,
   RouteStatCountResponse,
   RouteStatCreateBulkParams,
@@ -1163,6 +1118,7 @@ import {
   TransponderTupleResponse,
   TransponderUpdateParams,
 } from './resources/transponder';
+import { User, UserAuthResponse } from './resources/user';
 import {
   Vessel,
   VesselCountParams,
@@ -1679,6 +1635,21 @@ import {
   LaserdeconflictrequestUnvalidatedPublishParams,
 } from './resources/laserdeconflictrequest/laserdeconflictrequest';
 import {
+  Laseremitter,
+  LaseremitterCountParams,
+  LaseremitterCountResponse,
+  LaseremitterCreateParams,
+  LaseremitterGetParams,
+  LaseremitterGetResponse,
+  LaseremitterListParams,
+  LaseremitterListResponse,
+  LaseremitterListResponsesOffsetPage,
+  LaseremitterQueryhelpResponse,
+  LaseremitterTupleParams,
+  LaseremitterTupleResponse,
+  LaseremitterUpdateParams,
+} from './resources/laseremitter/laseremitter';
+import {
   LaunchEvent,
   LaunchEventCountParams,
   LaunchEventCountResponse,
@@ -1899,6 +1870,21 @@ import {
 } from './resources/personnelrecovery/personnelrecovery';
 import { ReportAndActivities } from './resources/report-and-activities/report-and-activities';
 import {
+  RfEmitter,
+  RfEmitterCountParams,
+  RfEmitterCountResponse,
+  RfEmitterCreateParams,
+  RfEmitterGetParams,
+  RfEmitterGetResponse,
+  RfEmitterListParams,
+  RfEmitterListResponse,
+  RfEmitterListResponsesOffsetPage,
+  RfEmitterQueryhelpResponse,
+  RfEmitterTupleParams,
+  RfEmitterTupleResponse,
+  RfEmitterUpdateParams,
+} from './resources/rf-emitter/rf-emitter';
+import {
   SarObservation,
   SarObservationCountParams,
   SarObservationCountResponse,
@@ -1924,6 +1910,8 @@ import {
   ScFileDownloadParams,
   ScFileUploadParams,
   ScFileUploadResponse,
+  ScHasWriteAccessParams,
+  ScHasWriteAccessResponse,
   ScMoveParams,
   ScMoveResponse,
   ScRenameParams,
@@ -3130,7 +3118,6 @@ export class Unifieddatalibrary {
   rfBand: API.RfBand = new API.RfBand(this);
   rfBandType: API.RfBandType = new API.RfBandType(this);
   rfEmitter: API.RfEmitter = new API.RfEmitter(this);
-  rfEmitterDetails: API.RfEmitterDetails = new API.RfEmitterDetails(this);
   routeStats: API.RouteStats = new API.RouteStats(this);
   sarObservation: API.SarObservation = new API.SarObservation(this);
   scientific: API.Scientific = new API.Scientific(this);
@@ -3174,6 +3161,7 @@ export class Unifieddatalibrary {
   trackDetails: API.TrackDetails = new API.TrackDetails(this);
   trackRoute: API.TrackRoute = new API.TrackRoute(this);
   transponder: API.Transponder = new API.Transponder(this);
+  user: API.User = new API.User(this);
   vessel: API.Vessel = new API.Vessel(this);
   video: API.Video = new API.Video(this);
   weatherData: API.WeatherData = new API.WeatherData(this);
@@ -3296,7 +3284,6 @@ Unifieddatalibrary.ReportAndActivities = ReportAndActivities;
 Unifieddatalibrary.RfBand = RfBand;
 Unifieddatalibrary.RfBandType = RfBandType;
 Unifieddatalibrary.RfEmitter = RfEmitter;
-Unifieddatalibrary.RfEmitterDetails = RfEmitterDetails;
 Unifieddatalibrary.RouteStats = RouteStats;
 Unifieddatalibrary.SarObservation = SarObservation;
 Unifieddatalibrary.Scientific = Scientific;
@@ -3340,6 +3327,7 @@ Unifieddatalibrary.Track = Track;
 Unifieddatalibrary.TrackDetails = TrackDetails;
 Unifieddatalibrary.TrackRoute = TrackRoute;
 Unifieddatalibrary.Transponder = Transponder;
+Unifieddatalibrary.User = User;
 Unifieddatalibrary.Vessel = Vessel;
 Unifieddatalibrary.Video = Video;
 Unifieddatalibrary.WeatherData = WeatherData;
@@ -5028,22 +5016,6 @@ export declare namespace Unifieddatalibrary {
   };
 
   export {
-    RfEmitterDetails as RfEmitterDetails,
-    type RfEmitterDetailListResponse as RfEmitterDetailListResponse,
-    type RfEmitterDetailCountResponse as RfEmitterDetailCountResponse,
-    type RfEmitterDetailGetResponse as RfEmitterDetailGetResponse,
-    type RfEmitterDetailQueryhelpResponse as RfEmitterDetailQueryhelpResponse,
-    type RfEmitterDetailTupleResponse as RfEmitterDetailTupleResponse,
-    type RfEmitterDetailListResponsesOffsetPage as RfEmitterDetailListResponsesOffsetPage,
-    type RfEmitterDetailCreateParams as RfEmitterDetailCreateParams,
-    type RfEmitterDetailUpdateParams as RfEmitterDetailUpdateParams,
-    type RfEmitterDetailListParams as RfEmitterDetailListParams,
-    type RfEmitterDetailCountParams as RfEmitterDetailCountParams,
-    type RfEmitterDetailGetParams as RfEmitterDetailGetParams,
-    type RfEmitterDetailTupleParams as RfEmitterDetailTupleParams,
-  };
-
-  export {
     RouteStats as RouteStats,
     type RouteStatRetrieveResponse as RouteStatRetrieveResponse,
     type RouteStatListResponse as RouteStatListResponse,
@@ -5102,6 +5074,7 @@ export declare namespace Unifieddatalibrary {
     type ScAllowableFileMimesResponse as ScAllowableFileMimesResponse,
     type ScCopyResponse as ScCopyResponse,
     type ScFileUploadResponse as ScFileUploadResponse,
+    type ScHasWriteAccessResponse as ScHasWriteAccessResponse,
     type ScMoveResponse as ScMoveResponse,
     type ScSearchResponse as ScSearchResponse,
     type ScDeleteParams as ScDeleteParams,
@@ -5109,6 +5082,7 @@ export declare namespace Unifieddatalibrary {
     type ScDownloadParams as ScDownloadParams,
     type ScFileDownloadParams as ScFileDownloadParams,
     type ScFileUploadParams as ScFileUploadParams,
+    type ScHasWriteAccessParams as ScHasWriteAccessParams,
     type ScMoveParams as ScMoveParams,
     type ScRenameParams as ScRenameParams,
     type ScSearchParams as ScSearchParams,
@@ -5690,6 +5664,8 @@ export declare namespace Unifieddatalibrary {
     type TransponderGetParams as TransponderGetParams,
     type TransponderTupleParams as TransponderTupleParams,
   };
+
+  export { User as User, type UserAuthResponse as UserAuthResponse };
 
   export {
     Vessel as Vessel,

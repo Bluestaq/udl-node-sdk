@@ -8,9 +8,9 @@ const client = new Unifieddatalibrary({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource rfEmitterDetails', () => {
+describe('resource details', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.rfEmitterDetails.create({
+    const responsePromise = client.rfEmitter.details.create({
       classificationMarking: 'U',
       dataMode: 'TEST',
       idRFEmitter: 'RFEMITTER-ID',
@@ -26,7 +26,7 @@ describe('resource rfEmitterDetails', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.rfEmitterDetails.create({
+    const response = await client.rfEmitter.details.create({
       classificationMarking: 'U',
       dataMode: 'TEST',
       idRFEmitter: 'RFEMITTER-ID',
@@ -135,7 +135,7 @@ describe('resource rfEmitterDetails', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.rfEmitterDetails.update('id', {
+    const responsePromise = client.rfEmitter.details.update('id', {
       classificationMarking: 'U',
       dataMode: 'TEST',
       idRFEmitter: 'RFEMITTER-ID',
@@ -151,7 +151,7 @@ describe('resource rfEmitterDetails', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.rfEmitterDetails.update('id', {
+    const response = await client.rfEmitter.details.update('id', {
       classificationMarking: 'U',
       dataMode: 'TEST',
       idRFEmitter: 'RFEMITTER-ID',
@@ -260,7 +260,7 @@ describe('resource rfEmitterDetails', () => {
   });
 
   test('list', async () => {
-    const responsePromise = client.rfEmitterDetails.list();
+    const responsePromise = client.rfEmitter.details.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -273,12 +273,12 @@ describe('resource rfEmitterDetails', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.rfEmitterDetails.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+      client.rfEmitter.details.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
-    const responsePromise = client.rfEmitterDetails.delete('id');
+    const responsePromise = client.rfEmitter.details.delete('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -289,7 +289,7 @@ describe('resource rfEmitterDetails', () => {
   });
 
   test('count', async () => {
-    const responsePromise = client.rfEmitterDetails.count();
+    const responsePromise = client.rfEmitter.details.count();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -302,12 +302,12 @@ describe('resource rfEmitterDetails', () => {
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.rfEmitterDetails.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+      client.rfEmitter.details.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('get', async () => {
-    const responsePromise = client.rfEmitterDetails.get('id');
+    const responsePromise = client.rfEmitter.details.get('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -320,7 +320,7 @@ describe('resource rfEmitterDetails', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.rfEmitterDetails.get(
+      client.rfEmitter.details.get(
         'id',
         { firstResult: 0, maxResults: 0 },
         { path: '/_stainless_unknown_path' },
@@ -329,7 +329,7 @@ describe('resource rfEmitterDetails', () => {
   });
 
   test('queryhelp', async () => {
-    const responsePromise = client.rfEmitterDetails.queryhelp();
+    const responsePromise = client.rfEmitter.details.queryhelp();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -340,7 +340,7 @@ describe('resource rfEmitterDetails', () => {
   });
 
   test('tuple: only required params', async () => {
-    const responsePromise = client.rfEmitterDetails.tuple({ columns: 'columns' });
+    const responsePromise = client.rfEmitter.details.tuple({ columns: 'columns' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -351,7 +351,7 @@ describe('resource rfEmitterDetails', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.rfEmitterDetails.tuple({
+    const response = await client.rfEmitter.details.tuple({
       columns: 'columns',
       firstResult: 0,
       maxResults: 0,

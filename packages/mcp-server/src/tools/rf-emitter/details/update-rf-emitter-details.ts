@@ -6,7 +6,7 @@ import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Unifieddatalibrary from 'unified-data-library';
 
 export const metadata: Metadata = {
-  resource: 'rf_emitter_details',
+  resource: 'rf_emitter.details',
   operation: 'write',
   tags: [],
   httpMethod: 'put',
@@ -504,7 +504,7 @@ export const tool: Tool = {
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const { id, ...body } = args as any;
-  const response = await client.rfEmitterDetails.update(id, body).asResponse();
+  const response = await client.rfEmitter.details.update(id, body).asResponse();
   return asTextContentResult(await response.text());
 };
 
