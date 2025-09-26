@@ -19,8 +19,8 @@ import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
 export class StateVector extends APIResource {
-  history: HistoryAPI.History = new HistoryAPI.History(this._client);
   current: CurrentAPI.Current = new CurrentAPI.Current(this._client);
+  history: HistoryAPI.History = new HistoryAPI.History(this._client);
 
   /**
    * Service operation to take a single state vector as a POST body and ingest into
@@ -543,6 +543,12 @@ export interface StateVectorAbridged {
    * The mass of the object, in kilograms.
    */
   mass?: number;
+
+  /**
+   * Time when message was generated in ISO 8601 UTC format with microsecond
+   * precision.
+   */
+  msgTs?: string;
 
   /**
    * The number of observations available for the OD of the object.
@@ -1241,6 +1247,12 @@ export interface StateVectorIngest {
    * The mass of the object, in kilograms.
    */
   mass?: number;
+
+  /**
+   * Time when message was generated in ISO 8601 UTC format with microsecond
+   * precision.
+   */
+  msgTs?: string;
 
   /**
    * The number of observations available for the OD of the object.
@@ -1973,6 +1985,12 @@ export interface StateVectorCreateParams {
   mass?: number;
 
   /**
+   * Time when message was generated in ISO 8601 UTC format with microsecond
+   * precision.
+   */
+  msgTs?: string;
+
+  /**
    * The number of observations available for the OD of the object.
    */
   obsAvailable?: number;
@@ -2411,8 +2429,8 @@ export interface StateVectorUnvalidatedPublishParams {
   body: Array<StateVectorIngest>;
 }
 
-StateVector.History = History;
 StateVector.Current = Current;
+StateVector.History = History;
 
 export declare namespace StateVector {
   export {
@@ -2432,17 +2450,17 @@ export declare namespace StateVector {
   };
 
   export {
+    Current as Current,
+    type CurrentTupleResponse as CurrentTupleResponse,
+    type CurrentListParams as CurrentListParams,
+    type CurrentTupleParams as CurrentTupleParams,
+  };
+
+  export {
     History as History,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
-  };
-
-  export {
-    Current as Current,
-    type CurrentTupleResponse as CurrentTupleResponse,
-    type CurrentListParams as CurrentListParams,
-    type CurrentTupleParams as CurrentTupleParams,
   };
 }

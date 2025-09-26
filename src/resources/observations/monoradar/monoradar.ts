@@ -8,8 +8,9 @@ import {
   HistoryAodrParams,
   HistoryCountParams,
   HistoryCountResponse,
-  HistoryQueryParams,
-  HistoryQueryResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
 } from './history';
 import { APIPromise } from '../../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
@@ -1871,10 +1872,11 @@ export declare namespace Monoradar {
 
   export {
     History as History,
+    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
-    type HistoryQueryResponse as HistoryQueryResponse,
+    type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
+    type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
-    type HistoryQueryParams as HistoryQueryParams,
   };
 }

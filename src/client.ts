@@ -46,8 +46,8 @@ import {
   AircraftListParams,
   AircraftQueryhelpResponse,
   AircraftRetrieveParams,
-  AircraftTupleQueryParams,
-  AircraftTupleQueryResponse,
+  AircraftTupleParams,
+  AircraftTupleResponse,
   AircraftUpdateParams,
 } from './resources/aircraft';
 import {
@@ -144,25 +144,6 @@ import {
 } from './resources/airspace-control-orders';
 import { AIsObjectUnvalidatedPublishParams, AIsObjects } from './resources/ais-objects';
 import {
-  AnalyticImagery,
-  AnalyticImageryAbridged,
-  AnalyticImageryAbridgedsOffsetPage,
-  AnalyticImageryCountParams,
-  AnalyticImageryCountResponse,
-  AnalyticImageryFileGetParams,
-  AnalyticImageryHistoryAodrParams,
-  AnalyticImageryHistoryCountParams,
-  AnalyticImageryHistoryCountResponse,
-  AnalyticImageryHistoryParams,
-  AnalyticImageryHistoryResponse,
-  AnalyticImageryListParams,
-  AnalyticImageryQueryhelpResponse,
-  AnalyticImageryRetrieveParams,
-  AnalyticImageryTupleParams,
-  AnalyticImageryTupleResponse,
-  AnalyticImageryUnvalidatedPublishParams,
-} from './resources/analytic-imagery';
-import {
   AntennaAbridged,
   AntennaAbridgedsOffsetPage,
   AntennaCountParams,
@@ -188,9 +169,10 @@ import {
   AviationRiskManagementCountResponse,
   AviationRiskManagementCreateBulkParams,
   AviationRiskManagementCreateParams,
+  AviationRiskManagementListParams,
+  AviationRiskManagementListResponse,
+  AviationRiskManagementListResponsesOffsetPage,
   AviationRiskManagementQueryHelpResponse,
-  AviationRiskManagementQueryParams,
-  AviationRiskManagementQueryResponse,
   AviationRiskManagementRetrieveParams,
   AviationRiskManagementRetrieveResponse,
   AviationRiskManagementTupleParams,
@@ -338,9 +320,10 @@ import {
   DropzoneCountResponse,
   DropzoneCreateBulkParams,
   DropzoneCreateParams,
+  DropzoneListParams,
+  DropzoneListResponse,
+  DropzoneListResponsesOffsetPage,
   DropzoneQueryHelpResponse,
-  DropzoneQueryParams,
-  DropzoneQueryResponse,
   DropzoneRetrieveParams,
   DropzoneRetrieveResponse,
   DropzoneTupleParams,
@@ -348,16 +331,16 @@ import {
   DropzoneUnvalidatedPublishParams,
   DropzoneUpdateParams,
 } from './resources/dropzone';
-import { EcpSdr, EcpSdrUnvalidatedPublishParams } from './resources/ecp-sdr';
 import {
   EmitterGeolocation,
   EmitterGeolocationCountParams,
   EmitterGeolocationCountResponse,
   EmitterGeolocationCreateBulkParams,
   EmitterGeolocationCreateParams,
+  EmitterGeolocationListParams,
+  EmitterGeolocationListResponse,
+  EmitterGeolocationListResponsesOffsetPage,
   EmitterGeolocationQueryHelpResponse,
-  EmitterGeolocationQueryParams,
-  EmitterGeolocationQueryResponse,
   EmitterGeolocationRetrieveParams,
   EmitterGeolocationRetrieveResponse,
   EmitterGeolocationTupleParams,
@@ -559,6 +542,7 @@ import {
   LaunchVehicleDetailUpdateParams,
   LaunchVehicleDetails,
 } from './resources/launch-vehicle-details';
+import { Linkstatus, LinkstatusUpdateParams } from './resources/linkstatus';
 import {
   Location,
   LocationCountParams,
@@ -844,43 +828,14 @@ import {
   RfBandTypeUpdateParams,
 } from './resources/rf-band-type';
 import {
-  RfEmitter,
-  RfEmitterCountParams,
-  RfEmitterCountResponse,
-  RfEmitterCreateParams,
-  RfEmitterGetParams,
-  RfEmitterGetResponse,
-  RfEmitterListParams,
-  RfEmitterListResponse,
-  RfEmitterListResponsesOffsetPage,
-  RfEmitterQueryhelpResponse,
-  RfEmitterTupleParams,
-  RfEmitterTupleResponse,
-  RfEmitterUpdateParams,
-} from './resources/rf-emitter';
-import {
-  RfEmitterDetailCountParams,
-  RfEmitterDetailCountResponse,
-  RfEmitterDetailCreateParams,
-  RfEmitterDetailGetParams,
-  RfEmitterDetailGetResponse,
-  RfEmitterDetailListParams,
-  RfEmitterDetailListResponse,
-  RfEmitterDetailListResponsesOffsetPage,
-  RfEmitterDetailQueryhelpResponse,
-  RfEmitterDetailTupleParams,
-  RfEmitterDetailTupleResponse,
-  RfEmitterDetailUpdateParams,
-  RfEmitterDetails,
-} from './resources/rf-emitter-details';
-import {
   RouteStatCountParams,
   RouteStatCountResponse,
   RouteStatCreateBulkParams,
   RouteStatCreateParams,
+  RouteStatListParams,
+  RouteStatListResponse,
+  RouteStatListResponsesOffsetPage,
   RouteStatQueryHelpResponse,
-  RouteStatQueryParams,
-  RouteStatQueryResponse,
   RouteStatRetrieveParams,
   RouteStatRetrieveResponse,
   RouteStatTupleParams,
@@ -904,7 +859,6 @@ import {
   ScientificTupleResponse,
   ScientificUpdateParams,
 } from './resources/scientific';
-import { ScsViewRetrieveParams, ScsViews } from './resources/scs-views';
 import {
   SecureMessaging,
   SecureMessagingDescribeTopicParams,
@@ -920,7 +874,6 @@ import {
   SensorObservationTypeListParams,
   SensorObservationTypeListResponse,
   SensorObservationTypeListResponsesOffsetPage,
-  SensorObservationTypeQueryhelpResponse,
 } from './resources/sensor-observation-type';
 import {
   SensorType,
@@ -929,7 +882,6 @@ import {
   SensorTypeListParams,
   SensorTypeListResponse,
   SensorTypeListResponsesOffsetPage,
-  SensorTypeQueryhelpResponse,
 } from './resources/sensor-type';
 import {
   SeraDataCommDetailCountParams,
@@ -1166,6 +1118,7 @@ import {
   TransponderTupleResponse,
   TransponderUpdateParams,
 } from './resources/transponder';
+import { User, UserAuthResponse } from './resources/user';
 import {
   Vessel,
   VesselCountParams,
@@ -1229,8 +1182,6 @@ import {
   AICountParams,
   AICountResponse,
   AICreateBulkParams,
-  AIHistoryCountParams,
-  AIHistoryCountResponse,
   AIListParams,
   AIQueryhelpResponse,
   AITupleParams,
@@ -1239,6 +1190,20 @@ import {
   AIsAbridged,
   AIsAbridgedsOffsetPage,
 } from './resources/ais/ais';
+import {
+  AnalyticImagery,
+  AnalyticImageryAbridged,
+  AnalyticImageryAbridgedsOffsetPage,
+  AnalyticImageryCountParams,
+  AnalyticImageryCountResponse,
+  AnalyticImageryFileGetParams,
+  AnalyticImageryListParams,
+  AnalyticImageryQueryhelpResponse,
+  AnalyticImageryRetrieveParams,
+  AnalyticImageryTupleParams,
+  AnalyticImageryTupleResponse,
+  AnalyticImageryUnvalidatedPublishParams,
+} from './resources/analytic-imagery/analytic-imagery';
 import {
   AttitudeSetCountParams,
   AttitudeSetCountResponse,
@@ -1300,6 +1265,21 @@ import {
   Conjunctions,
 } from './resources/conjunctions/conjunctions';
 import {
+  Deconflictset,
+  DeconflictsetCountParams,
+  DeconflictsetCountResponse,
+  DeconflictsetCreateParams,
+  DeconflictsetGetParams,
+  DeconflictsetGetResponse,
+  DeconflictsetListParams,
+  DeconflictsetListResponse,
+  DeconflictsetListResponsesOffsetPage,
+  DeconflictsetQueryhelpResponse,
+  DeconflictsetTupleParams,
+  DeconflictsetTupleResponse,
+  DeconflictsetUnvalidatedPublishParams,
+} from './resources/deconflictset/deconflictset';
+import {
   DiffOfArrival,
   DiffOfArrivalQueryhelpResponse,
   DiffOfArrivalRetrieveParams,
@@ -1320,6 +1300,20 @@ import {
   DiplomaticClearanceTupleResponse,
   DiplomaticClearanceUpdateParams,
 } from './resources/diplomatic-clearance/diplomatic-clearance';
+import {
+  Ecpedr,
+  EcpedrCountParams,
+  EcpedrCountResponse,
+  EcpedrCreateBulkParams,
+  EcpedrCreateParams,
+  EcpedrListParams,
+  EcpedrListResponse,
+  EcpedrListResponsesOffsetPage,
+  EcpedrQueryhelpResponse,
+  EcpedrTupleParams,
+  EcpedrTupleResponse,
+  EcpedrUnvalidatedPublishParams,
+} from './resources/ecpedr/ecpedr';
 import {
   EffectRequestCountParams,
   EffectRequestCountResponse,
@@ -1373,6 +1367,22 @@ import {
   ElsetUnvalidatedPublishParams,
   Elsets,
 } from './resources/elsets/elsets';
+import {
+  Emireport,
+  EmireportCountParams,
+  EmireportCountResponse,
+  EmireportCreateBulkParams,
+  EmireportCreateParams,
+  EmireportGetParams,
+  EmireportGetResponse,
+  EmireportListParams,
+  EmireportListResponse,
+  EmireportListResponsesOffsetPage,
+  EmireportQueryhelpResponse,
+  EmireportTupleParams,
+  EmireportTupleResponse,
+  EmireportUnvalidatedPublishParams,
+} from './resources/emireport/emireport';
 import {
   Eop,
   EopAbridged,
@@ -1449,9 +1459,10 @@ import {
   FeatureAssessmentCountResponse,
   FeatureAssessmentCreateBulkParams,
   FeatureAssessmentCreateParams,
+  FeatureAssessmentListParams,
+  FeatureAssessmentListResponse,
+  FeatureAssessmentListResponsesOffsetPage,
   FeatureAssessmentQueryHelpResponse,
-  FeatureAssessmentQueryParams,
-  FeatureAssessmentQueryResponse,
   FeatureAssessmentRetrieveParams,
   FeatureAssessmentRetrieveResponse,
   FeatureAssessmentTupleParams,
@@ -1477,9 +1488,10 @@ import {
   GlobalAtmosphericModelCountParams,
   GlobalAtmosphericModelCountResponse,
   GlobalAtmosphericModelGetFileParams,
+  GlobalAtmosphericModelListParams,
+  GlobalAtmosphericModelListResponse,
+  GlobalAtmosphericModelListResponsesOffsetPage,
   GlobalAtmosphericModelQueryHelpResponse,
-  GlobalAtmosphericModelQueryParams,
-  GlobalAtmosphericModelQueryResponse,
   GlobalAtmosphericModelRetrieveParams,
   GlobalAtmosphericModelRetrieveResponse,
   GlobalAtmosphericModelTupleParams,
@@ -1517,13 +1529,13 @@ import {
 } from './resources/gnss-raw-if/gnss-raw-if';
 import {
   GroundImagery,
+  GroundImageryAodrParams,
   GroundImageryCountParams,
   GroundImageryCountResponse,
   GroundImageryCreateParams,
   GroundImageryGetFileParams,
   GroundImageryGetParams,
   GroundImageryGetResponse,
-  GroundImageryHistoryAodrParams,
   GroundImageryListParams,
   GroundImageryListResponse,
   GroundImageryListResponsesOffsetPage,
@@ -1606,6 +1618,37 @@ import {
   ItemTrackingUnvalidatedPublishParams,
   ItemTrackings,
 } from './resources/item-trackings/item-trackings';
+import {
+  FixedPointFull,
+  Laserdeconflictrequest,
+  LaserdeconflictrequestCountParams,
+  LaserdeconflictrequestCountResponse,
+  LaserdeconflictrequestCreateParams,
+  LaserdeconflictrequestGetParams,
+  LaserdeconflictrequestGetResponse,
+  LaserdeconflictrequestListParams,
+  LaserdeconflictrequestListResponse,
+  LaserdeconflictrequestListResponsesOffsetPage,
+  LaserdeconflictrequestQueryhelpResponse,
+  LaserdeconflictrequestTupleParams,
+  LaserdeconflictrequestTupleResponse,
+  LaserdeconflictrequestUnvalidatedPublishParams,
+} from './resources/laserdeconflictrequest/laserdeconflictrequest';
+import {
+  Laseremitter,
+  LaseremitterCountParams,
+  LaseremitterCountResponse,
+  LaseremitterCreateParams,
+  LaseremitterGetParams,
+  LaseremitterGetResponse,
+  LaseremitterListParams,
+  LaseremitterListResponse,
+  LaseremitterListResponsesOffsetPage,
+  LaseremitterQueryhelpResponse,
+  LaseremitterTupleParams,
+  LaseremitterTupleResponse,
+  LaseremitterUpdateParams,
+} from './resources/laseremitter/laseremitter';
 import {
   LaunchEvent,
   LaunchEventCountParams,
@@ -1827,6 +1870,21 @@ import {
 } from './resources/personnelrecovery/personnelrecovery';
 import { ReportAndActivities } from './resources/report-and-activities/report-and-activities';
 import {
+  RfEmitter,
+  RfEmitterCountParams,
+  RfEmitterCountResponse,
+  RfEmitterCreateParams,
+  RfEmitterGetParams,
+  RfEmitterGetResponse,
+  RfEmitterListParams,
+  RfEmitterListResponse,
+  RfEmitterListResponsesOffsetPage,
+  RfEmitterQueryhelpResponse,
+  RfEmitterTupleParams,
+  RfEmitterTupleResponse,
+  RfEmitterUpdateParams,
+} from './resources/rf-emitter/rf-emitter';
+import {
   SarObservation,
   SarObservationCountParams,
   SarObservationCountResponse,
@@ -1843,7 +1901,6 @@ import {
   SarObservationUnvalidatedPublishParams,
 } from './resources/sar-observation/sar-observation';
 import {
-  ScAggregateDocTypeResponse,
   ScAllowableFileExtensionsResponse,
   ScAllowableFileMimesResponse,
   ScCopyParams,
@@ -1853,13 +1910,16 @@ import {
   ScFileDownloadParams,
   ScFileUploadParams,
   ScFileUploadResponse,
+  ScHasWriteAccessParams,
+  ScHasWriteAccessResponse,
   ScMoveParams,
   ScMoveResponse,
   ScRenameParams,
   ScSearchParams,
   ScSearchResponse,
-  ScUpdateTagsParams,
   Scs,
+  SearchCriterion,
+  SearchLogicalCriterion,
 } from './resources/scs/scs';
 import {
   SensorMaintenance,
@@ -1867,14 +1927,15 @@ import {
   SensorMaintenanceCountResponse,
   SensorMaintenanceCreateBulkParams,
   SensorMaintenanceCreateParams,
-  SensorMaintenanceCurrentParams,
-  SensorMaintenanceCurrentResponse,
   SensorMaintenanceGetParams,
   SensorMaintenanceGetResponse,
+  SensorMaintenanceListCurrentParams,
+  SensorMaintenanceListCurrentResponse,
+  SensorMaintenanceListCurrentResponsesOffsetPage,
   SensorMaintenanceListParams,
   SensorMaintenanceListResponse,
   SensorMaintenanceListResponsesOffsetPage,
-  SensorMaintenanceQueryhelpResponse,
+  SensorMaintenanceQueryHelpResponse,
   SensorMaintenanceTupleParams,
   SensorMaintenanceTupleResponse,
   SensorMaintenanceUpdateParams,
@@ -2203,6 +2264,11 @@ import { isEmptyObj } from './internal/utils/values';
 
 export interface ClientOptions {
   /**
+   * Access token for Bearer Authentication
+   */
+  accessToken?: string | null | undefined;
+
+  /**
    * Password for HTTP Basic Authentication
    */
   password?: string | null | undefined;
@@ -2211,11 +2277,6 @@ export interface ClientOptions {
    * Username for HTTP Basic Authentication
    */
   username?: string | null | undefined;
-
-  /**
-   * Access token for Bearer Authentication
-   */
-  accessToken?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -2290,9 +2351,9 @@ export interface ClientOptions {
  * API Client for interfacing with the Unifieddatalibrary API.
  */
 export class Unifieddatalibrary {
+  accessToken: string | null;
   password: string | null;
   username: string | null;
-  accessToken: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -2309,9 +2370,9 @@ export class Unifieddatalibrary {
   /**
    * API Client for interfacing with the Unifieddatalibrary API.
    *
+   * @param {string | null | undefined} [opts.accessToken=process.env['UDL_ACCESS_TOKEN'] ?? null]
    * @param {string | null | undefined} [opts.password=process.env['UDL_AUTH_PASSWORD'] ?? null]
    * @param {string | null | undefined} [opts.username=process.env['UDL_AUTH_USERNAME'] ?? null]
-   * @param {string | null | undefined} [opts.accessToken=process.env['UDL_ACCESS_TOKEN'] ?? null]
    * @param {string} [opts.baseURL=process.env['UNIFIEDDATALIBRARY_BASE_URL'] ?? https://unifieddatalibrary.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -2322,15 +2383,15 @@ export class Unifieddatalibrary {
    */
   constructor({
     baseURL = readEnv('UNIFIEDDATALIBRARY_BASE_URL'),
+    accessToken = readEnv('UDL_ACCESS_TOKEN') ?? null,
     password = readEnv('UDL_AUTH_PASSWORD') ?? null,
     username = readEnv('UDL_AUTH_USERNAME') ?? null,
-    accessToken = readEnv('UDL_ACCESS_TOKEN') ?? null,
     ...opts
   }: ClientOptions = {}) {
     const options: ClientOptions = {
+      accessToken,
       password,
       username,
-      accessToken,
       ...opts,
       baseURL: baseURL || `https://unifieddatalibrary.com`,
     };
@@ -2352,9 +2413,9 @@ export class Unifieddatalibrary {
 
     this._options = options;
 
+    this.accessToken = accessToken;
     this.password = password;
     this.username = username;
-    this.accessToken = accessToken;
   }
 
   /**
@@ -2370,9 +2431,9 @@ export class Unifieddatalibrary {
       logLevel: this.logLevel,
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
+      accessToken: this.accessToken,
       password: this.password,
       username: this.username,
-      accessToken: this.accessToken,
       ...options,
     });
     return client;
@@ -2948,10 +3009,10 @@ export class Unifieddatalibrary {
   aircraftSorties: API.AircraftSorties = new API.AircraftSorties(this);
   aircraftStatusRemarks: API.AircraftStatusRemarks = new API.AircraftStatusRemarks(this);
   aircraftStatuses: API.AircraftStatuses = new API.AircraftStatuses(this);
+  airfieldSlotConsumptions: API.AirfieldSlotConsumptions = new API.AirfieldSlotConsumptions(this);
   airfieldSlots: API.AirfieldSlots = new API.AirfieldSlots(this);
   airfieldStatus: API.AirfieldStatus = new API.AirfieldStatus(this);
   airfields: API.Airfields = new API.Airfields(this);
-  airfieldSlotConsumptions: API.AirfieldSlotConsumptions = new API.AirfieldSlotConsumptions(this);
   airloadPlans: API.AirloadPlans = new API.AirloadPlans(this);
   airspaceControlOrders: API.AirspaceControlOrders = new API.AirspaceControlOrders(this);
   ais: API.AIs = new API.AIs(this);
@@ -2960,6 +3021,7 @@ export class Unifieddatalibrary {
   antennas: API.Antennas = new API.Antennas(this);
   attitudeData: API.AttitudeData = new API.AttitudeData(this);
   attitudeSets: API.AttitudeSets = new API.AttitudeSets(this);
+  aviationRiskManagement: API.AviationRiskManagement = new API.AviationRiskManagement(this);
   batteries: API.Batteries = new API.Batteries(this);
   batterydetails: API.Batterydetails = new API.Batterydetails(this);
   beam: API.Beam = new API.Beam(this);
@@ -2971,21 +3033,19 @@ export class Unifieddatalibrary {
   comm: API.Comm = new API.Comm(this);
   conjunctions: API.Conjunctions = new API.Conjunctions(this);
   cots: API.Cots = new API.Cots(this);
-  aviationRiskManagement: API.AviationRiskManagement = new API.AviationRiskManagement(this);
-  dropzone: API.Dropzone = new API.Dropzone(this);
-  emitterGeolocation: API.EmitterGeolocation = new API.EmitterGeolocation(this);
-  featureAssessment: API.FeatureAssessment = new API.FeatureAssessment(this);
-  globalAtmosphericModel: API.GlobalAtmosphericModel = new API.GlobalAtmosphericModel(this);
-  routeStats: API.RouteStats = new API.RouteStats(this);
   countries: API.Countries = new API.Countries(this);
   crew: API.Crew = new API.Crew(this);
+  deconflictset: API.Deconflictset = new API.Deconflictset(this);
   diffOfArrival: API.DiffOfArrival = new API.DiffOfArrival(this);
   diplomaticClearance: API.DiplomaticClearance = new API.DiplomaticClearance(this);
   driftHistory: API.DriftHistory = new API.DriftHistory(this);
-  ecpSdr: API.EcpSdr = new API.EcpSdr(this);
+  dropzone: API.Dropzone = new API.Dropzone(this);
+  ecpedr: API.Ecpedr = new API.Ecpedr(this);
   effectRequests: API.EffectRequests = new API.EffectRequests(this);
   effectResponses: API.EffectResponses = new API.EffectResponses(this);
   elsets: API.Elsets = new API.Elsets(this);
+  emireport: API.Emireport = new API.Emireport(this);
+  emitterGeolocation: API.EmitterGeolocation = new API.EmitterGeolocation(this);
   engineDetails: API.EngineDetails = new API.EngineDetails(this);
   engines: API.Engines = new API.Engines(this);
   entities: API.Entities = new API.Entities(this);
@@ -2996,17 +3056,24 @@ export class Unifieddatalibrary {
   equipmentRemarks: API.EquipmentRemarks = new API.EquipmentRemarks(this);
   evac: API.Evac = new API.Evac(this);
   eventEvolution: API.EventEvolution = new API.EventEvolution(this);
+  featureAssessment: API.FeatureAssessment = new API.FeatureAssessment(this);
   flightplan: API.Flightplan = new API.Flightplan(this);
   geoStatus: API.GeoStatus = new API.GeoStatus(this);
+  globalAtmosphericModel: API.GlobalAtmosphericModel = new API.GlobalAtmosphericModel(this);
+  gnssObservations: API.GnssObservations = new API.GnssObservations(this);
   gnssObservationset: API.GnssObservationset = new API.GnssObservationset(this);
+  gnssRawIf: API.GnssRawIf = new API.GnssRawIf(this);
   groundImagery: API.GroundImagery = new API.GroundImagery(this);
   h3Geo: API.H3Geo = new API.H3Geo(this);
   h3GeoHexCell: API.H3GeoHexCell = new API.H3GeoHexCell(this);
   hazard: API.Hazard = new API.Hazard(this);
+  ionoObservations: API.IonoObservations = new API.IonoObservations(this);
   ir: API.Ir = new API.Ir(this);
   isrCollections: API.IsrCollections = new API.IsrCollections(this);
   item: API.Item = new API.Item(this);
   itemTrackings: API.ItemTrackings = new API.ItemTrackings(this);
+  laserdeconflictrequest: API.Laserdeconflictrequest = new API.Laserdeconflictrequest(this);
+  laseremitter: API.Laseremitter = new API.Laseremitter(this);
   launchDetection: API.LaunchDetection = new API.LaunchDetection(this);
   launchEvent: API.LaunchEvent = new API.LaunchEvent(this);
   launchSite: API.LaunchSite = new API.LaunchSite(this);
@@ -3014,6 +3081,7 @@ export class Unifieddatalibrary {
   launchVehicle: API.LaunchVehicle = new API.LaunchVehicle(this);
   launchVehicleDetails: API.LaunchVehicleDetails = new API.LaunchVehicleDetails(this);
   linkStatus: API.LinkStatus = new API.LinkStatus(this);
+  linkstatus: API.Linkstatus = new API.Linkstatus(this);
   location: API.Location = new API.Location(this);
   logisticsSupport: API.LogisticsSupport = new API.LogisticsSupport(this);
   maneuvers: API.Maneuvers = new API.Maneuvers(this);
@@ -3046,12 +3114,15 @@ export class Unifieddatalibrary {
   personnelrecovery: API.Personnelrecovery = new API.Personnelrecovery(this);
   poi: API.Poi = new API.Poi(this);
   port: API.Port = new API.Port(this);
+  reportAndActivities: API.ReportAndActivities = new API.ReportAndActivities(this);
   rfBand: API.RfBand = new API.RfBand(this);
   rfBandType: API.RfBandType = new API.RfBandType(this);
   rfEmitter: API.RfEmitter = new API.RfEmitter(this);
-  rfEmitterDetails: API.RfEmitterDetails = new API.RfEmitterDetails(this);
+  routeStats: API.RouteStats = new API.RouteStats(this);
   sarObservation: API.SarObservation = new API.SarObservation(this);
   scientific: API.Scientific = new API.Scientific(this);
+  scs: API.Scs = new API.Scs(this);
+  secureMessaging: API.SecureMessaging = new API.SecureMessaging(this);
   sensor: API.Sensor = new API.Sensor(this);
   sensorMaintenance: API.SensorMaintenance = new API.SensorMaintenance(this);
   sensorObservationType: API.SensorObservationType = new API.SensorObservationType(this);
@@ -3090,17 +3161,11 @@ export class Unifieddatalibrary {
   trackDetails: API.TrackDetails = new API.TrackDetails(this);
   trackRoute: API.TrackRoute = new API.TrackRoute(this);
   transponder: API.Transponder = new API.Transponder(this);
+  user: API.User = new API.User(this);
   vessel: API.Vessel = new API.Vessel(this);
   video: API.Video = new API.Video(this);
   weatherData: API.WeatherData = new API.WeatherData(this);
   weatherReport: API.WeatherReport = new API.WeatherReport(this);
-  gnssObservations: API.GnssObservations = new API.GnssObservations(this);
-  gnssRawIf: API.GnssRawIf = new API.GnssRawIf(this);
-  ionoObservations: API.IonoObservations = new API.IonoObservations(this);
-  reportAndActivities: API.ReportAndActivities = new API.ReportAndActivities(this);
-  secureMessaging: API.SecureMessaging = new API.SecureMessaging(this);
-  scs: API.Scs = new API.Scs(this);
-  scsViews: API.ScsViews = new API.ScsViews(this);
 }
 
 Unifieddatalibrary.AirEvents = AirEvents;
@@ -3110,10 +3175,10 @@ Unifieddatalibrary.Aircraft = Aircraft;
 Unifieddatalibrary.AircraftSorties = AircraftSorties;
 Unifieddatalibrary.AircraftStatusRemarks = AircraftStatusRemarks;
 Unifieddatalibrary.AircraftStatuses = AircraftStatuses;
+Unifieddatalibrary.AirfieldSlotConsumptions = AirfieldSlotConsumptions;
 Unifieddatalibrary.AirfieldSlots = AirfieldSlots;
 Unifieddatalibrary.AirfieldStatus = AirfieldStatus;
 Unifieddatalibrary.Airfields = Airfields;
-Unifieddatalibrary.AirfieldSlotConsumptions = AirfieldSlotConsumptions;
 Unifieddatalibrary.AirloadPlans = AirloadPlans;
 Unifieddatalibrary.AirspaceControlOrders = AirspaceControlOrders;
 Unifieddatalibrary.AIs = AIs;
@@ -3122,6 +3187,7 @@ Unifieddatalibrary.AnalyticImagery = AnalyticImagery;
 Unifieddatalibrary.Antennas = Antennas;
 Unifieddatalibrary.AttitudeData = AttitudeData;
 Unifieddatalibrary.AttitudeSets = AttitudeSets;
+Unifieddatalibrary.AviationRiskManagement = AviationRiskManagement;
 Unifieddatalibrary.Batteries = Batteries;
 Unifieddatalibrary.Batterydetails = Batterydetails;
 Unifieddatalibrary.Beam = Beam;
@@ -3133,21 +3199,19 @@ Unifieddatalibrary.CollectResponses = CollectResponses;
 Unifieddatalibrary.Comm = Comm;
 Unifieddatalibrary.Conjunctions = Conjunctions;
 Unifieddatalibrary.Cots = Cots;
-Unifieddatalibrary.AviationRiskManagement = AviationRiskManagement;
-Unifieddatalibrary.Dropzone = Dropzone;
-Unifieddatalibrary.EmitterGeolocation = EmitterGeolocation;
-Unifieddatalibrary.FeatureAssessment = FeatureAssessment;
-Unifieddatalibrary.GlobalAtmosphericModel = GlobalAtmosphericModel;
-Unifieddatalibrary.RouteStats = RouteStats;
 Unifieddatalibrary.Countries = Countries;
 Unifieddatalibrary.Crew = Crew;
+Unifieddatalibrary.Deconflictset = Deconflictset;
 Unifieddatalibrary.DiffOfArrival = DiffOfArrival;
 Unifieddatalibrary.DiplomaticClearance = DiplomaticClearance;
 Unifieddatalibrary.DriftHistory = DriftHistory;
-Unifieddatalibrary.EcpSdr = EcpSdr;
+Unifieddatalibrary.Dropzone = Dropzone;
+Unifieddatalibrary.Ecpedr = Ecpedr;
 Unifieddatalibrary.EffectRequests = EffectRequests;
 Unifieddatalibrary.EffectResponses = EffectResponses;
 Unifieddatalibrary.Elsets = Elsets;
+Unifieddatalibrary.Emireport = Emireport;
+Unifieddatalibrary.EmitterGeolocation = EmitterGeolocation;
 Unifieddatalibrary.EngineDetails = EngineDetails;
 Unifieddatalibrary.Engines = Engines;
 Unifieddatalibrary.Entities = Entities;
@@ -3158,17 +3222,24 @@ Unifieddatalibrary.Equipment = Equipment;
 Unifieddatalibrary.EquipmentRemarks = EquipmentRemarks;
 Unifieddatalibrary.Evac = Evac;
 Unifieddatalibrary.EventEvolution = EventEvolution;
+Unifieddatalibrary.FeatureAssessment = FeatureAssessment;
 Unifieddatalibrary.Flightplan = Flightplan;
 Unifieddatalibrary.GeoStatus = GeoStatus;
+Unifieddatalibrary.GlobalAtmosphericModel = GlobalAtmosphericModel;
+Unifieddatalibrary.GnssObservations = GnssObservations;
 Unifieddatalibrary.GnssObservationset = GnssObservationset;
+Unifieddatalibrary.GnssRawIf = GnssRawIf;
 Unifieddatalibrary.GroundImagery = GroundImagery;
 Unifieddatalibrary.H3Geo = H3Geo;
 Unifieddatalibrary.H3GeoHexCell = H3GeoHexCell;
 Unifieddatalibrary.Hazard = Hazard;
+Unifieddatalibrary.IonoObservations = IonoObservations;
 Unifieddatalibrary.Ir = Ir;
 Unifieddatalibrary.IsrCollections = IsrCollections;
 Unifieddatalibrary.Item = Item;
 Unifieddatalibrary.ItemTrackings = ItemTrackings;
+Unifieddatalibrary.Laserdeconflictrequest = Laserdeconflictrequest;
+Unifieddatalibrary.Laseremitter = Laseremitter;
 Unifieddatalibrary.LaunchDetection = LaunchDetection;
 Unifieddatalibrary.LaunchEvent = LaunchEvent;
 Unifieddatalibrary.LaunchSite = LaunchSite;
@@ -3176,6 +3247,7 @@ Unifieddatalibrary.LaunchSiteDetails = LaunchSiteDetails;
 Unifieddatalibrary.LaunchVehicle = LaunchVehicle;
 Unifieddatalibrary.LaunchVehicleDetails = LaunchVehicleDetails;
 Unifieddatalibrary.LinkStatus = LinkStatus;
+Unifieddatalibrary.Linkstatus = Linkstatus;
 Unifieddatalibrary.Location = Location;
 Unifieddatalibrary.LogisticsSupport = LogisticsSupport;
 Unifieddatalibrary.Maneuvers = Maneuvers;
@@ -3208,12 +3280,15 @@ Unifieddatalibrary.Organizationdetails = Organizationdetails;
 Unifieddatalibrary.Personnelrecovery = Personnelrecovery;
 Unifieddatalibrary.Poi = Poi;
 Unifieddatalibrary.Port = Port;
+Unifieddatalibrary.ReportAndActivities = ReportAndActivities;
 Unifieddatalibrary.RfBand = RfBand;
 Unifieddatalibrary.RfBandType = RfBandType;
 Unifieddatalibrary.RfEmitter = RfEmitter;
-Unifieddatalibrary.RfEmitterDetails = RfEmitterDetails;
+Unifieddatalibrary.RouteStats = RouteStats;
 Unifieddatalibrary.SarObservation = SarObservation;
 Unifieddatalibrary.Scientific = Scientific;
+Unifieddatalibrary.Scs = Scs;
+Unifieddatalibrary.SecureMessaging = SecureMessaging;
 Unifieddatalibrary.Sensor = Sensor;
 Unifieddatalibrary.SensorMaintenance = SensorMaintenance;
 Unifieddatalibrary.SensorObservationType = SensorObservationType;
@@ -3252,17 +3327,11 @@ Unifieddatalibrary.Track = Track;
 Unifieddatalibrary.TrackDetails = TrackDetails;
 Unifieddatalibrary.TrackRoute = TrackRoute;
 Unifieddatalibrary.Transponder = Transponder;
+Unifieddatalibrary.User = User;
 Unifieddatalibrary.Vessel = Vessel;
 Unifieddatalibrary.Video = Video;
 Unifieddatalibrary.WeatherData = WeatherData;
 Unifieddatalibrary.WeatherReport = WeatherReport;
-Unifieddatalibrary.GnssObservations = GnssObservations;
-Unifieddatalibrary.GnssRawIf = GnssRawIf;
-Unifieddatalibrary.IonoObservations = IonoObservations;
-Unifieddatalibrary.ReportAndActivities = ReportAndActivities;
-Unifieddatalibrary.SecureMessaging = SecureMessaging;
-Unifieddatalibrary.Scs = Scs;
-Unifieddatalibrary.ScsViews = ScsViews;
 
 export declare namespace Unifieddatalibrary {
   export type RequestOptions = Opts.RequestOptions;
@@ -3310,14 +3379,14 @@ export declare namespace Unifieddatalibrary {
     type AircraftAbridged as AircraftAbridged,
     type AircraftCountResponse as AircraftCountResponse,
     type AircraftQueryhelpResponse as AircraftQueryhelpResponse,
-    type AircraftTupleQueryResponse as AircraftTupleQueryResponse,
+    type AircraftTupleResponse as AircraftTupleResponse,
     type AircraftAbridgedsOffsetPage as AircraftAbridgedsOffsetPage,
     type AircraftCreateParams as AircraftCreateParams,
     type AircraftRetrieveParams as AircraftRetrieveParams,
     type AircraftUpdateParams as AircraftUpdateParams,
     type AircraftListParams as AircraftListParams,
     type AircraftCountParams as AircraftCountParams,
-    type AircraftTupleQueryParams as AircraftTupleQueryParams,
+    type AircraftTupleParams as AircraftTupleParams,
   };
 
   export {
@@ -3357,6 +3426,21 @@ export declare namespace Unifieddatalibrary {
     type AircraftStatusListParams as AircraftStatusListParams,
     type AircraftStatusCountParams as AircraftStatusCountParams,
     type AircraftStatusTupleParams as AircraftStatusTupleParams,
+  };
+
+  export {
+    AirfieldSlotConsumptions as AirfieldSlotConsumptions,
+    type AirfieldslotconsumptionAbridged as AirfieldslotconsumptionAbridged,
+    type AirfieldSlotConsumptionCountResponse as AirfieldSlotConsumptionCountResponse,
+    type AirfieldSlotConsumptionQueryhelpResponse as AirfieldSlotConsumptionQueryhelpResponse,
+    type AirfieldSlotConsumptionTupleResponse as AirfieldSlotConsumptionTupleResponse,
+    type AirfieldslotconsumptionAbridgedsOffsetPage as AirfieldslotconsumptionAbridgedsOffsetPage,
+    type AirfieldSlotConsumptionCreateParams as AirfieldSlotConsumptionCreateParams,
+    type AirfieldSlotConsumptionRetrieveParams as AirfieldSlotConsumptionRetrieveParams,
+    type AirfieldSlotConsumptionUpdateParams as AirfieldSlotConsumptionUpdateParams,
+    type AirfieldSlotConsumptionListParams as AirfieldSlotConsumptionListParams,
+    type AirfieldSlotConsumptionCountParams as AirfieldSlotConsumptionCountParams,
+    type AirfieldSlotConsumptionTupleParams as AirfieldSlotConsumptionTupleParams,
   };
 
   export {
@@ -3405,21 +3489,6 @@ export declare namespace Unifieddatalibrary {
   };
 
   export {
-    AirfieldSlotConsumptions as AirfieldSlotConsumptions,
-    type AirfieldslotconsumptionAbridged as AirfieldslotconsumptionAbridged,
-    type AirfieldSlotConsumptionCountResponse as AirfieldSlotConsumptionCountResponse,
-    type AirfieldSlotConsumptionQueryhelpResponse as AirfieldSlotConsumptionQueryhelpResponse,
-    type AirfieldSlotConsumptionTupleResponse as AirfieldSlotConsumptionTupleResponse,
-    type AirfieldslotconsumptionAbridgedsOffsetPage as AirfieldslotconsumptionAbridgedsOffsetPage,
-    type AirfieldSlotConsumptionCreateParams as AirfieldSlotConsumptionCreateParams,
-    type AirfieldSlotConsumptionRetrieveParams as AirfieldSlotConsumptionRetrieveParams,
-    type AirfieldSlotConsumptionUpdateParams as AirfieldSlotConsumptionUpdateParams,
-    type AirfieldSlotConsumptionListParams as AirfieldSlotConsumptionListParams,
-    type AirfieldSlotConsumptionCountParams as AirfieldSlotConsumptionCountParams,
-    type AirfieldSlotConsumptionTupleParams as AirfieldSlotConsumptionTupleParams,
-  };
-
-  export {
     AirloadPlans as AirloadPlans,
     type AirloadplanAbridged as AirloadplanAbridged,
     type AirloadPlanCountResponse as AirloadPlanCountResponse,
@@ -3453,14 +3522,12 @@ export declare namespace Unifieddatalibrary {
     AIs as AIs,
     type AIsAbridged as AIsAbridged,
     type AICountResponse as AICountResponse,
-    type AIHistoryCountResponse as AIHistoryCountResponse,
     type AIQueryhelpResponse as AIQueryhelpResponse,
     type AITupleResponse as AITupleResponse,
     type AIsAbridgedsOffsetPage as AIsAbridgedsOffsetPage,
     type AIListParams as AIListParams,
     type AICountParams as AICountParams,
     type AICreateBulkParams as AICreateBulkParams,
-    type AIHistoryCountParams as AIHistoryCountParams,
     type AITupleParams as AITupleParams,
   };
 
@@ -3473,8 +3540,6 @@ export declare namespace Unifieddatalibrary {
     AnalyticImagery as AnalyticImagery,
     type AnalyticImageryAbridged as AnalyticImageryAbridged,
     type AnalyticImageryCountResponse as AnalyticImageryCountResponse,
-    type AnalyticImageryHistoryResponse as AnalyticImageryHistoryResponse,
-    type AnalyticImageryHistoryCountResponse as AnalyticImageryHistoryCountResponse,
     type AnalyticImageryQueryhelpResponse as AnalyticImageryQueryhelpResponse,
     type AnalyticImageryTupleResponse as AnalyticImageryTupleResponse,
     type AnalyticImageryAbridgedsOffsetPage as AnalyticImageryAbridgedsOffsetPage,
@@ -3482,9 +3547,6 @@ export declare namespace Unifieddatalibrary {
     type AnalyticImageryListParams as AnalyticImageryListParams,
     type AnalyticImageryCountParams as AnalyticImageryCountParams,
     type AnalyticImageryFileGetParams as AnalyticImageryFileGetParams,
-    type AnalyticImageryHistoryParams as AnalyticImageryHistoryParams,
-    type AnalyticImageryHistoryAodrParams as AnalyticImageryHistoryAodrParams,
-    type AnalyticImageryHistoryCountParams as AnalyticImageryHistoryCountParams,
     type AnalyticImageryTupleParams as AnalyticImageryTupleParams,
     type AnalyticImageryUnvalidatedPublishParams as AnalyticImageryUnvalidatedPublishParams,
   };
@@ -3524,6 +3586,24 @@ export declare namespace Unifieddatalibrary {
     type AttitudeSetCountParams as AttitudeSetCountParams,
     type AttitudeSetTupleParams as AttitudeSetTupleParams,
     type AttitudeSetUnvalidatedPublishParams as AttitudeSetUnvalidatedPublishParams,
+  };
+
+  export {
+    AviationRiskManagement as AviationRiskManagement,
+    type AviationRiskManagementRetrieveResponse as AviationRiskManagementRetrieveResponse,
+    type AviationRiskManagementListResponse as AviationRiskManagementListResponse,
+    type AviationRiskManagementCountResponse as AviationRiskManagementCountResponse,
+    type AviationRiskManagementQueryHelpResponse as AviationRiskManagementQueryHelpResponse,
+    type AviationRiskManagementTupleResponse as AviationRiskManagementTupleResponse,
+    type AviationRiskManagementListResponsesOffsetPage as AviationRiskManagementListResponsesOffsetPage,
+    type AviationRiskManagementCreateParams as AviationRiskManagementCreateParams,
+    type AviationRiskManagementRetrieveParams as AviationRiskManagementRetrieveParams,
+    type AviationRiskManagementUpdateParams as AviationRiskManagementUpdateParams,
+    type AviationRiskManagementListParams as AviationRiskManagementListParams,
+    type AviationRiskManagementCountParams as AviationRiskManagementCountParams,
+    type AviationRiskManagementCreateBulkParams as AviationRiskManagementCreateBulkParams,
+    type AviationRiskManagementTupleParams as AviationRiskManagementTupleParams,
+    type AviationRiskManagementUnvalidatedPublishParams as AviationRiskManagementUnvalidatedPublishParams,
   };
 
   export {
@@ -3679,104 +3759,6 @@ export declare namespace Unifieddatalibrary {
   export { Cots as Cots, type CotCreateParams as CotCreateParams };
 
   export {
-    AviationRiskManagement as AviationRiskManagement,
-    type AviationRiskManagementRetrieveResponse as AviationRiskManagementRetrieveResponse,
-    type AviationRiskManagementCountResponse as AviationRiskManagementCountResponse,
-    type AviationRiskManagementQueryResponse as AviationRiskManagementQueryResponse,
-    type AviationRiskManagementQueryHelpResponse as AviationRiskManagementQueryHelpResponse,
-    type AviationRiskManagementTupleResponse as AviationRiskManagementTupleResponse,
-    type AviationRiskManagementCreateParams as AviationRiskManagementCreateParams,
-    type AviationRiskManagementRetrieveParams as AviationRiskManagementRetrieveParams,
-    type AviationRiskManagementUpdateParams as AviationRiskManagementUpdateParams,
-    type AviationRiskManagementCountParams as AviationRiskManagementCountParams,
-    type AviationRiskManagementCreateBulkParams as AviationRiskManagementCreateBulkParams,
-    type AviationRiskManagementQueryParams as AviationRiskManagementQueryParams,
-    type AviationRiskManagementTupleParams as AviationRiskManagementTupleParams,
-    type AviationRiskManagementUnvalidatedPublishParams as AviationRiskManagementUnvalidatedPublishParams,
-  };
-
-  export {
-    Dropzone as Dropzone,
-    type DropzoneRetrieveResponse as DropzoneRetrieveResponse,
-    type DropzoneCountResponse as DropzoneCountResponse,
-    type DropzoneQueryResponse as DropzoneQueryResponse,
-    type DropzoneQueryHelpResponse as DropzoneQueryHelpResponse,
-    type DropzoneTupleResponse as DropzoneTupleResponse,
-    type DropzoneCreateParams as DropzoneCreateParams,
-    type DropzoneRetrieveParams as DropzoneRetrieveParams,
-    type DropzoneUpdateParams as DropzoneUpdateParams,
-    type DropzoneCountParams as DropzoneCountParams,
-    type DropzoneCreateBulkParams as DropzoneCreateBulkParams,
-    type DropzoneQueryParams as DropzoneQueryParams,
-    type DropzoneTupleParams as DropzoneTupleParams,
-    type DropzoneUnvalidatedPublishParams as DropzoneUnvalidatedPublishParams,
-  };
-
-  export {
-    EmitterGeolocation as EmitterGeolocation,
-    type EmitterGeolocationRetrieveResponse as EmitterGeolocationRetrieveResponse,
-    type EmitterGeolocationCountResponse as EmitterGeolocationCountResponse,
-    type EmitterGeolocationQueryResponse as EmitterGeolocationQueryResponse,
-    type EmitterGeolocationQueryHelpResponse as EmitterGeolocationQueryHelpResponse,
-    type EmitterGeolocationTupleResponse as EmitterGeolocationTupleResponse,
-    type EmitterGeolocationCreateParams as EmitterGeolocationCreateParams,
-    type EmitterGeolocationRetrieveParams as EmitterGeolocationRetrieveParams,
-    type EmitterGeolocationCountParams as EmitterGeolocationCountParams,
-    type EmitterGeolocationCreateBulkParams as EmitterGeolocationCreateBulkParams,
-    type EmitterGeolocationQueryParams as EmitterGeolocationQueryParams,
-    type EmitterGeolocationTupleParams as EmitterGeolocationTupleParams,
-    type EmitterGeolocationUnvalidatedPublishParams as EmitterGeolocationUnvalidatedPublishParams,
-  };
-
-  export {
-    FeatureAssessment as FeatureAssessment,
-    type FeatureAssessmentRetrieveResponse as FeatureAssessmentRetrieveResponse,
-    type FeatureAssessmentCountResponse as FeatureAssessmentCountResponse,
-    type FeatureAssessmentQueryResponse as FeatureAssessmentQueryResponse,
-    type FeatureAssessmentQueryHelpResponse as FeatureAssessmentQueryHelpResponse,
-    type FeatureAssessmentTupleResponse as FeatureAssessmentTupleResponse,
-    type FeatureAssessmentCreateParams as FeatureAssessmentCreateParams,
-    type FeatureAssessmentRetrieveParams as FeatureAssessmentRetrieveParams,
-    type FeatureAssessmentCountParams as FeatureAssessmentCountParams,
-    type FeatureAssessmentCreateBulkParams as FeatureAssessmentCreateBulkParams,
-    type FeatureAssessmentQueryParams as FeatureAssessmentQueryParams,
-    type FeatureAssessmentTupleParams as FeatureAssessmentTupleParams,
-    type FeatureAssessmentUnvalidatedPublishParams as FeatureAssessmentUnvalidatedPublishParams,
-  };
-
-  export {
-    GlobalAtmosphericModel as GlobalAtmosphericModel,
-    type GlobalAtmosphericModelRetrieveResponse as GlobalAtmosphericModelRetrieveResponse,
-    type GlobalAtmosphericModelCountResponse as GlobalAtmosphericModelCountResponse,
-    type GlobalAtmosphericModelQueryResponse as GlobalAtmosphericModelQueryResponse,
-    type GlobalAtmosphericModelQueryHelpResponse as GlobalAtmosphericModelQueryHelpResponse,
-    type GlobalAtmosphericModelTupleResponse as GlobalAtmosphericModelTupleResponse,
-    type GlobalAtmosphericModelRetrieveParams as GlobalAtmosphericModelRetrieveParams,
-    type GlobalAtmosphericModelCountParams as GlobalAtmosphericModelCountParams,
-    type GlobalAtmosphericModelGetFileParams as GlobalAtmosphericModelGetFileParams,
-    type GlobalAtmosphericModelQueryParams as GlobalAtmosphericModelQueryParams,
-    type GlobalAtmosphericModelTupleParams as GlobalAtmosphericModelTupleParams,
-    type GlobalAtmosphericModelUnvalidatedPublishParams as GlobalAtmosphericModelUnvalidatedPublishParams,
-  };
-
-  export {
-    RouteStats as RouteStats,
-    type RouteStatRetrieveResponse as RouteStatRetrieveResponse,
-    type RouteStatCountResponse as RouteStatCountResponse,
-    type RouteStatQueryResponse as RouteStatQueryResponse,
-    type RouteStatQueryHelpResponse as RouteStatQueryHelpResponse,
-    type RouteStatTupleResponse as RouteStatTupleResponse,
-    type RouteStatCreateParams as RouteStatCreateParams,
-    type RouteStatRetrieveParams as RouteStatRetrieveParams,
-    type RouteStatUpdateParams as RouteStatUpdateParams,
-    type RouteStatCountParams as RouteStatCountParams,
-    type RouteStatCreateBulkParams as RouteStatCreateBulkParams,
-    type RouteStatQueryParams as RouteStatQueryParams,
-    type RouteStatTupleParams as RouteStatTupleParams,
-    type RouteStatUnvalidatedPublishParams as RouteStatUnvalidatedPublishParams,
-  };
-
-  export {
     Countries as Countries,
     type CountryAbridged as CountryAbridged,
     type CountryCountResponse as CountryCountResponse,
@@ -3805,6 +3787,22 @@ export declare namespace Unifieddatalibrary {
     type CrewCountParams as CrewCountParams,
     type CrewTupleParams as CrewTupleParams,
     type CrewUnvalidatedPublishParams as CrewUnvalidatedPublishParams,
+  };
+
+  export {
+    Deconflictset as Deconflictset,
+    type DeconflictsetListResponse as DeconflictsetListResponse,
+    type DeconflictsetCountResponse as DeconflictsetCountResponse,
+    type DeconflictsetGetResponse as DeconflictsetGetResponse,
+    type DeconflictsetQueryhelpResponse as DeconflictsetQueryhelpResponse,
+    type DeconflictsetTupleResponse as DeconflictsetTupleResponse,
+    type DeconflictsetListResponsesOffsetPage as DeconflictsetListResponsesOffsetPage,
+    type DeconflictsetCreateParams as DeconflictsetCreateParams,
+    type DeconflictsetListParams as DeconflictsetListParams,
+    type DeconflictsetCountParams as DeconflictsetCountParams,
+    type DeconflictsetGetParams as DeconflictsetGetParams,
+    type DeconflictsetTupleParams as DeconflictsetTupleParams,
+    type DeconflictsetUnvalidatedPublishParams as DeconflictsetUnvalidatedPublishParams,
   };
 
   export {
@@ -3841,7 +3839,38 @@ export declare namespace Unifieddatalibrary {
     type DriftHistoryTupleParams as DriftHistoryTupleParams,
   };
 
-  export { EcpSdr as EcpSdr, type EcpSdrUnvalidatedPublishParams as EcpSdrUnvalidatedPublishParams };
+  export {
+    Dropzone as Dropzone,
+    type DropzoneRetrieveResponse as DropzoneRetrieveResponse,
+    type DropzoneListResponse as DropzoneListResponse,
+    type DropzoneCountResponse as DropzoneCountResponse,
+    type DropzoneQueryHelpResponse as DropzoneQueryHelpResponse,
+    type DropzoneTupleResponse as DropzoneTupleResponse,
+    type DropzoneListResponsesOffsetPage as DropzoneListResponsesOffsetPage,
+    type DropzoneCreateParams as DropzoneCreateParams,
+    type DropzoneRetrieveParams as DropzoneRetrieveParams,
+    type DropzoneUpdateParams as DropzoneUpdateParams,
+    type DropzoneListParams as DropzoneListParams,
+    type DropzoneCountParams as DropzoneCountParams,
+    type DropzoneCreateBulkParams as DropzoneCreateBulkParams,
+    type DropzoneTupleParams as DropzoneTupleParams,
+    type DropzoneUnvalidatedPublishParams as DropzoneUnvalidatedPublishParams,
+  };
+
+  export {
+    Ecpedr as Ecpedr,
+    type EcpedrListResponse as EcpedrListResponse,
+    type EcpedrCountResponse as EcpedrCountResponse,
+    type EcpedrQueryhelpResponse as EcpedrQueryhelpResponse,
+    type EcpedrTupleResponse as EcpedrTupleResponse,
+    type EcpedrListResponsesOffsetPage as EcpedrListResponsesOffsetPage,
+    type EcpedrCreateParams as EcpedrCreateParams,
+    type EcpedrListParams as EcpedrListParams,
+    type EcpedrCountParams as EcpedrCountParams,
+    type EcpedrCreateBulkParams as EcpedrCreateBulkParams,
+    type EcpedrTupleParams as EcpedrTupleParams,
+    type EcpedrUnvalidatedPublishParams as EcpedrUnvalidatedPublishParams,
+  };
 
   export {
     EffectRequests as EffectRequests,
@@ -3897,6 +3926,40 @@ export declare namespace Unifieddatalibrary {
     type ElsetCreateBulkFromTleParams as ElsetCreateBulkFromTleParams,
     type ElsetTupleParams as ElsetTupleParams,
     type ElsetUnvalidatedPublishParams as ElsetUnvalidatedPublishParams,
+  };
+
+  export {
+    Emireport as Emireport,
+    type EmireportListResponse as EmireportListResponse,
+    type EmireportCountResponse as EmireportCountResponse,
+    type EmireportGetResponse as EmireportGetResponse,
+    type EmireportQueryhelpResponse as EmireportQueryhelpResponse,
+    type EmireportTupleResponse as EmireportTupleResponse,
+    type EmireportListResponsesOffsetPage as EmireportListResponsesOffsetPage,
+    type EmireportCreateParams as EmireportCreateParams,
+    type EmireportListParams as EmireportListParams,
+    type EmireportCountParams as EmireportCountParams,
+    type EmireportCreateBulkParams as EmireportCreateBulkParams,
+    type EmireportGetParams as EmireportGetParams,
+    type EmireportTupleParams as EmireportTupleParams,
+    type EmireportUnvalidatedPublishParams as EmireportUnvalidatedPublishParams,
+  };
+
+  export {
+    EmitterGeolocation as EmitterGeolocation,
+    type EmitterGeolocationRetrieveResponse as EmitterGeolocationRetrieveResponse,
+    type EmitterGeolocationListResponse as EmitterGeolocationListResponse,
+    type EmitterGeolocationCountResponse as EmitterGeolocationCountResponse,
+    type EmitterGeolocationQueryHelpResponse as EmitterGeolocationQueryHelpResponse,
+    type EmitterGeolocationTupleResponse as EmitterGeolocationTupleResponse,
+    type EmitterGeolocationListResponsesOffsetPage as EmitterGeolocationListResponsesOffsetPage,
+    type EmitterGeolocationCreateParams as EmitterGeolocationCreateParams,
+    type EmitterGeolocationRetrieveParams as EmitterGeolocationRetrieveParams,
+    type EmitterGeolocationListParams as EmitterGeolocationListParams,
+    type EmitterGeolocationCountParams as EmitterGeolocationCountParams,
+    type EmitterGeolocationCreateBulkParams as EmitterGeolocationCreateBulkParams,
+    type EmitterGeolocationTupleParams as EmitterGeolocationTupleParams,
+    type EmitterGeolocationUnvalidatedPublishParams as EmitterGeolocationUnvalidatedPublishParams,
   };
 
   export {
@@ -4051,6 +4114,23 @@ export declare namespace Unifieddatalibrary {
   };
 
   export {
+    FeatureAssessment as FeatureAssessment,
+    type FeatureAssessmentRetrieveResponse as FeatureAssessmentRetrieveResponse,
+    type FeatureAssessmentListResponse as FeatureAssessmentListResponse,
+    type FeatureAssessmentCountResponse as FeatureAssessmentCountResponse,
+    type FeatureAssessmentQueryHelpResponse as FeatureAssessmentQueryHelpResponse,
+    type FeatureAssessmentTupleResponse as FeatureAssessmentTupleResponse,
+    type FeatureAssessmentListResponsesOffsetPage as FeatureAssessmentListResponsesOffsetPage,
+    type FeatureAssessmentCreateParams as FeatureAssessmentCreateParams,
+    type FeatureAssessmentRetrieveParams as FeatureAssessmentRetrieveParams,
+    type FeatureAssessmentListParams as FeatureAssessmentListParams,
+    type FeatureAssessmentCountParams as FeatureAssessmentCountParams,
+    type FeatureAssessmentCreateBulkParams as FeatureAssessmentCreateBulkParams,
+    type FeatureAssessmentTupleParams as FeatureAssessmentTupleParams,
+    type FeatureAssessmentUnvalidatedPublishParams as FeatureAssessmentUnvalidatedPublishParams,
+  };
+
+  export {
     Flightplan as Flightplan,
     type FlightPlanAbridged as FlightPlanAbridged,
     type FlightplanCountResponse as FlightplanCountResponse,
@@ -4082,6 +4162,24 @@ export declare namespace Unifieddatalibrary {
   };
 
   export {
+    GlobalAtmosphericModel as GlobalAtmosphericModel,
+    type GlobalAtmosphericModelRetrieveResponse as GlobalAtmosphericModelRetrieveResponse,
+    type GlobalAtmosphericModelListResponse as GlobalAtmosphericModelListResponse,
+    type GlobalAtmosphericModelCountResponse as GlobalAtmosphericModelCountResponse,
+    type GlobalAtmosphericModelQueryHelpResponse as GlobalAtmosphericModelQueryHelpResponse,
+    type GlobalAtmosphericModelTupleResponse as GlobalAtmosphericModelTupleResponse,
+    type GlobalAtmosphericModelListResponsesOffsetPage as GlobalAtmosphericModelListResponsesOffsetPage,
+    type GlobalAtmosphericModelRetrieveParams as GlobalAtmosphericModelRetrieveParams,
+    type GlobalAtmosphericModelListParams as GlobalAtmosphericModelListParams,
+    type GlobalAtmosphericModelCountParams as GlobalAtmosphericModelCountParams,
+    type GlobalAtmosphericModelGetFileParams as GlobalAtmosphericModelGetFileParams,
+    type GlobalAtmosphericModelTupleParams as GlobalAtmosphericModelTupleParams,
+    type GlobalAtmosphericModelUnvalidatedPublishParams as GlobalAtmosphericModelUnvalidatedPublishParams,
+  };
+
+  export { GnssObservations as GnssObservations };
+
+  export {
     GnssObservationset as GnssObservationset,
     type GnssObservationsetListResponse as GnssObservationsetListResponse,
     type GnssObservationsetCountResponse as GnssObservationsetCountResponse,
@@ -4096,6 +4194,22 @@ export declare namespace Unifieddatalibrary {
   };
 
   export {
+    GnssRawIf as GnssRawIf,
+    type GnssRawIfListResponse as GnssRawIfListResponse,
+    type GnssRawIfCountResponse as GnssRawIfCountResponse,
+    type GnssRawIfGetResponse as GnssRawIfGetResponse,
+    type GnssRawIfQueryhelpResponse as GnssRawIfQueryhelpResponse,
+    type GnssRawIfTupleResponse as GnssRawIfTupleResponse,
+    type GnssRawIfListResponsesOffsetPage as GnssRawIfListResponsesOffsetPage,
+    type GnssRawIfListParams as GnssRawIfListParams,
+    type GnssRawIfCountParams as GnssRawIfCountParams,
+    type GnssRawIfFileGetParams as GnssRawIfFileGetParams,
+    type GnssRawIfGetParams as GnssRawIfGetParams,
+    type GnssRawIfTupleParams as GnssRawIfTupleParams,
+    type GnssRawIfUploadZipParams as GnssRawIfUploadZipParams,
+  };
+
+  export {
     GroundImagery as GroundImagery,
     type GroundImageryListResponse as GroundImageryListResponse,
     type GroundImageryCountResponse as GroundImageryCountResponse,
@@ -4105,10 +4219,10 @@ export declare namespace Unifieddatalibrary {
     type GroundImageryListResponsesOffsetPage as GroundImageryListResponsesOffsetPage,
     type GroundImageryCreateParams as GroundImageryCreateParams,
     type GroundImageryListParams as GroundImageryListParams,
+    type GroundImageryAodrParams as GroundImageryAodrParams,
     type GroundImageryCountParams as GroundImageryCountParams,
     type GroundImageryGetParams as GroundImageryGetParams,
     type GroundImageryGetFileParams as GroundImageryGetFileParams,
-    type GroundImageryHistoryAodrParams as GroundImageryHistoryAodrParams,
     type GroundImageryTupleParams as GroundImageryTupleParams,
     type GroundImageryUploadZipParams as GroundImageryUploadZipParams,
   };
@@ -4154,6 +4268,20 @@ export declare namespace Unifieddatalibrary {
     type HazardCreateBulkParams as HazardCreateBulkParams,
     type HazardGetParams as HazardGetParams,
     type HazardTupleParams as HazardTupleParams,
+  };
+
+  export {
+    IonoObservations as IonoObservations,
+    type IonoObservationListResponse as IonoObservationListResponse,
+    type IonoObservationCountResponse as IonoObservationCountResponse,
+    type IonoObservationQueryhelpResponse as IonoObservationQueryhelpResponse,
+    type IonoObservationTupleResponse as IonoObservationTupleResponse,
+    type IonoObservationListResponsesOffsetPage as IonoObservationListResponsesOffsetPage,
+    type IonoObservationListParams as IonoObservationListParams,
+    type IonoObservationCountParams as IonoObservationCountParams,
+    type IonoObservationCreateBulkParams as IonoObservationCreateBulkParams,
+    type IonoObservationTupleParams as IonoObservationTupleParams,
+    type IonoObservationUnvalidatedPublishParams as IonoObservationUnvalidatedPublishParams,
   };
 
   export {
@@ -4221,6 +4349,39 @@ export declare namespace Unifieddatalibrary {
     type ItemTrackingGetParams as ItemTrackingGetParams,
     type ItemTrackingTupleParams as ItemTrackingTupleParams,
     type ItemTrackingUnvalidatedPublishParams as ItemTrackingUnvalidatedPublishParams,
+  };
+
+  export {
+    Laserdeconflictrequest as Laserdeconflictrequest,
+    type FixedPointFull as FixedPointFull,
+    type LaserdeconflictrequestListResponse as LaserdeconflictrequestListResponse,
+    type LaserdeconflictrequestCountResponse as LaserdeconflictrequestCountResponse,
+    type LaserdeconflictrequestGetResponse as LaserdeconflictrequestGetResponse,
+    type LaserdeconflictrequestQueryhelpResponse as LaserdeconflictrequestQueryhelpResponse,
+    type LaserdeconflictrequestTupleResponse as LaserdeconflictrequestTupleResponse,
+    type LaserdeconflictrequestListResponsesOffsetPage as LaserdeconflictrequestListResponsesOffsetPage,
+    type LaserdeconflictrequestCreateParams as LaserdeconflictrequestCreateParams,
+    type LaserdeconflictrequestListParams as LaserdeconflictrequestListParams,
+    type LaserdeconflictrequestCountParams as LaserdeconflictrequestCountParams,
+    type LaserdeconflictrequestGetParams as LaserdeconflictrequestGetParams,
+    type LaserdeconflictrequestTupleParams as LaserdeconflictrequestTupleParams,
+    type LaserdeconflictrequestUnvalidatedPublishParams as LaserdeconflictrequestUnvalidatedPublishParams,
+  };
+
+  export {
+    Laseremitter as Laseremitter,
+    type LaseremitterListResponse as LaseremitterListResponse,
+    type LaseremitterCountResponse as LaseremitterCountResponse,
+    type LaseremitterGetResponse as LaseremitterGetResponse,
+    type LaseremitterQueryhelpResponse as LaseremitterQueryhelpResponse,
+    type LaseremitterTupleResponse as LaseremitterTupleResponse,
+    type LaseremitterListResponsesOffsetPage as LaseremitterListResponsesOffsetPage,
+    type LaseremitterCreateParams as LaseremitterCreateParams,
+    type LaseremitterUpdateParams as LaseremitterUpdateParams,
+    type LaseremitterListParams as LaseremitterListParams,
+    type LaseremitterCountParams as LaseremitterCountParams,
+    type LaseremitterGetParams as LaseremitterGetParams,
+    type LaseremitterTupleParams as LaseremitterTupleParams,
   };
 
   export {
@@ -4326,6 +4487,8 @@ export declare namespace Unifieddatalibrary {
     type LinkStatusGetParams as LinkStatusGetParams,
     type LinkStatusTupleParams as LinkStatusTupleParams,
   };
+
+  export { Linkstatus as Linkstatus, type LinkstatusUpdateParams as LinkstatusUpdateParams };
 
   export {
     Location as Location,
@@ -4803,6 +4966,8 @@ export declare namespace Unifieddatalibrary {
     type PortTupleParams as PortTupleParams,
   };
 
+  export { ReportAndActivities as ReportAndActivities };
+
   export {
     RfBand as RfBand,
     type RfBandListResponse as RfBandListResponse,
@@ -4851,19 +5016,21 @@ export declare namespace Unifieddatalibrary {
   };
 
   export {
-    RfEmitterDetails as RfEmitterDetails,
-    type RfEmitterDetailListResponse as RfEmitterDetailListResponse,
-    type RfEmitterDetailCountResponse as RfEmitterDetailCountResponse,
-    type RfEmitterDetailGetResponse as RfEmitterDetailGetResponse,
-    type RfEmitterDetailQueryhelpResponse as RfEmitterDetailQueryhelpResponse,
-    type RfEmitterDetailTupleResponse as RfEmitterDetailTupleResponse,
-    type RfEmitterDetailListResponsesOffsetPage as RfEmitterDetailListResponsesOffsetPage,
-    type RfEmitterDetailCreateParams as RfEmitterDetailCreateParams,
-    type RfEmitterDetailUpdateParams as RfEmitterDetailUpdateParams,
-    type RfEmitterDetailListParams as RfEmitterDetailListParams,
-    type RfEmitterDetailCountParams as RfEmitterDetailCountParams,
-    type RfEmitterDetailGetParams as RfEmitterDetailGetParams,
-    type RfEmitterDetailTupleParams as RfEmitterDetailTupleParams,
+    RouteStats as RouteStats,
+    type RouteStatRetrieveResponse as RouteStatRetrieveResponse,
+    type RouteStatListResponse as RouteStatListResponse,
+    type RouteStatCountResponse as RouteStatCountResponse,
+    type RouteStatQueryHelpResponse as RouteStatQueryHelpResponse,
+    type RouteStatTupleResponse as RouteStatTupleResponse,
+    type RouteStatListResponsesOffsetPage as RouteStatListResponsesOffsetPage,
+    type RouteStatCreateParams as RouteStatCreateParams,
+    type RouteStatRetrieveParams as RouteStatRetrieveParams,
+    type RouteStatUpdateParams as RouteStatUpdateParams,
+    type RouteStatListParams as RouteStatListParams,
+    type RouteStatCountParams as RouteStatCountParams,
+    type RouteStatCreateBulkParams as RouteStatCreateBulkParams,
+    type RouteStatTupleParams as RouteStatTupleParams,
+    type RouteStatUnvalidatedPublishParams as RouteStatUnvalidatedPublishParams,
   };
 
   export {
@@ -4900,6 +5067,37 @@ export declare namespace Unifieddatalibrary {
   };
 
   export {
+    Scs as Scs,
+    type SearchCriterion as SearchCriterion,
+    type SearchLogicalCriterion as SearchLogicalCriterion,
+    type ScAllowableFileExtensionsResponse as ScAllowableFileExtensionsResponse,
+    type ScAllowableFileMimesResponse as ScAllowableFileMimesResponse,
+    type ScCopyResponse as ScCopyResponse,
+    type ScFileUploadResponse as ScFileUploadResponse,
+    type ScHasWriteAccessResponse as ScHasWriteAccessResponse,
+    type ScMoveResponse as ScMoveResponse,
+    type ScSearchResponse as ScSearchResponse,
+    type ScDeleteParams as ScDeleteParams,
+    type ScCopyParams as ScCopyParams,
+    type ScDownloadParams as ScDownloadParams,
+    type ScFileDownloadParams as ScFileDownloadParams,
+    type ScFileUploadParams as ScFileUploadParams,
+    type ScHasWriteAccessParams as ScHasWriteAccessParams,
+    type ScMoveParams as ScMoveParams,
+    type ScRenameParams as ScRenameParams,
+    type ScSearchParams as ScSearchParams,
+  };
+
+  export {
+    SecureMessaging as SecureMessaging,
+    type TopicDetails as TopicDetails,
+    type SecureMessagingListTopicsResponse as SecureMessagingListTopicsResponse,
+    type SecureMessagingDescribeTopicParams as SecureMessagingDescribeTopicParams,
+    type SecureMessagingGetLatestOffsetParams as SecureMessagingGetLatestOffsetParams,
+    type SecureMessagingGetMessagesParams as SecureMessagingGetMessagesParams,
+  };
+
+  export {
     Sensor as Sensor,
     type SensorListResponse as SensorListResponse,
     type SensorCountResponse as SensorCountResponse,
@@ -4919,18 +5117,19 @@ export declare namespace Unifieddatalibrary {
     SensorMaintenance as SensorMaintenance,
     type SensorMaintenanceListResponse as SensorMaintenanceListResponse,
     type SensorMaintenanceCountResponse as SensorMaintenanceCountResponse,
-    type SensorMaintenanceCurrentResponse as SensorMaintenanceCurrentResponse,
     type SensorMaintenanceGetResponse as SensorMaintenanceGetResponse,
-    type SensorMaintenanceQueryhelpResponse as SensorMaintenanceQueryhelpResponse,
+    type SensorMaintenanceListCurrentResponse as SensorMaintenanceListCurrentResponse,
+    type SensorMaintenanceQueryHelpResponse as SensorMaintenanceQueryHelpResponse,
     type SensorMaintenanceTupleResponse as SensorMaintenanceTupleResponse,
     type SensorMaintenanceListResponsesOffsetPage as SensorMaintenanceListResponsesOffsetPage,
+    type SensorMaintenanceListCurrentResponsesOffsetPage as SensorMaintenanceListCurrentResponsesOffsetPage,
     type SensorMaintenanceCreateParams as SensorMaintenanceCreateParams,
     type SensorMaintenanceUpdateParams as SensorMaintenanceUpdateParams,
     type SensorMaintenanceListParams as SensorMaintenanceListParams,
     type SensorMaintenanceCountParams as SensorMaintenanceCountParams,
     type SensorMaintenanceCreateBulkParams as SensorMaintenanceCreateBulkParams,
-    type SensorMaintenanceCurrentParams as SensorMaintenanceCurrentParams,
     type SensorMaintenanceGetParams as SensorMaintenanceGetParams,
+    type SensorMaintenanceListCurrentParams as SensorMaintenanceListCurrentParams,
     type SensorMaintenanceTupleParams as SensorMaintenanceTupleParams,
   };
 
@@ -4938,7 +5137,6 @@ export declare namespace Unifieddatalibrary {
     SensorObservationType as SensorObservationType,
     type SensorObservationTypeListResponse as SensorObservationTypeListResponse,
     type SensorObservationTypeGetResponse as SensorObservationTypeGetResponse,
-    type SensorObservationTypeQueryhelpResponse as SensorObservationTypeQueryhelpResponse,
     type SensorObservationTypeListResponsesOffsetPage as SensorObservationTypeListResponsesOffsetPage,
     type SensorObservationTypeListParams as SensorObservationTypeListParams,
     type SensorObservationTypeGetParams as SensorObservationTypeGetParams,
@@ -4965,7 +5163,6 @@ export declare namespace Unifieddatalibrary {
     SensorType as SensorType,
     type SensorTypeListResponse as SensorTypeListResponse,
     type SensorTypeGetResponse as SensorTypeGetResponse,
-    type SensorTypeQueryhelpResponse as SensorTypeQueryhelpResponse,
     type SensorTypeListResponsesOffsetPage as SensorTypeListResponsesOffsetPage,
     type SensorTypeListParams as SensorTypeListParams,
     type SensorTypeGetParams as SensorTypeGetParams,
@@ -5468,6 +5665,8 @@ export declare namespace Unifieddatalibrary {
     type TransponderTupleParams as TransponderTupleParams,
   };
 
+  export { User as User, type UserAuthResponse as UserAuthResponse };
+
   export {
     Vessel as Vessel,
     type VesselListResponse as VesselListResponse,
@@ -5535,71 +5734,6 @@ export declare namespace Unifieddatalibrary {
     type WeatherReportTupleParams as WeatherReportTupleParams,
     type WeatherReportUnvalidatedPublishParams as WeatherReportUnvalidatedPublishParams,
   };
-
-  export { GnssObservations as GnssObservations };
-
-  export {
-    GnssRawIf as GnssRawIf,
-    type GnssRawIfListResponse as GnssRawIfListResponse,
-    type GnssRawIfCountResponse as GnssRawIfCountResponse,
-    type GnssRawIfGetResponse as GnssRawIfGetResponse,
-    type GnssRawIfQueryhelpResponse as GnssRawIfQueryhelpResponse,
-    type GnssRawIfTupleResponse as GnssRawIfTupleResponse,
-    type GnssRawIfListResponsesOffsetPage as GnssRawIfListResponsesOffsetPage,
-    type GnssRawIfListParams as GnssRawIfListParams,
-    type GnssRawIfCountParams as GnssRawIfCountParams,
-    type GnssRawIfFileGetParams as GnssRawIfFileGetParams,
-    type GnssRawIfGetParams as GnssRawIfGetParams,
-    type GnssRawIfTupleParams as GnssRawIfTupleParams,
-    type GnssRawIfUploadZipParams as GnssRawIfUploadZipParams,
-  };
-
-  export {
-    IonoObservations as IonoObservations,
-    type IonoObservationListResponse as IonoObservationListResponse,
-    type IonoObservationCountResponse as IonoObservationCountResponse,
-    type IonoObservationQueryhelpResponse as IonoObservationQueryhelpResponse,
-    type IonoObservationTupleResponse as IonoObservationTupleResponse,
-    type IonoObservationListResponsesOffsetPage as IonoObservationListResponsesOffsetPage,
-    type IonoObservationListParams as IonoObservationListParams,
-    type IonoObservationCountParams as IonoObservationCountParams,
-    type IonoObservationCreateBulkParams as IonoObservationCreateBulkParams,
-    type IonoObservationTupleParams as IonoObservationTupleParams,
-    type IonoObservationUnvalidatedPublishParams as IonoObservationUnvalidatedPublishParams,
-  };
-
-  export { ReportAndActivities as ReportAndActivities };
-
-  export {
-    SecureMessaging as SecureMessaging,
-    type TopicDetails as TopicDetails,
-    type SecureMessagingListTopicsResponse as SecureMessagingListTopicsResponse,
-    type SecureMessagingDescribeTopicParams as SecureMessagingDescribeTopicParams,
-    type SecureMessagingGetLatestOffsetParams as SecureMessagingGetLatestOffsetParams,
-    type SecureMessagingGetMessagesParams as SecureMessagingGetMessagesParams,
-  };
-
-  export {
-    Scs as Scs,
-    type ScAggregateDocTypeResponse as ScAggregateDocTypeResponse,
-    type ScAllowableFileExtensionsResponse as ScAllowableFileExtensionsResponse,
-    type ScAllowableFileMimesResponse as ScAllowableFileMimesResponse,
-    type ScCopyResponse as ScCopyResponse,
-    type ScFileUploadResponse as ScFileUploadResponse,
-    type ScMoveResponse as ScMoveResponse,
-    type ScSearchResponse as ScSearchResponse,
-    type ScDeleteParams as ScDeleteParams,
-    type ScCopyParams as ScCopyParams,
-    type ScDownloadParams as ScDownloadParams,
-    type ScFileDownloadParams as ScFileDownloadParams,
-    type ScFileUploadParams as ScFileUploadParams,
-    type ScMoveParams as ScMoveParams,
-    type ScRenameParams as ScRenameParams,
-    type ScSearchParams as ScSearchParams,
-    type ScUpdateTagsParams as ScUpdateTagsParams,
-  };
-
-  export { ScsViews as ScsViews, type ScsViewRetrieveParams as ScsViewRetrieveParams };
 
   export type AirTaskingOrderFull = API.AirTaskingOrderFull;
   export type AirTransportMissionFull = API.AirTransportMissionFull;

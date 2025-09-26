@@ -24,17 +24,6 @@ describe('resource scs', () => {
     const response = await client.scs.delete({ id: 'id' });
   });
 
-  test('aggregateDocType', async () => {
-    const responsePromise = client.scs.aggregateDocType();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
   test('allowableFileExtensions', async () => {
     const responsePromise = client.scs.allowableFileExtensions();
     const rawResponse = await responsePromise.asResponse();
@@ -73,12 +62,7 @@ describe('resource scs', () => {
   });
 
   test('download: required and optional params', async () => {
-    const response = await client.scs.download({
-      body: [
-        '/processPalantirXml/media/PT_MEDIA6831731772984708680',
-        '/processPalantirXml/media/PT_MEDIA7297147303810886654',
-      ],
-    });
+    const response = await client.scs.download({ body: ['/MyFolderToDownload/'] });
   });
 
   test('fileDownload: required and optional params', async () => {
@@ -113,6 +97,21 @@ describe('resource scs', () => {
         tags: 'tags',
       },
     );
+  });
+
+  test('hasWriteAccess: only required params', async () => {
+    const responsePromise = client.scs.hasWriteAccess({ path: 'path' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('hasWriteAccess: required and optional params', async () => {
+    const response = await client.scs.hasWriteAccess({ path: 'path', firstResult: 0, maxResults: 0 });
   });
 
   test('move: only required params', async () => {
@@ -167,20 +166,5 @@ describe('resource scs', () => {
       rangeCriteria: { foo: ['string'] },
       searchAfter: 'searchAfter',
     });
-  });
-
-  test('updateTags: only required params', async () => {
-    const responsePromise = client.scs.updateTags({ folder: 'folder', tags: 'tags' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('updateTags: required and optional params', async () => {
-    const response = await client.scs.updateTags({ folder: 'folder', tags: 'tags' });
   });
 });

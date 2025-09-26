@@ -1,5 +1,49 @@
 # Changelog
 
+## 0.1.0-alpha.15 (2025-09-26)
+
+Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
+
+### Features
+
+* **api:** adding obs correlation, staging data for emitters, and user auth endpoint ([2fc7091](https://github.com/Bluestaq/udl-node-sdk/commit/2fc7091bc86c565f8461b9074094189a0df6f553))
+* **api:** api update ([ec0560a](https://github.com/Bluestaq/udl-node-sdk/commit/ec0560a74c42fd0a85bbf7daf6f36b71a172dbb1))
+* **api:** api update ([c63c4fc](https://github.com/Bluestaq/udl-node-sdk/commit/c63c4fcc3cb7291871a04d611e000018473ab60f))
+* **api:** api update ([cba1ba6](https://github.com/Bluestaq/udl-node-sdk/commit/cba1ba605b3617da4e8781050ffbbd32e900dcee))
+* **api:** manual updates ([f5c2ede](https://github.com/Bluestaq/udl-node-sdk/commit/f5c2ede527da454d8498f2ee56ae05d81cdeeac3))
+* **api:** removing old routes ([1b6d75a](https://github.com/Bluestaq/udl-node-sdk/commit/1b6d75ac24cf3ea45a96f43bab4b9a53147b082a))
+* **api:** Support for latest UDL release ([e016646](https://github.com/Bluestaq/udl-node-sdk/commit/e016646c5d51c10f29c65e1f84ca401d3e1b21ce))
+* **mcp:** add docs search tool ([6168137](https://github.com/Bluestaq/udl-node-sdk/commit/6168137bbcd06e4ce86b9089abcb76cdd83b5c1d))
+* **mcp:** add option for including docs tools ([de92d9b](https://github.com/Bluestaq/udl-node-sdk/commit/de92d9bda84cc906d8afb7de9b096f15e18c8e80))
+* **mcp:** enable experimental docs search tool ([8d9d17c](https://github.com/Bluestaq/udl-node-sdk/commit/8d9d17c1b56e00e6a41e1345259e6599299efd8a))
+
+
+### Bug Fixes
+
+* coerce nullable values to undefined ([e282f3b](https://github.com/Bluestaq/udl-node-sdk/commit/e282f3bca4621bb7612954f362a1046b4e249800))
+* **mcp:** fix query options parsing ([a6e7566](https://github.com/Bluestaq/udl-node-sdk/commit/a6e7566375f2bc9e61a41c68a6659ae0dbab9abb))
+* **mcp:** fix uploading dxt release assets ([6d7b96e](https://github.com/Bluestaq/udl-node-sdk/commit/6d7b96e2adffffc82648e3ff51eea5d48a8af0c2))
+
+
+### Performance Improvements
+
+* faster formatting ([a02f4f9](https://github.com/Bluestaq/udl-node-sdk/commit/a02f4f93340ed7f7c5de0ed756a055a51d5a88af))
+
+
+### Chores
+
+* ci build action ([caf2b95](https://github.com/Bluestaq/udl-node-sdk/commit/caf2b95513ba3557ac0388851cd69851a8122a8c))
+* **codegen:** internal codegen update ([39afa52](https://github.com/Bluestaq/udl-node-sdk/commit/39afa528a69262a02aad437c8e7d5a40dcf97b20))
+* do not install brew dependencies in ./scripts/bootstrap by default ([d690d49](https://github.com/Bluestaq/udl-node-sdk/commit/d690d49684cefbafbcc3d3fbf3d2de5e02ce1190))
+* **internal:** codegen related update ([e965413](https://github.com/Bluestaq/udl-node-sdk/commit/e9654135ab4120ae2d7eebceae573346778a75b3))
+* **internal:** codegen related update ([9f02a3a](https://github.com/Bluestaq/udl-node-sdk/commit/9f02a3a32e986187902d65b441220b3c141b5ab6))
+* **internal:** fix incremental formatting in some cases ([66cde3a](https://github.com/Bluestaq/udl-node-sdk/commit/66cde3a02193bdaf0558f13648f5344280019d13))
+* **internal:** gitignore .mcpb files ([3c1a2d2](https://github.com/Bluestaq/udl-node-sdk/commit/3c1a2d2bc92c04078fe783574415ce6f8923c630))
+* **internal:** remove deprecated `compilerOptions.baseUrl` from tsconfig.json ([fc5e0e8](https://github.com/Bluestaq/udl-node-sdk/commit/fc5e0e8aaa92851cdad9d0e2abbb07a8ce28f075))
+* **internal:** version bump ([940ecda](https://github.com/Bluestaq/udl-node-sdk/commit/940ecda7e12e860b8b27e71c3d803d2049775182))
+* **mcp:** rename dxt to mcpb ([c35a677](https://github.com/Bluestaq/udl-node-sdk/commit/c35a677ce0e84ff382fd909014f6919cc369dddf))
+* **mcp:** upload dxt as release asset ([b775bdc](https://github.com/Bluestaq/udl-node-sdk/commit/b775bdc55e92ab3be1acdafeb1300ed17532260c))
+
 ## 0.1.0-alpha.14 (2025-09-03)
 
 Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)

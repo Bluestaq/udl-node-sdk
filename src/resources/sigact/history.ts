@@ -109,12 +109,6 @@ export interface HistoryListResponse {
   andims?: number;
 
   /**
-   * Optional geographical region or polygon (lat/lon pairs) of the area surrounding
-   * the point of interest as projected on the ground.
-   */
-  area?: string;
-
-  /**
    * Geographical spatial_ref_sys for region.
    */
   asrid?: number;

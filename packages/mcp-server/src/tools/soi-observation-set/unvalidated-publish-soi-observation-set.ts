@@ -242,6 +242,14 @@ export const tool: Tool = {
                     description:
                       'The reference number, x, where x ranges from 1 to n, where n is the number specified in spectralFilters that corresponds to the spectral filter used.',
                   },
+                  declinationRates: {
+                    type: 'array',
+                    description:
+                      "Array of declination rate values, in degrees per second, measuring the rate speed at which an object's declination changes over time, for each element in the intensities field, at the middle of the frame's exposure time.",
+                    items: {
+                      type: 'number',
+                    },
+                  },
                   declinations: {
                     type: 'array',
                     description:
@@ -603,7 +611,7 @@ export const tool: Tool = {
                   rangeAccels: {
                     type: 'array',
                     description:
-                      "Array of the range acceleratons of target in kilometers per second squared. The 'tovs' and 'rangeAccels' arrays must match in size, if 'rangeAccels' is provided. If there is an associated image the range acceleration is assumed to be at image center.",
+                      "Array of the range accelerations of target in kilometers per second squared. The 'tovs' and 'rangeAccels' arrays must match in size, if 'rangeAccels' is provided. If there is an associated image the range acceleration is assumed to be at image center.",
                     items: {
                       type: 'number',
                     },

@@ -95,6 +95,25 @@ describe('resource featureAssessment', () => {
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
+  test('list: only required params', async () => {
+    const responsePromise = client.featureAssessment.list({ idAnalyticImagery: 'idAnalyticImagery' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await client.featureAssessment.list({
+      idAnalyticImagery: 'idAnalyticImagery',
+      firstResult: 0,
+      maxResults: 0,
+    });
+  });
+
   test('count: only required params', async () => {
     const responsePromise = client.featureAssessment.count({ idAnalyticImagery: 'idAnalyticImagery' });
     const rawResponse = await responsePromise.asResponse();
@@ -183,25 +202,6 @@ describe('resource featureAssessment', () => {
           width: 3.74,
         },
       ],
-    });
-  });
-
-  test('query: only required params', async () => {
-    const responsePromise = client.featureAssessment.query({ idAnalyticImagery: 'idAnalyticImagery' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('query: required and optional params', async () => {
-    const response = await client.featureAssessment.query({
-      idAnalyticImagery: 'idAnalyticImagery',
-      firstResult: 0,
-      maxResults: 0,
     });
   });
 

@@ -19,18 +19,13 @@ export {
   AircraftSorties,
   type AircraftsortieAbridged,
   type AircraftSortyCountResponse,
-  type AircraftSortyHistoryCountResponse,
-  type AircraftSortyHistoryQueryResponse,
   type AircraftSortyCreateParams,
   type AircraftSortyListParams,
   type AircraftSortyCountParams,
   type AircraftSortyCreateBulkParams,
-  type AircraftSortyHistoryAodrParams,
-  type AircraftSortyHistoryCountParams,
-  type AircraftSortyHistoryQueryParams,
   type AircraftSortyUnvalidatedPublishParams,
   type AircraftsortieAbridgedsOffsetPage,
-} from './aircraft-sorties';
+} from './aircraft-sorties/index';
 export {
   AirspaceControlOrders,
   type AirspaceControlOrderUnvalidatedPublishParams,

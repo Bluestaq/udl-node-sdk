@@ -9,18 +9,19 @@ export {
   type GroundImageryTupleResponse,
   type GroundImageryCreateParams,
   type GroundImageryListParams,
+  type GroundImageryAodrParams,
   type GroundImageryCountParams,
   type GroundImageryGetParams,
   type GroundImageryGetFileParams,
-  type GroundImageryHistoryAodrParams,
   type GroundImageryTupleParams,
   type GroundImageryUploadZipParams,
   type GroundImageryListResponsesOffsetPage,
 } from './ground-imagery';
 export {
   History,
+  type HistoryListResponse,
   type HistoryCountResponse,
-  type HistoryQueryResponse,
+  type HistoryListParams,
   type HistoryCountParams,
-  type HistoryQueryParams,
+  type HistoryListResponsesOffsetPage,
 } from './history';

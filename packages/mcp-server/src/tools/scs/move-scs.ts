@@ -23,7 +23,7 @@ export const tool: Tool = {
     properties: {
       id: {
         type: 'string',
-        description: 'The path of the item to copy',
+        description: 'The path of the item to move',
       },
       targetPath: {
         type: 'string',

@@ -1277,6 +1277,13 @@ export namespace SoiObservationSetCreateParams {
     currentSpectralFilterNum?: number;
 
     /**
+     * Array of declination rate values, in degrees per second, measuring the rate
+     * speed at which an object's declination changes over time, for each element in
+     * the intensities field, at the middle of the frame's exposure time.
+     */
+    declinationRates?: Array<number>;
+
+    /**
      * Array of declination values, in degrees, of the Target object from the frame of
      * reference of the sensor. A value is provided for each element in the intensities
      * field, at the middle of the frame’s exposure time.
@@ -1518,7 +1525,7 @@ export namespace SoiObservationSetCreateParams {
     pulseBandwidth?: number;
 
     /**
-     * Array of the range acceleratons of target in kilometers per second squared. The
+     * Array of the range accelerations of target in kilometers per second squared. The
      * 'tovs' and 'rangeAccels' arrays must match in size, if 'rangeAccels' is
      * provided. If there is an associated image the range acceleration is assumed to
      * be at image center.
@@ -2186,6 +2193,13 @@ export namespace SoiObservationSetCreateBulkParams {
       currentSpectralFilterNum?: number;
 
       /**
+       * Array of declination rate values, in degrees per second, measuring the rate
+       * speed at which an object's declination changes over time, for each element in
+       * the intensities field, at the middle of the frame's exposure time.
+       */
+      declinationRates?: Array<number>;
+
+      /**
        * Array of declination values, in degrees, of the Target object from the frame of
        * reference of the sensor. A value is provided for each element in the intensities
        * field, at the middle of the frame’s exposure time.
@@ -2427,7 +2441,7 @@ export namespace SoiObservationSetCreateBulkParams {
       pulseBandwidth?: number;
 
       /**
-       * Array of the range acceleratons of target in kilometers per second squared. The
+       * Array of the range accelerations of target in kilometers per second squared. The
        * 'tovs' and 'rangeAccels' arrays must match in size, if 'rangeAccels' is
        * provided. If there is an associated image the range acceleration is assumed to
        * be at image center.
@@ -3102,6 +3116,13 @@ export namespace SoiObservationSetUnvalidatedPublishParams {
       currentSpectralFilterNum?: number;
 
       /**
+       * Array of declination rate values, in degrees per second, measuring the rate
+       * speed at which an object's declination changes over time, for each element in
+       * the intensities field, at the middle of the frame's exposure time.
+       */
+      declinationRates?: Array<number>;
+
+      /**
        * Array of declination values, in degrees, of the Target object from the frame of
        * reference of the sensor. A value is provided for each element in the intensities
        * field, at the middle of the frame’s exposure time.
@@ -3343,7 +3364,7 @@ export namespace SoiObservationSetUnvalidatedPublishParams {
       pulseBandwidth?: number;
 
       /**
-       * Array of the range acceleratons of target in kilometers per second squared. The
+       * Array of the range accelerations of target in kilometers per second squared. The
        * 'tovs' and 'rangeAccels' arrays must match in size, if 'rangeAccels' is
        * provided. If there is an associated image the range acceleration is assumed to
        * be at image center.

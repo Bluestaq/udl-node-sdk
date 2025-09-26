@@ -430,11 +430,6 @@ export const tool: Tool = {
               description:
                 'The originating source network on which this record was created, auto-populated by the system.',
             },
-            rawFileURI: {
-              type: 'string',
-              description:
-                'Optional URI location in the document repository of the raw file parsed by the system to produce this record. To download the raw file, prepend https://udl-hostname/scs/download?id= to this value.',
-            },
             sourceDL: {
               type: 'string',
               description:

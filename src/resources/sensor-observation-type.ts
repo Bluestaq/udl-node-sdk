@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
 import { RequestOptions } from '../internal/request-options';
@@ -25,14 +24,6 @@ export class SensorObservationType extends APIResource {
     options?: RequestOptions,
   ): APIPromise<SensorObservationTypeGetResponse> {
     return this._client.get(path`/udl/sensorobservationtype/${id}`, { query, ...options });
-  }
-
-  /**
-   * Service operation to provide detailed information on available dynamic query
-   * parameters for a particular data type.
-   */
-  queryhelp(options?: RequestOptions): APIPromise<SensorObservationTypeQueryhelpResponse> {
-    return this._client.get('/udl/sensorobservationtype/queryhelp', options);
   }
 }
 
@@ -130,30 +121,6 @@ export interface SensorObservationTypeGetResponse {
   updatedBy?: string;
 }
 
-export interface SensorObservationTypeQueryhelpResponse {
-  aodrSupported?: boolean;
-
-  classificationMarking?: string;
-
-  description?: string;
-
-  historySupported?: boolean;
-
-  name?: string;
-
-  parameters?: Array<Shared.ParamDescriptor>;
-
-  requiredRoles?: Array<string>;
-
-  restSupported?: boolean;
-
-  sortSupported?: boolean;
-
-  typeName?: string;
-
-  uri?: string;
-}
-
 export interface SensorObservationTypeListParams extends OffsetPageParams {}
 
 export interface SensorObservationTypeGetParams {
@@ -166,7 +133,6 @@ export declare namespace SensorObservationType {
   export {
     type SensorObservationTypeListResponse as SensorObservationTypeListResponse,
     type SensorObservationTypeGetResponse as SensorObservationTypeGetResponse,
-    type SensorObservationTypeQueryhelpResponse as SensorObservationTypeQueryhelpResponse,
     type SensorObservationTypeListResponsesOffsetPage as SensorObservationTypeListResponsesOffsetPage,
     type SensorObservationTypeListParams as SensorObservationTypeListParams,
     type SensorObservationTypeGetParams as SensorObservationTypeGetParams,

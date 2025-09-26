@@ -9,6 +9,49 @@ const client = new Unifieddatalibrary({
 });
 
 describe('resource history', () => {
+  test('list: only required params', async () => {
+    const responsePromise = client.featureAssessment.history.list({ idAnalyticImagery: 'idAnalyticImagery' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('list: required and optional params', async () => {
+    const response = await client.featureAssessment.history.list({
+      idAnalyticImagery: 'idAnalyticImagery',
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
+  });
+
+  test('aodr: only required params', async () => {
+    const responsePromise = client.featureAssessment.history.aodr({ idAnalyticImagery: 'idAnalyticImagery' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('aodr: required and optional params', async () => {
+    const response = await client.featureAssessment.history.aodr({
+      idAnalyticImagery: 'idAnalyticImagery',
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+      notification: 'notification',
+      outputDelimiter: 'outputDelimiter',
+      outputFormat: 'outputFormat',
+    });
+  });
+
   test('count: only required params', async () => {
     const responsePromise = client.featureAssessment.history.count({
       idAnalyticImagery: 'idAnalyticImagery',
@@ -27,53 +70,6 @@ describe('resource history', () => {
       idAnalyticImagery: 'idAnalyticImagery',
       firstResult: 0,
       maxResults: 0,
-    });
-  });
-
-  test('query: only required params', async () => {
-    const responsePromise = client.featureAssessment.history.query({
-      idAnalyticImagery: 'idAnalyticImagery',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('query: required and optional params', async () => {
-    const response = await client.featureAssessment.history.query({
-      idAnalyticImagery: 'idAnalyticImagery',
-      columns: 'columns',
-      firstResult: 0,
-      maxResults: 0,
-    });
-  });
-
-  test('writeAodr: only required params', async () => {
-    const responsePromise = client.featureAssessment.history.writeAodr({
-      idAnalyticImagery: 'idAnalyticImagery',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('writeAodr: required and optional params', async () => {
-    const response = await client.featureAssessment.history.writeAodr({
-      idAnalyticImagery: 'idAnalyticImagery',
-      columns: 'columns',
-      firstResult: 0,
-      maxResults: 0,
-      notification: 'notification',
-      outputDelimiter: 'outputDelimiter',
-      outputFormat: 'outputFormat',
     });
   });
 });

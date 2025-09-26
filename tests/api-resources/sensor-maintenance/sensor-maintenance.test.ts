@@ -232,27 +232,6 @@ describe('resource sensorMaintenance', () => {
     });
   });
 
-  test('current', async () => {
-    const responsePromise = client.sensorMaintenance.current();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('current: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.sensorMaintenance.current(
-        { firstResult: 0, maxResults: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
-  });
-
   test('get', async () => {
     const responsePromise = client.sensorMaintenance.get('id');
     const rawResponse = await responsePromise.asResponse();
@@ -275,8 +254,29 @@ describe('resource sensorMaintenance', () => {
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
-  test('queryhelp', async () => {
-    const responsePromise = client.sensorMaintenance.queryhelp();
+  test('listCurrent', async () => {
+    const responsePromise = client.sensorMaintenance.listCurrent();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('listCurrent: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.sensorMaintenance.listCurrent(
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+  });
+
+  test('queryHelp', async () => {
+    const responsePromise = client.sensorMaintenance.queryHelp();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

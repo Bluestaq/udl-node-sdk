@@ -5,13 +5,15 @@ import * as Shared from '../shared';
 import * as HistoryAPI from './history';
 import {
   History,
+  HistoryAodrParams,
   HistoryCountParams,
   HistoryCountResponse,
-  HistoryQueryParams,
-  HistoryQueryResponse,
-  HistoryWriteAodrParams,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
 } from './history';
 import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -60,6 +62,32 @@ export class FeatureAssessment extends APIResource {
     options?: RequestOptions,
   ): APIPromise<FeatureAssessmentRetrieveResponse> {
     return this._client.get(path`/udl/featureassessment/${id}`, { query, ...options });
+  }
+
+  /**
+   * Service operation to dynamically query data by a variety of query parameters not
+   * specified in this API documentation. See the queryhelp operation
+   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+   * parameter information.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const featureAssessmentListResponse of client.featureAssessment.list(
+   *   { idAnalyticImagery: 'idAnalyticImagery' },
+   * )) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: FeatureAssessmentListParams,
+    options?: RequestOptions,
+  ): PagePromise<FeatureAssessmentListResponsesOffsetPage, FeatureAssessmentListResponse> {
+    return this._client.getAPIList('/udl/featureassessment', OffsetPage<FeatureAssessmentListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -115,26 +143,6 @@ export class FeatureAssessment extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
-  }
-
-  /**
-   * Service operation to dynamically query data by a variety of query parameters not
-   * specified in this API documentation. See the queryhelp operation
-   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-   * parameter information.
-   *
-   * @example
-   * ```ts
-   * const response = await client.featureAssessment.query({
-   *   idAnalyticImagery: 'idAnalyticImagery',
-   * });
-   * ```
-   */
-  query(
-    query: FeatureAssessmentQueryParams,
-    options?: RequestOptions,
-  ): APIPromise<FeatureAssessmentQueryResponse> {
-    return this._client.get('/udl/featureassessment', { query, ...options });
   }
 
   /**
@@ -210,6 +218,8 @@ export class FeatureAssessment extends APIResource {
     });
   }
 }
+
+export type FeatureAssessmentListResponsesOffsetPage = OffsetPage<FeatureAssessmentListResponse>;
 
 /**
  * Feature assessments obtained from imagery analysis or other data analytics.
@@ -299,12 +309,6 @@ export interface FeatureAssessmentRetrieveResponse {
    * should contain one annotation per four values of the area (annLims) array.
    */
   annText?: Array<string>;
-
-  /**
-   * Optional geographical region or polygon (lat/lon pairs) of the area surrounding
-   * the feature assessment as projected on the ground.
-   */
-  area?: string;
 
   /**
    * Geographical spatial_ref_sys for region.
@@ -509,295 +513,290 @@ export interface FeatureAssessmentRetrieveResponse {
   width?: number;
 }
 
-export type FeatureAssessmentCountResponse = string;
-
-export type FeatureAssessmentQueryResponse =
-  Array<FeatureAssessmentQueryResponse.FeatureAssessmentQueryResponseItem>;
-
-export namespace FeatureAssessmentQueryResponse {
+/**
+ * Feature assessments obtained from imagery analysis or other data analytics.
+ * Feature assessments are georeferenced terrestrial features such as marine
+ * vessels, vehicles, buildings, etc., or contain other types of non terrestrial
+ * assessments such as spacecraft structures. Geospatial queries are supported
+ * through either the regionText (WKT) or regionGeoJSON fields.
+ */
+export interface FeatureAssessmentListResponse {
   /**
-   * Feature assessments obtained from imagery analysis or other data analytics.
-   * Feature assessments are georeferenced terrestrial features such as marine
-   * vessels, vehicles, buildings, etc., or contain other types of non terrestrial
-   * assessments such as spacecraft structures. Geospatial queries are supported
-   * through either the regionText (WKT) or regionGeoJSON fields.
+   * Classification marking of the data in IC/CAPCO Portion-marked format.
    */
-  export interface FeatureAssessmentQueryResponseItem {
-    /**
-     * Classification marking of the data in IC/CAPCO Portion-marked format.
-     */
-    classificationMarking: string;
+  classificationMarking: string;
 
-    /**
-     * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-     *
-     * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-     * may include both real and simulated data.
-     *
-     * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-     * events, and analysis.
-     *
-     * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-     * datasets.
-     *
-     * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-     * requirements, and for validating technical, functional, and performance
-     * characteristics.
-     */
-    dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
+  /**
+   * Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+   *
+   * EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+   * may include both real and simulated data.
+   *
+   * REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+   * events, and analysis.
+   *
+   * SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+   * datasets.
+   *
+   * TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+   * requirements, and for validating technical, functional, and performance
+   * characteristics.
+   */
+  dataMode: 'REAL' | 'TEST' | 'SIMULATED' | 'EXERCISE';
 
-    /**
-     * Datetime type value associated with this record, in ISO 8601 UTC format with
-     * millisecond precision.
-     */
-    featureTs: string;
+  /**
+   * Datetime type value associated with this record, in ISO 8601 UTC format with
+   * millisecond precision.
+   */
+  featureTs: string;
 
-    /**
-     * The Unit of Measure associated with this feature. If there are no physical units
-     * associated with the feature a value of NONE should be specified.
-     */
-    featureUoM: string;
+  /**
+   * The Unit of Measure associated with this feature. If there are no physical units
+   * associated with the feature a value of NONE should be specified.
+   */
+  featureUoM: string;
 
-    /**
-     * Unique identifier of the Analytic Imagery associated with this Feature
-     * Assessment record.
-     */
-    idAnalyticImagery: string;
+  /**
+   * Unique identifier of the Analytic Imagery associated with this Feature
+   * Assessment record.
+   */
+  idAnalyticImagery: string;
 
-    /**
-     * Source of the data.
-     */
-    source: string;
+  /**
+   * Source of the data.
+   */
+  source: string;
 
-    /**
-     * Unique identifier of the record, auto-generated by the system.
-     */
-    id?: string;
+  /**
+   * Unique identifier of the record, auto-generated by the system.
+   */
+  id?: string;
 
-    /**
-     * Geographical region or polygon (lat/lon pairs), as depicted by the GeoJSON
-     * representation of the geometry/geography, of the feature assessment as projected
-     * on the ground. GeoJSON Reference: https://geojson.org/. Ignored if included with
-     * a POST or PUT request that also specifies a valid 'area' or 'atext' field.
-     */
-    agjson?: string;
+  /**
+   * Geographical region or polygon (lat/lon pairs), as depicted by the GeoJSON
+   * representation of the geometry/geography, of the feature assessment as projected
+   * on the ground. GeoJSON Reference: https://geojson.org/. Ignored if included with
+   * a POST or PUT request that also specifies a valid 'area' or 'atext' field.
+   */
+  agjson?: string;
 
-    /**
-     * Number of dimensions of the geometry depicted by region.
-     */
-    andims?: number;
+  /**
+   * Number of dimensions of the geometry depicted by region.
+   */
+  andims?: number;
 
-    /**
-     * Polygonal annotation limits, specified in pixels, as an array of arrays N x M.
-     * Allows the image provider to highlight one or more polygonal area(s) of
-     * interest. The array must contain NxM two-element arrays, where N is the number
-     * of polygons of interest. The associated annotation(s) should be included in the
-     * annText array.
-     */
-    annLims?: Array<Array<number>>;
+  /**
+   * Polygonal annotation limits, specified in pixels, as an array of arrays N x M.
+   * Allows the image provider to highlight one or more polygonal area(s) of
+   * interest. The array must contain NxM two-element arrays, where N is the number
+   * of polygons of interest. The associated annotation(s) should be included in the
+   * annText array.
+   */
+  annLims?: Array<Array<number>>;
 
-    /**
-     * Annotation text, a string array of annotation(s) corresponding to the
-     * rectangular areas specified in annLims. This array contains the annotation text
-     * associated with the areas of interest indicated in annLims, in order. This array
-     * should contain one annotation per four values of the area (annLims) array.
-     */
-    annText?: Array<string>;
+  /**
+   * Annotation text, a string array of annotation(s) corresponding to the
+   * rectangular areas specified in annLims. This array contains the annotation text
+   * associated with the areas of interest indicated in annLims, in order. This array
+   * should contain one annotation per four values of the area (annLims) array.
+   */
+  annText?: Array<string>;
 
-    /**
-     * Geographical spatial_ref_sys for region.
-     */
-    asrid?: number;
+  /**
+   * Geographical spatial_ref_sys for region.
+   */
+  asrid?: number;
 
-    /**
-     * Descriptive or additional information associated with this feature/assessment.
-     */
-    assessment?: string;
+  /**
+   * Descriptive or additional information associated with this feature/assessment.
+   */
+  assessment?: string;
 
-    /**
-     * Geographical region or polygon (lon/lat pairs), as depicted by the Well-Known
-     * Text representation of the geometry/geography, of the feature assessment as
-     * projected on the ground. WKT reference:
-     * https://www.opengeospatial.org/standards/wkt-crs. Ignored if included with a
-     * POST or PUT request that also specifies a valid 'area' field.
-     */
-    atext?: string;
+  /**
+   * Geographical region or polygon (lon/lat pairs), as depicted by the Well-Known
+   * Text representation of the geometry/geography, of the feature assessment as
+   * projected on the ground. WKT reference:
+   * https://www.opengeospatial.org/standards/wkt-crs. Ignored if included with a
+   * POST or PUT request that also specifies a valid 'area' field.
+   */
+  atext?: string;
 
-    /**
-     * Type of region as projected on the ground (POLYGON, POINT, LINE).
-     */
-    atype?: string;
+  /**
+   * Type of region as projected on the ground (POLYGON, POINT, LINE).
+   */
+  atype?: string;
 
-    /**
-     * Analytic confidence of feature accuracy (0 to 1).
-     */
-    confidence?: number;
+  /**
+   * Analytic confidence of feature accuracy (0 to 1).
+   */
+  confidence?: number;
 
-    /**
-     * Time the row was created in the database, auto-populated by the system.
-     */
-    createdAt?: string;
+  /**
+   * Time the row was created in the database, auto-populated by the system.
+   */
+  createdAt?: string;
 
-    /**
-     * Application user who created the row in the database, auto-populated by the
-     * system.
-     */
-    createdBy?: string;
+  /**
+   * Application user who created the row in the database, auto-populated by the
+   * system.
+   */
+  createdBy?: string;
 
-    /**
-     * Feature Assessment ID from external systems. This field has no meaning within
-     * UDL and is provided as a convenience for systems that require tracking of an
-     * internal system generated ID.
-     */
-    externalId?: string;
+  /**
+   * Feature Assessment ID from external systems. This field has no meaning within
+   * UDL and is provided as a convenience for systems that require tracking of an
+   * internal system generated ID.
+   */
+  externalId?: string;
 
-    /**
-     * An array of numeric feature/assessment values expressed in the specified unit of
-     * measure (obUoM). Because of the variability of the Feature Assessment data
-     * types, each record may employ a numeric observation value (featureValue), a
-     * string observation value (featureString), a Boolean observation value
-     * (featureBool), an array of numeric observation values (featureArray), or any
-     * combination of these.
-     */
-    featureArray?: Array<number>;
+  /**
+   * An array of numeric feature/assessment values expressed in the specified unit of
+   * measure (obUoM). Because of the variability of the Feature Assessment data
+   * types, each record may employ a numeric observation value (featureValue), a
+   * string observation value (featureString), a Boolean observation value
+   * (featureBool), an array of numeric observation values (featureArray), or any
+   * combination of these.
+   */
+  featureArray?: Array<number>;
 
-    /**
-     * A boolean feature/assessment. Because of the variability of the Feature
-     * Assessment data types, each record may employ a numeric observation value
-     * (featureValue), a string observation value (featureString), a Boolean
-     * observation value (featureBool), an array of numeric observation values
-     * (featureArray), or any combination of these.
-     */
-    featureBool?: boolean;
+  /**
+   * A boolean feature/assessment. Because of the variability of the Feature
+   * Assessment data types, each record may employ a numeric observation value
+   * (featureValue), a string observation value (featureString), a Boolean
+   * observation value (featureBool), an array of numeric observation values
+   * (featureArray), or any combination of these.
+   */
+  featureBool?: boolean;
 
-    /**
-     * A single feature/assessment string expressed in the specified unit of measure
-     * (obUoM). Because of the variability of the Feature Assessment data types, each
-     * record may employ a numeric observation value (featureValue), a string
-     * observation value (featureString), a Boolean observation value (featureBool), an
-     * array of numeric observation values (featureArray), or any combination of these.
-     */
-    featureString?: string;
+  /**
+   * A single feature/assessment string expressed in the specified unit of measure
+   * (obUoM). Because of the variability of the Feature Assessment data types, each
+   * record may employ a numeric observation value (featureValue), a string
+   * observation value (featureString), a Boolean observation value (featureBool), an
+   * array of numeric observation values (featureArray), or any combination of these.
+   */
+  featureString?: string;
 
-    /**
-     * An array of string feature/assessment expressions. Because of the variability of
-     * the Feature Assessment data types, each record may employ a numeric observation
-     * value (featureValue), a string observation value (featureString), a Boolean
-     * observation value (featureBool), an array of numeric observation values
-     * (featureArray), or any combination of these.
-     */
-    featureStringArray?: Array<string>;
+  /**
+   * An array of string feature/assessment expressions. Because of the variability of
+   * the Feature Assessment data types, each record may employ a numeric observation
+   * value (featureValue), a string observation value (featureString), a Boolean
+   * observation value (featureBool), an array of numeric observation values
+   * (featureArray), or any combination of these.
+   */
+  featureStringArray?: Array<string>;
 
-    /**
-     * A single feature/assessment value expressed in the specified unit of measure
-     * (obUoM). Because of the variability of the Feature Assessment data types, each
-     * record may employ a numeric observation value (featureValue), a string
-     * observation value (featureString), a Boolean observation value (featureBool), an
-     * array of numeric observation values (featureArray), or any combination of these.
-     */
-    featureValue?: number;
+  /**
+   * A single feature/assessment value expressed in the specified unit of measure
+   * (obUoM). Because of the variability of the Feature Assessment data types, each
+   * record may employ a numeric observation value (featureValue), a string
+   * observation value (featureString), a Boolean observation value (featureBool), an
+   * array of numeric observation values (featureArray), or any combination of these.
+   */
+  featureValue?: number;
 
-    /**
-     * The feature object heading, in degrees clockwise from true North at the object
-     * location.
-     */
-    heading?: number;
+  /**
+   * The feature object heading, in degrees clockwise from true North at the object
+   * location.
+   */
+  heading?: number;
 
-    /**
-     * Estimated physical height of the feature, in meters.
-     */
-    height?: number;
+  /**
+   * Estimated physical height of the feature, in meters.
+   */
+  height?: number;
 
-    /**
-     * Estimated physical length of the feature, in meters.
-     */
-    length?: number;
+  /**
+   * Estimated physical length of the feature, in meters.
+   */
+  length?: number;
 
-    /**
-     * Source defined name of the feature associated with this record. If an annotation
-     * for this feature element exists on the parent image it can be referenced here.
-     */
-    name?: string;
+  /**
+   * Source defined name of the feature associated with this record. If an annotation
+   * for this feature element exists on the parent image it can be referenced here.
+   */
+  name?: string;
 
-    /**
-     * Originating system or organization which produced the data, if different from
-     * the source. The origin may be different than the source if the source was a
-     * mediating system which forwarded the data on behalf of the origin system. If
-     * null, the source may be assumed to be the origin.
-     */
-    origin?: string;
+  /**
+   * Originating system or organization which produced the data, if different from
+   * the source. The origin may be different than the source if the source was a
+   * mediating system which forwarded the data on behalf of the origin system. If
+   * null, the source may be assumed to be the origin.
+   */
+  origin?: string;
 
-    /**
-     * The originating source network on which this record was created, auto-populated
-     * by the system.
-     */
-    origNetwork?: string;
+  /**
+   * The originating source network on which this record was created, auto-populated
+   * by the system.
+   */
+  origNetwork?: string;
 
-    /**
-     * The source data library from which this record was received. This could be a
-     * remote or tactical UDL or another data library. If null, the record should be
-     * assumed to have originated from the primary Enterprise UDL.
-     */
-    sourceDL?: string;
+  /**
+   * The source data library from which this record was received. This could be a
+   * remote or tactical UDL or another data library. If null, the record should be
+   * assumed to have originated from the primary Enterprise UDL.
+   */
+  sourceDL?: string;
 
-    /**
-     * Feature's speed of travel, in meters per second.
-     */
-    speed?: number;
+  /**
+   * Feature's speed of travel, in meters per second.
+   */
+  speed?: number;
 
-    /**
-     * Array of UUIDs of the UDL data records that are related to the determination of
-     * this activity or event. See the associated 'srcTyps' array for the specific
-     * types of data, positionally corresponding to the UUIDs in this array. The
-     * 'srcTyps', 'srcIds', and 'srcTs' arrays must contain the same number of
-     * elements. See the corresponding srcTyps array element for the data type of the
-     * UUID and use the appropriate API operation to retrieve that object.
-     */
-    srcIds?: Array<string>;
+  /**
+   * Array of UUIDs of the UDL data records that are related to the determination of
+   * this activity or event. See the associated 'srcTyps' array for the specific
+   * types of data, positionally corresponding to the UUIDs in this array. The
+   * 'srcTyps', 'srcIds', and 'srcTs' arrays must contain the same number of
+   * elements. See the corresponding srcTyps array element for the data type of the
+   * UUID and use the appropriate API operation to retrieve that object.
+   */
+  srcIds?: Array<string>;
 
-    /**
-     * Array of the primary timestamps, in ISO 8601 UTC format, with appropriate
-     * precision for the datatype of each correspondng srcTyp/srcId record. See the
-     * associated 'srcTyps' and 'srcIds' arrays for the record type and UUID,
-     * respectively, positionally corresponding to the record types in this array. The
-     * 'srcTyps', 'srcIds', and 'srcTs' arrays must contain the same number of
-     * elements. These timestamps are included to support services which do not include
-     * a GET by {id} operation. If referencing a datatype which does not include a
-     * primary timestamp, the corresponding srcTs array element should be included as
-     * null.
-     */
-    srcTs?: Array<string>;
+  /**
+   * Array of the primary timestamps, in ISO 8601 UTC format, with appropriate
+   * precision for the datatype of each correspondng srcTyp/srcId record. See the
+   * associated 'srcTyps' and 'srcIds' arrays for the record type and UUID,
+   * respectively, positionally corresponding to the record types in this array. The
+   * 'srcTyps', 'srcIds', and 'srcTs' arrays must contain the same number of
+   * elements. These timestamps are included to support services which do not include
+   * a GET by {id} operation. If referencing a datatype which does not include a
+   * primary timestamp, the corresponding srcTs array element should be included as
+   * null.
+   */
+  srcTs?: Array<string>;
 
-    /**
-     * Array of UDL record types (AIS, GROUNDIMAGE, MTI, ONORBIT, POI, SAR, SKYIMAGE,
-     * SOI, TRACK) related to this feature assessment. See the associated 'srcIds' and
-     * 'srcTs' arrays for the record UUIDs and timetsmps. respectively, positionally
-     * corresponding to the record types in this array. The 'srcTyps', 'srcIds', and
-     * 'srcTs' arrays must contain the same number of elements.
-     */
-    srcTyps?: Array<string>;
+  /**
+   * Array of UDL record types (AIS, GROUNDIMAGE, MTI, ONORBIT, POI, SAR, SKYIMAGE,
+   * SOI, TRACK) related to this feature assessment. See the associated 'srcIds' and
+   * 'srcTs' arrays for the record UUIDs and timetsmps. respectively, positionally
+   * corresponding to the record types in this array. The 'srcTyps', 'srcIds', and
+   * 'srcTs' arrays must contain the same number of elements.
+   */
+  srcTyps?: Array<string>;
 
-    /**
-     * Optional identifier to track a commercial or marketplace transaction executed to
-     * produce this data.
-     */
-    transactionId?: string;
+  /**
+   * Optional identifier to track a commercial or marketplace transaction executed to
+   * produce this data.
+   */
+  transactionId?: string;
 
-    /**
-     * The type of feature (e.g. AIRCRAFT, ANTENNA, SOLAR ARRAY, SITE, STRUCTURE,
-     * VESSEL, VEHICLE, UNKNOWN, etc.) detailed in this feature assessment record. This
-     * type may be a primary feature within an image, for example a VESSEL, or may be a
-     * component or characteristic of a primary feature, for example an ANTENNA mounted
-     * on a vessel.
-     */
-    type?: string;
+  /**
+   * The type of feature (e.g. AIRCRAFT, ANTENNA, SOLAR ARRAY, SITE, STRUCTURE,
+   * VESSEL, VEHICLE, UNKNOWN, etc.) detailed in this feature assessment record. This
+   * type may be a primary feature within an image, for example a VESSEL, or may be a
+   * component or characteristic of a primary feature, for example an ANTENNA mounted
+   * on a vessel.
+   */
+  type?: string;
 
-    /**
-     * Estimated physical width of the feature, in meters.
-     */
-    width?: number;
-  }
+  /**
+   * Estimated physical width of the feature, in meters.
+   */
+  width?: number;
 }
+
+export type FeatureAssessmentCountResponse = string;
 
 export interface FeatureAssessmentQueryHelpResponse {
   aodrSupported?: boolean;
@@ -915,12 +914,6 @@ export namespace FeatureAssessmentTupleResponse {
      * should contain one annotation per four values of the area (annLims) array.
      */
     annText?: Array<string>;
-
-    /**
-     * Optional geographical region or polygon (lat/lon pairs) of the area surrounding
-     * the feature assessment as projected on the ground.
-     */
-    area?: string;
 
     /**
      * Geographical spatial_ref_sys for region.
@@ -1399,6 +1392,14 @@ export interface FeatureAssessmentRetrieveParams {
   maxResults?: number;
 }
 
+export interface FeatureAssessmentListParams extends OffsetPageParams {
+  /**
+   * Unique identifier of the Analytic Imagery associated with this Feature
+   * Assessment record.
+   */
+  idAnalyticImagery: string;
+}
+
 export interface FeatureAssessmentCountParams {
   /**
    * Unique identifier of the Analytic Imagery associated with this Feature
@@ -1689,18 +1690,6 @@ export namespace FeatureAssessmentCreateBulkParams {
      */
     width?: number;
   }
-}
-
-export interface FeatureAssessmentQueryParams {
-  /**
-   * Unique identifier of the Analytic Imagery associated with this Feature
-   * Assessment record.
-   */
-  idAnalyticImagery: string;
-
-  firstResult?: number;
-
-  maxResults?: number;
 }
 
 export interface FeatureAssessmentTupleParams {
@@ -2008,25 +1997,27 @@ FeatureAssessment.History = History;
 export declare namespace FeatureAssessment {
   export {
     type FeatureAssessmentRetrieveResponse as FeatureAssessmentRetrieveResponse,
+    type FeatureAssessmentListResponse as FeatureAssessmentListResponse,
     type FeatureAssessmentCountResponse as FeatureAssessmentCountResponse,
-    type FeatureAssessmentQueryResponse as FeatureAssessmentQueryResponse,
     type FeatureAssessmentQueryHelpResponse as FeatureAssessmentQueryHelpResponse,
     type FeatureAssessmentTupleResponse as FeatureAssessmentTupleResponse,
+    type FeatureAssessmentListResponsesOffsetPage as FeatureAssessmentListResponsesOffsetPage,
     type FeatureAssessmentCreateParams as FeatureAssessmentCreateParams,
     type FeatureAssessmentRetrieveParams as FeatureAssessmentRetrieveParams,
+    type FeatureAssessmentListParams as FeatureAssessmentListParams,
     type FeatureAssessmentCountParams as FeatureAssessmentCountParams,
     type FeatureAssessmentCreateBulkParams as FeatureAssessmentCreateBulkParams,
-    type FeatureAssessmentQueryParams as FeatureAssessmentQueryParams,
     type FeatureAssessmentTupleParams as FeatureAssessmentTupleParams,
     type FeatureAssessmentUnvalidatedPublishParams as FeatureAssessmentUnvalidatedPublishParams,
   };
 
   export {
     History as History,
+    type HistoryListResponse as HistoryListResponse,
     type HistoryCountResponse as HistoryCountResponse,
-    type HistoryQueryResponse as HistoryQueryResponse,
+    type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
+    type HistoryListParams as HistoryListParams,
+    type HistoryAodrParams as HistoryAodrParams,
     type HistoryCountParams as HistoryCountParams,
-    type HistoryQueryParams as HistoryQueryParams,
-    type HistoryWriteAodrParams as HistoryWriteAodrParams,
   };
 }

@@ -24,11 +24,31 @@ describe('resource v2', () => {
     const response = await client.scs.v2.update({
       path: 'path',
       sendNotification: true,
+      id: '/my-folder/',
+      attachment: {
+        author: 'John.Doe',
+        content_length: 0,
+        content_type: 'text/plain',
+        date: '2025-07-03T16:27:57.970Z',
+        keywords: 'keywords',
+        language: 'en',
+        title: 'title',
+      },
       classificationMarking: 'U',
+      createdAt: '2025-07-03T16:27:57.970Z',
+      createdBy: 'John.Doe',
       deleteOn: 0,
       description: 'A description of the updated folder.',
+      filename: 'my-folder',
+      filePath: '/my-folder/sub-folder/',
+      keywords: 'keywords',
+      parentPath: '/',
+      pathType: 'file',
       readAcl: 'user.id1,group.id1',
+      size: 0,
       tags: ['TAG1', 'TAG2'],
+      updatedAt: '2025-07-03T16:27:57.970Z',
+      updatedBy: 'John.Doe',
       writeAcl: 'user.id1,group.id1',
     });
   });
@@ -45,7 +65,15 @@ describe('resource v2', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.scs.v2.list({ path: 'path', firstResult: 0, maxResults: 0 });
+    const response = await client.scs.v2.list({
+      path: 'path',
+      firstResult: 0,
+      maxResults: 0,
+      order: 'order',
+      searchAfter: 'searchAfter',
+      size: 0,
+      sort: 'sort',
+    });
   });
 
   test('delete: only required params', async () => {
@@ -122,11 +150,31 @@ describe('resource v2', () => {
     const response = await client.scs.v2.folderCreate({
       path: 'path',
       sendNotification: true,
+      id: '/my-folder/',
+      attachment: {
+        author: 'John.Doe',
+        content_length: 0,
+        content_type: 'text/plain',
+        date: '2025-07-03T16:27:57.970Z',
+        keywords: 'keywords',
+        language: 'en',
+        title: 'title',
+      },
       classificationMarking: 'U',
+      createdAt: '2025-07-03T16:27:57.970Z',
+      createdBy: 'John.Doe',
       deleteOn: 0,
       description: 'My first folder',
+      filename: 'my-folder',
+      filePath: '/my-folder/sub-folder/',
+      keywords: 'keywords',
+      parentPath: '/',
+      pathType: 'file',
       readAcl: 'user.id1,group.id1',
+      size: 0,
       tags: ['TAG1', 'TAG2'],
+      updatedAt: '2025-07-03T16:27:57.970Z',
+      updatedBy: 'John.Doe',
       writeAcl: 'user.id1,group.id1',
     });
   });
@@ -144,5 +192,16 @@ describe('resource v2', () => {
 
   test('move: required and optional params', async () => {
     const response = await client.scs.v2.move({ fromPath: 'fromPath', toPath: 'toPath' });
+  });
+
+  test('search', async () => {
+    const responsePromise = client.scs.v2.search({});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 });

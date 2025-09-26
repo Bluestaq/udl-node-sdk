@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as ScsAPI from './scs';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -191,25 +192,68 @@ export class V2 extends APIResource {
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
+
+  /**
+   * Operation to search for files in the Secure Content Store.
+   *
+   * @example
+   * ```ts
+   * const scsEntities = await client.scs.v2.search({
+   *   query: {
+   *     field: 'attachment.content',
+   *     operator: 'EXACT_MATCH',
+   *     value: 'This is a very cool file.',
+   *   },
+   * });
+   * ```
+   */
+  search(params: V2SearchParams, options?: RequestOptions): APIPromise<V2SearchResponse> {
+    const { order, searchAfter, size, sort, ...body } = params;
+    return this._client.post('/scs/v2/search', {
+      query: { order, searchAfter, size, sort },
+      body,
+      ...options,
+    });
+  }
 }
 
 export type ScsEntitiesOffsetPage = OffsetPage<ScsEntity>;
 
 export interface Attachment {
+  /**
+   * The creator of this document. Can be a person or a software entity.
+   */
   author?: string;
 
-  content?: string;
-
+  /**
+   * The length of the document, in bytes.
+   */
   content_length?: number;
 
+  /**
+   * The document's MIME-type (if applicable).
+   */
   content_type?: string;
 
+  /**
+   * The time at which this attachment was created, represented in UTC ISO format.
+   */
   date?: string;
 
+  /**
+   * Any keywords associated with this document. Only applicable to files whose
+   * contents are indexed (e.g. text files, PDFs).
+   */
   keywords?: string;
 
+  /**
+   * The human language of the document, if discernible.
+   */
   language?: string;
 
+  /**
+   * The title of the document.
+   */
   title?: string;
 }
 
@@ -217,8 +261,14 @@ export interface Attachment {
  * An SCS file or folder.
  */
 export interface ScsEntity {
+  /**
+   * Unique identifier for document.
+   */
   id?: string;
 
+  /**
+   * Additional metadata associated with this document.
+   */
   attachment?: Attachment;
 
   /**
@@ -226,12 +276,20 @@ export interface ScsEntity {
    */
   classificationMarking?: string;
 
+  /**
+   * The time at which this document was created, represented in UTC ISO format.
+   */
   createdAt?: string;
 
+  /**
+   * The creator of this document. Can be a person or a software entity.
+   */
   createdBy?: string;
 
-  data?: string;
-
+  /**
+   * Time at which this document should be automatically deleted. Represented in
+   * milliseconds since Unix epoch.
+   */
   deleteOn?: number;
 
   /**
@@ -239,15 +297,32 @@ export interface ScsEntity {
    */
   description?: string;
 
-  fileName?: string;
+  /**
+   * The name of this document. Applicable to files and folders.
+   */
+  filename?: string;
 
+  /**
+   * The absolute path to this document.
+   */
   filePath?: string;
 
+  /**
+   * Optional. Any keywords associated with this document. Only applicable to files
+   * whose contents are indexed (e.g. text files, PDFs).
+   */
   keywords?: string;
 
+  /**
+   * The parent folder of this document. If this document is a root-level folder then
+   * the parent path is "/".
+   */
   parentPath?: string;
 
-  pathType?: string;
+  /**
+   * The type of this document.
+   */
+  pathType?: 'file' | 'folder';
 
   /**
    * For folders only. Comma separated list of user and group ids that should have
@@ -255,6 +330,9 @@ export interface ScsEntity {
    */
   readAcl?: string;
 
+  /**
+   * Size of this document in bytes.
+   */
   size?: number;
 
   /**
@@ -263,8 +341,15 @@ export interface ScsEntity {
    */
   tags?: Array<string>;
 
+  /**
+   * The time at which this document was most recently updated, represented in UTC
+   * ISO format.
+   */
   updatedAt?: string;
 
+  /**
+   * The person or software entity who updated this document most recently.
+   */
   updatedBy?: string;
 
   /**
@@ -273,6 +358,8 @@ export interface ScsEntity {
    */
   writeAcl?: string;
 }
+
+export type V2SearchResponse = Array<ScsEntity>;
 
 export interface V2UpdateParams {
   /**
@@ -287,13 +374,35 @@ export interface V2UpdateParams {
   sendNotification?: boolean;
 
   /**
+   * Body param: Unique identifier for document.
+   */
+  id?: string;
+
+  /**
+   * Body param: Additional metadata associated with this document.
+   */
+  attachment?: V2UpdateParams.Attachment;
+
+  /**
    * Body param: Classification marking of the folder or file in IC/CAPCO
    * portion-marked format.
    */
   classificationMarking?: string;
 
   /**
-   * Body param:
+   * Body param: The time at which this document was created, represented in UTC ISO
+   * format.
+   */
+  createdAt?: string;
+
+  /**
+   * Body param: The creator of this document. Can be a person or a software entity.
+   */
+  createdBy?: string;
+
+  /**
+   * Body param: Time at which this document should be automatically deleted.
+   * Represented in milliseconds since Unix epoch.
    */
   deleteOn?: number;
 
@@ -303,10 +412,42 @@ export interface V2UpdateParams {
   description?: string;
 
   /**
+   * Body param: The name of this document. Applicable to files and folders.
+   */
+  filename?: string;
+
+  /**
+   * Body param: The absolute path to this document.
+   */
+  filePath?: string;
+
+  /**
+   * Body param: Optional. Any keywords associated with this document. Only
+   * applicable to files whose contents are indexed (e.g. text files, PDFs).
+   */
+  keywords?: string;
+
+  /**
+   * Body param: The parent folder of this document. If this document is a root-level
+   * folder then the parent path is "/".
+   */
+  parentPath?: string;
+
+  /**
+   * Body param: The type of this document.
+   */
+  pathType?: 'file' | 'folder';
+
+  /**
    * Body param: For folders only. Comma separated list of user and group ids that
    * should have read access on this folder and the items nested in it.
    */
   readAcl?: string;
+
+  /**
+   * Body param: Size of this document in bytes.
+   */
+  size?: number;
 
   /**
    * Body param: Array of provider/source specific tags for this data, used for
@@ -316,10 +457,65 @@ export interface V2UpdateParams {
   tags?: Array<string>;
 
   /**
+   * Body param: The time at which this document was most recently updated,
+   * represented in UTC ISO format.
+   */
+  updatedAt?: string;
+
+  /**
+   * Body param: The person or software entity who updated this document most
+   * recently.
+   */
+  updatedBy?: string;
+
+  /**
    * Body param: For folders only. Comma separated list of user and group ids that
    * should have write access on this folder and the items nested in it.
    */
   writeAcl?: string;
+}
+
+export namespace V2UpdateParams {
+  /**
+   * Additional metadata associated with this document.
+   */
+  export interface Attachment {
+    /**
+     * The creator of this document. Can be a person or a software entity.
+     */
+    author?: string;
+
+    /**
+     * The length of the document, in bytes.
+     */
+    content_length?: number;
+
+    /**
+     * The document's MIME-type (if applicable).
+     */
+    content_type?: string;
+
+    /**
+     * The time at which this attachment was created, represented in UTC ISO format.
+     */
+    date?: string;
+
+    /**
+     * Any keywords associated with this document. Only applicable to files whose
+     * contents are indexed (e.g. text files, PDFs).
+     */
+    keywords?: string;
+
+    /**
+     * The human language of the document, if discernible.
+     */
+    language?: string;
+
+    /**
+     * The title of the document.
+     */
+    title?: string;
+  }
 }
 
 export interface V2ListParams extends OffsetPageParams {
@@ -327,6 +523,27 @@ export interface V2ListParams extends OffsetPageParams {
    * The base path to list
    */
   path: string;
+
+  /**
+   * The order in which entries should be sorted
+   */
+  order?: string;
+
+  /**
+   * The starting point for pagination results, usually set to the value of the
+   * SEARCH_AFTER header returned in the previous request.
+   */
+  searchAfter?: string;
+
+  /**
+   * The number of results to retrieve.
+   */
+  size?: number;
+
+  /**
+   * The field on which to sort entries
+   */
+  sort?: string;
 }
 
 export interface V2DeleteParams {
@@ -403,13 +620,35 @@ export interface V2FolderCreateParams {
   sendNotification?: boolean;
 
   /**
+   * Body param: Unique identifier for document.
+   */
+  id?: string;
+
+  /**
+   * Body param: Additional metadata associated with this document.
+   */
+  attachment?: V2FolderCreateParams.Attachment;
+
+  /**
    * Body param: Classification marking of the folder or file in IC/CAPCO
    * portion-marked format.
    */
   classificationMarking?: string;
 
   /**
-   * Body param:
+   * Body param: The time at which this document was created, represented in UTC ISO
+   * format.
+   */
+  createdAt?: string;
+
+  /**
+   * Body param: The creator of this document. Can be a person or a software entity.
+   */
+  createdBy?: string;
+
+  /**
+   * Body param: Time at which this document should be automatically deleted.
+   * Represented in milliseconds since Unix epoch.
    */
   deleteOn?: number;
 
@@ -419,10 +658,42 @@ export interface V2FolderCreateParams {
   description?: string;
 
   /**
+   * Body param: The name of this document. Applicable to files and folders.
+   */
+  filename?: string;
+
+  /**
+   * Body param: The absolute path to this document.
+   */
+  filePath?: string;
+
+  /**
+   * Body param: Optional. Any keywords associated with this document. Only
+   * applicable to files whose contents are indexed (e.g. text files, PDFs).
+   */
+  keywords?: string;
+
+  /**
+   * Body param: The parent folder of this document. If this document is a root-level
+   * folder then the parent path is "/".
+   */
+  parentPath?: string;
+
+  /**
+   * Body param: The type of this document.
+   */
+  pathType?: 'file' | 'folder';
+
+  /**
    * Body param: For folders only. Comma separated list of user and group ids that
    * should have read access on this folder and the items nested in it.
    */
   readAcl?: string;
+
+  /**
+   * Body param: Size of this document in bytes.
+   */
+  size?: number;
 
   /**
    * Body param: Array of provider/source specific tags for this data, used for
@@ -432,10 +703,65 @@ export interface V2FolderCreateParams {
   tags?: Array<string>;
 
   /**
+   * Body param: The time at which this document was most recently updated,
+   * represented in UTC ISO format.
+   */
+  updatedAt?: string;
+
+  /**
+   * Body param: The person or software entity who updated this document most
+   * recently.
+   */
+  updatedBy?: string;
+
+  /**
    * Body param: For folders only. Comma separated list of user and group ids that
    * should have write access on this folder and the items nested in it.
    */
   writeAcl?: string;
+}
+
+export namespace V2FolderCreateParams {
+  /**
+   * Additional metadata associated with this document.
+   */
+  export interface Attachment {
+    /**
+     * The creator of this document. Can be a person or a software entity.
+     */
+    author?: string;
+
+    /**
+     * The length of the document, in bytes.
+     */
+    content_length?: number;
+
+    /**
+     * The document's MIME-type (if applicable).
+     */
+    content_type?: string;
+
+    /**
+     * The time at which this attachment was created, represented in UTC ISO format.
+     */
+    date?: string;
+
+    /**
+     * Any keywords associated with this document. Only applicable to files whose
+     * contents are indexed (e.g. text files, PDFs).
+     */
+    keywords?: string;
+
+    /**
+     * The human language of the document, if discernible.
+     */
+    language?: string;
+
+    /**
+     * The title of the document.
+     */
+    title?: string;
+  }
 }
 
 export interface V2MoveParams {
@@ -451,10 +777,40 @@ export interface V2MoveParams {
   toPath: string;
 }
 
+export interface V2SearchParams {
+  /**
+   * Query param: The order in which entries should be sorted
+   */
+  order?: string;
+
+  /**
+   * Query param: The starting point for pagination results, usually set to the value
+   * of the SEARCH_AFTER header returned in the previous request.
+   */
+  searchAfter?: string;
+
+  /**
+   * Query param: The number of results to retrieve.
+   */
+  size?: number;
+
+  /**
+   * Query param: The field on which to sort entries
+   */
+  sort?: string;
+
+  /**
+   * Body param: A search criterion, which can be a simple field comparison or a
+   * logical combination of other criteria.
+   */
+  query?: ScsAPI.SearchCriterion;
+}
+
 export declare namespace V2 {
   export {
     type Attachment as Attachment,
     type ScsEntity as ScsEntity,
+    type V2SearchResponse as V2SearchResponse,
     type ScsEntitiesOffsetPage as ScsEntitiesOffsetPage,
     type V2UpdateParams as V2UpdateParams,
     type V2ListParams as V2ListParams,
@@ -463,5 +819,6 @@ export declare namespace V2 {
     type V2FileUploadParams as V2FileUploadParams,
     type V2FolderCreateParams as V2FolderCreateParams,
     type V2MoveParams as V2MoveParams,
+    type V2SearchParams as V2SearchParams,
   };
 }

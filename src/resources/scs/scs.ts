@@ -2,12 +2,8 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
-import * as ClassificationMarkingsAPI from './classification-markings';
-import { ClassificationMarkingListResponse, ClassificationMarkings } from './classification-markings';
 import * as FileAPI from './file';
 import { File, FileListParams, FileRetrieveParams, FileUpdateParams } from './file';
-import * as FileMetadataAPI from './file-metadata';
-import { FileMetadata, FileMetadataListResponse } from './file-metadata';
 import * as FoldersAPI from './folders';
 import {
   FolderCreateParams,
@@ -16,12 +12,8 @@ import {
   FolderUpdateParams,
   Folders,
 } from './folders';
-import * as GroupsAPI from './groups';
-import { GroupListResponse, Groups } from './groups';
 import * as PathsAPI from './paths';
 import { PathCreateWithFileParams, PathCreateWithFileResponse, Paths } from './paths';
-import * as RangeParametersAPI from './range-parameters';
-import { RangeParameterListResponse, RangeParameters } from './range-parameters';
 import * as V2API from './v2';
 import {
   Attachment,
@@ -34,32 +26,37 @@ import {
   V2FolderCreateParams,
   V2ListParams,
   V2MoveParams,
+  V2SearchParams,
+  V2SearchResponse,
   V2UpdateParams,
 } from './v2';
+import * as ViewAPI from './view';
+import { View, ViewGetParams } from './view';
+import * as NotificationsAPI from './notifications/notifications';
+import {
+  NotificationListParams,
+  NotificationListResponse,
+  NotificationListResponsesOffsetPage,
+  Notifications,
+} from './notifications/notifications';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
 export class Scs extends APIResource {
-  folders: FoldersAPI.Folders = new FoldersAPI.Folders(this._client);
-  classificationMarkings: ClassificationMarkingsAPI.ClassificationMarkings =
-    new ClassificationMarkingsAPI.ClassificationMarkings(this._client);
-  groups: GroupsAPI.Groups = new GroupsAPI.Groups(this._client);
-  fileMetadata: FileMetadataAPI.FileMetadata = new FileMetadataAPI.FileMetadata(this._client);
-  rangeParameters: RangeParametersAPI.RangeParameters = new RangeParametersAPI.RangeParameters(this._client);
-  paths: PathsAPI.Paths = new PathsAPI.Paths(this._client);
-  v2: V2API.V2 = new V2API.V2(this._client);
+  notifications: NotificationsAPI.Notifications = new NotificationsAPI.Notifications(this._client);
   file: FileAPI.File = new FileAPI.File(this._client);
+  folders: FoldersAPI.Folders = new FoldersAPI.Folders(this._client);
+  paths: PathsAPI.Paths = new PathsAPI.Paths(this._client);
+  view: ViewAPI.View = new ViewAPI.View(this._client);
+  v2: V2API.V2 = new V2API.V2(this._client);
 
   /**
    * Deletes the requested file or folder in the passed path directory that is
    * visible to the calling user. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    *
-   * @example
-   * ```ts
-   * await client.scs.delete({ id: 'id' });
-   * ```
+   * @deprecated
    */
   delete(params: ScDeleteParams, options?: RequestOptions): APIPromise<void> {
     const { id } = params;
@@ -71,19 +68,7 @@ export class Scs extends APIResource {
   }
 
   /**
-   * Returns a map of document types and counts in root folder.
-   *
-   * @example
-   * ```ts
-   * const response = await client.scs.aggregateDocType();
-   * ```
-   */
-  aggregateDocType(options?: RequestOptions): APIPromise<ScAggregateDocTypeResponse> {
-    return this._client.get('/scs/aggregateDocType', options);
-  }
-
-  /**
-   * Returns a list of allowable file extensions for upload.
+   * Returns a list of the allowed filename extensions.
    *
    * @example
    * ```ts
@@ -95,7 +80,7 @@ export class Scs extends APIResource {
   }
 
   /**
-   * Returns a list of allowable file mime types for upload.
+   * Returns a list of the allowed file upload mime types.
    *
    * @example
    * ```ts
@@ -110,13 +95,7 @@ export class Scs extends APIResource {
    * operation to copy folders or files. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    *
-   * @example
-   * ```ts
-   * const response = await client.scs.copy({
-   *   id: 'id',
-   *   targetPath: 'targetPath',
-   * });
-   * ```
+   * @deprecated
    */
   copy(params: ScCopyParams, options?: RequestOptions): APIPromise<string> {
     const { id, targetPath } = params;
@@ -129,10 +108,7 @@ export class Scs extends APIResource {
    * @example
    * ```ts
    * const response = await client.scs.download({
-   *   body: [
-   *     '/processPalantirXml/media/PT_MEDIA6831731772984708680',
-   *     '/processPalantirXml/media/PT_MEDIA7297147303810886654',
-   *   ],
+   *   body: ['/MyFolderToDownload/'],
    * });
    *
    * const content = await response.blob();
@@ -175,17 +151,7 @@ export class Scs extends APIResource {
    * Operation to upload a file. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    *
-   * @example
-   * ```ts
-   * const response = await client.scs.fileUpload(
-   *   fs.createReadStream('path/to/file'),
-   *   {
-   *     classificationMarking: 'classificationMarking',
-   *     fileName: 'fileName',
-   *     path: 'path',
-   *   },
-   * );
-   * ```
+   * @deprecated
    */
   fileUpload(
     fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
@@ -220,16 +186,31 @@ export class Scs extends APIResource {
   }
 
   /**
-   * operation to move folders or files. A specific role is required to perform this
-   * service operation. Please contact the UDL team for assistance.
+   * Returns true if a user has write access to the specified folder.
    *
    * @example
    * ```ts
-   * const response = await client.scs.move({
-   *   id: 'id',
-   *   targetPath: 'targetPath',
+   * const response = await client.scs.hasWriteAccess({
+   *   path: 'path',
    * });
    * ```
+   */
+  hasWriteAccess(
+    query: ScHasWriteAccessParams,
+    options?: RequestOptions,
+  ): APIPromise<ScHasWriteAccessResponse> {
+    return this._client.get('/scs/userHasWriteAccess', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
+  }
+
+  /**
+   * operation to move folders or files. A specific role is required to perform this
+   * service operation. Please contact the UDL team for assistance.
+   *
+   * @deprecated
    */
   move(params: ScMoveParams, options?: RequestOptions): APIPromise<string> {
     const { id, targetPath } = params;
@@ -240,10 +221,7 @@ export class Scs extends APIResource {
    * Operation to rename folders or files. A specific role is required to perform
    * this service operation. Please contact the UDL team for assistance.
    *
-   * @example
-   * ```ts
-   * await client.scs.rename({ id: 'id', newName: 'newName' });
-   * ```
+   * @deprecated
    */
   rename(params: ScRenameParams, options?: RequestOptions): APIPromise<void> {
     const { id, newName } = params;
@@ -257,43 +235,56 @@ export class Scs extends APIResource {
   /**
    * Search for files by metadata and/or text in file content.
    *
-   * @example
-   * ```ts
-   * const fileData = await client.scs.search({
-   *   path: 'path',
-   *   metaDataCriteria: {
-   *     CREATED_AT: ['< 2022-06-14T07:48:11.302Z'],
-   *   },
-   * });
-   * ```
+   * @deprecated
    */
   search(params: ScSearchParams, options?: RequestOptions): APIPromise<ScSearchResponse> {
     const { path: path_, count, offset, ...body } = params;
     return this._client.post('/scs/search', { query: { path: path_, count, offset }, body, ...options });
   }
+}
 
+/**
+ * A search criterion, which can be a simple field comparison or a logical
+ * combination of other criteria.
+ */
+export type SearchCriterion = SearchCriterion.ScsSearchFieldCriterion | SearchLogicalCriterion;
+
+export namespace SearchCriterion {
   /**
-   * Updates tags for given folder.
-   *
-   * @example
-   * ```ts
-   * await client.scs.updateTags({
-   *   folder: 'folder',
-   *   tags: 'tags',
-   * });
-   * ```
+   * A search on a specific field with a given value and operator.
    */
-  updateTags(params: ScUpdateTagsParams, options?: RequestOptions): APIPromise<void> {
-    const { folder, tags } = params;
-    return this._client.put('/scs/updateTagsForFilesInFolder', {
-      query: { folder, tags },
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  export interface ScsSearchFieldCriterion {
+    /**
+     * The field to search on (e.g., attachment.content, createdBy).
+     */
+    field?: string;
+
+    /**
+     * Supported search operators
+     */
+    operator?: 'EXACT_MATCH' | 'WILDCARD' | 'FUZZY' | 'GTE' | 'LTE' | 'GT' | 'LT';
+
+    /**
+     * The value to compare against (e.g., The Great Gatsby)
+     */
+    value?: string;
   }
 }
 
-export type ScAggregateDocTypeResponse = Array<string>;
+/**
+ * Combines multiple search criteria with a logical operator (AND, OR, NOT).
+ */
+export interface SearchLogicalCriterion {
+  /**
+   * List of search criteria to combine
+   */
+  criteria?: Array<SearchCriterion>;
+
+  /**
+   * Supported search operators
+   */
+  operator?: 'AND' | 'OR' | 'NOT';
+}
 
 export type ScAllowableFileExtensionsResponse = Array<string>;
 
@@ -302,6 +293,8 @@ export type ScAllowableFileMimesResponse = Array<string>;
 export type ScCopyResponse = string;
 
 export type ScFileUploadResponse = string;
+
+export type ScHasWriteAccessResponse = boolean;
 
 export type ScMoveResponse = string;
 
@@ -343,17 +336,17 @@ export interface ScFileDownloadParams {
 
 export interface ScFileUploadParams {
   /**
-   * Query param: Classification (ex. U//FOUO)
+   * Query param: Classification marking of the file being uploaded.
    */
   classificationMarking: string;
 
   /**
-   * Query param: FileName (ex. dog.jpg)
+   * Query param: Name of the file to upload.
    */
   fileName: string;
 
   /**
-   * Query param: The base path to upload file (ex. images)
+   * Query param: The base path to upload file
    */
   path: string;
 
@@ -384,9 +377,20 @@ export interface ScFileUploadParams {
   tags?: string;
 }
 
+export interface ScHasWriteAccessParams {
+  /**
+   * Folder path for which to check user write access.
+   */
+  path: string;
+
+  firstResult?: number;
+
+  maxResults?: number;
+}
+
 export interface ScMoveParams {
   /**
-   * The path of the item to copy
+   * The path of the item to move
    */
   id: string;
 
@@ -450,34 +454,22 @@ export interface ScSearchParams {
   searchAfter?: string;
 }
 
-export interface ScUpdateTagsParams {
-  /**
-   * The base path to folder
-   */
-  folder: string;
-
-  /**
-   * The new tag
-   */
-  tags: string;
-}
-
-Scs.Folders = Folders;
-Scs.ClassificationMarkings = ClassificationMarkings;
-Scs.Groups = Groups;
-Scs.FileMetadata = FileMetadata;
-Scs.RangeParameters = RangeParameters;
-Scs.Paths = Paths;
-Scs.V2 = V2;
+Scs.Notifications = Notifications;
 Scs.File = File;
+Scs.Folders = Folders;
+Scs.Paths = Paths;
+Scs.View = View;
+Scs.V2 = V2;
 
 export declare namespace Scs {
   export {
-    type ScAggregateDocTypeResponse as ScAggregateDocTypeResponse,
+    type SearchCriterion as SearchCriterion,
+    type SearchLogicalCriterion as SearchLogicalCriterion,
     type ScAllowableFileExtensionsResponse as ScAllowableFileExtensionsResponse,
     type ScAllowableFileMimesResponse as ScAllowableFileMimesResponse,
     type ScCopyResponse as ScCopyResponse,
     type ScFileUploadResponse as ScFileUploadResponse,
+    type ScHasWriteAccessResponse as ScHasWriteAccessResponse,
     type ScMoveResponse as ScMoveResponse,
     type ScSearchResponse as ScSearchResponse,
     type ScDeleteParams as ScDeleteParams,
@@ -485,10 +477,24 @@ export declare namespace Scs {
     type ScDownloadParams as ScDownloadParams,
     type ScFileDownloadParams as ScFileDownloadParams,
     type ScFileUploadParams as ScFileUploadParams,
+    type ScHasWriteAccessParams as ScHasWriteAccessParams,
     type ScMoveParams as ScMoveParams,
     type ScRenameParams as ScRenameParams,
     type ScSearchParams as ScSearchParams,
-    type ScUpdateTagsParams as ScUpdateTagsParams,
+  };
+
+  export {
+    Notifications as Notifications,
+    type NotificationListResponse as NotificationListResponse,
+    type NotificationListResponsesOffsetPage as NotificationListResponsesOffsetPage,
+    type NotificationListParams as NotificationListParams,
+  };
+
+  export {
+    File as File,
+    type FileRetrieveParams as FileRetrieveParams,
+    type FileUpdateParams as FileUpdateParams,
+    type FileListParams as FileListParams,
   };
 
   export {
@@ -500,29 +506,18 @@ export declare namespace Scs {
   };
 
   export {
-    ClassificationMarkings as ClassificationMarkings,
-    type ClassificationMarkingListResponse as ClassificationMarkingListResponse,
-  };
-
-  export { Groups as Groups, type GroupListResponse as GroupListResponse };
-
-  export { FileMetadata as FileMetadata, type FileMetadataListResponse as FileMetadataListResponse };
-
-  export {
-    RangeParameters as RangeParameters,
-    type RangeParameterListResponse as RangeParameterListResponse,
-  };
-
-  export {
     Paths as Paths,
     type PathCreateWithFileResponse as PathCreateWithFileResponse,
     type PathCreateWithFileParams as PathCreateWithFileParams,
   };
 
+  export { View as View, type ViewGetParams as ViewGetParams };
+
   export {
     V2 as V2,
     type Attachment as Attachment,
     type ScsEntity as ScsEntity,
+    type V2SearchResponse as V2SearchResponse,
     type ScsEntitiesOffsetPage as ScsEntitiesOffsetPage,
     type V2UpdateParams as V2UpdateParams,
     type V2ListParams as V2ListParams,
@@ -531,12 +526,6 @@ export declare namespace Scs {
     type V2FileUploadParams as V2FileUploadParams,
     type V2FolderCreateParams as V2FolderCreateParams,
     type V2MoveParams as V2MoveParams,
-  };
-
-  export {
-    File as File,
-    type FileRetrieveParams as FileRetrieveParams,
-    type FileUpdateParams as FileUpdateParams,
-    type FileListParams as FileListParams,
+    type V2SearchParams as V2SearchParams,
   };
 }

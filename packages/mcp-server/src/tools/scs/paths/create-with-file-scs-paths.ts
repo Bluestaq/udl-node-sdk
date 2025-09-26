@@ -27,7 +27,7 @@ export const tool: Tool = {
       },
       classificationMarking: {
         type: 'string',
-        description: 'Classification (ex. U//FOUO)',
+        description: 'Classification marking of the file being uploaded.',
       },
       file_content: {
         type: 'string',

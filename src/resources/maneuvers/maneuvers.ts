@@ -1411,6 +1411,12 @@ export namespace ManeuverListResponse {
     mass?: number;
 
     /**
+     * Time when message was generated in ISO 8601 UTC format with microsecond
+     * precision.
+     */
+    msgTs?: string;
+
+    /**
      * The number of observations available for the OD of the object.
      */
     obsAvailable?: number;
@@ -2385,6 +2391,12 @@ export namespace ManeuverListResponse {
      * The mass of the object, in kilograms.
      */
     mass?: number;
+
+    /**
+     * Time when message was generated in ISO 8601 UTC format with microsecond
+     * precision.
+     */
+    msgTs?: string;
 
     /**
      * The number of observations available for the OD of the object.
@@ -4049,6 +4061,12 @@ export namespace ManeuverGetResponse {
     mass?: number;
 
     /**
+     * Time when message was generated in ISO 8601 UTC format with microsecond
+     * precision.
+     */
+    msgTs?: string;
+
+    /**
      * The number of observations available for the OD of the object.
      */
     obsAvailable?: number;
@@ -5113,6 +5131,12 @@ export namespace ManeuverGetResponse {
      * The mass of the object, in kilograms.
      */
     mass?: number;
+
+    /**
+     * Time when message was generated in ISO 8601 UTC format with microsecond
+     * precision.
+     */
+    msgTs?: string;
 
     /**
      * The number of observations available for the OD of the object.
@@ -6834,6 +6858,12 @@ export namespace ManeuverTupleResponse {
       mass?: number;
 
       /**
+       * Time when message was generated in ISO 8601 UTC format with microsecond
+       * precision.
+       */
+      msgTs?: string;
+
+      /**
        * The number of observations available for the OD of the object.
        */
       obsAvailable?: number;
@@ -7898,6 +7928,12 @@ export namespace ManeuverTupleResponse {
        * The mass of the object, in kilograms.
        */
       mass?: number;
+
+      /**
+       * Time when message was generated in ISO 8601 UTC format with microsecond
+       * precision.
+       */
+      msgTs?: string;
 
       /**
        * The number of observations available for the OD of the object.
@@ -9473,6 +9509,12 @@ export namespace ManeuverCreateParams {
     mass?: number;
 
     /**
+     * Time when message was generated in ISO 8601 UTC format with microsecond
+     * precision.
+     */
+    msgTs?: string;
+
+    /**
      * The number of observations available for the OD of the object.
      */
     obsAvailable?: number;
@@ -10437,6 +10479,12 @@ export namespace ManeuverCreateParams {
      * The mass of the object, in kilograms.
      */
     mass?: number;
+
+    /**
+     * Time when message was generated in ISO 8601 UTC format with microsecond
+     * precision.
+     */
+    msgTs?: string;
 
     /**
      * The number of observations available for the OD of the object.
@@ -12029,6 +12077,12 @@ export namespace ManeuverCreateBulkParams {
       mass?: number;
 
       /**
+       * Time when message was generated in ISO 8601 UTC format with microsecond
+       * precision.
+       */
+      msgTs?: string;
+
+      /**
        * The number of observations available for the OD of the object.
        */
       obsAvailable?: number;
@@ -12993,6 +13047,12 @@ export namespace ManeuverCreateBulkParams {
        * The mass of the object, in kilograms.
        */
       mass?: number;
+
+      /**
+       * Time when message was generated in ISO 8601 UTC format with microsecond
+       * precision.
+       */
+      msgTs?: string;
 
       /**
        * The number of observations available for the OD of the object.
@@ -14591,6 +14651,12 @@ export namespace ManeuverUnvalidatedPublishParams {
       mass?: number;
 
       /**
+       * Time when message was generated in ISO 8601 UTC format with microsecond
+       * precision.
+       */
+      msgTs?: string;
+
+      /**
        * The number of observations available for the OD of the object.
        */
       obsAvailable?: number;
@@ -15555,6 +15621,12 @@ export namespace ManeuverUnvalidatedPublishParams {
        * The mass of the object, in kilograms.
        */
       mass?: number;
+
+      /**
+       * Time when message was generated in ISO 8601 UTC format with microsecond
+       * precision.
+       */
+      msgTs?: string;
 
       /**
        * The number of observations available for the OD of the object.

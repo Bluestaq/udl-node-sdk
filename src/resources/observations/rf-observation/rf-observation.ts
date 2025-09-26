@@ -474,12 +474,22 @@ export interface RfObservationListResponse {
   nominalSnr?: number;
 
   /**
+   * Country of origin in which the data was originally posted.
+   */
+  origCountry?: string;
+
+  /**
    * Originating system or organization which produced the data, if different from
    * the source. The origin may be different than the source if the source was a
    * mediating system which forwarded the data on behalf of the origin system. If
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
+
+  /**
+   * Original security marking that the data was marked with.
+   */
+  origMarking?: string;
 
   /**
    * The originating source network on which this record was created, auto-populated
@@ -1031,12 +1041,22 @@ export interface RfObservationGetResponse {
   onOrbit?: Shared.OnorbitFull;
 
   /**
+   * Country of origin in which the data was originally posted.
+   */
+  origCountry?: string;
+
+  /**
    * Originating system or organization which produced the data, if different from
    * the source. The origin may be different than the source if the source was a
    * mediating system which forwarded the data on behalf of the origin system. If
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
+
+  /**
+   * Original security marking that the data was marked with.
+   */
+  origMarking?: string;
 
   /**
    * The originating source network on which this record was created, auto-populated
@@ -1595,12 +1615,22 @@ export namespace RfObservationTupleResponse {
     onOrbit?: Shared.OnorbitFull;
 
     /**
+     * Country of origin in which the data was originally posted.
+     */
+    origCountry?: string;
+
+    /**
      * Originating system or organization which produced the data, if different from
      * the source. The origin may be different than the source if the source was a
      * mediating system which forwarded the data on behalf of the origin system. If
      * null, the source may be assumed to be the origin.
      */
     origin?: string;
+
+    /**
+     * Original security marking that the data was marked with.
+     */
+    origMarking?: string;
 
     /**
      * The originating source network on which this record was created, auto-populated

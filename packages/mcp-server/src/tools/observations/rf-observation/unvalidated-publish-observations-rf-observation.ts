@@ -289,10 +289,18 @@ export const tool: Tool = {
               type: 'number',
               description: 'Nominal or expected signal to noise ratio, in dB.',
             },
+            origCountry: {
+              type: 'string',
+              description: 'Country of origin in which the data was originally posted.',
+            },
             origin: {
               type: 'string',
               description:
                 'Originating system or organization which produced the data, if different from the source. The origin may be different than the source if the source was a mediating system which forwarded the data on behalf of the origin system. If null, the source may be assumed to be the origin.',
+            },
+            origMarking: {
+              type: 'string',
+              description: 'Original security marking that the data was marked with.',
             },
             origNetwork: {
               type: 'string',

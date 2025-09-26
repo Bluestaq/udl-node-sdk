@@ -11,16 +11,7 @@ export class Paths extends APIResource {
    * create folders that are missing. A specific role is required to perform this
    * service operation. Please contact the UDL team for assistance.
    *
-   * @example
-   * ```ts
-   * const response = await client.scs.paths.createWithFile(
-   *   fs.createReadStream('path/to/file'),
-   *   {
-   *     id: 'id',
-   *     classificationMarking: 'classificationMarking',
-   *   },
-   * );
-   * ```
+   * @deprecated
    */
   createWithFile(
     fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
@@ -46,7 +37,7 @@ export interface PathCreateWithFileParams {
   id: string;
 
   /**
-   * Query param: Classification (ex. U//FOUO)
+   * Query param: Classification marking of the file being uploaded.
    */
   classificationMarking: string;
 
