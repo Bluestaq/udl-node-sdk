@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.0-alpha.16 (2025-10-01)
+
+Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
+
+### Bug Fixes
+
+* **mcp:** fix cli argument parsing logic ([8faa8a5](https://github.com/Bluestaq/udl-node-sdk/commit/8faa8a510738343586aa8a31d793a14e5674d42b))
+* **mcp:** resolve a linting issue in server code ([894dd50](https://github.com/Bluestaq/udl-node-sdk/commit/894dd50b90db20cda8d231529979a910e524e1a6))
+
+
+### Chores
+
+* **internal:** codegen related update ([b074e2a](https://github.com/Bluestaq/udl-node-sdk/commit/b074e2af0f9c382ef7453648d9be1ae948e86373))
+* **internal:** ignore .eslintcache ([6664b24](https://github.com/Bluestaq/udl-node-sdk/commit/6664b247f8e452b4e5776e8b400a94b0d123499d))
+* **mcp:** allow pointing `docs_search` tool at other URLs ([0cc4e68](https://github.com/Bluestaq/udl-node-sdk/commit/0cc4e6879edd413626a2bfd0214dece2e910228e))
+
 ## 0.1.0-alpha.15 (2025-09-26)
 
 Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
