@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.17 (2025-10-03)
+
+Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
+
+### Bug Fixes
+
+* **mcp:** add jq_filter to tool list_elsets_current ([aa62b30](https://github.com/Bluestaq/udl-node-sdk/commit/aa62b3005d7a0f84719bebc9217f02f6c3899732))
+
+
+### Chores
+
+* **jsdoc:** fix [@link](https://github.com/link) annotations to refer only to parts of the package‘s public interface ([2823393](https://github.com/Bluestaq/udl-node-sdk/commit/282339388502cfc3218f675e5285280d4a716064))
+
 ## 0.1.0-alpha.16 (2025-10-01)
 
 Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
