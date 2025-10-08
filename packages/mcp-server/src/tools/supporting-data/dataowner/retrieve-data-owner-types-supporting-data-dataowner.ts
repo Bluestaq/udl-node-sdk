@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'retrieve_data_owner_types_supporting_data_dataowner',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRetrieves all distinct data owner types.\n\n# Response Schema\n```json\n{\n  type: 'array',\n  items: {\n    type: 'string'\n  }\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRetrieves all distinct data owner types.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/dataowner_retrieve_data_owner_types_response',\n  $defs: {\n    dataowner_retrieve_data_owner_types_response: {\n      type: 'array',\n      items: {\n        type: 'string'\n      }\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {

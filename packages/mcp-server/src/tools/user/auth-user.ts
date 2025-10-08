@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'auth_user',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRetrieve authentication details for the current user\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {\n    auth: {\n      type: 'boolean',\n      description: 'Authentication status'\n    },\n    roles: {\n      type: 'array',\n      description: 'List of user roles',\n      items: {\n        type: 'string'\n      }\n    },\n    sub: {\n      type: 'string',\n      description: 'Subject identifier'\n    }\n  },\n  required: [    'auth',\n    'roles',\n    'sub'\n  ]\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRetrieve authentication details for the current user\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/user_auth_response',\n  $defs: {\n    user_auth_response: {\n      type: 'object',\n      properties: {\n        auth: {\n          type: 'boolean',\n          description: 'Authentication status'\n        },\n        roles: {\n          type: 'array',\n          description: 'List of user roles',\n          items: {\n            type: 'string'\n          }\n        },\n        sub: {\n          type: 'string',\n          description: 'Subject identifier'\n        }\n      },\n      required: [        'auth',\n        'roles',\n        'sub'\n      ]\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
