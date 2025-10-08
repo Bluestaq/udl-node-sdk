@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.18 (2025-10-08)
+
+Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
+
+### Chores
+
+* extract some types in mcp docs ([ba2bc7a](https://github.com/Bluestaq/udl-node-sdk/commit/ba2bc7a3ff6b58531470edab01c5e48a6451e82a))
+* **internal:** use npm pack for build uploads ([2e989f2](https://github.com/Bluestaq/udl-node-sdk/commit/2e989f2307cf4a0e9e71e22d634983e8b2a5ebb5))
+
 ## 0.1.0-alpha.17 (2025-10-03)
 
 Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
