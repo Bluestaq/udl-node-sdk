@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'get_notifications_scs_offset',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRetrieve the min and max offsets of the SCS Event Notification Kafka topic.\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {\n    maxOffset: {\n      type: 'integer',\n      description: 'The maximum (latest) Kafka offset for this topic.'\n    },\n    minOffset: {\n      type: 'integer',\n      description: 'The minimum (oldest) Kafka offset for this topic.'\n    }\n  }\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRetrieve the min and max offsets of the SCS Event Notification Kafka topic.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/offset_get_response',\n  $defs: {\n    offset_get_response: {\n      type: 'object',\n      properties: {\n        maxOffset: {\n          type: 'integer',\n          description: 'The maximum (latest) Kafka offset for this topic.'\n        },\n        minOffset: {\n          type: 'integer',\n          description: 'The minimum (oldest) Kafka offset for this topic.'\n        }\n      }\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
