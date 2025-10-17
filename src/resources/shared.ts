@@ -8020,7 +8020,7 @@ export namespace CollectRequestFull {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -9672,7 +9672,7 @@ export namespace ConjunctionFull {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -10420,7 +10420,7 @@ export namespace ConjunctionFull {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -20444,7 +20444,7 @@ export interface StateVectorFull {
    * The reference frame of the covariance matrix elements. If the covReferenceFrame
    * is null it is assumed to be J2000.
    */
-  covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+  covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
   /**
    * Time the row was created in the database, auto-populated by the system.

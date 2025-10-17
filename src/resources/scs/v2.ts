@@ -520,12 +520,12 @@ export namespace V2UpdateParams {
 
 export interface V2ListParams extends OffsetPageParams {
   /**
-   * The base path to list
+   * The base path to list.
    */
   path: string;
 
   /**
-   * The order in which entries should be sorted
+   * The order in which entries should be sorted.
    */
   order?: string;
 
@@ -541,7 +541,7 @@ export interface V2ListParams extends OffsetPageParams {
   size?: number;
 
   /**
-   * The field on which to sort entries
+   * The field on which to sort entries.
    */
   sort?: string;
 }
@@ -779,7 +779,7 @@ export interface V2MoveParams {
 
 export interface V2SearchParams {
   /**
-   * Query param: The order in which entries should be sorted
+   * Query param: The order in which entries should be sorted.
    */
   order?: string;
 
@@ -795,7 +795,7 @@ export interface V2SearchParams {
   size?: number;
 
   /**
-   * Query param: The field on which to sort entries
+   * Query param: The field on which to sort entries.
    */
   sort?: string;
 

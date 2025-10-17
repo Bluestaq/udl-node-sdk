@@ -311,6 +311,25 @@ export interface EmitterGeolocationRetrieveResponse {
   atype?: string;
 
   /**
+   * Average pulse repetition frequency of the emitter, measured in hertz. PRF is the
+   * number of pulses transmitted per second. This is the reciprocal of the avgPRI
+   * (Pulse Repetition Interval) value.
+   */
+  avgPRF?: number;
+
+  /**
+   * Average pulse repetition interval of the emitter, measured in microseconds. The
+   * interval between the start of one pulse and the start of another.
+   */
+  avgPRI?: number;
+
+  /**
+   * Average pulse width of the emitter, measured in nanoseconds. This is the average
+   * duration of the pulse.
+   */
+  avgPW?: number;
+
+  /**
    * The detected signal frequency in megahertz.
    */
   centerFreq?: number;
@@ -372,8 +391,9 @@ export interface EmitterGeolocationRetrieveResponse {
   endTime?: string;
 
   /**
-   * Confidence ellipsoid about the detection location [semi-major axis (m),
-   * semi-minor axis (m), orientation (deg)].
+   * Confidence ellipsoid about the detection location [semi-major axis (meters),
+   * semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
+   * true north)].
    */
   errEllp?: Array<number>;
 
@@ -416,9 +436,47 @@ export interface EmitterGeolocationRetrieveResponse {
   maxFreq?: number;
 
   /**
+   * Maximum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+   * number of pulses transmitted per second. This is the reciprocal of the minPRI
+   * (Pulse Repetition Interval) value.
+   */
+  maxPRF?: number;
+
+  /**
+   * Maximum pulse repetition interval of the emitter, measured in microseconds. The
+   * interval between the start of one pulse and the start of another.
+   */
+  maxPRI?: number;
+
+  /**
+   * Maximum pulse width of the emitter, measured in nanoseconds. This is the maximum
+   * duration of the pulse.
+   */
+  maxPW?: number;
+
+  /**
    * The minimum detected frequency in megahertz.
    */
   minFreq?: number;
+
+  /**
+   * Minimum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+   * number of pulses transmitted per second. This is the reciprocal of the maxPRI
+   * (Pulse Repetition Interval) value.
+   */
+  minPRF?: number;
+
+  /**
+   * Minimum pulse repetition interval of the emitter, measured in microseconds. The
+   * interval between the start of one pulse and the start of another.
+   */
+  minPRI?: number;
+
+  /**
+   * Minimum pulse width of the emitter, measured in nanoseconds. This is the minimum
+   * duration of the pulse.
+   */
+  minPW?: number;
 
   /**
    * The count of single-burst observations used for this geolocation observation.
@@ -476,6 +534,12 @@ export interface EmitterGeolocationRetrieveResponse {
    * the geolocation.
    */
   passGroupId?: string;
+
+  /**
+   * Describes the form of the emitted pulse and how its signal varies within the
+   * pulse duration (e.g. GAUSSIAN, RECTANGULAR, TRAPEZOIDAL, etc.).
+   */
+  pulseShape?: string;
 
   /**
    * The time representing the mean of the constituent single-burst observations in
@@ -598,6 +662,25 @@ export interface EmitterGeolocationListResponse {
   atype?: string;
 
   /**
+   * Average pulse repetition frequency of the emitter, measured in hertz. PRF is the
+   * number of pulses transmitted per second. This is the reciprocal of the avgPRI
+   * (Pulse Repetition Interval) value.
+   */
+  avgPRF?: number;
+
+  /**
+   * Average pulse repetition interval of the emitter, measured in microseconds. The
+   * interval between the start of one pulse and the start of another.
+   */
+  avgPRI?: number;
+
+  /**
+   * Average pulse width of the emitter, measured in nanoseconds. This is the average
+   * duration of the pulse.
+   */
+  avgPW?: number;
+
+  /**
    * The detected signal frequency in megahertz.
    */
   centerFreq?: number;
@@ -659,8 +742,9 @@ export interface EmitterGeolocationListResponse {
   endTime?: string;
 
   /**
-   * Confidence ellipsoid about the detection location [semi-major axis (m),
-   * semi-minor axis (m), orientation (deg)].
+   * Confidence ellipsoid about the detection location [semi-major axis (meters),
+   * semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
+   * true north)].
    */
   errEllp?: Array<number>;
 
@@ -703,9 +787,47 @@ export interface EmitterGeolocationListResponse {
   maxFreq?: number;
 
   /**
+   * Maximum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+   * number of pulses transmitted per second. This is the reciprocal of the minPRI
+   * (Pulse Repetition Interval) value.
+   */
+  maxPRF?: number;
+
+  /**
+   * Maximum pulse repetition interval of the emitter, measured in microseconds. The
+   * interval between the start of one pulse and the start of another.
+   */
+  maxPRI?: number;
+
+  /**
+   * Maximum pulse width of the emitter, measured in nanoseconds. This is the maximum
+   * duration of the pulse.
+   */
+  maxPW?: number;
+
+  /**
    * The minimum detected frequency in megahertz.
    */
   minFreq?: number;
+
+  /**
+   * Minimum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+   * number of pulses transmitted per second. This is the reciprocal of the maxPRI
+   * (Pulse Repetition Interval) value.
+   */
+  minPRF?: number;
+
+  /**
+   * Minimum pulse repetition interval of the emitter, measured in microseconds. The
+   * interval between the start of one pulse and the start of another.
+   */
+  minPRI?: number;
+
+  /**
+   * Minimum pulse width of the emitter, measured in nanoseconds. This is the minimum
+   * duration of the pulse.
+   */
+  minPW?: number;
 
   /**
    * The count of single-burst observations used for this geolocation observation.
@@ -758,6 +880,12 @@ export interface EmitterGeolocationListResponse {
    * the geolocation.
    */
   passGroupId?: string;
+
+  /**
+   * Describes the form of the emitted pulse and how its signal varies within the
+   * pulse duration (e.g. GAUSSIAN, RECTANGULAR, TRAPEZOIDAL, etc.).
+   */
+  pulseShape?: string;
 
   /**
    * The time representing the mean of the constituent single-burst observations in
@@ -910,6 +1038,25 @@ export namespace EmitterGeolocationTupleResponse {
     atype?: string;
 
     /**
+     * Average pulse repetition frequency of the emitter, measured in hertz. PRF is the
+     * number of pulses transmitted per second. This is the reciprocal of the avgPRI
+     * (Pulse Repetition Interval) value.
+     */
+    avgPRF?: number;
+
+    /**
+     * Average pulse repetition interval of the emitter, measured in microseconds. The
+     * interval between the start of one pulse and the start of another.
+     */
+    avgPRI?: number;
+
+    /**
+     * Average pulse width of the emitter, measured in nanoseconds. This is the average
+     * duration of the pulse.
+     */
+    avgPW?: number;
+
+    /**
      * The detected signal frequency in megahertz.
      */
     centerFreq?: number;
@@ -971,8 +1118,9 @@ export namespace EmitterGeolocationTupleResponse {
     endTime?: string;
 
     /**
-     * Confidence ellipsoid about the detection location [semi-major axis (m),
-     * semi-minor axis (m), orientation (deg)].
+     * Confidence ellipsoid about the detection location [semi-major axis (meters),
+     * semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
+     * true north)].
      */
     errEllp?: Array<number>;
 
@@ -1015,9 +1163,47 @@ export namespace EmitterGeolocationTupleResponse {
     maxFreq?: number;
 
     /**
+     * Maximum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+     * number of pulses transmitted per second. This is the reciprocal of the minPRI
+     * (Pulse Repetition Interval) value.
+     */
+    maxPRF?: number;
+
+    /**
+     * Maximum pulse repetition interval of the emitter, measured in microseconds. The
+     * interval between the start of one pulse and the start of another.
+     */
+    maxPRI?: number;
+
+    /**
+     * Maximum pulse width of the emitter, measured in nanoseconds. This is the maximum
+     * duration of the pulse.
+     */
+    maxPW?: number;
+
+    /**
      * The minimum detected frequency in megahertz.
      */
     minFreq?: number;
+
+    /**
+     * Minimum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+     * number of pulses transmitted per second. This is the reciprocal of the maxPRI
+     * (Pulse Repetition Interval) value.
+     */
+    minPRF?: number;
+
+    /**
+     * Minimum pulse repetition interval of the emitter, measured in microseconds. The
+     * interval between the start of one pulse and the start of another.
+     */
+    minPRI?: number;
+
+    /**
+     * Minimum pulse width of the emitter, measured in nanoseconds. This is the minimum
+     * duration of the pulse.
+     */
+    minPW?: number;
 
     /**
      * The count of single-burst observations used for this geolocation observation.
@@ -1075,6 +1261,12 @@ export namespace EmitterGeolocationTupleResponse {
      * the geolocation.
      */
     passGroupId?: string;
+
+    /**
+     * Describes the form of the emitted pulse and how its signal varies within the
+     * pulse duration (e.g. GAUSSIAN, RECTANGULAR, TRAPEZOIDAL, etc.).
+     */
+    pulseShape?: string;
 
     /**
      * The time representing the mean of the constituent single-burst observations in
@@ -1201,6 +1393,25 @@ export interface EmitterGeolocationCreateParams {
   atype?: string;
 
   /**
+   * Average pulse repetition frequency of the emitter, measured in hertz. PRF is the
+   * number of pulses transmitted per second. This is the reciprocal of the avgPRI
+   * (Pulse Repetition Interval) value.
+   */
+  avgPRF?: number;
+
+  /**
+   * Average pulse repetition interval of the emitter, measured in microseconds. The
+   * interval between the start of one pulse and the start of another.
+   */
+  avgPRI?: number;
+
+  /**
+   * Average pulse width of the emitter, measured in nanoseconds. This is the average
+   * duration of the pulse.
+   */
+  avgPW?: number;
+
+  /**
    * The detected signal frequency in megahertz.
    */
   centerFreq?: number;
@@ -1251,8 +1462,9 @@ export interface EmitterGeolocationCreateParams {
   endTime?: string;
 
   /**
-   * Confidence ellipsoid about the detection location [semi-major axis (m),
-   * semi-minor axis (m), orientation (deg)].
+   * Confidence ellipsoid about the detection location [semi-major axis (meters),
+   * semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
+   * true north)].
    */
   errEllp?: Array<number>;
 
@@ -1286,9 +1498,47 @@ export interface EmitterGeolocationCreateParams {
   maxFreq?: number;
 
   /**
+   * Maximum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+   * number of pulses transmitted per second. This is the reciprocal of the minPRI
+   * (Pulse Repetition Interval) value.
+   */
+  maxPRF?: number;
+
+  /**
+   * Maximum pulse repetition interval of the emitter, measured in microseconds. The
+   * interval between the start of one pulse and the start of another.
+   */
+  maxPRI?: number;
+
+  /**
+   * Maximum pulse width of the emitter, measured in nanoseconds. This is the maximum
+   * duration of the pulse.
+   */
+  maxPW?: number;
+
+  /**
    * The minimum detected frequency in megahertz.
    */
   minFreq?: number;
+
+  /**
+   * Minimum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+   * number of pulses transmitted per second. This is the reciprocal of the maxPRI
+   * (Pulse Repetition Interval) value.
+   */
+  minPRF?: number;
+
+  /**
+   * Minimum pulse repetition interval of the emitter, measured in microseconds. The
+   * interval between the start of one pulse and the start of another.
+   */
+  minPRI?: number;
+
+  /**
+   * Minimum pulse width of the emitter, measured in nanoseconds. This is the minimum
+   * duration of the pulse.
+   */
+  minPW?: number;
 
   /**
    * The count of single-burst observations used for this geolocation observation.
@@ -1335,6 +1585,12 @@ export interface EmitterGeolocationCreateParams {
    * the geolocation.
    */
   passGroupId?: string;
+
+  /**
+   * Describes the form of the emitted pulse and how its signal varies within the
+   * pulse duration (e.g. GAUSSIAN, RECTANGULAR, TRAPEZOIDAL, etc.).
+   */
+  pulseShape?: string;
 
   /**
    * The time representing the mean of the constituent single-burst observations in
@@ -1487,6 +1743,25 @@ export namespace EmitterGeolocationCreateBulkParams {
     atype?: string;
 
     /**
+     * Average pulse repetition frequency of the emitter, measured in hertz. PRF is the
+     * number of pulses transmitted per second. This is the reciprocal of the avgPRI
+     * (Pulse Repetition Interval) value.
+     */
+    avgPRF?: number;
+
+    /**
+     * Average pulse repetition interval of the emitter, measured in microseconds. The
+     * interval between the start of one pulse and the start of another.
+     */
+    avgPRI?: number;
+
+    /**
+     * Average pulse width of the emitter, measured in nanoseconds. This is the average
+     * duration of the pulse.
+     */
+    avgPW?: number;
+
+    /**
      * The detected signal frequency in megahertz.
      */
     centerFreq?: number;
@@ -1537,8 +1812,9 @@ export namespace EmitterGeolocationCreateBulkParams {
     endTime?: string;
 
     /**
-     * Confidence ellipsoid about the detection location [semi-major axis (m),
-     * semi-minor axis (m), orientation (deg)].
+     * Confidence ellipsoid about the detection location [semi-major axis (meters),
+     * semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
+     * true north)].
      */
     errEllp?: Array<number>;
 
@@ -1572,9 +1848,47 @@ export namespace EmitterGeolocationCreateBulkParams {
     maxFreq?: number;
 
     /**
+     * Maximum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+     * number of pulses transmitted per second. This is the reciprocal of the minPRI
+     * (Pulse Repetition Interval) value.
+     */
+    maxPRF?: number;
+
+    /**
+     * Maximum pulse repetition interval of the emitter, measured in microseconds. The
+     * interval between the start of one pulse and the start of another.
+     */
+    maxPRI?: number;
+
+    /**
+     * Maximum pulse width of the emitter, measured in nanoseconds. This is the maximum
+     * duration of the pulse.
+     */
+    maxPW?: number;
+
+    /**
      * The minimum detected frequency in megahertz.
      */
     minFreq?: number;
+
+    /**
+     * Minimum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+     * number of pulses transmitted per second. This is the reciprocal of the maxPRI
+     * (Pulse Repetition Interval) value.
+     */
+    minPRF?: number;
+
+    /**
+     * Minimum pulse repetition interval of the emitter, measured in microseconds. The
+     * interval between the start of one pulse and the start of another.
+     */
+    minPRI?: number;
+
+    /**
+     * Minimum pulse width of the emitter, measured in nanoseconds. This is the minimum
+     * duration of the pulse.
+     */
+    minPW?: number;
 
     /**
      * The count of single-burst observations used for this geolocation observation.
@@ -1621,6 +1935,12 @@ export namespace EmitterGeolocationCreateBulkParams {
      * the geolocation.
      */
     passGroupId?: string;
+
+    /**
+     * Describes the form of the emitted pulse and how its signal varies within the
+     * pulse duration (e.g. GAUSSIAN, RECTANGULAR, TRAPEZOIDAL, etc.).
+     */
+    pulseShape?: string;
 
     /**
      * The time representing the mean of the constituent single-burst observations in
@@ -1768,6 +2088,25 @@ export namespace EmitterGeolocationUnvalidatedPublishParams {
     atype?: string;
 
     /**
+     * Average pulse repetition frequency of the emitter, measured in hertz. PRF is the
+     * number of pulses transmitted per second. This is the reciprocal of the avgPRI
+     * (Pulse Repetition Interval) value.
+     */
+    avgPRF?: number;
+
+    /**
+     * Average pulse repetition interval of the emitter, measured in microseconds. The
+     * interval between the start of one pulse and the start of another.
+     */
+    avgPRI?: number;
+
+    /**
+     * Average pulse width of the emitter, measured in nanoseconds. This is the average
+     * duration of the pulse.
+     */
+    avgPW?: number;
+
+    /**
      * The detected signal frequency in megahertz.
      */
     centerFreq?: number;
@@ -1818,8 +2157,9 @@ export namespace EmitterGeolocationUnvalidatedPublishParams {
     endTime?: string;
 
     /**
-     * Confidence ellipsoid about the detection location [semi-major axis (m),
-     * semi-minor axis (m), orientation (deg)].
+     * Confidence ellipsoid about the detection location [semi-major axis (meters),
+     * semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
+     * true north)].
      */
     errEllp?: Array<number>;
 
@@ -1853,9 +2193,47 @@ export namespace EmitterGeolocationUnvalidatedPublishParams {
     maxFreq?: number;
 
     /**
+     * Maximum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+     * number of pulses transmitted per second. This is the reciprocal of the minPRI
+     * (Pulse Repetition Interval) value.
+     */
+    maxPRF?: number;
+
+    /**
+     * Maximum pulse repetition interval of the emitter, measured in microseconds. The
+     * interval between the start of one pulse and the start of another.
+     */
+    maxPRI?: number;
+
+    /**
+     * Maximum pulse width of the emitter, measured in nanoseconds. This is the maximum
+     * duration of the pulse.
+     */
+    maxPW?: number;
+
+    /**
      * The minimum detected frequency in megahertz.
      */
     minFreq?: number;
+
+    /**
+     * Minimum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+     * number of pulses transmitted per second. This is the reciprocal of the maxPRI
+     * (Pulse Repetition Interval) value.
+     */
+    minPRF?: number;
+
+    /**
+     * Minimum pulse repetition interval of the emitter, measured in microseconds. The
+     * interval between the start of one pulse and the start of another.
+     */
+    minPRI?: number;
+
+    /**
+     * Minimum pulse width of the emitter, measured in nanoseconds. This is the minimum
+     * duration of the pulse.
+     */
+    minPW?: number;
 
     /**
      * The count of single-burst observations used for this geolocation observation.
@@ -1902,6 +2280,12 @@ export namespace EmitterGeolocationUnvalidatedPublishParams {
      * the geolocation.
      */
     passGroupId?: string;
+
+    /**
+     * Describes the form of the emitted pulse and how its signal varies within the
+     * pulse duration (e.g. GAUSSIAN, RECTANGULAR, TRAPEZOIDAL, etc.).
+     */
+    pulseShape?: string;
 
     /**
      * The time representing the mean of the constituent single-burst observations in

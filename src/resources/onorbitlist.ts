@@ -10,17 +10,17 @@ import { path } from '../internal/utils/path';
 
 export class Onorbitlist extends APIResource {
   /**
-   * Service operation to take a single OnorbitList as a POST body and ingest into
-   * the database. An OnorbitList is just a generic named list of on-orbit IDs. A
-   * specific role is required to perform this service operation. Please contact the
-   * UDL team for assistance.
+   * Service operation to take a single OnOrbitList as a POST body and ingest into
+   * the database. A specific role is required to perform this service operation.
+   * Please contact the UDL team for assistance.
    *
    * @example
    * ```ts
    * await client.onorbitlist.create({
    *   classificationMarking: 'U',
    *   dataMode: 'TEST',
-   *   name: 'People',
+   *   name: 'HRR-SATELLITES',
+   *   onOrbitListItems: [{}],
    *   source: 'Bluestaq',
    * });
    * ```
@@ -34,16 +34,17 @@ export class Onorbitlist extends APIResource {
   }
 
   /**
-   * Service operation to update a single OnorbitList. An OnorbitList is just a
-   * generic named list of on-orbit IDs. A specific role is required to perform this
-   * service operation. Please contact the UDL team for assistance.
+   * Service operation to update a single OnOrbitList record. A specific role is
+   * required to perform this service operation. Please contact the UDL team for
+   * assistance.
    *
    * @example
    * ```ts
    * await client.onorbitlist.update('id', {
    *   classificationMarking: 'U',
    *   dataMode: 'TEST',
-   *   name: 'People',
+   *   name: 'HRR-SATELLITES',
+   *   onOrbitListItems: [{}],
    *   source: 'Bluestaq',
    * });
    * ```
@@ -81,10 +82,9 @@ export class Onorbitlist extends APIResource {
   }
 
   /**
-   * Service operation to delete a OnorbitList object specified by the passed ID path
-   * parameter. An OnorbitList is just a generic named list of on-orbit IDs. A
-   * specific role is required to perform this service operation. Please contact the
-   * UDL team for assistance.
+   * Service operation to delete a single OnOrbitList record specified by the passed
+   * ID path parameter. A specific role is required to perform this service
+   * operation. Please contact the UDL team for assistance.
    *
    * @example
    * ```ts
@@ -119,8 +119,8 @@ export class Onorbitlist extends APIResource {
   }
 
   /**
-   * Service operation to get a single OnorbitList record by its unique ID passed as
-   * a path parameter. An OnorbitList is just a generic named list of on-orbit IDs.
+   * Service operation to get a single OnOrbitList record by its unique ID passed as
+   * a path parameter.
    *
    * @example
    * ```ts
@@ -227,14 +227,28 @@ export interface OnorbitlistListResponse {
   createdBy?: string;
 
   /**
+   * Default revisit rate in minutes for all objects in this list.
+   */
+  defaultRevisitRateMins?: number;
+
+  /**
    * Description of the list.
    */
   description?: string;
 
   /**
-   * Ordered array of Onorbit IDs belonging to this list.
+   * Numerical priority of this orbit list relative to other orbit lists; lower
+   * values indicate higher priority. Decimal values allowed for fine granularity.
+   * Consumers should contact the provider for details on the priority.
    */
-  onorbits?: Array<string>;
+  listPriority?: number;
+
+  /**
+   * Defined naming system that ensures each satellite or space object has a unique
+   * and unambiguous identifier within the name space (e.g. JCO, 18SDS). If null, it
+   * is assumed to be 18th Space Defense Squadron (18SDS).
+   */
+  namespace?: string;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -243,6 +257,39 @@ export interface OnorbitlistListResponse {
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
+
+  /**
+   * The source data library from which this record was received. This could be a
+   * remote or tactical UDL or another data library. If null, the record should be
+   * assumed to have originated from the primary Enterprise UDL.
+   */
+  sourceDL?: string;
+
+  /**
+   * Optional array of provider/source specific tags for this data, where each
+   * element is no longer than 32 characters, used for implementing data owner
+   * conditional access controls to restrict access to the data. Should be left null
+   * by data providers unless conditional access controls are coordinated with the
+   * UDL team.
+   */
+  tags?: Array<string>;
+
+  /**
+   * Optional identifier to track a commercial or marketplace transaction executed to
+   * produce this data.
+   */
+  transactionId?: string;
+
+  /**
+   * Time the row was last updated in the database, auto-populated by the system.
+   */
+  updatedAt?: string;
+
+  /**
+   * Application user who updated the row in the database, auto-populated by the
+   * system.
+   */
+  updatedBy?: string;
 }
 
 export type OnorbitlistCountResponse = string;
@@ -281,6 +328,12 @@ export interface OnorbitlistGetResponse {
   name: string;
 
   /**
+   * This is a list of onOrbitListItems that will be related one-to-one with an
+   * onOrbit entry.
+   */
+  onOrbitListItems: Array<OnorbitlistGetResponse.OnOrbitListItem>;
+
+  /**
    * Source of the data.
    */
   source: string;
@@ -302,14 +355,28 @@ export interface OnorbitlistGetResponse {
   createdBy?: string;
 
   /**
+   * Default revisit rate in minutes for all objects in this list.
+   */
+  defaultRevisitRateMins?: number;
+
+  /**
    * Description of the list.
    */
   description?: string;
 
   /**
-   * Ordered array of Onorbit IDs belonging to this list.
+   * Numerical priority of this orbit list relative to other orbit lists; lower
+   * values indicate higher priority. Decimal values allowed for fine granularity.
+   * Consumers should contact the provider for details on the priority.
    */
-  onorbits?: Array<string>;
+  listPriority?: number;
+
+  /**
+   * Defined naming system that ensures each satellite or space object has a unique
+   * and unambiguous identifier within the name space (e.g. JCO, 18SDS). If null, it
+   * is assumed to be 18th Space Defense Squadron (18SDS).
+   */
+  namespace?: string;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -318,6 +385,28 @@ export interface OnorbitlistGetResponse {
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
+
+  /**
+   * The source data library from which this record was received. This could be a
+   * remote or tactical UDL or another data library. If null, the record should be
+   * assumed to have originated from the primary Enterprise UDL.
+   */
+  sourceDL?: string;
+
+  /**
+   * Optional array of provider/source specific tags for this data, where each
+   * element is no longer than 32 characters, used for implementing data owner
+   * conditional access controls to restrict access to the data. Should be left null
+   * by data providers unless conditional access controls are coordinated with the
+   * UDL team.
+   */
+  tags?: Array<string>;
+
+  /**
+   * Optional identifier to track a commercial or marketplace transaction executed to
+   * produce this data.
+   */
+  transactionId?: string;
 
   /**
    * Time the row was last updated in the database, auto-populated by the system.
@@ -329,6 +418,107 @@ export interface OnorbitlistGetResponse {
    * system.
    */
   updatedBy?: string;
+}
+
+export namespace OnorbitlistGetResponse {
+  /**
+   * Items associated with this onOrbitList record.
+   */
+  export interface OnOrbitListItem {
+    /**
+     * Height of a box, in degrees, volume expected to be cleared by sensor providers,
+     * if CLEARING is selected.
+     */
+    clearingBoxCrossTrack?: number;
+
+    /**
+     * Width of a box volume, in degrees, expected to be cleared by sensor providers,
+     * if CLEARING is selected.
+     */
+    clearingBoxInTrack?: number;
+
+    /**
+     * Radius, in degrees, of a spherical volume expected to be cleared by sensor
+     * providers, if CLEARING is selected.
+     */
+    clearingRadius?: number;
+
+    /**
+     * Common name of the onorbit object.
+     */
+    commonName?: string;
+
+    /**
+     * This value is typically the ISO 3166 Alpha-3 three-character country code,
+     * however it can also represent various consortiums that do not appear in the ISO
+     * document.
+     */
+    countryCode?: string;
+
+    /**
+     * Datetime expiration of a satellite on this list, allowing for the maintenance of
+     * a history of when satellites entered and when they exited the list in ISO 8601
+     * UTC datetime format with millisecond precision.
+     */
+    expiredOn?: string;
+
+    /**
+     * Frequency of additional routine, in minutes, tasking identified in and
+     * corresponding to the monitoringType array.
+     */
+    freqMins?: number;
+
+    /**
+     * Routine tasking that should be applied to this object. REVISIT_RATE allows users
+     * to define custom revisit rates for individual satellites, HVA_CLEARING allows
+     * users to define custom volumes that are expected to be clear of unknown objects,
+     * and POL would be collects on a specified increment in support of collecting data
+     * that feeds into Pattern of Life (PoL) assessments.
+     */
+    monitoringType?: string;
+
+    /**
+     * Unique identifier of the on-orbit object. This is typically the USSF 18th SDS
+     * satellite number (also sometimes referred to as NORAD ID/number) but could be an
+     * identifier from another satellite catalog namespace. See the ‘namespace’ field
+     * for the appropriate identifier namespace. If namespace is null, 18SDS satellite
+     * number is assumed.
+     */
+    objectId?: string;
+
+    /**
+     * Orbit Regime refers to a classification of a satellite's orbit based on its
+     * altitude, inclination, and other orbital characteristics. Common orbit regimes
+     * include Low Earth Orbit (LEO), Medium Earth Orbit (MEO), Geostationary Orbit
+     * (GEO), and Highly Elliptical Orbit (HEO).
+     */
+    orbitRegime?: string;
+
+    /**
+     * Optional identifier indicates the on-orbit object being referenced. This may be
+     * an internal system identifier and not necessarily a valid satellite number.
+     */
+    origObjectId?: string;
+
+    /**
+     * Payload priority based on the type of payload that has been identified or that
+     * is suspected. Priority of the payload as a number. (1=highest priority).
+     */
+    payloadPriority?: number;
+
+    /**
+     * Rank refers to the assigned position or level of priority given to a satellite
+     * based on its relative importance, urgency, or operational relevance as
+     * determined by the applicable operations unit.
+     */
+    rank?: number;
+
+    /**
+     * Tasking urgency, typically will be on a 1-10 scale. Urgency as a number.
+     * (1=highest priority).
+     */
+    urgency?: number;
+  }
 }
 
 export interface OnorbitlistQueryhelpResponse {
@@ -392,6 +582,12 @@ export namespace OnorbitlistTupleResponse {
     name: string;
 
     /**
+     * This is a list of onOrbitListItems that will be related one-to-one with an
+     * onOrbit entry.
+     */
+    onOrbitListItems: Array<OnorbitlistTupleResponseItem.OnOrbitListItem>;
+
+    /**
      * Source of the data.
      */
     source: string;
@@ -413,14 +609,28 @@ export namespace OnorbitlistTupleResponse {
     createdBy?: string;
 
     /**
+     * Default revisit rate in minutes for all objects in this list.
+     */
+    defaultRevisitRateMins?: number;
+
+    /**
      * Description of the list.
      */
     description?: string;
 
     /**
-     * Ordered array of Onorbit IDs belonging to this list.
+     * Numerical priority of this orbit list relative to other orbit lists; lower
+     * values indicate higher priority. Decimal values allowed for fine granularity.
+     * Consumers should contact the provider for details on the priority.
      */
-    onorbits?: Array<string>;
+    listPriority?: number;
+
+    /**
+     * Defined naming system that ensures each satellite or space object has a unique
+     * and unambiguous identifier within the name space (e.g. JCO, 18SDS). If null, it
+     * is assumed to be 18th Space Defense Squadron (18SDS).
+     */
+    namespace?: string;
 
     /**
      * Originating system or organization which produced the data, if different from
@@ -429,6 +639,28 @@ export namespace OnorbitlistTupleResponse {
      * null, the source may be assumed to be the origin.
      */
     origin?: string;
+
+    /**
+     * The source data library from which this record was received. This could be a
+     * remote or tactical UDL or another data library. If null, the record should be
+     * assumed to have originated from the primary Enterprise UDL.
+     */
+    sourceDL?: string;
+
+    /**
+     * Optional array of provider/source specific tags for this data, where each
+     * element is no longer than 32 characters, used for implementing data owner
+     * conditional access controls to restrict access to the data. Should be left null
+     * by data providers unless conditional access controls are coordinated with the
+     * UDL team.
+     */
+    tags?: Array<string>;
+
+    /**
+     * Optional identifier to track a commercial or marketplace transaction executed to
+     * produce this data.
+     */
+    transactionId?: string;
 
     /**
      * Time the row was last updated in the database, auto-populated by the system.
@@ -440,6 +672,107 @@ export namespace OnorbitlistTupleResponse {
      * system.
      */
     updatedBy?: string;
+  }
+
+  export namespace OnorbitlistTupleResponseItem {
+    /**
+     * Items associated with this onOrbitList record.
+     */
+    export interface OnOrbitListItem {
+      /**
+       * Height of a box, in degrees, volume expected to be cleared by sensor providers,
+       * if CLEARING is selected.
+       */
+      clearingBoxCrossTrack?: number;
+
+      /**
+       * Width of a box volume, in degrees, expected to be cleared by sensor providers,
+       * if CLEARING is selected.
+       */
+      clearingBoxInTrack?: number;
+
+      /**
+       * Radius, in degrees, of a spherical volume expected to be cleared by sensor
+       * providers, if CLEARING is selected.
+       */
+      clearingRadius?: number;
+
+      /**
+       * Common name of the onorbit object.
+       */
+      commonName?: string;
+
+      /**
+       * This value is typically the ISO 3166 Alpha-3 three-character country code,
+       * however it can also represent various consortiums that do not appear in the ISO
+       * document.
+       */
+      countryCode?: string;
+
+      /**
+       * Datetime expiration of a satellite on this list, allowing for the maintenance of
+       * a history of when satellites entered and when they exited the list in ISO 8601
+       * UTC datetime format with millisecond precision.
+       */
+      expiredOn?: string;
+
+      /**
+       * Frequency of additional routine, in minutes, tasking identified in and
+       * corresponding to the monitoringType array.
+       */
+      freqMins?: number;
+
+      /**
+       * Routine tasking that should be applied to this object. REVISIT_RATE allows users
+       * to define custom revisit rates for individual satellites, HVA_CLEARING allows
+       * users to define custom volumes that are expected to be clear of unknown objects,
+       * and POL would be collects on a specified increment in support of collecting data
+       * that feeds into Pattern of Life (PoL) assessments.
+       */
+      monitoringType?: string;
+
+      /**
+       * Unique identifier of the on-orbit object. This is typically the USSF 18th SDS
+       * satellite number (also sometimes referred to as NORAD ID/number) but could be an
+       * identifier from another satellite catalog namespace. See the ‘namespace’ field
+       * for the appropriate identifier namespace. If namespace is null, 18SDS satellite
+       * number is assumed.
+       */
+      objectId?: string;
+
+      /**
+       * Orbit Regime refers to a classification of a satellite's orbit based on its
+       * altitude, inclination, and other orbital characteristics. Common orbit regimes
+       * include Low Earth Orbit (LEO), Medium Earth Orbit (MEO), Geostationary Orbit
+       * (GEO), and Highly Elliptical Orbit (HEO).
+       */
+      orbitRegime?: string;
+
+      /**
+       * Optional identifier indicates the on-orbit object being referenced. This may be
+       * an internal system identifier and not necessarily a valid satellite number.
+       */
+      origObjectId?: string;
+
+      /**
+       * Payload priority based on the type of payload that has been identified or that
+       * is suspected. Priority of the payload as a number. (1=highest priority).
+       */
+      payloadPriority?: number;
+
+      /**
+       * Rank refers to the assigned position or level of priority given to a satellite
+       * based on its relative importance, urgency, or operational relevance as
+       * determined by the applicable operations unit.
+       */
+      rank?: number;
+
+      /**
+       * Tasking urgency, typically will be on a 1-10 scale. Urgency as a number.
+       * (1=highest priority).
+       */
+      urgency?: number;
+    }
   }
 }
 
@@ -473,6 +806,12 @@ export interface OnorbitlistCreateParams {
   name: string;
 
   /**
+   * This is a list of onOrbitListItems that will be related one-to-one with an
+   * onOrbit entry.
+   */
+  onOrbitListItems: Array<OnorbitlistCreateParams.OnOrbitListItem>;
+
+  /**
    * Source of the data.
    */
   source: string;
@@ -483,14 +822,28 @@ export interface OnorbitlistCreateParams {
   id?: string;
 
   /**
+   * Default revisit rate in minutes for all objects in this list.
+   */
+  defaultRevisitRateMins?: number;
+
+  /**
    * Description of the list.
    */
   description?: string;
 
   /**
-   * Ordered array of Onorbit IDs belonging to this list.
+   * Numerical priority of this orbit list relative to other orbit lists; lower
+   * values indicate higher priority. Decimal values allowed for fine granularity.
+   * Consumers should contact the provider for details on the priority.
    */
-  onorbits?: Array<string>;
+  listPriority?: number;
+
+  /**
+   * Defined naming system that ensures each satellite or space object has a unique
+   * and unambiguous identifier within the name space (e.g. JCO, 18SDS). If null, it
+   * is assumed to be 18th Space Defense Squadron (18SDS).
+   */
+  namespace?: string;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -499,6 +852,122 @@ export interface OnorbitlistCreateParams {
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
+
+  /**
+   * Optional array of provider/source specific tags for this data, where each
+   * element is no longer than 32 characters, used for implementing data owner
+   * conditional access controls to restrict access to the data. Should be left null
+   * by data providers unless conditional access controls are coordinated with the
+   * UDL team.
+   */
+  tags?: Array<string>;
+
+  /**
+   * Optional identifier to track a commercial or marketplace transaction executed to
+   * produce this data.
+   */
+  transactionId?: string;
+}
+
+export namespace OnorbitlistCreateParams {
+  /**
+   * Items associated with this onOrbitList record.
+   */
+  export interface OnOrbitListItem {
+    /**
+     * Height of a box, in degrees, volume expected to be cleared by sensor providers,
+     * if CLEARING is selected.
+     */
+    clearingBoxCrossTrack?: number;
+
+    /**
+     * Width of a box volume, in degrees, expected to be cleared by sensor providers,
+     * if CLEARING is selected.
+     */
+    clearingBoxInTrack?: number;
+
+    /**
+     * Radius, in degrees, of a spherical volume expected to be cleared by sensor
+     * providers, if CLEARING is selected.
+     */
+    clearingRadius?: number;
+
+    /**
+     * Common name of the onorbit object.
+     */
+    commonName?: string;
+
+    /**
+     * This value is typically the ISO 3166 Alpha-3 three-character country code,
+     * however it can also represent various consortiums that do not appear in the ISO
+     * document.
+     */
+    countryCode?: string;
+
+    /**
+     * Datetime expiration of a satellite on this list, allowing for the maintenance of
+     * a history of when satellites entered and when they exited the list in ISO 8601
+     * UTC datetime format with millisecond precision.
+     */
+    expiredOn?: string;
+
+    /**
+     * Frequency of additional routine, in minutes, tasking identified in and
+     * corresponding to the monitoringType array.
+     */
+    freqMins?: number;
+
+    /**
+     * Routine tasking that should be applied to this object. REVISIT_RATE allows users
+     * to define custom revisit rates for individual satellites, HVA_CLEARING allows
+     * users to define custom volumes that are expected to be clear of unknown objects,
+     * and POL would be collects on a specified increment in support of collecting data
+     * that feeds into Pattern of Life (PoL) assessments.
+     */
+    monitoringType?: string;
+
+    /**
+     * Unique identifier of the on-orbit object. This is typically the USSF 18th SDS
+     * satellite number (also sometimes referred to as NORAD ID/number) but could be an
+     * identifier from another satellite catalog namespace. See the ‘namespace’ field
+     * for the appropriate identifier namespace. If namespace is null, 18SDS satellite
+     * number is assumed.
+     */
+    objectId?: string;
+
+    /**
+     * Orbit Regime refers to a classification of a satellite's orbit based on its
+     * altitude, inclination, and other orbital characteristics. Common orbit regimes
+     * include Low Earth Orbit (LEO), Medium Earth Orbit (MEO), Geostationary Orbit
+     * (GEO), and Highly Elliptical Orbit (HEO).
+     */
+    orbitRegime?: string;
+
+    /**
+     * Optional identifier indicates the on-orbit object being referenced. This may be
+     * an internal system identifier and not necessarily a valid satellite number.
+     */
+    origObjectId?: string;
+
+    /**
+     * Payload priority based on the type of payload that has been identified or that
+     * is suspected. Priority of the payload as a number. (1=highest priority).
+     */
+    payloadPriority?: number;
+
+    /**
+     * Rank refers to the assigned position or level of priority given to a satellite
+     * based on its relative importance, urgency, or operational relevance as
+     * determined by the applicable operations unit.
+     */
+    rank?: number;
+
+    /**
+     * Tasking urgency, typically will be on a 1-10 scale. Urgency as a number.
+     * (1=highest priority).
+     */
+    urgency?: number;
+  }
 }
 
 export interface OnorbitlistUpdateParams {
@@ -531,6 +1000,12 @@ export interface OnorbitlistUpdateParams {
   name: string;
 
   /**
+   * This is a list of onOrbitListItems that will be related one-to-one with an
+   * onOrbit entry.
+   */
+  onOrbitListItems: Array<OnorbitlistUpdateParams.OnOrbitListItem>;
+
+  /**
    * Source of the data.
    */
   source: string;
@@ -541,14 +1016,28 @@ export interface OnorbitlistUpdateParams {
   body_id?: string;
 
   /**
+   * Default revisit rate in minutes for all objects in this list.
+   */
+  defaultRevisitRateMins?: number;
+
+  /**
    * Description of the list.
    */
   description?: string;
 
   /**
-   * Ordered array of Onorbit IDs belonging to this list.
+   * Numerical priority of this orbit list relative to other orbit lists; lower
+   * values indicate higher priority. Decimal values allowed for fine granularity.
+   * Consumers should contact the provider for details on the priority.
    */
-  onorbits?: Array<string>;
+  listPriority?: number;
+
+  /**
+   * Defined naming system that ensures each satellite or space object has a unique
+   * and unambiguous identifier within the name space (e.g. JCO, 18SDS). If null, it
+   * is assumed to be 18th Space Defense Squadron (18SDS).
+   */
+  namespace?: string;
 
   /**
    * Originating system or organization which produced the data, if different from
@@ -557,6 +1046,122 @@ export interface OnorbitlistUpdateParams {
    * null, the source may be assumed to be the origin.
    */
   origin?: string;
+
+  /**
+   * Optional array of provider/source specific tags for this data, where each
+   * element is no longer than 32 characters, used for implementing data owner
+   * conditional access controls to restrict access to the data. Should be left null
+   * by data providers unless conditional access controls are coordinated with the
+   * UDL team.
+   */
+  tags?: Array<string>;
+
+  /**
+   * Optional identifier to track a commercial or marketplace transaction executed to
+   * produce this data.
+   */
+  transactionId?: string;
+}
+
+export namespace OnorbitlistUpdateParams {
+  /**
+   * Items associated with this onOrbitList record.
+   */
+  export interface OnOrbitListItem {
+    /**
+     * Height of a box, in degrees, volume expected to be cleared by sensor providers,
+     * if CLEARING is selected.
+     */
+    clearingBoxCrossTrack?: number;
+
+    /**
+     * Width of a box volume, in degrees, expected to be cleared by sensor providers,
+     * if CLEARING is selected.
+     */
+    clearingBoxInTrack?: number;
+
+    /**
+     * Radius, in degrees, of a spherical volume expected to be cleared by sensor
+     * providers, if CLEARING is selected.
+     */
+    clearingRadius?: number;
+
+    /**
+     * Common name of the onorbit object.
+     */
+    commonName?: string;
+
+    /**
+     * This value is typically the ISO 3166 Alpha-3 three-character country code,
+     * however it can also represent various consortiums that do not appear in the ISO
+     * document.
+     */
+    countryCode?: string;
+
+    /**
+     * Datetime expiration of a satellite on this list, allowing for the maintenance of
+     * a history of when satellites entered and when they exited the list in ISO 8601
+     * UTC datetime format with millisecond precision.
+     */
+    expiredOn?: string;
+
+    /**
+     * Frequency of additional routine, in minutes, tasking identified in and
+     * corresponding to the monitoringType array.
+     */
+    freqMins?: number;
+
+    /**
+     * Routine tasking that should be applied to this object. REVISIT_RATE allows users
+     * to define custom revisit rates for individual satellites, HVA_CLEARING allows
+     * users to define custom volumes that are expected to be clear of unknown objects,
+     * and POL would be collects on a specified increment in support of collecting data
+     * that feeds into Pattern of Life (PoL) assessments.
+     */
+    monitoringType?: string;
+
+    /**
+     * Unique identifier of the on-orbit object. This is typically the USSF 18th SDS
+     * satellite number (also sometimes referred to as NORAD ID/number) but could be an
+     * identifier from another satellite catalog namespace. See the ‘namespace’ field
+     * for the appropriate identifier namespace. If namespace is null, 18SDS satellite
+     * number is assumed.
+     */
+    objectId?: string;
+
+    /**
+     * Orbit Regime refers to a classification of a satellite's orbit based on its
+     * altitude, inclination, and other orbital characteristics. Common orbit regimes
+     * include Low Earth Orbit (LEO), Medium Earth Orbit (MEO), Geostationary Orbit
+     * (GEO), and Highly Elliptical Orbit (HEO).
+     */
+    orbitRegime?: string;
+
+    /**
+     * Optional identifier indicates the on-orbit object being referenced. This may be
+     * an internal system identifier and not necessarily a valid satellite number.
+     */
+    origObjectId?: string;
+
+    /**
+     * Payload priority based on the type of payload that has been identified or that
+     * is suspected. Priority of the payload as a number. (1=highest priority).
+     */
+    payloadPriority?: number;
+
+    /**
+     * Rank refers to the assigned position or level of priority given to a satellite
+     * based on its relative importance, urgency, or operational relevance as
+     * determined by the applicable operations unit.
+     */
+    rank?: number;
+
+    /**
+     * Tasking urgency, typically will be on a 1-10 scale. Urgency as a number.
+     * (1=highest priority).
+     */
+    urgency?: number;
+  }
 }
 
 export interface OnorbitlistListParams extends OffsetPageParams {}

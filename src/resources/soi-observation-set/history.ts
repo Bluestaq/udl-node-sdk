@@ -931,6 +931,13 @@ export namespace SoiObservationSetFull {
     tovs?: Array<string>;
 
     /**
+     * A unique numeric or hash identifier assigned to each distinct waveform, enabling
+     * traceability between the waveform used and the images or data products generated
+     * from it.
+     */
+    waveformNumber?: number;
+
+    /**
      * Array of the cartesian X accelerations, in kilometers per second squared, in the
      * specified referenceFrame. If referenceFrame is null then J2K should be assumed.
      * The 'tovs' and 'xaccel' arrays must match in size, if 'xaccel' is provided.
