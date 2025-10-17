@@ -1018,7 +1018,7 @@ export namespace OnorbitGetSignatureResponse {
     antennaName?: string;
 
     /**
-     * azimuth angle in degrees and J2000 coordinate frame.
+     * Azimuth angle in degrees and topocentric coordinate frame.
      */
     azimuth?: number;
 
@@ -1040,7 +1040,7 @@ export namespace OnorbitGetSignatureResponse {
     azimuthUnc?: number;
 
     /**
-     * Measured bandwidth in Hz.
+     * Measured bandwidth in hertz.
      */
     bandwidth?: number;
 
@@ -1066,8 +1066,8 @@ export namespace OnorbitGetSignatureResponse {
     channel?: number;
 
     /**
-     * Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
-     * MANUAL, etc).
+     * Collection mode (e.g. CONTINUOUS, MANUAL, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
+     * SPOT_SEARCH, SURVEY, etc).
      */
     collectionMode?: string;
 
@@ -1099,12 +1099,12 @@ export namespace OnorbitGetSignatureResponse {
     detectionStatus?: string;
 
     /**
-     * Measured Equivalent Isotopically Radiated Power in dBW.
+     * Measured Equivalent Isotopically Radiated Power in decibel watts.
      */
     eirp?: number;
 
     /**
-     * elevation in degrees and J2000 coordinate frame.
+     * Elevation in degrees and topocentric coordinate frame.
      */
     elevation?: number;
 
@@ -1131,12 +1131,12 @@ export namespace OnorbitGetSignatureResponse {
     elnot?: string;
 
     /**
-     * End carrier frequency in Hz.
+     * End carrier frequency in hertz.
      */
     endFrequency?: number;
 
     /**
-     * Center carrier frequency in Hz.
+     * Center carrier frequency in hertz.
      */
     frequency?: number;
 
@@ -1167,12 +1167,12 @@ export namespace OnorbitGetSignatureResponse {
     innerCodingRate?: number;
 
     /**
-     * Maximum measured PSD value of the trace in dBW.
+     * Maximum measured PSD value of the trace in decibel watts.
      */
     maxPSD?: number;
 
     /**
-     * Minimum measured PSD value of the trace in dBW.
+     * Minimum measured PSD value of the trace in decibel watts.
      */
     minPSD?: number;
 
@@ -1182,32 +1182,32 @@ export namespace OnorbitGetSignatureResponse {
     modulation?: string;
 
     /**
-     * Noise power density, in dBW-Hz.
+     * Noise power density, in decibel watts per hertz.
      */
     noisePwrDensity?: number;
 
     /**
-     * Expected bandwidth in Hz.
+     * Expected bandwidth in hertz.
      */
     nominalBandwidth?: number;
 
     /**
-     * Expected Equivalent Isotopically Radiated Power in dBW.
+     * Expected Equivalent Isotopically Radiated Power in decibel watts.
      */
     nominalEirp?: number;
 
     /**
-     * Nominal or expected center carrier frequency in Hz.
+     * Nominal or expected center carrier frequency in hertz.
      */
     nominalFrequency?: number;
 
     /**
-     * Expected carrier power over noise (dBW/Hz).
+     * Expected carrier power over noise (decibel watts per hertz).
      */
     nominalPowerOverNoise?: number;
 
     /**
-     * Nominal or expected signal to noise ratio, in dB.
+     * Nominal or expected signal to noise ratio, in decibels.
      */
     nominalSnr?: number;
 
@@ -1263,7 +1263,7 @@ export namespace OnorbitGetSignatureResponse {
     /**
      * A pulse group repetition interval (PGRI) is a pulse train in which there are
      * groups of closely spaced pulses separated by much longer times between these
-     * pulse groups.
+     * pulse groups. The PGRI is measured in seconds.
      */
     pgri?: number;
 
@@ -1282,12 +1282,12 @@ export namespace OnorbitGetSignatureResponse {
     polarityType?: 'H' | 'V' | 'R' | 'L';
 
     /**
-     * Measured carrier power over noise (dBW/Hz).
+     * Measured carrier power over noise (decibel watts per hertz).
      */
     powerOverNoise?: number;
 
     /**
-     * Target range in km.
+     * Target range in kilometers.
      */
     range?: number;
 
@@ -1299,7 +1299,7 @@ export namespace OnorbitGetSignatureResponse {
     rangeMeasured?: boolean;
 
     /**
-     * Rate of change of the range in km/sec.
+     * Rate of change of the range in kilometers per second.
      */
     rangeRate?: number;
 
@@ -1328,23 +1328,23 @@ export namespace OnorbitGetSignatureResponse {
     rawFileURI?: string;
 
     /**
-     * Reference signal level, in dBW.
+     * Reference signal level, in decibel watts.
      */
     referenceLevel?: number;
 
     /**
-     * Measured power of the center carrier frequency in dBW.
+     * Measured power of the center carrier frequency in decibel watts.
      */
     relativeCarrierPower?: number;
 
     /**
      * The measure of the signal created from the sum of all the noise sources and
-     * unwanted signals within the measurement system, in dBW.
+     * unwanted signals within the measurement system, in decibel watts.
      */
     relativeNoiseFloor?: number;
 
     /**
-     * Resolution bandwidth in Hz.
+     * Resolution bandwidth in hertz.
      */
     resolutionBandwidth?: number;
 
@@ -1373,7 +1373,7 @@ export namespace OnorbitGetSignatureResponse {
     senlon?: number;
 
     /**
-     * Signal to noise ratio, in dB.
+     * Signal to noise ratio, in decibels.
      */
     snr?: number;
 
@@ -1385,12 +1385,13 @@ export namespace OnorbitGetSignatureResponse {
     sourceDL?: string;
 
     /**
-     * Measured spectrum analyzer power of the center carrier frequency in dBW.
+     * Measured spectrum analyzer power of the center carrier frequency in decibel
+     * watts.
      */
     spectrumAnalyzerPower?: number;
 
     /**
-     * Start carrier frequency in Hz.
+     * Start carrier frequency in hertz.
      */
     startFrequency?: number;
 
@@ -1400,7 +1401,7 @@ export namespace OnorbitGetSignatureResponse {
     switchPoint?: number;
 
     /**
-     * Symbol to noise ratio, in dB.
+     * Symbol to noise ratio, in decibels.
      */
     symbolToNoiseRatio?: number;
 
@@ -1416,7 +1417,7 @@ export namespace OnorbitGetSignatureResponse {
     trackId?: string;
 
     /**
-     * Target track or apparent range in km.
+     * Target track or apparent range in kilometers.
      */
     trackRange?: number;
 
@@ -1432,7 +1433,7 @@ export namespace OnorbitGetSignatureResponse {
     transmitFilterRollOff?: number;
 
     /**
-     * Transmit pulse shaping filter typ (e.g. RRC).
+     * Transmit pulse shaping filter type (e.g. RRC).
      */
     transmitFilterType?: string;
 
@@ -1457,7 +1458,7 @@ export namespace OnorbitGetSignatureResponse {
     url?: string;
 
     /**
-     * Video bandwidth in Hz.
+     * Video bandwidth in hertz.
      */
     videoBandwidth?: number;
   }

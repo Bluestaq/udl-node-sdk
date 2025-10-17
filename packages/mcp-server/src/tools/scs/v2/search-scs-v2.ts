@@ -23,7 +23,7 @@ export const tool: Tool = {
     properties: {
       order: {
         type: 'string',
-        description: 'The order in which entries should be sorted',
+        description: 'The order in which entries should be sorted.',
       },
       searchAfter: {
         type: 'string',
@@ -36,7 +36,7 @@ export const tool: Tool = {
       },
       sort: {
         type: 'string',
-        description: 'The field on which to sort entries',
+        description: 'The field on which to sort entries.',
       },
       query: {
         $ref: '#/$defs/search_criterion',

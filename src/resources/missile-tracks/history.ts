@@ -711,10 +711,10 @@ export namespace HistoryListResponse {
     cov?: Array<number>;
 
     /**
-     * The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
-     * GCRF). If the referenceFrame is null it is assumed to be UVW.
+     * The reference frame of the covariance elements (J2000, UVW, EFG/TDR, ECR/ECEF,
+     * TEME, GCRF). If the referenceFrame is null it is assumed to be UVW.
      */
-    covReferenceFrame?: 'ECEF' | 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
     /**
      * The flight azimuth associated with the current state vector (0-360 degrees).

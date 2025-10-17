@@ -596,7 +596,7 @@ export interface EphemerisUnvalidatedPublishParams {
    * The reference frame of the covariance matrix elements. If the covReferenceFrame
    * is null it is assumed to be J2000.
    */
-  covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+  covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
   /**
    * Notes/description of the provided ephemeris. A value of DSTOP signifies the

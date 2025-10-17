@@ -13,7 +13,8 @@ describe('resource onorbitlist', () => {
     const responsePromise = client.onorbitlist.create({
       classificationMarking: 'U',
       dataMode: 'TEST',
-      name: 'People',
+      name: 'HRR-SATELLITES',
+      onOrbitListItems: [{}],
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -29,12 +30,34 @@ describe('resource onorbitlist', () => {
     const response = await client.onorbitlist.create({
       classificationMarking: 'U',
       dataMode: 'TEST',
-      name: 'People',
+      name: 'HRR-SATELLITES',
+      onOrbitListItems: [
+        {
+          clearingBoxCrossTrack: 1.25,
+          clearingBoxInTrack: 1.25,
+          clearingRadius: 1.25,
+          commonName: 'VANGUARD 1',
+          countryCode: 'USA',
+          expiredOn: '2024-07-12T00:00:00.000Z',
+          freqMins: 300.25,
+          monitoringType: 'REVISIT_RATE',
+          objectId: '5',
+          orbitRegime: 'LEO',
+          origObjectId: 'ORIGOBJECT-ID',
+          payloadPriority: 2.5,
+          rank: 3,
+          urgency: 5.1,
+        },
+      ],
       source: 'Bluestaq',
       id: 'ONORBITLIST-ID',
+      defaultRevisitRateMins: 15.3,
       description: 'DESCRIPTION_OF_LIST',
-      onorbits: ['ID1', 'ID2'],
+      listPriority: 1.1,
+      namespace: '18SDS',
       origin: 'THIRD_PARTY_DATASOURCE',
+      tags: ['TAG1', 'TAG2'],
+      transactionId: 'TRANSACTION-ID',
     });
   });
 
@@ -42,7 +65,8 @@ describe('resource onorbitlist', () => {
     const responsePromise = client.onorbitlist.update('id', {
       classificationMarking: 'U',
       dataMode: 'TEST',
-      name: 'People',
+      name: 'HRR-SATELLITES',
+      onOrbitListItems: [{}],
       source: 'Bluestaq',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -58,12 +82,34 @@ describe('resource onorbitlist', () => {
     const response = await client.onorbitlist.update('id', {
       classificationMarking: 'U',
       dataMode: 'TEST',
-      name: 'People',
+      name: 'HRR-SATELLITES',
+      onOrbitListItems: [
+        {
+          clearingBoxCrossTrack: 1.25,
+          clearingBoxInTrack: 1.25,
+          clearingRadius: 1.25,
+          commonName: 'VANGUARD 1',
+          countryCode: 'USA',
+          expiredOn: '2024-07-12T00:00:00.000Z',
+          freqMins: 300.25,
+          monitoringType: 'REVISIT_RATE',
+          objectId: '5',
+          orbitRegime: 'LEO',
+          origObjectId: 'ORIGOBJECT-ID',
+          payloadPriority: 2.5,
+          rank: 3,
+          urgency: 5.1,
+        },
+      ],
       source: 'Bluestaq',
       body_id: 'ONORBITLIST-ID',
+      defaultRevisitRateMins: 15.3,
       description: 'DESCRIPTION_OF_LIST',
-      onorbits: ['ID1', 'ID2'],
+      listPriority: 1.1,
+      namespace: '18SDS',
       origin: 'THIRD_PARTY_DATASOURCE',
+      tags: ['TAG1', 'TAG2'],
+      transactionId: 'TRANSACTION-ID',
     });
   });
 

@@ -280,7 +280,7 @@ export interface RfObservationListResponse {
   antennaName?: string;
 
   /**
-   * azimuth angle in degrees and J2000 coordinate frame.
+   * Azimuth angle in degrees and topocentric coordinate frame.
    */
   azimuth?: number;
 
@@ -302,7 +302,7 @@ export interface RfObservationListResponse {
   azimuthUnc?: number;
 
   /**
-   * Measured bandwidth in Hz.
+   * Measured bandwidth in hertz.
    */
   bandwidth?: number;
 
@@ -328,8 +328,8 @@ export interface RfObservationListResponse {
   channel?: number;
 
   /**
-   * Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
-   * MANUAL, etc).
+   * Collection mode (e.g. CONTINUOUS, MANUAL, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
+   * SPOT_SEARCH, SURVEY, etc).
    */
   collectionMode?: string;
 
@@ -361,12 +361,12 @@ export interface RfObservationListResponse {
   detectionStatus?: string;
 
   /**
-   * Measured Equivalent Isotopically Radiated Power in dBW.
+   * Measured Equivalent Isotopically Radiated Power in decibel watts.
    */
   eirp?: number;
 
   /**
-   * elevation in degrees and J2000 coordinate frame.
+   * Elevation in degrees and topocentric coordinate frame.
    */
   elevation?: number;
 
@@ -393,12 +393,12 @@ export interface RfObservationListResponse {
   elnot?: string;
 
   /**
-   * End carrier frequency in Hz.
+   * End carrier frequency in hertz.
    */
   endFrequency?: number;
 
   /**
-   * Center carrier frequency in Hz.
+   * Center carrier frequency in hertz.
    */
   frequency?: number;
 
@@ -429,12 +429,12 @@ export interface RfObservationListResponse {
   innerCodingRate?: number;
 
   /**
-   * Maximum measured PSD value of the trace in dBW.
+   * Maximum measured PSD value of the trace in decibel watts.
    */
   maxPSD?: number;
 
   /**
-   * Minimum measured PSD value of the trace in dBW.
+   * Minimum measured PSD value of the trace in decibel watts.
    */
   minPSD?: number;
 
@@ -444,32 +444,32 @@ export interface RfObservationListResponse {
   modulation?: string;
 
   /**
-   * Noise power density, in dBW-Hz.
+   * Noise power density, in decibel watts per hertz.
    */
   noisePwrDensity?: number;
 
   /**
-   * Expected bandwidth in Hz.
+   * Expected bandwidth in hertz.
    */
   nominalBandwidth?: number;
 
   /**
-   * Expected Equivalent Isotopically Radiated Power in dBW.
+   * Expected Equivalent Isotopically Radiated Power in decibel watts.
    */
   nominalEirp?: number;
 
   /**
-   * Nominal or expected center carrier frequency in Hz.
+   * Nominal or expected center carrier frequency in hertz.
    */
   nominalFrequency?: number;
 
   /**
-   * Expected carrier power over noise (dBW/Hz).
+   * Expected carrier power over noise (decibel watts per hertz).
    */
   nominalPowerOverNoise?: number;
 
   /**
-   * Nominal or expected signal to noise ratio, in dB.
+   * Nominal or expected signal to noise ratio, in decibels.
    */
   nominalSnr?: number;
 
@@ -525,7 +525,7 @@ export interface RfObservationListResponse {
   /**
    * A pulse group repetition interval (PGRI) is a pulse train in which there are
    * groups of closely spaced pulses separated by much longer times between these
-   * pulse groups.
+   * pulse groups. The PGRI is measured in seconds.
    */
   pgri?: number;
 
@@ -544,12 +544,12 @@ export interface RfObservationListResponse {
   polarityType?: 'H' | 'V' | 'R' | 'L';
 
   /**
-   * Measured carrier power over noise (dBW/Hz).
+   * Measured carrier power over noise (decibel watts per hertz).
    */
   powerOverNoise?: number;
 
   /**
-   * Target range in km.
+   * Target range in kilometers.
    */
   range?: number;
 
@@ -561,7 +561,7 @@ export interface RfObservationListResponse {
   rangeMeasured?: boolean;
 
   /**
-   * Rate of change of the range in km/sec.
+   * Rate of change of the range in kilometers per second.
    */
   rangeRate?: number;
 
@@ -590,23 +590,23 @@ export interface RfObservationListResponse {
   rawFileURI?: string;
 
   /**
-   * Reference signal level, in dBW.
+   * Reference signal level, in decibel watts.
    */
   referenceLevel?: number;
 
   /**
-   * Measured power of the center carrier frequency in dBW.
+   * Measured power of the center carrier frequency in decibel watts.
    */
   relativeCarrierPower?: number;
 
   /**
    * The measure of the signal created from the sum of all the noise sources and
-   * unwanted signals within the measurement system, in dBW.
+   * unwanted signals within the measurement system, in decibel watts.
    */
   relativeNoiseFloor?: number;
 
   /**
-   * Resolution bandwidth in Hz.
+   * Resolution bandwidth in hertz.
    */
   resolutionBandwidth?: number;
 
@@ -635,7 +635,7 @@ export interface RfObservationListResponse {
   senlon?: number;
 
   /**
-   * Signal to noise ratio, in dB.
+   * Signal to noise ratio, in decibels.
    */
   snr?: number;
 
@@ -647,12 +647,13 @@ export interface RfObservationListResponse {
   sourceDL?: string;
 
   /**
-   * Measured spectrum analyzer power of the center carrier frequency in dBW.
+   * Measured spectrum analyzer power of the center carrier frequency in decibel
+   * watts.
    */
   spectrumAnalyzerPower?: number;
 
   /**
-   * Start carrier frequency in Hz.
+   * Start carrier frequency in hertz.
    */
   startFrequency?: number;
 
@@ -662,7 +663,7 @@ export interface RfObservationListResponse {
   switchPoint?: number;
 
   /**
-   * Symbol to noise ratio, in dB.
+   * Symbol to noise ratio, in decibels.
    */
   symbolToNoiseRatio?: number;
 
@@ -678,7 +679,7 @@ export interface RfObservationListResponse {
   trackId?: string;
 
   /**
-   * Target track or apparent range in km.
+   * Target track or apparent range in kilometers.
    */
   trackRange?: number;
 
@@ -694,7 +695,7 @@ export interface RfObservationListResponse {
   transmitFilterRollOff?: number;
 
   /**
-   * Transmit pulse shaping filter typ (e.g. RRC).
+   * Transmit pulse shaping filter type (e.g. RRC).
    */
   transmitFilterType?: string;
 
@@ -719,7 +720,7 @@ export interface RfObservationListResponse {
   url?: string;
 
   /**
-   * Video bandwidth in Hz.
+   * Video bandwidth in hertz.
    */
   videoBandwidth?: number;
 }
@@ -788,7 +789,7 @@ export interface RfObservationGetResponse {
   antennaName?: string;
 
   /**
-   * azimuth angle in degrees and J2000 coordinate frame.
+   * Azimuth angle in degrees and topocentric coordinate frame.
    */
   azimuth?: number;
 
@@ -810,7 +811,7 @@ export interface RfObservationGetResponse {
   azimuthUnc?: number;
 
   /**
-   * Measured bandwidth in Hz.
+   * Measured bandwidth in hertz.
    */
   bandwidth?: number;
 
@@ -861,8 +862,8 @@ export interface RfObservationGetResponse {
   codeTaps?: Array<string>;
 
   /**
-   * Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
-   * MANUAL, etc).
+   * Collection mode (e.g. CONTINUOUS, MANUAL, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
+   * SPOT_SEARCH, SURVEY, etc).
    */
   collectionMode?: string;
 
@@ -911,18 +912,18 @@ export interface RfObservationGetResponse {
   detectionStatus?: string;
 
   /**
-   * Array of detection statuses (e.g. DETECTED, CARRIER_DETECTED, NOT_DETECTED) for
+   * Array of detection statuses (e.g. CARRIER_DETECTED, DETECTED, NOT_DETECTED) for
    * each measured signal.
    */
   detectionStatuses?: Array<string>;
 
   /**
-   * Measured Equivalent Isotopically Radiated Power in dBW.
+   * Measured Equivalent Isotopically Radiated Power in decibel watts.
    */
   eirp?: number;
 
   /**
-   * elevation in degrees and J2000 coordinate frame.
+   * Elevation in degrees and topocentric coordinate frame.
    */
   elevation?: number;
 
@@ -949,18 +950,34 @@ export interface RfObservationGetResponse {
   elnot?: string;
 
   /**
-   * End carrier frequency in Hz.
+   * End carrier frequency in hertz.
    */
   endFrequency?: number;
 
   /**
-   * Array of individual PSD frequencies of the signal in Hz. This array should
+   * Array of imaginary components of the complex Fast Fourier Transform (FFT)
+   * coefficients from the signal. Used together with the same-sized fftRealCoeffs
+   * array to preserve both amplitude and phase information. This array should
+   * correspond with the same-sized array of frequencies.
+   */
+  fftImagCoeffs?: Array<number>;
+
+  /**
+   * Array of real components of the complex Fast Fourier Transform (FFT)
+   * coefficients from the signal. Used together with the same-sized fftImagCoeffs
+   * array to preserve both amplitude and phase information. This array should
+   * correspond with the same-sized array of frequencies.
+   */
+  fftRealCoeffs?: Array<number>;
+
+  /**
+   * Array of individual PSD frequencies of the signal in hertz. This array should
    * correspond with the same-sized array of powers.
    */
   frequencies?: Array<number>;
 
   /**
-   * Center carrier frequency in Hz.
+   * Center carrier frequency in hertz.
    */
   frequency?: number;
 
@@ -991,12 +1008,12 @@ export interface RfObservationGetResponse {
   innerCodingRate?: number;
 
   /**
-   * Maximum measured PSD value of the trace in dBW.
+   * Maximum measured PSD value of the trace in decibel watts.
    */
   maxPSD?: number;
 
   /**
-   * Minimum measured PSD value of the trace in dBW.
+   * Minimum measured PSD value of the trace in decibel watts.
    */
   minPSD?: number;
 
@@ -1006,32 +1023,32 @@ export interface RfObservationGetResponse {
   modulation?: string;
 
   /**
-   * Noise power density, in dBW-Hz.
+   * Noise power density, in decibel watts per hertz.
    */
   noisePwrDensity?: number;
 
   /**
-   * Expected bandwidth in Hz.
+   * Expected bandwidth in hertz.
    */
   nominalBandwidth?: number;
 
   /**
-   * Expected Equivalent Isotopically Radiated Power in dBW.
+   * Expected Equivalent Isotopically Radiated Power in decibel watts.
    */
   nominalEirp?: number;
 
   /**
-   * Nominal or expected center carrier frequency in Hz.
+   * Nominal or expected center carrier frequency in hertz.
    */
   nominalFrequency?: number;
 
   /**
-   * Expected carrier power over noise (dBW/Hz).
+   * Expected carrier power over noise (decibel watts per hertz).
    */
   nominalPowerOverNoise?: number;
 
   /**
-   * Nominal or expected signal to noise ratio, in dB.
+   * Nominal or expected signal to noise ratio, in decibels.
    */
   nominalSnr?: number;
 
@@ -1092,7 +1109,7 @@ export interface RfObservationGetResponse {
   /**
    * A pulse group repetition interval (PGRI) is a pulse train in which there are
    * groups of closely spaced pulses separated by much longer times between these
-   * pulse groups.
+   * pulse groups. The PGRI is measured in seconds.
    */
   pgri?: number;
 
@@ -1116,18 +1133,18 @@ export interface RfObservationGetResponse {
   polarityType?: 'H' | 'V' | 'R' | 'L';
 
   /**
-   * Measured carrier power over noise (dBW/Hz).
+   * Measured carrier power over noise (decibel watts per hertz).
    */
   powerOverNoise?: number;
 
   /**
-   * Array of individual measured PSD powers of the signal in dBW. This array should
-   * correspond with the same-sized array of frequencies.
+   * Array of individual measured PSD powers of the signal in decibel watts. This
+   * array should correspond with the same-sized array of frequencies.
    */
   powers?: Array<number>;
 
   /**
-   * Target range in km.
+   * Target range in kilometers.
    */
   range?: number;
 
@@ -1139,7 +1156,7 @@ export interface RfObservationGetResponse {
   rangeMeasured?: boolean;
 
   /**
-   * Rate of change of the range in km/sec.
+   * Rate of change of the range in kilometers per second.
    */
   rangeRate?: number;
 
@@ -1168,23 +1185,23 @@ export interface RfObservationGetResponse {
   rawFileURI?: string;
 
   /**
-   * Reference signal level, in dBW.
+   * Reference signal level, in decibel watts.
    */
   referenceLevel?: number;
 
   /**
-   * Measured power of the center carrier frequency in dBW.
+   * Measured power of the center carrier frequency in decibel watts.
    */
   relativeCarrierPower?: number;
 
   /**
    * The measure of the signal created from the sum of all the noise sources and
-   * unwanted signals within the measurement system, in dBW.
+   * unwanted signals within the measurement system, in decibel watts.
    */
   relativeNoiseFloor?: number;
 
   /**
-   * Resolution bandwidth in Hz.
+   * Resolution bandwidth in hertz.
    */
   resolutionBandwidth?: number;
 
@@ -1218,12 +1235,12 @@ export interface RfObservationGetResponse {
   signalIds?: Array<string>;
 
   /**
-   * Signal to noise ratio, in dB.
+   * Signal to noise ratio, in decibels.
    */
   snr?: number;
 
   /**
-   * Array of signal to noise ratios of the signals, in dB.
+   * Array of signal to noise ratios of the signals, in decibels.
    */
   snrs?: Array<number>;
 
@@ -1235,12 +1252,13 @@ export interface RfObservationGetResponse {
   sourceDL?: string;
 
   /**
-   * Measured spectrum analyzer power of the center carrier frequency in dBW.
+   * Measured spectrum analyzer power of the center carrier frequency in decibel
+   * watts.
    */
   spectrumAnalyzerPower?: number;
 
   /**
-   * Start carrier frequency in Hz.
+   * Start carrier frequency in hertz.
    */
   startFrequency?: number;
 
@@ -1250,7 +1268,7 @@ export interface RfObservationGetResponse {
   switchPoint?: number;
 
   /**
-   * Symbol to noise ratio, in dB.
+   * Symbol to noise ratio, in decibels.
    */
   symbolToNoiseRatio?: number;
 
@@ -1281,7 +1299,7 @@ export interface RfObservationGetResponse {
   trackId?: string;
 
   /**
-   * Target track or apparent range in km.
+   * Target track or apparent range in kilometers.
    */
   trackRange?: number;
 
@@ -1297,7 +1315,7 @@ export interface RfObservationGetResponse {
   transmitFilterRollOff?: number;
 
   /**
-   * Transmit pulse shaping filter typ (e.g. RRC).
+   * Transmit pulse shaping filter type (e.g. RRC).
    */
   transmitFilterType?: string;
 
@@ -1322,7 +1340,7 @@ export interface RfObservationGetResponse {
   url?: string;
 
   /**
-   * Video bandwidth in Hz.
+   * Video bandwidth in hertz.
    */
   videoBandwidth?: number;
 }
@@ -1416,7 +1434,7 @@ export namespace RfObservationTupleResponse {
     antennaName?: string;
 
     /**
-     * azimuth angle in degrees and J2000 coordinate frame.
+     * Azimuth angle in degrees and topocentric coordinate frame.
      */
     azimuth?: number;
 
@@ -1438,7 +1456,7 @@ export namespace RfObservationTupleResponse {
     azimuthUnc?: number;
 
     /**
-     * Measured bandwidth in Hz.
+     * Measured bandwidth in hertz.
      */
     bandwidth?: number;
 
@@ -1464,8 +1482,8 @@ export namespace RfObservationTupleResponse {
     channel?: number;
 
     /**
-     * Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
-     * MANUAL, etc).
+     * Collection mode (e.g. CONTINUOUS, MANUAL, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
+     * SPOT_SEARCH, SURVEY, etc).
      */
     collectionMode?: string;
 
@@ -1497,12 +1515,12 @@ export namespace RfObservationTupleResponse {
     detectionStatus?: string;
 
     /**
-     * Measured Equivalent Isotopically Radiated Power in dBW.
+     * Measured Equivalent Isotopically Radiated Power in decibel watts.
      */
     eirp?: number;
 
     /**
-     * elevation in degrees and J2000 coordinate frame.
+     * Elevation in degrees and topocentric coordinate frame.
      */
     elevation?: number;
 
@@ -1529,12 +1547,12 @@ export namespace RfObservationTupleResponse {
     elnot?: string;
 
     /**
-     * End carrier frequency in Hz.
+     * End carrier frequency in hertz.
      */
     endFrequency?: number;
 
     /**
-     * Center carrier frequency in Hz.
+     * Center carrier frequency in hertz.
      */
     frequency?: number;
 
@@ -1565,12 +1583,12 @@ export namespace RfObservationTupleResponse {
     innerCodingRate?: number;
 
     /**
-     * Maximum measured PSD value of the trace in dBW.
+     * Maximum measured PSD value of the trace in decibel watts.
      */
     maxPSD?: number;
 
     /**
-     * Minimum measured PSD value of the trace in dBW.
+     * Minimum measured PSD value of the trace in decibel watts.
      */
     minPSD?: number;
 
@@ -1580,32 +1598,32 @@ export namespace RfObservationTupleResponse {
     modulation?: string;
 
     /**
-     * Noise power density, in dBW-Hz.
+     * Noise power density, in decibel watts per hertz.
      */
     noisePwrDensity?: number;
 
     /**
-     * Expected bandwidth in Hz.
+     * Expected bandwidth in hertz.
      */
     nominalBandwidth?: number;
 
     /**
-     * Expected Equivalent Isotopically Radiated Power in dBW.
+     * Expected Equivalent Isotopically Radiated Power in decibel watts.
      */
     nominalEirp?: number;
 
     /**
-     * Nominal or expected center carrier frequency in Hz.
+     * Nominal or expected center carrier frequency in hertz.
      */
     nominalFrequency?: number;
 
     /**
-     * Expected carrier power over noise (dBW/Hz).
+     * Expected carrier power over noise (decibel watts per hertz).
      */
     nominalPowerOverNoise?: number;
 
     /**
-     * Nominal or expected signal to noise ratio, in dB.
+     * Nominal or expected signal to noise ratio, in decibels.
      */
     nominalSnr?: number;
 
@@ -1666,7 +1684,7 @@ export namespace RfObservationTupleResponse {
     /**
      * A pulse group repetition interval (PGRI) is a pulse train in which there are
      * groups of closely spaced pulses separated by much longer times between these
-     * pulse groups.
+     * pulse groups. The PGRI is measured in seconds.
      */
     pgri?: number;
 
@@ -1685,12 +1703,12 @@ export namespace RfObservationTupleResponse {
     polarityType?: 'H' | 'V' | 'R' | 'L';
 
     /**
-     * Measured carrier power over noise (dBW/Hz).
+     * Measured carrier power over noise (decibel watts per hertz).
      */
     powerOverNoise?: number;
 
     /**
-     * Target range in km.
+     * Target range in kilometers.
      */
     range?: number;
 
@@ -1702,7 +1720,7 @@ export namespace RfObservationTupleResponse {
     rangeMeasured?: boolean;
 
     /**
-     * Rate of change of the range in km/sec.
+     * Rate of change of the range in kilometers per second.
      */
     rangeRate?: number;
 
@@ -1731,23 +1749,23 @@ export namespace RfObservationTupleResponse {
     rawFileURI?: string;
 
     /**
-     * Reference signal level, in dBW.
+     * Reference signal level, in decibel watts.
      */
     referenceLevel?: number;
 
     /**
-     * Measured power of the center carrier frequency in dBW.
+     * Measured power of the center carrier frequency in decibel watts.
      */
     relativeCarrierPower?: number;
 
     /**
      * The measure of the signal created from the sum of all the noise sources and
-     * unwanted signals within the measurement system, in dBW.
+     * unwanted signals within the measurement system, in decibel watts.
      */
     relativeNoiseFloor?: number;
 
     /**
-     * Resolution bandwidth in Hz.
+     * Resolution bandwidth in hertz.
      */
     resolutionBandwidth?: number;
 
@@ -1776,7 +1794,7 @@ export namespace RfObservationTupleResponse {
     senlon?: number;
 
     /**
-     * Signal to noise ratio, in dB.
+     * Signal to noise ratio, in decibels.
      */
     snr?: number;
 
@@ -1788,12 +1806,13 @@ export namespace RfObservationTupleResponse {
     sourceDL?: string;
 
     /**
-     * Measured spectrum analyzer power of the center carrier frequency in dBW.
+     * Measured spectrum analyzer power of the center carrier frequency in decibel
+     * watts.
      */
     spectrumAnalyzerPower?: number;
 
     /**
-     * Start carrier frequency in Hz.
+     * Start carrier frequency in hertz.
      */
     startFrequency?: number;
 
@@ -1803,7 +1822,7 @@ export namespace RfObservationTupleResponse {
     switchPoint?: number;
 
     /**
-     * Symbol to noise ratio, in dB.
+     * Symbol to noise ratio, in decibels.
      */
     symbolToNoiseRatio?: number;
 
@@ -1828,7 +1847,7 @@ export namespace RfObservationTupleResponse {
     trackId?: string;
 
     /**
-     * Target track or apparent range in km.
+     * Target track or apparent range in kilometers.
      */
     trackRange?: number;
 
@@ -1844,7 +1863,7 @@ export namespace RfObservationTupleResponse {
     transmitFilterRollOff?: number;
 
     /**
-     * Transmit pulse shaping filter typ (e.g. RRC).
+     * Transmit pulse shaping filter type (e.g. RRC).
      */
     transmitFilterType?: string;
 
@@ -1869,7 +1888,7 @@ export namespace RfObservationTupleResponse {
     url?: string;
 
     /**
-     * Video bandwidth in Hz.
+     * Video bandwidth in hertz.
      */
     videoBandwidth?: number;
   }
@@ -1925,7 +1944,7 @@ export interface RfObservationCreateParams {
   antennaName?: string;
 
   /**
-   * azimuth angle in degrees and J2000 coordinate frame.
+   * Azimuth angle in degrees and topocentric coordinate frame.
    */
   azimuth?: number;
 
@@ -1947,7 +1966,7 @@ export interface RfObservationCreateParams {
   azimuthUnc?: number;
 
   /**
-   * Measured bandwidth in Hz.
+   * Measured bandwidth in hertz.
    */
   bandwidth?: number;
 
@@ -1998,8 +2017,8 @@ export interface RfObservationCreateParams {
   codeTaps?: Array<string>;
 
   /**
-   * Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
-   * MANUAL, etc).
+   * Collection mode (e.g. CONTINUOUS, MANUAL, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
+   * SPOT_SEARCH, SURVEY, etc).
    */
   collectionMode?: string;
 
@@ -2037,18 +2056,18 @@ export interface RfObservationCreateParams {
   detectionStatus?: string;
 
   /**
-   * Array of detection statuses (e.g. DETECTED, CARRIER_DETECTED, NOT_DETECTED) for
+   * Array of detection statuses (e.g. CARRIER_DETECTED, DETECTED, NOT_DETECTED) for
    * each measured signal.
    */
   detectionStatuses?: Array<string>;
 
   /**
-   * Measured Equivalent Isotopically Radiated Power in dBW.
+   * Measured Equivalent Isotopically Radiated Power in decibel watts.
    */
   eirp?: number;
 
   /**
-   * elevation in degrees and J2000 coordinate frame.
+   * Elevation in degrees and topocentric coordinate frame.
    */
   elevation?: number;
 
@@ -2075,18 +2094,34 @@ export interface RfObservationCreateParams {
   elnot?: string;
 
   /**
-   * End carrier frequency in Hz.
+   * End carrier frequency in hertz.
    */
   endFrequency?: number;
 
   /**
-   * Array of individual PSD frequencies of the signal in Hz. This array should
+   * Array of imaginary components of the complex Fast Fourier Transform (FFT)
+   * coefficients from the signal. Used together with the same-sized fftRealCoeffs
+   * array to preserve both amplitude and phase information. This array should
+   * correspond with the same-sized array of frequencies.
+   */
+  fftImagCoeffs?: Array<number>;
+
+  /**
+   * Array of real components of the complex Fast Fourier Transform (FFT)
+   * coefficients from the signal. Used together with the same-sized fftImagCoeffs
+   * array to preserve both amplitude and phase information. This array should
+   * correspond with the same-sized array of frequencies.
+   */
+  fftRealCoeffs?: Array<number>;
+
+  /**
+   * Array of individual PSD frequencies of the signal in hertz. This array should
    * correspond with the same-sized array of powers.
    */
   frequencies?: Array<number>;
 
   /**
-   * Center carrier frequency in Hz.
+   * Center carrier frequency in hertz.
    */
   frequency?: number;
 
@@ -2112,12 +2147,12 @@ export interface RfObservationCreateParams {
   innerCodingRate?: number;
 
   /**
-   * Maximum measured PSD value of the trace in dBW.
+   * Maximum measured PSD value of the trace in decibel watts.
    */
   maxPSD?: number;
 
   /**
-   * Minimum measured PSD value of the trace in dBW.
+   * Minimum measured PSD value of the trace in decibel watts.
    */
   minPSD?: number;
 
@@ -2127,32 +2162,32 @@ export interface RfObservationCreateParams {
   modulation?: string;
 
   /**
-   * Noise power density, in dBW-Hz.
+   * Noise power density, in decibel watts per hertz.
    */
   noisePwrDensity?: number;
 
   /**
-   * Expected bandwidth in Hz.
+   * Expected bandwidth in hertz.
    */
   nominalBandwidth?: number;
 
   /**
-   * Expected Equivalent Isotopically Radiated Power in dBW.
+   * Expected Equivalent Isotopically Radiated Power in decibel watts.
    */
   nominalEirp?: number;
 
   /**
-   * Nominal or expected center carrier frequency in Hz.
+   * Nominal or expected center carrier frequency in hertz.
    */
   nominalFrequency?: number;
 
   /**
-   * Expected carrier power over noise (dBW/Hz).
+   * Expected carrier power over noise (decibel watts per hertz).
    */
   nominalPowerOverNoise?: number;
 
   /**
-   * Nominal or expected signal to noise ratio, in dB.
+   * Nominal or expected signal to noise ratio, in decibels.
    */
   nominalSnr?: number;
 
@@ -2192,7 +2227,7 @@ export interface RfObservationCreateParams {
   /**
    * A pulse group repetition interval (PGRI) is a pulse train in which there are
    * groups of closely spaced pulses separated by much longer times between these
-   * pulse groups.
+   * pulse groups. The PGRI is measured in seconds.
    */
   pgri?: number;
 
@@ -2216,18 +2251,18 @@ export interface RfObservationCreateParams {
   polarityType?: 'H' | 'V' | 'R' | 'L';
 
   /**
-   * Measured carrier power over noise (dBW/Hz).
+   * Measured carrier power over noise (decibel watts per hertz).
    */
   powerOverNoise?: number;
 
   /**
-   * Array of individual measured PSD powers of the signal in dBW. This array should
-   * correspond with the same-sized array of frequencies.
+   * Array of individual measured PSD powers of the signal in decibel watts. This
+   * array should correspond with the same-sized array of frequencies.
    */
   powers?: Array<number>;
 
   /**
-   * Target range in km.
+   * Target range in kilometers.
    */
   range?: number;
 
@@ -2239,7 +2274,7 @@ export interface RfObservationCreateParams {
   rangeMeasured?: boolean;
 
   /**
-   * Rate of change of the range in km/sec.
+   * Rate of change of the range in kilometers per second.
    */
   rangeRate?: number;
 
@@ -2268,23 +2303,23 @@ export interface RfObservationCreateParams {
   rawFileURI?: string;
 
   /**
-   * Reference signal level, in dBW.
+   * Reference signal level, in decibel watts.
    */
   referenceLevel?: number;
 
   /**
-   * Measured power of the center carrier frequency in dBW.
+   * Measured power of the center carrier frequency in decibel watts.
    */
   relativeCarrierPower?: number;
 
   /**
    * The measure of the signal created from the sum of all the noise sources and
-   * unwanted signals within the measurement system, in dBW.
+   * unwanted signals within the measurement system, in decibel watts.
    */
   relativeNoiseFloor?: number;
 
   /**
-   * Resolution bandwidth in Hz.
+   * Resolution bandwidth in hertz.
    */
   resolutionBandwidth?: number;
 
@@ -2318,22 +2353,23 @@ export interface RfObservationCreateParams {
   signalIds?: Array<string>;
 
   /**
-   * Signal to noise ratio, in dB.
+   * Signal to noise ratio, in decibels.
    */
   snr?: number;
 
   /**
-   * Array of signal to noise ratios of the signals, in dB.
+   * Array of signal to noise ratios of the signals, in decibels.
    */
   snrs?: Array<number>;
 
   /**
-   * Measured spectrum analyzer power of the center carrier frequency in dBW.
+   * Measured spectrum analyzer power of the center carrier frequency in decibel
+   * watts.
    */
   spectrumAnalyzerPower?: number;
 
   /**
-   * Start carrier frequency in Hz.
+   * Start carrier frequency in hertz.
    */
   startFrequency?: number;
 
@@ -2343,7 +2379,7 @@ export interface RfObservationCreateParams {
   switchPoint?: number;
 
   /**
-   * Symbol to noise ratio, in dB.
+   * Symbol to noise ratio, in decibels.
    */
   symbolToNoiseRatio?: number;
 
@@ -2374,7 +2410,7 @@ export interface RfObservationCreateParams {
   trackId?: string;
 
   /**
-   * Target track or apparent range in km.
+   * Target track or apparent range in kilometers.
    */
   trackRange?: number;
 
@@ -2390,7 +2426,7 @@ export interface RfObservationCreateParams {
   transmitFilterRollOff?: number;
 
   /**
-   * Transmit pulse shaping filter typ (e.g. RRC).
+   * Transmit pulse shaping filter type (e.g. RRC).
    */
   transmitFilterType?: string;
 
@@ -2415,7 +2451,7 @@ export interface RfObservationCreateParams {
   url?: string;
 
   /**
-   * Video bandwidth in Hz.
+   * Video bandwidth in hertz.
    */
   videoBandwidth?: number;
 }
@@ -2507,7 +2543,7 @@ export namespace RfObservationCreateBulkParams {
     antennaName?: string;
 
     /**
-     * azimuth angle in degrees and J2000 coordinate frame.
+     * Azimuth angle in degrees and topocentric coordinate frame.
      */
     azimuth?: number;
 
@@ -2529,7 +2565,7 @@ export namespace RfObservationCreateBulkParams {
     azimuthUnc?: number;
 
     /**
-     * Measured bandwidth in Hz.
+     * Measured bandwidth in hertz.
      */
     bandwidth?: number;
 
@@ -2580,8 +2616,8 @@ export namespace RfObservationCreateBulkParams {
     codeTaps?: Array<string>;
 
     /**
-     * Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
-     * MANUAL, etc).
+     * Collection mode (e.g. CONTINUOUS, MANUAL, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
+     * SPOT_SEARCH, SURVEY, etc).
      */
     collectionMode?: string;
 
@@ -2619,18 +2655,18 @@ export namespace RfObservationCreateBulkParams {
     detectionStatus?: string;
 
     /**
-     * Array of detection statuses (e.g. DETECTED, CARRIER_DETECTED, NOT_DETECTED) for
+     * Array of detection statuses (e.g. CARRIER_DETECTED, DETECTED, NOT_DETECTED) for
      * each measured signal.
      */
     detectionStatuses?: Array<string>;
 
     /**
-     * Measured Equivalent Isotopically Radiated Power in dBW.
+     * Measured Equivalent Isotopically Radiated Power in decibel watts.
      */
     eirp?: number;
 
     /**
-     * elevation in degrees and J2000 coordinate frame.
+     * Elevation in degrees and topocentric coordinate frame.
      */
     elevation?: number;
 
@@ -2657,18 +2693,34 @@ export namespace RfObservationCreateBulkParams {
     elnot?: string;
 
     /**
-     * End carrier frequency in Hz.
+     * End carrier frequency in hertz.
      */
     endFrequency?: number;
 
     /**
-     * Array of individual PSD frequencies of the signal in Hz. This array should
+     * Array of imaginary components of the complex Fast Fourier Transform (FFT)
+     * coefficients from the signal. Used together with the same-sized fftRealCoeffs
+     * array to preserve both amplitude and phase information. This array should
+     * correspond with the same-sized array of frequencies.
+     */
+    fftImagCoeffs?: Array<number>;
+
+    /**
+     * Array of real components of the complex Fast Fourier Transform (FFT)
+     * coefficients from the signal. Used together with the same-sized fftImagCoeffs
+     * array to preserve both amplitude and phase information. This array should
+     * correspond with the same-sized array of frequencies.
+     */
+    fftRealCoeffs?: Array<number>;
+
+    /**
+     * Array of individual PSD frequencies of the signal in hertz. This array should
      * correspond with the same-sized array of powers.
      */
     frequencies?: Array<number>;
 
     /**
-     * Center carrier frequency in Hz.
+     * Center carrier frequency in hertz.
      */
     frequency?: number;
 
@@ -2694,12 +2746,12 @@ export namespace RfObservationCreateBulkParams {
     innerCodingRate?: number;
 
     /**
-     * Maximum measured PSD value of the trace in dBW.
+     * Maximum measured PSD value of the trace in decibel watts.
      */
     maxPSD?: number;
 
     /**
-     * Minimum measured PSD value of the trace in dBW.
+     * Minimum measured PSD value of the trace in decibel watts.
      */
     minPSD?: number;
 
@@ -2709,32 +2761,32 @@ export namespace RfObservationCreateBulkParams {
     modulation?: string;
 
     /**
-     * Noise power density, in dBW-Hz.
+     * Noise power density, in decibel watts per hertz.
      */
     noisePwrDensity?: number;
 
     /**
-     * Expected bandwidth in Hz.
+     * Expected bandwidth in hertz.
      */
     nominalBandwidth?: number;
 
     /**
-     * Expected Equivalent Isotopically Radiated Power in dBW.
+     * Expected Equivalent Isotopically Radiated Power in decibel watts.
      */
     nominalEirp?: number;
 
     /**
-     * Nominal or expected center carrier frequency in Hz.
+     * Nominal or expected center carrier frequency in hertz.
      */
     nominalFrequency?: number;
 
     /**
-     * Expected carrier power over noise (dBW/Hz).
+     * Expected carrier power over noise (decibel watts per hertz).
      */
     nominalPowerOverNoise?: number;
 
     /**
-     * Nominal or expected signal to noise ratio, in dB.
+     * Nominal or expected signal to noise ratio, in decibels.
      */
     nominalSnr?: number;
 
@@ -2774,7 +2826,7 @@ export namespace RfObservationCreateBulkParams {
     /**
      * A pulse group repetition interval (PGRI) is a pulse train in which there are
      * groups of closely spaced pulses separated by much longer times between these
-     * pulse groups.
+     * pulse groups. The PGRI is measured in seconds.
      */
     pgri?: number;
 
@@ -2798,18 +2850,18 @@ export namespace RfObservationCreateBulkParams {
     polarityType?: 'H' | 'V' | 'R' | 'L';
 
     /**
-     * Measured carrier power over noise (dBW/Hz).
+     * Measured carrier power over noise (decibel watts per hertz).
      */
     powerOverNoise?: number;
 
     /**
-     * Array of individual measured PSD powers of the signal in dBW. This array should
-     * correspond with the same-sized array of frequencies.
+     * Array of individual measured PSD powers of the signal in decibel watts. This
+     * array should correspond with the same-sized array of frequencies.
      */
     powers?: Array<number>;
 
     /**
-     * Target range in km.
+     * Target range in kilometers.
      */
     range?: number;
 
@@ -2821,7 +2873,7 @@ export namespace RfObservationCreateBulkParams {
     rangeMeasured?: boolean;
 
     /**
-     * Rate of change of the range in km/sec.
+     * Rate of change of the range in kilometers per second.
      */
     rangeRate?: number;
 
@@ -2850,23 +2902,23 @@ export namespace RfObservationCreateBulkParams {
     rawFileURI?: string;
 
     /**
-     * Reference signal level, in dBW.
+     * Reference signal level, in decibel watts.
      */
     referenceLevel?: number;
 
     /**
-     * Measured power of the center carrier frequency in dBW.
+     * Measured power of the center carrier frequency in decibel watts.
      */
     relativeCarrierPower?: number;
 
     /**
      * The measure of the signal created from the sum of all the noise sources and
-     * unwanted signals within the measurement system, in dBW.
+     * unwanted signals within the measurement system, in decibel watts.
      */
     relativeNoiseFloor?: number;
 
     /**
-     * Resolution bandwidth in Hz.
+     * Resolution bandwidth in hertz.
      */
     resolutionBandwidth?: number;
 
@@ -2900,22 +2952,23 @@ export namespace RfObservationCreateBulkParams {
     signalIds?: Array<string>;
 
     /**
-     * Signal to noise ratio, in dB.
+     * Signal to noise ratio, in decibels.
      */
     snr?: number;
 
     /**
-     * Array of signal to noise ratios of the signals, in dB.
+     * Array of signal to noise ratios of the signals, in decibels.
      */
     snrs?: Array<number>;
 
     /**
-     * Measured spectrum analyzer power of the center carrier frequency in dBW.
+     * Measured spectrum analyzer power of the center carrier frequency in decibel
+     * watts.
      */
     spectrumAnalyzerPower?: number;
 
     /**
-     * Start carrier frequency in Hz.
+     * Start carrier frequency in hertz.
      */
     startFrequency?: number;
 
@@ -2925,7 +2978,7 @@ export namespace RfObservationCreateBulkParams {
     switchPoint?: number;
 
     /**
-     * Symbol to noise ratio, in dB.
+     * Symbol to noise ratio, in decibels.
      */
     symbolToNoiseRatio?: number;
 
@@ -2956,7 +3009,7 @@ export namespace RfObservationCreateBulkParams {
     trackId?: string;
 
     /**
-     * Target track or apparent range in km.
+     * Target track or apparent range in kilometers.
      */
     trackRange?: number;
 
@@ -2972,7 +3025,7 @@ export namespace RfObservationCreateBulkParams {
     transmitFilterRollOff?: number;
 
     /**
-     * Transmit pulse shaping filter typ (e.g. RRC).
+     * Transmit pulse shaping filter type (e.g. RRC).
      */
     transmitFilterType?: string;
 
@@ -2997,7 +3050,7 @@ export namespace RfObservationCreateBulkParams {
     url?: string;
 
     /**
-     * Video bandwidth in Hz.
+     * Video bandwidth in hertz.
      */
     videoBandwidth?: number;
   }
@@ -3096,7 +3149,7 @@ export namespace RfObservationUnvalidatedPublishParams {
     antennaName?: string;
 
     /**
-     * azimuth angle in degrees and J2000 coordinate frame.
+     * Azimuth angle in degrees and topocentric coordinate frame.
      */
     azimuth?: number;
 
@@ -3118,7 +3171,7 @@ export namespace RfObservationUnvalidatedPublishParams {
     azimuthUnc?: number;
 
     /**
-     * Measured bandwidth in Hz.
+     * Measured bandwidth in hertz.
      */
     bandwidth?: number;
 
@@ -3169,8 +3222,8 @@ export namespace RfObservationUnvalidatedPublishParams {
     codeTaps?: Array<string>;
 
     /**
-     * Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
-     * MANUAL, etc).
+     * Collection mode (e.g. CONTINUOUS, MANUAL, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
+     * SPOT_SEARCH, SURVEY, etc).
      */
     collectionMode?: string;
 
@@ -3208,18 +3261,18 @@ export namespace RfObservationUnvalidatedPublishParams {
     detectionStatus?: string;
 
     /**
-     * Array of detection statuses (e.g. DETECTED, CARRIER_DETECTED, NOT_DETECTED) for
+     * Array of detection statuses (e.g. CARRIER_DETECTED, DETECTED, NOT_DETECTED) for
      * each measured signal.
      */
     detectionStatuses?: Array<string>;
 
     /**
-     * Measured Equivalent Isotopically Radiated Power in dBW.
+     * Measured Equivalent Isotopically Radiated Power in decibel watts.
      */
     eirp?: number;
 
     /**
-     * elevation in degrees and J2000 coordinate frame.
+     * Elevation in degrees and topocentric coordinate frame.
      */
     elevation?: number;
 
@@ -3246,18 +3299,34 @@ export namespace RfObservationUnvalidatedPublishParams {
     elnot?: string;
 
     /**
-     * End carrier frequency in Hz.
+     * End carrier frequency in hertz.
      */
     endFrequency?: number;
 
     /**
-     * Array of individual PSD frequencies of the signal in Hz. This array should
+     * Array of imaginary components of the complex Fast Fourier Transform (FFT)
+     * coefficients from the signal. Used together with the same-sized fftRealCoeffs
+     * array to preserve both amplitude and phase information. This array should
+     * correspond with the same-sized array of frequencies.
+     */
+    fftImagCoeffs?: Array<number>;
+
+    /**
+     * Array of real components of the complex Fast Fourier Transform (FFT)
+     * coefficients from the signal. Used together with the same-sized fftImagCoeffs
+     * array to preserve both amplitude and phase information. This array should
+     * correspond with the same-sized array of frequencies.
+     */
+    fftRealCoeffs?: Array<number>;
+
+    /**
+     * Array of individual PSD frequencies of the signal in hertz. This array should
      * correspond with the same-sized array of powers.
      */
     frequencies?: Array<number>;
 
     /**
-     * Center carrier frequency in Hz.
+     * Center carrier frequency in hertz.
      */
     frequency?: number;
 
@@ -3283,12 +3352,12 @@ export namespace RfObservationUnvalidatedPublishParams {
     innerCodingRate?: number;
 
     /**
-     * Maximum measured PSD value of the trace in dBW.
+     * Maximum measured PSD value of the trace in decibel watts.
      */
     maxPSD?: number;
 
     /**
-     * Minimum measured PSD value of the trace in dBW.
+     * Minimum measured PSD value of the trace in decibel watts.
      */
     minPSD?: number;
 
@@ -3298,32 +3367,32 @@ export namespace RfObservationUnvalidatedPublishParams {
     modulation?: string;
 
     /**
-     * Noise power density, in dBW-Hz.
+     * Noise power density, in decibel watts per hertz.
      */
     noisePwrDensity?: number;
 
     /**
-     * Expected bandwidth in Hz.
+     * Expected bandwidth in hertz.
      */
     nominalBandwidth?: number;
 
     /**
-     * Expected Equivalent Isotopically Radiated Power in dBW.
+     * Expected Equivalent Isotopically Radiated Power in decibel watts.
      */
     nominalEirp?: number;
 
     /**
-     * Nominal or expected center carrier frequency in Hz.
+     * Nominal or expected center carrier frequency in hertz.
      */
     nominalFrequency?: number;
 
     /**
-     * Expected carrier power over noise (dBW/Hz).
+     * Expected carrier power over noise (decibel watts per hertz).
      */
     nominalPowerOverNoise?: number;
 
     /**
-     * Nominal or expected signal to noise ratio, in dB.
+     * Nominal or expected signal to noise ratio, in decibels.
      */
     nominalSnr?: number;
 
@@ -3363,7 +3432,7 @@ export namespace RfObservationUnvalidatedPublishParams {
     /**
      * A pulse group repetition interval (PGRI) is a pulse train in which there are
      * groups of closely spaced pulses separated by much longer times between these
-     * pulse groups.
+     * pulse groups. The PGRI is measured in seconds.
      */
     pgri?: number;
 
@@ -3387,18 +3456,18 @@ export namespace RfObservationUnvalidatedPublishParams {
     polarityType?: 'H' | 'V' | 'R' | 'L';
 
     /**
-     * Measured carrier power over noise (dBW/Hz).
+     * Measured carrier power over noise (decibel watts per hertz).
      */
     powerOverNoise?: number;
 
     /**
-     * Array of individual measured PSD powers of the signal in dBW. This array should
-     * correspond with the same-sized array of frequencies.
+     * Array of individual measured PSD powers of the signal in decibel watts. This
+     * array should correspond with the same-sized array of frequencies.
      */
     powers?: Array<number>;
 
     /**
-     * Target range in km.
+     * Target range in kilometers.
      */
     range?: number;
 
@@ -3410,7 +3479,7 @@ export namespace RfObservationUnvalidatedPublishParams {
     rangeMeasured?: boolean;
 
     /**
-     * Rate of change of the range in km/sec.
+     * Rate of change of the range in kilometers per second.
      */
     rangeRate?: number;
 
@@ -3439,23 +3508,23 @@ export namespace RfObservationUnvalidatedPublishParams {
     rawFileURI?: string;
 
     /**
-     * Reference signal level, in dBW.
+     * Reference signal level, in decibel watts.
      */
     referenceLevel?: number;
 
     /**
-     * Measured power of the center carrier frequency in dBW.
+     * Measured power of the center carrier frequency in decibel watts.
      */
     relativeCarrierPower?: number;
 
     /**
      * The measure of the signal created from the sum of all the noise sources and
-     * unwanted signals within the measurement system, in dBW.
+     * unwanted signals within the measurement system, in decibel watts.
      */
     relativeNoiseFloor?: number;
 
     /**
-     * Resolution bandwidth in Hz.
+     * Resolution bandwidth in hertz.
      */
     resolutionBandwidth?: number;
 
@@ -3489,22 +3558,23 @@ export namespace RfObservationUnvalidatedPublishParams {
     signalIds?: Array<string>;
 
     /**
-     * Signal to noise ratio, in dB.
+     * Signal to noise ratio, in decibels.
      */
     snr?: number;
 
     /**
-     * Array of signal to noise ratios of the signals, in dB.
+     * Array of signal to noise ratios of the signals, in decibels.
      */
     snrs?: Array<number>;
 
     /**
-     * Measured spectrum analyzer power of the center carrier frequency in dBW.
+     * Measured spectrum analyzer power of the center carrier frequency in decibel
+     * watts.
      */
     spectrumAnalyzerPower?: number;
 
     /**
-     * Start carrier frequency in Hz.
+     * Start carrier frequency in hertz.
      */
     startFrequency?: number;
 
@@ -3514,7 +3584,7 @@ export namespace RfObservationUnvalidatedPublishParams {
     switchPoint?: number;
 
     /**
-     * Symbol to noise ratio, in dB.
+     * Symbol to noise ratio, in decibels.
      */
     symbolToNoiseRatio?: number;
 
@@ -3545,7 +3615,7 @@ export namespace RfObservationUnvalidatedPublishParams {
     trackId?: string;
 
     /**
-     * Target track or apparent range in km.
+     * Target track or apparent range in kilometers.
      */
     trackRange?: number;
 
@@ -3561,7 +3631,7 @@ export namespace RfObservationUnvalidatedPublishParams {
     transmitFilterRollOff?: number;
 
     /**
-     * Transmit pulse shaping filter typ (e.g. RRC).
+     * Transmit pulse shaping filter type (e.g. RRC).
      */
     transmitFilterType?: string;
 
@@ -3586,7 +3656,7 @@ export namespace RfObservationUnvalidatedPublishParams {
     url?: string;
 
     /**
-     * Video bandwidth in Hz.
+     * Video bandwidth in hertz.
      */
     videoBandwidth?: number;
   }
