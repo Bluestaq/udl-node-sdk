@@ -876,6 +876,18 @@ import {
   SensorObservationTypeListResponsesOffsetPage,
 } from './resources/sensor-observation-type';
 import {
+  SensorStating,
+  SensorStatingCreateBulkParams,
+  SensorStatingCreateParams,
+  SensorStatingGetParams,
+  SensorStatingGetResponse,
+  SensorStatingListParams,
+  SensorStatingListResponse,
+  SensorStatingListResponsesOffsetPage,
+  SensorStatingQueryhelpResponse,
+  SensorStatingUpdateParams,
+} from './resources/sensor-stating';
+import {
   SensorType,
   SensorTypeGetParams,
   SensorTypeGetResponse,
@@ -1809,6 +1821,22 @@ import {
   OnorbitTupleResponse,
   OnorbitUpdateParams,
 } from './resources/onorbit/onorbit';
+import {
+  Onorbitassessment,
+  OnorbitassessmentCountParams,
+  OnorbitassessmentCountResponse,
+  OnorbitassessmentCreateBulkParams,
+  OnorbitassessmentCreateParams,
+  OnorbitassessmentGetParams,
+  OnorbitassessmentGetResponse,
+  OnorbitassessmentListParams,
+  OnorbitassessmentListResponse,
+  OnorbitassessmentListResponsesOffsetPage,
+  OnorbitassessmentQueryhelpResponse,
+  OnorbitassessmentTupleParams,
+  OnorbitassessmentTupleResponse,
+  OnorbitassessmentUnvalidatedPublishParams,
+} from './resources/onorbitassessment/onorbitassessment';
 import {
   Onorbitthrusterstatus,
   OnorbitthrusterstatusCountParams,
@@ -3105,6 +3133,7 @@ export class Unifieddatalibrary {
   onorbitsolararray: API.Onorbitsolararray = new API.Onorbitsolararray(this);
   onorbitthruster: API.Onorbitthruster = new API.Onorbitthruster(this);
   onorbitthrusterstatus: API.Onorbitthrusterstatus = new API.Onorbitthrusterstatus(this);
+  onorbitassessment: API.Onorbitassessment = new API.Onorbitassessment(this);
   operatingunit: API.Operatingunit = new API.Operatingunit(this);
   operatingunitremark: API.Operatingunitremark = new API.Operatingunitremark(this);
   orbitdetermination: API.Orbitdetermination = new API.Orbitdetermination(this);
@@ -3124,6 +3153,7 @@ export class Unifieddatalibrary {
   scs: API.Scs = new API.Scs(this);
   secureMessaging: API.SecureMessaging = new API.SecureMessaging(this);
   sensor: API.Sensor = new API.Sensor(this);
+  sensorStating: API.SensorStating = new API.SensorStating(this);
   sensorMaintenance: API.SensorMaintenance = new API.SensorMaintenance(this);
   sensorObservationType: API.SensorObservationType = new API.SensorObservationType(this);
   sensorPlan: API.SensorPlan = new API.SensorPlan(this);
@@ -3271,6 +3301,7 @@ Unifieddatalibrary.Onorbitlist = Onorbitlist;
 Unifieddatalibrary.Onorbitsolararray = Onorbitsolararray;
 Unifieddatalibrary.Onorbitthruster = Onorbitthruster;
 Unifieddatalibrary.Onorbitthrusterstatus = Onorbitthrusterstatus;
+Unifieddatalibrary.Onorbitassessment = Onorbitassessment;
 Unifieddatalibrary.Operatingunit = Operatingunit;
 Unifieddatalibrary.Operatingunitremark = Operatingunitremark;
 Unifieddatalibrary.Orbitdetermination = Orbitdetermination;
@@ -3290,6 +3321,7 @@ Unifieddatalibrary.Scientific = Scientific;
 Unifieddatalibrary.Scs = Scs;
 Unifieddatalibrary.SecureMessaging = SecureMessaging;
 Unifieddatalibrary.Sensor = Sensor;
+Unifieddatalibrary.SensorStating = SensorStating;
 Unifieddatalibrary.SensorMaintenance = SensorMaintenance;
 Unifieddatalibrary.SensorObservationType = SensorObservationType;
 Unifieddatalibrary.SensorPlan = SensorPlan;
@@ -4824,6 +4856,23 @@ export declare namespace Unifieddatalibrary {
   };
 
   export {
+    Onorbitassessment as Onorbitassessment,
+    type OnorbitassessmentListResponse as OnorbitassessmentListResponse,
+    type OnorbitassessmentCountResponse as OnorbitassessmentCountResponse,
+    type OnorbitassessmentGetResponse as OnorbitassessmentGetResponse,
+    type OnorbitassessmentQueryhelpResponse as OnorbitassessmentQueryhelpResponse,
+    type OnorbitassessmentTupleResponse as OnorbitassessmentTupleResponse,
+    type OnorbitassessmentListResponsesOffsetPage as OnorbitassessmentListResponsesOffsetPage,
+    type OnorbitassessmentCreateParams as OnorbitassessmentCreateParams,
+    type OnorbitassessmentListParams as OnorbitassessmentListParams,
+    type OnorbitassessmentCountParams as OnorbitassessmentCountParams,
+    type OnorbitassessmentCreateBulkParams as OnorbitassessmentCreateBulkParams,
+    type OnorbitassessmentGetParams as OnorbitassessmentGetParams,
+    type OnorbitassessmentTupleParams as OnorbitassessmentTupleParams,
+    type OnorbitassessmentUnvalidatedPublishParams as OnorbitassessmentUnvalidatedPublishParams,
+  };
+
+  export {
     Operatingunit as Operatingunit,
     type OperatingunitListResponse as OperatingunitListResponse,
     type OperatingunitCountResponse as OperatingunitCountResponse,
@@ -5111,6 +5160,19 @@ export declare namespace Unifieddatalibrary {
     type SensorCountParams as SensorCountParams,
     type SensorGetParams as SensorGetParams,
     type SensorTupleParams as SensorTupleParams,
+  };
+
+  export {
+    SensorStating as SensorStating,
+    type SensorStatingListResponse as SensorStatingListResponse,
+    type SensorStatingGetResponse as SensorStatingGetResponse,
+    type SensorStatingQueryhelpResponse as SensorStatingQueryhelpResponse,
+    type SensorStatingListResponsesOffsetPage as SensorStatingListResponsesOffsetPage,
+    type SensorStatingCreateParams as SensorStatingCreateParams,
+    type SensorStatingUpdateParams as SensorStatingUpdateParams,
+    type SensorStatingListParams as SensorStatingListParams,
+    type SensorStatingCreateBulkParams as SensorStatingCreateBulkParams,
+    type SensorStatingGetParams as SensorStatingGetParams,
   };
 
   export {
