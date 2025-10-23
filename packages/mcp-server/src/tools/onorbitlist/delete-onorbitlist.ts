@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'delete_onorbitlist',
   description:
-    'Service operation to delete a OnorbitList object specified by the passed ID path parameter. An OnorbitList is just a generic named list of on-orbit IDs. A specific role is required to perform this service operation. Please contact the UDL team for assistance.',
+    'Service operation to delete a single OnOrbitList record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.',
   inputSchema: {
     type: 'object',
     properties: {

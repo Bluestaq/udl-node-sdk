@@ -144,7 +144,7 @@ export interface HistoryListResponse {
   antennaName?: string;
 
   /**
-   * azimuth angle in degrees and J2000 coordinate frame.
+   * Azimuth angle in degrees and topocentric coordinate frame.
    */
   azimuth?: number;
 
@@ -166,7 +166,7 @@ export interface HistoryListResponse {
   azimuthUnc?: number;
 
   /**
-   * Measured bandwidth in Hz.
+   * Measured bandwidth in hertz.
    */
   bandwidth?: number;
 
@@ -217,8 +217,8 @@ export interface HistoryListResponse {
   codeTaps?: Array<string>;
 
   /**
-   * Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
-   * MANUAL, etc).
+   * Collection mode (e.g. CONTINUOUS, MANUAL, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
+   * SPOT_SEARCH, SURVEY, etc).
    */
   collectionMode?: string;
 
@@ -267,18 +267,18 @@ export interface HistoryListResponse {
   detectionStatus?: string;
 
   /**
-   * Array of detection statuses (e.g. DETECTED, CARRIER_DETECTED, NOT_DETECTED) for
+   * Array of detection statuses (e.g. CARRIER_DETECTED, DETECTED, NOT_DETECTED) for
    * each measured signal.
    */
   detectionStatuses?: Array<string>;
 
   /**
-   * Measured Equivalent Isotopically Radiated Power in dBW.
+   * Measured Equivalent Isotopically Radiated Power in decibel watts.
    */
   eirp?: number;
 
   /**
-   * elevation in degrees and J2000 coordinate frame.
+   * Elevation in degrees and topocentric coordinate frame.
    */
   elevation?: number;
 
@@ -305,18 +305,34 @@ export interface HistoryListResponse {
   elnot?: string;
 
   /**
-   * End carrier frequency in Hz.
+   * End carrier frequency in hertz.
    */
   endFrequency?: number;
 
   /**
-   * Array of individual PSD frequencies of the signal in Hz. This array should
+   * Array of imaginary components of the complex Fast Fourier Transform (FFT)
+   * coefficients from the signal. Used together with the same-sized fftRealCoeffs
+   * array to preserve both amplitude and phase information. This array should
+   * correspond with the same-sized array of frequencies.
+   */
+  fftImagCoeffs?: Array<number>;
+
+  /**
+   * Array of real components of the complex Fast Fourier Transform (FFT)
+   * coefficients from the signal. Used together with the same-sized fftImagCoeffs
+   * array to preserve both amplitude and phase information. This array should
+   * correspond with the same-sized array of frequencies.
+   */
+  fftRealCoeffs?: Array<number>;
+
+  /**
+   * Array of individual PSD frequencies of the signal in hertz. This array should
    * correspond with the same-sized array of powers.
    */
   frequencies?: Array<number>;
 
   /**
-   * Center carrier frequency in Hz.
+   * Center carrier frequency in hertz.
    */
   frequency?: number;
 
@@ -347,12 +363,12 @@ export interface HistoryListResponse {
   innerCodingRate?: number;
 
   /**
-   * Maximum measured PSD value of the trace in dBW.
+   * Maximum measured PSD value of the trace in decibel watts.
    */
   maxPSD?: number;
 
   /**
-   * Minimum measured PSD value of the trace in dBW.
+   * Minimum measured PSD value of the trace in decibel watts.
    */
   minPSD?: number;
 
@@ -362,32 +378,32 @@ export interface HistoryListResponse {
   modulation?: string;
 
   /**
-   * Noise power density, in dBW-Hz.
+   * Noise power density, in decibel watts per hertz.
    */
   noisePwrDensity?: number;
 
   /**
-   * Expected bandwidth in Hz.
+   * Expected bandwidth in hertz.
    */
   nominalBandwidth?: number;
 
   /**
-   * Expected Equivalent Isotopically Radiated Power in dBW.
+   * Expected Equivalent Isotopically Radiated Power in decibel watts.
    */
   nominalEirp?: number;
 
   /**
-   * Nominal or expected center carrier frequency in Hz.
+   * Nominal or expected center carrier frequency in hertz.
    */
   nominalFrequency?: number;
 
   /**
-   * Expected carrier power over noise (dBW/Hz).
+   * Expected carrier power over noise (decibel watts per hertz).
    */
   nominalPowerOverNoise?: number;
 
   /**
-   * Nominal or expected signal to noise ratio, in dB.
+   * Nominal or expected signal to noise ratio, in decibels.
    */
   nominalSnr?: number;
 
@@ -448,7 +464,7 @@ export interface HistoryListResponse {
   /**
    * A pulse group repetition interval (PGRI) is a pulse train in which there are
    * groups of closely spaced pulses separated by much longer times between these
-   * pulse groups.
+   * pulse groups. The PGRI is measured in seconds.
    */
   pgri?: number;
 
@@ -472,18 +488,18 @@ export interface HistoryListResponse {
   polarityType?: 'H' | 'V' | 'R' | 'L';
 
   /**
-   * Measured carrier power over noise (dBW/Hz).
+   * Measured carrier power over noise (decibel watts per hertz).
    */
   powerOverNoise?: number;
 
   /**
-   * Array of individual measured PSD powers of the signal in dBW. This array should
-   * correspond with the same-sized array of frequencies.
+   * Array of individual measured PSD powers of the signal in decibel watts. This
+   * array should correspond with the same-sized array of frequencies.
    */
   powers?: Array<number>;
 
   /**
-   * Target range in km.
+   * Target range in kilometers.
    */
   range?: number;
 
@@ -495,7 +511,7 @@ export interface HistoryListResponse {
   rangeMeasured?: boolean;
 
   /**
-   * Rate of change of the range in km/sec.
+   * Rate of change of the range in kilometers per second.
    */
   rangeRate?: number;
 
@@ -524,23 +540,23 @@ export interface HistoryListResponse {
   rawFileURI?: string;
 
   /**
-   * Reference signal level, in dBW.
+   * Reference signal level, in decibel watts.
    */
   referenceLevel?: number;
 
   /**
-   * Measured power of the center carrier frequency in dBW.
+   * Measured power of the center carrier frequency in decibel watts.
    */
   relativeCarrierPower?: number;
 
   /**
    * The measure of the signal created from the sum of all the noise sources and
-   * unwanted signals within the measurement system, in dBW.
+   * unwanted signals within the measurement system, in decibel watts.
    */
   relativeNoiseFloor?: number;
 
   /**
-   * Resolution bandwidth in Hz.
+   * Resolution bandwidth in hertz.
    */
   resolutionBandwidth?: number;
 
@@ -574,12 +590,12 @@ export interface HistoryListResponse {
   signalIds?: Array<string>;
 
   /**
-   * Signal to noise ratio, in dB.
+   * Signal to noise ratio, in decibels.
    */
   snr?: number;
 
   /**
-   * Array of signal to noise ratios of the signals, in dB.
+   * Array of signal to noise ratios of the signals, in decibels.
    */
   snrs?: Array<number>;
 
@@ -591,12 +607,13 @@ export interface HistoryListResponse {
   sourceDL?: string;
 
   /**
-   * Measured spectrum analyzer power of the center carrier frequency in dBW.
+   * Measured spectrum analyzer power of the center carrier frequency in decibel
+   * watts.
    */
   spectrumAnalyzerPower?: number;
 
   /**
-   * Start carrier frequency in Hz.
+   * Start carrier frequency in hertz.
    */
   startFrequency?: number;
 
@@ -606,7 +623,7 @@ export interface HistoryListResponse {
   switchPoint?: number;
 
   /**
-   * Symbol to noise ratio, in dB.
+   * Symbol to noise ratio, in decibels.
    */
   symbolToNoiseRatio?: number;
 
@@ -637,7 +654,7 @@ export interface HistoryListResponse {
   trackId?: string;
 
   /**
-   * Target track or apparent range in km.
+   * Target track or apparent range in kilometers.
    */
   trackRange?: number;
 
@@ -653,7 +670,7 @@ export interface HistoryListResponse {
   transmitFilterRollOff?: number;
 
   /**
-   * Transmit pulse shaping filter typ (e.g. RRC).
+   * Transmit pulse shaping filter type (e.g. RRC).
    */
   transmitFilterType?: string;
 
@@ -678,7 +695,7 @@ export interface HistoryListResponse {
   url?: string;
 
   /**
-   * Video bandwidth in Hz.
+   * Video bandwidth in hertz.
    */
   videoBandwidth?: number;
 }

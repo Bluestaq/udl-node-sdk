@@ -932,7 +932,7 @@ export namespace OrbitdeterminationListResponse {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -2270,7 +2270,7 @@ export namespace OrbitdeterminationGetResponse {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -3678,7 +3678,7 @@ export namespace OrbitdeterminationTupleResponse {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
       /**
        * Time the row was created in the database, auto-populated by the system.
@@ -4961,7 +4961,7 @@ export namespace OrbitdeterminationCreateParams {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
     /**
      * Optional source-provided and searchable metadata or descriptor of the data.
@@ -6249,7 +6249,7 @@ export namespace OrbitdeterminationCreateBulkParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.
@@ -7534,7 +7534,7 @@ export namespace OrbitdeterminationUnvalidatedPublishParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.

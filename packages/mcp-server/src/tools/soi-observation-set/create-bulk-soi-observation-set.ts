@@ -678,6 +678,11 @@ export const tool: Tool = {
                       format: 'date-time',
                     },
                   },
+                  waveformNumber: {
+                    type: 'integer',
+                    description:
+                      'A unique numeric or hash identifier assigned to each distinct waveform, enabling traceability between the waveform used and the images or data products generated from it.',
+                  },
                   xaccel: {
                     type: 'array',
                     description:

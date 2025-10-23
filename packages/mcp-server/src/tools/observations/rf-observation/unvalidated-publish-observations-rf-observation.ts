@@ -61,7 +61,7 @@ export const tool: Tool = {
             },
             azimuth: {
               type: 'number',
-              description: 'azimuth angle in degrees and J2000 coordinate frame.',
+              description: 'Azimuth angle in degrees and topocentric coordinate frame.',
             },
             azimuthMeasured: {
               type: 'boolean',
@@ -78,7 +78,7 @@ export const tool: Tool = {
             },
             bandwidth: {
               type: 'number',
-              description: 'Measured bandwidth in Hz.',
+              description: 'Measured bandwidth in hertz.',
             },
             baudRate: {
               type: 'number',
@@ -135,7 +135,7 @@ export const tool: Tool = {
             collectionMode: {
               type: 'string',
               description:
-                'Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH, MANUAL, etc).',
+                'Collection mode (e.g. CONTINUOUS, MANUAL, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH, SPOT_SEARCH, SURVEY, etc).',
             },
             confidence: {
               type: 'number',
@@ -186,18 +186,18 @@ export const tool: Tool = {
             detectionStatuses: {
               type: 'array',
               description:
-                'Array of detection statuses (e.g. DETECTED, CARRIER_DETECTED, NOT_DETECTED) for each measured signal.',
+                'Array of detection statuses (e.g. CARRIER_DETECTED, DETECTED, NOT_DETECTED) for each measured signal.',
               items: {
                 type: 'string',
               },
             },
             eirp: {
               type: 'number',
-              description: 'Measured Equivalent Isotopically Radiated Power in dBW.',
+              description: 'Measured Equivalent Isotopically Radiated Power in decibel watts.',
             },
             elevation: {
               type: 'number',
-              description: 'elevation in degrees and J2000 coordinate frame.',
+              description: 'Elevation in degrees and topocentric coordinate frame.',
             },
             elevationMeasured: {
               type: 'boolean',
@@ -218,19 +218,35 @@ export const tool: Tool = {
             },
             endFrequency: {
               type: 'number',
-              description: 'End carrier frequency in Hz.',
+              description: 'End carrier frequency in hertz.',
+            },
+            fftImagCoeffs: {
+              type: 'array',
+              description:
+                'Array of imaginary components of the complex Fast Fourier Transform (FFT) coefficients from the signal. Used together with the same-sized fftRealCoeffs array to preserve both amplitude and phase information. This array should correspond with the same-sized array of frequencies.',
+              items: {
+                type: 'number',
+              },
+            },
+            fftRealCoeffs: {
+              type: 'array',
+              description:
+                'Array of real components of the complex Fast Fourier Transform (FFT) coefficients from the signal. Used together with the same-sized fftImagCoeffs array to preserve both amplitude and phase information. This array should correspond with the same-sized array of frequencies.',
+              items: {
+                type: 'number',
+              },
             },
             frequencies: {
               type: 'array',
               description:
-                'Array of individual PSD frequencies of the signal in Hz. This array should correspond with the same-sized array of powers.',
+                'Array of individual PSD frequencies of the signal in hertz. This array should correspond with the same-sized array of powers.',
               items: {
                 type: 'number',
               },
             },
             frequency: {
               type: 'number',
-              description: 'Center carrier frequency in Hz.',
+              description: 'Center carrier frequency in hertz.',
             },
             frequencyShift: {
               type: 'number',
@@ -255,11 +271,11 @@ export const tool: Tool = {
             },
             maxPSD: {
               type: 'number',
-              description: 'Maximum measured PSD value of the trace in dBW.',
+              description: 'Maximum measured PSD value of the trace in decibel watts.',
             },
             minPSD: {
               type: 'number',
-              description: 'Minimum measured PSD value of the trace in dBW.',
+              description: 'Minimum measured PSD value of the trace in decibel watts.',
             },
             modulation: {
               type: 'string',
@@ -267,27 +283,27 @@ export const tool: Tool = {
             },
             noisePwrDensity: {
               type: 'number',
-              description: 'Noise power density, in dBW-Hz.',
+              description: 'Noise power density, in decibel watts per hertz.',
             },
             nominalBandwidth: {
               type: 'number',
-              description: 'Expected bandwidth in Hz.',
+              description: 'Expected bandwidth in hertz.',
             },
             nominalEirp: {
               type: 'number',
-              description: 'Expected Equivalent Isotopically Radiated Power in dBW.',
+              description: 'Expected Equivalent Isotopically Radiated Power in decibel watts.',
             },
             nominalFrequency: {
               type: 'number',
-              description: 'Nominal or expected center carrier frequency in Hz.',
+              description: 'Nominal or expected center carrier frequency in hertz.',
             },
             nominalPowerOverNoise: {
               type: 'number',
-              description: 'Expected carrier power over noise (dBW/Hz).',
+              description: 'Expected carrier power over noise (decibel watts per hertz).',
             },
             nominalSnr: {
               type: 'number',
-              description: 'Nominal or expected signal to noise ratio, in dB.',
+              description: 'Nominal or expected signal to noise ratio, in decibels.',
             },
             origCountry: {
               type: 'string',
@@ -329,7 +345,7 @@ export const tool: Tool = {
             pgri: {
               type: 'number',
               description:
-                'A pulse group repetition interval (PGRI) is a pulse train in which there are groups of closely spaced pulses separated by much longer times between these pulse groups.',
+                'A pulse group repetition interval (PGRI) is a pulse train in which there are groups of closely spaced pulses separated by much longer times between these pulse groups. The PGRI is measured in seconds.',
             },
             pnOrders: {
               type: 'array',
@@ -350,19 +366,19 @@ export const tool: Tool = {
             },
             powerOverNoise: {
               type: 'number',
-              description: 'Measured carrier power over noise (dBW/Hz).',
+              description: 'Measured carrier power over noise (decibel watts per hertz).',
             },
             powers: {
               type: 'array',
               description:
-                'Array of individual measured PSD powers of the signal in dBW. This array should correspond with the same-sized array of frequencies.',
+                'Array of individual measured PSD powers of the signal in decibel watts. This array should correspond with the same-sized array of frequencies.',
               items: {
                 type: 'number',
               },
             },
             range: {
               type: 'number',
-              description: 'Target range in km.',
+              description: 'Target range in kilometers.',
             },
             rangeMeasured: {
               type: 'boolean',
@@ -371,7 +387,7 @@ export const tool: Tool = {
             },
             rangeRate: {
               type: 'number',
-              description: 'Rate of change of the range in km/sec.',
+              description: 'Rate of change of the range in kilometers per second.',
             },
             rangeRateMeasured: {
               type: 'boolean',
@@ -393,20 +409,20 @@ export const tool: Tool = {
             },
             referenceLevel: {
               type: 'number',
-              description: 'Reference signal level, in dBW.',
+              description: 'Reference signal level, in decibel watts.',
             },
             relativeCarrierPower: {
               type: 'number',
-              description: 'Measured power of the center carrier frequency in dBW.',
+              description: 'Measured power of the center carrier frequency in decibel watts.',
             },
             relativeNoiseFloor: {
               type: 'number',
               description:
-                'The measure of the signal created from the sum of all the noise sources and unwanted signals within the measurement system, in dBW.',
+                'The measure of the signal created from the sum of all the noise sources and unwanted signals within the measurement system, in decibel watts.',
             },
             resolutionBandwidth: {
               type: 'number',
-              description: 'Resolution bandwidth in Hz.',
+              description: 'Resolution bandwidth in hertz.',
             },
             satNo: {
               type: 'integer',
@@ -436,11 +452,11 @@ export const tool: Tool = {
             },
             snr: {
               type: 'number',
-              description: 'Signal to noise ratio, in dB.',
+              description: 'Signal to noise ratio, in decibels.',
             },
             snrs: {
               type: 'array',
-              description: 'Array of signal to noise ratios of the signals, in dB.',
+              description: 'Array of signal to noise ratios of the signals, in decibels.',
               items: {
                 type: 'number',
               },
@@ -452,11 +468,12 @@ export const tool: Tool = {
             },
             spectrumAnalyzerPower: {
               type: 'number',
-              description: 'Measured spectrum analyzer power of the center carrier frequency in dBW.',
+              description:
+                'Measured spectrum analyzer power of the center carrier frequency in decibel watts.',
             },
             startFrequency: {
               type: 'number',
-              description: 'Start carrier frequency in Hz.',
+              description: 'Start carrier frequency in hertz.',
             },
             switchPoint: {
               type: 'integer',
@@ -464,7 +481,7 @@ export const tool: Tool = {
             },
             symbolToNoiseRatio: {
               type: 'number',
-              description: 'Symbol to noise ratio, in dB.',
+              description: 'Symbol to noise ratio, in decibels.',
             },
             tags: {
               type: 'array',
@@ -493,7 +510,7 @@ export const tool: Tool = {
             },
             trackRange: {
               type: 'number',
-              description: 'Target track or apparent range in km.',
+              description: 'Target track or apparent range in kilometers.',
             },
             transactionId: {
               type: 'string',
@@ -506,7 +523,7 @@ export const tool: Tool = {
             },
             transmitFilterType: {
               type: 'string',
-              description: 'Transmit pulse shaping filter typ (e.g. RRC).',
+              description: 'Transmit pulse shaping filter type (e.g. RRC).',
             },
             transponder: {
               type: 'string',
@@ -524,7 +541,7 @@ export const tool: Tool = {
             },
             videoBandwidth: {
               type: 'number',
-              description: 'Video bandwidth in Hz.',
+              description: 'Video bandwidth in hertz.',
             },
           },
           required: ['classificationMarking', 'dataMode', 'obTime', 'source', 'type'],

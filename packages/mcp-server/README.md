@@ -1750,12 +1750,12 @@ The following tools are available in this MCP server.
 
 ### Resource `onorbitlist`:
 
-- `create_onorbitlist` (`write`): Service operation to take a single OnorbitList as a POST body and ingest into the database. An OnorbitList is just a generic named list of on-orbit IDs. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
-- `update_onorbitlist` (`write`): Service operation to update a single OnorbitList. An OnorbitList is just a generic named list of on-orbit IDs. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `create_onorbitlist` (`write`): Service operation to take a single OnOrbitList as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `update_onorbitlist` (`write`): Service operation to update a single OnOrbitList record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `list_onorbitlist` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `delete_onorbitlist` (`write`): Service operation to delete a OnorbitList object specified by the passed ID path parameter. An OnorbitList is just a generic named list of on-orbit IDs. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `delete_onorbitlist` (`write`): Service operation to delete a single OnOrbitList record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
 - `count_onorbitlist` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
-- `get_onorbitlist` (`read`): Service operation to get a single OnorbitList record by its unique ID passed as a path parameter. An OnorbitList is just a generic named list of on-orbit IDs.
+- `get_onorbitlist` (`read`): Service operation to get a single OnOrbitList record by its unique ID passed as a path parameter.
 - `queryhelp_onorbitlist` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 - `tuple_onorbitlist` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
 
@@ -1790,6 +1790,23 @@ The following tools are available in this MCP server.
 
 - `list_onorbitthrusterstatus_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_onorbitthrusterstatus_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
+### Resource `onorbitassessment`:
+
+- `create_onorbitassessment` (`write`): Service operation to take a single OnorbitAssessment as a POST body and ingest into the database. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_onorbitassessment` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_onorbitassessment` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `create_bulk_onorbitassessment` (`write`): Service operation intended for initial integration only, to take a list of OnorbitAssessment records as a POST body and ingest into the database. This operation is not intended to be used for automated feeds into UDL. Data providers should contact the UDL team for specific role assignments and for instructions on setting up a permanent feed through an alternate mechanism.
+- `get_onorbitassessment` (`read`): Service operation to get a single OnorbitAssessment record by its unique ID passed as a path parameter.
+- `queryhelp_onorbitassessment` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
+- `tuple_onorbitassessment` (`read`): Service operation to dynamically query data and only return specified columns/fields. Requested columns are specified by the 'columns' query parameter and should be a comma separated list of valid fields for the specified data type. classificationMarking is always returned. See the queryhelp operation (/udl/<datatype>/queryhelp) for more details on valid/required query parameter information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5 hours would return the satNo and period of elsets with an epoch greater than 5 hours ago.
+- `unvalidated_publish_onorbitassessment` (`write`): Service operation to take multiple OnorbitAssessment records as a POST body and ingest into the database. This operation is intended to be used for automated feeds into UDL. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+
+### Resource `onorbitassessment.history`:
+
+- `list_onorbitassessment_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `aodr_onorbitassessment_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `count_onorbitassessment_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 
 ### Resource `operatingunit`:
 
@@ -2102,6 +2119,16 @@ The following tools are available in this MCP server.
 - `list_calibration_sensor_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `aodr_calibration_sensor_history` (`read`): Service operation to dynamically query historical data by a variety of query parameters not specified in this API documentation, then write that data to the Secure Content Store. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
 - `count_calibration_sensor_history` (`read`): Service operation to return the count of records satisfying the specified query parameters. This operation is useful to determine how many records pass a particular query criteria without retrieving large amounts of data. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+
+### Resource `sensor_stating`:
+
+- `create_sensor_stating` (`write`): Service operation to take a single SensorStaging record as a POST body and ingest into the staging database. This API allows users to create, manage, and review SensorStaging records in a staging environment before their incorporation into the production UDL. It supports workflows involving validation, review, and approval of sensor data to ensure consistency, compliance, and data quality. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `update_sensor_stating` (`write`): Service operation to update a single SensorStaging record. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `list_sensor_stating` (`read`): Service operation to dynamically query data by a variety of query parameters not specified in this API documentation. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query parameter information.
+- `delete_sensor_stating` (`write`): Service operation to delete a SensorStaging record specified by the passed ID path parameter. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `create_bulk_sensor_stating` (`write`): Service operation to take multiple SensorStaging records as a POST body and ingest into the staging database. This API allows users to create, manage, and review SensorStaging records in a staging environment before their incorporation into the production UDL. It supports workflows involving validation, review, and approval of sensor data to ensure consistency, compliance, and data quality. A specific role is required to perform this service operation. Please contact the UDL team for assistance.
+- `get_sensor_stating` (`read`): Service operation to get a single SensorStaging record by its unique ID passed as a path parameter.
+- `queryhelp_sensor_stating` (`read`): Service operation to provide detailed information on available dynamic query parameters for a particular data type.
 
 ### Resource `sensor_maintenance`:
 

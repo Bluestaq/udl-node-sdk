@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.19 (2025-10-21)
+
+Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
+
+### Features
+
+* **api:** api update ([761914a](https://github.com/Bluestaq/udl-node-sdk/commit/761914a74c4f73dc2832c66e2fb17a8521c049c6))
+* **api:** manual updates ([9ee8e4c](https://github.com/Bluestaq/udl-node-sdk/commit/9ee8e4c2c9a475714abf95aebe5d3a4e98643e04))
+
+
+### Bug Fixes
+
+* **client:** incorrect offset pagination check ([627b0a5](https://github.com/Bluestaq/udl-node-sdk/commit/627b0a550f080e504a3c9de4f39865f7f4bec27e))
+
 ## 0.1.0-alpha.18 (2025-10-08)
 
 Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)

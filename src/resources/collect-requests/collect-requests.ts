@@ -1185,7 +1185,7 @@ export namespace CollectRequestAbridged {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
     /**
      * Time the row was created in the database, auto-populated by the system.
@@ -2728,7 +2728,7 @@ export namespace CollectRequestCreateParams {
      * The reference frame of the covariance matrix elements. If the covReferenceFrame
      * is null it is assumed to be J2000.
      */
-    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+    covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
     /**
      * Optional source-provided and searchable metadata or descriptor of the data.
@@ -4283,7 +4283,7 @@ export namespace CollectRequestCreateBulkParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.
@@ -5833,7 +5833,7 @@ export namespace CollectRequestUnvalidatedPublishParams {
        * The reference frame of the covariance matrix elements. If the covReferenceFrame
        * is null it is assumed to be J2000.
        */
-      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'TEME' | 'GCRF';
+      covReferenceFrame?: 'J2000' | 'UVW' | 'EFG/TDR' | 'ECR/ECEF' | 'TEME' | 'GCRF';
 
       /**
        * Optional source-provided and searchable metadata or descriptor of the data.

@@ -1302,6 +1302,22 @@ export {
   type OnorbitantennaListResponsesOffsetPage,
 } from './onorbitantenna';
 export {
+  Onorbitassessment,
+  type OnorbitassessmentListResponse,
+  type OnorbitassessmentCountResponse,
+  type OnorbitassessmentGetResponse,
+  type OnorbitassessmentQueryhelpResponse,
+  type OnorbitassessmentTupleResponse,
+  type OnorbitassessmentCreateParams,
+  type OnorbitassessmentListParams,
+  type OnorbitassessmentCountParams,
+  type OnorbitassessmentCreateBulkParams,
+  type OnorbitassessmentGetParams,
+  type OnorbitassessmentTupleParams,
+  type OnorbitassessmentUnvalidatedPublishParams,
+  type OnorbitassessmentListResponsesOffsetPage,
+} from './onorbitassessment/onorbitassessment';
+export {
   Onorbitbattery,
   type OnorbitbatteryListResponse,
   type OnorbitbatteryCreateParams,
@@ -1696,6 +1712,18 @@ export {
   type SensorPlanUnvalidatedPublishParams,
   type SensorPlanListResponsesOffsetPage,
 } from './sensor-plan/sensor-plan';
+export {
+  SensorStating,
+  type SensorStatingListResponse,
+  type SensorStatingGetResponse,
+  type SensorStatingQueryhelpResponse,
+  type SensorStatingCreateParams,
+  type SensorStatingUpdateParams,
+  type SensorStatingListParams,
+  type SensorStatingCreateBulkParams,
+  type SensorStatingGetParams,
+  type SensorStatingListResponsesOffsetPage,
+} from './sensor-stating';
 export {
   SensorType,
   type SensorTypeListResponse,

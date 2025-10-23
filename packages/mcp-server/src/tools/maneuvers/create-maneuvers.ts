@@ -507,7 +507,7 @@ export const tool: Tool = {
             type: 'string',
             description:
               'The reference frame of the covariance matrix elements. If the covReferenceFrame is null it is assumed to be J2000.',
-            enum: ['J2000', 'UVW', 'EFG/TDR', 'TEME', 'GCRF'],
+            enum: ['J2000', 'UVW', 'EFG/TDR', 'ECR/ECEF', 'TEME', 'GCRF'],
           },
           createdAt: {
             type: 'string',
@@ -1316,7 +1316,7 @@ export const tool: Tool = {
             type: 'string',
             description:
               'The reference frame of the covariance matrix elements. If the covReferenceFrame is null it is assumed to be J2000.',
-            enum: ['J2000', 'UVW', 'EFG/TDR', 'TEME', 'GCRF'],
+            enum: ['J2000', 'UVW', 'EFG/TDR', 'ECR/ECEF', 'TEME', 'GCRF'],
           },
           createdAt: {
             type: 'string',

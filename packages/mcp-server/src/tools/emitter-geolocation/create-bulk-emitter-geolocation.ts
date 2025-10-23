@@ -86,6 +86,21 @@ export const tool: Tool = {
               type: 'string',
               description: 'Type of region as projected on the ground.',
             },
+            avgPRF: {
+              type: 'number',
+              description:
+                'Average pulse repetition frequency of the emitter, measured in hertz. PRF is the number of pulses transmitted per second. This is the reciprocal of the avgPRI (Pulse Repetition Interval) value.',
+            },
+            avgPRI: {
+              type: 'number',
+              description:
+                'Average pulse repetition interval of the emitter, measured in microseconds. The interval between the start of one pulse and the start of another.',
+            },
+            avgPW: {
+              type: 'number',
+              description:
+                'Average pulse width of the emitter, measured in nanoseconds. This is the average duration of the pulse.',
+            },
             centerFreq: {
               type: 'number',
               description: 'The detected signal frequency in megahertz.',
@@ -142,7 +157,7 @@ export const tool: Tool = {
             errEllp: {
               type: 'array',
               description:
-                'Confidence ellipsoid about the detection location [semi-major axis (m), semi-minor axis (m), orientation (deg)].',
+                'Confidence ellipsoid about the detection location [semi-major axis (meters), semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from true north)].',
               items: {
                 type: 'number',
               },
@@ -171,9 +186,39 @@ export const tool: Tool = {
               type: 'number',
               description: 'The maximum detected frequency in megahertz.',
             },
+            maxPRF: {
+              type: 'number',
+              description:
+                'Maximum pulse repetition frequency of the emitter, measured in hertz. PRF is the number of pulses transmitted per second. This is the reciprocal of the minPRI (Pulse Repetition Interval) value.',
+            },
+            maxPRI: {
+              type: 'number',
+              description:
+                'Maximum pulse repetition interval of the emitter, measured in microseconds. The interval between the start of one pulse and the start of another.',
+            },
+            maxPW: {
+              type: 'number',
+              description:
+                'Maximum pulse width of the emitter, measured in nanoseconds. This is the maximum duration of the pulse.',
+            },
             minFreq: {
               type: 'number',
               description: 'The minimum detected frequency in megahertz.',
+            },
+            minPRF: {
+              type: 'number',
+              description:
+                'Minimum pulse repetition frequency of the emitter, measured in hertz. PRF is the number of pulses transmitted per second. This is the reciprocal of the maxPRI (Pulse Repetition Interval) value.',
+            },
+            minPRI: {
+              type: 'number',
+              description:
+                'Minimum pulse repetition interval of the emitter, measured in microseconds. The interval between the start of one pulse and the start of another.',
+            },
+            minPW: {
+              type: 'number',
+              description:
+                'Minimum pulse width of the emitter, measured in nanoseconds. This is the minimum duration of the pulse.',
             },
             numBursts: {
               type: 'integer',
@@ -212,6 +257,11 @@ export const tool: Tool = {
               type: 'string',
               description:
                 'Optional external identifier referencing the entity used in the calculation of the geolocation.',
+            },
+            pulseShape: {
+              type: 'string',
+              description:
+                'Describes the form of the emitted pulse and how its signal varies within the pulse duration (e.g. GAUSSIAN, RECTANGULAR, TRAPEZOIDAL, etc.).',
             },
             receivedTs: {
               type: 'string',

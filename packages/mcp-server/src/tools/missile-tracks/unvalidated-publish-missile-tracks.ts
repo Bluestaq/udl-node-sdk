@@ -408,8 +408,8 @@ export const tool: Tool = {
                   covReferenceFrame: {
                     type: 'string',
                     description:
-                      'The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME, GCRF). If the referenceFrame is null it is assumed to be UVW.',
-                    enum: ['ECEF', 'J2000', 'UVW', 'EFG/TDR', 'TEME', 'GCRF'],
+                      'The reference frame of the covariance elements (J2000, UVW, EFG/TDR, ECR/ECEF, TEME, GCRF). If the referenceFrame is null it is assumed to be UVW.',
+                    enum: ['J2000', 'UVW', 'EFG/TDR', 'ECR/ECEF', 'TEME', 'GCRF'],
                   },
                   flightAz: {
                     type: 'number',

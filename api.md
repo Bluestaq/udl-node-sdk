@@ -2981,6 +2981,40 @@ Methods:
 - <code title="get /udl/onorbitthrusterstatus/history">client.onorbitthrusterstatus.history.<a href="./src/resources/onorbitthrusterstatus/history.ts">list</a>({ ...params }) -> OnorbitthrusterstatusFullsOffsetPage</code>
 - <code title="get /udl/onorbitthrusterstatus/history/count">client.onorbitthrusterstatus.history.<a href="./src/resources/onorbitthrusterstatus/history.ts">count</a>({ ...params }) -> string</code>
 
+# Onorbitassessment
+
+Types:
+
+- <code><a href="./src/resources/onorbitassessment/onorbitassessment.ts">OnorbitassessmentListResponse</a></code>
+- <code><a href="./src/resources/onorbitassessment/onorbitassessment.ts">OnorbitassessmentCountResponse</a></code>
+- <code><a href="./src/resources/onorbitassessment/onorbitassessment.ts">OnorbitassessmentGetResponse</a></code>
+- <code><a href="./src/resources/onorbitassessment/onorbitassessment.ts">OnorbitassessmentQueryhelpResponse</a></code>
+- <code><a href="./src/resources/onorbitassessment/onorbitassessment.ts">OnorbitassessmentTupleResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/onorbitassessment">client.onorbitassessment.<a href="./src/resources/onorbitassessment/onorbitassessment.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/onorbitassessment">client.onorbitassessment.<a href="./src/resources/onorbitassessment/onorbitassessment.ts">list</a>({ ...params }) -> OnorbitassessmentListResponsesOffsetPage</code>
+- <code title="get /udl/onorbitassessment/count">client.onorbitassessment.<a href="./src/resources/onorbitassessment/onorbitassessment.ts">count</a>({ ...params }) -> string</code>
+- <code title="post /udl/onorbitassessment/createBulk">client.onorbitassessment.<a href="./src/resources/onorbitassessment/onorbitassessment.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="get /udl/onorbitassessment/{id}">client.onorbitassessment.<a href="./src/resources/onorbitassessment/onorbitassessment.ts">get</a>(id, { ...params }) -> OnorbitassessmentGetResponse</code>
+- <code title="get /udl/onorbitassessment/queryhelp">client.onorbitassessment.<a href="./src/resources/onorbitassessment/onorbitassessment.ts">queryhelp</a>() -> OnorbitassessmentQueryhelpResponse</code>
+- <code title="get /udl/onorbitassessment/tuple">client.onorbitassessment.<a href="./src/resources/onorbitassessment/onorbitassessment.ts">tuple</a>({ ...params }) -> OnorbitassessmentTupleResponse</code>
+- <code title="post /filedrop/udl-onorbitassessment">client.onorbitassessment.<a href="./src/resources/onorbitassessment/onorbitassessment.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
+
+## History
+
+Types:
+
+- <code><a href="./src/resources/onorbitassessment/history.ts">HistoryListResponse</a></code>
+- <code><a href="./src/resources/onorbitassessment/history.ts">HistoryCountResponse</a></code>
+
+Methods:
+
+- <code title="get /udl/onorbitassessment/history">client.onorbitassessment.history.<a href="./src/resources/onorbitassessment/history.ts">list</a>({ ...params }) -> HistoryListResponsesOffsetPage</code>
+- <code title="get /udl/onorbitassessment/history/aodr">client.onorbitassessment.history.<a href="./src/resources/onorbitassessment/history.ts">aodr</a>({ ...params }) -> void</code>
+- <code title="get /udl/onorbitassessment/history/count">client.onorbitassessment.history.<a href="./src/resources/onorbitassessment/history.ts">count</a>({ ...params }) -> string</code>
+
 # Operatingunit
 
 Types:
@@ -3580,6 +3614,24 @@ Methods:
 - <code title="get /udl/sensorcalibration/history">client.sensor.calibration.history.<a href="./src/resources/sensor/calibration/history.ts">list</a>({ ...params }) -> HistoryListResponsesOffsetPage</code>
 - <code title="get /udl/sensorcalibration/history/aodr">client.sensor.calibration.history.<a href="./src/resources/sensor/calibration/history.ts">aodr</a>({ ...params }) -> void</code>
 - <code title="get /udl/sensorcalibration/history/count">client.sensor.calibration.history.<a href="./src/resources/sensor/calibration/history.ts">count</a>({ ...params }) -> string</code>
+
+# SensorStating
+
+Types:
+
+- <code><a href="./src/resources/sensor-stating.ts">SensorStatingListResponse</a></code>
+- <code><a href="./src/resources/sensor-stating.ts">SensorStatingGetResponse</a></code>
+- <code><a href="./src/resources/sensor-stating.ts">SensorStatingQueryhelpResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/sensorstaging">client.sensorStating.<a href="./src/resources/sensor-stating.ts">create</a>({ ...params }) -> void</code>
+- <code title="put /udl/sensorstaging/{id}">client.sensorStating.<a href="./src/resources/sensor-stating.ts">update</a>(pathID, { ...params }) -> void</code>
+- <code title="get /udl/sensorstaging">client.sensorStating.<a href="./src/resources/sensor-stating.ts">list</a>({ ...params }) -> SensorStatingListResponsesOffsetPage</code>
+- <code title="delete /udl/sensorstaging/{id}">client.sensorStating.<a href="./src/resources/sensor-stating.ts">delete</a>(id) -> void</code>
+- <code title="post /udl/sensorstaging/createBulk">client.sensorStating.<a href="./src/resources/sensor-stating.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="get /udl/sensorstaging/{id}">client.sensorStating.<a href="./src/resources/sensor-stating.ts">get</a>(id, { ...params }) -> SensorStatingGetResponse</code>
+- <code title="get /udl/sensorstaging/queryhelp">client.sensorStating.<a href="./src/resources/sensor-stating.ts">queryhelp</a>() -> SensorStatingQueryhelpResponse</code>
 
 # SensorMaintenance
 
