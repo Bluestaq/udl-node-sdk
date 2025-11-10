@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.1.0-alpha.20 (2025-11-06)
+
+Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
+
+### Features
+
+* **mcp:** enable optional code execution tool on http mcp servers ([ec59583](https://github.com/Bluestaq/udl-node-sdk/commit/ec595830d36f1924dcd2c96647fc6e577b9dbb10))
+
+
+### Bug Fixes
+
+* **mcpb:** pin @anthropic-ai/mcpb version ([4cdce96](https://github.com/Bluestaq/udl-node-sdk/commit/4cdce9665dc2a4821393fbeedf04f04afd4bffeb))
+
+
+### Chores
+
+* **internal:** codegen related update ([2ae547f](https://github.com/Bluestaq/udl-node-sdk/commit/2ae547fd47efdf3be88dc7b6d68cf2d1ef0ad677))
+* **internal:** grammar fix (it's -&gt; its) ([b7c6cbb](https://github.com/Bluestaq/udl-node-sdk/commit/b7c6cbb71ce90763afc853a5e4836acea4fb890a))
+* mcp code tool explicit error message when missing a run function ([b0f53bf](https://github.com/Bluestaq/udl-node-sdk/commit/b0f53bfcf74364f6775466bdfdf2b7843ae46d22))
+* **mcp:** add friendlier MCP code tool errors on incorrect method invocations ([004bf8b](https://github.com/Bluestaq/udl-node-sdk/commit/004bf8bfee6f47b6245fd08e5fea2a8d48f04777))
+* **mcp:** add line numbers to code tool errors ([40f1377](https://github.com/Bluestaq/udl-node-sdk/commit/40f1377e8ca0c768dff9a56ab824c167bd9987f8))
+* use structured error when code execution tool errors ([2e3c43e](https://github.com/Bluestaq/udl-node-sdk/commit/2e3c43e912150dc8f5fd43a4527d779100697d08))
+
+
+### Documentation
+
+* **mcp:** add a README button for one-click add to Cursor ([123cd12](https://github.com/Bluestaq/udl-node-sdk/commit/123cd12e666d6a3fd3f4dafef2d61f652dc2ec90))
+* **mcp:** add a README link to add server to VS Code or Claude Code ([4ea4767](https://github.com/Bluestaq/udl-node-sdk/commit/4ea47672cbc98e308e3f20a16c28f2d12c5fc4ca))
+
 ## 0.1.0-alpha.19 (2025-10-21)
 
 Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
