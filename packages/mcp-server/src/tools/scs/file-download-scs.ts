@@ -39,7 +39,7 @@ export const tool: Tool = {
 
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asBinaryContentResult(await client.scs.fileDownload(body));
+  return asBinaryContentResult(await client.scs.fileDownload(body).asResponse());
 };
 
 export default { metadata, tool, handler };
