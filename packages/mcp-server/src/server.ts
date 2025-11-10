@@ -34,7 +34,7 @@ export const newMcpServer = () =>
   new McpServer(
     {
       name: 'unified_data_library_api',
-      version: '0.1.0-alpha.19',
+      version: '0.1.0-alpha.20',
     },
     { capabilities: { tools: {}, logging: {} } },
   );
