@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.21 (2025-11-10)
+
+Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
+
+### Bug Fixes
+
+* **mcp:** use raw responses for binary content ([8bc62b8](https://github.com/Bluestaq/udl-node-sdk/commit/8bc62b8034a8dac82a8ac9fd23f869ec0bfff971))
+
+
+### Chores
+
+* **internal:** codegen related update ([1f5f03e](https://github.com/Bluestaq/udl-node-sdk/commit/1f5f03eb39ce9be34fe442d0d7bfd8e3852ddb8b))
+* **mcp:** clarify http auth error ([ba9bf55](https://github.com/Bluestaq/udl-node-sdk/commit/ba9bf55b7711e9f6096d7c7dc633914328bf4c4b))
+
 ## 0.1.0-alpha.20 (2025-11-06)
 
 Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
