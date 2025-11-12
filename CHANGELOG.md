@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.22 (2025-11-12)
+
+Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
+
+### Bug Fixes
+
+* **mcp:** return tool execution error on jq failure ([050e4fa](https://github.com/Bluestaq/udl-node-sdk/commit/050e4fa1157d8a6c0153751685c5bdf853b2535d))
+
+
+### Chores
+
+* **mcp:** upgrade jq-web ([a63ad5b](https://github.com/Bluestaq/udl-node-sdk/commit/a63ad5bd26d416eae42180984e703c39536af614))
+
 ## 0.1.0-alpha.21 (2025-11-10)
 
 Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
