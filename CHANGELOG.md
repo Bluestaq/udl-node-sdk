@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.23 (2025-11-25)
+
+Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)
+
+### Features
+
+* **mcp:** add detail field to docs search tool ([345bd8d](https://github.com/Bluestaq/udl-node-sdk/commit/345bd8de5d22ab06832e373aacd350c5a15ac794))
+
 ## 0.1.0-alpha.22 (2025-11-12)
 
 Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
