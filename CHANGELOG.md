@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.0-alpha.23 (2025-12-02)
+
+Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)
+
+### Features
+
+* **mcp:** add detail field to docs search tool ([345bd8d](https://github.com/Bluestaq/udl-node-sdk/commit/345bd8de5d22ab06832e373aacd350c5a15ac794))
+* **mcp:** return logs on code tool errors ([7a73b50](https://github.com/Bluestaq/udl-node-sdk/commit/7a73b5089283621192ed37eaecbe20cfe75e861b))
+
+
+### Bug Fixes
+
+* **mcp:** return tool execution error on api error ([aec5ab8](https://github.com/Bluestaq/udl-node-sdk/commit/aec5ab8a58e429fb43305590fac563715064ce30))
+
+
+### Chores
+
+* **client:** fix logger property type ([47f082b](https://github.com/Bluestaq/udl-node-sdk/commit/47f082b1e9958447b8d62e0c0e72834363a3f7c0))
+* **internal:** upgrade eslint ([eaacba3](https://github.com/Bluestaq/udl-node-sdk/commit/eaacba3a1df6755619365f4d5a2414ac87a7d27e))
+
 ## 0.1.0-alpha.22 (2025-11-12)
 
 Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
