@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Metadata, asTextContentResult } from 'unified-data-library-mcp/tools/types';
+import { Metadata, asErrorResult, asTextContentResult } from 'unified-data-library-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Unifieddatalibrary from 'unified-data-library';
@@ -42,7 +42,14 @@ export const tool: Tool = {
 export const handler = async (client: Unifieddatalibrary, args: Record<string, unknown> | undefined) => {
   const body = args as any;
   const response = await client.aircraftStatuses.history.list(body).asResponse();
-  return asTextContentResult(await response.json());
+  try {
+    return asTextContentResult(await response.json());
+  } catch (error) {
+    if (error instanceof Unifieddatalibrary.APIError) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };
