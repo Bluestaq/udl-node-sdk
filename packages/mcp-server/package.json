@@ -1,6 +1,6 @@
 {
   "name": "unified-data-library-mcp",
-  "version": "0.1.0-alpha.23",
+  "version": "0.1.0-alpha.24",
   "description": "The official MCP Server for the Unifieddatalibrary API",
   "author": "Unifieddatalibrary <unifieddatalibrary@bluestaq.com>",
   "types": "dist/index.d.ts",
@@ -32,7 +32,7 @@
   "dependencies": {
     "unified-data-library": "file:../../dist/",
     "@cloudflare/cabidela": "^0.2.4",
-    "@modelcontextprotocol/sdk": "^1.11.5",
+    "@modelcontextprotocol/sdk": "^1.24.0",
     "@valtown/deno-http-worker": "^0.0.21",
     "cors": "^2.8.5",
     "express": "^5.1.0",

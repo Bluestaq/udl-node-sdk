@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.24 (2025-12-04)
+
+Full Changelog: [v0.1.0-alpha.23...v0.1.0-alpha.24](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.23...v0.1.0-alpha.24)
+
+### Features
+
+* **mcp:** add typescript check to code execution tool ([d96ea00](https://github.com/Bluestaq/udl-node-sdk/commit/d96ea007aa2750b2060fc366f4b9d633bd67d724))
+
+
+### Chores
+
+* use latest @modelcontextprotocol/sdk ([96424af](https://github.com/Bluestaq/udl-node-sdk/commit/96424afa8488872f161e2d9bf49637ae1565879d))
+
 ## 0.1.0-alpha.23 (2025-12-02)
 
 Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)
