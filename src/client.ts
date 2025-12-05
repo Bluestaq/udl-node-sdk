@@ -1231,6 +1231,22 @@ import {
   AttitudesetAbridgedsOffsetPage,
 } from './resources/attitude-sets/attitude-sets';
 import {
+  CloselyspacedobjectCountParams,
+  CloselyspacedobjectCountResponse,
+  CloselyspacedobjectCreateBulkParams,
+  CloselyspacedobjectCreateParams,
+  CloselyspacedobjectListParams,
+  CloselyspacedobjectQueryHelpResponse,
+  CloselyspacedobjectRetrieveParams,
+  CloselyspacedobjectRetrieveResponse,
+  CloselyspacedobjectTupleParams,
+  CloselyspacedobjectTupleResponse,
+  CloselyspacedobjectUnvalidatedPublishParams,
+  Closelyspacedobjects,
+  CloselyspacedobjectsAbridged,
+  CloselyspacedobjectsAbridgedsOffsetPage,
+} from './resources/closelyspacedobjects/closelyspacedobjects';
+import {
   CollectRequestAbridged,
   CollectRequestAbridgedsOffsetPage,
   CollectRequestCountParams,
@@ -3056,6 +3072,7 @@ export class Unifieddatalibrary {
   beamContours: API.BeamContours = new API.BeamContours(this);
   buses: API.Buses = new API.Buses(this);
   channels: API.Channels = new API.Channels(this);
+  closelyspacedobjects: API.Closelyspacedobjects = new API.Closelyspacedobjects(this);
   collectRequests: API.CollectRequests = new API.CollectRequests(this);
   collectResponses: API.CollectResponses = new API.CollectResponses(this);
   comm: API.Comm = new API.Comm(this);
@@ -3224,6 +3241,7 @@ Unifieddatalibrary.Beam = Beam;
 Unifieddatalibrary.BeamContours = BeamContours;
 Unifieddatalibrary.Buses = Buses;
 Unifieddatalibrary.Channels = Channels;
+Unifieddatalibrary.Closelyspacedobjects = Closelyspacedobjects;
 Unifieddatalibrary.CollectRequests = CollectRequests;
 Unifieddatalibrary.CollectResponses = CollectResponses;
 Unifieddatalibrary.Comm = Comm;
@@ -3722,6 +3740,23 @@ export declare namespace Unifieddatalibrary {
     type ChannelListParams as ChannelListParams,
     type ChannelCountParams as ChannelCountParams,
     type ChannelTupleParams as ChannelTupleParams,
+  };
+
+  export {
+    Closelyspacedobjects as Closelyspacedobjects,
+    type CloselyspacedobjectsAbridged as CloselyspacedobjectsAbridged,
+    type CloselyspacedobjectRetrieveResponse as CloselyspacedobjectRetrieveResponse,
+    type CloselyspacedobjectCountResponse as CloselyspacedobjectCountResponse,
+    type CloselyspacedobjectQueryHelpResponse as CloselyspacedobjectQueryHelpResponse,
+    type CloselyspacedobjectTupleResponse as CloselyspacedobjectTupleResponse,
+    type CloselyspacedobjectsAbridgedsOffsetPage as CloselyspacedobjectsAbridgedsOffsetPage,
+    type CloselyspacedobjectCreateParams as CloselyspacedobjectCreateParams,
+    type CloselyspacedobjectRetrieveParams as CloselyspacedobjectRetrieveParams,
+    type CloselyspacedobjectListParams as CloselyspacedobjectListParams,
+    type CloselyspacedobjectCountParams as CloselyspacedobjectCountParams,
+    type CloselyspacedobjectCreateBulkParams as CloselyspacedobjectCreateBulkParams,
+    type CloselyspacedobjectTupleParams as CloselyspacedobjectTupleParams,
+    type CloselyspacedobjectUnvalidatedPublishParams as CloselyspacedobjectUnvalidatedPublishParams,
   };
 
   export {

@@ -688,6 +688,40 @@ Methods:
 - <code title="get /udl/channel/queryhelp">client.channels.<a href="./src/resources/channels.ts">queryhelp</a>() -> ChannelQueryhelpResponse</code>
 - <code title="get /udl/channel/tuple">client.channels.<a href="./src/resources/channels.ts">tuple</a>({ ...params }) -> ChannelTupleResponse</code>
 
+# Closelyspacedobjects
+
+Types:
+
+- <code><a href="./src/resources/closelyspacedobjects/closelyspacedobjects.ts">CloselyspacedobjectsAbridged</a></code>
+- <code><a href="./src/resources/closelyspacedobjects/closelyspacedobjects.ts">CloselyspacedobjectRetrieveResponse</a></code>
+- <code><a href="./src/resources/closelyspacedobjects/closelyspacedobjects.ts">CloselyspacedobjectCountResponse</a></code>
+- <code><a href="./src/resources/closelyspacedobjects/closelyspacedobjects.ts">CloselyspacedobjectQueryHelpResponse</a></code>
+- <code><a href="./src/resources/closelyspacedobjects/closelyspacedobjects.ts">CloselyspacedobjectTupleResponse</a></code>
+
+Methods:
+
+- <code title="post /udl/closelyspacedobjects">client.closelyspacedobjects.<a href="./src/resources/closelyspacedobjects/closelyspacedobjects.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /udl/closelyspacedobjects/{id}">client.closelyspacedobjects.<a href="./src/resources/closelyspacedobjects/closelyspacedobjects.ts">retrieve</a>(id, { ...params }) -> CloselyspacedobjectRetrieveResponse</code>
+- <code title="get /udl/closelyspacedobjects">client.closelyspacedobjects.<a href="./src/resources/closelyspacedobjects/closelyspacedobjects.ts">list</a>({ ...params }) -> CloselyspacedobjectsAbridgedsOffsetPage</code>
+- <code title="get /udl/closelyspacedobjects/count">client.closelyspacedobjects.<a href="./src/resources/closelyspacedobjects/closelyspacedobjects.ts">count</a>({ ...params }) -> string</code>
+- <code title="post /udl/closelyspacedobjects/createBulk">client.closelyspacedobjects.<a href="./src/resources/closelyspacedobjects/closelyspacedobjects.ts">createBulk</a>([ ...body ]) -> void</code>
+- <code title="get /udl/closelyspacedobjects/queryhelp">client.closelyspacedobjects.<a href="./src/resources/closelyspacedobjects/closelyspacedobjects.ts">queryHelp</a>() -> CloselyspacedobjectQueryHelpResponse</code>
+- <code title="get /udl/closelyspacedobjects/tuple">client.closelyspacedobjects.<a href="./src/resources/closelyspacedobjects/closelyspacedobjects.ts">tuple</a>({ ...params }) -> CloselyspacedobjectTupleResponse</code>
+- <code title="post /filedrop/udl-closelyspacedobjects">client.closelyspacedobjects.<a href="./src/resources/closelyspacedobjects/closelyspacedobjects.ts">unvalidatedPublish</a>([ ...body ]) -> void</code>
+
+## History
+
+Types:
+
+- <code><a href="./src/resources/closelyspacedobjects/history.ts">HistoryListResponse</a></code>
+- <code><a href="./src/resources/closelyspacedobjects/history.ts">HistoryCountResponse</a></code>
+
+Methods:
+
+- <code title="get /udl/closelyspacedobjects/history">client.closelyspacedobjects.history.<a href="./src/resources/closelyspacedobjects/history.ts">list</a>({ ...params }) -> HistoryListResponsesOffsetPage</code>
+- <code title="get /udl/closelyspacedobjects/history/aodr">client.closelyspacedobjects.history.<a href="./src/resources/closelyspacedobjects/history.ts">aodr</a>({ ...params }) -> void</code>
+- <code title="get /udl/closelyspacedobjects/history/count">client.closelyspacedobjects.history.<a href="./src/resources/closelyspacedobjects/history.ts">count</a>({ ...params }) -> string</code>
+
 # CollectRequests
 
 Types:

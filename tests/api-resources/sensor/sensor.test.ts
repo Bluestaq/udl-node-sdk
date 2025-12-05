@@ -230,8 +230,8 @@ describe('resource sensor', () => {
         {
           classificationMarking: 'U',
           dataMode: 'TEST',
+          idSensor: 'SENSOR-ID',
           source: 'Bluestaq',
-          idSensor: 'SENSORLIMITS-ID',
           idSensorLimits: 'SENSORLIMITS-ID',
           lowerLeftAzimuthLimit: 1.23,
           lowerLeftElevationLimit: 1.23,
@@ -481,8 +481,8 @@ describe('resource sensor', () => {
         {
           classificationMarking: 'U',
           dataMode: 'TEST',
+          idSensor: 'SENSOR-ID',
           source: 'Bluestaq',
-          idSensor: 'SENSORLIMITS-ID',
           idSensorLimits: 'SENSORLIMITS-ID',
           lowerLeftAzimuthLimit: 1.23,
           lowerLeftElevationLimit: 1.23,

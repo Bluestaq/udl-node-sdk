@@ -326,6 +326,22 @@ export {
   type ChannelAbridgedsOffsetPage,
 } from './channels';
 export {
+  Closelyspacedobjects,
+  type CloselyspacedobjectsAbridged,
+  type CloselyspacedobjectRetrieveResponse,
+  type CloselyspacedobjectCountResponse,
+  type CloselyspacedobjectQueryHelpResponse,
+  type CloselyspacedobjectTupleResponse,
+  type CloselyspacedobjectCreateParams,
+  type CloselyspacedobjectRetrieveParams,
+  type CloselyspacedobjectListParams,
+  type CloselyspacedobjectCountParams,
+  type CloselyspacedobjectCreateBulkParams,
+  type CloselyspacedobjectTupleParams,
+  type CloselyspacedobjectUnvalidatedPublishParams,
+  type CloselyspacedobjectsAbridgedsOffsetPage,
+} from './closelyspacedobjects/closelyspacedobjects';
+export {
   CollectRequests,
   type CollectRequestAbridged,
   type CollectRequestCountResponse,
