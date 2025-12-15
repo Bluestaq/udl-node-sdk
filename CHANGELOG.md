@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.1.0-alpha.25 (2025-12-10)
+
+Full Changelog: [v0.1.0-alpha.24...v0.1.0-alpha.25](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.24...v0.1.0-alpha.25)
+
+### Features
+
+* **api:** api update ([4e4f493](https://github.com/Bluestaq/udl-node-sdk/commit/4e4f493de0b0447b3b1fdf3f43812f8a08478760))
+* **api:** bumps to v1.37.0 of UDL API ([70f3696](https://github.com/Bluestaq/udl-node-sdk/commit/70f369658e99adb2cfd4fbe1d000065021e70af4))
+* **mcp:** handle code mode calls in the Stainless API ([cda6291](https://github.com/Bluestaq/udl-node-sdk/commit/cda6291d79b5bc9a3e67e86a268fec03c24015c8))
+
+
+### Bug Fixes
+
+* **mcp:** add client instantiation options to code tool ([fa2146d](https://github.com/Bluestaq/udl-node-sdk/commit/fa2146d8207930f37bc2caa92413ba28722b2506))
+* **mcp:** correct code tool API endpoint ([71cfc5a](https://github.com/Bluestaq/udl-node-sdk/commit/71cfc5a48b35e3a4f967c9598f1027d71085ecc3))
+* **mcp:** return correct lines on typescript errors ([df1e86a](https://github.com/Bluestaq/udl-node-sdk/commit/df1e86a1fca5afc1a183d2fa33ddd6d3c019a3cd))
+
+
+### Chores
+
+* **internal:** codegen related update ([ec163d0](https://github.com/Bluestaq/udl-node-sdk/commit/ec163d0f675e39a6e93ec2e461a167064f32aef3))
+* **internal:** codegen related update ([a41c744](https://github.com/Bluestaq/udl-node-sdk/commit/a41c74441d745f6c328f6100d230998fffe39e1e))
+* **mcp:** update lockfile ([c1ec4ee](https://github.com/Bluestaq/udl-node-sdk/commit/c1ec4eefbda330f0dfb8cb861dae888c1e7433bb))
+
 ## 0.1.0-alpha.24 (2025-12-04)
 
 Full Changelog: [v0.1.0-alpha.23...v0.1.0-alpha.24](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.23...v0.1.0-alpha.24)
