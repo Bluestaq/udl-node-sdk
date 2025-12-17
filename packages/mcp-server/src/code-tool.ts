@@ -39,6 +39,7 @@ export async function codeTool() {
           UDL_ACCESS_TOKEN: readEnv('UDL_ACCESS_TOKEN'),
           UDL_AUTH_PASSWORD: readEnv('UDL_AUTH_PASSWORD'),
           UDL_AUTH_USERNAME: readEnv('UDL_AUTH_USERNAME'),
+          UNIFIEDDATALIBRARY_BASE_URL: readEnv('UNIFIEDDATALIBRARY_BASE_URL'),
         }),
       },
       body: JSON.stringify({
