@@ -1,6 +1,6 @@
 {
   "name": "unified-data-library",
-  "version": "0.1.0-alpha.25",
+  "version": "0.1.0-alpha.26",
   "description": "The official TypeScript library for the Unifieddatalibrary API",
   "author": "Unifieddatalibrary <unifieddatalibrary@bluestaq.com>",
   "types": "dist/index.d.ts",
