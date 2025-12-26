@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Metadata, ToolCallResult, asTextContentResult } from './tools/types';
+import { McpTool, Metadata, ToolCallResult, asTextContentResult } from './types';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { readEnv } from './server';
 import { WorkerSuccess } from './code-tool-types';
@@ -13,7 +13,7 @@ import { WorkerSuccess } from './code-tool-types';
  *
  * @param endpoints - The endpoints to include in the list.
  */
-export async function codeTool() {
+export function codeTool(): McpTool {
   const metadata: Metadata = { resource: 'all', operation: 'write', tags: [] };
   const tool: Tool = {
     name: 'execute',
@@ -39,6 +39,7 @@ export async function codeTool() {
           UDL_ACCESS_TOKEN: readEnv('UDL_ACCESS_TOKEN'),
           UDL_AUTH_PASSWORD: readEnv('UDL_AUTH_PASSWORD'),
           UDL_AUTH_USERNAME: readEnv('UDL_AUTH_USERNAME'),
+          UNIFIEDDATALIBRARY_BASE_URL: readEnv('UNIFIEDDATALIBRARY_BASE_URL'),
         }),
       },
       body: JSON.stringify({

@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.0-alpha.26 (2025-12-18)
+
+Full Changelog: [v0.1.0-alpha.25...v0.1.0-alpha.26](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.25...v0.1.0-alpha.26)
+
+### ⚠ BREAKING CHANGES
+
+* **mcp:** remove deprecated tool schemes
+* **mcp:** **Migration:** To migrate, simply modify the command used to invoke the MCP server. Currently, the only supported tool scheme is code mode. Now, starting the server with just `node /path/to/mcp/server` or `npx package-name` will invoke code tools: changing your command to one of these is likely all you will need to do.
+
+### Bug Fixes
+
+* **mcp:** pass base url to code tool ([06efbcf](https://github.com/Bluestaq/udl-node-sdk/commit/06efbcff3a20e5e4c3cced0bc1bacebd595314e0))
+
+
+### Chores
+
+* **mcp:** remove deprecated tool schemes ([af0ee28](https://github.com/Bluestaq/udl-node-sdk/commit/af0ee28c6e40a36bf486f587c78affb7f3e51b77))
+
 ## 0.1.0-alpha.25 (2025-12-10)
 
 Full Changelog: [v0.1.0-alpha.24...v0.1.0-alpha.25](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.24...v0.1.0-alpha.25)
