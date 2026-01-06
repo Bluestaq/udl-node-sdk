@@ -282,7 +282,14 @@ describe('resource airEvents', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.airEvents.createBulk({
-      body: [{ classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', type: 'FUEL TRANSFER' }],
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          type: 'FUEL TRANSFER',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -434,12 +441,23 @@ describe('resource airEvents', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.airEvents.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
+    const response = await client.airEvents.tuple({
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('unvalidatedPublish: only required params', async () => {
     const responsePromise = client.airEvents.unvalidatedPublish({
-      body: [{ classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', type: 'FUEL TRANSFER' }],
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          type: 'FUEL TRANSFER',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);

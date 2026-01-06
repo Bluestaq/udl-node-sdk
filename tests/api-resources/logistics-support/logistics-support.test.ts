@@ -48,7 +48,11 @@ describe('resource logisticsSupport', () => {
       ],
       logisticsRecordId: 'L62017',
       logisticsRemarks: [
-        { lastChanged: '2023-07-17T10:30:00.123Z', remark: 'EXAMPLE REMARK', username: 'JSMITH' },
+        {
+          lastChanged: '2023-07-17T10:30:00.123Z',
+          remark: 'EXAMPLE REMARK',
+          username: 'JSMITH',
+        },
       ],
       logisticsSupportItems: [
         {
@@ -80,7 +84,11 @@ describe('resource logisticsSupport', () => {
             },
           ],
           logisticsRemarks: [
-            { lastChanged: '2023-07-17T10:30:00.123Z', remark: 'EXAMPLE REMARK', username: 'JSMITH' },
+            {
+              lastChanged: '2023-07-17T10:30:00.123Z',
+              remark: 'EXAMPLE REMARK',
+              username: 'JSMITH',
+            },
           ],
           logisticsSpecialties: [
             {
@@ -141,7 +149,11 @@ describe('resource logisticsSupport', () => {
             },
           ],
           logisticsTransportationPlansRemarks: [
-            { lastChanged: '2023-07-17T10:30:00.123Z', remark: 'EXAMPLE REMARK', username: 'JSMITH' },
+            {
+              lastChanged: '2023-07-17T10:30:00.123Z',
+              remark: 'EXAMPLE REMARK',
+              username: 'JSMITH',
+            },
           ],
           majcom: 'HQAMC',
           missionChange: false,
@@ -207,7 +219,11 @@ describe('resource logisticsSupport', () => {
       ],
       logisticsRecordId: 'L62017',
       logisticsRemarks: [
-        { lastChanged: '2023-07-17T10:30:00.123Z', remark: 'EXAMPLE REMARK', username: 'JSMITH' },
+        {
+          lastChanged: '2023-07-17T10:30:00.123Z',
+          remark: 'EXAMPLE REMARK',
+          username: 'JSMITH',
+        },
       ],
       logisticsSupportItems: [
         {
@@ -239,7 +255,11 @@ describe('resource logisticsSupport', () => {
             },
           ],
           logisticsRemarks: [
-            { lastChanged: '2023-07-17T10:30:00.123Z', remark: 'EXAMPLE REMARK', username: 'JSMITH' },
+            {
+              lastChanged: '2023-07-17T10:30:00.123Z',
+              remark: 'EXAMPLE REMARK',
+              username: 'JSMITH',
+            },
           ],
           logisticsSpecialties: [
             {
@@ -300,7 +320,11 @@ describe('resource logisticsSupport', () => {
             },
           ],
           logisticsTransportationPlansRemarks: [
-            { lastChanged: '2023-07-17T10:30:00.123Z', remark: 'EXAMPLE REMARK', username: 'JSMITH' },
+            {
+              lastChanged: '2023-07-17T10:30:00.123Z',
+              remark: 'EXAMPLE REMARK',
+              username: 'JSMITH',
+            },
           ],
           majcom: 'HQAMC',
           missionChange: false,
@@ -408,7 +432,11 @@ describe('resource logisticsSupport', () => {
           ],
           logisticsRecordId: 'L62017',
           logisticsRemarks: [
-            { lastChanged: '2023-07-17T10:30:00.123Z', remark: 'EXAMPLE REMARK', username: 'JSMITH' },
+            {
+              lastChanged: '2023-07-17T10:30:00.123Z',
+              remark: 'EXAMPLE REMARK',
+              username: 'JSMITH',
+            },
           ],
           logisticsSupportItems: [
             {
@@ -440,7 +468,11 @@ describe('resource logisticsSupport', () => {
                 },
               ],
               logisticsRemarks: [
-                { lastChanged: '2023-07-17T10:30:00.123Z', remark: 'EXAMPLE REMARK', username: 'JSMITH' },
+                {
+                  lastChanged: '2023-07-17T10:30:00.123Z',
+                  remark: 'EXAMPLE REMARK',
+                  username: 'JSMITH',
+                },
               ],
               logisticsSpecialties: [
                 {
@@ -501,7 +533,11 @@ describe('resource logisticsSupport', () => {
                 },
               ],
               logisticsTransportationPlansRemarks: [
-                { lastChanged: '2023-07-17T10:30:00.123Z', remark: 'EXAMPLE REMARK', username: 'JSMITH' },
+                {
+                  lastChanged: '2023-07-17T10:30:00.123Z',
+                  remark: 'EXAMPLE REMARK',
+                  username: 'JSMITH',
+                },
               ],
               majcom: 'HQAMC',
               missionChange: false,
@@ -627,7 +663,11 @@ describe('resource logisticsSupport', () => {
           ],
           logisticsRecordId: 'L62017',
           logisticsRemarks: [
-            { lastChanged: '2023-07-17T10:30:00.123Z', remark: 'EXAMPLE REMARK', username: 'JSMITH' },
+            {
+              lastChanged: '2023-07-17T10:30:00.123Z',
+              remark: 'EXAMPLE REMARK',
+              username: 'JSMITH',
+            },
           ],
           logisticsSupportItems: [
             {
@@ -659,7 +699,11 @@ describe('resource logisticsSupport', () => {
                 },
               ],
               logisticsRemarks: [
-                { lastChanged: '2023-07-17T10:30:00.123Z', remark: 'EXAMPLE REMARK', username: 'JSMITH' },
+                {
+                  lastChanged: '2023-07-17T10:30:00.123Z',
+                  remark: 'EXAMPLE REMARK',
+                  username: 'JSMITH',
+                },
               ],
               logisticsSpecialties: [
                 {
@@ -720,7 +764,11 @@ describe('resource logisticsSupport', () => {
                 },
               ],
               logisticsTransportationPlansRemarks: [
-                { lastChanged: '2023-07-17T10:30:00.123Z', remark: 'EXAMPLE REMARK', username: 'JSMITH' },
+                {
+                  lastChanged: '2023-07-17T10:30:00.123Z',
+                  remark: 'EXAMPLE REMARK',
+                  username: 'JSMITH',
+                },
               ],
               majcom: 'HQAMC',
               missionChange: false,

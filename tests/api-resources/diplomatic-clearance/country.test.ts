@@ -60,7 +60,13 @@ describe('resource country', () => {
           siprNum: '546144352',
         },
       ],
-      diplomaticClearanceCountryEntryExitPoints: [{ isEntry: true, isExit: true, pointName: 'BATEL' }],
+      diplomaticClearanceCountryEntryExitPoints: [
+        {
+          isEntry: true,
+          isExit: true,
+          pointName: 'BATEL',
+        },
+      ],
       diplomaticClearanceCountryProfiles: [
         {
           cargoPaxRemark: 'Cargo passenger remark',
@@ -209,7 +215,13 @@ describe('resource country', () => {
           siprNum: '546144352',
         },
       ],
-      diplomaticClearanceCountryEntryExitPoints: [{ isEntry: true, isExit: true, pointName: 'BATEL' }],
+      diplomaticClearanceCountryEntryExitPoints: [
+        {
+          isEntry: true,
+          isExit: true,
+          pointName: 'BATEL',
+        },
+      ],
       diplomaticClearanceCountryProfiles: [
         {
           cargoPaxRemark: 'Cargo passenger remark',
@@ -395,7 +407,13 @@ describe('resource country', () => {
               siprNum: '546144352',
             },
           ],
-          diplomaticClearanceCountryEntryExitPoints: [{ isEntry: true, isExit: true, pointName: 'BATEL' }],
+          diplomaticClearanceCountryEntryExitPoints: [
+            {
+              isEntry: true,
+              isExit: true,
+              pointName: 'BATEL',
+            },
+          ],
           diplomaticClearanceCountryProfiles: [
             {
               cargoPaxRemark: 'Cargo passenger remark',
@@ -560,7 +578,13 @@ describe('resource country', () => {
               siprNum: '546144352',
             },
           ],
-          diplomaticClearanceCountryEntryExitPoints: [{ isEntry: true, isExit: true, pointName: 'BATEL' }],
+          diplomaticClearanceCountryEntryExitPoints: [
+            {
+              isEntry: true,
+              isExit: true,
+              pointName: 'BATEL',
+            },
+          ],
           diplomaticClearanceCountryProfiles: [
             {
               cargoPaxRemark: 'Cargo passenger remark',

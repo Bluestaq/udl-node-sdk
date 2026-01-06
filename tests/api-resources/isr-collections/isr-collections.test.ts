@@ -49,7 +49,13 @@ describe('resource isrCollections', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.isrCollections.createBulk({
-      body: [{ classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' }],
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -233,7 +239,13 @@ describe('resource isrCollections', () => {
               type: 'Deliberate',
             },
           ],
-          transit: [{ id: 'ISRCOLLECTIONTRANSIT-ID', base: 'ENVOYS', duration: 200.23 }],
+          transit: [
+            {
+              id: 'ISRCOLLECTIONTRANSIT-ID',
+              base: 'ENVOYS',
+              duration: 200.23,
+            },
+          ],
         },
       ],
     });
@@ -272,7 +284,13 @@ describe('resource isrCollections', () => {
 
   test('unvalidatedPublish: only required params', async () => {
     const responsePromise = client.isrCollections.unvalidatedPublish({
-      body: [{ classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' }],
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -456,7 +474,13 @@ describe('resource isrCollections', () => {
               type: 'Deliberate',
             },
           ],
-          transit: [{ id: 'ISRCOLLECTIONTRANSIT-ID', base: 'ENVOYS', duration: 200.23 }],
+          transit: [
+            {
+              id: 'ISRCOLLECTIONTRANSIT-ID',
+              base: 'ENVOYS',
+              duration: 200.23,
+            },
+          ],
         },
       ],
     });

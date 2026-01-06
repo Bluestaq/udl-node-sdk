@@ -85,8 +85,12 @@ await client.analyticImagery.unvalidatedPublish({ file: new File(['my bytes'], '
 await client.analyticImagery.unvalidatedPublish({ file: await fetch('https://somesite/file') });
 
 // Finally, if none of the above are convenient, you can use our `toFile` helper:
-await client.analyticImagery.unvalidatedPublish({ file: await toFile(Buffer.from('my bytes'), 'file') });
-await client.analyticImagery.unvalidatedPublish({ file: await toFile(new Uint8Array([0, 1, 2]), 'file') });
+await client.analyticImagery.unvalidatedPublish({
+  file: await toFile(Buffer.from('my bytes'), 'file'),
+});
+await client.analyticImagery.unvalidatedPublish({
+  file: await toFile(new Uint8Array([0, 1, 2]), 'file'),
+});
 ```
 
 ## Handling errors
