@@ -149,7 +149,14 @@ describe('resource ionoObservations', () => {
             },
             parabolic: {
               description: 'Best-fit algorithm in NHPC software.',
-              parabolicItems: [{ f: 3.621, layer: 'E', y: 11.1, z: 110.2 }],
+              parabolicItems: [
+                {
+                  f: 3.621,
+                  layer: 'E',
+                  y: 11.1,
+                  z: 110.2,
+                },
+              ],
             },
             quasiParabolic: {
               description:
@@ -334,7 +341,11 @@ describe('resource ionoObservations', () => {
             dimensions: [1, 2],
             notes: 'NOTES',
           },
-          traceGeneric: { data: [[[1.23, 1.0903]]], dimensionName: ['NAME1', 'NAME2'], notes: 'NOTES' },
+          traceGeneric: {
+            data: [[[1.23, 1.0903]]],
+            dimensionName: ['NAME1', 'NAME2'],
+            notes: 'NOTES',
+          },
           transmitCoordinates: [
             [45.5, 179.3, 35.6],
             [-80.2, -20.5, 43.2],
@@ -487,7 +498,14 @@ describe('resource ionoObservations', () => {
             },
             parabolic: {
               description: 'Best-fit algorithm in NHPC software.',
-              parabolicItems: [{ f: 3.621, layer: 'E', y: 11.1, z: 110.2 }],
+              parabolicItems: [
+                {
+                  f: 3.621,
+                  layer: 'E',
+                  y: 11.1,
+                  z: 110.2,
+                },
+              ],
             },
             quasiParabolic: {
               description:
@@ -672,7 +690,11 @@ describe('resource ionoObservations', () => {
             dimensions: [1, 2],
             notes: 'NOTES',
           },
-          traceGeneric: { data: [[[1.23, 1.0903]]], dimensionName: ['NAME1', 'NAME2'], notes: 'NOTES' },
+          traceGeneric: {
+            data: [[[1.23, 1.0903]]],
+            dimensionName: ['NAME1', 'NAME2'],
+            notes: 'NOTES',
+          },
           transmitCoordinates: [
             [45.5, 179.3, 35.6],
             [-80.2, -20.5, 43.2],

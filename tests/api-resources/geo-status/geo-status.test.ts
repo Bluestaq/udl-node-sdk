@@ -61,7 +61,11 @@ describe('resource geoStatus', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.geoStatus.list({ createdAt: '2019-12-27', firstResult: 0, maxResults: 0 });
+    const response = await client.geoStatus.list({
+      createdAt: '2019-12-27',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -76,12 +80,22 @@ describe('resource geoStatus', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.geoStatus.count({ createdAt: '2019-12-27', firstResult: 0, maxResults: 0 });
+    const response = await client.geoStatus.count({
+      createdAt: '2019-12-27',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.geoStatus.createBulk({
-      body: [{ classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' }],
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);

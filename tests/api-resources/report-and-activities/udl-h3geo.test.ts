@@ -12,7 +12,12 @@ describe('resource udlH3geo', () => {
   test('unvalidatedPublish: only required params', async () => {
     const responsePromise = client.reportAndActivities.udlH3geo.unvalidatedPublish({
       cells: [
-        { cellId: '830b90fffffffff', classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' },
+        {
+          cellId: '830b90fffffffff',
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+        },
       ],
       classificationMarking: 'U',
       dataMode: 'TEST',

@@ -25,7 +25,11 @@ describe('resource notifications', () => {
     await expect(
       client.scs.notifications.list(
         'offset',
-        { firstResult: 0, maxResults: 0, path: 'path' },
+        {
+          firstResult: 0,
+          maxResults: 0,
+          path: 'path',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);

@@ -133,7 +133,11 @@ describe('resource organizationdetails', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.organizationdetails.list({ name: 'name', firstResult: 0, maxResults: 0 });
+    const response = await client.organizationdetails.list({
+      name: 'name',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('delete', async () => {
