@@ -380,13 +380,22 @@ describe('resource crew', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.crew.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
+    const response = await client.crew.tuple({
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('unvalidatedPublish: only required params', async () => {
     const responsePromise = client.crew.unvalidatedPublish({
       body: [
-        { classificationMarking: 'U', dataMode: 'TEST', origCrewId: 'JHJDHjhuu929o92', source: 'Bluestaq' },
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          origCrewId: 'JHJDHjhuu929o92',
+          source: 'Bluestaq',
+        },
       ],
     });
     const rawResponse = await responsePromise.asResponse();

@@ -45,7 +45,14 @@ describe('resource details', () => {
           antennaDiameter: 20.23,
           antennaSize: [1.1, 2.2],
           azElFixed: true,
-          feeds: [{ freqMax: 43500.1, freqMin: 39500.1, name: 'Feed A', polarization: 'HORIZONTAL' }],
+          feeds: [
+            {
+              freqMax: 43500.1,
+              freqMin: 39500.1,
+              name: 'Feed A',
+              polarization: 'HORIZONTAL',
+            },
+          ],
           fixedAzimuth: 5.1,
           fixedElevation: 10.1,
           maxAzimuths: [359.1, 359.1],
@@ -170,7 +177,14 @@ describe('resource details', () => {
           antennaDiameter: 20.23,
           antennaSize: [1.1, 2.2],
           azElFixed: true,
-          feeds: [{ freqMax: 43500.1, freqMin: 39500.1, name: 'Feed A', polarization: 'HORIZONTAL' }],
+          feeds: [
+            {
+              freqMax: 43500.1,
+              freqMin: 39500.1,
+              name: 'Feed A',
+              polarization: 'HORIZONTAL',
+            },
+          ],
           fixedAzimuth: 5.1,
           fixedElevation: 10.1,
           maxAzimuths: [359.1, 359.1],

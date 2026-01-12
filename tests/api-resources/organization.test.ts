@@ -209,6 +209,10 @@ describe('resource organization', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.organization.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
+    const response = await client.organization.tuple({
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

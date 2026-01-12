@@ -46,7 +46,13 @@ describe('resource laserdeconflictrequest', () => {
       centerlineElevation: 19.434,
       defaultCHA: 2.5,
       enableDSS: true,
-      fixedPoints: [{ latitude: -10.18, longitude: -179.98, height: -18.13 }],
+      fixedPoints: [
+        {
+          latitude: -10.18,
+          longitude: -179.98,
+          height: -18.13,
+        },
+      ],
       geopotentialModel: 'WGS84',
       laserDeconflictTargets: [
         {
@@ -65,7 +71,13 @@ describe('resource laserdeconflictrequest', () => {
           elevationEnd: 88.05,
           elevationIncrement: 0.5,
           elevationStart: 67.05,
-          fixedPoints: [{ latitude: -10.18, longitude: -179.98, height: -18.13 }],
+          fixedPoints: [
+            {
+              latitude: -10.18,
+              longitude: -179.98,
+              height: -18.13,
+            },
+          ],
           idLaserDeconflictRequest: '026dd511-8ba5-47d3-9909-836149f87686',
           lengthCenterline: 369.79,
           lengthLeftRight: 20.23,
@@ -238,7 +250,13 @@ describe('resource laserdeconflictrequest', () => {
       centerlineElevation: 19.434,
       defaultCHA: 2.5,
       enableDSS: true,
-      fixedPoints: [{ latitude: -10.18, longitude: -179.98, height: -18.13 }],
+      fixedPoints: [
+        {
+          latitude: -10.18,
+          longitude: -179.98,
+          height: -18.13,
+        },
+      ],
       geopotentialModel: 'WGS84',
       laserDeconflictTargets: [
         {
@@ -257,7 +275,13 @@ describe('resource laserdeconflictrequest', () => {
           elevationEnd: 88.05,
           elevationIncrement: 0.5,
           elevationStart: 67.05,
-          fixedPoints: [{ latitude: -10.18, longitude: -179.98, height: -18.13 }],
+          fixedPoints: [
+            {
+              latitude: -10.18,
+              longitude: -179.98,
+              height: -18.13,
+            },
+          ],
           idLaserDeconflictRequest: '026dd511-8ba5-47d3-9909-836149f87686',
           lengthCenterline: 369.79,
           lengthLeftRight: 20.23,

@@ -94,7 +94,11 @@ describe('resource poi', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.poi.list({ ts: '2019-12-27T18:11:19.117Z', firstResult: 0, maxResults: 0 });
+    const response = await client.poi.list({
+      ts: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('count: only required params', async () => {

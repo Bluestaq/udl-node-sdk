@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.1.0-alpha.27 (2026-01-12)
+
+Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
+
+### Bug Fixes
+
+* **mcp:** correct code tool api output types ([7e01d16](https://github.com/Bluestaq/udl-node-sdk/commit/7e01d1630519561ae9bdd06c39a4d6144fae00ee))
+* **mcp:** fix options parsing ([0638dec](https://github.com/Bluestaq/udl-node-sdk/commit/0638decc004239cfe61e4a621e9290d967120ee6))
+* **mcp:** update code tool prompt ([45cc298](https://github.com/Bluestaq/udl-node-sdk/commit/45cc2983b7fa744f5117afd7ecb3ba7e8ec650e4))
+
+
+### Chores
+
+* break long lines in snippets into multiline ([ec3756a](https://github.com/Bluestaq/udl-node-sdk/commit/ec3756afa8bfa0c2c4366acc3cc4dfa92a894b5b))
+* **internal:** codegen related update ([b717b19](https://github.com/Bluestaq/udl-node-sdk/commit/b717b19c53e528c9707d239adf490104800edfd7))
+* **internal:** codegen related update ([158de24](https://github.com/Bluestaq/udl-node-sdk/commit/158de24879b0c6b4b17a3daa05b6c9f99a71bc37))
+* **internal:** codegen related update ([6b57c4e](https://github.com/Bluestaq/udl-node-sdk/commit/6b57c4ee531f90acd05191ed8f935168bd1f495e))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([5a684a2](https://github.com/Bluestaq/udl-node-sdk/commit/5a684a273a4887212019168dfcdbe797f7e620e5))
+
 ## 0.1.0-alpha.26 (2025-12-18)
 
 Full Changelog: [v0.1.0-alpha.25...v0.1.0-alpha.26](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.25...v0.1.0-alpha.26)
