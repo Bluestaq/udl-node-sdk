@@ -429,27 +429,27 @@ export interface ScSearchParams {
   offset?: number;
 
   /**
-   * Body param:
+   * Body param
    */
   contentCriteria?: string;
 
   /**
-   * Body param:
+   * Body param
    */
   metaDataCriteria?: { [key: string]: Array<string> };
 
   /**
-   * Body param:
+   * Body param
    */
   nonRangeCriteria?: { [key: string]: Array<string> };
 
   /**
-   * Body param:
+   * Body param
    */
   rangeCriteria?: { [key: string]: Array<string> };
 
   /**
-   * Body param:
+   * Body param
    */
   searchAfter?: string;
 }
