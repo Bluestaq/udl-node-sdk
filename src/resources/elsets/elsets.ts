@@ -1508,7 +1508,7 @@ export interface ElsetCountParams {
 
 export interface ElsetCreateBulkParams {
   /**
-   * Body param:
+   * Body param
    */
   body: Array<ElsetIngest>;
 
@@ -1537,7 +1537,7 @@ export interface ElsetCreateBulkFromTleParams {
   source: string;
 
   /**
-   * Body param:
+   * Body param
    */
   body: string;
 
