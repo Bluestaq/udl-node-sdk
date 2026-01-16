@@ -106,7 +106,13 @@ describe('resource sensorStating', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.sensorStating.createBulk({
-      body: [{ classificationMarking: 'U', sensorName: 'SENSOR_NAME', source: 'Bluestaq' }],
+      body: [
+        {
+          classificationMarking: 'U',
+          sensorName: 'SENSOR_NAME',
+          source: 'Bluestaq',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);

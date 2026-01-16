@@ -125,7 +125,13 @@ describe('resource staging', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.laseremitter.staging.createBulk({
-      body: [{ classificationMarking: 'U', laserName: 'LASER_NAME', source: 'Bluestaq' }],
+      body: [
+        {
+          classificationMarking: 'U',
+          laserName: 'LASER_NAME',
+          source: 'Bluestaq',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);

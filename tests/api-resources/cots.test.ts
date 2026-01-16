@@ -27,8 +27,16 @@ describe('resource cots', () => {
       alt: 5.23,
       callSigns: ['string'],
       ce: 10.23,
-      cotChatData: { chatMsg: 'Mission is go', chatRoom: 'All Chat Rooms', chatSenderCallSign: 'Pebble' },
-      cotPositionData: { callSign: 'POI_NAME', team: 'Description of the object', teamRole: 'Team Member' },
+      cotChatData: {
+        chatMsg: 'Mission is go',
+        chatRoom: 'All Chat Rooms',
+        chatSenderCallSign: 'Pebble',
+      },
+      cotPositionData: {
+        callSign: 'POI_NAME',
+        team: 'Description of the object',
+        teamRole: 'Team Member',
+      },
       groups: ['string'],
       how: 'h-e',
       le: 10.23,

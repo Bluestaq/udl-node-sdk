@@ -12,7 +12,12 @@ describe('resource h3Geo', () => {
   test('create: only required params', async () => {
     const responsePromise = client.h3Geo.create({
       cells: [
-        { cellId: '830b90fffffffff', classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' },
+        {
+          cellId: '830b90fffffffff',
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+        },
       ],
       classificationMarking: 'U',
       dataMode: 'TEST',

@@ -426,7 +426,7 @@ export interface NotificationCreateRawParams {
   source: string;
 
   /**
-   * Body param:
+   * Body param
    */
   body: string;
 

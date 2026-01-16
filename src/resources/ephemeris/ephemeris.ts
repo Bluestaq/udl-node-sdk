@@ -476,7 +476,7 @@ export interface EphemerisFileUploadParams {
   type: string;
 
   /**
-   * Body param:
+   * Body param
    */
   body: string;
 

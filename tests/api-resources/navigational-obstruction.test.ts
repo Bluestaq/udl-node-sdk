@@ -214,7 +214,12 @@ describe('resource navigationalObstruction', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.navigationalObstruction.list(
-        { cycleDate: '2019-12-27', firstResult: 0, maxResults: 0, obstacleId: 'obstacleId' },
+        {
+          cycleDate: '2019-12-27',
+          firstResult: 0,
+          maxResults: 0,
+          obstacleId: 'obstacleId',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -235,7 +240,12 @@ describe('resource navigationalObstruction', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.navigationalObstruction.count(
-        { cycleDate: '2019-12-27', firstResult: 0, maxResults: 0, obstacleId: 'obstacleId' },
+        {
+          cycleDate: '2019-12-27',
+          firstResult: 0,
+          maxResults: 0,
+          obstacleId: 'obstacleId',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);

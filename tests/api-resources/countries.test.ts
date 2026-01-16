@@ -10,7 +10,11 @@ const client = new Unifieddatalibrary({
 
 describe('resource countries', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.countries.create({ code: 'US', dataMode: 'TEST', source: 'Bluestaq' });
+    const responsePromise = client.countries.create({
+      code: 'US',
+      dataMode: 'TEST',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -151,6 +155,10 @@ describe('resource countries', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.countries.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
+    const response = await client.countries.tuple({
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

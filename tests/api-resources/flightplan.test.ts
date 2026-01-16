@@ -38,7 +38,13 @@ describe('resource flightplan', () => {
       id: 'c44b0a80-9fef-63d9-6267-79037fb93e4c',
       aircraftMDS: 'KC-130 HERCULES',
       airRefuelEvents: [
-        { arDegrade: 3.1, arExchangedFuel: 1500.1, arNum: 2, divertFuel: 143000.1, exitFuel: 160000.1 },
+        {
+          arDegrade: 3.1,
+          arExchangedFuel: 1500.1,
+          arNum: 2,
+          divertFuel: 143000.1,
+          exitFuel: 160000.1,
+        },
       ],
       amcMissionId: 'AJM7939B1123',
       appLandingFuel: 3000.1,
@@ -73,7 +79,12 @@ describe('resource flightplan', () => {
       etopsValWindow: 'LPLA: 0317Z-0722Z',
       externalId: 'AFMAPP20322347140001',
       flightPlanMessages: [
-        { msgText: 'Message text', routePath: 'PRIMARY', severity: 'SEVERE', wpNum: '20' },
+        {
+          msgText: 'Message text',
+          routePath: 'PRIMARY',
+          severity: 'SEVERE',
+          wpNum: '20',
+        },
       ],
       flightPlanPointGroups: [
         {
@@ -275,7 +286,13 @@ describe('resource flightplan', () => {
       body_id: 'c44b0a80-9fef-63d9-6267-79037fb93e4c',
       aircraftMDS: 'KC-130 HERCULES',
       airRefuelEvents: [
-        { arDegrade: 3.1, arExchangedFuel: 1500.1, arNum: 2, divertFuel: 143000.1, exitFuel: 160000.1 },
+        {
+          arDegrade: 3.1,
+          arExchangedFuel: 1500.1,
+          arNum: 2,
+          divertFuel: 143000.1,
+          exitFuel: 160000.1,
+        },
       ],
       amcMissionId: 'AJM7939B1123',
       appLandingFuel: 3000.1,
@@ -310,7 +327,12 @@ describe('resource flightplan', () => {
       etopsValWindow: 'LPLA: 0317Z-0722Z',
       externalId: 'AFMAPP20322347140001',
       flightPlanMessages: [
-        { msgText: 'Message text', routePath: 'PRIMARY', severity: 'SEVERE', wpNum: '20' },
+        {
+          msgText: 'Message text',
+          routePath: 'PRIMARY',
+          severity: 'SEVERE',
+          wpNum: '20',
+        },
       ],
       flightPlanPointGroups: [
         {
@@ -531,7 +553,11 @@ describe('resource flightplan', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.flightplan.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
+    const response = await client.flightplan.tuple({
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('unvalidatedPublish: only required params', async () => {
@@ -569,7 +595,13 @@ describe('resource flightplan', () => {
           id: 'c44b0a80-9fef-63d9-6267-79037fb93e4c',
           aircraftMDS: 'KC-130 HERCULES',
           airRefuelEvents: [
-            { arDegrade: 3.1, arExchangedFuel: 1500.1, arNum: 2, divertFuel: 143000.1, exitFuel: 160000.1 },
+            {
+              arDegrade: 3.1,
+              arExchangedFuel: 1500.1,
+              arNum: 2,
+              divertFuel: 143000.1,
+              exitFuel: 160000.1,
+            },
           ],
           amcMissionId: 'AJM7939B1123',
           appLandingFuel: 3000.1,
@@ -604,7 +636,12 @@ describe('resource flightplan', () => {
           etopsValWindow: 'LPLA: 0317Z-0722Z',
           externalId: 'AFMAPP20322347140001',
           flightPlanMessages: [
-            { msgText: 'Message text', routePath: 'PRIMARY', severity: 'SEVERE', wpNum: '20' },
+            {
+              msgText: 'Message text',
+              routePath: 'PRIMARY',
+              severity: 'SEVERE',
+              wpNum: '20',
+            },
           ],
           flightPlanPointGroups: [
             {

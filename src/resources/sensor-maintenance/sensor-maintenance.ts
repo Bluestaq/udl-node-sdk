@@ -1432,7 +1432,7 @@ export interface SensorMaintenanceCountParams {
 
 export interface SensorMaintenanceCreateBulkParams {
   /**
-   * Body param:
+   * Body param
    */
   body: Array<SensorMaintenanceCreateBulkParams.Body>;
 

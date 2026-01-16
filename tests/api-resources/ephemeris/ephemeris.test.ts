@@ -21,7 +21,11 @@ describe('resource ephemeris', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.ephemeris.list({ esId: 'esId', firstResult: 0, maxResults: 0 });
+    const response = await client.ephemeris.list({
+      esId: 'esId',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -36,7 +40,11 @@ describe('resource ephemeris', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.ephemeris.count({ esId: 'esId', firstResult: 0, maxResults: 0 });
+    const response = await client.ephemeris.count({
+      esId: 'esId',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('fileUpload: only required params', async () => {

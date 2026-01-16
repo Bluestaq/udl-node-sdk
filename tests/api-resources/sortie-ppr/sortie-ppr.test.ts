@@ -91,7 +91,11 @@ describe('resource sortiePpr', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.sortiePpr.list({ idSortie: 'idSortie', firstResult: 0, maxResults: 0 });
+    const response = await client.sortiePpr.list({
+      idSortie: 'idSortie',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('delete', async () => {
@@ -117,7 +121,11 @@ describe('resource sortiePpr', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.sortiePpr.count({ idSortie: 'idSortie', firstResult: 0, maxResults: 0 });
+    const response = await client.sortiePpr.count({
+      idSortie: 'idSortie',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {

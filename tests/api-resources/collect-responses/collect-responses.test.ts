@@ -116,7 +116,12 @@ describe('resource collectResponses', () => {
   test('createBulk: only required params', async () => {
     const responsePromise = client.collectResponses.createBulk({
       body: [
-        { classificationMarking: 'U', dataMode: 'TEST', idRequest: 'REF-REQUEST-ID', source: 'Bluestaq' },
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idRequest: 'REF-REQUEST-ID',
+          source: 'Bluestaq',
+        },
       ],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -174,7 +179,12 @@ describe('resource collectResponses', () => {
   test('unvalidatedPublish: only required params', async () => {
     const responsePromise = client.collectResponses.unvalidatedPublish({
       body: [
-        { classificationMarking: 'U', dataMode: 'TEST', idRequest: 'REF-REQUEST-ID', source: 'Bluestaq' },
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          idRequest: 'REF-REQUEST-ID',
+          source: 'Bluestaq',
+        },
       ],
     });
     const rawResponse = await responsePromise.asResponse();

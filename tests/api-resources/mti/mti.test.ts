@@ -21,7 +21,11 @@ describe('resource mti', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.mti.list({ createdAt: '2019-12-27', firstResult: 0, maxResults: 0 });
+    const response = await client.mti.list({
+      createdAt: '2019-12-27',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -36,12 +40,22 @@ describe('resource mti', () => {
   });
 
   test('count: required and optional params', async () => {
-    const response = await client.mti.count({ createdAt: '2019-12-27', firstResult: 0, maxResults: 0 });
+    const response = await client.mti.count({
+      createdAt: '2019-12-27',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.mti.createBulk({
-      body: [{ classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' }],
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -117,7 +131,13 @@ describe('resource mti', () => {
               dwellts: '2018-01-01T16:00:00.123Z',
             },
           ],
-          freeTexts: [{ f1: 'ORIGINATOR', f2: 'RECIPIENT', f3: 'TEXT' }],
+          freeTexts: [
+            {
+              f1: 'ORIGINATOR',
+              f2: 'RECIPIENT',
+              f3: 'TEXT',
+            },
+          ],
           hrrs: [
             {
               h10: 1,
@@ -142,7 +162,14 @@ describe('resource mti', () => {
               h3: 12,
               h30: 22,
               h31: 55,
-              h32: [{ h32_1: 1, h32_2: 1, h32_3: 1, h32_4: 1 }],
+              h32: [
+                {
+                  h32_1: 1,
+                  h32_2: 1,
+                  h32_3: 1,
+                  h32_4: 1,
+                },
+              ],
               h4: true,
               h5: 12,
               h6: 12,
@@ -208,7 +235,15 @@ describe('resource mti', () => {
               r9: 10.23,
             },
           ],
-          missions: [{ m1: 'M1-ID', m2: 'M2-ID', m3: 'PLATFORM', m4: 'IDENT', msnRefTs: '2018-01-01' }],
+          missions: [
+            {
+              m1: 'M1-ID',
+              m2: 'M2-ID',
+              m3: 'PLATFORM',
+              m4: 'IDENT',
+              msnRefTs: '2018-01-01',
+            },
+          ],
           origin: 'THIRD_PARTY_DATASOURCE',
           p10: 45,
           p3: 'NATIONALITY',
@@ -266,7 +301,13 @@ describe('resource mti', () => {
 
   test('unvalidatedPublish: only required params', async () => {
     const responsePromise = client.mti.unvalidatedPublish({
-      body: [{ classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' }],
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -342,7 +383,13 @@ describe('resource mti', () => {
               dwellts: '2018-01-01T16:00:00.123Z',
             },
           ],
-          freeTexts: [{ f1: 'ORIGINATOR', f2: 'RECIPIENT', f3: 'TEXT' }],
+          freeTexts: [
+            {
+              f1: 'ORIGINATOR',
+              f2: 'RECIPIENT',
+              f3: 'TEXT',
+            },
+          ],
           hrrs: [
             {
               h10: 1,
@@ -367,7 +414,14 @@ describe('resource mti', () => {
               h3: 12,
               h30: 22,
               h31: 55,
-              h32: [{ h32_1: 1, h32_2: 1, h32_3: 1, h32_4: 1 }],
+              h32: [
+                {
+                  h32_1: 1,
+                  h32_2: 1,
+                  h32_3: 1,
+                  h32_4: 1,
+                },
+              ],
               h4: true,
               h5: 12,
               h6: 12,
@@ -433,7 +487,15 @@ describe('resource mti', () => {
               r9: 10.23,
             },
           ],
-          missions: [{ m1: 'M1-ID', m2: 'M2-ID', m3: 'PLATFORM', m4: 'IDENT', msnRefTs: '2018-01-01' }],
+          missions: [
+            {
+              m1: 'M1-ID',
+              m2: 'M2-ID',
+              m3: 'PLATFORM',
+              m4: 'IDENT',
+              msnRefTs: '2018-01-01',
+            },
+          ],
           origin: 'THIRD_PARTY_DATASOURCE',
           p10: 45,
           p3: 'NATIONALITY',

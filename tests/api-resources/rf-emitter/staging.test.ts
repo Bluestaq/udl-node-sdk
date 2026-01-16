@@ -126,7 +126,13 @@ describe('resource staging', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.rfEmitter.staging.createBulk({
-      body: [{ classificationMarking: 'U', name: 'RF_NAME', source: 'Bluestaq' }],
+      body: [
+        {
+          classificationMarking: 'U',
+          name: 'RF_NAME',
+          source: 'Bluestaq',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);

@@ -190,7 +190,12 @@ describe('resource starCatalog', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.starCatalog.list(
-        { dec: 0, firstResult: 0, maxResults: 0, ra: 0 },
+        {
+          dec: 0,
+          firstResult: 0,
+          maxResults: 0,
+          ra: 0,
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -222,7 +227,12 @@ describe('resource starCatalog', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.starCatalog.count(
-        { dec: 0, firstResult: 0, maxResults: 0, ra: 0 },
+        {
+          dec: 0,
+          firstResult: 0,
+          maxResults: 0,
+          ra: 0,
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);

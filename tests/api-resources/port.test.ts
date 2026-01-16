@@ -125,7 +125,13 @@ describe('resource port', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.port.createBulk({
-      body: [{ classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq' }],
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -205,6 +211,10 @@ describe('resource port', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.port.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
+    const response = await client.port.tuple({
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

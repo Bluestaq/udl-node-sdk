@@ -149,7 +149,14 @@ describe('resource effectResponses', () => {
 
   test('createBulk: only required params', async () => {
     const responsePromise = client.effectResponses.createBulk({
-      body: [{ classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', type: 'COA' }],
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          type: 'COA',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -259,7 +266,14 @@ describe('resource effectResponses', () => {
 
   test('unvalidatedPublish: only required params', async () => {
     const responsePromise = client.effectResponses.unvalidatedPublish({
-      body: [{ classificationMarking: 'U', dataMode: 'TEST', source: 'Bluestaq', type: 'COA' }],
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          source: 'Bluestaq',
+          type: 'COA',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
