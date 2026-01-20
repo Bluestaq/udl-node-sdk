@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.1.0-alpha.27 (2026-01-20)
+
+Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
+
+### Bug Fixes
+
+* **mcp:** correct code tool api output types ([7e01d16](https://github.com/Bluestaq/udl-node-sdk/commit/7e01d1630519561ae9bdd06c39a4d6144fae00ee))
+* **mcp:** fix options parsing ([0638dec](https://github.com/Bluestaq/udl-node-sdk/commit/0638decc004239cfe61e4a621e9290d967120ee6))
+* **mcp:** update code tool prompt ([45cc298](https://github.com/Bluestaq/udl-node-sdk/commit/45cc2983b7fa744f5117afd7ecb3ba7e8ec650e4))
+
+
+### Chores
+
+* break long lines in snippets into multiline ([ec3756a](https://github.com/Bluestaq/udl-node-sdk/commit/ec3756afa8bfa0c2c4366acc3cc4dfa92a894b5b))
+* fix typo in descriptions ([ea2f52d](https://github.com/Bluestaq/udl-node-sdk/commit/ea2f52d01d0c79b99adf77c2ec5ef075cf038e88))
+* **internal:** codegen related update ([11651a3](https://github.com/Bluestaq/udl-node-sdk/commit/11651a368c04f250b2b3a8b6acac0237e5ff54b4))
+* **internal:** codegen related update ([82ccacb](https://github.com/Bluestaq/udl-node-sdk/commit/82ccacb44ade220f09d6e62766f73e52e0837c8d))
+* **internal:** codegen related update ([889cf99](https://github.com/Bluestaq/udl-node-sdk/commit/889cf99f1da9ec6050c4a321831116a788d4f95d))
+* **internal:** codegen related update ([e655ab8](https://github.com/Bluestaq/udl-node-sdk/commit/e655ab82a93935c8e17fbd183d7c17a1f85f16a6))
+* **internal:** codegen related update ([b717b19](https://github.com/Bluestaq/udl-node-sdk/commit/b717b19c53e528c9707d239adf490104800edfd7))
+* **internal:** codegen related update ([158de24](https://github.com/Bluestaq/udl-node-sdk/commit/158de24879b0c6b4b17a3daa05b6c9f99a71bc37))
+* **internal:** codegen related update ([6b57c4e](https://github.com/Bluestaq/udl-node-sdk/commit/6b57c4ee531f90acd05191ed8f935168bd1f495e))
+* **internal:** update `actions/checkout` version ([d5705e5](https://github.com/Bluestaq/udl-node-sdk/commit/d5705e53fba69a5450e4a896b814de36613db4c8))
+* **internal:** upgrade babel, qs, js-yaml ([12c41f5](https://github.com/Bluestaq/udl-node-sdk/commit/12c41f556c7ced1906b676e5a944c89a9bd9de4e))
+* **mcp:** add intent param to execute tool ([110f017](https://github.com/Bluestaq/udl-node-sdk/commit/110f017331a3069e44185d84e28aa6e53ba8032b))
+* **mcp:** pass intent param to execute handler ([293c545](https://github.com/Bluestaq/udl-node-sdk/commit/293c54577fe4c5330a8dd97c184bec1e116b400e))
+* **mcp:** upgrade dependencies ([0c0798c](https://github.com/Bluestaq/udl-node-sdk/commit/0c0798c50ec5fb2d48529f1214f62a97222c5a3e))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([5a684a2](https://github.com/Bluestaq/udl-node-sdk/commit/5a684a273a4887212019168dfcdbe797f7e620e5))
+
 ## 0.1.0-alpha.26 (2025-12-18)
 
 Full Changelog: [v0.1.0-alpha.25...v0.1.0-alpha.26](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.25...v0.1.0-alpha.26)
