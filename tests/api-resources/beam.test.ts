@@ -153,6 +153,10 @@ describe('resource beam', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.beam.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
+    const response = await client.beam.tuple({
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

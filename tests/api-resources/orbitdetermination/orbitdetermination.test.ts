@@ -218,7 +218,12 @@ describe('resource orbitdetermination', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.orbitdetermination.list(
-        { firstResult: 0, idOnOrbit: 'idOnOrbit', maxResults: 0, startTime: '2019-12-27T18:11:19.117Z' },
+        {
+          firstResult: 0,
+          idOnOrbit: 'idOnOrbit',
+          maxResults: 0,
+          startTime: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
@@ -239,7 +244,12 @@ describe('resource orbitdetermination', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.orbitdetermination.count(
-        { firstResult: 0, idOnOrbit: 'idOnOrbit', maxResults: 0, startTime: '2019-12-27T18:11:19.117Z' },
+        {
+          firstResult: 0,
+          idOnOrbit: 'idOnOrbit',
+          maxResults: 0,
+          startTime: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);

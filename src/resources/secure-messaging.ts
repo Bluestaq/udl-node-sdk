@@ -111,12 +111,12 @@ export interface SecureMessagingGetMessagesParams {
   topic: string;
 
   /**
-   * Query param:
+   * Query param
    */
   firstResult?: number;
 
   /**
-   * Query param:
+   * Query param
    */
   maxResults?: number;
 }

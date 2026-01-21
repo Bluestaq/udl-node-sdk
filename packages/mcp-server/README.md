@@ -58,7 +58,7 @@ If you use Claude Code, you can install the MCP server by running the command be
 environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
 
 ```
-claude mcp add --transport stdio unified_data_library_api --env UDL_ACCESS_TOKEN="Your UDL_ACCESS_TOKEN here." UDL_AUTH_PASSWORD="Your UDL_AUTH_PASSWORD here." UDL_AUTH_USERNAME="Your UDL_AUTH_USERNAME here." -- npx -y unified-data-library-mcp
+claude mcp add unified_data_library_mcp_api --env UDL_ACCESS_TOKEN="Your UDL_ACCESS_TOKEN here." UDL_AUTH_PASSWORD="Your UDL_AUTH_PASSWORD here." UDL_AUTH_USERNAME="Your UDL_AUTH_USERNAME here." -- npx -y unified-data-library-mcp
 ```
 
 ## Code Mode

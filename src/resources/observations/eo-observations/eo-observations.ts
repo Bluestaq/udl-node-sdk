@@ -2057,7 +2057,7 @@ export interface EoObservationCountParams {
 
 export interface EoObservationCreateBulkParams {
   /**
-   * Body param:
+   * Body param
    */
   body: Array<EoObservationCreateBulkParams.Body>;
 

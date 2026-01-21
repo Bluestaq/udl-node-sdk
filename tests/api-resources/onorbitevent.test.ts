@@ -241,6 +241,10 @@ describe('resource onorbitevent', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.onorbitevent.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
+    const response = await client.onorbitevent.tuple({
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

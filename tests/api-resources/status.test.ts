@@ -235,6 +235,10 @@ describe('resource status', () => {
   });
 
   test('tuple: required and optional params', async () => {
-    const response = await client.status.tuple({ columns: 'columns', firstResult: 0, maxResults: 0 });
+    const response = await client.status.tuple({
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });
