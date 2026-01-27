@@ -4,6 +4,7 @@ import { McpTool, Metadata, ToolCallResult, asErrorResult, asTextContentResult }
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { readEnv } from './server';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
+import { Unifieddatalibrary } from 'unified-data-library';
 
 const prompt = `Runs JavaScript code to interact with the Unifieddatalibrary API.
 
@@ -55,7 +56,7 @@ export function codeTool(): McpTool {
       required: ['code'],
     },
   };
-  const handler = async (_: unknown, args: any): Promise<ToolCallResult> => {
+  const handler = async (client: Unifieddatalibrary, args: any): Promise<ToolCallResult> => {
     const code = args.code as string;
     const intent = args.intent as string | undefined;
 
@@ -71,10 +72,10 @@ export function codeTool(): McpTool {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
         client_envs: JSON.stringify({
-          UDL_ACCESS_TOKEN: readEnv('UDL_ACCESS_TOKEN'),
-          UDL_AUTH_PASSWORD: readEnv('UDL_AUTH_PASSWORD'),
-          UDL_AUTH_USERNAME: readEnv('UDL_AUTH_USERNAME'),
-          UNIFIEDDATALIBRARY_BASE_URL: readEnv('UNIFIEDDATALIBRARY_BASE_URL'),
+          UDL_ACCESS_TOKEN: readEnv('UDL_ACCESS_TOKEN') ?? client.accessToken ?? undefined,
+          UDL_AUTH_PASSWORD: readEnv('UDL_AUTH_PASSWORD') ?? client.password ?? undefined,
+          UDL_AUTH_USERNAME: readEnv('UDL_AUTH_USERNAME') ?? client.username ?? undefined,
+          UNIFIEDDATALIBRARY_BASE_URL: readEnv('UNIFIEDDATALIBRARY_BASE_URL') ?? client.baseURL ?? undefined,
         }),
       },
       body: JSON.stringify({
