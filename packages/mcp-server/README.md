@@ -43,14 +43,14 @@ For clients with a configuration JSON, it might look something like this:
 If you use Cursor, you can install the MCP server by using the button below. You will need to set your environment variables
 in Cursor's `mcp.json`, which can be found in Cursor Settings > Tools & MCP > New MCP Server.
 
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=unified-data-library-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsInVuaWZpZWQtZGF0YS1saWJyYXJ5LW1jcCJdLCJlbnYiOnsiVURMX0FDQ0VTU19UT0tFTiI6IlNldCB5b3VyIFVETF9BQ0NFU1NfVE9LRU4gaGVyZS4iLCJVRExfQVVUSF9QQVNTV09SRCI6IlNldCB5b3VyIFVETF9BVVRIX1BBU1NXT1JEIGhlcmUuIiwiVURMX0FVVEhfVVNFUk5BTUUiOiJTZXQgeW91ciBVRExfQVVUSF9VU0VSTkFNRSBoZXJlLiJ9fQ)
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=unified-data-library-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsInVuaWZpZWQtZGF0YS1saWJyYXJ5LW1jcCJdLCJlbnYiOnsiVURMX0FDQ0VTU19UT0tFTiI6Ik15IEFjY2VzcyBUb2tlbiIsIlVETF9BVVRIX1BBU1NXT1JEIjoiTXkgUGFzc3dvcmQiLCJVRExfQVVUSF9VU0VSTkFNRSI6Ik15IFVzZXJuYW1lIn19)
 
 ### VS Code
 
 If you use MCP, you can install the MCP server by clicking the link below. You will need to set your environment variables
 in VS Code's `mcp.json`, which can be found via Command Palette > MCP: Open User Configuration.
 
-[Open VS Code](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22unified-data-library-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22unified-data-library-mcp%22%5D%2C%22env%22%3A%7B%22UDL_ACCESS_TOKEN%22%3A%22Set%20your%20UDL_ACCESS_TOKEN%20here.%22%2C%22UDL_AUTH_PASSWORD%22%3A%22Set%20your%20UDL_AUTH_PASSWORD%20here.%22%2C%22UDL_AUTH_USERNAME%22%3A%22Set%20your%20UDL_AUTH_USERNAME%20here.%22%7D%7D)
+[Open VS Code](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22unified-data-library-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22unified-data-library-mcp%22%5D%2C%22env%22%3A%7B%22UDL_ACCESS_TOKEN%22%3A%22My%20Access%20Token%22%2C%22UDL_AUTH_PASSWORD%22%3A%22My%20Password%22%2C%22UDL_AUTH_USERNAME%22%3A%22My%20Username%22%7D%7D)
 
 ### Claude Code
 
@@ -58,7 +58,7 @@ If you use Claude Code, you can install the MCP server by running the command be
 environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
 
 ```
-claude mcp add unified_data_library_mcp_api --env UDL_ACCESS_TOKEN="Your UDL_ACCESS_TOKEN here." UDL_AUTH_PASSWORD="Your UDL_AUTH_PASSWORD here." UDL_AUTH_USERNAME="Your UDL_AUTH_USERNAME here." -- npx -y unified-data-library-mcp
+claude mcp add unified_data_library_mcp_api --env UDL_ACCESS_TOKEN="My Access Token" UDL_AUTH_PASSWORD="My Password" UDL_AUTH_USERNAME="My Username" -- npx -y unified-data-library-mcp
 ```
 
 ## Code Mode
