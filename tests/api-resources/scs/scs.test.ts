@@ -107,7 +107,7 @@ describe('resource scs', () => {
     );
   });
 
-  test('hasWriteAccess: only required params', async () => {
+  test.skip('hasWriteAccess: only required params', async () => {
     const responsePromise = client.scs.hasWriteAccess({ path: 'path' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -118,7 +118,7 @@ describe('resource scs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('hasWriteAccess: required and optional params', async () => {
+  test.skip('hasWriteAccess: required and optional params', async () => {
     const response = await client.scs.hasWriteAccess({
       path: 'path',
       firstResult: 0,

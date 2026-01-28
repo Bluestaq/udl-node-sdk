@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.0-alpha.28 (2026-01-28)
+
+Full Changelog: [v0.1.0-alpha.27...v0.1.0-alpha.28](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.27...v0.1.0-alpha.28)
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([1390080](https://github.com/Bluestaq/udl-node-sdk/commit/1390080e1e4ca3ca0fa790e62259705ee793c7c7))
+* **mcp:** allow falling back for required env variables ([db4afb6](https://github.com/Bluestaq/udl-node-sdk/commit/db4afb61ab23b0c586f6d4d9b4191e395a457f56))
+* **test:** skip prism tests with incorrect fixtures ([18d654b](https://github.com/Bluestaq/udl-node-sdk/commit/18d654b70b924049f448213030c571c416308384))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([ed7072f](https://github.com/Bluestaq/udl-node-sdk/commit/ed7072f53aa34f64f2d8f964477f7b41fb6a29be))
+* **internal:** codegen related update ([e13543f](https://github.com/Bluestaq/udl-node-sdk/commit/e13543fb9c47dc7ee9e94430308acddffc410a10))
+* **internal:** update lock file ([bad3230](https://github.com/Bluestaq/udl-node-sdk/commit/bad3230047dd2defae6aad1a03afab509ae18e18))
+* **mcp:** up tsconfig lib version to es2022 ([9e32a6a](https://github.com/Bluestaq/udl-node-sdk/commit/9e32a6a5d1fac5b12ab4034e95c300279836858e))
+
 ## 0.1.0-alpha.27 (2026-01-20)
 
 Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
