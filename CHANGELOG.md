@@ -1,5 +1,39 @@
 # Changelog
 
+## 0.1.0-alpha.28 (2026-02-11)
+
+Full Changelog: [v0.1.0-alpha.27...v0.1.0-alpha.28](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.27...v0.1.0-alpha.28)
+
+### Features
+
+* **mcp:** add initial server instructions ([427960d](https://github.com/Bluestaq/udl-node-sdk/commit/427960d5dff19db75008236a512947f30f6944c2))
+
+
+### Bug Fixes
+
+* **client:** avoid memory leak with abort signals ([f31be78](https://github.com/Bluestaq/udl-node-sdk/commit/f31be784f6e20b7c5062df03b37d9fe3c3cb6320))
+* **client:** avoid removing abort listener too early ([5dcf6a3](https://github.com/Bluestaq/udl-node-sdk/commit/5dcf6a322b9a7c8b5b78cd5c348427690e2f27fd))
+* **docs:** fix mcp installation instructions for remote servers ([1390080](https://github.com/Bluestaq/udl-node-sdk/commit/1390080e1e4ca3ca0fa790e62259705ee793c7c7))
+* **mcp:** allow falling back for required env variables ([db4afb6](https://github.com/Bluestaq/udl-node-sdk/commit/db4afb61ab23b0c586f6d4d9b4191e395a457f56))
+* **test:** skip prism tests with incorrect fixtures ([18d654b](https://github.com/Bluestaq/udl-node-sdk/commit/18d654b70b924049f448213030c571c416308384))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([ed7072f](https://github.com/Bluestaq/udl-node-sdk/commit/ed7072f53aa34f64f2d8f964477f7b41fb6a29be))
+* **client:** do not parse responses with empty content-length ([b0e239e](https://github.com/Bluestaq/udl-node-sdk/commit/b0e239e7da5532aeef77c4ab9601afebf95ab7b0))
+* **client:** restructure abort controller binding ([9e54d88](https://github.com/Bluestaq/udl-node-sdk/commit/9e54d886077c08aa203057002f3b2b74979e994e))
+* **internal:** add health check to MCP server when running in HTTP mode ([1f8c452](https://github.com/Bluestaq/udl-node-sdk/commit/1f8c452dfa0a00d1d9972120d20b27b71ba5b37a))
+* **internal:** allow basic filtering of methods allowed for MCP code mode ([9c7365d](https://github.com/Bluestaq/udl-node-sdk/commit/9c7365d1480b60fbb464496ab6176c890bddf974))
+* **internal:** always generate MCP server dockerfiles and upgrade associated dependencies ([466429a](https://github.com/Bluestaq/udl-node-sdk/commit/466429a76cefbd04b0e08d48ae55f83894d2a82a))
+* **internal:** avoid type checking errors with ts-reset ([1aefdf4](https://github.com/Bluestaq/udl-node-sdk/commit/1aefdf419be87e00bf888eb584f36d2c107a2f47))
+* **internal:** codegen related update ([e13543f](https://github.com/Bluestaq/udl-node-sdk/commit/e13543fb9c47dc7ee9e94430308acddffc410a10))
+* **internal:** fix pagination internals not accepting option promises ([2380a68](https://github.com/Bluestaq/udl-node-sdk/commit/2380a68d521c046845a7115207bc2e15703bee25))
+* **internal:** refactor flag parsing for MCP servers and add debug flag ([a5b40bf](https://github.com/Bluestaq/udl-node-sdk/commit/a5b40bfe25a8085a564a87a03592a7774fd87289))
+* **internal:** support oauth authorization code flow for MCP servers ([bcc45d2](https://github.com/Bluestaq/udl-node-sdk/commit/bcc45d2d45837d4064780e059f70f59f51502e45))
+* **internal:** update lock file ([bad3230](https://github.com/Bluestaq/udl-node-sdk/commit/bad3230047dd2defae6aad1a03afab509ae18e18))
+* **mcp:** up tsconfig lib version to es2022 ([9e32a6a](https://github.com/Bluestaq/udl-node-sdk/commit/9e32a6a5d1fac5b12ab4034e95c300279836858e))
+
 ## 0.1.0-alpha.27 (2026-01-20)
 
 Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/Bluestaq/udl-node-sdk/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
