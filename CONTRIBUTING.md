@@ -60,7 +60,7 @@ $ yarn link unified-data-library
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global unified-data-library
+$ pnpm link --global unified-data-library
 ```
 
 ## Running tests
