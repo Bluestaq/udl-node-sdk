@@ -6,6 +6,9 @@ import { CollectResponseFullsOffsetPage } from '../shared';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * These services provide operations for posting and querying Sensor Tasking data.
+ */
 export class Tuple extends APIResource {
   /**
    * Service operation to dynamically query data and only return specified

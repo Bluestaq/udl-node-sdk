@@ -18,6 +18,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * These services provide operations for posting and querying Sensor Tasking data.
+ */
 export class IsrCollections extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

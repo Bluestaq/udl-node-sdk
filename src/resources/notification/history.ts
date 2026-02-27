@@ -8,6 +8,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * A Notification Service allowing the broadcast of generic messages to the community. Users can send free-form messages, publish lists, and notify the community about events or alerts across various domains. Notifications and alerts are categorized by a 'msgType' field and are accessible via the UDL Secure Messaging API and REST API services.
+ */
 export class History extends APIResource {
   /**
    * Service operation to dynamically query historical data by a variety of query

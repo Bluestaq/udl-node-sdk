@@ -9,6 +9,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * These services provide operations for manipulation and querying of on-orbit payloads.
+ */
 export class Navigation extends APIResource {
   /**
    * Service operation to take a single Navigation as a POST body and ingest into the

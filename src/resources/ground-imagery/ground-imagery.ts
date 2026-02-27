@@ -19,6 +19,9 @@ import { RequestOptions } from '../../internal/request-options';
 import { multipartFormRequestOptions } from '../../internal/uploads';
 import { path } from '../../internal/utils/path';
 
+/**
+ * This collection of services provides operations for querying and manipulation of ground imagery of terrestrial regions from on-orbit, air, and other sensors. Includes metadata on the image (time, region, source, etc) as well as binary content (typically GeoTIFF). Binary content must be downloaded individually by ID using the 'getFile' operation. Well-Known Text (WKT) and GeoJSON formats are used for GIS representation and query support (see https://www.opengeospatial.org/standards/wkt-crs and https://geojson.org/ for more information on these formats).
+ */
 export class GroundImagery extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

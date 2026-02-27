@@ -16,6 +16,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * These services provide operations for the posting and querying of satellite Ephemeris Point data. Each point contains a position and velocity vector and optionally, an acceleration vector and/or covariance matrix at a specified time. ECI J2K is the preferred reference frame for ephemeris and covariance, however, several user specified reference frames are accommodated. The EphemerisSet ID (esId) identifies the 'EphemerisSet' record which contains details of the underlying data and models used in the generation of the ephemeris as well as a collection of ephemeris points. Points must be retrieved by first identifying a desired EphemerisSet and pulling its points by that EphemerisSet 'esId'.
+ */
 export class EphemerisSets extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

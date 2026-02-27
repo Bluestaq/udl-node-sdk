@@ -8,6 +8,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * This service provides operations for manipulation and querying of Aircraft and Aircraft Status data. Aircraft contains the static data of the specific aircraft: tail number, cruise speed, max speed, minimum required runway length, etc. The Aircraft Status contains the dynamic data associated with the specific aircraft: remaining fuel, mission readiness, and inventory for example.
+ */
 export class History extends APIResource {
   /**
    * Service operation to dynamically query historical data by a variety of query

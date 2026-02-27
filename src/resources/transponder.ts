@@ -8,6 +8,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * These services provide operations for manipulation and querying of on-orbit communications payloads (Comm), including supporting data such as transponders and channels, etc.
+ */
 export class Transponder extends APIResource {
   /**
    * Service operation to take a single Transponder as a POST body and ingest into

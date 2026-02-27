@@ -8,6 +8,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * This service provides operations for querying and manipulation of sensor data. Sensors are terrestrial or on-orbit equipment capable of taking measurements or 'observations' of on-orbit objects via several phenomenologies such as Electro-Optical (EO), Radar, and Radio Frequency (RF). This collection of operations includes 'SensorMaintenance' schedules which define known/planned future maintenance and associated operational impact of sensors as well as 'SensorCalibration' records which contains data about a sensor's overall accuracy and is used to adjust sensor settings.
+ */
 export class SeradataSigintPayload extends APIResource {
   /**
    * Service operation to take a single SeradataSigIntPayload as a POST body and

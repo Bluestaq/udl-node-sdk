@@ -6,6 +6,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * These services provide for posting and querying terrestrial weather conditions over a target area or region and raw sensor data used to produce condition reports. Weather Reports describe current weather conditions over a target point or region to include general temperatures, pressures, and moisture accumulation, as well as navigational considerations such as altimeter settings, visibility, wind speeds, and cloud heights etc. Weather Data contains algorithmic parameters and dynamic, raw measurements collected by individual sensors such as signal power, noise level, etc., which are generally processed across multiple sensors to produce weather reports.
+ */
 export class History extends APIResource {
   /**
    * Service operation to dynamically query historical data by a variety of query

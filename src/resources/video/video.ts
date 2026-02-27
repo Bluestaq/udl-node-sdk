@@ -17,6 +17,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * This collection of services provides operations for video streaming.
+ */
 export class Video extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

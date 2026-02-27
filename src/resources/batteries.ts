@@ -8,6 +8,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * These services provide operations for manipulation and querying of on-orbit objects of interest, their components, and various lists and status of those objects.
+ */
 export class Batteries extends APIResource {
   /**
    * Service operation to take a single Battery as a POST body and ingest into the

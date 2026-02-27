@@ -6,6 +6,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * Models and Simulations is a collection of services that allow consumers to interact with data products representing independent models of various phenomenon, artificial intelligence models and predictions, or of mathematical parameters meant to feed mod and sim tools to produce estimates of environmental entities such as atmospheric models and heat maps.
+ */
 export class History extends APIResource {
   /**
    * Service operation to dynamically query historical data by a variety of query

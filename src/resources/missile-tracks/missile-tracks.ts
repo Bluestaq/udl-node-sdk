@@ -17,6 +17,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * These services provide operations for posting and querying of air, space, and ground 'tracks'. A track is a position and optionally a heading/velocity of an object at a particular timestamp.
+ */
 export class MissileTracks extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

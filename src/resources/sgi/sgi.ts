@@ -18,6 +18,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * This service provides operations for manipulation and querying of space weather/solar, geomagnetic, and radiation belt index data.
+ */
 export class Sgi extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

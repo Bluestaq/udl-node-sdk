@@ -18,6 +18,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * These services provide operations for posting and querying Sensor Tasking data.
+ */
 export class CollectResponses extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
   tuple: TupleAPI.Tuple = new TupleAPI.Tuple(this._client);

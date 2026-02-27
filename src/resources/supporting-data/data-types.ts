@@ -4,6 +4,9 @@ import { APIResource } from '../../core/resource';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * Service operations for querying and manipulation of miscellaneous supporting data such as countries (which can represent countries, multi-national consortiums, and international organizations), data owners, locations, entities, organizations, etc.
+ */
 export class DataTypes extends APIResource {
   /**
    * Retrieves all distinct data owner types.

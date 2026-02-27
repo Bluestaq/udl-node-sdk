@@ -7,6 +7,9 @@ import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * These services provide operations for querying and manipulation of element set data describing orbital characteristics of on-orbit objects. An element set is a collection of parameters that are used, along with an orbit propagator, to predict the motion of a satellite. The element set, or elset for short, consists of identification data, the classical elements and drag parameters.
+ */
 export class Current extends APIResource {
   /**
    * Service operation to dynamically query/filter current elsets within the system

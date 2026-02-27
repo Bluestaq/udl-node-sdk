@@ -6,6 +6,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * These services provide operations for manipulation and querying tactical data links and link statuses of beams or a satellite constellation. Communication link statuses provide definitions and status such as, positional endpoints, where each endpoint may be associated with a specific beam or with a satellite constellation. Data links provide detailed instructions regarding the operational use of a tactical data link and interface coordination through various message formats.
+ */
 export class Linkstatus extends APIResource {
   /**
    * Service operation to update a single LinkStatus. A specific role is required to

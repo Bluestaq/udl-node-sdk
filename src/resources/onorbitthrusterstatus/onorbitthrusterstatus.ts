@@ -10,6 +10,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * These services provide operations for manipulation and querying of on-orbit objects of interest, their components, and various lists and status of those objects.
+ */
 export class Onorbitthrusterstatus extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

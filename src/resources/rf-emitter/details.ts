@@ -8,6 +8,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * This collection of services provides operations for querying and manipulation of RF related information to include RFEmitters which could potentially interfere with communications/operations of space related entities, and RFBands commonly used by various space related entities.
+ */
 export class Details extends APIResource {
   /**
    * Service operation to take a single RFEmitterDetails as a POST body and ingest

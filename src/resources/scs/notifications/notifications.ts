@@ -7,6 +7,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pa
 import { RequestOptions } from '../../../internal/request-options';
 import { path } from '../../../internal/utils/path';
 
+/**
+ * These endpoints provide the ability to subscribe to SCS Event Notifications for file upload/update and folder creation events within a specific folder in the Secure Content Store. A user must be authorized to view the file/folder for which a notification was created in order to retrieve that notification.
+ */
 export class Notifications extends APIResource {
   offset: OffsetAPI.Offset = new OffsetAPI.Offset(this._client);
 

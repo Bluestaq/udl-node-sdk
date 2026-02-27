@@ -5,6 +5,9 @@ import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * These services provide soon-to-be-deprecated CRUD and Search operations for files and folders in the Secure Content Store. This documentation is provided only for backwards compatibility, please refer to SCS V2 for new SCS integrations.
+ */
 export class Paths extends APIResource {
   /**
    * Creates the path and uploads file that is passed. If folder exist it will only

@@ -8,6 +8,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * This collection of services provide operations for manipulating and querying of equipment related data.
+ */
 export class EquipmentRemarks extends APIResource {
   /**
    * Service operation to take a single equipmentremark record as a POST body and

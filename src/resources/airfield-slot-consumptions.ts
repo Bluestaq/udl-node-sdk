@@ -8,6 +8,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * This collection of services provide operations for manipulating and querying of various site related data, including site status, site operations, and site type-specific records.
+ */
 export class AirfieldSlotConsumptions extends APIResource {
   /**
    * Service operation to take a single airfieldslotconsumption record as a POST body
