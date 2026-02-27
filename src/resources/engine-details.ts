@@ -8,6 +8,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Collection of launch related services which provide operations for querying and manipulation of launch site data and detailed information on launch vehicles including engines, stages, and manufacturers. Sites, engines, and stages can each have multiple 'detail' records which may be compiled by different sources.
+ */
 export class EngineDetails extends APIResource {
   /**
    * Service operation to take a single EngineDetails as a POST body and ingest into

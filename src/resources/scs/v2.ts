@@ -7,6 +7,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * These services provide CRUD and search operations for files and folders in the Secure Content Store.
+ */
 export class V2 extends APIResource {
   /**
    * Update folders and files. For a folder, you may update description, writeAcl,

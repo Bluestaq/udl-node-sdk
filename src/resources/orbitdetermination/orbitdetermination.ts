@@ -18,6 +18,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * These services provide operations for manipulating and querying Orbit Determination (OD) data. Orbit Determination data contains algorithm results that describe General Perturbations or Special Perturbations orbital updates.
+ */
 export class Orbitdetermination extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

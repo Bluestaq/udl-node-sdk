@@ -6,6 +6,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * This collection of services provides operations for querying and manipulation of ground imagery of terrestrial regions from on-orbit, air, and other sensors. Includes metadata on the image (time, region, source, etc) as well as binary content (typically GeoTIFF). Binary content must be downloaded individually by ID using the 'getFile' operation. Well-Known Text (WKT) and GeoJSON formats are used for GIS representation and query support (see https://www.opengeospatial.org/standards/wkt-crs and https://geojson.org/ for more information on these formats).
+ */
 export class History extends APIResource {
   /**
    * Service operation to dynamically query historical data by a variety of query

@@ -9,6 +9,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * This service provides operations for manipulation and querying of maritime Vessel and Vessel Status data. Vessel contains the static data of the specific vessel: mmsi, cruise speed, max speed, etc.
+ */
 export class Vessel extends APIResource {
   /**
    * Service operation to take a single vessel record as a POST body and ingest into

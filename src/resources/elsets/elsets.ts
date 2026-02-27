@@ -18,6 +18,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * These services provide operations for querying and manipulation of element set data describing orbital characteristics of on-orbit objects. An element set is a collection of parameters that are used, along with an orbit propagator, to predict the motion of a satellite. The element set, or elset for short, consists of identification data, the classical elements and drag parameters.
+ */
 export class Elsets extends APIResource {
   current: CurrentAPI.Current = new CurrentAPI.Current(this._client);
   history: HistoryAPI.History = new HistoryAPI.History(this._client);

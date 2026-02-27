@@ -18,6 +18,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * These services provide operations for manipulation and querying of LaunchEvent data. Launch Event data are known space launches, either future or historic records containing items such as the launch site, launch epoch, and object.
+ */
 export class LaunchEvent extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

@@ -7,6 +7,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * This collection of services provides operations for querying and manipulation of sky imagery data. Sky imagery is ground or space based telescope imagery of RSO's and includes metadata on the image (time, source, etc) as well as binary image content (e.g. FITS, EOSSA, EOCHIP, MP4). Binary content must be downloaded individually by ID using the 'getFile' operation.
+ */
 export class History extends APIResource {
   /**
    * Service operation to dynamically query historical data by a variety of query

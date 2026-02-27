@@ -18,6 +18,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * These services provide operations for manipulation and querying of mission assignment objects. MissionAssignment is used by C2 JUs and, optionally, non-C2 JUs to assign missions, designate targets, and provide target information to non-C2 JU platforms. Provision is made for the non-C2 JU platforms to acknowledge the message through receipt/compliance action.
+ */
 export class MissionAssignment extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

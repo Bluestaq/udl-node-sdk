@@ -18,6 +18,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * This collection of services provides operations for manipulating and querying of closely spaced objects (on orbit) operations including docking, rendezvous, proximity and reporting of payload zone engagements observed and characterized over a period of time.
+ */
 export class Closelyspacedobjects extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

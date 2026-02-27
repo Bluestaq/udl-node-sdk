@@ -18,6 +18,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * These services provide operations for manipulation and querying of Mission Ops information.
+ */
 export class Deconflictset extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

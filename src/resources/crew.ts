@@ -8,6 +8,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * These services provide operations for posting and querying crew data. Crew data contains information about its members and their assignments.
+ */
 export class Crew extends APIResource {
   /**
    * Service operation to take a single Crew object as a POST body and ingest into

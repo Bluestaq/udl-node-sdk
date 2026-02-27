@@ -7,6 +7,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/paginati
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * These services provide operations for manipulation and querying of Report and Activity information. This information includes analytic reports, significant events, route statistics, EMI Reports, and other georeferenced reports and activities.
+ */
 export class H3GeoHexCell extends APIResource {
   /**
    * Service operation to dynamically query data by a variety of query parameters not

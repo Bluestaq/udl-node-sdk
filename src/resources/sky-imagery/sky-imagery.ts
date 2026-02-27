@@ -20,6 +20,9 @@ import { RequestOptions } from '../../internal/request-options';
 import { multipartFormRequestOptions } from '../../internal/uploads';
 import { path } from '../../internal/utils/path';
 
+/**
+ * This collection of services provides operations for querying and manipulation of sky imagery data. Sky imagery is ground or space based telescope imagery of RSO's and includes metadata on the image (time, source, etc) as well as binary image content (e.g. FITS, EOSSA, EOCHIP, MP4). Binary content must be downloaded individually by ID using the 'getFile' operation.
+ */
 export class SkyImagery extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

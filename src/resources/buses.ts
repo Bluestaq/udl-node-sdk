@@ -9,6 +9,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Services for querying and manipulation of satellite buses. A bus is the physical and software infrastructure backbone to which on-orbit satellite payloads are attached for power, control, and other support functions.
+ */
 export class Buses extends APIResource {
   /**
    * Service operation to take a single Bus as a POST body and ingest into the

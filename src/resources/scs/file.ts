@@ -8,6 +8,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * These services provide soon-to-be-deprecated CRUD and Search operations for files and folders in the Secure Content Store. This documentation is provided only for backwards compatibility, please refer to SCS V2 for new SCS integrations.
+ */
 export class File extends APIResource {
   /**
    * Returns a FileData object representing the file with the given ID that is

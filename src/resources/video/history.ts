@@ -6,6 +6,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * This collection of services provides operations for video streaming.
+ */
 export class History extends APIResource {
   /**
    * Service operation to dynamically query historical data by a variety of query
