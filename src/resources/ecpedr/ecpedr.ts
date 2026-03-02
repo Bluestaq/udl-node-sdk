@@ -398,6 +398,21 @@ export namespace EcpedrListResponse {
     msgNumber?: number;
 
     /**
+     * The quality of this individual observation. The observation quality indicator
+     * value may vary among providers and may be a generalized statement (BAD, GOOD,
+     * UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+     * to verify the usage of the observation.
+     */
+    obQuality?: string;
+
+    /**
+     * The quality indicator of this individual observation. The observation quality
+     * indicator value is a descriptive value indicating the reason for the quality
+     * designation of the data.
+     */
+    obQualityIndicator?: string;
+
+    /**
      * A single observation value expressed in the specified unit of measure (obUoM).
      */
     obValue?: number;
@@ -640,6 +655,21 @@ export namespace EcpedrTupleResponse {
       msgNumber?: number;
 
       /**
+       * The quality of this individual observation. The observation quality indicator
+       * value may vary among providers and may be a generalized statement (BAD, GOOD,
+       * UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+       * to verify the usage of the observation.
+       */
+      obQuality?: string;
+
+      /**
+       * The quality indicator of this individual observation. The observation quality
+       * indicator value is a descriptive value indicating the reason for the quality
+       * designation of the data.
+       */
+      obQualityIndicator?: string;
+
+      /**
        * A single observation value expressed in the specified unit of measure (obUoM).
        */
       obValue?: number;
@@ -820,6 +850,21 @@ export namespace EcpedrCreateParams {
      * Designates a specific group of measurements made.
      */
     msgNumber?: number;
+
+    /**
+     * The quality of this individual observation. The observation quality indicator
+     * value may vary among providers and may be a generalized statement (BAD, GOOD,
+     * UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+     * to verify the usage of the observation.
+     */
+    obQuality?: string;
+
+    /**
+     * The quality indicator of this individual observation. The observation quality
+     * indicator value is a descriptive value indicating the reason for the quality
+     * designation of the data.
+     */
+    obQualityIndicator?: string;
 
     /**
      * A single observation value expressed in the specified unit of measure (obUoM).
@@ -1031,6 +1076,21 @@ export namespace EcpedrCreateBulkParams {
       msgNumber?: number;
 
       /**
+       * The quality of this individual observation. The observation quality indicator
+       * value may vary among providers and may be a generalized statement (BAD, GOOD,
+       * UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+       * to verify the usage of the observation.
+       */
+      obQuality?: string;
+
+      /**
+       * The quality indicator of this individual observation. The observation quality
+       * indicator value is a descriptive value indicating the reason for the quality
+       * designation of the data.
+       */
+      obQualityIndicator?: string;
+
+      /**
        * A single observation value expressed in the specified unit of measure (obUoM).
        */
       obValue?: number;
@@ -1239,6 +1299,21 @@ export namespace EcpedrUnvalidatedPublishParams {
        * Designates a specific group of measurements made.
        */
       msgNumber?: number;
+
+      /**
+       * The quality of this individual observation. The observation quality indicator
+       * value may vary among providers and may be a generalized statement (BAD, GOOD,
+       * UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+       * to verify the usage of the observation.
+       */
+      obQuality?: string;
+
+      /**
+       * The quality indicator of this individual observation. The observation quality
+       * indicator value is a descriptive value indicating the reason for the quality
+       * designation of the data.
+       */
+      obQualityIndicator?: string;
 
       /**
        * A single observation value expressed in the specified unit of measure (obUoM).

@@ -271,6 +271,13 @@ export interface TrackListResponse {
   cov?: Array<number>;
 
   /**
+   * The reference frame of the covariance matrix elements (ENU, ECR/ECEF, LOCAL,
+   * LAT-LONG, LAT-LONG-ALT). If the covReferenceFrame is null it is assumed to be
+   * ECR/ECEF.
+   */
+  covReferenceFrame?: 'ENU' | 'ECR/ECEF' | 'LOCAL' | 'LAT-LONG' | 'LAT-LONG-ALT';
+
+  /**
    * Time the row was created in the database, auto-populated by the system.
    */
   createdAt?: string;
@@ -357,6 +364,11 @@ export interface TrackListResponse {
   errEllp?: Array<number>;
 
   /**
+   * Target ground speed, as opposed to air speed, in meters per second.
+   */
+  grndSpd?: number;
+
+  /**
    * The track object heading, in degrees clockwise from true North at the object
    * location (0-360 degrees).
    */
@@ -419,8 +431,8 @@ export interface TrackListResponse {
   lcPos?: Array<number>;
 
   /**
-   * x, y, and z-axis rotations (degrees) about ECEF that define a local cartesian
-   * system. When provided, array must always contain 3 values.
+   * The x, y, and z-axis rotations (degrees) about ECEF that define a local
+   * cartesian system. When provided, array must always contain 3 values.
    */
   lcs?: Array<number>;
 
@@ -629,7 +641,8 @@ export interface TrackListResponse {
   sourceDL?: string;
 
   /**
-   * Track object speed, in meters per second.
+   * Track object speed, in its environment, in meters per second. For example, this
+   * would be air speed for an aircraft.
    */
   spd?: number;
 
@@ -945,6 +958,13 @@ export namespace TrackCreateBulkParams {
     cov?: Array<number>;
 
     /**
+     * The reference frame of the covariance matrix elements (ENU, ECR/ECEF, LOCAL,
+     * LAT-LONG, LAT-LONG-ALT). If the covReferenceFrame is null it is assumed to be
+     * ECR/ECEF.
+     */
+    covReferenceFrame?: 'ENU' | 'ECR/ECEF' | 'LOCAL' | 'LAT-LONG' | 'LAT-LONG-ALT';
+
+    /**
      * Array of the track object acceleration, [x'', y'', z''], in meters per second
      * squared, in the Earth Centered - Earth Fixed (ECEF) reference frame. When
      * provided, array must always contain 3 values.
@@ -1020,6 +1040,11 @@ export namespace TrackCreateBulkParams {
     errEllp?: Array<number>;
 
     /**
+     * Target ground speed, as opposed to air speed, in meters per second.
+     */
+    grndSpd?: number;
+
+    /**
      * The track object heading, in degrees clockwise from true North at the object
      * location (0-360 degrees).
      */
@@ -1082,8 +1107,8 @@ export namespace TrackCreateBulkParams {
     lcPos?: Array<number>;
 
     /**
-     * x, y, and z-axis rotations (degrees) about ECEF that define a local cartesian
-     * system. When provided, array must always contain 3 values.
+     * The x, y, and z-axis rotations (degrees) about ECEF that define a local
+     * cartesian system. When provided, array must always contain 3 values.
      */
     lcs?: Array<number>;
 
@@ -1279,7 +1304,8 @@ export namespace TrackCreateBulkParams {
     senQual?: string;
 
     /**
-     * Track object speed, in meters per second.
+     * Track object speed, in its environment, in meters per second. For example, this
+     * would be air speed for an aircraft.
      */
     spd?: number;
 
@@ -1568,6 +1594,13 @@ export namespace TrackUnvalidatedPublishParams {
     cov?: Array<number>;
 
     /**
+     * The reference frame of the covariance matrix elements (ENU, ECR/ECEF, LOCAL,
+     * LAT-LONG, LAT-LONG-ALT). If the covReferenceFrame is null it is assumed to be
+     * ECR/ECEF.
+     */
+    covReferenceFrame?: 'ENU' | 'ECR/ECEF' | 'LOCAL' | 'LAT-LONG' | 'LAT-LONG-ALT';
+
+    /**
      * Array of the track object acceleration, [x'', y'', z''], in meters per second
      * squared, in the Earth Centered - Earth Fixed (ECEF) reference frame. When
      * provided, array must always contain 3 values.
@@ -1643,6 +1676,11 @@ export namespace TrackUnvalidatedPublishParams {
     errEllp?: Array<number>;
 
     /**
+     * Target ground speed, as opposed to air speed, in meters per second.
+     */
+    grndSpd?: number;
+
+    /**
      * The track object heading, in degrees clockwise from true North at the object
      * location (0-360 degrees).
      */
@@ -1705,8 +1743,8 @@ export namespace TrackUnvalidatedPublishParams {
     lcPos?: Array<number>;
 
     /**
-     * x, y, and z-axis rotations (degrees) about ECEF that define a local cartesian
-     * system. When provided, array must always contain 3 values.
+     * The x, y, and z-axis rotations (degrees) about ECEF that define a local
+     * cartesian system. When provided, array must always contain 3 values.
      */
     lcs?: Array<number>;
 
@@ -1902,7 +1940,8 @@ export namespace TrackUnvalidatedPublishParams {
     senQual?: string;
 
     /**
-     * Track object speed, in meters per second.
+     * Track object speed, in its environment, in meters per second. For example, this
+     * would be air speed for an aircraft.
      */
     spd?: number;
 
