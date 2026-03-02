@@ -4271,7 +4271,7 @@ Types:
 Methods:
 
 - <code title="post /udl/starcatalog">client.starCatalog.<a href="./src/resources/star-catalog/star-catalog.ts">create</a>({ ...params }) -> void</code>
-- <code title="put /udl/starcatalog/{id}">client.starCatalog.<a href="./src/resources/star-catalog/star-catalog.ts">update</a>(pathID, { ...params }) -> void</code>
+- <code title="put /udl/starcatalog/{id}">client.starCatalog.<a href="./src/resources/star-catalog/star-catalog.ts">update</a>(id, { ...params }) -> void</code>
 - <code title="get /udl/starcatalog">client.starCatalog.<a href="./src/resources/star-catalog/star-catalog.ts">list</a>({ ...params }) -> StarCatalogListResponsesOffsetPage</code>
 - <code title="delete /udl/starcatalog/{id}">client.starCatalog.<a href="./src/resources/star-catalog/star-catalog.ts">delete</a>(id) -> void</code>
 - <code title="get /udl/starcatalog/count">client.starCatalog.<a href="./src/resources/star-catalog/star-catalog.ts">count</a>({ ...params }) -> string</code>
