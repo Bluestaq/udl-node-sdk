@@ -156,7 +156,7 @@ const remoteStainlessHandler = async ({
     headers: {
       ...(reqContext.stainlessApiKey && { Authorization: reqContext.stainlessApiKey }),
       'Content-Type': 'application/json',
-      client_envs: JSON.stringify({
+      'x-stainless-mcp-client-envs': JSON.stringify({
         UDL_ACCESS_TOKEN: readEnv('UDL_ACCESS_TOKEN') ?? client.accessToken ?? undefined,
         UDL_AUTH_PASSWORD: readEnv('UDL_AUTH_PASSWORD') ?? client.password ?? undefined,
         UDL_AUTH_USERNAME: readEnv('UDL_AUTH_USERNAME') ?? client.username ?? undefined,
