@@ -92,7 +92,7 @@ describe('resource channels', () => {
       idTransponder: 'REF-TRANSPONDER-ID',
       name: 'Example name',
       source: 'system.source',
-      body_id: 'CHANNEL-ID',
+      id: 'CHANNEL-ID',
       apid: 'AP-ID',
       beamName: 'B8VD',
       compression: 'Example compression',

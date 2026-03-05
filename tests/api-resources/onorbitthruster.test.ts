@@ -72,7 +72,7 @@ describe('resource onorbitthruster', () => {
       idEngine: 'ENGINE-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
-      body_id: 'ONORBITTHRUSTER-ID',
+      id: 'ONORBITTHRUSTER-ID',
       engine: {
         classificationMarking: 'U',
         dataMode: 'TEST',

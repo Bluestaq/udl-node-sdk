@@ -94,7 +94,7 @@ describe('resource airfieldSlots', () => {
       dataMode: 'TEST',
       name: 'Apron 5',
       source: 'Bluestaq',
-      body_id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+      id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       acSlotCat: 'WIDE',
       altAirfieldId: 'ALT-AIRFIELD-ID',
       capacity: 5,

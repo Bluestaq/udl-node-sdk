@@ -110,7 +110,7 @@ describe('resource rfEmitter', () => {
       dataMode: 'TEST',
       name: 'RF_NAME',
       source: 'Bluestaq',
-      body_id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
+      id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
       entity: {
         classificationMarking: 'U',
         dataMode: 'TEST',

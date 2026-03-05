@@ -58,14 +58,14 @@ export class Countries extends APIResource {
    * @example
    * ```ts
    * await client.countries.update('code', {
-   *   body_code: 'US',
+   *   code: 'US',
    *   dataMode: 'TEST',
    *   source: 'Bluestaq',
    * });
    * ```
    */
-  update(pathCode: string, body: CountryUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/country/${pathCode}`, {
+  update(code: string, body: CountryUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/country/${code}`, {
       body,
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -342,7 +342,7 @@ export interface CountryUpdateParams {
    * country code, however it can represent various consortiums that do not appear in
    * the ISO document.
    */
-  body_code: string;
+  code: string;
 
   /**
    * Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:

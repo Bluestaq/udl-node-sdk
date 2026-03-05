@@ -108,7 +108,7 @@ describe('resource navigation', () => {
       dataMode: 'TEST',
       name: 'NAME',
       source: 'Bluestaq',
-      body_id: 'NAVIGATION-ID',
+      id: 'NAVIGATION-ID',
       description: 'DESCRIPTION',
       entity: {
         classificationMarking: 'U',

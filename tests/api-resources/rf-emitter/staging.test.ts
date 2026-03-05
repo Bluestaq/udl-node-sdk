@@ -83,7 +83,7 @@ describe('resource staging', () => {
       classificationMarking: 'U',
       name: 'RF_NAME',
       source: 'Bluestaq',
-      body_id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
+      id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
       altitude: 1.57543,
       extSysId: 'EXTSYS-ID',
       lat: 48.6732,

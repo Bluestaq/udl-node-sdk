@@ -70,7 +70,7 @@ describe('resource onorbitbattery', () => {
       idBattery: 'BATTERY-ID',
       idOnOrbit: 'ONORBIT-ID',
       source: 'Bluestaq',
-      body_id: 'ONORBITBATTERY-ID',
+      id: 'ONORBITBATTERY-ID',
       battery: {
         dataMode: 'TEST',
         name: 'JAK-BATTERY-1479',

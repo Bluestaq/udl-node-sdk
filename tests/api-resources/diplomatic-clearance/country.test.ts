@@ -188,7 +188,7 @@ describe('resource country', () => {
       dataMode: 'TEST',
       lastChangedDate: '2024-01-01T16:00:00.123Z',
       source: 'Bluestaq',
-      body_id: '25059135-4afc-45c2-b78b-d6e843dbd96d',
+      id: '25059135-4afc-45c2-b78b-d6e843dbd96d',
       acceptsDMS: true,
       acceptsEmail: true,
       acceptsFax: true,

@@ -106,7 +106,7 @@ describe('resource routeStats', () => {
       locationEnd: 'KCOS',
       locationStart: 'KDEN',
       source: 'Bluestaq',
-      body_id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       avgDuration: 47.1,
       avgSpeed: 450.1,
       dataPtsUsed: 6,

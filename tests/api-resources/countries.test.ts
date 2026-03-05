@@ -60,7 +60,7 @@ describe('resource countries', () => {
 
   test('update: only required params', async () => {
     const responsePromise = client.countries.update('code', {
-      body_code: 'US',
+      code: 'US',
       dataMode: 'TEST',
       source: 'Bluestaq',
     });
@@ -75,7 +75,7 @@ describe('resource countries', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.countries.update('code', {
-      body_code: 'US',
+      code: 'US',
       dataMode: 'TEST',
       source: 'Bluestaq',
       codeAlt: 'US',

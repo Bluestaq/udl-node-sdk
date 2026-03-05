@@ -47,7 +47,7 @@ describe('resource linkstatus', () => {
       linkStartTime: '2021-01-01T01:01:01.123456Z',
       linkStopTime: '2021-01-01T01:01:01.123456Z',
       source: 'Bluestaq',
-      body_id: 'LINKSTATUS-ID',
+      id: 'LINKSTATUS-ID',
       band: 'MIL-KA',
       constellation: 'Fornax',
       dataRate1To2: 10.23,

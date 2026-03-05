@@ -130,7 +130,7 @@ describe('resource navigationalObstruction', () => {
       obstacleId: '359655',
       obstacleType: 'V',
       source: 'Bluestaq',
-      body_id: '026dd511-8ba5-47d3-9909-836149f87686',
+      id: '026dd511-8ba5-47d3-9909-836149f87686',
       actDelCode: 'A',
       airacCycle: 2406,
       baseAiracCycle: 2405,

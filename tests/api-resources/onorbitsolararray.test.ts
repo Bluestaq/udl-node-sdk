@@ -70,7 +70,7 @@ describe('resource onorbitsolararray', () => {
       idOnOrbit: 'ONORBIT-ID',
       idSolarArray: 'SOLARARRAY-ID',
       source: 'Bluestaq',
-      body_id: 'ONORBITSOLARARRAY-ID',
+      id: 'ONORBITSOLARARRAY-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
       quantity: 10,
       solarArray: {

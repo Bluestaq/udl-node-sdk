@@ -76,7 +76,7 @@ describe('resource batteries', () => {
       dataMode: 'TEST',
       name: 'JAK-BATTERY-1479',
       source: 'Bluestaq',
-      body_id: 'BATTERY-ID',
+      id: 'BATTERY-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

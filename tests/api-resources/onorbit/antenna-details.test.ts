@@ -96,7 +96,7 @@ describe('resource antennaDetails', () => {
       dataMode: 'TEST',
       idAntenna: 'ANTENNA-ID',
       source: 'Bluestaq',
-      body_id: 'ANTENNADETAILS-ID',
+      id: 'ANTENNADETAILS-ID',
       beamForming: false,
       beamwidth: 14.1,
       description: 'Description of antenna A',

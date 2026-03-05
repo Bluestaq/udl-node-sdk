@@ -78,7 +78,7 @@ describe('resource status', () => {
       dataMode: 'TEST',
       idEntity: 'ENTITY-ID',
       source: 'Bluestaq',
-      body_id: 'STATUS-ID',
+      id: 'STATUS-ID',
       declassificationDate: '2021-01-01T01:02:02.123Z',
       declassificationString: 'U',
       derivedFrom: 'SOME_SOURCE',
