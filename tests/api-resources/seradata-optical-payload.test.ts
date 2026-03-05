@@ -75,7 +75,7 @@ describe('resource seradataOpticalPayload', () => {
       dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
-      body_id: 'SERADATAOPTICALPAYLOAD-ID',
+      id: 'SERADATAOPTICALPAYLOAD-ID',
       bestResolution: 1.23,
       fieldOfRegard: 1.23,
       fieldOfView: 1.23,

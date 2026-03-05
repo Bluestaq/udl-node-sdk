@@ -70,7 +70,7 @@ describe('resource seraDataNavigation', () => {
       dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
-      body_id: 'SERADATANAVIGATION-ID',
+      id: 'SERADATANAVIGATION-ID',
       areaCoverage: 'Worldwide',
       clockType: 'Rubidium',
       hostedForCompanyOrgId: 'hostedForCompanyOrgId',

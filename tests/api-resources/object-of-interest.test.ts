@@ -99,7 +99,7 @@ describe('resource objectOfInterest', () => {
       sensorTaskingStartTime: '2021-01-01T01:01:01.123Z',
       source: 'Bluestaq',
       statusDate: '2021-01-01T01:01:01.123Z',
-      body_id: 'OBJECTOFINTEREST-ID',
+      id: 'OBJECTOFINTEREST-ID',
       affectedObjects: ['AFFECTEDOBJECT1-ID', 'AFFECTEDOBJECT2-ID'],
       apogee: 123.4,
       argOfPerigee: 123.4,

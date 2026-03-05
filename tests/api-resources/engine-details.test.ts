@@ -95,7 +95,7 @@ describe('resource engineDetails', () => {
       dataMode: 'TEST',
       idEngine: 'ENGINE-ID',
       source: 'Bluestaq',
-      body_id: 'ENGINEDETAILS-ID',
+      id: 'ENGINEDETAILS-ID',
       burnTime: 1.1,
       chamberPressure: 1.1,
       characteristicType: 'Electric',

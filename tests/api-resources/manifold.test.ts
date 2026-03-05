@@ -62,7 +62,7 @@ describe('resource manifold', () => {
       dataMode: 'TEST',
       idObjectOfInterest: 'OBJECTOFINTEREST-ID',
       source: 'Bluestaq',
-      body_id: 'MANIFOLD-ID',
+      id: 'MANIFOLD-ID',
       deltaT: 10.23,
       deltaV: 10.23,
       origin: 'THIRD_PARTY_DATASOURCE',

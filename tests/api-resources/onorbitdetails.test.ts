@@ -98,7 +98,7 @@ describe('resource onorbitdetails', () => {
       dataMode: 'TEST',
       idOnOrbit: 'REF-ONORBIT-ID',
       source: 'Bluestaq',
-      body_id: 'ONORBITDETAILS-ID',
+      id: 'ONORBITDETAILS-ID',
       additionalMass: 10.23,
       adeptRadius: 10.23,
       bolDeltaV: 1000.1,

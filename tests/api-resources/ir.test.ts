@@ -108,7 +108,7 @@ describe('resource ir', () => {
       dataMode: 'TEST',
       name: 'Example name',
       source: 'Bluestaq',
-      body_id: 'IR-ID',
+      id: 'IR-ID',
       description: 'Example description',
       entity: {
         classificationMarking: 'U',

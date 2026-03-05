@@ -80,7 +80,7 @@ describe('resource manifoldelset', () => {
       idManifold: 'REF-MANIFOLD-ID',
       source: 'Bluestaq',
       tmpSatNo: 10,
-      body_id: 'MANIFOLDELSET-ID',
+      id: 'MANIFOLDELSET-ID',
       apogee: 10.23,
       argOfPerigee: 10.23,
       bStar: 10.23,

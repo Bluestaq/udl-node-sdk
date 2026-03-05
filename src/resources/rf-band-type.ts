@@ -43,7 +43,7 @@ export class RfBandType extends APIResource {
    * @example
    * ```ts
    * await client.rfBandType.update('id', {
-   *   body_id: 'Ku',
+   *   id: 'Ku',
    *   classificationMarking: 'U',
    *   dataMode: 'TEST',
    *   description: 'Example description',
@@ -51,8 +51,8 @@ export class RfBandType extends APIResource {
    * });
    * ```
    */
-  update(pathID: string, body: RfBandTypeUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/rfbandtype/${pathID}`, {
+  update(id: string, body: RfBandTypeUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/rfbandtype/${id}`, {
       body,
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -504,7 +504,7 @@ export interface RfBandTypeUpdateParams {
   /**
    * Unique identifier for the RF band (e.g. X, K, Ku, etc).
    */
-  body_id: string;
+  id: string;
 
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.

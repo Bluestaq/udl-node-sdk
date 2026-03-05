@@ -283,7 +283,7 @@ describe('resource flightplan', () => {
       depAirfield: 'KSLV',
       genTS: '2023-05-01T01:01:01.123Z',
       source: 'Bluestaq',
-      body_id: 'c44b0a80-9fef-63d9-6267-79037fb93e4c',
+      id: 'c44b0a80-9fef-63d9-6267-79037fb93e4c',
       aircraftMDS: 'KC-130 HERCULES',
       airRefuelEvents: [
         {

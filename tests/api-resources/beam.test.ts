@@ -77,7 +77,7 @@ describe('resource beam', () => {
       classificationMarking: 'U',
       dataMode: 'TEST',
       source: 'Bluestaq',
-      body_id: 'BEAM-ID',
+      id: 'BEAM-ID',
       notes: 'Example notes',
       origin: 'THIRD_PARTY_DATASOURCE',
     });

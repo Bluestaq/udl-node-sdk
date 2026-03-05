@@ -125,7 +125,7 @@ describe('resource laseremitter', () => {
       laserName: 'HEL',
       laserType: 'PULSED',
       source: 'Bluestaq',
-      body_id: '026dd511-8ba5-47d3-9909-836149f87686',
+      id: '026dd511-8ba5-47d3-9909-836149f87686',
       atmosphericTransmission: 1,
       beamOutputPower: 100.5,
       beamWaist: 14.4,

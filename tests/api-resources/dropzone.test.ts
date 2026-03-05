@@ -107,7 +107,7 @@ describe('resource dropzone', () => {
       lon: -117.162,
       name: 'Viper DZ',
       source: 'Bluestaq',
-      body_id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
+      id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
       altCountryCode: 'USA',
       altCountryName: 'United States of America',
       approvalDate: '2018-01-05T16:00:00.123Z',

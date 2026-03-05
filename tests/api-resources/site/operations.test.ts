@@ -152,7 +152,7 @@ describe('resource operations', () => {
       dataMode: 'TEST',
       idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
       source: 'Bluestaq',
-      body_id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
+      id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
       dailyOperations: [
         {
           dayOfWeek: 'MONDAY',

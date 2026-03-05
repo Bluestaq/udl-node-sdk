@@ -71,7 +71,7 @@ describe('resource seraDataEarlyWarning', () => {
       dataMode: 'TEST',
       source: 'Bluestaq',
       spacecraftId: 'spacecraftId',
-      body_id: 'SERADATAEARLYWARNING-ID',
+      id: 'SERADATAEARLYWARNING-ID',
       bestResolution: 1.23,
       earthPointing: true,
       frequencyLimits: 'frequencyLimits',

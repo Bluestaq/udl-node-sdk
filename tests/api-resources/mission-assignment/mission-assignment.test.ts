@@ -118,7 +118,7 @@ describe('resource missionAssignment', () => {
       mad: 'MAD',
       source: 'Bluestaq',
       ts: '2021-01-01T01:01:01.123456Z',
-      body_id: 'MISSIONASSIGNMENT-ID',
+      id: 'MISSIONASSIGNMENT-ID',
       c1associateddmpis: 3,
       c2air: 'C2AIR',
       c2alt: 3,

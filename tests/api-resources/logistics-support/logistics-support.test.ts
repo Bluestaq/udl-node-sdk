@@ -202,7 +202,7 @@ describe('resource logisticsSupport', () => {
       dataMode: 'TEST',
       rptCreatedTime: '2023-07-13T13:47:00.123Z',
       source: 'Bluestaq',
-      body_id: 'LOGISTICS-SUPPORT-DETAILS UUID',
+      id: 'LOGISTICS-SUPPORT-DETAILS UUID',
       aircraftMDS: 'CO17A',
       currICAO: 'KCOS',
       etic: '2023-07-13T13:47:00.123Z',

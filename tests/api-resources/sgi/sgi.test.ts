@@ -110,7 +110,7 @@ describe('resource sgi', () => {
       effectiveDate: '2018-01-01T16:00:00.123Z',
       sgiDate: '2018-01-01T16:00:00.123Z',
       source: 'Bluestaq',
-      body_id: 'SGI-ID',
+      id: 'SGI-ID',
       analyzerAttenuation: 5.1,
       ap: 1.23,
       apDuration: 3,

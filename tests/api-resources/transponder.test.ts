@@ -67,7 +67,7 @@ describe('resource transponder', () => {
       dataMode: 'TEST',
       idComm: 'REF-COMM-ID',
       source: 'Bluestaq',
-      body_id: 'TRANSPONDER-ID',
+      id: 'TRANSPONDER-ID',
       fec: 0,
       format: 'format',
       modulation: 'Auto',
