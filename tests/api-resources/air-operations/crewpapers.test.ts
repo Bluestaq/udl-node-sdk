@@ -26,7 +26,7 @@ describe('resource crewpapers', () => {
 
   test('uploadPdf: only required params', async () => {
     const responsePromise = client.airOperations.crewpapers.uploadPdf(
-      await toFile(Buffer.from('# my file contents'), 'README.md'),
+      await toFile(Buffer.from('Example data'), 'README.md'),
       {
         aircraftSortieIds: 'aircraftSortieIds',
         classificationMarking: 'x',
@@ -45,7 +45,7 @@ describe('resource crewpapers', () => {
 
   test('uploadPdf: required and optional params', async () => {
     const response = await client.airOperations.crewpapers.uploadPdf(
-      await toFile(Buffer.from('# my file contents'), 'README.md'),
+      await toFile(Buffer.from('Example data'), 'README.md'),
       {
         aircraftSortieIds: 'aircraftSortieIds',
         classificationMarking: 'x',
