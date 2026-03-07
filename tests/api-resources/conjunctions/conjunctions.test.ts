@@ -973,7 +973,7 @@ describe('resource conjunctions', () => {
 
   test('uploadConjunctionDataMessage: only required params', async () => {
     const responsePromise = client.conjunctions.uploadConjunctionDataMessage(
-      await toFile(Buffer.from('# my file contents'), 'README.md'),
+      await toFile(Buffer.from('Example data'), 'README.md'),
       {
         classification: 'classification',
         dataMode: 'REAL',
@@ -992,7 +992,7 @@ describe('resource conjunctions', () => {
 
   test('uploadConjunctionDataMessage: required and optional params', async () => {
     const response = await client.conjunctions.uploadConjunctionDataMessage(
-      await toFile(Buffer.from('# my file contents'), 'README.md'),
+      await toFile(Buffer.from('Example data'), 'README.md'),
       {
         classification: 'classification',
         dataMode: 'REAL',

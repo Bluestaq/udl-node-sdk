@@ -113,7 +113,7 @@ describe('resource skyImagery', () => {
 
   test('uploadZip: only required params', async () => {
     const responsePromise = client.skyImagery.uploadZip({
-      file: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      file: await toFile(Buffer.from('Example data'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -126,7 +126,7 @@ describe('resource skyImagery', () => {
 
   test('uploadZip: required and optional params', async () => {
     const response = await client.skyImagery.uploadZip({
-      file: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      file: await toFile(Buffer.from('Example data'), 'README.md'),
     });
   });
 });
