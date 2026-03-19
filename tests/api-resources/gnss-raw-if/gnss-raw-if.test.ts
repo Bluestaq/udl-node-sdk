@@ -47,8 +47,7 @@ describe('resource gnssRawIf', () => {
     });
   });
 
-  // Mock server doesn't support application/octet-stream responses
-  test.skip('fileGet: request options and params are passed correctly', async () => {
+  test('fileGet: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.gnssRawIf.fileGet('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),

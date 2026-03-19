@@ -137,8 +137,7 @@ describe('resource groundImagery', () => {
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
-  // Mock server doesn't support application/octet-stream responses
-  test.skip('getFile: request options and params are passed correctly', async () => {
+  test('getFile: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.groundImagery.getFile(

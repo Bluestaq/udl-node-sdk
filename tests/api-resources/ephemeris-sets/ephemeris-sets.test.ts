@@ -171,8 +171,7 @@ describe('resource ephemerisSets', () => {
     ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
-  // Mock server doesn't support application/octet-stream responses
-  test.skip('fileRetrieve: request options and params are passed correctly', async () => {
+  test('fileRetrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.ephemerisSets.fileRetrieve(
