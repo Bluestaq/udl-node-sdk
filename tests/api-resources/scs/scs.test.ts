@@ -61,13 +61,11 @@ describe('resource scs', () => {
     const response = await client.scs.copy({ id: 'id', targetPath: 'targetPath' });
   });
 
-  // Mock server doesn't support application/octet-stream responses
-  test.skip('download: required and optional params', async () => {
+  test('download: required and optional params', async () => {
     const response = await client.scs.download({ body: ['/MyFolderToDownload/'] });
   });
 
-  // Mock server doesn't support application/octet-stream responses
-  test.skip('fileDownload: required and optional params', async () => {
+  test('fileDownload: required and optional params', async () => {
     const response = await client.scs.fileDownload({
       id: 'id',
       firstResult: 0,

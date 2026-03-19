@@ -69,8 +69,7 @@ describe('resource analyticImagery', () => {
     });
   });
 
-  // Mock server doesn't support application/octet-stream responses
-  test.skip('fileGet: request options and params are passed correctly', async () => {
+  test('fileGet: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.analyticImagery.fileGet(
