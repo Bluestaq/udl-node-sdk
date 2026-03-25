@@ -115,7 +115,7 @@ describe('resource airfields', () => {
       name: 'Hickam Air Force Base',
       source: 'Bluestaq',
       type: 'Commercial',
-      body_id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
+      id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
       altAirfieldId: '45301',
       alternativeNames: ['BELLEVILLE', 'JONESTOWN'],
       city: 'Honolulu',

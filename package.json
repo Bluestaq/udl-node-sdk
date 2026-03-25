@@ -1,6 +1,6 @@
 {
   "name": "unified-data-library",
-  "version": "0.1.0-alpha.28",
+  "version": "0.1.0-alpha.29",
   "description": "The official TypeScript library for the Unifieddatalibrary API",
   "author": "Unifieddatalibrary <unifieddatalibrary@bluestaq.com>",
   "types": "dist/index.d.ts",
@@ -49,6 +49,17 @@
     "tslib": "^2.8.1",
     "typescript": "5.8.3",
     "typescript-eslint": "8.31.1"
+  },
+  "overrides": {
+    "minimatch": "^9.0.5"
+  },
+  "pnpm": {
+    "overrides": {
+      "minimatch": "^9.0.5"
+    }
+  },
+  "resolutions": {
+    "minimatch": "^9.0.5"
   },
   "exports": {
     ".": {

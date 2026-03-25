@@ -17,6 +17,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * These services provide operations for posting and querying Moving Target Indicator (MTI) STANAG 4607 data. Detailed MTI data supports activities such as targeting or less detailed data for applications such as situational awareness used/derived by exploitation systems.
+ */
 export class Mti extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

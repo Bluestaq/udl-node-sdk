@@ -6,6 +6,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * These services provide CRUD and search operations for files and folders in the Secure Content Store.
+ */
 export class View extends APIResource {
   /**
    * Return a single file to view in browser.

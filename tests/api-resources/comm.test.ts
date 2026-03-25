@@ -126,7 +126,7 @@ describe('resource comm', () => {
       dataMode: 'TEST',
       name: 'DSCS II C-7-COMM Payload',
       source: 'Bluestaq',
-      body_id: 'COMM-ID',
+      id: 'COMM-ID',
       description: 'Description for comm A',
       idEntity: 'ENTITY-ID',
       origin: 'THIRD_PARTY_DATASOURCE',

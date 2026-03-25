@@ -7,6 +7,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * This service provides operations for querying and manipulation of detected/possible/confirmed on-orbit maneuvers. The J2000 coordinate frame is the preferred frame for all maneuver data, but in some cases data may be in another frame depending on the provider. Check the Storefront 'Data Products' section under the 'Discover' tab for maneuver data provider information.
+ */
 export class History extends APIResource {
   /**
    * Service operation to dynamically query historical data by a variety of query

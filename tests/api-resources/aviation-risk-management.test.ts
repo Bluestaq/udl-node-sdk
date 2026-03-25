@@ -124,7 +124,7 @@ describe('resource aviationRiskManagement', () => {
       dataMode: 'TEST',
       idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
       source: 'Bluestaq',
-      body_id: '026dd511-8ba5-47d3-9909-836149f87686',
+      id: '026dd511-8ba5-47d3-9909-836149f87686',
       aviationRiskManagementWorksheetRecord: [
         {
           missionDate: '2024-11-25',

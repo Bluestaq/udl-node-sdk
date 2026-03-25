@@ -8,6 +8,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * These services provide operations for manipulation and querying of on-orbit objects of interest, their components, and various lists and status of those objects.
+ */
 export class History extends APIResource {
   /**
    * Service operation to dynamically query historical data by a variety of query

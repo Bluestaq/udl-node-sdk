@@ -81,7 +81,7 @@ describe('resource rfBand', () => {
       idEntity: 'ENTITY-ID',
       name: 'BAND_NAME',
       source: 'Bluestaq',
-      body_id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
+      id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
       band: 'Ku',
       bandwidth: 100.23,
       bandwidthSettings: [250.1, 500.1],

@@ -102,7 +102,7 @@ describe('resource onorbitlist', () => {
         },
       ],
       source: 'Bluestaq',
-      body_id: 'ONORBITLIST-ID',
+      id: 'ONORBITLIST-ID',
       defaultRevisitRateMins: 15.3,
       description: 'DESCRIPTION_OF_LIST',
       listPriority: 1.1,

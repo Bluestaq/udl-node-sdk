@@ -131,7 +131,7 @@ describe('resource equipment', () => {
       lat: 39.019242,
       lon: -104.251659,
       source: 'Bluestaq',
-      body_id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
       airDefArea: 'AL006',
       allegiance: 'OTHR',
       altAllegiance: 'HL',

@@ -70,7 +70,7 @@ describe('resource substatus', () => {
       status: 'FMC',
       statusId: 'REF-STATUS-ID',
       type: 'mdCap',
-      body_id: 'SUBSTATUS-ID',
+      id: 'SUBSTATUS-ID',
       origin: 'THIRD_PARTY_DATASOURCE',
     });
   });

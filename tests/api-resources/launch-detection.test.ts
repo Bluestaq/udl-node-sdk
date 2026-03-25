@@ -86,7 +86,7 @@ describe('resource launchDetection', () => {
       observationTime: '2018-01-01T16:00:00.123Z',
       sequenceNumber: 5,
       source: 'Bluestaq',
-      body_id: 'LAUNCHDETECTION-ID',
+      id: 'LAUNCHDETECTION-ID',
       descriptor: 'Example descriptor',
       eventId: 'EVENT-ID',
       highZenithAzimuth: false,

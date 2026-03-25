@@ -96,7 +96,7 @@ describe('resource beamContours', () => {
       idBeam: 'REF-BEAM-ID',
       source: 'Bluestaq',
       type: 'BORESIGHT',
-      body_id: 'BEAMCONTOUR-ID',
+      id: 'BEAMCONTOUR-ID',
       contourIdx: 1,
       gain: 17.1,
       geography:

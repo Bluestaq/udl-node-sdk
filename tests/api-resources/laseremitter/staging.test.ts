@@ -81,7 +81,7 @@ describe('resource staging', () => {
       classificationMarking: 'U',
       laserName: 'LASER_NAME',
       source: 'Bluestaq',
-      body_id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
+      id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
       altitude: 1.57543,
       laserType: 'PULSED',
       lat: 48.6732,

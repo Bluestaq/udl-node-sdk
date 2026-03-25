@@ -6,6 +6,9 @@ import { EvacFullsOffsetPage } from '../shared';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * These services provide operations for manipulation and querying of Mission Ops information.
+ */
 export class Tuple extends APIResource {
   /**
    * Service operation to dynamically query data and only return specified

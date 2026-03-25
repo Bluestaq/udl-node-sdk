@@ -19,6 +19,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * This collection of services provides operations for querying and manipulation of laser related information to include the laser emitters, the laser deconflict requests, and laser deconflict responses.
+ */
 export class Laserdeconflictrequest extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

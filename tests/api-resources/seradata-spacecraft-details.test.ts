@@ -144,7 +144,7 @@ describe('resource seradataSpacecraftDetails', () => {
       dataMode: 'TEST',
       name: 'name',
       source: 'Bluestaq',
-      body_id: 'SERADATASPACECRAFTDETAILS-ID',
+      id: 'SERADATASPACECRAFTDETAILS-ID',
       additionalMissionsGroups: 'additionalMissionsGroups',
       altitude: 36036.6330576414,
       annualInsuredDepreciationFactor: 1.23,

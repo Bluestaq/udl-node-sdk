@@ -17,6 +17,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagin
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * This collection of services provides operations for querying and manipulation of electro-optical (EO), radar, radio frequency (RF), Global Navigation Satellite Systems (GNSS), Ionospheric (IONO), Infrared (SWIR), and Space Environment observation data. The J2000 coordinate frame is the preferred frame for all observations, as applicable, but in some cases observations may be in an alternate frame depending on the provider and/or datatype.
+ */
 export class Ecpedr extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 
@@ -395,6 +398,21 @@ export namespace EcpedrListResponse {
     msgNumber?: number;
 
     /**
+     * The quality of this individual observation. The observation quality indicator
+     * value may vary among providers and may be a generalized statement (BAD, GOOD,
+     * UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+     * to verify the usage of the observation.
+     */
+    obQuality?: string;
+
+    /**
+     * The quality indicator of this individual observation. The observation quality
+     * indicator value is a descriptive value indicating the reason for the quality
+     * designation of the data.
+     */
+    obQualityIndicator?: string;
+
+    /**
      * A single observation value expressed in the specified unit of measure (obUoM).
      */
     obValue?: number;
@@ -637,6 +655,21 @@ export namespace EcpedrTupleResponse {
       msgNumber?: number;
 
       /**
+       * The quality of this individual observation. The observation quality indicator
+       * value may vary among providers and may be a generalized statement (BAD, GOOD,
+       * UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+       * to verify the usage of the observation.
+       */
+      obQuality?: string;
+
+      /**
+       * The quality indicator of this individual observation. The observation quality
+       * indicator value is a descriptive value indicating the reason for the quality
+       * designation of the data.
+       */
+      obQualityIndicator?: string;
+
+      /**
        * A single observation value expressed in the specified unit of measure (obUoM).
        */
       obValue?: number;
@@ -817,6 +850,21 @@ export namespace EcpedrCreateParams {
      * Designates a specific group of measurements made.
      */
     msgNumber?: number;
+
+    /**
+     * The quality of this individual observation. The observation quality indicator
+     * value may vary among providers and may be a generalized statement (BAD, GOOD,
+     * UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+     * to verify the usage of the observation.
+     */
+    obQuality?: string;
+
+    /**
+     * The quality indicator of this individual observation. The observation quality
+     * indicator value is a descriptive value indicating the reason for the quality
+     * designation of the data.
+     */
+    obQualityIndicator?: string;
 
     /**
      * A single observation value expressed in the specified unit of measure (obUoM).
@@ -1028,6 +1076,21 @@ export namespace EcpedrCreateBulkParams {
       msgNumber?: number;
 
       /**
+       * The quality of this individual observation. The observation quality indicator
+       * value may vary among providers and may be a generalized statement (BAD, GOOD,
+       * UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+       * to verify the usage of the observation.
+       */
+      obQuality?: string;
+
+      /**
+       * The quality indicator of this individual observation. The observation quality
+       * indicator value is a descriptive value indicating the reason for the quality
+       * designation of the data.
+       */
+      obQualityIndicator?: string;
+
+      /**
        * A single observation value expressed in the specified unit of measure (obUoM).
        */
       obValue?: number;
@@ -1236,6 +1299,21 @@ export namespace EcpedrUnvalidatedPublishParams {
        * Designates a specific group of measurements made.
        */
       msgNumber?: number;
+
+      /**
+       * The quality of this individual observation. The observation quality indicator
+       * value may vary among providers and may be a generalized statement (BAD, GOOD,
+       * UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+       * to verify the usage of the observation.
+       */
+      obQuality?: string;
+
+      /**
+       * The quality indicator of this individual observation. The observation quality
+       * indicator value is a descriptive value indicating the reason for the quality
+       * designation of the data.
+       */
+      obQualityIndicator?: string;
 
       /**
        * A single observation value expressed in the specified unit of measure (obUoM).

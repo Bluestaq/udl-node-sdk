@@ -163,7 +163,7 @@ describe('resource details', () => {
       dataMode: 'TEST',
       idRFEmitter: 'RFEMITTER-ID',
       source: 'Bluestaq',
-      body_id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
+      id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
       alternateFacilityName: 'ALTERNATE_FACILITY_NAME',
       altName: 'ALTERNATE_NAME',
       amplifier: {

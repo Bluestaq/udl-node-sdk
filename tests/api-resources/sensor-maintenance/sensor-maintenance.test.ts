@@ -86,7 +86,7 @@ describe('resource sensorMaintenance', () => {
       siteCode: 'site01',
       source: 'Bluestaq',
       startTime: '2018-01-01T16:00:00.123456Z',
-      body_id: 'SENSORMAINTENANCE-ID',
+      id: 'SENSORMAINTENANCE-ID',
       activity: 'Activity Description',
       approver: 'approver',
       changer: 'changer',

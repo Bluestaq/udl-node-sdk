@@ -111,7 +111,7 @@ describe('resource airfieldStatus', () => {
       dataMode: 'TEST',
       idAirfield: '3136498f-2969-3535-1432-e984b2e2e686',
       source: 'Bluestaq',
-      body_id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
+      id: 'be831d39-1822-da9f-7ace-6cc5643397dc',
       altAirfieldId: 'AIRFIELD-ID',
       approvedBy: 'John Smith',
       approvedDate: '2024-01-01T16:00:00.123Z',

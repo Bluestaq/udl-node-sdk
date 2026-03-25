@@ -5,6 +5,9 @@ import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * These services provide operations for manipulation and querying of conjunctions.
+ */
 export class History extends APIResource {
   /**
    * Service operation to dynamically query historical data by a variety of query

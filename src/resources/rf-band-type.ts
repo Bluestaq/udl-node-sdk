@@ -8,6 +8,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * This collection of services provides operations for querying and manipulation of RF related information to include RFEmitters which could potentially interfere with communications/operations of space related entities, and RFBands commonly used by various space related entities.
+ */
 export class RfBandType extends APIResource {
   /**
    * Service operation to take a single RFBandType as a POST body and ingest into the
@@ -40,7 +43,7 @@ export class RfBandType extends APIResource {
    * @example
    * ```ts
    * await client.rfBandType.update('id', {
-   *   body_id: 'Ku',
+   *   id: 'Ku',
    *   classificationMarking: 'U',
    *   dataMode: 'TEST',
    *   description: 'Example description',
@@ -48,8 +51,8 @@ export class RfBandType extends APIResource {
    * });
    * ```
    */
-  update(pathID: string, body: RfBandTypeUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/rfbandtype/${pathID}`, {
+  update(id: string, body: RfBandTypeUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/rfbandtype/${id}`, {
       body,
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -501,7 +504,7 @@ export interface RfBandTypeUpdateParams {
   /**
    * Unique identifier for the RF band (e.g. X, K, Ku, etc).
    */
-  body_id: string;
+  id: string;
 
   /**
    * Classification marking of the data in IC/CAPCO Portion-marked format.

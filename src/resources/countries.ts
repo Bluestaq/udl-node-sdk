@@ -8,6 +8,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Service operations for querying and manipulation of miscellaneous supporting data such as countries (which can represent countries, multi-national consortiums, and international organizations), data owners, locations, entities, organizations, etc.
+ */
 export class Countries extends APIResource {
   /**
    * Service operation to take a single Country as a POST body and ingest into the
@@ -55,14 +58,14 @@ export class Countries extends APIResource {
    * @example
    * ```ts
    * await client.countries.update('code', {
-   *   body_code: 'US',
+   *   code: 'US',
    *   dataMode: 'TEST',
    *   source: 'Bluestaq',
    * });
    * ```
    */
-  update(pathCode: string, body: CountryUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/country/${pathCode}`, {
+  update(code: string, body: CountryUpdateParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/udl/country/${code}`, {
       body,
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -339,7 +342,7 @@ export interface CountryUpdateParams {
    * country code, however it can represent various consortiums that do not appear in
    * the ISO document.
    */
-  body_code: string;
+  code: string;
 
   /**
    * Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:

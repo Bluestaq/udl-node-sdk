@@ -18,6 +18,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * This service provides operations for querying and manipulation of detected/possible/confirmed on-orbit maneuvers. The J2000 coordinate frame is the preferred frame for all maneuver data, but in some cases data may be in another frame depending on the provider. Check the Storefront 'Data Products' section under the 'Discover' tab for maneuver data provider information.
+ */
 export class Maneuvers extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 

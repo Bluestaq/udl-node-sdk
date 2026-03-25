@@ -9,6 +9,9 @@ import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pa
 import { buildHeaders } from '../../../internal/headers';
 import { RequestOptions } from '../../../internal/request-options';
 
+/**
+ * These services provide operations for querying and manipulation of Signal time and frequency difference of arrival (TDOA/FDOA) information obtained by using passive RF based sensor phenomenologies and sensor triangulation. The J2000 coordinate frame is the preferred frame for all observations, but in some cases observations may be in another frame depending on the provider.
+ */
 export class Diffofarrival extends APIResource {
   history: HistoryAPI.History = new HistoryAPI.History(this._client);
 
@@ -165,13 +168,25 @@ export interface DiffofarrivalAbridged {
   id?: string;
 
   /**
-   * Bandwidth of the signal in Hz.
+   * Line of sight azimuth angle for sensor 1, in degrees and topocentric frame.
+   * Azimuth ranges from 0 to 360 degrees.
+   */
+  azimuth1?: number;
+
+  /**
+   * Line of sight azimuth angle for sensor 2, in degrees and topocentric frame.
+   * Azimuth ranges from 0 to 360 degrees.
+   */
+  azimuth2?: number;
+
+  /**
+   * Bandwidth of the signal, in hertz.
    */
   bandwidth?: number;
 
   /**
-   * Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
-   * MANUAL, etc).
+   * Collection mode (e.g., DIRECTED_SEARCH, MANUAL, NEIGHBORHOOD_WATCH, SPOT_SEARCH,
+   * SURVEY, etc.).
    */
   collectionMode?: string;
 
@@ -187,23 +202,24 @@ export interface DiffofarrivalAbridged {
   createdBy?: string;
 
   /**
-   * Delta range, in km. Delta range calculation convention is (sensor2 - sensor1).
+   * Delta range, in kilometers. Delta range calculation convention is (sensor2 -
+   * sensor1).
    */
   deltaRange?: number;
 
   /**
-   * Delta range rate, in km/sec. Delta range rate calculation convention is
-   * (sensor2 - sensor1).
+   * Delta range rate, in kilometers per second. Delta range rate calculation
+   * convention is (sensor2 - sensor1).
    */
   deltaRangeRate?: number;
 
   /**
-   * One sigma uncertainty in the delta range rate, in km/sec.
+   * One sigma uncertainty in the delta range rate, in kilometers per second.
    */
   deltaRangeRateUnc?: number;
 
   /**
-   * One sigma uncertainty in delta range, in km.
+   * One sigma uncertainty in delta range, in kilometers.
    */
   deltaRangeUnc?: number;
 
@@ -213,19 +229,31 @@ export interface DiffofarrivalAbridged {
   descriptor?: string;
 
   /**
-   * Frequency difference of arrival of the center frequency signal, in Hz. FDOA
+   * Line of sight elevation angle for sensor 1, in degrees and topocentric frame.
+   * Elevation ranges from -90 to 90 degrees.
+   */
+  elevation1?: number;
+
+  /**
+   * Line of sight elevation angle for sensor 2, in degrees and topocentric frame.
+   * Elevation ranges from -90 to 90 degrees.
+   */
+  elevation2?: number;
+
+  /**
+   * Frequency difference of arrival of the center frequency signal, in hertz. FDOA
    * calculation convention is (sensor2 - sensor1).
    */
   fdoa?: number;
 
   /**
    * One sigma uncertainty in frequency difference of arrival of the center frequency
-   * signal, in Hz.
+   * signal, in hertz.
    */
   fdoaUnc?: number;
 
   /**
-   * Center frequency of the collect in Hz.
+   * Center frequency of the collect, in hertz.
    */
   frequency?: number;
 
@@ -280,59 +308,70 @@ export interface DiffofarrivalAbridged {
   origSensorId2?: string;
 
   /**
+   * Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
+   * Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
+   * (Left Hand Circularly Polarized) Rotating left relative to the earth's surface,
+   * R - (Right Hand Circularly Polarized) Rotating right relative to the earth's
+   * surface.
+   */
+  polarityType?: string;
+
+  /**
    * Catalog number of the target on-orbit object.
    */
   satNo?: number;
 
   /**
-   * Sensor 2 altitude at obTime (if mobile/onorbit) in km. If null, can be obtained
-   * from sensor info.
+   * Sensor 2 altitude at obTime (if mobile/onorbit), in kilometers. If null, can be
+   * obtained from sensor info.
    */
   sen2alt?: number;
 
   /**
-   * Sensor 2 WGS84 latitude at obTime (if mobile/onorbit) in degrees. If null, can
-   * be obtained from sensor info.
+   * Sensor 2 WGS84 latitude at obTime (if mobile/onorbit), in degrees. If null, can
+   * be obtained from sensor info. -90 to 90 degrees (negative values south of
+   * equator).
    */
   sen2lat?: number;
 
   /**
-   * Sensor 2 WGS84 longitude at obTime (if mobile/onorbit) in degrees. If null, can
-   * be obtained from sensor info.
+   * Sensor 2 WGS84 longitude at obTime (if mobile/onorbit), in degrees. If null, can
+   * be obtained from sensor info. -180 to 180 degrees (negative values west of Prime
+   * Meridian).
    */
   sen2lon?: number;
 
   /**
-   * Sensor altitude at obTime (if mobile/onorbit) in km. If null, can be obtained
-   * from sensor info.
+   * Sensor altitude at obTime (if mobile/onorbit), in kilometers. If null, can be
+   * obtained from sensor info.
    */
   senalt?: number;
 
   /**
-   * Sensor WGS84 latitude at obTime (if mobile/onorbit) in degrees. If null, can be
+   * Sensor WGS84 latitude at obTime (if mobile/onorbit), in degrees. If null, can be
    * obtained from sensor info. -90 to 90 degrees (negative values south of equator).
    */
   senlat?: number;
 
   /**
-   * Sensor WGS84 longitude at obTime (if mobile/onorbit) in degrees. If null, can be
-   * obtained from sensor info. -180 to 180 degrees (negative values west of Prime
+   * Sensor WGS84 longitude at obTime (if mobile/onorbit), in degrees. If null, can
+   * be obtained from sensor info. -180 to 180 degrees (negative values west of Prime
    * Meridian).
    */
   senlon?: number;
 
   /**
-   * The signal arrival delay relative to sensor 1 in seconds.
+   * The signal arrival delay relative to sensor 1, in seconds.
    */
   sensor1Delay?: number;
 
   /**
-   * The signal arrival delay relative to sensor 2 in seconds.
+   * The signal arrival delay relative to sensor 2, in seconds.
    */
   sensor2Delay?: number;
 
   /**
-   * Signal to noise ratio, in dB.
+   * Signal to noise ratio, in decibels.
    */
   snr?: number;
 
@@ -354,6 +393,13 @@ export interface DiffofarrivalAbridged {
    * calculation convention is (sensor2 - sensor1).
    */
   tdoa?: number;
+
+  /**
+   * The number of full signal cycles the time difference of arrival measurement
+   * could be shifted due to repeating patterns in the signal (0 = no ambiguity, +1 =
+   * one positive cycle ambiguity, -1 = one negative cycle ambiguity).
+   */
+  tdoaAmb?: number;
 
   /**
    * One sigma uncertainty in time difference of arrival of the center frequency
@@ -422,13 +468,25 @@ export interface DiffofarrivalFull {
   id?: string;
 
   /**
-   * Bandwidth of the signal in Hz.
+   * Line of sight azimuth angle for sensor 1, in degrees and topocentric frame.
+   * Azimuth ranges from 0 to 360 degrees.
+   */
+  azimuth1?: number;
+
+  /**
+   * Line of sight azimuth angle for sensor 2, in degrees and topocentric frame.
+   * Azimuth ranges from 0 to 360 degrees.
+   */
+  azimuth2?: number;
+
+  /**
+   * Bandwidth of the signal, in hertz.
    */
   bandwidth?: number;
 
   /**
-   * Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
-   * MANUAL, etc).
+   * Collection mode (e.g., DIRECTED_SEARCH, MANUAL, NEIGHBORHOOD_WATCH, SPOT_SEARCH,
+   * SURVEY, etc.).
    */
   collectionMode?: string;
 
@@ -444,23 +502,24 @@ export interface DiffofarrivalFull {
   createdBy?: string;
 
   /**
-   * Delta range, in km. Delta range calculation convention is (sensor2 - sensor1).
+   * Delta range, in kilometers. Delta range calculation convention is (sensor2 -
+   * sensor1).
    */
   deltaRange?: number;
 
   /**
-   * Delta range rate, in km/sec. Delta range rate calculation convention is
-   * (sensor2 - sensor1).
+   * Delta range rate, in kilometers per second. Delta range rate calculation
+   * convention is (sensor2 - sensor1).
    */
   deltaRangeRate?: number;
 
   /**
-   * One sigma uncertainty in the delta range rate, in km/sec.
+   * One sigma uncertainty in the delta range rate, in kilometers per second.
    */
   deltaRangeRateUnc?: number;
 
   /**
-   * One sigma uncertainty in delta range, in km.
+   * One sigma uncertainty in delta range, in kilometers.
    */
   deltaRangeUnc?: number;
 
@@ -470,19 +529,31 @@ export interface DiffofarrivalFull {
   descriptor?: string;
 
   /**
-   * Frequency difference of arrival of the center frequency signal, in Hz. FDOA
+   * Line of sight elevation angle for sensor 1, in degrees and topocentric frame.
+   * Elevation ranges from -90 to 90 degrees.
+   */
+  elevation1?: number;
+
+  /**
+   * Line of sight elevation angle for sensor 2, in degrees and topocentric frame.
+   * Elevation ranges from -90 to 90 degrees.
+   */
+  elevation2?: number;
+
+  /**
+   * Frequency difference of arrival of the center frequency signal, in hertz. FDOA
    * calculation convention is (sensor2 - sensor1).
    */
   fdoa?: number;
 
   /**
    * One sigma uncertainty in frequency difference of arrival of the center frequency
-   * signal, in Hz.
+   * signal, in hertz.
    */
   fdoaUnc?: number;
 
   /**
-   * Center frequency of the collect in Hz.
+   * Center frequency of the collect, in hertz.
    */
   frequency?: number;
 
@@ -542,9 +613,19 @@ export interface DiffofarrivalFull {
   origSensorId2?: string;
 
   /**
+   * Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
+   * Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
+   * (Left Hand Circularly Polarized) Rotating left relative to the earth's surface,
+   * R - (Right Hand Circularly Polarized) Rotating right relative to the earth's
+   * surface.
+   */
+  polarityType?: string;
+
+  /**
    * Optional URI location in the document repository of the raw file parsed by the
    * system to produce this record. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this value.
+   * https://udl-hostname/scs/download?id= to this value. This field should not be
+   * used unless coordinated with the UDL onboarding team.
    */
   rawFileURI?: string;
 
@@ -554,54 +635,56 @@ export interface DiffofarrivalFull {
   satNo?: number;
 
   /**
-   * Sensor 2 altitude at obTime (if mobile/onorbit) in km. If null, can be obtained
-   * from sensor info.
+   * Sensor 2 altitude at obTime (if mobile/onorbit), in kilometers. If null, can be
+   * obtained from sensor info.
    */
   sen2alt?: number;
 
   /**
-   * Sensor 2 WGS84 latitude at obTime (if mobile/onorbit) in degrees. If null, can
-   * be obtained from sensor info.
+   * Sensor 2 WGS84 latitude at obTime (if mobile/onorbit), in degrees. If null, can
+   * be obtained from sensor info. -90 to 90 degrees (negative values south of
+   * equator).
    */
   sen2lat?: number;
 
   /**
-   * Sensor 2 WGS84 longitude at obTime (if mobile/onorbit) in degrees. If null, can
-   * be obtained from sensor info.
+   * Sensor 2 WGS84 longitude at obTime (if mobile/onorbit), in degrees. If null, can
+   * be obtained from sensor info. -180 to 180 degrees (negative values west of Prime
+   * Meridian).
    */
   sen2lon?: number;
 
   /**
-   * Sensor altitude at obTime (if mobile/onorbit) in km. If null, can be obtained
-   * from sensor info.
+   * Sensor altitude at obTime (if mobile/onorbit), in kilometers. If null, can be
+   * obtained from sensor info.
    */
   senalt?: number;
 
   /**
-   * Sensor WGS84 latitude at obTime (if mobile/onorbit) in degrees. If null, can be
+   * Sensor WGS84 latitude at obTime (if mobile/onorbit), in degrees. If null, can be
    * obtained from sensor info. -90 to 90 degrees (negative values south of equator).
    */
   senlat?: number;
 
   /**
-   * Sensor WGS84 longitude at obTime (if mobile/onorbit) in degrees. If null, can be
-   * obtained from sensor info. -180 to 180 degrees (negative values west of Prime
+   * Sensor WGS84 longitude at obTime (if mobile/onorbit), in degrees. If null, can
+   * be obtained from sensor info. -180 to 180 degrees (negative values west of Prime
    * Meridian).
    */
   senlon?: number;
 
   /**
-   * The signal arrival delay relative to sensor 1 in seconds.
+   * The signal arrival delay relative to sensor 1, in seconds.
    */
   sensor1Delay?: number;
 
   /**
-   * The signal arrival delay relative to sensor 2 in seconds.
+   * The signal arrival delay relative to sensor 2, in seconds.
    */
   sensor2Delay?: number;
 
   /**
-   * Signal to noise ratio, in dB.
+   * Signal to noise ratio, in decibels.
    */
   snr?: number;
 
@@ -632,6 +715,13 @@ export interface DiffofarrivalFull {
    * calculation convention is (sensor2 - sensor1).
    */
   tdoa?: number;
+
+  /**
+   * The number of full signal cycles the time difference of arrival measurement
+   * could be shifted due to repeating patterns in the signal (0 = no ambiguity, +1 =
+   * one positive cycle ambiguity, -1 = one negative cycle ambiguity).
+   */
+  tdoaAmb?: number;
 
   /**
    * One sigma uncertainty in time difference of arrival of the center frequency
@@ -697,34 +787,47 @@ export interface DiffofarrivalCreateParams {
   id?: string;
 
   /**
-   * Bandwidth of the signal in Hz.
+   * Line of sight azimuth angle for sensor 1, in degrees and topocentric frame.
+   * Azimuth ranges from 0 to 360 degrees.
+   */
+  azimuth1?: number;
+
+  /**
+   * Line of sight azimuth angle for sensor 2, in degrees and topocentric frame.
+   * Azimuth ranges from 0 to 360 degrees.
+   */
+  azimuth2?: number;
+
+  /**
+   * Bandwidth of the signal, in hertz.
    */
   bandwidth?: number;
 
   /**
-   * Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
-   * MANUAL, etc).
+   * Collection mode (e.g., DIRECTED_SEARCH, MANUAL, NEIGHBORHOOD_WATCH, SPOT_SEARCH,
+   * SURVEY, etc.).
    */
   collectionMode?: string;
 
   /**
-   * Delta range, in km. Delta range calculation convention is (sensor2 - sensor1).
+   * Delta range, in kilometers. Delta range calculation convention is (sensor2 -
+   * sensor1).
    */
   deltaRange?: number;
 
   /**
-   * Delta range rate, in km/sec. Delta range rate calculation convention is
-   * (sensor2 - sensor1).
+   * Delta range rate, in kilometers per second. Delta range rate calculation
+   * convention is (sensor2 - sensor1).
    */
   deltaRangeRate?: number;
 
   /**
-   * One sigma uncertainty in the delta range rate, in km/sec.
+   * One sigma uncertainty in the delta range rate, in kilometers per second.
    */
   deltaRangeRateUnc?: number;
 
   /**
-   * One sigma uncertainty in delta range, in km.
+   * One sigma uncertainty in delta range, in kilometers.
    */
   deltaRangeUnc?: number;
 
@@ -734,19 +837,31 @@ export interface DiffofarrivalCreateParams {
   descriptor?: string;
 
   /**
-   * Frequency difference of arrival of the center frequency signal, in Hz. FDOA
+   * Line of sight elevation angle for sensor 1, in degrees and topocentric frame.
+   * Elevation ranges from -90 to 90 degrees.
+   */
+  elevation1?: number;
+
+  /**
+   * Line of sight elevation angle for sensor 2, in degrees and topocentric frame.
+   * Elevation ranges from -90 to 90 degrees.
+   */
+  elevation2?: number;
+
+  /**
+   * Frequency difference of arrival of the center frequency signal, in hertz. FDOA
    * calculation convention is (sensor2 - sensor1).
    */
   fdoa?: number;
 
   /**
    * One sigma uncertainty in frequency difference of arrival of the center frequency
-   * signal, in Hz.
+   * signal, in hertz.
    */
   fdoaUnc?: number;
 
   /**
-   * Center frequency of the collect in Hz.
+   * Center frequency of the collect, in hertz.
    */
   frequency?: number;
 
@@ -790,9 +905,19 @@ export interface DiffofarrivalCreateParams {
   origSensorId2?: string;
 
   /**
+   * Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
+   * Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
+   * (Left Hand Circularly Polarized) Rotating left relative to the earth's surface,
+   * R - (Right Hand Circularly Polarized) Rotating right relative to the earth's
+   * surface.
+   */
+  polarityType?: string;
+
+  /**
    * Optional URI location in the document repository of the raw file parsed by the
    * system to produce this record. To download the raw file, prepend
-   * https://udl-hostname/scs/download?id= to this value.
+   * https://udl-hostname/scs/download?id= to this value. This field should not be
+   * used unless coordinated with the UDL onboarding team.
    */
   rawFileURI?: string;
 
@@ -802,54 +927,56 @@ export interface DiffofarrivalCreateParams {
   satNo?: number;
 
   /**
-   * Sensor 2 altitude at obTime (if mobile/onorbit) in km. If null, can be obtained
-   * from sensor info.
+   * Sensor 2 altitude at obTime (if mobile/onorbit), in kilometers. If null, can be
+   * obtained from sensor info.
    */
   sen2alt?: number;
 
   /**
-   * Sensor 2 WGS84 latitude at obTime (if mobile/onorbit) in degrees. If null, can
-   * be obtained from sensor info.
+   * Sensor 2 WGS84 latitude at obTime (if mobile/onorbit), in degrees. If null, can
+   * be obtained from sensor info. -90 to 90 degrees (negative values south of
+   * equator).
    */
   sen2lat?: number;
 
   /**
-   * Sensor 2 WGS84 longitude at obTime (if mobile/onorbit) in degrees. If null, can
-   * be obtained from sensor info.
+   * Sensor 2 WGS84 longitude at obTime (if mobile/onorbit), in degrees. If null, can
+   * be obtained from sensor info. -180 to 180 degrees (negative values west of Prime
+   * Meridian).
    */
   sen2lon?: number;
 
   /**
-   * Sensor altitude at obTime (if mobile/onorbit) in km. If null, can be obtained
-   * from sensor info.
+   * Sensor altitude at obTime (if mobile/onorbit), in kilometers. If null, can be
+   * obtained from sensor info.
    */
   senalt?: number;
 
   /**
-   * Sensor WGS84 latitude at obTime (if mobile/onorbit) in degrees. If null, can be
+   * Sensor WGS84 latitude at obTime (if mobile/onorbit), in degrees. If null, can be
    * obtained from sensor info. -90 to 90 degrees (negative values south of equator).
    */
   senlat?: number;
 
   /**
-   * Sensor WGS84 longitude at obTime (if mobile/onorbit) in degrees. If null, can be
-   * obtained from sensor info. -180 to 180 degrees (negative values west of Prime
+   * Sensor WGS84 longitude at obTime (if mobile/onorbit), in degrees. If null, can
+   * be obtained from sensor info. -180 to 180 degrees (negative values west of Prime
    * Meridian).
    */
   senlon?: number;
 
   /**
-   * The signal arrival delay relative to sensor 1 in seconds.
+   * The signal arrival delay relative to sensor 1, in seconds.
    */
   sensor1Delay?: number;
 
   /**
-   * The signal arrival delay relative to sensor 2 in seconds.
+   * The signal arrival delay relative to sensor 2, in seconds.
    */
   sensor2Delay?: number;
 
   /**
-   * Signal to noise ratio, in dB.
+   * Signal to noise ratio, in decibels.
    */
   snr?: number;
 
@@ -873,6 +1000,13 @@ export interface DiffofarrivalCreateParams {
    * calculation convention is (sensor2 - sensor1).
    */
   tdoa?: number;
+
+  /**
+   * The number of full signal cycles the time difference of arrival measurement
+   * could be shifted due to repeating patterns in the signal (0 = no ambiguity, +1 =
+   * one positive cycle ambiguity, -1 = one negative cycle ambiguity).
+   */
+  tdoaAmb?: number;
 
   /**
    * One sigma uncertainty in time difference of arrival of the center frequency
@@ -966,34 +1100,47 @@ export namespace DiffofarrivalCreateBulkParams {
     id?: string;
 
     /**
-     * Bandwidth of the signal in Hz.
+     * Line of sight azimuth angle for sensor 1, in degrees and topocentric frame.
+     * Azimuth ranges from 0 to 360 degrees.
+     */
+    azimuth1?: number;
+
+    /**
+     * Line of sight azimuth angle for sensor 2, in degrees and topocentric frame.
+     * Azimuth ranges from 0 to 360 degrees.
+     */
+    azimuth2?: number;
+
+    /**
+     * Bandwidth of the signal, in hertz.
      */
     bandwidth?: number;
 
     /**
-     * Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
-     * MANUAL, etc).
+     * Collection mode (e.g., DIRECTED_SEARCH, MANUAL, NEIGHBORHOOD_WATCH, SPOT_SEARCH,
+     * SURVEY, etc.).
      */
     collectionMode?: string;
 
     /**
-     * Delta range, in km. Delta range calculation convention is (sensor2 - sensor1).
+     * Delta range, in kilometers. Delta range calculation convention is (sensor2 -
+     * sensor1).
      */
     deltaRange?: number;
 
     /**
-     * Delta range rate, in km/sec. Delta range rate calculation convention is
-     * (sensor2 - sensor1).
+     * Delta range rate, in kilometers per second. Delta range rate calculation
+     * convention is (sensor2 - sensor1).
      */
     deltaRangeRate?: number;
 
     /**
-     * One sigma uncertainty in the delta range rate, in km/sec.
+     * One sigma uncertainty in the delta range rate, in kilometers per second.
      */
     deltaRangeRateUnc?: number;
 
     /**
-     * One sigma uncertainty in delta range, in km.
+     * One sigma uncertainty in delta range, in kilometers.
      */
     deltaRangeUnc?: number;
 
@@ -1003,19 +1150,31 @@ export namespace DiffofarrivalCreateBulkParams {
     descriptor?: string;
 
     /**
-     * Frequency difference of arrival of the center frequency signal, in Hz. FDOA
+     * Line of sight elevation angle for sensor 1, in degrees and topocentric frame.
+     * Elevation ranges from -90 to 90 degrees.
+     */
+    elevation1?: number;
+
+    /**
+     * Line of sight elevation angle for sensor 2, in degrees and topocentric frame.
+     * Elevation ranges from -90 to 90 degrees.
+     */
+    elevation2?: number;
+
+    /**
+     * Frequency difference of arrival of the center frequency signal, in hertz. FDOA
      * calculation convention is (sensor2 - sensor1).
      */
     fdoa?: number;
 
     /**
      * One sigma uncertainty in frequency difference of arrival of the center frequency
-     * signal, in Hz.
+     * signal, in hertz.
      */
     fdoaUnc?: number;
 
     /**
-     * Center frequency of the collect in Hz.
+     * Center frequency of the collect, in hertz.
      */
     frequency?: number;
 
@@ -1059,9 +1218,19 @@ export namespace DiffofarrivalCreateBulkParams {
     origSensorId2?: string;
 
     /**
+     * Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
+     * Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
+     * (Left Hand Circularly Polarized) Rotating left relative to the earth's surface,
+     * R - (Right Hand Circularly Polarized) Rotating right relative to the earth's
+     * surface.
+     */
+    polarityType?: string;
+
+    /**
      * Optional URI location in the document repository of the raw file parsed by the
      * system to produce this record. To download the raw file, prepend
-     * https://udl-hostname/scs/download?id= to this value.
+     * https://udl-hostname/scs/download?id= to this value. This field should not be
+     * used unless coordinated with the UDL onboarding team.
      */
     rawFileURI?: string;
 
@@ -1071,54 +1240,56 @@ export namespace DiffofarrivalCreateBulkParams {
     satNo?: number;
 
     /**
-     * Sensor 2 altitude at obTime (if mobile/onorbit) in km. If null, can be obtained
-     * from sensor info.
+     * Sensor 2 altitude at obTime (if mobile/onorbit), in kilometers. If null, can be
+     * obtained from sensor info.
      */
     sen2alt?: number;
 
     /**
-     * Sensor 2 WGS84 latitude at obTime (if mobile/onorbit) in degrees. If null, can
-     * be obtained from sensor info.
+     * Sensor 2 WGS84 latitude at obTime (if mobile/onorbit), in degrees. If null, can
+     * be obtained from sensor info. -90 to 90 degrees (negative values south of
+     * equator).
      */
     sen2lat?: number;
 
     /**
-     * Sensor 2 WGS84 longitude at obTime (if mobile/onorbit) in degrees. If null, can
-     * be obtained from sensor info.
+     * Sensor 2 WGS84 longitude at obTime (if mobile/onorbit), in degrees. If null, can
+     * be obtained from sensor info. -180 to 180 degrees (negative values west of Prime
+     * Meridian).
      */
     sen2lon?: number;
 
     /**
-     * Sensor altitude at obTime (if mobile/onorbit) in km. If null, can be obtained
-     * from sensor info.
+     * Sensor altitude at obTime (if mobile/onorbit), in kilometers. If null, can be
+     * obtained from sensor info.
      */
     senalt?: number;
 
     /**
-     * Sensor WGS84 latitude at obTime (if mobile/onorbit) in degrees. If null, can be
+     * Sensor WGS84 latitude at obTime (if mobile/onorbit), in degrees. If null, can be
      * obtained from sensor info. -90 to 90 degrees (negative values south of equator).
      */
     senlat?: number;
 
     /**
-     * Sensor WGS84 longitude at obTime (if mobile/onorbit) in degrees. If null, can be
-     * obtained from sensor info. -180 to 180 degrees (negative values west of Prime
+     * Sensor WGS84 longitude at obTime (if mobile/onorbit), in degrees. If null, can
+     * be obtained from sensor info. -180 to 180 degrees (negative values west of Prime
      * Meridian).
      */
     senlon?: number;
 
     /**
-     * The signal arrival delay relative to sensor 1 in seconds.
+     * The signal arrival delay relative to sensor 1, in seconds.
      */
     sensor1Delay?: number;
 
     /**
-     * The signal arrival delay relative to sensor 2 in seconds.
+     * The signal arrival delay relative to sensor 2, in seconds.
      */
     sensor2Delay?: number;
 
     /**
-     * Signal to noise ratio, in dB.
+     * Signal to noise ratio, in decibels.
      */
     snr?: number;
 
@@ -1142,6 +1313,13 @@ export namespace DiffofarrivalCreateBulkParams {
      * calculation convention is (sensor2 - sensor1).
      */
     tdoa?: number;
+
+    /**
+     * The number of full signal cycles the time difference of arrival measurement
+     * could be shifted due to repeating patterns in the signal (0 = no ambiguity, +1 =
+     * one positive cycle ambiguity, -1 = one negative cycle ambiguity).
+     */
+    tdoaAmb?: number;
 
     /**
      * One sigma uncertainty in time difference of arrival of the center frequency

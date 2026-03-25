@@ -116,7 +116,7 @@ describe('resource scientific', () => {
       name: 'SEM/MAG',
       source: 'Bluestaq',
       spacecraftId: 'REF-SPACECRAFT-ID',
-      body_id: 'SCIENTIFIC-ID',
+      id: 'SCIENTIFIC-ID',
       entity: {
         classificationMarking: 'U',
         dataMode: 'TEST',

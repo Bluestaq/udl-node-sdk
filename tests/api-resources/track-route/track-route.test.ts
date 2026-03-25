@@ -121,7 +121,7 @@ describe('resource trackRoute', () => {
       lastUpdateDate: '2024-09-17T16:00:00.123Z',
       source: 'Bluestaq',
       type: 'AIR REFUELING',
-      body_id: '026dd511-8ba5-47d3-9909-836149f87686',
+      id: '026dd511-8ba5-47d3-9909-836149f87686',
       altitudeBlocks: [
         {
           altitudeSequenceId: 'A1',

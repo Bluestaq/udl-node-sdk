@@ -220,7 +220,7 @@ describe('resource airloadPlans', () => {
       dataMode: 'TEST',
       estDepTime: '2024-01-01T01:00:00.123Z',
       source: 'source',
-      body_id: '0457f578-e29c-312e-85aa-0a04a430bdd0',
+      id: '0457f578-e29c-312e-85aa-0a04a430bdd0',
       aclOnboard: 500.1,
       aclReleased: 200.1,
       aircraftMDS: 'C17A',

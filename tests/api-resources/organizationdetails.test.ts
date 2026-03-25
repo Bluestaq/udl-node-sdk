@@ -89,7 +89,7 @@ describe('resource organizationdetails', () => {
       idOrganization: 'ORGANIZATION-ID',
       name: 'some.user',
       source: 'some.user',
-      body_id: 'ORGANIZATIONDETAILS-ID',
+      id: 'ORGANIZATIONDETAILS-ID',
       address1: '123 Main Street',
       address2: 'Apt 4B',
       address3: 'Colorado Springs CO, 80903',
