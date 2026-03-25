@@ -20,7 +20,7 @@ export const newMcpServer = async (stainlessApiKey: string | undefined) =>
   new McpServer(
     {
       name: 'unified_data_library_api',
-      version: '0.1.0-alpha.28',
+      version: '0.1.0-alpha.29',
     },
     {
       instructions: await getInstructions(stainlessApiKey),
