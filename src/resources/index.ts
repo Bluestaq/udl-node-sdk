@@ -2229,25 +2229,7 @@ export {
   type VesselTupleParams,
   type VesselListResponsesOffsetPage,
 } from './vessel';
-export {
-  Video,
-  type VideoListResponse,
-  type VideoCountResponse,
-  type VideoGetPlayerStreamingInfoResponse,
-  type VideoGetPublisherStreamingInfoResponse,
-  type VideoGetStreamFileResponse,
-  type VideoQueryhelpResponse,
-  type VideoTupleResponse,
-  type VideoCreateParams,
-  type VideoListParams,
-  type VideoCountParams,
-  type VideoGetParams,
-  type VideoGetPlayerStreamingInfoParams,
-  type VideoGetPublisherStreamingInfoParams,
-  type VideoGetStreamFileParams,
-  type VideoTupleParams,
-  type VideoListResponsesOffsetPage,
-} from './video/video';
+export { Video } from './video/video';
 export {
   WeatherData,
   type WeatherDataListResponse,
