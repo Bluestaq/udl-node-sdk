@@ -15,8 +15,8 @@ export class History extends APIResource {
   /**
    * Service operation to dynamically query historical data by a variety of query
    * parameters not specified in this API documentation. See the queryhelp operation
-   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-   * parameter information.
+   * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+   * information.
    */
   list(query: HistoryListParams, options?: RequestOptions): PagePromise<AIsFullsOffsetPage, Shared.AIsFull> {
     return this._client.getAPIList('/udl/ais/history', OffsetPage<Shared.AIsFull>, { query, ...options });
@@ -25,9 +25,8 @@ export class History extends APIResource {
   /**
    * Service operation to dynamically query historical data by a variety of query
    * parameters not specified in this API documentation, then write that data to the
-   * Secure Content Store. See the queryhelp operation
-   * (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-   * parameter information.
+   * Secure Content Store. See the queryhelp operation (`/udl/<datatype>/queryhelp`)
+   * for more details on valid/required query parameter information.
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
     return this._client.get('/udl/ais/history/aodr', {
@@ -41,7 +40,7 @@ export class History extends APIResource {
    * Service operation to return the count of records satisfying the specified query
    * parameters. This operation is useful to determine how many records pass a
    * particular query criteria without retrieving large amounts of data. See the
-   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+   * queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
    * valid/required query parameter information.
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
@@ -64,7 +63,7 @@ export interface HistoryListParams extends OffsetPageParams {
 
   /**
    * optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+   * queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
    * query fields that can be selected.
    */
   columns?: string;
@@ -79,7 +78,7 @@ export interface HistoryAodrParams {
 
   /**
    * optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+   * queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
    * query fields that can be selected.
    */
   columns?: string;

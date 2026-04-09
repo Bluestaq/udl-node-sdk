@@ -4690,42 +4690,6 @@ Methods:
 - <code title="get /udl/vessel/queryhelp">client.vessel.<a href="./src/resources/vessel.ts">queryhelp</a>() -> VesselQueryhelpResponse</code>
 - <code title="get /udl/vessel/tuple">client.vessel.<a href="./src/resources/vessel.ts">tuple</a>({ ...params }) -> VesselTupleResponse</code>
 
-# Video
-
-Types:
-
-- <code><a href="./src/resources/video/video.ts">VideoListResponse</a></code>
-- <code><a href="./src/resources/video/video.ts">VideoCountResponse</a></code>
-- <code><a href="./src/resources/video/video.ts">VideoGetPlayerStreamingInfoResponse</a></code>
-- <code><a href="./src/resources/video/video.ts">VideoGetPublisherStreamingInfoResponse</a></code>
-- <code><a href="./src/resources/video/video.ts">VideoGetStreamFileResponse</a></code>
-- <code><a href="./src/resources/video/video.ts">VideoQueryhelpResponse</a></code>
-- <code><a href="./src/resources/video/video.ts">VideoTupleResponse</a></code>
-
-Methods:
-
-- <code title="post /udl/video">client.video.<a href="./src/resources/video/video.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /udl/video">client.video.<a href="./src/resources/video/video.ts">list</a>({ ...params }) -> VideoListResponsesOffsetPage</code>
-- <code title="get /udl/video/count">client.video.<a href="./src/resources/video/video.ts">count</a>({ ...params }) -> string</code>
-- <code title="get /udl/video/{id}">client.video.<a href="./src/resources/video/video.ts">get</a>(id, { ...params }) -> VideoStreamsFull</code>
-- <code title="get /udl/video/getPlayerStreamingInfo">client.video.<a href="./src/resources/video/video.ts">getPlayerStreamingInfo</a>({ ...params }) -> VideoGetPlayerStreamingInfoResponse</code>
-- <code title="get /udl/video/getPublisherStreamingInfo">client.video.<a href="./src/resources/video/video.ts">getPublisherStreamingInfo</a>({ ...params }) -> VideoGetPublisherStreamingInfoResponse</code>
-- <code title="get /udl/video/getStreamFile">client.video.<a href="./src/resources/video/video.ts">getStreamFile</a>({ ...params }) -> VideoGetStreamFileResponse</code>
-- <code title="get /udl/video/queryhelp">client.video.<a href="./src/resources/video/video.ts">queryhelp</a>() -> VideoQueryhelpResponse</code>
-- <code title="get /udl/video/tuple">client.video.<a href="./src/resources/video/video.ts">tuple</a>({ ...params }) -> VideoTupleResponse</code>
-
-## History
-
-Types:
-
-- <code><a href="./src/resources/video/history.ts">VideoStreamsFull</a></code>
-- <code><a href="./src/resources/video/history.ts">HistoryCountResponse</a></code>
-
-Methods:
-
-- <code title="get /udl/video/history">client.video.history.<a href="./src/resources/video/history.ts">list</a>({ ...params }) -> VideoStreamsFullsOffsetPage</code>
-- <code title="get /udl/video/history/count">client.video.history.<a href="./src/resources/video/history.ts">count</a>({ ...params }) -> string</code>
-
 # WeatherData
 
 Types:

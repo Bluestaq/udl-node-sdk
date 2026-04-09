@@ -13,7 +13,7 @@ export class History extends APIResource {
    * Service operation to return the count of records satisfying the specified query
    * parameters. This operation is useful to determine how many records pass a
    * particular query criteria without retrieving large amounts of data. See the
-   * queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+   * queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
    * valid/required query parameter information.
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {

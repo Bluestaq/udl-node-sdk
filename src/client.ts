@@ -2245,25 +2245,6 @@ import {
   TrackUnvalidatedPublishParams,
 } from './resources/track/track';
 import {
-  Video,
-  VideoCountParams,
-  VideoCountResponse,
-  VideoCreateParams,
-  VideoGetParams,
-  VideoGetPlayerStreamingInfoParams,
-  VideoGetPlayerStreamingInfoResponse,
-  VideoGetPublisherStreamingInfoParams,
-  VideoGetPublisherStreamingInfoResponse,
-  VideoGetStreamFileParams,
-  VideoGetStreamFileResponse,
-  VideoListParams,
-  VideoListResponse,
-  VideoListResponsesOffsetPage,
-  VideoQueryhelpResponse,
-  VideoTupleParams,
-  VideoTupleResponse,
-} from './resources/video/video';
-import {
   WeatherData,
   WeatherDataCountParams,
   WeatherDataCountResponse,
@@ -3700,10 +3681,6 @@ export class Unifieddatalibrary {
    */
   vessel: API.Vessel = new API.Vessel(this);
   /**
-   * This collection of services provides operations for video streaming.
-   */
-  video: API.Video = new API.Video(this);
-  /**
    * These services provide for posting and querying terrestrial weather conditions over a target area or region and raw sensor data used to produce condition reports. Weather Reports describe current weather conditions over a target point or region to include general temperatures, pressures, and moisture accumulation, as well as navigational considerations such as altimeter settings, visibility, wind speeds, and cloud heights etc. Weather Data contains algorithmic parameters and dynamic, raw measurements collected by individual sensors such as signal power, noise level, etc., which are generally processed across multiple sensors to produce weather reports.
    */
   weatherData: API.WeatherData = new API.WeatherData(this);
@@ -3877,7 +3854,6 @@ Unifieddatalibrary.TrackRoute = TrackRoute;
 Unifieddatalibrary.Transponder = Transponder;
 Unifieddatalibrary.User = User;
 Unifieddatalibrary.Vessel = Vessel;
-Unifieddatalibrary.Video = Video;
 Unifieddatalibrary.WeatherData = WeatherData;
 Unifieddatalibrary.WeatherReport = WeatherReport;
 
@@ -6277,26 +6253,6 @@ export declare namespace Unifieddatalibrary {
     type VesselCreateBulkParams as VesselCreateBulkParams,
     type VesselGetParams as VesselGetParams,
     type VesselTupleParams as VesselTupleParams,
-  };
-
-  export {
-    Video as Video,
-    type VideoListResponse as VideoListResponse,
-    type VideoCountResponse as VideoCountResponse,
-    type VideoGetPlayerStreamingInfoResponse as VideoGetPlayerStreamingInfoResponse,
-    type VideoGetPublisherStreamingInfoResponse as VideoGetPublisherStreamingInfoResponse,
-    type VideoGetStreamFileResponse as VideoGetStreamFileResponse,
-    type VideoQueryhelpResponse as VideoQueryhelpResponse,
-    type VideoTupleResponse as VideoTupleResponse,
-    type VideoListResponsesOffsetPage as VideoListResponsesOffsetPage,
-    type VideoCreateParams as VideoCreateParams,
-    type VideoListParams as VideoListParams,
-    type VideoCountParams as VideoCountParams,
-    type VideoGetParams as VideoGetParams,
-    type VideoGetPlayerStreamingInfoParams as VideoGetPlayerStreamingInfoParams,
-    type VideoGetPublisherStreamingInfoParams as VideoGetPublisherStreamingInfoParams,
-    type VideoGetStreamFileParams as VideoGetStreamFileParams,
-    type VideoTupleParams as VideoTupleParams,
   };
 
   export {
