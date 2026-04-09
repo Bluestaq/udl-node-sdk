@@ -2244,7 +2244,6 @@ import {
   TrackTupleResponse,
   TrackUnvalidatedPublishParams,
 } from './resources/track/track';
-import { Video } from './resources/video/video';
 import {
   WeatherData,
   WeatherDataCountParams,
@@ -3681,7 +3680,6 @@ export class Unifieddatalibrary {
    * This service provides operations for manipulation and querying of maritime Vessel and Vessel Status data. Vessel contains the static data of the specific vessel: mmsi, cruise speed, max speed, etc.
    */
   vessel: API.Vessel = new API.Vessel(this);
-  video: API.Video = new API.Video(this);
   /**
    * These services provide for posting and querying terrestrial weather conditions over a target area or region and raw sensor data used to produce condition reports. Weather Reports describe current weather conditions over a target point or region to include general temperatures, pressures, and moisture accumulation, as well as navigational considerations such as altimeter settings, visibility, wind speeds, and cloud heights etc. Weather Data contains algorithmic parameters and dynamic, raw measurements collected by individual sensors such as signal power, noise level, etc., which are generally processed across multiple sensors to produce weather reports.
    */
@@ -3856,7 +3854,6 @@ Unifieddatalibrary.TrackRoute = TrackRoute;
 Unifieddatalibrary.Transponder = Transponder;
 Unifieddatalibrary.User = User;
 Unifieddatalibrary.Vessel = Vessel;
-Unifieddatalibrary.Video = Video;
 Unifieddatalibrary.WeatherData = WeatherData;
 Unifieddatalibrary.WeatherReport = WeatherReport;
 
@@ -6257,8 +6254,6 @@ export declare namespace Unifieddatalibrary {
     type VesselGetParams as VesselGetParams,
     type VesselTupleParams as VesselTupleParams,
   };
-
-  export { Video as Video };
 
   export {
     WeatherData as WeatherData,
