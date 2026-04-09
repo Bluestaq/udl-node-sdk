@@ -4690,10 +4690,6 @@ Methods:
 - <code title="get /udl/vessel/queryhelp">client.vessel.<a href="./src/resources/vessel.ts">queryhelp</a>() -> VesselQueryhelpResponse</code>
 - <code title="get /udl/vessel/tuple">client.vessel.<a href="./src/resources/vessel.ts">tuple</a>({ ...params }) -> VesselTupleResponse</code>
 
-# Video
-
-## History
-
 # WeatherData
 
 Types:

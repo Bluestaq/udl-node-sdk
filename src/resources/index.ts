@@ -2229,7 +2229,6 @@ export {
   type VesselTupleParams,
   type VesselListResponsesOffsetPage,
 } from './vessel';
-export { Video } from './video/video';
 export {
   WeatherData,
   type WeatherDataListResponse,
