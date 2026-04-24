@@ -31,11 +31,7 @@ export class LaunchSiteDetails extends APIResource {
    * ```
    */
   create(body: LaunchSiteDetailCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/launchsitedetails', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/launchsitedetails', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -55,11 +51,7 @@ export class LaunchSiteDetails extends APIResource {
    * ```
    */
   update(id: string, body: LaunchSiteDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/launchsitedetails/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/launchsitedetails/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -76,14 +68,8 @@ export class LaunchSiteDetails extends APIResource {
    * }
    * ```
    */
-  list(
-    query: LaunchSiteDetailListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<LaunchSiteDetailListResponsesOffsetPage, LaunchSiteDetailListResponse> {
-    return this._client.getAPIList('/udl/launchsitedetails', OffsetPage<LaunchSiteDetailListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: LaunchSiteDetailListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LaunchSiteDetailListResponsesOffsetPage, LaunchSiteDetailListResponse> {
+    return this._client.getAPIList('/udl/launchsitedetails', OffsetPage<LaunchSiteDetailListResponse>, { query, ...options });
   }
 
   /**
@@ -99,10 +85,7 @@ export class LaunchSiteDetails extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/launchsitedetails/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/launchsitedetails/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -119,10 +102,7 @@ export class LaunchSiteDetails extends APIResource {
    *   });
    * ```
    */
-  findBySource(
-    query: LaunchSiteDetailFindBySourceParams,
-    options?: RequestOptions,
-  ): APIPromise<LaunchSiteDetailFindBySourceResponse> {
+  findBySource(query: LaunchSiteDetailFindBySourceParams, options?: RequestOptions): APIPromise<LaunchSiteDetailFindBySourceResponse> {
     return this._client.get('/udl/launchsitedetails/findBySource', { query, ...options });
   }
 
@@ -139,16 +119,12 @@ export class LaunchSiteDetails extends APIResource {
    * );
    * ```
    */
-  get(
-    id: string,
-    query: LaunchSiteDetailGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<LaunchSiteDetailGetResponse> {
+  get(id: string, query: LaunchSiteDetailGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<LaunchSiteDetailGetResponse> {
     return this._client.get(path`/udl/launchsitedetails/${id}`, { query, ...options });
   }
 }
 
-export type LaunchSiteDetailListResponsesOffsetPage = OffsetPage<LaunchSiteDetailListResponse>;
+export type LaunchSiteDetailListResponsesOffsetPage = OffsetPage<LaunchSiteDetailListResponse>
 
 /**
  * Model representation of details compiled/collected on a launch site by a
@@ -249,8 +225,7 @@ export interface LaunchSiteDetailListResponse {
   origNetwork?: string;
 }
 
-export type LaunchSiteDetailFindBySourceResponse =
-  Array<LaunchSiteDetailFindBySourceResponse.LaunchSiteDetailFindBySourceResponseItem>;
+export type LaunchSiteDetailFindBySourceResponse = Array<LaunchSiteDetailFindBySourceResponse.LaunchSiteDetailFindBySourceResponseItem>
 
 export namespace LaunchSiteDetailFindBySourceResponse {
   /**
@@ -628,7 +603,8 @@ export interface LaunchSiteDetailUpdateParams {
   origin?: string;
 }
 
-export interface LaunchSiteDetailListParams extends OffsetPageParams {}
+export interface LaunchSiteDetailListParams extends OffsetPageParams {
+}
 
 export interface LaunchSiteDetailFindBySourceParams {
   /**
@@ -657,6 +633,6 @@ export declare namespace LaunchSiteDetails {
     type LaunchSiteDetailUpdateParams as LaunchSiteDetailUpdateParams,
     type LaunchSiteDetailListParams as LaunchSiteDetailListParams,
     type LaunchSiteDetailFindBySourceParams as LaunchSiteDetailFindBySourceParams,
-    type LaunchSiteDetailGetParams as LaunchSiteDetailGetParams,
+    type LaunchSiteDetailGetParams as LaunchSiteDetailGetParams
   };
 }

@@ -5,17 +5,17 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource launchEvent', () => {
   test('create: only required params', async () => {
     const responsePromise = client.launchEvent.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      msgCreateDate: '2020-01-01T00:00:00.123Z',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    msgCreateDate: '2020-01-01T00:00:00.123Z',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,23 +27,23 @@ describe('resource launchEvent', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.launchEvent.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      msgCreateDate: '2020-01-01T00:00:00.123Z',
-      source: 'Bluestaq',
-      id: 'LAUNCHEVENT-ID',
-      beNumber: 'ENC-123',
-      declassificationDate: '2021-01-01T01:02:02.123Z',
-      declassificationString: 'Example Declassification',
-      derivedFrom: 'Example source',
-      launchDate: '2020-01-01T00:00:00.123Z',
-      launchFacilityName: 'Example launch facility name',
-      launchFailureCode: 'Example failure code',
-      origin: 'THIRD_PARTY_DATASOURCE',
-      origObjectId: 'ORIGOBJECT-ID',
-      oSuffix: 'oSuffix',
-      satNo: 12,
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    msgCreateDate: '2020-01-01T00:00:00.123Z',
+    source: 'Bluestaq',
+    id: 'LAUNCHEVENT-ID',
+    beNumber: 'ENC-123',
+    declassificationDate: '2021-01-01T01:02:02.123Z',
+    declassificationString: 'Example Declassification',
+    derivedFrom: 'Example source',
+    launchDate: '2020-01-01T00:00:00.123Z',
+    launchFacilityName: 'Example launch facility name',
+    launchFailureCode: 'Example failure code',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    origObjectId: 'ORIGOBJECT-ID',
+    oSuffix: 'oSuffix',
+    satNo: 12,
+  });
   });
 
   test('list: only required params', async () => {
@@ -59,10 +59,10 @@ describe('resource launchEvent', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.launchEvent.list({
-      msgCreateDate: '2019-12-27T18:11:19.117Z',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    msgCreateDate: '2019-12-27T18:11:19.117Z',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('count: only required params', async () => {
@@ -78,23 +78,19 @@ describe('resource launchEvent', () => {
 
   test('count: required and optional params', async () => {
     const response = await client.launchEvent.count({
-      msgCreateDate: '2019-12-27T18:11:19.117Z',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    msgCreateDate: '2019-12-27T18:11:19.117Z',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.launchEvent.createBulk({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          msgCreateDate: '2020-01-01T00:00:00.123Z',
-          source: 'Bluestaq',
-        },
-      ],
-    });
+    const responsePromise = client.launchEvent.createBulk({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    msgCreateDate: '2020-01-01T00:00:00.123Z',
+    source: 'Bluestaq',
+  }] });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -105,28 +101,24 @@ describe('resource launchEvent', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.launchEvent.createBulk({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          msgCreateDate: '2020-01-01T00:00:00.123Z',
-          source: 'Bluestaq',
-          id: 'LAUNCHEVENT-ID',
-          beNumber: 'ENC-123',
-          declassificationDate: '2021-01-01T01:02:02.123Z',
-          declassificationString: 'Example Declassification',
-          derivedFrom: 'Example source',
-          launchDate: '2020-01-01T00:00:00.123Z',
-          launchFacilityName: 'Example launch facility name',
-          launchFailureCode: 'Example failure code',
-          origin: 'THIRD_PARTY_DATASOURCE',
-          origObjectId: 'ORIGOBJECT-ID',
-          oSuffix: 'oSuffix',
-          satNo: 12,
-        },
-      ],
-    });
+    const response = await client.launchEvent.createBulk({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    msgCreateDate: '2020-01-01T00:00:00.123Z',
+    source: 'Bluestaq',
+    id: 'LAUNCHEVENT-ID',
+    beNumber: 'ENC-123',
+    declassificationDate: '2021-01-01T01:02:02.123Z',
+    declassificationString: 'Example Declassification',
+    derivedFrom: 'Example source',
+    launchDate: '2020-01-01T00:00:00.123Z',
+    launchFacilityName: 'Example launch facility name',
+    launchFailureCode: 'Example failure code',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    origObjectId: 'ORIGOBJECT-ID',
+    oSuffix: 'oSuffix',
+    satNo: 12,
+  }] });
   });
 
   test('get', async () => {
@@ -142,9 +134,9 @@ describe('resource launchEvent', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.launchEvent.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.launchEvent.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -159,10 +151,7 @@ describe('resource launchEvent', () => {
   });
 
   test('tuple: only required params', async () => {
-    const responsePromise = client.launchEvent.tuple({
-      columns: 'columns',
-      msgCreateDate: '2019-12-27T18:11:19.117Z',
-    });
+    const responsePromise = client.launchEvent.tuple({ columns: 'columns', msgCreateDate: '2019-12-27T18:11:19.117Z' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -174,24 +163,20 @@ describe('resource launchEvent', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.launchEvent.tuple({
-      columns: 'columns',
-      msgCreateDate: '2019-12-27T18:11:19.117Z',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    columns: 'columns',
+    msgCreateDate: '2019-12-27T18:11:19.117Z',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.launchEvent.unvalidatedPublish({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          msgCreateDate: '2020-01-01T00:00:00.123Z',
-          source: 'Bluestaq',
-        },
-      ],
-    });
+    const responsePromise = client.launchEvent.unvalidatedPublish({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    msgCreateDate: '2020-01-01T00:00:00.123Z',
+    source: 'Bluestaq',
+  }] });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -202,27 +187,23 @@ describe('resource launchEvent', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.launchEvent.unvalidatedPublish({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          msgCreateDate: '2020-01-01T00:00:00.123Z',
-          source: 'Bluestaq',
-          id: 'LAUNCHEVENT-ID',
-          beNumber: 'ENC-123',
-          declassificationDate: '2021-01-01T01:02:02.123Z',
-          declassificationString: 'Example Declassification',
-          derivedFrom: 'Example source',
-          launchDate: '2020-01-01T00:00:00.123Z',
-          launchFacilityName: 'Example launch facility name',
-          launchFailureCode: 'Example failure code',
-          origin: 'THIRD_PARTY_DATASOURCE',
-          origObjectId: 'ORIGOBJECT-ID',
-          oSuffix: 'oSuffix',
-          satNo: 12,
-        },
-      ],
-    });
+    const response = await client.launchEvent.unvalidatedPublish({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    msgCreateDate: '2020-01-01T00:00:00.123Z',
+    source: 'Bluestaq',
+    id: 'LAUNCHEVENT-ID',
+    beNumber: 'ENC-123',
+    declassificationDate: '2021-01-01T01:02:02.123Z',
+    declassificationString: 'Example Declassification',
+    derivedFrom: 'Example source',
+    launchDate: '2020-01-01T00:00:00.123Z',
+    launchFacilityName: 'Example launch facility name',
+    launchFailureCode: 'Example failure code',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    origObjectId: 'ORIGOBJECT-ID',
+    oSuffix: 'oSuffix',
+    satNo: 12,
+  }] });
   });
 });

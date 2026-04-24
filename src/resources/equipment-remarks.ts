@@ -29,11 +29,7 @@ export class EquipmentRemarks extends APIResource {
    * ```
    */
   create(body: EquipmentRemarkCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/equipmentremark', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/equipmentremark', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -46,11 +42,7 @@ export class EquipmentRemarks extends APIResource {
    *   await client.equipmentRemarks.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: EquipmentRemarkRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<EquipmentRemarkFull> {
+  retrieve(id: string, query: EquipmentRemarkRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<EquipmentRemarkFull> {
     return this._client.get(path`/udl/equipmentremark/${id}`, { query, ...options });
   }
 
@@ -68,14 +60,8 @@ export class EquipmentRemarks extends APIResource {
    * }
    * ```
    */
-  list(
-    query: EquipmentRemarkListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<EquipmentRemarkAbridgedsOffsetPage, EquipmentRemarkAbridged> {
-    return this._client.getAPIList('/udl/equipmentremark', OffsetPage<EquipmentRemarkAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: EquipmentRemarkListParams | null | undefined = {}, options?: RequestOptions): PagePromise<EquipmentRemarkAbridgedsOffsetPage, EquipmentRemarkAbridged> {
+    return this._client.getAPIList('/udl/equipmentremark', OffsetPage<EquipmentRemarkAbridged>, { query, ...options });
   }
 
   /**
@@ -90,15 +76,8 @@ export class EquipmentRemarks extends APIResource {
    * const response = await client.equipmentRemarks.count();
    * ```
    */
-  count(
-    query: EquipmentRemarkCountParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get('/udl/equipmentremark/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+  count(query: EquipmentRemarkCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get('/udl/equipmentremark/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -124,12 +103,8 @@ export class EquipmentRemarks extends APIResource {
    * ```
    */
   createBulk(params: EquipmentRemarkCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/equipmentremark/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/equipmentremark/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -163,15 +138,12 @@ export class EquipmentRemarks extends APIResource {
    *   });
    * ```
    */
-  tuple(
-    query: EquipmentRemarkTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<EquipmentRemarkTupleResponse> {
+  tuple(query: EquipmentRemarkTupleParams, options?: RequestOptions): APIPromise<EquipmentRemarkTupleResponse> {
     return this._client.get('/udl/equipmentremark/tuple', { query, ...options });
   }
 }
 
-export type EquipmentRemarkAbridgedsOffsetPage = OffsetPage<EquipmentRemarkAbridged>;
+export type EquipmentRemarkAbridgedsOffsetPage = OffsetPage<EquipmentRemarkAbridged>
 
 /**
  * Remarks contain amplifying information for a specific service. The information
@@ -360,7 +332,7 @@ export interface EquipmentRemarkFull {
   updatedBy?: string;
 }
 
-export type EquipmentRemarkCountResponse = string;
+export type EquipmentRemarkCountResponse = string
 
 export interface EquipmentRemarkQueryHelpResponse {
   aodrSupported?: boolean;
@@ -386,7 +358,7 @@ export interface EquipmentRemarkQueryHelpResponse {
   uri?: string;
 }
 
-export type EquipmentRemarkTupleResponse = Array<EquipmentRemarkFull>;
+export type EquipmentRemarkTupleResponse = Array<EquipmentRemarkFull>
 
 export interface EquipmentRemarkCreateParams {
   /**
@@ -467,7 +439,8 @@ export interface EquipmentRemarkRetrieveParams {
   maxResults?: number;
 }
 
-export interface EquipmentRemarkListParams extends OffsetPageParams {}
+export interface EquipmentRemarkListParams extends OffsetPageParams {
+}
 
 export interface EquipmentRemarkCountParams {
   firstResult?: number;
@@ -585,6 +558,6 @@ export declare namespace EquipmentRemarks {
     type EquipmentRemarkListParams as EquipmentRemarkListParams,
     type EquipmentRemarkCountParams as EquipmentRemarkCountParams,
     type EquipmentRemarkCreateBulkParams as EquipmentRemarkCreateBulkParams,
-    type EquipmentRemarkTupleParams as EquipmentRemarkTupleParams,
+    type EquipmentRemarkTupleParams as EquipmentRemarkTupleParams
   };
 }

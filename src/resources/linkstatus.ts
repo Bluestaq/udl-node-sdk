@@ -33,11 +33,7 @@ export class Linkstatus extends APIResource {
    * ```
    */
   update(id: string, body: LinkstatusUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/linkstatus/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/linkstatus/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -51,10 +47,7 @@ export class Linkstatus extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/linkstatus/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/linkstatus/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
@@ -220,5 +213,7 @@ export interface LinkstatusUpdateParams {
 }
 
 export declare namespace Linkstatus {
-  export { type LinkstatusUpdateParams as LinkstatusUpdateParams };
+  export {
+    type LinkstatusUpdateParams as LinkstatusUpdateParams
+  };
 }

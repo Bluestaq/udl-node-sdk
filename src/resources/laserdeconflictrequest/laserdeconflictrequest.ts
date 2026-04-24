@@ -4,15 +4,7 @@ import { APIResource } from '../../core/resource';
 import * as LaserdeconflictrequestAPI from './laserdeconflictrequest';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -52,11 +44,7 @@ export class Laserdeconflictrequest extends APIResource {
    * ```
    */
   create(body: LaserdeconflictrequestCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/laserdeconflictrequest', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/laserdeconflictrequest', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -75,15 +63,8 @@ export class Laserdeconflictrequest extends APIResource {
    * }
    * ```
    */
-  list(
-    query: LaserdeconflictrequestListParams,
-    options?: RequestOptions,
-  ): PagePromise<LaserdeconflictrequestListResponsesOffsetPage, LaserdeconflictrequestListResponse> {
-    return this._client.getAPIList(
-      '/udl/laserdeconflictrequest',
-      OffsetPage<LaserdeconflictrequestListResponse>,
-      { query, ...options },
-    );
+  list(query: LaserdeconflictrequestListParams, options?: RequestOptions): PagePromise<LaserdeconflictrequestListResponsesOffsetPage, LaserdeconflictrequestListResponse> {
+    return this._client.getAPIList('/udl/laserdeconflictrequest', OffsetPage<LaserdeconflictrequestListResponse>, { query, ...options });
   }
 
   /**
@@ -101,11 +82,7 @@ export class Laserdeconflictrequest extends APIResource {
    * ```
    */
   count(query: LaserdeconflictrequestCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/laserdeconflictrequest/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/laserdeconflictrequest/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -118,11 +95,7 @@ export class Laserdeconflictrequest extends APIResource {
    *   await client.laserdeconflictrequest.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: LaserdeconflictrequestGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<LaserdeconflictrequestGetResponse> {
+  get(id: string, query: LaserdeconflictrequestGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<LaserdeconflictrequestGetResponse> {
     return this._client.get(path`/udl/laserdeconflictrequest/${id}`, { query, ...options });
   }
 
@@ -158,10 +131,7 @@ export class Laserdeconflictrequest extends APIResource {
    * });
    * ```
    */
-  tuple(
-    query: LaserdeconflictrequestTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<LaserdeconflictrequestTupleResponse> {
+  tuple(query: LaserdeconflictrequestTupleParams, options?: RequestOptions): APIPromise<LaserdeconflictrequestTupleResponse> {
     return this._client.get('/udl/laserdeconflictrequest/tuple', { query, ...options });
   }
 
@@ -189,19 +159,12 @@ export class Laserdeconflictrequest extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(
-    body: LaserdeconflictrequestUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    return this._client.post('/filedrop/udl-laserdeconflictrequest', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(body: LaserdeconflictrequestUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.post('/filedrop/udl-laserdeconflictrequest', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type LaserdeconflictrequestListResponsesOffsetPage = OffsetPage<LaserdeconflictrequestListResponse>;
+export type LaserdeconflictrequestListResponsesOffsetPage = OffsetPage<LaserdeconflictrequestListResponse>
 
 export interface FixedPointFull {
   /**
@@ -539,7 +502,7 @@ export namespace LaserdeconflictrequestListResponse {
   }
 }
 
-export type LaserdeconflictrequestCountResponse = string;
+export type LaserdeconflictrequestCountResponse = string
 
 /**
  * The LaserDeconflictionRequest service is designed to process and manage requests
@@ -1086,8 +1049,7 @@ export interface LaserdeconflictrequestQueryhelpResponse {
   uri?: string;
 }
 
-export type LaserdeconflictrequestTupleResponse =
-  Array<LaserdeconflictrequestTupleResponse.LaserdeconflictrequestTupleResponseItem>;
+export type LaserdeconflictrequestTupleResponse = Array<LaserdeconflictrequestTupleResponse.LaserdeconflictrequestTupleResponseItem>
 
 export namespace LaserdeconflictrequestTupleResponse {
   /**
@@ -2650,7 +2612,7 @@ export declare namespace Laserdeconflictrequest {
     type LaserdeconflictrequestCountParams as LaserdeconflictrequestCountParams,
     type LaserdeconflictrequestGetParams as LaserdeconflictrequestGetParams,
     type LaserdeconflictrequestTupleParams as LaserdeconflictrequestTupleParams,
-    type LaserdeconflictrequestUnvalidatedPublishParams as LaserdeconflictrequestUnvalidatedPublishParams,
+    type LaserdeconflictrequestUnvalidatedPublishParams as LaserdeconflictrequestUnvalidatedPublishParams
   };
 
   export {
@@ -2660,6 +2622,6 @@ export declare namespace Laserdeconflictrequest {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

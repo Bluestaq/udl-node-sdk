@@ -31,11 +31,7 @@ export class SensorStating extends APIResource {
    * ```
    */
   create(body: SensorStatingCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/sensorstaging', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/sensorstaging', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -53,11 +49,7 @@ export class SensorStating extends APIResource {
    * ```
    */
   update(id: string, body: SensorStatingUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/sensorstaging/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/sensorstaging/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -74,14 +66,8 @@ export class SensorStating extends APIResource {
    * }
    * ```
    */
-  list(
-    query: SensorStatingListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<SensorStatingListResponsesOffsetPage, SensorStatingListResponse> {
-    return this._client.getAPIList('/udl/sensorstaging', OffsetPage<SensorStatingListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: SensorStatingListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SensorStatingListResponsesOffsetPage, SensorStatingListResponse> {
+    return this._client.getAPIList('/udl/sensorstaging', OffsetPage<SensorStatingListResponse>, { query, ...options });
   }
 
   /**
@@ -95,10 +81,7 @@ export class SensorStating extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/sensorstaging/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/sensorstaging/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -124,12 +107,8 @@ export class SensorStating extends APIResource {
    * ```
    */
   createBulk(params: SensorStatingCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/sensorstaging/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/sensorstaging/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -141,11 +120,7 @@ export class SensorStating extends APIResource {
    * const sensorStating = await client.sensorStating.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: SensorStatingGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<SensorStatingGetResponse> {
+  get(id: string, query: SensorStatingGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SensorStatingGetResponse> {
     return this._client.get(path`/udl/sensorstaging/${id}`, { query, ...options });
   }
 
@@ -163,7 +138,7 @@ export class SensorStating extends APIResource {
   }
 }
 
-export type SensorStatingListResponsesOffsetPage = OffsetPage<SensorStatingListResponse>;
+export type SensorStatingListResponsesOffsetPage = OffsetPage<SensorStatingListResponse>
 
 /**
  * Model representation of a nominal sensor. This entity contains minimal
@@ -559,7 +534,8 @@ export interface SensorStatingUpdateParams {
   shortName?: string;
 }
 
-export interface SensorStatingListParams extends OffsetPageParams {}
+export interface SensorStatingListParams extends OffsetPageParams {
+}
 
 export interface SensorStatingCreateBulkParams {
   body: Array<SensorStatingCreateBulkParams.Body>;
@@ -672,6 +648,6 @@ export declare namespace SensorStating {
     type SensorStatingUpdateParams as SensorStatingUpdateParams,
     type SensorStatingListParams as SensorStatingListParams,
     type SensorStatingCreateBulkParams as SensorStatingCreateBulkParams,
-    type SensorStatingGetParams as SensorStatingGetParams,
+    type SensorStatingGetParams as SensorStatingGetParams
   };
 }

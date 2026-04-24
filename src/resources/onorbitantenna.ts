@@ -32,11 +32,7 @@ export class Onorbitantenna extends APIResource {
    * ```
    */
   create(body: OnorbitantennaCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/onorbitantenna', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/onorbitantenna', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -58,11 +54,7 @@ export class Onorbitantenna extends APIResource {
    * ```
    */
   update(id: string, body: OnorbitantennaUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/onorbitantenna/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/onorbitantenna/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -79,14 +71,8 @@ export class Onorbitantenna extends APIResource {
    * }
    * ```
    */
-  list(
-    query: OnorbitantennaListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<OnorbitantennaListResponsesOffsetPage, OnorbitantennaListResponse> {
-    return this._client.getAPIList('/udl/onorbitantenna', OffsetPage<OnorbitantennaListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: OnorbitantennaListParams | null | undefined = {}, options?: RequestOptions): PagePromise<OnorbitantennaListResponsesOffsetPage, OnorbitantennaListResponse> {
+    return this._client.getAPIList('/udl/onorbitantenna', OffsetPage<OnorbitantennaListResponse>, { query, ...options });
   }
 
   /**
@@ -102,10 +88,7 @@ export class Onorbitantenna extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/onorbitantenna/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/onorbitantenna/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -121,16 +104,12 @@ export class Onorbitantenna extends APIResource {
    * );
    * ```
    */
-  get(
-    id: string,
-    query: OnorbitantennaGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.OnorbitAntennaFull> {
+  get(id: string, query: OnorbitantennaGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.OnorbitAntennaFull> {
     return this._client.get(path`/udl/onorbitantenna/${id}`, { query, ...options });
   }
 }
 
-export type OnorbitantennaListResponsesOffsetPage = OffsetPage<OnorbitantennaListResponse>;
+export type OnorbitantennaListResponsesOffsetPage = OffsetPage<OnorbitantennaListResponse>
 
 export interface OnorbitantennaListResponse {
   /**
@@ -326,7 +305,8 @@ export interface OnorbitantennaUpdateParams {
   origin?: string;
 }
 
-export interface OnorbitantennaListParams extends OffsetPageParams {}
+export interface OnorbitantennaListParams extends OffsetPageParams {
+}
 
 export interface OnorbitantennaGetParams {
   firstResult?: number;
@@ -341,6 +321,6 @@ export declare namespace Onorbitantenna {
     type OnorbitantennaCreateParams as OnorbitantennaCreateParams,
     type OnorbitantennaUpdateParams as OnorbitantennaUpdateParams,
     type OnorbitantennaListParams as OnorbitantennaListParams,
-    type OnorbitantennaGetParams as OnorbitantennaGetParams,
+    type OnorbitantennaGetParams as OnorbitantennaGetParams
   };
 }

@@ -30,11 +30,7 @@ export class AirspaceControlOrders extends APIResource {
    * ```
    */
   create(body: AirspaceControlOrderCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/airspacecontrolorder', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/airspacecontrolorder', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -47,11 +43,7 @@ export class AirspaceControlOrders extends APIResource {
    *   await client.airspaceControlOrders.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: AirspaceControlOrderRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.AirspacecontrolorderFull> {
+  retrieve(id: string, query: AirspaceControlOrderRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AirspacecontrolorderFull> {
     return this._client.get(path`/udl/airspacecontrolorder/${id}`, { query, ...options });
   }
 
@@ -69,14 +61,8 @@ export class AirspaceControlOrders extends APIResource {
    * }
    * ```
    */
-  list(
-    query: AirspaceControlOrderListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<AirspacecontrolorderAbridgedsOffsetPage, AirspacecontrolorderAbridged> {
-    return this._client.getAPIList('/udl/airspacecontrolorder', OffsetPage<AirspacecontrolorderAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: AirspaceControlOrderListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AirspacecontrolorderAbridgedsOffsetPage, AirspacecontrolorderAbridged> {
+    return this._client.getAPIList('/udl/airspacecontrolorder', OffsetPage<AirspacecontrolorderAbridged>, { query, ...options });
   }
 
   /**
@@ -91,15 +77,8 @@ export class AirspaceControlOrders extends APIResource {
    * const response = await client.airspaceControlOrders.count();
    * ```
    */
-  count(
-    query: AirspaceControlOrderCountParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get('/udl/airspacecontrolorder/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+  count(query: AirspaceControlOrderCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get('/udl/airspacecontrolorder/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -126,12 +105,8 @@ export class AirspaceControlOrders extends APIResource {
    * ```
    */
   createBulk(params: AirspaceControlOrderCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/airspacecontrolorder/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/airspacecontrolorder/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -166,15 +141,12 @@ export class AirspaceControlOrders extends APIResource {
    *   });
    * ```
    */
-  tuple(
-    query: AirspaceControlOrderTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<AirspaceControlOrderTupleResponse> {
+  tuple(query: AirspaceControlOrderTupleParams, options?: RequestOptions): APIPromise<AirspaceControlOrderTupleResponse> {
     return this._client.get('/udl/airspacecontrolorder/tuple', { query, ...options });
   }
 }
 
-export type AirspacecontrolorderAbridgedsOffsetPage = OffsetPage<AirspacecontrolorderAbridged>;
+export type AirspacecontrolorderAbridgedsOffsetPage = OffsetPage<AirspacecontrolorderAbridged>
 
 /**
  * Beta Version Airspace Control Order: Contains airspace coordination information
@@ -716,7 +688,7 @@ export namespace AirspacecontrolorderAbridged {
   }
 }
 
-export type AirspaceControlOrderCountResponse = string;
+export type AirspaceControlOrderCountResponse = string
 
 export interface AirspaceControlOrderQueryHelpResponse {
   aodrSupported?: boolean;
@@ -742,7 +714,7 @@ export interface AirspaceControlOrderQueryHelpResponse {
   uri?: string;
 }
 
-export type AirspaceControlOrderTupleResponse = Array<Shared.AirspacecontrolorderFull>;
+export type AirspaceControlOrderTupleResponse = Array<Shared.AirspacecontrolorderFull>
 
 export interface AirspaceControlOrderCreateParams {
   /**
@@ -1262,7 +1234,8 @@ export interface AirspaceControlOrderRetrieveParams {
   maxResults?: number;
 }
 
-export interface AirspaceControlOrderListParams extends OffsetPageParams {}
+export interface AirspaceControlOrderListParams extends OffsetPageParams {
+}
 
 export interface AirspaceControlOrderCountParams {
   firstResult?: number;
@@ -1818,6 +1791,6 @@ export declare namespace AirspaceControlOrders {
     type AirspaceControlOrderListParams as AirspaceControlOrderListParams,
     type AirspaceControlOrderCountParams as AirspaceControlOrderCountParams,
     type AirspaceControlOrderCreateBulkParams as AirspaceControlOrderCreateBulkParams,
-    type AirspaceControlOrderTupleParams as AirspaceControlOrderTupleParams,
+    type AirspaceControlOrderTupleParams as AirspaceControlOrderTupleParams
   };
 }

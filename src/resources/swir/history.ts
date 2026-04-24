@@ -45,11 +45,7 @@ export class History extends APIResource {
    * ```
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/swir/history/aodr', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.get('/udl/swir/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -67,15 +63,11 @@ export class History extends APIResource {
    * ```
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/swir/history/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/swir/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 }
 
-export type SwirFullsOffsetPage = OffsetPage<SwirFull>;
+export type SwirFullsOffsetPage = OffsetPage<SwirFull>
 
 /**
  * Data representing observed short wave infrared (SWIR) measurements.
@@ -216,7 +208,7 @@ export interface SwirFull {
   wavelengths?: Array<number>;
 }
 
-export type HistoryCountResponse = string;
+export type HistoryCountResponse = string
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -288,6 +280,6 @@ export declare namespace History {
     type SwirFullsOffsetPage as SwirFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

@@ -16,14 +16,8 @@ export class History extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(
-    query: HistoryListParams,
-    options?: RequestOptions,
-  ): PagePromise<HistoryListResponsesOffsetPage, HistoryListResponse> {
-    return this._client.getAPIList('/udl/ionoobservation/history', OffsetPage<HistoryListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: HistoryListParams, options?: RequestOptions): PagePromise<HistoryListResponsesOffsetPage, HistoryListResponse> {
+    return this._client.getAPIList('/udl/ionoobservation/history', OffsetPage<HistoryListResponse>, { query, ...options });
   }
 
   /**
@@ -33,11 +27,7 @@ export class History extends APIResource {
    * for more details on valid/required query parameter information.
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/ionoobservation/history/aodr', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.get('/udl/ionoobservation/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -48,15 +38,11 @@ export class History extends APIResource {
    * valid/required query parameter information.
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/ionoobservation/history/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/ionoobservation/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 }
 
-export type HistoryListResponsesOffsetPage = OffsetPage<HistoryListResponse>;
+export type HistoryListResponsesOffsetPage = OffsetPage<HistoryListResponse>
 
 /**
  * These services provide operations for posting and querying ionospheric
@@ -128,13 +114,7 @@ export interface HistoryListResponse {
    * Enums: J2000, ECR/ECEF, TEME, GCRF, WGS84 (GEODetic lat, long, alt), GEOCentric
    * (lat, long, radii).
    */
-  antennaElementPositionCoordinateSystem?:
-    | 'J2000'
-    | 'ECR/ECEF'
-    | 'TEME'
-    | 'GCRF'
-    | 'WGS84 (GEODetic lat, long, alt)'
-    | 'GEOCentric (lat, long, radii)';
+  antennaElementPositionCoordinateSystem?: 'J2000' | 'ECR/ECEF' | 'TEME' | 'GCRF' | 'WGS84 (GEODetic lat, long, alt)' | 'GEOCentric (lat, long, radii)';
 
   /**
    * Array of Legacy Artist Flags.
@@ -1441,7 +1421,7 @@ export namespace HistoryListResponse {
   }
 }
 
-export type HistoryCountResponse = string;
+export type HistoryCountResponse = string
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -1513,6 +1493,6 @@ export declare namespace History {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

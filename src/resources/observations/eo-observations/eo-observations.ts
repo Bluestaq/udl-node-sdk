@@ -3,13 +3,7 @@
 import { APIResource } from '../../../core/resource';
 import * as Shared from '../../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
 import { APIPromise } from '../../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
@@ -40,11 +34,7 @@ export class EoObservations extends APIResource {
    * ```
    */
   create(body: EoObservationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/eoobservation', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/eoobservation', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -57,11 +47,7 @@ export class EoObservations extends APIResource {
    *   await client.observations.eoObservations.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: EoObservationRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.EoObservationFull> {
+  retrieve(id: string, query: EoObservationRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.EoObservationFull> {
     return this._client.get(path`/udl/eoobservation/${id}`, { query, ...options });
   }
 
@@ -81,14 +67,8 @@ export class EoObservations extends APIResource {
    * }
    * ```
    */
-  list(
-    query: EoObservationListParams,
-    options?: RequestOptions,
-  ): PagePromise<EoObservationAbridgedsOffsetPage, EoObservationAbridged> {
-    return this._client.getAPIList('/udl/eoobservation', OffsetPage<EoObservationAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: EoObservationListParams, options?: RequestOptions): PagePromise<EoObservationAbridgedsOffsetPage, EoObservationAbridged> {
+    return this._client.getAPIList('/udl/eoobservation', OffsetPage<EoObservationAbridged>, { query, ...options });
   }
 
   /**
@@ -107,11 +87,7 @@ export class EoObservations extends APIResource {
    * ```
    */
   count(query: EoObservationCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/eoobservation/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/eoobservation/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -136,13 +112,8 @@ export class EoObservations extends APIResource {
    * ```
    */
   createBulk(params: EoObservationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body, convertToJ2K } = params;
-    return this._client.post('/udl/eoobservation/createBulk', {
-      query: { convertToJ2K },
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body, convertToJ2K } = params
+    return this._client.post('/udl/eoobservation/createBulk', { query: { convertToJ2K }, body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -204,20 +175,13 @@ export class EoObservations extends APIResource {
    * );
    * ```
    */
-  unvalidatedPublish(
-    params: EoObservationUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-eo', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: EoObservationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-eo', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type EoObservationAbridgedsOffsetPage = OffsetPage<EoObservationAbridged>;
+export type EoObservationAbridgedsOffsetPage = OffsetPage<EoObservationAbridged>
 
 /**
  * Model representation of observation data for electro-optical based sensor
@@ -836,7 +800,7 @@ export interface EoObservationAbridged {
   zeroPtdUnc?: number;
 }
 
-export type EoObservationCountResponse = string;
+export type EoObservationCountResponse = string
 
 export interface EoObservationQueryhelpResponse {
   aodrSupported?: boolean;
@@ -862,7 +826,7 @@ export interface EoObservationQueryhelpResponse {
   uri?: string;
 }
 
-export type EoObservationTupleResponse = Array<Shared.EoObservationFull>;
+export type EoObservationTupleResponse = Array<Shared.EoObservationFull>
 
 export interface EoObservationCreateParams {
   /**
@@ -4451,7 +4415,7 @@ export declare namespace EoObservations {
     type EoObservationCountParams as EoObservationCountParams,
     type EoObservationCreateBulkParams as EoObservationCreateBulkParams,
     type EoObservationTupleParams as EoObservationTupleParams,
-    type EoObservationUnvalidatedPublishParams as EoObservationUnvalidatedPublishParams,
+    type EoObservationUnvalidatedPublishParams as EoObservationUnvalidatedPublishParams
   };
 
   export {
@@ -4459,6 +4423,6 @@ export declare namespace EoObservations {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

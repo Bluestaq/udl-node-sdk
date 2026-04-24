@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -42,11 +34,7 @@ export class SensorPlan extends APIResource {
    * ```
    */
   create(body: SensorPlanCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/sensorplan', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/sensorplan', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -66,11 +54,7 @@ export class SensorPlan extends APIResource {
    * ```
    */
   update(id: string, body: SensorPlanUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/sensorplan/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/sensorplan/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -89,14 +73,8 @@ export class SensorPlan extends APIResource {
    * }
    * ```
    */
-  list(
-    query: SensorPlanListParams,
-    options?: RequestOptions,
-  ): PagePromise<SensorPlanListResponsesOffsetPage, SensorPlanListResponse> {
-    return this._client.getAPIList('/udl/sensorplan', OffsetPage<SensorPlanListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: SensorPlanListParams, options?: RequestOptions): PagePromise<SensorPlanListResponsesOffsetPage, SensorPlanListResponse> {
+    return this._client.getAPIList('/udl/sensorplan', OffsetPage<SensorPlanListResponse>, { query, ...options });
   }
 
   /**
@@ -114,11 +92,7 @@ export class SensorPlan extends APIResource {
    * ```
    */
   count(query: SensorPlanCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/sensorplan/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/sensorplan/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -130,11 +104,7 @@ export class SensorPlan extends APIResource {
    * const sensorPlan = await client.sensorPlan.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: SensorPlanGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<SensorPlanGetResponse> {
+  get(id: string, query: SensorPlanGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SensorPlanGetResponse> {
     return this._client.get(path`/udl/sensorplan/${id}`, { query, ...options });
   }
 
@@ -196,16 +166,12 @@ export class SensorPlan extends APIResource {
    * ```
    */
   unvalidatedPublish(params: SensorPlanUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-sensorplan', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/filedrop/udl-sensorplan', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type SensorPlanListResponsesOffsetPage = OffsetPage<SensorPlanListResponse>;
+export type SensorPlanListResponsesOffsetPage = OffsetPage<SensorPlanListResponse>
 
 /**
  * A Plan is used to aggregate two or more of the same type of record to a parent
@@ -337,7 +303,7 @@ export interface SensorPlanListResponse {
   status?: string;
 }
 
-export type SensorPlanCountResponse = string;
+export type SensorPlanCountResponse = string
 
 /**
  * A Plan is used to aggregate two or more of the same type of record to a parent
@@ -2178,7 +2144,7 @@ export interface SensorPlanQueryhelpResponse {
   uri?: string;
 }
 
-export type SensorPlanTupleResponse = Array<SensorPlanTupleResponse.SensorPlanTupleResponseItem>;
+export type SensorPlanTupleResponse = Array<SensorPlanTupleResponse.SensorPlanTupleResponseItem>
 
 export namespace SensorPlanTupleResponse {
   /**
@@ -8999,7 +8965,7 @@ export declare namespace SensorPlan {
     type SensorPlanCountParams as SensorPlanCountParams,
     type SensorPlanGetParams as SensorPlanGetParams,
     type SensorPlanTupleParams as SensorPlanTupleParams,
-    type SensorPlanUnvalidatedPublishParams as SensorPlanUnvalidatedPublishParams,
+    type SensorPlanUnvalidatedPublishParams as SensorPlanUnvalidatedPublishParams
   };
 
   export {
@@ -9009,6 +8975,6 @@ export declare namespace SensorPlan {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

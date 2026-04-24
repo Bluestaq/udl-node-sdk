@@ -23,17 +23,8 @@ export class UdlSigact extends APIResource {
    * console.log(content);
    * ```
    */
-  fileGet(
-    id: string,
-    query: UdlSigactFileGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Response> {
-    return this._client.get(path`/udl/sigact/getFile/${id}`, {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
-      __binaryResponse: true,
-    });
+  fileGet(id: string, query: UdlSigactFileGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/udl/sigact/getFile/${id}`, { query, ...options, headers: buildHeaders([{Accept: 'application/octet-stream'}, options?.headers]), __binaryResponse: true });
   }
 
   /**
@@ -59,12 +50,8 @@ export class UdlSigact extends APIResource {
    * ```
    */
   unvalidatedPublish(params: UdlSigactUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-sigact', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/filedrop/udl-sigact', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
@@ -629,6 +616,6 @@ export namespace UdlSigactUnvalidatedPublishParams {
 export declare namespace UdlSigact {
   export {
     type UdlSigactFileGetParams as UdlSigactFileGetParams,
-    type UdlSigactUnvalidatedPublishParams as UdlSigactUnvalidatedPublishParams,
+    type UdlSigactUnvalidatedPublishParams as UdlSigactUnvalidatedPublishParams
   };
 }

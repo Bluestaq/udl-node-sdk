@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -42,11 +34,7 @@ export class Ecpedr extends APIResource {
    * ```
    */
   create(body: EcpedrCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/ecpedr', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/ecpedr', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -65,10 +53,7 @@ export class Ecpedr extends APIResource {
    * }
    * ```
    */
-  list(
-    query: EcpedrListParams,
-    options?: RequestOptions,
-  ): PagePromise<EcpedrListResponsesOffsetPage, EcpedrListResponse> {
+  list(query: EcpedrListParams, options?: RequestOptions): PagePromise<EcpedrListResponsesOffsetPage, EcpedrListResponse> {
     return this._client.getAPIList('/udl/ecpedr', OffsetPage<EcpedrListResponse>, { query, ...options });
   }
 
@@ -87,11 +72,7 @@ export class Ecpedr extends APIResource {
    * ```
    */
   count(query: EcpedrCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/ecpedr/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/ecpedr/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -119,12 +100,8 @@ export class Ecpedr extends APIResource {
    * ```
    */
   createBulk(params: EcpedrCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/ecpedr/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/ecpedr/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -186,16 +163,12 @@ export class Ecpedr extends APIResource {
    * ```
    */
   unvalidatedPublish(params: EcpedrUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-ecpedr', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/filedrop/udl-ecpedr', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type EcpedrListResponsesOffsetPage = OffsetPage<EcpedrListResponse>;
+export type EcpedrListResponsesOffsetPage = OffsetPage<EcpedrListResponse>
 
 /**
  * Energetic Charged Particles (ECP) Environmental Data Records (EDRs).
@@ -424,7 +397,7 @@ export namespace EcpedrListResponse {
   }
 }
 
-export type EcpedrCountResponse = string;
+export type EcpedrCountResponse = string
 
 export interface EcpedrQueryhelpResponse {
   aodrSupported?: boolean;
@@ -450,7 +423,7 @@ export interface EcpedrQueryhelpResponse {
   uri?: string;
 }
 
-export type EcpedrTupleResponse = Array<EcpedrTupleResponse.EcpedrTupleResponseItem>;
+export type EcpedrTupleResponse = Array<EcpedrTupleResponse.EcpedrTupleResponseItem>
 
 export namespace EcpedrTupleResponse {
   /**
@@ -1338,7 +1311,7 @@ export declare namespace Ecpedr {
     type EcpedrCountParams as EcpedrCountParams,
     type EcpedrCreateBulkParams as EcpedrCreateBulkParams,
     type EcpedrTupleParams as EcpedrTupleParams,
-    type EcpedrUnvalidatedPublishParams as EcpedrUnvalidatedPublishParams,
+    type EcpedrUnvalidatedPublishParams as EcpedrUnvalidatedPublishParams
   };
 
   export {
@@ -1348,6 +1321,6 @@ export declare namespace Ecpedr {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

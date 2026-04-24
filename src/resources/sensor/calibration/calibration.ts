@@ -3,15 +3,7 @@
 import { APIResource } from '../../../core/resource';
 import * as Shared from '../../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
@@ -43,11 +35,7 @@ export class Calibration extends APIResource {
    * ```
    */
   create(body: CalibrationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/sensorcalibration', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/sensorcalibration', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -60,11 +48,7 @@ export class Calibration extends APIResource {
    *   await client.sensor.calibration.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: CalibrationRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<CalibrationRetrieveResponse> {
+  retrieve(id: string, query: CalibrationRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<CalibrationRetrieveResponse> {
     return this._client.get(path`/udl/sensorcalibration/${id}`, { query, ...options });
   }
 
@@ -84,14 +68,8 @@ export class Calibration extends APIResource {
    * }
    * ```
    */
-  list(
-    query: CalibrationListParams,
-    options?: RequestOptions,
-  ): PagePromise<CalibrationListResponsesOffsetPage, CalibrationListResponse> {
-    return this._client.getAPIList('/udl/sensorcalibration', OffsetPage<CalibrationListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: CalibrationListParams, options?: RequestOptions): PagePromise<CalibrationListResponsesOffsetPage, CalibrationListResponse> {
+    return this._client.getAPIList('/udl/sensorcalibration', OffsetPage<CalibrationListResponse>, { query, ...options });
   }
 
   /**
@@ -109,11 +87,7 @@ export class Calibration extends APIResource {
    * ```
    */
   count(query: CalibrationCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/sensorcalibration/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/sensorcalibration/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -139,12 +113,8 @@ export class Calibration extends APIResource {
    * ```
    */
   createBulk(params: CalibrationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/sensorcalibration/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/sensorcalibration/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -204,20 +174,13 @@ export class Calibration extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(
-    params: CalibrationUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-sensorcalibration', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: CalibrationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-sensorcalibration', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type CalibrationListResponsesOffsetPage = OffsetPage<CalibrationListResponse>;
+export type CalibrationListResponsesOffsetPage = OffsetPage<CalibrationListResponse>
 
 /**
  * The Sensor Calibration service records data about a sensor's overall accuracy
@@ -917,7 +880,7 @@ export interface CalibrationListResponse {
   timeBiasSigma?: number;
 }
 
-export type CalibrationCountResponse = string;
+export type CalibrationCountResponse = string
 
 export interface CalibrationQueryHelpResponse {
   aodrSupported?: boolean;
@@ -943,7 +906,7 @@ export interface CalibrationQueryHelpResponse {
   uri?: string;
 }
 
-export type CalibrationTupleResponse = Array<CalibrationTupleResponse.CalibrationTupleResponseItem>;
+export type CalibrationTupleResponse = Array<CalibrationTupleResponse.CalibrationTupleResponseItem>
 
 export namespace CalibrationTupleResponse {
   /**
@@ -2339,7 +2302,7 @@ export declare namespace Calibration {
     type CalibrationCountParams as CalibrationCountParams,
     type CalibrationCreateBulkParams as CalibrationCreateBulkParams,
     type CalibrationTupleParams as CalibrationTupleParams,
-    type CalibrationUnvalidatedPublishParams as CalibrationUnvalidatedPublishParams,
+    type CalibrationUnvalidatedPublishParams as CalibrationUnvalidatedPublishParams
   };
 
   export {
@@ -2349,6 +2312,6 @@ export declare namespace Calibration {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

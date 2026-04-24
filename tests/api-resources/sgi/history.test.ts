@@ -5,7 +5,7 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource history', () => {
@@ -22,18 +22,15 @@ describe('resource history', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.sgi.history.list(
-        {
-          columns: 'columns',
-          effectiveDate: '2019-12-27T18:11:19.117Z',
-          firstResult: 0,
-          maxResults: 0,
-          sgiDate: '2019-12-27T18:11:19.117Z',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.sgi.history.list({
+    columns: 'columns',
+    effectiveDate: '2019-12-27T18:11:19.117Z',
+    firstResult: 0,
+    maxResults: 0,
+    sgiDate: '2019-12-27T18:11:19.117Z',
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('aodr', async () => {
@@ -49,21 +46,18 @@ describe('resource history', () => {
 
   test('aodr: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.sgi.history.aodr(
-        {
-          columns: 'columns',
-          effectiveDate: '2019-12-27T18:11:19.117Z',
-          firstResult: 0,
-          maxResults: 0,
-          notification: 'notification',
-          outputDelimiter: 'outputDelimiter',
-          outputFormat: 'outputFormat',
-          sgiDate: '2019-12-27T18:11:19.117Z',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.sgi.history.aodr({
+    columns: 'columns',
+    effectiveDate: '2019-12-27T18:11:19.117Z',
+    firstResult: 0,
+    maxResults: 0,
+    notification: 'notification',
+    outputDelimiter: 'outputDelimiter',
+    outputFormat: 'outputFormat',
+    sgiDate: '2019-12-27T18:11:19.117Z',
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('count', async () => {
@@ -79,16 +73,13 @@ describe('resource history', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.sgi.history.count(
-        {
-          effectiveDate: '2019-12-27T18:11:19.117Z',
-          firstResult: 0,
-          maxResults: 0,
-          sgiDate: '2019-12-27T18:11:19.117Z',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.sgi.history.count({
+    effectiveDate: '2019-12-27T18:11:19.117Z',
+    firstResult: 0,
+    maxResults: 0,
+    sgiDate: '2019-12-27T18:11:19.117Z',
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 });

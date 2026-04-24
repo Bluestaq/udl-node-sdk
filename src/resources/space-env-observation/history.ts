@@ -16,14 +16,8 @@ export class History extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(
-    query: HistoryListParams,
-    options?: RequestOptions,
-  ): PagePromise<SpaceEnvObservationFullsOffsetPage, SpaceEnvObservationFull> {
-    return this._client.getAPIList('/udl/spaceenvobservation/history', OffsetPage<SpaceEnvObservationFull>, {
-      query,
-      ...options,
-    });
+  list(query: HistoryListParams, options?: RequestOptions): PagePromise<SpaceEnvObservationFullsOffsetPage, SpaceEnvObservationFull> {
+    return this._client.getAPIList('/udl/spaceenvobservation/history', OffsetPage<SpaceEnvObservationFull>, { query, ...options });
   }
 
   /**
@@ -33,11 +27,7 @@ export class History extends APIResource {
    * for more details on valid/required query parameter information.
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/spaceenvobservation/history/aodr', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.get('/udl/spaceenvobservation/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -48,15 +38,11 @@ export class History extends APIResource {
    * valid/required query parameter information.
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/spaceenvobservation/history/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/spaceenvobservation/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 }
 
-export type SpaceEnvObservationFullsOffsetPage = OffsetPage<SpaceEnvObservationFull>;
+export type SpaceEnvObservationFullsOffsetPage = OffsetPage<SpaceEnvObservationFull>
 
 /**
  * SpaceEnvObservation data.
@@ -388,7 +374,7 @@ export namespace SpaceEnvObservationFull {
   }
 }
 
-export type HistoryCountResponse = string;
+export type HistoryCountResponse = string
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -463,6 +449,6 @@ export declare namespace History {
     type SpaceEnvObservationFullsOffsetPage as SpaceEnvObservationFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

@@ -32,11 +32,7 @@ export class Onorbitsolararray extends APIResource {
    * ```
    */
   create(body: OnorbitsolararrayCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/onorbitsolararray', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/onorbitsolararray', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -58,11 +54,7 @@ export class Onorbitsolararray extends APIResource {
    * ```
    */
   update(id: string, body: OnorbitsolararrayUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/onorbitsolararray/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/onorbitsolararray/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -79,14 +71,8 @@ export class Onorbitsolararray extends APIResource {
    * }
    * ```
    */
-  list(
-    query: OnorbitsolararrayListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<OnorbitsolararrayListResponsesOffsetPage, OnorbitsolararrayListResponse> {
-    return this._client.getAPIList('/udl/onorbitsolararray', OffsetPage<OnorbitsolararrayListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: OnorbitsolararrayListParams | null | undefined = {}, options?: RequestOptions): PagePromise<OnorbitsolararrayListResponsesOffsetPage, OnorbitsolararrayListResponse> {
+    return this._client.getAPIList('/udl/onorbitsolararray', OffsetPage<OnorbitsolararrayListResponse>, { query, ...options });
   }
 
   /**
@@ -103,10 +89,7 @@ export class Onorbitsolararray extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/onorbitsolararray/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/onorbitsolararray/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -121,16 +104,12 @@ export class Onorbitsolararray extends APIResource {
    *   await client.onorbitsolararray.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: OnorbitsolararrayGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.OnorbitSolarArrayFull> {
+  get(id: string, query: OnorbitsolararrayGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.OnorbitSolarArrayFull> {
     return this._client.get(path`/udl/onorbitsolararray/${id}`, { query, ...options });
   }
 }
 
-export type OnorbitsolararrayListResponsesOffsetPage = OffsetPage<OnorbitsolararrayListResponse>;
+export type OnorbitsolararrayListResponsesOffsetPage = OffsetPage<OnorbitsolararrayListResponse>
 
 export interface OnorbitsolararrayListResponse {
   /**
@@ -410,7 +389,8 @@ export interface OnorbitsolararrayUpdateParams {
   solarArray?: Shared.SolarArrayIngest;
 }
 
-export interface OnorbitsolararrayListParams extends OffsetPageParams {}
+export interface OnorbitsolararrayListParams extends OffsetPageParams {
+}
 
 export interface OnorbitsolararrayGetParams {
   firstResult?: number;
@@ -425,6 +405,6 @@ export declare namespace Onorbitsolararray {
     type OnorbitsolararrayCreateParams as OnorbitsolararrayCreateParams,
     type OnorbitsolararrayUpdateParams as OnorbitsolararrayUpdateParams,
     type OnorbitsolararrayListParams as OnorbitsolararrayListParams,
-    type OnorbitsolararrayGetParams as OnorbitsolararrayGetParams,
+    type OnorbitsolararrayGetParams as OnorbitsolararrayGetParams
   };
 }

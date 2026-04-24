@@ -30,11 +30,7 @@ export class AirfieldSlotConsumptions extends APIResource {
    * ```
    */
   create(body: AirfieldSlotConsumptionCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/airfieldslotconsumption', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/airfieldslotconsumption', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -47,11 +43,7 @@ export class AirfieldSlotConsumptions extends APIResource {
    *   await client.airfieldSlotConsumptions.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: AirfieldSlotConsumptionRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.AirfieldslotconsumptionFull> {
+  retrieve(id: string, query: AirfieldSlotConsumptionRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AirfieldslotconsumptionFull> {
     return this._client.get(path`/udl/airfieldslotconsumption/${id}`, { query, ...options });
   }
 
@@ -73,11 +65,7 @@ export class AirfieldSlotConsumptions extends APIResource {
    * ```
    */
   update(id: string, body: AirfieldSlotConsumptionUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/airfieldslotconsumption/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/airfieldslotconsumption/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -96,15 +84,8 @@ export class AirfieldSlotConsumptions extends APIResource {
    * }
    * ```
    */
-  list(
-    query: AirfieldSlotConsumptionListParams,
-    options?: RequestOptions,
-  ): PagePromise<AirfieldslotconsumptionAbridgedsOffsetPage, AirfieldslotconsumptionAbridged> {
-    return this._client.getAPIList(
-      '/udl/airfieldslotconsumption',
-      OffsetPage<AirfieldslotconsumptionAbridged>,
-      { query, ...options },
-    );
+  list(query: AirfieldSlotConsumptionListParams, options?: RequestOptions): PagePromise<AirfieldslotconsumptionAbridgedsOffsetPage, AirfieldslotconsumptionAbridged> {
+    return this._client.getAPIList('/udl/airfieldslotconsumption', OffsetPage<AirfieldslotconsumptionAbridged>, { query, ...options });
   }
 
   /**
@@ -118,10 +99,7 @@ export class AirfieldSlotConsumptions extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/airfieldslotconsumption/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/airfieldslotconsumption/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -140,11 +118,7 @@ export class AirfieldSlotConsumptions extends APIResource {
    * ```
    */
   count(query: AirfieldSlotConsumptionCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/airfieldslotconsumption/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/airfieldslotconsumption/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -180,15 +154,12 @@ export class AirfieldSlotConsumptions extends APIResource {
    *   });
    * ```
    */
-  tuple(
-    query: AirfieldSlotConsumptionTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<AirfieldSlotConsumptionTupleResponse> {
+  tuple(query: AirfieldSlotConsumptionTupleParams, options?: RequestOptions): APIPromise<AirfieldSlotConsumptionTupleResponse> {
     return this._client.get('/udl/airfieldslotconsumption/tuple', { query, ...options });
   }
 }
 
-export type AirfieldslotconsumptionAbridgedsOffsetPage = OffsetPage<AirfieldslotconsumptionAbridged>;
+export type AirfieldslotconsumptionAbridgedsOffsetPage = OffsetPage<AirfieldslotconsumptionAbridged>
 
 /**
  * Airfield slot use data. Contains the dynamic data associated with the status and
@@ -413,7 +384,7 @@ export interface AirfieldslotconsumptionAbridged {
   targetTime?: string;
 }
 
-export type AirfieldSlotConsumptionCountResponse = string;
+export type AirfieldSlotConsumptionCountResponse = string
 
 export interface AirfieldSlotConsumptionQueryhelpResponse {
   aodrSupported?: boolean;
@@ -439,7 +410,7 @@ export interface AirfieldSlotConsumptionQueryhelpResponse {
   uri?: string;
 }
 
-export type AirfieldSlotConsumptionTupleResponse = Array<Shared.AirfieldslotconsumptionFull>;
+export type AirfieldSlotConsumptionTupleResponse = Array<Shared.AirfieldslotconsumptionFull>
 
 export interface AirfieldSlotConsumptionCreateParams {
   /**
@@ -886,6 +857,6 @@ export declare namespace AirfieldSlotConsumptions {
     type AirfieldSlotConsumptionUpdateParams as AirfieldSlotConsumptionUpdateParams,
     type AirfieldSlotConsumptionListParams as AirfieldSlotConsumptionListParams,
     type AirfieldSlotConsumptionCountParams as AirfieldSlotConsumptionCountParams,
-    type AirfieldSlotConsumptionTupleParams as AirfieldSlotConsumptionTupleParams,
+    type AirfieldSlotConsumptionTupleParams as AirfieldSlotConsumptionTupleParams
   };
 }

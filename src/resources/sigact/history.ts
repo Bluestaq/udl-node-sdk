@@ -17,14 +17,8 @@ export class History extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(
-    query: HistoryListParams,
-    options?: RequestOptions,
-  ): PagePromise<HistoryListResponsesOffsetPage, HistoryListResponse> {
-    return this._client.getAPIList('/udl/sigact/history', OffsetPage<HistoryListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: HistoryListParams, options?: RequestOptions): PagePromise<HistoryListResponsesOffsetPage, HistoryListResponse> {
+    return this._client.getAPIList('/udl/sigact/history', OffsetPage<HistoryListResponse>, { query, ...options });
   }
 
   /**
@@ -35,15 +29,11 @@ export class History extends APIResource {
    * valid/required query parameter information.
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/sigact/history/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/sigact/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 }
 
-export type HistoryListResponsesOffsetPage = OffsetPage<HistoryListResponse>;
+export type HistoryListResponsesOffsetPage = OffsetPage<HistoryListResponse>
 
 /**
  * Provides information on the dates, actors, locations, fatalities, and types of
@@ -560,7 +550,7 @@ export interface HistoryListResponse {
   typeOfAttack?: string;
 }
 
-export type HistoryCountResponse = string;
+export type HistoryCountResponse = string
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -593,6 +583,6 @@ export declare namespace History {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

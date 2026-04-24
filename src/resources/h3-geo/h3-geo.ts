@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAdorParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAdorParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -52,11 +44,7 @@ export class H3Geo extends APIResource {
    * ```
    */
   create(body: H3GeoCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/h3geo', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/h3geo', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -75,10 +63,7 @@ export class H3Geo extends APIResource {
    * }
    * ```
    */
-  list(
-    query: H3GeoListParams,
-    options?: RequestOptions,
-  ): PagePromise<H3GeoListResponsesOffsetPage, H3GeoListResponse> {
+  list(query: H3GeoListParams, options?: RequestOptions): PagePromise<H3GeoListResponsesOffsetPage, H3GeoListResponse> {
     return this._client.getAPIList('/udl/h3geo', OffsetPage<H3GeoListResponse>, { query, ...options });
   }
 
@@ -97,11 +82,7 @@ export class H3Geo extends APIResource {
    * ```
    */
   count(query: H3GeoCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/h3geo/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/h3geo/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -113,11 +94,7 @@ export class H3Geo extends APIResource {
    * const h3Geo = await client.h3Geo.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: H3GeoGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<H3GeoGetResponse> {
+  get(id: string, query: H3GeoGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<H3GeoGetResponse> {
     return this._client.get(path`/udl/h3geo/${id}`, { query, ...options });
   }
 
@@ -157,7 +134,7 @@ export class H3Geo extends APIResource {
   }
 }
 
-export type H3GeoListResponsesOffsetPage = OffsetPage<H3GeoListResponse>;
+export type H3GeoListResponsesOffsetPage = OffsetPage<H3GeoListResponse>
 
 /**
  * H3 Geospatial Binning is a discrete global grid system for indexing geographies
@@ -263,7 +240,7 @@ export interface H3GeoListResponse {
   type?: string;
 }
 
-export type H3GeoCountResponse = string;
+export type H3GeoCountResponse = string
 
 /**
  * H3 Geospatial Binning is a discrete global grid system for indexing geographies
@@ -556,7 +533,7 @@ export interface H3GeoQueryhelpResponse {
   uri?: string;
 }
 
-export type H3GeoTupleResponse = Array<H3GeoTupleResponse.H3GeoTupleResponseItem>;
+export type H3GeoTupleResponse = Array<H3GeoTupleResponse.H3GeoTupleResponseItem>
 
 export namespace H3GeoTupleResponse {
   /**
@@ -1101,7 +1078,7 @@ export declare namespace H3Geo {
     type H3GeoListParams as H3GeoListParams,
     type H3GeoCountParams as H3GeoCountParams,
     type H3GeoGetParams as H3GeoGetParams,
-    type H3GeoTupleParams as H3GeoTupleParams,
+    type H3GeoTupleParams as H3GeoTupleParams
   };
 
   export {
@@ -1111,6 +1088,6 @@ export declare namespace H3Geo {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAdorParams as HistoryAdorParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

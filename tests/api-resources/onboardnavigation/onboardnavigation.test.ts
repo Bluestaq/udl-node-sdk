@@ -5,7 +5,7 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource onboardnavigation', () => {
@@ -22,10 +22,10 @@ describe('resource onboardnavigation', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.onboardnavigation.list({
-      startTime: '2019-12-27T18:11:19.117Z',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    startTime: '2019-12-27T18:11:19.117Z',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('count: only required params', async () => {
@@ -41,23 +41,19 @@ describe('resource onboardnavigation', () => {
 
   test('count: required and optional params', async () => {
     const response = await client.onboardnavigation.count({
-      startTime: '2019-12-27T18:11:19.117Z',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    startTime: '2019-12-27T18:11:19.117Z',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.onboardnavigation.createBulk({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          source: 'Bluestaq',
-          startTime: '2021-07-20T01:02:03.123456Z',
-        },
-      ],
-    });
+    const responsePromise = client.onboardnavigation.createBulk({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    source: 'Bluestaq',
+    startTime: '2021-07-20T01:02:03.123456Z',
+  }] });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -68,31 +64,27 @@ describe('resource onboardnavigation', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.onboardnavigation.createBulk({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          source: 'Bluestaq',
-          startTime: '2021-07-20T01:02:03.123456Z',
-          id: 'ONBOARD-NAVIGATION-ID',
-          deltaPos: [[1.1, 2.2, 3.3]],
-          endTime: '2021-07-20T01:02:03.123456Z',
-          esId: 'EPHEMERISSET-ID',
-          idStateVector: 'STATE-VECTOR-ID',
-          mag: [[1.1, 2.2, 3.3]],
-          origin: 'THIRD_PARTY_DATASOURCE',
-          origObjectId: 'ORIGOBJECT-ID',
-          referenceFrame: 'J2000',
-          satNo: 101,
-          starCatLoadTime: '2021-07-21T01:02:03.123Z',
-          starCatName: 'STAR-CAT-NAME',
-          starTracker: [[1.1, 2.2, 3.3]],
-          sunSensor: [[1.1, 2.2, 3.3]],
-          ts: ['2021-07-21T01:02:03.120003Z'],
-        },
-      ],
-    });
+    const response = await client.onboardnavigation.createBulk({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    source: 'Bluestaq',
+    startTime: '2021-07-20T01:02:03.123456Z',
+    id: 'ONBOARD-NAVIGATION-ID',
+    deltaPos: [[1.1, 2.2, 3.3]],
+    endTime: '2021-07-20T01:02:03.123456Z',
+    esId: 'EPHEMERISSET-ID',
+    idStateVector: 'STATE-VECTOR-ID',
+    mag: [[1.1, 2.2, 3.3]],
+    origin: 'THIRD_PARTY_DATASOURCE',
+    origObjectId: 'ORIGOBJECT-ID',
+    referenceFrame: 'J2000',
+    satNo: 101,
+    starCatLoadTime: '2021-07-21T01:02:03.123Z',
+    starCatName: 'STAR-CAT-NAME',
+    starTracker: [[1.1, 2.2, 3.3]],
+    sunSensor: [[1.1, 2.2, 3.3]],
+    ts: ['2021-07-21T01:02:03.120003Z'],
+  }] });
   });
 
   test('queryhelp', async () => {
@@ -107,10 +99,7 @@ describe('resource onboardnavigation', () => {
   });
 
   test('tuple: only required params', async () => {
-    const responsePromise = client.onboardnavigation.tuple({
-      columns: 'columns',
-      startTime: '2019-12-27T18:11:19.117Z',
-    });
+    const responsePromise = client.onboardnavigation.tuple({ columns: 'columns', startTime: '2019-12-27T18:11:19.117Z' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -122,24 +111,20 @@ describe('resource onboardnavigation', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.onboardnavigation.tuple({
-      columns: 'columns',
-      startTime: '2019-12-27T18:11:19.117Z',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    columns: 'columns',
+    startTime: '2019-12-27T18:11:19.117Z',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.onboardnavigation.unvalidatedPublish({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          source: 'Bluestaq',
-          startTime: '2021-07-20T01:02:03.123456Z',
-        },
-      ],
-    });
+    const responsePromise = client.onboardnavigation.unvalidatedPublish({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    source: 'Bluestaq',
+    startTime: '2021-07-20T01:02:03.123456Z',
+  }] });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -150,30 +135,26 @@ describe('resource onboardnavigation', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.onboardnavigation.unvalidatedPublish({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          source: 'Bluestaq',
-          startTime: '2021-07-20T01:02:03.123456Z',
-          id: 'ONBOARD-NAVIGATION-ID',
-          deltaPos: [[1.1, 2.2, 3.3]],
-          endTime: '2021-07-20T01:02:03.123456Z',
-          esId: 'EPHEMERISSET-ID',
-          idStateVector: 'STATE-VECTOR-ID',
-          mag: [[1.1, 2.2, 3.3]],
-          origin: 'THIRD_PARTY_DATASOURCE',
-          origObjectId: 'ORIGOBJECT-ID',
-          referenceFrame: 'J2000',
-          satNo: 101,
-          starCatLoadTime: '2021-07-21T01:02:03.123Z',
-          starCatName: 'STAR-CAT-NAME',
-          starTracker: [[1.1, 2.2, 3.3]],
-          sunSensor: [[1.1, 2.2, 3.3]],
-          ts: ['2021-07-21T01:02:03.120003Z'],
-        },
-      ],
-    });
+    const response = await client.onboardnavigation.unvalidatedPublish({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    source: 'Bluestaq',
+    startTime: '2021-07-20T01:02:03.123456Z',
+    id: 'ONBOARD-NAVIGATION-ID',
+    deltaPos: [[1.1, 2.2, 3.3]],
+    endTime: '2021-07-20T01:02:03.123456Z',
+    esId: 'EPHEMERISSET-ID',
+    idStateVector: 'STATE-VECTOR-ID',
+    mag: [[1.1, 2.2, 3.3]],
+    origin: 'THIRD_PARTY_DATASOURCE',
+    origObjectId: 'ORIGOBJECT-ID',
+    referenceFrame: 'J2000',
+    satNo: 101,
+    starCatLoadTime: '2021-07-21T01:02:03.123Z',
+    starCatName: 'STAR-CAT-NAME',
+    starTracker: [[1.1, 2.2, 3.3]],
+    sunSensor: [[1.1, 2.2, 3.3]],
+    ts: ['2021-07-21T01:02:03.120003Z'],
+  }] });
   });
 });

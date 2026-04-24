@@ -5,18 +5,18 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource stage', () => {
   test('create: only required params', async () => {
     const responsePromise = client.stage.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEngine: 'ENGINE-ID',
-      idLaunchVehicle: 'LAUNCHVEHICLE-ID',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEngine: 'ENGINE-ID',
+    idLaunchVehicle: 'LAUNCHVEHICLE-ID',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -28,54 +28,54 @@ describe('resource stage', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.stage.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEngine: 'ENGINE-ID',
-      idLaunchVehicle: 'LAUNCHVEHICLE-ID',
-      source: 'Bluestaq',
-      id: 'STAGE-ID',
-      avionicsNotes: 'Sample Notes',
-      burnTime: 256.3,
-      controlThruster1: 'controlThruster1',
-      controlThruster2: 'controlThruster2',
-      diameter: 3.95,
-      length: 25.13,
-      mainEngineThrustSeaLevel: 733.4,
-      mainEngineThrustVacuum: 733.4,
-      manufacturerOrgId: '5feed5d7-d131-57e5-a3fd-acc173bca736',
-      mass: 9956.1,
-      notes: 'Sample Notes',
-      numBurns: 1,
-      numControlThruster1: 1,
-      numControlThruster2: 1,
-      numEngines: 1,
-      numStageElements: 2,
-      numVernier: 3,
-      origin: 'THIRD_PARTY_DATASOURCE',
-      photoURLs: ['photoURL'],
-      restartable: true,
-      reusable: true,
-      stageNumber: 2,
-      tags: ['TAG1', 'TAG2'],
-      thrustSeaLevel: 733.4,
-      thrustVacuum: 733.4,
-      type: 'Electrostatic Ion',
-      vernier: 'vernier',
-      vernierBurnTime: 1.1,
-      vernierNumBurns: 4,
-      vernierThrustSeaLevel: 4.1,
-      vernierThrustVacuum: 3.2,
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEngine: 'ENGINE-ID',
+    idLaunchVehicle: 'LAUNCHVEHICLE-ID',
+    source: 'Bluestaq',
+    id: 'STAGE-ID',
+    avionicsNotes: 'Sample Notes',
+    burnTime: 256.3,
+    controlThruster1: 'controlThruster1',
+    controlThruster2: 'controlThruster2',
+    diameter: 3.95,
+    length: 25.13,
+    mainEngineThrustSeaLevel: 733.4,
+    mainEngineThrustVacuum: 733.4,
+    manufacturerOrgId: '5feed5d7-d131-57e5-a3fd-acc173bca736',
+    mass: 9956.1,
+    notes: 'Sample Notes',
+    numBurns: 1,
+    numControlThruster1: 1,
+    numControlThruster2: 1,
+    numEngines: 1,
+    numStageElements: 2,
+    numVernier: 3,
+    origin: 'THIRD_PARTY_DATASOURCE',
+    photoURLs: ['photoURL'],
+    restartable: true,
+    reusable: true,
+    stageNumber: 2,
+    tags: ['TAG1', 'TAG2'],
+    thrustSeaLevel: 733.4,
+    thrustVacuum: 733.4,
+    type: 'Electrostatic Ion',
+    vernier: 'vernier',
+    vernierBurnTime: 1.1,
+    vernierNumBurns: 4,
+    vernierThrustSeaLevel: 4.1,
+    vernierThrustVacuum: 3.2,
+  });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.stage.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEngine: 'ENGINE-ID',
-      idLaunchVehicle: 'LAUNCHVEHICLE-ID',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEngine: 'ENGINE-ID',
+    idLaunchVehicle: 'LAUNCHVEHICLE-ID',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -87,44 +87,44 @@ describe('resource stage', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.stage.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEngine: 'ENGINE-ID',
-      idLaunchVehicle: 'LAUNCHVEHICLE-ID',
-      source: 'Bluestaq',
-      id: 'STAGE-ID',
-      avionicsNotes: 'Sample Notes',
-      burnTime: 256.3,
-      controlThruster1: 'controlThruster1',
-      controlThruster2: 'controlThruster2',
-      diameter: 3.95,
-      length: 25.13,
-      mainEngineThrustSeaLevel: 733.4,
-      mainEngineThrustVacuum: 733.4,
-      manufacturerOrgId: '5feed5d7-d131-57e5-a3fd-acc173bca736',
-      mass: 9956.1,
-      notes: 'Sample Notes',
-      numBurns: 1,
-      numControlThruster1: 1,
-      numControlThruster2: 1,
-      numEngines: 1,
-      numStageElements: 2,
-      numVernier: 3,
-      origin: 'THIRD_PARTY_DATASOURCE',
-      photoURLs: ['photoURL'],
-      restartable: true,
-      reusable: true,
-      stageNumber: 2,
-      tags: ['TAG1', 'TAG2'],
-      thrustSeaLevel: 733.4,
-      thrustVacuum: 733.4,
-      type: 'Electrostatic Ion',
-      vernier: 'vernier',
-      vernierBurnTime: 1.1,
-      vernierNumBurns: 4,
-      vernierThrustSeaLevel: 4.1,
-      vernierThrustVacuum: 3.2,
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEngine: 'ENGINE-ID',
+    idLaunchVehicle: 'LAUNCHVEHICLE-ID',
+    source: 'Bluestaq',
+    id: 'STAGE-ID',
+    avionicsNotes: 'Sample Notes',
+    burnTime: 256.3,
+    controlThruster1: 'controlThruster1',
+    controlThruster2: 'controlThruster2',
+    diameter: 3.95,
+    length: 25.13,
+    mainEngineThrustSeaLevel: 733.4,
+    mainEngineThrustVacuum: 733.4,
+    manufacturerOrgId: '5feed5d7-d131-57e5-a3fd-acc173bca736',
+    mass: 9956.1,
+    notes: 'Sample Notes',
+    numBurns: 1,
+    numControlThruster1: 1,
+    numControlThruster2: 1,
+    numEngines: 1,
+    numStageElements: 2,
+    numVernier: 3,
+    origin: 'THIRD_PARTY_DATASOURCE',
+    photoURLs: ['photoURL'],
+    restartable: true,
+    reusable: true,
+    stageNumber: 2,
+    tags: ['TAG1', 'TAG2'],
+    thrustSeaLevel: 733.4,
+    thrustVacuum: 733.4,
+    type: 'Electrostatic Ion',
+    vernier: 'vernier',
+    vernierBurnTime: 1.1,
+    vernierNumBurns: 4,
+    vernierThrustSeaLevel: 4.1,
+    vernierThrustVacuum: 3.2,
+  });
   });
 
   test('list', async () => {
@@ -140,9 +140,9 @@ describe('resource stage', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.stage.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.stage.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -169,9 +169,9 @@ describe('resource stage', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.stage.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.stage.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('get', async () => {
@@ -187,9 +187,9 @@ describe('resource stage', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.stage.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.stage.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -216,9 +216,9 @@ describe('resource stage', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.stage.tuple({
-      columns: 'columns',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    columns: 'columns',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 });

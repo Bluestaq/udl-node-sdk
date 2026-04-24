@@ -29,11 +29,7 @@ export class AircraftStatusRemarks extends APIResource {
    * ```
    */
   create(body: AircraftStatusRemarkCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/aircraftstatusremark', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/aircraftstatusremark', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -46,11 +42,7 @@ export class AircraftStatusRemarks extends APIResource {
    *   await client.aircraftStatusRemarks.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: AircraftStatusRemarkRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.AircraftstatusremarkFull> {
+  retrieve(id: string, query: AircraftStatusRemarkRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AircraftstatusremarkFull> {
     return this._client.get(path`/udl/aircraftstatusremark/${id}`, { query, ...options });
   }
 
@@ -71,11 +63,7 @@ export class AircraftStatusRemarks extends APIResource {
    * ```
    */
   update(id: string, body: AircraftStatusRemarkUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/aircraftstatusremark/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/aircraftstatusremark/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -92,14 +80,8 @@ export class AircraftStatusRemarks extends APIResource {
    * }
    * ```
    */
-  list(
-    query: AircraftStatusRemarkListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<AircraftstatusremarkAbridgedsOffsetPage, AircraftstatusremarkAbridged> {
-    return this._client.getAPIList('/udl/aircraftstatusremark', OffsetPage<AircraftstatusremarkAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: AircraftStatusRemarkListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AircraftstatusremarkAbridgedsOffsetPage, AircraftstatusremarkAbridged> {
+    return this._client.getAPIList('/udl/aircraftstatusremark', OffsetPage<AircraftstatusremarkAbridged>, { query, ...options });
   }
 
   /**
@@ -113,10 +95,7 @@ export class AircraftStatusRemarks extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/aircraftstatusremark/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/aircraftstatusremark/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -131,15 +110,8 @@ export class AircraftStatusRemarks extends APIResource {
    * const response = await client.aircraftStatusRemarks.count();
    * ```
    */
-  count(
-    query: AircraftStatusRemarkCountParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get('/udl/aircraftstatusremark/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+  count(query: AircraftStatusRemarkCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get('/udl/aircraftstatusremark/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -174,15 +146,12 @@ export class AircraftStatusRemarks extends APIResource {
    *   });
    * ```
    */
-  tuple(
-    query: AircraftStatusRemarkTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<AircraftStatusRemarkTupleResponse> {
+  tuple(query: AircraftStatusRemarkTupleParams, options?: RequestOptions): APIPromise<AircraftStatusRemarkTupleResponse> {
     return this._client.get('/udl/aircraftstatusremark/tuple', { query, ...options });
   }
 }
 
-export type AircraftstatusremarkAbridgedsOffsetPage = OffsetPage<AircraftstatusremarkAbridged>;
+export type AircraftstatusremarkAbridgedsOffsetPage = OffsetPage<AircraftstatusremarkAbridged>
 
 /**
  * Properties and characteristics of a remark that is associated with an aircraft
@@ -294,7 +263,7 @@ export interface AircraftstatusremarkAbridged {
   timestamp?: string;
 }
 
-export type AircraftStatusRemarkCountResponse = string;
+export type AircraftStatusRemarkCountResponse = string
 
 export interface AircraftStatusRemarkQueryhelpResponse {
   aodrSupported?: boolean;
@@ -320,7 +289,7 @@ export interface AircraftStatusRemarkQueryhelpResponse {
   uri?: string;
 }
 
-export type AircraftStatusRemarkTupleResponse = Array<Shared.AircraftstatusremarkFull>;
+export type AircraftStatusRemarkTupleResponse = Array<Shared.AircraftstatusremarkFull>
 
 export interface AircraftStatusRemarkCreateParams {
   /**
@@ -492,7 +461,8 @@ export interface AircraftStatusRemarkUpdateParams {
   timestamp?: string;
 }
 
-export interface AircraftStatusRemarkListParams extends OffsetPageParams {}
+export interface AircraftStatusRemarkListParams extends OffsetPageParams {
+}
 
 export interface AircraftStatusRemarkCountParams {
   firstResult?: number;
@@ -526,6 +496,6 @@ export declare namespace AircraftStatusRemarks {
     type AircraftStatusRemarkUpdateParams as AircraftStatusRemarkUpdateParams,
     type AircraftStatusRemarkListParams as AircraftStatusRemarkListParams,
     type AircraftStatusRemarkCountParams as AircraftStatusRemarkCountParams,
-    type AircraftStatusRemarkTupleParams as AircraftStatusRemarkTupleParams,
+    type AircraftStatusRemarkTupleParams as AircraftStatusRemarkTupleParams
   };
 }

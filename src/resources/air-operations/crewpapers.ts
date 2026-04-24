@@ -22,12 +22,8 @@ export class Crewpapers extends APIResource {
    * ```
    */
   unpublish(params: CrewpaperUnpublishParams, options?: RequestOptions): APIPromise<void> {
-    const { ids } = params;
-    return this._client.post('/udl/crewpapers/unpublish', {
-      query: { ids },
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { ids } = params
+    return this._client.post('/udl/crewpapers/unpublish', { query: { ids }, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -48,18 +44,9 @@ export class Crewpapers extends APIResource {
    * );
    * ```
    */
-  uploadPdf(
-    fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
-    params: CrewpaperUploadPdfParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { aircraftSortieIds, classificationMarking, paperStatus, papersVersion } = params;
-    return this._client.post('/filedrop/crewpapers', {
-      body: fileContent,
-      query: { aircraftSortieIds, classificationMarking, paperStatus, papersVersion },
-      ...options,
-      headers: buildHeaders([{ 'Content-Type': 'application/pdf', Accept: '*/*' }, options?.headers]),
-    });
+  uploadPdf(fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView, params: CrewpaperUploadPdfParams, options?: RequestOptions): APIPromise<void> {
+    const { aircraftSortieIds, classificationMarking, paperStatus, papersVersion } = params
+    return this._client.post('/filedrop/crewpapers', { body: fileContent, query: { aircraftSortieIds, classificationMarking, paperStatus, papersVersion }, ...options, headers: buildHeaders([{'Content-Type': 'application/pdf', Accept: '*/*'}, options?.headers]) });
   }
 }
 
@@ -96,6 +83,6 @@ export interface CrewpaperUploadPdfParams {
 export declare namespace Crewpapers {
   export {
     type CrewpaperUnpublishParams as CrewpaperUnpublishParams,
-    type CrewpaperUploadPdfParams as CrewpaperUploadPdfParams,
+    type CrewpaperUploadPdfParams as CrewpaperUploadPdfParams
   };
 }

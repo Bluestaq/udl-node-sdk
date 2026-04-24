@@ -30,11 +30,7 @@ export class Navigation extends APIResource {
    * ```
    */
   create(body: NavigationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/navigation', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/navigation', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -53,11 +49,7 @@ export class Navigation extends APIResource {
    * ```
    */
   update(id: string, body: NavigationUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/navigation/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/navigation/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -74,14 +66,8 @@ export class Navigation extends APIResource {
    * }
    * ```
    */
-  list(
-    query: NavigationListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<NavigationListResponsesOffsetPage, NavigationListResponse> {
-    return this._client.getAPIList('/udl/navigation', OffsetPage<NavigationListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: NavigationListParams | null | undefined = {}, options?: RequestOptions): PagePromise<NavigationListResponsesOffsetPage, NavigationListResponse> {
+    return this._client.getAPIList('/udl/navigation', OffsetPage<NavigationListResponse>, { query, ...options });
   }
 
   /**
@@ -96,10 +82,7 @@ export class Navigation extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/navigation/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/navigation/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -115,11 +98,7 @@ export class Navigation extends APIResource {
    * ```
    */
   count(query: NavigationCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/navigation/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/navigation/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -131,11 +110,7 @@ export class Navigation extends APIResource {
    * const navigation = await client.navigation.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: NavigationGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<NavigationGetResponse> {
+  get(id: string, query: NavigationGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<NavigationGetResponse> {
     return this._client.get(path`/udl/navigation/${id}`, { query, ...options });
   }
 
@@ -174,7 +149,7 @@ export class Navigation extends APIResource {
   }
 }
 
-export type NavigationListResponsesOffsetPage = OffsetPage<NavigationListResponse>;
+export type NavigationListResponsesOffsetPage = OffsetPage<NavigationListResponse>
 
 /**
  * Navigation payload entities within the SSA environment.
@@ -253,7 +228,7 @@ export interface NavigationListResponse {
   origNetwork?: string;
 }
 
-export type NavigationCountResponse = string;
+export type NavigationCountResponse = string
 
 /**
  * Navigation payload entities within the SSA environment.
@@ -374,7 +349,7 @@ export interface NavigationQueryhelpResponse {
   uri?: string;
 }
 
-export type NavigationTupleResponse = Array<NavigationTupleResponse.NavigationTupleResponseItem>;
+export type NavigationTupleResponse = Array<NavigationTupleResponse.NavigationTupleResponseItem>
 
 export namespace NavigationTupleResponse {
   /**
@@ -601,7 +576,8 @@ export interface NavigationUpdateParams {
   origin?: string;
 }
 
-export interface NavigationListParams extends OffsetPageParams {}
+export interface NavigationListParams extends OffsetPageParams {
+}
 
 export interface NavigationCountParams {
   firstResult?: number;
@@ -642,6 +618,6 @@ export declare namespace Navigation {
     type NavigationListParams as NavigationListParams,
     type NavigationCountParams as NavigationCountParams,
     type NavigationGetParams as NavigationGetParams,
-    type NavigationTupleParams as NavigationTupleParams,
+    type NavigationTupleParams as NavigationTupleParams
   };
 }

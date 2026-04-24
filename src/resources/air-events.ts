@@ -28,11 +28,7 @@ export class AirEvents extends APIResource {
    * ```
    */
   create(body: AirEventCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/airevent', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/airevent', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -51,11 +47,7 @@ export class AirEvents extends APIResource {
    * ```
    */
   update(id: string, body: AirEventUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/airevent/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/airevent/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -72,10 +64,7 @@ export class AirEvents extends APIResource {
    * }
    * ```
    */
-  list(
-    query: AirEventListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<AirEventListResponsesOffsetPage, AirEventListResponse> {
+  list(query: AirEventListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AirEventListResponsesOffsetPage, AirEventListResponse> {
     return this._client.getAPIList('/udl/airevent', OffsetPage<AirEventListResponse>, { query, ...options });
   }
 
@@ -90,10 +79,7 @@ export class AirEvents extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/airevent/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/airevent/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -109,11 +95,7 @@ export class AirEvents extends APIResource {
    * ```
    */
   count(query: AirEventCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/airevent/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/airevent/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -139,12 +121,8 @@ export class AirEvents extends APIResource {
    * ```
    */
   createBulk(params: AirEventCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/airevent/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/airevent/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -156,11 +134,7 @@ export class AirEvents extends APIResource {
    * const airEvent = await client.airEvents.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: AirEventGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<AirEventGetResponse> {
+  get(id: string, query: AirEventGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<AirEventGetResponse> {
     return this._client.get(path`/udl/airevent/${id}`, { query, ...options });
   }
 
@@ -219,16 +193,12 @@ export class AirEvents extends APIResource {
    * ```
    */
   unvalidatedPublish(params: AirEventUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-airevent', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/filedrop/udl-airevent', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type AirEventListResponsesOffsetPage = OffsetPage<AirEventListResponse>;
+export type AirEventListResponsesOffsetPage = OffsetPage<AirEventListResponse>
 
 /**
  * Information related to an air event (e.g. FUEL TRANSFER, AIR DROP) and the
@@ -764,7 +734,7 @@ export namespace AirEventListResponse {
   }
 }
 
-export type AirEventCountResponse = string;
+export type AirEventCountResponse = string
 
 /**
  * Information related to an air event (e.g. FUEL TRANSFER, AIR DROP) and the
@@ -1324,7 +1294,7 @@ export interface AirEventQueryhelpResponse {
   uri?: string;
 }
 
-export type AirEventTupleResponse = Array<AirEventTupleResponse.AirEventTupleResponseItem>;
+export type AirEventTupleResponse = Array<AirEventTupleResponse.AirEventTupleResponseItem>
 
 export namespace AirEventTupleResponse {
   /**
@@ -2852,7 +2822,8 @@ export namespace AirEventUpdateParams {
   }
 }
 
-export interface AirEventListParams extends OffsetPageParams {}
+export interface AirEventListParams extends OffsetPageParams {
+}
 
 export interface AirEventCountParams {
   firstResult?: number;
@@ -3905,6 +3876,6 @@ export declare namespace AirEvents {
     type AirEventCreateBulkParams as AirEventCreateBulkParams,
     type AirEventGetParams as AirEventGetParams,
     type AirEventTupleParams as AirEventTupleParams,
-    type AirEventUnvalidatedPublishParams as AirEventUnvalidatedPublishParams,
+    type AirEventUnvalidatedPublishParams as AirEventUnvalidatedPublishParams
   };
 }

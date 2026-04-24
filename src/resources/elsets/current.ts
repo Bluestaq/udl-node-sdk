@@ -29,14 +29,8 @@ export class Current extends APIResource {
    * }
    * ```
    */
-  list(
-    query: CurrentListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ElsetAbridgedsOffsetPage, ElsetsAPI.ElsetAbridged> {
-    return this._client.getAPIList('/udl/elset/current', OffsetPage<ElsetsAPI.ElsetAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: CurrentListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ElsetAbridgedsOffsetPage, ElsetsAPI.ElsetAbridged> {
+    return this._client.getAPIList('/udl/elset/current', OffsetPage<ElsetsAPI.ElsetAbridged>, { query, ...options });
   }
 
   /**
@@ -61,9 +55,10 @@ export class Current extends APIResource {
   }
 }
 
-export type CurrentTupleResponse = Array<ElsetsAPI.Elset>;
+export type CurrentTupleResponse = Array<ElsetsAPI.Elset>
 
-export interface CurrentListParams extends OffsetPageParams {}
+export interface CurrentListParams extends OffsetPageParams {
+}
 
 export interface CurrentTupleParams {
   /**
@@ -83,8 +78,8 @@ export declare namespace Current {
   export {
     type CurrentTupleResponse as CurrentTupleResponse,
     type CurrentListParams as CurrentListParams,
-    type CurrentTupleParams as CurrentTupleParams,
+    type CurrentTupleParams as CurrentTupleParams
   };
 }
 
-export { type ElsetAbridgedsOffsetPage };
+export { type ElsetAbridgedsOffsetPage }

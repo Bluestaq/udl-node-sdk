@@ -33,20 +33,13 @@ export class DiplomaticClearance extends APIResource {
    * );
    * ```
    */
-  unvalidatedPublish(
-    params: DiplomaticClearanceUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-diplomaticclearance', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: DiplomaticClearanceUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-diplomaticclearance', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type DiplomaticclearanceAbridgedsOffsetPage = OffsetPage<DiplomaticclearanceAbridged>;
+export type DiplomaticclearanceAbridgedsOffsetPage = OffsetPage<DiplomaticclearanceAbridged>
 
 /**
  * A diplomatic clearance is an authorization for an aircraft to traverse or land
@@ -622,6 +615,6 @@ export namespace DiplomaticClearanceUnvalidatedPublishParams {
 export declare namespace DiplomaticClearance {
   export {
     type DiplomaticclearanceAbridged as DiplomaticclearanceAbridged,
-    type DiplomaticClearanceUnvalidatedPublishParams as DiplomaticClearanceUnvalidatedPublishParams,
+    type DiplomaticClearanceUnvalidatedPublishParams as DiplomaticClearanceUnvalidatedPublishParams
   };
 }

@@ -27,11 +27,7 @@ export class History extends APIResource {
    * for more details on valid/required query parameter information.
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/mti/history/aodr', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.get('/udl/mti/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -42,15 +38,11 @@ export class History extends APIResource {
    * valid/required query parameter information.
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/mti/history/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/mti/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 }
 
-export type MtiFullsOffsetPage = OffsetPage<MtiFull>;
+export type MtiFullsOffsetPage = OffsetPage<MtiFull>
 
 /**
  * Information on the mission and flight plans, the type and configuration of the
@@ -1099,7 +1091,7 @@ export namespace MtiFull {
   }
 }
 
-export type HistoryCountResponse = string;
+export type HistoryCountResponse = string
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -1171,6 +1163,6 @@ export declare namespace History {
     type MtiFullsOffsetPage as MtiFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

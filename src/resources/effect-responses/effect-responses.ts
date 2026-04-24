@@ -4,15 +4,7 @@ import { APIResource } from '../../core/resource';
 import * as EffectResponsesAPI from './effect-responses';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -43,11 +35,7 @@ export class EffectResponses extends APIResource {
    * ```
    */
   create(body: EffectResponseCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/effectresponse', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/effectresponse', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -60,11 +48,7 @@ export class EffectResponses extends APIResource {
    *   await client.effectResponses.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: EffectResponseRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<EffectResponseRetrieveResponse> {
+  retrieve(id: string, query: EffectResponseRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<EffectResponseRetrieveResponse> {
     return this._client.get(path`/udl/effectresponse/${id}`, { query, ...options });
   }
 
@@ -84,14 +68,8 @@ export class EffectResponses extends APIResource {
    * }
    * ```
    */
-  list(
-    query: EffectResponseListParams,
-    options?: RequestOptions,
-  ): PagePromise<EffectResponseListResponsesOffsetPage, EffectResponseListResponse> {
-    return this._client.getAPIList('/udl/effectresponse', OffsetPage<EffectResponseListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: EffectResponseListParams, options?: RequestOptions): PagePromise<EffectResponseListResponsesOffsetPage, EffectResponseListResponse> {
+    return this._client.getAPIList('/udl/effectresponse', OffsetPage<EffectResponseListResponse>, { query, ...options });
   }
 
   /**
@@ -109,11 +87,7 @@ export class EffectResponses extends APIResource {
    * ```
    */
   count(query: EffectResponseCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/effectresponse/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/effectresponse/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -138,12 +112,8 @@ export class EffectResponses extends APIResource {
    * ```
    */
   createBulk(params: EffectResponseCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/effectresponse/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/effectresponse/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -201,20 +171,13 @@ export class EffectResponses extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(
-    params: EffectResponseUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-effectresponse', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: EffectResponseUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-effectresponse', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type EffectResponseListResponsesOffsetPage = OffsetPage<EffectResponseListResponse>;
+export type EffectResponseListResponsesOffsetPage = OffsetPage<EffectResponseListResponse>
 
 export interface EffectResponseActionsListFull {
   /**
@@ -797,7 +760,7 @@ export namespace EffectResponseListResponse {
   }
 }
 
-export type EffectResponseCountResponse = string;
+export type EffectResponseCountResponse = string
 
 export interface EffectResponseQueryHelpResponse {
   aodrSupported?: boolean;
@@ -823,7 +786,7 @@ export interface EffectResponseQueryHelpResponse {
   uri?: string;
 }
 
-export type EffectResponseTupleResponse = Array<EffectResponseTupleResponse.EffectResponseTupleResponseItem>;
+export type EffectResponseTupleResponse = Array<EffectResponseTupleResponse.EffectResponseTupleResponseItem>
 
 export namespace EffectResponseTupleResponse {
   /**
@@ -1915,7 +1878,7 @@ export declare namespace EffectResponses {
     type EffectResponseCountParams as EffectResponseCountParams,
     type EffectResponseCreateBulkParams as EffectResponseCreateBulkParams,
     type EffectResponseTupleParams as EffectResponseTupleParams,
-    type EffectResponseUnvalidatedPublishParams as EffectResponseUnvalidatedPublishParams,
+    type EffectResponseUnvalidatedPublishParams as EffectResponseUnvalidatedPublishParams
   };
 
   export {
@@ -1925,6 +1888,6 @@ export declare namespace EffectResponses {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

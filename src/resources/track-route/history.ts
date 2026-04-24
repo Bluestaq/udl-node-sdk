@@ -26,14 +26,8 @@ export class History extends APIResource {
    * }
    * ```
    */
-  list(
-    query: HistoryListParams,
-    options?: RequestOptions,
-  ): PagePromise<TrackRouteFullsOffsetPage, TrackRouteFull> {
-    return this._client.getAPIList('/udl/trackroute/history', OffsetPage<TrackRouteFull>, {
-      query,
-      ...options,
-    });
+  list(query: HistoryListParams, options?: RequestOptions): PagePromise<TrackRouteFullsOffsetPage, TrackRouteFull> {
+    return this._client.getAPIList('/udl/trackroute/history', OffsetPage<TrackRouteFull>, { query, ...options });
   }
 
   /**
@@ -50,11 +44,7 @@ export class History extends APIResource {
    * ```
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/trackroute/history/aodr', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.get('/udl/trackroute/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -72,15 +62,11 @@ export class History extends APIResource {
    * ```
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/trackroute/history/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/trackroute/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 }
 
-export type TrackRouteFullsOffsetPage = OffsetPage<TrackRouteFull>;
+export type TrackRouteFullsOffsetPage = OffsetPage<TrackRouteFull>
 
 /**
  * A track route is a prescribed route for performing training events or operations
@@ -466,7 +452,7 @@ export namespace TrackRouteFull {
   }
 }
 
-export type HistoryCountResponse = string;
+export type HistoryCountResponse = string
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -541,6 +527,6 @@ export declare namespace History {
     type TrackRouteFullsOffsetPage as TrackRouteFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

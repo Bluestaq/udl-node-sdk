@@ -42,11 +42,7 @@ export class History extends APIResource {
    * ```
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/attitudedata/history/aodr', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.get('/udl/attitudedata/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -65,17 +61,13 @@ export class History extends APIResource {
    * ```
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/attitudedata/history/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/attitudedata/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 }
 
-export type HistoryRetrieveResponse = Array<Shared.AttitudedataFull>;
+export type HistoryRetrieveResponse = Array<Shared.AttitudedataFull>
 
-export type HistoryCountResponse = string;
+export type HistoryCountResponse = string
 
 export interface HistoryRetrieveParams {
   /**
@@ -150,6 +142,6 @@ export declare namespace History {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryRetrieveParams as HistoryRetrieveParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

@@ -5,18 +5,18 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource onorbitthruster', () => {
   test('create: only required params', async () => {
     const responsePromise = client.onorbitthruster.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEngine: 'ENGINE-ID',
-      idOnOrbit: 'ONORBIT-ID',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEngine: 'ENGINE-ID',
+    idOnOrbit: 'ONORBIT-ID',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -28,34 +28,34 @@ describe('resource onorbitthruster', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.onorbitthruster.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEngine: 'ENGINE-ID',
-      idOnOrbit: 'ONORBIT-ID',
-      source: 'Bluestaq',
-      id: 'ONORBITTHRUSTER-ID',
-      engine: {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        name: 'ENGINE_VARIANT1',
-        source: 'Bluestaq',
-        id: 'ENGINE-ID',
-        origin: 'THIRD_PARTY_DATASOURCE',
-      },
-      origin: 'THIRD_PARTY_DATASOURCE',
-      quantity: 10,
-      type: 'Hydrazine REA',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEngine: 'ENGINE-ID',
+    idOnOrbit: 'ONORBIT-ID',
+    source: 'Bluestaq',
+    id: 'ONORBITTHRUSTER-ID',
+    engine: {
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    name: 'ENGINE_VARIANT1',
+    source: 'Bluestaq',
+    id: 'ENGINE-ID',
+    origin: 'THIRD_PARTY_DATASOURCE',
+  },
+    origin: 'THIRD_PARTY_DATASOURCE',
+    quantity: 10,
+    type: 'Hydrazine REA',
+  });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.onorbitthruster.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEngine: 'ENGINE-ID',
-      idOnOrbit: 'ONORBIT-ID',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEngine: 'ENGINE-ID',
+    idOnOrbit: 'ONORBIT-ID',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -67,24 +67,24 @@ describe('resource onorbitthruster', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.onorbitthruster.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEngine: 'ENGINE-ID',
-      idOnOrbit: 'ONORBIT-ID',
-      source: 'Bluestaq',
-      id: 'ONORBITTHRUSTER-ID',
-      engine: {
-        classificationMarking: 'U',
-        dataMode: 'TEST',
-        name: 'ENGINE_VARIANT1',
-        source: 'Bluestaq',
-        id: 'ENGINE-ID',
-        origin: 'THIRD_PARTY_DATASOURCE',
-      },
-      origin: 'THIRD_PARTY_DATASOURCE',
-      quantity: 10,
-      type: 'Hydrazine REA',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEngine: 'ENGINE-ID',
+    idOnOrbit: 'ONORBIT-ID',
+    source: 'Bluestaq',
+    id: 'ONORBITTHRUSTER-ID',
+    engine: {
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    name: 'ENGINE_VARIANT1',
+    source: 'Bluestaq',
+    id: 'ENGINE-ID',
+    origin: 'THIRD_PARTY_DATASOURCE',
+  },
+    origin: 'THIRD_PARTY_DATASOURCE',
+    quantity: 10,
+    type: 'Hydrazine REA',
+  });
   });
 
   test('list', async () => {
@@ -100,9 +100,9 @@ describe('resource onorbitthruster', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.onorbitthruster.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.onorbitthruster.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -129,12 +129,8 @@ describe('resource onorbitthruster', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.onorbitthruster.get(
-        'id',
-        { firstResult: 0, maxResults: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.onorbitthruster.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 });

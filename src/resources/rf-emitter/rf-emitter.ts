@@ -4,34 +4,9 @@ import { APIResource } from '../../core/resource';
 import * as EntitiesAPI from '../entities';
 import * as Shared from '../shared';
 import * as DetailsAPI from './details';
-import {
-  DetailCountParams,
-  DetailCountResponse,
-  DetailCreateParams,
-  DetailGetParams,
-  DetailGetResponse,
-  DetailListParams,
-  DetailListResponse,
-  DetailListResponsesOffsetPage,
-  DetailQueryhelpResponse,
-  DetailTupleParams,
-  DetailTupleResponse,
-  DetailUpdateParams,
-  Details,
-} from './details';
+import { DetailCountParams, DetailCountResponse, DetailCreateParams, DetailGetParams, DetailGetResponse, DetailListParams, DetailListResponse, DetailListResponsesOffsetPage, DetailQueryhelpResponse, DetailTupleParams, DetailTupleResponse, DetailUpdateParams, Details } from './details';
 import * as StagingAPI from './staging';
-import {
-  Staging,
-  StagingCreateBulkParams,
-  StagingCreateParams,
-  StagingListParams,
-  StagingListResponse,
-  StagingListResponsesOffsetPage,
-  StagingQueryhelpResponse,
-  StagingRetrieveParams,
-  StagingRetrieveResponse,
-  StagingUpdateParams,
-} from './staging';
+import { Staging, StagingCreateBulkParams, StagingCreateParams, StagingListParams, StagingListResponse, StagingListResponsesOffsetPage, StagingQueryhelpResponse, StagingRetrieveParams, StagingRetrieveResponse, StagingUpdateParams } from './staging';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -61,11 +36,7 @@ export class RfEmitter extends APIResource {
    * ```
    */
   create(body: RfEmitterCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/rfemitter', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/rfemitter', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -84,11 +55,7 @@ export class RfEmitter extends APIResource {
    * ```
    */
   update(id: string, body: RfEmitterUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/rfemitter/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/rfemitter/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -105,14 +72,8 @@ export class RfEmitter extends APIResource {
    * }
    * ```
    */
-  list(
-    query: RfEmitterListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<RfEmitterListResponsesOffsetPage, RfEmitterListResponse> {
-    return this._client.getAPIList('/udl/rfemitter', OffsetPage<RfEmitterListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: RfEmitterListParams | null | undefined = {}, options?: RequestOptions): PagePromise<RfEmitterListResponsesOffsetPage, RfEmitterListResponse> {
+    return this._client.getAPIList('/udl/rfemitter', OffsetPage<RfEmitterListResponse>, { query, ...options });
   }
 
   /**
@@ -126,10 +87,7 @@ export class RfEmitter extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/rfemitter/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/rfemitter/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -145,11 +103,7 @@ export class RfEmitter extends APIResource {
    * ```
    */
   count(query: RfEmitterCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/rfemitter/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/rfemitter/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -161,11 +115,7 @@ export class RfEmitter extends APIResource {
    * const rfEmitter = await client.rfEmitter.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: RfEmitterGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<RfEmitterGetResponse> {
+  get(id: string, query: RfEmitterGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<RfEmitterGetResponse> {
     return this._client.get(path`/udl/rfemitter/${id}`, { query, ...options });
   }
 
@@ -204,7 +154,7 @@ export class RfEmitter extends APIResource {
   }
 }
 
-export type RfEmitterListResponsesOffsetPage = OffsetPage<RfEmitterListResponse>;
+export type RfEmitterListResponsesOffsetPage = OffsetPage<RfEmitterListResponse>
 
 /**
  * An RF Emitter is a source of active Radio Frequency (RF) signals which could
@@ -295,7 +245,7 @@ export interface RfEmitterListResponse {
   type?: string;
 }
 
-export type RfEmitterCountResponse = string;
+export type RfEmitterCountResponse = string
 
 /**
  * An RF Emitter is a source of active Radio Frequency (RF) signals which could
@@ -1034,7 +984,7 @@ export interface RfEmitterQueryhelpResponse {
   uri?: string;
 }
 
-export type RfEmitterTupleResponse = Array<RfEmitterTupleResponse.RfEmitterTupleResponseItem>;
+export type RfEmitterTupleResponse = Array<RfEmitterTupleResponse.RfEmitterTupleResponseItem>
 
 export namespace RfEmitterTupleResponse {
   /**
@@ -1901,7 +1851,8 @@ export interface RfEmitterUpdateParams {
   type?: string;
 }
 
-export interface RfEmitterListParams extends OffsetPageParams {}
+export interface RfEmitterListParams extends OffsetPageParams {
+}
 
 export interface RfEmitterCountParams {
   firstResult?: number;
@@ -1945,7 +1896,7 @@ export declare namespace RfEmitter {
     type RfEmitterListParams as RfEmitterListParams,
     type RfEmitterCountParams as RfEmitterCountParams,
     type RfEmitterGetParams as RfEmitterGetParams,
-    type RfEmitterTupleParams as RfEmitterTupleParams,
+    type RfEmitterTupleParams as RfEmitterTupleParams
   };
 
   export {
@@ -1958,7 +1909,7 @@ export declare namespace RfEmitter {
     type StagingRetrieveParams as StagingRetrieveParams,
     type StagingUpdateParams as StagingUpdateParams,
     type StagingListParams as StagingListParams,
-    type StagingCreateBulkParams as StagingCreateBulkParams,
+    type StagingCreateBulkParams as StagingCreateBulkParams
   };
 
   export {
@@ -1974,6 +1925,6 @@ export declare namespace RfEmitter {
     type DetailListParams as DetailListParams,
     type DetailCountParams as DetailCountParams,
     type DetailGetParams as DetailGetParams,
-    type DetailTupleParams as DetailTupleParams,
+    type DetailTupleParams as DetailTupleParams
   };
 }

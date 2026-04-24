@@ -5,18 +5,18 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource rfBand', () => {
   test('create: only required params', async () => {
     const responsePromise = client.rfBand.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEntity: 'ENTITY-ID',
-      name: 'BAND_NAME',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEntity: 'ENTITY-ID',
+    name: 'BAND_NAME',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -28,43 +28,43 @@ describe('resource rfBand', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.rfBand.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEntity: 'ENTITY-ID',
-      name: 'BAND_NAME',
-      source: 'Bluestaq',
-      id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
-      band: 'Ku',
-      bandwidth: 100.23,
-      bandwidthSettings: [250.1, 500.1],
-      beamwidth: 45.23,
-      beamwidthSettings: [5.1, 10.1],
-      centerFreq: 1000.23,
-      delaySettings: [2.77, 5.64],
-      edgeGain: 100.23,
-      eirp: 2.23,
-      erp: 2.23,
-      freqMax: 2000.23,
-      freqMin: 50.23,
-      frequencySettings: [12250.1, 15000.1],
-      gainSettings: [2.77, 5.64],
-      mode: 'TX',
-      noiseSettings: [0.00033, 0.0033],
-      origin: 'THIRD_PARTY_DATASOURCE',
-      peakGain: 120.23,
-      polarization: 'H',
-      purpose: 'TTC',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEntity: 'ENTITY-ID',
+    name: 'BAND_NAME',
+    source: 'Bluestaq',
+    id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
+    band: 'Ku',
+    bandwidth: 100.23,
+    bandwidthSettings: [250.1, 500.1],
+    beamwidth: 45.23,
+    beamwidthSettings: [5.1, 10.1],
+    centerFreq: 1000.23,
+    delaySettings: [2.77, 5.64],
+    edgeGain: 100.23,
+    eirp: 2.23,
+    erp: 2.23,
+    freqMax: 2000.23,
+    freqMin: 50.23,
+    frequencySettings: [12250.1, 15000.1],
+    gainSettings: [2.77, 5.64],
+    mode: 'TX',
+    noiseSettings: [0.00033, 0.0033],
+    origin: 'THIRD_PARTY_DATASOURCE',
+    peakGain: 120.23,
+    polarization: 'H',
+    purpose: 'TTC',
+  });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.rfBand.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEntity: 'ENTITY-ID',
-      name: 'BAND_NAME',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEntity: 'ENTITY-ID',
+    name: 'BAND_NAME',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -76,33 +76,33 @@ describe('resource rfBand', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.rfBand.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEntity: 'ENTITY-ID',
-      name: 'BAND_NAME',
-      source: 'Bluestaq',
-      id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
-      band: 'Ku',
-      bandwidth: 100.23,
-      bandwidthSettings: [250.1, 500.1],
-      beamwidth: 45.23,
-      beamwidthSettings: [5.1, 10.1],
-      centerFreq: 1000.23,
-      delaySettings: [2.77, 5.64],
-      edgeGain: 100.23,
-      eirp: 2.23,
-      erp: 2.23,
-      freqMax: 2000.23,
-      freqMin: 50.23,
-      frequencySettings: [12250.1, 15000.1],
-      gainSettings: [2.77, 5.64],
-      mode: 'TX',
-      noiseSettings: [0.00033, 0.0033],
-      origin: 'THIRD_PARTY_DATASOURCE',
-      peakGain: 120.23,
-      polarization: 'H',
-      purpose: 'TTC',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEntity: 'ENTITY-ID',
+    name: 'BAND_NAME',
+    source: 'Bluestaq',
+    id: 'ad88770b-d824-443f-bdce-5f9e3fa500a9',
+    band: 'Ku',
+    bandwidth: 100.23,
+    bandwidthSettings: [250.1, 500.1],
+    beamwidth: 45.23,
+    beamwidthSettings: [5.1, 10.1],
+    centerFreq: 1000.23,
+    delaySettings: [2.77, 5.64],
+    edgeGain: 100.23,
+    eirp: 2.23,
+    erp: 2.23,
+    freqMax: 2000.23,
+    freqMin: 50.23,
+    frequencySettings: [12250.1, 15000.1],
+    gainSettings: [2.77, 5.64],
+    mode: 'TX',
+    noiseSettings: [0.00033, 0.0033],
+    origin: 'THIRD_PARTY_DATASOURCE',
+    peakGain: 120.23,
+    polarization: 'H',
+    purpose: 'TTC',
+  });
   });
 
   test('list', async () => {
@@ -118,9 +118,9 @@ describe('resource rfBand', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.rfBand.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.rfBand.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -147,9 +147,9 @@ describe('resource rfBand', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.rfBand.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.rfBand.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('get', async () => {
@@ -165,9 +165,9 @@ describe('resource rfBand', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.rfBand.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.rfBand.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -194,9 +194,9 @@ describe('resource rfBand', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.rfBand.tuple({
-      columns: 'columns',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    columns: 'columns',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 });

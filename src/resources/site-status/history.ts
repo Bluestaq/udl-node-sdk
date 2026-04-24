@@ -24,14 +24,8 @@ export class History extends APIResource {
    * }
    * ```
    */
-  list(
-    query: HistoryListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<HistoryListResponsesOffsetPage, HistoryListResponse> {
-    return this._client.getAPIList('/udl/sitestatus/history', OffsetPage<HistoryListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: HistoryListParams | null | undefined = {}, options?: RequestOptions): PagePromise<HistoryListResponsesOffsetPage, HistoryListResponse> {
+    return this._client.getAPIList('/udl/sitestatus/history', OffsetPage<HistoryListResponse>, { query, ...options });
   }
 
   /**
@@ -47,15 +41,11 @@ export class History extends APIResource {
    * ```
    */
   count(query: HistoryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/sitestatus/history/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/sitestatus/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 }
 
-export type HistoryListResponsesOffsetPage = OffsetPage<HistoryListResponse>;
+export type HistoryListResponsesOffsetPage = OffsetPage<HistoryListResponse>
 
 export interface HistoryListResponse {
   /**
@@ -352,7 +342,7 @@ export interface HistoryListResponse {
   weatherMessage?: string;
 }
 
-export type HistoryCountResponse = string;
+export type HistoryCountResponse = string
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -375,6 +365,6 @@ export declare namespace History {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

@@ -3,13 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -38,11 +32,7 @@ export class Eop extends APIResource {
    * ```
    */
   create(body: EopCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/eop', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/eop', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -54,11 +44,7 @@ export class Eop extends APIResource {
    * const eopFull = await client.eop.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: EopRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.EopFull> {
+  retrieve(id: string, query: EopRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.EopFull> {
     return this._client.get(path`/udl/eop/${id}`, { query, ...options });
   }
 
@@ -77,11 +63,7 @@ export class Eop extends APIResource {
    * ```
    */
   update(id: string, body: EopUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/eop/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/eop/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -116,10 +98,7 @@ export class Eop extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/eop/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/eop/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -137,11 +116,7 @@ export class Eop extends APIResource {
    * ```
    */
   count(query: EopCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/eop/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/eop/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -180,7 +155,7 @@ export class Eop extends APIResource {
   }
 }
 
-export type EopAbridgedsOffsetPage = OffsetPage<EopAbridged>;
+export type EopAbridgedsOffsetPage = OffsetPage<EopAbridged>
 
 /**
  * Model representation of Earth Orientation Parameters (EOP) produced by the IERS
@@ -469,9 +444,9 @@ export interface EopAbridged {
   ut1UTCUnc?: number;
 }
 
-export type EopCountResponse = string;
+export type EopCountResponse = string
 
-export type EopListTupleResponse = Array<Shared.EopFull>;
+export type EopListTupleResponse = Array<Shared.EopFull>
 
 export interface EopQueryhelpResponse {
   aodrSupported?: boolean;
@@ -1027,7 +1002,7 @@ export declare namespace Eop {
     type EopUpdateParams as EopUpdateParams,
     type EopListParams as EopListParams,
     type EopCountParams as EopCountParams,
-    type EopListTupleParams as EopListTupleParams,
+    type EopListTupleParams as EopListTupleParams
   };
 
   export {
@@ -1035,6 +1010,6 @@ export declare namespace Eop {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

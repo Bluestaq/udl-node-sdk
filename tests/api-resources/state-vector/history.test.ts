@@ -5,7 +5,7 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource history', () => {
@@ -22,11 +22,11 @@ describe('resource history', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.stateVector.history.list({
-      epoch: '2019-12-27T18:11:19.117Z',
-      columns: 'columns',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    epoch: '2019-12-27T18:11:19.117Z',
+    columns: 'columns',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('aodr: only required params', async () => {
@@ -42,14 +42,14 @@ describe('resource history', () => {
 
   test('aodr: required and optional params', async () => {
     const response = await client.stateVector.history.aodr({
-      epoch: '2019-12-27T18:11:19.117Z',
-      columns: 'columns',
-      firstResult: 0,
-      maxResults: 0,
-      notification: 'notification',
-      outputDelimiter: 'outputDelimiter',
-      outputFormat: 'outputFormat',
-    });
+    epoch: '2019-12-27T18:11:19.117Z',
+    columns: 'columns',
+    firstResult: 0,
+    maxResults: 0,
+    notification: 'notification',
+    outputDelimiter: 'outputDelimiter',
+    outputFormat: 'outputFormat',
+  });
   });
 
   test('count: only required params', async () => {
@@ -65,9 +65,9 @@ describe('resource history', () => {
 
   test('count: required and optional params', async () => {
     const response = await client.stateVector.history.count({
-      epoch: '2019-12-27T18:11:19.117Z',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    epoch: '2019-12-27T18:11:19.117Z',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 });

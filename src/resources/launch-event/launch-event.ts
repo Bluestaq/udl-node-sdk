@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -40,11 +32,7 @@ export class LaunchEvent extends APIResource {
    * ```
    */
   create(body: LaunchEventCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/launchevent', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/launchevent', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -63,14 +51,8 @@ export class LaunchEvent extends APIResource {
    * }
    * ```
    */
-  list(
-    query: LaunchEventListParams,
-    options?: RequestOptions,
-  ): PagePromise<LaunchEventListResponsesOffsetPage, LaunchEventListResponse> {
-    return this._client.getAPIList('/udl/launchevent', OffsetPage<LaunchEventListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: LaunchEventListParams, options?: RequestOptions): PagePromise<LaunchEventListResponsesOffsetPage, LaunchEventListResponse> {
+    return this._client.getAPIList('/udl/launchevent', OffsetPage<LaunchEventListResponse>, { query, ...options });
   }
 
   /**
@@ -88,11 +70,7 @@ export class LaunchEvent extends APIResource {
    * ```
    */
   count(query: LaunchEventCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/launchevent/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/launchevent/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -117,12 +95,8 @@ export class LaunchEvent extends APIResource {
    * ```
    */
   createBulk(params: LaunchEventCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/launchevent/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/launchevent/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -134,11 +108,7 @@ export class LaunchEvent extends APIResource {
    * const launchEvent = await client.launchEvent.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: LaunchEventGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<LaunchEventGetResponse> {
+  get(id: string, query: LaunchEventGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<LaunchEventGetResponse> {
     return this._client.get(path`/udl/launchevent/${id}`, { query, ...options });
   }
 
@@ -197,20 +167,13 @@ export class LaunchEvent extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(
-    params: LaunchEventUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-launchevent', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: LaunchEventUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-launchevent', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type LaunchEventListResponsesOffsetPage = OffsetPage<LaunchEventListResponse>;
+export type LaunchEventListResponsesOffsetPage = OffsetPage<LaunchEventListResponse>
 
 /**
  * Information on known launch events.
@@ -335,7 +298,7 @@ export interface LaunchEventListResponse {
   satNo?: number;
 }
 
-export type LaunchEventCountResponse = string;
+export type LaunchEventCountResponse = string
 
 /**
  * Information on known launch events.
@@ -489,7 +452,7 @@ export interface LaunchEventQueryhelpResponse {
   uri?: string;
 }
 
-export type LaunchEventTupleResponse = Array<LaunchEventTupleResponse.LaunchEventTupleResponseItem>;
+export type LaunchEventTupleResponse = Array<LaunchEventTupleResponse.LaunchEventTupleResponseItem>
 
 export namespace LaunchEventTupleResponse {
   /**
@@ -995,7 +958,7 @@ export declare namespace LaunchEvent {
     type LaunchEventCreateBulkParams as LaunchEventCreateBulkParams,
     type LaunchEventGetParams as LaunchEventGetParams,
     type LaunchEventTupleParams as LaunchEventTupleParams,
-    type LaunchEventUnvalidatedPublishParams as LaunchEventUnvalidatedPublishParams,
+    type LaunchEventUnvalidatedPublishParams as LaunchEventUnvalidatedPublishParams
   };
 
   export {
@@ -1005,6 +968,6 @@ export declare namespace LaunchEvent {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

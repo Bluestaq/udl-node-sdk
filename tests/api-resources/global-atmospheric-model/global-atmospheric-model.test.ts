@@ -5,7 +5,7 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource globalAtmosphericModel', () => {
@@ -22,13 +22,9 @@ describe('resource globalAtmosphericModel', () => {
 
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.globalAtmosphericModel.retrieve(
-        'id',
-        { firstResult: 0, maxResults: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.globalAtmosphericModel.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('list: only required params', async () => {
@@ -44,10 +40,10 @@ describe('resource globalAtmosphericModel', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.globalAtmosphericModel.list({
-      ts: '2019-12-27T18:11:19.117Z',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    ts: '2019-12-27T18:11:19.117Z',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('count: only required params', async () => {
@@ -63,21 +59,17 @@ describe('resource globalAtmosphericModel', () => {
 
   test('count: required and optional params', async () => {
     const response = await client.globalAtmosphericModel.count({
-      ts: '2019-12-27T18:11:19.117Z',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    ts: '2019-12-27T18:11:19.117Z',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('getFile: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.globalAtmosphericModel.getFile(
-        'id',
-        { firstResult: 0, maxResults: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.globalAtmosphericModel.getFile('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryHelp', async () => {
@@ -92,10 +84,7 @@ describe('resource globalAtmosphericModel', () => {
   });
 
   test('tuple: only required params', async () => {
-    const responsePromise = client.globalAtmosphericModel.tuple({
-      columns: 'columns',
-      ts: '2019-12-27T18:11:19.117Z',
-    });
+    const responsePromise = client.globalAtmosphericModel.tuple({ columns: 'columns', ts: '2019-12-27T18:11:19.117Z' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -107,21 +96,21 @@ describe('resource globalAtmosphericModel', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.globalAtmosphericModel.tuple({
-      columns: 'columns',
-      ts: '2019-12-27T18:11:19.117Z',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    columns: 'columns',
+    ts: '2019-12-27T18:11:19.117Z',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('unvalidatedPublish: only required params', async () => {
     const responsePromise = client.globalAtmosphericModel.unvalidatedPublish({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      source: 'Bluestaq',
-      ts: '2024-03-01T11:45:00.123Z',
-      type: 'Global Total Electron Density',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    source: 'Bluestaq',
+    ts: '2024-03-01T11:45:00.123Z',
+    type: 'Global Total Electron Density',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -133,30 +122,30 @@ describe('resource globalAtmosphericModel', () => {
 
   test('unvalidatedPublish: required and optional params', async () => {
     const response = await client.globalAtmosphericModel.unvalidatedPublish({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      source: 'Bluestaq',
-      ts: '2024-03-01T11:45:00.123Z',
-      type: 'Global Total Electron Density',
-      id: '026dd511-8ba5-47d3-9909-836149f87686',
-      cadence: 10,
-      dataSourceIdentifier: 'Dragster globally assimilated atmospheric density v2.0',
-      endAlt: 90.125,
-      endLat: -88.75,
-      endLon: -177.5,
-      filename: 'glotec_elecden.geojson',
-      filesize: 2097152,
-      numAlt: 35,
-      numLat: 72,
-      numLon: 72,
-      origin: 'THIRD_PARTY_DATASOURCE',
-      reportTime: '2024-08-21T21:54:35.123Z',
-      startAlt: 8553.163773,
-      startLat: 88.75,
-      startLon: 177.5,
-      state: 'PREDICTED',
-      stepLat: 2.5,
-      stepLon: 5.5,
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    source: 'Bluestaq',
+    ts: '2024-03-01T11:45:00.123Z',
+    type: 'Global Total Electron Density',
+    id: '026dd511-8ba5-47d3-9909-836149f87686',
+    cadence: 10,
+    dataSourceIdentifier: 'Dragster globally assimilated atmospheric density v2.0',
+    endAlt: 90.125,
+    endLat: -88.75,
+    endLon: -177.5,
+    filename: 'glotec_elecden.geojson',
+    filesize: 2097152,
+    numAlt: 35,
+    numLat: 72,
+    numLon: 72,
+    origin: 'THIRD_PARTY_DATASOURCE',
+    reportTime: '2024-08-21T21:54:35.123Z',
+    startAlt: 8553.163773,
+    startLat: 88.75,
+    startLon: 177.5,
+    state: 'PREDICTED',
+    stepLat: 2.5,
+    stepLon: 5.5,
+  });
   });
 });

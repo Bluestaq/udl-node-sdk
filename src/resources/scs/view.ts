@@ -23,17 +23,8 @@ export class View extends APIResource {
    * console.log(content);
    * ```
    */
-  get(
-    id: string,
-    query: ViewGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Response> {
-    return this._client.get(path`/scs/view/${id}`, {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
-      __binaryResponse: true,
-    });
+  get(id: string, query: ViewGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/scs/view/${id}`, { query, ...options, headers: buildHeaders([{Accept: 'application/octet-stream'}, options?.headers]), __binaryResponse: true });
   }
 }
 
@@ -44,5 +35,7 @@ export interface ViewGetParams {
 }
 
 export declare namespace View {
-  export { type ViewGetParams as ViewGetParams };
+  export {
+    type ViewGetParams as ViewGetParams
+  };
 }

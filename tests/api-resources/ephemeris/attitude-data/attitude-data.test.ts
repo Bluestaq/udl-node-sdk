@@ -5,7 +5,7 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource attitudeData', () => {
@@ -22,10 +22,10 @@ describe('resource attitudeData', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.ephemeris.attitudeData.list({
-      asId: 'asId',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    asId: 'asId',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('count: only required params', async () => {
@@ -41,9 +41,9 @@ describe('resource attitudeData', () => {
 
   test('count: required and optional params', async () => {
     const response = await client.ephemeris.attitudeData.count({
-      asId: 'asId',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    asId: 'asId',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 });

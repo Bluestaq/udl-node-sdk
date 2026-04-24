@@ -27,11 +27,7 @@ export class SolarArray extends APIResource {
    * ```
    */
   create(body: SolarArrayCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/solararray', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/solararray', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -48,11 +44,7 @@ export class SolarArray extends APIResource {
    * ```
    */
   update(id: string, body: SolarArrayUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/solararray/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/solararray/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -69,14 +61,8 @@ export class SolarArray extends APIResource {
    * }
    * ```
    */
-  list(
-    query: SolarArrayListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<SolarArrayListResponsesOffsetPage, SolarArrayListResponse> {
-    return this._client.getAPIList('/udl/solararray', OffsetPage<SolarArrayListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: SolarArrayListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SolarArrayListResponsesOffsetPage, SolarArrayListResponse> {
+    return this._client.getAPIList('/udl/solararray', OffsetPage<SolarArrayListResponse>, { query, ...options });
   }
 
   /**
@@ -90,10 +76,7 @@ export class SolarArray extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/solararray/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/solararray/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -109,11 +92,7 @@ export class SolarArray extends APIResource {
    * ```
    */
   count(query: SolarArrayCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/solararray/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/solararray/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -125,11 +104,7 @@ export class SolarArray extends APIResource {
    * const solarArrayFull = await client.solarArray.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: SolarArrayGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.SolarArrayFull> {
+  get(id: string, query: SolarArrayGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.SolarArrayFull> {
     return this._client.get(path`/udl/solararray/${id}`, { query, ...options });
   }
 
@@ -168,7 +143,7 @@ export class SolarArray extends APIResource {
   }
 }
 
-export type SolarArrayListResponsesOffsetPage = OffsetPage<SolarArrayListResponse>;
+export type SolarArrayListResponsesOffsetPage = OffsetPage<SolarArrayListResponse>
 
 /**
  * Model representation of information on on-orbit/spacecraft solar arrays. A
@@ -234,7 +209,7 @@ export interface SolarArrayListResponse {
   origNetwork?: string;
 }
 
-export type SolarArrayCountResponse = string;
+export type SolarArrayCountResponse = string
 
 export interface SolarArrayQueryhelpResponse {
   aodrSupported?: boolean;
@@ -260,7 +235,7 @@ export interface SolarArrayQueryhelpResponse {
   uri?: string;
 }
 
-export type SolarArrayTupleResponse = Array<Shared.SolarArrayFull>;
+export type SolarArrayTupleResponse = Array<Shared.SolarArrayFull>
 
 export interface SolarArrayCreateParams {
   /**
@@ -346,7 +321,8 @@ export interface SolarArrayUpdateParams {
   origin?: string;
 }
 
-export interface SolarArrayListParams extends OffsetPageParams {}
+export interface SolarArrayListParams extends OffsetPageParams {
+}
 
 export interface SolarArrayCountParams {
   firstResult?: number;
@@ -386,6 +362,6 @@ export declare namespace SolarArray {
     type SolarArrayListParams as SolarArrayListParams,
     type SolarArrayCountParams as SolarArrayCountParams,
     type SolarArrayGetParams as SolarArrayGetParams,
-    type SolarArrayTupleParams as SolarArrayTupleParams,
+    type SolarArrayTupleParams as SolarArrayTupleParams
   };
 }

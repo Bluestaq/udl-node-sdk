@@ -10,10 +10,7 @@ import { RequestOptions } from '../../internal/request-options';
  * Service operations for querying and manipulation of miscellaneous supporting data such as countries (which can represent countries, multi-national consortiums, and international organizations), data owners, locations, entities, organizations, etc.
  */
 export class Dataowner extends APIResource {
-  retrieve(
-    query: DataownerRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<DataownerRetrieveResponse> {
+  retrieve(query: DataownerRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<DataownerRetrieveResponse> {
     return this._client.get('/udl/dataowner', { query, ...options });
   }
 
@@ -25,11 +22,7 @@ export class Dataowner extends APIResource {
    * valid/required query parameter information.
    */
   count(query: DataownerCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/dataowner/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/dataowner/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -43,17 +36,11 @@ export class Dataowner extends APIResource {
   /**
    * Retrieves all distinct data owner types.
    */
-  retrieveDataOwnerTypes(
-    query: DataownerRetrieveDataOwnerTypesParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<DataownerRetrieveDataOwnerTypesResponse> {
+  retrieveDataOwnerTypes(query: DataownerRetrieveDataOwnerTypesParams | null | undefined = {}, options?: RequestOptions): APIPromise<DataownerRetrieveDataOwnerTypesResponse> {
     return this._client.get('/udl/dataowner/getDataOwnerTypes', { query, ...options });
   }
 
-  retrieveProviderMetadata(
-    query: DataownerRetrieveProviderMetadataParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<DataownerRetrieveProviderMetadataResponse> {
+  retrieveProviderMetadata(query: DataownerRetrieveProviderMetadataParams | null | undefined = {}, options?: RequestOptions): APIPromise<DataownerRetrieveProviderMetadataResponse> {
     return this._client.get('/udl/dataowner/providerMetadata', { query, ...options });
   }
 }
@@ -130,9 +117,9 @@ export interface DataownerAbridged {
   provider?: string;
 }
 
-export type DataownerRetrieveResponse = Array<DataownerAbridged>;
+export type DataownerRetrieveResponse = Array<DataownerAbridged>
 
-export type DataownerCountResponse = string;
+export type DataownerCountResponse = string
 
 export interface DataownerQueryHelpResponse {
   aodrSupported?: boolean;
@@ -158,9 +145,9 @@ export interface DataownerQueryHelpResponse {
   uri?: string;
 }
 
-export type DataownerRetrieveDataOwnerTypesResponse = Array<string>;
+export type DataownerRetrieveDataOwnerTypesResponse = Array<string>
 
-export type DataownerRetrieveProviderMetadataResponse = Array<DataownerAbridged>;
+export type DataownerRetrieveProviderMetadataResponse = Array<DataownerAbridged>
 
 export interface DataownerRetrieveParams {
   firstResult?: number;
@@ -197,6 +184,6 @@ export declare namespace Dataowner {
     type DataownerRetrieveParams as DataownerRetrieveParams,
     type DataownerCountParams as DataownerCountParams,
     type DataownerRetrieveDataOwnerTypesParams as DataownerRetrieveDataOwnerTypesParams,
-    type DataownerRetrieveProviderMetadataParams as DataownerRetrieveProviderMetadataParams,
+    type DataownerRetrieveProviderMetadataParams as DataownerRetrieveProviderMetadataParams
   };
 }

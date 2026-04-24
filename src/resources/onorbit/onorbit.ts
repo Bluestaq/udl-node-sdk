@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as AntennaDetailsAPI from './antenna-details';
-import {
-  AntennaDetailCreateParams,
-  AntennaDetailListParams,
-  AntennaDetailRetrieveParams,
-  AntennaDetailUpdateParams,
-  AntennaDetails,
-  AntennaDetailsAbridged,
-  AntennaDetailsAbridgedsOffsetPage,
-} from './antenna-details';
+import { AntennaDetailCreateParams, AntennaDetailListParams, AntennaDetailRetrieveParams, AntennaDetailUpdateParams, AntennaDetails, AntennaDetailsAbridged, AntennaDetailsAbridgedsOffsetPage } from './antenna-details';
 import * as EoObservationsAPI from '../observations/eo-observations/eo-observations';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
@@ -41,11 +33,7 @@ export class Onorbit extends APIResource {
    * ```
    */
   create(body: OnorbitCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/onorbit', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/onorbit', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -63,11 +51,7 @@ export class Onorbit extends APIResource {
    * ```
    */
   update(id: string, body: OnorbitUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/onorbit/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/onorbit/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -84,10 +68,7 @@ export class Onorbit extends APIResource {
    * }
    * ```
    */
-  list(
-    query: OnorbitListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<OnorbitListResponsesOffsetPage, OnorbitListResponse> {
+  list(query: OnorbitListParams | null | undefined = {}, options?: RequestOptions): PagePromise<OnorbitListResponsesOffsetPage, OnorbitListResponse> {
     return this._client.getAPIList('/udl/onorbit', OffsetPage<OnorbitListResponse>, { query, ...options });
   }
 
@@ -102,10 +83,7 @@ export class Onorbit extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/onorbit/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/onorbit/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -121,11 +99,7 @@ export class Onorbit extends APIResource {
    * ```
    */
   count(query: OnorbitCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/onorbit/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/onorbit/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -137,11 +111,7 @@ export class Onorbit extends APIResource {
    * const onorbitFull = await client.onorbit.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: OnorbitGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.OnorbitFull> {
+  get(id: string, query: OnorbitGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.OnorbitFull> {
     return this._client.get(path`/udl/onorbit/${id}`, { query, ...options });
   }
 
@@ -155,10 +125,7 @@ export class Onorbit extends APIResource {
    * });
    * ```
    */
-  getSignature(
-    query: OnorbitGetSignatureParams,
-    options?: RequestOptions,
-  ): APIPromise<OnorbitGetSignatureResponse> {
+  getSignature(query: OnorbitGetSignatureParams, options?: RequestOptions): APIPromise<OnorbitGetSignatureResponse> {
     return this._client.get('/udl/onorbit/getSignature', { query, ...options });
   }
 
@@ -197,7 +164,7 @@ export class Onorbit extends APIResource {
   }
 }
 
-export type OnorbitListResponsesOffsetPage = OffsetPage<OnorbitListResponse>;
+export type OnorbitListResponsesOffsetPage = OffsetPage<OnorbitListResponse>
 
 /**
  * Model object representing on-orbit objects or satellites in the system.
@@ -245,20 +212,7 @@ export interface OnorbitIngest {
    * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
    * Heliocentric, Interplanetary, Lagrangian, Docked).
    */
-  category?:
-    | 'Unknown'
-    | 'On-Orbit'
-    | 'Decayed'
-    | 'Cataloged Without State'
-    | 'Launch Nominal'
-    | 'Analyst Satellite'
-    | 'Cislunar'
-    | 'Lunar'
-    | 'Hyperbolic'
-    | 'Heliocentric'
-    | 'Interplanetary'
-    | 'Lagrangian'
-    | 'Docked';
+  category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
 
   /**
    * Common name of the on-orbit object.
@@ -397,20 +351,7 @@ export interface OnorbitListResponse {
    * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
    * Heliocentric, Interplanetary, Lagrangian, Docked).
    */
-  category?:
-    | 'Unknown'
-    | 'On-Orbit'
-    | 'Decayed'
-    | 'Cataloged Without State'
-    | 'Launch Nominal'
-    | 'Analyst Satellite'
-    | 'Cislunar'
-    | 'Lunar'
-    | 'Hyperbolic'
-    | 'Heliocentric'
-    | 'Interplanetary'
-    | 'Lagrangian'
-    | 'Docked';
+  category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
 
   /**
    * Common name of the on-orbit object.
@@ -503,7 +444,7 @@ export interface OnorbitListResponse {
   origNetwork?: string;
 }
 
-export type OnorbitCountResponse = string;
+export type OnorbitCountResponse = string
 
 /**
  * Contains a list of common information across both Radar and EO observations.
@@ -1487,7 +1428,7 @@ export interface OnorbitQueryhelpResponse {
   uri?: string;
 }
 
-export type OnorbitTupleResponse = Array<Shared.OnorbitFull>;
+export type OnorbitTupleResponse = Array<Shared.OnorbitFull>
 
 export interface OnorbitCreateParams {
   /**
@@ -1532,20 +1473,7 @@ export interface OnorbitCreateParams {
    * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
    * Heliocentric, Interplanetary, Lagrangian, Docked).
    */
-  category?:
-    | 'Unknown'
-    | 'On-Orbit'
-    | 'Decayed'
-    | 'Cataloged Without State'
-    | 'Launch Nominal'
-    | 'Analyst Satellite'
-    | 'Cislunar'
-    | 'Lunar'
-    | 'Hyperbolic'
-    | 'Heliocentric'
-    | 'Interplanetary'
-    | 'Lagrangian'
-    | 'Docked';
+  category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
 
   /**
    * Common name of the on-orbit object.
@@ -1664,20 +1592,7 @@ export interface OnorbitUpdateParams {
    * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
    * Heliocentric, Interplanetary, Lagrangian, Docked).
    */
-  category?:
-    | 'Unknown'
-    | 'On-Orbit'
-    | 'Decayed'
-    | 'Cataloged Without State'
-    | 'Launch Nominal'
-    | 'Analyst Satellite'
-    | 'Cislunar'
-    | 'Lunar'
-    | 'Hyperbolic'
-    | 'Heliocentric'
-    | 'Interplanetary'
-    | 'Lagrangian'
-    | 'Docked';
+  category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
 
   /**
    * Common name of the on-orbit object.
@@ -1753,7 +1668,8 @@ export interface OnorbitUpdateParams {
   origin?: string;
 }
 
-export interface OnorbitListParams extends OffsetPageParams {}
+export interface OnorbitListParams extends OffsetPageParams {
+}
 
 export interface OnorbitCountParams {
   firstResult?: number;
@@ -1809,7 +1725,7 @@ export declare namespace Onorbit {
     type OnorbitCountParams as OnorbitCountParams,
     type OnorbitGetParams as OnorbitGetParams,
     type OnorbitGetSignatureParams as OnorbitGetSignatureParams,
-    type OnorbitTupleParams as OnorbitTupleParams,
+    type OnorbitTupleParams as OnorbitTupleParams
   };
 
   export {
@@ -1819,6 +1735,6 @@ export declare namespace Onorbit {
     type AntennaDetailCreateParams as AntennaDetailCreateParams,
     type AntennaDetailRetrieveParams as AntennaDetailRetrieveParams,
     type AntennaDetailUpdateParams as AntennaDetailUpdateParams,
-    type AntennaDetailListParams as AntennaDetailListParams,
+    type AntennaDetailListParams as AntennaDetailListParams
   };
 }

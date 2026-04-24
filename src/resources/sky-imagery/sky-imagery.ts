@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { type Uploadable } from '../../core/uploads';
@@ -32,14 +24,8 @@ export class SkyImagery extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(
-    query: SkyImageryListParams,
-    options?: RequestOptions,
-  ): PagePromise<SkyImageryListResponsesOffsetPage, SkyImageryListResponse> {
-    return this._client.getAPIList('/udl/skyimagery', OffsetPage<SkyImageryListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: SkyImageryListParams, options?: RequestOptions): PagePromise<SkyImageryListResponsesOffsetPage, SkyImageryListResponse> {
+    return this._client.getAPIList('/udl/skyimagery', OffsetPage<SkyImageryListResponse>, { query, ...options });
   }
 
   /**
@@ -50,11 +36,7 @@ export class SkyImagery extends APIResource {
    * valid/required query parameter information.
    */
   count(query: SkyImageryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/skyimagery/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/skyimagery/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -62,17 +44,8 @@ export class SkyImagery extends APIResource {
    * passed as a path parameter. The image is returned as an attachment
    * Content-Disposition.
    */
-  fileGet(
-    id: string,
-    query: SkyImageryFileGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Response> {
-    return this._client.get(path`/udl/skyimagery/getFile/${id}`, {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
-      __binaryResponse: true,
-    });
+  fileGet(id: string, query: SkyImageryFileGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/udl/skyimagery/getFile/${id}`, { query, ...options, headers: buildHeaders([{Accept: 'application/octet-stream'}, options?.headers]), __binaryResponse: true });
   }
 
   /**
@@ -80,11 +53,7 @@ export class SkyImagery extends APIResource {
    * path parameter. SkyImagery represents metadata about a sky image, as well as the
    * actual binary image data.
    */
-  get(
-    id: string,
-    query: SkyImageryGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<SkyImageryGetResponse> {
+  get(id: string, query: SkyImageryGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SkyImageryGetResponse> {
     return this._client.get(path`/udl/skyimagery/${id}`, { query, ...options });
   }
 
@@ -130,22 +99,11 @@ export class SkyImagery extends APIResource {
    * for assistance.
    */
   uploadZip(body: SkyImageryUploadZipParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post(
-      '/filedrop/udl-skyimagery',
-      multipartFormRequestOptions(
-        {
-          body,
-          defaultBaseURL: 'https://imagery.unifieddatalibrary.com',
-          ...options,
-          headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-        },
-        this._client,
-      ),
-    );
+    return this._client.post('/filedrop/udl-skyimagery', multipartFormRequestOptions({ body, defaultBaseURL: 'https://imagery.unifieddatalibrary.com', ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) }, this._client));
   }
 }
 
-export type SkyImageryListResponsesOffsetPage = OffsetPage<SkyImageryListResponse>;
+export type SkyImageryListResponsesOffsetPage = OffsetPage<SkyImageryListResponse>
 
 /**
  * Model representation of sky imagery data. Sky imagery is ground or space based
@@ -452,7 +410,7 @@ export interface SkyImageryListResponse {
   transactionId?: string;
 }
 
-export type SkyImageryCountResponse = string;
+export type SkyImageryCountResponse = string
 
 /**
  * Model representation of sky imagery data. Sky imagery is ground or space based
@@ -793,7 +751,7 @@ export interface SkyImageryQueryhelpResponse {
   uri?: string;
 }
 
-export type SkyImageryTupleResponse = Array<SkyImageryTupleResponse.SkyImageryTupleResponseItem>;
+export type SkyImageryTupleResponse = Array<SkyImageryTupleResponse.SkyImageryTupleResponseItem>
 
 export namespace SkyImageryTupleResponse {
   /**
@@ -1186,7 +1144,7 @@ export declare namespace SkyImagery {
     type SkyImageryFileGetParams as SkyImageryFileGetParams,
     type SkyImageryGetParams as SkyImageryGetParams,
     type SkyImageryTupleParams as SkyImageryTupleParams,
-    type SkyImageryUploadZipParams as SkyImageryUploadZipParams,
+    type SkyImageryUploadZipParams as SkyImageryUploadZipParams
   };
 
   export {
@@ -1196,6 +1154,6 @@ export declare namespace SkyImagery {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

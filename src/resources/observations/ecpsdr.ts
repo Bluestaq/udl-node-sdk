@@ -29,11 +29,7 @@ export class EcpsdrResource extends APIResource {
    * ```
    */
   create(body: EcpsdrCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/ecpsdr', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/ecpsdr', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -47,11 +43,7 @@ export class EcpsdrResource extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    query: EcpsdrRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Ecpsdr> {
+  retrieve(id: string, query: EcpsdrRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Ecpsdr> {
     return this._client.get(path`/udl/ecpsdr/${id}`, { query, ...options });
   }
 
@@ -71,10 +63,7 @@ export class EcpsdrResource extends APIResource {
    * }
    * ```
    */
-  list(
-    query: EcpsdrListParams,
-    options?: RequestOptions,
-  ): PagePromise<EcpsdrAbridgedsOffsetPage, EcpsdrAbridged> {
+  list(query: EcpsdrListParams, options?: RequestOptions): PagePromise<EcpsdrAbridgedsOffsetPage, EcpsdrAbridged> {
     return this._client.getAPIList('/udl/ecpsdr', OffsetPage<EcpsdrAbridged>, { query, ...options });
   }
 
@@ -93,11 +82,7 @@ export class EcpsdrResource extends APIResource {
    * ```
    */
   count(query: EcpsdrCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/ecpsdr/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/ecpsdr/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -123,12 +108,8 @@ export class EcpsdrResource extends APIResource {
    * ```
    */
   createBulk(params: EcpsdrCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/ecpsdr/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/ecpsdr/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -189,16 +170,12 @@ export class EcpsdrResource extends APIResource {
    * ```
    */
   unvalidatedPublish(params: EcpsdrUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-ecpsdr', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/filedrop/udl-ecpsdr', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type EcpsdrAbridgedsOffsetPage = OffsetPage<EcpsdrAbridged>;
+export type EcpsdrAbridgedsOffsetPage = OffsetPage<EcpsdrAbridged>
 
 /**
  * Supports Sensor Data Records (SDR) from space-borne Energetic Charged Particle
@@ -836,7 +813,7 @@ export interface EcpsdrAbridged {
   vRef?: number;
 }
 
-export type EcpsdrCountResponse = string;
+export type EcpsdrCountResponse = string
 
 export interface EcpsdrQueryHelpResponse {
   aodrSupported?: boolean;
@@ -862,7 +839,7 @@ export interface EcpsdrQueryHelpResponse {
   uri?: string;
 }
 
-export type EcpsdrTupleResponse = Array<Ecpsdr>;
+export type EcpsdrTupleResponse = Array<Ecpsdr>
 
 export interface EcpsdrCreateParams {
   /**
@@ -1795,6 +1772,6 @@ export declare namespace EcpsdrResource {
     type EcpsdrCountParams as EcpsdrCountParams,
     type EcpsdrCreateBulkParams as EcpsdrCreateBulkParams,
     type EcpsdrTupleParams as EcpsdrTupleParams,
-    type EcpsdrUnvalidatedPublishParams as EcpsdrUnvalidatedPublishParams,
+    type EcpsdrUnvalidatedPublishParams as EcpsdrUnvalidatedPublishParams
   };
 }

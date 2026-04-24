@@ -2,26 +2,9 @@
 
 import { APIResource } from '../../core/resource';
 import * as DataTypesAPI from './data-types';
-import {
-  DataTypeListParams,
-  DataTypeListResponse,
-  DataTypeListResponsesOffsetPage,
-  DataTypes,
-} from './data-types';
+import { DataTypeListParams, DataTypeListResponse, DataTypeListResponsesOffsetPage, DataTypes } from './data-types';
 import * as DataownerAPI from './dataowner';
-import {
-  Dataowner,
-  DataownerAbridged,
-  DataownerCountParams,
-  DataownerCountResponse,
-  DataownerQueryHelpResponse,
-  DataownerRetrieveDataOwnerTypesParams,
-  DataownerRetrieveDataOwnerTypesResponse,
-  DataownerRetrieveParams,
-  DataownerRetrieveProviderMetadataParams,
-  DataownerRetrieveProviderMetadataResponse,
-  DataownerRetrieveResponse,
-} from './dataowner';
+import { Dataowner, DataownerAbridged, DataownerCountParams, DataownerCountResponse, DataownerQueryHelpResponse, DataownerRetrieveDataOwnerTypesParams, DataownerRetrieveDataOwnerTypesResponse, DataownerRetrieveParams, DataownerRetrieveProviderMetadataParams, DataownerRetrieveProviderMetadataResponse, DataownerRetrieveResponse } from './dataowner';
 
 export class SupportingData extends APIResource {
   dataTypes: DataTypesAPI.DataTypes = new DataTypesAPI.DataTypes(this._client);
@@ -36,7 +19,7 @@ export declare namespace SupportingData {
     DataTypes as DataTypes,
     type DataTypeListResponse as DataTypeListResponse,
     type DataTypeListResponsesOffsetPage as DataTypeListResponsesOffsetPage,
-    type DataTypeListParams as DataTypeListParams,
+    type DataTypeListParams as DataTypeListParams
   };
 
   export {
@@ -50,6 +33,6 @@ export declare namespace SupportingData {
     type DataownerRetrieveParams as DataownerRetrieveParams,
     type DataownerCountParams as DataownerCountParams,
     type DataownerRetrieveDataOwnerTypesParams as DataownerRetrieveDataOwnerTypesParams,
-    type DataownerRetrieveProviderMetadataParams as DataownerRetrieveProviderMetadataParams,
+    type DataownerRetrieveProviderMetadataParams as DataownerRetrieveProviderMetadataParams
   };
 }

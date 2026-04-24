@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -45,11 +37,7 @@ export class Hazard extends APIResource {
    * ```
    */
   create(body: HazardCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/hazard', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/hazard', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -68,10 +56,7 @@ export class Hazard extends APIResource {
    * }
    * ```
    */
-  list(
-    query: HazardListParams,
-    options?: RequestOptions,
-  ): PagePromise<HazardListResponsesOffsetPage, HazardListResponse> {
+  list(query: HazardListParams, options?: RequestOptions): PagePromise<HazardListResponsesOffsetPage, HazardListResponse> {
     return this._client.getAPIList('/udl/hazard', OffsetPage<HazardListResponse>, { query, ...options });
   }
 
@@ -90,11 +75,7 @@ export class Hazard extends APIResource {
    * ```
    */
   count(query: HazardCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/hazard/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/hazard/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -122,12 +103,8 @@ export class Hazard extends APIResource {
    * ```
    */
   createBulk(params: HazardCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/hazard/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/hazard/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -139,11 +116,7 @@ export class Hazard extends APIResource {
    * const hazard = await client.hazard.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: HazardGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<HazardGetResponse> {
+  get(id: string, query: HazardGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<HazardGetResponse> {
     return this._client.get(path`/udl/hazard/${id}`, { query, ...options });
   }
 
@@ -183,7 +156,7 @@ export class Hazard extends APIResource {
   }
 }
 
-export type HazardListResponsesOffsetPage = OffsetPage<HazardListResponse>;
+export type HazardListResponsesOffsetPage = OffsetPage<HazardListResponse>
 
 /**
  * Hazard contains information concerning the exposure of a geographic area to a
@@ -468,7 +441,7 @@ export interface HazardListResponse {
   z?: number;
 }
 
-export type HazardCountResponse = string;
+export type HazardCountResponse = string
 
 /**
  * Hazard contains information concerning the exposure of a geographic area to a
@@ -777,7 +750,7 @@ export interface HazardQueryhelpResponse {
   uri?: string;
 }
 
-export type HazardTupleResponse = Array<HazardTupleResponse.HazardTupleResponseItem>;
+export type HazardTupleResponse = Array<HazardTupleResponse.HazardTupleResponseItem>
 
 export namespace HazardTupleResponse {
   /**
@@ -1656,7 +1629,7 @@ export declare namespace Hazard {
     type HazardCountParams as HazardCountParams,
     type HazardCreateBulkParams as HazardCreateBulkParams,
     type HazardGetParams as HazardGetParams,
-    type HazardTupleParams as HazardTupleParams,
+    type HazardTupleParams as HazardTupleParams
   };
 
   export {
@@ -1666,6 +1639,6 @@ export declare namespace Hazard {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

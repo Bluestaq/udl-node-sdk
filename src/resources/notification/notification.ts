@@ -3,13 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -43,11 +37,7 @@ export class Notification extends APIResource {
    * ```
    */
   create(body: NotificationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/notification', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/notification', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -66,14 +56,8 @@ export class Notification extends APIResource {
    * }
    * ```
    */
-  list(
-    query: NotificationListParams,
-    options?: RequestOptions,
-  ): PagePromise<NotificationListResponsesOffsetPage, NotificationListResponse> {
-    return this._client.getAPIList('/udl/notification', OffsetPage<NotificationListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: NotificationListParams, options?: RequestOptions): PagePromise<NotificationListResponsesOffsetPage, NotificationListResponse> {
+    return this._client.getAPIList('/udl/notification', OffsetPage<NotificationListResponse>, { query, ...options });
   }
 
   /**
@@ -91,11 +75,7 @@ export class Notification extends APIResource {
    * ```
    */
   count(query: NotificationCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/notification/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/notification/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -125,13 +105,8 @@ export class Notification extends APIResource {
    * ```
    */
   createRaw(params: NotificationCreateRawParams, options?: RequestOptions): APIPromise<void> {
-    const { classificationMarking, dataMode, msgType, origin, source, body, msgId, tags } = params;
-    return this._client.post('/udl/notification/createRaw', {
-      query: { classificationMarking, dataMode, msgType, origin, source, msgId, tags },
-      body: body,
-      ...options,
-      headers: buildHeaders([{ 'Content-Type': 'text/plain', Accept: '*/*' }, options?.headers]),
-    });
+    const { classificationMarking, dataMode, msgType, origin, source, body, msgId, tags } = params
+    return this._client.post('/udl/notification/createRaw', { query: { classificationMarking, dataMode, msgType, origin, source, msgId, tags }, body: body, ...options, headers: buildHeaders([{'Content-Type': 'text/plain', Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -145,11 +120,7 @@ export class Notification extends APIResource {
    * );
    * ```
    */
-  get(
-    id: string,
-    query: NotificationGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.NotificationFull> {
+  get(id: string, query: NotificationGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.NotificationFull> {
     return this._client.get(path`/udl/notification/${id}`, { query, ...options });
   }
 
@@ -189,7 +160,7 @@ export class Notification extends APIResource {
   }
 }
 
-export type NotificationListResponsesOffsetPage = OffsetPage<NotificationListResponse>;
+export type NotificationListResponsesOffsetPage = OffsetPage<NotificationListResponse>
 
 /**
  * Model representation of client generated notification data. Contains a message
@@ -279,7 +250,7 @@ export interface NotificationListResponse {
   tags?: Array<string>;
 }
 
-export type NotificationCountResponse = string;
+export type NotificationCountResponse = string
 
 export interface NotificationQueryhelpResponse {
   aodrSupported?: boolean;
@@ -305,7 +276,7 @@ export interface NotificationQueryhelpResponse {
   uri?: string;
 }
 
-export type NotificationTupleResponse = Array<Shared.NotificationFull>;
+export type NotificationTupleResponse = Array<Shared.NotificationFull>
 
 export interface NotificationCreateParams {
   /**
@@ -482,7 +453,7 @@ export declare namespace Notification {
     type NotificationCountParams as NotificationCountParams,
     type NotificationCreateRawParams as NotificationCreateRawParams,
     type NotificationGetParams as NotificationGetParams,
-    type NotificationTupleParams as NotificationTupleParams,
+    type NotificationTupleParams as NotificationTupleParams
   };
 
   export {
@@ -490,6 +461,6 @@ export declare namespace Notification {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

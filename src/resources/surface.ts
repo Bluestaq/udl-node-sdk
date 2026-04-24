@@ -29,11 +29,7 @@ export class Surface extends APIResource {
    * ```
    */
   create(body: SurfaceCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/surface', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/surface', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -52,11 +48,7 @@ export class Surface extends APIResource {
    * ```
    */
   update(id: string, body: SurfaceUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/surface/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/surface/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -73,10 +65,7 @@ export class Surface extends APIResource {
    * }
    * ```
    */
-  list(
-    query: SurfaceListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<SurfaceListResponsesOffsetPage, SurfaceListResponse> {
+  list(query: SurfaceListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SurfaceListResponsesOffsetPage, SurfaceListResponse> {
     return this._client.getAPIList('/udl/surface', OffsetPage<SurfaceListResponse>, { query, ...options });
   }
 
@@ -91,10 +80,7 @@ export class Surface extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/surface/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/surface/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -110,11 +96,7 @@ export class Surface extends APIResource {
    * ```
    */
   count(query: SurfaceCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/surface/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/surface/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -126,11 +108,7 @@ export class Surface extends APIResource {
    * const surface = await client.surface.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: SurfaceGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<SurfaceGetResponse> {
+  get(id: string, query: SurfaceGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SurfaceGetResponse> {
     return this._client.get(path`/udl/surface/${id}`, { query, ...options });
   }
 
@@ -169,7 +147,7 @@ export class Surface extends APIResource {
   }
 }
 
-export type SurfaceListResponsesOffsetPage = OffsetPage<SurfaceListResponse>;
+export type SurfaceListResponsesOffsetPage = OffsetPage<SurfaceListResponse>
 
 /**
  * Surface information contains properties related to an airfield's runway,
@@ -692,7 +670,7 @@ export interface SurfaceListResponse {
   widthM?: number;
 }
 
-export type SurfaceCountResponse = string;
+export type SurfaceCountResponse = string
 
 /**
  * Surface information contains properties related to an airfield's runway,
@@ -1391,7 +1369,7 @@ export interface SurfaceQueryhelpResponse {
   uri?: string;
 }
 
-export type SurfaceTupleResponse = Array<SurfaceTupleResponse.SurfaceTupleResponseItem>;
+export type SurfaceTupleResponse = Array<SurfaceTupleResponse.SurfaceTupleResponseItem>
 
 export namespace SurfaceTupleResponse {
   /**
@@ -3066,7 +3044,8 @@ export interface SurfaceUpdateParams {
   widthM?: number;
 }
 
-export interface SurfaceListParams extends OffsetPageParams {}
+export interface SurfaceListParams extends OffsetPageParams {
+}
 
 export interface SurfaceCountParams {
   firstResult?: number;
@@ -3107,6 +3086,6 @@ export declare namespace Surface {
     type SurfaceListParams as SurfaceListParams,
     type SurfaceCountParams as SurfaceCountParams,
     type SurfaceGetParams as SurfaceGetParams,
-    type SurfaceTupleParams as SurfaceTupleParams,
+    type SurfaceTupleParams as SurfaceTupleParams
   };
 }

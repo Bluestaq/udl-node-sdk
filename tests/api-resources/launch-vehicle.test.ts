@@ -5,17 +5,17 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource launchVehicle', () => {
   test('create: only required params', async () => {
     const responsePromise = client.launchVehicle.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      name: 'Example-name',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    name: 'Example-name',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,23 +27,23 @@ describe('resource launchVehicle', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.launchVehicle.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      name: 'Example-name',
-      source: 'Bluestaq',
-      id: 'LAUNCHVEHICLE-ID',
-      origin: 'THIRD_PARTY_DATASOURCE',
-      type: 'Example-vehicle-type',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    name: 'Example-name',
+    source: 'Bluestaq',
+    id: 'LAUNCHVEHICLE-ID',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    type: 'Example-vehicle-type',
+  });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.launchVehicle.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      name: 'Example-name',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    name: 'Example-name',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -55,14 +55,14 @@ describe('resource launchVehicle', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.launchVehicle.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      name: 'Example-name',
-      source: 'Bluestaq',
-      id: 'LAUNCHVEHICLE-ID',
-      origin: 'THIRD_PARTY_DATASOURCE',
-      type: 'Example-vehicle-type',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    name: 'Example-name',
+    source: 'Bluestaq',
+    id: 'LAUNCHVEHICLE-ID',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    type: 'Example-vehicle-type',
+  });
   });
 
   test('list', async () => {
@@ -78,9 +78,9 @@ describe('resource launchVehicle', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.launchVehicle.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.launchVehicle.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -107,9 +107,9 @@ describe('resource launchVehicle', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.launchVehicle.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.launchVehicle.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('get', async () => {
@@ -125,9 +125,9 @@ describe('resource launchVehicle', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.launchVehicle.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.launchVehicle.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -154,9 +154,9 @@ describe('resource launchVehicle', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.launchVehicle.tuple({
-      columns: 'columns',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    columns: 'columns',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 });

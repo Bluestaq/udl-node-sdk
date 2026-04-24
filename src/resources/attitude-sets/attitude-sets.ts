@@ -3,13 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -58,11 +52,7 @@ export class AttitudeSets extends APIResource {
    * ```
    */
   create(body: AttitudeSetCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/attitudeset', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/attitudeset', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -76,11 +66,7 @@ export class AttitudeSets extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    id: string,
-    query: AttitudeSetRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.AttitudesetFull> {
+  retrieve(id: string, query: AttitudeSetRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AttitudesetFull> {
     return this._client.get(path`/udl/attitudeset/${id}`, { query, ...options });
   }
 
@@ -100,14 +86,8 @@ export class AttitudeSets extends APIResource {
    * }
    * ```
    */
-  list(
-    query: AttitudeSetListParams,
-    options?: RequestOptions,
-  ): PagePromise<AttitudesetAbridgedsOffsetPage, AttitudesetAbridged> {
-    return this._client.getAPIList('/udl/attitudeset', OffsetPage<AttitudesetAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: AttitudeSetListParams, options?: RequestOptions): PagePromise<AttitudesetAbridgedsOffsetPage, AttitudesetAbridged> {
+    return this._client.getAPIList('/udl/attitudeset', OffsetPage<AttitudesetAbridged>, { query, ...options });
   }
 
   /**
@@ -125,11 +105,7 @@ export class AttitudeSets extends APIResource {
    * ```
    */
   count(query: AttitudeSetCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/attitudeset/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/attitudeset/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -201,15 +177,11 @@ export class AttitudeSets extends APIResource {
    * ```
    */
   unvalidatedPublish(body: AttitudeSetUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/filedrop/udl-attitudeset', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/filedrop/udl-attitudeset', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type AttitudesetAbridgedsOffsetPage = OffsetPage<AttitudesetAbridged>;
+export type AttitudesetAbridgedsOffsetPage = OffsetPage<AttitudesetAbridged>
 
 /**
  * AttitudeSet represents a wrapper or collection of Onorbit Attitude 'points' and
@@ -413,7 +385,7 @@ export interface AttitudesetAbridged {
   stepSize?: number;
 }
 
-export type AttitudeSetCountResponse = string;
+export type AttitudeSetCountResponse = string
 
 export interface AttitudeSetQueryHelpResponse {
   aodrSupported?: boolean;
@@ -439,7 +411,7 @@ export interface AttitudeSetQueryHelpResponse {
   uri?: string;
 }
 
-export type AttitudeSetTupleResponse = Array<Shared.AttitudesetFull>;
+export type AttitudeSetTupleResponse = Array<Shared.AttitudesetFull>
 
 export interface AttitudeSetCreateParams {
   /**
@@ -1259,7 +1231,7 @@ export declare namespace AttitudeSets {
     type AttitudeSetListParams as AttitudeSetListParams,
     type AttitudeSetCountParams as AttitudeSetCountParams,
     type AttitudeSetTupleParams as AttitudeSetTupleParams,
-    type AttitudeSetUnvalidatedPublishParams as AttitudeSetUnvalidatedPublishParams,
+    type AttitudeSetUnvalidatedPublishParams as AttitudeSetUnvalidatedPublishParams
   };
 
   export {
@@ -1267,6 +1239,6 @@ export declare namespace AttitudeSets {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

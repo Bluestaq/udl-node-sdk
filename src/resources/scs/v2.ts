@@ -30,13 +30,8 @@ export class V2 extends APIResource {
    * ```
    */
   update(params: V2UpdateParams, options?: RequestOptions): APIPromise<void> {
-    const { path: path_, sendNotification, ...body } = params;
-    return this._client.patch('/scs/v2/update', {
-      query: { path: path_, sendNotification },
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { path: path_, sendNotification, ...body } = params
+    return this._client.patch('/scs/v2/update', { query: { path: path_, sendNotification }, body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -67,12 +62,8 @@ export class V2 extends APIResource {
    * ```
    */
   delete(params: V2DeleteParams, options?: RequestOptions): APIPromise<void> {
-    const { path: path_ } = params;
-    return this._client.delete('/scs/v2/delete', {
-      query: { path: path_ },
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { path: path_ } = params
+    return this._client.delete('/scs/v2/delete', { query: { path: path_ }, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -88,12 +79,8 @@ export class V2 extends APIResource {
    * ```
    */
   copy(params: V2CopyParams, options?: RequestOptions): APIPromise<void> {
-    const { fromPath, toPath } = params;
-    return this._client.post('/scs/v2/copy', {
-      query: { fromPath, toPath },
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { fromPath, toPath } = params
+    return this._client.post('/scs/v2/copy', { query: { fromPath, toPath }, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -111,37 +98,9 @@ export class V2 extends APIResource {
    * );
    * ```
    */
-  fileUpload(
-    fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
-    params: V2FileUploadParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const {
-      classificationMarking,
-      path: path_,
-      deleteAfter,
-      description,
-      overwrite,
-      sendNotification,
-      tags,
-    } = params;
-    return this._client.post('/scs/v2/file', {
-      body: fileContent,
-      query: {
-        classificationMarking,
-        path: path_,
-        deleteAfter,
-        description,
-        overwrite,
-        sendNotification,
-        tags,
-      },
-      ...options,
-      headers: buildHeaders([
-        { 'Content-Type': 'application/octet-stream', Accept: '*/*' },
-        options?.headers,
-      ]),
-    });
+  fileUpload(fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView, params: V2FileUploadParams, options?: RequestOptions): APIPromise<void> {
+    const { classificationMarking, path: path_, deleteAfter, description, overwrite, sendNotification, tags } = params
+    return this._client.post('/scs/v2/file', { body: fileContent, query: { classificationMarking, path: path_, deleteAfter, description, overwrite, sendNotification, tags }, ...options, headers: buildHeaders([{'Content-Type': 'application/octet-stream', Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -166,13 +125,8 @@ export class V2 extends APIResource {
    * ```
    */
   folderCreate(params: V2FolderCreateParams, options?: RequestOptions): APIPromise<void> {
-    const { path: path_, sendNotification, ...body } = params;
-    return this._client.post('/scs/v2/folder', {
-      query: { path: path_, sendNotification },
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { path: path_, sendNotification, ...body } = params
+    return this._client.post('/scs/v2/folder', { query: { path: path_, sendNotification }, body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -188,12 +142,8 @@ export class V2 extends APIResource {
    * ```
    */
   move(params: V2MoveParams, options?: RequestOptions): APIPromise<void> {
-    const { fromPath, toPath } = params;
-    return this._client.put('/scs/v2/move', {
-      query: { fromPath, toPath },
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { fromPath, toPath } = params
+    return this._client.put('/scs/v2/move', { query: { fromPath, toPath }, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -211,16 +161,12 @@ export class V2 extends APIResource {
    * ```
    */
   search(params: V2SearchParams, options?: RequestOptions): APIPromise<V2SearchResponse> {
-    const { order, searchAfter, size, sort, ...body } = params;
-    return this._client.post('/scs/v2/search', {
-      query: { order, searchAfter, size, sort },
-      body,
-      ...options,
-    });
+    const { order, searchAfter, size, sort, ...body } = params
+    return this._client.post('/scs/v2/search', { query: { order, searchAfter, size, sort }, body, ...options });
   }
 }
 
-export type ScsEntitiesOffsetPage = OffsetPage<ScsEntity>;
+export type ScsEntitiesOffsetPage = OffsetPage<ScsEntity>
 
 export interface Attachment {
   /**
@@ -362,7 +308,7 @@ export interface ScsEntity {
   writeAcl?: string;
 }
 
-export type V2SearchResponse = Array<ScsEntity>;
+export type V2SearchResponse = Array<ScsEntity>
 
 export interface V2UpdateParams {
   /**
@@ -822,6 +768,6 @@ export declare namespace V2 {
     type V2FileUploadParams as V2FileUploadParams,
     type V2FolderCreateParams as V2FolderCreateParams,
     type V2MoveParams as V2MoveParams,
-    type V2SearchParams as V2SearchParams,
+    type V2SearchParams as V2SearchParams
   };
 }

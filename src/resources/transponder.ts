@@ -29,11 +29,7 @@ export class Transponder extends APIResource {
    * ```
    */
   create(body: TransponderCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/transponder', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/transponder', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -53,11 +49,7 @@ export class Transponder extends APIResource {
    * ```
    */
   update(id: string, body: TransponderUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/transponder/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/transponder/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -74,14 +66,8 @@ export class Transponder extends APIResource {
    * }
    * ```
    */
-  list(
-    query: TransponderListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<TransponderListResponsesOffsetPage, TransponderListResponse> {
-    return this._client.getAPIList('/udl/transponder', OffsetPage<TransponderListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: TransponderListParams | null | undefined = {}, options?: RequestOptions): PagePromise<TransponderListResponsesOffsetPage, TransponderListResponse> {
+    return this._client.getAPIList('/udl/transponder', OffsetPage<TransponderListResponse>, { query, ...options });
   }
 
   /**
@@ -96,10 +82,7 @@ export class Transponder extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/transponder/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/transponder/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -115,11 +98,7 @@ export class Transponder extends APIResource {
    * ```
    */
   count(query: TransponderCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/transponder/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/transponder/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -132,11 +111,7 @@ export class Transponder extends APIResource {
    * const transponder = await client.transponder.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: TransponderGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<TransponderGetResponse> {
+  get(id: string, query: TransponderGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<TransponderGetResponse> {
     return this._client.get(path`/udl/transponder/${id}`, { query, ...options });
   }
 
@@ -175,7 +150,7 @@ export class Transponder extends APIResource {
   }
 }
 
-export type TransponderListResponsesOffsetPage = OffsetPage<TransponderListResponse>;
+export type TransponderListResponsesOffsetPage = OffsetPage<TransponderListResponse>
 
 /**
  * A transponder receives and transmits radio signals at a prescribed frequency
@@ -298,7 +273,7 @@ export interface TransponderListResponse {
   ttf?: number;
 }
 
-export type TransponderCountResponse = string;
+export type TransponderCountResponse = string
 
 /**
  * A transponder receives and transmits radio signals at a prescribed frequency
@@ -461,7 +436,7 @@ export interface TransponderQueryhelpResponse {
   uri?: string;
 }
 
-export type TransponderTupleResponse = Array<TransponderTupleResponse.TransponderTupleResponseItem>;
+export type TransponderTupleResponse = Array<TransponderTupleResponse.TransponderTupleResponseItem>
 
 export namespace TransponderTupleResponse {
   /**
@@ -796,7 +771,8 @@ export interface TransponderUpdateParams {
   ttf?: number;
 }
 
-export interface TransponderListParams extends OffsetPageParams {}
+export interface TransponderListParams extends OffsetPageParams {
+}
 
 export interface TransponderCountParams {
   firstResult?: number;
@@ -837,6 +813,6 @@ export declare namespace Transponder {
     type TransponderListParams as TransponderListParams,
     type TransponderCountParams as TransponderCountParams,
     type TransponderGetParams as TransponderGetParams,
-    type TransponderTupleParams as TransponderTupleParams,
+    type TransponderTupleParams as TransponderTupleParams
   };
 }

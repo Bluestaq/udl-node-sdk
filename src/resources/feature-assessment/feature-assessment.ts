@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -42,11 +34,7 @@ export class FeatureAssessment extends APIResource {
    * ```
    */
   create(body: FeatureAssessmentCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/featureassessment', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/featureassessment', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -59,11 +47,7 @@ export class FeatureAssessment extends APIResource {
    *   await client.featureAssessment.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: FeatureAssessmentRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<FeatureAssessmentRetrieveResponse> {
+  retrieve(id: string, query: FeatureAssessmentRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<FeatureAssessmentRetrieveResponse> {
     return this._client.get(path`/udl/featureassessment/${id}`, { query, ...options });
   }
 
@@ -83,14 +67,8 @@ export class FeatureAssessment extends APIResource {
    * }
    * ```
    */
-  list(
-    query: FeatureAssessmentListParams,
-    options?: RequestOptions,
-  ): PagePromise<FeatureAssessmentListResponsesOffsetPage, FeatureAssessmentListResponse> {
-    return this._client.getAPIList('/udl/featureassessment', OffsetPage<FeatureAssessmentListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: FeatureAssessmentListParams, options?: RequestOptions): PagePromise<FeatureAssessmentListResponsesOffsetPage, FeatureAssessmentListResponse> {
+    return this._client.getAPIList('/udl/featureassessment', OffsetPage<FeatureAssessmentListResponse>, { query, ...options });
   }
 
   /**
@@ -108,11 +86,7 @@ export class FeatureAssessment extends APIResource {
    * ```
    */
   count(query: FeatureAssessmentCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/featureassessment/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/featureassessment/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -140,12 +114,8 @@ export class FeatureAssessment extends APIResource {
    * ```
    */
   createBulk(params: FeatureAssessmentCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/featureassessment/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/featureassessment/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -179,10 +149,7 @@ export class FeatureAssessment extends APIResource {
    * });
    * ```
    */
-  tuple(
-    query: FeatureAssessmentTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<FeatureAssessmentTupleResponse> {
+  tuple(query: FeatureAssessmentTupleParams, options?: RequestOptions): APIPromise<FeatureAssessmentTupleResponse> {
     return this._client.get('/udl/featureassessment/tuple', { query, ...options });
   }
 
@@ -209,20 +176,13 @@ export class FeatureAssessment extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(
-    params: FeatureAssessmentUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-featureassessment', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: FeatureAssessmentUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-featureassessment', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type FeatureAssessmentListResponsesOffsetPage = OffsetPage<FeatureAssessmentListResponse>;
+export type FeatureAssessmentListResponsesOffsetPage = OffsetPage<FeatureAssessmentListResponse>
 
 /**
  * Feature assessments obtained from imagery analysis or other data analytics.
@@ -797,7 +757,7 @@ export interface FeatureAssessmentListResponse {
   width?: number;
 }
 
-export type FeatureAssessmentCountResponse = string;
+export type FeatureAssessmentCountResponse = string
 
 export interface FeatureAssessmentQueryHelpResponse {
   aodrSupported?: boolean;
@@ -823,8 +783,7 @@ export interface FeatureAssessmentQueryHelpResponse {
   uri?: string;
 }
 
-export type FeatureAssessmentTupleResponse =
-  Array<FeatureAssessmentTupleResponse.FeatureAssessmentTupleResponseItem>;
+export type FeatureAssessmentTupleResponse = Array<FeatureAssessmentTupleResponse.FeatureAssessmentTupleResponseItem>
 
 export namespace FeatureAssessmentTupleResponse {
   /**
@@ -2005,7 +1964,7 @@ export declare namespace FeatureAssessment {
     type FeatureAssessmentCountParams as FeatureAssessmentCountParams,
     type FeatureAssessmentCreateBulkParams as FeatureAssessmentCreateBulkParams,
     type FeatureAssessmentTupleParams as FeatureAssessmentTupleParams,
-    type FeatureAssessmentUnvalidatedPublishParams as FeatureAssessmentUnvalidatedPublishParams,
+    type FeatureAssessmentUnvalidatedPublishParams as FeatureAssessmentUnvalidatedPublishParams
   };
 
   export {
@@ -2015,6 +1974,6 @@ export declare namespace FeatureAssessment {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

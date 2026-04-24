@@ -28,11 +28,7 @@ export class Details extends APIResource {
    * ```
    */
   create(body: DetailCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/rfemitterdetails', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/rfemitterdetails', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -51,11 +47,7 @@ export class Details extends APIResource {
    * ```
    */
   update(id: string, body: DetailUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/rfemitterdetails/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/rfemitterdetails/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -72,14 +64,8 @@ export class Details extends APIResource {
    * }
    * ```
    */
-  list(
-    query: DetailListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<DetailListResponsesOffsetPage, DetailListResponse> {
-    return this._client.getAPIList('/udl/rfemitterdetails', OffsetPage<DetailListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: DetailListParams | null | undefined = {}, options?: RequestOptions): PagePromise<DetailListResponsesOffsetPage, DetailListResponse> {
+    return this._client.getAPIList('/udl/rfemitterdetails', OffsetPage<DetailListResponse>, { query, ...options });
   }
 
   /**
@@ -93,10 +79,7 @@ export class Details extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/rfemitterdetails/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/rfemitterdetails/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -112,11 +95,7 @@ export class Details extends APIResource {
    * ```
    */
   count(query: DetailCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/rfemitterdetails/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/rfemitterdetails/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -128,11 +107,7 @@ export class Details extends APIResource {
    * const detail = await client.rfEmitter.details.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: DetailGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<DetailGetResponse> {
+  get(id: string, query: DetailGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<DetailGetResponse> {
     return this._client.get(path`/udl/rfemitterdetails/${id}`, { query, ...options });
   }
 
@@ -171,7 +146,7 @@ export class Details extends APIResource {
   }
 }
 
-export type DetailListResponsesOffsetPage = OffsetPage<DetailListResponse>;
+export type DetailListResponsesOffsetPage = OffsetPage<DetailListResponse>
 
 /**
  * Details for a particular RF Emitter, collected by a particular source. An RF
@@ -772,7 +747,7 @@ export namespace DetailListResponse {
   }
 }
 
-export type DetailCountResponse = string;
+export type DetailCountResponse = string
 
 /**
  * Details for a particular RF Emitter, collected by a particular source. An RF
@@ -1397,7 +1372,7 @@ export interface DetailQueryhelpResponse {
   uri?: string;
 }
 
-export type DetailTupleResponse = Array<DetailTupleResponse.DetailTupleResponseItem>;
+export type DetailTupleResponse = Array<DetailTupleResponse.DetailTupleResponseItem>
 
 export namespace DetailTupleResponse {
   /**
@@ -3134,7 +3109,8 @@ export namespace DetailUpdateParams {
   }
 }
 
-export interface DetailListParams extends OffsetPageParams {}
+export interface DetailListParams extends OffsetPageParams {
+}
 
 export interface DetailCountParams {
   firstResult?: number;
@@ -3175,6 +3151,6 @@ export declare namespace Details {
     type DetailListParams as DetailListParams,
     type DetailCountParams as DetailCountParams,
     type DetailGetParams as DetailGetParams,
-    type DetailTupleParams as DetailTupleParams,
+    type DetailTupleParams as DetailTupleParams
   };
 }
