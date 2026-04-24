@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -42,11 +34,7 @@ export class Closelyspacedobjects extends APIResource {
    * ```
    */
   create(body: CloselyspacedobjectCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/closelyspacedobjects', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/closelyspacedobjects', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -59,11 +47,7 @@ export class Closelyspacedobjects extends APIResource {
    *   await client.closelyspacedobjects.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: CloselyspacedobjectRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<CloselyspacedobjectRetrieveResponse> {
+  retrieve(id: string, query: CloselyspacedobjectRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<CloselyspacedobjectRetrieveResponse> {
     return this._client.get(path`/udl/closelyspacedobjects/${id}`, { query, ...options });
   }
 
@@ -83,14 +67,8 @@ export class Closelyspacedobjects extends APIResource {
    * }
    * ```
    */
-  list(
-    query: CloselyspacedobjectListParams,
-    options?: RequestOptions,
-  ): PagePromise<CloselyspacedobjectsAbridgedsOffsetPage, CloselyspacedobjectsAbridged> {
-    return this._client.getAPIList('/udl/closelyspacedobjects', OffsetPage<CloselyspacedobjectsAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: CloselyspacedobjectListParams, options?: RequestOptions): PagePromise<CloselyspacedobjectsAbridgedsOffsetPage, CloselyspacedobjectsAbridged> {
+    return this._client.getAPIList('/udl/closelyspacedobjects', OffsetPage<CloselyspacedobjectsAbridged>, { query, ...options });
   }
 
   /**
@@ -108,11 +86,7 @@ export class Closelyspacedobjects extends APIResource {
    * ```
    */
   count(query: CloselyspacedobjectCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/closelyspacedobjects/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/closelyspacedobjects/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -139,12 +113,8 @@ export class Closelyspacedobjects extends APIResource {
    * ```
    */
   createBulk(params: CloselyspacedobjectCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/closelyspacedobjects/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/closelyspacedobjects/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -179,10 +149,7 @@ export class Closelyspacedobjects extends APIResource {
    * });
    * ```
    */
-  tuple(
-    query: CloselyspacedobjectTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<CloselyspacedobjectTupleResponse> {
+  tuple(query: CloselyspacedobjectTupleParams, options?: RequestOptions): APIPromise<CloselyspacedobjectTupleResponse> {
     return this._client.get('/udl/closelyspacedobjects/tuple', { query, ...options });
   }
 
@@ -208,20 +175,13 @@ export class Closelyspacedobjects extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(
-    params: CloselyspacedobjectUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-closelyspacedobjects', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: CloselyspacedobjectUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-closelyspacedobjects', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type CloselyspacedobjectsAbridgedsOffsetPage = OffsetPage<CloselyspacedobjectsAbridged>;
+export type CloselyspacedobjectsAbridgedsOffsetPage = OffsetPage<CloselyspacedobjectsAbridged>
 
 /**
  * This collection of services provides operations for manipulating and querying of
@@ -1060,7 +1020,7 @@ export namespace CloselyspacedobjectRetrieveResponse {
   }
 }
 
-export type CloselyspacedobjectCountResponse = string;
+export type CloselyspacedobjectCountResponse = string
 
 export interface CloselyspacedobjectQueryHelpResponse {
   aodrSupported?: boolean;
@@ -1086,8 +1046,7 @@ export interface CloselyspacedobjectQueryHelpResponse {
   uri?: string;
 }
 
-export type CloselyspacedobjectTupleResponse =
-  Array<CloselyspacedobjectTupleResponse.CloselyspacedobjectTupleResponseItem>;
+export type CloselyspacedobjectTupleResponse = Array<CloselyspacedobjectTupleResponse.CloselyspacedobjectTupleResponseItem>
 
 export namespace CloselyspacedobjectTupleResponse {
   /**
@@ -2803,7 +2762,7 @@ export declare namespace Closelyspacedobjects {
     type CloselyspacedobjectCountParams as CloselyspacedobjectCountParams,
     type CloselyspacedobjectCreateBulkParams as CloselyspacedobjectCreateBulkParams,
     type CloselyspacedobjectTupleParams as CloselyspacedobjectTupleParams,
-    type CloselyspacedobjectUnvalidatedPublishParams as CloselyspacedobjectUnvalidatedPublishParams,
+    type CloselyspacedobjectUnvalidatedPublishParams as CloselyspacedobjectUnvalidatedPublishParams
   };
 
   export {
@@ -2813,6 +2772,6 @@ export declare namespace Closelyspacedobjects {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

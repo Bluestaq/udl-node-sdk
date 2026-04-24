@@ -4,22 +4,7 @@ import { APIResource } from '../../core/resource';
 import * as LocationAPI from '../location';
 import * as Shared from '../shared';
 import * as CalibrationAPI from './calibration/calibration';
-import {
-  Calibration,
-  CalibrationCountParams,
-  CalibrationCountResponse,
-  CalibrationCreateBulkParams,
-  CalibrationCreateParams,
-  CalibrationListParams,
-  CalibrationListResponse,
-  CalibrationListResponsesOffsetPage,
-  CalibrationQueryHelpResponse,
-  CalibrationRetrieveParams,
-  CalibrationRetrieveResponse,
-  CalibrationTupleParams,
-  CalibrationTupleResponse,
-  CalibrationUnvalidatedPublishParams,
-} from './calibration/calibration';
+import { Calibration, CalibrationCountParams, CalibrationCountResponse, CalibrationCreateBulkParams, CalibrationCreateParams, CalibrationListParams, CalibrationListResponse, CalibrationListResponsesOffsetPage, CalibrationQueryHelpResponse, CalibrationRetrieveParams, CalibrationRetrieveResponse, CalibrationTupleParams, CalibrationTupleResponse, CalibrationUnvalidatedPublishParams } from './calibration/calibration';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -48,11 +33,7 @@ export class Sensor extends APIResource {
    * ```
    */
   create(body: SensorCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/sensor', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/sensor', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -70,11 +51,7 @@ export class Sensor extends APIResource {
    * ```
    */
   update(id: string, body: SensorUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/sensor/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/sensor/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -91,10 +68,7 @@ export class Sensor extends APIResource {
    * }
    * ```
    */
-  list(
-    query: SensorListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<SensorListResponsesOffsetPage, SensorListResponse> {
+  list(query: SensorListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SensorListResponsesOffsetPage, SensorListResponse> {
     return this._client.getAPIList('/udl/sensor', OffsetPage<SensorListResponse>, { query, ...options });
   }
 
@@ -109,10 +83,7 @@ export class Sensor extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/sensor/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/sensor/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -128,11 +99,7 @@ export class Sensor extends APIResource {
    * ```
    */
   count(query: SensorCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/sensor/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/sensor/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -144,11 +111,7 @@ export class Sensor extends APIResource {
    * const sensor = await client.sensor.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: SensorGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<SensorGetResponse> {
+  get(id: string, query: SensorGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SensorGetResponse> {
     return this._client.get(path`/udl/sensor/${id}`, { query, ...options });
   }
 
@@ -187,7 +150,7 @@ export class Sensor extends APIResource {
   }
 }
 
-export type SensorListResponsesOffsetPage = OffsetPage<SensorListResponse>;
+export type SensorListResponsesOffsetPage = OffsetPage<SensorListResponse>
 
 /**
  * Model representation of observation data for electro-optical based sensor
@@ -368,19 +331,7 @@ export namespace SensorListResponse {
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
      * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
-    type:
-      | 'AIRCRAFT'
-      | 'BUS'
-      | 'COMM'
-      | 'IR'
-      | 'LASEREMITTER'
-      | 'NAVIGATION'
-      | 'ONORBIT'
-      | 'RFEMITTER'
-      | 'SCIENTIFIC'
-      | 'SENSOR'
-      | 'SITE'
-      | 'VESSEL';
+    type: 'AIRCRAFT' | 'BUS' | 'COMM' | 'IR' | 'LASEREMITTER' | 'NAVIGATION' | 'ONORBIT' | 'RFEMITTER' | 'SCIENTIFIC' | 'SENSOR' | 'SITE' | 'VESSEL';
 
     /**
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
@@ -514,20 +465,7 @@ export namespace SensorListResponse {
        * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
        * Heliocentric, Interplanetary, Lagrangian, Docked).
        */
-      category?:
-        | 'Unknown'
-        | 'On-Orbit'
-        | 'Decayed'
-        | 'Cataloged Without State'
-        | 'Launch Nominal'
-        | 'Analyst Satellite'
-        | 'Cislunar'
-        | 'Lunar'
-        | 'Hyperbolic'
-        | 'Heliocentric'
-        | 'Interplanetary'
-        | 'Lagrangian'
-        | 'Docked';
+      category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
 
       /**
        * Common name of the on-orbit object.
@@ -1761,7 +1699,7 @@ export namespace SensorListResponse {
   }
 }
 
-export type SensorCountResponse = string;
+export type SensorCountResponse = string
 
 /**
  * Model representation of observation data for electro-optical based sensor
@@ -1953,19 +1891,7 @@ export namespace SensorGetResponse {
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
      * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
-    type:
-      | 'AIRCRAFT'
-      | 'BUS'
-      | 'COMM'
-      | 'IR'
-      | 'LASEREMITTER'
-      | 'NAVIGATION'
-      | 'ONORBIT'
-      | 'RFEMITTER'
-      | 'SCIENTIFIC'
-      | 'SENSOR'
-      | 'SITE'
-      | 'VESSEL';
+    type: 'AIRCRAFT' | 'BUS' | 'COMM' | 'IR' | 'LASEREMITTER' | 'NAVIGATION' | 'ONORBIT' | 'RFEMITTER' | 'SCIENTIFIC' | 'SENSOR' | 'SITE' | 'VESSEL';
 
     /**
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
@@ -2143,20 +2069,7 @@ export namespace SensorGetResponse {
        * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
        * Heliocentric, Interplanetary, Lagrangian, Docked).
        */
-      category?:
-        | 'Unknown'
-        | 'On-Orbit'
-        | 'Decayed'
-        | 'Cataloged Without State'
-        | 'Launch Nominal'
-        | 'Analyst Satellite'
-        | 'Cislunar'
-        | 'Lunar'
-        | 'Hyperbolic'
-        | 'Heliocentric'
-        | 'Interplanetary'
-        | 'Lagrangian'
-        | 'Docked';
+      category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
 
       /**
        * Common name of the on-orbit object.
@@ -3536,7 +3449,7 @@ export interface SensorQueryhelpResponse {
   uri?: string;
 }
 
-export type SensorTupleResponse = Array<SensorTupleResponse.SensorTupleResponseItem>;
+export type SensorTupleResponse = Array<SensorTupleResponse.SensorTupleResponseItem>
 
 export namespace SensorTupleResponse {
   /**
@@ -3729,19 +3642,7 @@ export namespace SensorTupleResponse {
        * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
        * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
        */
-      type:
-        | 'AIRCRAFT'
-        | 'BUS'
-        | 'COMM'
-        | 'IR'
-        | 'LASEREMITTER'
-        | 'NAVIGATION'
-        | 'ONORBIT'
-        | 'RFEMITTER'
-        | 'SCIENTIFIC'
-        | 'SENSOR'
-        | 'SITE'
-        | 'VESSEL';
+      type: 'AIRCRAFT' | 'BUS' | 'COMM' | 'IR' | 'LASEREMITTER' | 'NAVIGATION' | 'ONORBIT' | 'RFEMITTER' | 'SCIENTIFIC' | 'SENSOR' | 'SITE' | 'VESSEL';
 
       /**
        * The country code. This value is typically the ISO 3166 Alpha-2 two-character
@@ -3919,20 +3820,7 @@ export namespace SensorTupleResponse {
          * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
          * Heliocentric, Interplanetary, Lagrangian, Docked).
          */
-        category?:
-          | 'Unknown'
-          | 'On-Orbit'
-          | 'Decayed'
-          | 'Cataloged Without State'
-          | 'Launch Nominal'
-          | 'Analyst Satellite'
-          | 'Cislunar'
-          | 'Lunar'
-          | 'Hyperbolic'
-          | 'Heliocentric'
-          | 'Interplanetary'
-          | 'Lagrangian'
-          | 'Docked';
+        category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
 
         /**
          * Common name of the on-orbit object.
@@ -5442,19 +5330,7 @@ export namespace SensorCreateParams {
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
      * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
-    type:
-      | 'AIRCRAFT'
-      | 'BUS'
-      | 'COMM'
-      | 'IR'
-      | 'LASEREMITTER'
-      | 'NAVIGATION'
-      | 'ONORBIT'
-      | 'RFEMITTER'
-      | 'SCIENTIFIC'
-      | 'SENSOR'
-      | 'SITE'
-      | 'VESSEL';
+    type: 'AIRCRAFT' | 'BUS' | 'COMM' | 'IR' | 'LASEREMITTER' | 'NAVIGATION' | 'ONORBIT' | 'RFEMITTER' | 'SCIENTIFIC' | 'SENSOR' | 'SITE' | 'VESSEL';
 
     /**
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
@@ -5576,20 +5452,7 @@ export namespace SensorCreateParams {
        * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
        * Heliocentric, Interplanetary, Lagrangian, Docked).
        */
-      category?:
-        | 'Unknown'
-        | 'On-Orbit'
-        | 'Decayed'
-        | 'Cataloged Without State'
-        | 'Launch Nominal'
-        | 'Analyst Satellite'
-        | 'Cislunar'
-        | 'Lunar'
-        | 'Hyperbolic'
-        | 'Heliocentric'
-        | 'Interplanetary'
-        | 'Lagrangian'
-        | 'Docked';
+      category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
 
       /**
        * Common name of the on-orbit object.
@@ -6828,19 +6691,7 @@ export namespace SensorUpdateParams {
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
      * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
-    type:
-      | 'AIRCRAFT'
-      | 'BUS'
-      | 'COMM'
-      | 'IR'
-      | 'LASEREMITTER'
-      | 'NAVIGATION'
-      | 'ONORBIT'
-      | 'RFEMITTER'
-      | 'SCIENTIFIC'
-      | 'SENSOR'
-      | 'SITE'
-      | 'VESSEL';
+    type: 'AIRCRAFT' | 'BUS' | 'COMM' | 'IR' | 'LASEREMITTER' | 'NAVIGATION' | 'ONORBIT' | 'RFEMITTER' | 'SCIENTIFIC' | 'SENSOR' | 'SITE' | 'VESSEL';
 
     /**
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
@@ -6962,20 +6813,7 @@ export namespace SensorUpdateParams {
        * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
        * Heliocentric, Interplanetary, Lagrangian, Docked).
        */
-      category?:
-        | 'Unknown'
-        | 'On-Orbit'
-        | 'Decayed'
-        | 'Cataloged Without State'
-        | 'Launch Nominal'
-        | 'Analyst Satellite'
-        | 'Cislunar'
-        | 'Lunar'
-        | 'Hyperbolic'
-        | 'Heliocentric'
-        | 'Interplanetary'
-        | 'Lagrangian'
-        | 'Docked';
+      category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
 
       /**
        * Common name of the on-orbit object.
@@ -8061,7 +7899,8 @@ export namespace SensorUpdateParams {
   }
 }
 
-export interface SensorListParams extends OffsetPageParams {}
+export interface SensorListParams extends OffsetPageParams {
+}
 
 export interface SensorCountParams {
   firstResult?: number;
@@ -8104,7 +7943,7 @@ export declare namespace Sensor {
     type SensorListParams as SensorListParams,
     type SensorCountParams as SensorCountParams,
     type SensorGetParams as SensorGetParams,
-    type SensorTupleParams as SensorTupleParams,
+    type SensorTupleParams as SensorTupleParams
   };
 
   export {
@@ -8121,6 +7960,6 @@ export declare namespace Sensor {
     type CalibrationCountParams as CalibrationCountParams,
     type CalibrationCreateBulkParams as CalibrationCreateBulkParams,
     type CalibrationTupleParams as CalibrationTupleParams,
-    type CalibrationUnvalidatedPublishParams as CalibrationUnvalidatedPublishParams,
+    type CalibrationUnvalidatedPublishParams as CalibrationUnvalidatedPublishParams
   };
 }

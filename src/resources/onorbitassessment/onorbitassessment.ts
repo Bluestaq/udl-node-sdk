@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -40,11 +32,7 @@ export class Onorbitassessment extends APIResource {
    * ```
    */
   create(body: OnorbitassessmentCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/onorbitassessment', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/onorbitassessment', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -63,14 +51,8 @@ export class Onorbitassessment extends APIResource {
    * }
    * ```
    */
-  list(
-    query: OnorbitassessmentListParams,
-    options?: RequestOptions,
-  ): PagePromise<OnorbitassessmentListResponsesOffsetPage, OnorbitassessmentListResponse> {
-    return this._client.getAPIList('/udl/onorbitassessment', OffsetPage<OnorbitassessmentListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: OnorbitassessmentListParams, options?: RequestOptions): PagePromise<OnorbitassessmentListResponsesOffsetPage, OnorbitassessmentListResponse> {
+    return this._client.getAPIList('/udl/onorbitassessment', OffsetPage<OnorbitassessmentListResponse>, { query, ...options });
   }
 
   /**
@@ -88,11 +70,7 @@ export class Onorbitassessment extends APIResource {
    * ```
    */
   count(query: OnorbitassessmentCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/onorbitassessment/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/onorbitassessment/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -117,12 +95,8 @@ export class Onorbitassessment extends APIResource {
    * ```
    */
   createBulk(params: OnorbitassessmentCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/onorbitassessment/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/onorbitassessment/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -135,11 +109,7 @@ export class Onorbitassessment extends APIResource {
    *   await client.onorbitassessment.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: OnorbitassessmentGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OnorbitassessmentGetResponse> {
+  get(id: string, query: OnorbitassessmentGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<OnorbitassessmentGetResponse> {
     return this._client.get(path`/udl/onorbitassessment/${id}`, { query, ...options });
   }
 
@@ -174,10 +144,7 @@ export class Onorbitassessment extends APIResource {
    * });
    * ```
    */
-  tuple(
-    query: OnorbitassessmentTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<OnorbitassessmentTupleResponse> {
+  tuple(query: OnorbitassessmentTupleParams, options?: RequestOptions): APIPromise<OnorbitassessmentTupleResponse> {
     return this._client.get('/udl/onorbitassessment/tuple', { query, ...options });
   }
 
@@ -201,20 +168,13 @@ export class Onorbitassessment extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(
-    params: OnorbitassessmentUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-onorbitassessment', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: OnorbitassessmentUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-onorbitassessment', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type OnorbitassessmentListResponsesOffsetPage = OffsetPage<OnorbitassessmentListResponse>;
+export type OnorbitassessmentListResponsesOffsetPage = OffsetPage<OnorbitassessmentListResponse>
 
 /**
  * Spacecraft characterization results from analysis of MASINT data. Supports
@@ -434,7 +394,7 @@ export interface OnorbitassessmentListResponse {
   transactionId?: string;
 }
 
-export type OnorbitassessmentCountResponse = string;
+export type OnorbitassessmentCountResponse = string
 
 /**
  * Spacecraft characterization results from analysis of MASINT data. Supports
@@ -692,8 +652,7 @@ export interface OnorbitassessmentQueryhelpResponse {
   uri?: string;
 }
 
-export type OnorbitassessmentTupleResponse =
-  Array<OnorbitassessmentTupleResponse.OnorbitassessmentTupleResponseItem>;
+export type OnorbitassessmentTupleResponse = Array<OnorbitassessmentTupleResponse.OnorbitassessmentTupleResponseItem>
 
 export namespace OnorbitassessmentTupleResponse {
   /**
@@ -1607,7 +1566,7 @@ export declare namespace Onorbitassessment {
     type OnorbitassessmentCreateBulkParams as OnorbitassessmentCreateBulkParams,
     type OnorbitassessmentGetParams as OnorbitassessmentGetParams,
     type OnorbitassessmentTupleParams as OnorbitassessmentTupleParams,
-    type OnorbitassessmentUnvalidatedPublishParams as OnorbitassessmentUnvalidatedPublishParams,
+    type OnorbitassessmentUnvalidatedPublishParams as OnorbitassessmentUnvalidatedPublishParams
   };
 
   export {
@@ -1617,6 +1576,6 @@ export declare namespace Onorbitassessment {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

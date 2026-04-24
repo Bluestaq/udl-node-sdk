@@ -3,15 +3,7 @@
 import { APIResource } from '../../../core/resource';
 import * as Shared from '../../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
@@ -39,14 +31,8 @@ export class Monoradar extends APIResource {
    * }
    * ```
    */
-  list(
-    query: MonoradarListParams,
-    options?: RequestOptions,
-  ): PagePromise<MonoradarListResponsesOffsetPage, MonoradarListResponse> {
-    return this._client.getAPIList('/udl/monoradar', OffsetPage<MonoradarListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: MonoradarListParams, options?: RequestOptions): PagePromise<MonoradarListResponsesOffsetPage, MonoradarListResponse> {
+    return this._client.getAPIList('/udl/monoradar', OffsetPage<MonoradarListResponse>, { query, ...options });
   }
 
   /**
@@ -64,11 +50,7 @@ export class Monoradar extends APIResource {
    * ```
    */
   count(query: MonoradarCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/monoradar/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/monoradar/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -96,12 +78,8 @@ export class Monoradar extends APIResource {
    * ```
    */
   createBulk(params: MonoradarCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/monoradar/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/monoradar/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -164,16 +142,12 @@ export class Monoradar extends APIResource {
    * ```
    */
   unvalidatedPublish(params: MonoradarUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/monoradar', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/filedrop/monoradar', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type MonoradarListResponsesOffsetPage = OffsetPage<MonoradarListResponse>;
+export type MonoradarListResponsesOffsetPage = OffsetPage<MonoradarListResponse>
 
 /**
  * A monoradar record contains the raw, and in some cases, processed target reports
@@ -582,7 +556,7 @@ export interface MonoradarListResponse {
   wectc?: Array<string>;
 }
 
-export type MonoradarCountResponse = string;
+export type MonoradarCountResponse = string
 
 export interface MonoradarQueryhelpResponse {
   aodrSupported?: boolean;
@@ -608,7 +582,7 @@ export interface MonoradarQueryhelpResponse {
   uri?: string;
 }
 
-export type MonoradarTupleResponse = Array<MonoradarTupleResponse.MonoradarTupleResponseItem>;
+export type MonoradarTupleResponse = Array<MonoradarTupleResponse.MonoradarTupleResponseItem>
 
 export namespace MonoradarTupleResponse {
   /**
@@ -1866,7 +1840,7 @@ export declare namespace Monoradar {
     type MonoradarCountParams as MonoradarCountParams,
     type MonoradarCreateBulkParams as MonoradarCreateBulkParams,
     type MonoradarTupleParams as MonoradarTupleParams,
-    type MonoradarUnvalidatedPublishParams as MonoradarUnvalidatedPublishParams,
+    type MonoradarUnvalidatedPublishParams as MonoradarUnvalidatedPublishParams
   };
 
   export {
@@ -1876,6 +1850,6 @@ export declare namespace Monoradar {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

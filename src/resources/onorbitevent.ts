@@ -30,11 +30,7 @@ export class Onorbitevent extends APIResource {
    * ```
    */
   create(body: OnorbiteventCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/onorbitevent', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/onorbitevent', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -54,11 +50,7 @@ export class Onorbitevent extends APIResource {
    * ```
    */
   update(id: string, body: OnorbiteventUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/onorbitevent/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/onorbitevent/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -75,14 +67,8 @@ export class Onorbitevent extends APIResource {
    * }
    * ```
    */
-  list(
-    query: OnorbiteventListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<OnorbiteventListResponsesOffsetPage, OnorbiteventListResponse> {
-    return this._client.getAPIList('/udl/onorbitevent', OffsetPage<OnorbiteventListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: OnorbiteventListParams | null | undefined = {}, options?: RequestOptions): PagePromise<OnorbiteventListResponsesOffsetPage, OnorbiteventListResponse> {
+    return this._client.getAPIList('/udl/onorbitevent', OffsetPage<OnorbiteventListResponse>, { query, ...options });
   }
 
   /**
@@ -98,10 +84,7 @@ export class Onorbitevent extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/onorbitevent/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/onorbitevent/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -116,15 +99,8 @@ export class Onorbitevent extends APIResource {
    * const response = await client.onorbitevent.count();
    * ```
    */
-  count(
-    query: OnorbiteventCountParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get('/udl/onorbitevent/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+  count(query: OnorbiteventCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get('/udl/onorbitevent/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -137,11 +113,7 @@ export class Onorbitevent extends APIResource {
    * const onorbitevent = await client.onorbitevent.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: OnorbiteventGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OnorbiteventGetResponse> {
+  get(id: string, query: OnorbiteventGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<OnorbiteventGetResponse> {
     return this._client.get(path`/udl/onorbitevent/${id}`, { query, ...options });
   }
 
@@ -180,7 +152,7 @@ export class Onorbitevent extends APIResource {
   }
 }
 
-export type OnorbiteventListResponsesOffsetPage = OffsetPage<OnorbiteventListResponse>;
+export type OnorbiteventListResponsesOffsetPage = OffsetPage<OnorbiteventListResponse>
 
 export interface OnorbiteventListResponse {
   /**
@@ -479,7 +451,7 @@ export interface OnorbiteventListResponse {
   untilTime?: string;
 }
 
-export type OnorbiteventCountResponse = string;
+export type OnorbiteventCountResponse = string
 
 export interface OnorbiteventGetResponse {
   /**
@@ -818,7 +790,7 @@ export interface OnorbiteventQueryhelpResponse {
   uri?: string;
 }
 
-export type OnorbiteventTupleResponse = Array<OnorbiteventTupleResponse.OnorbiteventTupleResponseItem>;
+export type OnorbiteventTupleResponse = Array<OnorbiteventTupleResponse.OnorbiteventTupleResponseItem>
 
 export namespace OnorbiteventTupleResponse {
   export interface OnorbiteventTupleResponseItem {
@@ -1695,7 +1667,8 @@ export interface OnorbiteventUpdateParams {
   untilTime?: string;
 }
 
-export interface OnorbiteventListParams extends OffsetPageParams {}
+export interface OnorbiteventListParams extends OffsetPageParams {
+}
 
 export interface OnorbiteventCountParams {
   firstResult?: number;
@@ -1736,6 +1709,6 @@ export declare namespace Onorbitevent {
     type OnorbiteventListParams as OnorbiteventListParams,
     type OnorbiteventCountParams as OnorbiteventCountParams,
     type OnorbiteventGetParams as OnorbiteventGetParams,
-    type OnorbiteventTupleParams as OnorbiteventTupleParams,
+    type OnorbiteventTupleParams as OnorbiteventTupleParams
   };
 }

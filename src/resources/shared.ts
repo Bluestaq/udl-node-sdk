@@ -12666,19 +12666,7 @@ export interface EntityFull {
    * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
    * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
    */
-  type:
-    | 'AIRCRAFT'
-    | 'BUS'
-    | 'COMM'
-    | 'IR'
-    | 'LASEREMITTER'
-    | 'NAVIGATION'
-    | 'ONORBIT'
-    | 'RFEMITTER'
-    | 'SCIENTIFIC'
-    | 'SENSOR'
-    | 'SITE'
-    | 'VESSEL';
+  type: 'AIRCRAFT' | 'BUS' | 'COMM' | 'IR' | 'LASEREMITTER' | 'NAVIGATION' | 'ONORBIT' | 'RFEMITTER' | 'SCIENTIFIC' | 'SENSOR' | 'SITE' | 'VESSEL';
 
   /**
    * The country code. This value is typically the ISO 3166 Alpha-2 two-character
@@ -12851,20 +12839,7 @@ export namespace EntityFull {
      * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
      * Heliocentric, Interplanetary, Lagrangian, Docked).
      */
-    category?:
-      | 'Unknown'
-      | 'On-Orbit'
-      | 'Decayed'
-      | 'Cataloged Without State'
-      | 'Launch Nominal'
-      | 'Analyst Satellite'
-      | 'Cislunar'
-      | 'Lunar'
-      | 'Hyperbolic'
-      | 'Heliocentric'
-      | 'Interplanetary'
-      | 'Lagrangian'
-      | 'Docked';
+    category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
 
     /**
      * Common name of the on-orbit object.
@@ -17827,20 +17802,7 @@ export interface OnorbitFull {
    * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
    * Heliocentric, Interplanetary, Lagrangian, Docked).
    */
-  category?:
-    | 'Unknown'
-    | 'On-Orbit'
-    | 'Decayed'
-    | 'Cataloged Without State'
-    | 'Launch Nominal'
-    | 'Analyst Satellite'
-    | 'Cislunar'
-    | 'Lunar'
-    | 'Hyperbolic'
-    | 'Heliocentric'
-    | 'Interplanetary'
-    | 'Lagrangian'
-    | 'Docked';
+  category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
 
   /**
    * Common name of the on-orbit object.
@@ -18007,19 +17969,7 @@ export namespace OnorbitFull {
      * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
      * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
      */
-    type:
-      | 'AIRCRAFT'
-      | 'BUS'
-      | 'COMM'
-      | 'IR'
-      | 'LASEREMITTER'
-      | 'NAVIGATION'
-      | 'ONORBIT'
-      | 'RFEMITTER'
-      | 'SCIENTIFIC'
-      | 'SENSOR'
-      | 'SITE'
-      | 'VESSEL';
+    type: 'AIRCRAFT' | 'BUS' | 'COMM' | 'IR' | 'LASEREMITTER' | 'NAVIGATION' | 'ONORBIT' | 'RFEMITTER' | 'SCIENTIFIC' | 'SENSOR' | 'SITE' | 'VESSEL';
 
     /**
      * The country code. This value is typically the ISO 3166 Alpha-2 two-character
@@ -21405,46 +21355,46 @@ export interface WaiverFull {
   waiverLastChangedDate?: string;
 }
 
-export type AircraftsortieFullsOffsetPage = OffsetPage<AircraftsortieFull>;
+export type AircraftsortieFullsOffsetPage = OffsetPage<AircraftsortieFull>
 
-export type AirTransportMissionFullsOffsetPage = OffsetPage<AirTransportMissionFull>;
+export type AirTransportMissionFullsOffsetPage = OffsetPage<AirTransportMissionFull>
 
-export type AircraftstatusFullsOffsetPage = OffsetPage<AircraftstatusFull>;
+export type AircraftstatusFullsOffsetPage = OffsetPage<AircraftstatusFull>
 
-export type AirfieldstatusFullsOffsetPage = OffsetPage<AirfieldstatusFull>;
+export type AirfieldstatusFullsOffsetPage = OffsetPage<AirfieldstatusFull>
 
-export type AIsFullsOffsetPage = OffsetPage<AIsFull>;
+export type AIsFullsOffsetPage = OffsetPage<AIsFull>
 
-export type AttitudesetFullsOffsetPage = OffsetPage<AttitudesetFull>;
+export type AttitudesetFullsOffsetPage = OffsetPage<AttitudesetFull>
 
-export type CollectRequestFullsOffsetPage = OffsetPage<CollectRequestFull>;
+export type CollectRequestFullsOffsetPage = OffsetPage<CollectRequestFull>
 
-export type CollectResponseFullsOffsetPage = OffsetPage<CollectResponseFull>;
+export type CollectResponseFullsOffsetPage = OffsetPage<CollectResponseFull>
 
-export type DiplomaticclearanceFullsOffsetPage = OffsetPage<DiplomaticclearanceFull>;
+export type DiplomaticclearanceFullsOffsetPage = OffsetPage<DiplomaticclearanceFull>
 
-export type DriftHistoryAbridgedsOffsetPage = OffsetPage<DriftHistoryAbridged>;
+export type DriftHistoryAbridgedsOffsetPage = OffsetPage<DriftHistoryAbridged>
 
-export type EopFullsOffsetPage = OffsetPage<EopFull>;
+export type EopFullsOffsetPage = OffsetPage<EopFull>
 
-export type EphemerisFullsOffsetPage = OffsetPage<EphemerisFull>;
+export type EphemerisFullsOffsetPage = OffsetPage<EphemerisFull>
 
-export type EvacFullsOffsetPage = OffsetPage<EvacFull>;
+export type EvacFullsOffsetPage = OffsetPage<EvacFull>
 
-export type EventEvolutionFullsOffsetPage = OffsetPage<EventEvolutionFull>;
+export type EventEvolutionFullsOffsetPage = OffsetPage<EventEvolutionFull>
 
-export type LocationAbridgedsOffsetPage = OffsetPage<LocationAbridged>;
+export type LocationAbridgedsOffsetPage = OffsetPage<LocationAbridged>
 
-export type NotificationFullsOffsetPage = OffsetPage<NotificationFull>;
+export type NotificationFullsOffsetPage = OffsetPage<NotificationFull>
 
-export type EoObservationFullsOffsetPage = OffsetPage<EoObservationFull>;
+export type EoObservationFullsOffsetPage = OffsetPage<EoObservationFull>
 
-export type OnboardnavigationFullsOffsetPage = OffsetPage<OnboardnavigationFull>;
+export type OnboardnavigationFullsOffsetPage = OffsetPage<OnboardnavigationFull>
 
-export type OnorbitthrusterstatusFullsOffsetPage = OffsetPage<OnorbitthrusterstatusFull>;
+export type OnorbitthrusterstatusFullsOffsetPage = OffsetPage<OnorbitthrusterstatusFull>
 
-export type FileDataOffsetPage = OffsetPage<FileData>;
+export type FileDataOffsetPage = OffsetPage<FileData>
 
-export type SortiePprFullsOffsetPage = OffsetPage<SortiePprFull>;
+export type SortiePprFullsOffsetPage = OffsetPage<SortiePprFull>
 
-export type StateVectorFullsOffsetPage = OffsetPage<StateVectorFull>;
+export type StateVectorFullsOffsetPage = OffsetPage<StateVectorFull>

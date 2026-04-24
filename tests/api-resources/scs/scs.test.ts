@@ -5,7 +5,7 @@ import Unifieddatalibrary, { toFile } from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource scs', () => {
@@ -67,18 +67,18 @@ describe('resource scs', () => {
 
   test('fileDownload: required and optional params', async () => {
     const response = await client.scs.fileDownload({
-      id: 'id',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    id: 'id',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('fileUpload: only required params', async () => {
     const responsePromise = client.scs.fileUpload(await toFile(Buffer.from('Example data'), 'README.md'), {
-      classificationMarking: 'classificationMarking',
-      fileName: 'fileName',
-      path: 'path',
-    });
+    classificationMarking: 'classificationMarking',
+    fileName: 'fileName',
+    path: 'path',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -90,15 +90,15 @@ describe('resource scs', () => {
 
   test('fileUpload: required and optional params', async () => {
     const response = await client.scs.fileUpload(await toFile(Buffer.from('Example data'), 'README.md'), {
-      classificationMarking: 'classificationMarking',
-      fileName: 'fileName',
-      path: 'path',
-      deleteAfter: 'deleteAfter',
-      description: 'description',
-      overwrite: true,
-      sendNotification: true,
-      tags: 'tags',
-    });
+    classificationMarking: 'classificationMarking',
+    fileName: 'fileName',
+    path: 'path',
+    deleteAfter: 'deleteAfter',
+    description: 'description',
+    overwrite: true,
+    sendNotification: true,
+    tags: 'tags',
+  });
   });
 
   test('hasWriteAccess: only required params', async () => {
@@ -114,10 +114,10 @@ describe('resource scs', () => {
 
   test('hasWriteAccess: required and optional params', async () => {
     const response = await client.scs.hasWriteAccess({
-      path: 'path',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    path: 'path',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('move: only required params', async () => {
@@ -163,14 +163,14 @@ describe('resource scs', () => {
 
   test('search: required and optional params', async () => {
     const response = await client.scs.search({
-      path: 'path',
-      count: 0,
-      offset: 0,
-      contentCriteria: 'contentCriteria',
-      metaDataCriteria: { CREATED_AT: ['< 2022-06-14T07:48:11.302Z'] },
-      nonRangeCriteria: { foo: ['string'] },
-      rangeCriteria: { foo: ['string'] },
-      searchAfter: 'searchAfter',
-    });
+    path: 'path',
+    count: 0,
+    offset: 0,
+    contentCriteria: 'contentCriteria',
+    metaDataCriteria: { CREATED_AT: ['< 2022-06-14T07:48:11.302Z'] },
+    nonRangeCriteria: { foo: ['string'] },
+    rangeCriteria: { foo: ['string'] },
+    searchAfter: 'searchAfter',
+  });
   });
 });

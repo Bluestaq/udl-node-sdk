@@ -30,14 +30,8 @@ export class Tuple extends APIResource {
    * }
    * ```
    */
-  list(
-    query: TupleListParams,
-    options?: RequestOptions,
-  ): PagePromise<CollectResponseFullsOffsetPage, Shared.CollectResponseFull> {
-    return this._client.getAPIList('/udl/collectresponse/tuple', OffsetPage<Shared.CollectResponseFull>, {
-      query,
-      ...options,
-    });
+  list(query: TupleListParams, options?: RequestOptions): PagePromise<CollectResponseFullsOffsetPage, Shared.CollectResponseFull> {
+    return this._client.getAPIList('/udl/collectresponse/tuple', OffsetPage<Shared.CollectResponseFull>, { query, ...options });
   }
 }
 
@@ -58,7 +52,9 @@ export interface TupleListParams extends OffsetPageParams {
 }
 
 export declare namespace Tuple {
-  export { type TupleListParams as TupleListParams };
+  export {
+    type TupleListParams as TupleListParams
+  };
 }
 
-export { type CollectResponseFullsOffsetPage };
+export { type CollectResponseFullsOffsetPage }

@@ -18,11 +18,7 @@ export class DriftHistory extends APIResource {
    * a path parameter. DriftHistory represents historical drift rates for GEO Onorbit
    * objects resulting from updates to OnorbitDetails driftRate values.
    */
-  retrieve(
-    id: string,
-    query: DriftHistoryRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.DriftHistoryFull> {
+  retrieve(id: string, query: DriftHistoryRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.DriftHistoryFull> {
     return this._client.get(path`/udl/drifthistory/${id}`, { query, ...options });
   }
 
@@ -32,14 +28,8 @@ export class DriftHistory extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(
-    query: DriftHistoryListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<DriftHistoryAbridgedsOffsetPage, Shared.DriftHistoryAbridged> {
-    return this._client.getAPIList('/udl/drifthistory', OffsetPage<Shared.DriftHistoryAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: DriftHistoryListParams | null | undefined = {}, options?: RequestOptions): PagePromise<DriftHistoryAbridgedsOffsetPage, Shared.DriftHistoryAbridged> {
+    return this._client.getAPIList('/udl/drifthistory', OffsetPage<Shared.DriftHistoryAbridged>, { query, ...options });
   }
 
   /**
@@ -49,15 +39,8 @@ export class DriftHistory extends APIResource {
    * queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
    * valid/required query parameter information.
    */
-  count(
-    query: DriftHistoryCountParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get('/udl/drifthistory/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+  count(query: DriftHistoryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get('/udl/drifthistory/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -83,7 +66,7 @@ export class DriftHistory extends APIResource {
   }
 }
 
-export type DriftHistoryCountResponse = string;
+export type DriftHistoryCountResponse = string
 
 export interface DriftHistoryQueryhelpResponse {
   aodrSupported?: boolean;
@@ -109,7 +92,7 @@ export interface DriftHistoryQueryhelpResponse {
   uri?: string;
 }
 
-export type DriftHistoryTupleResponse = Array<Shared.DriftHistoryFull>;
+export type DriftHistoryTupleResponse = Array<Shared.DriftHistoryFull>
 
 export interface DriftHistoryRetrieveParams {
   firstResult?: number;
@@ -117,7 +100,8 @@ export interface DriftHistoryRetrieveParams {
   maxResults?: number;
 }
 
-export interface DriftHistoryListParams extends OffsetPageParams {}
+export interface DriftHistoryListParams extends OffsetPageParams {
+}
 
 export interface DriftHistoryCountParams {
   firstResult?: number;
@@ -147,8 +131,8 @@ export declare namespace DriftHistory {
     type DriftHistoryRetrieveParams as DriftHistoryRetrieveParams,
     type DriftHistoryListParams as DriftHistoryListParams,
     type DriftHistoryCountParams as DriftHistoryCountParams,
-    type DriftHistoryTupleParams as DriftHistoryTupleParams,
+    type DriftHistoryTupleParams as DriftHistoryTupleParams
   };
 }
 
-export { type DriftHistoryAbridgedsOffsetPage };
+export { type DriftHistoryAbridgedsOffsetPage }

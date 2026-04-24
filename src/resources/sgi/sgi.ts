@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -41,11 +33,7 @@ export class Sgi extends APIResource {
    * ```
    */
   create(body: SgiCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/sgi', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/sgi', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -64,11 +52,7 @@ export class Sgi extends APIResource {
    * ```
    */
   update(id: string, body: SgiUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/sgi/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/sgi/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -85,10 +69,7 @@ export class Sgi extends APIResource {
    * }
    * ```
    */
-  list(
-    query: SgiListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<SgiListResponsesOffsetPage, SgiListResponse> {
+  list(query: SgiListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SgiListResponsesOffsetPage, SgiListResponse> {
     return this._client.getAPIList('/udl/sgi', OffsetPage<SgiListResponse>, { query, ...options });
   }
 
@@ -103,10 +84,7 @@ export class Sgi extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/sgi/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/sgi/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -122,11 +100,7 @@ export class Sgi extends APIResource {
    * ```
    */
   count(query: SgiCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/sgi/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/sgi/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -152,12 +126,8 @@ export class Sgi extends APIResource {
    * ```
    */
   createBulk(params: SgiCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/sgi/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/sgi/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -169,11 +139,7 @@ export class Sgi extends APIResource {
    * const sgi = await client.sgi.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: SgiGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<SgiGetResponse> {
+  get(id: string, query: SgiGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SgiGetResponse> {
     return this._client.get(path`/udl/sgi/${id}`, { query, ...options });
   }
 
@@ -186,10 +152,7 @@ export class Sgi extends APIResource {
    *   await client.sgi.getDataByEffectiveAsOfDate();
    * ```
    */
-  getDataByEffectiveAsOfDate(
-    query: SgiGetDataByEffectiveAsOfDateParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<SgiGetDataByEffectiveAsOfDateResponse> {
+  getDataByEffectiveAsOfDate(query: SgiGetDataByEffectiveAsOfDateParams | null | undefined = {}, options?: RequestOptions): APIPromise<SgiGetDataByEffectiveAsOfDateResponse> {
     return this._client.get('/udl/sgi/getSGIDataByEffectiveAsOfDate', { query, ...options });
   }
 
@@ -249,16 +212,12 @@ export class Sgi extends APIResource {
    * ```
    */
   unvalidatedPublish(params: SgiUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-sgi', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/filedrop/udl-sgi', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type SgiListResponsesOffsetPage = OffsetPage<SgiListResponse>;
+export type SgiListResponsesOffsetPage = OffsetPage<SgiListResponse>
 
 /**
  * Model representation of space weather/solar, geomagnetic, and radiation belt
@@ -622,7 +581,7 @@ export interface SgiListResponse {
   y54?: number;
 }
 
-export type SgiCountResponse = string;
+export type SgiCountResponse = string
 
 /**
  * Model representation of space weather/solar, geomagnetic, and radiation belt
@@ -1450,7 +1409,7 @@ export interface SgiQueryhelpResponse {
   uri?: string;
 }
 
-export type SgiTupleResponse = Array<SgiTupleResponse.SgiTupleResponseItem>;
+export type SgiTupleResponse = Array<SgiTupleResponse.SgiTupleResponseItem>
 
 export namespace SgiTupleResponse {
   /**
@@ -3468,7 +3427,7 @@ export declare namespace Sgi {
     type SgiGetParams as SgiGetParams,
     type SgiGetDataByEffectiveAsOfDateParams as SgiGetDataByEffectiveAsOfDateParams,
     type SgiTupleParams as SgiTupleParams,
-    type SgiUnvalidatedPublishParams as SgiUnvalidatedPublishParams,
+    type SgiUnvalidatedPublishParams as SgiUnvalidatedPublishParams
   };
 
   export {
@@ -3478,6 +3437,6 @@ export declare namespace Sgi {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

@@ -31,5 +31,7 @@ export interface UserAuthResponse {
 }
 
 export declare namespace User {
-  export { type UserAuthResponse as UserAuthResponse };
+  export {
+    type UserAuthResponse as UserAuthResponse
+  };
 }

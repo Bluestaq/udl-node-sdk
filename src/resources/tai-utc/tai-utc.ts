@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  TaiutcFull,
-  TaiutcFullsOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, TaiutcFull, TaiutcFullsOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -40,11 +32,7 @@ export class TaiUtc extends APIResource {
    * ```
    */
   create(body: TaiUtcCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/taiutc', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/taiutc', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -62,11 +50,7 @@ export class TaiUtc extends APIResource {
    * ```
    */
   update(id: string, body: TaiUtcUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/taiutc/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/taiutc/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -85,10 +69,7 @@ export class TaiUtc extends APIResource {
    * }
    * ```
    */
-  list(
-    query: TaiUtcListParams,
-    options?: RequestOptions,
-  ): PagePromise<TaiUtcListResponsesOffsetPage, TaiUtcListResponse> {
+  list(query: TaiUtcListParams, options?: RequestOptions): PagePromise<TaiUtcListResponsesOffsetPage, TaiUtcListResponse> {
     return this._client.getAPIList('/udl/taiutc', OffsetPage<TaiUtcListResponse>, { query, ...options });
   }
 
@@ -104,10 +85,7 @@ export class TaiUtc extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/taiutc/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/taiutc/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -125,11 +103,7 @@ export class TaiUtc extends APIResource {
    * ```
    */
   count(query: TaiUtcCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/taiutc/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/taiutc/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -141,11 +115,7 @@ export class TaiUtc extends APIResource {
    * const taiutcFull = await client.taiUtc.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: TaiUtcGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<HistoryAPI.TaiutcFull> {
+  get(id: string, query: TaiUtcGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<HistoryAPI.TaiutcFull> {
     return this._client.get(path`/udl/taiutc/${id}`, { query, ...options });
   }
 
@@ -185,7 +155,7 @@ export class TaiUtc extends APIResource {
   }
 }
 
-export type TaiUtcListResponsesOffsetPage = OffsetPage<TaiUtcListResponse>;
+export type TaiUtcListResponsesOffsetPage = OffsetPage<TaiUtcListResponse>
 
 /**
  * International Atomic Time (TAI) is a statistical atomic time scale based on a
@@ -287,7 +257,7 @@ export interface TaiUtcListResponse {
   taiUTC?: number;
 }
 
-export type TaiUtcCountResponse = string;
+export type TaiUtcCountResponse = string
 
 export interface TaiUtcQueryhelpResponse {
   aodrSupported?: boolean;
@@ -313,7 +283,7 @@ export interface TaiUtcQueryhelpResponse {
   uri?: string;
 }
 
-export type TaiUtcTupleResponse = Array<HistoryAPI.TaiutcFull>;
+export type TaiUtcTupleResponse = Array<HistoryAPI.TaiutcFull>
 
 export interface TaiUtcCreateParams {
   /**
@@ -505,7 +475,7 @@ export declare namespace TaiUtc {
     type TaiUtcListParams as TaiUtcListParams,
     type TaiUtcCountParams as TaiUtcCountParams,
     type TaiUtcGetParams as TaiUtcGetParams,
-    type TaiUtcTupleParams as TaiUtcTupleParams,
+    type TaiUtcTupleParams as TaiUtcTupleParams
   };
 
   export {
@@ -515,6 +485,6 @@ export declare namespace TaiUtc {
     type TaiutcFullsOffsetPage as TaiutcFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

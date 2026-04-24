@@ -5,18 +5,18 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource rfBandType', () => {
   test('create: only required params', async () => {
     const responsePromise = client.rfBandType.create({
-      id: 'Ku',
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      description: 'Example description',
-      source: 'Bluestaq',
-    });
+    id: 'Ku',
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    description: 'Example description',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -28,25 +28,25 @@ describe('resource rfBandType', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.rfBandType.create({
-      id: 'Ku',
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      description: 'Example description',
-      source: 'Bluestaq',
-      endFreq: 123.4,
-      origin: 'THIRD_PARTY_DATASOURCE',
-      startFreq: 123.4,
-    });
+    id: 'Ku',
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    description: 'Example description',
+    source: 'Bluestaq',
+    endFreq: 123.4,
+    origin: 'THIRD_PARTY_DATASOURCE',
+    startFreq: 123.4,
+  });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.rfBandType.update('id', {
-      id: 'Ku',
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      description: 'Example description',
-      source: 'Bluestaq',
-    });
+    id: 'Ku',
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    description: 'Example description',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -58,15 +58,15 @@ describe('resource rfBandType', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.rfBandType.update('id', {
-      id: 'Ku',
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      description: 'Example description',
-      source: 'Bluestaq',
-      endFreq: 123.4,
-      origin: 'THIRD_PARTY_DATASOURCE',
-      startFreq: 123.4,
-    });
+    id: 'Ku',
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    description: 'Example description',
+    source: 'Bluestaq',
+    endFreq: 123.4,
+    origin: 'THIRD_PARTY_DATASOURCE',
+    startFreq: 123.4,
+  });
   });
 
   test('list', async () => {
@@ -82,9 +82,9 @@ describe('resource rfBandType', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.rfBandType.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.rfBandType.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -111,9 +111,9 @@ describe('resource rfBandType', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.rfBandType.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.rfBandType.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('get', async () => {
@@ -129,9 +129,9 @@ describe('resource rfBandType', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.rfBandType.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.rfBandType.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -158,9 +158,9 @@ describe('resource rfBandType', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.rfBandType.tuple({
-      columns: 'columns',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    columns: 'columns',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 });

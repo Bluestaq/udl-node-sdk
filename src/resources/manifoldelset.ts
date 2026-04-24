@@ -33,11 +33,7 @@ export class Manifoldelset extends APIResource {
    * ```
    */
   create(body: ManifoldelsetCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/manifoldelset', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/manifoldelset', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -60,11 +56,7 @@ export class Manifoldelset extends APIResource {
    * ```
    */
   update(id: string, body: ManifoldelsetUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/manifoldelset/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/manifoldelset/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -83,14 +75,8 @@ export class Manifoldelset extends APIResource {
    * }
    * ```
    */
-  list(
-    query: ManifoldelsetListParams,
-    options?: RequestOptions,
-  ): PagePromise<ManifoldelsetListResponsesOffsetPage, ManifoldelsetListResponse> {
-    return this._client.getAPIList('/udl/manifoldelset', OffsetPage<ManifoldelsetListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: ManifoldelsetListParams, options?: RequestOptions): PagePromise<ManifoldelsetListResponsesOffsetPage, ManifoldelsetListResponse> {
+    return this._client.getAPIList('/udl/manifoldelset', OffsetPage<ManifoldelsetListResponse>, { query, ...options });
   }
 
   /**
@@ -107,10 +93,7 @@ export class Manifoldelset extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/manifoldelset/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/manifoldelset/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -128,11 +111,7 @@ export class Manifoldelset extends APIResource {
    * ```
    */
   count(query: ManifoldelsetCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/manifoldelset/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/manifoldelset/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -157,12 +136,8 @@ export class Manifoldelset extends APIResource {
    * ```
    */
   createBulk(params: ManifoldelsetCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/manifoldelset/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/manifoldelset/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -176,11 +151,7 @@ export class Manifoldelset extends APIResource {
    * const manifoldelset = await client.manifoldelset.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: ManifoldelsetGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ManifoldelsetGetResponse> {
+  get(id: string, query: ManifoldelsetGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<ManifoldelsetGetResponse> {
     return this._client.get(path`/udl/manifoldelset/${id}`, { query, ...options });
   }
 
@@ -220,7 +191,7 @@ export class Manifoldelset extends APIResource {
   }
 }
 
-export type ManifoldelsetListResponsesOffsetPage = OffsetPage<ManifoldelsetListResponse>;
+export type ManifoldelsetListResponsesOffsetPage = OffsetPage<ManifoldelsetListResponse>
 
 /**
  * Theoretical Keplarian orbital elements belonging to an object of interest's
@@ -404,7 +375,7 @@ export interface ManifoldelsetListResponse {
   semiMajorAxis?: number;
 }
 
-export type ManifoldelsetCountResponse = string;
+export type ManifoldelsetCountResponse = string
 
 /**
  * Theoretical Keplarian orbital elements belonging to an object of interest's
@@ -624,7 +595,7 @@ export interface ManifoldelsetQueryhelpResponse {
   uri?: string;
 }
 
-export type ManifoldelsetTupleResponse = Array<ManifoldelsetTupleResponse.ManifoldelsetTupleResponseItem>;
+export type ManifoldelsetTupleResponse = Array<ManifoldelsetTupleResponse.ManifoldelsetTupleResponseItem>
 
 export namespace ManifoldelsetTupleResponse {
   /**
@@ -1337,6 +1308,6 @@ export declare namespace Manifoldelset {
     type ManifoldelsetCountParams as ManifoldelsetCountParams,
     type ManifoldelsetCreateBulkParams as ManifoldelsetCreateBulkParams,
     type ManifoldelsetGetParams as ManifoldelsetGetParams,
-    type ManifoldelsetTupleParams as ManifoldelsetTupleParams,
+    type ManifoldelsetTupleParams as ManifoldelsetTupleParams
   };
 }

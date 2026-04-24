@@ -5,18 +5,18 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource notification', () => {
   test('create: only required params', async () => {
     const responsePromise = client.notification.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      msgBody: 'msgBody',
-      msgType: 'msgType',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    msgBody: 'msgBody',
+    msgType: 'msgType',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -28,15 +28,15 @@ describe('resource notification', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.notification.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      msgBody: 'msgBody',
-      msgType: 'msgType',
-      source: 'Bluestaq',
-      id: 'NOTIFICATION-ID',
-      origin: 'THIRD_PARTY_DATASOURCE',
-      tags: ['TAG1', 'TAG2'],
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    msgBody: 'msgBody',
+    msgType: 'msgType',
+    source: 'Bluestaq',
+    id: 'NOTIFICATION-ID',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    tags: ['TAG1', 'TAG2'],
+  });
   });
 
   test('list: only required params', async () => {
@@ -52,10 +52,10 @@ describe('resource notification', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.notification.list({
-      createdAt: '2019-12-27',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    createdAt: '2019-12-27',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('count: only required params', async () => {
@@ -71,21 +71,21 @@ describe('resource notification', () => {
 
   test('count: required and optional params', async () => {
     const response = await client.notification.count({
-      createdAt: '2019-12-27',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    createdAt: '2019-12-27',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('createRaw: only required params', async () => {
     const responsePromise = client.notification.createRaw({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      msgType: 'msgType',
-      origin: 'origin',
-      source: 'source',
-      body: '{ "Alert": "Warning",  "Code": 12345 }',
-    });
+    classificationMarking: 'classificationMarking',
+    dataMode: 'dataMode',
+    msgType: 'msgType',
+    origin: 'origin',
+    source: 'source',
+    body: '{ "Alert": "Warning",  "Code": 12345 }',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -97,15 +97,15 @@ describe('resource notification', () => {
 
   test('createRaw: required and optional params', async () => {
     const response = await client.notification.createRaw({
-      classificationMarking: 'classificationMarking',
-      dataMode: 'dataMode',
-      msgType: 'msgType',
-      origin: 'origin',
-      source: 'source',
-      body: '{ "Alert": "Warning",  "Code": 12345 }',
-      msgId: 'msgId',
-      tags: ['string'],
-    });
+    classificationMarking: 'classificationMarking',
+    dataMode: 'dataMode',
+    msgType: 'msgType',
+    origin: 'origin',
+    source: 'source',
+    body: '{ "Alert": "Warning",  "Code": 12345 }',
+    msgId: 'msgId',
+    tags: ['string'],
+  });
   });
 
   test('get', async () => {
@@ -121,9 +121,9 @@ describe('resource notification', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.notification.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.notification.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -150,10 +150,10 @@ describe('resource notification', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.notification.tuple({
-      columns: 'columns',
-      createdAt: '2019-12-27',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    columns: 'columns',
+    createdAt: '2019-12-27',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 });

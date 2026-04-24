@@ -5,17 +5,17 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource collectResponses', () => {
   test('create: only required params', async () => {
     const responsePromise = client.collectResponses.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idRequest: 'REF-REQUEST-ID',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idRequest: 'REF-REQUEST-ID',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,30 +27,30 @@ describe('resource collectResponses', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.collectResponses.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idRequest: 'REF-REQUEST-ID',
-      source: 'Bluestaq',
-      id: 'COLLECTRESPONSE-ID',
-      actualEndTime: '2018-01-01T18:00:00.123456Z',
-      actualStartTime: '2018-01-01T16:00:00.123456Z',
-      altEndTime: '2018-01-01T18:00:00.123456Z',
-      altStartTime: '2018-01-01T16:00:00.123456Z',
-      errCode: 'ERROR CODE',
-      externalId: 'EXTERNAL-ID',
-      idPlan: 'REF-PLAN-ID',
-      idSensor: 'REF-SENSOR-ID',
-      notes: 'Example notes',
-      origin: 'THIRD_PARTY_DATASOURCE',
-      origObjectId: 'ORIGOBJECT-ID',
-      origSensorId: 'ORIGSENSOR-ID',
-      satNo: 101,
-      srcIds: ['DOA_ID', 'DWELL_ID'],
-      srcTyps: ['DOA', 'DWELL'],
-      status: 'ACCEPTED',
-      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-      taskId: 'TASK-ID',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idRequest: 'REF-REQUEST-ID',
+    source: 'Bluestaq',
+    id: 'COLLECTRESPONSE-ID',
+    actualEndTime: '2018-01-01T18:00:00.123456Z',
+    actualStartTime: '2018-01-01T16:00:00.123456Z',
+    altEndTime: '2018-01-01T18:00:00.123456Z',
+    altStartTime: '2018-01-01T16:00:00.123456Z',
+    errCode: 'ERROR CODE',
+    externalId: 'EXTERNAL-ID',
+    idPlan: 'REF-PLAN-ID',
+    idSensor: 'REF-SENSOR-ID',
+    notes: 'Example notes',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    origObjectId: 'ORIGOBJECT-ID',
+    origSensorId: 'ORIGSENSOR-ID',
+    satNo: 101,
+    srcIds: ['DOA_ID', 'DWELL_ID'],
+    srcTyps: ['DOA', 'DWELL'],
+    status: 'ACCEPTED',
+    tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+    taskId: 'TASK-ID',
+  });
   });
 
   test('retrieve', async () => {
@@ -66,13 +66,9 @@ describe('resource collectResponses', () => {
 
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.collectResponses.retrieve(
-        'id',
-        { firstResult: 0, maxResults: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.collectResponses.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('list: only required params', async () => {
@@ -88,10 +84,10 @@ describe('resource collectResponses', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.collectResponses.list({
-      createdAt: '2019-12-27',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    createdAt: '2019-12-27',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('count: only required params', async () => {
@@ -107,23 +103,19 @@ describe('resource collectResponses', () => {
 
   test('count: required and optional params', async () => {
     const response = await client.collectResponses.count({
-      createdAt: '2019-12-27',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    createdAt: '2019-12-27',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.collectResponses.createBulk({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          idRequest: 'REF-REQUEST-ID',
-          source: 'Bluestaq',
-        },
-      ],
-    });
+    const responsePromise = client.collectResponses.createBulk({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idRequest: 'REF-REQUEST-ID',
+    source: 'Bluestaq',
+  }] });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -134,35 +126,31 @@ describe('resource collectResponses', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.collectResponses.createBulk({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          idRequest: 'REF-REQUEST-ID',
-          source: 'Bluestaq',
-          id: 'COLLECTRESPONSE-ID',
-          actualEndTime: '2018-01-01T18:00:00.123456Z',
-          actualStartTime: '2018-01-01T16:00:00.123456Z',
-          altEndTime: '2018-01-01T18:00:00.123456Z',
-          altStartTime: '2018-01-01T16:00:00.123456Z',
-          errCode: 'ERROR CODE',
-          externalId: 'EXTERNAL-ID',
-          idPlan: 'REF-PLAN-ID',
-          idSensor: 'REF-SENSOR-ID',
-          notes: 'Example notes',
-          origin: 'THIRD_PARTY_DATASOURCE',
-          origObjectId: 'ORIGOBJECT-ID',
-          origSensorId: 'ORIGSENSOR-ID',
-          satNo: 101,
-          srcIds: ['DOA_ID', 'DWELL_ID'],
-          srcTyps: ['DOA', 'DWELL'],
-          status: 'ACCEPTED',
-          tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-          taskId: 'TASK-ID',
-        },
-      ],
-    });
+    const response = await client.collectResponses.createBulk({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idRequest: 'REF-REQUEST-ID',
+    source: 'Bluestaq',
+    id: 'COLLECTRESPONSE-ID',
+    actualEndTime: '2018-01-01T18:00:00.123456Z',
+    actualStartTime: '2018-01-01T16:00:00.123456Z',
+    altEndTime: '2018-01-01T18:00:00.123456Z',
+    altStartTime: '2018-01-01T16:00:00.123456Z',
+    errCode: 'ERROR CODE',
+    externalId: 'EXTERNAL-ID',
+    idPlan: 'REF-PLAN-ID',
+    idSensor: 'REF-SENSOR-ID',
+    notes: 'Example notes',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    origObjectId: 'ORIGOBJECT-ID',
+    origSensorId: 'ORIGSENSOR-ID',
+    satNo: 101,
+    srcIds: ['DOA_ID', 'DWELL_ID'],
+    srcTyps: ['DOA', 'DWELL'],
+    status: 'ACCEPTED',
+    tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+    taskId: 'TASK-ID',
+  }] });
   });
 
   test('queryHelp', async () => {
@@ -177,16 +165,12 @@ describe('resource collectResponses', () => {
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.collectResponses.unvalidatedPublish({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          idRequest: 'REF-REQUEST-ID',
-          source: 'Bluestaq',
-        },
-      ],
-    });
+    const responsePromise = client.collectResponses.unvalidatedPublish({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idRequest: 'REF-REQUEST-ID',
+    source: 'Bluestaq',
+  }] });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -197,34 +181,30 @@ describe('resource collectResponses', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.collectResponses.unvalidatedPublish({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          idRequest: 'REF-REQUEST-ID',
-          source: 'Bluestaq',
-          id: 'COLLECTRESPONSE-ID',
-          actualEndTime: '2018-01-01T18:00:00.123456Z',
-          actualStartTime: '2018-01-01T16:00:00.123456Z',
-          altEndTime: '2018-01-01T18:00:00.123456Z',
-          altStartTime: '2018-01-01T16:00:00.123456Z',
-          errCode: 'ERROR CODE',
-          externalId: 'EXTERNAL-ID',
-          idPlan: 'REF-PLAN-ID',
-          idSensor: 'REF-SENSOR-ID',
-          notes: 'Example notes',
-          origin: 'THIRD_PARTY_DATASOURCE',
-          origObjectId: 'ORIGOBJECT-ID',
-          origSensorId: 'ORIGSENSOR-ID',
-          satNo: 101,
-          srcIds: ['DOA_ID', 'DWELL_ID'],
-          srcTyps: ['DOA', 'DWELL'],
-          status: 'ACCEPTED',
-          tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-          taskId: 'TASK-ID',
-        },
-      ],
-    });
+    const response = await client.collectResponses.unvalidatedPublish({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idRequest: 'REF-REQUEST-ID',
+    source: 'Bluestaq',
+    id: 'COLLECTRESPONSE-ID',
+    actualEndTime: '2018-01-01T18:00:00.123456Z',
+    actualStartTime: '2018-01-01T16:00:00.123456Z',
+    altEndTime: '2018-01-01T18:00:00.123456Z',
+    altStartTime: '2018-01-01T16:00:00.123456Z',
+    errCode: 'ERROR CODE',
+    externalId: 'EXTERNAL-ID',
+    idPlan: 'REF-PLAN-ID',
+    idSensor: 'REF-SENSOR-ID',
+    notes: 'Example notes',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    origObjectId: 'ORIGOBJECT-ID',
+    origSensorId: 'ORIGSENSOR-ID',
+    satNo: 101,
+    srcIds: ['DOA_ID', 'DWELL_ID'],
+    srcTyps: ['DOA', 'DWELL'],
+    status: 'ACCEPTED',
+    tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+    taskId: 'TASK-ID',
+  }] });
   });
 });

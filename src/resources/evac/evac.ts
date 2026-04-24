@@ -38,11 +38,7 @@ export class Evac extends APIResource {
    * ```
    */
   create(body: EvacCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/evac', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/evac', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -54,11 +50,7 @@ export class Evac extends APIResource {
    * const evacFull = await client.evac.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: EvacRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.EvacFull> {
+  retrieve(id: string, query: EvacRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.EvacFull> {
     return this._client.get(path`/udl/evac/${id}`, { query, ...options });
   }
 
@@ -97,11 +89,7 @@ export class Evac extends APIResource {
    * ```
    */
   count(query: EvacCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/evac/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/evac/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -129,12 +117,8 @@ export class Evac extends APIResource {
    * ```
    */
   createBulk(params: EvacCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/evac/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/evac/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -173,16 +157,12 @@ export class Evac extends APIResource {
    * ```
    */
   unvalidatedPublish(params: EvacUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-evac', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/filedrop/udl-evac', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type EvacAbridgedsOffsetPage = OffsetPage<EvacAbridged>;
+export type EvacAbridgedsOffsetPage = OffsetPage<EvacAbridged>
 
 /**
  * Casualty report and evacuation request. Used to report and request support to
@@ -879,7 +859,7 @@ export namespace EvacAbridged {
   }
 }
 
-export type EvacCountResponse = string;
+export type EvacCountResponse = string
 
 export interface EvacQueryHelpResponse {
   aodrSupported?: boolean;
@@ -2985,15 +2965,18 @@ export declare namespace Evac {
     type EvacListParams as EvacListParams,
     type EvacCountParams as EvacCountParams,
     type EvacCreateBulkParams as EvacCreateBulkParams,
-    type EvacUnvalidatedPublishParams as EvacUnvalidatedPublishParams,
+    type EvacUnvalidatedPublishParams as EvacUnvalidatedPublishParams
   };
 
   export {
     History as History,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 
-  export { Tuple as Tuple, type TupleListParams as TupleListParams };
+  export {
+    Tuple as Tuple,
+    type TupleListParams as TupleListParams
+  };
 }

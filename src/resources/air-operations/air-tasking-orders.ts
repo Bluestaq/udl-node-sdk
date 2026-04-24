@@ -29,11 +29,7 @@ export class AirTaskingOrders extends APIResource {
    * ```
    */
   create(body: AirTaskingOrderCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/airtaskingorder', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/airtaskingorder', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -48,11 +44,7 @@ export class AirTaskingOrders extends APIResource {
    *   );
    * ```
    */
-  retrieve(
-    id: string,
-    query: AirTaskingOrderRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.AirTaskingOrderFull> {
+  retrieve(id: string, query: AirTaskingOrderRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AirTaskingOrderFull> {
     return this._client.get(path`/udl/airtaskingorder/${id}`, { query, ...options });
   }
 
@@ -70,14 +62,8 @@ export class AirTaskingOrders extends APIResource {
    * }
    * ```
    */
-  list(
-    query: AirTaskingOrderListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<AirtaskingorderAbridgedsOffsetPage, AirtaskingorderAbridged> {
-    return this._client.getAPIList('/udl/airtaskingorder', OffsetPage<AirtaskingorderAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: AirTaskingOrderListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AirtaskingorderAbridgedsOffsetPage, AirtaskingorderAbridged> {
+    return this._client.getAPIList('/udl/airtaskingorder', OffsetPage<AirtaskingorderAbridged>, { query, ...options });
   }
 
   /**
@@ -93,15 +79,8 @@ export class AirTaskingOrders extends APIResource {
    *   await client.airOperations.airTaskingOrders.count();
    * ```
    */
-  count(
-    query: AirTaskingOrderCountParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get('/udl/airtaskingorder/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+  count(query: AirTaskingOrderCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get('/udl/airtaskingorder/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -136,10 +115,7 @@ export class AirTaskingOrders extends APIResource {
    *   });
    * ```
    */
-  tuple(
-    query: AirTaskingOrderTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<AirTaskingOrderTupleResponse> {
+  tuple(query: AirTaskingOrderTupleParams, options?: RequestOptions): APIPromise<AirTaskingOrderTupleResponse> {
     return this._client.get('/udl/airtaskingorder/tuple', { query, ...options });
   }
 
@@ -166,20 +142,13 @@ export class AirTaskingOrders extends APIResource {
    * );
    * ```
    */
-  unvalidatedPublish(
-    params: AirTaskingOrderUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-airtaskingorder', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: AirTaskingOrderUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-airtaskingorder', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type AirtaskingorderAbridgedsOffsetPage = OffsetPage<AirtaskingorderAbridged>;
+export type AirtaskingorderAbridgedsOffsetPage = OffsetPage<AirtaskingorderAbridged>
 
 /**
  * Beta Version Air Tasking Order: The ATO is used to task air missions, assign
@@ -636,7 +605,7 @@ export namespace AirtaskingorderAbridged {
   }
 }
 
-export type AirTaskingOrderCountResponse = string;
+export type AirTaskingOrderCountResponse = string
 
 export interface AirTaskingOrderQueryHelpResponse {
   aodrSupported?: boolean;
@@ -662,7 +631,7 @@ export interface AirTaskingOrderQueryHelpResponse {
   uri?: string;
 }
 
-export type AirTaskingOrderTupleResponse = Array<Shared.AirTaskingOrderFull>;
+export type AirTaskingOrderTupleResponse = Array<Shared.AirTaskingOrderFull>
 
 export interface AirTaskingOrderCreateParams {
   /**
@@ -1098,7 +1067,8 @@ export interface AirTaskingOrderRetrieveParams {
   maxResults?: number;
 }
 
-export interface AirTaskingOrderListParams extends OffsetPageParams {}
+export interface AirTaskingOrderListParams extends OffsetPageParams {
+}
 
 export interface AirTaskingOrderCountParams {
   firstResult?: number;
@@ -1570,6 +1540,6 @@ export declare namespace AirTaskingOrders {
     type AirTaskingOrderListParams as AirTaskingOrderListParams,
     type AirTaskingOrderCountParams as AirTaskingOrderCountParams,
     type AirTaskingOrderTupleParams as AirTaskingOrderTupleParams,
-    type AirTaskingOrderUnvalidatedPublishParams as AirTaskingOrderUnvalidatedPublishParams,
+    type AirTaskingOrderUnvalidatedPublishParams as AirTaskingOrderUnvalidatedPublishParams
   };
 }

@@ -31,11 +31,7 @@ export class EngineDetails extends APIResource {
    * ```
    */
   create(body: EngineDetailCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/enginedetails', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/enginedetails', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -50,11 +46,7 @@ export class EngineDetails extends APIResource {
    *   await client.engineDetails.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: EngineDetailRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.EngineDetailsFull> {
+  retrieve(id: string, query: EngineDetailRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.EngineDetailsFull> {
     return this._client.get(path`/udl/enginedetails/${id}`, { query, ...options });
   }
 
@@ -76,11 +68,7 @@ export class EngineDetails extends APIResource {
    * ```
    */
   update(id: string, body: EngineDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/enginedetails/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/enginedetails/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -97,14 +85,8 @@ export class EngineDetails extends APIResource {
    * }
    * ```
    */
-  list(
-    query: EngineDetailListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<EngineDetailsAbridgedsOffsetPage, EngineDetailsAbridged> {
-    return this._client.getAPIList('/udl/enginedetails', OffsetPage<EngineDetailsAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: EngineDetailListParams | null | undefined = {}, options?: RequestOptions): PagePromise<EngineDetailsAbridgedsOffsetPage, EngineDetailsAbridged> {
+    return this._client.getAPIList('/udl/enginedetails', OffsetPage<EngineDetailsAbridged>, { query, ...options });
   }
 
   /**
@@ -121,14 +103,11 @@ export class EngineDetails extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/enginedetails/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/enginedetails/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type EngineDetailsAbridgedsOffsetPage = OffsetPage<EngineDetailsAbridged>;
+export type EngineDetailsAbridgedsOffsetPage = OffsetPage<EngineDetailsAbridged>
 
 /**
  * Known launch vehicle engine details and performance characteristics and limits
@@ -536,7 +515,8 @@ export interface EngineDetailUpdateParams {
   vacuumThrust?: number;
 }
 
-export interface EngineDetailListParams extends OffsetPageParams {}
+export interface EngineDetailListParams extends OffsetPageParams {
+}
 
 export declare namespace EngineDetails {
   export {
@@ -545,6 +525,6 @@ export declare namespace EngineDetails {
     type EngineDetailCreateParams as EngineDetailCreateParams,
     type EngineDetailRetrieveParams as EngineDetailRetrieveParams,
     type EngineDetailUpdateParams as EngineDetailUpdateParams,
-    type EngineDetailListParams as EngineDetailListParams,
+    type EngineDetailListParams as EngineDetailListParams
   };
 }

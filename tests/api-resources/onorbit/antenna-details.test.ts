@@ -5,17 +5,17 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource antennaDetails', () => {
   test('create: only required params', async () => {
     const responsePromise = client.onorbit.antennaDetails.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idAntenna: 'ANTENNA-ID',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idAntenna: 'ANTENNA-ID',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,29 +27,29 @@ describe('resource antennaDetails', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.onorbit.antennaDetails.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idAntenna: 'ANTENNA-ID',
-      source: 'Bluestaq',
-      id: 'ANTENNADETAILS-ID',
-      beamForming: false,
-      beamwidth: 14.1,
-      description: 'Description of antenna A',
-      diameter: 0.01,
-      endFrequency: 3.3,
-      gain: 20.1,
-      gainTolerance: 5.1,
-      manufacturerOrgId: 'MANUFACTUREORG-ID',
-      mode: 'TX',
-      origin: 'THIRD_PARTY_DATASOURCE',
-      polarization: 45.1,
-      position: 'Top',
-      size: [0.03, 0.05],
-      startFrequency: 2.1,
-      steerable: false,
-      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-      type: 'Reflector',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idAntenna: 'ANTENNA-ID',
+    source: 'Bluestaq',
+    id: 'ANTENNADETAILS-ID',
+    beamForming: false,
+    beamwidth: 14.1,
+    description: 'Description of antenna A',
+    diameter: 0.01,
+    endFrequency: 3.3,
+    gain: 20.1,
+    gainTolerance: 5.1,
+    manufacturerOrgId: 'MANUFACTUREORG-ID',
+    mode: 'TX',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    polarization: 45.1,
+    position: 'Top',
+    size: [0.03, 0.05],
+    startFrequency: 2.1,
+    steerable: false,
+    tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+    type: 'Reflector',
+  });
   });
 
   test('retrieve', async () => {
@@ -65,22 +65,18 @@ describe('resource antennaDetails', () => {
 
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.onorbit.antennaDetails.retrieve(
-        'id',
-        { firstResult: 0, maxResults: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.onorbit.antennaDetails.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.onorbit.antennaDetails.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idAntenna: 'ANTENNA-ID',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idAntenna: 'ANTENNA-ID',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -92,29 +88,29 @@ describe('resource antennaDetails', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.onorbit.antennaDetails.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idAntenna: 'ANTENNA-ID',
-      source: 'Bluestaq',
-      id: 'ANTENNADETAILS-ID',
-      beamForming: false,
-      beamwidth: 14.1,
-      description: 'Description of antenna A',
-      diameter: 0.01,
-      endFrequency: 3.3,
-      gain: 20.1,
-      gainTolerance: 5.1,
-      manufacturerOrgId: 'MANUFACTUREORG-ID',
-      mode: 'TX',
-      origin: 'THIRD_PARTY_DATASOURCE',
-      polarization: 45.1,
-      position: 'Top',
-      size: [0.03, 0.05],
-      startFrequency: 2.1,
-      steerable: false,
-      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-      type: 'Reflector',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idAntenna: 'ANTENNA-ID',
+    source: 'Bluestaq',
+    id: 'ANTENNADETAILS-ID',
+    beamForming: false,
+    beamwidth: 14.1,
+    description: 'Description of antenna A',
+    diameter: 0.01,
+    endFrequency: 3.3,
+    gain: 20.1,
+    gainTolerance: 5.1,
+    manufacturerOrgId: 'MANUFACTUREORG-ID',
+    mode: 'TX',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    polarization: 45.1,
+    position: 'Top',
+    size: [0.03, 0.05],
+    startFrequency: 2.1,
+    steerable: false,
+    tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+    type: 'Reflector',
+  });
   });
 
   test('list', async () => {
@@ -130,12 +126,9 @@ describe('resource antennaDetails', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.onorbit.antennaDetails.list(
-        { firstResult: 0, maxResults: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.onorbit.antennaDetails.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {

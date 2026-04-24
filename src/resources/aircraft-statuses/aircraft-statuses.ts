@@ -32,11 +32,7 @@ export class AircraftStatuses extends APIResource {
    * ```
    */
   create(body: AircraftStatusCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/aircraftstatus', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/aircraftstatus', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -49,11 +45,7 @@ export class AircraftStatuses extends APIResource {
    *   await client.aircraftStatuses.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: AircraftStatusRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.AircraftstatusFull> {
+  retrieve(id: string, query: AircraftStatusRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AircraftstatusFull> {
     return this._client.get(path`/udl/aircraftstatus/${id}`, { query, ...options });
   }
 
@@ -72,11 +64,7 @@ export class AircraftStatuses extends APIResource {
    * ```
    */
   update(id: string, body: AircraftStatusUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/aircraftstatus/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/aircraftstatus/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -93,14 +81,8 @@ export class AircraftStatuses extends APIResource {
    * }
    * ```
    */
-  list(
-    query: AircraftStatusListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<AircraftstatusAbridgedsOffsetPage, AircraftstatusAbridged> {
-    return this._client.getAPIList('/udl/aircraftstatus', OffsetPage<AircraftstatusAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: AircraftStatusListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AircraftstatusAbridgedsOffsetPage, AircraftstatusAbridged> {
+    return this._client.getAPIList('/udl/aircraftstatus', OffsetPage<AircraftstatusAbridged>, { query, ...options });
   }
 
   /**
@@ -114,10 +96,7 @@ export class AircraftStatuses extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/aircraftstatus/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/aircraftstatus/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -132,15 +111,8 @@ export class AircraftStatuses extends APIResource {
    * const response = await client.aircraftStatuses.count();
    * ```
    */
-  count(
-    query: AircraftStatusCountParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get('/udl/aircraftstatus/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+  count(query: AircraftStatusCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get('/udl/aircraftstatus/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -179,7 +151,7 @@ export class AircraftStatuses extends APIResource {
   }
 }
 
-export type AircraftstatusAbridgedsOffsetPage = OffsetPage<AircraftstatusAbridged>;
+export type AircraftstatusAbridgedsOffsetPage = OffsetPage<AircraftstatusAbridged>
 
 /**
  * Aircraft readiness and status data. Contains the dynamic data associated with
@@ -499,7 +471,7 @@ export interface AircraftstatusAbridged {
   unavailableSys?: Array<string>;
 }
 
-export type AircraftStatusCountResponse = string;
+export type AircraftStatusCountResponse = string
 
 export interface AircraftStatusQueryhelpResponse {
   aodrSupported?: boolean;
@@ -525,7 +497,7 @@ export interface AircraftStatusQueryhelpResponse {
   uri?: string;
 }
 
-export type AircraftStatusTupleResponse = Array<Shared.AircraftstatusFull>;
+export type AircraftStatusTupleResponse = Array<Shared.AircraftstatusFull>
 
 export interface AircraftStatusCreateParams {
   /**
@@ -1111,7 +1083,8 @@ export interface AircraftStatusUpdateParams {
   unavailableSys?: Array<string>;
 }
 
-export interface AircraftStatusListParams extends OffsetPageParams {}
+export interface AircraftStatusListParams extends OffsetPageParams {
+}
 
 export interface AircraftStatusCountParams {
   firstResult?: number;
@@ -1147,13 +1120,13 @@ export declare namespace AircraftStatuses {
     type AircraftStatusUpdateParams as AircraftStatusUpdateParams,
     type AircraftStatusListParams as AircraftStatusListParams,
     type AircraftStatusCountParams as AircraftStatusCountParams,
-    type AircraftStatusTupleParams as AircraftStatusTupleParams,
+    type AircraftStatusTupleParams as AircraftStatusTupleParams
   };
 
   export {
     History as History,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

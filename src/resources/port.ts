@@ -27,11 +27,7 @@ export class Port extends APIResource {
    * ```
    */
   create(body: PortCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/port', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/port', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -48,11 +44,7 @@ export class Port extends APIResource {
    * ```
    */
   update(id: string, body: PortUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/port/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/port/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -69,10 +61,7 @@ export class Port extends APIResource {
    * }
    * ```
    */
-  list(
-    query: PortListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<PortListResponsesOffsetPage, PortListResponse> {
+  list(query: PortListParams | null | undefined = {}, options?: RequestOptions): PagePromise<PortListResponsesOffsetPage, PortListResponse> {
     return this._client.getAPIList('/udl/port', OffsetPage<PortListResponse>, { query, ...options });
   }
 
@@ -89,11 +78,7 @@ export class Port extends APIResource {
    * ```
    */
   count(query: PortCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/port/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/port/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -117,12 +102,8 @@ export class Port extends APIResource {
    * ```
    */
   createBulk(params: PortCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/port/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/port/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -134,11 +115,7 @@ export class Port extends APIResource {
    * const port = await client.port.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: PortGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<PortGetResponse> {
+  get(id: string, query: PortGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<PortGetResponse> {
     return this._client.get(path`/udl/port/${id}`, { query, ...options });
   }
 
@@ -177,7 +154,7 @@ export class Port extends APIResource {
   }
 }
 
-export type PortListResponsesOffsetPage = OffsetPage<PortListResponse>;
+export type PortListResponsesOffsetPage = OffsetPage<PortListResponse>
 
 /**
  * Properties and characteristics of a maritime port, which includes location, port
@@ -346,7 +323,7 @@ export interface PortListResponse {
   tideRange?: number;
 }
 
-export type PortCountResponse = string;
+export type PortCountResponse = string
 
 /**
  * Properties and characteristics of a maritime port, which includes location, port
@@ -557,7 +534,7 @@ export interface PortQueryhelpResponse {
   uri?: string;
 }
 
-export type PortTupleResponse = Array<PortTupleResponse.PortTupleResponseItem>;
+export type PortTupleResponse = Array<PortTupleResponse.PortTupleResponseItem>
 
 export namespace PortTupleResponse {
   /**
@@ -1038,7 +1015,8 @@ export interface PortUpdateParams {
   tideRange?: number;
 }
 
-export interface PortListParams extends OffsetPageParams {}
+export interface PortListParams extends OffsetPageParams {
+}
 
 export interface PortCountParams {
   firstResult?: number;
@@ -1236,6 +1214,6 @@ export declare namespace Port {
     type PortCountParams as PortCountParams,
     type PortCreateBulkParams as PortCreateBulkParams,
     type PortGetParams as PortGetParams,
-    type PortTupleParams as PortTupleParams,
+    type PortTupleParams as PortTupleParams
   };
 }

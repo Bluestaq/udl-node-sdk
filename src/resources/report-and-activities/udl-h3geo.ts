@@ -37,11 +37,7 @@ export class UdlH3geo extends APIResource {
    * ```
    */
   unvalidatedPublish(body: UdlH3geoUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/filedrop/udl-h3geo', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/filedrop/udl-h3geo', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
@@ -260,5 +256,7 @@ export namespace UdlH3geoUnvalidatedPublishParams {
 }
 
 export declare namespace UdlH3geo {
-  export { type UdlH3geoUnvalidatedPublishParams as UdlH3geoUnvalidatedPublishParams };
+  export {
+    type UdlH3geoUnvalidatedPublishParams as UdlH3geoUnvalidatedPublishParams
+  };
 }

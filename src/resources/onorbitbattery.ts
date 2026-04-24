@@ -32,11 +32,7 @@ export class Onorbitbattery extends APIResource {
    * ```
    */
   create(body: OnorbitbatteryCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/onorbitbattery', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/onorbitbattery', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -58,11 +54,7 @@ export class Onorbitbattery extends APIResource {
    * ```
    */
   update(id: string, body: OnorbitbatteryUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/onorbitbattery/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/onorbitbattery/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -79,14 +71,8 @@ export class Onorbitbattery extends APIResource {
    * }
    * ```
    */
-  list(
-    query: OnorbitbatteryListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<OnorbitbatteryListResponsesOffsetPage, OnorbitbatteryListResponse> {
-    return this._client.getAPIList('/udl/onorbitbattery', OffsetPage<OnorbitbatteryListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: OnorbitbatteryListParams | null | undefined = {}, options?: RequestOptions): PagePromise<OnorbitbatteryListResponsesOffsetPage, OnorbitbatteryListResponse> {
+    return this._client.getAPIList('/udl/onorbitbattery', OffsetPage<OnorbitbatteryListResponse>, { query, ...options });
   }
 
   /**
@@ -102,10 +88,7 @@ export class Onorbitbattery extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/onorbitbattery/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/onorbitbattery/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -121,16 +104,12 @@ export class Onorbitbattery extends APIResource {
    * );
    * ```
    */
-  get(
-    id: string,
-    query: OnorbitbatteryGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.OnorbitBatteryFull> {
+  get(id: string, query: OnorbitbatteryGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.OnorbitBatteryFull> {
     return this._client.get(path`/udl/onorbitbattery/${id}`, { query, ...options });
   }
 }
 
-export type OnorbitbatteryListResponsesOffsetPage = OffsetPage<OnorbitbatteryListResponse>;
+export type OnorbitbatteryListResponsesOffsetPage = OffsetPage<OnorbitbatteryListResponse>
 
 export interface OnorbitbatteryListResponse {
   /**
@@ -335,7 +314,8 @@ export interface OnorbitbatteryUpdateParams {
   quantity?: number;
 }
 
-export interface OnorbitbatteryListParams extends OffsetPageParams {}
+export interface OnorbitbatteryListParams extends OffsetPageParams {
+}
 
 export interface OnorbitbatteryGetParams {
   firstResult?: number;
@@ -350,6 +330,6 @@ export declare namespace Onorbitbattery {
     type OnorbitbatteryCreateParams as OnorbitbatteryCreateParams,
     type OnorbitbatteryUpdateParams as OnorbitbatteryUpdateParams,
     type OnorbitbatteryListParams as OnorbitbatteryListParams,
-    type OnorbitbatteryGetParams as OnorbitbatteryGetParams,
+    type OnorbitbatteryGetParams as OnorbitbatteryGetParams
   };
 }

@@ -4,15 +4,7 @@ import { APIResource } from '../../core/resource';
 import * as IsrCollectionsAPI from './isr-collections';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -30,14 +22,8 @@ export class IsrCollections extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(
-    query: IsrCollectionListParams,
-    options?: RequestOptions,
-  ): PagePromise<IsrCollectionListResponsesOffsetPage, IsrCollectionListResponse> {
-    return this._client.getAPIList('/udl/isrcollection', OffsetPage<IsrCollectionListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: IsrCollectionListParams, options?: RequestOptions): PagePromise<IsrCollectionListResponsesOffsetPage, IsrCollectionListResponse> {
+    return this._client.getAPIList('/udl/isrcollection', OffsetPage<IsrCollectionListResponse>, { query, ...options });
   }
 
   /**
@@ -48,11 +34,7 @@ export class IsrCollections extends APIResource {
    * valid/required query parameter information.
    */
   count(query: IsrCollectionCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/isrcollection/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/isrcollection/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -63,12 +45,8 @@ export class IsrCollections extends APIResource {
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
   createBulk(params: IsrCollectionCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/isrcollection/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/isrcollection/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -99,20 +77,13 @@ export class IsrCollections extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  unvalidatedPublish(
-    params: IsrCollectionUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-isrcollection', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: IsrCollectionUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-isrcollection', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type IsrCollectionListResponsesOffsetPage = OffsetPage<IsrCollectionListResponse>;
+export type IsrCollectionListResponsesOffsetPage = OffsetPage<IsrCollectionListResponse>
 
 export interface IsrCollectionCriticalTimesFull {
   /**
@@ -1150,7 +1121,7 @@ export namespace IsrCollectionListResponse {
   }
 }
 
-export type IsrCollectionCountResponse = string;
+export type IsrCollectionCountResponse = string
 
 export interface IsrCollectionQueryhelpResponse {
   aodrSupported?: boolean;
@@ -1176,7 +1147,7 @@ export interface IsrCollectionQueryhelpResponse {
   uri?: string;
 }
 
-export type IsrCollectionTupleResponse = Array<IsrCollectionTupleResponse.IsrCollectionTupleResponseItem>;
+export type IsrCollectionTupleResponse = Array<IsrCollectionTupleResponse.IsrCollectionTupleResponseItem>
 
 export namespace IsrCollectionTupleResponse {
   /**
@@ -3281,7 +3252,7 @@ export declare namespace IsrCollections {
     type IsrCollectionCountParams as IsrCollectionCountParams,
     type IsrCollectionCreateBulkParams as IsrCollectionCreateBulkParams,
     type IsrCollectionTupleParams as IsrCollectionTupleParams,
-    type IsrCollectionUnvalidatedPublishParams as IsrCollectionUnvalidatedPublishParams,
+    type IsrCollectionUnvalidatedPublishParams as IsrCollectionUnvalidatedPublishParams
   };
 
   export {
@@ -3291,6 +3262,6 @@ export declare namespace IsrCollections {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

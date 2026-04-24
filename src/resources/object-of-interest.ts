@@ -30,11 +30,7 @@ export class ObjectOfInterest extends APIResource {
    * ```
    */
   create(body: ObjectOfInterestCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/objectofinterest', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/objectofinterest', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -55,11 +51,7 @@ export class ObjectOfInterest extends APIResource {
    * ```
    */
   update(id: string, body: ObjectOfInterestUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/objectofinterest/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/objectofinterest/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -76,14 +68,8 @@ export class ObjectOfInterest extends APIResource {
    * }
    * ```
    */
-  list(
-    query: ObjectOfInterestListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ObjectOfInterestListResponsesOffsetPage, ObjectOfInterestListResponse> {
-    return this._client.getAPIList('/udl/objectofinterest', OffsetPage<ObjectOfInterestListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: ObjectOfInterestListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ObjectOfInterestListResponsesOffsetPage, ObjectOfInterestListResponse> {
+    return this._client.getAPIList('/udl/objectofinterest', OffsetPage<ObjectOfInterestListResponse>, { query, ...options });
   }
 
   /**
@@ -99,10 +85,7 @@ export class ObjectOfInterest extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/objectofinterest/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/objectofinterest/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -117,15 +100,8 @@ export class ObjectOfInterest extends APIResource {
    * const response = await client.objectOfInterest.count();
    * ```
    */
-  count(
-    query: ObjectOfInterestCountParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get('/udl/objectofinterest/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+  count(query: ObjectOfInterestCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get('/udl/objectofinterest/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -139,11 +115,7 @@ export class ObjectOfInterest extends APIResource {
    * );
    * ```
    */
-  get(
-    id: string,
-    query: ObjectOfInterestGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ObjectOfInterestGetResponse> {
+  get(id: string, query: ObjectOfInterestGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<ObjectOfInterestGetResponse> {
     return this._client.get(path`/udl/objectofinterest/${id}`, { query, ...options });
   }
 
@@ -177,15 +149,12 @@ export class ObjectOfInterest extends APIResource {
    * });
    * ```
    */
-  tuple(
-    query: ObjectOfInterestTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<ObjectOfInterestTupleResponse> {
+  tuple(query: ObjectOfInterestTupleParams, options?: RequestOptions): APIPromise<ObjectOfInterestTupleResponse> {
     return this._client.get('/udl/objectofinterest/tuple', { query, ...options });
   }
 }
 
-export type ObjectOfInterestListResponsesOffsetPage = OffsetPage<ObjectOfInterestListResponse>;
+export type ObjectOfInterestListResponsesOffsetPage = OffsetPage<ObjectOfInterestListResponse>
 
 /**
  * OnOrbit objects of interest, which include information about the last known
@@ -455,7 +424,7 @@ export interface ObjectOfInterestListResponse {
   zvel?: number;
 }
 
-export type ObjectOfInterestCountResponse = string;
+export type ObjectOfInterestCountResponse = string
 
 /**
  * OnOrbit objects of interest, which include information about the last known
@@ -881,8 +850,7 @@ export interface ObjectOfInterestQueryhelpResponse {
   uri?: string;
 }
 
-export type ObjectOfInterestTupleResponse =
-  Array<ObjectOfInterestTupleResponse.ObjectOfInterestTupleResponseItem>;
+export type ObjectOfInterestTupleResponse = Array<ObjectOfInterestTupleResponse.ObjectOfInterestTupleResponseItem>
 
 export namespace ObjectOfInterestTupleResponse {
   /**
@@ -1792,7 +1760,8 @@ export interface ObjectOfInterestUpdateParams {
   zvel?: number;
 }
 
-export interface ObjectOfInterestListParams extends OffsetPageParams {}
+export interface ObjectOfInterestListParams extends OffsetPageParams {
+}
 
 export interface ObjectOfInterestCountParams {
   firstResult?: number;
@@ -1833,6 +1802,6 @@ export declare namespace ObjectOfInterest {
     type ObjectOfInterestListParams as ObjectOfInterestListParams,
     type ObjectOfInterestCountParams as ObjectOfInterestCountParams,
     type ObjectOfInterestGetParams as ObjectOfInterestGetParams,
-    type ObjectOfInterestTupleParams as ObjectOfInterestTupleParams,
+    type ObjectOfInterestTupleParams as ObjectOfInterestTupleParams
   };
 }

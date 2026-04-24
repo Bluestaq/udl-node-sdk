@@ -3,13 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -27,14 +21,8 @@ export class Onboardnavigation extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(
-    query: OnboardnavigationListParams,
-    options?: RequestOptions,
-  ): PagePromise<OnboardnavigationListResponsesOffsetPage, OnboardnavigationListResponse> {
-    return this._client.getAPIList('/udl/onboardnavigation', OffsetPage<OnboardnavigationListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: OnboardnavigationListParams, options?: RequestOptions): PagePromise<OnboardnavigationListResponsesOffsetPage, OnboardnavigationListResponse> {
+    return this._client.getAPIList('/udl/onboardnavigation', OffsetPage<OnboardnavigationListResponse>, { query, ...options });
   }
 
   /**
@@ -45,11 +33,7 @@ export class Onboardnavigation extends APIResource {
    * valid/required query parameter information.
    */
   count(query: OnboardnavigationCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/onboardnavigation/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/onboardnavigation/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -60,12 +44,8 @@ export class Onboardnavigation extends APIResource {
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
   createBulk(params: OnboardnavigationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/onboardnavigation/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/onboardnavigation/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -86,10 +66,7 @@ export class Onboardnavigation extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: OnboardnavigationTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<OnboardnavigationTupleResponse> {
+  tuple(query: OnboardnavigationTupleParams, options?: RequestOptions): APIPromise<OnboardnavigationTupleResponse> {
     return this._client.get('/udl/onboardnavigation/tuple', { query, ...options });
   }
 
@@ -99,20 +76,13 @@ export class Onboardnavigation extends APIResource {
    * automated feeds into UDL. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  unvalidatedPublish(
-    params: OnboardnavigationUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-onboardnavigation', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: OnboardnavigationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-onboardnavigation', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type OnboardnavigationListResponsesOffsetPage = OffsetPage<OnboardnavigationListResponse>;
+export type OnboardnavigationListResponsesOffsetPage = OffsetPage<OnboardnavigationListResponse>
 
 /**
  * These services provide spacecraft positional data derived from on-board
@@ -267,7 +237,7 @@ export interface OnboardnavigationListResponse {
   ts?: Array<string>;
 }
 
-export type OnboardnavigationCountResponse = string;
+export type OnboardnavigationCountResponse = string
 
 export interface OnboardnavigationQueryhelpResponse {
   aodrSupported?: boolean;
@@ -293,7 +263,7 @@ export interface OnboardnavigationQueryhelpResponse {
   uri?: string;
 }
 
-export type OnboardnavigationTupleResponse = Array<Shared.OnboardnavigationFull>;
+export type OnboardnavigationTupleResponse = Array<Shared.OnboardnavigationFull>
 
 export interface OnboardnavigationListParams extends OffsetPageParams {
   /**
@@ -622,7 +592,7 @@ export declare namespace Onboardnavigation {
     type OnboardnavigationCountParams as OnboardnavigationCountParams,
     type OnboardnavigationCreateBulkParams as OnboardnavigationCreateBulkParams,
     type OnboardnavigationTupleParams as OnboardnavigationTupleParams,
-    type OnboardnavigationUnvalidatedPublishParams as OnboardnavigationUnvalidatedPublishParams,
+    type OnboardnavigationUnvalidatedPublishParams as OnboardnavigationUnvalidatedPublishParams
   };
 
   export {
@@ -630,6 +600,6 @@ export declare namespace Onboardnavigation {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

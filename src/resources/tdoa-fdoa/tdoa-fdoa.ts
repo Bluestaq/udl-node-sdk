@@ -2,17 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as DiffofarrivalAPI from './diffofarrival/diffofarrival';
-import {
-  Diffofarrival,
-  DiffofarrivalAbridged,
-  DiffofarrivalAbridgedsOffsetPage,
-  DiffofarrivalCountParams,
-  DiffofarrivalCountResponse,
-  DiffofarrivalCreateBulkParams,
-  DiffofarrivalCreateParams,
-  DiffofarrivalFull,
-  DiffofarrivalListParams,
-} from './diffofarrival/diffofarrival';
+import { Diffofarrival, DiffofarrivalAbridged, DiffofarrivalAbridgedsOffsetPage, DiffofarrivalCountParams, DiffofarrivalCountResponse, DiffofarrivalCreateBulkParams, DiffofarrivalCreateParams, DiffofarrivalFull, DiffofarrivalListParams } from './diffofarrival/diffofarrival';
 
 export class TdoaFdoa extends APIResource {
   diffofarrival: DiffofarrivalAPI.Diffofarrival = new DiffofarrivalAPI.Diffofarrival(this._client);
@@ -30,6 +20,6 @@ export declare namespace TdoaFdoa {
     type DiffofarrivalCreateParams as DiffofarrivalCreateParams,
     type DiffofarrivalListParams as DiffofarrivalListParams,
     type DiffofarrivalCountParams as DiffofarrivalCountParams,
-    type DiffofarrivalCreateBulkParams as DiffofarrivalCreateBulkParams,
+    type DiffofarrivalCreateBulkParams as DiffofarrivalCreateBulkParams
   };
 }

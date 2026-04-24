@@ -26,15 +26,8 @@ export class History extends APIResource {
    * }
    * ```
    */
-  list(
-    query: HistoryListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<OnorbitthrusterstatusFullsOffsetPage, Shared.OnorbitthrusterstatusFull> {
-    return this._client.getAPIList(
-      '/udl/onorbitthrusterstatus/history',
-      OffsetPage<Shared.OnorbitthrusterstatusFull>,
-      { query, ...options },
-    );
+  list(query: HistoryListParams | null | undefined = {}, options?: RequestOptions): PagePromise<OnorbitthrusterstatusFullsOffsetPage, Shared.OnorbitthrusterstatusFull> {
+    return this._client.getAPIList('/udl/onorbitthrusterstatus/history', OffsetPage<Shared.OnorbitthrusterstatusFull>, { query, ...options });
   }
 
   /**
@@ -51,15 +44,11 @@ export class History extends APIResource {
    * ```
    */
   count(query: HistoryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/onorbitthrusterstatus/history/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/onorbitthrusterstatus/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 }
 
-export type HistoryCountResponse = string;
+export type HistoryCountResponse = string
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -112,8 +101,8 @@ export declare namespace History {
   export {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }
 
-export { type OnorbitthrusterstatusFullsOffsetPage };
+export { type OnorbitthrusterstatusFullsOffsetPage }

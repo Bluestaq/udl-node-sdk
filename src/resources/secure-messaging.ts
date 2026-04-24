@@ -13,44 +13,24 @@ export class SecureMessaging extends APIResource {
   /**
    * Retrieve the details of the specified topic or data type.
    */
-  describeTopic(
-    topic: string,
-    query: SecureMessagingDescribeTopicParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<TopicDetails> {
+  describeTopic(topic: string, query: SecureMessagingDescribeTopicParams | null | undefined = {}, options?: RequestOptions): APIPromise<TopicDetails> {
     return this._client.get(path`/sm/describeTopic/${topic}`, { query, ...options });
   }
 
   /**
    * Returns the current/latest offset for the passed topic name.
    */
-  getLatestOffset(
-    topic: string,
-    query: SecureMessagingGetLatestOffsetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    return this._client.get(path`/sm/getLatestOffset/${topic}`, {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  getLatestOffset(topic: string, query: SecureMessagingGetLatestOffsetParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
+    return this._client.get(path`/sm/getLatestOffset/${topic}`, { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
    * Retrieve a set of messages from the given topic at the given offset. See Help >
    * Secure Messaging API on Storefront for more details on how to use getMessages.
    */
-  getMessages(
-    offset: number,
-    params: SecureMessagingGetMessagesParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { topic, ...query } = params;
-    return this._client.get(path`/sm/getMessages/${topic}/${offset}`, {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  getMessages(offset: number, params: SecureMessagingGetMessagesParams, options?: RequestOptions): APIPromise<void> {
+    const { topic, ...query } = params
+    return this._client.get(path`/sm/getMessages/${topic}/${offset}`, { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -88,7 +68,7 @@ export interface TopicDetails {
   udlOpenAPISchema?: string;
 }
 
-export type SecureMessagingListTopicsResponse = Array<TopicDetails>;
+export type SecureMessagingListTopicsResponse = Array<TopicDetails>
 
 export interface SecureMessagingDescribeTopicParams {
   firstResult?: number;
@@ -125,6 +105,6 @@ export declare namespace SecureMessaging {
     type SecureMessagingListTopicsResponse as SecureMessagingListTopicsResponse,
     type SecureMessagingDescribeTopicParams as SecureMessagingDescribeTopicParams,
     type SecureMessagingGetLatestOffsetParams as SecureMessagingGetLatestOffsetParams,
-    type SecureMessagingGetMessagesParams as SecureMessagingGetMessagesParams,
+    type SecureMessagingGetMessagesParams as SecureMessagingGetMessagesParams
   };
 }

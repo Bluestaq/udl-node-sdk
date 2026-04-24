@@ -32,15 +32,8 @@ export class Current extends APIResource {
    * }
    * ```
    */
-  list(
-    query: CurrentListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<StateVectorAbridgedsOffsetPage, StateVectorAPI.StateVectorAbridged> {
-    return this._client.getAPIList(
-      '/udl/statevector/current',
-      OffsetPage<StateVectorAPI.StateVectorAbridged>,
-      { query, ...options },
-    );
+  list(query: CurrentListParams | null | undefined = {}, options?: RequestOptions): PagePromise<StateVectorAbridgedsOffsetPage, StateVectorAPI.StateVectorAbridged> {
+    return this._client.getAPIList('/udl/statevector/current', OffsetPage<StateVectorAPI.StateVectorAbridged>, { query, ...options });
   }
 
   /**
@@ -68,9 +61,10 @@ export class Current extends APIResource {
   }
 }
 
-export type CurrentTupleResponse = Array<Shared.StateVectorFull>;
+export type CurrentTupleResponse = Array<Shared.StateVectorFull>
 
-export interface CurrentListParams extends OffsetPageParams {}
+export interface CurrentListParams extends OffsetPageParams {
+}
 
 export interface CurrentTupleParams {
   /**
@@ -90,8 +84,8 @@ export declare namespace Current {
   export {
     type CurrentTupleResponse as CurrentTupleResponse,
     type CurrentListParams as CurrentListParams,
-    type CurrentTupleParams as CurrentTupleParams,
+    type CurrentTupleParams as CurrentTupleParams
   };
 }
 
-export { type StateVectorAbridgedsOffsetPage };
+export { type StateVectorAbridgedsOffsetPage }

@@ -4,23 +4,7 @@ import { APIResource } from '../../core/resource';
 import * as EntitiesAPI from '../entities';
 import * as Shared from '../shared';
 import * as OperationsAPI from './operations';
-import {
-  OperationCountParams,
-  OperationCountResponse,
-  OperationCreateBulkParams,
-  OperationCreateParams,
-  OperationListParams,
-  OperationListResponse,
-  OperationListResponsesOffsetPage,
-  OperationQueryHelpResponse,
-  OperationRetrieveParams,
-  OperationRetrieveResponse,
-  OperationTupleParams,
-  OperationTupleResponse,
-  OperationUnvalidatedPublishParams,
-  OperationUpdateParams,
-  Operations,
-} from './operations';
+import { OperationCountParams, OperationCountResponse, OperationCreateBulkParams, OperationCreateParams, OperationListParams, OperationListResponse, OperationListResponsesOffsetPage, OperationQueryHelpResponse, OperationRetrieveParams, OperationRetrieveResponse, OperationTupleParams, OperationTupleResponse, OperationUnvalidatedPublishParams, OperationUpdateParams, Operations } from './operations';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -49,11 +33,7 @@ export class Site extends APIResource {
    * ```
    */
   create(body: SiteCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/site', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/site', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -71,11 +51,7 @@ export class Site extends APIResource {
    * ```
    */
   update(id: string, body: SiteUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/site/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/site/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -92,10 +68,7 @@ export class Site extends APIResource {
    * }
    * ```
    */
-  list(
-    query: SiteListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<SiteListResponsesOffsetPage, SiteListResponse> {
+  list(query: SiteListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SiteListResponsesOffsetPage, SiteListResponse> {
     return this._client.getAPIList('/udl/site', OffsetPage<SiteListResponse>, { query, ...options });
   }
 
@@ -112,11 +85,7 @@ export class Site extends APIResource {
    * ```
    */
   count(query: SiteCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/site/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/site/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -128,11 +97,7 @@ export class Site extends APIResource {
    * const site = await client.site.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: SiteGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<SiteGetResponse> {
+  get(id: string, query: SiteGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SiteGetResponse> {
     return this._client.get(path`/udl/site/${id}`, { query, ...options });
   }
 
@@ -171,7 +136,7 @@ export class Site extends APIResource {
   }
 }
 
-export type SiteListResponsesOffsetPage = OffsetPage<SiteListResponse>;
+export type SiteListResponsesOffsetPage = OffsetPage<SiteListResponse>
 
 /**
  * Properties and characteristics of a site entity, such as an airbase, airfield,
@@ -755,7 +720,7 @@ export interface SiteListResponse {
   wac?: string;
 }
 
-export type SiteCountResponse = string;
+export type SiteCountResponse = string
 
 /**
  * Properties and characteristics of a site entity, such as an airbase, airfield,
@@ -1646,7 +1611,7 @@ export interface SiteQueryhelpResponse {
   uri?: string;
 }
 
-export type SiteTupleResponse = Array<SiteTupleResponse.SiteTupleResponseItem>;
+export type SiteTupleResponse = Array<SiteTupleResponse.SiteTupleResponseItem>
 
 export namespace SiteTupleResponse {
   /**
@@ -3651,7 +3616,8 @@ export interface SiteUpdateParams {
   wac?: string;
 }
 
-export interface SiteListParams extends OffsetPageParams {}
+export interface SiteListParams extends OffsetPageParams {
+}
 
 export interface SiteCountParams {
   firstResult?: number;
@@ -3694,7 +3660,7 @@ export declare namespace Site {
     type SiteListParams as SiteListParams,
     type SiteCountParams as SiteCountParams,
     type SiteGetParams as SiteGetParams,
-    type SiteTupleParams as SiteTupleParams,
+    type SiteTupleParams as SiteTupleParams
   };
 
   export {
@@ -3712,6 +3678,6 @@ export declare namespace Site {
     type OperationCountParams as OperationCountParams,
     type OperationCreateBulkParams as OperationCreateBulkParams,
     type OperationTupleParams as OperationTupleParams,
-    type OperationUnvalidatedPublishParams as OperationUnvalidatedPublishParams,
+    type OperationUnvalidatedPublishParams as OperationUnvalidatedPublishParams
   };
 }

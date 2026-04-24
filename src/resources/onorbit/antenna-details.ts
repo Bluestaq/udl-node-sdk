@@ -29,11 +29,7 @@ export class AntennaDetails extends APIResource {
    * ```
    */
   create(body: AntennaDetailCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/antennadetails', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/antennadetails', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -47,11 +43,7 @@ export class AntennaDetails extends APIResource {
    *   await client.onorbit.antennaDetails.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: AntennaDetailRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.AntennaDetailsFull> {
+  retrieve(id: string, query: AntennaDetailRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AntennaDetailsFull> {
     return this._client.get(path`/udl/antennadetails/${id}`, { query, ...options });
   }
 
@@ -72,11 +64,7 @@ export class AntennaDetails extends APIResource {
    * ```
    */
   update(id: string, body: AntennaDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/antennadetails/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/antennadetails/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -93,14 +81,8 @@ export class AntennaDetails extends APIResource {
    * }
    * ```
    */
-  list(
-    query: AntennaDetailListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<AntennaDetailsAbridgedsOffsetPage, AntennaDetailsAbridged> {
-    return this._client.getAPIList('/udl/antennadetails', OffsetPage<AntennaDetailsAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: AntennaDetailListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AntennaDetailsAbridgedsOffsetPage, AntennaDetailsAbridged> {
+    return this._client.getAPIList('/udl/antennadetails', OffsetPage<AntennaDetailsAbridged>, { query, ...options });
   }
 
   /**
@@ -115,14 +97,11 @@ export class AntennaDetails extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/antennadetails/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/antennadetails/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type AntennaDetailsAbridgedsOffsetPage = OffsetPage<AntennaDetailsAbridged>;
+export type AntennaDetailsAbridgedsOffsetPage = OffsetPage<AntennaDetailsAbridged>
 
 /**
  * Detailed information for a spacecraft communication antenna. One antenna may
@@ -544,7 +523,8 @@ export interface AntennaDetailUpdateParams {
   type?: string;
 }
 
-export interface AntennaDetailListParams extends OffsetPageParams {}
+export interface AntennaDetailListParams extends OffsetPageParams {
+}
 
 export declare namespace AntennaDetails {
   export {
@@ -553,6 +533,6 @@ export declare namespace AntennaDetails {
     type AntennaDetailCreateParams as AntennaDetailCreateParams,
     type AntennaDetailRetrieveParams as AntennaDetailRetrieveParams,
     type AntennaDetailUpdateParams as AntennaDetailUpdateParams,
-    type AntennaDetailListParams as AntennaDetailListParams,
+    type AntennaDetailListParams as AntennaDetailListParams
   };
 }

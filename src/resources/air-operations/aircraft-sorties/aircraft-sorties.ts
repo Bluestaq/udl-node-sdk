@@ -2,13 +2,7 @@
 
 import { APIResource } from '../../../core/resource';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
 import { APIPromise } from '../../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
@@ -36,11 +30,7 @@ export class AircraftSorties extends APIResource {
    * ```
    */
   create(body: AircraftSortyCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/aircraftsortie', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/aircraftsortie', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -59,14 +49,8 @@ export class AircraftSorties extends APIResource {
    * }
    * ```
    */
-  list(
-    query: AircraftSortyListParams,
-    options?: RequestOptions,
-  ): PagePromise<AircraftsortieAbridgedsOffsetPage, AircraftsortieAbridged> {
-    return this._client.getAPIList('/udl/aircraftsortie', OffsetPage<AircraftsortieAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: AircraftSortyListParams, options?: RequestOptions): PagePromise<AircraftsortieAbridgedsOffsetPage, AircraftsortieAbridged> {
+    return this._client.getAPIList('/udl/aircraftsortie', OffsetPage<AircraftsortieAbridged>, { query, ...options });
   }
 
   /**
@@ -85,11 +69,7 @@ export class AircraftSorties extends APIResource {
    * ```
    */
   count(query: AircraftSortyCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/aircraftsortie/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/aircraftsortie/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -114,12 +94,8 @@ export class AircraftSorties extends APIResource {
    * ```
    */
   createBulk(params: AircraftSortyCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/aircraftsortie/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/aircraftsortie/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -144,20 +120,13 @@ export class AircraftSorties extends APIResource {
    * );
    * ```
    */
-  unvalidatedPublish(
-    params: AircraftSortyUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-aircraftsortie', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: AircraftSortyUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-aircraftsortie', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type AircraftsortieAbridgedsOffsetPage = OffsetPage<AircraftsortieAbridged>;
+export type AircraftsortieAbridgedsOffsetPage = OffsetPage<AircraftsortieAbridged>
 
 /**
  * Information related to the planning, load, status, and deployment or dispatch of
@@ -611,7 +580,7 @@ export interface AircraftsortieAbridged {
   tailNumber?: string;
 }
 
-export type AircraftSortyCountResponse = string;
+export type AircraftSortyCountResponse = string
 
 export interface AircraftSortyCreateParams {
   /**
@@ -1852,7 +1821,7 @@ export declare namespace AircraftSorties {
     type AircraftSortyListParams as AircraftSortyListParams,
     type AircraftSortyCountParams as AircraftSortyCountParams,
     type AircraftSortyCreateBulkParams as AircraftSortyCreateBulkParams,
-    type AircraftSortyUnvalidatedPublishParams as AircraftSortyUnvalidatedPublishParams,
+    type AircraftSortyUnvalidatedPublishParams as AircraftSortyUnvalidatedPublishParams
   };
 
   export {
@@ -1860,6 +1829,6 @@ export declare namespace AircraftSorties {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

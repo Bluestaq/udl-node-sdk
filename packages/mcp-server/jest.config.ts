@@ -10,7 +10,9 @@ const config: JestConfigWithTsJest = {
     '^unified-data-library-mcp$': '<rootDir>/src/index.ts',
     '^unified-data-library-mcp/(.*)$': '<rootDir>/src/$1',
   },
-  modulePathIgnorePatterns: ['<rootDir>/dist/'],
+  modulePathIgnorePatterns: [
+    '<rootDir>/dist/',
+  ],
   testPathIgnorePatterns: ['scripts'],
 };
 

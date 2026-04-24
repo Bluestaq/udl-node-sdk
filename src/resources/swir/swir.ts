@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  SwirFull,
-  SwirFullsOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, SwirFull, SwirFullsOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -40,11 +32,7 @@ export class Swir extends APIResource {
    * ```
    */
   create(body: SwirCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/swir', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/swir', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -63,10 +51,7 @@ export class Swir extends APIResource {
    * }
    * ```
    */
-  list(
-    query: SwirListParams,
-    options?: RequestOptions,
-  ): PagePromise<SwirListResponsesOffsetPage, SwirListResponse> {
+  list(query: SwirListParams, options?: RequestOptions): PagePromise<SwirListResponsesOffsetPage, SwirListResponse> {
     return this._client.getAPIList('/udl/swir', OffsetPage<SwirListResponse>, { query, ...options });
   }
 
@@ -85,11 +70,7 @@ export class Swir extends APIResource {
    * ```
    */
   count(query: SwirCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/swir/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/swir/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -114,12 +95,8 @@ export class Swir extends APIResource {
    * ```
    */
   createBulk(params: SwirCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/swir/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/swir/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -131,11 +108,7 @@ export class Swir extends APIResource {
    * const swirFull = await client.swir.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: SwirGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<HistoryAPI.SwirFull> {
+  get(id: string, query: SwirGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<HistoryAPI.SwirFull> {
     return this._client.get(path`/udl/swir/${id}`, { query, ...options });
   }
 
@@ -175,7 +148,7 @@ export class Swir extends APIResource {
   }
 }
 
-export type SwirListResponsesOffsetPage = OffsetPage<SwirListResponse>;
+export type SwirListResponsesOffsetPage = OffsetPage<SwirListResponse>
 
 /**
  * Data representing observed short wave infrared (SWIR) measurements.
@@ -287,7 +260,7 @@ export interface SwirListResponse {
   solarPhaseAngle?: number;
 }
 
-export type SwirCountResponse = string;
+export type SwirCountResponse = string
 
 export interface SwirQueryhelpResponse {
   aodrSupported?: boolean;
@@ -313,7 +286,7 @@ export interface SwirQueryhelpResponse {
   uri?: string;
 }
 
-export type SwirTupleResponse = Array<HistoryAPI.SwirFull>;
+export type SwirTupleResponse = Array<HistoryAPI.SwirFull>
 
 export interface SwirCreateParams {
   /**
@@ -599,7 +572,7 @@ export declare namespace Swir {
     type SwirCountParams as SwirCountParams,
     type SwirCreateBulkParams as SwirCreateBulkParams,
     type SwirGetParams as SwirGetParams,
-    type SwirTupleParams as SwirTupleParams,
+    type SwirTupleParams as SwirTupleParams
   };
 
   export {
@@ -609,6 +582,6 @@ export declare namespace Swir {
     type SwirFullsOffsetPage as SwirFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

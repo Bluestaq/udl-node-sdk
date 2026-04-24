@@ -29,11 +29,7 @@ export class Onorbitlist extends APIResource {
    * ```
    */
   create(body: OnorbitlistCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/onorbitlist', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/onorbitlist', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -53,11 +49,7 @@ export class Onorbitlist extends APIResource {
    * ```
    */
   update(id: string, body: OnorbitlistUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/onorbitlist/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/onorbitlist/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -74,14 +66,8 @@ export class Onorbitlist extends APIResource {
    * }
    * ```
    */
-  list(
-    query: OnorbitlistListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<OnorbitlistListResponsesOffsetPage, OnorbitlistListResponse> {
-    return this._client.getAPIList('/udl/onorbitlist', OffsetPage<OnorbitlistListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: OnorbitlistListParams | null | undefined = {}, options?: RequestOptions): PagePromise<OnorbitlistListResponsesOffsetPage, OnorbitlistListResponse> {
+    return this._client.getAPIList('/udl/onorbitlist', OffsetPage<OnorbitlistListResponse>, { query, ...options });
   }
 
   /**
@@ -95,10 +81,7 @@ export class Onorbitlist extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/onorbitlist/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/onorbitlist/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -114,11 +97,7 @@ export class Onorbitlist extends APIResource {
    * ```
    */
   count(query: OnorbitlistCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/onorbitlist/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/onorbitlist/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -130,11 +109,7 @@ export class Onorbitlist extends APIResource {
    * const onorbitlist = await client.onorbitlist.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: OnorbitlistGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OnorbitlistGetResponse> {
+  get(id: string, query: OnorbitlistGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<OnorbitlistGetResponse> {
     return this._client.get(path`/udl/onorbitlist/${id}`, { query, ...options });
   }
 
@@ -173,7 +148,7 @@ export class Onorbitlist extends APIResource {
   }
 }
 
-export type OnorbitlistListResponsesOffsetPage = OffsetPage<OnorbitlistListResponse>;
+export type OnorbitlistListResponsesOffsetPage = OffsetPage<OnorbitlistListResponse>
 
 /**
  * Table for maintaining generic lists of OnOrbit objects (e.g. Favorites, HIO,
@@ -294,7 +269,7 @@ export interface OnorbitlistListResponse {
   updatedBy?: string;
 }
 
-export type OnorbitlistCountResponse = string;
+export type OnorbitlistCountResponse = string
 
 /**
  * Table for maintaining generic lists of OnOrbit objects (e.g. Favorites, HIO,
@@ -546,7 +521,7 @@ export interface OnorbitlistQueryhelpResponse {
   uri?: string;
 }
 
-export type OnorbitlistTupleResponse = Array<OnorbitlistTupleResponse.OnorbitlistTupleResponseItem>;
+export type OnorbitlistTupleResponse = Array<OnorbitlistTupleResponse.OnorbitlistTupleResponseItem>
 
 export namespace OnorbitlistTupleResponse {
   /**
@@ -1162,7 +1137,8 @@ export namespace OnorbitlistUpdateParams {
   }
 }
 
-export interface OnorbitlistListParams extends OffsetPageParams {}
+export interface OnorbitlistListParams extends OffsetPageParams {
+}
 
 export interface OnorbitlistCountParams {
   firstResult?: number;
@@ -1203,6 +1179,6 @@ export declare namespace Onorbitlist {
     type OnorbitlistListParams as OnorbitlistListParams,
     type OnorbitlistCountParams as OnorbitlistCountParams,
     type OnorbitlistGetParams as OnorbitlistGetParams,
-    type OnorbitlistTupleParams as OnorbitlistTupleParams,
+    type OnorbitlistTupleParams as OnorbitlistTupleParams
   };
 }

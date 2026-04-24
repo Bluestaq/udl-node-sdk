@@ -5,17 +5,17 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource status', () => {
   test('create: only required params', async () => {
     const responsePromise = client.status.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEntity: 'ENTITY-ID',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEntity: 'ENTITY-ID',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,42 +27,40 @@ describe('resource status', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.status.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEntity: 'ENTITY-ID',
-      source: 'Bluestaq',
-      id: 'STATUS-ID',
-      declassificationDate: '2021-01-01T01:02:02.123Z',
-      declassificationString: 'U',
-      derivedFrom: 'SOME_SOURCE',
-      notes: 'Example Notes',
-      opsCap: 'FMC',
-      origin: 'THIRD_PARTY_DATASOURCE',
-      state: 'ACTIVE',
-      subStatusCollection: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          notes: 'Sample Notes',
-          source: 'Bluestaq',
-          status: 'FMC',
-          statusId: 'REF-STATUS-ID',
-          type: 'mdCap',
-          id: 'SUBSTATUS-ID',
-          origin: 'THIRD_PARTY_DATASOURCE',
-        },
-      ],
-      sysCap: 'FMC',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEntity: 'ENTITY-ID',
+    source: 'Bluestaq',
+    id: 'STATUS-ID',
+    declassificationDate: '2021-01-01T01:02:02.123Z',
+    declassificationString: 'U',
+    derivedFrom: 'SOME_SOURCE',
+    notes: 'Example Notes',
+    opsCap: 'FMC',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    state: 'ACTIVE',
+    subStatusCollection: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    notes: 'Sample Notes',
+    source: 'Bluestaq',
+    status: 'FMC',
+    statusId: 'REF-STATUS-ID',
+    type: 'mdCap',
+    id: 'SUBSTATUS-ID',
+    origin: 'THIRD_PARTY_DATASOURCE',
+  }],
+    sysCap: 'FMC',
+  });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.status.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEntity: 'ENTITY-ID',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEntity: 'ENTITY-ID',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -74,33 +72,31 @@ describe('resource status', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.status.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idEntity: 'ENTITY-ID',
-      source: 'Bluestaq',
-      id: 'STATUS-ID',
-      declassificationDate: '2021-01-01T01:02:02.123Z',
-      declassificationString: 'U',
-      derivedFrom: 'SOME_SOURCE',
-      notes: 'Example Notes',
-      opsCap: 'FMC',
-      origin: 'THIRD_PARTY_DATASOURCE',
-      state: 'ACTIVE',
-      subStatusCollection: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          notes: 'Sample Notes',
-          source: 'Bluestaq',
-          status: 'FMC',
-          statusId: 'REF-STATUS-ID',
-          type: 'mdCap',
-          id: 'SUBSTATUS-ID',
-          origin: 'THIRD_PARTY_DATASOURCE',
-        },
-      ],
-      sysCap: 'FMC',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idEntity: 'ENTITY-ID',
+    source: 'Bluestaq',
+    id: 'STATUS-ID',
+    declassificationDate: '2021-01-01T01:02:02.123Z',
+    declassificationString: 'U',
+    derivedFrom: 'SOME_SOURCE',
+    notes: 'Example Notes',
+    opsCap: 'FMC',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    state: 'ACTIVE',
+    subStatusCollection: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    notes: 'Sample Notes',
+    source: 'Bluestaq',
+    status: 'FMC',
+    statusId: 'REF-STATUS-ID',
+    type: 'mdCap',
+    id: 'SUBSTATUS-ID',
+    origin: 'THIRD_PARTY_DATASOURCE',
+  }],
+    sysCap: 'FMC',
+  });
   });
 
   test('list', async () => {
@@ -116,9 +112,9 @@ describe('resource status', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.status.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.status.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -145,9 +141,9 @@ describe('resource status', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.status.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.status.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('get', async () => {
@@ -163,9 +159,9 @@ describe('resource status', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.status.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.status.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('getByEntityID', async () => {
@@ -181,13 +177,9 @@ describe('resource status', () => {
 
   test('getByEntityID: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.status.getByEntityID(
-        'idEntity',
-        { firstResult: 0, maxResults: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.status.getByEntityID('idEntity', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('getByEntityType', async () => {
@@ -203,13 +195,9 @@ describe('resource status', () => {
 
   test('getByEntityType: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.status.getByEntityType(
-        'entityType',
-        { firstResult: 0, maxResults: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.status.getByEntityType('entityType', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -236,9 +224,9 @@ describe('resource status', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.status.tuple({
-      columns: 'columns',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    columns: 'columns',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 });

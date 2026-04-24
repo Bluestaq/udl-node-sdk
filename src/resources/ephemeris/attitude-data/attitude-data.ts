@@ -2,14 +2,7 @@
 
 import { APIResource } from '../../../core/resource';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryRetrieveParams,
-  HistoryRetrieveResponse,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryRetrieveParams, HistoryRetrieveResponse } from './history';
 import { APIPromise } from '../../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
@@ -37,14 +30,8 @@ export class AttitudeData extends APIResource {
    * }
    * ```
    */
-  list(
-    query: AttitudeDataListParams,
-    options?: RequestOptions,
-  ): PagePromise<AttitudeDataAbridgedsOffsetPage, AttitudeDataAbridged> {
-    return this._client.getAPIList('/udl/attitudedata', OffsetPage<AttitudeDataAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: AttitudeDataListParams, options?: RequestOptions): PagePromise<AttitudeDataAbridgedsOffsetPage, AttitudeDataAbridged> {
+    return this._client.getAPIList('/udl/attitudedata', OffsetPage<AttitudeDataAbridged>, { query, ...options });
   }
 
   /**
@@ -62,15 +49,11 @@ export class AttitudeData extends APIResource {
    * ```
    */
   count(query: AttitudeDataCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/attitudedata/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/attitudedata/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 }
 
-export type AttitudeDataAbridgedsOffsetPage = OffsetPage<AttitudeDataAbridged>;
+export type AttitudeDataAbridgedsOffsetPage = OffsetPage<AttitudeDataAbridged>
 
 /**
  * These services provide operations for posting and querying attitude of on-orbit
@@ -282,7 +265,7 @@ export interface AttitudeDataAbridged {
   zRate?: Array<number>;
 }
 
-export type AttitudeDataCountResponse = string;
+export type AttitudeDataCountResponse = string
 
 export interface AttitudeDataListParams extends OffsetPageParams {
   /**
@@ -310,7 +293,7 @@ export declare namespace AttitudeData {
     type AttitudeDataCountResponse as AttitudeDataCountResponse,
     type AttitudeDataAbridgedsOffsetPage as AttitudeDataAbridgedsOffsetPage,
     type AttitudeDataListParams as AttitudeDataListParams,
-    type AttitudeDataCountParams as AttitudeDataCountParams,
+    type AttitudeDataCountParams as AttitudeDataCountParams
   };
 
   export {
@@ -319,6 +302,6 @@ export declare namespace AttitudeData {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryRetrieveParams as HistoryRetrieveParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

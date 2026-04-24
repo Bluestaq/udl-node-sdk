@@ -26,46 +26,18 @@ export class Notifications extends APIResource {
    * }
    * ```
    */
-  list(
-    offset: string,
-    query: NotificationListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<NotificationListResponsesOffsetPage, NotificationListResponse> {
-    return this._client.getAPIList(path`/scs/notifications/${offset}`, OffsetPage<NotificationListResponse>, {
-      query,
-      ...options,
-    });
+  list(offset: string, query: NotificationListParams | null | undefined = {}, options?: RequestOptions): PagePromise<NotificationListResponsesOffsetPage, NotificationListResponse> {
+    return this._client.getAPIList(path`/scs/notifications/${offset}`, OffsetPage<NotificationListResponse>, { query, ...options });
   }
 }
 
-export type NotificationListResponsesOffsetPage = OffsetPage<NotificationListResponse>;
+export type NotificationListResponsesOffsetPage = OffsetPage<NotificationListResponse>
 
 /**
  * SCS Event Notification
  */
 export interface NotificationListResponse {
-  actions?: Array<
-    | 'ROOT_WRITE'
-    | 'UPLOAD_FILE'
-    | 'CREATE_FOLDER'
-    | 'DOWNLOAD_FILE'
-    | 'DOWNLOAD_FOLDER'
-    | 'MOVE_RENAME_FILE'
-    | 'MOVE_RENAME_FOLDER'
-    | 'COPY_FILE'
-    | 'COPY_FOLDER'
-    | 'UPDATE_FILE'
-    | 'UPDATE_FOLDER'
-    | 'DELETE_FILE'
-    | 'DELETE_FOLDER'
-    | 'DELETE_EMPTY_FOLDER'
-    | 'CROSS_DOMAIN'
-    | 'SEND_NOTIFICATION'
-    | 'DELETE_READ_ACL'
-    | 'DELETE_WRITE_ACL'
-    | 'DELETE_FILE_TAGS'
-    | 'DELETE_FOLDER_TAGS'
-  >;
+  actions?: Array<'ROOT_WRITE' | 'UPLOAD_FILE' | 'CREATE_FOLDER' | 'DOWNLOAD_FILE' | 'DOWNLOAD_FOLDER' | 'MOVE_RENAME_FILE' | 'MOVE_RENAME_FOLDER' | 'COPY_FILE' | 'COPY_FOLDER' | 'UPDATE_FILE' | 'UPDATE_FOLDER' | 'DELETE_FILE' | 'DELETE_FOLDER' | 'DELETE_EMPTY_FOLDER' | 'CROSS_DOMAIN' | 'SEND_NOTIFICATION' | 'DELETE_READ_ACL' | 'DELETE_WRITE_ACL' | 'DELETE_FILE_TAGS' | 'DELETE_FOLDER_TAGS'>;
 
   classificationMarking?: string;
 
@@ -96,8 +68,11 @@ export declare namespace Notifications {
   export {
     type NotificationListResponse as NotificationListResponse,
     type NotificationListResponsesOffsetPage as NotificationListResponsesOffsetPage,
-    type NotificationListParams as NotificationListParams,
+    type NotificationListParams as NotificationListParams
   };
 
-  export { Offset as Offset, type OffsetGetResponse as OffsetGetResponse };
+  export {
+    Offset as Offset,
+    type OffsetGetResponse as OffsetGetResponse
+  };
 }

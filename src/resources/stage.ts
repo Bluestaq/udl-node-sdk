@@ -31,11 +31,7 @@ export class Stage extends APIResource {
    * ```
    */
   create(body: StageCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/stage', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/stage', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -56,11 +52,7 @@ export class Stage extends APIResource {
    * ```
    */
   update(id: string, body: StageUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/stage/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/stage/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -77,10 +69,7 @@ export class Stage extends APIResource {
    * }
    * ```
    */
-  list(
-    query: StageListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<StageListResponsesOffsetPage, StageListResponse> {
+  list(query: StageListParams | null | undefined = {}, options?: RequestOptions): PagePromise<StageListResponsesOffsetPage, StageListResponse> {
     return this._client.getAPIList('/udl/stage', OffsetPage<StageListResponse>, { query, ...options });
   }
 
@@ -97,10 +86,7 @@ export class Stage extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/stage/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/stage/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -116,11 +102,7 @@ export class Stage extends APIResource {
    * ```
    */
   count(query: StageCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/stage/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/stage/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -133,11 +115,7 @@ export class Stage extends APIResource {
    * const stage = await client.stage.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: StageGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<StageGetResponse> {
+  get(id: string, query: StageGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<StageGetResponse> {
     return this._client.get(path`/udl/stage/${id}`, { query, ...options });
   }
 
@@ -176,7 +154,7 @@ export class Stage extends APIResource {
   }
 }
 
-export type StageListResponsesOffsetPage = OffsetPage<StageListResponse>;
+export type StageListResponsesOffsetPage = OffsetPage<StageListResponse>
 
 /**
  * Launch stage information for a particular launch vehicle. A launch vehicle can
@@ -397,7 +375,7 @@ export interface StageListResponse {
   vernierThrustVacuum?: number;
 }
 
-export type StageCountResponse = string;
+export type StageCountResponse = string
 
 /**
  * Launch stage information for a particular launch vehicle. A launch vehicle can
@@ -668,7 +646,7 @@ export interface StageQueryhelpResponse {
   uri?: string;
 }
 
-export type StageTupleResponse = Array<StageTupleResponse.StageTupleResponseItem>;
+export type StageTupleResponse = Array<StageTupleResponse.StageTupleResponseItem>
 
 export namespace StageTupleResponse {
   /**
@@ -1331,7 +1309,8 @@ export interface StageUpdateParams {
   vernierThrustVacuum?: number;
 }
 
-export interface StageListParams extends OffsetPageParams {}
+export interface StageListParams extends OffsetPageParams {
+}
 
 export interface StageCountParams {
   firstResult?: number;
@@ -1372,6 +1351,6 @@ export declare namespace Stage {
     type StageListParams as StageListParams,
     type StageCountParams as StageCountParams,
     type StageGetParams as StageGetParams,
-    type StageTupleParams as StageTupleParams,
+    type StageTupleParams as StageTupleParams
   };
 }

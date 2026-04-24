@@ -2,133 +2,29 @@
 
 import { APIResource } from '../../core/resource';
 import * as EcpsdrAPI from './ecpsdr';
-import {
-  Ecpsdr,
-  EcpsdrAbridged,
-  EcpsdrAbridgedsOffsetPage,
-  EcpsdrCountParams,
-  EcpsdrCountResponse,
-  EcpsdrCreateBulkParams,
-  EcpsdrCreateParams,
-  EcpsdrListParams,
-  EcpsdrQueryHelpResponse,
-  EcpsdrResource,
-  EcpsdrRetrieveParams,
-  EcpsdrTupleParams,
-  EcpsdrTupleResponse,
-  EcpsdrUnvalidatedPublishParams,
-} from './ecpsdr';
+import { Ecpsdr, EcpsdrAbridged, EcpsdrAbridgedsOffsetPage, EcpsdrCountParams, EcpsdrCountResponse, EcpsdrCreateBulkParams, EcpsdrCreateParams, EcpsdrListParams, EcpsdrQueryHelpResponse, EcpsdrResource, EcpsdrRetrieveParams, EcpsdrTupleParams, EcpsdrTupleResponse, EcpsdrUnvalidatedPublishParams } from './ecpsdr';
 import * as SwirAPI from './swir';
 import { Swir, SwirUnvalidatedPublishParams } from './swir';
 import * as EoObservationsAPI from './eo-observations/eo-observations';
-import {
-  EoObservationAbridged,
-  EoObservationAbridgedsOffsetPage,
-  EoObservationCountParams,
-  EoObservationCountResponse,
-  EoObservationCreateBulkParams,
-  EoObservationCreateParams,
-  EoObservationListParams,
-  EoObservationQueryhelpResponse,
-  EoObservationRetrieveParams,
-  EoObservationTupleParams,
-  EoObservationTupleResponse,
-  EoObservationUnvalidatedPublishParams,
-  EoObservations,
-} from './eo-observations/eo-observations';
+import { EoObservationAbridged, EoObservationAbridgedsOffsetPage, EoObservationCountParams, EoObservationCountResponse, EoObservationCreateBulkParams, EoObservationCreateParams, EoObservationListParams, EoObservationQueryhelpResponse, EoObservationRetrieveParams, EoObservationTupleParams, EoObservationTupleResponse, EoObservationUnvalidatedPublishParams, EoObservations } from './eo-observations/eo-observations';
 import * as MonoradarAPI from './monoradar/monoradar';
-import {
-  Monoradar,
-  MonoradarCountParams,
-  MonoradarCountResponse,
-  MonoradarCreateBulkParams,
-  MonoradarListParams,
-  MonoradarListResponse,
-  MonoradarListResponsesOffsetPage,
-  MonoradarQueryhelpResponse,
-  MonoradarTupleParams,
-  MonoradarTupleResponse,
-  MonoradarUnvalidatedPublishParams,
-} from './monoradar/monoradar';
+import { Monoradar, MonoradarCountParams, MonoradarCountResponse, MonoradarCreateBulkParams, MonoradarListParams, MonoradarListResponse, MonoradarListResponsesOffsetPage, MonoradarQueryhelpResponse, MonoradarTupleParams, MonoradarTupleResponse, MonoradarUnvalidatedPublishParams } from './monoradar/monoradar';
 import * as ObscorrelationAPI from './obscorrelation/obscorrelation';
-import {
-  Obscorrelation,
-  ObscorrelationCountParams,
-  ObscorrelationCountResponse,
-  ObscorrelationCreateBulkParams,
-  ObscorrelationCreateParams,
-  ObscorrelationListParams,
-  ObscorrelationListResponse,
-  ObscorrelationListResponsesOffsetPage,
-  ObscorrelationQueryHelpResponse,
-  ObscorrelationRetrieveParams,
-  ObscorrelationRetrieveResponse,
-  ObscorrelationTupleParams,
-  ObscorrelationTupleResponse,
-  ObscorrelationUnvalidatedPublishParams,
-} from './obscorrelation/obscorrelation';
+import { Obscorrelation, ObscorrelationCountParams, ObscorrelationCountResponse, ObscorrelationCreateBulkParams, ObscorrelationCreateParams, ObscorrelationListParams, ObscorrelationListResponse, ObscorrelationListResponsesOffsetPage, ObscorrelationQueryHelpResponse, ObscorrelationRetrieveParams, ObscorrelationRetrieveResponse, ObscorrelationTupleParams, ObscorrelationTupleResponse, ObscorrelationUnvalidatedPublishParams } from './obscorrelation/obscorrelation';
 import * as PassiveRadarObservationAPI from './passive-radar-observation/passive-radar-observation';
-import {
-  PassiveRadarObservation,
-  PassiveRadarObservationCountParams,
-  PassiveRadarObservationCountResponse,
-  PassiveRadarObservationCreateBulkParams,
-  PassiveRadarObservationCreateParams,
-  PassiveRadarObservationFileCreateParams,
-  PassiveRadarObservationGetParams,
-  PassiveRadarObservationGetResponse,
-  PassiveRadarObservationListParams,
-  PassiveRadarObservationListResponse,
-  PassiveRadarObservationListResponsesOffsetPage,
-  PassiveRadarObservationQueryhelpResponse,
-  PassiveRadarObservationTupleParams,
-  PassiveRadarObservationTupleResponse,
-} from './passive-radar-observation/passive-radar-observation';
+import { PassiveRadarObservation, PassiveRadarObservationCountParams, PassiveRadarObservationCountResponse, PassiveRadarObservationCreateBulkParams, PassiveRadarObservationCreateParams, PassiveRadarObservationFileCreateParams, PassiveRadarObservationGetParams, PassiveRadarObservationGetResponse, PassiveRadarObservationListParams, PassiveRadarObservationListResponse, PassiveRadarObservationListResponsesOffsetPage, PassiveRadarObservationQueryhelpResponse, PassiveRadarObservationTupleParams, PassiveRadarObservationTupleResponse } from './passive-radar-observation/passive-radar-observation';
 import * as RadarobservationAPI from './radarobservation/radarobservation';
-import {
-  Radarobservation,
-  RadarobservationCountParams,
-  RadarobservationCountResponse,
-  RadarobservationCreateBulkParams,
-  RadarobservationCreateParams,
-  RadarobservationGetParams,
-  RadarobservationGetResponse,
-  RadarobservationListParams,
-  RadarobservationListResponse,
-  RadarobservationListResponsesOffsetPage,
-  RadarobservationQueryhelpResponse,
-  RadarobservationTupleParams,
-  RadarobservationTupleResponse,
-  RadarobservationUnvalidatedPublishParams,
-} from './radarobservation/radarobservation';
+import { Radarobservation, RadarobservationCountParams, RadarobservationCountResponse, RadarobservationCreateBulkParams, RadarobservationCreateParams, RadarobservationGetParams, RadarobservationGetResponse, RadarobservationListParams, RadarobservationListResponse, RadarobservationListResponsesOffsetPage, RadarobservationQueryhelpResponse, RadarobservationTupleParams, RadarobservationTupleResponse, RadarobservationUnvalidatedPublishParams } from './radarobservation/radarobservation';
 import * as RfObservationAPI from './rf-observation/rf-observation';
-import {
-  RfObservation,
-  RfObservationCountParams,
-  RfObservationCountResponse,
-  RfObservationCreateBulkParams,
-  RfObservationCreateParams,
-  RfObservationGetParams,
-  RfObservationGetResponse,
-  RfObservationListParams,
-  RfObservationListResponse,
-  RfObservationListResponsesOffsetPage,
-  RfObservationQueryhelpResponse,
-  RfObservationTupleParams,
-  RfObservationTupleResponse,
-  RfObservationUnvalidatedPublishParams,
-} from './rf-observation/rf-observation';
+import { RfObservation, RfObservationCountParams, RfObservationCountResponse, RfObservationCreateBulkParams, RfObservationCreateParams, RfObservationGetParams, RfObservationGetResponse, RfObservationListParams, RfObservationListResponse, RfObservationListResponsesOffsetPage, RfObservationQueryhelpResponse, RfObservationTupleParams, RfObservationTupleResponse, RfObservationUnvalidatedPublishParams } from './rf-observation/rf-observation';
 
 export class Observations extends APIResource {
   ecpsdr: EcpsdrAPI.EcpsdrResource = new EcpsdrAPI.EcpsdrResource(this._client);
   eoObservations: EoObservationsAPI.EoObservations = new EoObservationsAPI.EoObservations(this._client);
   monoradar: MonoradarAPI.Monoradar = new MonoradarAPI.Monoradar(this._client);
   obscorrelation: ObscorrelationAPI.Obscorrelation = new ObscorrelationAPI.Obscorrelation(this._client);
-  passiveRadarObservation: PassiveRadarObservationAPI.PassiveRadarObservation =
-    new PassiveRadarObservationAPI.PassiveRadarObservation(this._client);
-  radarobservation: RadarobservationAPI.Radarobservation = new RadarobservationAPI.Radarobservation(
-    this._client,
-  );
+  passiveRadarObservation: PassiveRadarObservationAPI.PassiveRadarObservation = new PassiveRadarObservationAPI.PassiveRadarObservation(this._client);
+  radarobservation: RadarobservationAPI.Radarobservation = new RadarobservationAPI.Radarobservation(this._client);
   rfObservation: RfObservationAPI.RfObservation = new RfObservationAPI.RfObservation(this._client);
   swir: SwirAPI.Swir = new SwirAPI.Swir(this._client);
 }
@@ -157,7 +53,7 @@ export declare namespace Observations {
     type EcpsdrCountParams as EcpsdrCountParams,
     type EcpsdrCreateBulkParams as EcpsdrCreateBulkParams,
     type EcpsdrTupleParams as EcpsdrTupleParams,
-    type EcpsdrUnvalidatedPublishParams as EcpsdrUnvalidatedPublishParams,
+    type EcpsdrUnvalidatedPublishParams as EcpsdrUnvalidatedPublishParams
   };
 
   export {
@@ -173,7 +69,7 @@ export declare namespace Observations {
     type EoObservationCountParams as EoObservationCountParams,
     type EoObservationCreateBulkParams as EoObservationCreateBulkParams,
     type EoObservationTupleParams as EoObservationTupleParams,
-    type EoObservationUnvalidatedPublishParams as EoObservationUnvalidatedPublishParams,
+    type EoObservationUnvalidatedPublishParams as EoObservationUnvalidatedPublishParams
   };
 
   export {
@@ -187,7 +83,7 @@ export declare namespace Observations {
     type MonoradarCountParams as MonoradarCountParams,
     type MonoradarCreateBulkParams as MonoradarCreateBulkParams,
     type MonoradarTupleParams as MonoradarTupleParams,
-    type MonoradarUnvalidatedPublishParams as MonoradarUnvalidatedPublishParams,
+    type MonoradarUnvalidatedPublishParams as MonoradarUnvalidatedPublishParams
   };
 
   export {
@@ -204,7 +100,7 @@ export declare namespace Observations {
     type ObscorrelationCountParams as ObscorrelationCountParams,
     type ObscorrelationCreateBulkParams as ObscorrelationCreateBulkParams,
     type ObscorrelationTupleParams as ObscorrelationTupleParams,
-    type ObscorrelationUnvalidatedPublishParams as ObscorrelationUnvalidatedPublishParams,
+    type ObscorrelationUnvalidatedPublishParams as ObscorrelationUnvalidatedPublishParams
   };
 
   export {
@@ -221,7 +117,7 @@ export declare namespace Observations {
     type PassiveRadarObservationCreateBulkParams as PassiveRadarObservationCreateBulkParams,
     type PassiveRadarObservationFileCreateParams as PassiveRadarObservationFileCreateParams,
     type PassiveRadarObservationGetParams as PassiveRadarObservationGetParams,
-    type PassiveRadarObservationTupleParams as PassiveRadarObservationTupleParams,
+    type PassiveRadarObservationTupleParams as PassiveRadarObservationTupleParams
   };
 
   export {
@@ -238,7 +134,7 @@ export declare namespace Observations {
     type RadarobservationCreateBulkParams as RadarobservationCreateBulkParams,
     type RadarobservationGetParams as RadarobservationGetParams,
     type RadarobservationTupleParams as RadarobservationTupleParams,
-    type RadarobservationUnvalidatedPublishParams as RadarobservationUnvalidatedPublishParams,
+    type RadarobservationUnvalidatedPublishParams as RadarobservationUnvalidatedPublishParams
   };
 
   export {
@@ -255,8 +151,11 @@ export declare namespace Observations {
     type RfObservationCreateBulkParams as RfObservationCreateBulkParams,
     type RfObservationGetParams as RfObservationGetParams,
     type RfObservationTupleParams as RfObservationTupleParams,
-    type RfObservationUnvalidatedPublishParams as RfObservationUnvalidatedPublishParams,
+    type RfObservationUnvalidatedPublishParams as RfObservationUnvalidatedPublishParams
   };
 
-  export { Swir as Swir, type SwirUnvalidatedPublishParams as SwirUnvalidatedPublishParams };
+  export {
+    Swir as Swir,
+    type SwirUnvalidatedPublishParams as SwirUnvalidatedPublishParams
+  };
 }

@@ -3,14 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryRetrieveParams,
-  HistoryRetrieveResponse,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryRetrieveParams, HistoryRetrieveResponse } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -43,11 +36,7 @@ export class SarObservation extends APIResource {
    * ```
    */
   create(body: SarObservationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/sarobservation', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/sarobservation', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -66,14 +55,8 @@ export class SarObservation extends APIResource {
    * }
    * ```
    */
-  list(
-    query: SarObservationListParams,
-    options?: RequestOptions,
-  ): PagePromise<SarObservationListResponsesOffsetPage, SarObservationListResponse> {
-    return this._client.getAPIList('/udl/sarobservation', OffsetPage<SarObservationListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: SarObservationListParams, options?: RequestOptions): PagePromise<SarObservationListResponsesOffsetPage, SarObservationListResponse> {
+    return this._client.getAPIList('/udl/sarobservation', OffsetPage<SarObservationListResponse>, { query, ...options });
   }
 
   /**
@@ -91,11 +74,7 @@ export class SarObservation extends APIResource {
    * ```
    */
   count(query: SarObservationCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/sarobservation/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/sarobservation/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -122,12 +101,8 @@ export class SarObservation extends APIResource {
    * ```
    */
   createBulk(params: SarObservationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/sarobservation/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/sarobservation/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -141,11 +116,7 @@ export class SarObservation extends APIResource {
    * );
    * ```
    */
-  get(
-    id: string,
-    query: SarObservationGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<SarObservationGetResponse> {
+  get(id: string, query: SarObservationGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SarObservationGetResponse> {
     return this._client.get(path`/udl/sarobservation/${id}`, { query, ...options });
   }
 
@@ -206,20 +177,13 @@ export class SarObservation extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(
-    params: SarObservationUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-sar', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: SarObservationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-sar', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type SarObservationListResponsesOffsetPage = OffsetPage<SarObservationListResponse>;
+export type SarObservationListResponsesOffsetPage = OffsetPage<SarObservationListResponse>
 
 /**
  * Model representation of observation data for SAR based sensor phenomenologies.
@@ -644,7 +608,7 @@ export interface SarObservationListResponse {
   txPolarization?: string;
 }
 
-export type SarObservationCountResponse = string;
+export type SarObservationCountResponse = string
 
 /**
  * Model representation of observation data for SAR based sensor phenomenologies.
@@ -1107,7 +1071,7 @@ export interface SarObservationQueryhelpResponse {
   uri?: string;
 }
 
-export type SarObservationTupleResponse = Array<SarObservationTupleResponse.SarObservationTupleResponseItem>;
+export type SarObservationTupleResponse = Array<SarObservationTupleResponse.SarObservationTupleResponseItem>
 
 export namespace SarObservationTupleResponse {
   /**
@@ -2840,7 +2804,7 @@ export declare namespace SarObservation {
     type SarObservationCreateBulkParams as SarObservationCreateBulkParams,
     type SarObservationGetParams as SarObservationGetParams,
     type SarObservationTupleParams as SarObservationTupleParams,
-    type SarObservationUnvalidatedPublishParams as SarObservationUnvalidatedPublishParams,
+    type SarObservationUnvalidatedPublishParams as SarObservationUnvalidatedPublishParams
   };
 
   export {
@@ -2849,6 +2813,6 @@ export declare namespace SarObservation {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryRetrieveParams as HistoryRetrieveParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

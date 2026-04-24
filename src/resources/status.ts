@@ -28,11 +28,7 @@ export class Status extends APIResource {
    * ```
    */
   create(body: StatusCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/status', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/status', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -50,11 +46,7 @@ export class Status extends APIResource {
    * ```
    */
   update(id: string, body: StatusUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/status/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/status/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -71,10 +63,7 @@ export class Status extends APIResource {
    * }
    * ```
    */
-  list(
-    query: StatusListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<StatusListResponsesOffsetPage, StatusListResponse> {
+  list(query: StatusListParams | null | undefined = {}, options?: RequestOptions): PagePromise<StatusListResponsesOffsetPage, StatusListResponse> {
     return this._client.getAPIList('/udl/status', OffsetPage<StatusListResponse>, { query, ...options });
   }
 
@@ -89,10 +78,7 @@ export class Status extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/status/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/status/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -108,11 +94,7 @@ export class Status extends APIResource {
    * ```
    */
   count(query: StatusCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/status/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/status/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -124,11 +106,7 @@ export class Status extends APIResource {
    * const statusFull = await client.status.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: StatusGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.StatusFull> {
+  get(id: string, query: StatusGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.StatusFull> {
     return this._client.get(path`/udl/status/${id}`, { query, ...options });
   }
 
@@ -142,11 +120,7 @@ export class Status extends APIResource {
    * );
    * ```
    */
-  getByEntityID(
-    idEntity: string,
-    query: StatusGetByEntityIDParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<StatusGetByEntityIDResponse> {
+  getByEntityID(idEntity: string, query: StatusGetByEntityIDParams | null | undefined = {}, options?: RequestOptions): APIPromise<StatusGetByEntityIDResponse> {
     return this._client.get(path`/udl/status/byIdEntity/${idEntity}`, { query, ...options });
   }
 
@@ -160,11 +134,7 @@ export class Status extends APIResource {
    * );
    * ```
    */
-  getByEntityType(
-    entityType: string,
-    query: StatusGetByEntityTypeParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<StatusGetByEntityTypeResponse> {
+  getByEntityType(entityType: string, query: StatusGetByEntityTypeParams | null | undefined = {}, options?: RequestOptions): APIPromise<StatusGetByEntityTypeResponse> {
     return this._client.get(path`/udl/status/byEntityType/${entityType}`, { query, ...options });
   }
 
@@ -203,7 +173,7 @@ export class Status extends APIResource {
   }
 }
 
-export type StatusListResponsesOffsetPage = OffsetPage<StatusListResponse>;
+export type StatusListResponsesOffsetPage = OffsetPage<StatusListResponse>
 
 /**
  * Status for a particular Entity. An entity may have multiple status records
@@ -396,11 +366,11 @@ export namespace StatusListResponse {
   }
 }
 
-export type StatusCountResponse = string;
+export type StatusCountResponse = string
 
-export type StatusGetByEntityIDResponse = Array<Shared.StatusFull>;
+export type StatusGetByEntityIDResponse = Array<Shared.StatusFull>
 
-export type StatusGetByEntityTypeResponse = Array<Shared.StatusFull>;
+export type StatusGetByEntityTypeResponse = Array<Shared.StatusFull>
 
 export interface StatusQueryhelpResponse {
   aodrSupported?: boolean;
@@ -426,7 +396,7 @@ export interface StatusQueryhelpResponse {
   uri?: string;
 }
 
-export type StatusTupleResponse = Array<Shared.StatusFull>;
+export type StatusTupleResponse = Array<Shared.StatusFull>
 
 export interface StatusCreateParams {
   /**
@@ -600,7 +570,8 @@ export interface StatusUpdateParams {
   sysCap?: 'FMC' | 'NMC' | 'PMC' | 'UNK';
 }
 
-export interface StatusListParams extends OffsetPageParams {}
+export interface StatusListParams extends OffsetPageParams {
+}
 
 export interface StatusCountParams {
   firstResult?: number;
@@ -656,6 +627,6 @@ export declare namespace Status {
     type StatusGetParams as StatusGetParams,
     type StatusGetByEntityIDParams as StatusGetByEntityIDParams,
     type StatusGetByEntityTypeParams as StatusGetByEntityTypeParams,
-    type StatusTupleParams as StatusTupleParams,
+    type StatusTupleParams as StatusTupleParams
   };
 }

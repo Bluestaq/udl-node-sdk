@@ -29,11 +29,7 @@ export class Item extends APIResource {
    * ```
    */
   create(body: ItemCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/item', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/item', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -53,11 +49,7 @@ export class Item extends APIResource {
    * ```
    */
   update(id: string, body: ItemUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/item/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/item/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -74,10 +66,7 @@ export class Item extends APIResource {
    * }
    * ```
    */
-  list(
-    query: ItemListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ItemListResponsesOffsetPage, ItemListResponse> {
+  list(query: ItemListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ItemListResponsesOffsetPage, ItemListResponse> {
     return this._client.getAPIList('/udl/item', OffsetPage<ItemListResponse>, { query, ...options });
   }
 
@@ -92,10 +81,7 @@ export class Item extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/item/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/item/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -111,11 +97,7 @@ export class Item extends APIResource {
    * ```
    */
   count(query: ItemCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/item/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/item/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -127,11 +109,7 @@ export class Item extends APIResource {
    * const item = await client.item.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: ItemGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ItemGetResponse> {
+  get(id: string, query: ItemGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<ItemGetResponse> {
     return this._client.get(path`/udl/item/${id}`, { query, ...options });
   }
 
@@ -191,16 +169,12 @@ export class Item extends APIResource {
    * ```
    */
   unvalidatedPublish(params: ItemUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-item', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/filedrop/udl-item', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type ItemListResponsesOffsetPage = OffsetPage<ItemListResponse>;
+export type ItemListResponsesOffsetPage = OffsetPage<ItemListResponse>
 
 export interface ItemListResponse {
   /**
@@ -507,7 +481,7 @@ export interface ItemListResponse {
   width?: number;
 }
 
-export type ItemCountResponse = string;
+export type ItemCountResponse = string
 
 export interface ItemGetResponse {
   /**
@@ -849,7 +823,7 @@ export interface ItemQueryhelpResponse {
   uri?: string;
 }
 
-export type ItemTupleResponse = Array<ItemTupleResponse.ItemTupleResponseItem>;
+export type ItemTupleResponse = Array<ItemTupleResponse.ItemTupleResponseItem>
 
 export namespace ItemTupleResponse {
   export interface ItemTupleResponseItem {
@@ -1731,7 +1705,8 @@ export interface ItemUpdateParams {
   width?: number;
 }
 
-export interface ItemListParams extends OffsetPageParams {}
+export interface ItemListParams extends OffsetPageParams {
+}
 
 export interface ItemCountParams {
   firstResult?: number;
@@ -2060,6 +2035,6 @@ export declare namespace Item {
     type ItemCountParams as ItemCountParams,
     type ItemGetParams as ItemGetParams,
     type ItemTupleParams as ItemTupleParams,
-    type ItemUnvalidatedPublishParams as ItemUnvalidatedPublishParams,
+    type ItemUnvalidatedPublishParams as ItemUnvalidatedPublishParams
   };
 }

@@ -30,11 +30,7 @@ export class Dropzone extends APIResource {
    * ```
    */
   create(body: DropzoneCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/dropzone', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/dropzone', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -46,11 +42,7 @@ export class Dropzone extends APIResource {
    * const dropzone = await client.dropzone.retrieve('id');
    * ```
    */
-  retrieve(
-    id: string,
-    query: DropzoneRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<DropzoneRetrieveResponse> {
+  retrieve(id: string, query: DropzoneRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<DropzoneRetrieveResponse> {
     return this._client.get(path`/udl/dropzone/${id}`, { query, ...options });
   }
 
@@ -72,11 +64,7 @@ export class Dropzone extends APIResource {
    * ```
    */
   update(id: string, body: DropzoneUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/dropzone/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/dropzone/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -93,10 +81,7 @@ export class Dropzone extends APIResource {
    * }
    * ```
    */
-  list(
-    query: DropzoneListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<DropzoneListResponsesOffsetPage, DropzoneListResponse> {
+  list(query: DropzoneListParams | null | undefined = {}, options?: RequestOptions): PagePromise<DropzoneListResponsesOffsetPage, DropzoneListResponse> {
     return this._client.getAPIList('/udl/dropzone', OffsetPage<DropzoneListResponse>, { query, ...options });
   }
 
@@ -111,10 +96,7 @@ export class Dropzone extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/dropzone/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/dropzone/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -130,11 +112,7 @@ export class Dropzone extends APIResource {
    * ```
    */
   count(query: DropzoneCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/dropzone/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/dropzone/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -161,12 +139,8 @@ export class Dropzone extends APIResource {
    * ```
    */
   createBulk(params: DropzoneCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/dropzone/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/dropzone/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -226,16 +200,12 @@ export class Dropzone extends APIResource {
    * ```
    */
   unvalidatedPublish(params: DropzoneUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-dropzone', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/filedrop/udl-dropzone', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type DropzoneListResponsesOffsetPage = OffsetPage<DropzoneListResponse>;
+export type DropzoneListResponsesOffsetPage = OffsetPage<DropzoneListResponse>
 
 /**
  * Properties and characteristics of a Drop Zone, including name, location, shape,
@@ -682,7 +652,7 @@ export interface DropzoneListResponse {
   zarId?: string;
 }
 
-export type DropzoneCountResponse = string;
+export type DropzoneCountResponse = string
 
 export interface DropzoneQueryHelpResponse {
   aodrSupported?: boolean;
@@ -708,7 +678,7 @@ export interface DropzoneQueryHelpResponse {
   uri?: string;
 }
 
-export type DropzoneTupleResponse = Array<DropzoneTupleResponse.DropzoneTupleResponseItem>;
+export type DropzoneTupleResponse = Array<DropzoneTupleResponse.DropzoneTupleResponseItem>
 
 export namespace DropzoneTupleResponse {
   /**
@@ -1324,7 +1294,8 @@ export interface DropzoneUpdateParams {
   zarId?: string;
 }
 
-export interface DropzoneListParams extends OffsetPageParams {}
+export interface DropzoneListParams extends OffsetPageParams {
+}
 
 export interface DropzoneCountParams {
   firstResult?: number;
@@ -1759,6 +1730,6 @@ export declare namespace Dropzone {
     type DropzoneCountParams as DropzoneCountParams,
     type DropzoneCreateBulkParams as DropzoneCreateBulkParams,
     type DropzoneTupleParams as DropzoneTupleParams,
-    type DropzoneUnvalidatedPublishParams as DropzoneUnvalidatedPublishParams,
+    type DropzoneUnvalidatedPublishParams as DropzoneUnvalidatedPublishParams
   };
 }

@@ -29,11 +29,7 @@ export class Organization extends APIResource {
    * ```
    */
   create(body: OrganizationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/organization', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/organization', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -52,11 +48,7 @@ export class Organization extends APIResource {
    * ```
    */
   update(id: string, body: OrganizationUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/organization/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/organization/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -73,14 +65,8 @@ export class Organization extends APIResource {
    * }
    * ```
    */
-  list(
-    query: OrganizationListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<OrganizationListResponsesOffsetPage, OrganizationListResponse> {
-    return this._client.getAPIList('/udl/organization', OffsetPage<OrganizationListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: OrganizationListParams | null | undefined = {}, options?: RequestOptions): PagePromise<OrganizationListResponsesOffsetPage, OrganizationListResponse> {
+    return this._client.getAPIList('/udl/organization', OffsetPage<OrganizationListResponse>, { query, ...options });
   }
 
   /**
@@ -94,10 +80,7 @@ export class Organization extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/organization/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/organization/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -112,15 +95,8 @@ export class Organization extends APIResource {
    * const response = await client.organization.count();
    * ```
    */
-  count(
-    query: OrganizationCountParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get('/udl/organization/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+  count(query: OrganizationCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get('/udl/organization/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -134,11 +110,7 @@ export class Organization extends APIResource {
    * );
    * ```
    */
-  get(
-    id: string,
-    query: OrganizationGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.OrganizationFull> {
+  get(id: string, query: OrganizationGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.OrganizationFull> {
     return this._client.get(path`/udl/organization/${id}`, { query, ...options });
   }
 
@@ -151,10 +123,7 @@ export class Organization extends APIResource {
    *   await client.organization.getOrganizationCategories();
    * ```
    */
-  getOrganizationCategories(
-    query: OrganizationGetOrganizationCategoriesParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OrganizationGetOrganizationCategoriesResponse> {
+  getOrganizationCategories(query: OrganizationGetOrganizationCategoriesParams | null | undefined = {}, options?: RequestOptions): APIPromise<OrganizationGetOrganizationCategoriesResponse> {
     return this._client.get('/udl/organization/getOrganizationCategories', { query, ...options });
   }
 
@@ -167,10 +136,7 @@ export class Organization extends APIResource {
    *   await client.organization.getOrganizationTypes();
    * ```
    */
-  getOrganizationTypes(
-    query: OrganizationGetOrganizationTypesParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OrganizationGetOrganizationTypesResponse> {
+  getOrganizationTypes(query: OrganizationGetOrganizationTypesParams | null | undefined = {}, options?: RequestOptions): APIPromise<OrganizationGetOrganizationTypesResponse> {
     return this._client.get('/udl/organization/getOrganizationTypes', { query, ...options });
   }
 
@@ -209,7 +175,7 @@ export class Organization extends APIResource {
   }
 }
 
-export type OrganizationListResponsesOffsetPage = OffsetPage<OrganizationListResponse>;
+export type OrganizationListResponsesOffsetPage = OffsetPage<OrganizationListResponse>
 
 /**
  * An organization such as a corporation, manufacturer, consortium, government,
@@ -326,11 +292,11 @@ export interface OrganizationListResponse {
   origNetwork?: string;
 }
 
-export type OrganizationCountResponse = string;
+export type OrganizationCountResponse = string
 
-export type OrganizationGetOrganizationCategoriesResponse = Array<string>;
+export type OrganizationGetOrganizationCategoriesResponse = Array<string>
 
-export type OrganizationGetOrganizationTypesResponse = Array<string>;
+export type OrganizationGetOrganizationTypesResponse = Array<string>
 
 export interface OrganizationQueryhelpResponse {
   aodrSupported?: boolean;
@@ -356,7 +322,7 @@ export interface OrganizationQueryhelpResponse {
   uri?: string;
 }
 
-export type OrganizationTupleResponse = Array<Shared.OrganizationFull>;
+export type OrganizationTupleResponse = Array<Shared.OrganizationFull>
 
 export interface OrganizationCreateParams {
   /**
@@ -544,7 +510,8 @@ export interface OrganizationUpdateParams {
   origin?: string;
 }
 
-export interface OrganizationListParams extends OffsetPageParams {}
+export interface OrganizationListParams extends OffsetPageParams {
+}
 
 export interface OrganizationCountParams {
   firstResult?: number;
@@ -600,6 +567,6 @@ export declare namespace Organization {
     type OrganizationGetParams as OrganizationGetParams,
     type OrganizationGetOrganizationCategoriesParams as OrganizationGetOrganizationCategoriesParams,
     type OrganizationGetOrganizationTypesParams as OrganizationGetOrganizationTypesParams,
-    type OrganizationTupleParams as OrganizationTupleParams,
+    type OrganizationTupleParams as OrganizationTupleParams
   };
 }

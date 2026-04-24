@@ -28,11 +28,7 @@ export class SurfaceObstruction extends APIResource {
    * ```
    */
   create(body: SurfaceObstructionCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/surfaceobstruction', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/surfaceobstruction', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -51,11 +47,7 @@ export class SurfaceObstruction extends APIResource {
    * ```
    */
   update(id: string, body: SurfaceObstructionUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/surfaceobstruction/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/surfaceobstruction/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -72,14 +64,8 @@ export class SurfaceObstruction extends APIResource {
    * }
    * ```
    */
-  list(
-    query: SurfaceObstructionListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<SurfaceObstructionListResponsesOffsetPage, SurfaceObstructionListResponse> {
-    return this._client.getAPIList('/udl/surfaceobstruction', OffsetPage<SurfaceObstructionListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: SurfaceObstructionListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SurfaceObstructionListResponsesOffsetPage, SurfaceObstructionListResponse> {
+    return this._client.getAPIList('/udl/surfaceobstruction', OffsetPage<SurfaceObstructionListResponse>, { query, ...options });
   }
 
   /**
@@ -93,10 +79,7 @@ export class SurfaceObstruction extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/surfaceobstruction/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/surfaceobstruction/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -111,15 +94,8 @@ export class SurfaceObstruction extends APIResource {
    * const response = await client.surfaceObstruction.count();
    * ```
    */
-  count(
-    query: SurfaceObstructionCountParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get('/udl/surfaceobstruction/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+  count(query: SurfaceObstructionCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get('/udl/surfaceobstruction/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -132,11 +108,7 @@ export class SurfaceObstruction extends APIResource {
    *   await client.surfaceObstruction.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: SurfaceObstructionGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<SurfaceObstructionGetResponse> {
+  get(id: string, query: SurfaceObstructionGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SurfaceObstructionGetResponse> {
     return this._client.get(path`/udl/surfaceobstruction/${id}`, { query, ...options });
   }
 
@@ -171,10 +143,7 @@ export class SurfaceObstruction extends APIResource {
    * });
    * ```
    */
-  tuple(
-    query: SurfaceObstructionTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<SurfaceObstructionTupleResponse> {
+  tuple(query: SurfaceObstructionTupleParams, options?: RequestOptions): APIPromise<SurfaceObstructionTupleResponse> {
     return this._client.get('/udl/surfaceobstruction/tuple', { query, ...options });
   }
 
@@ -198,20 +167,13 @@ export class SurfaceObstruction extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(
-    params: SurfaceObstructionUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-surfaceobstruction', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: SurfaceObstructionUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-surfaceobstruction', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type SurfaceObstructionListResponsesOffsetPage = OffsetPage<SurfaceObstructionListResponse>;
+export type SurfaceObstructionListResponsesOffsetPage = OffsetPage<SurfaceObstructionListResponse>
 
 export interface SurfaceObstructionListResponse {
   /**
@@ -333,7 +295,7 @@ export interface SurfaceObstructionListResponse {
   sourceDL?: string;
 }
 
-export type SurfaceObstructionCountResponse = string;
+export type SurfaceObstructionCountResponse = string
 
 export interface SurfaceObstructionGetResponse {
   /**
@@ -490,8 +452,7 @@ export interface SurfaceObstructionQueryhelpResponse {
   uri?: string;
 }
 
-export type SurfaceObstructionTupleResponse =
-  Array<SurfaceObstructionTupleResponse.SurfaceObstructionTupleResponseItem>;
+export type SurfaceObstructionTupleResponse = Array<SurfaceObstructionTupleResponse.SurfaceObstructionTupleResponseItem>
 
 export namespace SurfaceObstructionTupleResponse {
   export interface SurfaceObstructionTupleResponseItem {
@@ -818,7 +779,8 @@ export interface SurfaceObstructionUpdateParams {
   origin?: string;
 }
 
-export interface SurfaceObstructionListParams extends OffsetPageParams {}
+export interface SurfaceObstructionListParams extends OffsetPageParams {
+}
 
 export interface SurfaceObstructionCountParams {
   firstResult?: number;
@@ -962,6 +924,6 @@ export declare namespace SurfaceObstruction {
     type SurfaceObstructionCountParams as SurfaceObstructionCountParams,
     type SurfaceObstructionGetParams as SurfaceObstructionGetParams,
     type SurfaceObstructionTupleParams as SurfaceObstructionTupleParams,
-    type SurfaceObstructionUnvalidatedPublishParams as SurfaceObstructionUnvalidatedPublishParams,
+    type SurfaceObstructionUnvalidatedPublishParams as SurfaceObstructionUnvalidatedPublishParams
   };
 }

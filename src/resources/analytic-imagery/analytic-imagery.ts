@@ -3,13 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { type Uploadable } from '../../core/uploads';
@@ -29,11 +23,7 @@ export class AnalyticImagery extends APIResource {
    * as a path parameter. AnalyticImagery represents metadata about an image, as well
    * as the actual binary image data.
    */
-  retrieve(
-    id: string,
-    query: AnalyticImageryRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.AnalyticImageryFull> {
+  retrieve(id: string, query: AnalyticImageryRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AnalyticImageryFull> {
     return this._client.get(path`/udl/analyticimagery/${id}`, { query, ...options });
   }
 
@@ -43,14 +33,8 @@ export class AnalyticImagery extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(
-    query: AnalyticImageryListParams,
-    options?: RequestOptions,
-  ): PagePromise<AnalyticImageryAbridgedsOffsetPage, AnalyticImageryAbridged> {
-    return this._client.getAPIList('/udl/analyticimagery', OffsetPage<AnalyticImageryAbridged>, {
-      query,
-      ...options,
-    });
+  list(query: AnalyticImageryListParams, options?: RequestOptions): PagePromise<AnalyticImageryAbridgedsOffsetPage, AnalyticImageryAbridged> {
+    return this._client.getAPIList('/udl/analyticimagery', OffsetPage<AnalyticImageryAbridged>, { query, ...options });
   }
 
   /**
@@ -61,11 +45,7 @@ export class AnalyticImagery extends APIResource {
    * valid/required query parameter information.
    */
   count(query: AnalyticImageryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/analyticimagery/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/analyticimagery/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -73,17 +53,8 @@ export class AnalyticImagery extends APIResource {
    * passed as a path parameter. The image is returned as an attachment
    * Content-Disposition.
    */
-  fileGet(
-    id: string,
-    query: AnalyticImageryFileGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Response> {
-    return this._client.get(path`/udl/analyticimagery/getFile/${id}`, {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
-      __binaryResponse: true,
-    });
+  fileGet(id: string, query: AnalyticImageryFileGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/udl/analyticimagery/getFile/${id}`, { query, ...options, headers: buildHeaders([{Accept: 'application/octet-stream'}, options?.headers]), __binaryResponse: true });
   }
 
   /**
@@ -104,10 +75,7 @@ export class AnalyticImagery extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: AnalyticImageryTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<AnalyticImageryTupleResponse> {
+  tuple(query: AnalyticImageryTupleParams, options?: RequestOptions): APIPromise<AnalyticImageryTupleResponse> {
     return this._client.get('/udl/analyticimagery/tuple', { query, ...options });
   }
 
@@ -130,26 +98,12 @@ export class AnalyticImagery extends APIResource {
    * role is required to perform this service operation. Please contact the UDL team
    * for assistance.
    */
-  unvalidatedPublish(
-    body: AnalyticImageryUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    return this._client.post(
-      '/filedrop/udl-analyticimagery',
-      multipartFormRequestOptions(
-        {
-          body,
-          defaultBaseURL: 'https://imagery.unifieddatalibrary.com',
-          ...options,
-          headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-        },
-        this._client,
-      ),
-    );
+  unvalidatedPublish(body: AnalyticImageryUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.post('/filedrop/udl-analyticimagery', multipartFormRequestOptions({ body, defaultBaseURL: 'https://imagery.unifieddatalibrary.com', ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) }, this._client));
   }
 }
 
-export type AnalyticImageryAbridgedsOffsetPage = OffsetPage<AnalyticImageryAbridged>;
+export type AnalyticImageryAbridgedsOffsetPage = OffsetPage<AnalyticImageryAbridged>
 
 /**
  * The analytic imagery schema supports data plots and graphics of various types.
@@ -430,7 +384,7 @@ export interface AnalyticImageryAbridged {
   zUnits?: string;
 }
 
-export type AnalyticImageryCountResponse = string;
+export type AnalyticImageryCountResponse = string
 
 export interface AnalyticImageryQueryhelpResponse {
   aodrSupported?: boolean;
@@ -456,7 +410,7 @@ export interface AnalyticImageryQueryhelpResponse {
   uri?: string;
 }
 
-export type AnalyticImageryTupleResponse = Array<AnalyticImageryAbridged>;
+export type AnalyticImageryTupleResponse = Array<AnalyticImageryAbridged>
 
 export interface AnalyticImageryRetrieveParams {
   firstResult?: number;
@@ -531,7 +485,7 @@ export declare namespace AnalyticImagery {
     type AnalyticImageryCountParams as AnalyticImageryCountParams,
     type AnalyticImageryFileGetParams as AnalyticImageryFileGetParams,
     type AnalyticImageryTupleParams as AnalyticImageryTupleParams,
-    type AnalyticImageryUnvalidatedPublishParams as AnalyticImageryUnvalidatedPublishParams,
+    type AnalyticImageryUnvalidatedPublishParams as AnalyticImageryUnvalidatedPublishParams
   };
 
   export {
@@ -539,6 +493,6 @@ export declare namespace AnalyticImagery {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

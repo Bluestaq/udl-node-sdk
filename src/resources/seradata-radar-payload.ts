@@ -28,11 +28,7 @@ export class SeradataRadarPayload extends APIResource {
    * ```
    */
   create(body: SeradataRadarPayloadCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/seradataradarpayload', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/seradataradarpayload', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -50,11 +46,7 @@ export class SeradataRadarPayload extends APIResource {
    * ```
    */
   update(id: string, body: SeradataRadarPayloadUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/seradataradarpayload/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/seradataradarpayload/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -71,15 +63,8 @@ export class SeradataRadarPayload extends APIResource {
    * }
    * ```
    */
-  list(
-    query: SeradataRadarPayloadListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<SeradataRadarPayloadListResponsesOffsetPage, SeradataRadarPayloadListResponse> {
-    return this._client.getAPIList(
-      '/udl/seradataradarpayload',
-      OffsetPage<SeradataRadarPayloadListResponse>,
-      { query, ...options },
-    );
+  list(query: SeradataRadarPayloadListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SeradataRadarPayloadListResponsesOffsetPage, SeradataRadarPayloadListResponse> {
+    return this._client.getAPIList('/udl/seradataradarpayload', OffsetPage<SeradataRadarPayloadListResponse>, { query, ...options });
   }
 
   /**
@@ -93,10 +78,7 @@ export class SeradataRadarPayload extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/seradataradarpayload/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/seradataradarpayload/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -111,15 +93,8 @@ export class SeradataRadarPayload extends APIResource {
    * const response = await client.seradataRadarPayload.count();
    * ```
    */
-  count(
-    query: SeradataRadarPayloadCountParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get('/udl/seradataradarpayload/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+  count(query: SeradataRadarPayloadCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get('/udl/seradataradarpayload/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -132,11 +107,7 @@ export class SeradataRadarPayload extends APIResource {
    *   await client.seradataRadarPayload.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: SeradataRadarPayloadGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<SeradataRadarPayloadGetResponse> {
+  get(id: string, query: SeradataRadarPayloadGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SeradataRadarPayloadGetResponse> {
     return this._client.get(path`/udl/seradataradarpayload/${id}`, { query, ...options });
   }
 
@@ -171,15 +142,12 @@ export class SeradataRadarPayload extends APIResource {
    * });
    * ```
    */
-  tuple(
-    query: SeradataRadarPayloadTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<SeradataRadarPayloadTupleResponse> {
+  tuple(query: SeradataRadarPayloadTupleParams, options?: RequestOptions): APIPromise<SeradataRadarPayloadTupleResponse> {
     return this._client.get('/udl/seradataradarpayload/tuple', { query, ...options });
   }
 }
 
-export type SeradataRadarPayloadListResponsesOffsetPage = OffsetPage<SeradataRadarPayloadListResponse>;
+export type SeradataRadarPayloadListResponsesOffsetPage = OffsetPage<SeradataRadarPayloadListResponse>
 
 /**
  * Details for an radar payload from Seradata.
@@ -366,7 +334,7 @@ export interface SeradataRadarPayloadListResponse {
   waveLength?: number;
 }
 
-export type SeradataRadarPayloadCountResponse = string;
+export type SeradataRadarPayloadCountResponse = string
 
 /**
  * Details for an radar payload from Seradata.
@@ -588,8 +556,7 @@ export interface SeradataRadarPayloadQueryhelpResponse {
   uri?: string;
 }
 
-export type SeradataRadarPayloadTupleResponse =
-  Array<SeradataRadarPayloadTupleResponse.SeradataRadarPayloadTupleResponseItem>;
+export type SeradataRadarPayloadTupleResponse = Array<SeradataRadarPayloadTupleResponse.SeradataRadarPayloadTupleResponseItem>
 
 export namespace SeradataRadarPayloadTupleResponse {
   /**
@@ -1119,7 +1086,8 @@ export interface SeradataRadarPayloadUpdateParams {
   waveLength?: number;
 }
 
-export interface SeradataRadarPayloadListParams extends OffsetPageParams {}
+export interface SeradataRadarPayloadListParams extends OffsetPageParams {
+}
 
 export interface SeradataRadarPayloadCountParams {
   firstResult?: number;
@@ -1160,6 +1128,6 @@ export declare namespace SeradataRadarPayload {
     type SeradataRadarPayloadListParams as SeradataRadarPayloadListParams,
     type SeradataRadarPayloadCountParams as SeradataRadarPayloadCountParams,
     type SeradataRadarPayloadGetParams as SeradataRadarPayloadGetParams,
-    type SeradataRadarPayloadTupleParams as SeradataRadarPayloadTupleParams,
+    type SeradataRadarPayloadTupleParams as SeradataRadarPayloadTupleParams
   };
 }

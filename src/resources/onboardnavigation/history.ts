@@ -18,15 +18,8 @@ export class History extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(
-    query: HistoryListParams,
-    options?: RequestOptions,
-  ): PagePromise<OnboardnavigationFullsOffsetPage, Shared.OnboardnavigationFull> {
-    return this._client.getAPIList(
-      '/udl/onboardnavigation/history',
-      OffsetPage<Shared.OnboardnavigationFull>,
-      { query, ...options },
-    );
+  list(query: HistoryListParams, options?: RequestOptions): PagePromise<OnboardnavigationFullsOffsetPage, Shared.OnboardnavigationFull> {
+    return this._client.getAPIList('/udl/onboardnavigation/history', OffsetPage<Shared.OnboardnavigationFull>, { query, ...options });
   }
 
   /**
@@ -36,11 +29,7 @@ export class History extends APIResource {
    * for more details on valid/required query parameter information.
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/onboardnavigation/history/aodr', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.get('/udl/onboardnavigation/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -51,15 +40,11 @@ export class History extends APIResource {
    * valid/required query parameter information.
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/onboardnavigation/history/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/onboardnavigation/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 }
 
-export type HistoryCountResponse = string;
+export type HistoryCountResponse = string
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -132,8 +117,8 @@ export declare namespace History {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }
 
-export { type OnboardnavigationFullsOffsetPage };
+export { type OnboardnavigationFullsOffsetPage }

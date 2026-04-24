@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  HistoryListResponse,
-  HistoryListResponsesOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -29,14 +21,8 @@ export class Orbittrack extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(
-    query: OrbittrackListParams,
-    options?: RequestOptions,
-  ): PagePromise<OrbittrackListResponsesOffsetPage, OrbittrackListResponse> {
-    return this._client.getAPIList('/udl/orbittrack', OffsetPage<OrbittrackListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: OrbittrackListParams, options?: RequestOptions): PagePromise<OrbittrackListResponsesOffsetPage, OrbittrackListResponse> {
+    return this._client.getAPIList('/udl/orbittrack', OffsetPage<OrbittrackListResponse>, { query, ...options });
   }
 
   /**
@@ -47,11 +33,7 @@ export class Orbittrack extends APIResource {
    * valid/required query parameter information.
    */
   count(query: OrbittrackCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/orbittrack/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/orbittrack/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -62,12 +44,8 @@ export class Orbittrack extends APIResource {
    * permanent feed through an alternate mechanism.
    */
   createBulk(params: OrbittrackCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/orbittrack/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/orbittrack/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -99,16 +77,12 @@ export class Orbittrack extends APIResource {
    * contact the UDL team for assistance.
    */
   unvalidatedPublish(params: OrbittrackUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-orbittrack', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/filedrop/udl-orbittrack', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type OrbittrackListResponsesOffsetPage = OffsetPage<OrbittrackListResponse>;
+export type OrbittrackListResponsesOffsetPage = OffsetPage<OrbittrackListResponse>
 
 /**
  * Keplerian orbital elements describing an orbit for a particular on-orbit
@@ -496,7 +470,7 @@ export namespace OrbittrackListResponse {
   }
 }
 
-export type OrbittrackCountResponse = string;
+export type OrbittrackCountResponse = string
 
 export interface OrbittrackQueryhelpResponse {
   aodrSupported?: boolean;
@@ -522,7 +496,7 @@ export interface OrbittrackQueryhelpResponse {
   uri?: string;
 }
 
-export type OrbittrackTupleResponse = Array<OrbittrackTupleResponse.OrbittrackTupleResponseItem>;
+export type OrbittrackTupleResponse = Array<OrbittrackTupleResponse.OrbittrackTupleResponseItem>
 
 export namespace OrbittrackTupleResponse {
   /**
@@ -1722,7 +1696,7 @@ export declare namespace Orbittrack {
     type OrbittrackCountParams as OrbittrackCountParams,
     type OrbittrackCreateBulkParams as OrbittrackCreateBulkParams,
     type OrbittrackTupleParams as OrbittrackTupleParams,
-    type OrbittrackUnvalidatedPublishParams as OrbittrackUnvalidatedPublishParams,
+    type OrbittrackUnvalidatedPublishParams as OrbittrackUnvalidatedPublishParams
   };
 
   export {
@@ -1732,6 +1706,6 @@ export declare namespace Orbittrack {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

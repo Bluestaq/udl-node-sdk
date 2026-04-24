@@ -87,8 +87,7 @@ export class PagePromise<
     super(
       client,
       request,
-      async (client, props) =>
-        new Page(client, props.response, await defaultParseResponse(client, props), props.options),
+      async (client, props) => new Page(client, props.response, await defaultParseResponse(client, props), props.options)
     );
   }
 
@@ -124,12 +123,7 @@ export interface OffsetPageParams {
 export class OffsetPage<Item> extends AbstractPage<Item> {
   items: Array<Item>;
 
-  constructor(
-    client: Unifieddatalibrary,
-    response: Response,
-    body: OffsetPageResponse<Item>,
-    options: FinalRequestOptions,
-  ) {
+  constructor(client: Unifieddatalibrary, response: Response, body: OffsetPageResponse<Item>, options: FinalRequestOptions) {
     super(client, response, body, options);
 
     this.items = body || [];
@@ -150,6 +144,6 @@ export class OffsetPage<Item> extends AbstractPage<Item> {
         ...maybeObj(this.options.query),
         firstResult: currentCount,
       },
-    };
+    };;
   }
 }

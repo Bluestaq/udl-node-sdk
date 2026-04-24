@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  TrackFull,
-  TrackFullsOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, TrackFull, TrackFullsOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -29,10 +21,7 @@ export class Track extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(
-    query: TrackListParams,
-    options?: RequestOptions,
-  ): PagePromise<TrackListResponsesOffsetPage, TrackListResponse> {
+  list(query: TrackListParams, options?: RequestOptions): PagePromise<TrackListResponsesOffsetPage, TrackListResponse> {
     return this._client.getAPIList('/udl/track', OffsetPage<TrackListResponse>, { query, ...options });
   }
 
@@ -44,11 +33,7 @@ export class Track extends APIResource {
    * valid/required query parameter information.
    */
   count(query: TrackCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/track/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/track/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -59,12 +44,8 @@ export class Track extends APIResource {
    * permanent feed through an alternate mechanism.
    */
   createBulk(params: TrackCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/track/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/track/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -96,16 +77,12 @@ export class Track extends APIResource {
    * UDL team for assistance.
    */
   unvalidatedPublish(params: TrackUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-tracks', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/filedrop/udl-tracks', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type TrackListResponsesOffsetPage = OffsetPage<TrackListResponse>;
+export type TrackListResponsesOffsetPage = OffsetPage<TrackListResponse>
 
 /**
  * A track is a position and optionally a heading/velocity of an object such as an
@@ -741,7 +718,7 @@ export interface TrackListResponse {
   wanderAng?: number;
 }
 
-export type TrackCountResponse = string;
+export type TrackCountResponse = string
 
 export interface TrackQueryhelpResponse {
   aodrSupported?: boolean;
@@ -767,7 +744,7 @@ export interface TrackQueryhelpResponse {
   uri?: string;
 }
 
-export type TrackTupleResponse = Array<HistoryAPI.TrackFull>;
+export type TrackTupleResponse = Array<HistoryAPI.TrackFull>
 
 export interface TrackListParams extends OffsetPageParams {
   /**
@@ -2054,7 +2031,7 @@ export declare namespace Track {
     type TrackCountParams as TrackCountParams,
     type TrackCreateBulkParams as TrackCreateBulkParams,
     type TrackTupleParams as TrackTupleParams,
-    type TrackUnvalidatedPublishParams as TrackUnvalidatedPublishParams,
+    type TrackUnvalidatedPublishParams as TrackUnvalidatedPublishParams
   };
 
   export {
@@ -2064,6 +2041,6 @@ export declare namespace Track {
     type TrackFullsOffsetPage as TrackFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

@@ -17,15 +17,11 @@ export class History extends APIResource {
    * valid/required query parameter information.
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/diffofarrival/history/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/diffofarrival/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 }
 
-export type HistoryCountResponse = string;
+export type HistoryCountResponse = string
 
 export interface HistoryCountParams {
   /**
@@ -40,5 +36,8 @@ export interface HistoryCountParams {
 }
 
 export declare namespace History {
-  export { type HistoryCountResponse as HistoryCountResponse, type HistoryCountParams as HistoryCountParams };
+  export {
+    type HistoryCountResponse as HistoryCountResponse,
+    type HistoryCountParams as HistoryCountParams
+  };
 }

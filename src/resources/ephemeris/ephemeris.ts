@@ -3,22 +3,9 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
 import * as AttitudeDataAPI from './attitude-data/attitude-data';
-import {
-  AttitudeData,
-  AttitudeDataAbridged,
-  AttitudeDataAbridgedsOffsetPage,
-  AttitudeDataCountParams,
-  AttitudeDataCountResponse,
-  AttitudeDataListParams,
-} from './attitude-data/attitude-data';
+import { AttitudeData, AttitudeDataAbridged, AttitudeDataAbridgedsOffsetPage, AttitudeDataCountParams, AttitudeDataCountResponse, AttitudeDataListParams } from './attitude-data/attitude-data';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -47,10 +34,7 @@ export class Ephemeris extends APIResource {
    * }
    * ```
    */
-  list(
-    query: EphemerisListParams,
-    options?: RequestOptions,
-  ): PagePromise<EphemerisAbridgedsOffsetPage, EphemerisAbridged> {
+  list(query: EphemerisListParams, options?: RequestOptions): PagePromise<EphemerisAbridgedsOffsetPage, EphemerisAbridged> {
     return this._client.getAPIList('/udl/ephemeris', OffsetPage<EphemerisAbridged>, { query, ...options });
   }
 
@@ -69,11 +53,7 @@ export class Ephemeris extends APIResource {
    * ```
    */
   count(query: EphemerisCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/ephemeris/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/ephemeris/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -102,36 +82,8 @@ export class Ephemeris extends APIResource {
    * ```
    */
   fileUpload(params: EphemerisFileUploadParams, options?: RequestOptions): APIPromise<void> {
-    const {
-      category,
-      classification,
-      dataMode,
-      ephemFormatType,
-      hasMnvr,
-      satNo,
-      source,
-      type,
-      body,
-      origin,
-      tags,
-    } = params;
-    return this._client.post('/filedrop/ephem', {
-      query: {
-        category,
-        classification,
-        dataMode,
-        ephemFormatType,
-        hasMnvr,
-        satNo,
-        source,
-        type,
-        origin,
-        tags,
-      },
-      body: body,
-      ...options,
-      headers: buildHeaders([{ 'Content-Type': 'text/plain', Accept: '*/*' }, options?.headers]),
-    });
+    const { category, classification, dataMode, ephemFormatType, hasMnvr, satNo, source, type, body, origin, tags } = params
+    return this._client.post('/filedrop/ephem', { query: { category, classification, dataMode, ephemFormatType, hasMnvr, satNo, source, type, origin, tags }, body: body, ...options, headers: buildHeaders([{'Content-Type': 'text/plain', Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -201,15 +153,11 @@ export class Ephemeris extends APIResource {
    * ```
    */
   unvalidatedPublish(body: EphemerisUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/filedrop/udl-ephset', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/filedrop/udl-ephset', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type EphemerisAbridgedsOffsetPage = OffsetPage<EphemerisAbridged>;
+export type EphemerisAbridgedsOffsetPage = OffsetPage<EphemerisAbridged>
 
 /**
  * An ephemeris record is a position and velocity vector identifying the location
@@ -389,7 +337,7 @@ export interface EphemerisAbridged {
   zaccel?: number;
 }
 
-export type EphemerisCountResponse = string;
+export type EphemerisCountResponse = string
 
 export interface EphemerisQueryhelpResponse {
   aodrSupported?: boolean;
@@ -415,7 +363,7 @@ export interface EphemerisQueryhelpResponse {
   uri?: string;
 }
 
-export type EphemerisTupleResponse = Array<Shared.EphemerisFull>;
+export type EphemerisTupleResponse = Array<Shared.EphemerisFull>
 
 export interface EphemerisListParams extends OffsetPageParams {
   /**
@@ -949,7 +897,7 @@ export declare namespace Ephemeris {
     type EphemerisCountParams as EphemerisCountParams,
     type EphemerisFileUploadParams as EphemerisFileUploadParams,
     type EphemerisTupleParams as EphemerisTupleParams,
-    type EphemerisUnvalidatedPublishParams as EphemerisUnvalidatedPublishParams,
+    type EphemerisUnvalidatedPublishParams as EphemerisUnvalidatedPublishParams
   };
 
   export {
@@ -958,7 +906,7 @@ export declare namespace Ephemeris {
     type AttitudeDataCountResponse as AttitudeDataCountResponse,
     type AttitudeDataAbridgedsOffsetPage as AttitudeDataAbridgedsOffsetPage,
     type AttitudeDataListParams as AttitudeDataListParams,
-    type AttitudeDataCountParams as AttitudeDataCountParams,
+    type AttitudeDataCountParams as AttitudeDataCountParams
   };
 
   export {
@@ -966,6 +914,6 @@ export declare namespace Ephemeris {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

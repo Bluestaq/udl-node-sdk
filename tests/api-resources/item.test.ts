@@ -5,18 +5,18 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource item', () => {
   test('create: only required params', async () => {
     const responsePromise = client.item.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      scanCode: '12345ABCD',
-      source: 'Bluestaq',
-      type: 'CARGO',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    scanCode: '12345ABCD',
+    source: 'Bluestaq',
+    type: 'CARGO',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -28,64 +28,64 @@ describe('resource item', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.item.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      scanCode: '12345ABCD',
-      source: 'Bluestaq',
-      type: 'CARGO',
-      id: '22f1f6da-a568-655a-ea37-76d013d04853',
-      accSysKeys: ['System key1', 'System key2'],
-      accSysNotes: 'Accepting System Notes',
-      accSystem: 'Accepting System',
-      accSysValues: ['System value1', 'System value2'],
-      airdrop: true,
-      altDataFormat: 'Alt Data Format',
-      cargoType: 'PALLET',
-      centerlineOffset: 3.1,
-      cg: 112.014,
-      commodityCode: '2304116',
-      commoditySys: 'STCC',
-      container: true,
-      departure: 'CHS',
-      destination: 'RMS',
-      dvCode: 'DV-2',
-      fs: 412.1,
-      hazCodes: [1.1, 1.2],
-      height: 1.1,
-      idAirLoadPlan: '1038c389-d38e-270f-51cc-6a12e905abe8',
-      itemContains: ['2UJ8843K', '745YV1T65'],
-      keys: ['key1', 'key2'],
-      lastArrDate: '2023-03-13',
-      length: 1.1,
-      moment: 4000.1,
-      name: 'Product Name',
-      netExpWt: 51.437,
-      notes: 'Example notes',
-      numPalletPos: 2,
-      origin: 'THIRD_PARTY_DATASOURCE',
-      productCode: '530500234',
-      productSys: 'NSN',
-      receivingBranch: 'Air Force',
-      receivingUnit: '50 SBN',
-      scGenTool: 'bID',
-      tcn: 'M1358232245912XXX',
-      uln: 'T01ME01',
-      values: ['value1', 'value2'],
-      volume: 7.8902,
-      weight: 5443.335,
-      weightTS: '2023-03-13T16:06:00.123Z',
-      width: 1.1,
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    scanCode: '12345ABCD',
+    source: 'Bluestaq',
+    type: 'CARGO',
+    id: '22f1f6da-a568-655a-ea37-76d013d04853',
+    accSysKeys: ['System key1', 'System key2'],
+    accSysNotes: 'Accepting System Notes',
+    accSystem: 'Accepting System',
+    accSysValues: ['System value1', 'System value2'],
+    airdrop: true,
+    altDataFormat: 'Alt Data Format',
+    cargoType: 'PALLET',
+    centerlineOffset: 3.1,
+    cg: 112.014,
+    commodityCode: '2304116',
+    commoditySys: 'STCC',
+    container: true,
+    departure: 'CHS',
+    destination: 'RMS',
+    dvCode: 'DV-2',
+    fs: 412.1,
+    hazCodes: [1.1, 1.2],
+    height: 1.1,
+    idAirLoadPlan: '1038c389-d38e-270f-51cc-6a12e905abe8',
+    itemContains: ['2UJ8843K', '745YV1T65'],
+    keys: ['key1', 'key2'],
+    lastArrDate: '2023-03-13',
+    length: 1.1,
+    moment: 4000.1,
+    name: 'Product Name',
+    netExpWt: 51.437,
+    notes: 'Example notes',
+    numPalletPos: 2,
+    origin: 'THIRD_PARTY_DATASOURCE',
+    productCode: '530500234',
+    productSys: 'NSN',
+    receivingBranch: 'Air Force',
+    receivingUnit: '50 SBN',
+    scGenTool: 'bID',
+    tcn: 'M1358232245912XXX',
+    uln: 'T01ME01',
+    values: ['value1', 'value2'],
+    volume: 7.8902,
+    weight: 5443.335,
+    weightTS: '2023-03-13T16:06:00.123Z',
+    width: 1.1,
+  });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.item.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      scanCode: '12345ABCD',
-      source: 'Bluestaq',
-      type: 'CARGO',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    scanCode: '12345ABCD',
+    source: 'Bluestaq',
+    type: 'CARGO',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -97,54 +97,54 @@ describe('resource item', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.item.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      scanCode: '12345ABCD',
-      source: 'Bluestaq',
-      type: 'CARGO',
-      id: '22f1f6da-a568-655a-ea37-76d013d04853',
-      accSysKeys: ['System key1', 'System key2'],
-      accSysNotes: 'Accepting System Notes',
-      accSystem: 'Accepting System',
-      accSysValues: ['System value1', 'System value2'],
-      airdrop: true,
-      altDataFormat: 'Alt Data Format',
-      cargoType: 'PALLET',
-      centerlineOffset: 3.1,
-      cg: 112.014,
-      commodityCode: '2304116',
-      commoditySys: 'STCC',
-      container: true,
-      departure: 'CHS',
-      destination: 'RMS',
-      dvCode: 'DV-2',
-      fs: 412.1,
-      hazCodes: [1.1, 1.2],
-      height: 1.1,
-      idAirLoadPlan: '1038c389-d38e-270f-51cc-6a12e905abe8',
-      itemContains: ['2UJ8843K', '745YV1T65'],
-      keys: ['key1', 'key2'],
-      lastArrDate: '2023-03-13',
-      length: 1.1,
-      moment: 4000.1,
-      name: 'Product Name',
-      netExpWt: 51.437,
-      notes: 'Example notes',
-      numPalletPos: 2,
-      origin: 'THIRD_PARTY_DATASOURCE',
-      productCode: '530500234',
-      productSys: 'NSN',
-      receivingBranch: 'Air Force',
-      receivingUnit: '50 SBN',
-      scGenTool: 'bID',
-      tcn: 'M1358232245912XXX',
-      uln: 'T01ME01',
-      values: ['value1', 'value2'],
-      volume: 7.8902,
-      weight: 5443.335,
-      weightTS: '2023-03-13T16:06:00.123Z',
-      width: 1.1,
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    scanCode: '12345ABCD',
+    source: 'Bluestaq',
+    type: 'CARGO',
+    id: '22f1f6da-a568-655a-ea37-76d013d04853',
+    accSysKeys: ['System key1', 'System key2'],
+    accSysNotes: 'Accepting System Notes',
+    accSystem: 'Accepting System',
+    accSysValues: ['System value1', 'System value2'],
+    airdrop: true,
+    altDataFormat: 'Alt Data Format',
+    cargoType: 'PALLET',
+    centerlineOffset: 3.1,
+    cg: 112.014,
+    commodityCode: '2304116',
+    commoditySys: 'STCC',
+    container: true,
+    departure: 'CHS',
+    destination: 'RMS',
+    dvCode: 'DV-2',
+    fs: 412.1,
+    hazCodes: [1.1, 1.2],
+    height: 1.1,
+    idAirLoadPlan: '1038c389-d38e-270f-51cc-6a12e905abe8',
+    itemContains: ['2UJ8843K', '745YV1T65'],
+    keys: ['key1', 'key2'],
+    lastArrDate: '2023-03-13',
+    length: 1.1,
+    moment: 4000.1,
+    name: 'Product Name',
+    netExpWt: 51.437,
+    notes: 'Example notes',
+    numPalletPos: 2,
+    origin: 'THIRD_PARTY_DATASOURCE',
+    productCode: '530500234',
+    productSys: 'NSN',
+    receivingBranch: 'Air Force',
+    receivingUnit: '50 SBN',
+    scGenTool: 'bID',
+    tcn: 'M1358232245912XXX',
+    uln: 'T01ME01',
+    values: ['value1', 'value2'],
+    volume: 7.8902,
+    weight: 5443.335,
+    weightTS: '2023-03-13T16:06:00.123Z',
+    width: 1.1,
+  });
   });
 
   test('list', async () => {
@@ -160,9 +160,9 @@ describe('resource item', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.item.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.item.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -189,9 +189,9 @@ describe('resource item', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.item.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.item.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('get', async () => {
@@ -207,9 +207,9 @@ describe('resource item', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.item.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.item.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -236,24 +236,20 @@ describe('resource item', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.item.tuple({
-      columns: 'columns',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    columns: 'columns',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.item.unvalidatedPublish({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          scanCode: '12345ABCD',
-          source: 'Bluestaq',
-          type: 'CARGO',
-        },
-      ],
-    });
+    const responsePromise = client.item.unvalidatedPublish({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    scanCode: '12345ABCD',
+    source: 'Bluestaq',
+    type: 'CARGO',
+  }] });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -264,58 +260,54 @@ describe('resource item', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.item.unvalidatedPublish({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          scanCode: '12345ABCD',
-          source: 'Bluestaq',
-          type: 'CARGO',
-          id: '22f1f6da-a568-655a-ea37-76d013d04853',
-          accSysKeys: ['System key1', 'System key2'],
-          accSysNotes: 'Accepting System Notes',
-          accSystem: 'Accepting System',
-          accSysValues: ['System value1', 'System value2'],
-          airdrop: true,
-          altDataFormat: 'Alt Data Format',
-          cargoType: 'PALLET',
-          centerlineOffset: 3.1,
-          cg: 112.014,
-          commodityCode: '2304116',
-          commoditySys: 'STCC',
-          container: true,
-          departure: 'CHS',
-          destination: 'RMS',
-          dvCode: 'DV-2',
-          fs: 412.1,
-          hazCodes: [1.1, 1.2],
-          height: 1.1,
-          idAirLoadPlan: '1038c389-d38e-270f-51cc-6a12e905abe8',
-          itemContains: ['2UJ8843K', '745YV1T65'],
-          keys: ['key1', 'key2'],
-          lastArrDate: '2023-03-13',
-          length: 1.1,
-          moment: 4000.1,
-          name: 'Product Name',
-          netExpWt: 51.437,
-          notes: 'Example notes',
-          numPalletPos: 2,
-          origin: 'THIRD_PARTY_DATASOURCE',
-          productCode: '530500234',
-          productSys: 'NSN',
-          receivingBranch: 'Air Force',
-          receivingUnit: '50 SBN',
-          scGenTool: 'bID',
-          tcn: 'M1358232245912XXX',
-          uln: 'T01ME01',
-          values: ['value1', 'value2'],
-          volume: 7.8902,
-          weight: 5443.335,
-          weightTS: '2023-03-13T16:06:00.123Z',
-          width: 1.1,
-        },
-      ],
-    });
+    const response = await client.item.unvalidatedPublish({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    scanCode: '12345ABCD',
+    source: 'Bluestaq',
+    type: 'CARGO',
+    id: '22f1f6da-a568-655a-ea37-76d013d04853',
+    accSysKeys: ['System key1', 'System key2'],
+    accSysNotes: 'Accepting System Notes',
+    accSystem: 'Accepting System',
+    accSysValues: ['System value1', 'System value2'],
+    airdrop: true,
+    altDataFormat: 'Alt Data Format',
+    cargoType: 'PALLET',
+    centerlineOffset: 3.1,
+    cg: 112.014,
+    commodityCode: '2304116',
+    commoditySys: 'STCC',
+    container: true,
+    departure: 'CHS',
+    destination: 'RMS',
+    dvCode: 'DV-2',
+    fs: 412.1,
+    hazCodes: [1.1, 1.2],
+    height: 1.1,
+    idAirLoadPlan: '1038c389-d38e-270f-51cc-6a12e905abe8',
+    itemContains: ['2UJ8843K', '745YV1T65'],
+    keys: ['key1', 'key2'],
+    lastArrDate: '2023-03-13',
+    length: 1.1,
+    moment: 4000.1,
+    name: 'Product Name',
+    netExpWt: 51.437,
+    notes: 'Example notes',
+    numPalletPos: 2,
+    origin: 'THIRD_PARTY_DATASOURCE',
+    productCode: '530500234',
+    productSys: 'NSN',
+    receivingBranch: 'Air Force',
+    receivingUnit: '50 SBN',
+    scGenTool: 'bID',
+    tcn: 'M1358232245912XXX',
+    uln: 'T01ME01',
+    values: ['value1', 'value2'],
+    volume: 7.8902,
+    weight: 5443.335,
+    weightTS: '2023-03-13T16:06:00.123Z',
+    width: 1.1,
+  }] });
   });
 });

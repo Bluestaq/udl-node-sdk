@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  SpaceEnvObservationFull,
-  SpaceEnvObservationFullsOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, SpaceEnvObservationFull, SpaceEnvObservationFullsOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -29,14 +21,8 @@ export class SpaceEnvObservation extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(
-    query: SpaceEnvObservationListParams,
-    options?: RequestOptions,
-  ): PagePromise<SpaceEnvObservationListResponsesOffsetPage, SpaceEnvObservationListResponse> {
-    return this._client.getAPIList('/udl/spaceenvobservation', OffsetPage<SpaceEnvObservationListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: SpaceEnvObservationListParams, options?: RequestOptions): PagePromise<SpaceEnvObservationListResponsesOffsetPage, SpaceEnvObservationListResponse> {
+    return this._client.getAPIList('/udl/spaceenvobservation', OffsetPage<SpaceEnvObservationListResponse>, { query, ...options });
   }
 
   /**
@@ -47,11 +33,7 @@ export class SpaceEnvObservation extends APIResource {
    * valid/required query parameter information.
    */
   count(query: SpaceEnvObservationCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/spaceenvobservation/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/spaceenvobservation/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -62,12 +44,8 @@ export class SpaceEnvObservation extends APIResource {
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
   createBulk(params: SpaceEnvObservationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/spaceenvobservation/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/spaceenvobservation/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -88,10 +66,7 @@ export class SpaceEnvObservation extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(
-    query: SpaceEnvObservationTupleParams,
-    options?: RequestOptions,
-  ): APIPromise<SpaceEnvObservationTupleResponse> {
+  tuple(query: SpaceEnvObservationTupleParams, options?: RequestOptions): APIPromise<SpaceEnvObservationTupleResponse> {
     return this._client.get('/udl/spaceenvobservation/tuple', { query, ...options });
   }
 
@@ -101,20 +76,13 @@ export class SpaceEnvObservation extends APIResource {
    * automated feeds into UDL. A specific role is required to perform this service
    * operation. Please contact the UDL team for assistance.
    */
-  unvalidatedPublish(
-    params: SpaceEnvObservationUnvalidatedPublishParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-spaceenvobs', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  unvalidatedPublish(params: SpaceEnvObservationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
+    const { body } = params
+    return this._client.post('/filedrop/udl-spaceenvobs', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type SpaceEnvObservationListResponsesOffsetPage = OffsetPage<SpaceEnvObservationListResponse>;
+export type SpaceEnvObservationListResponsesOffsetPage = OffsetPage<SpaceEnvObservationListResponse>
 
 /**
  * SpaceEnvObservation data.
@@ -446,7 +414,7 @@ export namespace SpaceEnvObservationListResponse {
   }
 }
 
-export type SpaceEnvObservationCountResponse = string;
+export type SpaceEnvObservationCountResponse = string
 
 export interface SpaceEnvObservationQueryhelpResponse {
   aodrSupported?: boolean;
@@ -472,7 +440,7 @@ export interface SpaceEnvObservationQueryhelpResponse {
   uri?: string;
 }
 
-export type SpaceEnvObservationTupleResponse = Array<HistoryAPI.SpaceEnvObservationFull>;
+export type SpaceEnvObservationTupleResponse = Array<HistoryAPI.SpaceEnvObservationFull>
 
 export interface SpaceEnvObservationListParams extends OffsetPageParams {
   /**
@@ -1153,7 +1121,7 @@ export declare namespace SpaceEnvObservation {
     type SpaceEnvObservationCountParams as SpaceEnvObservationCountParams,
     type SpaceEnvObservationCreateBulkParams as SpaceEnvObservationCreateBulkParams,
     type SpaceEnvObservationTupleParams as SpaceEnvObservationTupleParams,
-    type SpaceEnvObservationUnvalidatedPublishParams as SpaceEnvObservationUnvalidatedPublishParams,
+    type SpaceEnvObservationUnvalidatedPublishParams as SpaceEnvObservationUnvalidatedPublishParams
   };
 
   export {
@@ -1163,6 +1131,6 @@ export declare namespace SpaceEnvObservation {
     type SpaceEnvObservationFullsOffsetPage as SpaceEnvObservationFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

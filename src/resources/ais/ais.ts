@@ -3,13 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -39,11 +33,7 @@ export class AIs extends APIResource {
    * valid/required query parameter information.
    */
   count(query: AICountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/ais/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/ais/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -54,12 +44,8 @@ export class AIs extends APIResource {
    * permanent feed through an alternate mechanism.
    */
   createBulk(params: AICreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/ais/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/ais/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -85,7 +71,7 @@ export class AIs extends APIResource {
   }
 }
 
-export type AIsAbridgedsOffsetPage = OffsetPage<AIsAbridged>;
+export type AIsAbridgedsOffsetPage = OffsetPage<AIsAbridged>
 
 /**
  * Self-reported information obtained from Automatic Identification System (AIS)
@@ -418,7 +404,7 @@ export interface AIsAbridged {
   width?: number;
 }
 
-export type AICountResponse = string;
+export type AICountResponse = string
 
 export interface AIQueryhelpResponse {
   aodrSupported?: boolean;
@@ -444,7 +430,7 @@ export interface AIQueryhelpResponse {
   uri?: string;
 }
 
-export type AITupleResponse = Array<Shared.AIsFull>;
+export type AITupleResponse = Array<Shared.AIsFull>
 
 export interface AIListParams extends OffsetPageParams {
   /**
@@ -811,7 +797,7 @@ export declare namespace AIs {
     type AIListParams as AIListParams,
     type AICountParams as AICountParams,
     type AICreateBulkParams as AICreateBulkParams,
-    type AITupleParams as AITupleParams,
+    type AITupleParams as AITupleParams
   };
 
   export {
@@ -819,6 +805,6 @@ export declare namespace AIs {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

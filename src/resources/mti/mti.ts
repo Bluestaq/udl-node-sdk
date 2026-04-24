@@ -3,15 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import {
-  History,
-  HistoryAodrParams,
-  HistoryCountParams,
-  HistoryCountResponse,
-  HistoryListParams,
-  MtiFull,
-  MtiFullsOffsetPage,
-} from './history';
+import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, MtiFull, MtiFullsOffsetPage } from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -29,10 +21,7 @@ export class Mti extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(
-    query: MtiListParams,
-    options?: RequestOptions,
-  ): PagePromise<MtiListResponsesOffsetPage, MtiListResponse> {
+  list(query: MtiListParams, options?: RequestOptions): PagePromise<MtiListResponsesOffsetPage, MtiListResponse> {
     return this._client.getAPIList('/udl/mti', OffsetPage<MtiListResponse>, { query, ...options });
   }
 
@@ -44,11 +33,7 @@ export class Mti extends APIResource {
    * valid/required query parameter information.
    */
   count(query: MtiCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/mti/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/mti/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -60,12 +45,8 @@ export class Mti extends APIResource {
    * mechanism.
    */
   createBulk(params: MtiCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/udl/mti/createBulk', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/udl/mti/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -97,16 +78,12 @@ export class Mti extends APIResource {
    * service operation. Please contact the UDL team for assistance.
    */
   unvalidatedPublish(params: MtiUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params;
-    return this._client.post('/filedrop/udl-mti', {
-      body: body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { body } = params
+    return this._client.post('/filedrop/udl-mti', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type MtiListResponsesOffsetPage = OffsetPage<MtiListResponse>;
+export type MtiListResponsesOffsetPage = OffsetPage<MtiListResponse>
 
 /**
  * Information on the mission and flight plans, the type and configuration of the
@@ -1149,7 +1126,7 @@ export namespace MtiListResponse {
   }
 }
 
-export type MtiCountResponse = string;
+export type MtiCountResponse = string
 
 export interface MtiQueryhelpResponse {
   aodrSupported?: boolean;
@@ -1175,7 +1152,7 @@ export interface MtiQueryhelpResponse {
   uri?: string;
 }
 
-export type MtiTupleResponse = Array<HistoryAPI.MtiFull>;
+export type MtiTupleResponse = Array<HistoryAPI.MtiFull>
 
 export interface MtiListParams extends OffsetPageParams {
   /**
@@ -3299,7 +3276,7 @@ export declare namespace Mti {
     type MtiCountParams as MtiCountParams,
     type MtiCreateBulkParams as MtiCreateBulkParams,
     type MtiTupleParams as MtiTupleParams,
-    type MtiUnvalidatedPublishParams as MtiUnvalidatedPublishParams,
+    type MtiUnvalidatedPublishParams as MtiUnvalidatedPublishParams
   };
 
   export {
@@ -3309,6 +3286,6 @@ export declare namespace Mti {
     type MtiFullsOffsetPage as MtiFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams,
+    type HistoryCountParams as HistoryCountParams
   };
 }

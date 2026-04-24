@@ -5,17 +5,17 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource aviationRiskManagement', () => {
   test('create: only required params', async () => {
     const responsePromise = client.aviationRiskManagement.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,57 +27,51 @@ describe('resource aviationRiskManagement', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.aviationRiskManagement.create({
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
-      source: 'Bluestaq',
-      id: '026dd511-8ba5-47d3-9909-836149f87686',
-      aviationRiskManagementWorksheetRecord: [
-        {
-          missionDate: '2024-11-25',
-          aircraftMDS: 'E-2C HAWKEYE',
-          approvalPending: true,
-          approved: false,
-          aviationRiskManagementWorksheetScore: [
-            {
-              approvalDate: '2024-11-01T16:00:00.123Z',
-              approvedBy: 'John Smith',
-              approvedCode: 0,
-              aviationRiskManagementSortie: [
-                {
-                  extSortieId: 'MB014313032022407540',
-                  idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
-                  legNum: 100,
-                  sortieScore: 3,
-                },
-              ],
-              extScoreId: 'BM022301191649232740',
-              riskCategory: 'Crew/Aircraft',
-              riskDescription: 'Upgrade training',
-              riskKey: '26',
-              riskName: 'Crew Qualification',
-              score: 1,
-              scoreRemark: 'Worksheet score remark.',
-            },
-          ],
-          dispositionComments: 'Disposition comment.',
-          extRecordId: 'B022401191649232716',
-          itinerary: 'RJTY-PGUA-RJTY',
-          lastUpdatedAt: '2024-11-02T16:00:00.123Z',
-          remarks: 'Worksheet record remark.',
-          severityLevel: 0,
-          submissionDate: '2024-11-01T16:00:00.123Z',
-          tierNumber: 2,
-          totalScore: 11,
-          userId: 'TIER0SCORING',
-        },
-      ],
-      extMissionId: 'MCD04250106123509230',
-      missionNumber: 'LVM134412001',
-      orgId: '50000002',
-      origin: 'THIRD_PARTY_DATASOURCE',
-      unitId: '63',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
+    source: 'Bluestaq',
+    id: '026dd511-8ba5-47d3-9909-836149f87686',
+    aviationRiskManagementWorksheetRecord: [{
+    missionDate: '2024-11-25',
+    aircraftMDS: 'E-2C HAWKEYE',
+    approvalPending: true,
+    approved: false,
+    aviationRiskManagementWorksheetScore: [{
+    approvalDate: '2024-11-01T16:00:00.123Z',
+    approvedBy: 'John Smith',
+    approvedCode: 0,
+    aviationRiskManagementSortie: [{
+    extSortieId: 'MB014313032022407540',
+    idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+    legNum: 100,
+    sortieScore: 3,
+  }],
+    extScoreId: 'BM022301191649232740',
+    riskCategory: 'Crew/Aircraft',
+    riskDescription: 'Upgrade training',
+    riskKey: '26',
+    riskName: 'Crew Qualification',
+    score: 1,
+    scoreRemark: 'Worksheet score remark.',
+  }],
+    dispositionComments: 'Disposition comment.',
+    extRecordId: 'B022401191649232716',
+    itinerary: 'RJTY-PGUA-RJTY',
+    lastUpdatedAt: '2024-11-02T16:00:00.123Z',
+    remarks: 'Worksheet record remark.',
+    severityLevel: 0,
+    submissionDate: '2024-11-01T16:00:00.123Z',
+    tierNumber: 2,
+    totalScore: 11,
+    userId: 'TIER0SCORING',
+  }],
+    extMissionId: 'MCD04250106123509230',
+    missionNumber: 'LVM134412001',
+    orgId: '50000002',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    unitId: '63',
+  });
   });
 
   test('retrieve', async () => {
@@ -93,22 +87,18 @@ describe('resource aviationRiskManagement', () => {
 
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.aviationRiskManagement.retrieve(
-        'id',
-        { firstResult: 0, maxResults: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(client.aviationRiskManagement.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.aviationRiskManagement.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
-      source: 'Bluestaq',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
+    source: 'Bluestaq',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -120,57 +110,51 @@ describe('resource aviationRiskManagement', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.aviationRiskManagement.update('id', {
-      classificationMarking: 'U',
-      dataMode: 'TEST',
-      idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
-      source: 'Bluestaq',
-      id: '026dd511-8ba5-47d3-9909-836149f87686',
-      aviationRiskManagementWorksheetRecord: [
-        {
-          missionDate: '2024-11-25',
-          aircraftMDS: 'E-2C HAWKEYE',
-          approvalPending: true,
-          approved: false,
-          aviationRiskManagementWorksheetScore: [
-            {
-              approvalDate: '2024-11-01T16:00:00.123Z',
-              approvedBy: 'John Smith',
-              approvedCode: 0,
-              aviationRiskManagementSortie: [
-                {
-                  extSortieId: 'MB014313032022407540',
-                  idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
-                  legNum: 100,
-                  sortieScore: 3,
-                },
-              ],
-              extScoreId: 'BM022301191649232740',
-              riskCategory: 'Crew/Aircraft',
-              riskDescription: 'Upgrade training',
-              riskKey: '26',
-              riskName: 'Crew Qualification',
-              score: 1,
-              scoreRemark: 'Worksheet score remark.',
-            },
-          ],
-          dispositionComments: 'Disposition comment.',
-          extRecordId: 'B022401191649232716',
-          itinerary: 'RJTY-PGUA-RJTY',
-          lastUpdatedAt: '2024-11-02T16:00:00.123Z',
-          remarks: 'Worksheet record remark.',
-          severityLevel: 0,
-          submissionDate: '2024-11-01T16:00:00.123Z',
-          tierNumber: 2,
-          totalScore: 11,
-          userId: 'TIER0SCORING',
-        },
-      ],
-      extMissionId: 'MCD04250106123509230',
-      missionNumber: 'LVM134412001',
-      orgId: '50000002',
-      origin: 'THIRD_PARTY_DATASOURCE',
-      unitId: '63',
-    });
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
+    source: 'Bluestaq',
+    id: '026dd511-8ba5-47d3-9909-836149f87686',
+    aviationRiskManagementWorksheetRecord: [{
+    missionDate: '2024-11-25',
+    aircraftMDS: 'E-2C HAWKEYE',
+    approvalPending: true,
+    approved: false,
+    aviationRiskManagementWorksheetScore: [{
+    approvalDate: '2024-11-01T16:00:00.123Z',
+    approvedBy: 'John Smith',
+    approvedCode: 0,
+    aviationRiskManagementSortie: [{
+    extSortieId: 'MB014313032022407540',
+    idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+    legNum: 100,
+    sortieScore: 3,
+  }],
+    extScoreId: 'BM022301191649232740',
+    riskCategory: 'Crew/Aircraft',
+    riskDescription: 'Upgrade training',
+    riskKey: '26',
+    riskName: 'Crew Qualification',
+    score: 1,
+    scoreRemark: 'Worksheet score remark.',
+  }],
+    dispositionComments: 'Disposition comment.',
+    extRecordId: 'B022401191649232716',
+    itinerary: 'RJTY-PGUA-RJTY',
+    lastUpdatedAt: '2024-11-02T16:00:00.123Z',
+    remarks: 'Worksheet record remark.',
+    severityLevel: 0,
+    submissionDate: '2024-11-01T16:00:00.123Z',
+    tierNumber: 2,
+    totalScore: 11,
+    userId: 'TIER0SCORING',
+  }],
+    extMissionId: 'MCD04250106123509230',
+    missionNumber: 'LVM134412001',
+    orgId: '50000002',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    unitId: '63',
+  });
   });
 
   test('list: only required params', async () => {
@@ -186,10 +170,10 @@ describe('resource aviationRiskManagement', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.aviationRiskManagement.list({
-      idMission: 'idMission',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    idMission: 'idMission',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('delete', async () => {
@@ -216,23 +200,19 @@ describe('resource aviationRiskManagement', () => {
 
   test('count: required and optional params', async () => {
     const response = await client.aviationRiskManagement.count({
-      idMission: 'idMission',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    idMission: 'idMission',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.aviationRiskManagement.createBulk({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
-          source: 'Bluestaq',
-        },
-      ],
-    });
+    const responsePromise = client.aviationRiskManagement.createBulk({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
+    source: 'Bluestaq',
+  }] });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -243,62 +223,52 @@ describe('resource aviationRiskManagement', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.aviationRiskManagement.createBulk({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
-          source: 'Bluestaq',
-          id: '026dd511-8ba5-47d3-9909-836149f87686',
-          aviationRiskManagementWorksheetRecord: [
-            {
-              missionDate: '2024-11-25',
-              aircraftMDS: 'E-2C HAWKEYE',
-              approvalPending: true,
-              approved: false,
-              aviationRiskManagementWorksheetScore: [
-                {
-                  approvalDate: '2024-11-01T16:00:00.123Z',
-                  approvedBy: 'John Smith',
-                  approvedCode: 0,
-                  aviationRiskManagementSortie: [
-                    {
-                      extSortieId: 'MB014313032022407540',
-                      idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
-                      legNum: 100,
-                      sortieScore: 3,
-                    },
-                  ],
-                  extScoreId: 'BM022301191649232740',
-                  riskCategory: 'Crew/Aircraft',
-                  riskDescription: 'Upgrade training',
-                  riskKey: '26',
-                  riskName: 'Crew Qualification',
-                  score: 1,
-                  scoreRemark: 'Worksheet score remark.',
-                },
-              ],
-              dispositionComments: 'Disposition comment.',
-              extRecordId: 'B022401191649232716',
-              itinerary: 'RJTY-PGUA-RJTY',
-              lastUpdatedAt: '2024-11-02T16:00:00.123Z',
-              remarks: 'Worksheet record remark.',
-              severityLevel: 0,
-              submissionDate: '2024-11-01T16:00:00.123Z',
-              tierNumber: 2,
-              totalScore: 11,
-              userId: 'TIER0SCORING',
-            },
-          ],
-          extMissionId: 'MCD04250106123509230',
-          missionNumber: 'LVM134412001',
-          orgId: '50000002',
-          origin: 'THIRD_PARTY_DATASOURCE',
-          unitId: '63',
-        },
-      ],
-    });
+    const response = await client.aviationRiskManagement.createBulk({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
+    source: 'Bluestaq',
+    id: '026dd511-8ba5-47d3-9909-836149f87686',
+    aviationRiskManagementWorksheetRecord: [{
+    missionDate: '2024-11-25',
+    aircraftMDS: 'E-2C HAWKEYE',
+    approvalPending: true,
+    approved: false,
+    aviationRiskManagementWorksheetScore: [{
+    approvalDate: '2024-11-01T16:00:00.123Z',
+    approvedBy: 'John Smith',
+    approvedCode: 0,
+    aviationRiskManagementSortie: [{
+    extSortieId: 'MB014313032022407540',
+    idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+    legNum: 100,
+    sortieScore: 3,
+  }],
+    extScoreId: 'BM022301191649232740',
+    riskCategory: 'Crew/Aircraft',
+    riskDescription: 'Upgrade training',
+    riskKey: '26',
+    riskName: 'Crew Qualification',
+    score: 1,
+    scoreRemark: 'Worksheet score remark.',
+  }],
+    dispositionComments: 'Disposition comment.',
+    extRecordId: 'B022401191649232716',
+    itinerary: 'RJTY-PGUA-RJTY',
+    lastUpdatedAt: '2024-11-02T16:00:00.123Z',
+    remarks: 'Worksheet record remark.',
+    severityLevel: 0,
+    submissionDate: '2024-11-01T16:00:00.123Z',
+    tierNumber: 2,
+    totalScore: 11,
+    userId: 'TIER0SCORING',
+  }],
+    extMissionId: 'MCD04250106123509230',
+    missionNumber: 'LVM134412001',
+    orgId: '50000002',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    unitId: '63',
+  }] });
   });
 
   test('queryHelp', async () => {
@@ -313,10 +283,7 @@ describe('resource aviationRiskManagement', () => {
   });
 
   test('tuple: only required params', async () => {
-    const responsePromise = client.aviationRiskManagement.tuple({
-      columns: 'columns',
-      idMission: 'idMission',
-    });
+    const responsePromise = client.aviationRiskManagement.tuple({ columns: 'columns', idMission: 'idMission' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -328,24 +295,20 @@ describe('resource aviationRiskManagement', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.aviationRiskManagement.tuple({
-      columns: 'columns',
-      idMission: 'idMission',
-      firstResult: 0,
-      maxResults: 0,
-    });
+    columns: 'columns',
+    idMission: 'idMission',
+    firstResult: 0,
+    maxResults: 0,
+  });
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.aviationRiskManagement.unvalidatedPublish({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
-          source: 'Bluestaq',
-        },
-      ],
-    });
+    const responsePromise = client.aviationRiskManagement.unvalidatedPublish({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
+    source: 'Bluestaq',
+  }] });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -356,61 +319,51 @@ describe('resource aviationRiskManagement', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.aviationRiskManagement.unvalidatedPublish({
-      body: [
-        {
-          classificationMarking: 'U',
-          dataMode: 'TEST',
-          idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
-          source: 'Bluestaq',
-          id: '026dd511-8ba5-47d3-9909-836149f87686',
-          aviationRiskManagementWorksheetRecord: [
-            {
-              missionDate: '2024-11-25',
-              aircraftMDS: 'E-2C HAWKEYE',
-              approvalPending: true,
-              approved: false,
-              aviationRiskManagementWorksheetScore: [
-                {
-                  approvalDate: '2024-11-01T16:00:00.123Z',
-                  approvedBy: 'John Smith',
-                  approvedCode: 0,
-                  aviationRiskManagementSortie: [
-                    {
-                      extSortieId: 'MB014313032022407540',
-                      idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
-                      legNum: 100,
-                      sortieScore: 3,
-                    },
-                  ],
-                  extScoreId: 'BM022301191649232740',
-                  riskCategory: 'Crew/Aircraft',
-                  riskDescription: 'Upgrade training',
-                  riskKey: '26',
-                  riskName: 'Crew Qualification',
-                  score: 1,
-                  scoreRemark: 'Worksheet score remark.',
-                },
-              ],
-              dispositionComments: 'Disposition comment.',
-              extRecordId: 'B022401191649232716',
-              itinerary: 'RJTY-PGUA-RJTY',
-              lastUpdatedAt: '2024-11-02T16:00:00.123Z',
-              remarks: 'Worksheet record remark.',
-              severityLevel: 0,
-              submissionDate: '2024-11-01T16:00:00.123Z',
-              tierNumber: 2,
-              totalScore: 11,
-              userId: 'TIER0SCORING',
-            },
-          ],
-          extMissionId: 'MCD04250106123509230',
-          missionNumber: 'LVM134412001',
-          orgId: '50000002',
-          origin: 'THIRD_PARTY_DATASOURCE',
-          unitId: '63',
-        },
-      ],
-    });
+    const response = await client.aviationRiskManagement.unvalidatedPublish({ body: [{
+    classificationMarking: 'U',
+    dataMode: 'TEST',
+    idMission: 'fa18d96e-91ea-60da-a7a8-1af6500066c8',
+    source: 'Bluestaq',
+    id: '026dd511-8ba5-47d3-9909-836149f87686',
+    aviationRiskManagementWorksheetRecord: [{
+    missionDate: '2024-11-25',
+    aircraftMDS: 'E-2C HAWKEYE',
+    approvalPending: true,
+    approved: false,
+    aviationRiskManagementWorksheetScore: [{
+    approvalDate: '2024-11-01T16:00:00.123Z',
+    approvedBy: 'John Smith',
+    approvedCode: 0,
+    aviationRiskManagementSortie: [{
+    extSortieId: 'MB014313032022407540',
+    idSortie: '4ef3d1e8-ab08-ab70-498f-edc479734e5c',
+    legNum: 100,
+    sortieScore: 3,
+  }],
+    extScoreId: 'BM022301191649232740',
+    riskCategory: 'Crew/Aircraft',
+    riskDescription: 'Upgrade training',
+    riskKey: '26',
+    riskName: 'Crew Qualification',
+    score: 1,
+    scoreRemark: 'Worksheet score remark.',
+  }],
+    dispositionComments: 'Disposition comment.',
+    extRecordId: 'B022401191649232716',
+    itinerary: 'RJTY-PGUA-RJTY',
+    lastUpdatedAt: '2024-11-02T16:00:00.123Z',
+    remarks: 'Worksheet record remark.',
+    severityLevel: 0,
+    submissionDate: '2024-11-01T16:00:00.123Z',
+    tierNumber: 2,
+    totalScore: 11,
+    userId: 'TIER0SCORING',
+  }],
+    extMissionId: 'MCD04250106123509230',
+    missionNumber: 'LVM134412001',
+    orgId: '50000002',
+    origin: 'THIRD_PARTY_DATASOURCE',
+    unitId: '63',
+  }] });
   });
 });

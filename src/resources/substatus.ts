@@ -31,11 +31,7 @@ export class Substatus extends APIResource {
    * ```
    */
   create(body: SubstatusCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/substatus', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/udl/substatus', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -57,11 +53,7 @@ export class Substatus extends APIResource {
    * ```
    */
   update(id: string, body: SubstatusUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/substatus/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.put(path`/udl/substatus/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -78,14 +70,8 @@ export class Substatus extends APIResource {
    * }
    * ```
    */
-  list(
-    query: SubstatusListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<SubstatusListResponsesOffsetPage, SubstatusListResponse> {
-    return this._client.getAPIList('/udl/substatus', OffsetPage<SubstatusListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: SubstatusListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SubstatusListResponsesOffsetPage, SubstatusListResponse> {
+    return this._client.getAPIList('/udl/substatus', OffsetPage<SubstatusListResponse>, { query, ...options });
   }
 
   /**
@@ -99,10 +85,7 @@ export class Substatus extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/substatus/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/udl/substatus/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -118,11 +101,7 @@ export class Substatus extends APIResource {
    * ```
    */
   count(query: SubstatusCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/substatus/count', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+    return this._client.get('/udl/substatus/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 
   /**
@@ -134,11 +113,7 @@ export class Substatus extends APIResource {
    * const subStatusFull = await client.substatus.get('id');
    * ```
    */
-  get(
-    id: string,
-    query: SubstatusGetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Shared.SubStatusFull> {
+  get(id: string, query: SubstatusGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.SubStatusFull> {
     return this._client.get(path`/udl/substatus/${id}`, { query, ...options });
   }
 
@@ -177,7 +152,7 @@ export class Substatus extends APIResource {
   }
 }
 
-export type SubstatusListResponsesOffsetPage = OffsetPage<SubstatusListResponse>;
+export type SubstatusListResponsesOffsetPage = OffsetPage<SubstatusListResponse>
 
 /**
  * Additional sub-system or capability status for the parent entity.
@@ -261,7 +236,7 @@ export interface SubstatusListResponse {
   origNetwork?: string;
 }
 
-export type SubstatusCountResponse = string;
+export type SubstatusCountResponse = string
 
 export interface SubstatusQueryhelpResponse {
   aodrSupported?: boolean;
@@ -287,7 +262,7 @@ export interface SubstatusQueryhelpResponse {
   uri?: string;
 }
 
-export type SubstatusTupleResponse = Array<Shared.SubStatusFull>;
+export type SubstatusTupleResponse = Array<Shared.SubStatusFull>
 
 export interface SubstatusCreateParams {
   /**
@@ -413,7 +388,8 @@ export interface SubstatusUpdateParams {
   origin?: string;
 }
 
-export interface SubstatusListParams extends OffsetPageParams {}
+export interface SubstatusListParams extends OffsetPageParams {
+}
 
 export interface SubstatusCountParams {
   firstResult?: number;
@@ -453,6 +429,6 @@ export declare namespace Substatus {
     type SubstatusListParams as SubstatusListParams,
     type SubstatusCountParams as SubstatusCountParams,
     type SubstatusGetParams as SubstatusGetParams,
-    type SubstatusTupleParams as SubstatusTupleParams,
+    type SubstatusTupleParams as SubstatusTupleParams
   };
 }
