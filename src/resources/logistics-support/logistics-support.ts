@@ -4,7 +4,15 @@ import { APIResource } from '../../core/resource';
 import * as LogisticsSupportAPI from './logistics-support';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -33,7 +41,11 @@ export class LogisticsSupport extends APIResource {
    * ```
    */
   create(body: LogisticsSupportCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/logisticssupport', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/logisticssupport', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -52,7 +64,11 @@ export class LogisticsSupport extends APIResource {
    * ```
    */
   update(id: string, body: LogisticsSupportUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/logisticssupport/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/logisticssupport/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -69,8 +85,14 @@ export class LogisticsSupport extends APIResource {
    * }
    * ```
    */
-  list(query: LogisticsSupportListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LogisticsSupportListResponsesOffsetPage, LogisticsSupportListResponse> {
-    return this._client.getAPIList('/udl/logisticssupport', OffsetPage<LogisticsSupportListResponse>, { query, ...options });
+  list(
+    query: LogisticsSupportListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LogisticsSupportListResponsesOffsetPage, LogisticsSupportListResponse> {
+    return this._client.getAPIList('/udl/logisticssupport', OffsetPage<LogisticsSupportListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -85,8 +107,15 @@ export class LogisticsSupport extends APIResource {
    * const response = await client.logisticsSupport.count();
    * ```
    */
-  count(query: LogisticsSupportCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/logisticssupport/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: LogisticsSupportCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/logisticssupport/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -111,8 +140,12 @@ export class LogisticsSupport extends APIResource {
    * ```
    */
   createBulk(params: LogisticsSupportCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/logisticssupport/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/logisticssupport/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -126,7 +159,11 @@ export class LogisticsSupport extends APIResource {
    * );
    * ```
    */
-  get(id: string, query: LogisticsSupportGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<LogisticsSupportGetResponse> {
+  get(
+    id: string,
+    query: LogisticsSupportGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LogisticsSupportGetResponse> {
     return this._client.get(path`/udl/logisticssupport/${id}`, { query, ...options });
   }
 
@@ -160,7 +197,10 @@ export class LogisticsSupport extends APIResource {
    * });
    * ```
    */
-  tuple(query: LogisticsSupportTupleParams, options?: RequestOptions): APIPromise<LogisticsSupportTupleResponse> {
+  tuple(
+    query: LogisticsSupportTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<LogisticsSupportTupleResponse> {
     return this._client.get('/udl/logisticssupport/tuple', { query, ...options });
   }
 
@@ -184,13 +224,20 @@ export class LogisticsSupport extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(params: LogisticsSupportUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-logisticssupport', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: LogisticsSupportUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-logisticssupport', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type LogisticsSupportListResponsesOffsetPage = OffsetPage<LogisticsSupportListResponse>
+export type LogisticsSupportListResponsesOffsetPage = OffsetPage<LogisticsSupportListResponse>;
 
 /**
  * Discrepancy information associated with this LogisticsSupport record.
@@ -1494,7 +1541,7 @@ export namespace LogisticsSupportListResponse {
   }
 }
 
-export type LogisticsSupportCountResponse = string
+export type LogisticsSupportCountResponse = string;
 
 /**
  * Comprehensive logistical details concerning the planned support of maintenance
@@ -1715,7 +1762,8 @@ export interface LogisticsSupportQueryhelpResponse {
   uri?: string;
 }
 
-export type LogisticsSupportTupleResponse = Array<LogisticsSupportTupleResponse.LogisticsSupportTupleResponseItem>
+export type LogisticsSupportTupleResponse =
+  Array<LogisticsSupportTupleResponse.LogisticsSupportTupleResponseItem>;
 
 export namespace LogisticsSupportTupleResponse {
   /**
@@ -3292,8 +3340,7 @@ export namespace LogisticsSupportUpdateParams {
   }
 }
 
-export interface LogisticsSupportListParams extends OffsetPageParams {
-}
+export interface LogisticsSupportListParams extends OffsetPageParams {}
 
 export interface LogisticsSupportCountParams {
   firstResult?: number;
@@ -4748,7 +4795,7 @@ export declare namespace LogisticsSupport {
     type LogisticsSupportCreateBulkParams as LogisticsSupportCreateBulkParams,
     type LogisticsSupportGetParams as LogisticsSupportGetParams,
     type LogisticsSupportTupleParams as LogisticsSupportTupleParams,
-    type LogisticsSupportUnvalidatedPublishParams as LogisticsSupportUnvalidatedPublishParams
+    type LogisticsSupportUnvalidatedPublishParams as LogisticsSupportUnvalidatedPublishParams,
   };
 
   export {
@@ -4758,6 +4805,6 @@ export declare namespace LogisticsSupport {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

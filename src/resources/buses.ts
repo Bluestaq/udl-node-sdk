@@ -29,7 +29,11 @@ export class Buses extends APIResource {
    * ```
    */
   create(body: BusCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/bus', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/bus', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -41,7 +45,11 @@ export class Buses extends APIResource {
    * const busFull = await client.buses.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: BusRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.BusFull> {
+  retrieve(
+    id: string,
+    query: BusRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.BusFull> {
     return this._client.get(path`/udl/bus/${id}`, { query, ...options });
   }
 
@@ -60,7 +68,11 @@ export class Buses extends APIResource {
    * ```
    */
   update(id: string, body: BusUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/bus/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/bus/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -77,7 +89,10 @@ export class Buses extends APIResource {
    * }
    * ```
    */
-  list(query: BusListParams | null | undefined = {}, options?: RequestOptions): PagePromise<BusAbridgedsOffsetPage, BusAbridged> {
+  list(
+    query: BusListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BusAbridgedsOffsetPage, BusAbridged> {
     return this._client.getAPIList('/udl/bus', OffsetPage<BusAbridged>, { query, ...options });
   }
 
@@ -92,7 +107,10 @@ export class Buses extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/bus/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/bus/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -108,7 +126,11 @@ export class Buses extends APIResource {
    * ```
    */
   count(query: BusCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/bus/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/bus/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -146,7 +168,7 @@ export class Buses extends APIResource {
   }
 }
 
-export type BusAbridgedsOffsetPage = OffsetPage<BusAbridged>
+export type BusAbridgedsOffsetPage = OffsetPage<BusAbridged>;
 
 /**
  * A bus is the physical and software infrastructure backbone to which on-orbit
@@ -463,7 +485,7 @@ export interface BusAbridged {
   type?: string;
 }
 
-export type BusCountResponse = string
+export type BusCountResponse = string;
 
 export interface BusQueryHelpResponse {
   aodrSupported?: boolean;
@@ -489,7 +511,7 @@ export interface BusQueryHelpResponse {
   uri?: string;
 }
 
-export type BusTupleResponse = Array<Shared.BusFull>
+export type BusTupleResponse = Array<Shared.BusFull>;
 
 export interface BusCreateParams {
   /**
@@ -1099,8 +1121,7 @@ export interface BusUpdateParams {
   type?: string;
 }
 
-export interface BusListParams extends OffsetPageParams {
-}
+export interface BusListParams extends OffsetPageParams {}
 
 export interface BusCountParams {
   firstResult?: number;
@@ -1134,6 +1155,6 @@ export declare namespace Buses {
     type BusUpdateParams as BusUpdateParams,
     type BusListParams as BusListParams,
     type BusCountParams as BusCountParams,
-    type BusTupleParams as BusTupleParams
+    type BusTupleParams as BusTupleParams,
   };
 }

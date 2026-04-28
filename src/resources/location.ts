@@ -31,7 +31,11 @@ export class Location extends APIResource {
    * ```
    */
   create(body: LocationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/location', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/location', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -51,7 +55,11 @@ export class Location extends APIResource {
    * ```
    */
   update(id: string, body: LocationUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/location/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/location/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -68,8 +76,14 @@ export class Location extends APIResource {
    * }
    * ```
    */
-  list(query: LocationListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LocationAbridgedsOffsetPage, Shared.LocationAbridged> {
-    return this._client.getAPIList('/udl/location', OffsetPage<Shared.LocationAbridged>, { query, ...options });
+  list(
+    query: LocationListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LocationAbridgedsOffsetPage, Shared.LocationAbridged> {
+    return this._client.getAPIList('/udl/location', OffsetPage<Shared.LocationAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -85,7 +99,10 @@ export class Location extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/location/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/location/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -101,7 +118,11 @@ export class Location extends APIResource {
    * ```
    */
   count(query: LocationCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/location/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/location/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -114,7 +135,11 @@ export class Location extends APIResource {
    * const locationFull = await client.location.get('id');
    * ```
    */
-  get(id: string, query: LocationGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.LocationFull> {
+  get(
+    id: string,
+    query: LocationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.LocationFull> {
     return this._client.get(path`/udl/location/${id}`, { query, ...options });
   }
 
@@ -248,7 +273,7 @@ export interface LocationIngest {
   origNetwork?: string;
 }
 
-export type LocationCountResponse = string
+export type LocationCountResponse = string;
 
 export interface LocationQueryhelpResponse {
   aodrSupported?: boolean;
@@ -274,7 +299,7 @@ export interface LocationQueryhelpResponse {
   uri?: string;
 }
 
-export type LocationTupleResponse = Array<Shared.LocationFull>
+export type LocationTupleResponse = Array<Shared.LocationFull>;
 
 export interface LocationCreateParams {
   /**
@@ -424,8 +449,7 @@ export interface LocationUpdateParams {
   origin?: string;
 }
 
-export interface LocationListParams extends OffsetPageParams {
-}
+export interface LocationListParams extends OffsetPageParams {}
 
 export interface LocationCountParams {
   firstResult?: number;
@@ -464,8 +488,8 @@ export declare namespace Location {
     type LocationListParams as LocationListParams,
     type LocationCountParams as LocationCountParams,
     type LocationGetParams as LocationGetParams,
-    type LocationTupleParams as LocationTupleParams
+    type LocationTupleParams as LocationTupleParams,
   };
 }
 
-export { type LocationAbridgedsOffsetPage }
+export { type LocationAbridgedsOffsetPage };

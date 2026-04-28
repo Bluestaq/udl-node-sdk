@@ -29,7 +29,11 @@ export class SiteRemark extends APIResource {
    * ```
    */
   create(body: SiteRemarkCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/siteremark', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/siteremark', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -46,8 +50,14 @@ export class SiteRemark extends APIResource {
    * }
    * ```
    */
-  list(query: SiteRemarkListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SiteRemarkListResponsesOffsetPage, SiteRemarkListResponse> {
-    return this._client.getAPIList('/udl/siteremark', OffsetPage<SiteRemarkListResponse>, { query, ...options });
+  list(
+    query: SiteRemarkListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SiteRemarkListResponsesOffsetPage, SiteRemarkListResponse> {
+    return this._client.getAPIList('/udl/siteremark', OffsetPage<SiteRemarkListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -63,7 +73,11 @@ export class SiteRemark extends APIResource {
    * ```
    */
   count(query: SiteRemarkCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/siteremark/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/siteremark/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -75,7 +89,11 @@ export class SiteRemark extends APIResource {
    * const siteRemark = await client.siteRemark.get('id');
    * ```
    */
-  get(id: string, query: SiteRemarkGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SiteRemarkGetResponse> {
+  get(
+    id: string,
+    query: SiteRemarkGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SiteRemarkGetResponse> {
     return this._client.get(path`/udl/siteremark/${id}`, { query, ...options });
   }
 
@@ -114,7 +132,7 @@ export class SiteRemark extends APIResource {
   }
 }
 
-export type SiteRemarkListResponsesOffsetPage = OffsetPage<SiteRemarkListResponse>
+export type SiteRemarkListResponsesOffsetPage = OffsetPage<SiteRemarkListResponse>;
 
 /**
  * Remarks contain amplifying information for a specific service. The information
@@ -210,7 +228,7 @@ export interface SiteRemarkListResponse {
   type?: string;
 }
 
-export type SiteRemarkCountResponse = string
+export type SiteRemarkCountResponse = string;
 
 /**
  * Remarks contain amplifying information for a specific service. The information
@@ -330,7 +348,7 @@ export interface SiteRemarkQueryhelpResponse {
   uri?: string;
 }
 
-export type SiteRemarkTupleResponse = Array<SiteRemarkTupleResponse.SiteRemarkTupleResponseItem>
+export type SiteRemarkTupleResponse = Array<SiteRemarkTupleResponse.SiteRemarkTupleResponseItem>;
 
 export namespace SiteRemarkTupleResponse {
   /**
@@ -501,8 +519,7 @@ export interface SiteRemarkCreateParams {
   type?: string;
 }
 
-export interface SiteRemarkListParams extends OffsetPageParams {
-}
+export interface SiteRemarkListParams extends OffsetPageParams {}
 
 export interface SiteRemarkCountParams {
   firstResult?: number;
@@ -542,6 +559,6 @@ export declare namespace SiteRemark {
     type SiteRemarkListParams as SiteRemarkListParams,
     type SiteRemarkCountParams as SiteRemarkCountParams,
     type SiteRemarkGetParams as SiteRemarkGetParams,
-    type SiteRemarkTupleParams as SiteRemarkTupleParams
+    type SiteRemarkTupleParams as SiteRemarkTupleParams,
   };
 }

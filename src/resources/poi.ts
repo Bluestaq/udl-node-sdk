@@ -30,7 +30,11 @@ export class Poi extends APIResource {
    * ```
    */
   create(body: PoiCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/poi', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/poi', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -49,7 +53,10 @@ export class Poi extends APIResource {
    * }
    * ```
    */
-  list(query: PoiListParams, options?: RequestOptions): PagePromise<PoiListResponsesOffsetPage, PoiListResponse> {
+  list(
+    query: PoiListParams,
+    options?: RequestOptions,
+  ): PagePromise<PoiListResponsesOffsetPage, PoiListResponse> {
     return this._client.getAPIList('/udl/poi', OffsetPage<PoiListResponse>, { query, ...options });
   }
 
@@ -68,7 +75,11 @@ export class Poi extends APIResource {
    * ```
    */
   count(query: PoiCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/poi/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/poi/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -95,8 +106,12 @@ export class Poi extends APIResource {
    * ```
    */
   createBulk(params: PoiCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/poi/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/poi/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -108,7 +123,11 @@ export class Poi extends APIResource {
    * const poi = await client.poi.get('id');
    * ```
    */
-  get(id: string, query: PoiGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<PoiGetResponse> {
+  get(
+    id: string,
+    query: PoiGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<PoiGetResponse> {
     return this._client.get(path`/udl/poi/${id}`, { query, ...options });
   }
 
@@ -170,12 +189,16 @@ export class Poi extends APIResource {
    * ```
    */
   unvalidatedPublish(params: PoiUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-poi', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-poi', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type PoiListResponsesOffsetPage = OffsetPage<PoiListResponse>
+export type PoiListResponsesOffsetPage = OffsetPage<PoiListResponse>;
 
 /**
  * A Point of Interest is loosely based on the MITRE CoT (Cursor on Target) schema
@@ -472,7 +495,7 @@ export interface PoiListResponse {
   urls?: Array<string>;
 }
 
-export type PoiCountResponse = string
+export type PoiCountResponse = string;
 
 /**
  * A Point of Interest is loosely based on the MITRE CoT (Cursor on Target) schema
@@ -820,7 +843,7 @@ export interface PoiQueryhelpResponse {
   uri?: string;
 }
 
-export type PoiTupleResponse = Array<PoiTupleResponse.PoiTupleResponseItem>
+export type PoiTupleResponse = Array<PoiTupleResponse.PoiTupleResponseItem>;
 
 export namespace PoiTupleResponse {
   /**
@@ -2124,6 +2147,6 @@ export declare namespace Poi {
     type PoiCreateBulkParams as PoiCreateBulkParams,
     type PoiGetParams as PoiGetParams,
     type PoiTupleParams as PoiTupleParams,
-    type PoiUnvalidatedPublishParams as PoiUnvalidatedPublishParams
+    type PoiUnvalidatedPublishParams as PoiUnvalidatedPublishParams,
   };
 }

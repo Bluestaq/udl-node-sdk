@@ -31,7 +31,11 @@ export class Organizationdetails extends APIResource {
    * ```
    */
   create(body: OrganizationdetailCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/organizationdetails', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/organizationdetails', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -53,7 +57,11 @@ export class Organizationdetails extends APIResource {
    * ```
    */
   update(id: string, body: OrganizationdetailUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/organizationdetails/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/organizationdetails/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -72,8 +80,14 @@ export class Organizationdetails extends APIResource {
    * }
    * ```
    */
-  list(query: OrganizationdetailListParams, options?: RequestOptions): PagePromise<OrganizationdetailListResponsesOffsetPage, OrganizationdetailListResponse> {
-    return this._client.getAPIList('/udl/organizationdetails', OffsetPage<OrganizationdetailListResponse>, { query, ...options });
+  list(
+    query: OrganizationdetailListParams,
+    options?: RequestOptions,
+  ): PagePromise<OrganizationdetailListResponsesOffsetPage, OrganizationdetailListResponse> {
+    return this._client.getAPIList('/udl/organizationdetails', OffsetPage<OrganizationdetailListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -89,7 +103,10 @@ export class Organizationdetails extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/organizationdetails/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/organizationdetails/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -107,7 +124,10 @@ export class Organizationdetails extends APIResource {
    *   });
    * ```
    */
-  findBySource(query: OrganizationdetailFindBySourceParams, options?: RequestOptions): APIPromise<OrganizationdetailFindBySourceResponse> {
+  findBySource(
+    query: OrganizationdetailFindBySourceParams,
+    options?: RequestOptions,
+  ): APIPromise<OrganizationdetailFindBySourceResponse> {
     return this._client.get('/udl/organizationdetails/findBySource', { query, ...options });
   }
 
@@ -123,12 +143,16 @@ export class Organizationdetails extends APIResource {
    *   await client.organizationdetails.get('id');
    * ```
    */
-  get(id: string, query: OrganizationdetailGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.OrganizationDetailsFull> {
+  get(
+    id: string,
+    query: OrganizationdetailGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.OrganizationDetailsFull> {
     return this._client.get(path`/udl/organizationdetails/${id}`, { query, ...options });
   }
 }
 
-export type OrganizationdetailListResponsesOffsetPage = OffsetPage<OrganizationdetailListResponse>
+export type OrganizationdetailListResponsesOffsetPage = OffsetPage<OrganizationdetailListResponse>;
 
 /**
  * Model representation of additional detailed organization data as collected by a
@@ -346,7 +370,8 @@ export interface OrganizationdetailListResponse {
   servicesNotes?: string;
 }
 
-export type OrganizationdetailFindBySourceResponse = Array<OrganizationdetailFindBySourceResponse.OrganizationdetailFindBySourceResponseItem>
+export type OrganizationdetailFindBySourceResponse =
+  Array<OrganizationdetailFindBySourceResponse.OrganizationdetailFindBySourceResponseItem>;
 
 export namespace OrganizationdetailFindBySourceResponse {
   /**
@@ -1012,6 +1037,6 @@ export declare namespace Organizationdetails {
     type OrganizationdetailUpdateParams as OrganizationdetailUpdateParams,
     type OrganizationdetailListParams as OrganizationdetailListParams,
     type OrganizationdetailFindBySourceParams as OrganizationdetailFindBySourceParams,
-    type OrganizationdetailGetParams as OrganizationdetailGetParams
+    type OrganizationdetailGetParams as OrganizationdetailGetParams,
   };
 }

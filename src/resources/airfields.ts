@@ -31,7 +31,11 @@ export class Airfields extends APIResource {
    * ```
    */
   create(body: AirfieldCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/airfield', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/airfield', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -43,7 +47,11 @@ export class Airfields extends APIResource {
    * const airfieldFull = await client.airfields.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: AirfieldRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AirfieldFull> {
+  retrieve(
+    id: string,
+    query: AirfieldRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.AirfieldFull> {
     return this._client.get(path`/udl/airfield/${id}`, { query, ...options });
   }
 
@@ -63,7 +71,11 @@ export class Airfields extends APIResource {
    * ```
    */
   update(id: string, body: AirfieldUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/airfield/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/airfield/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -80,7 +92,10 @@ export class Airfields extends APIResource {
    * }
    * ```
    */
-  list(query: AirfieldListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AirfieldAbridgedsOffsetPage, AirfieldAbridged> {
+  list(
+    query: AirfieldListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<AirfieldAbridgedsOffsetPage, AirfieldAbridged> {
     return this._client.getAPIList('/udl/airfield', OffsetPage<AirfieldAbridged>, { query, ...options });
   }
 
@@ -97,7 +112,11 @@ export class Airfields extends APIResource {
    * ```
    */
   count(query: AirfieldCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/airfield/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/airfield/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -135,7 +154,7 @@ export class Airfields extends APIResource {
   }
 }
 
-export type AirfieldAbridgedsOffsetPage = OffsetPage<AirfieldAbridged>
+export type AirfieldAbridgedsOffsetPage = OffsetPage<AirfieldAbridged>;
 
 /**
  * Properties and characteristics of an airfield, which includes location, airfield
@@ -397,7 +416,7 @@ export interface AirfieldAbridged {
   zarId?: string;
 }
 
-export type AirfieldCountResponse = string
+export type AirfieldCountResponse = string;
 
 export interface AirfieldQueryhelpResponse {
   aodrSupported?: boolean;
@@ -423,7 +442,7 @@ export interface AirfieldQueryhelpResponse {
   uri?: string;
 }
 
-export type AirfieldTupleResponse = Array<Shared.AirfieldFull>
+export type AirfieldTupleResponse = Array<Shared.AirfieldFull>;
 
 export interface AirfieldCreateParams {
   /**
@@ -895,8 +914,7 @@ export interface AirfieldUpdateParams {
   zarId?: string;
 }
 
-export interface AirfieldListParams extends OffsetPageParams {
-}
+export interface AirfieldListParams extends OffsetPageParams {}
 
 export interface AirfieldCountParams {
   firstResult?: number;
@@ -930,6 +948,6 @@ export declare namespace Airfields {
     type AirfieldUpdateParams as AirfieldUpdateParams,
     type AirfieldListParams as AirfieldListParams,
     type AirfieldCountParams as AirfieldCountParams,
-    type AirfieldTupleParams as AirfieldTupleParams
+    type AirfieldTupleParams as AirfieldTupleParams,
   };
 }

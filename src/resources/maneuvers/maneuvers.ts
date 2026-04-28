@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -34,7 +42,11 @@ export class Maneuvers extends APIResource {
    * ```
    */
   create(body: ManeuverCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/maneuver', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/maneuver', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -53,7 +65,10 @@ export class Maneuvers extends APIResource {
    * }
    * ```
    */
-  list(query: ManeuverListParams, options?: RequestOptions): PagePromise<ManeuverListResponsesOffsetPage, ManeuverListResponse> {
+  list(
+    query: ManeuverListParams,
+    options?: RequestOptions,
+  ): PagePromise<ManeuverListResponsesOffsetPage, ManeuverListResponse> {
     return this._client.getAPIList('/udl/maneuver', OffsetPage<ManeuverListResponse>, { query, ...options });
   }
 
@@ -72,7 +87,11 @@ export class Maneuvers extends APIResource {
    * ```
    */
   count(query: ManeuverCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/maneuver/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/maneuver/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -97,8 +116,12 @@ export class Maneuvers extends APIResource {
    * ```
    */
   createBulk(params: ManeuverCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/maneuver/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/maneuver/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -110,7 +133,11 @@ export class Maneuvers extends APIResource {
    * const maneuver = await client.maneuvers.get('id');
    * ```
    */
-  get(id: string, query: ManeuverGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<ManeuverGetResponse> {
+  get(
+    id: string,
+    query: ManeuverGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ManeuverGetResponse> {
     return this._client.get(path`/udl/maneuver/${id}`, { query, ...options });
   }
 
@@ -170,12 +197,16 @@ export class Maneuvers extends APIResource {
    * ```
    */
   unvalidatedPublish(params: ManeuverUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-maneuver', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-maneuver', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type ManeuverListResponsesOffsetPage = OffsetPage<ManeuverListResponse>
+export type ManeuverListResponsesOffsetPage = OffsetPage<ManeuverListResponse>;
 
 /**
  * Model representation of on-orbit object maneuver information for detected,
@@ -2724,7 +2755,7 @@ export namespace ManeuverListResponse {
   }
 }
 
-export type ManeuverCountResponse = string
+export type ManeuverCountResponse = string;
 
 /**
  * Model representation of on-orbit object maneuver information for detected,
@@ -5507,7 +5538,7 @@ export interface ManeuverQueryhelpResponse {
   uri?: string;
 }
 
-export type ManeuverTupleResponse = Array<ManeuverTupleResponse.ManeuverTupleResponseItem>
+export type ManeuverTupleResponse = Array<ManeuverTupleResponse.ManeuverTupleResponseItem>;
 
 export namespace ManeuverTupleResponse {
   /**
@@ -15925,7 +15956,7 @@ export declare namespace Maneuvers {
     type ManeuverCreateBulkParams as ManeuverCreateBulkParams,
     type ManeuverGetParams as ManeuverGetParams,
     type ManeuverTupleParams as ManeuverTupleParams,
-    type ManeuverUnvalidatedPublishParams as ManeuverUnvalidatedPublishParams
+    type ManeuverUnvalidatedPublishParams as ManeuverUnvalidatedPublishParams,
   };
 
   export {
@@ -15935,6 +15966,6 @@ export declare namespace Maneuvers {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

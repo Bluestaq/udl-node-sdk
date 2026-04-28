@@ -5,17 +5,17 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource solarArrayDetails', () => {
   test('create: only required params', async () => {
     const responsePromise = client.solarArrayDetails.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idSolarArray: 'SOLARARRAY-ID',
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idSolarArray: 'SOLARARRAY-ID',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,30 +27,30 @@ describe('resource solarArrayDetails', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.solarArrayDetails.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idSolarArray: 'SOLARARRAY-ID',
-    source: 'Bluestaq',
-    id: 'SOLARARRAYDETAILS-ID',
-    area: 123.4,
-    description: 'Example notes',
-    junctionTechnology: 'Triple',
-    manufacturerOrgId: 'MANUFACTURERORG-ID',
-    origin: 'THIRD_PARTY_DATASOURCE',
-    span: 123.4,
-    tags: ['TAG1', 'TAG2'],
-    technology: 'Ga-As',
-    type: 'U Shaped',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idSolarArray: 'SOLARARRAY-ID',
+      source: 'Bluestaq',
+      id: 'SOLARARRAYDETAILS-ID',
+      area: 123.4,
+      description: 'Example notes',
+      junctionTechnology: 'Triple',
+      manufacturerOrgId: 'MANUFACTURERORG-ID',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      span: 123.4,
+      tags: ['TAG1', 'TAG2'],
+      technology: 'Ga-As',
+      type: 'U Shaped',
+    });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.solarArrayDetails.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idSolarArray: 'SOLARARRAY-ID',
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idSolarArray: 'SOLARARRAY-ID',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -62,21 +62,21 @@ describe('resource solarArrayDetails', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.solarArrayDetails.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idSolarArray: 'SOLARARRAY-ID',
-    source: 'Bluestaq',
-    id: 'SOLARARRAYDETAILS-ID',
-    area: 123.4,
-    description: 'Example notes',
-    junctionTechnology: 'Triple',
-    manufacturerOrgId: 'MANUFACTURERORG-ID',
-    origin: 'THIRD_PARTY_DATASOURCE',
-    span: 123.4,
-    tags: ['TAG1', 'TAG2'],
-    technology: 'Ga-As',
-    type: 'U Shaped',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idSolarArray: 'SOLARARRAY-ID',
+      source: 'Bluestaq',
+      id: 'SOLARARRAYDETAILS-ID',
+      area: 123.4,
+      description: 'Example notes',
+      junctionTechnology: 'Triple',
+      manufacturerOrgId: 'MANUFACTURERORG-ID',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      span: 123.4,
+      tags: ['TAG1', 'TAG2'],
+      technology: 'Ga-As',
+      type: 'U Shaped',
+    });
   });
 
   test('list', async () => {
@@ -92,15 +92,18 @@ describe('resource solarArrayDetails', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.solarArrayDetails.list({
-    classificationMarking: 'classificationMarking',
-    dataMode: 'dataMode',
-    firstResult: 0,
-    maxResults: 0,
-    source: 'source',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.solarArrayDetails.list(
+        {
+          classificationMarking: 'classificationMarking',
+          dataMode: 'dataMode',
+          firstResult: 0,
+          maxResults: 0,
+          source: 'source',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -127,8 +130,12 @@ describe('resource solarArrayDetails', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.solarArrayDetails.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.solarArrayDetails.get(
+        'id',
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 });

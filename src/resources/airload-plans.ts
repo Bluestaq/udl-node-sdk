@@ -28,7 +28,11 @@ export class AirloadPlans extends APIResource {
    * ```
    */
   create(body: AirloadPlanCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/airloadplan', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/airloadplan', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -42,7 +46,11 @@ export class AirloadPlans extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, query: AirloadPlanRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AirloadplanFull> {
+  retrieve(
+    id: string,
+    query: AirloadPlanRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.AirloadplanFull> {
     return this._client.get(path`/udl/airloadplan/${id}`, { query, ...options });
   }
 
@@ -62,7 +70,11 @@ export class AirloadPlans extends APIResource {
    * ```
    */
   update(id: string, body: AirloadPlanUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/airloadplan/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/airloadplan/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -81,8 +93,14 @@ export class AirloadPlans extends APIResource {
    * }
    * ```
    */
-  list(query: AirloadPlanListParams, options?: RequestOptions): PagePromise<AirloadplanAbridgedsOffsetPage, AirloadplanAbridged> {
-    return this._client.getAPIList('/udl/airloadplan', OffsetPage<AirloadplanAbridged>, { query, ...options });
+  list(
+    query: AirloadPlanListParams,
+    options?: RequestOptions,
+  ): PagePromise<AirloadplanAbridgedsOffsetPage, AirloadplanAbridged> {
+    return this._client.getAPIList('/udl/airloadplan', OffsetPage<AirloadplanAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -96,7 +114,10 @@ export class AirloadPlans extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/airloadplan/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/airloadplan/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -114,7 +135,11 @@ export class AirloadPlans extends APIResource {
    * ```
    */
   count(query: AirloadPlanCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/airloadplan/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/airloadplan/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -153,7 +178,7 @@ export class AirloadPlans extends APIResource {
   }
 }
 
-export type AirloadplanAbridgedsOffsetPage = OffsetPage<AirloadplanAbridged>
+export type AirloadplanAbridgedsOffsetPage = OffsetPage<AirloadplanAbridged>;
 
 /**
  * Information related to how an aircraft is loaded with cargo, equipment, and
@@ -952,7 +977,7 @@ export namespace AirloadplanAbridged {
   }
 }
 
-export type AirloadPlanCountResponse = string
+export type AirloadPlanCountResponse = string;
 
 export interface AirloadPlanQueryhelpResponse {
   aodrSupported?: boolean;
@@ -978,7 +1003,7 @@ export interface AirloadPlanQueryhelpResponse {
   uri?: string;
 }
 
-export type AirloadPlanTupleResponse = Array<Shared.AirloadplanFull>
+export type AirloadPlanTupleResponse = Array<Shared.AirloadplanFull>;
 
 export interface AirloadPlanCreateParams {
   /**
@@ -2554,6 +2579,6 @@ export declare namespace AirloadPlans {
     type AirloadPlanUpdateParams as AirloadPlanUpdateParams,
     type AirloadPlanListParams as AirloadPlanListParams,
     type AirloadPlanCountParams as AirloadPlanCountParams,
-    type AirloadPlanTupleParams as AirloadPlanTupleParams
+    type AirloadPlanTupleParams as AirloadPlanTupleParams,
   };
 }

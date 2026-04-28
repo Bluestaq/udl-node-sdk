@@ -31,7 +31,11 @@ export class Equipment extends APIResource {
    * ```
    */
   create(body: EquipmentCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/equipment', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/equipment', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -43,7 +47,11 @@ export class Equipment extends APIResource {
    * const equipmentFull = await client.equipment.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: EquipmentRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<EquipmentFull> {
+  retrieve(
+    id: string,
+    query: EquipmentRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EquipmentFull> {
     return this._client.get(path`/udl/equipment/${id}`, { query, ...options });
   }
 
@@ -65,7 +73,11 @@ export class Equipment extends APIResource {
    * ```
    */
   update(id: string, body: EquipmentUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/equipment/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/equipment/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -82,7 +94,10 @@ export class Equipment extends APIResource {
    * }
    * ```
    */
-  list(query: EquipmentListParams | null | undefined = {}, options?: RequestOptions): PagePromise<EquipmentAbridgedsOffsetPage, EquipmentAbridged> {
+  list(
+    query: EquipmentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<EquipmentAbridgedsOffsetPage, EquipmentAbridged> {
     return this._client.getAPIList('/udl/equipment', OffsetPage<EquipmentAbridged>, { query, ...options });
   }
 
@@ -97,7 +112,10 @@ export class Equipment extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/equipment/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/equipment/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -113,7 +131,11 @@ export class Equipment extends APIResource {
    * ```
    */
   count(query: EquipmentCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/equipment/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/equipment/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -140,8 +162,12 @@ export class Equipment extends APIResource {
    * ```
    */
   createBulk(params: EquipmentCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/equipment/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/equipment/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -179,7 +205,7 @@ export class Equipment extends APIResource {
   }
 }
 
-export type EquipmentAbridgedsOffsetPage = OffsetPage<EquipmentAbridged>
+export type EquipmentAbridgedsOffsetPage = OffsetPage<EquipmentAbridged>;
 
 /**
  * Properties and characteristics of equipment that can be associated with a site
@@ -1148,7 +1174,7 @@ export interface EquipmentFull {
   wac?: string;
 }
 
-export type EquipmentCountResponse = string
+export type EquipmentCountResponse = string;
 
 export interface EquipmentQueryHelpResponse {
   aodrSupported?: boolean;
@@ -1174,7 +1200,7 @@ export interface EquipmentQueryHelpResponse {
   uri?: string;
 }
 
-export type EquipmentTupleResponse = Array<EquipmentFull>
+export type EquipmentTupleResponse = Array<EquipmentFull>;
 
 export interface EquipmentCreateParams {
   /**
@@ -2102,8 +2128,7 @@ export interface EquipmentUpdateParams {
   wac?: string;
 }
 
-export interface EquipmentListParams extends OffsetPageParams {
-}
+export interface EquipmentListParams extends OffsetPageParams {}
 
 export interface EquipmentCountParams {
   firstResult?: number;
@@ -2609,6 +2634,6 @@ export declare namespace Equipment {
     type EquipmentListParams as EquipmentListParams,
     type EquipmentCountParams as EquipmentCountParams,
     type EquipmentCreateBulkParams as EquipmentCreateBulkParams,
-    type EquipmentTupleParams as EquipmentTupleParams
+    type EquipmentTupleParams as EquipmentTupleParams,
   };
 }

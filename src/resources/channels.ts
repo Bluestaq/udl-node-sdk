@@ -30,7 +30,11 @@ export class Channels extends APIResource {
    * ```
    */
   create(body: ChannelCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/channel', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/channel', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -43,7 +47,11 @@ export class Channels extends APIResource {
    * const channelFull = await client.channels.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: ChannelRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.ChannelFull> {
+  retrieve(
+    id: string,
+    query: ChannelRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.ChannelFull> {
     return this._client.get(path`/udl/channel/${id}`, { query, ...options });
   }
 
@@ -65,7 +73,11 @@ export class Channels extends APIResource {
    * ```
    */
   update(id: string, body: ChannelUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/channel/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/channel/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -82,7 +94,10 @@ export class Channels extends APIResource {
    * }
    * ```
    */
-  list(query: ChannelListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ChannelAbridgedsOffsetPage, ChannelAbridged> {
+  list(
+    query: ChannelListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ChannelAbridgedsOffsetPage, ChannelAbridged> {
     return this._client.getAPIList('/udl/channel', OffsetPage<ChannelAbridged>, { query, ...options });
   }
 
@@ -98,7 +113,10 @@ export class Channels extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/channel/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/channel/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -114,7 +132,11 @@ export class Channels extends APIResource {
    * ```
    */
   count(query: ChannelCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/channel/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/channel/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -152,7 +174,7 @@ export class Channels extends APIResource {
   }
 }
 
-export type ChannelAbridgedsOffsetPage = OffsetPage<ChannelAbridged>
+export type ChannelAbridgedsOffsetPage = OffsetPage<ChannelAbridged>;
 
 /**
  * Channel information on a particular transponder.
@@ -287,7 +309,7 @@ export interface ChannelAbridged {
   vpid?: string;
 }
 
-export type ChannelCountResponse = string
+export type ChannelCountResponse = string;
 
 export interface ChannelQueryhelpResponse {
   aodrSupported?: boolean;
@@ -313,7 +335,7 @@ export interface ChannelQueryhelpResponse {
   uri?: string;
 }
 
-export type ChannelTupleResponse = Array<Shared.ChannelFull>
+export type ChannelTupleResponse = Array<Shared.ChannelFull>;
 
 export interface ChannelCreateParams {
   /**
@@ -547,8 +569,7 @@ export interface ChannelUpdateParams {
   vpid?: string;
 }
 
-export interface ChannelListParams extends OffsetPageParams {
-}
+export interface ChannelListParams extends OffsetPageParams {}
 
 export interface ChannelCountParams {
   firstResult?: number;
@@ -582,6 +603,6 @@ export declare namespace Channels {
     type ChannelUpdateParams as ChannelUpdateParams,
     type ChannelListParams as ChannelListParams,
     type ChannelCountParams as ChannelCountParams,
-    type ChannelTupleParams as ChannelTupleParams
+    type ChannelTupleParams as ChannelTupleParams,
   };
 }

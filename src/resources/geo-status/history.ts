@@ -27,8 +27,14 @@ export class History extends APIResource {
    * }
    * ```
    */
-  list(query: HistoryListParams, options?: RequestOptions): PagePromise<GeoStatusFullsOffsetPage, GeoStatusFull> {
-    return this._client.getAPIList('/udl/geostatus/history', OffsetPage<GeoStatusFull>, { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<GeoStatusFullsOffsetPage, GeoStatusFull> {
+    return this._client.getAPIList('/udl/geostatus/history', OffsetPage<GeoStatusFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -45,7 +51,11 @@ export class History extends APIResource {
    * ```
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/geostatus/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.get('/udl/geostatus/history/aodr', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -63,11 +73,15 @@ export class History extends APIResource {
    * ```
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/geostatus/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/geostatus/history/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 }
 
-export type GeoStatusFullsOffsetPage = OffsetPage<GeoStatusFull>
+export type GeoStatusFullsOffsetPage = OffsetPage<GeoStatusFull>;
 
 /**
  * Information for the specified on-orbit GEO spacecraft, including status,
@@ -245,7 +259,7 @@ export interface GeoStatusFull {
   updatedBy?: string;
 }
 
-export type HistoryCountResponse = string
+export type HistoryCountResponse = string;
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -320,6 +334,6 @@ export declare namespace History {
     type GeoStatusFullsOffsetPage as GeoStatusFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

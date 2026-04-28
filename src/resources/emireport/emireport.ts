@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -37,7 +45,11 @@ export class Emireport extends APIResource {
    * ```
    */
   create(body: EmireportCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/emireport', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/emireport', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -56,8 +68,14 @@ export class Emireport extends APIResource {
    * }
    * ```
    */
-  list(query: EmireportListParams, options?: RequestOptions): PagePromise<EmireportListResponsesOffsetPage, EmireportListResponse> {
-    return this._client.getAPIList('/udl/emireport', OffsetPage<EmireportListResponse>, { query, ...options });
+  list(
+    query: EmireportListParams,
+    options?: RequestOptions,
+  ): PagePromise<EmireportListResponsesOffsetPage, EmireportListResponse> {
+    return this._client.getAPIList('/udl/emireport', OffsetPage<EmireportListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -75,7 +93,11 @@ export class Emireport extends APIResource {
    * ```
    */
   count(query: EmireportCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/emireport/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/emireport/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -105,8 +127,12 @@ export class Emireport extends APIResource {
    * ```
    */
   createBulk(params: EmireportCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/emireport/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/emireport/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -118,7 +144,11 @@ export class Emireport extends APIResource {
    * const emireport = await client.emireport.get('id');
    * ```
    */
-  get(id: string, query: EmireportGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<EmireportGetResponse> {
+  get(
+    id: string,
+    query: EmireportGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EmireportGetResponse> {
     return this._client.get(path`/udl/emireport/${id}`, { query, ...options });
   }
 
@@ -183,12 +213,16 @@ export class Emireport extends APIResource {
    * ```
    */
   unvalidatedPublish(params: EmireportUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-emireport', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-emireport', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type EmireportListResponsesOffsetPage = OffsetPage<EmireportListResponse>
+export type EmireportListResponsesOffsetPage = OffsetPage<EmireportListResponse>;
 
 /**
  * The EMI Report service supports the reporting, response, and
@@ -643,7 +677,7 @@ export interface EmireportListResponse {
   victimReaction?: string;
 }
 
-export type EmireportCountResponse = string
+export type EmireportCountResponse = string;
 
 /**
  * The EMI Report service supports the reporting, response, and
@@ -1136,7 +1170,7 @@ export interface EmireportQueryhelpResponse {
   uri?: string;
 }
 
-export type EmireportTupleResponse = Array<EmireportTupleResponse.EmireportTupleResponseItem>
+export type EmireportTupleResponse = Array<EmireportTupleResponse.EmireportTupleResponseItem>;
 
 export namespace EmireportTupleResponse {
   /**
@@ -2967,7 +3001,7 @@ export declare namespace Emireport {
     type EmireportCreateBulkParams as EmireportCreateBulkParams,
     type EmireportGetParams as EmireportGetParams,
     type EmireportTupleParams as EmireportTupleParams,
-    type EmireportUnvalidatedPublishParams as EmireportUnvalidatedPublishParams
+    type EmireportUnvalidatedPublishParams as EmireportUnvalidatedPublishParams,
   };
 
   export {
@@ -2977,6 +3011,6 @@ export declare namespace Emireport {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

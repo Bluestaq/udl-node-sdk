@@ -56,7 +56,7 @@ export interface AttitudeDataQueryHelpResponse {
   uri?: string;
 }
 
-export type AttitudeDataTupleResponse = Array<Shared.AttitudedataFull>
+export type AttitudeDataTupleResponse = Array<Shared.AttitudedataFull>;
 
 export interface AttitudeDataTupleParams {
   /**
@@ -81,6 +81,6 @@ export declare namespace AttitudeData {
   export {
     type AttitudeDataQueryHelpResponse as AttitudeDataQueryHelpResponse,
     type AttitudeDataTupleResponse as AttitudeDataTupleResponse,
-    type AttitudeDataTupleParams as AttitudeDataTupleParams
+    type AttitudeDataTupleParams as AttitudeDataTupleParams,
   };
 }

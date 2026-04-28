@@ -3,7 +3,13 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { GnssObservationSetFull, GnssObservationSetFullsOffsetPage, History, HistoryAodrParams, HistoryListParams } from './history';
+import {
+  GnssObservationSetFull,
+  GnssObservationSetFullsOffsetPage,
+  History,
+  HistoryAodrParams,
+  HistoryListParams,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -21,8 +27,14 @@ export class GnssObservationset extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(query: GnssObservationsetListParams, options?: RequestOptions): PagePromise<GnssObservationsetListResponsesOffsetPage, GnssObservationsetListResponse> {
-    return this._client.getAPIList('/udl/gnssobservationset', OffsetPage<GnssObservationsetListResponse>, { query, ...options });
+  list(
+    query: GnssObservationsetListParams,
+    options?: RequestOptions,
+  ): PagePromise<GnssObservationsetListResponsesOffsetPage, GnssObservationsetListResponse> {
+    return this._client.getAPIList('/udl/gnssobservationset', OffsetPage<GnssObservationsetListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -33,7 +45,11 @@ export class GnssObservationset extends APIResource {
    * valid/required query parameter information.
    */
   count(query: GnssObservationsetCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/gnssobservationset/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/gnssobservationset/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -44,8 +60,12 @@ export class GnssObservationset extends APIResource {
    * setting up a permanent feed through an alternate mechanism.
    */
   createBulk(params: GnssObservationsetCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/gnssobservationset/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/gnssobservationset/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -66,7 +86,10 @@ export class GnssObservationset extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: GnssObservationsetTupleParams, options?: RequestOptions): APIPromise<GnssObservationsetTupleResponse> {
+  tuple(
+    query: GnssObservationsetTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<GnssObservationsetTupleResponse> {
     return this._client.get('/udl/gnssobservationset/tuple', { query, ...options });
   }
 
@@ -76,13 +99,20 @@ export class GnssObservationset extends APIResource {
    * is intended to be used for automated feeds into UDL. A specific role is required
    * to perform this service operation. Please contact the UDL team for assistance.
    */
-  unvalidatedPublish(params: GnssObservationsetUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-gnssobset', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: GnssObservationsetUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-gnssobset', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type GnssObservationsetListResponsesOffsetPage = OffsetPage<GnssObservationsetListResponse>
+export type GnssObservationsetListResponsesOffsetPage = OffsetPage<GnssObservationsetListResponse>;
 
 /**
  * Set of GNSSObservation data.
@@ -404,7 +434,7 @@ export namespace GnssObservationsetListResponse {
   }
 }
 
-export type GnssObservationsetCountResponse = string
+export type GnssObservationsetCountResponse = string;
 
 export interface GnssObservationsetQueryhelpResponse {
   aodrSupported?: boolean;
@@ -430,7 +460,7 @@ export interface GnssObservationsetQueryhelpResponse {
   uri?: string;
 }
 
-export type GnssObservationsetTupleResponse = Array<HistoryAPI.GnssObservationSetFull>
+export type GnssObservationsetTupleResponse = Array<HistoryAPI.GnssObservationSetFull>;
 
 export interface GnssObservationsetListParams extends OffsetPageParams {
   /**
@@ -1096,7 +1126,7 @@ export declare namespace GnssObservationset {
     type GnssObservationsetCountParams as GnssObservationsetCountParams,
     type GnssObservationsetCreateBulkParams as GnssObservationsetCreateBulkParams,
     type GnssObservationsetTupleParams as GnssObservationsetTupleParams,
-    type GnssObservationsetUnvalidatedPublishParams as GnssObservationsetUnvalidatedPublishParams
+    type GnssObservationsetUnvalidatedPublishParams as GnssObservationsetUnvalidatedPublishParams,
   };
 
   export {
@@ -1104,6 +1134,6 @@ export declare namespace GnssObservationset {
     type GnssObservationSetFull as GnssObservationSetFull,
     type GnssObservationSetFullsOffsetPage as GnssObservationSetFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
-    type HistoryAodrParams as HistoryAodrParams
+    type HistoryAodrParams as HistoryAodrParams,
   };
 }

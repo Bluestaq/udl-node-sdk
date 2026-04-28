@@ -14,6 +14,6 @@ export declare namespace GnssObservations {
   export {
     History as History,
     type HistoryCountResponse as HistoryCountResponse,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

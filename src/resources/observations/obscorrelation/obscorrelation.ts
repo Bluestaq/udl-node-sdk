@@ -3,7 +3,15 @@
 import { APIResource } from '../../../core/resource';
 import * as Shared from '../../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
@@ -37,7 +45,11 @@ export class Obscorrelation extends APIResource {
    * ```
    */
   create(body: ObscorrelationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/obscorrelation', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/obscorrelation', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -50,7 +62,11 @@ export class Obscorrelation extends APIResource {
    *   await client.observations.obscorrelation.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: ObscorrelationRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<ObscorrelationRetrieveResponse> {
+  retrieve(
+    id: string,
+    query: ObscorrelationRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ObscorrelationRetrieveResponse> {
     return this._client.get(path`/udl/obscorrelation/${id}`, { query, ...options });
   }
 
@@ -70,8 +86,14 @@ export class Obscorrelation extends APIResource {
    * }
    * ```
    */
-  list(query: ObscorrelationListParams, options?: RequestOptions): PagePromise<ObscorrelationListResponsesOffsetPage, ObscorrelationListResponse> {
-    return this._client.getAPIList('/udl/obscorrelation', OffsetPage<ObscorrelationListResponse>, { query, ...options });
+  list(
+    query: ObscorrelationListParams,
+    options?: RequestOptions,
+  ): PagePromise<ObscorrelationListResponsesOffsetPage, ObscorrelationListResponse> {
+    return this._client.getAPIList('/udl/obscorrelation', OffsetPage<ObscorrelationListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -90,7 +112,11 @@ export class Obscorrelation extends APIResource {
    * ```
    */
   count(query: ObscorrelationCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/obscorrelation/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/obscorrelation/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -121,8 +147,12 @@ export class Obscorrelation extends APIResource {
    * ```
    */
   createBulk(params: ObscorrelationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/obscorrelation/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/obscorrelation/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -190,13 +220,20 @@ export class Obscorrelation extends APIResource {
    * );
    * ```
    */
-  unvalidatedPublish(params: ObscorrelationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-obscorrelation', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: ObscorrelationUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-obscorrelation', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type ObscorrelationListResponsesOffsetPage = OffsetPage<ObscorrelationListResponse>
+export type ObscorrelationListResponsesOffsetPage = OffsetPage<ObscorrelationListResponse>;
 
 /**
  * Model representation supporting post-pass correlation of UCTs and re-correlation
@@ -607,7 +644,7 @@ export interface ObscorrelationListResponse {
   transactionId?: string;
 }
 
-export type ObscorrelationCountResponse = string
+export type ObscorrelationCountResponse = string;
 
 export interface ObscorrelationQueryHelpResponse {
   aodrSupported?: boolean;
@@ -633,7 +670,7 @@ export interface ObscorrelationQueryHelpResponse {
   uri?: string;
 }
 
-export type ObscorrelationTupleResponse = Array<ObscorrelationTupleResponse.ObscorrelationTupleResponseItem>
+export type ObscorrelationTupleResponse = Array<ObscorrelationTupleResponse.ObscorrelationTupleResponseItem>;
 
 export namespace ObscorrelationTupleResponse {
   /**
@@ -1453,7 +1490,7 @@ export declare namespace Obscorrelation {
     type ObscorrelationCountParams as ObscorrelationCountParams,
     type ObscorrelationCreateBulkParams as ObscorrelationCreateBulkParams,
     type ObscorrelationTupleParams as ObscorrelationTupleParams,
-    type ObscorrelationUnvalidatedPublishParams as ObscorrelationUnvalidatedPublishParams
+    type ObscorrelationUnvalidatedPublishParams as ObscorrelationUnvalidatedPublishParams,
   };
 
   export {
@@ -1463,6 +1500,6 @@ export declare namespace Obscorrelation {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

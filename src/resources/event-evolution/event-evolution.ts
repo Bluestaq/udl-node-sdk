@@ -3,7 +3,13 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -34,7 +40,11 @@ export class EventEvolution extends APIResource {
    * ```
    */
   create(body: EventEvolutionCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/eventevolution', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/eventevolution', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -47,7 +57,11 @@ export class EventEvolution extends APIResource {
    *   await client.eventEvolution.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: EventEvolutionRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.EventEvolutionFull> {
+  retrieve(
+    id: string,
+    query: EventEvolutionRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.EventEvolutionFull> {
     return this._client.get(path`/udl/eventevolution/${id}`, { query, ...options });
   }
 
@@ -65,8 +79,14 @@ export class EventEvolution extends APIResource {
    * }
    * ```
    */
-  list(query: EventEvolutionListParams | null | undefined = {}, options?: RequestOptions): PagePromise<EventEvolutionListResponsesOffsetPage, EventEvolutionListResponse> {
-    return this._client.getAPIList('/udl/eventevolution', OffsetPage<EventEvolutionListResponse>, { query, ...options });
+  list(
+    query: EventEvolutionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<EventEvolutionListResponsesOffsetPage, EventEvolutionListResponse> {
+    return this._client.getAPIList('/udl/eventevolution', OffsetPage<EventEvolutionListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -81,8 +101,15 @@ export class EventEvolution extends APIResource {
    * const response = await client.eventEvolution.count();
    * ```
    */
-  count(query: EventEvolutionCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/eventevolution/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: EventEvolutionCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/eventevolution/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -110,8 +137,12 @@ export class EventEvolution extends APIResource {
    * ```
    */
   createBulk(params: EventEvolutionCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/eventevolution/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/eventevolution/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -169,13 +200,20 @@ export class EventEvolution extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(params: EventEvolutionUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-eventevolution', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: EventEvolutionUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-eventevolution', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type EventEvolutionListResponsesOffsetPage = OffsetPage<EventEvolutionListResponse>
+export type EventEvolutionListResponsesOffsetPage = OffsetPage<EventEvolutionListResponse>;
 
 /**
  * Event Evolution is a unique service supporting the association of UDL records of
@@ -393,7 +431,7 @@ export interface EventEvolutionListResponse {
   url?: Array<string>;
 }
 
-export type EventEvolutionCountResponse = string
+export type EventEvolutionCountResponse = string;
 
 export interface EventEvolutionQueryhelpResponse {
   aodrSupported?: boolean;
@@ -419,7 +457,7 @@ export interface EventEvolutionQueryhelpResponse {
   uri?: string;
 }
 
-export type EventEvolutionTupleResponse = Array<Shared.EventEvolutionFull>
+export type EventEvolutionTupleResponse = Array<Shared.EventEvolutionFull>;
 
 export interface EventEvolutionCreateParams {
   /**
@@ -1130,7 +1168,7 @@ export declare namespace EventEvolution {
     type EventEvolutionCountParams as EventEvolutionCountParams,
     type EventEvolutionCreateBulkParams as EventEvolutionCreateBulkParams,
     type EventEvolutionTupleParams as EventEvolutionTupleParams,
-    type EventEvolutionUnvalidatedPublishParams as EventEvolutionUnvalidatedPublishParams
+    type EventEvolutionUnvalidatedPublishParams as EventEvolutionUnvalidatedPublishParams,
   };
 
   export {
@@ -1138,6 +1176,6 @@ export declare namespace EventEvolution {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

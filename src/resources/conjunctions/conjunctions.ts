@@ -28,7 +28,11 @@ export class Conjunctions extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, query: ConjunctionRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.ConjunctionFull> {
+  retrieve(
+    id: string,
+    query: ConjunctionRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.ConjunctionFull> {
     return this._client.get(path`/udl/conjunction/${id}`, { query, ...options });
   }
 
@@ -48,8 +52,14 @@ export class Conjunctions extends APIResource {
    * }
    * ```
    */
-  list(query: ConjunctionListParams, options?: RequestOptions): PagePromise<ConjunctionAbridgedsOffsetPage, ConjunctionAbridged> {
-    return this._client.getAPIList('/udl/conjunction', OffsetPage<ConjunctionAbridged>, { query, ...options });
+  list(
+    query: ConjunctionListParams,
+    options?: RequestOptions,
+  ): PagePromise<ConjunctionAbridgedsOffsetPage, ConjunctionAbridged> {
+    return this._client.getAPIList('/udl/conjunction', OffsetPage<ConjunctionAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -67,7 +77,11 @@ export class Conjunctions extends APIResource {
    * ```
    */
   count(query: ConjunctionCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/conjunction/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/conjunction/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -88,8 +102,13 @@ export class Conjunctions extends APIResource {
    * ```
    */
   createUdl(params: ConjunctionCreateUdlParams, options?: RequestOptions): APIPromise<void> {
-    const { convertPosVel, ...body } = params
-    return this._client.post('/udl/conjunction', { query: { convertPosVel }, body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { convertPosVel, ...body } = params;
+    return this._client.post('/udl/conjunction', {
+      query: { convertPosVel },
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -116,8 +135,12 @@ export class Conjunctions extends APIResource {
    * ```
    */
   createBulk(params: ConjunctionCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/conjunction/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/conjunction/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -134,7 +157,10 @@ export class Conjunctions extends APIResource {
    *   });
    * ```
    */
-  getHistory(query: ConjunctionGetHistoryParams, options?: RequestOptions): APIPromise<ConjunctionGetHistoryResponse> {
+  getHistory(
+    query: ConjunctionGetHistoryParams,
+    options?: RequestOptions,
+  ): APIPromise<ConjunctionGetHistoryResponse> {
     return this._client.get('/udl/conjunction/history', { query, ...options });
   }
 
@@ -194,9 +220,16 @@ export class Conjunctions extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(params: ConjunctionUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-conjunction', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: ConjunctionUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-conjunction', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -222,13 +255,22 @@ export class Conjunctions extends APIResource {
    * );
    * ```
    */
-  uploadConjunctionDataMessage(fileContent: Uploadable, params: ConjunctionUploadConjunctionDataMessageParams, options?: RequestOptions): APIPromise<void> {
-    const { classification, dataMode, filename, source, tags } = params
-    return this._client.post('/filedrop/cdms', { body: fileContent, query: { classification, dataMode, filename, source, tags }, ...options, headers: buildHeaders([{'Content-Type': 'application/zip', Accept: '*/*'}, options?.headers]) });
+  uploadConjunctionDataMessage(
+    fileContent: Uploadable,
+    params: ConjunctionUploadConjunctionDataMessageParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { classification, dataMode, filename, source, tags } = params;
+    return this._client.post('/filedrop/cdms', {
+      body: fileContent,
+      query: { classification, dataMode, filename, source, tags },
+      ...options,
+      headers: buildHeaders([{ 'Content-Type': 'application/zip', Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type ConjunctionAbridgedsOffsetPage = OffsetPage<ConjunctionAbridged>
+export type ConjunctionAbridgedsOffsetPage = OffsetPage<ConjunctionAbridged>;
 
 /**
  * Stores the results of a particular Conjunction Assessment (CA) run.
@@ -2045,9 +2087,9 @@ export namespace ConjunctionAbridged {
   }
 }
 
-export type ConjunctionCountResponse = string
+export type ConjunctionCountResponse = string;
 
-export type ConjunctionGetHistoryResponse = Array<Shared.ConjunctionFull>
+export type ConjunctionGetHistoryResponse = Array<Shared.ConjunctionFull>;
 
 export interface ConjunctionQueryhelpResponse {
   aodrSupported?: boolean;
@@ -2073,7 +2115,7 @@ export interface ConjunctionQueryhelpResponse {
   uri?: string;
 }
 
-export type ConjunctionTupleResponse = Array<Shared.ConjunctionFull>
+export type ConjunctionTupleResponse = Array<Shared.ConjunctionFull>;
 
 export interface ConjunctionRetrieveParams {
   firstResult?: number;
@@ -7611,13 +7653,13 @@ export declare namespace Conjunctions {
     type ConjunctionGetHistoryParams as ConjunctionGetHistoryParams,
     type ConjunctionTupleParams as ConjunctionTupleParams,
     type ConjunctionUnvalidatedPublishParams as ConjunctionUnvalidatedPublishParams,
-    type ConjunctionUploadConjunctionDataMessageParams as ConjunctionUploadConjunctionDataMessageParams
+    type ConjunctionUploadConjunctionDataMessageParams as ConjunctionUploadConjunctionDataMessageParams,
   };
 
   export {
     History as History,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

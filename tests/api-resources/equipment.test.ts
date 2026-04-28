@@ -5,19 +5,19 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource equipment', () => {
   test('create: only required params', async () => {
     const responsePromise = client.equipment.create({
-    classificationMarking: 'U',
-    countryCode: 'IQ',
-    dataMode: 'TEST',
-    lat: 39.019242,
-    lon: -104.251659,
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      countryCode: 'IQ',
+      dataMode: 'TEST',
+      lat: 39.019242,
+      lon: -104.251659,
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -29,58 +29,58 @@ describe('resource equipment', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.equipment.create({
-    classificationMarking: 'U',
-    countryCode: 'IQ',
-    dataMode: 'TEST',
-    lat: 39.019242,
-    lon: -104.251659,
-    source: 'Bluestaq',
-    id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
-    airDefArea: 'AL006',
-    allegiance: 'OTHR',
-    altAllegiance: 'HL',
-    altCountryCode: 'IZ',
-    altEqpId: 'ORIG-EQP-ID',
-    classRating: '1',
-    condition: 'RDY',
-    conditionAvail: 'A',
-    coord: '340000000N0430000000E',
-    coordDatum: 'WGS',
-    coordDerivAcc: 12.345,
-    elevMsl: 123.45,
-    elevMslConfLvl: 50,
-    elevMslDerivAcc: 12.34,
-    eqpCode: 'X12345',
-    eqpIdNum: '001',
-    eval: 7,
-    fpa: 'NOB',
-    function: 'OCC',
-    functPrimary: 'JG',
-    geoidalMslSep: 12.34,
-    ident: 'FRIEND',
-    idOperatingUnit: 'UNIT-ID',
-    idParentEquipment: 'PARENT-EQUIPMENT-ID',
-    idSite: 'SITE-ID',
-    locReason: 'GR',
-    milGrid: '4QFJ12345678',
-    milGridSys: 'UTM',
-    nomen: 'AMPHIBIOUS WARFARE SHIP',
-    operAreaPrimary: 'Territorial Sea',
-    operStatus: 'OPR',
-    origin: 'THIRD_PARTY_DATASOURCE',
-    polSubdiv: 'IZ07',
-    qtyOH: 7,
-    recStatus: 'A',
-    referenceDoc: 'Provider Reference Documentation',
-    resProd: 'RT',
-    reviewDate: '2008-06-10',
-    seqNum: 5,
-    srcIds: ['SRC_ID_1'],
-    srcTyps: ['AIRCRAFT'],
-    symCode: 'SOGPU----------',
-    utm: '19P4390691376966',
-    wac: '0427',
-  });
+      classificationMarking: 'U',
+      countryCode: 'IQ',
+      dataMode: 'TEST',
+      lat: 39.019242,
+      lon: -104.251659,
+      source: 'Bluestaq',
+      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      airDefArea: 'AL006',
+      allegiance: 'OTHR',
+      altAllegiance: 'HL',
+      altCountryCode: 'IZ',
+      altEqpId: 'ORIG-EQP-ID',
+      classRating: '1',
+      condition: 'RDY',
+      conditionAvail: 'A',
+      coord: '340000000N0430000000E',
+      coordDatum: 'WGS',
+      coordDerivAcc: 12.345,
+      elevMsl: 123.45,
+      elevMslConfLvl: 50,
+      elevMslDerivAcc: 12.34,
+      eqpCode: 'X12345',
+      eqpIdNum: '001',
+      eval: 7,
+      fpa: 'NOB',
+      function: 'OCC',
+      functPrimary: 'JG',
+      geoidalMslSep: 12.34,
+      ident: 'FRIEND',
+      idOperatingUnit: 'UNIT-ID',
+      idParentEquipment: 'PARENT-EQUIPMENT-ID',
+      idSite: 'SITE-ID',
+      locReason: 'GR',
+      milGrid: '4QFJ12345678',
+      milGridSys: 'UTM',
+      nomen: 'AMPHIBIOUS WARFARE SHIP',
+      operAreaPrimary: 'Territorial Sea',
+      operStatus: 'OPR',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      polSubdiv: 'IZ07',
+      qtyOH: 7,
+      recStatus: 'A',
+      referenceDoc: 'Provider Reference Documentation',
+      resProd: 'RT',
+      reviewDate: '2008-06-10',
+      seqNum: 5,
+      srcIds: ['SRC_ID_1'],
+      srcTyps: ['AIRCRAFT'],
+      symCode: 'SOGPU----------',
+      utm: '19P4390691376966',
+      wac: '0427',
+    });
   });
 
   test('retrieve', async () => {
@@ -96,20 +96,24 @@ describe('resource equipment', () => {
 
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.equipment.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.equipment.retrieve(
+        'id',
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.equipment.update('id', {
-    classificationMarking: 'U',
-    countryCode: 'IQ',
-    dataMode: 'TEST',
-    lat: 39.019242,
-    lon: -104.251659,
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      countryCode: 'IQ',
+      dataMode: 'TEST',
+      lat: 39.019242,
+      lon: -104.251659,
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -121,58 +125,58 @@ describe('resource equipment', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.equipment.update('id', {
-    classificationMarking: 'U',
-    countryCode: 'IQ',
-    dataMode: 'TEST',
-    lat: 39.019242,
-    lon: -104.251659,
-    source: 'Bluestaq',
-    id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
-    airDefArea: 'AL006',
-    allegiance: 'OTHR',
-    altAllegiance: 'HL',
-    altCountryCode: 'IZ',
-    altEqpId: 'ORIG-EQP-ID',
-    classRating: '1',
-    condition: 'RDY',
-    conditionAvail: 'A',
-    coord: '340000000N0430000000E',
-    coordDatum: 'WGS',
-    coordDerivAcc: 12.345,
-    elevMsl: 123.45,
-    elevMslConfLvl: 50,
-    elevMslDerivAcc: 12.34,
-    eqpCode: 'X12345',
-    eqpIdNum: '001',
-    eval: 7,
-    fpa: 'NOB',
-    function: 'OCC',
-    functPrimary: 'JG',
-    geoidalMslSep: 12.34,
-    ident: 'FRIEND',
-    idOperatingUnit: 'UNIT-ID',
-    idParentEquipment: 'PARENT-EQUIPMENT-ID',
-    idSite: 'SITE-ID',
-    locReason: 'GR',
-    milGrid: '4QFJ12345678',
-    milGridSys: 'UTM',
-    nomen: 'AMPHIBIOUS WARFARE SHIP',
-    operAreaPrimary: 'Territorial Sea',
-    operStatus: 'OPR',
-    origin: 'THIRD_PARTY_DATASOURCE',
-    polSubdiv: 'IZ07',
-    qtyOH: 7,
-    recStatus: 'A',
-    referenceDoc: 'Provider Reference Documentation',
-    resProd: 'RT',
-    reviewDate: '2008-06-10',
-    seqNum: 5,
-    srcIds: ['SRC_ID_1'],
-    srcTyps: ['AIRCRAFT'],
-    symCode: 'SOGPU----------',
-    utm: '19P4390691376966',
-    wac: '0427',
-  });
+      classificationMarking: 'U',
+      countryCode: 'IQ',
+      dataMode: 'TEST',
+      lat: 39.019242,
+      lon: -104.251659,
+      source: 'Bluestaq',
+      id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+      airDefArea: 'AL006',
+      allegiance: 'OTHR',
+      altAllegiance: 'HL',
+      altCountryCode: 'IZ',
+      altEqpId: 'ORIG-EQP-ID',
+      classRating: '1',
+      condition: 'RDY',
+      conditionAvail: 'A',
+      coord: '340000000N0430000000E',
+      coordDatum: 'WGS',
+      coordDerivAcc: 12.345,
+      elevMsl: 123.45,
+      elevMslConfLvl: 50,
+      elevMslDerivAcc: 12.34,
+      eqpCode: 'X12345',
+      eqpIdNum: '001',
+      eval: 7,
+      fpa: 'NOB',
+      function: 'OCC',
+      functPrimary: 'JG',
+      geoidalMslSep: 12.34,
+      ident: 'FRIEND',
+      idOperatingUnit: 'UNIT-ID',
+      idParentEquipment: 'PARENT-EQUIPMENT-ID',
+      idSite: 'SITE-ID',
+      locReason: 'GR',
+      milGrid: '4QFJ12345678',
+      milGridSys: 'UTM',
+      nomen: 'AMPHIBIOUS WARFARE SHIP',
+      operAreaPrimary: 'Territorial Sea',
+      operStatus: 'OPR',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      polSubdiv: 'IZ07',
+      qtyOH: 7,
+      recStatus: 'A',
+      referenceDoc: 'Provider Reference Documentation',
+      resProd: 'RT',
+      reviewDate: '2008-06-10',
+      seqNum: 5,
+      srcIds: ['SRC_ID_1'],
+      srcTyps: ['AIRCRAFT'],
+      symCode: 'SOGPU----------',
+      utm: '19P4390691376966',
+      wac: '0427',
+    });
   });
 
   test('list', async () => {
@@ -188,9 +192,9 @@ describe('resource equipment', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.equipment.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.equipment.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -217,20 +221,24 @@ describe('resource equipment', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.equipment.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.equipment.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.equipment.createBulk({ body: [{
-    classificationMarking: 'U',
-    countryCode: 'IQ',
-    dataMode: 'TEST',
-    lat: 39.019242,
-    lon: -104.251659,
-    source: 'Bluestaq',
-  }] });
+    const responsePromise = client.equipment.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          countryCode: 'IQ',
+          dataMode: 'TEST',
+          lat: 39.019242,
+          lon: -104.251659,
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -241,59 +249,63 @@ describe('resource equipment', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.equipment.createBulk({ body: [{
-    classificationMarking: 'U',
-    countryCode: 'IQ',
-    dataMode: 'TEST',
-    lat: 39.019242,
-    lon: -104.251659,
-    source: 'Bluestaq',
-    id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
-    airDefArea: 'AL006',
-    allegiance: 'OTHR',
-    altAllegiance: 'HL',
-    altCountryCode: 'IZ',
-    altEqpId: 'ORIG-EQP-ID',
-    classRating: '1',
-    condition: 'RDY',
-    conditionAvail: 'A',
-    coord: '340000000N0430000000E',
-    coordDatum: 'WGS',
-    coordDerivAcc: 12.345,
-    elevMsl: 123.45,
-    elevMslConfLvl: 50,
-    elevMslDerivAcc: 12.34,
-    eqpCode: 'X12345',
-    eqpIdNum: '001',
-    eval: 7,
-    fpa: 'NOB',
-    function: 'OCC',
-    functPrimary: 'JG',
-    geoidalMslSep: 12.34,
-    ident: 'FRIEND',
-    idOperatingUnit: 'UNIT-ID',
-    idParentEquipment: 'PARENT-EQUIPMENT-ID',
-    idSite: 'SITE-ID',
-    locReason: 'GR',
-    milGrid: '4QFJ12345678',
-    milGridSys: 'UTM',
-    nomen: 'AMPHIBIOUS WARFARE SHIP',
-    operAreaPrimary: 'Territorial Sea',
-    operStatus: 'OPR',
-    origin: 'THIRD_PARTY_DATASOURCE',
-    polSubdiv: 'IZ07',
-    qtyOH: 7,
-    recStatus: 'A',
-    referenceDoc: 'Provider Reference Documentation',
-    resProd: 'RT',
-    reviewDate: '2008-06-10',
-    seqNum: 5,
-    srcIds: ['SRC_ID_1'],
-    srcTyps: ['AIRCRAFT'],
-    symCode: 'SOGPU----------',
-    utm: '19P4390691376966',
-    wac: '0427',
-  }] });
+    const response = await client.equipment.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          countryCode: 'IQ',
+          dataMode: 'TEST',
+          lat: 39.019242,
+          lon: -104.251659,
+          source: 'Bluestaq',
+          id: '0167f577-e06c-358e-85aa-0a07a730bdd0',
+          airDefArea: 'AL006',
+          allegiance: 'OTHR',
+          altAllegiance: 'HL',
+          altCountryCode: 'IZ',
+          altEqpId: 'ORIG-EQP-ID',
+          classRating: '1',
+          condition: 'RDY',
+          conditionAvail: 'A',
+          coord: '340000000N0430000000E',
+          coordDatum: 'WGS',
+          coordDerivAcc: 12.345,
+          elevMsl: 123.45,
+          elevMslConfLvl: 50,
+          elevMslDerivAcc: 12.34,
+          eqpCode: 'X12345',
+          eqpIdNum: '001',
+          eval: 7,
+          fpa: 'NOB',
+          function: 'OCC',
+          functPrimary: 'JG',
+          geoidalMslSep: 12.34,
+          ident: 'FRIEND',
+          idOperatingUnit: 'UNIT-ID',
+          idParentEquipment: 'PARENT-EQUIPMENT-ID',
+          idSite: 'SITE-ID',
+          locReason: 'GR',
+          milGrid: '4QFJ12345678',
+          milGridSys: 'UTM',
+          nomen: 'AMPHIBIOUS WARFARE SHIP',
+          operAreaPrimary: 'Territorial Sea',
+          operStatus: 'OPR',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          polSubdiv: 'IZ07',
+          qtyOH: 7,
+          recStatus: 'A',
+          referenceDoc: 'Provider Reference Documentation',
+          resProd: 'RT',
+          reviewDate: '2008-06-10',
+          seqNum: 5,
+          srcIds: ['SRC_ID_1'],
+          srcTyps: ['AIRCRAFT'],
+          symCode: 'SOGPU----------',
+          utm: '19P4390691376966',
+          wac: '0427',
+        },
+      ],
+    });
   });
 
   test('queryHelp', async () => {
@@ -320,9 +332,9 @@ describe('resource equipment', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.equipment.tuple({
-    columns: 'columns',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

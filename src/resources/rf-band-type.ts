@@ -29,7 +29,11 @@ export class RfBandType extends APIResource {
    * ```
    */
   create(body: RfBandTypeCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/rfbandtype', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/rfbandtype', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -48,7 +52,11 @@ export class RfBandType extends APIResource {
    * ```
    */
   update(id: string, body: RfBandTypeUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/rfbandtype/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/rfbandtype/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -65,8 +73,14 @@ export class RfBandType extends APIResource {
    * }
    * ```
    */
-  list(query: RfBandTypeListParams | null | undefined = {}, options?: RequestOptions): PagePromise<RfBandTypeListResponsesOffsetPage, RfBandTypeListResponse> {
-    return this._client.getAPIList('/udl/rfbandtype', OffsetPage<RfBandTypeListResponse>, { query, ...options });
+  list(
+    query: RfBandTypeListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<RfBandTypeListResponsesOffsetPage, RfBandTypeListResponse> {
+    return this._client.getAPIList('/udl/rfbandtype', OffsetPage<RfBandTypeListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -80,7 +94,10 @@ export class RfBandType extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/rfbandtype/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/rfbandtype/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -96,7 +113,11 @@ export class RfBandType extends APIResource {
    * ```
    */
   count(query: RfBandTypeCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/rfbandtype/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/rfbandtype/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -108,7 +129,11 @@ export class RfBandType extends APIResource {
    * const rfBandType = await client.rfBandType.get('id');
    * ```
    */
-  get(id: string, query: RfBandTypeGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<RfBandTypeGetResponse> {
+  get(
+    id: string,
+    query: RfBandTypeGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RfBandTypeGetResponse> {
     return this._client.get(path`/udl/rfbandtype/${id}`, { query, ...options });
   }
 
@@ -147,7 +172,7 @@ export class RfBandType extends APIResource {
   }
 }
 
-export type RfBandTypeListResponsesOffsetPage = OffsetPage<RfBandTypeListResponse>
+export type RfBandTypeListResponsesOffsetPage = OffsetPage<RfBandTypeListResponse>;
 
 /**
  * This table contains descriptions for common satellite RF bands.
@@ -220,7 +245,7 @@ export interface RfBandTypeListResponse {
   startFreq?: number;
 }
 
-export type RfBandTypeCountResponse = string
+export type RfBandTypeCountResponse = string;
 
 /**
  * This table contains descriptions for common satellite RF bands.
@@ -328,7 +353,7 @@ export interface RfBandTypeQueryhelpResponse {
   uri?: string;
 }
 
-export type RfBandTypeTupleResponse = Array<RfBandTypeTupleResponse.RfBandTypeTupleResponseItem>
+export type RfBandTypeTupleResponse = Array<RfBandTypeTupleResponse.RfBandTypeTupleResponseItem>;
 
 export namespace RfBandTypeTupleResponse {
   /**
@@ -528,8 +553,7 @@ export interface RfBandTypeUpdateParams {
   startFreq?: number;
 }
 
-export interface RfBandTypeListParams extends OffsetPageParams {
-}
+export interface RfBandTypeListParams extends OffsetPageParams {}
 
 export interface RfBandTypeCountParams {
   firstResult?: number;
@@ -570,6 +594,6 @@ export declare namespace RfBandType {
     type RfBandTypeListParams as RfBandTypeListParams,
     type RfBandTypeCountParams as RfBandTypeCountParams,
     type RfBandTypeGetParams as RfBandTypeGetParams,
-    type RfBandTypeTupleParams as RfBandTypeTupleParams
+    type RfBandTypeTupleParams as RfBandTypeTupleParams,
   };
 }

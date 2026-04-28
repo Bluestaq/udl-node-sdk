@@ -3,7 +3,15 @@
 import { APIResource } from '../../../core/resource';
 import * as Shared from '../../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
@@ -35,7 +43,11 @@ export class RfObservation extends APIResource {
    * ```
    */
   create(body: RfObservationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/rfobservation', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/rfobservation', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -54,8 +66,14 @@ export class RfObservation extends APIResource {
    * }
    * ```
    */
-  list(query: RfObservationListParams, options?: RequestOptions): PagePromise<RfObservationListResponsesOffsetPage, RfObservationListResponse> {
-    return this._client.getAPIList('/udl/rfobservation', OffsetPage<RfObservationListResponse>, { query, ...options });
+  list(
+    query: RfObservationListParams,
+    options?: RequestOptions,
+  ): PagePromise<RfObservationListResponsesOffsetPage, RfObservationListResponse> {
+    return this._client.getAPIList('/udl/rfobservation', OffsetPage<RfObservationListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -74,7 +92,11 @@ export class RfObservation extends APIResource {
    * ```
    */
   count(query: RfObservationCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/rfobservation/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/rfobservation/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -100,8 +122,12 @@ export class RfObservation extends APIResource {
    * ```
    */
   createBulk(params: RfObservationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/rfobservation/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/rfobservation/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -114,7 +140,11 @@ export class RfObservation extends APIResource {
    *   await client.observations.rfObservation.get('id');
    * ```
    */
-  get(id: string, query: RfObservationGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<RfObservationGetResponse> {
+  get(
+    id: string,
+    query: RfObservationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RfObservationGetResponse> {
     return this._client.get(path`/udl/rfobservation/${id}`, { query, ...options });
   }
 
@@ -176,13 +206,20 @@ export class RfObservation extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(params: RfObservationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-rf', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: RfObservationUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-rf', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type RfObservationListResponsesOffsetPage = OffsetPage<RfObservationListResponse>
+export type RfObservationListResponsesOffsetPage = OffsetPage<RfObservationListResponse>;
 
 /**
  * Model representation of observation data for active/passive radio frequency (RF)
@@ -690,7 +727,7 @@ export interface RfObservationListResponse {
   videoBandwidth?: number;
 }
 
-export type RfObservationCountResponse = string
+export type RfObservationCountResponse = string;
 
 /**
  * Model representation of observation data for active/passive radio frequency (RF)
@@ -1346,7 +1383,7 @@ export interface RfObservationQueryhelpResponse {
   uri?: string;
 }
 
-export type RfObservationTupleResponse = Array<RfObservationTupleResponse.RfObservationTupleResponseItem>
+export type RfObservationTupleResponse = Array<RfObservationTupleResponse.RfObservationTupleResponseItem>;
 
 export namespace RfObservationTupleResponse {
   /**
@@ -3690,7 +3727,7 @@ export declare namespace RfObservation {
     type RfObservationCreateBulkParams as RfObservationCreateBulkParams,
     type RfObservationGetParams as RfObservationGetParams,
     type RfObservationTupleParams as RfObservationTupleParams,
-    type RfObservationUnvalidatedPublishParams as RfObservationUnvalidatedPublishParams
+    type RfObservationUnvalidatedPublishParams as RfObservationUnvalidatedPublishParams,
   };
 
   export {
@@ -3700,6 +3737,6 @@ export declare namespace RfObservation {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

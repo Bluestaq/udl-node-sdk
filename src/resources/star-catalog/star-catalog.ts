@@ -36,7 +36,11 @@ export class StarCatalog extends APIResource {
    * ```
    */
   create(body: StarCatalogCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/starcatalog', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/starcatalog', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -59,7 +63,11 @@ export class StarCatalog extends APIResource {
    * ```
    */
   update(id: string, body: StarCatalogUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/starcatalog/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/starcatalog/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -76,8 +84,14 @@ export class StarCatalog extends APIResource {
    * }
    * ```
    */
-  list(query: StarCatalogListParams | null | undefined = {}, options?: RequestOptions): PagePromise<StarCatalogListResponsesOffsetPage, StarCatalogListResponse> {
-    return this._client.getAPIList('/udl/starcatalog', OffsetPage<StarCatalogListResponse>, { query, ...options });
+  list(
+    query: StarCatalogListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<StarCatalogListResponsesOffsetPage, StarCatalogListResponse> {
+    return this._client.getAPIList('/udl/starcatalog', OffsetPage<StarCatalogListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -91,7 +105,10 @@ export class StarCatalog extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/starcatalog/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/starcatalog/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -107,7 +124,11 @@ export class StarCatalog extends APIResource {
    * ```
    */
   count(query: StarCatalogCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/starcatalog/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/starcatalog/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -136,8 +157,12 @@ export class StarCatalog extends APIResource {
    * ```
    */
   createBulk(params: StarCatalogCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/starcatalog/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/starcatalog/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -149,7 +174,11 @@ export class StarCatalog extends APIResource {
    * const starCatalog = await client.starCatalog.get('id');
    * ```
    */
-  get(id: string, query: StarCatalogGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<StarCatalogGetResponse> {
+  get(
+    id: string,
+    query: StarCatalogGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<StarCatalogGetResponse> {
     return this._client.get(path`/udl/starcatalog/${id}`, { query, ...options });
   }
 
@@ -211,13 +240,20 @@ export class StarCatalog extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(params: StarCatalogUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-starcatalog', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: StarCatalogUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-starcatalog', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type StarCatalogListResponsesOffsetPage = OffsetPage<StarCatalogListResponse>
+export type StarCatalogListResponsesOffsetPage = OffsetPage<StarCatalogListResponse>;
 
 /**
  * The star catalog provides the position, proper motion, parallax, and photometric
@@ -983,7 +1019,7 @@ export interface StarCatalogListResponse {
   wdsCatId?: string;
 }
 
-export type StarCatalogCountResponse = string
+export type StarCatalogCountResponse = string;
 
 /**
  * The star catalog provides the position, proper motion, parallax, and photometric
@@ -1773,7 +1809,7 @@ export interface StarCatalogQueryhelpResponse {
   uri?: string;
 }
 
-export type StarCatalogTupleResponse = Array<StarCatalogTupleResponse.StarCatalogTupleResponseItem>
+export type StarCatalogTupleResponse = Array<StarCatalogTupleResponse.StarCatalogTupleResponseItem>;
 
 export namespace StarCatalogTupleResponse {
   /**
@@ -5556,11 +5592,8 @@ export declare namespace StarCatalog {
     type StarCatalogCreateBulkParams as StarCatalogCreateBulkParams,
     type StarCatalogGetParams as StarCatalogGetParams,
     type StarCatalogTupleParams as StarCatalogTupleParams,
-    type StarCatalogUnvalidatedPublishParams as StarCatalogUnvalidatedPublishParams
+    type StarCatalogUnvalidatedPublishParams as StarCatalogUnvalidatedPublishParams,
   };
 
-  export {
-    History as History,
-    type HistoryAodrParams as HistoryAodrParams
-  };
+  export { History as History, type HistoryAodrParams as HistoryAodrParams };
 }

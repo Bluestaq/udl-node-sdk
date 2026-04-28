@@ -29,7 +29,11 @@ export class Manifold extends APIResource {
    * ```
    */
   create(body: ManifoldCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/manifold', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/manifold', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -49,7 +53,11 @@ export class Manifold extends APIResource {
    * ```
    */
   update(id: string, body: ManifoldUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/manifold/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/manifold/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -66,7 +74,10 @@ export class Manifold extends APIResource {
    * }
    * ```
    */
-  list(query: ManifoldListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ManifoldListResponsesOffsetPage, ManifoldListResponse> {
+  list(
+    query: ManifoldListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ManifoldListResponsesOffsetPage, ManifoldListResponse> {
     return this._client.getAPIList('/udl/manifold', OffsetPage<ManifoldListResponse>, { query, ...options });
   }
 
@@ -82,7 +93,10 @@ export class Manifold extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/manifold/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/manifold/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -98,7 +112,11 @@ export class Manifold extends APIResource {
    * ```
    */
   count(query: ManifoldCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/manifold/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/manifold/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -121,8 +139,12 @@ export class Manifold extends APIResource {
    * ```
    */
   createBulk(params: ManifoldCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/manifold/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/manifold/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -135,7 +157,11 @@ export class Manifold extends APIResource {
    * const manifold = await client.manifold.get('id');
    * ```
    */
-  get(id: string, query: ManifoldGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<ManifoldGetResponse> {
+  get(
+    id: string,
+    query: ManifoldGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ManifoldGetResponse> {
     return this._client.get(path`/udl/manifold/${id}`, { query, ...options });
   }
 
@@ -174,7 +200,7 @@ export class Manifold extends APIResource {
   }
 }
 
-export type ManifoldListResponsesOffsetPage = OffsetPage<ManifoldListResponse>
+export type ManifoldListResponsesOffsetPage = OffsetPage<ManifoldListResponse>;
 
 /**
  * A manifold represents a set of possible/theoretical orbits for an object of
@@ -267,7 +293,7 @@ export interface ManifoldListResponse {
   weight?: number;
 }
 
-export type ManifoldCountResponse = string
+export type ManifoldCountResponse = string;
 
 /**
  * A manifold represents a set of possible/theoretical orbits for an object of
@@ -396,7 +422,7 @@ export interface ManifoldQueryhelpResponse {
   uri?: string;
 }
 
-export type ManifoldTupleResponse = Array<ManifoldTupleResponse.ManifoldTupleResponseItem>
+export type ManifoldTupleResponse = Array<ManifoldTupleResponse.ManifoldTupleResponseItem>;
 
 export namespace ManifoldTupleResponse {
   /**
@@ -643,8 +669,7 @@ export interface ManifoldUpdateParams {
   weight?: number;
 }
 
-export interface ManifoldListParams extends OffsetPageParams {
-}
+export interface ManifoldListParams extends OffsetPageParams {}
 
 export interface ManifoldCountParams {
   firstResult?: number;
@@ -766,6 +791,6 @@ export declare namespace Manifold {
     type ManifoldCountParams as ManifoldCountParams,
     type ManifoldCreateBulkParams as ManifoldCreateBulkParams,
     type ManifoldGetParams as ManifoldGetParams,
-    type ManifoldTupleParams as ManifoldTupleParams
+    type ManifoldTupleParams as ManifoldTupleParams,
   };
 }

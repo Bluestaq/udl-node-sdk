@@ -16,8 +16,12 @@ export class AIsObjects extends APIResource {
    * contact the UDL team for assistance.
    */
   unvalidatedPublish(params: AIsObjectUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-ais', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-ais', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -335,7 +339,5 @@ export namespace AIsObjectUnvalidatedPublishParams {
 }
 
 export declare namespace AIsObjects {
-  export {
-    type AIsObjectUnvalidatedPublishParams as AIsObjectUnvalidatedPublishParams
-  };
+  export { type AIsObjectUnvalidatedPublishParams as AIsObjectUnvalidatedPublishParams };
 }

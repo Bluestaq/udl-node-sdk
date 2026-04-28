@@ -4,7 +4,18 @@ import { APIResource } from '../../core/resource';
 import * as EntitiesAPI from '../entities';
 import * as Shared from '../shared';
 import * as StagingAPI from './staging';
-import { Staging, StagingCreateBulkParams, StagingCreateParams, StagingListParams, StagingListResponse, StagingListResponsesOffsetPage, StagingQueryhelpResponse, StagingRetrieveParams, StagingRetrieveResponse, StagingUpdateParams } from './staging';
+import {
+  Staging,
+  StagingCreateBulkParams,
+  StagingCreateParams,
+  StagingListParams,
+  StagingListResponse,
+  StagingListResponsesOffsetPage,
+  StagingQueryhelpResponse,
+  StagingRetrieveParams,
+  StagingRetrieveResponse,
+  StagingUpdateParams,
+} from './staging';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -34,7 +45,11 @@ export class Laseremitter extends APIResource {
    * ```
    */
   create(body: LaseremitterCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/laseremitter', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/laseremitter', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -54,7 +69,11 @@ export class Laseremitter extends APIResource {
    * ```
    */
   update(id: string, body: LaseremitterUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/laseremitter/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/laseremitter/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -71,8 +90,14 @@ export class Laseremitter extends APIResource {
    * }
    * ```
    */
-  list(query: LaseremitterListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LaseremitterListResponsesOffsetPage, LaseremitterListResponse> {
-    return this._client.getAPIList('/udl/laseremitter', OffsetPage<LaseremitterListResponse>, { query, ...options });
+  list(
+    query: LaseremitterListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LaseremitterListResponsesOffsetPage, LaseremitterListResponse> {
+    return this._client.getAPIList('/udl/laseremitter', OffsetPage<LaseremitterListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -86,7 +111,10 @@ export class Laseremitter extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/laseremitter/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/laseremitter/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -101,8 +129,15 @@ export class Laseremitter extends APIResource {
    * const response = await client.laseremitter.count();
    * ```
    */
-  count(query: LaseremitterCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/laseremitter/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: LaseremitterCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/laseremitter/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -114,7 +149,11 @@ export class Laseremitter extends APIResource {
    * const laseremitter = await client.laseremitter.get('id');
    * ```
    */
-  get(id: string, query: LaseremitterGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<LaseremitterGetResponse> {
+  get(
+    id: string,
+    query: LaseremitterGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaseremitterGetResponse> {
     return this._client.get(path`/udl/laseremitter/${id}`, { query, ...options });
   }
 
@@ -153,7 +192,7 @@ export class Laseremitter extends APIResource {
   }
 }
 
-export type LaseremitterListResponsesOffsetPage = OffsetPage<LaseremitterListResponse>
+export type LaseremitterListResponsesOffsetPage = OffsetPage<LaseremitterListResponse>;
 
 /**
  * Model representation of a laser beam emitter/director which represents a source
@@ -328,7 +367,7 @@ export interface LaseremitterListResponse {
   wavelength?: number;
 }
 
-export type LaseremitterCountResponse = string
+export type LaseremitterCountResponse = string;
 
 /**
  * Model representation of a laser beam emitter/director which represents a source
@@ -545,7 +584,7 @@ export interface LaseremitterQueryhelpResponse {
   uri?: string;
 }
 
-export type LaseremitterTupleResponse = Array<LaseremitterTupleResponse.LaseremitterTupleResponseItem>
+export type LaseremitterTupleResponse = Array<LaseremitterTupleResponse.LaseremitterTupleResponseItem>;
 
 export namespace LaseremitterTupleResponse {
   /**
@@ -1044,8 +1083,7 @@ export interface LaseremitterUpdateParams {
   wavelength?: number;
 }
 
-export interface LaseremitterListParams extends OffsetPageParams {
-}
+export interface LaseremitterListParams extends OffsetPageParams {}
 
 export interface LaseremitterCountParams {
   firstResult?: number;
@@ -1088,7 +1126,7 @@ export declare namespace Laseremitter {
     type LaseremitterListParams as LaseremitterListParams,
     type LaseremitterCountParams as LaseremitterCountParams,
     type LaseremitterGetParams as LaseremitterGetParams,
-    type LaseremitterTupleParams as LaseremitterTupleParams
+    type LaseremitterTupleParams as LaseremitterTupleParams,
   };
 
   export {
@@ -1101,6 +1139,6 @@ export declare namespace Laseremitter {
     type StagingRetrieveParams as StagingRetrieveParams,
     type StagingUpdateParams as StagingUpdateParams,
     type StagingListParams as StagingListParams,
-    type StagingCreateBulkParams as StagingCreateBulkParams
+    type StagingCreateBulkParams as StagingCreateBulkParams,
   };
 }

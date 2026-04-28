@@ -5,17 +5,17 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource onorbit', () => {
   test('create: only required params', async () => {
     const responsePromise = client.onorbit.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    satNo: 1,
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      satNo: 1,
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,34 +27,34 @@ describe('resource onorbit', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.onorbit.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    satNo: 1,
-    source: 'Bluestaq',
-    altName: 'Alternate Name',
-    category: 'Lunar',
-    commonName: 'Example common name',
-    constellation: 'Big Dipper',
-    countryCode: 'US',
-    decayDate: '2018-01-01T16:00:00.123Z',
-    idOnOrbit: 'ONORBIT-ID',
-    intlDes: '2021123ABC',
-    launchDate: '2018-01-01',
-    launchSiteId: 'LAUNCHSITE-ID',
-    lifetimeYears: 10,
-    missionNumber: 'Expedition 1',
-    objectType: 'PAYLOAD',
-    origin: 'THIRD_PARTY_DATASOURCE',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      satNo: 1,
+      source: 'Bluestaq',
+      altName: 'Alternate Name',
+      category: 'Lunar',
+      commonName: 'Example common name',
+      constellation: 'Big Dipper',
+      countryCode: 'US',
+      decayDate: '2018-01-01T16:00:00.123Z',
+      idOnOrbit: 'ONORBIT-ID',
+      intlDes: '2021123ABC',
+      launchDate: '2018-01-01',
+      launchSiteId: 'LAUNCHSITE-ID',
+      lifetimeYears: 10,
+      missionNumber: 'Expedition 1',
+      objectType: 'PAYLOAD',
+      origin: 'THIRD_PARTY_DATASOURCE',
+    });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.onorbit.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    satNo: 1,
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      satNo: 1,
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -66,25 +66,25 @@ describe('resource onorbit', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.onorbit.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    satNo: 1,
-    source: 'Bluestaq',
-    altName: 'Alternate Name',
-    category: 'Lunar',
-    commonName: 'Example common name',
-    constellation: 'Big Dipper',
-    countryCode: 'US',
-    decayDate: '2018-01-01T16:00:00.123Z',
-    idOnOrbit: 'ONORBIT-ID',
-    intlDes: '2021123ABC',
-    launchDate: '2018-01-01',
-    launchSiteId: 'LAUNCHSITE-ID',
-    lifetimeYears: 10,
-    missionNumber: 'Expedition 1',
-    objectType: 'PAYLOAD',
-    origin: 'THIRD_PARTY_DATASOURCE',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      satNo: 1,
+      source: 'Bluestaq',
+      altName: 'Alternate Name',
+      category: 'Lunar',
+      commonName: 'Example common name',
+      constellation: 'Big Dipper',
+      countryCode: 'US',
+      decayDate: '2018-01-01T16:00:00.123Z',
+      idOnOrbit: 'ONORBIT-ID',
+      intlDes: '2021123ABC',
+      launchDate: '2018-01-01',
+      launchSiteId: 'LAUNCHSITE-ID',
+      lifetimeYears: 10,
+      missionNumber: 'Expedition 1',
+      objectType: 'PAYLOAD',
+      origin: 'THIRD_PARTY_DATASOURCE',
+    });
   });
 
   test('list', async () => {
@@ -100,9 +100,9 @@ describe('resource onorbit', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.onorbit.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.onorbit.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -129,9 +129,9 @@ describe('resource onorbit', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.onorbit.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.onorbit.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('get', async () => {
@@ -147,9 +147,9 @@ describe('resource onorbit', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.onorbit.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.onorbit.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('getSignature: only required params', async () => {
@@ -165,10 +165,10 @@ describe('resource onorbit', () => {
 
   test('getSignature: required and optional params', async () => {
     const response = await client.onorbit.getSignature({
-    idOnOrbit: 'idOnOrbit',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      idOnOrbit: 'idOnOrbit',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('queryhelp', async () => {
@@ -195,9 +195,9 @@ describe('resource onorbit', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.onorbit.tuple({
-    columns: 'columns',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

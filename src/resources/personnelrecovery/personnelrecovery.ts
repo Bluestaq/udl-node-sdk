@@ -35,7 +35,11 @@ export class Personnelrecovery extends APIResource {
    * ```
    */
   create(body: PersonnelrecoveryCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/personnelrecovery', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/personnelrecovery', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -54,8 +58,14 @@ export class Personnelrecovery extends APIResource {
    * }
    * ```
    */
-  list(query: PersonnelrecoveryListParams, options?: RequestOptions): PagePromise<PersonnelrecoveryListResponsesOffsetPage, PersonnelrecoveryListResponse> {
-    return this._client.getAPIList('/udl/personnelrecovery', OffsetPage<PersonnelrecoveryListResponse>, { query, ...options });
+  list(
+    query: PersonnelrecoveryListParams,
+    options?: RequestOptions,
+  ): PagePromise<PersonnelrecoveryListResponsesOffsetPage, PersonnelrecoveryListResponse> {
+    return this._client.getAPIList('/udl/personnelrecovery', OffsetPage<PersonnelrecoveryListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -73,7 +83,11 @@ export class Personnelrecovery extends APIResource {
    * ```
    */
   count(query: PersonnelrecoveryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/personnelrecovery/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/personnelrecovery/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -102,8 +116,12 @@ export class Personnelrecovery extends APIResource {
    * ```
    */
   createBulk(params: PersonnelrecoveryCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/personnelrecovery/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/personnelrecovery/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -130,8 +148,12 @@ export class Personnelrecovery extends APIResource {
    * ```
    */
   fileCreate(params: PersonnelrecoveryFileCreateParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-personnelrecovery', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-personnelrecovery', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -144,7 +166,11 @@ export class Personnelrecovery extends APIResource {
    *   await client.personnelrecovery.get('id');
    * ```
    */
-  get(id: string, query: PersonnelrecoveryGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<PersonnelRecoveryFullL> {
+  get(
+    id: string,
+    query: PersonnelrecoveryGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<PersonnelRecoveryFullL> {
     return this._client.get(path`/udl/personnelrecovery/${id}`, { query, ...options });
   }
 
@@ -180,14 +206,17 @@ export class Personnelrecovery extends APIResource {
    *   });
    * ```
    */
-  tuple(query: PersonnelrecoveryTupleParams, options?: RequestOptions): APIPromise<PersonnelrecoveryTupleResponse> {
+  tuple(
+    query: PersonnelrecoveryTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<PersonnelrecoveryTupleResponse> {
     return this._client.get('/udl/personnelrecovery/tuple', { query, ...options });
   }
 }
 
-export type PersonnelrecoveryListResponsesOffsetPage = OffsetPage<PersonnelrecoveryListResponse>
+export type PersonnelrecoveryListResponsesOffsetPage = OffsetPage<PersonnelrecoveryListResponse>;
 
-export type PersonnelRecoveryFullLsOffsetPage = OffsetPage<PersonnelRecoveryFullL>
+export type PersonnelRecoveryFullLsOffsetPage = OffsetPage<PersonnelRecoveryFullL>;
 
 /**
  * Provides information concerning search and rescue operations and other
@@ -1007,7 +1036,7 @@ export namespace PersonnelrecoveryListResponse {
   }
 }
 
-export type PersonnelrecoveryCountResponse = string
+export type PersonnelrecoveryCountResponse = string;
 
 export interface PersonnelrecoveryQueryhelpResponse {
   aodrSupported?: boolean;
@@ -1033,7 +1062,7 @@ export interface PersonnelrecoveryQueryhelpResponse {
   uri?: string;
 }
 
-export type PersonnelrecoveryTupleResponse = Array<PersonnelRecoveryFullL>
+export type PersonnelrecoveryTupleResponse = Array<PersonnelRecoveryFullL>;
 
 export interface PersonnelrecoveryCreateParams {
   /**
@@ -2281,13 +2310,13 @@ export declare namespace Personnelrecovery {
     type PersonnelrecoveryCreateBulkParams as PersonnelrecoveryCreateBulkParams,
     type PersonnelrecoveryFileCreateParams as PersonnelrecoveryFileCreateParams,
     type PersonnelrecoveryGetParams as PersonnelrecoveryGetParams,
-    type PersonnelrecoveryTupleParams as PersonnelrecoveryTupleParams
+    type PersonnelrecoveryTupleParams as PersonnelrecoveryTupleParams,
   };
 
   export {
     History as History,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

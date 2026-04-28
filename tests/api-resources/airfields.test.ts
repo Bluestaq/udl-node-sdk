@@ -5,18 +5,18 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource airfields', () => {
   test('create: only required params', async () => {
     const responsePromise = client.airfields.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    name: 'Hickam Air Force Base',
-    source: 'Bluestaq',
-    type: 'Commercial',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      name: 'Hickam Air Force Base',
+      source: 'Bluestaq',
+      type: 'Commercial',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -28,45 +28,45 @@ describe('resource airfields', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.airfields.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    name: 'Hickam Air Force Base',
-    source: 'Bluestaq',
-    type: 'Commercial',
-    id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
-    altAirfieldId: '45301',
-    alternativeNames: ['BELLEVILLE', 'JONESTOWN'],
-    city: 'Honolulu',
-    countryCode: 'US',
-    countryName: 'United States',
-    dstInfo: 'SEE THE ENROUTE SUPP FOR INFORMATION',
-    elevFt: 33.562,
-    elevM: 10.29,
-    faa: 'FAA1',
-    geoloc: 'XLSX',
-    gmtOffset: '-4:30',
-    hostNatCode: 'ZPU',
-    iata: 'AAA',
-    icao: 'KCOS',
-    idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
-    infoURL: 'URL Link to the Airfield',
-    lat: 45.23,
-    lon: 179.1,
-    magDec: 7.35,
-    maxRunwayLength: 1000,
-    miscCodes: 'AMZ',
-    origin: 'THIRD_PARTY_DATASOURCE',
-    regionalAuthority: '18TH AF',
-    regionName: 'Hawaii',
-    runways: 5,
-    secondaryICAO: 'PHNL',
-    state: 'Hawaii',
-    stateProvinceCode: 'US15',
-    suitabilityCodeDescs: ['Suitable C-32', 'Suitable C-5', 'Suitable C-130'],
-    suitabilityCodes: 'ABC',
-    wacINNR: '0409-00039',
-    zarId: '231',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      name: 'Hickam Air Force Base',
+      source: 'Bluestaq',
+      type: 'Commercial',
+      id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
+      altAirfieldId: '45301',
+      alternativeNames: ['BELLEVILLE', 'JONESTOWN'],
+      city: 'Honolulu',
+      countryCode: 'US',
+      countryName: 'United States',
+      dstInfo: 'SEE THE ENROUTE SUPP FOR INFORMATION',
+      elevFt: 33.562,
+      elevM: 10.29,
+      faa: 'FAA1',
+      geoloc: 'XLSX',
+      gmtOffset: '-4:30',
+      hostNatCode: 'ZPU',
+      iata: 'AAA',
+      icao: 'KCOS',
+      idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
+      infoURL: 'URL Link to the Airfield',
+      lat: 45.23,
+      lon: 179.1,
+      magDec: 7.35,
+      maxRunwayLength: 1000,
+      miscCodes: 'AMZ',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      regionalAuthority: '18TH AF',
+      regionName: 'Hawaii',
+      runways: 5,
+      secondaryICAO: 'PHNL',
+      state: 'Hawaii',
+      stateProvinceCode: 'US15',
+      suitabilityCodeDescs: ['Suitable C-32', 'Suitable C-5', 'Suitable C-130'],
+      suitabilityCodes: 'ABC',
+      wacINNR: '0409-00039',
+      zarId: '231',
+    });
   });
 
   test('retrieve', async () => {
@@ -82,19 +82,23 @@ describe('resource airfields', () => {
 
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.airfields.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.airfields.retrieve(
+        'id',
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.airfields.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    name: 'Hickam Air Force Base',
-    source: 'Bluestaq',
-    type: 'Commercial',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      name: 'Hickam Air Force Base',
+      source: 'Bluestaq',
+      type: 'Commercial',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -106,45 +110,45 @@ describe('resource airfields', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.airfields.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    name: 'Hickam Air Force Base',
-    source: 'Bluestaq',
-    type: 'Commercial',
-    id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
-    altAirfieldId: '45301',
-    alternativeNames: ['BELLEVILLE', 'JONESTOWN'],
-    city: 'Honolulu',
-    countryCode: 'US',
-    countryName: 'United States',
-    dstInfo: 'SEE THE ENROUTE SUPP FOR INFORMATION',
-    elevFt: 33.562,
-    elevM: 10.29,
-    faa: 'FAA1',
-    geoloc: 'XLSX',
-    gmtOffset: '-4:30',
-    hostNatCode: 'ZPU',
-    iata: 'AAA',
-    icao: 'KCOS',
-    idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
-    infoURL: 'URL Link to the Airfield',
-    lat: 45.23,
-    lon: 179.1,
-    magDec: 7.35,
-    maxRunwayLength: 1000,
-    miscCodes: 'AMZ',
-    origin: 'THIRD_PARTY_DATASOURCE',
-    regionalAuthority: '18TH AF',
-    regionName: 'Hawaii',
-    runways: 5,
-    secondaryICAO: 'PHNL',
-    state: 'Hawaii',
-    stateProvinceCode: 'US15',
-    suitabilityCodeDescs: ['Suitable C-32', 'Suitable C-5', 'Suitable C-130'],
-    suitabilityCodes: 'ABC',
-    wacINNR: '0409-00039',
-    zarId: '231',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      name: 'Hickam Air Force Base',
+      source: 'Bluestaq',
+      type: 'Commercial',
+      id: '3f28f60b-3a50-2aef-ac88-8e9d0e39912b',
+      altAirfieldId: '45301',
+      alternativeNames: ['BELLEVILLE', 'JONESTOWN'],
+      city: 'Honolulu',
+      countryCode: 'US',
+      countryName: 'United States',
+      dstInfo: 'SEE THE ENROUTE SUPP FOR INFORMATION',
+      elevFt: 33.562,
+      elevM: 10.29,
+      faa: 'FAA1',
+      geoloc: 'XLSX',
+      gmtOffset: '-4:30',
+      hostNatCode: 'ZPU',
+      iata: 'AAA',
+      icao: 'KCOS',
+      idSite: 'a150b3ee-884b-b9ac-60a0-6408b4b16088',
+      infoURL: 'URL Link to the Airfield',
+      lat: 45.23,
+      lon: 179.1,
+      magDec: 7.35,
+      maxRunwayLength: 1000,
+      miscCodes: 'AMZ',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      regionalAuthority: '18TH AF',
+      regionName: 'Hawaii',
+      runways: 5,
+      secondaryICAO: 'PHNL',
+      state: 'Hawaii',
+      stateProvinceCode: 'US15',
+      suitabilityCodeDescs: ['Suitable C-32', 'Suitable C-5', 'Suitable C-130'],
+      suitabilityCodes: 'ABC',
+      wacINNR: '0409-00039',
+      zarId: '231',
+    });
   });
 
   test('list', async () => {
@@ -160,9 +164,9 @@ describe('resource airfields', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.airfields.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.airfields.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('count', async () => {
@@ -178,9 +182,9 @@ describe('resource airfields', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.airfields.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.airfields.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -207,9 +211,9 @@ describe('resource airfields', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.airfields.tuple({
-    columns: 'columns',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

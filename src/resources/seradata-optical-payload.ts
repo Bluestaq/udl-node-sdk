@@ -28,7 +28,11 @@ export class SeradataOpticalPayload extends APIResource {
    * ```
    */
   create(body: SeradataOpticalPayloadCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/seradataopticalpayload', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/seradataopticalpayload', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -47,7 +51,11 @@ export class SeradataOpticalPayload extends APIResource {
    * ```
    */
   update(id: string, body: SeradataOpticalPayloadUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/seradataopticalpayload/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/seradataopticalpayload/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -64,8 +72,15 @@ export class SeradataOpticalPayload extends APIResource {
    * }
    * ```
    */
-  list(query: SeradataOpticalPayloadListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SeradataOpticalPayloadListResponsesOffsetPage, SeradataOpticalPayloadListResponse> {
-    return this._client.getAPIList('/udl/seradataopticalpayload', OffsetPage<SeradataOpticalPayloadListResponse>, { query, ...options });
+  list(
+    query: SeradataOpticalPayloadListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SeradataOpticalPayloadListResponsesOffsetPage, SeradataOpticalPayloadListResponse> {
+    return this._client.getAPIList(
+      '/udl/seradataopticalpayload',
+      OffsetPage<SeradataOpticalPayloadListResponse>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -79,7 +94,10 @@ export class SeradataOpticalPayload extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/seradataopticalpayload/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/seradataopticalpayload/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -95,8 +113,15 @@ export class SeradataOpticalPayload extends APIResource {
    *   await client.seradataOpticalPayload.count();
    * ```
    */
-  count(query: SeradataOpticalPayloadCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/seradataopticalpayload/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: SeradataOpticalPayloadCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/seradataopticalpayload/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -109,7 +134,11 @@ export class SeradataOpticalPayload extends APIResource {
    *   await client.seradataOpticalPayload.get('id');
    * ```
    */
-  get(id: string, query: SeradataOpticalPayloadGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SeradataOpticalPayloadGetResponse> {
+  get(
+    id: string,
+    query: SeradataOpticalPayloadGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradataOpticalPayloadGetResponse> {
     return this._client.get(path`/udl/seradataopticalpayload/${id}`, { query, ...options });
   }
 
@@ -144,12 +173,15 @@ export class SeradataOpticalPayload extends APIResource {
    * });
    * ```
    */
-  tuple(query: SeradataOpticalPayloadTupleParams, options?: RequestOptions): APIPromise<SeradataOpticalPayloadTupleResponse> {
+  tuple(
+    query: SeradataOpticalPayloadTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<SeradataOpticalPayloadTupleResponse> {
     return this._client.get('/udl/seradataopticalpayload/tuple', { query, ...options });
   }
 }
 
-export type SeradataOpticalPayloadListResponsesOffsetPage = OffsetPage<SeradataOpticalPayloadListResponse>
+export type SeradataOpticalPayloadListResponsesOffsetPage = OffsetPage<SeradataOpticalPayloadListResponse>;
 
 /**
  * Details for an optical payload from Seradata.
@@ -305,7 +337,7 @@ export interface SeradataOpticalPayloadListResponse {
   swathWidth?: number;
 }
 
-export type SeradataOpticalPayloadCountResponse = string
+export type SeradataOpticalPayloadCountResponse = string;
 
 /**
  * Details for an optical payload from Seradata.
@@ -496,7 +528,8 @@ export interface SeradataOpticalPayloadQueryhelpResponse {
   uri?: string;
 }
 
-export type SeradataOpticalPayloadTupleResponse = Array<SeradataOpticalPayloadTupleResponse.SeradataOpticalPayloadTupleResponseItem>
+export type SeradataOpticalPayloadTupleResponse =
+  Array<SeradataOpticalPayloadTupleResponse.SeradataOpticalPayloadTupleResponseItem>;
 
 export namespace SeradataOpticalPayloadTupleResponse {
   /**
@@ -933,8 +966,7 @@ export interface SeradataOpticalPayloadUpdateParams {
   swathWidth?: number;
 }
 
-export interface SeradataOpticalPayloadListParams extends OffsetPageParams {
-}
+export interface SeradataOpticalPayloadListParams extends OffsetPageParams {}
 
 export interface SeradataOpticalPayloadCountParams {
   firstResult?: number;
@@ -975,6 +1007,6 @@ export declare namespace SeradataOpticalPayload {
     type SeradataOpticalPayloadListParams as SeradataOpticalPayloadListParams,
     type SeradataOpticalPayloadCountParams as SeradataOpticalPayloadCountParams,
     type SeradataOpticalPayloadGetParams as SeradataOpticalPayloadGetParams,
-    type SeradataOpticalPayloadTupleParams as SeradataOpticalPayloadTupleParams
+    type SeradataOpticalPayloadTupleParams as SeradataOpticalPayloadTupleParams,
   };
 }

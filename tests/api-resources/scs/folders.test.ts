@@ -5,12 +5,15 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource folders', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.scs.folders.create({ id: 'id', classificationMarking: 'classificationMarking' });
+    const responsePromise = client.scs.folders.create({
+      id: 'id',
+      classificationMarking: 'classificationMarking',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,14 +25,14 @@ describe('resource folders', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.scs.folders.create({
-    id: 'id',
-    classificationMarking: 'classificationMarking',
-    description: 'description',
-    read: 'read',
-    sendNotification: true,
-    tags: 'tags',
-    write: 'write',
-  });
+      id: 'id',
+      classificationMarking: 'classificationMarking',
+      description: 'description',
+      read: 'read',
+      sendNotification: true,
+      tags: 'tags',
+      write: 'write',
+    });
   });
 
   test('retrieve: only required params', async () => {
@@ -45,10 +48,10 @@ describe('resource folders', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await client.scs.folders.retrieve({
-    id: 'id',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      id: 'id',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('update', async () => {

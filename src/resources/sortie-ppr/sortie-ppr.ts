@@ -3,7 +3,13 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -32,7 +38,11 @@ export class SortiePpr extends APIResource {
    * ```
    */
   create(body: SortiePprCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/sortieppr', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/sortieppr', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -51,7 +61,11 @@ export class SortiePpr extends APIResource {
    * ```
    */
   update(id: string, body: SortiePprUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/sortieppr/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/sortieppr/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -70,8 +84,14 @@ export class SortiePpr extends APIResource {
    * }
    * ```
    */
-  list(query: SortiePprListParams, options?: RequestOptions): PagePromise<SortiePprListResponsesOffsetPage, SortiePprListResponse> {
-    return this._client.getAPIList('/udl/sortieppr', OffsetPage<SortiePprListResponse>, { query, ...options });
+  list(
+    query: SortiePprListParams,
+    options?: RequestOptions,
+  ): PagePromise<SortiePprListResponsesOffsetPage, SortiePprListResponse> {
+    return this._client.getAPIList('/udl/sortieppr', OffsetPage<SortiePprListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -85,7 +105,10 @@ export class SortiePpr extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/sortieppr/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/sortieppr/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -103,7 +126,11 @@ export class SortiePpr extends APIResource {
    * ```
    */
   count(query: SortiePprCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/sortieppr/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/sortieppr/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -128,8 +155,12 @@ export class SortiePpr extends APIResource {
    * ```
    */
   createBulk(params: SortiePprCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/sortieppr/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/sortieppr/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -141,7 +172,11 @@ export class SortiePpr extends APIResource {
    * const sortiePprFull = await client.sortiePpr.get('id');
    * ```
    */
-  get(id: string, query: SortiePprGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.SortiePprFull> {
+  get(
+    id: string,
+    query: SortiePprGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.SortiePprFull> {
     return this._client.get(path`/udl/sortieppr/${id}`, { query, ...options });
   }
 
@@ -201,12 +236,16 @@ export class SortiePpr extends APIResource {
    * ```
    */
   unvalidatedPublish(params: SortiePprUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-sortieppr', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-sortieppr', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type SortiePprListResponsesOffsetPage = OffsetPage<SortiePprListResponse>
+export type SortiePprListResponsesOffsetPage = OffsetPage<SortiePprListResponse>;
 
 /**
  * SortiePPR is a regulatory requirement where operators must obtain permissions to
@@ -329,7 +368,7 @@ export interface SortiePprListResponse {
   type?: 'M' | 'C';
 }
 
-export type SortiePprCountResponse = string
+export type SortiePprCountResponse = string;
 
 export interface SortiePprQueryhelpResponse {
   aodrSupported?: boolean;
@@ -355,7 +394,7 @@ export interface SortiePprQueryhelpResponse {
   uri?: string;
 }
 
-export type SortiePprTupleResponse = Array<Shared.SortiePprFull>
+export type SortiePprTupleResponse = Array<Shared.SortiePprFull>;
 
 export interface SortiePprCreateParams {
   /**
@@ -811,7 +850,7 @@ export declare namespace SortiePpr {
     type SortiePprCreateBulkParams as SortiePprCreateBulkParams,
     type SortiePprGetParams as SortiePprGetParams,
     type SortiePprTupleParams as SortiePprTupleParams,
-    type SortiePprUnvalidatedPublishParams as SortiePprUnvalidatedPublishParams
+    type SortiePprUnvalidatedPublishParams as SortiePprUnvalidatedPublishParams,
   };
 
   export {
@@ -819,6 +858,6 @@ export declare namespace SortiePpr {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

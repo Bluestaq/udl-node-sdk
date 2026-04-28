@@ -29,7 +29,11 @@ export class Batterydetails extends APIResource {
    * ```
    */
   create(body: BatterydetailCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/batterydetails', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/batterydetails', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -43,7 +47,11 @@ export class Batterydetails extends APIResource {
    *   await client.batterydetails.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: BatterydetailRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.BatterydetailsFull> {
+  retrieve(
+    id: string,
+    query: BatterydetailRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.BatterydetailsFull> {
     return this._client.get(path`/udl/batterydetails/${id}`, { query, ...options });
   }
 
@@ -63,7 +71,11 @@ export class Batterydetails extends APIResource {
    * ```
    */
   update(id: string, body: BatterydetailUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/batterydetails/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/batterydetails/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -80,8 +92,14 @@ export class Batterydetails extends APIResource {
    * }
    * ```
    */
-  list(query: BatterydetailListParams | null | undefined = {}, options?: RequestOptions): PagePromise<BatterydetailsAbridgedsOffsetPage, BatterydetailsAbridged> {
-    return this._client.getAPIList('/udl/batterydetails', OffsetPage<BatterydetailsAbridged>, { query, ...options });
+  list(
+    query: BatterydetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BatterydetailsAbridgedsOffsetPage, BatterydetailsAbridged> {
+    return this._client.getAPIList('/udl/batterydetails', OffsetPage<BatterydetailsAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -96,11 +114,14 @@ export class Batterydetails extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/batterydetails/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/batterydetails/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type BatterydetailsAbridgedsOffsetPage = OffsetPage<BatterydetailsAbridged>
+export type BatterydetailsAbridgedsOffsetPage = OffsetPage<BatterydetailsAbridged>;
 
 /**
  * Detailed information on a spacecraft battery type compiled by a particular
@@ -378,8 +399,7 @@ export interface BatterydetailUpdateParams {
   technology?: string;
 }
 
-export interface BatterydetailListParams extends OffsetPageParams {
-}
+export interface BatterydetailListParams extends OffsetPageParams {}
 
 export declare namespace Batterydetails {
   export {
@@ -388,6 +408,6 @@ export declare namespace Batterydetails {
     type BatterydetailCreateParams as BatterydetailCreateParams,
     type BatterydetailRetrieveParams as BatterydetailRetrieveParams,
     type BatterydetailUpdateParams as BatterydetailUpdateParams,
-    type BatterydetailListParams as BatterydetailListParams
+    type BatterydetailListParams as BatterydetailListParams,
   };
 }

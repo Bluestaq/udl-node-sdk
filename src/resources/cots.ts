@@ -20,7 +20,11 @@ export class Cots extends APIResource {
    * ```
    */
   create(body: CotCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/cot', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/cot', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -149,7 +153,5 @@ export namespace CotCreateParams {
 }
 
 export declare namespace Cots {
-  export {
-    type CotCreateParams as CotCreateParams
-  };
+  export { type CotCreateParams as CotCreateParams };
 }

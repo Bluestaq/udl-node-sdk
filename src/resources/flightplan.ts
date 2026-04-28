@@ -30,7 +30,11 @@ export class Flightplan extends APIResource {
    * ```
    */
   create(body: FlightplanCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/flightplan', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/flightplan', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -44,7 +48,11 @@ export class Flightplan extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, query: FlightplanRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.FlightPlanFull> {
+  retrieve(
+    id: string,
+    query: FlightplanRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.FlightPlanFull> {
     return this._client.get(path`/udl/flightplan/${id}`, { query, ...options });
   }
 
@@ -66,7 +74,11 @@ export class Flightplan extends APIResource {
    * ```
    */
   update(id: string, body: FlightplanUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/flightplan/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/flightplan/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -83,7 +95,10 @@ export class Flightplan extends APIResource {
    * }
    * ```
    */
-  list(query: FlightplanListParams | null | undefined = {}, options?: RequestOptions): PagePromise<FlightPlanAbridgedsOffsetPage, FlightPlanAbridged> {
+  list(
+    query: FlightplanListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<FlightPlanAbridgedsOffsetPage, FlightPlanAbridged> {
     return this._client.getAPIList('/udl/flightplan', OffsetPage<FlightPlanAbridged>, { query, ...options });
   }
 
@@ -98,7 +113,10 @@ export class Flightplan extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/flightplan/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/flightplan/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -114,7 +132,11 @@ export class Flightplan extends APIResource {
    * ```
    */
   count(query: FlightplanCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/flightplan/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/flightplan/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -174,12 +196,16 @@ export class Flightplan extends APIResource {
    * ```
    */
   unvalidatedPublish(params: FlightplanUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-flightplan', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-flightplan', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type FlightPlanAbridgedsOffsetPage = OffsetPage<FlightPlanAbridged>
+export type FlightPlanAbridgedsOffsetPage = OffsetPage<FlightPlanAbridged>;
 
 /**
  * Flight Plan contains data specifying the details of an intended flight including
@@ -1307,7 +1333,7 @@ export namespace FlightPlanAbridged {
   }
 }
 
-export type FlightplanCountResponse = string
+export type FlightplanCountResponse = string;
 
 export interface FlightplanQueryhelpResponse {
   aodrSupported?: boolean;
@@ -1333,7 +1359,7 @@ export interface FlightplanQueryhelpResponse {
   uri?: string;
 }
 
-export type FlightplanTupleResponse = Array<Shared.FlightPlanFull>
+export type FlightplanTupleResponse = Array<Shared.FlightPlanFull>;
 
 export interface FlightplanCreateParams {
   /**
@@ -3515,8 +3541,7 @@ export namespace FlightplanUpdateParams {
   }
 }
 
-export interface FlightplanListParams extends OffsetPageParams {
-}
+export interface FlightplanListParams extends OffsetPageParams {}
 
 export interface FlightplanCountParams {
   firstResult?: number;
@@ -4648,6 +4673,6 @@ export declare namespace Flightplan {
     type FlightplanListParams as FlightplanListParams,
     type FlightplanCountParams as FlightplanCountParams,
     type FlightplanTupleParams as FlightplanTupleParams,
-    type FlightplanUnvalidatedPublishParams as FlightplanUnvalidatedPublishParams
+    type FlightplanUnvalidatedPublishParams as FlightplanUnvalidatedPublishParams,
   };
 }

@@ -5,17 +5,17 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource transponder', () => {
   test('create: only required params', async () => {
     const responsePromise = client.transponder.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idComm: 'REF-COMM-ID',
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idComm: 'REF-COMM-ID',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,31 +27,31 @@ describe('resource transponder', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.transponder.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idComm: 'REF-COMM-ID',
-    source: 'Bluestaq',
-    id: 'TRANSPONDER-ID',
-    fec: 0,
-    format: 'format',
-    modulation: 'Auto',
-    name: 'AA10',
-    nid: 'N-ID',
-    origin: 'THIRD_PARTY_DATASOURCE',
-    symbolRate: 4,
-    system: 'DVB-S',
-    tid: 'T-ID',
-    ttf: 1.53261520047876,
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idComm: 'REF-COMM-ID',
+      source: 'Bluestaq',
+      id: 'TRANSPONDER-ID',
+      fec: 0,
+      format: 'format',
+      modulation: 'Auto',
+      name: 'AA10',
+      nid: 'N-ID',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      symbolRate: 4,
+      system: 'DVB-S',
+      tid: 'T-ID',
+      ttf: 1.53261520047876,
+    });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.transponder.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idComm: 'REF-COMM-ID',
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idComm: 'REF-COMM-ID',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -63,22 +63,22 @@ describe('resource transponder', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.transponder.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idComm: 'REF-COMM-ID',
-    source: 'Bluestaq',
-    id: 'TRANSPONDER-ID',
-    fec: 0,
-    format: 'format',
-    modulation: 'Auto',
-    name: 'AA10',
-    nid: 'N-ID',
-    origin: 'THIRD_PARTY_DATASOURCE',
-    symbolRate: 4,
-    system: 'DVB-S',
-    tid: 'T-ID',
-    ttf: 1.53261520047876,
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idComm: 'REF-COMM-ID',
+      source: 'Bluestaq',
+      id: 'TRANSPONDER-ID',
+      fec: 0,
+      format: 'format',
+      modulation: 'Auto',
+      name: 'AA10',
+      nid: 'N-ID',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      symbolRate: 4,
+      system: 'DVB-S',
+      tid: 'T-ID',
+      ttf: 1.53261520047876,
+    });
   });
 
   test('list', async () => {
@@ -94,9 +94,9 @@ describe('resource transponder', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.transponder.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.transponder.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -123,9 +123,9 @@ describe('resource transponder', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.transponder.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.transponder.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('get', async () => {
@@ -141,9 +141,9 @@ describe('resource transponder', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.transponder.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.transponder.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -170,9 +170,9 @@ describe('resource transponder', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.transponder.tuple({
-    columns: 'columns',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

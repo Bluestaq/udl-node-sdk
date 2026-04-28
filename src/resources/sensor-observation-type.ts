@@ -10,16 +10,27 @@ import { path } from '../internal/utils/path';
  * This service provides operations for querying and manipulation of sensor data. Sensors are terrestrial or on-orbit equipment capable of taking measurements or 'observations' of on-orbit objects via several phenomenologies such as Electro-Optical (EO), Radar, and Radio Frequency (RF). This collection of operations includes 'SensorMaintenance' schedules which define known/planned future maintenance and associated operational impact of sensors as well as 'SensorCalibration' records which contains data about a sensor's overall accuracy and is used to adjust sensor settings.
  */
 export class SensorObservationType extends APIResource {
-  list(query: SensorObservationTypeListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SensorObservationTypeListResponsesOffsetPage, SensorObservationTypeListResponse> {
-    return this._client.getAPIList('/udl/sensorobservationtype', OffsetPage<SensorObservationTypeListResponse>, { query, ...options });
+  list(
+    query: SensorObservationTypeListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SensorObservationTypeListResponsesOffsetPage, SensorObservationTypeListResponse> {
+    return this._client.getAPIList(
+      '/udl/sensorobservationtype',
+      OffsetPage<SensorObservationTypeListResponse>,
+      { query, ...options },
+    );
   }
 
-  get(id: string, query: SensorObservationTypeGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SensorObservationTypeGetResponse> {
+  get(
+    id: string,
+    query: SensorObservationTypeGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SensorObservationTypeGetResponse> {
     return this._client.get(path`/udl/sensorobservationtype/${id}`, { query, ...options });
   }
 }
 
-export type SensorObservationTypeListResponsesOffsetPage = OffsetPage<SensorObservationTypeListResponse>
+export type SensorObservationTypeListResponsesOffsetPage = OffsetPage<SensorObservationTypeListResponse>;
 
 export interface SensorObservationTypeListResponse {
   /**
@@ -112,8 +123,7 @@ export interface SensorObservationTypeGetResponse {
   updatedBy?: string;
 }
 
-export interface SensorObservationTypeListParams extends OffsetPageParams {
-}
+export interface SensorObservationTypeListParams extends OffsetPageParams {}
 
 export interface SensorObservationTypeGetParams {
   firstResult?: number;
@@ -127,6 +137,6 @@ export declare namespace SensorObservationType {
     type SensorObservationTypeGetResponse as SensorObservationTypeGetResponse,
     type SensorObservationTypeListResponsesOffsetPage as SensorObservationTypeListResponsesOffsetPage,
     type SensorObservationTypeListParams as SensorObservationTypeListParams,
-    type SensorObservationTypeGetParams as SensorObservationTypeGetParams
+    type SensorObservationTypeGetParams as SensorObservationTypeGetParams,
   };
 }

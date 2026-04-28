@@ -16,8 +16,14 @@ export class History extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(query: HistoryListParams, options?: RequestOptions): PagePromise<GnssObservationSetFullsOffsetPage, GnssObservationSetFull> {
-    return this._client.getAPIList('/udl/gnssobservationset/history', OffsetPage<GnssObservationSetFull>, { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<GnssObservationSetFullsOffsetPage, GnssObservationSetFull> {
+    return this._client.getAPIList('/udl/gnssobservationset/history', OffsetPage<GnssObservationSetFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -27,11 +33,15 @@ export class History extends APIResource {
    * for more details on valid/required query parameter information.
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/gnssobservationset/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.get('/udl/gnssobservationset/history/aodr', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type GnssObservationSetFullsOffsetPage = OffsetPage<GnssObservationSetFull>
+export type GnssObservationSetFullsOffsetPage = OffsetPage<GnssObservationSetFull>;
 
 /**
  * Set of GNSSObservation data.
@@ -414,6 +424,6 @@ export declare namespace History {
     type GnssObservationSetFull as GnssObservationSetFull,
     type GnssObservationSetFullsOffsetPage as GnssObservationSetFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
-    type HistoryAodrParams as HistoryAodrParams
+    type HistoryAodrParams as HistoryAodrParams,
   };
 }

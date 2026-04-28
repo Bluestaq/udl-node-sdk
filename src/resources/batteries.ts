@@ -27,7 +27,11 @@ export class Batteries extends APIResource {
    * ```
    */
   create(body: BatteryCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/battery', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/battery', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -39,7 +43,11 @@ export class Batteries extends APIResource {
    * const batteryFull = await client.batteries.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: BatteryRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.BatteryFull> {
+  retrieve(
+    id: string,
+    query: BatteryRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.BatteryFull> {
     return this._client.get(path`/udl/battery/${id}`, { query, ...options });
   }
 
@@ -57,7 +65,11 @@ export class Batteries extends APIResource {
    * ```
    */
   update(id: string, body: BatteryUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/battery/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/battery/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -74,7 +86,10 @@ export class Batteries extends APIResource {
    * }
    * ```
    */
-  list(query: BatteryListParams | null | undefined = {}, options?: RequestOptions): PagePromise<BatteryAbridgedsOffsetPage, BatteryAbridged> {
+  list(
+    query: BatteryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BatteryAbridgedsOffsetPage, BatteryAbridged> {
     return this._client.getAPIList('/udl/battery', OffsetPage<BatteryAbridged>, { query, ...options });
   }
 
@@ -89,7 +104,10 @@ export class Batteries extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/battery/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/battery/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -105,7 +123,11 @@ export class Batteries extends APIResource {
    * ```
    */
   count(query: BatteryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/battery/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/battery/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -143,7 +165,7 @@ export class Batteries extends APIResource {
   }
 }
 
-export type BatteryAbridgedsOffsetPage = OffsetPage<BatteryAbridged>
+export type BatteryAbridgedsOffsetPage = OffsetPage<BatteryAbridged>;
 
 /**
  * Model representation of specific spacecraft battery types.
@@ -207,7 +229,7 @@ export interface BatteryAbridged {
   origNetwork?: string;
 }
 
-export type BatteryCountResponse = string
+export type BatteryCountResponse = string;
 
 export interface BatteryQueryhelpResponse {
   aodrSupported?: boolean;
@@ -233,7 +255,7 @@ export interface BatteryQueryhelpResponse {
   uri?: string;
 }
 
-export type BatteryTupleResponse = Array<Shared.BatteryFull>
+export type BatteryTupleResponse = Array<Shared.BatteryFull>;
 
 export interface BatteryCreateParams {
   /**
@@ -325,8 +347,7 @@ export interface BatteryUpdateParams {
   origin?: string;
 }
 
-export interface BatteryListParams extends OffsetPageParams {
-}
+export interface BatteryListParams extends OffsetPageParams {}
 
 export interface BatteryCountParams {
   firstResult?: number;
@@ -360,6 +381,6 @@ export declare namespace Batteries {
     type BatteryUpdateParams as BatteryUpdateParams,
     type BatteryListParams as BatteryListParams,
     type BatteryCountParams as BatteryCountParams,
-    type BatteryTupleParams as BatteryTupleParams
+    type BatteryTupleParams as BatteryTupleParams,
   };
 }

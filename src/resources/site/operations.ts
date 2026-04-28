@@ -28,7 +28,11 @@ export class Operations extends APIResource {
    * ```
    */
   create(body: OperationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/siteoperations', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/siteoperations', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -42,7 +46,11 @@ export class Operations extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, query: OperationRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<OperationRetrieveResponse> {
+  retrieve(
+    id: string,
+    query: OperationRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OperationRetrieveResponse> {
     return this._client.get(path`/udl/siteoperations/${id}`, { query, ...options });
   }
 
@@ -62,7 +70,11 @@ export class Operations extends APIResource {
    * ```
    */
   update(id: string, body: OperationUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/siteoperations/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/siteoperations/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -81,8 +93,14 @@ export class Operations extends APIResource {
    * }
    * ```
    */
-  list(query: OperationListParams, options?: RequestOptions): PagePromise<OperationListResponsesOffsetPage, OperationListResponse> {
-    return this._client.getAPIList('/udl/siteoperations', OffsetPage<OperationListResponse>, { query, ...options });
+  list(
+    query: OperationListParams,
+    options?: RequestOptions,
+  ): PagePromise<OperationListResponsesOffsetPage, OperationListResponse> {
+    return this._client.getAPIList('/udl/siteoperations', OffsetPage<OperationListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -96,7 +114,10 @@ export class Operations extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/siteoperations/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/siteoperations/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -114,7 +135,11 @@ export class Operations extends APIResource {
    * ```
    */
   count(query: OperationCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/siteoperations/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/siteoperations/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -139,8 +164,12 @@ export class Operations extends APIResource {
    * ```
    */
   createBulk(params: OperationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/siteoperations/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/siteoperations/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -199,12 +228,16 @@ export class Operations extends APIResource {
    * ```
    */
   unvalidatedPublish(params: OperationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-siteoperations', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-siteoperations', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type OperationListResponsesOffsetPage = OffsetPage<OperationListResponse>
+export type OperationListResponsesOffsetPage = OffsetPage<OperationListResponse>;
 
 /**
  * Site operating details concerning the hours of operation, operational
@@ -808,7 +841,7 @@ export namespace OperationListResponse {
   }
 }
 
-export type OperationCountResponse = string
+export type OperationCountResponse = string;
 
 export interface OperationQueryHelpResponse {
   aodrSupported?: boolean;
@@ -834,7 +867,7 @@ export interface OperationQueryHelpResponse {
   uri?: string;
 }
 
-export type OperationTupleResponse = Array<OperationTupleResponse.OperationTupleResponseItem>
+export type OperationTupleResponse = Array<OperationTupleResponse.OperationTupleResponseItem>;
 
 export namespace OperationTupleResponse {
   /**
@@ -2685,6 +2718,6 @@ export declare namespace Operations {
     type OperationCountParams as OperationCountParams,
     type OperationCreateBulkParams as OperationCreateBulkParams,
     type OperationTupleParams as OperationTupleParams,
-    type OperationUnvalidatedPublishParams as OperationUnvalidatedPublishParams
+    type OperationUnvalidatedPublishParams as OperationUnvalidatedPublishParams,
   };
 }

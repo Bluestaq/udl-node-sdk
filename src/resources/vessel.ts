@@ -28,7 +28,11 @@ export class Vessel extends APIResource {
    * ```
    */
   create(body: VesselCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/vessel', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/vessel', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -45,7 +49,11 @@ export class Vessel extends APIResource {
    * ```
    */
   update(id: string, body: VesselUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/vessel/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/vessel/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -62,7 +70,10 @@ export class Vessel extends APIResource {
    * }
    * ```
    */
-  list(query: VesselListParams | null | undefined = {}, options?: RequestOptions): PagePromise<VesselListResponsesOffsetPage, VesselListResponse> {
+  list(
+    query: VesselListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<VesselListResponsesOffsetPage, VesselListResponse> {
     return this._client.getAPIList('/udl/vessel', OffsetPage<VesselListResponse>, { query, ...options });
   }
 
@@ -79,7 +90,11 @@ export class Vessel extends APIResource {
    * ```
    */
   count(query: VesselCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/vessel/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/vessel/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -103,8 +118,12 @@ export class Vessel extends APIResource {
    * ```
    */
   createBulk(params: VesselCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/vessel/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/vessel/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -116,7 +135,11 @@ export class Vessel extends APIResource {
    * const vessel = await client.vessel.get('id');
    * ```
    */
-  get(id: string, query: VesselGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<VesselGetResponse> {
+  get(
+    id: string,
+    query: VesselGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<VesselGetResponse> {
     return this._client.get(path`/udl/vessel/${id}`, { query, ...options });
   }
 
@@ -155,7 +178,7 @@ export class Vessel extends APIResource {
   }
 }
 
-export type VesselListResponsesOffsetPage = OffsetPage<VesselListResponse>
+export type VesselListResponsesOffsetPage = OffsetPage<VesselListResponse>;
 
 /**
  * This service provides operations for manipulation and querying of maritime
@@ -365,7 +388,7 @@ export interface VesselListResponse {
   yearBuilt?: string;
 }
 
-export type VesselCountResponse = string
+export type VesselCountResponse = string;
 
 /**
  * This service provides operations for manipulation and querying of maritime
@@ -624,7 +647,7 @@ export interface VesselQueryhelpResponse {
   uri?: string;
 }
 
-export type VesselTupleResponse = Array<VesselTupleResponse.VesselTupleResponseItem>
+export type VesselTupleResponse = Array<VesselTupleResponse.VesselTupleResponseItem>;
 
 export namespace VesselTupleResponse {
   /**
@@ -1247,8 +1270,7 @@ export interface VesselUpdateParams {
   yearBuilt?: string;
 }
 
-export interface VesselListParams extends OffsetPageParams {
-}
+export interface VesselListParams extends OffsetPageParams {}
 
 export interface VesselCountParams {
   firstResult?: number;
@@ -1494,6 +1516,6 @@ export declare namespace Vessel {
     type VesselCountParams as VesselCountParams,
     type VesselCreateBulkParams as VesselCreateBulkParams,
     type VesselGetParams as VesselGetParams,
-    type VesselTupleParams as VesselTupleParams
+    type VesselTupleParams as VesselTupleParams,
   };
 }

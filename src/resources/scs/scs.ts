@@ -5,15 +5,40 @@ import * as Shared from '../shared';
 import * as FileAPI from './file';
 import { File, FileListParams, FileRetrieveParams, FileUpdateParams } from './file';
 import * as FoldersAPI from './folders';
-import { FolderCreateParams, FolderCreateResponse, FolderRetrieveParams, FolderUpdateParams, Folders } from './folders';
+import {
+  FolderCreateParams,
+  FolderCreateResponse,
+  FolderRetrieveParams,
+  FolderUpdateParams,
+  Folders,
+} from './folders';
 import * as PathsAPI from './paths';
 import { PathCreateWithFileParams, PathCreateWithFileResponse, Paths } from './paths';
 import * as V2API from './v2';
-import { Attachment, ScsEntitiesOffsetPage, ScsEntity, V2, V2CopyParams, V2DeleteParams, V2FileUploadParams, V2FolderCreateParams, V2ListParams, V2MoveParams, V2SearchParams, V2SearchResponse, V2UpdateParams } from './v2';
+import {
+  Attachment,
+  ScsEntitiesOffsetPage,
+  ScsEntity,
+  V2,
+  V2CopyParams,
+  V2DeleteParams,
+  V2FileUploadParams,
+  V2FolderCreateParams,
+  V2ListParams,
+  V2MoveParams,
+  V2SearchParams,
+  V2SearchResponse,
+  V2UpdateParams,
+} from './v2';
 import * as ViewAPI from './view';
 import { View, ViewGetParams } from './view';
 import * as NotificationsAPI from './notifications/notifications';
-import { NotificationListParams, NotificationListResponse, NotificationListResponsesOffsetPage, Notifications } from './notifications/notifications';
+import {
+  NotificationListParams,
+  NotificationListResponse,
+  NotificationListResponsesOffsetPage,
+  Notifications,
+} from './notifications/notifications';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
@@ -34,8 +59,12 @@ export class Scs extends APIResource {
    * @deprecated
    */
   delete(params: ScDeleteParams, options?: RequestOptions): APIPromise<void> {
-    const { id } = params
-    return this._client.delete('/scs/delete', { query: { id }, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { id } = params;
+    return this._client.delete('/scs/delete', {
+      query: { id },
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -69,7 +98,7 @@ export class Scs extends APIResource {
    * @deprecated
    */
   copy(params: ScCopyParams, options?: RequestOptions): APIPromise<string> {
-    const { id, targetPath } = params
+    const { id, targetPath } = params;
     return this._client.post('/scs/copy', { query: { id, targetPath }, ...options });
   }
 
@@ -87,8 +116,13 @@ export class Scs extends APIResource {
    * ```
    */
   download(params: ScDownloadParams, options?: RequestOptions): APIPromise<Response> {
-    const { body } = params
-    return this._client.post('/scs/download', { body: body, ...options, headers: buildHeaders([{Accept: 'application/octet-stream'}, options?.headers]), __binaryResponse: true });
+    const { body } = params;
+    return this._client.post('/scs/download', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
+      __binaryResponse: true,
+    });
   }
 
   /**
@@ -105,7 +139,12 @@ export class Scs extends APIResource {
    * ```
    */
   fileDownload(query: ScFileDownloadParams, options?: RequestOptions): APIPromise<Response> {
-    return this._client.get('/scs/download', { query, ...options, headers: buildHeaders([{Accept: 'application/octet-stream'}, options?.headers]), __binaryResponse: true });
+    return this._client.get('/scs/download', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
+      __binaryResponse: true,
+    });
   }
 
   /**
@@ -114,9 +153,36 @@ export class Scs extends APIResource {
    *
    * @deprecated
    */
-  fileUpload(fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView, params: ScFileUploadParams, options?: RequestOptions): APIPromise<string> {
-    const { classificationMarking, fileName, path: path_, deleteAfter, description, overwrite, sendNotification, tags } = params
-    return this._client.post('/scs/file', { body: fileContent, query: { classificationMarking, fileName, path: path_, deleteAfter, description, overwrite, sendNotification, tags }, ...options, headers: buildHeaders([{'Content-Type': 'application/octet-stream'}, options?.headers]) });
+  fileUpload(
+    fileContent: string | ArrayBuffer | ArrayBufferView | Blob | DataView,
+    params: ScFileUploadParams,
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    const {
+      classificationMarking,
+      fileName,
+      path: path_,
+      deleteAfter,
+      description,
+      overwrite,
+      sendNotification,
+      tags,
+    } = params;
+    return this._client.post('/scs/file', {
+      body: fileContent,
+      query: {
+        classificationMarking,
+        fileName,
+        path: path_,
+        deleteAfter,
+        description,
+        overwrite,
+        sendNotification,
+        tags,
+      },
+      ...options,
+      headers: buildHeaders([{ 'Content-Type': 'application/octet-stream' }, options?.headers]),
+    });
   }
 
   /**
@@ -129,8 +195,15 @@ export class Scs extends APIResource {
    * });
    * ```
    */
-  hasWriteAccess(query: ScHasWriteAccessParams, options?: RequestOptions): APIPromise<ScHasWriteAccessResponse> {
-    return this._client.get('/scs/userHasWriteAccess', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  hasWriteAccess(
+    query: ScHasWriteAccessParams,
+    options?: RequestOptions,
+  ): APIPromise<ScHasWriteAccessResponse> {
+    return this._client.get('/scs/userHasWriteAccess', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -140,7 +213,7 @@ export class Scs extends APIResource {
    * @deprecated
    */
   move(params: ScMoveParams, options?: RequestOptions): APIPromise<string> {
-    const { id, targetPath } = params
+    const { id, targetPath } = params;
     return this._client.put('/scs/move', { query: { id, targetPath }, ...options });
   }
 
@@ -151,8 +224,12 @@ export class Scs extends APIResource {
    * @deprecated
    */
   rename(params: ScRenameParams, options?: RequestOptions): APIPromise<void> {
-    const { id, newName } = params
-    return this._client.put('/scs/rename', { query: { id, newName }, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { id, newName } = params;
+    return this._client.put('/scs/rename', {
+      query: { id, newName },
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -161,7 +238,7 @@ export class Scs extends APIResource {
    * @deprecated
    */
   search(params: ScSearchParams, options?: RequestOptions): APIPromise<ScSearchResponse> {
-    const { path: path_, count, offset, ...body } = params
+    const { path: path_, count, offset, ...body } = params;
     return this._client.post('/scs/search', { query: { path: path_, count, offset }, body, ...options });
   }
 }
@@ -170,7 +247,7 @@ export class Scs extends APIResource {
  * A search criterion, which can be a simple field comparison or a logical
  * combination of other criteria.
  */
-export type SearchCriterion = SearchCriterion.ScsSearchFieldCriterion | SearchLogicalCriterion
+export type SearchCriterion = SearchCriterion.ScsSearchFieldCriterion | SearchLogicalCriterion;
 
 export namespace SearchCriterion {
   /**
@@ -209,19 +286,19 @@ export interface SearchLogicalCriterion {
   operator?: 'AND' | 'OR' | 'NOT';
 }
 
-export type ScAllowableFileExtensionsResponse = Array<string>
+export type ScAllowableFileExtensionsResponse = Array<string>;
 
-export type ScAllowableFileMimesResponse = Array<string>
+export type ScAllowableFileMimesResponse = Array<string>;
 
-export type ScCopyResponse = string
+export type ScCopyResponse = string;
 
-export type ScFileUploadResponse = string
+export type ScFileUploadResponse = string;
 
-export type ScHasWriteAccessResponse = boolean
+export type ScHasWriteAccessResponse = boolean;
 
-export type ScMoveResponse = string
+export type ScMoveResponse = string;
 
-export type ScSearchResponse = Array<Shared.FileData>
+export type ScSearchResponse = Array<Shared.FileData>;
 
 export interface ScDeleteParams {
   /**
@@ -403,21 +480,21 @@ export declare namespace Scs {
     type ScHasWriteAccessParams as ScHasWriteAccessParams,
     type ScMoveParams as ScMoveParams,
     type ScRenameParams as ScRenameParams,
-    type ScSearchParams as ScSearchParams
+    type ScSearchParams as ScSearchParams,
   };
 
   export {
     Notifications as Notifications,
     type NotificationListResponse as NotificationListResponse,
     type NotificationListResponsesOffsetPage as NotificationListResponsesOffsetPage,
-    type NotificationListParams as NotificationListParams
+    type NotificationListParams as NotificationListParams,
   };
 
   export {
     File as File,
     type FileRetrieveParams as FileRetrieveParams,
     type FileUpdateParams as FileUpdateParams,
-    type FileListParams as FileListParams
+    type FileListParams as FileListParams,
   };
 
   export {
@@ -425,19 +502,16 @@ export declare namespace Scs {
     type FolderCreateResponse as FolderCreateResponse,
     type FolderCreateParams as FolderCreateParams,
     type FolderRetrieveParams as FolderRetrieveParams,
-    type FolderUpdateParams as FolderUpdateParams
+    type FolderUpdateParams as FolderUpdateParams,
   };
 
   export {
     Paths as Paths,
     type PathCreateWithFileResponse as PathCreateWithFileResponse,
-    type PathCreateWithFileParams as PathCreateWithFileParams
+    type PathCreateWithFileParams as PathCreateWithFileParams,
   };
 
-  export {
-    View as View,
-    type ViewGetParams as ViewGetParams
-  };
+  export { View as View, type ViewGetParams as ViewGetParams };
 
   export {
     V2 as V2,
@@ -452,6 +526,6 @@ export declare namespace Scs {
     type V2FileUploadParams as V2FileUploadParams,
     type V2FolderCreateParams as V2FolderCreateParams,
     type V2MoveParams as V2MoveParams,
-    type V2SearchParams as V2SearchParams
+    type V2SearchParams as V2SearchParams,
   };
 }

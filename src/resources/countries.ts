@@ -27,7 +27,11 @@ export class Countries extends APIResource {
    * ```
    */
   create(body: CountryCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/country', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/country', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -39,7 +43,11 @@ export class Countries extends APIResource {
    * const countryFull = await client.countries.retrieve('code');
    * ```
    */
-  retrieve(code: string, query: CountryRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.CountryFull> {
+  retrieve(
+    code: string,
+    query: CountryRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.CountryFull> {
     return this._client.get(path`/udl/country/${code}`, { query, ...options });
   }
 
@@ -57,7 +65,11 @@ export class Countries extends APIResource {
    * ```
    */
   update(code: string, body: CountryUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/country/${code}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/country/${code}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -74,7 +86,10 @@ export class Countries extends APIResource {
    * }
    * ```
    */
-  list(query: CountryListParams | null | undefined = {}, options?: RequestOptions): PagePromise<CountryAbridgedsOffsetPage, CountryAbridged> {
+  list(
+    query: CountryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<CountryAbridgedsOffsetPage, CountryAbridged> {
     return this._client.getAPIList('/udl/country', OffsetPage<CountryAbridged>, { query, ...options });
   }
 
@@ -89,7 +104,10 @@ export class Countries extends APIResource {
    * ```
    */
   delete(code: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/country/${code}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/country/${code}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -105,7 +123,11 @@ export class Countries extends APIResource {
    * ```
    */
   count(query: CountryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/country/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/country/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -143,7 +165,7 @@ export class Countries extends APIResource {
   }
 }
 
-export type CountryAbridgedsOffsetPage = OffsetPage<CountryAbridged>
+export type CountryAbridgedsOffsetPage = OffsetPage<CountryAbridged>;
 
 /**
  * A Country may represent countries, multi-national consortiums, and international
@@ -222,7 +244,7 @@ export interface CountryAbridged {
   origNetwork?: string;
 }
 
-export type CountryCountResponse = string
+export type CountryCountResponse = string;
 
 export interface CountryQueryhelpResponse {
   aodrSupported?: boolean;
@@ -248,7 +270,7 @@ export interface CountryQueryhelpResponse {
   uri?: string;
 }
 
-export type CountryTupleResponse = Array<Shared.CountryFull>
+export type CountryTupleResponse = Array<Shared.CountryFull>;
 
 export interface CountryCreateParams {
   /**
@@ -368,8 +390,7 @@ export interface CountryUpdateParams {
   name?: string;
 }
 
-export interface CountryListParams extends OffsetPageParams {
-}
+export interface CountryListParams extends OffsetPageParams {}
 
 export interface CountryCountParams {
   firstResult?: number;
@@ -403,6 +424,6 @@ export declare namespace Countries {
     type CountryUpdateParams as CountryUpdateParams,
     type CountryListParams as CountryListParams,
     type CountryCountParams as CountryCountParams,
-    type CountryTupleParams as CountryTupleParams
+    type CountryTupleParams as CountryTupleParams,
   };
 }

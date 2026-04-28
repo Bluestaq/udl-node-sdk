@@ -3,7 +3,13 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -33,7 +39,11 @@ export class CollectRequests extends APIResource {
    * ```
    */
   create(body: CollectRequestCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/collectrequest', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/collectrequest', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -46,7 +56,11 @@ export class CollectRequests extends APIResource {
    *   await client.collectRequests.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: CollectRequestRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.CollectRequestFull> {
+  retrieve(
+    id: string,
+    query: CollectRequestRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.CollectRequestFull> {
     return this._client.get(path`/udl/collectrequest/${id}`, { query, ...options });
   }
 
@@ -66,8 +80,14 @@ export class CollectRequests extends APIResource {
    * }
    * ```
    */
-  list(query: CollectRequestListParams, options?: RequestOptions): PagePromise<CollectRequestAbridgedsOffsetPage, CollectRequestAbridged> {
-    return this._client.getAPIList('/udl/collectrequest', OffsetPage<CollectRequestAbridged>, { query, ...options });
+  list(
+    query: CollectRequestListParams,
+    options?: RequestOptions,
+  ): PagePromise<CollectRequestAbridgedsOffsetPage, CollectRequestAbridged> {
+    return this._client.getAPIList('/udl/collectrequest', OffsetPage<CollectRequestAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -85,7 +105,11 @@ export class CollectRequests extends APIResource {
    * ```
    */
   count(query: CollectRequestCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/collectrequest/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/collectrequest/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -111,8 +135,12 @@ export class CollectRequests extends APIResource {
    * ```
    */
   createBulk(params: CollectRequestCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/collectrequest/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/collectrequest/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -172,13 +200,20 @@ export class CollectRequests extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(params: CollectRequestUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-collectrequest', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: CollectRequestUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-collectrequest', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type CollectRequestAbridgedsOffsetPage = OffsetPage<CollectRequestAbridged>
+export type CollectRequestAbridgedsOffsetPage = OffsetPage<CollectRequestAbridged>;
 
 /**
  * Collect Requests support several types of individual requests, or
@@ -1720,7 +1755,7 @@ export namespace CollectRequestAbridged {
   }
 }
 
-export type CollectRequestCountResponse = string
+export type CollectRequestCountResponse = string;
 
 export interface CollectRequestQueryHelpResponse {
   aodrSupported?: boolean;
@@ -1746,7 +1781,7 @@ export interface CollectRequestQueryHelpResponse {
   uri?: string;
 }
 
-export type CollectRequestTupleResponse = Array<Shared.CollectRequestFull>
+export type CollectRequestTupleResponse = Array<Shared.CollectRequestFull>;
 
 export interface CollectRequestCreateParams {
   /**
@@ -6364,7 +6399,7 @@ export declare namespace CollectRequests {
     type CollectRequestCountParams as CollectRequestCountParams,
     type CollectRequestCreateBulkParams as CollectRequestCreateBulkParams,
     type CollectRequestTupleParams as CollectRequestTupleParams,
-    type CollectRequestUnvalidatedPublishParams as CollectRequestUnvalidatedPublishParams
+    type CollectRequestUnvalidatedPublishParams as CollectRequestUnvalidatedPublishParams,
   };
 
   export {
@@ -6372,6 +6407,6 @@ export declare namespace CollectRequests {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

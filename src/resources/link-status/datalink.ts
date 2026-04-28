@@ -29,7 +29,11 @@ export class Datalink extends APIResource {
    * ```
    */
   create(body: DatalinkCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/datalink', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/datalink', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -48,7 +52,10 @@ export class Datalink extends APIResource {
    * }
    * ```
    */
-  list(query: DatalinkListParams, options?: RequestOptions): PagePromise<DatalinkListResponsesOffsetPage, DatalinkListResponse> {
+  list(
+    query: DatalinkListParams,
+    options?: RequestOptions,
+  ): PagePromise<DatalinkListResponsesOffsetPage, DatalinkListResponse> {
     return this._client.getAPIList('/udl/datalink', OffsetPage<DatalinkListResponse>, { query, ...options });
   }
 
@@ -67,7 +74,11 @@ export class Datalink extends APIResource {
    * ```
    */
   count(query: DatalinkCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/datalink/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/datalink/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -129,12 +140,16 @@ export class Datalink extends APIResource {
    * ```
    */
   unvalidatedPublish(params: DatalinkUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-datalink', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-datalink', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type DatalinkListResponsesOffsetPage = OffsetPage<DatalinkListResponse>
+export type DatalinkListResponsesOffsetPage = OffsetPage<DatalinkListResponse>;
 
 /**
  * Beta Version DataLink: Detailed instructions regarding the operations of data
@@ -1568,7 +1583,7 @@ export namespace DatalinkListResponse {
   }
 }
 
-export type DatalinkCountResponse = string
+export type DatalinkCountResponse = string;
 
 export interface DatalinkQueryhelpResponse {
   aodrSupported?: boolean;
@@ -1594,7 +1609,7 @@ export interface DatalinkQueryhelpResponse {
   uri?: string;
 }
 
-export type DatalinkTupleResponse = Array<DatalinkTupleResponse.DatalinkTupleResponseItem>
+export type DatalinkTupleResponse = Array<DatalinkTupleResponse.DatalinkTupleResponseItem>;
 
 export namespace DatalinkTupleResponse {
   /**
@@ -3047,6 +3062,6 @@ export declare namespace Datalink {
     type DatalinkListParams as DatalinkListParams,
     type DatalinkCountParams as DatalinkCountParams,
     type DatalinkTupleParams as DatalinkTupleParams,
-    type DatalinkUnvalidatedPublishParams as DatalinkUnvalidatedPublishParams
+    type DatalinkUnvalidatedPublishParams as DatalinkUnvalidatedPublishParams,
   };
 }

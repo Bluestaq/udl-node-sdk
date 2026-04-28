@@ -28,7 +28,11 @@ export class SeraDataEarlyWarning extends APIResource {
    * ```
    */
   create(body: SeraDataEarlyWarningCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/seradataearlywarning', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/seradataearlywarning', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -46,7 +50,11 @@ export class SeraDataEarlyWarning extends APIResource {
    * ```
    */
   update(id: string, body: SeraDataEarlyWarningUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/seradataearlywarning/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/seradataearlywarning/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -63,8 +71,15 @@ export class SeraDataEarlyWarning extends APIResource {
    * }
    * ```
    */
-  list(query: SeraDataEarlyWarningListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SeraDataEarlyWarningListResponsesOffsetPage, SeraDataEarlyWarningListResponse> {
-    return this._client.getAPIList('/udl/seradataearlywarning', OffsetPage<SeraDataEarlyWarningListResponse>, { query, ...options });
+  list(
+    query: SeraDataEarlyWarningListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SeraDataEarlyWarningListResponsesOffsetPage, SeraDataEarlyWarningListResponse> {
+    return this._client.getAPIList(
+      '/udl/seradataearlywarning',
+      OffsetPage<SeraDataEarlyWarningListResponse>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -78,7 +93,10 @@ export class SeraDataEarlyWarning extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/seradataearlywarning/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/seradataearlywarning/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -93,8 +111,15 @@ export class SeraDataEarlyWarning extends APIResource {
    * const response = await client.seraDataEarlyWarning.count();
    * ```
    */
-  count(query: SeraDataEarlyWarningCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/seradataearlywarning/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: SeraDataEarlyWarningCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/seradataearlywarning/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -107,7 +132,11 @@ export class SeraDataEarlyWarning extends APIResource {
    *   await client.seraDataEarlyWarning.get('id');
    * ```
    */
-  get(id: string, query: SeraDataEarlyWarningGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SeraDataEarlyWarningGetResponse> {
+  get(
+    id: string,
+    query: SeraDataEarlyWarningGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeraDataEarlyWarningGetResponse> {
     return this._client.get(path`/udl/seradataearlywarning/${id}`, { query, ...options });
   }
 
@@ -142,12 +171,15 @@ export class SeraDataEarlyWarning extends APIResource {
    * });
    * ```
    */
-  tuple(query: SeraDataEarlyWarningTupleParams, options?: RequestOptions): APIPromise<SeraDataEarlyWarningTupleResponse> {
+  tuple(
+    query: SeraDataEarlyWarningTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<SeraDataEarlyWarningTupleResponse> {
     return this._client.get('/udl/seradataearlywarning/tuple', { query, ...options });
   }
 }
 
-export type SeraDataEarlyWarningListResponsesOffsetPage = OffsetPage<SeraDataEarlyWarningListResponse>
+export type SeraDataEarlyWarningListResponsesOffsetPage = OffsetPage<SeraDataEarlyWarningListResponse>;
 
 /**
  * Details for an early warning payload from Seradata.
@@ -281,7 +313,7 @@ export interface SeraDataEarlyWarningListResponse {
   spectralBands?: string;
 }
 
-export type SeraDataEarlyWarningCountResponse = string
+export type SeraDataEarlyWarningCountResponse = string;
 
 /**
  * Details for an early warning payload from Seradata.
@@ -450,7 +482,8 @@ export interface SeraDataEarlyWarningQueryhelpResponse {
   uri?: string;
 }
 
-export type SeraDataEarlyWarningTupleResponse = Array<SeraDataEarlyWarningTupleResponse.SeraDataEarlyWarningTupleResponseItem>
+export type SeraDataEarlyWarningTupleResponse =
+  Array<SeraDataEarlyWarningTupleResponse.SeraDataEarlyWarningTupleResponseItem>;
 
 export namespace SeraDataEarlyWarningTupleResponse {
   /**
@@ -821,8 +854,7 @@ export interface SeraDataEarlyWarningUpdateParams {
   spectralBands?: string;
 }
 
-export interface SeraDataEarlyWarningListParams extends OffsetPageParams {
-}
+export interface SeraDataEarlyWarningListParams extends OffsetPageParams {}
 
 export interface SeraDataEarlyWarningCountParams {
   firstResult?: number;
@@ -863,6 +895,6 @@ export declare namespace SeraDataEarlyWarning {
     type SeraDataEarlyWarningListParams as SeraDataEarlyWarningListParams,
     type SeraDataEarlyWarningCountParams as SeraDataEarlyWarningCountParams,
     type SeraDataEarlyWarningGetParams as SeraDataEarlyWarningGetParams,
-    type SeraDataEarlyWarningTupleParams as SeraDataEarlyWarningTupleParams
+    type SeraDataEarlyWarningTupleParams as SeraDataEarlyWarningTupleParams,
   };
 }

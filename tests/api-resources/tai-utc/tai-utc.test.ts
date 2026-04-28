@@ -5,17 +5,17 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource taiUtc', () => {
   test('create: only required params', async () => {
     const responsePromise = client.taiUtc.create({
-    adjustmentDate: '2017-01-01T00:00:00.123Z',
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    source: 'Bluestaq',
-  });
+      adjustmentDate: '2017-01-01T00:00:00.123Z',
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,25 +27,25 @@ describe('resource taiUtc', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.taiUtc.create({
-    adjustmentDate: '2017-01-01T00:00:00.123Z',
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    source: 'Bluestaq',
-    id: 'TAIUTC-ID',
-    multiplicationFactor: 0.001296,
-    origin: 'THIRD_PARTY_DATASOURCE',
-    rawFileURI: '/TAI/2019/01/22/4318471007562436-tai-utc.dat',
-    taiUTC: 1.422818,
-  });
+      adjustmentDate: '2017-01-01T00:00:00.123Z',
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      source: 'Bluestaq',
+      id: 'TAIUTC-ID',
+      multiplicationFactor: 0.001296,
+      origin: 'THIRD_PARTY_DATASOURCE',
+      rawFileURI: '/TAI/2019/01/22/4318471007562436-tai-utc.dat',
+      taiUTC: 1.422818,
+    });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.taiUtc.update('id', {
-    adjustmentDate: '2017-01-01T00:00:00.123Z',
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    source: 'Bluestaq',
-  });
+      adjustmentDate: '2017-01-01T00:00:00.123Z',
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -57,16 +57,16 @@ describe('resource taiUtc', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.taiUtc.update('id', {
-    adjustmentDate: '2017-01-01T00:00:00.123Z',
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    source: 'Bluestaq',
-    id: 'TAIUTC-ID',
-    multiplicationFactor: 0.001296,
-    origin: 'THIRD_PARTY_DATASOURCE',
-    rawFileURI: '/TAI/2019/01/22/4318471007562436-tai-utc.dat',
-    taiUTC: 1.422818,
-  });
+      adjustmentDate: '2017-01-01T00:00:00.123Z',
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      source: 'Bluestaq',
+      id: 'TAIUTC-ID',
+      multiplicationFactor: 0.001296,
+      origin: 'THIRD_PARTY_DATASOURCE',
+      rawFileURI: '/TAI/2019/01/22/4318471007562436-tai-utc.dat',
+      taiUTC: 1.422818,
+    });
   });
 
   test('list: only required params', async () => {
@@ -82,10 +82,10 @@ describe('resource taiUtc', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.taiUtc.list({
-    adjustmentDate: '2019-12-27T18:11:19.117Z',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      adjustmentDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('delete', async () => {
@@ -112,10 +112,10 @@ describe('resource taiUtc', () => {
 
   test('count: required and optional params', async () => {
     const response = await client.taiUtc.count({
-    adjustmentDate: '2019-12-27T18:11:19.117Z',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      adjustmentDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('get', async () => {
@@ -131,9 +131,9 @@ describe('resource taiUtc', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.taiUtc.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.taiUtc.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -148,7 +148,10 @@ describe('resource taiUtc', () => {
   });
 
   test('tuple: only required params', async () => {
-    const responsePromise = client.taiUtc.tuple({ adjustmentDate: '2019-12-27T18:11:19.117Z', columns: 'columns' });
+    const responsePromise = client.taiUtc.tuple({
+      adjustmentDate: '2019-12-27T18:11:19.117Z',
+      columns: 'columns',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -160,10 +163,10 @@ describe('resource taiUtc', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.taiUtc.tuple({
-    adjustmentDate: '2019-12-27T18:11:19.117Z',
-    columns: 'columns',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      adjustmentDate: '2019-12-27T18:11:19.117Z',
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

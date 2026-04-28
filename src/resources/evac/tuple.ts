@@ -52,9 +52,7 @@ export interface TupleListParams extends OffsetPageParams {
 }
 
 export declare namespace Tuple {
-  export {
-    type TupleListParams as TupleListParams
-  };
+  export { type TupleListParams as TupleListParams };
 }
 
-export { type EvacFullsOffsetPage }
+export { type EvacFullsOffsetPage };

@@ -29,7 +29,11 @@ export class Country extends APIResource {
    * ```
    */
   create(body: CountryCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/diplomaticclearancecountry', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/diplomaticclearancecountry', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -42,7 +46,11 @@ export class Country extends APIResource {
    *   await client.diplomaticClearance.country.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: CountryRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<CountryRetrieveResponse> {
+  retrieve(
+    id: string,
+    query: CountryRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CountryRetrieveResponse> {
     return this._client.get(path`/udl/diplomaticclearancecountry/${id}`, { query, ...options });
   }
 
@@ -63,7 +71,11 @@ export class Country extends APIResource {
    * ```
    */
   update(id: string, body: CountryUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/diplomaticclearancecountry/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/diplomaticclearancecountry/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -80,8 +92,14 @@ export class Country extends APIResource {
    * }
    * ```
    */
-  list(query: CountryListParams | null | undefined = {}, options?: RequestOptions): PagePromise<CountryListResponsesOffsetPage, CountryListResponse> {
-    return this._client.getAPIList('/udl/diplomaticclearancecountry', OffsetPage<CountryListResponse>, { query, ...options });
+  list(
+    query: CountryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<CountryListResponsesOffsetPage, CountryListResponse> {
+    return this._client.getAPIList('/udl/diplomaticclearancecountry', OffsetPage<CountryListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -95,7 +113,10 @@ export class Country extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/diplomaticclearancecountry/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/diplomaticclearancecountry/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -112,7 +133,11 @@ export class Country extends APIResource {
    * ```
    */
   count(query: CountryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/diplomaticclearancecountry/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/diplomaticclearancecountry/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -138,8 +163,12 @@ export class Country extends APIResource {
    * ```
    */
   createBulk(params: CountryCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/diplomaticclearancecountry/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/diplomaticclearancecountry/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -202,12 +231,16 @@ export class Country extends APIResource {
    * ```
    */
   unvalidatedPublish(params: CountryUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-diplomaticclearancecountry', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-diplomaticclearancecountry', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type CountryListResponsesOffsetPage = OffsetPage<CountryListResponse>
+export type CountryListResponsesOffsetPage = OffsetPage<CountryListResponse>;
 
 /**
  * Diplomatic Clearance Country provides information such as entry/exit points,
@@ -1509,7 +1542,7 @@ export namespace CountryListResponse {
   }
 }
 
-export type CountryCountResponse = string
+export type CountryCountResponse = string;
 
 export interface CountryQueryHelpResponse {
   aodrSupported?: boolean;
@@ -1535,7 +1568,7 @@ export interface CountryQueryHelpResponse {
   uri?: string;
 }
 
-export type CountryTupleResponse = Array<CountryTupleResponse.CountryTupleResponseItem>
+export type CountryTupleResponse = Array<CountryTupleResponse.CountryTupleResponseItem>;
 
 export namespace CountryTupleResponse {
   /**
@@ -3415,8 +3448,7 @@ export namespace CountryUpdateParams {
   }
 }
 
-export interface CountryListParams extends OffsetPageParams {
-}
+export interface CountryListParams extends OffsetPageParams {}
 
 export interface CountryCountParams {
   firstResult?: number;
@@ -4695,6 +4727,6 @@ export declare namespace Country {
     type CountryCountParams as CountryCountParams,
     type CountryCreateBulkParams as CountryCreateBulkParams,
     type CountryTupleParams as CountryTupleParams,
-    type CountryUnvalidatedPublishParams as CountryUnvalidatedPublishParams
+    type CountryUnvalidatedPublishParams as CountryUnvalidatedPublishParams,
   };
 }

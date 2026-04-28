@@ -28,7 +28,11 @@ export class LaunchVehicle extends APIResource {
    * ```
    */
   create(body: LaunchVehicleCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/launchvehicle', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/launchvehicle', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -46,7 +50,11 @@ export class LaunchVehicle extends APIResource {
    * ```
    */
   update(id: string, body: LaunchVehicleUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/launchvehicle/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/launchvehicle/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -63,8 +71,14 @@ export class LaunchVehicle extends APIResource {
    * }
    * ```
    */
-  list(query: LaunchVehicleListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LaunchVehicleListResponsesOffsetPage, LaunchVehicleListResponse> {
-    return this._client.getAPIList('/udl/launchvehicle', OffsetPage<LaunchVehicleListResponse>, { query, ...options });
+  list(
+    query: LaunchVehicleListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LaunchVehicleListResponsesOffsetPage, LaunchVehicleListResponse> {
+    return this._client.getAPIList('/udl/launchvehicle', OffsetPage<LaunchVehicleListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -78,7 +92,10 @@ export class LaunchVehicle extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/launchvehicle/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/launchvehicle/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -93,8 +110,15 @@ export class LaunchVehicle extends APIResource {
    * const response = await client.launchVehicle.count();
    * ```
    */
-  count(query: LaunchVehicleCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/launchvehicle/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: LaunchVehicleCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/launchvehicle/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -106,7 +130,11 @@ export class LaunchVehicle extends APIResource {
    * const launchVehicle = await client.launchVehicle.get('id');
    * ```
    */
-  get(id: string, query: LaunchVehicleGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<LaunchVehicleGetResponse> {
+  get(
+    id: string,
+    query: LaunchVehicleGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaunchVehicleGetResponse> {
     return this._client.get(path`/udl/launchvehicle/${id}`, { query, ...options });
   }
 
@@ -145,7 +173,7 @@ export class LaunchVehicle extends APIResource {
   }
 }
 
-export type LaunchVehicleListResponsesOffsetPage = OffsetPage<LaunchVehicleListResponse>
+export type LaunchVehicleListResponsesOffsetPage = OffsetPage<LaunchVehicleListResponse>;
 
 /**
  * Model representation of basic information about known launch vehicles. A launch
@@ -221,7 +249,7 @@ export interface LaunchVehicleListResponse {
   type?: string;
 }
 
-export type LaunchVehicleCountResponse = string
+export type LaunchVehicleCountResponse = string;
 
 /**
  * Model representation of basic information about known launch vehicles. A launch
@@ -913,7 +941,7 @@ export interface LaunchVehicleQueryhelpResponse {
   uri?: string;
 }
 
-export type LaunchVehicleTupleResponse = Array<LaunchVehicleTupleResponse.LaunchVehicleTupleResponseItem>
+export type LaunchVehicleTupleResponse = Array<LaunchVehicleTupleResponse.LaunchVehicleTupleResponseItem>;
 
 export namespace LaunchVehicleTupleResponse {
   /**
@@ -1687,8 +1715,7 @@ export interface LaunchVehicleUpdateParams {
   type?: string;
 }
 
-export interface LaunchVehicleListParams extends OffsetPageParams {
-}
+export interface LaunchVehicleListParams extends OffsetPageParams {}
 
 export interface LaunchVehicleCountParams {
   firstResult?: number;
@@ -1729,6 +1756,6 @@ export declare namespace LaunchVehicle {
     type LaunchVehicleListParams as LaunchVehicleListParams,
     type LaunchVehicleCountParams as LaunchVehicleCountParams,
     type LaunchVehicleGetParams as LaunchVehicleGetParams,
-    type LaunchVehicleTupleParams as LaunchVehicleTupleParams
+    type LaunchVehicleTupleParams as LaunchVehicleTupleParams,
   };
 }

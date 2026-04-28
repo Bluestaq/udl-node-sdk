@@ -32,7 +32,11 @@ export class Onorbitthruster extends APIResource {
    * ```
    */
   create(body: OnorbitthrusterCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/onorbitthruster', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/onorbitthruster', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -54,7 +58,11 @@ export class Onorbitthruster extends APIResource {
    * ```
    */
   update(id: string, body: OnorbitthrusterUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/onorbitthruster/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/onorbitthruster/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -71,8 +79,14 @@ export class Onorbitthruster extends APIResource {
    * }
    * ```
    */
-  list(query: OnorbitthrusterListParams | null | undefined = {}, options?: RequestOptions): PagePromise<OnorbitthrusterListResponsesOffsetPage, OnorbitthrusterListResponse> {
-    return this._client.getAPIList('/udl/onorbitthruster', OffsetPage<OnorbitthrusterListResponse>, { query, ...options });
+  list(
+    query: OnorbitthrusterListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<OnorbitthrusterListResponsesOffsetPage, OnorbitthrusterListResponse> {
+    return this._client.getAPIList('/udl/onorbitthruster', OffsetPage<OnorbitthrusterListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -88,7 +102,10 @@ export class Onorbitthruster extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/onorbitthruster/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/onorbitthruster/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -103,12 +120,16 @@ export class Onorbitthruster extends APIResource {
    *   await client.onorbitthruster.get('id');
    * ```
    */
-  get(id: string, query: OnorbitthrusterGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.OnorbitThrusterFull> {
+  get(
+    id: string,
+    query: OnorbitthrusterGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.OnorbitThrusterFull> {
     return this._client.get(path`/udl/onorbitthruster/${id}`, { query, ...options });
   }
 }
 
-export type OnorbitthrusterListResponsesOffsetPage = OffsetPage<OnorbitthrusterListResponse>
+export type OnorbitthrusterListResponsesOffsetPage = OffsetPage<OnorbitthrusterListResponse>;
 
 export interface OnorbitthrusterListResponse {
   /**
@@ -337,8 +358,7 @@ export interface OnorbitthrusterUpdateParams {
   type?: string;
 }
 
-export interface OnorbitthrusterListParams extends OffsetPageParams {
-}
+export interface OnorbitthrusterListParams extends OffsetPageParams {}
 
 export interface OnorbitthrusterGetParams {
   firstResult?: number;
@@ -353,6 +373,6 @@ export declare namespace Onorbitthruster {
     type OnorbitthrusterCreateParams as OnorbitthrusterCreateParams,
     type OnorbitthrusterUpdateParams as OnorbitthrusterUpdateParams,
     type OnorbitthrusterListParams as OnorbitthrusterListParams,
-    type OnorbitthrusterGetParams as OnorbitthrusterGetParams
+    type OnorbitthrusterGetParams as OnorbitthrusterGetParams,
   };
 }

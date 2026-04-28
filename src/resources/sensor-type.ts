@@ -16,20 +16,30 @@ export class SensorType extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(query: SensorTypeListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SensorTypeListResponsesOffsetPage, SensorTypeListResponse> {
-    return this._client.getAPIList('/udl/sensortype', OffsetPage<SensorTypeListResponse>, { query, ...options });
+  list(
+    query: SensorTypeListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SensorTypeListResponsesOffsetPage, SensorTypeListResponse> {
+    return this._client.getAPIList('/udl/sensortype', OffsetPage<SensorTypeListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
    * Service operation to get a single Sensortype record by its unique ID passed as a
    * path parameter.
    */
-  get(id: number, query: SensorTypeGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SensorTypeGetResponse> {
+  get(
+    id: number,
+    query: SensorTypeGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SensorTypeGetResponse> {
     return this._client.get(path`/udl/sensortype/${id}`, { query, ...options });
   }
 }
 
-export type SensorTypeListResponsesOffsetPage = OffsetPage<SensorTypeListResponse>
+export type SensorTypeListResponsesOffsetPage = OffsetPage<SensorTypeListResponse>;
 
 export interface SensorTypeListResponse {
   /**
@@ -122,8 +132,7 @@ export interface SensorTypeGetResponse {
   updatedBy?: string;
 }
 
-export interface SensorTypeListParams extends OffsetPageParams {
-}
+export interface SensorTypeListParams extends OffsetPageParams {}
 
 export interface SensorTypeGetParams {
   firstResult?: number;
@@ -137,6 +146,6 @@ export declare namespace SensorType {
     type SensorTypeGetResponse as SensorTypeGetResponse,
     type SensorTypeListResponsesOffsetPage as SensorTypeListResponsesOffsetPage,
     type SensorTypeListParams as SensorTypeListParams,
-    type SensorTypeGetParams as SensorTypeGetParams
+    type SensorTypeGetParams as SensorTypeGetParams,
   };
 }

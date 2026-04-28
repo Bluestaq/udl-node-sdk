@@ -30,7 +30,11 @@ export class Comm extends APIResource {
    * ```
    */
   create(body: CommCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/comm', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/comm', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -43,7 +47,11 @@ export class Comm extends APIResource {
    * const commFull = await client.comm.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: CommRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.CommFull> {
+  retrieve(
+    id: string,
+    query: CommRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.CommFull> {
     return this._client.get(path`/udl/comm/${id}`, { query, ...options });
   }
 
@@ -64,7 +72,11 @@ export class Comm extends APIResource {
    * ```
    */
   update(id: string, body: CommUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/comm/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/comm/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -81,7 +93,10 @@ export class Comm extends APIResource {
    * }
    * ```
    */
-  list(query: CommListParams | null | undefined = {}, options?: RequestOptions): PagePromise<CommAbridgedsOffsetPage, CommAbridged> {
+  list(
+    query: CommListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<CommAbridgedsOffsetPage, CommAbridged> {
     return this._client.getAPIList('/udl/comm', OffsetPage<CommAbridged>, { query, ...options });
   }
 
@@ -97,7 +112,10 @@ export class Comm extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/comm/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/comm/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -113,7 +131,11 @@ export class Comm extends APIResource {
    * ```
    */
   count(query: CommCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/comm/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/comm/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -151,7 +173,7 @@ export class Comm extends APIResource {
   }
 }
 
-export type CommAbridgedsOffsetPage = OffsetPage<CommAbridged>
+export type CommAbridgedsOffsetPage = OffsetPage<CommAbridged>;
 
 /**
  * Comm represents communications entities (e.g. on-orbit communications satellite
@@ -231,7 +253,7 @@ export interface CommAbridged {
   origNetwork?: string;
 }
 
-export type CommCountResponse = string
+export type CommCountResponse = string;
 
 export interface CommQueryhelpResponse {
   aodrSupported?: boolean;
@@ -257,7 +279,7 @@ export interface CommQueryhelpResponse {
   uri?: string;
 }
 
-export type CommTupleResponse = Array<Shared.CommFull>
+export type CommTupleResponse = Array<Shared.CommFull>;
 
 export interface CommCreateParams {
   /**
@@ -386,8 +408,7 @@ export interface CommUpdateParams {
   origin?: string;
 }
 
-export interface CommListParams extends OffsetPageParams {
-}
+export interface CommListParams extends OffsetPageParams {}
 
 export interface CommCountParams {
   firstResult?: number;
@@ -421,6 +442,6 @@ export declare namespace Comm {
     type CommUpdateParams as CommUpdateParams,
     type CommListParams as CommListParams,
     type CommCountParams as CommCountParams,
-    type CommTupleParams as CommTupleParams
+    type CommTupleParams as CommTupleParams,
   };
 }

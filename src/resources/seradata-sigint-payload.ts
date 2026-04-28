@@ -28,7 +28,11 @@ export class SeradataSigintPayload extends APIResource {
    * ```
    */
   create(body: SeradataSigintPayloadCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/seradatasigintpayload', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/seradatasigintpayload', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -47,7 +51,11 @@ export class SeradataSigintPayload extends APIResource {
    * ```
    */
   update(id: string, body: SeradataSigintPayloadUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/seradatasigintpayload/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/seradatasigintpayload/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -64,8 +72,15 @@ export class SeradataSigintPayload extends APIResource {
    * }
    * ```
    */
-  list(query: SeradataSigintPayloadListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SeradataSigintPayloadListResponsesOffsetPage, SeradataSigintPayloadListResponse> {
-    return this._client.getAPIList('/udl/seradatasigintpayload', OffsetPage<SeradataSigintPayloadListResponse>, { query, ...options });
+  list(
+    query: SeradataSigintPayloadListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SeradataSigintPayloadListResponsesOffsetPage, SeradataSigintPayloadListResponse> {
+    return this._client.getAPIList(
+      '/udl/seradatasigintpayload',
+      OffsetPage<SeradataSigintPayloadListResponse>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -79,7 +94,10 @@ export class SeradataSigintPayload extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/seradatasigintpayload/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/seradatasigintpayload/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -94,8 +112,15 @@ export class SeradataSigintPayload extends APIResource {
    * const response = await client.seradataSigintPayload.count();
    * ```
    */
-  count(query: SeradataSigintPayloadCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/seradatasigintpayload/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: SeradataSigintPayloadCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/seradatasigintpayload/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -108,7 +133,11 @@ export class SeradataSigintPayload extends APIResource {
    *   await client.seradataSigintPayload.get('id');
    * ```
    */
-  get(id: string, query: SeradataSigintPayloadGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SeradataSigintPayloadGetResponse> {
+  get(
+    id: string,
+    query: SeradataSigintPayloadGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradataSigintPayloadGetResponse> {
     return this._client.get(path`/udl/seradatasigintpayload/${id}`, { query, ...options });
   }
 
@@ -143,12 +172,15 @@ export class SeradataSigintPayload extends APIResource {
    * });
    * ```
    */
-  tuple(query: SeradataSigintPayloadTupleParams, options?: RequestOptions): APIPromise<SeradataSigintPayloadTupleResponse> {
+  tuple(
+    query: SeradataSigintPayloadTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<SeradataSigintPayloadTupleResponse> {
     return this._client.get('/udl/seradatasigintpayload/tuple', { query, ...options });
   }
 }
 
-export type SeradataSigintPayloadListResponsesOffsetPage = OffsetPage<SeradataSigintPayloadListResponse>
+export type SeradataSigintPayloadListResponsesOffsetPage = OffsetPage<SeradataSigintPayloadListResponse>;
 
 /**
  * Details for an sigint payload from Seradata.
@@ -277,7 +309,7 @@ export interface SeradataSigintPayloadListResponse {
   type?: string;
 }
 
-export type SeradataSigintPayloadCountResponse = string
+export type SeradataSigintPayloadCountResponse = string;
 
 /**
  * Details for an sigint payload from Seradata.
@@ -441,7 +473,8 @@ export interface SeradataSigintPayloadQueryhelpResponse {
   uri?: string;
 }
 
-export type SeradataSigintPayloadTupleResponse = Array<SeradataSigintPayloadTupleResponse.SeradataSigintPayloadTupleResponseItem>
+export type SeradataSigintPayloadTupleResponse =
+  Array<SeradataSigintPayloadTupleResponse.SeradataSigintPayloadTupleResponseItem>;
 
 export namespace SeradataSigintPayloadTupleResponse {
   /**
@@ -797,8 +830,7 @@ export interface SeradataSigintPayloadUpdateParams {
   type?: string;
 }
 
-export interface SeradataSigintPayloadListParams extends OffsetPageParams {
-}
+export interface SeradataSigintPayloadListParams extends OffsetPageParams {}
 
 export interface SeradataSigintPayloadCountParams {
   firstResult?: number;
@@ -839,6 +871,6 @@ export declare namespace SeradataSigintPayload {
     type SeradataSigintPayloadListParams as SeradataSigintPayloadListParams,
     type SeradataSigintPayloadCountParams as SeradataSigintPayloadCountParams,
     type SeradataSigintPayloadGetParams as SeradataSigintPayloadGetParams,
-    type SeradataSigintPayloadTupleParams as SeradataSigintPayloadTupleParams
+    type SeradataSigintPayloadTupleParams as SeradataSigintPayloadTupleParams,
   };
 }

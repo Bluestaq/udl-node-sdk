@@ -30,7 +30,11 @@ export class Scientific extends APIResource {
    * ```
    */
   create(body: ScientificCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/scientific', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/scientific', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -49,7 +53,11 @@ export class Scientific extends APIResource {
    * ```
    */
   update(id: string, body: ScientificUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/scientific/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/scientific/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -66,8 +74,14 @@ export class Scientific extends APIResource {
    * }
    * ```
    */
-  list(query: ScientificListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ScientificListResponsesOffsetPage, ScientificListResponse> {
-    return this._client.getAPIList('/udl/scientific', OffsetPage<ScientificListResponse>, { query, ...options });
+  list(
+    query: ScientificListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ScientificListResponsesOffsetPage, ScientificListResponse> {
+    return this._client.getAPIList('/udl/scientific', OffsetPage<ScientificListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -81,7 +95,10 @@ export class Scientific extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/scientific/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/scientific/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -97,7 +114,11 @@ export class Scientific extends APIResource {
    * ```
    */
   count(query: ScientificCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/scientific/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/scientific/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -109,7 +130,11 @@ export class Scientific extends APIResource {
    * const scientific = await client.scientific.get('id');
    * ```
    */
-  get(id: string, query: ScientificGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<ScientificGetResponse> {
+  get(
+    id: string,
+    query: ScientificGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ScientificGetResponse> {
     return this._client.get(path`/udl/scientific/${id}`, { query, ...options });
   }
 
@@ -148,7 +173,7 @@ export class Scientific extends APIResource {
   }
 }
 
-export type ScientificListResponsesOffsetPage = OffsetPage<ScientificListResponse>
+export type ScientificListResponsesOffsetPage = OffsetPage<ScientificListResponse>;
 
 /**
  * Scientific or other data from Seradata.
@@ -252,7 +277,7 @@ export interface ScientificListResponse {
   payloadCategory?: string;
 }
 
-export type ScientificCountResponse = string
+export type ScientificCountResponse = string;
 
 /**
  * Scientific or other data from Seradata.
@@ -398,7 +423,7 @@ export interface ScientificQueryhelpResponse {
   uri?: string;
 }
 
-export type ScientificTupleResponse = Array<ScientificTupleResponse.ScientificTupleResponseItem>
+export type ScientificTupleResponse = Array<ScientificTupleResponse.ScientificTupleResponseItem>;
 
 export namespace ScientificTupleResponse {
   /**
@@ -700,8 +725,7 @@ export interface ScientificUpdateParams {
   payloadCategory?: string;
 }
 
-export interface ScientificListParams extends OffsetPageParams {
-}
+export interface ScientificListParams extends OffsetPageParams {}
 
 export interface ScientificCountParams {
   firstResult?: number;
@@ -742,6 +766,6 @@ export declare namespace Scientific {
     type ScientificListParams as ScientificListParams,
     type ScientificCountParams as ScientificCountParams,
     type ScientificGetParams as ScientificGetParams,
-    type ScientificTupleParams as ScientificTupleParams
+    type ScientificTupleParams as ScientificTupleParams,
   };
 }

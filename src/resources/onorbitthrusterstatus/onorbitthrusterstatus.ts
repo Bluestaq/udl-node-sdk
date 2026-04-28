@@ -33,7 +33,11 @@ export class Onorbitthrusterstatus extends APIResource {
    * ```
    */
   create(body: OnorbitthrusterstatusCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/onorbitthrusterstatus', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/onorbitthrusterstatus', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -50,8 +54,15 @@ export class Onorbitthrusterstatus extends APIResource {
    * }
    * ```
    */
-  list(query: OnorbitthrusterstatusListParams | null | undefined = {}, options?: RequestOptions): PagePromise<OnorbitthrusterstatusListResponsesOffsetPage, OnorbitthrusterstatusListResponse> {
-    return this._client.getAPIList('/udl/onorbitthrusterstatus', OffsetPage<OnorbitthrusterstatusListResponse>, { query, ...options });
+  list(
+    query: OnorbitthrusterstatusListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<OnorbitthrusterstatusListResponsesOffsetPage, OnorbitthrusterstatusListResponse> {
+    return this._client.getAPIList(
+      '/udl/onorbitthrusterstatus',
+      OffsetPage<OnorbitthrusterstatusListResponse>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -65,7 +76,10 @@ export class Onorbitthrusterstatus extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/onorbitthrusterstatus/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/onorbitthrusterstatus/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -80,8 +94,15 @@ export class Onorbitthrusterstatus extends APIResource {
    * const response = await client.onorbitthrusterstatus.count();
    * ```
    */
-  count(query: OnorbitthrusterstatusCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/onorbitthrusterstatus/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: OnorbitthrusterstatusCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/onorbitthrusterstatus/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -108,8 +129,12 @@ export class Onorbitthrusterstatus extends APIResource {
    * ```
    */
   createBulk(params: OnorbitthrusterstatusCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/onorbitthrusterstatus/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/onorbitthrusterstatus/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -123,7 +148,11 @@ export class Onorbitthrusterstatus extends APIResource {
    *   await client.onorbitthrusterstatus.get('id');
    * ```
    */
-  get(id: string, query: OnorbitthrusterstatusGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.OnorbitthrusterstatusFull> {
+  get(
+    id: string,
+    query: OnorbitthrusterstatusGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.OnorbitthrusterstatusFull> {
     return this._client.get(path`/udl/onorbitthrusterstatus/${id}`, { query, ...options });
   }
 
@@ -159,12 +188,15 @@ export class Onorbitthrusterstatus extends APIResource {
    *   });
    * ```
    */
-  tuple(query: OnorbitthrusterstatusTupleParams, options?: RequestOptions): APIPromise<OnorbitthrusterstatusTupleResponse> {
+  tuple(
+    query: OnorbitthrusterstatusTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<OnorbitthrusterstatusTupleResponse> {
     return this._client.get('/udl/onorbitthrusterstatus/tuple', { query, ...options });
   }
 }
 
-export type OnorbitthrusterstatusListResponsesOffsetPage = OffsetPage<OnorbitthrusterstatusListResponse>
+export type OnorbitthrusterstatusListResponsesOffsetPage = OffsetPage<OnorbitthrusterstatusListResponse>;
 
 /**
  * Status information for OnorbitThruster objects.
@@ -314,7 +346,7 @@ export interface OnorbitthrusterstatusListResponse {
   totalDeltaV?: number;
 }
 
-export type OnorbitthrusterstatusCountResponse = string
+export type OnorbitthrusterstatusCountResponse = string;
 
 export interface OnorbitthrusterstatusQueryhelpResponse {
   aodrSupported?: boolean;
@@ -340,7 +372,7 @@ export interface OnorbitthrusterstatusQueryhelpResponse {
   uri?: string;
 }
 
-export type OnorbitthrusterstatusTupleResponse = Array<Shared.OnorbitthrusterstatusFull>
+export type OnorbitthrusterstatusTupleResponse = Array<Shared.OnorbitthrusterstatusFull>;
 
 export interface OnorbitthrusterstatusCreateParams {
   /**
@@ -697,13 +729,13 @@ export declare namespace Onorbitthrusterstatus {
     type OnorbitthrusterstatusCountParams as OnorbitthrusterstatusCountParams,
     type OnorbitthrusterstatusCreateBulkParams as OnorbitthrusterstatusCreateBulkParams,
     type OnorbitthrusterstatusGetParams as OnorbitthrusterstatusGetParams,
-    type OnorbitthrusterstatusTupleParams as OnorbitthrusterstatusTupleParams
+    type OnorbitthrusterstatusTupleParams as OnorbitthrusterstatusTupleParams,
   };
 
   export {
     History as History,
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

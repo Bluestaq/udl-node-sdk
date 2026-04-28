@@ -5,18 +5,18 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource siteRemark', () => {
   test('create: only required params', async () => {
     const responsePromise = client.siteRemark.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idSite: 'SITE-ID',
-    source: 'Bluestaq',
-    text: 'This is a remark',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idSite: 'SITE-ID',
+      source: 'Bluestaq',
+      text: 'This is a remark',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -28,18 +28,18 @@ describe('resource siteRemark', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.siteRemark.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idSite: 'SITE-ID',
-    source: 'Bluestaq',
-    text: 'This is a remark',
-    id: '5000a3ef-8e39-2551-80f1-b3cd1895fe7b',
-    code: 'M',
-    name: 'Remark name',
-    origin: 'THIRD_PARTY_DATASOURCE',
-    origRmkId: '123456ABC',
-    type: 'Restriction',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idSite: 'SITE-ID',
+      source: 'Bluestaq',
+      text: 'This is a remark',
+      id: '5000a3ef-8e39-2551-80f1-b3cd1895fe7b',
+      code: 'M',
+      name: 'Remark name',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      origRmkId: '123456ABC',
+      type: 'Restriction',
+    });
   });
 
   test('list', async () => {
@@ -55,9 +55,9 @@ describe('resource siteRemark', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.siteRemark.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.siteRemark.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('count', async () => {
@@ -73,9 +73,9 @@ describe('resource siteRemark', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.siteRemark.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.siteRemark.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('get', async () => {
@@ -91,9 +91,9 @@ describe('resource siteRemark', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.siteRemark.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.siteRemark.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -120,9 +120,9 @@ describe('resource siteRemark', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.siteRemark.tuple({
-    columns: 'columns',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

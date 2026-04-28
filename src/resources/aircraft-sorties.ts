@@ -21,7 +21,11 @@ export class AircraftSorties extends APIResource {
    *   await client.aircraftSorties.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: AircraftSortyRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AircraftsortieFull> {
+  retrieve(
+    id: string,
+    query: AircraftSortyRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.AircraftsortieFull> {
     return this._client.get(path`/udl/aircraftsortie/${id}`, { query, ...options });
   }
 
@@ -40,7 +44,11 @@ export class AircraftSorties extends APIResource {
    * ```
    */
   update(id: string, body: AircraftSortyUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/aircraftsortie/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/aircraftsortie/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -104,7 +112,7 @@ export interface AircraftSortyQueryhelpResponse {
   uri?: string;
 }
 
-export type AircraftSortyTupleResponse = Array<Shared.AircraftsortieFull>
+export type AircraftSortyTupleResponse = Array<Shared.AircraftsortieFull>;
 
 export interface AircraftSortyRetrieveParams {
   firstResult?: number;
@@ -534,6 +542,6 @@ export declare namespace AircraftSorties {
     type AircraftSortyTupleResponse as AircraftSortyTupleResponse,
     type AircraftSortyRetrieveParams as AircraftSortyRetrieveParams,
     type AircraftSortyUpdateParams as AircraftSortyUpdateParams,
-    type AircraftSortyTupleParams as AircraftSortyTupleParams
+    type AircraftSortyTupleParams as AircraftSortyTupleParams,
   };
 }

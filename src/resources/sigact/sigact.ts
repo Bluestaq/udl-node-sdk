@@ -3,7 +3,14 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { type Uploadable } from '../../core/uploads';
@@ -23,7 +30,10 @@ export class Sigact extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(query: SigactListParams, options?: RequestOptions): PagePromise<SigactListResponsesOffsetPage, SigactListResponse> {
+  list(
+    query: SigactListParams,
+    options?: RequestOptions,
+  ): PagePromise<SigactListResponsesOffsetPage, SigactListResponse> {
     return this._client.getAPIList('/udl/sigact', OffsetPage<SigactListResponse>, { query, ...options });
   }
 
@@ -35,7 +45,11 @@ export class Sigact extends APIResource {
    * valid/required query parameter information.
    */
   count(query: SigactCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/sigact/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/sigact/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -47,8 +61,12 @@ export class Sigact extends APIResource {
    * alternate mechanism.
    */
   createBulk(params: SigactCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/sigact/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/sigact/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -94,11 +112,17 @@ export class Sigact extends APIResource {
    * for assistance.
    */
   uploadZip(body: SigactUploadZipParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/filedrop/udl-sigact-text', multipartFormRequestOptions({ body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) }, this._client));
+    return this._client.post(
+      '/filedrop/udl-sigact-text',
+      multipartFormRequestOptions(
+        { body, ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
+        this._client,
+      ),
+    );
   }
 }
 
-export type SigactListResponsesOffsetPage = OffsetPage<SigactListResponse>
+export type SigactListResponsesOffsetPage = OffsetPage<SigactListResponse>;
 
 /**
  * Provides information on the dates, actors, locations, fatalities, and types of
@@ -658,7 +682,7 @@ export namespace SigactListResponse {
   }
 }
 
-export type SigactCountResponse = string
+export type SigactCountResponse = string;
 
 export interface SigactQueryhelpResponse {
   aodrSupported?: boolean;
@@ -684,7 +708,7 @@ export interface SigactQueryhelpResponse {
   uri?: string;
 }
 
-export type SigactTupleResponse = Array<SigactTupleResponse.SigactTupleResponseItem>
+export type SigactTupleResponse = Array<SigactTupleResponse.SigactTupleResponseItem>;
 
 export namespace SigactTupleResponse {
   /**
@@ -1812,7 +1836,7 @@ export declare namespace Sigact {
     type SigactCountParams as SigactCountParams,
     type SigactCreateBulkParams as SigactCreateBulkParams,
     type SigactTupleParams as SigactTupleParams,
-    type SigactUploadZipParams as SigactUploadZipParams
+    type SigactUploadZipParams as SigactUploadZipParams,
   };
 
   export {
@@ -1821,6 +1845,6 @@ export declare namespace Sigact {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

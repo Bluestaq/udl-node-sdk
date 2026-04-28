@@ -3,7 +3,13 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -51,7 +57,11 @@ export class EphemerisSets extends APIResource {
    * ```
    */
   create(body: EphemerisSetCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/ephemerisset', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/ephemerisset', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -65,7 +75,11 @@ export class EphemerisSets extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, query: EphemerisSetRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<EphemerisSet> {
+  retrieve(
+    id: string,
+    query: EphemerisSetRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EphemerisSet> {
     return this._client.get(path`/udl/ephemerisset/${id}`, { query, ...options });
   }
 
@@ -83,8 +97,14 @@ export class EphemerisSets extends APIResource {
    * }
    * ```
    */
-  list(query: EphemerisSetListParams | null | undefined = {}, options?: RequestOptions): PagePromise<EphemerisSetAbridgedsOffsetPage, EphemerisSetAbridged> {
-    return this._client.getAPIList('/udl/ephemerisset', OffsetPage<EphemerisSetAbridged>, { query, ...options });
+  list(
+    query: EphemerisSetListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<EphemerisSetAbridgedsOffsetPage, EphemerisSetAbridged> {
+    return this._client.getAPIList('/udl/ephemerisset', OffsetPage<EphemerisSetAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -99,8 +119,15 @@ export class EphemerisSets extends APIResource {
    * const response = await client.ephemerisSets.count();
    * ```
    */
-  count(query: EphemerisSetCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/ephemerisset/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: EphemerisSetCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/ephemerisset/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -117,8 +144,17 @@ export class EphemerisSets extends APIResource {
    * console.log(content);
    * ```
    */
-  fileRetrieve(id: string, query: EphemerisSetFileRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Response> {
-    return this._client.get(path`/udl/ephemerisset/getFile/${id}`, { query, ...options, headers: buildHeaders([{Accept: 'application/octet-stream'}, options?.headers]), __binaryResponse: true });
+  fileRetrieve(
+    id: string,
+    query: EphemerisSetFileRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    return this._client.get(path`/udl/ephemerisset/getFile/${id}`, {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
+      __binaryResponse: true,
+    });
   }
 
   /**
@@ -156,9 +192,9 @@ export class EphemerisSets extends APIResource {
   }
 }
 
-export type EphemerisSetAbridgedsOffsetPage = OffsetPage<EphemerisSetAbridged>
+export type EphemerisSetAbridgedsOffsetPage = OffsetPage<EphemerisSetAbridged>;
 
-export type EphemerisSetsOffsetPage = OffsetPage<EphemerisSet>
+export type EphemerisSetsOffsetPage = OffsetPage<EphemerisSet>;
 
 /**
  * EphemerisSet represents a wrapper or collection of Ephemeris 'points' and meta
@@ -692,7 +728,7 @@ export interface EphemerisSetAbridged {
   usableStartTime?: string;
 }
 
-export type EphemerisSetCountResponse = string
+export type EphemerisSetCountResponse = string;
 
 export interface EphemerisSetQueryhelpResponse {
   aodrSupported?: boolean;
@@ -718,7 +754,7 @@ export interface EphemerisSetQueryhelpResponse {
   uri?: string;
 }
 
-export type EphemerisSetTupleResponse = Array<EphemerisSet>
+export type EphemerisSetTupleResponse = Array<EphemerisSet>;
 
 export interface EphemerisSetCreateParams {
   /**
@@ -1222,7 +1258,7 @@ export declare namespace EphemerisSets {
     type EphemerisSetListParams as EphemerisSetListParams,
     type EphemerisSetCountParams as EphemerisSetCountParams,
     type EphemerisSetFileRetrieveParams as EphemerisSetFileRetrieveParams,
-    type EphemerisSetTupleParams as EphemerisSetTupleParams
+    type EphemerisSetTupleParams as EphemerisSetTupleParams,
   };
 
   export {
@@ -1230,6 +1266,6 @@ export declare namespace EphemerisSets {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

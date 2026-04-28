@@ -27,7 +27,11 @@ export class SeraDataCommDetails extends APIResource {
    * ```
    */
   create(body: SeraDataCommDetailCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/seradatacommdetails', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/seradatacommdetails', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -44,7 +48,11 @@ export class SeraDataCommDetails extends APIResource {
    * ```
    */
   update(id: string, body: SeraDataCommDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/seradatacommdetails/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/seradatacommdetails/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -61,8 +69,14 @@ export class SeraDataCommDetails extends APIResource {
    * }
    * ```
    */
-  list(query: SeraDataCommDetailListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SeraDataCommDetailListResponsesOffsetPage, SeraDataCommDetailListResponse> {
-    return this._client.getAPIList('/udl/seradatacommdetails', OffsetPage<SeraDataCommDetailListResponse>, { query, ...options });
+  list(
+    query: SeraDataCommDetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SeraDataCommDetailListResponsesOffsetPage, SeraDataCommDetailListResponse> {
+    return this._client.getAPIList('/udl/seradatacommdetails', OffsetPage<SeraDataCommDetailListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -76,7 +90,10 @@ export class SeraDataCommDetails extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/seradatacommdetails/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/seradatacommdetails/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -91,8 +108,15 @@ export class SeraDataCommDetails extends APIResource {
    * const response = await client.seraDataCommDetails.count();
    * ```
    */
-  count(query: SeraDataCommDetailCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/seradatacommdetails/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: SeraDataCommDetailCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/seradatacommdetails/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -105,7 +129,11 @@ export class SeraDataCommDetails extends APIResource {
    *   await client.seraDataCommDetails.get('id');
    * ```
    */
-  get(id: string, query: SeraDataCommDetailGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SeraDataCommDetailGetResponse> {
+  get(
+    id: string,
+    query: SeraDataCommDetailGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeraDataCommDetailGetResponse> {
     return this._client.get(path`/udl/seradatacommdetails/${id}`, { query, ...options });
   }
 
@@ -140,12 +168,15 @@ export class SeraDataCommDetails extends APIResource {
    * });
    * ```
    */
-  tuple(query: SeraDataCommDetailTupleParams, options?: RequestOptions): APIPromise<SeraDataCommDetailTupleResponse> {
+  tuple(
+    query: SeraDataCommDetailTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<SeraDataCommDetailTupleResponse> {
     return this._client.get('/udl/seradatacommdetails/tuple', { query, ...options });
   }
 }
 
-export type SeraDataCommDetailListResponsesOffsetPage = OffsetPage<SeraDataCommDetailListResponse>
+export type SeraDataCommDetailListResponsesOffsetPage = OffsetPage<SeraDataCommDetailListResponse>;
 
 /**
  * Seradata-compiled information on communications payloads.
@@ -356,7 +387,7 @@ export interface SeraDataCommDetailListResponse {
   userUplinkTo?: number;
 }
 
-export type SeraDataCommDetailCountResponse = string
+export type SeraDataCommDetailCountResponse = string;
 
 /**
  * Seradata-compiled information on communications payloads.
@@ -602,7 +633,8 @@ export interface SeraDataCommDetailQueryhelpResponse {
   uri?: string;
 }
 
-export type SeraDataCommDetailTupleResponse = Array<SeraDataCommDetailTupleResponse.SeraDataCommDetailTupleResponseItem>
+export type SeraDataCommDetailTupleResponse =
+  Array<SeraDataCommDetailTupleResponse.SeraDataCommDetailTupleResponseItem>;
 
 export namespace SeraDataCommDetailTupleResponse {
   /**
@@ -1204,8 +1236,7 @@ export interface SeraDataCommDetailUpdateParams {
   userUplinkTo?: number;
 }
 
-export interface SeraDataCommDetailListParams extends OffsetPageParams {
-}
+export interface SeraDataCommDetailListParams extends OffsetPageParams {}
 
 export interface SeraDataCommDetailCountParams {
   firstResult?: number;
@@ -1246,6 +1277,6 @@ export declare namespace SeraDataCommDetails {
     type SeraDataCommDetailListParams as SeraDataCommDetailListParams,
     type SeraDataCommDetailCountParams as SeraDataCommDetailCountParams,
     type SeraDataCommDetailGetParams as SeraDataCommDetailGetParams,
-    type SeraDataCommDetailTupleParams as SeraDataCommDetailTupleParams
+    type SeraDataCommDetailTupleParams as SeraDataCommDetailTupleParams,
   };
 }

@@ -29,7 +29,11 @@ export class Ir extends APIResource {
    * ```
    */
   create(body: IrCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/ir', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/ir', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -48,7 +52,11 @@ export class Ir extends APIResource {
    * ```
    */
   update(id: string, body: IrUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/ir/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/ir/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -65,7 +73,10 @@ export class Ir extends APIResource {
    * }
    * ```
    */
-  list(query: IrListParams | null | undefined = {}, options?: RequestOptions): PagePromise<IrListResponsesOffsetPage, IrListResponse> {
+  list(
+    query: IrListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<IrListResponsesOffsetPage, IrListResponse> {
     return this._client.getAPIList('/udl/ir', OffsetPage<IrListResponse>, { query, ...options });
   }
 
@@ -80,7 +91,10 @@ export class Ir extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/ir/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/ir/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -96,7 +110,11 @@ export class Ir extends APIResource {
    * ```
    */
   count(query: IrCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/ir/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/ir/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -108,7 +126,11 @@ export class Ir extends APIResource {
    * const ir = await client.ir.get('id');
    * ```
    */
-  get(id: string, query: IrGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<IrGetResponse> {
+  get(
+    id: string,
+    query: IrGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<IrGetResponse> {
     return this._client.get(path`/udl/ir/${id}`, { query, ...options });
   }
 
@@ -147,7 +169,7 @@ export class Ir extends APIResource {
   }
 }
 
-export type IrListResponsesOffsetPage = OffsetPage<IrListResponse>
+export type IrListResponsesOffsetPage = OffsetPage<IrListResponse>;
 
 /**
  * IR represents Infrared entities within the SSA environment.
@@ -226,7 +248,7 @@ export interface IrListResponse {
   origNetwork?: string;
 }
 
-export type IrCountResponse = string
+export type IrCountResponse = string;
 
 /**
  * IR represents Infrared entities within the SSA environment.
@@ -347,7 +369,7 @@ export interface IrQueryhelpResponse {
   uri?: string;
 }
 
-export type IrTupleResponse = Array<IrTupleResponse.IrTupleResponseItem>
+export type IrTupleResponse = Array<IrTupleResponse.IrTupleResponseItem>;
 
 export namespace IrTupleResponse {
   /**
@@ -574,8 +596,7 @@ export interface IrUpdateParams {
   origin?: string;
 }
 
-export interface IrListParams extends OffsetPageParams {
-}
+export interface IrListParams extends OffsetPageParams {}
 
 export interface IrCountParams {
   firstResult?: number;
@@ -616,6 +637,6 @@ export declare namespace Ir {
     type IrListParams as IrListParams,
     type IrCountParams as IrCountParams,
     type IrGetParams as IrGetParams,
-    type IrTupleParams as IrTupleParams
+    type IrTupleParams as IrTupleParams,
   };
 }

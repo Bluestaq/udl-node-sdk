@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -26,7 +34,11 @@ export class GlobalAtmosphericModel extends APIResource {
    *   await client.globalAtmosphericModel.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: GlobalAtmosphericModelRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<GlobalAtmosphericModelRetrieveResponse> {
+  retrieve(
+    id: string,
+    query: GlobalAtmosphericModelRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<GlobalAtmosphericModelRetrieveResponse> {
     return this._client.get(path`/udl/globalatmosphericmodel/${id}`, { query, ...options });
   }
 
@@ -46,8 +58,15 @@ export class GlobalAtmosphericModel extends APIResource {
    * }
    * ```
    */
-  list(query: GlobalAtmosphericModelListParams, options?: RequestOptions): PagePromise<GlobalAtmosphericModelListResponsesOffsetPage, GlobalAtmosphericModelListResponse> {
-    return this._client.getAPIList('/udl/globalatmosphericmodel', OffsetPage<GlobalAtmosphericModelListResponse>, { query, ...options });
+  list(
+    query: GlobalAtmosphericModelListParams,
+    options?: RequestOptions,
+  ): PagePromise<GlobalAtmosphericModelListResponsesOffsetPage, GlobalAtmosphericModelListResponse> {
+    return this._client.getAPIList(
+      '/udl/globalatmosphericmodel',
+      OffsetPage<GlobalAtmosphericModelListResponse>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -65,7 +84,11 @@ export class GlobalAtmosphericModel extends APIResource {
    * ```
    */
   count(query: GlobalAtmosphericModelCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/globalatmosphericmodel/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/globalatmosphericmodel/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -82,8 +105,17 @@ export class GlobalAtmosphericModel extends APIResource {
    * console.log(content);
    * ```
    */
-  getFile(id: string, query: GlobalAtmosphericModelGetFileParams | null | undefined = {}, options?: RequestOptions): APIPromise<Response> {
-    return this._client.get(path`/udl/globalatmosphericmodel/getFile/${id}`, { query, ...options, headers: buildHeaders([{Accept: 'application/octet-stream'}, options?.headers]), __binaryResponse: true });
+  getFile(
+    id: string,
+    query: GlobalAtmosphericModelGetFileParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    return this._client.get(path`/udl/globalatmosphericmodel/getFile/${id}`, {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
+      __binaryResponse: true,
+    });
   }
 
   /**
@@ -118,7 +150,10 @@ export class GlobalAtmosphericModel extends APIResource {
    * });
    * ```
    */
-  tuple(query: GlobalAtmosphericModelTupleParams, options?: RequestOptions): APIPromise<GlobalAtmosphericModelTupleResponse> {
+  tuple(
+    query: GlobalAtmosphericModelTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<GlobalAtmosphericModelTupleResponse> {
     return this._client.get('/udl/globalatmosphericmodel/tuple', { query, ...options });
   }
 
@@ -153,12 +188,19 @@ export class GlobalAtmosphericModel extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(body: GlobalAtmosphericModelUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/filedrop/udl-globalatmosphericmodel', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    body: GlobalAtmosphericModelUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    return this._client.post('/filedrop/udl-globalatmosphericmodel', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type GlobalAtmosphericModelListResponsesOffsetPage = OffsetPage<GlobalAtmosphericModelListResponse>
+export type GlobalAtmosphericModelListResponsesOffsetPage = OffsetPage<GlobalAtmosphericModelListResponse>;
 
 /**
  * The GlobalAtmosphericModel service provides atmospheric model output data for
@@ -522,7 +564,7 @@ export interface GlobalAtmosphericModelListResponse {
   stepLon?: number;
 }
 
-export type GlobalAtmosphericModelCountResponse = string
+export type GlobalAtmosphericModelCountResponse = string;
 
 export interface GlobalAtmosphericModelQueryHelpResponse {
   aodrSupported?: boolean;
@@ -548,7 +590,8 @@ export interface GlobalAtmosphericModelQueryHelpResponse {
   uri?: string;
 }
 
-export type GlobalAtmosphericModelTupleResponse = Array<GlobalAtmosphericModelTupleResponse.GlobalAtmosphericModelTupleResponseItem>
+export type GlobalAtmosphericModelTupleResponse =
+  Array<GlobalAtmosphericModelTupleResponse.GlobalAtmosphericModelTupleResponseItem>;
 
 export namespace GlobalAtmosphericModelTupleResponse {
   /**
@@ -946,7 +989,7 @@ export declare namespace GlobalAtmosphericModel {
     type GlobalAtmosphericModelCountParams as GlobalAtmosphericModelCountParams,
     type GlobalAtmosphericModelGetFileParams as GlobalAtmosphericModelGetFileParams,
     type GlobalAtmosphericModelTupleParams as GlobalAtmosphericModelTupleParams,
-    type GlobalAtmosphericModelUnvalidatedPublishParams as GlobalAtmosphericModelUnvalidatedPublishParams
+    type GlobalAtmosphericModelUnvalidatedPublishParams as GlobalAtmosphericModelUnvalidatedPublishParams,
   };
 
   export {
@@ -956,6 +999,6 @@ export declare namespace GlobalAtmosphericModel {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

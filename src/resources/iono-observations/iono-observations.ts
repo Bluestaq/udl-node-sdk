@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -21,8 +29,14 @@ export class IonoObservations extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(query: IonoObservationListParams, options?: RequestOptions): PagePromise<IonoObservationListResponsesOffsetPage, IonoObservationListResponse> {
-    return this._client.getAPIList('/udl/ionoobservation', OffsetPage<IonoObservationListResponse>, { query, ...options });
+  list(
+    query: IonoObservationListParams,
+    options?: RequestOptions,
+  ): PagePromise<IonoObservationListResponsesOffsetPage, IonoObservationListResponse> {
+    return this._client.getAPIList('/udl/ionoobservation', OffsetPage<IonoObservationListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -33,7 +47,11 @@ export class IonoObservations extends APIResource {
    * valid/required query parameter information.
    */
   count(query: IonoObservationCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/ionoobservation/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/ionoobservation/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -44,8 +62,12 @@ export class IonoObservations extends APIResource {
    * instructions on setting up a permanent feed through an alternate mechanism.
    */
   createBulk(params: IonoObservationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/ionoobservation/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/ionoobservation/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -66,7 +88,10 @@ export class IonoObservations extends APIResource {
    * hours would return the satNo and period of elsets with an epoch greater than 5
    * hours ago.
    */
-  tuple(query: IonoObservationTupleParams, options?: RequestOptions): APIPromise<IonoObservationTupleResponse> {
+  tuple(
+    query: IonoObservationTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<IonoObservationTupleResponse> {
     return this._client.get('/udl/ionoobservation/tuple', { query, ...options });
   }
 
@@ -77,13 +102,20 @@ export class IonoObservations extends APIResource {
    * specific role is required to perform this service operation. Please contact the
    * UDL team for assistance.
    */
-  unvalidatedPublish(params: IonoObservationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-ionoobs', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: IonoObservationUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-ionoobs', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type IonoObservationListResponsesOffsetPage = OffsetPage<IonoObservationListResponse>
+export type IonoObservationListResponsesOffsetPage = OffsetPage<IonoObservationListResponse>;
 
 /**
  * These services provide operations for posting and querying ionospheric
@@ -155,7 +187,13 @@ export interface IonoObservationListResponse {
    * Enums: J2000, ECR/ECEF, TEME, GCRF, WGS84 (GEODetic lat, long, alt), GEOCentric
    * (lat, long, radii).
    */
-  antennaElementPositionCoordinateSystem?: 'J2000' | 'ECR/ECEF' | 'TEME' | 'GCRF' | 'WGS84 (GEODetic lat, long, alt)' | 'GEOCentric (lat, long, radii)';
+  antennaElementPositionCoordinateSystem?:
+    | 'J2000'
+    | 'ECR/ECEF'
+    | 'TEME'
+    | 'GCRF'
+    | 'WGS84 (GEODetic lat, long, alt)'
+    | 'GEOCentric (lat, long, radii)';
 
   /**
    * Array of Legacy Artist Flags.
@@ -1462,7 +1500,7 @@ export namespace IonoObservationListResponse {
   }
 }
 
-export type IonoObservationCountResponse = string
+export type IonoObservationCountResponse = string;
 
 export interface IonoObservationQueryhelpResponse {
   aodrSupported?: boolean;
@@ -1488,7 +1526,8 @@ export interface IonoObservationQueryhelpResponse {
   uri?: string;
 }
 
-export type IonoObservationTupleResponse = Array<IonoObservationTupleResponse.IonoObservationTupleResponseItem>
+export type IonoObservationTupleResponse =
+  Array<IonoObservationTupleResponse.IonoObservationTupleResponseItem>;
 
 export namespace IonoObservationTupleResponse {
   /**
@@ -1561,7 +1600,13 @@ export namespace IonoObservationTupleResponse {
      * Enums: J2000, ECR/ECEF, TEME, GCRF, WGS84 (GEODetic lat, long, alt), GEOCentric
      * (lat, long, radii).
      */
-    antennaElementPositionCoordinateSystem?: 'J2000' | 'ECR/ECEF' | 'TEME' | 'GCRF' | 'WGS84 (GEODetic lat, long, alt)' | 'GEOCentric (lat, long, radii)';
+    antennaElementPositionCoordinateSystem?:
+      | 'J2000'
+      | 'ECR/ECEF'
+      | 'TEME'
+      | 'GCRF'
+      | 'WGS84 (GEODetic lat, long, alt)'
+      | 'GEOCentric (lat, long, radii)';
 
     /**
      * Array of Legacy Artist Flags.
@@ -2962,7 +3007,13 @@ export namespace IonoObservationCreateBulkParams {
      * Enums: J2000, ECR/ECEF, TEME, GCRF, WGS84 (GEODetic lat, long, alt), GEOCentric
      * (lat, long, radii).
      */
-    antennaElementPositionCoordinateSystem?: 'J2000' | 'ECR/ECEF' | 'TEME' | 'GCRF' | 'WGS84 (GEODetic lat, long, alt)' | 'GEOCentric (lat, long, radii)';
+    antennaElementPositionCoordinateSystem?:
+      | 'J2000'
+      | 'ECR/ECEF'
+      | 'TEME'
+      | 'GCRF'
+      | 'WGS84 (GEODetic lat, long, alt)'
+      | 'GEOCentric (lat, long, radii)';
 
     /**
      * Array of Legacy Artist Flags.
@@ -4335,7 +4386,13 @@ export namespace IonoObservationUnvalidatedPublishParams {
      * Enums: J2000, ECR/ECEF, TEME, GCRF, WGS84 (GEODetic lat, long, alt), GEOCentric
      * (lat, long, radii).
      */
-    antennaElementPositionCoordinateSystem?: 'J2000' | 'ECR/ECEF' | 'TEME' | 'GCRF' | 'WGS84 (GEODetic lat, long, alt)' | 'GEOCentric (lat, long, radii)';
+    antennaElementPositionCoordinateSystem?:
+      | 'J2000'
+      | 'ECR/ECEF'
+      | 'TEME'
+      | 'GCRF'
+      | 'WGS84 (GEODetic lat, long, alt)'
+      | 'GEOCentric (lat, long, radii)';
 
     /**
      * Array of Legacy Artist Flags.
@@ -5627,7 +5684,7 @@ export declare namespace IonoObservations {
     type IonoObservationCountParams as IonoObservationCountParams,
     type IonoObservationCreateBulkParams as IonoObservationCreateBulkParams,
     type IonoObservationTupleParams as IonoObservationTupleParams,
-    type IonoObservationUnvalidatedPublishParams as IonoObservationUnvalidatedPublishParams
+    type IonoObservationUnvalidatedPublishParams as IonoObservationUnvalidatedPublishParams,
   };
 
   export {
@@ -5637,6 +5694,6 @@ export declare namespace IonoObservations {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

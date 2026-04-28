@@ -28,7 +28,11 @@ export class AviationRiskManagement extends APIResource {
    * ```
    */
   create(body: AviationRiskManagementCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/aviationriskmanagement', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/aviationriskmanagement', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -41,7 +45,11 @@ export class AviationRiskManagement extends APIResource {
    *   await client.aviationRiskManagement.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: AviationRiskManagementRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<AviationRiskManagementRetrieveResponse> {
+  retrieve(
+    id: string,
+    query: AviationRiskManagementRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AviationRiskManagementRetrieveResponse> {
     return this._client.get(path`/udl/aviationriskmanagement/${id}`, { query, ...options });
   }
 
@@ -61,7 +69,11 @@ export class AviationRiskManagement extends APIResource {
    * ```
    */
   update(id: string, body: AviationRiskManagementUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/aviationriskmanagement/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/aviationriskmanagement/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -80,8 +92,15 @@ export class AviationRiskManagement extends APIResource {
    * }
    * ```
    */
-  list(query: AviationRiskManagementListParams, options?: RequestOptions): PagePromise<AviationRiskManagementListResponsesOffsetPage, AviationRiskManagementListResponse> {
-    return this._client.getAPIList('/udl/aviationriskmanagement', OffsetPage<AviationRiskManagementListResponse>, { query, ...options });
+  list(
+    query: AviationRiskManagementListParams,
+    options?: RequestOptions,
+  ): PagePromise<AviationRiskManagementListResponsesOffsetPage, AviationRiskManagementListResponse> {
+    return this._client.getAPIList(
+      '/udl/aviationriskmanagement',
+      OffsetPage<AviationRiskManagementListResponse>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -95,7 +114,10 @@ export class AviationRiskManagement extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/aviationriskmanagement/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/aviationriskmanagement/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -113,7 +135,11 @@ export class AviationRiskManagement extends APIResource {
    * ```
    */
   count(query: AviationRiskManagementCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/aviationriskmanagement/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/aviationriskmanagement/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -138,8 +164,12 @@ export class AviationRiskManagement extends APIResource {
    * ```
    */
   createBulk(params: AviationRiskManagementCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/aviationriskmanagement/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/aviationriskmanagement/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -174,7 +204,10 @@ export class AviationRiskManagement extends APIResource {
    * });
    * ```
    */
-  tuple(query: AviationRiskManagementTupleParams, options?: RequestOptions): APIPromise<AviationRiskManagementTupleResponse> {
+  tuple(
+    query: AviationRiskManagementTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<AviationRiskManagementTupleResponse> {
     return this._client.get('/udl/aviationriskmanagement/tuple', { query, ...options });
   }
 
@@ -198,13 +231,20 @@ export class AviationRiskManagement extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(params: AviationRiskManagementUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-aviationriskmanagement', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: AviationRiskManagementUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-aviationriskmanagement', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type AviationRiskManagementListResponsesOffsetPage = OffsetPage<AviationRiskManagementListResponse>
+export type AviationRiskManagementListResponsesOffsetPage = OffsetPage<AviationRiskManagementListResponse>;
 
 /**
  * Aviation Risk Management is used to identify, evaluate, and track risks when
@@ -832,7 +872,7 @@ export namespace AviationRiskManagementListResponse {
   }
 }
 
-export type AviationRiskManagementCountResponse = string
+export type AviationRiskManagementCountResponse = string;
 
 export interface AviationRiskManagementQueryHelpResponse {
   aodrSupported?: boolean;
@@ -858,7 +898,8 @@ export interface AviationRiskManagementQueryHelpResponse {
   uri?: string;
 }
 
-export type AviationRiskManagementTupleResponse = Array<AviationRiskManagementTupleResponse.AviationRiskManagementTupleResponseItem>
+export type AviationRiskManagementTupleResponse =
+  Array<AviationRiskManagementTupleResponse.AviationRiskManagementTupleResponseItem>;
 
 export namespace AviationRiskManagementTupleResponse {
   /**
@@ -2350,6 +2391,6 @@ export declare namespace AviationRiskManagement {
     type AviationRiskManagementCountParams as AviationRiskManagementCountParams,
     type AviationRiskManagementCreateBulkParams as AviationRiskManagementCreateBulkParams,
     type AviationRiskManagementTupleParams as AviationRiskManagementTupleParams,
-    type AviationRiskManagementUnvalidatedPublishParams as AviationRiskManagementUnvalidatedPublishParams
+    type AviationRiskManagementUnvalidatedPublishParams as AviationRiskManagementUnvalidatedPublishParams,
   };
 }

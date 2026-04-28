@@ -33,9 +33,16 @@ export class AirspaceControlOrders extends APIResource {
    * );
    * ```
    */
-  unvalidatedPublish(params: AirspaceControlOrderUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-airspacecontrolorder', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: AirspaceControlOrderUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-airspacecontrolorder', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -562,7 +569,5 @@ export namespace AirspaceControlOrderUnvalidatedPublishParams {
 }
 
 export declare namespace AirspaceControlOrders {
-  export {
-    type AirspaceControlOrderUnvalidatedPublishParams as AirspaceControlOrderUnvalidatedPublishParams
-  };
+  export { type AirspaceControlOrderUnvalidatedPublishParams as AirspaceControlOrderUnvalidatedPublishParams };
 }
