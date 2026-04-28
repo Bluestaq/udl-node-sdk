@@ -30,7 +30,11 @@ export class Entities extends APIResource {
    * ```
    */
   create(body: EntityCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/entity', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/entity', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -42,7 +46,11 @@ export class Entities extends APIResource {
    * const entityFull = await client.entities.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: EntityRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.EntityFull> {
+  retrieve(
+    id: string,
+    query: EntityRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.EntityFull> {
     return this._client.get(path`/udl/entity/${id}`, { query, ...options });
   }
 
@@ -62,7 +70,11 @@ export class Entities extends APIResource {
    * ```
    */
   update(id: string, body: EntityUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/entity/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/entity/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -79,7 +91,10 @@ export class Entities extends APIResource {
    * }
    * ```
    */
-  list(query: EntityListParams | null | undefined = {}, options?: RequestOptions): PagePromise<EntityAbridgedsOffsetPage, EntityAbridged> {
+  list(
+    query: EntityListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<EntityAbridgedsOffsetPage, EntityAbridged> {
     return this._client.getAPIList('/udl/entity', OffsetPage<EntityAbridged>, { query, ...options });
   }
 
@@ -94,7 +109,10 @@ export class Entities extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/entity/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/entity/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -110,7 +128,11 @@ export class Entities extends APIResource {
    * ```
    */
   count(query: EntityCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/entity/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/entity/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -121,7 +143,10 @@ export class Entities extends APIResource {
    * const response = await client.entities.getAllTypes();
    * ```
    */
-  getAllTypes(query: EntityGetAllTypesParams | null | undefined = {}, options?: RequestOptions): APIPromise<EntityGetAllTypesResponse> {
+  getAllTypes(
+    query: EntityGetAllTypesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EntityGetAllTypesResponse> {
     return this._client.get('/udl/entity/getAllTypes', { query, ...options });
   }
 
@@ -160,7 +185,7 @@ export class Entities extends APIResource {
   }
 }
 
-export type EntityAbridgedsOffsetPage = OffsetPage<EntityAbridged>
+export type EntityAbridgedsOffsetPage = OffsetPage<EntityAbridged>;
 
 /**
  * An entity is a generic representation of any object within a space/SSA system
@@ -204,7 +229,19 @@ export interface EntityAbridged {
    * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
    * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
    */
-  type: 'AIRCRAFT' | 'BUS' | 'COMM' | 'IR' | 'LASEREMITTER' | 'NAVIGATION' | 'ONORBIT' | 'RFEMITTER' | 'SCIENTIFIC' | 'SENSOR' | 'SITE' | 'VESSEL';
+  type:
+    | 'AIRCRAFT'
+    | 'BUS'
+    | 'COMM'
+    | 'IR'
+    | 'LASEREMITTER'
+    | 'NAVIGATION'
+    | 'ONORBIT'
+    | 'RFEMITTER'
+    | 'SCIENTIFIC'
+    | 'SENSOR'
+    | 'SITE'
+    | 'VESSEL';
 
   /**
    * The country code. This value is typically the ISO 3166 Alpha-2 two-character
@@ -333,7 +370,20 @@ export namespace EntityAbridged {
      * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
      * Heliocentric, Interplanetary, Lagrangian, Docked).
      */
-    category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
+    category?:
+      | 'Unknown'
+      | 'On-Orbit'
+      | 'Decayed'
+      | 'Cataloged Without State'
+      | 'Launch Nominal'
+      | 'Analyst Satellite'
+      | 'Cislunar'
+      | 'Lunar'
+      | 'Hyperbolic'
+      | 'Heliocentric'
+      | 'Interplanetary'
+      | 'Lagrangian'
+      | 'Docked';
 
     /**
      * Common name of the on-orbit object.
@@ -469,7 +519,19 @@ export interface EntityIngest {
    * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
    * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
    */
-  type: 'AIRCRAFT' | 'BUS' | 'COMM' | 'IR' | 'LASEREMITTER' | 'NAVIGATION' | 'ONORBIT' | 'RFEMITTER' | 'SCIENTIFIC' | 'SENSOR' | 'SITE' | 'VESSEL';
+  type:
+    | 'AIRCRAFT'
+    | 'BUS'
+    | 'COMM'
+    | 'IR'
+    | 'LASEREMITTER'
+    | 'NAVIGATION'
+    | 'ONORBIT'
+    | 'RFEMITTER'
+    | 'SCIENTIFIC'
+    | 'SENSOR'
+    | 'SITE'
+    | 'VESSEL';
 
   /**
    * The country code. This value is typically the ISO 3166 Alpha-2 two-character
@@ -603,7 +665,20 @@ export namespace EntityIngest {
      * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
      * Heliocentric, Interplanetary, Lagrangian, Docked).
      */
-    category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
+    category?:
+      | 'Unknown'
+      | 'On-Orbit'
+      | 'Decayed'
+      | 'Cataloged Without State'
+      | 'Launch Nominal'
+      | 'Analyst Satellite'
+      | 'Cislunar'
+      | 'Lunar'
+      | 'Hyperbolic'
+      | 'Heliocentric'
+      | 'Interplanetary'
+      | 'Lagrangian'
+      | 'Docked';
 
     /**
      * Common name of the on-orbit object.
@@ -697,9 +772,9 @@ export namespace EntityIngest {
   }
 }
 
-export type EntityCountResponse = string
+export type EntityCountResponse = string;
 
-export type EntityGetAllTypesResponse = Array<string>
+export type EntityGetAllTypesResponse = Array<string>;
 
 export interface EntityQueryHelpResponse {
   aodrSupported?: boolean;
@@ -725,7 +800,7 @@ export interface EntityQueryHelpResponse {
   uri?: string;
 }
 
-export type EntityTupleResponse = Array<Shared.EntityFull>
+export type EntityTupleResponse = Array<Shared.EntityFull>;
 
 export interface EntityCreateParams {
   /**
@@ -764,7 +839,19 @@ export interface EntityCreateParams {
    * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
    * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
    */
-  type: 'AIRCRAFT' | 'BUS' | 'COMM' | 'IR' | 'LASEREMITTER' | 'NAVIGATION' | 'ONORBIT' | 'RFEMITTER' | 'SCIENTIFIC' | 'SENSOR' | 'SITE' | 'VESSEL';
+  type:
+    | 'AIRCRAFT'
+    | 'BUS'
+    | 'COMM'
+    | 'IR'
+    | 'LASEREMITTER'
+    | 'NAVIGATION'
+    | 'ONORBIT'
+    | 'RFEMITTER'
+    | 'SCIENTIFIC'
+    | 'SENSOR'
+    | 'SITE'
+    | 'VESSEL';
 
   /**
    * The country code. This value is typically the ISO 3166 Alpha-2 two-character
@@ -881,7 +968,20 @@ export namespace EntityCreateParams {
      * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
      * Heliocentric, Interplanetary, Lagrangian, Docked).
      */
-    category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
+    category?:
+      | 'Unknown'
+      | 'On-Orbit'
+      | 'Decayed'
+      | 'Cataloged Without State'
+      | 'Launch Nominal'
+      | 'Analyst Satellite'
+      | 'Cislunar'
+      | 'Lunar'
+      | 'Hyperbolic'
+      | 'Heliocentric'
+      | 'Interplanetary'
+      | 'Lagrangian'
+      | 'Docked';
 
     /**
      * Common name of the on-orbit object.
@@ -1001,7 +1101,19 @@ export interface EntityUpdateParams {
    * The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
    * LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
    */
-  type: 'AIRCRAFT' | 'BUS' | 'COMM' | 'IR' | 'LASEREMITTER' | 'NAVIGATION' | 'ONORBIT' | 'RFEMITTER' | 'SCIENTIFIC' | 'SENSOR' | 'SITE' | 'VESSEL';
+  type:
+    | 'AIRCRAFT'
+    | 'BUS'
+    | 'COMM'
+    | 'IR'
+    | 'LASEREMITTER'
+    | 'NAVIGATION'
+    | 'ONORBIT'
+    | 'RFEMITTER'
+    | 'SCIENTIFIC'
+    | 'SENSOR'
+    | 'SITE'
+    | 'VESSEL';
 
   /**
    * The country code. This value is typically the ISO 3166 Alpha-2 two-character
@@ -1118,7 +1230,20 @@ export namespace EntityUpdateParams {
      * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
      * Heliocentric, Interplanetary, Lagrangian, Docked).
      */
-    category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
+    category?:
+      | 'Unknown'
+      | 'On-Orbit'
+      | 'Decayed'
+      | 'Cataloged Without State'
+      | 'Launch Nominal'
+      | 'Analyst Satellite'
+      | 'Cislunar'
+      | 'Lunar'
+      | 'Hyperbolic'
+      | 'Heliocentric'
+      | 'Interplanetary'
+      | 'Lagrangian'
+      | 'Docked';
 
     /**
      * Common name of the on-orbit object.
@@ -1195,8 +1320,7 @@ export namespace EntityUpdateParams {
   }
 }
 
-export interface EntityListParams extends OffsetPageParams {
-}
+export interface EntityListParams extends OffsetPageParams {}
 
 export interface EntityCountParams {
   firstResult?: number;
@@ -1239,6 +1363,6 @@ export declare namespace Entities {
     type EntityListParams as EntityListParams,
     type EntityCountParams as EntityCountParams,
     type EntityGetAllTypesParams as EntityGetAllTypesParams,
-    type EntityTupleParams as EntityTupleParams
+    type EntityTupleParams as EntityTupleParams,
   };
 }

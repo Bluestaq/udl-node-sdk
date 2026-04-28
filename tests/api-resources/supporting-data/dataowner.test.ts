@@ -5,7 +5,7 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource dataowner', () => {
@@ -22,9 +22,12 @@ describe('resource dataowner', () => {
 
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.supportingData.dataowner.retrieve({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.supportingData.dataowner.retrieve(
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('count', async () => {
@@ -40,9 +43,12 @@ describe('resource dataowner', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.supportingData.dataowner.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.supportingData.dataowner.count(
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryHelp', async () => {
@@ -69,9 +75,12 @@ describe('resource dataowner', () => {
 
   test('retrieveDataOwnerTypes: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.supportingData.dataowner.retrieveDataOwnerTypes({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.supportingData.dataowner.retrieveDataOwnerTypes(
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('retrieveProviderMetadata', async () => {
@@ -87,8 +96,11 @@ describe('resource dataowner', () => {
 
   test('retrieveProviderMetadata: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.supportingData.dataowner.retrieveProviderMetadata({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.supportingData.dataowner.retrieveProviderMetadata(
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 });

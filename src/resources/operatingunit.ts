@@ -29,7 +29,11 @@ export class Operatingunit extends APIResource {
    * ```
    */
   create(body: OperatingunitCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/operatingunit', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/operatingunit', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -49,7 +53,11 @@ export class Operatingunit extends APIResource {
    * ```
    */
   update(id: string, body: OperatingunitUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/operatingunit/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/operatingunit/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -66,8 +74,14 @@ export class Operatingunit extends APIResource {
    * }
    * ```
    */
-  list(query: OperatingunitListParams | null | undefined = {}, options?: RequestOptions): PagePromise<OperatingunitListResponsesOffsetPage, OperatingunitListResponse> {
-    return this._client.getAPIList('/udl/operatingunit', OffsetPage<OperatingunitListResponse>, { query, ...options });
+  list(
+    query: OperatingunitListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<OperatingunitListResponsesOffsetPage, OperatingunitListResponse> {
+    return this._client.getAPIList('/udl/operatingunit', OffsetPage<OperatingunitListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -82,7 +96,10 @@ export class Operatingunit extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/operatingunit/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/operatingunit/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -97,8 +114,15 @@ export class Operatingunit extends APIResource {
    * const response = await client.operatingunit.count();
    * ```
    */
-  count(query: OperatingunitCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/operatingunit/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: OperatingunitCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/operatingunit/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -113,7 +137,11 @@ export class Operatingunit extends APIResource {
    * );
    * ```
    */
-  get(id: string, query: OperatingunitGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.OperatingunitFull> {
+  get(
+    id: string,
+    query: OperatingunitGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.OperatingunitFull> {
     return this._client.get(path`/udl/operatingunit/${id}`, { query, ...options });
   }
 
@@ -152,7 +180,7 @@ export class Operatingunit extends APIResource {
   }
 }
 
-export type OperatingunitListResponsesOffsetPage = OffsetPage<OperatingunitListResponse>
+export type OperatingunitListResponsesOffsetPage = OffsetPage<OperatingunitListResponse>;
 
 /**
  * Model representation of a unit or organization which operates or controls a
@@ -650,7 +678,7 @@ export interface OperatingunitListResponse {
   wac?: string;
 }
 
-export type OperatingunitCountResponse = string
+export type OperatingunitCountResponse = string;
 
 export interface OperatingunitQueryhelpResponse {
   aodrSupported?: boolean;
@@ -676,7 +704,7 @@ export interface OperatingunitQueryhelpResponse {
   uri?: string;
 }
 
-export type OperatingunitTupleResponse = Array<Shared.OperatingunitFull>
+export type OperatingunitTupleResponse = Array<Shared.OperatingunitFull>;
 
 export interface OperatingunitCreateParams {
   /**
@@ -1638,8 +1666,7 @@ export interface OperatingunitUpdateParams {
   wac?: string;
 }
 
-export interface OperatingunitListParams extends OffsetPageParams {
-}
+export interface OperatingunitListParams extends OffsetPageParams {}
 
 export interface OperatingunitCountParams {
   firstResult?: number;
@@ -1679,6 +1706,6 @@ export declare namespace Operatingunit {
     type OperatingunitListParams as OperatingunitListParams,
     type OperatingunitCountParams as OperatingunitCountParams,
     type OperatingunitGetParams as OperatingunitGetParams,
-    type OperatingunitTupleParams as OperatingunitTupleParams
+    type OperatingunitTupleParams as OperatingunitTupleParams,
   };
 }

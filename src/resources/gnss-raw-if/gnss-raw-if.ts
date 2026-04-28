@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { type Uploadable } from '../../core/uploads';
@@ -24,8 +32,14 @@ export class GnssRawIf extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(query: GnssRawIfListParams, options?: RequestOptions): PagePromise<GnssRawIfListResponsesOffsetPage, GnssRawIfListResponse> {
-    return this._client.getAPIList('/udl/gnssrawif', OffsetPage<GnssRawIfListResponse>, { query, ...options });
+  list(
+    query: GnssRawIfListParams,
+    options?: RequestOptions,
+  ): PagePromise<GnssRawIfListResponsesOffsetPage, GnssRawIfListResponse> {
+    return this._client.getAPIList('/udl/gnssrawif', OffsetPage<GnssRawIfListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -36,22 +50,39 @@ export class GnssRawIf extends APIResource {
    * valid/required query parameter information.
    */
   count(query: GnssRawIfCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/gnssrawif/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/gnssrawif/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
    * Service operation to get a single GNSSRAWIF hdf5 file by its unique ID passed as
    * a path parameter. The file is returned as an attachment Content-Disposition.
    */
-  fileGet(id: string, query: GnssRawIfFileGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Response> {
-    return this._client.get(path`/udl/gnssrawif/getFile/${id}`, { query, ...options, headers: buildHeaders([{Accept: 'application/octet-stream'}, options?.headers]), __binaryResponse: true });
+  fileGet(
+    id: string,
+    query: GnssRawIfFileGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    return this._client.get(path`/udl/gnssrawif/getFile/${id}`, {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
+      __binaryResponse: true,
+    });
   }
 
   /**
    * Service operation to get a single GNSSRawIF by its unique ID passed as a path
    * parameter.
    */
-  get(id: string, query: GnssRawIfGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<GnssRawIfGetResponse> {
+  get(
+    id: string,
+    query: GnssRawIfGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<GnssRawIfGetResponse> {
     return this._client.get(path`/udl/gnssrawif/${id}`, { query, ...options });
   }
 
@@ -97,11 +128,17 @@ export class GnssRawIf extends APIResource {
    * for assistance.
    */
   uploadZip(body: GnssRawIfUploadZipParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/filedrop/udl-gnssrawif', multipartFormRequestOptions({ body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) }, this._client));
+    return this._client.post(
+      '/filedrop/udl-gnssrawif',
+      multipartFormRequestOptions(
+        { body, ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
+        this._client,
+      ),
+    );
   }
 }
 
-export type GnssRawIfListResponsesOffsetPage = OffsetPage<GnssRawIfListResponse>
+export type GnssRawIfListResponsesOffsetPage = OffsetPage<GnssRawIfListResponse>;
 
 /**
  * Global Navigation Satellite System (GNSS) Raw Intermediate Frequency (IF) data
@@ -393,7 +430,7 @@ export interface GnssRawIfListResponse {
   tags?: Array<string>;
 }
 
-export type GnssRawIfCountResponse = string
+export type GnssRawIfCountResponse = string;
 
 /**
  * Global Navigation Satellite System (GNSS) Raw Intermediate Frequency (IF) data
@@ -709,7 +746,7 @@ export interface GnssRawIfQueryhelpResponse {
   uri?: string;
 }
 
-export type GnssRawIfTupleResponse = Array<GnssRawIfTupleResponse.GnssRawIfTupleResponseItem>
+export type GnssRawIfTupleResponse = Array<GnssRawIfTupleResponse.GnssRawIfTupleResponseItem>;
 
 export namespace GnssRawIfTupleResponse {
   /**
@@ -1077,7 +1114,7 @@ export declare namespace GnssRawIf {
     type GnssRawIfFileGetParams as GnssRawIfFileGetParams,
     type GnssRawIfGetParams as GnssRawIfGetParams,
     type GnssRawIfTupleParams as GnssRawIfTupleParams,
-    type GnssRawIfUploadZipParams as GnssRawIfUploadZipParams
+    type GnssRawIfUploadZipParams as GnssRawIfUploadZipParams,
   };
 
   export {
@@ -1087,6 +1124,6 @@ export declare namespace GnssRawIf {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

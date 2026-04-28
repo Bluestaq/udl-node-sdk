@@ -26,8 +26,14 @@ export class History extends APIResource {
    * }
    * ```
    */
-  list(query: HistoryListParams, options?: RequestOptions): PagePromise<HistoryListResponsesOffsetPage, HistoryListResponse> {
-    return this._client.getAPIList('/udl/groundimagery/history', OffsetPage<HistoryListResponse>, { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<HistoryListResponsesOffsetPage, HistoryListResponse> {
+    return this._client.getAPIList('/udl/groundimagery/history', OffsetPage<HistoryListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -45,11 +51,15 @@ export class History extends APIResource {
    * ```
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/groundimagery/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/groundimagery/history/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 }
 
-export type HistoryListResponsesOffsetPage = OffsetPage<HistoryListResponse>
+export type HistoryListResponsesOffsetPage = OffsetPage<HistoryListResponse>;
 
 /**
  * Imagery of terrestrial regions from on-orbit, air, and other sensors.
@@ -238,7 +248,7 @@ export interface HistoryListResponse {
   updatedBy?: string;
 }
 
-export type HistoryCountResponse = string
+export type HistoryCountResponse = string;
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -271,6 +281,6 @@ export declare namespace History {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

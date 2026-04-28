@@ -28,8 +28,15 @@ export class History extends APIResource {
    * }
    * ```
    */
-  list(query: HistoryListParams, options?: RequestOptions): PagePromise<DiffofarrivalFullsOffsetPage, DiffofarrivalAPI.DiffofarrivalFull> {
-    return this._client.getAPIList('/udl/diffofarrival/history', OffsetPage<DiffofarrivalAPI.DiffofarrivalFull>, { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<DiffofarrivalFullsOffsetPage, DiffofarrivalAPI.DiffofarrivalFull> {
+    return this._client.getAPIList(
+      '/udl/diffofarrival/history',
+      OffsetPage<DiffofarrivalAPI.DiffofarrivalFull>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -46,7 +53,11 @@ export class History extends APIResource {
    * ```
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/diffofarrival/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.get('/udl/diffofarrival/history/aodr', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -105,10 +116,7 @@ export interface HistoryAodrParams {
 }
 
 export declare namespace History {
-  export {
-    type HistoryListParams as HistoryListParams,
-    type HistoryAodrParams as HistoryAodrParams
-  };
+  export { type HistoryListParams as HistoryListParams, type HistoryAodrParams as HistoryAodrParams };
 }
 
-export { type DiffofarrivalFullsOffsetPage }
+export { type DiffofarrivalFullsOffsetPage };

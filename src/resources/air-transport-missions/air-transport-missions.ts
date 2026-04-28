@@ -3,7 +3,13 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -31,7 +37,11 @@ export class AirTransportMissions extends APIResource {
    * ```
    */
   create(body: AirTransportMissionCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/airtransportmission', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/airtransportmission', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -44,7 +54,11 @@ export class AirTransportMissions extends APIResource {
    *   await client.airTransportMissions.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: AirTransportMissionRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AirTransportMissionFull> {
+  retrieve(
+    id: string,
+    query: AirTransportMissionRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.AirTransportMissionFull> {
     return this._client.get(path`/udl/airtransportmission/${id}`, { query, ...options });
   }
 
@@ -63,7 +77,11 @@ export class AirTransportMissions extends APIResource {
    * ```
    */
   update(id: string, body: AirTransportMissionUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/airtransportmission/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/airtransportmission/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -82,8 +100,14 @@ export class AirTransportMissions extends APIResource {
    * }
    * ```
    */
-  list(query: AirTransportMissionListParams, options?: RequestOptions): PagePromise<AirTransportMissionAbridgedsOffsetPage, AirTransportMissionAbridged> {
-    return this._client.getAPIList('/udl/airtransportmission', OffsetPage<AirTransportMissionAbridged>, { query, ...options });
+  list(
+    query: AirTransportMissionListParams,
+    options?: RequestOptions,
+  ): PagePromise<AirTransportMissionAbridgedsOffsetPage, AirTransportMissionAbridged> {
+    return this._client.getAPIList('/udl/airtransportmission', OffsetPage<AirTransportMissionAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -101,7 +125,11 @@ export class AirTransportMissions extends APIResource {
    * ```
    */
   count(query: AirTransportMissionCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/airtransportmission/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/airtransportmission/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -137,12 +165,15 @@ export class AirTransportMissions extends APIResource {
    *   });
    * ```
    */
-  tuple(query: AirTransportMissionTupleParams, options?: RequestOptions): APIPromise<AirTransportMissionTupleResponse> {
+  tuple(
+    query: AirTransportMissionTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<AirTransportMissionTupleResponse> {
     return this._client.get('/udl/airtransportmission/tuple', { query, ...options });
   }
 }
 
-export type AirTransportMissionAbridgedsOffsetPage = OffsetPage<AirTransportMissionAbridged>
+export type AirTransportMissionAbridgedsOffsetPage = OffsetPage<AirTransportMissionAbridged>;
 
 /**
  * The information in an Air Transport Mission contains unique identification,
@@ -651,7 +682,7 @@ export namespace AirTransportMissionAbridged {
   }
 }
 
-export type AirTransportMissionCountResponse = string
+export type AirTransportMissionCountResponse = string;
 
 export interface AirTransportMissionQueryhelpResponse {
   aodrSupported?: boolean;
@@ -677,7 +708,7 @@ export interface AirTransportMissionQueryhelpResponse {
   uri?: string;
 }
 
-export type AirTransportMissionTupleResponse = Array<Shared.AirTransportMissionFull>
+export type AirTransportMissionTupleResponse = Array<Shared.AirTransportMissionFull>;
 
 export interface AirTransportMissionCreateParams {
   /**
@@ -1671,7 +1702,7 @@ export declare namespace AirTransportMissions {
     type AirTransportMissionUpdateParams as AirTransportMissionUpdateParams,
     type AirTransportMissionListParams as AirTransportMissionListParams,
     type AirTransportMissionCountParams as AirTransportMissionCountParams,
-    type AirTransportMissionTupleParams as AirTransportMissionTupleParams
+    type AirTransportMissionTupleParams as AirTransportMissionTupleParams,
   };
 
   export {
@@ -1679,6 +1710,6 @@ export declare namespace AirTransportMissions {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

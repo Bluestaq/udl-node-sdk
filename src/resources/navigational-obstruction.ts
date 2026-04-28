@@ -30,7 +30,11 @@ export class NavigationalObstruction extends APIResource {
    * ```
    */
   create(body: NavigationalObstructionCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/navigationalobstruction', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/navigationalobstruction', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -51,7 +55,11 @@ export class NavigationalObstruction extends APIResource {
    * ```
    */
   update(id: string, body: NavigationalObstructionUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/navigationalobstruction/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/navigationalobstruction/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -68,8 +76,15 @@ export class NavigationalObstruction extends APIResource {
    * }
    * ```
    */
-  list(query: NavigationalObstructionListParams | null | undefined = {}, options?: RequestOptions): PagePromise<NavigationalObstructionListResponsesOffsetPage, NavigationalObstructionListResponse> {
-    return this._client.getAPIList('/udl/navigationalobstruction', OffsetPage<NavigationalObstructionListResponse>, { query, ...options });
+  list(
+    query: NavigationalObstructionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<NavigationalObstructionListResponsesOffsetPage, NavigationalObstructionListResponse> {
+    return this._client.getAPIList(
+      '/udl/navigationalobstruction',
+      OffsetPage<NavigationalObstructionListResponse>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -85,8 +100,15 @@ export class NavigationalObstruction extends APIResource {
    *   await client.navigationalObstruction.count();
    * ```
    */
-  count(query: NavigationalObstructionCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/navigationalobstruction/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: NavigationalObstructionCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/navigationalobstruction/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -113,8 +135,12 @@ export class NavigationalObstruction extends APIResource {
    * ```
    */
   createBulk(params: NavigationalObstructionCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/navigationalobstruction/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/navigationalobstruction/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -127,7 +153,11 @@ export class NavigationalObstruction extends APIResource {
    *   await client.navigationalObstruction.get('id');
    * ```
    */
-  get(id: string, query: NavigationalObstructionGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<NavigationalObstructionGetResponse> {
+  get(
+    id: string,
+    query: NavigationalObstructionGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<NavigationalObstructionGetResponse> {
     return this._client.get(path`/udl/navigationalobstruction/${id}`, { query, ...options });
   }
 
@@ -162,12 +192,15 @@ export class NavigationalObstruction extends APIResource {
    * );
    * ```
    */
-  tuple(query: NavigationalObstructionTupleParams, options?: RequestOptions): APIPromise<NavigationalObstructionTupleResponse> {
+  tuple(
+    query: NavigationalObstructionTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<NavigationalObstructionTupleResponse> {
     return this._client.get('/udl/navigationalobstruction/tuple', { query, ...options });
   }
 }
 
-export type NavigationalObstructionListResponsesOffsetPage = OffsetPage<NavigationalObstructionListResponse>
+export type NavigationalObstructionListResponsesOffsetPage = OffsetPage<NavigationalObstructionListResponse>;
 
 /**
  * Beta Version Navigational Obstruction: Information describing navigational
@@ -633,7 +666,7 @@ export interface NavigationalObstructionListResponse {
   wacINNR?: string;
 }
 
-export type NavigationalObstructionCountResponse = string
+export type NavigationalObstructionCountResponse = string;
 
 /**
  * Beta Version Navigational Obstruction: Information describing navigational
@@ -1134,7 +1167,8 @@ export interface NavigationalObstructionQueryhelpResponse {
   uri?: string;
 }
 
-export type NavigationalObstructionTupleResponse = Array<NavigationalObstructionTupleResponse.NavigationalObstructionTupleResponseItem>
+export type NavigationalObstructionTupleResponse =
+  Array<NavigationalObstructionTupleResponse.NavigationalObstructionTupleResponseItem>;
 
 export namespace NavigationalObstructionTupleResponse {
   /**
@@ -3007,6 +3041,6 @@ export declare namespace NavigationalObstruction {
     type NavigationalObstructionCountParams as NavigationalObstructionCountParams,
     type NavigationalObstructionCreateBulkParams as NavigationalObstructionCreateBulkParams,
     type NavigationalObstructionGetParams as NavigationalObstructionGetParams,
-    type NavigationalObstructionTupleParams as NavigationalObstructionTupleParams
+    type NavigationalObstructionTupleParams as NavigationalObstructionTupleParams,
   };
 }

@@ -27,7 +27,11 @@ export class Antennas extends APIResource {
    * ```
    */
   create(body: AntennaCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/antenna', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/antenna', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -39,7 +43,11 @@ export class Antennas extends APIResource {
    * const antennaFull = await client.antennas.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: AntennaRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AntennaFull> {
+  retrieve(
+    id: string,
+    query: AntennaRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.AntennaFull> {
     return this._client.get(path`/udl/antenna/${id}`, { query, ...options });
   }
 
@@ -57,7 +65,11 @@ export class Antennas extends APIResource {
    * ```
    */
   update(id: string, body: AntennaUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/antenna/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/antenna/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -74,7 +86,10 @@ export class Antennas extends APIResource {
    * }
    * ```
    */
-  list(query: AntennaListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AntennaAbridgedsOffsetPage, AntennaAbridged> {
+  list(
+    query: AntennaListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<AntennaAbridgedsOffsetPage, AntennaAbridged> {
     return this._client.getAPIList('/udl/antenna', OffsetPage<AntennaAbridged>, { query, ...options });
   }
 
@@ -89,7 +104,10 @@ export class Antennas extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/antenna/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/antenna/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -105,7 +123,11 @@ export class Antennas extends APIResource {
    * ```
    */
   count(query: AntennaCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/antenna/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/antenna/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -143,7 +165,7 @@ export class Antennas extends APIResource {
   }
 }
 
-export type AntennaAbridgedsOffsetPage = OffsetPage<AntennaAbridged>
+export type AntennaAbridgedsOffsetPage = OffsetPage<AntennaAbridged>;
 
 /**
  * Model representation of information on on-orbit/spacecraft communication
@@ -209,7 +231,7 @@ export interface AntennaAbridged {
   origNetwork?: string;
 }
 
-export type AntennaCountResponse = string
+export type AntennaCountResponse = string;
 
 export interface AntennaQueryhelpResponse {
   aodrSupported?: boolean;
@@ -235,7 +257,7 @@ export interface AntennaQueryhelpResponse {
   uri?: string;
 }
 
-export type AntennaTupleResponse = Array<Shared.AntennaFull>
+export type AntennaTupleResponse = Array<Shared.AntennaFull>;
 
 export interface AntennaCreateParams {
   /**
@@ -327,8 +349,7 @@ export interface AntennaUpdateParams {
   origin?: string;
 }
 
-export interface AntennaListParams extends OffsetPageParams {
-}
+export interface AntennaListParams extends OffsetPageParams {}
 
 export interface AntennaCountParams {
   firstResult?: number;
@@ -362,6 +383,6 @@ export declare namespace Antennas {
     type AntennaUpdateParams as AntennaUpdateParams,
     type AntennaListParams as AntennaListParams,
     type AntennaCountParams as AntennaCountParams,
-    type AntennaTupleParams as AntennaTupleParams
+    type AntennaTupleParams as AntennaTupleParams,
   };
 }

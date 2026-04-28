@@ -21,7 +21,11 @@ export class History extends APIResource {
    * ```
    */
   aodr(query: HistoryAodrParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/starcatalog/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.get('/udl/starcatalog/history/aodr', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -73,7 +77,5 @@ export interface HistoryAodrParams {
 }
 
 export declare namespace History {
-  export {
-    type HistoryAodrParams as HistoryAodrParams
-  };
+  export { type HistoryAodrParams as HistoryAodrParams };
 }

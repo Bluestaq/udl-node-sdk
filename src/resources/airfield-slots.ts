@@ -29,7 +29,11 @@ export class AirfieldSlots extends APIResource {
    * ```
    */
   create(body: AirfieldSlotCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/airfieldslot', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/airfieldslot', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -42,7 +46,11 @@ export class AirfieldSlots extends APIResource {
    *   await client.airfieldSlots.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: AirfieldSlotRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AirfieldslotFull> {
+  retrieve(
+    id: string,
+    query: AirfieldSlotRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.AirfieldslotFull> {
     return this._client.get(path`/udl/airfieldslot/${id}`, { query, ...options });
   }
 
@@ -63,7 +71,11 @@ export class AirfieldSlots extends APIResource {
    * ```
    */
   update(id: string, body: AirfieldSlotUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/airfieldslot/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/airfieldslot/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -80,8 +92,14 @@ export class AirfieldSlots extends APIResource {
    * }
    * ```
    */
-  list(query: AirfieldSlotListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AirfieldslotAbridgedsOffsetPage, AirfieldslotAbridged> {
-    return this._client.getAPIList('/udl/airfieldslot', OffsetPage<AirfieldslotAbridged>, { query, ...options });
+  list(
+    query: AirfieldSlotListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<AirfieldslotAbridgedsOffsetPage, AirfieldslotAbridged> {
+    return this._client.getAPIList('/udl/airfieldslot', OffsetPage<AirfieldslotAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -95,7 +113,10 @@ export class AirfieldSlots extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/airfieldslot/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/airfieldslot/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -110,8 +131,15 @@ export class AirfieldSlots extends APIResource {
    * const response = await client.airfieldSlots.count();
    * ```
    */
-  count(query: AirfieldSlotCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/airfieldslot/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: AirfieldSlotCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/airfieldslot/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -149,7 +177,7 @@ export class AirfieldSlots extends APIResource {
   }
 }
 
-export type AirfieldslotAbridgedsOffsetPage = OffsetPage<AirfieldslotAbridged>
+export type AirfieldslotAbridgedsOffsetPage = OffsetPage<AirfieldslotAbridged>;
 
 /**
  * Airfield capacity data. Contains data associated with the airfieldslots
@@ -289,7 +317,7 @@ export interface AirfieldslotAbridged {
   type?: 'WORKING' | 'PARKING' | 'TAKEOFF' | 'LANDING' | 'OTHER';
 }
 
-export type AirfieldSlotCountResponse = string
+export type AirfieldSlotCountResponse = string;
 
 export interface AirfieldSlotQueryhelpResponse {
   aodrSupported?: boolean;
@@ -315,7 +343,7 @@ export interface AirfieldSlotQueryhelpResponse {
   uri?: string;
 }
 
-export type AirfieldSlotTupleResponse = Array<Shared.AirfieldslotFull>
+export type AirfieldSlotTupleResponse = Array<Shared.AirfieldslotFull>;
 
 export interface AirfieldSlotCreateParams {
   /**
@@ -541,8 +569,7 @@ export interface AirfieldSlotUpdateParams {
   type?: 'WORKING' | 'PARKING' | 'TAKEOFF' | 'LANDING' | 'OTHER';
 }
 
-export interface AirfieldSlotListParams extends OffsetPageParams {
-}
+export interface AirfieldSlotListParams extends OffsetPageParams {}
 
 export interface AirfieldSlotCountParams {
   firstResult?: number;
@@ -576,6 +603,6 @@ export declare namespace AirfieldSlots {
     type AirfieldSlotUpdateParams as AirfieldSlotUpdateParams,
     type AirfieldSlotListParams as AirfieldSlotListParams,
     type AirfieldSlotCountParams as AirfieldSlotCountParams,
-    type AirfieldSlotTupleParams as AirfieldSlotTupleParams
+    type AirfieldSlotTupleParams as AirfieldSlotTupleParams,
   };
 }

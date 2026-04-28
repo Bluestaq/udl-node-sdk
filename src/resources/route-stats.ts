@@ -29,7 +29,11 @@ export class RouteStats extends APIResource {
    * ```
    */
   create(body: RouteStatCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/routestats', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/routestats', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -41,7 +45,11 @@ export class RouteStats extends APIResource {
    * const routeStat = await client.routeStats.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: RouteStatRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<RouteStatRetrieveResponse> {
+  retrieve(
+    id: string,
+    query: RouteStatRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RouteStatRetrieveResponse> {
     return this._client.get(path`/udl/routestats/${id}`, { query, ...options });
   }
 
@@ -61,7 +69,11 @@ export class RouteStats extends APIResource {
    * ```
    */
   update(id: string, body: RouteStatUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/routestats/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/routestats/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -78,8 +90,14 @@ export class RouteStats extends APIResource {
    * }
    * ```
    */
-  list(query: RouteStatListParams | null | undefined = {}, options?: RequestOptions): PagePromise<RouteStatListResponsesOffsetPage, RouteStatListResponse> {
-    return this._client.getAPIList('/udl/routestats', OffsetPage<RouteStatListResponse>, { query, ...options });
+  list(
+    query: RouteStatListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<RouteStatListResponsesOffsetPage, RouteStatListResponse> {
+    return this._client.getAPIList('/udl/routestats', OffsetPage<RouteStatListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -93,7 +111,10 @@ export class RouteStats extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/routestats/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/routestats/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -109,7 +130,11 @@ export class RouteStats extends APIResource {
    * ```
    */
   count(query: RouteStatCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/routestats/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/routestats/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -135,8 +160,12 @@ export class RouteStats extends APIResource {
    * ```
    */
   createBulk(params: RouteStatCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/routestats/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/routestats/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -195,12 +224,16 @@ export class RouteStats extends APIResource {
    * ```
    */
   unvalidatedPublish(params: RouteStatUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-routestats', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-routestats', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type RouteStatListResponsesOffsetPage = OffsetPage<RouteStatListResponse>
+export type RouteStatListResponsesOffsetPage = OffsetPage<RouteStatListResponse>;
 
 /**
  * General statistics applying to navigation routes utilized by vessels, aircraft,
@@ -627,7 +660,7 @@ export interface RouteStatListResponse {
   vehicleType?: string;
 }
 
-export type RouteStatCountResponse = string
+export type RouteStatCountResponse = string;
 
 export interface RouteStatQueryHelpResponse {
   aodrSupported?: boolean;
@@ -653,7 +686,7 @@ export interface RouteStatQueryHelpResponse {
   uri?: string;
 }
 
-export type RouteStatTupleResponse = Array<RouteStatTupleResponse.RouteStatTupleResponseItem>
+export type RouteStatTupleResponse = Array<RouteStatTupleResponse.RouteStatTupleResponseItem>;
 
 export namespace RouteStatTupleResponse {
   /**
@@ -1239,8 +1272,7 @@ export interface RouteStatUpdateParams {
   vehicleType?: string;
 }
 
-export interface RouteStatListParams extends OffsetPageParams {
-}
+export interface RouteStatListParams extends OffsetPageParams {}
 
 export interface RouteStatCountParams {
   firstResult?: number;
@@ -1655,6 +1687,6 @@ export declare namespace RouteStats {
     type RouteStatCountParams as RouteStatCountParams,
     type RouteStatCreateBulkParams as RouteStatCreateBulkParams,
     type RouteStatTupleParams as RouteStatTupleParams,
-    type RouteStatUnvalidatedPublishParams as RouteStatUnvalidatedPublishParams
+    type RouteStatUnvalidatedPublishParams as RouteStatUnvalidatedPublishParams,
   };
 }

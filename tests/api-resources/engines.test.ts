@@ -5,17 +5,17 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource engines', () => {
   test('create: only required params', async () => {
     const responsePromise = client.engines.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    name: 'ENGINE_VARIANT1',
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      name: 'ENGINE_VARIANT1',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,13 +27,13 @@ describe('resource engines', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.engines.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    name: 'ENGINE_VARIANT1',
-    source: 'Bluestaq',
-    id: 'ENGINE-ID',
-    origin: 'THIRD_PARTY_DATASOURCE',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      name: 'ENGINE_VARIANT1',
+      source: 'Bluestaq',
+      id: 'ENGINE-ID',
+      origin: 'THIRD_PARTY_DATASOURCE',
+    });
   });
 
   test('retrieve', async () => {
@@ -49,18 +49,18 @@ describe('resource engines', () => {
 
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.engines.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.engines.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.engines.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    name: 'ENGINE_VARIANT1',
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      name: 'ENGINE_VARIANT1',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -72,13 +72,13 @@ describe('resource engines', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.engines.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    name: 'ENGINE_VARIANT1',
-    source: 'Bluestaq',
-    id: 'ENGINE-ID',
-    origin: 'THIRD_PARTY_DATASOURCE',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      name: 'ENGINE_VARIANT1',
+      source: 'Bluestaq',
+      id: 'ENGINE-ID',
+      origin: 'THIRD_PARTY_DATASOURCE',
+    });
   });
 
   test('list', async () => {
@@ -94,9 +94,9 @@ describe('resource engines', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.engines.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.engines.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -123,9 +123,9 @@ describe('resource engines', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.engines.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.engines.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -152,9 +152,9 @@ describe('resource engines', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.engines.tuple({
-    columns: 'columns',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

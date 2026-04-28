@@ -5,17 +5,17 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource beam', () => {
   test('create: only required params', async () => {
     const responsePromise = client.beam.create({
-    beamName: 'BEAMNAME-ID',
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    source: 'Bluestaq',
-  });
+      beamName: 'BEAMNAME-ID',
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,14 +27,14 @@ describe('resource beam', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.beam.create({
-    beamName: 'BEAMNAME-ID',
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    source: 'Bluestaq',
-    id: 'BEAM-ID',
-    notes: 'Example notes',
-    origin: 'THIRD_PARTY_DATASOURCE',
-  });
+      beamName: 'BEAMNAME-ID',
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      source: 'Bluestaq',
+      id: 'BEAM-ID',
+      notes: 'Example notes',
+      origin: 'THIRD_PARTY_DATASOURCE',
+    });
   });
 
   test('retrieve', async () => {
@@ -50,18 +50,18 @@ describe('resource beam', () => {
 
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.beam.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.beam.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.beam.update('id', {
-    beamName: 'BEAMNAME-ID',
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    source: 'Bluestaq',
-  });
+      beamName: 'BEAMNAME-ID',
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -73,14 +73,14 @@ describe('resource beam', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.beam.update('id', {
-    beamName: 'BEAMNAME-ID',
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    source: 'Bluestaq',
-    id: 'BEAM-ID',
-    notes: 'Example notes',
-    origin: 'THIRD_PARTY_DATASOURCE',
-  });
+      beamName: 'BEAMNAME-ID',
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      source: 'Bluestaq',
+      id: 'BEAM-ID',
+      notes: 'Example notes',
+      origin: 'THIRD_PARTY_DATASOURCE',
+    });
   });
 
   test('list', async () => {
@@ -96,9 +96,9 @@ describe('resource beam', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.beam.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.beam.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -125,9 +125,9 @@ describe('resource beam', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.beam.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.beam.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryHelp', async () => {
@@ -154,9 +154,9 @@ describe('resource beam', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.beam.tuple({
-    columns: 'columns',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

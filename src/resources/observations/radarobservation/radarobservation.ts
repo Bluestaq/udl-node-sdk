@@ -3,7 +3,15 @@
 import { APIResource } from '../../../core/resource';
 import * as Shared from '../../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
@@ -34,7 +42,11 @@ export class Radarobservation extends APIResource {
    * ```
    */
   create(body: RadarobservationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/radarobservation', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/radarobservation', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -53,8 +65,14 @@ export class Radarobservation extends APIResource {
    * }
    * ```
    */
-  list(query: RadarobservationListParams, options?: RequestOptions): PagePromise<RadarobservationListResponsesOffsetPage, RadarobservationListResponse> {
-    return this._client.getAPIList('/udl/radarobservation', OffsetPage<RadarobservationListResponse>, { query, ...options });
+  list(
+    query: RadarobservationListParams,
+    options?: RequestOptions,
+  ): PagePromise<RadarobservationListResponsesOffsetPage, RadarobservationListResponse> {
+    return this._client.getAPIList('/udl/radarobservation', OffsetPage<RadarobservationListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -73,7 +91,11 @@ export class Radarobservation extends APIResource {
    * ```
    */
   count(query: RadarobservationCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/radarobservation/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/radarobservation/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -98,8 +120,12 @@ export class Radarobservation extends APIResource {
    * ```
    */
   createBulk(params: RadarobservationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/radarobservation/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/radarobservation/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -112,7 +138,11 @@ export class Radarobservation extends APIResource {
    *   await client.observations.radarobservation.get('id');
    * ```
    */
-  get(id: string, query: RadarobservationGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<RadarobservationGetResponse> {
+  get(
+    id: string,
+    query: RadarobservationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RadarobservationGetResponse> {
     return this._client.get(path`/udl/radarobservation/${id}`, { query, ...options });
   }
 
@@ -149,7 +179,10 @@ export class Radarobservation extends APIResource {
    *   });
    * ```
    */
-  tuple(query: RadarobservationTupleParams, options?: RequestOptions): APIPromise<RadarobservationTupleResponse> {
+  tuple(
+    query: RadarobservationTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<RadarobservationTupleResponse> {
     return this._client.get('/udl/radarobservation/tuple', { query, ...options });
   }
 
@@ -175,13 +208,20 @@ export class Radarobservation extends APIResource {
    * );
    * ```
    */
-  unvalidatedPublish(params: RadarobservationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-radar', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: RadarobservationUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-radar', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type RadarobservationListResponsesOffsetPage = OffsetPage<RadarobservationListResponse>
+export type RadarobservationListResponsesOffsetPage = OffsetPage<RadarobservationListResponse>;
 
 /**
  * Model representation of observation data for radar based sensor phenomenologies.
@@ -597,7 +637,7 @@ export interface RadarobservationListResponse {
   zvel?: number;
 }
 
-export type RadarobservationCountResponse = string
+export type RadarobservationCountResponse = string;
 
 /**
  * Model representation of observation data for radar based sensor phenomenologies.
@@ -1051,7 +1091,8 @@ export interface RadarobservationQueryhelpResponse {
   uri?: string;
 }
 
-export type RadarobservationTupleResponse = Array<RadarobservationTupleResponse.RadarobservationTupleResponseItem>
+export type RadarobservationTupleResponse =
+  Array<RadarobservationTupleResponse.RadarobservationTupleResponseItem>;
 
 export namespace RadarobservationTupleResponse {
   /**
@@ -2715,7 +2756,7 @@ export declare namespace Radarobservation {
     type RadarobservationCreateBulkParams as RadarobservationCreateBulkParams,
     type RadarobservationGetParams as RadarobservationGetParams,
     type RadarobservationTupleParams as RadarobservationTupleParams,
-    type RadarobservationUnvalidatedPublishParams as RadarobservationUnvalidatedPublishParams
+    type RadarobservationUnvalidatedPublishParams as RadarobservationUnvalidatedPublishParams,
   };
 
   export {
@@ -2725,6 +2766,6 @@ export declare namespace Radarobservation {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

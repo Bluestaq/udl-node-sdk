@@ -18,8 +18,11 @@ export class Folders extends APIResource {
    * @deprecated
    */
   create(params: FolderCreateParams, options?: RequestOptions): APIPromise<string> {
-    const { id, classificationMarking, description, read, sendNotification, tags, write } = params
-    return this._client.post('/scs/folder', { query: { id, classificationMarking, description, read, sendNotification, tags, write }, ...options });
+    const { id, classificationMarking, description, read, sendNotification, tags, write } = params;
+    return this._client.post('/scs/folder', {
+      query: { id, classificationMarking, description, read, sendNotification, tags, write },
+      ...options,
+    });
   }
 
   /**
@@ -39,11 +42,15 @@ export class Folders extends APIResource {
    * @deprecated
    */
   update(body: FolderUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.patch('/scs/folder', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.patch('/scs/folder', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type FolderCreateResponse = string
+export type FolderCreateResponse = string;
 
 export interface FolderCreateParams {
   /**
@@ -185,6 +192,6 @@ export declare namespace Folders {
     type FolderCreateResponse as FolderCreateResponse,
     type FolderCreateParams as FolderCreateParams,
     type FolderRetrieveParams as FolderRetrieveParams,
-    type FolderUpdateParams as FolderUpdateParams
+    type FolderUpdateParams as FolderUpdateParams,
   };
 }

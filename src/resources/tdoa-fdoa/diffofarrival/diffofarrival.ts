@@ -33,7 +33,11 @@ export class Diffofarrival extends APIResource {
    * ```
    */
   create(body: DiffofarrivalCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/diffofarrival', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/diffofarrival', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -52,8 +56,14 @@ export class Diffofarrival extends APIResource {
    * }
    * ```
    */
-  list(query: DiffofarrivalListParams, options?: RequestOptions): PagePromise<DiffofarrivalAbridgedsOffsetPage, DiffofarrivalAbridged> {
-    return this._client.getAPIList('/udl/diffofarrival', OffsetPage<DiffofarrivalAbridged>, { query, ...options });
+  list(
+    query: DiffofarrivalListParams,
+    options?: RequestOptions,
+  ): PagePromise<DiffofarrivalAbridgedsOffsetPage, DiffofarrivalAbridged> {
+    return this._client.getAPIList('/udl/diffofarrival', OffsetPage<DiffofarrivalAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -71,7 +81,11 @@ export class Diffofarrival extends APIResource {
    * ```
    */
   count(query: DiffofarrivalCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/diffofarrival/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/diffofarrival/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -96,14 +110,18 @@ export class Diffofarrival extends APIResource {
    * ```
    */
   createBulk(params: DiffofarrivalCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/diffofarrival/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/diffofarrival/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type DiffofarrivalAbridgedsOffsetPage = OffsetPage<DiffofarrivalAbridged>
+export type DiffofarrivalAbridgedsOffsetPage = OffsetPage<DiffofarrivalAbridged>;
 
-export type DiffofarrivalFullsOffsetPage = OffsetPage<DiffofarrivalFull>
+export type DiffofarrivalFullsOffsetPage = OffsetPage<DiffofarrivalFull>;
 
 /**
  * Model representation of Signal time and frequency difference of arrival
@@ -725,7 +743,7 @@ export interface DiffofarrivalFull {
   uct?: boolean;
 }
 
-export type DiffofarrivalCountResponse = string
+export type DiffofarrivalCountResponse = string;
 
 export interface DiffofarrivalCreateParams {
   /**
@@ -1333,12 +1351,12 @@ export declare namespace Diffofarrival {
     type DiffofarrivalCreateParams as DiffofarrivalCreateParams,
     type DiffofarrivalListParams as DiffofarrivalListParams,
     type DiffofarrivalCountParams as DiffofarrivalCountParams,
-    type DiffofarrivalCreateBulkParams as DiffofarrivalCreateBulkParams
+    type DiffofarrivalCreateBulkParams as DiffofarrivalCreateBulkParams,
   };
 
   export {
     History as History,
     type HistoryListParams as HistoryListParams,
-    type HistoryAodrParams as HistoryAodrParams
+    type HistoryAodrParams as HistoryAodrParams,
   };
 }

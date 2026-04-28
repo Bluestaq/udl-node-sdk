@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { GeoStatusFull, GeoStatusFullsOffsetPage, History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
+import {
+  GeoStatusFull,
+  GeoStatusFullsOffsetPage,
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -33,7 +41,11 @@ export class GeoStatus extends APIResource {
    * ```
    */
   create(body: GeoStatusCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/geostatus', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/geostatus', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -52,8 +64,14 @@ export class GeoStatus extends APIResource {
    * }
    * ```
    */
-  list(query: GeoStatusListParams, options?: RequestOptions): PagePromise<GeoStatusListResponsesOffsetPage, GeoStatusListResponse> {
-    return this._client.getAPIList('/udl/geostatus', OffsetPage<GeoStatusListResponse>, { query, ...options });
+  list(
+    query: GeoStatusListParams,
+    options?: RequestOptions,
+  ): PagePromise<GeoStatusListResponsesOffsetPage, GeoStatusListResponse> {
+    return this._client.getAPIList('/udl/geostatus', OffsetPage<GeoStatusListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -71,7 +89,11 @@ export class GeoStatus extends APIResource {
    * ```
    */
   count(query: GeoStatusCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/geostatus/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/geostatus/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -95,8 +117,12 @@ export class GeoStatus extends APIResource {
    * ```
    */
   createBulk(params: GeoStatusCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/geostatus/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/geostatus/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -108,7 +134,11 @@ export class GeoStatus extends APIResource {
    * const geoStatusFull = await client.geoStatus.get('id');
    * ```
    */
-  get(id: string, query: GeoStatusGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<HistoryAPI.GeoStatusFull> {
+  get(
+    id: string,
+    query: GeoStatusGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.GeoStatusFull> {
     return this._client.get(path`/udl/geostatus/${id}`, { query, ...options });
   }
 
@@ -148,7 +178,7 @@ export class GeoStatus extends APIResource {
   }
 }
 
-export type GeoStatusListResponsesOffsetPage = OffsetPage<GeoStatusListResponse>
+export type GeoStatusListResponsesOffsetPage = OffsetPage<GeoStatusListResponse>;
 
 /**
  * Information for the specified on-orbit GEO spacecraft, including status,
@@ -310,7 +340,7 @@ export interface GeoStatusListResponse {
   troughType?: string;
 }
 
-export type GeoStatusCountResponse = string
+export type GeoStatusCountResponse = string;
 
 export interface GeoStatusQueryhelpResponse {
   aodrSupported?: boolean;
@@ -336,7 +366,7 @@ export interface GeoStatusQueryhelpResponse {
   uri?: string;
 }
 
-export type GeoStatusTupleResponse = Array<HistoryAPI.GeoStatusFull>
+export type GeoStatusTupleResponse = Array<HistoryAPI.GeoStatusFull>;
 
 export interface GeoStatusCreateParams {
   /**
@@ -676,7 +706,7 @@ export declare namespace GeoStatus {
     type GeoStatusCountParams as GeoStatusCountParams,
     type GeoStatusCreateBulkParams as GeoStatusCreateBulkParams,
     type GeoStatusGetParams as GeoStatusGetParams,
-    type GeoStatusTupleParams as GeoStatusTupleParams
+    type GeoStatusTupleParams as GeoStatusTupleParams,
   };
 
   export {
@@ -686,6 +716,6 @@ export declare namespace GeoStatus {
     type GeoStatusFullsOffsetPage as GeoStatusFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

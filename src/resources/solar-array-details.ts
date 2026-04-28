@@ -29,7 +29,11 @@ export class SolarArrayDetails extends APIResource {
    * ```
    */
   create(body: SolarArrayDetailCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/solararraydetails', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/solararraydetails', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -49,7 +53,11 @@ export class SolarArrayDetails extends APIResource {
    * ```
    */
   update(id: string, body: SolarArrayDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/solararraydetails/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/solararraydetails/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -66,8 +74,14 @@ export class SolarArrayDetails extends APIResource {
    * }
    * ```
    */
-  list(query: SolarArrayDetailListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SolarArrayDetailListResponsesOffsetPage, SolarArrayDetailListResponse> {
-    return this._client.getAPIList('/udl/solararraydetails', OffsetPage<SolarArrayDetailListResponse>, { query, ...options });
+  list(
+    query: SolarArrayDetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SolarArrayDetailListResponsesOffsetPage, SolarArrayDetailListResponse> {
+    return this._client.getAPIList('/udl/solararraydetails', OffsetPage<SolarArrayDetailListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -82,7 +96,10 @@ export class SolarArrayDetails extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/solararraydetails/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/solararraydetails/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -96,12 +113,16 @@ export class SolarArrayDetails extends APIResource {
    *   await client.solarArrayDetails.get('id');
    * ```
    */
-  get(id: string, query: SolarArrayDetailGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.SolarArrayDetailsFull> {
+  get(
+    id: string,
+    query: SolarArrayDetailGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.SolarArrayDetailsFull> {
     return this._client.get(path`/udl/solararraydetails/${id}`, { query, ...options });
   }
 }
 
-export type SolarArrayDetailListResponsesOffsetPage = OffsetPage<SolarArrayDetailListResponse>
+export type SolarArrayDetailListResponsesOffsetPage = OffsetPage<SolarArrayDetailListResponse>;
 
 /**
  * Model representation of Information on spacecraft SolarArrayDetails. A
@@ -422,6 +443,6 @@ export declare namespace SolarArrayDetails {
     type SolarArrayDetailCreateParams as SolarArrayDetailCreateParams,
     type SolarArrayDetailUpdateParams as SolarArrayDetailUpdateParams,
     type SolarArrayDetailListParams as SolarArrayDetailListParams,
-    type SolarArrayDetailGetParams as SolarArrayDetailGetParams
+    type SolarArrayDetailGetParams as SolarArrayDetailGetParams,
   };
 }

@@ -3,9 +3,30 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as DatalinkAPI from './datalink';
-import { Datalink, DatalinkCountParams, DatalinkCountResponse, DatalinkCreateParams, DatalinkIngest, DatalinkListParams, DatalinkListResponse, DatalinkListResponsesOffsetPage, DatalinkQueryhelpResponse, DatalinkTupleParams, DatalinkTupleResponse, DatalinkUnvalidatedPublishParams } from './datalink';
+import {
+  Datalink,
+  DatalinkCountParams,
+  DatalinkCountResponse,
+  DatalinkCreateParams,
+  DatalinkIngest,
+  DatalinkListParams,
+  DatalinkListResponse,
+  DatalinkListResponsesOffsetPage,
+  DatalinkQueryhelpResponse,
+  DatalinkTupleParams,
+  DatalinkTupleResponse,
+  DatalinkUnvalidatedPublishParams,
+} from './datalink';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -43,7 +64,11 @@ export class LinkStatus extends APIResource {
    * ```
    */
   create(body: LinkStatusCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/linkstatus', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/linkstatus', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -60,8 +85,14 @@ export class LinkStatus extends APIResource {
    * }
    * ```
    */
-  list(query: LinkStatusListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LinkStatusListResponsesOffsetPage, LinkStatusListResponse> {
-    return this._client.getAPIList('/udl/linkstatus', OffsetPage<LinkStatusListResponse>, { query, ...options });
+  list(
+    query: LinkStatusListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LinkStatusListResponsesOffsetPage, LinkStatusListResponse> {
+    return this._client.getAPIList('/udl/linkstatus', OffsetPage<LinkStatusListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -77,7 +108,11 @@ export class LinkStatus extends APIResource {
    * ```
    */
   count(query: LinkStatusCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/linkstatus/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/linkstatus/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -89,7 +124,11 @@ export class LinkStatus extends APIResource {
    * const linkStatus = await client.linkStatus.get('id');
    * ```
    */
-  get(id: string, query: LinkStatusGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<LinkStatusGetResponse> {
+  get(
+    id: string,
+    query: LinkStatusGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LinkStatusGetResponse> {
     return this._client.get(path`/udl/linkstatus/${id}`, { query, ...options });
   }
 
@@ -128,7 +167,7 @@ export class LinkStatus extends APIResource {
   }
 }
 
-export type LinkStatusListResponsesOffsetPage = OffsetPage<LinkStatusListResponse>
+export type LinkStatusListResponsesOffsetPage = OffsetPage<LinkStatusListResponse>;
 
 /**
  * Captures link status.
@@ -324,7 +363,7 @@ export interface LinkStatusListResponse {
   sysCap?: string;
 }
 
-export type LinkStatusCountResponse = string
+export type LinkStatusCountResponse = string;
 
 /**
  * Captures link status.
@@ -544,7 +583,7 @@ export interface LinkStatusQueryhelpResponse {
   uri?: string;
 }
 
-export type LinkStatusTupleResponse = Array<LinkStatusTupleResponse.LinkStatusTupleResponseItem>
+export type LinkStatusTupleResponse = Array<LinkStatusTupleResponse.LinkStatusTupleResponseItem>;
 
 export namespace LinkStatusTupleResponse {
   /**
@@ -1009,7 +1048,7 @@ export declare namespace LinkStatus {
     type LinkStatusListParams as LinkStatusListParams,
     type LinkStatusCountParams as LinkStatusCountParams,
     type LinkStatusGetParams as LinkStatusGetParams,
-    type LinkStatusTupleParams as LinkStatusTupleParams
+    type LinkStatusTupleParams as LinkStatusTupleParams,
   };
 
   export {
@@ -1024,7 +1063,7 @@ export declare namespace LinkStatus {
     type DatalinkListParams as DatalinkListParams,
     type DatalinkCountParams as DatalinkCountParams,
     type DatalinkTupleParams as DatalinkTupleParams,
-    type DatalinkUnvalidatedPublishParams as DatalinkUnvalidatedPublishParams
+    type DatalinkUnvalidatedPublishParams as DatalinkUnvalidatedPublishParams,
   };
 
   export {
@@ -1034,6 +1073,6 @@ export declare namespace LinkStatus {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

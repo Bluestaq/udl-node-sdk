@@ -5,7 +5,13 @@ import * as Shared from '../shared';
 import * as CurrentAPI from './current';
 import { Current, CurrentListParams, CurrentTupleParams, CurrentTupleResponse } from './current';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -37,7 +43,11 @@ export class Elsets extends APIResource {
    * ```
    */
   create(body: ElsetCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/elset', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/elset', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -49,7 +59,11 @@ export class Elsets extends APIResource {
    * const elset = await client.elsets.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: ElsetRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Elset> {
+  retrieve(
+    id: string,
+    query: ElsetRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Elset> {
     return this._client.get(path`/udl/elset/${id}`, { query, ...options });
   }
 
@@ -69,7 +83,10 @@ export class Elsets extends APIResource {
    * }
    * ```
    */
-  list(query: ElsetListParams, options?: RequestOptions): PagePromise<ElsetAbridgedsOffsetPage, ElsetAbridged> {
+  list(
+    query: ElsetListParams,
+    options?: RequestOptions,
+  ): PagePromise<ElsetAbridgedsOffsetPage, ElsetAbridged> {
     return this._client.getAPIList('/udl/elset', OffsetPage<ElsetAbridged>, { query, ...options });
   }
 
@@ -88,7 +105,11 @@ export class Elsets extends APIResource {
    * ```
    */
   count(query: ElsetCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/elset/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/elset/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -114,8 +135,13 @@ export class Elsets extends APIResource {
    * ```
    */
   createBulk(params: ElsetCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body, dupeCheck } = params
-    return this._client.post('/udl/elset/createBulk', { query: { dupeCheck }, body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body, dupeCheck } = params;
+    return this._client.post('/udl/elset/createBulk', {
+      query: { dupeCheck },
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -136,8 +162,13 @@ export class Elsets extends APIResource {
    * ```
    */
   createBulkFromTle(params: ElsetCreateBulkFromTleParams, options?: RequestOptions): APIPromise<void> {
-    const { dataMode, makeCurrent, source, body, autoCreateSats, control, origin, tags } = params
-    return this._client.post('/udl/elset/createBulkFromTLE', { query: { dataMode, makeCurrent, source, autoCreateSats, control, origin, tags }, body: body, ...options, headers: buildHeaders([{'Content-Type': 'text/plain', Accept: '*/*'}, options?.headers]) });
+    const { dataMode, makeCurrent, source, body, autoCreateSats, control, origin, tags } = params;
+    return this._client.post('/udl/elset/createBulkFromTLE', {
+      query: { dataMode, makeCurrent, source, autoCreateSats, control, origin, tags },
+      body: body,
+      ...options,
+      headers: buildHeaders([{ 'Content-Type': 'text/plain', Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -209,14 +240,18 @@ export class Elsets extends APIResource {
    * ```
    */
   unvalidatedPublish(params: ElsetUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-elset', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-elset', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type ElsetAbridgedsOffsetPage = OffsetPage<ElsetAbridged>
+export type ElsetAbridgedsOffsetPage = OffsetPage<ElsetAbridged>;
 
-export type ElsetsOffsetPage = OffsetPage<Elset>
+export type ElsetsOffsetPage = OffsetPage<Elset>;
 
 /**
  * An element set is a collection of Keplerian orbital elements describing an orbit
@@ -1132,7 +1167,7 @@ export interface ElsetAbridged {
   uct?: boolean;
 }
 
-export type ElsetCountResponse = string
+export type ElsetCountResponse = string;
 
 export interface ElsetQueryCurrentElsetHelpResponse {
   aodrSupported?: boolean;
@@ -1182,7 +1217,7 @@ export interface ElsetQueryhelpResponse {
   uri?: string;
 }
 
-export type ElsetTupleResponse = Array<Elset>
+export type ElsetTupleResponse = Array<Elset>;
 
 export interface ElsetCreateParams {
   /**
@@ -1576,14 +1611,14 @@ export declare namespace Elsets {
     type ElsetCreateBulkParams as ElsetCreateBulkParams,
     type ElsetCreateBulkFromTleParams as ElsetCreateBulkFromTleParams,
     type ElsetTupleParams as ElsetTupleParams,
-    type ElsetUnvalidatedPublishParams as ElsetUnvalidatedPublishParams
+    type ElsetUnvalidatedPublishParams as ElsetUnvalidatedPublishParams,
   };
 
   export {
     Current as Current,
     type CurrentTupleResponse as CurrentTupleResponse,
     type CurrentListParams as CurrentListParams,
-    type CurrentTupleParams as CurrentTupleParams
+    type CurrentTupleParams as CurrentTupleParams,
   };
 
   export {
@@ -1591,6 +1626,6 @@ export declare namespace Elsets {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

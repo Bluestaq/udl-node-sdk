@@ -28,7 +28,11 @@ export class Beam extends APIResource {
    * ```
    */
   create(body: BeamCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/beam', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/beam', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -40,7 +44,11 @@ export class Beam extends APIResource {
    * const beamFull = await client.beam.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: BeamRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.BeamFull> {
+  retrieve(
+    id: string,
+    query: BeamRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.BeamFull> {
     return this._client.get(path`/udl/beam/${id}`, { query, ...options });
   }
 
@@ -59,7 +67,11 @@ export class Beam extends APIResource {
    * ```
    */
   update(id: string, body: BeamUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/beam/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/beam/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -76,7 +88,10 @@ export class Beam extends APIResource {
    * }
    * ```
    */
-  list(query: BeamListParams | null | undefined = {}, options?: RequestOptions): PagePromise<BeamAbridgedsOffsetPage, BeamAbridged> {
+  list(
+    query: BeamListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BeamAbridgedsOffsetPage, BeamAbridged> {
     return this._client.getAPIList('/udl/beam', OffsetPage<BeamAbridged>, { query, ...options });
   }
 
@@ -91,7 +106,10 @@ export class Beam extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/beam/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/beam/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -107,7 +125,11 @@ export class Beam extends APIResource {
    * ```
    */
   count(query: BeamCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/beam/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/beam/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -145,7 +167,7 @@ export class Beam extends APIResource {
   }
 }
 
-export type BeamAbridgedsOffsetPage = OffsetPage<BeamAbridged>
+export type BeamAbridgedsOffsetPage = OffsetPage<BeamAbridged>;
 
 /**
  * Describes a satellite antenna beam.
@@ -220,7 +242,7 @@ export interface BeamAbridged {
   origNetwork?: string;
 }
 
-export type BeamCountResponse = string
+export type BeamCountResponse = string;
 
 export interface BeamQueryHelpResponse {
   aodrSupported?: boolean;
@@ -246,7 +268,7 @@ export interface BeamQueryHelpResponse {
   uri?: string;
 }
 
-export type BeamTupleResponse = Array<Shared.BeamFull>
+export type BeamTupleResponse = Array<Shared.BeamFull>;
 
 export interface BeamCreateParams {
   /**
@@ -360,8 +382,7 @@ export interface BeamUpdateParams {
   origin?: string;
 }
 
-export interface BeamListParams extends OffsetPageParams {
-}
+export interface BeamListParams extends OffsetPageParams {}
 
 export interface BeamCountParams {
   firstResult?: number;
@@ -395,6 +416,6 @@ export declare namespace Beam {
     type BeamUpdateParams as BeamUpdateParams,
     type BeamListParams as BeamListParams,
     type BeamCountParams as BeamCountParams,
-    type BeamTupleParams as BeamTupleParams
+    type BeamTupleParams as BeamTupleParams,
   };
 }

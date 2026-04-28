@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { ClientOptions } from 'unified-data-library'
+import { ClientOptions } from 'unified-data-library';
 
 export type WorkerInput = {
   project_name: string;

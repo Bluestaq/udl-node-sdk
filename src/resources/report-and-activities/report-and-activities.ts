@@ -19,18 +19,13 @@ ReportAndActivities.UdlH3geo = UdlH3geo;
 ReportAndActivities.UdlSigact = UdlSigact;
 
 export declare namespace ReportAndActivities {
-  export {
-    Poi as Poi
-  };
+  export { Poi as Poi };
 
-  export {
-    UdlH3geo as UdlH3geo,
-    type UdlH3geoUnvalidatedPublishParams as UdlH3geoUnvalidatedPublishParams
-  };
+  export { UdlH3geo as UdlH3geo, type UdlH3geoUnvalidatedPublishParams as UdlH3geoUnvalidatedPublishParams };
 
   export {
     UdlSigact as UdlSigact,
     type UdlSigactFileGetParams as UdlSigactFileGetParams,
-    type UdlSigactUnvalidatedPublishParams as UdlSigactUnvalidatedPublishParams
+    type UdlSigactUnvalidatedPublishParams as UdlSigactUnvalidatedPublishParams,
   };
 }

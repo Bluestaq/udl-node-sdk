@@ -28,7 +28,11 @@ export class Crew extends APIResource {
    * ```
    */
   create(body: CrewCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/crew', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/crew', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -40,7 +44,11 @@ export class Crew extends APIResource {
    * const crewFull = await client.crew.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: CrewRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.CrewFull> {
+  retrieve(
+    id: string,
+    query: CrewRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.CrewFull> {
     return this._client.get(path`/udl/crew/${id}`, { query, ...options });
   }
 
@@ -59,7 +67,11 @@ export class Crew extends APIResource {
    * ```
    */
   update(id: string, body: CrewUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/crew/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/crew/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -76,7 +88,10 @@ export class Crew extends APIResource {
    * }
    * ```
    */
-  list(query: CrewListParams | null | undefined = {}, options?: RequestOptions): PagePromise<CrewAbridgedsOffsetPage, CrewAbridged> {
+  list(
+    query: CrewListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<CrewAbridgedsOffsetPage, CrewAbridged> {
     return this._client.getAPIList('/udl/crew', OffsetPage<CrewAbridged>, { query, ...options });
   }
 
@@ -93,7 +108,11 @@ export class Crew extends APIResource {
    * ```
    */
   count(query: CrewCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/crew/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/crew/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -151,12 +170,16 @@ export class Crew extends APIResource {
    * ```
    */
   unvalidatedPublish(params: CrewUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-crew', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-crew', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type CrewAbridgedsOffsetPage = OffsetPage<CrewAbridged>
+export type CrewAbridgedsOffsetPage = OffsetPage<CrewAbridged>;
 
 /**
  * Crew Services.
@@ -905,7 +928,7 @@ export namespace CrewAbridged {
   }
 }
 
-export type CrewCountResponse = string
+export type CrewCountResponse = string;
 
 export interface CrewQueryhelpResponse {
   aodrSupported?: boolean;
@@ -931,7 +954,7 @@ export interface CrewQueryhelpResponse {
   uri?: string;
 }
 
-export type CrewTupleResponse = Array<Shared.CrewFull>
+export type CrewTupleResponse = Array<Shared.CrewFull>;
 
 export interface CrewCreateParams {
   /**
@@ -2357,8 +2380,7 @@ export namespace CrewUpdateParams {
   }
 }
 
-export interface CrewListParams extends OffsetPageParams {
-}
+export interface CrewListParams extends OffsetPageParams {}
 
 export interface CrewCountParams {
   firstResult?: number;
@@ -3111,6 +3133,6 @@ export declare namespace Crew {
     type CrewListParams as CrewListParams,
     type CrewCountParams as CrewCountParams,
     type CrewTupleParams as CrewTupleParams,
-    type CrewUnvalidatedPublishParams as CrewUnvalidatedPublishParams
+    type CrewUnvalidatedPublishParams as CrewUnvalidatedPublishParams,
   };
 }

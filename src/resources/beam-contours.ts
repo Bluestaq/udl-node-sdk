@@ -29,7 +29,11 @@ export class BeamContours extends APIResource {
    * ```
    */
   create(body: BeamContourCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/beamcontour', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/beamcontour', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -43,7 +47,11 @@ export class BeamContours extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, query: BeamContourRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.BeamcontourFull> {
+  retrieve(
+    id: string,
+    query: BeamContourRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.BeamcontourFull> {
     return this._client.get(path`/udl/beamcontour/${id}`, { query, ...options });
   }
 
@@ -63,7 +71,11 @@ export class BeamContours extends APIResource {
    * ```
    */
   update(id: string, body: BeamContourUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/beamcontour/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/beamcontour/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -82,8 +94,14 @@ export class BeamContours extends APIResource {
    * }
    * ```
    */
-  list(query: BeamContourListParams, options?: RequestOptions): PagePromise<BeamcontourAbridgedsOffsetPage, BeamcontourAbridged> {
-    return this._client.getAPIList('/udl/beamcontour', OffsetPage<BeamcontourAbridged>, { query, ...options });
+  list(
+    query: BeamContourListParams,
+    options?: RequestOptions,
+  ): PagePromise<BeamcontourAbridgedsOffsetPage, BeamcontourAbridged> {
+    return this._client.getAPIList('/udl/beamcontour', OffsetPage<BeamcontourAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -97,7 +115,10 @@ export class BeamContours extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/beamcontour/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/beamcontour/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -115,7 +136,11 @@ export class BeamContours extends APIResource {
    * ```
    */
   count(query: BeamContourCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/beamcontour/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/beamcontour/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -141,8 +166,12 @@ export class BeamContours extends APIResource {
    * ```
    */
   createBulk(params: BeamContourCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/beamcontour/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/beamcontour/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -181,7 +210,7 @@ export class BeamContours extends APIResource {
   }
 }
 
-export type BeamcontourAbridgedsOffsetPage = OffsetPage<BeamcontourAbridged>
+export type BeamcontourAbridgedsOffsetPage = OffsetPage<BeamcontourAbridged>;
 
 /**
  * Describes the beam contour associated with a beam entity. Beam contours are the
@@ -311,7 +340,7 @@ export interface BeamcontourAbridged {
   regionName?: string;
 }
 
-export type BeamContourCountResponse = string
+export type BeamContourCountResponse = string;
 
 export interface BeamContourQueryHelpResponse {
   aodrSupported?: boolean;
@@ -337,7 +366,7 @@ export interface BeamContourQueryHelpResponse {
   uri?: string;
 }
 
-export type BeamContourTupleResponse = Array<Shared.BeamcontourFull>
+export type BeamContourTupleResponse = Array<Shared.BeamcontourFull>;
 
 export interface BeamContourCreateParams {
   /**
@@ -760,6 +789,6 @@ export declare namespace BeamContours {
     type BeamContourListParams as BeamContourListParams,
     type BeamContourCountParams as BeamContourCountParams,
     type BeamContourCreateBulkParams as BeamContourCreateBulkParams,
-    type BeamContourTupleParams as BeamContourTupleParams
+    type BeamContourTupleParams as BeamContourTupleParams,
   };
 }

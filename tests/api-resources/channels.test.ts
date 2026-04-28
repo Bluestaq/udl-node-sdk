@@ -5,18 +5,18 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource channels', () => {
   test('create: only required params', async () => {
     const responsePromise = client.channels.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idTransponder: 'REF-TRANSPONDER-ID',
-    name: 'Example name',
-    source: 'system.source',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idTransponder: 'REF-TRANSPONDER-ID',
+      name: 'Example name',
+      source: 'system.source',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -28,26 +28,26 @@ describe('resource channels', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.channels.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idTransponder: 'REF-TRANSPONDER-ID',
-    name: 'Example name',
-    source: 'system.source',
-    id: 'CHANNEL-ID',
-    apid: 'AP-ID',
-    beamName: 'B8VD',
-    compression: 'Example compression',
-    encryption: 'Example encryption',
-    idBeam: 'REF-BEAM-ID',
-    idRFBand: 'REF-RFBAND-ID',
-    origin: 'example_origin',
-    owner: 'example_owner',
-    pkg: 'Example pkg',
-    res: 'Example res',
-    sid: 'S-ID',
-    type: 'Example type',
-    vpid: 'VP-ID',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idTransponder: 'REF-TRANSPONDER-ID',
+      name: 'Example name',
+      source: 'system.source',
+      id: 'CHANNEL-ID',
+      apid: 'AP-ID',
+      beamName: 'B8VD',
+      compression: 'Example compression',
+      encryption: 'Example encryption',
+      idBeam: 'REF-BEAM-ID',
+      idRFBand: 'REF-RFBAND-ID',
+      origin: 'example_origin',
+      owner: 'example_owner',
+      pkg: 'Example pkg',
+      res: 'Example res',
+      sid: 'S-ID',
+      type: 'Example type',
+      vpid: 'VP-ID',
+    });
   });
 
   test('retrieve', async () => {
@@ -63,19 +63,19 @@ describe('resource channels', () => {
 
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.channels.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.channels.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.channels.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idTransponder: 'REF-TRANSPONDER-ID',
-    name: 'Example name',
-    source: 'system.source',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idTransponder: 'REF-TRANSPONDER-ID',
+      name: 'Example name',
+      source: 'system.source',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -87,26 +87,26 @@ describe('resource channels', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.channels.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idTransponder: 'REF-TRANSPONDER-ID',
-    name: 'Example name',
-    source: 'system.source',
-    id: 'CHANNEL-ID',
-    apid: 'AP-ID',
-    beamName: 'B8VD',
-    compression: 'Example compression',
-    encryption: 'Example encryption',
-    idBeam: 'REF-BEAM-ID',
-    idRFBand: 'REF-RFBAND-ID',
-    origin: 'example_origin',
-    owner: 'example_owner',
-    pkg: 'Example pkg',
-    res: 'Example res',
-    sid: 'S-ID',
-    type: 'Example type',
-    vpid: 'VP-ID',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idTransponder: 'REF-TRANSPONDER-ID',
+      name: 'Example name',
+      source: 'system.source',
+      id: 'CHANNEL-ID',
+      apid: 'AP-ID',
+      beamName: 'B8VD',
+      compression: 'Example compression',
+      encryption: 'Example encryption',
+      idBeam: 'REF-BEAM-ID',
+      idRFBand: 'REF-RFBAND-ID',
+      origin: 'example_origin',
+      owner: 'example_owner',
+      pkg: 'Example pkg',
+      res: 'Example res',
+      sid: 'S-ID',
+      type: 'Example type',
+      vpid: 'VP-ID',
+    });
   });
 
   test('list', async () => {
@@ -122,9 +122,9 @@ describe('resource channels', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.channels.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.channels.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -151,9 +151,9 @@ describe('resource channels', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.channels.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.channels.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -180,9 +180,9 @@ describe('resource channels', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.channels.tuple({
-    columns: 'columns',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

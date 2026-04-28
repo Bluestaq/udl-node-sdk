@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, WeatherDataFull, WeatherDataFullsOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  WeatherDataFull,
+  WeatherDataFullsOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -32,7 +40,11 @@ export class WeatherData extends APIResource {
    * ```
    */
   create(body: WeatherDataCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/weatherdata', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/weatherdata', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -51,8 +63,14 @@ export class WeatherData extends APIResource {
    * }
    * ```
    */
-  list(query: WeatherDataListParams, options?: RequestOptions): PagePromise<WeatherDataListResponsesOffsetPage, WeatherDataListResponse> {
-    return this._client.getAPIList('/udl/weatherdata', OffsetPage<WeatherDataListResponse>, { query, ...options });
+  list(
+    query: WeatherDataListParams,
+    options?: RequestOptions,
+  ): PagePromise<WeatherDataListResponsesOffsetPage, WeatherDataListResponse> {
+    return this._client.getAPIList('/udl/weatherdata', OffsetPage<WeatherDataListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -70,7 +88,11 @@ export class WeatherData extends APIResource {
    * ```
    */
   count(query: WeatherDataCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/weatherdata/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/weatherdata/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -93,8 +115,12 @@ export class WeatherData extends APIResource {
    * ```
    */
   createBulk(params: WeatherDataCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/weatherdata/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/weatherdata/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -106,7 +132,11 @@ export class WeatherData extends APIResource {
    * const weatherDataFull = await client.weatherData.get('id');
    * ```
    */
-  get(id: string, query: WeatherDataGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<HistoryAPI.WeatherDataFull> {
+  get(
+    id: string,
+    query: WeatherDataGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.WeatherDataFull> {
     return this._client.get(path`/udl/weatherdata/${id}`, { query, ...options });
   }
 
@@ -165,13 +195,20 @@ export class WeatherData extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(params: WeatherDataUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-weatherdata', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: WeatherDataUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-weatherdata', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type WeatherDataListResponsesOffsetPage = OffsetPage<WeatherDataListResponse>
+export type WeatherDataListResponsesOffsetPage = OffsetPage<WeatherDataListResponse>;
 
 /**
  * These services provide for posting and querying Weather Data. Weather Data
@@ -433,7 +470,7 @@ export interface WeatherDataListResponse {
   termAlt?: number;
 }
 
-export type WeatherDataCountResponse = string
+export type WeatherDataCountResponse = string;
 
 export interface WeatherDataQueryhelpResponse {
   aodrSupported?: boolean;
@@ -459,7 +496,7 @@ export interface WeatherDataQueryhelpResponse {
   uri?: string;
 }
 
-export type WeatherDataTupleResponse = Array<HistoryAPI.WeatherDataFull>
+export type WeatherDataTupleResponse = Array<HistoryAPI.WeatherDataFull>;
 
 export interface WeatherDataCreateParams {
   /**
@@ -1261,7 +1298,7 @@ export declare namespace WeatherData {
     type WeatherDataCreateBulkParams as WeatherDataCreateBulkParams,
     type WeatherDataGetParams as WeatherDataGetParams,
     type WeatherDataTupleParams as WeatherDataTupleParams,
-    type WeatherDataUnvalidatedPublishParams as WeatherDataUnvalidatedPublishParams
+    type WeatherDataUnvalidatedPublishParams as WeatherDataUnvalidatedPublishParams,
   };
 
   export {
@@ -1271,6 +1308,6 @@ export declare namespace WeatherData {
     type WeatherDataFullsOffsetPage as WeatherDataFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

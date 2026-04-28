@@ -5,18 +5,18 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource sgi', () => {
   test('create: only required params', async () => {
     const responsePromise = client.sgi.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    effectiveDate: '2018-01-01T16:00:00.123Z',
-    sgiDate: '2018-01-01T16:00:00.123Z',
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      effectiveDate: '2018-01-01T16:00:00.123Z',
+      sgiDate: '2018-01-01T16:00:00.123Z',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -28,72 +28,72 @@ describe('resource sgi', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.sgi.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    effectiveDate: '2018-01-01T16:00:00.123Z',
-    sgiDate: '2018-01-01T16:00:00.123Z',
-    source: 'Bluestaq',
-    id: 'SGI-ID',
-    analyzerAttenuation: 5.1,
-    ap: 1.23,
-    apDuration: 3,
-    coeffDegree: [1, 2, 3],
-    coeffOrder: [1, 2, 3],
-    ctce: [1.23, 342.3, 1.32],
-    ctci: [1.23, 342.3, 1.32],
-    dst: 1.23,
-    dtc: 1.23,
-    e10: 1.23,
-    e54: 1.23,
-    f10: 1.23,
-    f10High: 187.5,
-    f10Low: 185.5,
-    f54: 1.23,
-    f81: 1.23,
-    frequencies: [25, 25.125, 25.25, 25.375, 25.5, 25.625, 25.75, 25.875],
-    gamma: 25,
-    idSensor: '57c96c97-e076-48af-a068-73ee2cb37e65',
-    kIndex: 1,
-    kp: 4.66,
-    kpDuration: 3,
-    m10: 1.23,
-    m54: 1.23,
-    mode: 1,
-    normFactor: 2.12679e-7,
-    observedBaseline: [15, 32, 25, 134, 0, 6, 19, 8],
-    origin: 'THIRD_PARTY_DATASOURCE',
-    origSensorId: 'ORIGSENSOR-ID',
-    powers: [67.1, 65.2, 68.1, 74.3, 68.1, 96.4, 97.3, 68.1],
-    precedence: 'R',
-    rawFileURI: 'rawFileURI',
-    rbDuration: 24,
-    rbIndex: 1.02947164506,
-    rbRegionCode: 2,
-    s10: 1.23,
-    s54: 1.23,
-    state: 'I',
-    stationName: 'Boulder',
-    stce: [1.23, 342.3, 1.32],
-    stci: [1.23, 342.3, 1.32],
-    sunspotNum: 151.1,
-    sunspotNumHigh: 152.1,
-    sunspotNumLow: 150.1,
-    tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-    transactionId: 'TRANSACTION-ID',
-    type: 'JBH09',
-    y10: 1.23,
-    y54: 1.23,
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      effectiveDate: '2018-01-01T16:00:00.123Z',
+      sgiDate: '2018-01-01T16:00:00.123Z',
+      source: 'Bluestaq',
+      id: 'SGI-ID',
+      analyzerAttenuation: 5.1,
+      ap: 1.23,
+      apDuration: 3,
+      coeffDegree: [1, 2, 3],
+      coeffOrder: [1, 2, 3],
+      ctce: [1.23, 342.3, 1.32],
+      ctci: [1.23, 342.3, 1.32],
+      dst: 1.23,
+      dtc: 1.23,
+      e10: 1.23,
+      e54: 1.23,
+      f10: 1.23,
+      f10High: 187.5,
+      f10Low: 185.5,
+      f54: 1.23,
+      f81: 1.23,
+      frequencies: [25, 25.125, 25.25, 25.375, 25.5, 25.625, 25.75, 25.875],
+      gamma: 25,
+      idSensor: '57c96c97-e076-48af-a068-73ee2cb37e65',
+      kIndex: 1,
+      kp: 4.66,
+      kpDuration: 3,
+      m10: 1.23,
+      m54: 1.23,
+      mode: 1,
+      normFactor: 2.12679e-7,
+      observedBaseline: [15, 32, 25, 134, 0, 6, 19, 8],
+      origin: 'THIRD_PARTY_DATASOURCE',
+      origSensorId: 'ORIGSENSOR-ID',
+      powers: [67.1, 65.2, 68.1, 74.3, 68.1, 96.4, 97.3, 68.1],
+      precedence: 'R',
+      rawFileURI: 'rawFileURI',
+      rbDuration: 24,
+      rbIndex: 1.02947164506,
+      rbRegionCode: 2,
+      s10: 1.23,
+      s54: 1.23,
+      state: 'I',
+      stationName: 'Boulder',
+      stce: [1.23, 342.3, 1.32],
+      stci: [1.23, 342.3, 1.32],
+      sunspotNum: 151.1,
+      sunspotNumHigh: 152.1,
+      sunspotNumLow: 150.1,
+      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+      transactionId: 'TRANSACTION-ID',
+      type: 'JBH09',
+      y10: 1.23,
+      y54: 1.23,
+    });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.sgi.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    effectiveDate: '2018-01-01T16:00:00.123Z',
-    sgiDate: '2018-01-01T16:00:00.123Z',
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      effectiveDate: '2018-01-01T16:00:00.123Z',
+      sgiDate: '2018-01-01T16:00:00.123Z',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -105,62 +105,62 @@ describe('resource sgi', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.sgi.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    effectiveDate: '2018-01-01T16:00:00.123Z',
-    sgiDate: '2018-01-01T16:00:00.123Z',
-    source: 'Bluestaq',
-    id: 'SGI-ID',
-    analyzerAttenuation: 5.1,
-    ap: 1.23,
-    apDuration: 3,
-    coeffDegree: [1, 2, 3],
-    coeffOrder: [1, 2, 3],
-    ctce: [1.23, 342.3, 1.32],
-    ctci: [1.23, 342.3, 1.32],
-    dst: 1.23,
-    dtc: 1.23,
-    e10: 1.23,
-    e54: 1.23,
-    f10: 1.23,
-    f10High: 187.5,
-    f10Low: 185.5,
-    f54: 1.23,
-    f81: 1.23,
-    frequencies: [25, 25.125, 25.25, 25.375, 25.5, 25.625, 25.75, 25.875],
-    gamma: 25,
-    idSensor: '57c96c97-e076-48af-a068-73ee2cb37e65',
-    kIndex: 1,
-    kp: 4.66,
-    kpDuration: 3,
-    m10: 1.23,
-    m54: 1.23,
-    mode: 1,
-    normFactor: 2.12679e-7,
-    observedBaseline: [15, 32, 25, 134, 0, 6, 19, 8],
-    origin: 'THIRD_PARTY_DATASOURCE',
-    origSensorId: 'ORIGSENSOR-ID',
-    powers: [67.1, 65.2, 68.1, 74.3, 68.1, 96.4, 97.3, 68.1],
-    precedence: 'R',
-    rawFileURI: 'rawFileURI',
-    rbDuration: 24,
-    rbIndex: 1.02947164506,
-    rbRegionCode: 2,
-    s10: 1.23,
-    s54: 1.23,
-    state: 'I',
-    stationName: 'Boulder',
-    stce: [1.23, 342.3, 1.32],
-    stci: [1.23, 342.3, 1.32],
-    sunspotNum: 151.1,
-    sunspotNumHigh: 152.1,
-    sunspotNumLow: 150.1,
-    tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-    transactionId: 'TRANSACTION-ID',
-    type: 'JBH09',
-    y10: 1.23,
-    y54: 1.23,
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      effectiveDate: '2018-01-01T16:00:00.123Z',
+      sgiDate: '2018-01-01T16:00:00.123Z',
+      source: 'Bluestaq',
+      id: 'SGI-ID',
+      analyzerAttenuation: 5.1,
+      ap: 1.23,
+      apDuration: 3,
+      coeffDegree: [1, 2, 3],
+      coeffOrder: [1, 2, 3],
+      ctce: [1.23, 342.3, 1.32],
+      ctci: [1.23, 342.3, 1.32],
+      dst: 1.23,
+      dtc: 1.23,
+      e10: 1.23,
+      e54: 1.23,
+      f10: 1.23,
+      f10High: 187.5,
+      f10Low: 185.5,
+      f54: 1.23,
+      f81: 1.23,
+      frequencies: [25, 25.125, 25.25, 25.375, 25.5, 25.625, 25.75, 25.875],
+      gamma: 25,
+      idSensor: '57c96c97-e076-48af-a068-73ee2cb37e65',
+      kIndex: 1,
+      kp: 4.66,
+      kpDuration: 3,
+      m10: 1.23,
+      m54: 1.23,
+      mode: 1,
+      normFactor: 2.12679e-7,
+      observedBaseline: [15, 32, 25, 134, 0, 6, 19, 8],
+      origin: 'THIRD_PARTY_DATASOURCE',
+      origSensorId: 'ORIGSENSOR-ID',
+      powers: [67.1, 65.2, 68.1, 74.3, 68.1, 96.4, 97.3, 68.1],
+      precedence: 'R',
+      rawFileURI: 'rawFileURI',
+      rbDuration: 24,
+      rbIndex: 1.02947164506,
+      rbRegionCode: 2,
+      s10: 1.23,
+      s54: 1.23,
+      state: 'I',
+      stationName: 'Boulder',
+      stce: [1.23, 342.3, 1.32],
+      stci: [1.23, 342.3, 1.32],
+      sunspotNum: 151.1,
+      sunspotNumHigh: 152.1,
+      sunspotNumLow: 150.1,
+      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+      transactionId: 'TRANSACTION-ID',
+      type: 'JBH09',
+      y10: 1.23,
+      y54: 1.23,
+    });
   });
 
   test('list', async () => {
@@ -176,14 +176,17 @@ describe('resource sgi', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sgi.list({
-    effectiveDate: '2019-12-27T18:11:19.117Z',
-    firstResult: 0,
-    maxResults: 0,
-    sgiDate: '2019-12-27T18:11:19.117Z',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.sgi.list(
+        {
+          effectiveDate: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResults: 0,
+          sgiDate: '2019-12-27T18:11:19.117Z',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -210,24 +213,31 @@ describe('resource sgi', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sgi.count({
-    effectiveDate: '2019-12-27T18:11:19.117Z',
-    firstResult: 0,
-    maxResults: 0,
-    sgiDate: '2019-12-27T18:11:19.117Z',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.sgi.count(
+        {
+          effectiveDate: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResults: 0,
+          sgiDate: '2019-12-27T18:11:19.117Z',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.sgi.createBulk({ body: [{
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    effectiveDate: '2018-01-01T16:00:00.123Z',
-    sgiDate: '2018-01-01T16:00:00.123Z',
-    source: 'Bluestaq',
-  }] });
+    const responsePromise = client.sgi.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          effectiveDate: '2018-01-01T16:00:00.123Z',
+          sgiDate: '2018-01-01T16:00:00.123Z',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -238,63 +248,67 @@ describe('resource sgi', () => {
   });
 
   test('createBulk: required and optional params', async () => {
-    const response = await client.sgi.createBulk({ body: [{
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    effectiveDate: '2018-01-01T16:00:00.123Z',
-    sgiDate: '2018-01-01T16:00:00.123Z',
-    source: 'Bluestaq',
-    id: 'SGI-ID',
-    analyzerAttenuation: 5.1,
-    ap: 1.23,
-    apDuration: 3,
-    coeffDegree: [1, 2, 3],
-    coeffOrder: [1, 2, 3],
-    ctce: [1.23, 342.3, 1.32],
-    ctci: [1.23, 342.3, 1.32],
-    dst: 1.23,
-    dtc: 1.23,
-    e10: 1.23,
-    e54: 1.23,
-    f10: 1.23,
-    f10High: 187.5,
-    f10Low: 185.5,
-    f54: 1.23,
-    f81: 1.23,
-    frequencies: [25, 25.125, 25.25, 25.375, 25.5, 25.625, 25.75, 25.875],
-    gamma: 25,
-    idSensor: '57c96c97-e076-48af-a068-73ee2cb37e65',
-    kIndex: 1,
-    kp: 4.66,
-    kpDuration: 3,
-    m10: 1.23,
-    m54: 1.23,
-    mode: 1,
-    normFactor: 2.12679e-7,
-    observedBaseline: [15, 32, 25, 134, 0, 6, 19, 8],
-    origin: 'THIRD_PARTY_DATASOURCE',
-    origSensorId: 'ORIGSENSOR-ID',
-    powers: [67.1, 65.2, 68.1, 74.3, 68.1, 96.4, 97.3, 68.1],
-    precedence: 'R',
-    rawFileURI: 'rawFileURI',
-    rbDuration: 24,
-    rbIndex: 1.02947164506,
-    rbRegionCode: 2,
-    s10: 1.23,
-    s54: 1.23,
-    state: 'I',
-    stationName: 'Boulder',
-    stce: [1.23, 342.3, 1.32],
-    stci: [1.23, 342.3, 1.32],
-    sunspotNum: 151.1,
-    sunspotNumHigh: 152.1,
-    sunspotNumLow: 150.1,
-    tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-    transactionId: 'TRANSACTION-ID',
-    type: 'JBH09',
-    y10: 1.23,
-    y54: 1.23,
-  }] });
+    const response = await client.sgi.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          effectiveDate: '2018-01-01T16:00:00.123Z',
+          sgiDate: '2018-01-01T16:00:00.123Z',
+          source: 'Bluestaq',
+          id: 'SGI-ID',
+          analyzerAttenuation: 5.1,
+          ap: 1.23,
+          apDuration: 3,
+          coeffDegree: [1, 2, 3],
+          coeffOrder: [1, 2, 3],
+          ctce: [1.23, 342.3, 1.32],
+          ctci: [1.23, 342.3, 1.32],
+          dst: 1.23,
+          dtc: 1.23,
+          e10: 1.23,
+          e54: 1.23,
+          f10: 1.23,
+          f10High: 187.5,
+          f10Low: 185.5,
+          f54: 1.23,
+          f81: 1.23,
+          frequencies: [25, 25.125, 25.25, 25.375, 25.5, 25.625, 25.75, 25.875],
+          gamma: 25,
+          idSensor: '57c96c97-e076-48af-a068-73ee2cb37e65',
+          kIndex: 1,
+          kp: 4.66,
+          kpDuration: 3,
+          m10: 1.23,
+          m54: 1.23,
+          mode: 1,
+          normFactor: 2.12679e-7,
+          observedBaseline: [15, 32, 25, 134, 0, 6, 19, 8],
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origSensorId: 'ORIGSENSOR-ID',
+          powers: [67.1, 65.2, 68.1, 74.3, 68.1, 96.4, 97.3, 68.1],
+          precedence: 'R',
+          rawFileURI: 'rawFileURI',
+          rbDuration: 24,
+          rbIndex: 1.02947164506,
+          rbRegionCode: 2,
+          s10: 1.23,
+          s54: 1.23,
+          state: 'I',
+          stationName: 'Boulder',
+          stce: [1.23, 342.3, 1.32],
+          stci: [1.23, 342.3, 1.32],
+          sunspotNum: 151.1,
+          sunspotNumHigh: 152.1,
+          sunspotNumLow: 150.1,
+          tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+          transactionId: 'TRANSACTION-ID',
+          type: 'JBH09',
+          y10: 1.23,
+          y54: 1.23,
+        },
+      ],
+    });
   });
 
   test('get', async () => {
@@ -310,9 +324,9 @@ describe('resource sgi', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sgi.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.sgi.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('getDataByEffectiveAsOfDate', async () => {
@@ -328,14 +342,17 @@ describe('resource sgi', () => {
 
   test('getDataByEffectiveAsOfDate: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sgi.getDataByEffectiveAsOfDate({
-    effectiveDate: '2019-12-27T18:11:19.117Z',
-    firstResult: 0,
-    maxResults: 0,
-    sgiDate: '2019-12-27T18:11:19.117Z',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.sgi.getDataByEffectiveAsOfDate(
+        {
+          effectiveDate: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResults: 0,
+          sgiDate: '2019-12-27T18:11:19.117Z',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -362,22 +379,26 @@ describe('resource sgi', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.sgi.tuple({
-    columns: 'columns',
-    effectiveDate: '2019-12-27T18:11:19.117Z',
-    firstResult: 0,
-    maxResults: 0,
-    sgiDate: '2019-12-27T18:11:19.117Z',
-  });
+      columns: 'columns',
+      effectiveDate: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResults: 0,
+      sgiDate: '2019-12-27T18:11:19.117Z',
+    });
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.sgi.unvalidatedPublish({ body: [{
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    effectiveDate: '2018-01-01T16:00:00.123Z',
-    sgiDate: '2018-01-01T16:00:00.123Z',
-    source: 'Bluestaq',
-  }] });
+    const responsePromise = client.sgi.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          effectiveDate: '2018-01-01T16:00:00.123Z',
+          sgiDate: '2018-01-01T16:00:00.123Z',
+          source: 'Bluestaq',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -388,62 +409,66 @@ describe('resource sgi', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.sgi.unvalidatedPublish({ body: [{
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    effectiveDate: '2018-01-01T16:00:00.123Z',
-    sgiDate: '2018-01-01T16:00:00.123Z',
-    source: 'Bluestaq',
-    id: 'SGI-ID',
-    analyzerAttenuation: 5.1,
-    ap: 1.23,
-    apDuration: 3,
-    coeffDegree: [1, 2, 3],
-    coeffOrder: [1, 2, 3],
-    ctce: [1.23, 342.3, 1.32],
-    ctci: [1.23, 342.3, 1.32],
-    dst: 1.23,
-    dtc: 1.23,
-    e10: 1.23,
-    e54: 1.23,
-    f10: 1.23,
-    f10High: 187.5,
-    f10Low: 185.5,
-    f54: 1.23,
-    f81: 1.23,
-    frequencies: [25, 25.125, 25.25, 25.375, 25.5, 25.625, 25.75, 25.875],
-    gamma: 25,
-    idSensor: '57c96c97-e076-48af-a068-73ee2cb37e65',
-    kIndex: 1,
-    kp: 4.66,
-    kpDuration: 3,
-    m10: 1.23,
-    m54: 1.23,
-    mode: 1,
-    normFactor: 2.12679e-7,
-    observedBaseline: [15, 32, 25, 134, 0, 6, 19, 8],
-    origin: 'THIRD_PARTY_DATASOURCE',
-    origSensorId: 'ORIGSENSOR-ID',
-    powers: [67.1, 65.2, 68.1, 74.3, 68.1, 96.4, 97.3, 68.1],
-    precedence: 'R',
-    rawFileURI: 'rawFileURI',
-    rbDuration: 24,
-    rbIndex: 1.02947164506,
-    rbRegionCode: 2,
-    s10: 1.23,
-    s54: 1.23,
-    state: 'I',
-    stationName: 'Boulder',
-    stce: [1.23, 342.3, 1.32],
-    stci: [1.23, 342.3, 1.32],
-    sunspotNum: 151.1,
-    sunspotNumHigh: 152.1,
-    sunspotNumLow: 150.1,
-    tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-    transactionId: 'TRANSACTION-ID',
-    type: 'JBH09',
-    y10: 1.23,
-    y54: 1.23,
-  }] });
+    const response = await client.sgi.unvalidatedPublish({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          effectiveDate: '2018-01-01T16:00:00.123Z',
+          sgiDate: '2018-01-01T16:00:00.123Z',
+          source: 'Bluestaq',
+          id: 'SGI-ID',
+          analyzerAttenuation: 5.1,
+          ap: 1.23,
+          apDuration: 3,
+          coeffDegree: [1, 2, 3],
+          coeffOrder: [1, 2, 3],
+          ctce: [1.23, 342.3, 1.32],
+          ctci: [1.23, 342.3, 1.32],
+          dst: 1.23,
+          dtc: 1.23,
+          e10: 1.23,
+          e54: 1.23,
+          f10: 1.23,
+          f10High: 187.5,
+          f10Low: 185.5,
+          f54: 1.23,
+          f81: 1.23,
+          frequencies: [25, 25.125, 25.25, 25.375, 25.5, 25.625, 25.75, 25.875],
+          gamma: 25,
+          idSensor: '57c96c97-e076-48af-a068-73ee2cb37e65',
+          kIndex: 1,
+          kp: 4.66,
+          kpDuration: 3,
+          m10: 1.23,
+          m54: 1.23,
+          mode: 1,
+          normFactor: 2.12679e-7,
+          observedBaseline: [15, 32, 25, 134, 0, 6, 19, 8],
+          origin: 'THIRD_PARTY_DATASOURCE',
+          origSensorId: 'ORIGSENSOR-ID',
+          powers: [67.1, 65.2, 68.1, 74.3, 68.1, 96.4, 97.3, 68.1],
+          precedence: 'R',
+          rawFileURI: 'rawFileURI',
+          rbDuration: 24,
+          rbIndex: 1.02947164506,
+          rbRegionCode: 2,
+          s10: 1.23,
+          s54: 1.23,
+          state: 'I',
+          stationName: 'Boulder',
+          stce: [1.23, 342.3, 1.32],
+          stci: [1.23, 342.3, 1.32],
+          sunspotNum: 151.1,
+          sunspotNumHigh: 152.1,
+          sunspotNumLow: 150.1,
+          tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+          transactionId: 'TRANSACTION-ID',
+          type: 'JBH09',
+          y10: 1.23,
+          y54: 1.23,
+        },
+      ],
+    });
   });
 });

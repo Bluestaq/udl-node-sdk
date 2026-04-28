@@ -30,7 +30,11 @@ export class LaunchVehicleDetails extends APIResource {
    * ```
    */
   create(body: LaunchVehicleDetailCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/launchvehicledetails', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/launchvehicledetails', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -51,7 +55,11 @@ export class LaunchVehicleDetails extends APIResource {
    * ```
    */
   update(id: string, body: LaunchVehicleDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/launchvehicledetails/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/launchvehicledetails/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -68,8 +76,14 @@ export class LaunchVehicleDetails extends APIResource {
    * }
    * ```
    */
-  list(query: LaunchVehicleDetailListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LaunchVehicleDetailListResponsesOffsetPage, LaunchVehicleDetailListResponse> {
-    return this._client.getAPIList('/udl/launchvehicledetails', OffsetPage<LaunchVehicleDetailListResponse>, { query, ...options });
+  list(
+    query: LaunchVehicleDetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LaunchVehicleDetailListResponsesOffsetPage, LaunchVehicleDetailListResponse> {
+    return this._client.getAPIList('/udl/launchvehicledetails', OffsetPage<LaunchVehicleDetailListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -85,7 +99,10 @@ export class LaunchVehicleDetails extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/launchvehicledetails/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/launchvehicledetails/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -100,12 +117,16 @@ export class LaunchVehicleDetails extends APIResource {
    *   await client.launchVehicleDetails.get('id');
    * ```
    */
-  get(id: string, query: LaunchVehicleDetailGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<LaunchVehicleDetailGetResponse> {
+  get(
+    id: string,
+    query: LaunchVehicleDetailGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaunchVehicleDetailGetResponse> {
     return this._client.get(path`/udl/launchvehicledetails/${id}`, { query, ...options });
   }
 }
 
-export type LaunchVehicleDetailListResponsesOffsetPage = OffsetPage<LaunchVehicleDetailListResponse>
+export type LaunchVehicleDetailListResponsesOffsetPage = OffsetPage<LaunchVehicleDetailListResponse>;
 
 /**
  * Model representation of launch vehicle details and characteristics, compiled by
@@ -1284,8 +1305,7 @@ export interface LaunchVehicleDetailUpdateParams {
   variant?: string;
 }
 
-export interface LaunchVehicleDetailListParams extends OffsetPageParams {
-}
+export interface LaunchVehicleDetailListParams extends OffsetPageParams {}
 
 export interface LaunchVehicleDetailGetParams {
   firstResult?: number;
@@ -1301,6 +1321,6 @@ export declare namespace LaunchVehicleDetails {
     type LaunchVehicleDetailCreateParams as LaunchVehicleDetailCreateParams,
     type LaunchVehicleDetailUpdateParams as LaunchVehicleDetailUpdateParams,
     type LaunchVehicleDetailListParams as LaunchVehicleDetailListParams,
-    type LaunchVehicleDetailGetParams as LaunchVehicleDetailGetParams
+    type LaunchVehicleDetailGetParams as LaunchVehicleDetailGetParams,
   };
 }

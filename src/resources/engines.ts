@@ -30,7 +30,11 @@ export class Engines extends APIResource {
    * ```
    */
   create(body: EngineCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/engine', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/engine', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -44,7 +48,11 @@ export class Engines extends APIResource {
    * const engine = await client.engines.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: EngineRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.Engine> {
+  retrieve(
+    id: string,
+    query: EngineRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.Engine> {
     return this._client.get(path`/udl/engine/${id}`, { query, ...options });
   }
 
@@ -65,7 +73,11 @@ export class Engines extends APIResource {
    * ```
    */
   update(id: string, body: EngineUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/engine/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/engine/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -82,7 +94,10 @@ export class Engines extends APIResource {
    * }
    * ```
    */
-  list(query: EngineListParams | null | undefined = {}, options?: RequestOptions): PagePromise<EngineAbridgedsOffsetPage, EngineAbridged> {
+  list(
+    query: EngineListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<EngineAbridgedsOffsetPage, EngineAbridged> {
     return this._client.getAPIList('/udl/engine', OffsetPage<EngineAbridged>, { query, ...options });
   }
 
@@ -99,7 +114,10 @@ export class Engines extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/engine/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/engine/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -115,7 +133,11 @@ export class Engines extends APIResource {
    * ```
    */
   count(query: EngineCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/engine/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/engine/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -153,7 +175,7 @@ export class Engines extends APIResource {
   }
 }
 
-export type EngineAbridgedsOffsetPage = OffsetPage<EngineAbridged>
+export type EngineAbridgedsOffsetPage = OffsetPage<EngineAbridged>;
 
 /**
  * Known launch vehicle engines and their performance characteristics and limits. A
@@ -223,7 +245,7 @@ export interface EngineAbridged {
   origNetwork?: string;
 }
 
-export type EngineCountResponse = string
+export type EngineCountResponse = string;
 
 export interface EngineQueryhelpResponse {
   aodrSupported?: boolean;
@@ -249,7 +271,7 @@ export interface EngineQueryhelpResponse {
   uri?: string;
 }
 
-export type EngineTupleResponse = Array<Shared.Engine>
+export type EngineTupleResponse = Array<Shared.Engine>;
 
 export interface EngineCreateParams {
   /**
@@ -351,8 +373,7 @@ export interface EngineUpdateParams {
   origin?: string;
 }
 
-export interface EngineListParams extends OffsetPageParams {
-}
+export interface EngineListParams extends OffsetPageParams {}
 
 export interface EngineCountParams {
   firstResult?: number;
@@ -386,6 +407,6 @@ export declare namespace Engines {
     type EngineUpdateParams as EngineUpdateParams,
     type EngineListParams as EngineListParams,
     type EngineCountParams as EngineCountParams,
-    type EngineTupleParams as EngineTupleParams
+    type EngineTupleParams as EngineTupleParams,
   };
 }

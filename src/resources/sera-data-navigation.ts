@@ -28,7 +28,11 @@ export class SeraDataNavigation extends APIResource {
    * ```
    */
   create(body: SeraDataNavigationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/seradatanavigation', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/seradatanavigation', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -46,7 +50,11 @@ export class SeraDataNavigation extends APIResource {
    * ```
    */
   update(id: string, body: SeraDataNavigationUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/seradatanavigation/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/seradatanavigation/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -63,8 +71,14 @@ export class SeraDataNavigation extends APIResource {
    * }
    * ```
    */
-  list(query: SeraDataNavigationListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SeraDataNavigationListResponsesOffsetPage, SeraDataNavigationListResponse> {
-    return this._client.getAPIList('/udl/seradatanavigation', OffsetPage<SeraDataNavigationListResponse>, { query, ...options });
+  list(
+    query: SeraDataNavigationListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SeraDataNavigationListResponsesOffsetPage, SeraDataNavigationListResponse> {
+    return this._client.getAPIList('/udl/seradatanavigation', OffsetPage<SeraDataNavigationListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -78,7 +92,10 @@ export class SeraDataNavigation extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/seradatanavigation/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/seradatanavigation/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -93,8 +110,15 @@ export class SeraDataNavigation extends APIResource {
    * const response = await client.seraDataNavigation.count();
    * ```
    */
-  count(query: SeraDataNavigationCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/seradatanavigation/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: SeraDataNavigationCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/seradatanavigation/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -107,7 +131,11 @@ export class SeraDataNavigation extends APIResource {
    *   await client.seraDataNavigation.get('id');
    * ```
    */
-  get(id: string, query: SeraDataNavigationGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SeraDataNavigationGetResponse> {
+  get(
+    id: string,
+    query: SeraDataNavigationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeraDataNavigationGetResponse> {
     return this._client.get(path`/udl/seradatanavigation/${id}`, { query, ...options });
   }
 
@@ -142,12 +170,15 @@ export class SeraDataNavigation extends APIResource {
    * });
    * ```
    */
-  tuple(query: SeraDataNavigationTupleParams, options?: RequestOptions): APIPromise<SeraDataNavigationTupleResponse> {
+  tuple(
+    query: SeraDataNavigationTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<SeraDataNavigationTupleResponse> {
     return this._client.get('/udl/seradatanavigation/tuple', { query, ...options });
   }
 }
 
-export type SeraDataNavigationListResponsesOffsetPage = OffsetPage<SeraDataNavigationListResponse>
+export type SeraDataNavigationListResponsesOffsetPage = OffsetPage<SeraDataNavigationListResponse>;
 
 /**
  * Details for a navigation payload from Seradata.
@@ -276,7 +307,7 @@ export interface SeraDataNavigationListResponse {
   payloadType?: string;
 }
 
-export type SeraDataNavigationCountResponse = string
+export type SeraDataNavigationCountResponse = string;
 
 /**
  * Details for a navigation payload from Seradata.
@@ -440,7 +471,8 @@ export interface SeraDataNavigationQueryhelpResponse {
   uri?: string;
 }
 
-export type SeraDataNavigationTupleResponse = Array<SeraDataNavigationTupleResponse.SeraDataNavigationTupleResponseItem>
+export type SeraDataNavigationTupleResponse =
+  Array<SeraDataNavigationTupleResponse.SeraDataNavigationTupleResponseItem>;
 
 export namespace SeraDataNavigationTupleResponse {
   /**
@@ -796,8 +828,7 @@ export interface SeraDataNavigationUpdateParams {
   payloadType?: string;
 }
 
-export interface SeraDataNavigationListParams extends OffsetPageParams {
-}
+export interface SeraDataNavigationListParams extends OffsetPageParams {}
 
 export interface SeraDataNavigationCountParams {
   firstResult?: number;
@@ -838,6 +869,6 @@ export declare namespace SeraDataNavigation {
     type SeraDataNavigationListParams as SeraDataNavigationListParams,
     type SeraDataNavigationCountParams as SeraDataNavigationCountParams,
     type SeraDataNavigationGetParams as SeraDataNavigationGetParams,
-    type SeraDataNavigationTupleParams as SeraDataNavigationTupleParams
+    type SeraDataNavigationTupleParams as SeraDataNavigationTupleParams,
   };
 }

@@ -5,12 +5,15 @@ import Unifieddatalibrary, { toFile } from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource paths', () => {
   test('createWithFile: only required params', async () => {
-    const responsePromise = client.scs.paths.createWithFile(await toFile(Buffer.from('Example data'), 'README.md'), { id: 'id', classificationMarking: 'classificationMarking' });
+    const responsePromise = client.scs.paths.createWithFile(
+      await toFile(Buffer.from('Example data'), 'README.md'),
+      { id: 'id', classificationMarking: 'classificationMarking' },
+    );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,14 +24,17 @@ describe('resource paths', () => {
   });
 
   test('createWithFile: required and optional params', async () => {
-    const response = await client.scs.paths.createWithFile(await toFile(Buffer.from('Example data'), 'README.md'), {
-    id: 'id',
-    classificationMarking: 'classificationMarking',
-    deleteAfter: 'deleteAfter',
-    description: 'description',
-    overwrite: true,
-    sendNotification: true,
-    tags: 'tags',
-  });
+    const response = await client.scs.paths.createWithFile(
+      await toFile(Buffer.from('Example data'), 'README.md'),
+      {
+        id: 'id',
+        classificationMarking: 'classificationMarking',
+        deleteAfter: 'deleteAfter',
+        description: 'description',
+        overwrite: true,
+        sendNotification: true,
+        tags: 'tags',
+      },
+    );
   });
 });

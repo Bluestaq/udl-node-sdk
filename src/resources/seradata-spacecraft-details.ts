@@ -28,7 +28,11 @@ export class SeradataSpacecraftDetails extends APIResource {
    * ```
    */
   create(body: SeradataSpacecraftDetailCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/seradataspacecraftdetails', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/seradataspacecraftdetails', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -47,7 +51,11 @@ export class SeradataSpacecraftDetails extends APIResource {
    * ```
    */
   update(id: string, body: SeradataSpacecraftDetailUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/seradataspacecraftdetails/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/seradataspacecraftdetails/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -64,8 +72,15 @@ export class SeradataSpacecraftDetails extends APIResource {
    * }
    * ```
    */
-  list(query: SeradataSpacecraftDetailListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SeradataSpacecraftDetailListResponsesOffsetPage, SeradataSpacecraftDetailListResponse> {
-    return this._client.getAPIList('/udl/seradataspacecraftdetails', OffsetPage<SeradataSpacecraftDetailListResponse>, { query, ...options });
+  list(
+    query: SeradataSpacecraftDetailListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SeradataSpacecraftDetailListResponsesOffsetPage, SeradataSpacecraftDetailListResponse> {
+    return this._client.getAPIList(
+      '/udl/seradataspacecraftdetails',
+      OffsetPage<SeradataSpacecraftDetailListResponse>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -79,7 +94,10 @@ export class SeradataSpacecraftDetails extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/seradataspacecraftdetails/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/seradataspacecraftdetails/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -95,8 +113,15 @@ export class SeradataSpacecraftDetails extends APIResource {
    *   await client.seradataSpacecraftDetails.count();
    * ```
    */
-  count(query: SeradataSpacecraftDetailCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/seradataspacecraftdetails/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: SeradataSpacecraftDetailCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/seradataspacecraftdetails/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -109,7 +134,11 @@ export class SeradataSpacecraftDetails extends APIResource {
    *   await client.seradataSpacecraftDetails.get('id');
    * ```
    */
-  get(id: string, query: SeradataSpacecraftDetailGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SeradataSpacecraftDetailGetResponse> {
+  get(
+    id: string,
+    query: SeradataSpacecraftDetailGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeradataSpacecraftDetailGetResponse> {
     return this._client.get(path`/udl/seradataspacecraftdetails/${id}`, { query, ...options });
   }
 
@@ -145,12 +174,16 @@ export class SeradataSpacecraftDetails extends APIResource {
    *   });
    * ```
    */
-  tuple(query: SeradataSpacecraftDetailTupleParams, options?: RequestOptions): APIPromise<SeradataSpacecraftDetailTupleResponse> {
+  tuple(
+    query: SeradataSpacecraftDetailTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<SeradataSpacecraftDetailTupleResponse> {
     return this._client.get('/udl/seradataspacecraftdetails/tuple', { query, ...options });
   }
 }
 
-export type SeradataSpacecraftDetailListResponsesOffsetPage = OffsetPage<SeradataSpacecraftDetailListResponse>
+export type SeradataSpacecraftDetailListResponsesOffsetPage =
+  OffsetPage<SeradataSpacecraftDetailListResponse>;
 
 /**
  * On-orbit spacecraft details compiled by Seradata for a particular satellite.
@@ -652,7 +685,7 @@ export interface SeradataSpacecraftDetailListResponse {
   youtubeLaunchLink?: string;
 }
 
-export type SeradataSpacecraftDetailCountResponse = string
+export type SeradataSpacecraftDetailCountResponse = string;
 
 /**
  * On-orbit spacecraft details compiled by Seradata for a particular satellite.
@@ -1269,7 +1302,20 @@ export namespace SeradataSpacecraftDetailGetResponse {
      * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
      * Heliocentric, Interplanetary, Lagrangian, Docked).
      */
-    category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
+    category?:
+      | 'Unknown'
+      | 'On-Orbit'
+      | 'Decayed'
+      | 'Cataloged Without State'
+      | 'Launch Nominal'
+      | 'Analyst Satellite'
+      | 'Cislunar'
+      | 'Lunar'
+      | 'Hyperbolic'
+      | 'Heliocentric'
+      | 'Interplanetary'
+      | 'Lagrangian'
+      | 'Docked';
 
     /**
      * Common name of the on-orbit object.
@@ -2533,7 +2579,8 @@ export interface SeradataSpacecraftDetailQueryhelpResponse {
   uri?: string;
 }
 
-export type SeradataSpacecraftDetailTupleResponse = Array<SeradataSpacecraftDetailTupleResponse.SeradataSpacecraftDetailTupleResponseItem>
+export type SeradataSpacecraftDetailTupleResponse =
+  Array<SeradataSpacecraftDetailTupleResponse.SeradataSpacecraftDetailTupleResponseItem>;
 
 export namespace SeradataSpacecraftDetailTupleResponse {
   /**
@@ -3151,7 +3198,20 @@ export namespace SeradataSpacecraftDetailTupleResponse {
        * State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
        * Heliocentric, Interplanetary, Lagrangian, Docked).
        */
-      category?: 'Unknown' | 'On-Orbit' | 'Decayed' | 'Cataloged Without State' | 'Launch Nominal' | 'Analyst Satellite' | 'Cislunar' | 'Lunar' | 'Hyperbolic' | 'Heliocentric' | 'Interplanetary' | 'Lagrangian' | 'Docked';
+      category?:
+        | 'Unknown'
+        | 'On-Orbit'
+        | 'Decayed'
+        | 'Cataloged Without State'
+        | 'Launch Nominal'
+        | 'Analyst Satellite'
+        | 'Cislunar'
+        | 'Lunar'
+        | 'Hyperbolic'
+        | 'Heliocentric'
+        | 'Interplanetary'
+        | 'Lagrangian'
+        | 'Docked';
 
       /**
        * Common name of the on-orbit object.
@@ -5352,8 +5412,7 @@ export interface SeradataSpacecraftDetailUpdateParams {
   youtubeLaunchLink?: string;
 }
 
-export interface SeradataSpacecraftDetailListParams extends OffsetPageParams {
-}
+export interface SeradataSpacecraftDetailListParams extends OffsetPageParams {}
 
 export interface SeradataSpacecraftDetailCountParams {
   firstResult?: number;
@@ -5394,6 +5453,6 @@ export declare namespace SeradataSpacecraftDetails {
     type SeradataSpacecraftDetailListParams as SeradataSpacecraftDetailListParams,
     type SeradataSpacecraftDetailCountParams as SeradataSpacecraftDetailCountParams,
     type SeradataSpacecraftDetailGetParams as SeradataSpacecraftDetailGetParams,
-    type SeradataSpacecraftDetailTupleParams as SeradataSpacecraftDetailTupleParams
+    type SeradataSpacecraftDetailTupleParams as SeradataSpacecraftDetailTupleParams,
   };
 }

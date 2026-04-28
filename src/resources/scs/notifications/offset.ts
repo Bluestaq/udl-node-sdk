@@ -30,7 +30,10 @@ export class Offset extends APIResource {
    * ```
    */
   getLatest(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/scs/notifications/getLatestOffset', { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.get('/scs/notifications/getLatestOffset', {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -47,7 +50,5 @@ export interface OffsetGetResponse {
 }
 
 export declare namespace Offset {
-  export {
-    type OffsetGetResponse as OffsetGetResponse
-  };
+  export { type OffsetGetResponse as OffsetGetResponse };
 }

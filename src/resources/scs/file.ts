@@ -29,7 +29,11 @@ export class File extends APIResource {
    * @deprecated
    */
   update(body: FileUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.patch('/scs/file', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.patch('/scs/file', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -80,8 +84,8 @@ export declare namespace File {
   export {
     type FileRetrieveParams as FileRetrieveParams,
     type FileUpdateParams as FileUpdateParams,
-    type FileListParams as FileListParams
+    type FileListParams as FileListParams,
   };
 }
 
-export { type FileDataOffsetPage }
+export { type FileDataOffsetPage };

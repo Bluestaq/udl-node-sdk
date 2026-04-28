@@ -17,8 +17,14 @@ export class H3GeoHexCell extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(query: H3GeoHexCellListParams, options?: RequestOptions): PagePromise<H3GeoHexCellListResponsesOffsetPage, H3GeoHexCellListResponse> {
-    return this._client.getAPIList('/udl/h3geohexcell', OffsetPage<H3GeoHexCellListResponse>, { query, ...options });
+  list(
+    query: H3GeoHexCellListParams,
+    options?: RequestOptions,
+  ): PagePromise<H3GeoHexCellListResponsesOffsetPage, H3GeoHexCellListResponse> {
+    return this._client.getAPIList('/udl/h3geohexcell', OffsetPage<H3GeoHexCellListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -29,7 +35,11 @@ export class H3GeoHexCell extends APIResource {
    * valid/required query parameter information.
    */
   count(query: H3GeoHexCellCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/h3geohexcell/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/h3geohexcell/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -55,7 +65,7 @@ export class H3GeoHexCell extends APIResource {
   }
 }
 
-export type H3GeoHexCellListResponsesOffsetPage = OffsetPage<H3GeoHexCellListResponse>
+export type H3GeoHexCellListResponsesOffsetPage = OffsetPage<H3GeoHexCellListResponse>;
 
 /**
  * Model representation of a hex cell array containing data for a set of
@@ -203,7 +213,7 @@ export interface H3GeoHexCellListResponse {
   sourceDL?: string;
 }
 
-export type H3GeoHexCellCountResponse = string
+export type H3GeoHexCellCountResponse = string;
 
 export interface H3GeoHexCellQueryhelpResponse {
   aodrSupported?: boolean;
@@ -229,7 +239,7 @@ export interface H3GeoHexCellQueryhelpResponse {
   uri?: string;
 }
 
-export type H3GeoHexCellTupleResponse = Array<H3GeoHexCellTupleResponse.H3GeoHexCellTupleResponseItem>
+export type H3GeoHexCellTupleResponse = Array<H3GeoHexCellTupleResponse.H3GeoHexCellTupleResponseItem>;
 
 export namespace H3GeoHexCellTupleResponse {
   /**
@@ -425,6 +435,6 @@ export declare namespace H3GeoHexCell {
     type H3GeoHexCellListResponsesOffsetPage as H3GeoHexCellListResponsesOffsetPage,
     type H3GeoHexCellListParams as H3GeoHexCellListParams,
     type H3GeoHexCellCountParams as H3GeoHexCellCountParams,
-    type H3GeoHexCellTupleParams as H3GeoHexCellTupleParams
+    type H3GeoHexCellTupleParams as H3GeoHexCellTupleParams,
   };
 }

@@ -20,7 +20,11 @@ export class DiffOfArrival extends APIResource {
    * Service operation to get a single TDOA/FDOA record by its unique ID passed as a
    * path parameter.
    */
-  retrieve(id: string, query: DiffOfArrivalRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<DiffofarrivalAPI.DiffofarrivalFull> {
+  retrieve(
+    id: string,
+    query: DiffOfArrivalRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<DiffofarrivalAPI.DiffofarrivalFull> {
     return this._client.get(path`/udl/diffofarrival/${id}`, { query, ...options });
   }
 
@@ -52,9 +56,16 @@ export class DiffOfArrival extends APIResource {
    * into UDL. A specific role is required to perform this service operation. Please
    * contact the UDL team for assistance.
    */
-  unvalidatedPublish(params: DiffOfArrivalUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-diffofarrival', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: DiffOfArrivalUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-diffofarrival', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -82,7 +93,7 @@ export interface DiffOfArrivalQueryhelpResponse {
   uri?: string;
 }
 
-export type DiffOfArrivalTupleResponse = Array<DiffofarrivalAPI.DiffofarrivalFull>
+export type DiffOfArrivalTupleResponse = Array<DiffofarrivalAPI.DiffofarrivalFull>;
 
 export interface DiffOfArrivalRetrieveParams {
   firstResult?: number;
@@ -411,12 +422,12 @@ export declare namespace DiffOfArrival {
     type DiffOfArrivalTupleResponse as DiffOfArrivalTupleResponse,
     type DiffOfArrivalRetrieveParams as DiffOfArrivalRetrieveParams,
     type DiffOfArrivalTupleParams as DiffOfArrivalTupleParams,
-    type DiffOfArrivalUnvalidatedPublishParams as DiffOfArrivalUnvalidatedPublishParams
+    type DiffOfArrivalUnvalidatedPublishParams as DiffOfArrivalUnvalidatedPublishParams,
   };
 
   export {
     History as History,
     type HistoryCountResponse as HistoryCountResponse,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

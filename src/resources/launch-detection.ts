@@ -32,7 +32,11 @@ export class LaunchDetection extends APIResource {
    * ```
    */
   create(body: LaunchDetectionCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/launchdetection', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/launchdetection', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -55,7 +59,11 @@ export class LaunchDetection extends APIResource {
    * ```
    */
   update(id: string, body: LaunchDetectionUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/launchdetection/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/launchdetection/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -72,8 +80,14 @@ export class LaunchDetection extends APIResource {
    * }
    * ```
    */
-  list(query: LaunchDetectionListParams | null | undefined = {}, options?: RequestOptions): PagePromise<LaunchDetectionListResponsesOffsetPage, LaunchDetectionListResponse> {
-    return this._client.getAPIList('/udl/launchdetection', OffsetPage<LaunchDetectionListResponse>, { query, ...options });
+  list(
+    query: LaunchDetectionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LaunchDetectionListResponsesOffsetPage, LaunchDetectionListResponse> {
+    return this._client.getAPIList('/udl/launchdetection', OffsetPage<LaunchDetectionListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -87,7 +101,10 @@ export class LaunchDetection extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/launchdetection/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/launchdetection/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -102,8 +119,15 @@ export class LaunchDetection extends APIResource {
    * const response = await client.launchDetection.count();
    * ```
    */
-  count(query: LaunchDetectionCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/launchdetection/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: LaunchDetectionCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/launchdetection/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -117,7 +141,11 @@ export class LaunchDetection extends APIResource {
    * );
    * ```
    */
-  get(id: string, query: LaunchDetectionGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<LaunchDetectionGetResponse> {
+  get(
+    id: string,
+    query: LaunchDetectionGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LaunchDetectionGetResponse> {
     return this._client.get(path`/udl/launchdetection/${id}`, { query, ...options });
   }
 
@@ -151,12 +179,15 @@ export class LaunchDetection extends APIResource {
    * });
    * ```
    */
-  tuple(query: LaunchDetectionTupleParams, options?: RequestOptions): APIPromise<LaunchDetectionTupleResponse> {
+  tuple(
+    query: LaunchDetectionTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<LaunchDetectionTupleResponse> {
     return this._client.get('/udl/launchdetection/tuple', { query, ...options });
   }
 }
 
-export type LaunchDetectionListResponsesOffsetPage = OffsetPage<LaunchDetectionListResponse>
+export type LaunchDetectionListResponsesOffsetPage = OffsetPage<LaunchDetectionListResponse>;
 
 /**
  * Data to analyze launch detections.
@@ -315,7 +346,7 @@ export interface LaunchDetectionListResponse {
   updatedBy?: string;
 }
 
-export type LaunchDetectionCountResponse = string
+export type LaunchDetectionCountResponse = string;
 
 /**
  * Data to analyze launch detections.
@@ -507,7 +538,8 @@ export interface LaunchDetectionQueryhelpResponse {
   uri?: string;
 }
 
-export type LaunchDetectionTupleResponse = Array<LaunchDetectionTupleResponse.LaunchDetectionTupleResponseItem>
+export type LaunchDetectionTupleResponse =
+  Array<LaunchDetectionTupleResponse.LaunchDetectionTupleResponseItem>;
 
 export namespace LaunchDetectionTupleResponse {
   /**
@@ -947,8 +979,7 @@ export interface LaunchDetectionUpdateParams {
   tags?: Array<string>;
 }
 
-export interface LaunchDetectionListParams extends OffsetPageParams {
-}
+export interface LaunchDetectionListParams extends OffsetPageParams {}
 
 export interface LaunchDetectionCountParams {
   firstResult?: number;
@@ -989,6 +1020,6 @@ export declare namespace LaunchDetection {
     type LaunchDetectionListParams as LaunchDetectionListParams,
     type LaunchDetectionCountParams as LaunchDetectionCountParams,
     type LaunchDetectionGetParams as LaunchDetectionGetParams,
-    type LaunchDetectionTupleParams as LaunchDetectionTupleParams
+    type LaunchDetectionTupleParams as LaunchDetectionTupleParams,
   };
 }

@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -33,7 +41,11 @@ export class MissionAssignment extends APIResource {
    * ```
    */
   create(body: MissionAssignmentCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/missionassignment', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/missionassignment', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -53,7 +65,11 @@ export class MissionAssignment extends APIResource {
    * ```
    */
   update(id: string, body: MissionAssignmentUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/missionassignment/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/missionassignment/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -72,8 +88,14 @@ export class MissionAssignment extends APIResource {
    * }
    * ```
    */
-  list(query: MissionAssignmentListParams, options?: RequestOptions): PagePromise<MissionAssignmentListResponsesOffsetPage, MissionAssignmentListResponse> {
-    return this._client.getAPIList('/udl/missionassignment', OffsetPage<MissionAssignmentListResponse>, { query, ...options });
+  list(
+    query: MissionAssignmentListParams,
+    options?: RequestOptions,
+  ): PagePromise<MissionAssignmentListResponsesOffsetPage, MissionAssignmentListResponse> {
+    return this._client.getAPIList('/udl/missionassignment', OffsetPage<MissionAssignmentListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -87,7 +109,10 @@ export class MissionAssignment extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/missionassignment/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/missionassignment/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -105,7 +130,11 @@ export class MissionAssignment extends APIResource {
    * ```
    */
   count(query: MissionAssignmentCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/missionassignment/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/missionassignment/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -129,8 +158,12 @@ export class MissionAssignment extends APIResource {
    * ```
    */
   createBulk(params: MissionAssignmentCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/missionassignment/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/missionassignment/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -143,7 +176,11 @@ export class MissionAssignment extends APIResource {
    *   await client.missionAssignment.get('id');
    * ```
    */
-  get(id: string, query: MissionAssignmentGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<MissionAssignmentGetResponse> {
+  get(
+    id: string,
+    query: MissionAssignmentGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<MissionAssignmentGetResponse> {
     return this._client.get(path`/udl/missionassignment/${id}`, { query, ...options });
   }
 
@@ -178,12 +215,15 @@ export class MissionAssignment extends APIResource {
    * });
    * ```
    */
-  tuple(query: MissionAssignmentTupleParams, options?: RequestOptions): APIPromise<MissionAssignmentTupleResponse> {
+  tuple(
+    query: MissionAssignmentTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<MissionAssignmentTupleResponse> {
     return this._client.get('/udl/missionassignment/tuple', { query, ...options });
   }
 }
 
-export type MissionAssignmentListResponsesOffsetPage = OffsetPage<MissionAssignmentListResponse>
+export type MissionAssignmentListResponsesOffsetPage = OffsetPage<MissionAssignmentListResponse>;
 
 /**
  * Platform mission assignment data.
@@ -539,7 +579,7 @@ export interface MissionAssignmentListResponse {
   twenv?: string;
 }
 
-export type MissionAssignmentCountResponse = string
+export type MissionAssignmentCountResponse = string;
 
 /**
  * Platform mission assignment data.
@@ -930,7 +970,8 @@ export interface MissionAssignmentQueryhelpResponse {
   uri?: string;
 }
 
-export type MissionAssignmentTupleResponse = Array<MissionAssignmentTupleResponse.MissionAssignmentTupleResponseItem>
+export type MissionAssignmentTupleResponse =
+  Array<MissionAssignmentTupleResponse.MissionAssignmentTupleResponseItem>;
 
 export namespace MissionAssignmentTupleResponse {
   /**
@@ -2372,7 +2413,7 @@ export declare namespace MissionAssignment {
     type MissionAssignmentCountParams as MissionAssignmentCountParams,
     type MissionAssignmentCreateBulkParams as MissionAssignmentCreateBulkParams,
     type MissionAssignmentGetParams as MissionAssignmentGetParams,
-    type MissionAssignmentTupleParams as MissionAssignmentTupleParams
+    type MissionAssignmentTupleParams as MissionAssignmentTupleParams,
   };
 
   export {
@@ -2382,6 +2423,6 @@ export declare namespace MissionAssignment {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

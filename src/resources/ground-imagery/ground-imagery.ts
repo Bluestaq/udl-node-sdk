@@ -3,7 +3,14 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { type Uploadable } from '../../core/uploads';
@@ -35,7 +42,11 @@ export class GroundImagery extends APIResource {
    * ```
    */
   create(body: GroundImageryCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/groundimagery', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/groundimagery', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -54,8 +65,14 @@ export class GroundImagery extends APIResource {
    * }
    * ```
    */
-  list(query: GroundImageryListParams, options?: RequestOptions): PagePromise<GroundImageryListResponsesOffsetPage, GroundImageryListResponse> {
-    return this._client.getAPIList('/udl/groundimagery', OffsetPage<GroundImageryListResponse>, { query, ...options });
+  list(
+    query: GroundImageryListParams,
+    options?: RequestOptions,
+  ): PagePromise<GroundImageryListResponsesOffsetPage, GroundImageryListResponse> {
+    return this._client.getAPIList('/udl/groundimagery', OffsetPage<GroundImageryListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -72,7 +89,11 @@ export class GroundImagery extends APIResource {
    * ```
    */
   aodr(query: GroundImageryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/groundimagery/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.get('/udl/groundimagery/history/aodr', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -90,7 +111,11 @@ export class GroundImagery extends APIResource {
    * ```
    */
   count(query: GroundImageryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/groundimagery/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/groundimagery/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -103,7 +128,11 @@ export class GroundImagery extends APIResource {
    * const groundImagery = await client.groundImagery.get('id');
    * ```
    */
-  get(id: string, query: GroundImageryGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<GroundImageryGetResponse> {
+  get(
+    id: string,
+    query: GroundImageryGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<GroundImageryGetResponse> {
     return this._client.get(path`/udl/groundimagery/${id}`, { query, ...options });
   }
 
@@ -120,8 +149,17 @@ export class GroundImagery extends APIResource {
    * console.log(content);
    * ```
    */
-  getFile(id: string, query: GroundImageryGetFileParams | null | undefined = {}, options?: RequestOptions): APIPromise<Response> {
-    return this._client.get(path`/udl/groundimagery/getFile/${id}`, { query, ...options, headers: buildHeaders([{Accept: 'application/octet-stream'}, options?.headers]), __binaryResponse: true });
+  getFile(
+    id: string,
+    query: GroundImageryGetFileParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    return this._client.get(path`/udl/groundimagery/getFile/${id}`, {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'application/octet-stream' }, options?.headers]),
+      __binaryResponse: true,
+    });
   }
 
   /**
@@ -185,11 +223,22 @@ export class GroundImagery extends APIResource {
    * ```
    */
   uploadZip(body: GroundImageryUploadZipParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/filedrop/udl-groundimagery', multipartFormRequestOptions({ body, defaultBaseURL: 'https://imagery.unifieddatalibrary.com', ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) }, this._client));
+    return this._client.post(
+      '/filedrop/udl-groundimagery',
+      multipartFormRequestOptions(
+        {
+          body,
+          defaultBaseURL: 'https://imagery.unifieddatalibrary.com',
+          ...options,
+          headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+        },
+        this._client,
+      ),
+    );
   }
 }
 
-export type GroundImageryListResponsesOffsetPage = OffsetPage<GroundImageryListResponse>
+export type GroundImageryListResponsesOffsetPage = OffsetPage<GroundImageryListResponse>;
 
 /**
  * Imagery of terrestrial regions from on-orbit, air, and other sensors.
@@ -352,7 +401,7 @@ export interface GroundImageryListResponse {
   transactionId?: string;
 }
 
-export type GroundImageryCountResponse = string
+export type GroundImageryCountResponse = string;
 
 /**
  * Imagery of terrestrial regions from on-orbit, air, and other sensors.
@@ -565,7 +614,7 @@ export interface GroundImageryQueryhelpResponse {
   uri?: string;
 }
 
-export type GroundImageryTupleResponse = Array<GroundImageryTupleResponse.GroundImageryTupleResponseItem>
+export type GroundImageryTupleResponse = Array<GroundImageryTupleResponse.GroundImageryTupleResponseItem>;
 
 export namespace GroundImageryTupleResponse {
   /**
@@ -1024,7 +1073,7 @@ export declare namespace GroundImagery {
     type GroundImageryGetParams as GroundImageryGetParams,
     type GroundImageryGetFileParams as GroundImageryGetFileParams,
     type GroundImageryTupleParams as GroundImageryTupleParams,
-    type GroundImageryUploadZipParams as GroundImageryUploadZipParams
+    type GroundImageryUploadZipParams as GroundImageryUploadZipParams,
   };
 
   export {
@@ -1033,6 +1082,6 @@ export declare namespace GroundImagery {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

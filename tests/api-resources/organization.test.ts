@@ -5,18 +5,18 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource organization', () => {
   test('create: only required params', async () => {
     const responsePromise = client.organization.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    name: 'some.user',
-    source: 'some.user',
-    type: 'GOVERNMENT',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      name: 'some.user',
+      source: 'some.user',
+      type: 'GOVERNMENT',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -28,30 +28,30 @@ describe('resource organization', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.organization.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    name: 'some.user',
-    source: 'some.user',
-    type: 'GOVERNMENT',
-    id: 'ORGANIZATION-ID',
-    active: false,
-    category: 'Private company',
-    countryCode: 'US',
-    description: 'Example description',
-    externalId: 'EXTERNAL-ID',
-    nationality: 'US',
-    origin: 'some.user',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      name: 'some.user',
+      source: 'some.user',
+      type: 'GOVERNMENT',
+      id: 'ORGANIZATION-ID',
+      active: false,
+      category: 'Private company',
+      countryCode: 'US',
+      description: 'Example description',
+      externalId: 'EXTERNAL-ID',
+      nationality: 'US',
+      origin: 'some.user',
+    });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.organization.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    name: 'some.user',
-    source: 'some.user',
-    type: 'GOVERNMENT',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      name: 'some.user',
+      source: 'some.user',
+      type: 'GOVERNMENT',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -63,20 +63,20 @@ describe('resource organization', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.organization.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    name: 'some.user',
-    source: 'some.user',
-    type: 'GOVERNMENT',
-    id: 'ORGANIZATION-ID',
-    active: false,
-    category: 'Private company',
-    countryCode: 'US',
-    description: 'Example description',
-    externalId: 'EXTERNAL-ID',
-    nationality: 'US',
-    origin: 'some.user',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      name: 'some.user',
+      source: 'some.user',
+      type: 'GOVERNMENT',
+      id: 'ORGANIZATION-ID',
+      active: false,
+      category: 'Private company',
+      countryCode: 'US',
+      description: 'Example description',
+      externalId: 'EXTERNAL-ID',
+      nationality: 'US',
+      origin: 'some.user',
+    });
   });
 
   test('list', async () => {
@@ -92,9 +92,9 @@ describe('resource organization', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.organization.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.organization.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -121,9 +121,9 @@ describe('resource organization', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.organization.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.organization.count({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('get', async () => {
@@ -139,9 +139,9 @@ describe('resource organization', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.organization.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.organization.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('getOrganizationCategories', async () => {
@@ -157,9 +157,12 @@ describe('resource organization', () => {
 
   test('getOrganizationCategories: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.organization.getOrganizationCategories({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.organization.getOrganizationCategories(
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('getOrganizationTypes', async () => {
@@ -175,9 +178,12 @@ describe('resource organization', () => {
 
   test('getOrganizationTypes: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.organization.getOrganizationTypes({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.organization.getOrganizationTypes(
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -204,9 +210,9 @@ describe('resource organization', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.organization.tuple({
-    columns: 'columns',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

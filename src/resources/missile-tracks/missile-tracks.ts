@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -21,8 +29,14 @@ export class MissileTracks extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(query: MissileTrackListParams, options?: RequestOptions): PagePromise<MissileTrackListResponsesOffsetPage, MissileTrackListResponse> {
-    return this._client.getAPIList('/udl/missiletrack', OffsetPage<MissileTrackListResponse>, { query, ...options });
+  list(
+    query: MissileTrackListParams,
+    options?: RequestOptions,
+  ): PagePromise<MissileTrackListResponsesOffsetPage, MissileTrackListResponse> {
+    return this._client.getAPIList('/udl/missiletrack', OffsetPage<MissileTrackListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -33,7 +47,11 @@ export class MissileTracks extends APIResource {
    * valid/required query parameter information.
    */
   count(query: MissileTrackCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/missiletrack/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/missiletrack/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -44,8 +62,12 @@ export class MissileTracks extends APIResource {
    * setting up a permanent feed through an alternate mechanism.
    */
   createBulk(params: MissileTrackCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/missiletrack/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/missiletrack/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -76,13 +98,20 @@ export class MissileTracks extends APIResource {
    * feeds into UDL. A specific role is required to perform this service operation.
    * Please contact the UDL team for assistance.
    */
-  unvalidatedPublish(params: MissileTrackUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-missiletrack', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: MissileTrackUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-missiletrack', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type MissileTrackListResponsesOffsetPage = OffsetPage<MissileTrackListResponse>
+export type MissileTrackListResponsesOffsetPage = OffsetPage<MissileTrackListResponse>;
 
 /**
  * These services provide operations for querying of all available missile track
@@ -827,7 +856,7 @@ export namespace MissileTrackListResponse {
   }
 }
 
-export type MissileTrackCountResponse = string
+export type MissileTrackCountResponse = string;
 
 export interface MissileTrackQueryhelpResponse {
   aodrSupported?: boolean;
@@ -853,7 +882,7 @@ export interface MissileTrackQueryhelpResponse {
   uri?: string;
 }
 
-export type MissileTrackTupleResponse = Array<MissileTrackTupleResponse.MissileTrackTupleResponseItem>
+export type MissileTrackTupleResponse = Array<MissileTrackTupleResponse.MissileTrackTupleResponseItem>;
 
 export namespace MissileTrackTupleResponse {
   /**
@@ -3119,7 +3148,7 @@ export declare namespace MissileTracks {
     type MissileTrackCountParams as MissileTrackCountParams,
     type MissileTrackCreateBulkParams as MissileTrackCreateBulkParams,
     type MissileTrackTupleParams as MissileTrackTupleParams,
-    type MissileTrackUnvalidatedPublishParams as MissileTrackUnvalidatedPublishParams
+    type MissileTrackUnvalidatedPublishParams as MissileTrackUnvalidatedPublishParams,
   };
 
   export {
@@ -3129,6 +3158,6 @@ export declare namespace MissileTracks {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

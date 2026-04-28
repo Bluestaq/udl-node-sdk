@@ -5,17 +5,17 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource engineDetails', () => {
   test('create: only required params', async () => {
     const responsePromise = client.engineDetails.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idEngine: 'ENGINE-ID',
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idEngine: 'ENGINE-ID',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,28 +27,28 @@ describe('resource engineDetails', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.engineDetails.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idEngine: 'ENGINE-ID',
-    source: 'Bluestaq',
-    id: 'ENGINEDETAILS-ID',
-    burnTime: 1.1,
-    chamberPressure: 1.1,
-    characteristicType: 'Electric',
-    cycleType: 'Pressure Fed',
-    family: 'ENGINE_TYPE1',
-    manufacturerOrgId: 'MANUFACTURERORG-ID',
-    maxFirings: 5,
-    notes: 'Example notes',
-    nozzleExpansionRatio: 1.1,
-    origin: 'THIRD_PARTY_DATASOURCE',
-    oxidizer: 'Liquid Oxygen',
-    propellant: 'Liquid',
-    seaLevelThrust: 1.1,
-    specificImpulse: 1.1,
-    tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-    vacuumThrust: 1.1,
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idEngine: 'ENGINE-ID',
+      source: 'Bluestaq',
+      id: 'ENGINEDETAILS-ID',
+      burnTime: 1.1,
+      chamberPressure: 1.1,
+      characteristicType: 'Electric',
+      cycleType: 'Pressure Fed',
+      family: 'ENGINE_TYPE1',
+      manufacturerOrgId: 'MANUFACTURERORG-ID',
+      maxFirings: 5,
+      notes: 'Example notes',
+      nozzleExpansionRatio: 1.1,
+      origin: 'THIRD_PARTY_DATASOURCE',
+      oxidizer: 'Liquid Oxygen',
+      propellant: 'Liquid',
+      seaLevelThrust: 1.1,
+      specificImpulse: 1.1,
+      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+      vacuumThrust: 1.1,
+    });
   });
 
   test('retrieve', async () => {
@@ -64,18 +64,22 @@ describe('resource engineDetails', () => {
 
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.engineDetails.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.engineDetails.retrieve(
+        'id',
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.engineDetails.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idEngine: 'ENGINE-ID',
-    source: 'Bluestaq',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idEngine: 'ENGINE-ID',
+      source: 'Bluestaq',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -87,28 +91,28 @@ describe('resource engineDetails', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.engineDetails.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    idEngine: 'ENGINE-ID',
-    source: 'Bluestaq',
-    id: 'ENGINEDETAILS-ID',
-    burnTime: 1.1,
-    chamberPressure: 1.1,
-    characteristicType: 'Electric',
-    cycleType: 'Pressure Fed',
-    family: 'ENGINE_TYPE1',
-    manufacturerOrgId: 'MANUFACTURERORG-ID',
-    maxFirings: 5,
-    notes: 'Example notes',
-    nozzleExpansionRatio: 1.1,
-    origin: 'THIRD_PARTY_DATASOURCE',
-    oxidizer: 'Liquid Oxygen',
-    propellant: 'Liquid',
-    seaLevelThrust: 1.1,
-    specificImpulse: 1.1,
-    tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
-    vacuumThrust: 1.1,
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      idEngine: 'ENGINE-ID',
+      source: 'Bluestaq',
+      id: 'ENGINEDETAILS-ID',
+      burnTime: 1.1,
+      chamberPressure: 1.1,
+      characteristicType: 'Electric',
+      cycleType: 'Pressure Fed',
+      family: 'ENGINE_TYPE1',
+      manufacturerOrgId: 'MANUFACTURERORG-ID',
+      maxFirings: 5,
+      notes: 'Example notes',
+      nozzleExpansionRatio: 1.1,
+      origin: 'THIRD_PARTY_DATASOURCE',
+      oxidizer: 'Liquid Oxygen',
+      propellant: 'Liquid',
+      seaLevelThrust: 1.1,
+      specificImpulse: 1.1,
+      tags: ['PROVIDER_TAG1', 'PROVIDER_TAG2'],
+      vacuumThrust: 1.1,
+    });
   });
 
   test('list', async () => {
@@ -124,9 +128,9 @@ describe('resource engineDetails', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.engineDetails.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.engineDetails.list({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {

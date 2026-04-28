@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -34,7 +42,11 @@ export class SensorMaintenance extends APIResource {
    * ```
    */
   create(body: SensorMaintenanceCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/sensormaintenance', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/sensormaintenance', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -55,7 +67,11 @@ export class SensorMaintenance extends APIResource {
    * ```
    */
   update(id: string, body: SensorMaintenanceUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/sensormaintenance/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/sensormaintenance/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -72,8 +88,14 @@ export class SensorMaintenance extends APIResource {
    * }
    * ```
    */
-  list(query: SensorMaintenanceListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SensorMaintenanceListResponsesOffsetPage, SensorMaintenanceListResponse> {
-    return this._client.getAPIList('/udl/sensormaintenance', OffsetPage<SensorMaintenanceListResponse>, { query, ...options });
+  list(
+    query: SensorMaintenanceListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SensorMaintenanceListResponsesOffsetPage, SensorMaintenanceListResponse> {
+    return this._client.getAPIList('/udl/sensormaintenance', OffsetPage<SensorMaintenanceListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -87,7 +109,10 @@ export class SensorMaintenance extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/sensormaintenance/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/sensormaintenance/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -102,8 +127,15 @@ export class SensorMaintenance extends APIResource {
    * const response = await client.sensorMaintenance.count();
    * ```
    */
-  count(query: SensorMaintenanceCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/sensormaintenance/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: SensorMaintenanceCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/sensormaintenance/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -128,8 +160,13 @@ export class SensorMaintenance extends APIResource {
    * ```
    */
   createBulk(params: SensorMaintenanceCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body, origin, source } = params
-    return this._client.post('/udl/sensormaintenance/createBulk', { query: { origin, source }, body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body, origin, source } = params;
+    return this._client.post('/udl/sensormaintenance/createBulk', {
+      query: { origin, source },
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -142,7 +179,11 @@ export class SensorMaintenance extends APIResource {
    *   await client.sensorMaintenance.get('id');
    * ```
    */
-  get(id: string, query: SensorMaintenanceGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SensorMaintenanceGetResponse> {
+  get(
+    id: string,
+    query: SensorMaintenanceGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SensorMaintenanceGetResponse> {
     return this._client.get(path`/udl/sensormaintenance/${id}`, { query, ...options });
   }
 
@@ -158,8 +199,15 @@ export class SensorMaintenance extends APIResource {
    * }
    * ```
    */
-  listCurrent(query: SensorMaintenanceListCurrentParams | null | undefined = {}, options?: RequestOptions): PagePromise<SensorMaintenanceListCurrentResponsesOffsetPage, SensorMaintenanceListCurrentResponse> {
-    return this._client.getAPIList('/udl/sensormaintenance/current', OffsetPage<SensorMaintenanceListCurrentResponse>, { query, ...options });
+  listCurrent(
+    query: SensorMaintenanceListCurrentParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SensorMaintenanceListCurrentResponsesOffsetPage, SensorMaintenanceListCurrentResponse> {
+    return this._client.getAPIList(
+      '/udl/sensormaintenance/current',
+      OffsetPage<SensorMaintenanceListCurrentResponse>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -192,14 +240,18 @@ export class SensorMaintenance extends APIResource {
    * });
    * ```
    */
-  tuple(query: SensorMaintenanceTupleParams, options?: RequestOptions): APIPromise<SensorMaintenanceTupleResponse> {
+  tuple(
+    query: SensorMaintenanceTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<SensorMaintenanceTupleResponse> {
     return this._client.get('/udl/sensormaintenance/tuple', { query, ...options });
   }
 }
 
-export type SensorMaintenanceListResponsesOffsetPage = OffsetPage<SensorMaintenanceListResponse>
+export type SensorMaintenanceListResponsesOffsetPage = OffsetPage<SensorMaintenanceListResponse>;
 
-export type SensorMaintenanceListCurrentResponsesOffsetPage = OffsetPage<SensorMaintenanceListCurrentResponse>
+export type SensorMaintenanceListCurrentResponsesOffsetPage =
+  OffsetPage<SensorMaintenanceListCurrentResponse>;
 
 /**
  * Maintenance schedule and operational status of Sensor.
@@ -389,7 +441,7 @@ export interface SensorMaintenanceListResponse {
   ssOpsCap?: string;
 }
 
-export type SensorMaintenanceCountResponse = string
+export type SensorMaintenanceCountResponse = string;
 
 /**
  * Maintenance schedule and operational status of Sensor.
@@ -813,7 +865,8 @@ export interface SensorMaintenanceQueryHelpResponse {
   uri?: string;
 }
 
-export type SensorMaintenanceTupleResponse = Array<SensorMaintenanceTupleResponse.SensorMaintenanceTupleResponseItem>
+export type SensorMaintenanceTupleResponse =
+  Array<SensorMaintenanceTupleResponse.SensorMaintenanceTupleResponseItem>;
 
 export namespace SensorMaintenanceTupleResponse {
   /**
@@ -1565,8 +1618,7 @@ export interface SensorMaintenanceGetParams {
   maxResults?: number;
 }
 
-export interface SensorMaintenanceListCurrentParams extends OffsetPageParams {
-}
+export interface SensorMaintenanceListCurrentParams extends OffsetPageParams {}
 
 export interface SensorMaintenanceTupleParams {
   /**
@@ -1613,7 +1665,7 @@ export declare namespace SensorMaintenance {
     type SensorMaintenanceCreateBulkParams as SensorMaintenanceCreateBulkParams,
     type SensorMaintenanceGetParams as SensorMaintenanceGetParams,
     type SensorMaintenanceListCurrentParams as SensorMaintenanceListCurrentParams,
-    type SensorMaintenanceTupleParams as SensorMaintenanceTupleParams
+    type SensorMaintenanceTupleParams as SensorMaintenanceTupleParams,
   };
 
   export {
@@ -1623,6 +1675,6 @@ export declare namespace SensorMaintenance {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

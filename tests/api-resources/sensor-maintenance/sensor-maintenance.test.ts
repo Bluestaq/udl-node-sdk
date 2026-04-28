@@ -5,19 +5,19 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource sensorMaintenance', () => {
   test('create: only required params', async () => {
     const responsePromise = client.sensorMaintenance.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    endTime: '2018-01-01T16:00:00.123456Z',
-    siteCode: 'site01',
-    source: 'Bluestaq',
-    startTime: '2018-01-01T16:00:00.123456Z',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      endTime: '2018-01-01T16:00:00.123456Z',
+      siteCode: 'site01',
+      source: 'Bluestaq',
+      startTime: '2018-01-01T16:00:00.123456Z',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -29,46 +29,46 @@ describe('resource sensorMaintenance', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.sensorMaintenance.create({
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    endTime: '2018-01-01T16:00:00.123456Z',
-    siteCode: 'site01',
-    source: 'Bluestaq',
-    startTime: '2018-01-01T16:00:00.123456Z',
-    id: 'SENSORMAINTENANCE-ID',
-    activity: 'Activity Description',
-    approver: 'approver',
-    changer: 'changer',
-    duration: '128:16:52',
-    eowId: 'eowId',
-    equipStatus: 'FMC',
-    externalId: 'EXTERNAL-ID',
-    idSensor: 'idSensor',
-    impactedFaces: 'impactedFaces',
-    lineNumber: 'lineNumber',
-    mdOpsCap: 'R',
-    mwOpsCap: 'G',
-    origin: 'THIRD_PARTY_DATASOURCE',
-    priority: 'low',
-    recall: '128:16:52',
-    rel: 'rel',
-    remark: 'Remarks',
-    requestor: 'requestor',
-    resource: 'resource',
-    rev: 'rev',
-    ssOpsCap: 'Y',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      endTime: '2018-01-01T16:00:00.123456Z',
+      siteCode: 'site01',
+      source: 'Bluestaq',
+      startTime: '2018-01-01T16:00:00.123456Z',
+      id: 'SENSORMAINTENANCE-ID',
+      activity: 'Activity Description',
+      approver: 'approver',
+      changer: 'changer',
+      duration: '128:16:52',
+      eowId: 'eowId',
+      equipStatus: 'FMC',
+      externalId: 'EXTERNAL-ID',
+      idSensor: 'idSensor',
+      impactedFaces: 'impactedFaces',
+      lineNumber: 'lineNumber',
+      mdOpsCap: 'R',
+      mwOpsCap: 'G',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      priority: 'low',
+      recall: '128:16:52',
+      rel: 'rel',
+      remark: 'Remarks',
+      requestor: 'requestor',
+      resource: 'resource',
+      rev: 'rev',
+      ssOpsCap: 'Y',
+    });
   });
 
   test('update: only required params', async () => {
     const responsePromise = client.sensorMaintenance.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    endTime: '2018-01-01T16:00:00.123456Z',
-    siteCode: 'site01',
-    source: 'Bluestaq',
-    startTime: '2018-01-01T16:00:00.123456Z',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      endTime: '2018-01-01T16:00:00.123456Z',
+      siteCode: 'site01',
+      source: 'Bluestaq',
+      startTime: '2018-01-01T16:00:00.123456Z',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -80,35 +80,35 @@ describe('resource sensorMaintenance', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.sensorMaintenance.update('id', {
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    endTime: '2018-01-01T16:00:00.123456Z',
-    siteCode: 'site01',
-    source: 'Bluestaq',
-    startTime: '2018-01-01T16:00:00.123456Z',
-    id: 'SENSORMAINTENANCE-ID',
-    activity: 'Activity Description',
-    approver: 'approver',
-    changer: 'changer',
-    duration: '128:16:52',
-    eowId: 'eowId',
-    equipStatus: 'FMC',
-    externalId: 'EXTERNAL-ID',
-    idSensor: 'idSensor',
-    impactedFaces: 'impactedFaces',
-    lineNumber: 'lineNumber',
-    mdOpsCap: 'R',
-    mwOpsCap: 'G',
-    origin: 'THIRD_PARTY_DATASOURCE',
-    priority: 'low',
-    recall: '128:16:52',
-    rel: 'rel',
-    remark: 'Remarks',
-    requestor: 'requestor',
-    resource: 'resource',
-    rev: 'rev',
-    ssOpsCap: 'Y',
-  });
+      classificationMarking: 'U',
+      dataMode: 'TEST',
+      endTime: '2018-01-01T16:00:00.123456Z',
+      siteCode: 'site01',
+      source: 'Bluestaq',
+      startTime: '2018-01-01T16:00:00.123456Z',
+      id: 'SENSORMAINTENANCE-ID',
+      activity: 'Activity Description',
+      approver: 'approver',
+      changer: 'changer',
+      duration: '128:16:52',
+      eowId: 'eowId',
+      equipStatus: 'FMC',
+      externalId: 'EXTERNAL-ID',
+      idSensor: 'idSensor',
+      impactedFaces: 'impactedFaces',
+      lineNumber: 'lineNumber',
+      mdOpsCap: 'R',
+      mwOpsCap: 'G',
+      origin: 'THIRD_PARTY_DATASOURCE',
+      priority: 'low',
+      recall: '128:16:52',
+      rel: 'rel',
+      remark: 'Remarks',
+      requestor: 'requestor',
+      resource: 'resource',
+      rev: 'rev',
+      ssOpsCap: 'Y',
+    });
   });
 
   test('list', async () => {
@@ -124,14 +124,17 @@ describe('resource sensorMaintenance', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sensorMaintenance.list({
-    endTime: '2019-12-27T18:11:19.117Z',
-    firstResult: 0,
-    maxResults: 0,
-    startTime: '2019-12-27T18:11:19.117Z',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.sensorMaintenance.list(
+        {
+          endTime: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResults: 0,
+          startTime: '2019-12-27T18:11:19.117Z',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('delete', async () => {
@@ -158,25 +161,32 @@ describe('resource sensorMaintenance', () => {
 
   test('count: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sensorMaintenance.count({
-    endTime: '2019-12-27T18:11:19.117Z',
-    firstResult: 0,
-    maxResults: 0,
-    startTime: '2019-12-27T18:11:19.117Z',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.sensorMaintenance.count(
+        {
+          endTime: '2019-12-27T18:11:19.117Z',
+          firstResult: 0,
+          maxResults: 0,
+          startTime: '2019-12-27T18:11:19.117Z',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('createBulk: only required params', async () => {
-    const responsePromise = client.sensorMaintenance.createBulk({ body: [{
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    endTime: '2018-01-01T16:00:00.123456Z',
-    siteCode: 'site01',
-    source: 'Bluestaq',
-    startTime: '2018-01-01T16:00:00.123456Z',
-  }] });
+    const responsePromise = client.sensorMaintenance.createBulk({
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          endTime: '2018-01-01T16:00:00.123456Z',
+          siteCode: 'site01',
+          source: 'Bluestaq',
+          startTime: '2018-01-01T16:00:00.123456Z',
+        },
+      ],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -188,39 +198,41 @@ describe('resource sensorMaintenance', () => {
 
   test('createBulk: required and optional params', async () => {
     const response = await client.sensorMaintenance.createBulk({
-    body: [{
-    classificationMarking: 'U',
-    dataMode: 'TEST',
-    endTime: '2018-01-01T16:00:00.123456Z',
-    siteCode: 'site01',
-    source: 'Bluestaq',
-    startTime: '2018-01-01T16:00:00.123456Z',
-    id: 'SENSORMAINTENANCE-ID',
-    activity: 'Activity Description',
-    approver: 'approver',
-    changer: 'changer',
-    duration: '128:16:52',
-    eowId: 'eowId',
-    equipStatus: 'FMC',
-    externalId: 'EXTERNAL-ID',
-    idSensor: 'idSensor',
-    impactedFaces: 'impactedFaces',
-    lineNumber: 'lineNumber',
-    mdOpsCap: 'R',
-    mwOpsCap: 'G',
-    origin: 'THIRD_PARTY_DATASOURCE',
-    priority: 'low',
-    recall: '128:16:52',
-    rel: 'rel',
-    remark: 'Remarks',
-    requestor: 'requestor',
-    resource: 'resource',
-    rev: 'rev',
-    ssOpsCap: 'Y',
-  }],
-    origin: 'origin',
-    source: 'source',
-  });
+      body: [
+        {
+          classificationMarking: 'U',
+          dataMode: 'TEST',
+          endTime: '2018-01-01T16:00:00.123456Z',
+          siteCode: 'site01',
+          source: 'Bluestaq',
+          startTime: '2018-01-01T16:00:00.123456Z',
+          id: 'SENSORMAINTENANCE-ID',
+          activity: 'Activity Description',
+          approver: 'approver',
+          changer: 'changer',
+          duration: '128:16:52',
+          eowId: 'eowId',
+          equipStatus: 'FMC',
+          externalId: 'EXTERNAL-ID',
+          idSensor: 'idSensor',
+          impactedFaces: 'impactedFaces',
+          lineNumber: 'lineNumber',
+          mdOpsCap: 'R',
+          mwOpsCap: 'G',
+          origin: 'THIRD_PARTY_DATASOURCE',
+          priority: 'low',
+          recall: '128:16:52',
+          rel: 'rel',
+          remark: 'Remarks',
+          requestor: 'requestor',
+          resource: 'resource',
+          rev: 'rev',
+          ssOpsCap: 'Y',
+        },
+      ],
+      origin: 'origin',
+      source: 'source',
+    });
   });
 
   test('get', async () => {
@@ -236,9 +248,13 @@ describe('resource sensorMaintenance', () => {
 
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sensorMaintenance.get('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.sensorMaintenance.get(
+        'id',
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('listCurrent', async () => {
@@ -254,9 +270,12 @@ describe('resource sensorMaintenance', () => {
 
   test('listCurrent: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.sensorMaintenance.listCurrent({ firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.sensorMaintenance.listCurrent(
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryHelp', async () => {
@@ -283,11 +302,11 @@ describe('resource sensorMaintenance', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.sensorMaintenance.tuple({
-    columns: 'columns',
-    endTime: '2019-12-27T18:11:19.117Z',
-    firstResult: 0,
-    maxResults: 0,
-    startTime: '2019-12-27T18:11:19.117Z',
-  });
+      columns: 'columns',
+      endTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResults: 0,
+      startTime: '2019-12-27T18:11:19.117Z',
+    });
   });
 });

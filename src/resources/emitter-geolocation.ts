@@ -31,7 +31,11 @@ export class EmitterGeolocation extends APIResource {
    * ```
    */
   create(body: EmitterGeolocationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/emittergeolocation', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/emittergeolocation', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -44,7 +48,11 @@ export class EmitterGeolocation extends APIResource {
    *   await client.emitterGeolocation.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: EmitterGeolocationRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<EmitterGeolocationRetrieveResponse> {
+  retrieve(
+    id: string,
+    query: EmitterGeolocationRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EmitterGeolocationRetrieveResponse> {
     return this._client.get(path`/udl/emittergeolocation/${id}`, { query, ...options });
   }
 
@@ -64,8 +72,14 @@ export class EmitterGeolocation extends APIResource {
    * }
    * ```
    */
-  list(query: EmitterGeolocationListParams, options?: RequestOptions): PagePromise<EmitterGeolocationListResponsesOffsetPage, EmitterGeolocationListResponse> {
-    return this._client.getAPIList('/udl/emittergeolocation', OffsetPage<EmitterGeolocationListResponse>, { query, ...options });
+  list(
+    query: EmitterGeolocationListParams,
+    options?: RequestOptions,
+  ): PagePromise<EmitterGeolocationListResponsesOffsetPage, EmitterGeolocationListResponse> {
+    return this._client.getAPIList('/udl/emittergeolocation', OffsetPage<EmitterGeolocationListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -80,7 +94,10 @@ export class EmitterGeolocation extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/emittergeolocation/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/emittergeolocation/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -98,7 +115,11 @@ export class EmitterGeolocation extends APIResource {
    * ```
    */
   count(query: EmitterGeolocationCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/emittergeolocation/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/emittergeolocation/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -124,8 +145,12 @@ export class EmitterGeolocation extends APIResource {
    * ```
    */
   createBulk(params: EmitterGeolocationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/emittergeolocation/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/emittergeolocation/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -160,7 +185,10 @@ export class EmitterGeolocation extends APIResource {
    * });
    * ```
    */
-  tuple(query: EmitterGeolocationTupleParams, options?: RequestOptions): APIPromise<EmitterGeolocationTupleResponse> {
+  tuple(
+    query: EmitterGeolocationTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<EmitterGeolocationTupleResponse> {
     return this._client.get('/udl/emittergeolocation/tuple', { query, ...options });
   }
 
@@ -185,13 +213,20 @@ export class EmitterGeolocation extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(params: EmitterGeolocationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-emittergeolocation', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: EmitterGeolocationUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-emittergeolocation', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type EmitterGeolocationListResponsesOffsetPage = OffsetPage<EmitterGeolocationListResponse>
+export type EmitterGeolocationListResponsesOffsetPage = OffsetPage<EmitterGeolocationListResponse>;
 
 /**
  * Model representation of Emitter geolocation data for a signal of interest.
@@ -888,7 +923,7 @@ export interface EmitterGeolocationListResponse {
   tags?: Array<string>;
 }
 
-export type EmitterGeolocationCountResponse = string
+export type EmitterGeolocationCountResponse = string;
 
 export interface EmitterGeolocationQueryHelpResponse {
   aodrSupported?: boolean;
@@ -914,7 +949,8 @@ export interface EmitterGeolocationQueryHelpResponse {
   uri?: string;
 }
 
-export type EmitterGeolocationTupleResponse = Array<EmitterGeolocationTupleResponse.EmitterGeolocationTupleResponseItem>
+export type EmitterGeolocationTupleResponse =
+  Array<EmitterGeolocationTupleResponse.EmitterGeolocationTupleResponseItem>;
 
 export namespace EmitterGeolocationTupleResponse {
   /**
@@ -2291,6 +2327,6 @@ export declare namespace EmitterGeolocation {
     type EmitterGeolocationCountParams as EmitterGeolocationCountParams,
     type EmitterGeolocationCreateBulkParams as EmitterGeolocationCreateBulkParams,
     type EmitterGeolocationTupleParams as EmitterGeolocationTupleParams,
-    type EmitterGeolocationUnvalidatedPublishParams as EmitterGeolocationUnvalidatedPublishParams
+    type EmitterGeolocationUnvalidatedPublishParams as EmitterGeolocationUnvalidatedPublishParams,
   };
 }

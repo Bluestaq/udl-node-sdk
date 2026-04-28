@@ -5,12 +5,14 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource history', () => {
   test('list: only required params', async () => {
-    const responsePromise = client.tdoaFdoa.diffofarrival.history.list({ obTime: '2019-12-27T18:11:19.117Z' });
+    const responsePromise = client.tdoaFdoa.diffofarrival.history.list({
+      obTime: '2019-12-27T18:11:19.117Z',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,15 +24,17 @@ describe('resource history', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.tdoaFdoa.diffofarrival.history.list({
-    obTime: '2019-12-27T18:11:19.117Z',
-    columns: 'columns',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      obTime: '2019-12-27T18:11:19.117Z',
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('aodr: only required params', async () => {
-    const responsePromise = client.tdoaFdoa.diffofarrival.history.aodr({ obTime: '2019-12-27T18:11:19.117Z' });
+    const responsePromise = client.tdoaFdoa.diffofarrival.history.aodr({
+      obTime: '2019-12-27T18:11:19.117Z',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -42,13 +46,13 @@ describe('resource history', () => {
 
   test('aodr: required and optional params', async () => {
     const response = await client.tdoaFdoa.diffofarrival.history.aodr({
-    obTime: '2019-12-27T18:11:19.117Z',
-    columns: 'columns',
-    firstResult: 0,
-    maxResults: 0,
-    notification: 'notification',
-    outputDelimiter: 'outputDelimiter',
-    outputFormat: 'outputFormat',
-  });
+      obTime: '2019-12-27T18:11:19.117Z',
+      columns: 'columns',
+      firstResult: 0,
+      maxResults: 0,
+      notification: 'notification',
+      outputDelimiter: 'outputDelimiter',
+      outputFormat: 'outputFormat',
+    });
   });
 });

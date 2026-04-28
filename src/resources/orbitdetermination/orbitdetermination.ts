@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -35,7 +43,11 @@ export class Orbitdetermination extends APIResource {
    * ```
    */
   create(body: OrbitdeterminationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/orbitdetermination', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/orbitdetermination', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -52,8 +64,14 @@ export class Orbitdetermination extends APIResource {
    * }
    * ```
    */
-  list(query: OrbitdeterminationListParams | null | undefined = {}, options?: RequestOptions): PagePromise<OrbitdeterminationListResponsesOffsetPage, OrbitdeterminationListResponse> {
-    return this._client.getAPIList('/udl/orbitdetermination', OffsetPage<OrbitdeterminationListResponse>, { query, ...options });
+  list(
+    query: OrbitdeterminationListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<OrbitdeterminationListResponsesOffsetPage, OrbitdeterminationListResponse> {
+    return this._client.getAPIList('/udl/orbitdetermination', OffsetPage<OrbitdeterminationListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -68,8 +86,15 @@ export class Orbitdetermination extends APIResource {
    * const response = await client.orbitdetermination.count();
    * ```
    */
-  count(query: OrbitdeterminationCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/orbitdetermination/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: OrbitdeterminationCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/orbitdetermination/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -97,8 +122,12 @@ export class Orbitdetermination extends APIResource {
    * ```
    */
   createBulk(params: OrbitdeterminationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/orbitdetermination/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/orbitdetermination/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -111,7 +140,11 @@ export class Orbitdetermination extends APIResource {
    *   await client.orbitdetermination.get('id');
    * ```
    */
-  get(id: string, query: OrbitdeterminationGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<OrbitdeterminationGetResponse> {
+  get(
+    id: string,
+    query: OrbitdeterminationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OrbitdeterminationGetResponse> {
     return this._client.get(path`/udl/orbitdetermination/${id}`, { query, ...options });
   }
 
@@ -146,7 +179,10 @@ export class Orbitdetermination extends APIResource {
    * });
    * ```
    */
-  tuple(query: OrbitdeterminationTupleParams, options?: RequestOptions): APIPromise<OrbitdeterminationTupleResponse> {
+  tuple(
+    query: OrbitdeterminationTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<OrbitdeterminationTupleResponse> {
     return this._client.get('/udl/orbitdetermination/tuple', { query, ...options });
   }
 
@@ -173,13 +209,20 @@ export class Orbitdetermination extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(params: OrbitdeterminationUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-orbitdetermination', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: OrbitdeterminationUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-orbitdetermination', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type OrbitdeterminationListResponsesOffsetPage = OffsetPage<OrbitdeterminationListResponse>
+export type OrbitdeterminationListResponsesOffsetPage = OffsetPage<OrbitdeterminationListResponse>;
 
 /**
  * Model representation of orbit determination algorithm results describing General
@@ -1459,7 +1502,7 @@ export namespace OrbitdeterminationListResponse {
   }
 }
 
-export type OrbitdeterminationCountResponse = string
+export type OrbitdeterminationCountResponse = string;
 
 /**
  * Model representation of orbit determination algorithm results describing General
@@ -2858,7 +2901,8 @@ export interface OrbitdeterminationQueryhelpResponse {
   uri?: string;
 }
 
-export type OrbitdeterminationTupleResponse = Array<OrbitdeterminationTupleResponse.OrbitdeterminationTupleResponseItem>
+export type OrbitdeterminationTupleResponse =
+  Array<OrbitdeterminationTupleResponse.OrbitdeterminationTupleResponseItem>;
 
 export namespace OrbitdeterminationTupleResponse {
   /**
@@ -8043,7 +8087,7 @@ export declare namespace Orbitdetermination {
     type OrbitdeterminationCreateBulkParams as OrbitdeterminationCreateBulkParams,
     type OrbitdeterminationGetParams as OrbitdeterminationGetParams,
     type OrbitdeterminationTupleParams as OrbitdeterminationTupleParams,
-    type OrbitdeterminationUnvalidatedPublishParams as OrbitdeterminationUnvalidatedPublishParams
+    type OrbitdeterminationUnvalidatedPublishParams as OrbitdeterminationUnvalidatedPublishParams,
   };
 
   export {
@@ -8053,6 +8097,6 @@ export declare namespace Orbitdetermination {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

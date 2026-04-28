@@ -26,8 +26,14 @@ export class History extends APIResource {
    * }
    * ```
    */
-  list(query: HistoryListParams, options?: RequestOptions): PagePromise<SoiObservationSetFullsOffsetPage, SoiObservationSetFull> {
-    return this._client.getAPIList('/udl/soiobservationset/history', OffsetPage<SoiObservationSetFull>, { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<SoiObservationSetFullsOffsetPage, SoiObservationSetFull> {
+    return this._client.getAPIList('/udl/soiobservationset/history', OffsetPage<SoiObservationSetFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -44,7 +50,11 @@ export class History extends APIResource {
    * ```
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/soiobservationset/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.get('/udl/soiobservationset/history/aodr', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -63,11 +73,15 @@ export class History extends APIResource {
    * ```
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/soiobservationset/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/soiobservationset/history/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 }
 
-export type SoiObservationSetFullsOffsetPage = OffsetPage<SoiObservationSetFull>
+export type SoiObservationSetFullsOffsetPage = OffsetPage<SoiObservationSetFull>;
 
 /**
  * These services provide operations for posting space object identification
@@ -995,7 +1009,7 @@ export namespace SoiObservationSetFull {
   }
 }
 
-export type HistoryCountResponse = string
+export type HistoryCountResponse = string;
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -1070,6 +1084,6 @@ export declare namespace History {
     type SoiObservationSetFullsOffsetPage as SoiObservationSetFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

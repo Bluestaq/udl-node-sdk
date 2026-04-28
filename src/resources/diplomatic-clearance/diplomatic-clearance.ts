@@ -5,9 +5,31 @@ import * as Shared from '../shared';
 import * as DiplomaticClearanceAPI from '../air-operations/diplomatic-clearance';
 import { DiplomaticclearanceAbridgedsOffsetPage } from '../air-operations/diplomatic-clearance';
 import * as CountryAPI from './country';
-import { Country, CountryCountParams, CountryCountResponse, CountryCreateBulkParams, CountryCreateParams, CountryListParams, CountryListResponse, CountryListResponsesOffsetPage, CountryQueryHelpResponse, CountryRetrieveParams, CountryRetrieveResponse, CountryTupleParams, CountryTupleResponse, CountryUnvalidatedPublishParams, CountryUpdateParams } from './country';
+import {
+  Country,
+  CountryCountParams,
+  CountryCountResponse,
+  CountryCreateBulkParams,
+  CountryCreateParams,
+  CountryListParams,
+  CountryListResponse,
+  CountryListResponsesOffsetPage,
+  CountryQueryHelpResponse,
+  CountryRetrieveParams,
+  CountryRetrieveResponse,
+  CountryTupleParams,
+  CountryTupleResponse,
+  CountryUnvalidatedPublishParams,
+  CountryUpdateParams,
+} from './country';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -38,7 +60,11 @@ export class DiplomaticClearance extends APIResource {
    * ```
    */
   create(body: DiplomaticClearanceCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/diplomaticclearance', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/diplomaticclearance', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -51,7 +77,11 @@ export class DiplomaticClearance extends APIResource {
    *   await client.diplomaticClearance.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: DiplomaticClearanceRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.DiplomaticclearanceFull> {
+  retrieve(
+    id: string,
+    query: DiplomaticClearanceRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.DiplomaticclearanceFull> {
     return this._client.get(path`/udl/diplomaticclearance/${id}`, { query, ...options });
   }
 
@@ -72,7 +102,11 @@ export class DiplomaticClearance extends APIResource {
    * ```
    */
   update(id: string, body: DiplomaticClearanceUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/diplomaticclearance/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/diplomaticclearance/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -91,8 +125,15 @@ export class DiplomaticClearance extends APIResource {
    * }
    * ```
    */
-  list(query: DiplomaticClearanceListParams, options?: RequestOptions): PagePromise<DiplomaticclearanceAbridgedsOffsetPage, DiplomaticClearanceAPI.DiplomaticclearanceAbridged> {
-    return this._client.getAPIList('/udl/diplomaticclearance', OffsetPage<DiplomaticClearanceAPI.DiplomaticclearanceAbridged>, { query, ...options });
+  list(
+    query: DiplomaticClearanceListParams,
+    options?: RequestOptions,
+  ): PagePromise<DiplomaticclearanceAbridgedsOffsetPage, DiplomaticClearanceAPI.DiplomaticclearanceAbridged> {
+    return this._client.getAPIList(
+      '/udl/diplomaticclearance',
+      OffsetPage<DiplomaticClearanceAPI.DiplomaticclearanceAbridged>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -106,7 +147,10 @@ export class DiplomaticClearance extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/diplomaticclearance/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/diplomaticclearance/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -124,7 +168,11 @@ export class DiplomaticClearance extends APIResource {
    * ```
    */
   count(query: DiplomaticClearanceCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/diplomaticclearance/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/diplomaticclearance/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -150,8 +198,12 @@ export class DiplomaticClearance extends APIResource {
    * ```
    */
   createBulk(params: DiplomaticClearanceCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/diplomaticclearance/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/diplomaticclearance/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -187,12 +239,15 @@ export class DiplomaticClearance extends APIResource {
    *   });
    * ```
    */
-  tuple(query: DiplomaticClearanceTupleParams, options?: RequestOptions): APIPromise<DiplomaticClearanceTupleResponse> {
+  tuple(
+    query: DiplomaticClearanceTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<DiplomaticClearanceTupleResponse> {
     return this._client.get('/udl/diplomaticclearance/tuple', { query, ...options });
   }
 }
 
-export type DiplomaticClearanceCountResponse = string
+export type DiplomaticClearanceCountResponse = string;
 
 export interface DiplomaticClearanceQueryhelpResponse {
   aodrSupported?: boolean;
@@ -218,7 +273,7 @@ export interface DiplomaticClearanceQueryhelpResponse {
   uri?: string;
 }
 
-export type DiplomaticClearanceTupleResponse = Array<Shared.DiplomaticclearanceFull>
+export type DiplomaticClearanceTupleResponse = Array<Shared.DiplomaticclearanceFull>;
 
 export interface DiplomaticClearanceCreateParams {
   /**
@@ -1073,7 +1128,7 @@ export declare namespace DiplomaticClearance {
     type DiplomaticClearanceListParams as DiplomaticClearanceListParams,
     type DiplomaticClearanceCountParams as DiplomaticClearanceCountParams,
     type DiplomaticClearanceCreateBulkParams as DiplomaticClearanceCreateBulkParams,
-    type DiplomaticClearanceTupleParams as DiplomaticClearanceTupleParams
+    type DiplomaticClearanceTupleParams as DiplomaticClearanceTupleParams,
   };
 
   export {
@@ -1091,7 +1146,7 @@ export declare namespace DiplomaticClearance {
     type CountryCountParams as CountryCountParams,
     type CountryCreateBulkParams as CountryCreateBulkParams,
     type CountryTupleParams as CountryTupleParams,
-    type CountryUnvalidatedPublishParams as CountryUnvalidatedPublishParams
+    type CountryUnvalidatedPublishParams as CountryUnvalidatedPublishParams,
   };
 
   export {
@@ -1099,8 +1154,8 @@ export declare namespace DiplomaticClearance {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }
 
-export { type DiplomaticclearanceAbridgedsOffsetPage }
+export { type DiplomaticclearanceAbridgedsOffsetPage };

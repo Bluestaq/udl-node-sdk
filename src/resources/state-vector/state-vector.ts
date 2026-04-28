@@ -5,7 +5,13 @@ import * as Shared from '../shared';
 import * as CurrentAPI from './current';
 import { Current, CurrentListParams, CurrentTupleParams, CurrentTupleResponse } from './current';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -37,7 +43,11 @@ export class StateVector extends APIResource {
    * ```
    */
   create(body: StateVectorCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/statevector', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/statevector', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -56,8 +66,14 @@ export class StateVector extends APIResource {
    * }
    * ```
    */
-  list(query: StateVectorListParams, options?: RequestOptions): PagePromise<StateVectorAbridgedsOffsetPage, StateVectorAbridged> {
-    return this._client.getAPIList('/udl/statevector', OffsetPage<StateVectorAbridged>, { query, ...options });
+  list(
+    query: StateVectorListParams,
+    options?: RequestOptions,
+  ): PagePromise<StateVectorAbridgedsOffsetPage, StateVectorAbridged> {
+    return this._client.getAPIList('/udl/statevector', OffsetPage<StateVectorAbridged>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -75,7 +91,11 @@ export class StateVector extends APIResource {
    * ```
    */
   count(query: StateVectorCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/statevector/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/statevector/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -100,8 +120,12 @@ export class StateVector extends APIResource {
    * ```
    */
   createBulk(params: StateVectorCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/statevector/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/statevector/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -113,7 +137,11 @@ export class StateVector extends APIResource {
    * const stateVectorFull = await client.stateVector.get('id');
    * ```
    */
-  get(id: string, query: StateVectorGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.StateVectorFull> {
+  get(
+    id: string,
+    query: StateVectorGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.StateVectorFull> {
     return this._client.get(path`/udl/statevector/${id}`, { query, ...options });
   }
 
@@ -172,13 +200,20 @@ export class StateVector extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(params: StateVectorUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-sv', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: StateVectorUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-sv', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type StateVectorAbridgedsOffsetPage = OffsetPage<StateVectorAbridged>
+export type StateVectorAbridgedsOffsetPage = OffsetPage<StateVectorAbridged>;
 
 /**
  * This service provides operations for querying and manipulation of state vectors
@@ -1610,7 +1645,7 @@ export interface StateVectorIngest {
   zvelAlt2?: number;
 }
 
-export type StateVectorCountResponse = string
+export type StateVectorCountResponse = string;
 
 export interface StateVectorQueryhelpResponse {
   aodrSupported?: boolean;
@@ -1636,7 +1671,7 @@ export interface StateVectorQueryhelpResponse {
   uri?: string;
 }
 
-export type StateVectorTupleResponse = Array<Shared.StateVectorFull>
+export type StateVectorTupleResponse = Array<Shared.StateVectorFull>;
 
 export interface StateVectorCreateParams {
   /**
@@ -2399,14 +2434,14 @@ export declare namespace StateVector {
     type StateVectorCreateBulkParams as StateVectorCreateBulkParams,
     type StateVectorGetParams as StateVectorGetParams,
     type StateVectorTupleParams as StateVectorTupleParams,
-    type StateVectorUnvalidatedPublishParams as StateVectorUnvalidatedPublishParams
+    type StateVectorUnvalidatedPublishParams as StateVectorUnvalidatedPublishParams,
   };
 
   export {
     Current as Current,
     type CurrentTupleResponse as CurrentTupleResponse,
     type CurrentListParams as CurrentListParams,
-    type CurrentTupleParams as CurrentTupleParams
+    type CurrentTupleParams as CurrentTupleParams,
   };
 
   export {
@@ -2414,6 +2449,6 @@ export declare namespace StateVector {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

@@ -29,7 +29,11 @@ export class Aircraft extends APIResource {
    * ```
    */
   create(body: AircraftCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/aircraft', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/aircraft', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -41,7 +45,11 @@ export class Aircraft extends APIResource {
    * const aircraftFull = await client.aircraft.retrieve('id');
    * ```
    */
-  retrieve(id: string, query: AircraftRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.AircraftFull> {
+  retrieve(
+    id: string,
+    query: AircraftRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.AircraftFull> {
     return this._client.get(path`/udl/aircraft/${id}`, { query, ...options });
   }
 
@@ -60,7 +68,11 @@ export class Aircraft extends APIResource {
    * ```
    */
   update(id: string, body: AircraftUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/aircraft/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/aircraft/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -77,7 +89,10 @@ export class Aircraft extends APIResource {
    * }
    * ```
    */
-  list(query: AircraftListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AircraftAbridgedsOffsetPage, AircraftAbridged> {
+  list(
+    query: AircraftListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<AircraftAbridgedsOffsetPage, AircraftAbridged> {
     return this._client.getAPIList('/udl/aircraft', OffsetPage<AircraftAbridged>, { query, ...options });
   }
 
@@ -94,7 +109,11 @@ export class Aircraft extends APIResource {
    * ```
    */
   count(query: AircraftCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/aircraft/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/aircraft/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -132,7 +151,7 @@ export class Aircraft extends APIResource {
   }
 }
 
-export type AircraftAbridgedsOffsetPage = OffsetPage<AircraftAbridged>
+export type AircraftAbridgedsOffsetPage = OffsetPage<AircraftAbridged>;
 
 /**
  * General aircraft designation, characteristics, and capabilities. The aircraft
@@ -283,7 +302,7 @@ export interface AircraftAbridged {
   tailNumber?: string;
 }
 
-export type AircraftCountResponse = string
+export type AircraftCountResponse = string;
 
 export interface AircraftQueryhelpResponse {
   aodrSupported?: boolean;
@@ -309,7 +328,7 @@ export interface AircraftQueryhelpResponse {
   uri?: string;
 }
 
-export type AircraftTupleResponse = Array<Shared.AircraftFull>
+export type AircraftTupleResponse = Array<Shared.AircraftFull>;
 
 export interface AircraftCreateParams {
   /**
@@ -571,8 +590,7 @@ export interface AircraftUpdateParams {
   tailNumber?: string;
 }
 
-export interface AircraftListParams extends OffsetPageParams {
-}
+export interface AircraftListParams extends OffsetPageParams {}
 
 export interface AircraftCountParams {
   firstResult?: number;
@@ -606,6 +624,6 @@ export declare namespace Aircraft {
     type AircraftUpdateParams as AircraftUpdateParams,
     type AircraftListParams as AircraftListParams,
     type AircraftCountParams as AircraftCountParams,
-    type AircraftTupleParams as AircraftTupleParams
+    type AircraftTupleParams as AircraftTupleParams,
   };
 }

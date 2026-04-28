@@ -3,7 +3,15 @@
 import { APIResource } from '../../../core/resource';
 import * as Shared from '../../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
@@ -32,7 +40,11 @@ export class PassiveRadarObservation extends APIResource {
    * ```
    */
   create(body: PassiveRadarObservationCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/passiveradarobservation', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/passiveradarobservation', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -51,8 +63,15 @@ export class PassiveRadarObservation extends APIResource {
    * }
    * ```
    */
-  list(query: PassiveRadarObservationListParams, options?: RequestOptions): PagePromise<PassiveRadarObservationListResponsesOffsetPage, PassiveRadarObservationListResponse> {
-    return this._client.getAPIList('/udl/passiveradarobservation', OffsetPage<PassiveRadarObservationListResponse>, { query, ...options });
+  list(
+    query: PassiveRadarObservationListParams,
+    options?: RequestOptions,
+  ): PagePromise<PassiveRadarObservationListResponsesOffsetPage, PassiveRadarObservationListResponse> {
+    return this._client.getAPIList(
+      '/udl/passiveradarobservation',
+      OffsetPage<PassiveRadarObservationListResponse>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -71,7 +90,11 @@ export class PassiveRadarObservation extends APIResource {
    * ```
    */
   count(query: PassiveRadarObservationCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/passiveradarobservation/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/passiveradarobservation/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -98,8 +121,12 @@ export class PassiveRadarObservation extends APIResource {
    * ```
    */
   createBulk(params: PassiveRadarObservationCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/passiveradarobservation/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/passiveradarobservation/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -125,8 +152,12 @@ export class PassiveRadarObservation extends APIResource {
    * ```
    */
   fileCreate(params: PassiveRadarObservationFileCreateParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-passiveradar', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/udl-passiveradar', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -141,7 +172,11 @@ export class PassiveRadarObservation extends APIResource {
    *   );
    * ```
    */
-  get(id: string, query: PassiveRadarObservationGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<PassiveRadarObservationGetResponse> {
+  get(
+    id: string,
+    query: PassiveRadarObservationGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<PassiveRadarObservationGetResponse> {
     return this._client.get(path`/udl/passiveradarobservation/${id}`, { query, ...options });
   }
 
@@ -178,12 +213,15 @@ export class PassiveRadarObservation extends APIResource {
    *   });
    * ```
    */
-  tuple(query: PassiveRadarObservationTupleParams, options?: RequestOptions): APIPromise<PassiveRadarObservationTupleResponse> {
+  tuple(
+    query: PassiveRadarObservationTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<PassiveRadarObservationTupleResponse> {
     return this._client.get('/udl/passiveradarobservation/tuple', { query, ...options });
   }
 }
 
-export type PassiveRadarObservationListResponsesOffsetPage = OffsetPage<PassiveRadarObservationListResponse>
+export type PassiveRadarObservationListResponsesOffsetPage = OffsetPage<PassiveRadarObservationListResponse>;
 
 /**
  * Model representation of observation data for passive radar based sensor
@@ -615,7 +653,7 @@ export interface PassiveRadarObservationListResponse {
   zvel?: number;
 }
 
-export type PassiveRadarObservationCountResponse = string
+export type PassiveRadarObservationCountResponse = string;
 
 /**
  * Model representation of observation data for passive radar based sensor
@@ -1085,7 +1123,8 @@ export interface PassiveRadarObservationQueryhelpResponse {
   uri?: string;
 }
 
-export type PassiveRadarObservationTupleResponse = Array<PassiveRadarObservationTupleResponse.PassiveRadarObservationTupleResponseItem>
+export type PassiveRadarObservationTupleResponse =
+  Array<PassiveRadarObservationTupleResponse.PassiveRadarObservationTupleResponseItem>;
 
 export namespace PassiveRadarObservationTupleResponse {
   /**
@@ -2795,7 +2834,7 @@ export declare namespace PassiveRadarObservation {
     type PassiveRadarObservationCreateBulkParams as PassiveRadarObservationCreateBulkParams,
     type PassiveRadarObservationFileCreateParams as PassiveRadarObservationFileCreateParams,
     type PassiveRadarObservationGetParams as PassiveRadarObservationGetParams,
-    type PassiveRadarObservationTupleParams as PassiveRadarObservationTupleParams
+    type PassiveRadarObservationTupleParams as PassiveRadarObservationTupleParams,
   };
 
   export {
@@ -2805,6 +2844,6 @@ export declare namespace PassiveRadarObservation {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

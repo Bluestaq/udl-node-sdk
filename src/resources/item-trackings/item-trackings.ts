@@ -3,7 +3,14 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -34,7 +41,11 @@ export class ItemTrackings extends APIResource {
    * ```
    */
   create(body: ItemTrackingCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/itemtracking', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/itemtracking', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -53,8 +64,14 @@ export class ItemTrackings extends APIResource {
    * }
    * ```
    */
-  list(query: ItemTrackingListParams, options?: RequestOptions): PagePromise<ItemTrackingListResponsesOffsetPage, ItemTrackingListResponse> {
-    return this._client.getAPIList('/udl/itemtracking', OffsetPage<ItemTrackingListResponse>, { query, ...options });
+  list(
+    query: ItemTrackingListParams,
+    options?: RequestOptions,
+  ): PagePromise<ItemTrackingListResponsesOffsetPage, ItemTrackingListResponse> {
+    return this._client.getAPIList('/udl/itemtracking', OffsetPage<ItemTrackingListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -68,7 +85,10 @@ export class ItemTrackings extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/itemtracking/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/itemtracking/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -86,7 +106,11 @@ export class ItemTrackings extends APIResource {
    * ```
    */
   count(query: ItemTrackingCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/itemtracking/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/itemtracking/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -98,7 +122,11 @@ export class ItemTrackings extends APIResource {
    * const itemTracking = await client.itemTrackings.get('id');
    * ```
    */
-  get(id: string, query: ItemTrackingGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<ItemTrackingGetResponse> {
+  get(
+    id: string,
+    query: ItemTrackingGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ItemTrackingGetResponse> {
     return this._client.get(path`/udl/itemtracking/${id}`, { query, ...options });
   }
 
@@ -159,13 +187,20 @@ export class ItemTrackings extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(params: ItemTrackingUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-itemtracking', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: ItemTrackingUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-itemtracking', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type ItemTrackingListResponsesOffsetPage = OffsetPage<ItemTrackingListResponse>
+export type ItemTrackingListResponsesOffsetPage = OffsetPage<ItemTrackingListResponse>;
 
 export interface ItemTrackingListResponse {
   /**
@@ -307,7 +342,7 @@ export interface ItemTrackingListResponse {
   values?: Array<string>;
 }
 
-export type ItemTrackingCountResponse = string
+export type ItemTrackingCountResponse = string;
 
 export interface ItemTrackingGetResponse {
   /**
@@ -473,7 +508,7 @@ export interface ItemTrackingQueryhelpResponse {
   uri?: string;
 }
 
-export type ItemTrackingTupleResponse = Array<ItemTrackingTupleResponse.ItemTrackingTupleResponseItem>
+export type ItemTrackingTupleResponse = Array<ItemTrackingTupleResponse.ItemTrackingTupleResponseItem>;
 
 export namespace ItemTrackingTupleResponse {
   export interface ItemTrackingTupleResponseItem {
@@ -916,7 +951,7 @@ export declare namespace ItemTrackings {
     type ItemTrackingCountParams as ItemTrackingCountParams,
     type ItemTrackingGetParams as ItemTrackingGetParams,
     type ItemTrackingTupleParams as ItemTrackingTupleParams,
-    type ItemTrackingUnvalidatedPublishParams as ItemTrackingUnvalidatedPublishParams
+    type ItemTrackingUnvalidatedPublishParams as ItemTrackingUnvalidatedPublishParams,
   };
 
   export {
@@ -925,6 +960,6 @@ export declare namespace ItemTrackings {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

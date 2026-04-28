@@ -16,8 +16,14 @@ export class History extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(query: HistoryListParams, options?: RequestOptions): PagePromise<TrackDetailsFullsOffsetPage, TrackDetailsFull> {
-    return this._client.getAPIList('/udl/trackdetails/history', OffsetPage<TrackDetailsFull>, { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<TrackDetailsFullsOffsetPage, TrackDetailsFull> {
+    return this._client.getAPIList('/udl/trackdetails/history', OffsetPage<TrackDetailsFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -27,7 +33,11 @@ export class History extends APIResource {
    * for more details on valid/required query parameter information.
    */
   aodr(query: HistoryAodrParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/trackdetails/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.get('/udl/trackdetails/history/aodr', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -38,11 +48,15 @@ export class History extends APIResource {
    * valid/required query parameter information.
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/trackdetails/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/trackdetails/history/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 }
 
-export type TrackDetailsFullsOffsetPage = OffsetPage<TrackDetailsFull>
+export type TrackDetailsFullsOffsetPage = OffsetPage<TrackDetailsFull>;
 
 /**
  * These services provide operations for querying of all available track details
@@ -1260,7 +1274,7 @@ export interface TrackDetailsFull {
   width?: number;
 }
 
-export type HistoryCountResponse = string
+export type HistoryCountResponse = string;
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -1335,6 +1349,6 @@ export declare namespace History {
     type TrackDetailsFullsOffsetPage as TrackDetailsFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

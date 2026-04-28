@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, TrackDetailsFull, TrackDetailsFullsOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  TrackDetailsFull,
+  TrackDetailsFullsOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -21,8 +29,14 @@ export class TrackDetails extends APIResource {
    * (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
    * information.
    */
-  list(query: TrackDetailListParams, options?: RequestOptions): PagePromise<TrackDetailListResponsesOffsetPage, TrackDetailListResponse> {
-    return this._client.getAPIList('/udl/trackdetails', OffsetPage<TrackDetailListResponse>, { query, ...options });
+  list(
+    query: TrackDetailListParams,
+    options?: RequestOptions,
+  ): PagePromise<TrackDetailListResponsesOffsetPage, TrackDetailListResponse> {
+    return this._client.getAPIList('/udl/trackdetails', OffsetPage<TrackDetailListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -33,7 +47,11 @@ export class TrackDetails extends APIResource {
    * valid/required query parameter information.
    */
   count(query: TrackDetailCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/trackdetails/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/trackdetails/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -44,8 +62,12 @@ export class TrackDetails extends APIResource {
    * setting up a permanent feed through an alternate mechanism.
    */
   createBulk(params: TrackDetailCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/trackdetails/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/trackdetails/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -71,7 +93,7 @@ export class TrackDetails extends APIResource {
   }
 }
 
-export type TrackDetailListResponsesOffsetPage = OffsetPage<TrackDetailListResponse>
+export type TrackDetailListResponsesOffsetPage = OffsetPage<TrackDetailListResponse>;
 
 /**
  * These services provide operations for querying of all available track details
@@ -1289,7 +1311,7 @@ export interface TrackDetailListResponse {
   width?: number;
 }
 
-export type TrackDetailCountResponse = string
+export type TrackDetailCountResponse = string;
 
 export interface TrackDetailQueryhelpResponse {
   aodrSupported?: boolean;
@@ -1315,7 +1337,7 @@ export interface TrackDetailQueryhelpResponse {
   uri?: string;
 }
 
-export type TrackDetailTupleResponse = Array<HistoryAPI.TrackDetailsFull>
+export type TrackDetailTupleResponse = Array<HistoryAPI.TrackDetailsFull>;
 
 export interface TrackDetailListParams extends OffsetPageParams {
   /**
@@ -2575,7 +2597,7 @@ export declare namespace TrackDetails {
     type TrackDetailListParams as TrackDetailListParams,
     type TrackDetailCountParams as TrackDetailCountParams,
     type TrackDetailCreateBulkParams as TrackDetailCreateBulkParams,
-    type TrackDetailTupleParams as TrackDetailTupleParams
+    type TrackDetailTupleParams as TrackDetailTupleParams,
   };
 
   export {
@@ -2585,6 +2607,6 @@ export declare namespace TrackDetails {
     type TrackDetailsFullsOffsetPage as TrackDetailsFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

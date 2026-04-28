@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -35,7 +43,11 @@ export class Deconflictset extends APIResource {
    * ```
    */
   create(body: DeconflictsetCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/deconflictset', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/deconflictset', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -54,8 +66,14 @@ export class Deconflictset extends APIResource {
    * }
    * ```
    */
-  list(query: DeconflictsetListParams, options?: RequestOptions): PagePromise<DeconflictsetListResponsesOffsetPage, DeconflictsetListResponse> {
-    return this._client.getAPIList('/udl/deconflictset', OffsetPage<DeconflictsetListResponse>, { query, ...options });
+  list(
+    query: DeconflictsetListParams,
+    options?: RequestOptions,
+  ): PagePromise<DeconflictsetListResponsesOffsetPage, DeconflictsetListResponse> {
+    return this._client.getAPIList('/udl/deconflictset', OffsetPage<DeconflictsetListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -73,7 +91,11 @@ export class Deconflictset extends APIResource {
    * ```
    */
   count(query: DeconflictsetCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/deconflictset/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/deconflictset/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -85,7 +107,11 @@ export class Deconflictset extends APIResource {
    * const deconflictset = await client.deconflictset.get('id');
    * ```
    */
-  get(id: string, query: DeconflictsetGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<DeconflictsetGetResponse> {
+  get(
+    id: string,
+    query: DeconflictsetGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<DeconflictsetGetResponse> {
     return this._client.get(path`/udl/deconflictset/${id}`, { query, ...options });
   }
 
@@ -141,12 +167,19 @@ export class Deconflictset extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(body: DeconflictsetUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/filedrop/udl-deconflictset', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    body: DeconflictsetUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    return this._client.post('/filedrop/udl-deconflictset', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type DeconflictsetListResponsesOffsetPage = OffsetPage<DeconflictsetListResponse>
+export type DeconflictsetListResponsesOffsetPage = OffsetPage<DeconflictsetListResponse>;
 
 /**
  * The DeconflictSet service provides access to a set of DeconflictWindows and
@@ -302,7 +335,7 @@ export interface DeconflictsetListResponse {
   warnings?: Array<string>;
 }
 
-export type DeconflictsetCountResponse = string
+export type DeconflictsetCountResponse = string;
 
 /**
  * The DeconflictSet service provides access to a set of DeconflictWindows and
@@ -641,7 +674,7 @@ export interface DeconflictsetQueryhelpResponse {
   uri?: string;
 }
 
-export type DeconflictsetTupleResponse = Array<DeconflictsetTupleResponse.DeconflictsetTupleResponseItem>
+export type DeconflictsetTupleResponse = Array<DeconflictsetTupleResponse.DeconflictsetTupleResponseItem>;
 
 export namespace DeconflictsetTupleResponse {
   /**
@@ -1517,7 +1550,7 @@ export declare namespace Deconflictset {
     type DeconflictsetCountParams as DeconflictsetCountParams,
     type DeconflictsetGetParams as DeconflictsetGetParams,
     type DeconflictsetTupleParams as DeconflictsetTupleParams,
-    type DeconflictsetUnvalidatedPublishParams as DeconflictsetUnvalidatedPublishParams
+    type DeconflictsetUnvalidatedPublishParams as DeconflictsetUnvalidatedPublishParams,
   };
 
   export {
@@ -1527,6 +1560,6 @@ export declare namespace Deconflictset {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

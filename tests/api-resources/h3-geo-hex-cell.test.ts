@@ -5,7 +5,7 @@ import Unifieddatalibrary from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource h3GeoHexCell', () => {
@@ -22,10 +22,10 @@ describe('resource h3GeoHexCell', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.h3GeoHexCell.list({
-    idH3Geo: 'idH3Geo',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      idH3Geo: 'idH3Geo',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -41,10 +41,10 @@ describe('resource h3GeoHexCell', () => {
 
   test('count: required and optional params', async () => {
     const response = await client.h3GeoHexCell.count({
-    idH3Geo: 'idH3Geo',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      idH3Geo: 'idH3Geo',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('queryhelp', async () => {
@@ -71,10 +71,10 @@ describe('resource h3GeoHexCell', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.h3GeoHexCell.tuple({
-    columns: 'columns',
-    idH3Geo: 'idH3Geo',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      columns: 'columns',
+      idH3Geo: 'idH3Geo',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 });

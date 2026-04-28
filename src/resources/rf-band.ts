@@ -29,7 +29,11 @@ export class RfBand extends APIResource {
    * ```
    */
   create(body: RfBandCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/rfband', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/rfband', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -48,7 +52,11 @@ export class RfBand extends APIResource {
    * ```
    */
   update(id: string, body: RfBandUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/rfband/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/rfband/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -65,7 +73,10 @@ export class RfBand extends APIResource {
    * }
    * ```
    */
-  list(query: RfBandListParams | null | undefined = {}, options?: RequestOptions): PagePromise<RfBandListResponsesOffsetPage, RfBandListResponse> {
+  list(
+    query: RfBandListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<RfBandListResponsesOffsetPage, RfBandListResponse> {
     return this._client.getAPIList('/udl/rfband', OffsetPage<RfBandListResponse>, { query, ...options });
   }
 
@@ -80,7 +91,10 @@ export class RfBand extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/rfband/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/rfband/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -96,7 +110,11 @@ export class RfBand extends APIResource {
    * ```
    */
   count(query: RfBandCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/rfband/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/rfband/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -108,7 +126,11 @@ export class RfBand extends APIResource {
    * const rfBandFull = await client.rfBand.get('id');
    * ```
    */
-  get(id: string, query: RfBandGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.RfBandFull> {
+  get(
+    id: string,
+    query: RfBandGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.RfBandFull> {
     return this._client.get(path`/udl/rfband/${id}`, { query, ...options });
   }
 
@@ -147,7 +169,7 @@ export class RfBand extends APIResource {
   }
 }
 
-export type RfBandListResponsesOffsetPage = OffsetPage<RfBandListResponse>
+export type RfBandListResponsesOffsetPage = OffsetPage<RfBandListResponse>;
 
 /**
  * Details on a particular Radio Frequency (RF) band, also known as a carrier,
@@ -356,7 +378,7 @@ export interface RfBandListResponse {
   purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
 }
 
-export type RfBandCountResponse = string
+export type RfBandCountResponse = string;
 
 export interface RfBandQueryhelpResponse {
   aodrSupported?: boolean;
@@ -382,7 +404,7 @@ export interface RfBandQueryhelpResponse {
   uri?: string;
 }
 
-export type RfBandTupleResponse = Array<Shared.RfBandFull>
+export type RfBandTupleResponse = Array<Shared.RfBandFull>;
 
 export interface RfBandCreateParams {
   /**
@@ -756,8 +778,7 @@ export interface RfBandUpdateParams {
   purpose?: 'COMM' | 'TTC' | 'OPS' | 'OTHER';
 }
 
-export interface RfBandListParams extends OffsetPageParams {
-}
+export interface RfBandListParams extends OffsetPageParams {}
 
 export interface RfBandCountParams {
   firstResult?: number;
@@ -797,6 +818,6 @@ export declare namespace RfBand {
     type RfBandListParams as RfBandListParams,
     type RfBandCountParams as RfBandCountParams,
     type RfBandGetParams as RfBandGetParams,
-    type RfBandTupleParams as RfBandTupleParams
+    type RfBandTupleParams as RfBandTupleParams,
   };
 }

@@ -26,8 +26,14 @@ export class History extends APIResource {
    * }
    * ```
    */
-  list(query: HistoryListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AirfieldstatusFullsOffsetPage, Shared.AirfieldstatusFull> {
-    return this._client.getAPIList('/udl/airfieldstatus/history', OffsetPage<Shared.AirfieldstatusFull>, { query, ...options });
+  list(
+    query: HistoryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<AirfieldstatusFullsOffsetPage, Shared.AirfieldstatusFull> {
+    return this._client.getAPIList('/udl/airfieldstatus/history', OffsetPage<Shared.AirfieldstatusFull>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -44,11 +50,15 @@ export class History extends APIResource {
    * ```
    */
   count(query: HistoryCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/airfieldstatus/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/airfieldstatus/history/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 }
 
-export type HistoryCountResponse = string
+export type HistoryCountResponse = string;
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -69,8 +79,8 @@ export declare namespace History {
   export {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListParams as HistoryListParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }
 
-export { type AirfieldstatusFullsOffsetPage }
+export { type AirfieldstatusFullsOffsetPage };

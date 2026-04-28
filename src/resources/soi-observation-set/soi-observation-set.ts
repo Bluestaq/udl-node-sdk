@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, SoiObservationSetFull, SoiObservationSetFullsOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  SoiObservationSetFull,
+  SoiObservationSetFullsOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -34,7 +42,11 @@ export class SoiObservationSet extends APIResource {
    * ```
    */
   create(body: SoiObservationSetCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/soiobservationset', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/soiobservationset', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -53,8 +65,14 @@ export class SoiObservationSet extends APIResource {
    * }
    * ```
    */
-  list(query: SoiObservationSetListParams, options?: RequestOptions): PagePromise<SoiObservationSetListResponsesOffsetPage, SoiObservationSetListResponse> {
-    return this._client.getAPIList('/udl/soiobservationset', OffsetPage<SoiObservationSetListResponse>, { query, ...options });
+  list(
+    query: SoiObservationSetListParams,
+    options?: RequestOptions,
+  ): PagePromise<SoiObservationSetListResponsesOffsetPage, SoiObservationSetListResponse> {
+    return this._client.getAPIList('/udl/soiobservationset', OffsetPage<SoiObservationSetListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -72,7 +90,11 @@ export class SoiObservationSet extends APIResource {
    * ```
    */
   count(query: SoiObservationSetCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/soiobservationset/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/soiobservationset/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -99,8 +121,12 @@ export class SoiObservationSet extends APIResource {
    * ```
    */
   createBulk(params: SoiObservationSetCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/soiobservationset/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/soiobservationset/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -113,7 +139,11 @@ export class SoiObservationSet extends APIResource {
    *   await client.soiObservationSet.get('id');
    * ```
    */
-  get(id: string, query: SoiObservationSetGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<HistoryAPI.SoiObservationSetFull> {
+  get(
+    id: string,
+    query: SoiObservationSetGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.SoiObservationSetFull> {
     return this._client.get(path`/udl/soiobservationset/${id}`, { query, ...options });
   }
 
@@ -149,7 +179,10 @@ export class SoiObservationSet extends APIResource {
    *   });
    * ```
    */
-  tuple(query: SoiObservationSetTupleParams, options?: RequestOptions): APIPromise<SoiObservationSetTupleResponse> {
+  tuple(
+    query: SoiObservationSetTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<SoiObservationSetTupleResponse> {
     return this._client.get('/udl/soiobservationset/tuple', { query, ...options });
   }
 
@@ -175,13 +208,20 @@ export class SoiObservationSet extends APIResource {
    * });
    * ```
    */
-  unvalidatedPublish(params: SoiObservationSetUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/udl-soiobservationset', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  unvalidatedPublish(
+    params: SoiObservationSetUnvalidatedPublishParams,
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { body } = params;
+    return this._client.post('/filedrop/udl-soiobservationset', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type SoiObservationSetListResponsesOffsetPage = OffsetPage<SoiObservationSetListResponse>
+export type SoiObservationSetListResponsesOffsetPage = OffsetPage<SoiObservationSetListResponse>;
 
 /**
  * These services provide operations for posting space object identification
@@ -700,7 +740,7 @@ export namespace SoiObservationSetListResponse {
   }
 }
 
-export type SoiObservationSetCountResponse = string
+export type SoiObservationSetCountResponse = string;
 
 export interface SoiObservationSetQueryhelpResponse {
   aodrSupported?: boolean;
@@ -726,7 +766,7 @@ export interface SoiObservationSetQueryhelpResponse {
   uri?: string;
 }
 
-export type SoiObservationSetTupleResponse = Array<HistoryAPI.SoiObservationSetFull>
+export type SoiObservationSetTupleResponse = Array<HistoryAPI.SoiObservationSetFull>;
 
 export interface SoiObservationSetCreateParams {
   /**
@@ -3488,7 +3528,7 @@ export declare namespace SoiObservationSet {
     type SoiObservationSetCreateBulkParams as SoiObservationSetCreateBulkParams,
     type SoiObservationSetGetParams as SoiObservationSetGetParams,
     type SoiObservationSetTupleParams as SoiObservationSetTupleParams,
-    type SoiObservationSetUnvalidatedPublishParams as SoiObservationSetUnvalidatedPublishParams
+    type SoiObservationSetUnvalidatedPublishParams as SoiObservationSetUnvalidatedPublishParams,
   };
 
   export {
@@ -3498,6 +3538,6 @@ export declare namespace SoiObservationSet {
     type SoiObservationSetFullsOffsetPage as SoiObservationSetFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

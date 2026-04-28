@@ -30,8 +30,12 @@ export class Swir extends APIResource {
    * ```
    */
   unvalidatedPublish(params: SwirUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/filedrop/swir', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/filedrop/swir', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -154,7 +158,5 @@ export namespace SwirUnvalidatedPublishParams {
 }
 
 export declare namespace Swir {
-  export {
-    type SwirUnvalidatedPublishParams as SwirUnvalidatedPublishParams
-  };
+  export { type SwirUnvalidatedPublishParams as SwirUnvalidatedPublishParams };
 }

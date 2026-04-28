@@ -29,7 +29,11 @@ export class Operatingunitremark extends APIResource {
    * ```
    */
   create(body: OperatingunitremarkCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/operatingunitremark', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/operatingunitremark', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -46,8 +50,14 @@ export class Operatingunitremark extends APIResource {
    * }
    * ```
    */
-  list(query: OperatingunitremarkListParams | null | undefined = {}, options?: RequestOptions): PagePromise<OperatingunitremarkListResponsesOffsetPage, OperatingunitremarkListResponse> {
-    return this._client.getAPIList('/udl/operatingunitremark', OffsetPage<OperatingunitremarkListResponse>, { query, ...options });
+  list(
+    query: OperatingunitremarkListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<OperatingunitremarkListResponsesOffsetPage, OperatingunitremarkListResponse> {
+    return this._client.getAPIList('/udl/operatingunitremark', OffsetPage<OperatingunitremarkListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -62,8 +72,15 @@ export class Operatingunitremark extends APIResource {
    * const response = await client.operatingunitremark.count();
    * ```
    */
-  count(query: OperatingunitremarkCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/operatingunitremark/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+  count(
+    query: OperatingunitremarkCountParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get('/udl/operatingunitremark/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -89,8 +106,12 @@ export class Operatingunitremark extends APIResource {
    * ```
    */
   createBulk(params: OperatingunitremarkCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/operatingunitremark/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/operatingunitremark/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -103,7 +124,11 @@ export class Operatingunitremark extends APIResource {
    *   await client.operatingunitremark.get('id');
    * ```
    */
-  get(id: string, query: OperatingunitremarkGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<Shared.OperatingUnitRemarkFull> {
+  get(
+    id: string,
+    query: OperatingunitremarkGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.OperatingUnitRemarkFull> {
     return this._client.get(path`/udl/operatingunitremark/${id}`, { query, ...options });
   }
 
@@ -139,12 +164,15 @@ export class Operatingunitremark extends APIResource {
    *   });
    * ```
    */
-  tuple(query: OperatingunitremarkTupleParams, options?: RequestOptions): APIPromise<OperatingunitremarkTupleResponse> {
+  tuple(
+    query: OperatingunitremarkTupleParams,
+    options?: RequestOptions,
+  ): APIPromise<OperatingunitremarkTupleResponse> {
     return this._client.get('/udl/operatingunitremark/tuple', { query, ...options });
   }
 }
 
-export type OperatingunitremarkListResponsesOffsetPage = OffsetPage<OperatingunitremarkListResponse>
+export type OperatingunitremarkListResponsesOffsetPage = OffsetPage<OperatingunitremarkListResponse>;
 
 /**
  * Remarks contain amplifying information for a specific service. The information
@@ -234,7 +262,7 @@ export interface OperatingunitremarkListResponse {
   type?: string;
 }
 
-export type OperatingunitremarkCountResponse = string
+export type OperatingunitremarkCountResponse = string;
 
 export interface OperatingunitremarkQueryhelpResponse {
   aodrSupported?: boolean;
@@ -260,7 +288,7 @@ export interface OperatingunitremarkQueryhelpResponse {
   uri?: string;
 }
 
-export type OperatingunitremarkTupleResponse = Array<Shared.OperatingUnitRemarkFull>
+export type OperatingunitremarkTupleResponse = Array<Shared.OperatingUnitRemarkFull>;
 
 export interface OperatingunitremarkCreateParams {
   /**
@@ -335,8 +363,7 @@ export interface OperatingunitremarkCreateParams {
   type?: string;
 }
 
-export interface OperatingunitremarkListParams extends OffsetPageParams {
-}
+export interface OperatingunitremarkListParams extends OffsetPageParams {}
 
 export interface OperatingunitremarkCountParams {
   firstResult?: number;
@@ -459,6 +486,6 @@ export declare namespace Operatingunitremark {
     type OperatingunitremarkCountParams as OperatingunitremarkCountParams,
     type OperatingunitremarkCreateBulkParams as OperatingunitremarkCreateBulkParams,
     type OperatingunitremarkGetParams as OperatingunitremarkGetParams,
-    type OperatingunitremarkTupleParams as OperatingunitremarkTupleParams
+    type OperatingunitremarkTupleParams as OperatingunitremarkTupleParams,
   };
 }

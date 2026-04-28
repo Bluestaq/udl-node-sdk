@@ -26,8 +26,14 @@ export class History extends APIResource {
    * }
    * ```
    */
-  list(query: HistoryListParams, options?: RequestOptions): PagePromise<HistoryListResponsesOffsetPage, HistoryListResponse> {
-    return this._client.getAPIList('/udl/h3geo/history', OffsetPage<HistoryListResponse>, { query, ...options });
+  list(
+    query: HistoryListParams,
+    options?: RequestOptions,
+  ): PagePromise<HistoryListResponsesOffsetPage, HistoryListResponse> {
+    return this._client.getAPIList('/udl/h3geo/history', OffsetPage<HistoryListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -44,7 +50,11 @@ export class History extends APIResource {
    * ```
    */
   ador(query: HistoryAdorParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/udl/h3geo/history/aodr', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.get('/udl/h3geo/history/aodr', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -62,11 +72,15 @@ export class History extends APIResource {
    * ```
    */
   count(query: HistoryCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/h3geo/history/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/h3geo/history/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 }
 
-export type HistoryListResponsesOffsetPage = OffsetPage<HistoryListResponse>
+export type HistoryListResponsesOffsetPage = OffsetPage<HistoryListResponse>;
 
 /**
  * H3 Geospatial Binning is a discrete global grid system for indexing geographies
@@ -172,7 +186,7 @@ export interface HistoryListResponse {
   type?: string;
 }
 
-export type HistoryCountResponse = string
+export type HistoryCountResponse = string;
 
 export interface HistoryListParams extends OffsetPageParams {
   /**
@@ -247,6 +261,6 @@ export declare namespace History {
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAdorParams as HistoryAdorParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

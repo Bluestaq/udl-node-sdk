@@ -3,7 +3,14 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryCountParams, HistoryCountResponse, HistoryListParams, HistoryListResponse, HistoryListResponsesOffsetPage } from './history';
+import {
+  History,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  HistoryListResponse,
+  HistoryListResponsesOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -32,7 +39,11 @@ export class SiteStatus extends APIResource {
    * ```
    */
   create(body: SiteStatusCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/sitestatus', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/sitestatus', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -51,7 +62,11 @@ export class SiteStatus extends APIResource {
    * ```
    */
   update(id: string, body: SiteStatusUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/sitestatus/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/sitestatus/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -68,8 +83,14 @@ export class SiteStatus extends APIResource {
    * }
    * ```
    */
-  list(query: SiteStatusListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SiteStatusListResponsesOffsetPage, SiteStatusListResponse> {
-    return this._client.getAPIList('/udl/sitestatus', OffsetPage<SiteStatusListResponse>, { query, ...options });
+  list(
+    query: SiteStatusListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SiteStatusListResponsesOffsetPage, SiteStatusListResponse> {
+    return this._client.getAPIList('/udl/sitestatus', OffsetPage<SiteStatusListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -84,7 +105,10 @@ export class SiteStatus extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/sitestatus/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/sitestatus/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -100,7 +124,11 @@ export class SiteStatus extends APIResource {
    * ```
    */
   count(query: SiteStatusCountParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/sitestatus/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/sitestatus/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -112,7 +140,11 @@ export class SiteStatus extends APIResource {
    * const siteStatus = await client.siteStatus.get('id');
    * ```
    */
-  get(id: string, query: SiteStatusGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<SiteStatusGetResponse> {
+  get(
+    id: string,
+    query: SiteStatusGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SiteStatusGetResponse> {
     return this._client.get(path`/udl/sitestatus/${id}`, { query, ...options });
   }
 
@@ -151,7 +183,7 @@ export class SiteStatus extends APIResource {
   }
 }
 
-export type SiteStatusListResponsesOffsetPage = OffsetPage<SiteStatusListResponse>
+export type SiteStatusListResponsesOffsetPage = OffsetPage<SiteStatusListResponse>;
 
 export interface SiteStatusListResponse {
   /**
@@ -437,7 +469,7 @@ export interface SiteStatusListResponse {
   weatherMessage?: string;
 }
 
-export type SiteStatusCountResponse = string
+export type SiteStatusCountResponse = string;
 
 export interface SiteStatusGetResponse {
   /**
@@ -758,7 +790,7 @@ export interface SiteStatusQueryhelpResponse {
   uri?: string;
 }
 
-export type SiteStatusTupleResponse = Array<SiteStatusTupleResponse.SiteStatusTupleResponseItem>
+export type SiteStatusTupleResponse = Array<SiteStatusTupleResponse.SiteStatusTupleResponseItem>;
 
 export namespace SiteStatusTupleResponse {
   export interface SiteStatusTupleResponseItem {
@@ -1591,8 +1623,7 @@ export interface SiteStatusUpdateParams {
   weatherMessage?: string;
 }
 
-export interface SiteStatusListParams extends OffsetPageParams {
-}
+export interface SiteStatusListParams extends OffsetPageParams {}
 
 export interface SiteStatusCountParams {
   firstResult?: number;
@@ -1635,7 +1666,7 @@ export declare namespace SiteStatus {
     type SiteStatusListParams as SiteStatusListParams,
     type SiteStatusCountParams as SiteStatusCountParams,
     type SiteStatusGetParams as SiteStatusGetParams,
-    type SiteStatusTupleParams as SiteStatusTupleParams
+    type SiteStatusTupleParams as SiteStatusTupleParams,
   };
 
   export {
@@ -1644,6 +1675,6 @@ export declare namespace SiteStatus {
     type HistoryCountResponse as HistoryCountResponse,
     type HistoryListResponsesOffsetPage as HistoryListResponsesOffsetPage,
     type HistoryListParams as HistoryListParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

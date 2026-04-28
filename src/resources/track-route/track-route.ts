@@ -3,7 +3,15 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as HistoryAPI from './history';
-import { History, HistoryAodrParams, HistoryCountParams, HistoryCountResponse, HistoryListParams, TrackRouteFull, TrackRouteFullsOffsetPage } from './history';
+import {
+  History,
+  HistoryAodrParams,
+  HistoryCountParams,
+  HistoryCountResponse,
+  HistoryListParams,
+  TrackRouteFull,
+  TrackRouteFullsOffsetPage,
+} from './history';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -33,7 +41,11 @@ export class TrackRoute extends APIResource {
    * ```
    */
   create(body: TrackRouteCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/trackroute', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/trackroute', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -53,7 +65,11 @@ export class TrackRoute extends APIResource {
    * ```
    */
   update(id: string, body: TrackRouteUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/trackroute/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/trackroute/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -72,8 +88,14 @@ export class TrackRoute extends APIResource {
    * }
    * ```
    */
-  list(query: TrackRouteListParams, options?: RequestOptions): PagePromise<TrackRouteListResponsesOffsetPage, TrackRouteListResponse> {
-    return this._client.getAPIList('/udl/trackroute', OffsetPage<TrackRouteListResponse>, { query, ...options });
+  list(
+    query: TrackRouteListParams,
+    options?: RequestOptions,
+  ): PagePromise<TrackRouteListResponsesOffsetPage, TrackRouteListResponse> {
+    return this._client.getAPIList('/udl/trackroute', OffsetPage<TrackRouteListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -87,7 +109,10 @@ export class TrackRoute extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/trackroute/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/trackroute/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -105,7 +130,11 @@ export class TrackRoute extends APIResource {
    * ```
    */
   count(query: TrackRouteCountParams, options?: RequestOptions): APIPromise<string> {
-    return this._client.get('/udl/trackroute/count', { query, ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
+    return this._client.get('/udl/trackroute/count', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
   }
 
   /**
@@ -131,8 +160,12 @@ export class TrackRoute extends APIResource {
    * ```
    */
   createBulk(params: TrackRouteCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/trackroute/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/trackroute/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -144,7 +177,11 @@ export class TrackRoute extends APIResource {
    * const trackRouteFull = await client.trackRoute.get('id');
    * ```
    */
-  get(id: string, query: TrackRouteGetParams | null | undefined = {}, options?: RequestOptions): APIPromise<HistoryAPI.TrackRouteFull> {
+  get(
+    id: string,
+    query: TrackRouteGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<HistoryAPI.TrackRouteFull> {
     return this._client.get(path`/udl/trackroute/${id}`, { query, ...options });
   }
 
@@ -201,11 +238,15 @@ export class TrackRoute extends APIResource {
    * ```
    */
   unvalidatedPublish(body: TrackRouteUnvalidatedPublishParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/filedrop/udl-trackroute', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/filedrop/udl-trackroute', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type TrackRouteListResponsesOffsetPage = OffsetPage<TrackRouteListResponse>
+export type TrackRouteListResponsesOffsetPage = OffsetPage<TrackRouteListResponse>;
 
 /**
  * Minimum and maximum altitude bounds for the track.
@@ -973,7 +1014,7 @@ export namespace TrackRouteListResponse {
   }
 }
 
-export type TrackRouteCountResponse = string
+export type TrackRouteCountResponse = string;
 
 export interface TrackRouteQueryhelpResponse {
   aodrSupported?: boolean;
@@ -999,7 +1040,7 @@ export interface TrackRouteQueryhelpResponse {
   uri?: string;
 }
 
-export type TrackRouteTupleResponse = Array<HistoryAPI.TrackRouteFull>
+export type TrackRouteTupleResponse = Array<HistoryAPI.TrackRouteFull>;
 
 export interface TrackRouteCreateParams {
   /**
@@ -1638,7 +1679,7 @@ export declare namespace TrackRoute {
     type TrackRouteCreateBulkParams as TrackRouteCreateBulkParams,
     type TrackRouteGetParams as TrackRouteGetParams,
     type TrackRouteTupleParams as TrackRouteTupleParams,
-    type TrackRouteUnvalidatedPublishParams as TrackRouteUnvalidatedPublishParams
+    type TrackRouteUnvalidatedPublishParams as TrackRouteUnvalidatedPublishParams,
   };
 
   export {
@@ -1648,6 +1689,6 @@ export declare namespace TrackRoute {
     type TrackRouteFullsOffsetPage as TrackRouteFullsOffsetPage,
     type HistoryListParams as HistoryListParams,
     type HistoryAodrParams as HistoryAodrParams,
-    type HistoryCountParams as HistoryCountParams
+    type HistoryCountParams as HistoryCountParams,
   };
 }

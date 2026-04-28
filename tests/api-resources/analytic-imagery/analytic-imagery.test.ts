@@ -5,7 +5,7 @@ import Unifieddatalibrary, { toFile } from 'unified-data-library';
 const client = new Unifieddatalibrary({
   password: 'My Password',
   username: 'My Username',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource analyticImagery', () => {
@@ -22,9 +22,13 @@ describe('resource analyticImagery', () => {
 
   test('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.analyticImagery.retrieve('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.analyticImagery.retrieve(
+        'id',
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('list: only required params', async () => {
@@ -40,10 +44,10 @@ describe('resource analyticImagery', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.analyticImagery.list({
-    msgTime: '2019-12-27T18:11:19.117Z',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      msgTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('count: only required params', async () => {
@@ -59,17 +63,21 @@ describe('resource analyticImagery', () => {
 
   test('count: required and optional params', async () => {
     const response = await client.analyticImagery.count({
-    msgTime: '2019-12-27T18:11:19.117Z',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      msgTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('fileGet: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.analyticImagery.fileGet('id', { firstResult: 0, maxResults: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Unifieddatalibrary.NotFoundError);
+    await expect(
+      client.analyticImagery.fileGet(
+        'id',
+        { firstResult: 0, maxResults: 0 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Unifieddatalibrary.NotFoundError);
   });
 
   test('queryhelp', async () => {
@@ -84,7 +92,10 @@ describe('resource analyticImagery', () => {
   });
 
   test('tuple: only required params', async () => {
-    const responsePromise = client.analyticImagery.tuple({ columns: 'columns', msgTime: '2019-12-27T18:11:19.117Z' });
+    const responsePromise = client.analyticImagery.tuple({
+      columns: 'columns',
+      msgTime: '2019-12-27T18:11:19.117Z',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -96,15 +107,17 @@ describe('resource analyticImagery', () => {
 
   test('tuple: required and optional params', async () => {
     const response = await client.analyticImagery.tuple({
-    columns: 'columns',
-    msgTime: '2019-12-27T18:11:19.117Z',
-    firstResult: 0,
-    maxResults: 0,
-  });
+      columns: 'columns',
+      msgTime: '2019-12-27T18:11:19.117Z',
+      firstResult: 0,
+      maxResults: 0,
+    });
   });
 
   test('unvalidatedPublish: only required params', async () => {
-    const responsePromise = client.analyticImagery.unvalidatedPublish({ file: await toFile(Buffer.from('Example data'), 'README.md') });
+    const responsePromise = client.analyticImagery.unvalidatedPublish({
+      file: await toFile(Buffer.from('Example data'), 'README.md'),
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -115,6 +128,8 @@ describe('resource analyticImagery', () => {
   });
 
   test('unvalidatedPublish: required and optional params', async () => {
-    const response = await client.analyticImagery.unvalidatedPublish({ file: await toFile(Buffer.from('Example data'), 'README.md') });
+    const response = await client.analyticImagery.unvalidatedPublish({
+      file: await toFile(Buffer.from('Example data'), 'README.md'),
+    });
   });
 });

@@ -31,7 +31,11 @@ export class Staging extends APIResource {
    * ```
    */
   create(body: StagingCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/udl/laseremitterstaging', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.post('/udl/laseremitterstaging', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -45,7 +49,11 @@ export class Staging extends APIResource {
    * );
    * ```
    */
-  retrieve(id: string, query: StagingRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<StagingRetrieveResponse> {
+  retrieve(
+    id: string,
+    query: StagingRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<StagingRetrieveResponse> {
     return this._client.get(path`/udl/laseremitterstaging/${id}`, { query, ...options });
   }
 
@@ -64,7 +72,11 @@ export class Staging extends APIResource {
    * ```
    */
   update(id: string, body: StagingUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/udl/laseremitterstaging/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.put(path`/udl/laseremitterstaging/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -81,8 +93,14 @@ export class Staging extends APIResource {
    * }
    * ```
    */
-  list(query: StagingListParams | null | undefined = {}, options?: RequestOptions): PagePromise<StagingListResponsesOffsetPage, StagingListResponse> {
-    return this._client.getAPIList('/udl/laseremitterstaging', OffsetPage<StagingListResponse>, { query, ...options });
+  list(
+    query: StagingListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<StagingListResponsesOffsetPage, StagingListResponse> {
+    return this._client.getAPIList('/udl/laseremitterstaging', OffsetPage<StagingListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -96,7 +114,10 @@ export class Staging extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/udl/laseremitterstaging/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/udl/laseremitterstaging/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -122,8 +143,12 @@ export class Staging extends APIResource {
    * ```
    */
   createBulk(params: StagingCreateBulkParams, options?: RequestOptions): APIPromise<void> {
-    const { body } = params
-    return this._client.post('/udl/laseremitterstaging/createBulk', { body: body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    const { body } = params;
+    return this._client.post('/udl/laseremitterstaging/createBulk', {
+      body: body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -141,7 +166,7 @@ export class Staging extends APIResource {
   }
 }
 
-export type StagingListResponsesOffsetPage = OffsetPage<StagingListResponse>
+export type StagingListResponsesOffsetPage = OffsetPage<StagingListResponse>;
 
 /**
  * Model representation of a nominal laser emitter. This entity contains minimal
@@ -475,8 +500,7 @@ export interface StagingUpdateParams {
   ownerCountry?: string;
 }
 
-export interface StagingListParams extends OffsetPageParams {
-}
+export interface StagingListParams extends OffsetPageParams {}
 
 export interface StagingCreateBulkParams {
   body: Array<StagingCreateBulkParams.Body>;
@@ -566,6 +590,6 @@ export declare namespace Staging {
     type StagingRetrieveParams as StagingRetrieveParams,
     type StagingUpdateParams as StagingUpdateParams,
     type StagingListParams as StagingListParams,
-    type StagingCreateBulkParams as StagingCreateBulkParams
+    type StagingCreateBulkParams as StagingCreateBulkParams,
   };
 }
