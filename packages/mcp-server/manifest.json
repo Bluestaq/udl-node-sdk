@@ -18,7 +18,9 @@
     "entry_point": "index.js",
     "mcp_config": {
       "command": "node",
-      "args": ["${__dirname}/index.js"],
+      "args": [
+        "${__dirname}/index.js"
+      ],
       "env": {
         "UDL_ACCESS_TOKEN": "${user_config.UDL_ACCESS_TOKEN}",
         "UDL_AUTH_PASSWORD": "${user_config.UDL_AUTH_PASSWORD}",
@@ -53,5 +55,7 @@
       "node": ">=18.0.0"
     }
   },
-  "keywords": ["api"]
+  "keywords": [
+    "api"
+  ]
 }
